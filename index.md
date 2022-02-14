@@ -102,30 +102,14 @@ layout: default
             </div>
         </div>
         <div class="row align-items-center justify-content-center mb-6">
-            <div class="col-6 col-sm-4 col-md-2 mb-4 mb-md-0">
-                <!-- Brand -->
-                <div class="img-fluid text-gray-600 mb-2 mb-md-0">
-                    <img src="/img/openai.svg" alt="OpenAI integration with Weaviate logo">
+            {% for integration in site.data.integrations %}
+                <div class="col-6 col-sm-4 col-md-2 mb-4 mb-md-0">
+                    <!-- Brand -->
+                    <div class="img-fluid text-gray-600 mb-2 mb-md-0">
+                        <img src="{{ integration.image }}" alt="{{ integration.name }} integration with Weaviate logo">
+                    </div>
                 </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-2 mb-4 mb-md-0">
-                <!-- Brand -->
-                <div class="img-fluid text-gray-600 mb-2 mb-md-0">
-                    <img src="/img/huggingface.svg" alt="Huggingface integration with Weaviate logo">
-                </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-2 mb-4 mb-md-0">
-                <!-- Brand -->
-                <div class="img-fluid text-gray-600 mb-2 mb-md-0">
-                    <img src="/img/deepset.png" alt="Deepset integration with Weaviate logo">
-                </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-2 mb-4 mb-md-0">
-                <!-- Brand -->
-                <div class="img-fluid text-gray-600 mb-2 mb-md-0">
-                    <img src="/img/jina.svg" alt="Jina integration with Weaviate logo">
-                </div>
-            </div>
+            {% endfor %}
         </div> <!-- / .row -->
         <div class="row">
             <div class="col-12 align-items-center justify-content-center text-center">

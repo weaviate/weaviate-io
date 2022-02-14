@@ -29,7 +29,7 @@
 
                         <!-- Heading -->
                         <h4 class="fw-bold text-white mb-0">
-                            Want to get early access?
+                            Weaviate Cluster Service
                         </h4>
 
                         <!-- Text -->
@@ -39,7 +39,7 @@
 
                         <!-- Button -->
                         <a href="/product.html#request-access" class="btn btn-sm btn-white shadow-dark fonFt-size-sm">
-                            Request access
+                            Request access &amp; pricing info
                         </a>
 
                         </div>
@@ -56,10 +56,10 @@
 
                                     <!-- List -->
                                     <a class="dropdown-item" href="./product.html">
-                                        Managed Services
+                                        Weaviate Cluster Service
                                     </a>
                                     <a class="dropdown-item mb-5" href="./product.html">
-                                        Manged on your own Cloud
+                                        Weaviate Cluster Service infrastructure
                                     </a>
 
                                     <!-- Heading -->
@@ -68,18 +68,11 @@
                                     </h6>
 
                                     <!-- List -->
-                                    <a class="dropdown-item" href="./product.html#integrations">
-                                        Huggingface (embeddings)
-                                    </a>
-                                    <a class="dropdown-item" href="./product.html#integrations">
-                                        OpenAI (embeddings)
-                                    </a>
-                                    <a class="dropdown-item" href="./product.html#integrations">
-                                        Jina (neural search framework)
-                                    </a>
-                                    <a class="dropdown-item" href="./product.html#integrations">
-                                        Deepset's Haystack (neural search framework)
-                                    </a>
+                                    {% for integration in site.data.integrations %}
+                                        <a class="dropdown-item" href="./product.html#{{ integration.name | downcase }}">
+                                            {{ integration.name }} ({{ integration.type }})
+                                        </a>
+                                    {% endfor %}
                                 </div>
                             </div> <!-- / .row -->
                         </div>
