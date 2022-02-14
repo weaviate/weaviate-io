@@ -1,0 +1,48 @@
+os: linux
+dist: focal
+language: ruby
+rvm:
+- 2.7.0
+before_install:
+- openssl aes-256-cbc -K $encrypted_617a65259523_key -iv $encrypted_617a65259523_iv
+  -in key.master.json.enc -out key.master.json -d
+- sudo apt-get update
+- sudo apt-get install -y minify
+- bundle install
+- |
+  if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+    gcloud version || true
+    if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+    echo "LOAD SOURCE"
+    source /home/travis/google-cloud-sdk/path.bash.inc
+    gcloud version
+    gcloud auth activate-service-account --key-file key.master.json
+  fi
+- rm key.master.json
+install:
+- bundle install
+- gem install jekyll html-proofer
+script:
+- bundle exec jekyll build
+- minify --match='\.html' -r -o _site_min/ _site/
+- rsync -av _site_min/ _site/
+- |
+  if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+    if [ $TRAVIS_BRANCH = "main" ]; then
+      # set project
+      gcloud config set project "$GS_PROJECT"
+      # rm everything
+      gsutil -m rm -r gs://$GS_BUCKET/**
+      # cd into assets dir
+      cd _site/
+      # Upload data to bucket
+      gsutil -m -h "Cache-Control:public,max-age=86400" cp -r ./ gs://$GS_BUCKET/
+      # set access
+      gsutil iam ch allUsers:objectViewer gs://$GS_BUCKET
+      # set web service
+      gsutil web set -m index.html -e 404.html gs://$GS_BUCKET
+      # Invalidate the CDN
+      gcloud compute url-maps invalidate-cdn-cache $GS_BUCKET --path "/*" --async
+    fi
+  fi
+cache: bundler

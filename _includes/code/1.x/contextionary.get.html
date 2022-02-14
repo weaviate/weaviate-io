@@ -1,0 +1,77 @@
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+concept_info = client.contextionary.get_concept_vector("fashionMagazine")
+print(concept_info)
+{% endcapture %}
+
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.c11y
+      .conceptsGetter()
+      .withConcept('fashionMagazine')
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+          console.error(err)
+      });
+{% endcapture %}
+
+{% capture go %}
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+)
+
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+
+concept, err := client.C11y().
+  ConceptsGetter().
+  WithConcept("fashionMagazine").
+  Do(context.Background())
+
+if err != nil {
+  panic(err)
+}
+
+fmt.Printf("%v", concept)
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+Result<Boolean> concept = client.c11y().conceptsGetter().withConcept("fashionMagazine").run();
+
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+{% endcapture %}
+
+{% capture curl %}
+$ curl http://localhost:8080/v1/modules/text2vec-contextionary/concepts/fashionMagazine
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='contextionary-get' %}

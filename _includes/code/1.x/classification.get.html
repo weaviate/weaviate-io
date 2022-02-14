@@ -1,0 +1,79 @@
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+classification_info = client.classification.get("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c")
+
+print(classification_info)
+
+{% endcapture %}
+
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.classifications
+      .getter()
+      .withId("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c")
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+          console.error(err)
+      });
+{% endcapture %}
+
+{% capture go %}
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+)
+
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+
+classification, err := client.Classifications().Getter().
+  WithID("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c").
+  Do(context.Background())
+
+if err != nil {
+  panic(err)
+}
+fmt.Printf("%v", classification)
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+Result<Classification> result = client.classifications().getter()
+    .withID("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c")
+    .run();
+
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+{% endcapture %}
+
+{% capture curl %}
+$ curl http://localhost:8080/v1/classifications/ee722219-b8ec-4db1-8f8d-5150bb1a9e0c
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='classification-get' %}

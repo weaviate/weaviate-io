@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="107px" height="122px" viewBox="0 0 107 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>healthcare</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="27" cy="27" r="27"></circle>
+        <filter x="-66.7%" y="-57.4%" width="251.9%" height="251.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="5" dy="10" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="12" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M14.6621023,4.48089979 C15.1827708,3.69981875 15.7425209,2.95059032 16.3388312,2.23736916 C17.9147043,0.586573779 20.0742808,-0.213895792 22.2389001,0.0492343442 C25.868451,0.298515525 28.8474815,3.29958397 29.3870604,7.25069069 C29.8434332,9.90553527 29.4463132,12.6503981 28.2650388,15.0199542 C26.9337412,17.8354466 25.2343196,20.4196615 23.2222449,22.692275 C20.8332213,25.4717601 18.2311397,28.0199678 15.4437353,30.3092 L15.2294166,30.4615385 L13.5652946,29.2428305 C10.2874786,26.653076 7.28197345,23.6700112 4.6017285,20.3518017 C2.90356766,18.3353939 1.56470589,15.9866112 0.655742293,13.4273244 C-0.485189822,10.2489893 -0.122108662,6.65518565 1.62648011,3.82999893 C3.01576983,1.51722352 5.40983622,0.176644726 7.92997246,0.298515525 C10.6946842,0.178029621 13.2828982,1.78727814 14.6116743,4.45320188 C14.6116743,4.45320188 14.6999232,4.48089979 14.6621023,4.48089979" id="path-3"></path>
+    </defs>
+    <g id="SeMI-Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Styleguide-–-SeMI-Graphics" transform="translate(-1110.000000, -4895.000000)">
+            <g id="graphics/industries/dark-background/healthcare" transform="translate(1111.000000, 4897.000000)">
+                <g id="Group">
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" opacity="0.7" points="50.9896468 0 0 29.6318997 0 89 51 58.9300363"></polygon>
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" opacity="0.7" points="51.0103532 0 102 29.6318997 102 89 51 58.9300363"></polygon>
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" opacity="0.7" points="101 88.1726845 50.9187982 58 1 88.2040816 50.9187982 118"></polygon>
+                    <path d="M0.58,28.36 L1.44,28.87" id="Shape" stroke="#FFFFFF"></path>
+                    <path d="M3.13,30.88 L49.62,58.6" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.97"></path>
+                    <polyline id="Shape" stroke="#FFFFFF" points="50.46 58.1 51.32 58.62 52.18 58.1"></polyline>
+                    <path d="M53.87,58.1 L100.35,30.37" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.97"></path>
+                    <path d="M51,115 L51,114" id="Shape" stroke="#FFFFFF"></path>
+                    <path d="M51,112.53 L51,63" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.94"></path>
+                    <path d="M51.32,62.15 L51.32,61.15" id="Shape" stroke="#FFFFFF"></path>
+                    <polygon id="Shape" stroke="#F7F7F7" stroke-width="4" points="101 88.0024998 101 29.9975002 51.0049766 1 1 29.9975002 1 88.0024998 51.0049766 117"></polygon>
+                </g>
+                <g id="Group-2" transform="translate(24.000000, 32.000000)">
+                    <g id="Oval" fill-rule="nonzero">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#00152B" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="icons/industries/healthcare" transform="translate(12.000000, 12.000000)">
+                        <g id="background/black">
+                            <mask id="mask-4" fill="white">
+                                <use xlink:href="#path-3"></use>
+                            </mask>
+                            <g id="Mask"></g>
+                            <g id="background/white" mask="url(#mask-4)" fill="#FFFFFF">
+                                <polygon id="Combined-Shape" points="0 0 30 0 30 29.7931034 0 29.7931034"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <circle id="Oval" stroke="#FFFFFF" stroke-width="2.4" cx="27" cy="27" r="27"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

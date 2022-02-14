@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="107px" height="122px" viewBox="0 0 107 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>telecom-light-bg</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="27" cy="27" r="27"></circle>
+        <filter x="-66.7%" y="-57.4%" width="251.9%" height="251.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="5" dy="10" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="12" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M13.23482,17.7103448 L21.3814954,25.8537931 C21.5470783,26.0193103 21.646428,26.2510345 21.6133114,26.4827586 C21.5801949,26.7144828 21.4808452,26.9462069 21.2821457,27.0786207 C18.9639861,28.8662069 16.1821944,29.7931034 13.23482,29.7931034 C9.69134733,29.7931034 6.37969063,28.4027586 3.86283155,25.92 C-0.80660439,21.2524138 -1.30335289,13.7710345 2.7037517,8.54068966 C2.83621797,8.34206897 3.06803394,8.20965517 3.29984991,8.20965517 C3.53166588,8.17655172 3.76348185,8.27586207 3.92906468,8.44137931 L12.0757401,16.5517241 L14.3276667,14.3006897 C14.6257158,13.9696552 15.1555809,13.9696552 15.4867465,14.3006897 C15.8179122,14.5986207 15.8179122,15.1282759 15.4867465,15.4593103 L13.23482,17.7103448 Z M14.8906483,-3.02868841e-13 C23.1035569,-3.02868841e-13 29.7931034,6.68689655 29.7931034,14.8965517 C29.7931034,15.36 29.4288212,15.7241379 28.9651893,15.7241379 C28.5015573,15.7241379 28.1372751,15.36 28.1372751,14.8965517 C28.1372751,7.58068966 22.2094096,1.65517241 14.8906483,1.65517241 C14.4270164,1.65517241 14.0627342,1.29103448 14.0627342,0.827586207 C14.0627342,0.364137931 14.4270164,-3.02868841e-13 14.8906483,-3.02868841e-13 Z M14.8906483,3.31034483 C21.2821457,3.31034483 26.4814468,8.50758621 26.4814468,14.8965517 C26.4814468,15.36 26.1171645,15.7241379 25.6535326,15.7241379 C25.1899006,15.7241379 24.8256184,15.36 24.8256184,14.8965517 C24.8256184,9.43448276 20.3548819,4.96551724 14.8906483,4.96551724 C14.4270164,4.96551724 14.0627342,4.60137931 14.0627342,4.13793103 C14.0627342,3.67448276 14.4270164,3.31034483 14.8906483,3.31034483 Z M14.8906483,6.62068966 C19.4607346,6.62068966 23.1697901,10.3282759 23.1697901,14.8965517 C23.1697901,15.36 22.8055078,15.7241379 22.3418759,15.7241379 C21.878244,15.7241379 21.5139617,15.36 21.5139617,14.8965517 C21.5139617,11.2551724 18.5334707,8.27586207 14.8906483,8.27586207 C14.4270164,8.27586207 14.0627342,7.91172414 14.0627342,7.44827586 C14.0627342,6.98482759 14.4270164,6.62068966 14.8906483,6.62068966 Z M18.202305,14.8965517 C18.202305,13.0758621 16.7120595,11.5862069 14.8906483,11.5862069 C14.4270164,11.5862069 14.0627342,11.222069 14.0627342,10.7586207 C14.0627342,10.2951724 14.4270164,9.93103448 14.8906483,9.93103448 C17.6393234,9.93103448 19.8581334,12.1489655 19.8581334,14.8965517 C19.8581334,15.36 19.4938511,15.7241379 19.0302192,15.7241379 C18.5665873,15.7241379 18.202305,15.36 18.202305,14.8965517 Z" id="path-3"></path>
+    </defs>
+    <g id="SeMI-Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Styleguide-–-SeMI-Graphics" transform="translate(-1108.000000, -5529.000000)">
+            <g id="graphics/industries/white-background/telecom" transform="translate(1109.000000, 5531.000000)">
+                <g id="Group">
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" style="mix-blend-mode: multiply;" opacity="0.7" points="50.9896468 0 0 29.6318997 0 89 51 58.9300363"></polygon>
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" style="mix-blend-mode: multiply;" opacity="0.7" points="51.0103532 0 102 29.6318997 102 89 51 58.9300363"></polygon>
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" opacity="0.7" points="101 88.1726845 50.9187982 58 1 88.2040816 50.9187982 118"></polygon>
+                    <path d="M0.58,28.36 L1.44,28.87" id="Shape" stroke="#FFFFFF"></path>
+                    <path d="M3.13,30.88 L49.62,58.6" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.97"></path>
+                    <polyline id="Shape" stroke="#FFFFFF" points="50.46 58.1 51.32 58.62 52.18 58.1"></polyline>
+                    <path d="M53.87,58.1 L100.35,30.37" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.97"></path>
+                    <path d="M51,115 L51,114" id="Shape" stroke="#FFFFFF"></path>
+                    <path d="M51,112.53 L51,63" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.94"></path>
+                    <path d="M51.32,62.15 L51.32,61.15" id="Shape" stroke="#FFFFFF"></path>
+                    <polygon id="Shape" stroke="#00152B" stroke-width="4" points="101 88.0024998 101 29.9975002 51.0049766 1 1 29.9975002 1 88.0024998 51.0049766 117"></polygon>
+                </g>
+                <g id="Group-2" transform="translate(24.000000, 32.000000)">
+                    <g id="Oval" fill-rule="nonzero">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#00152B" xlink:href="#path-1"></use>
+                    </g>
+                    <circle id="Oval" stroke="#FFFFFF" stroke-width="2.4" cx="27" cy="27" r="27"></circle>
+                    <g id="icons/industries/telecom-3" transform="translate(12.000000, 12.000000)">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-3"></use>
+                        <g id="background/white" mask="url(#mask-4)" fill="#FFFFFF" fill-rule="evenodd">
+                            <polygon id="Combined-Shape" points="0 0 30 0 30 29.7931034 0 29.7931034"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

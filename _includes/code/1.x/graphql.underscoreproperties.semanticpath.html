@@ -1,0 +1,240 @@
+<!-- SET GRAPHQL TAB CONTENT -->
+{% capture graphql %}
+{
+  Get {
+    Publication (
+      nearText:{ 
+          concepts: ["fashion"],
+          certainty: 0.7,
+          moveAwayFrom: {
+            concepts: ["finance"],
+            force: 0.45
+          },
+          moveTo: {
+            concepts: ["haute couture"],
+            force: 0.85
+          }
+      }
+    ) {
+      name
+      _additional {
+        semanticPath{
+          path {
+            concept
+            distanceToNext
+            distanceToPrevious
+            distanceToQuery
+            distanceToResult
+          }
+        }
+      }
+    }
+  }
+}
+{% endcapture %}
+
+<!-- SET PYTHON TAB CONTENT -->
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+get_semantic_path = """
+  {
+    Get {
+      Publication (
+        nearText:{ 
+            concepts: ["fashion"],
+            certainty: 0.7,
+            moveAwayFrom: {
+              concepts: ["finance"],
+              force: 0.45
+            },
+            moveTo: {
+              concepts: ["haute couture"],
+              force: 0.85
+            }
+        }
+      ) {
+        name
+        _additional {
+          semanticPath{
+            path {
+              concept
+              distanceToNext
+              distanceToPrevious
+              distanceToQuery
+              distanceToResult
+            }
+          }
+        }
+      }
+    }
+  }
+"""
+
+try:
+    query_result = client.query.raw(get_semantic_path)
+    print(query_result)
+except weaviate.UnexpectedStatusCodeException as usce:
+    print("Got an error: ", usce.json, " with status code: ", usce.status_code)
+
+{% endcapture %}
+
+<!-- SET JAVASCRIPT TAB CONTENT -->
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.graphql
+      .get()
+      .withClassName('Publication')
+      .withFields('name _additional { semanticPath{ path {concept distanceToNext distanceToPrevious distanceToQuery distanceToResult}}}')
+      .withNearText({
+        concepts: ["fashion"],
+        certainty: 0.7,
+        moveAwayFrom: {
+          concepts: ["finance"],
+          force: 0.45
+        },
+        moveTo: {
+          concepts: ["haute couture"],
+          force: 0.85
+        }
+      })
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      });
+{% endcapture %}
+
+<!-- SET GO TAB CONTENT -->
+{% capture go %}
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+)
+
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+
+className := "Publication"
+fields := "name _additional { semanticPath{ path {concept distanceToNext distanceToPrevious distanceToQuery distanceToResult}}}"
+nearText := `{
+  concepts: ["fashion"],
+    certainty: 0.7,
+    moveAwayFrom: {
+      concepts: ["finance"],
+      force: 0.45
+    },
+    moveTo: {
+      concepts: ["haute couture"],
+      force: 0.85
+    }
+  }
+}`
+ctx := context.Background()
+
+result, err := client.GraphQL().Get().Objects().
+  WithClassName(className).
+  WithFields(fields).
+  WithNearText(nearText).
+  Do(ctx)
+
+if err != nil {
+  panic(err)
+}
+fmt.Printf("%v", result)
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
+            .concepts(new String[]{"haute couture"}).force(0.85f).build();
+
+NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
+            .concepts(new String[]{"finance"}).force(0.45f)
+            .build();
+
+String className = "Article";
+String fields = "name _additional { semanticPath { path { concept distanceToNext distanceToPrevious distanceToQuery distanceToResult } } }";
+NearTextArgument explore = client.graphQL().arguments().nearTextArgBuilder()
+            .concepts([]string{"fashion"})
+            .moveTo(moveTo)
+            .moveAwayFrom(moveAway)
+            .build();
+
+Result<GraphQLResponse> result = client.graphQL().get()
+            .withClassName("Publication")
+            .withFields(fields)
+            .withNearText(explore)
+            .certainty(0.7f)
+            .run();
+
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+{% endcapture %}
+
+<!-- SET CURL TAB CONTENT -->
+{% capture curl %}
+$ echo '{ 
+  "query": "{
+    Get {
+      Publication (
+        nearText:{ 
+            concepts: [\"fashion\"],
+            certainty: 0.7,
+            moveAwayFrom: {
+              concepts: [\"finance\"],
+              force: 0.45
+            },
+            moveTo: {
+              concepts: [\"haute couture\"],
+              force: 0.85
+            }
+        }
+      ) {
+        name
+        _additional {
+          semanticPath{
+            path {
+              concept
+              distanceToNext
+              distanceToPrevious
+              distanceToQuery
+              distanceToResult
+            }
+          }
+        }
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    http://localhost:8080/v1/graphql
+{% endcapture %}
+
+<!-- SET BLOCK_ID TO A UNIQUE ID, OFTEN THIS IS = TO THE FILENAME WHERE . == - -->
+{% include molecule-graphql-block-request.html block_id='graphql-underscoreproperties-semanticpath' %}

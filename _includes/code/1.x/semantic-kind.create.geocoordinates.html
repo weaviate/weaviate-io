@@ -1,0 +1,124 @@
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+data_obj = {
+  "name": "Elsevier",
+  "headquartersGeoLocation": {
+    "latitude": 52.3932696,
+    "longitude": 4.8374263
+  }
+}
+
+client.data_object.create(data_obj, "Publication", "df48b9f6-ba48-470c-bf6a-57657cb07390")
+{% endcapture %}
+
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.data
+      .creator()
+      .withClassName('Publication')
+      .withId("df48b9f6-ba48-470c-bf6a-57657cb07390")
+      .withProperties({
+        "name": "Elsevier",
+        "headquartersGeoLocation": {
+          "latitude": 52.3932696,
+          "longitude": 4.8374263
+        })
+      .do()
+      .then(res => {
+          console.log(res)
+      })
+      .catch(err => {
+          console.error(err)
+      });
+{% endcapture %}
+
+{% capture go %}
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+)
+
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+
+dataSchema := map[string]interface{} {
+  "name": "Elsevier",
+  "headquartersGeoLocation": map[string]float32{
+    "latitude": 52.3932696,
+    "longitude": 4.8374263,
+  },
+}
+
+created, err := client.Data().Creator().
+  WithClassName("Publication").
+  WithID("df48b9f6-ba48-470c-bf6a-57657cb07390").
+  WithProperties(dataSchema).
+  Do(context.Background())
+
+if err != nil {
+  panic(err)
+}
+fmt.Printf("%v", created.Thing)
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+Map<String, Object> dataSchema = new HashMap<>();
+dataSchema.put("name", "Elsevier");
+dataSchema.put("headquartersGeoLocation", new HashMap() { {
+  put("latitude", 52.3932696f);
+  put("longitude", 4.8374263f);
+} });
+
+Result<WeaviateObject> result = client.data().creator()
+            .withClassName("Publication")
+            .withID("df48b9f6-ba48-470c-bf6a-57657cb07390")
+            .withProperties(dataSchema)
+            .run();
+
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+{% endcapture %}
+
+{% capture curl %}
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "class": "Publication",
+      "id": "df48b9f6-ba48-470c-bf6a-57657cb07390",
+      "properties": {
+          "name": "Elsevier",
+          "headquartersGeoLocation": {
+            "latitude": 52.3932696,
+            "longitude": 4.8374263
+          }
+      }
+  }' \
+    http://localhost:8080/v1/objects
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='semantic-kind-create-geocoordinates' %}

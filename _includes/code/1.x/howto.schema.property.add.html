@@ -1,0 +1,118 @@
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+reference_property = {
+  "dataType": [
+    "Article"
+  ],
+  "description": "The articles this publication has",
+  "name": "hasArticles"
+}
+
+client.schema.property.create("Publication", reference_property)
+{% endcapture %}
+
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const className = 'Publication';
+const prop = {
+  "dataType": [
+    "Article"
+  ],
+  "description": "The articles this publication has",
+  "name": "hasArticles"
+};
+
+client.schema
+      .propertyCreator()
+      .withClassName(className)
+      .withProperty(prop)
+      .do()
+      .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.error(err)
+  });
+{% endcapture %}
+
+<!-- SET GO TAB CONTENT -->
+{% capture go %}
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+)
+
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+
+prop := &models.Property{
+  DataType:              []string{"Article"},
+  Name:                  "hasArticles",
+  Description:           "The articles this publication has",
+}
+
+err := client.Schema().PropertyCreator().
+  WithClassName("Publication").
+  WithProperty(prop).
+  Do(context.Background())
+
+if err != nil {
+  panic(err)
+}
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+Property property = Property.builder()
+      .dataType(Arrays.asList("Article"))
+      .description("The articles this publication has")
+      .name("hasArticles")
+      .build();
+
+Result<Boolean> result = client.schema().propertyCreator()
+      .withClassName("Article")
+      .withProperty(property)
+      .run();
+
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+{% endcapture %}
+
+{% capture curl %}
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{ 
+      "dataType": [
+        "Article"
+      ],
+      "description": "The articles this publication has",
+      "name": "hasArticles"
+    }' \
+    http://localhost:8080/v1/schema/Publication/properties
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='howto-schema-property-add' %}

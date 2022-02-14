@@ -1,0 +1,234 @@
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+batch = weaviate.ReferenceBatchRequest()
+
+# Format:
+# client.batch.add_reference(<from_entity_uuid>, <from_class_name>, <from_property_name>, <to_entity_uuid>)
+
+## METHOD 1: manually call .flush() to send objects
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4304", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+client.batch.create_references() # or client.batch.flush(), which also sends objects
+
+## METHOD 2: let a context manager call .flush() automatically 
+with client.batch as batch:
+    client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+    client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+    client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4304", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+    # no need to create or call flush, this goes automatically
+
+## METHOD 3: automatically send batch when the batch is full 
+client.batch(batch_size=3)
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4304", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+# note that, at the end, you need to create or flush any objects that are left in a batch that is not full and thus not sent yet
+
+## Or with a context manager and __call__ method:
+with client.batch(batch_size=2) as batch:
+    client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+    client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+    client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4304", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+    # no need to create or call flush if there are objects left in an unsent batch, this is automatically flushed
+
+## METHOD 4: Automatically send batch when full, but configure this to 'dynamic':
+client.batch(batch_size=2, dynamic=True)
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4304", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+
+## Or:
+client.batch.batch_size = 3
+client.batch.dynamic = True
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4304", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
+
+## For more info, visit https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch
+{% endcapture %}
+
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.batch
+      .referencesBatcher()
+      .withReference({
+        from:
+          `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles`,
+        to: `weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064`,
+      })
+      .withReference({
+        from:
+          `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles`,
+        to: `weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32`,
+      })
+      .withReference({
+        from:
+          `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles`,
+        to: `weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32`,
+      })
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+          console.error(err)
+      });
+
+/* This is also possible with a builder pattern:
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.batch
+      .referencesBatcher()
+      .withReference(
+        client.batch
+          .referencePayloadBuilder()
+          .withFromClassName("Author")
+          .withFromRefProp('wroteArticles')
+          .withFromId("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+          .withToId("6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+          .payload()
+      )
+      .withReference(
+        client.batch
+          .referencePayloadBuilder()
+          .withFromClassName("Author")
+          .withFromRefProp('wroteArticles')
+          .withFromId("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+          .withToId("b72912b9-e5d7-304e-a654-66dc63c55b32")
+          .payload()
+      )
+      .withReference(
+        client.batch
+          .referencePayloadBuilder()
+          .withFromClassName("Author")
+          .withFromRefProp('wroteArticles')
+          .withFromId("36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
+          .withToId("b72912b9-e5d7-304e-a654-66dc63c55b32")
+          .payload()
+      )
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+          console.error(err)
+      });
+*/
+{% endcapture %}
+
+{% capture go %}
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+)
+
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+
+ref := []*models.BatchReference {
+  {
+    From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
+    To:   "weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
+  },
+  {
+    From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
+    To: "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32",
+  },
+  {
+    From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles",
+    To: "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32",
+  },
+}
+
+result, err := client.Batch().ReferencesBatcher().
+  WithReference(ref[0]).
+  WithReference(ref[1]).
+  WithReference(ref[2]).
+  Do(context.Background())
+
+if err != nil {
+  panic(err)
+}
+fmt.Printf("%v", result)
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+List<BatchReference> refs = new ArrayList(){ {
+  add(
+    BatchReference.builder()
+        .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles")
+        .to("weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+        .build()
+  );
+  add(
+    BatchReference.builder()
+        .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles")
+        .to("weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32")
+        .build()
+  );
+  add(
+    BatchReference.builder()
+        .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles")
+        .to("weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32")
+        .build()
+  );
+} };
+
+Result<BatchReferenceResponse[]> result = client.batch().referencesBatcher()
+            .withReference(refs.get(0))
+            .withReference(refs.get(1))
+            .withReference(refs.get(2))
+            .run();
+
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+{% endcapture %}
+
+{% capture curl %}
+$ curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '[{
+    "from": "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
+    "to": "weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064"
+  }, {
+    "from": "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
+    "to": "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32"
+  }, {
+    "from": "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles",
+    "to": "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32"
+  }]' \
+http://localhost:8080/v1/batch/references
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='batching-references' %}

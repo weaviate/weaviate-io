@@ -1,0 +1,29 @@
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    
+    <!-- Map CSS -->
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
+    
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="https://style.semi.technology/css/libs.bundle.css?build={{ 'now' | date: '%Y%m%d%H%M' }}" />
+    
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="https://style.semi.technology/css/theme.bundle.css?build={{ 'now' | date: '%Y%m%d%H%M' }}" />
+
+    <!-- Highlight JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai-sublime.min.css" />
+
+    <!-- fix for code blocks -->
+    <style>code { max-height: 32rem !important; }</style>
+
+    <!-- Title -->
+    {% if page.layout == "layout-documentation" %}
+        <title>{{ page.title }} · Weaviate Documentation</title>
+    {% else %}
+        <title>{{ page.title }}</title>
+    {% endif %}
+</head>

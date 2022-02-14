@@ -1,0 +1,160 @@
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+source_where = {
+  "path": ["wordCount"],
+  "operator": "GreaterThan",
+  "valueInt": 100
+}
+
+target_where = {
+  "path": ["name"],
+  "operator": "NotEqual",
+  "valueString": "Government"
+}
+
+client.classification.schedule()\
+            .with_type("zeroshot")\
+            .with_class_name("Article")\
+            .with_classify_properties(["ofCategory"])\
+            .with_source_where_filter(source_where)\   # optional
+            .with_target_where_filter(target_where)\   # optional
+            .do()
+{% endcapture %}
+
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+// the following trigger a classification without waiting
+client.classifications
+      .scheduler()
+      .withType('zeroshot')
+      .withClassName('Article')
+      .withClassifyProperties(['ofCategory'])
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+          console.error(err)
+      });
+
+// the following triggers a classification with waiting for completion
+client.classifications
+      .scheduler()
+      .withType('zeroshot')
+      .withClassName('Article')
+      .withClassifyProperties(['ofCategory'])
+      .withWaitForCompletion()
+      .withWaitTimeout(60 * 1000)
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+          console.error(err)
+      });
+{% endcapture %}
+
+{% capture go %}
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+)
+
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+
+sourceWhere := `{
+  valueInt: 100
+  operator: GreaterThan
+  path: ["wordCount"]
+}`
+
+targetWhere := `{
+  valueString: Government
+  operator: NotEqual
+  path: ["name"]
+}`
+
+classification, err := client.Classifications().Scheduler().
+  WithType(classifications.ZeroShot).
+  WithClassName("Article").
+  WithClassifyProperties([]string{"ofCategory"}).
+  WithSourceWhereFilter(sourceWhere).
+  WithTargetWhereFilter(targetWhere).
+  Do(context.Background())
+
+if err != nil {
+  panic(err)
+}
+fmt.Printf("%v", classification)
+
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+WhereFilter trainingSetWhere = WhereFilter.builder()
+            .valueInt(100)
+            .operator(Operator.GreaterThan)
+            .path(new String[]{ "wordCount" })
+            .build();
+
+WhereFilter targetSetWhere = WhereFilter.builder()
+            .valueString("Government")
+            .operator("NotEqual")
+            .path(new String[]{ "name" })
+            .build();
+
+Result<Classification> result = client.classifications().scheduler()
+            .withType(ClassificationType.ZeroShot)
+            .withClassName("Article")
+            .withClassifyProperties(new String[]{"ofCategory"})
+            .withTrainingSetWhereFilter(trainingSetWhere)
+            .withTargetWhereFilter(trainingSetWhere)
+            .run();
+
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+{% endcapture %}
+
+
+{% capture curl %}
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Article",
+        "type": "zeroshot",
+        "classifyProperties": [
+            "ofCategory"
+        ],
+        "filters": {
+          "sourceWhere": {"path": ["wordCount"], "operator": "GreaterThan", "valueInt": 100},
+          "targetWhere": {"path": ["name"], "operator": "NotEqual", "valueString": "Government"}
+        }
+    }' \
+    http://localhost:8080/v1/classifications
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='classification-zeroshot-post' %}

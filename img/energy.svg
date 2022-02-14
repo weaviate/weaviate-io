@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="107px" height="122px" viewBox="0 0 107 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>energy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="27" cy="27" r="27"></circle>
+        <filter x="-66.7%" y="-57.4%" width="251.9%" height="251.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="5" dy="10" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="12" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M8.00691463,17.4898959 L13.031711,17.4898959 C13.3438102,17.4898959 13.5934895,17.7437037 13.5934895,18.0609635 L13.5310696,29.228507 C13.5310696,29.8313005 14.3425274,30.0216564 14.5922068,29.4505888 L22.3010559,12.0013021 C22.4571054,11.6205904 22.1762162,11.2081527 21.7704873,11.2398787 L17.1202099,11.3667826 C16.8081108,11.3667826 16.5584314,11.1129748 16.5584314,10.795715 L16.5584314,0.548224861 C16.5896414,-0.0228427026 15.8093935,-0.213198557 15.5285042,0.294417055 L7.50755598,16.6967465 C7.32029649,17.0774582 7.60118573,17.4898959 8.00691463,17.4898959 Z" id="path-3"></path>
+    </defs>
+    <g id="SeMI-Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Styleguide-–-SeMI-Graphics" transform="translate(-447.000000, -5296.000000)">
+            <g id="graphics/industries/dark-background/energy" transform="translate(448.000000, 5298.000000)">
+                <g id="Group">
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" opacity="0.7" points="50.9896468 0 0 29.6318997 0 89 51 58.9300363"></polygon>
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" opacity="0.7" points="51.0103532 0 102 29.6318997 102 89 51 58.9300363"></polygon>
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" opacity="0.7" points="101 88.1726845 50.9187982 58 1 88.2040816 50.9187982 118"></polygon>
+                    <path d="M0.58,28.36 L1.44,28.87" id="Shape" stroke="#FFFFFF"></path>
+                    <path d="M3.13,30.88 L49.62,58.6" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.97"></path>
+                    <polyline id="Shape" stroke="#FFFFFF" points="50.46 58.1 51.32 58.62 52.18 58.1"></polyline>
+                    <path d="M53.87,58.1 L100.35,30.37" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.97"></path>
+                    <path d="M51,115 L51,114" id="Shape" stroke="#FFFFFF"></path>
+                    <path d="M51,112.53 L51,63" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.94"></path>
+                    <path d="M51.32,62.15 L51.32,61.15" id="Shape" stroke="#FFFFFF"></path>
+                    <polygon id="Shape" stroke="#F7F7F7" stroke-width="4" points="101 88.0024998 101 29.9975002 51.0049766 1 1 29.9975002 1 88.0024998 51.0049766 117"></polygon>
+                </g>
+                <g id="Group-2" transform="translate(24.000000, 32.000000)">
+                    <g id="Oval" fill-rule="nonzero">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#00152B" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="icons/industries/energy-1" transform="translate(12.000000, 12.000000)">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="Path" fill-rule="nonzero"></g>
+                        <g id="background/white" mask="url(#mask-4)" fill="#FFFFFF" fill-rule="evenodd">
+                            <polygon id="Combined-Shape" points="0 0 30 0 30 29.7931034 0 29.7931034"></polygon>
+                        </g>
+                    </g>
+                    <circle id="Oval" stroke="#FFFFFF" stroke-width="2.4" cx="27" cy="27" r="27"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

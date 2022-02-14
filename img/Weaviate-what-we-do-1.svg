@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="640px" height="575px" viewBox="0 0 640 575" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>graphics/weaviate/what-we-do-1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-0.1%" y1="49.9881713%" x2="100.085714%" y2="49.9881713%" id="linearGradient-1">
+            <stop stop-color="#38D611" offset="0%"></stop>
+            <stop stop-color="#38D611" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+        <filter x="-69.1%" y="-56.5%" width="250.7%" height="250.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-4" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+        <filter x="-69.1%" y="-56.5%" width="250.7%" height="250.7%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-6" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+        <filter x="-69.1%" y="-56.5%" width="250.7%" height="250.7%" filterUnits="objectBoundingBox" id="filter-7">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-8" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+        <filter x="-69.1%" y="-56.5%" width="250.7%" height="250.7%" filterUnits="objectBoundingBox" id="filter-9">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-10" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+        <filter x="-69.1%" y="-56.5%" width="250.7%" height="250.7%" filterUnits="objectBoundingBox" id="filter-11">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-12" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+        <filter x="-69.1%" y="-56.5%" width="250.7%" height="250.7%" filterUnits="objectBoundingBox" id="filter-13">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-14" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+        <filter x="-69.1%" y="-56.5%" width="250.7%" height="250.7%" filterUnits="objectBoundingBox" id="filter-15">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-16" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+        <filter x="-69.1%" y="-56.5%" width="250.7%" height="250.7%" filterUnits="objectBoundingBox" id="filter-17">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-18" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+        <filter x="-69.1%" y="-56.5%" width="250.7%" height="250.7%" filterUnits="objectBoundingBox" id="filter-19">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-20" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+        <filter x="-69.1%" y="-56.5%" width="250.7%" height="250.7%" filterUnits="objectBoundingBox" id="filter-21">
+            <feOffset dx="1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="graphics/weaviate/what-we-do-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" opacity="0.1" transform="translate(15.000000, 1.000000)">
+            <g id="main_grid" transform="translate(3.000000, 3.000000)" opacity="0.2" stroke="#00152B" stroke-width="0.5">
+                <polygon id="Shape" points="171.248492 196.815706 171.248492 147.753529 128.686927 123.222441 86.142067 147.753529 86.142067 196.815706 128.686927 221.346794"></polygon>
+                <polyline id="Shape" points="128.686927 221.380147 128.686927 172.284618 86.142067 147.753529 43.5805028 123.222441 43.5805028 91.2202941"></polyline>
+                <polyline id="Shape" points="171.248492 147.753529 128.686927 172.284618 86.142067 196.815706"></polyline>
+                <path d="M171.248492,196.815706 L128.686927,172.284618" id="Shape"></path>
+                <polyline id="Shape" points="256.354916 196.799029 213.810056 221.330118 213.810056 270.392294 256.354916 294.923382 298.91648 270.392294 298.91648 221.330118"></polyline>
+                <polyline id="Shape" points="213.810056 221.330118 256.354916 245.861206 256.354916 294.956735 256.354916 344.552559"></polyline>
+                <polyline id="Shape" points="298.91648 221.330118 256.354916 245.861206 213.810056 270.392294"></polyline>
+                <polyline id="Shape" points="256.354916 245.861206 298.91648 270.392294 328.165028 288.136059 341.762011 296.390912 341.762011 295.273588 341.762011 245.661088 341.762011 196.582235 384.323575 172.051147"></polyline>
+                <polygon id="Shape" points="256.354916 196.799029 256.354916 147.736853 213.810056 123.205765 171.248492 147.736853 171.248492 196.799029 213.810056 221.330118"></polygon>
+                <polyline id="Shape" points="171.248492 196.799029 213.810056 172.267941 256.354916 147.736853 298.91648 124.706647 298.91648 172.267941"></polyline>
+                <polyline id="Shape" points="128.686927 270.408971 128.686927 221.346794 86.142067 196.815706 43.5805028 221.346794 43.5805028 270.408971 86.142067 294.940059"></polyline>
+                <polyline id="Shape" points="43.5805028 189.611471 15.1003352 205.454118 43.5805028 221.346794 86.142067 245.877882 86.142067 294.973412"></polyline>
+                <polyline id="Shape" points="128.686927 221.346794 86.142067 245.877882 43.5805028 270.408971 43.5805028 320.938676 0.768379888 344.552559 0.768379888 296.190794"></polyline>
+                <path d="M128.686927,270.408971 L86.142067,245.877882" id="Shape"></path>
+                <polygon id="Shape" points="213.810056 270.392294 213.810056 221.330118 171.248492 196.799029 128.686927 221.330118 128.686927 270.392294 171.248492 294.923382"></polygon>
+                <polyline id="Shape" points="128.686927 221.330118 171.248492 245.861206 171.248492 294.956735 128.686927 320.655176 171.248492 345.669882 213.810056 320.938676"></polyline>
+                <polyline id="Shape" points="213.810056 221.330118 171.248492 245.861206 128.686927 270.392294"></polyline>
+                <path d="M15.1003352,139.582059 L43.5805028,123.222441" id="Shape"></path>
+                <path d="M15.1003352,237.556324 L15.1003352,205.454118" id="Shape"></path>
+                <polyline id="Shape" points="171.248492 50.2128529 171.248492 99.1416176 128.686927 123.222441 128.686927 73.8434118"></polyline>
+                <polyline id="Shape" points="256.354916 196.799029 213.810056 172.267941 213.810056 123.205765 213.810056 91.2202941 242.975084 74.1269118"></polyline>
+                <path d="M271.087765,107.213029 L298.91648,124.706647" id="Shape"></path>
+                <path d="M86.142067,344.552559 L43.5805028,320.938676" id="Shape"></path>
+                <polygon id="Shape" points="582.866257 385.943559 582.866257 336.881382 540.304693 312.350294 497.743128 336.881382 497.743128 385.943559 540.304693 410.474647"></polygon>
+                <polyline id="Shape" points="582.866257 336.881382 540.304693 361.412471 497.743128 385.943559"></polyline>
+                <polyline id="Shape" points="540.304693 459.536824 540.304693 410.474647 497.743128 385.943559 455.181564 410.474647 455.181564 459.536824 497.743128 484.051235"></polyline>
+                <polyline id="Shape" points="426.718101 394.565294 455.181564 410.474647 497.743128 435.005735 497.743128 484.084588"></polyline>
+                <polyline id="Shape" points="455.181564 508.382206 455.181564 459.536824 497.743128 435.005735 540.304693 410.474647 540.304693 361.362441"></polyline>
+                <path d="M540.304693,459.520147 L497.743128,435.005735" id="Shape"></path>
+                <polygon id="Shape" points="426.88514 147.536735 426.88514 98.4745588 469.43 73.9434706 511.991564 98.4745588 511.991564 147.536735 469.43 172.067824"></polygon>
+                <polyline id="Shape" points="469.43 172.0845 469.43 123.005647 511.991564 98.4745588 554.553128 73.9434706 554.553128 41.9246471"></polyline>
+                <polyline id="Shape" points="426.88514 98.4745588 469.43 123.005647 511.991564 147.536735"></polyline>
+                <path d="M426.88514,147.536735 L469.43,123.005647" id="Shape"></path>
+                <polyline id="Shape" points="341.762011 147.520059 384.323575 172.051147 384.323575 221.113324 341.762011 245.627735 299.217151 221.113324 299.217151 172.051147"></polyline>
+                <polyline id="Shape" points="299.217151 172.051147 341.762011 196.582235 384.323575 221.113324"></polyline>
+                <path d="M341.762011,196.582235 L299.217151,221.113324" id="Shape"></path>
+                <polygon id="Shape" points="341.762011 147.520059 341.762011 98.4578824 384.323575 73.9267941 426.88514 98.4578824 426.88514 147.520059 384.323575 172.051147"></polygon>
+                <polyline id="Shape" points="426.584469 147.520059 384.039609 122.988971 341.478045 98.4578824 298.91648 75.4276765 298.91648 124.656618"></polyline>
+                <polyline id="Shape" points="469.43 221.113324 469.43 172.067824 511.991564 147.536735 554.553128 172.067824 554.553128 221.113324 511.991564 245.644412"></polyline>
+                <polyline id="Shape" points="554.553128 140.315824 583.016592 156.158471 554.553128 172.067824 511.991564 196.598912 511.991564 245.677765"></polyline>
+                <polyline id="Shape" points="469.43 172.067824 511.991564 196.598912 554.553128 221.113324 554.553128 271.643029 597.365251 295.273588 597.365251 246.911824"></polyline>
+                <path d="M469.43,221.113324 L511.991564,196.598912" id="Shape"></path>
+                <polygon id="Shape" points="384.323575 221.113324 384.323575 172.051147 426.88514 147.520059 469.43 172.051147 469.43 221.113324 426.88514 245.627735"></polygon>
+                <polyline id="Shape" points="469.43 172.051147 426.88514 196.582235 426.88514 245.661088 469.43 271.376206 426.88514 296.390912 384.156536 271.559647"></polyline>
+                <polyline id="Shape" points="384.323575 172.051147 426.88514 196.582235 469.43 221.113324"></polyline>
+                <polyline id="Shape" points="426.88514 0.917205882 426.88514 49.8459706 469.43 73.9434706 469.43 24.5644412"></polyline>
+                <polyline id="Shape" points="341.762011 147.520059 384.323575 122.988971 384.323575 73.9267941 384.323575 41.9246471 355.158547 24.8312647"></polyline>
+                <path d="M326.745196,57.9340588 L298.91648,75.4276765" id="Shape"></path>
+                <g id="Group" transform="translate(141.983240, 271.158824)">
+                    <polygon id="Shape" points="157.066872 148.304441 157.066872 197.366618 114.505307 221.881029 71.943743 197.366618 71.943743 148.304441 114.505307 123.773353"></polygon>
+                    <polyline id="Shape" points="114.505307 123.74 114.505307 172.835529 71.943743 197.366618 29.3988827 221.881029 29.3988827 253.899853"></polyline>
+                    <polyline id="Shape" points="157.066872 197.366618 114.505307 172.835529 71.943743 148.304441"></polyline>
+                    <path d="M157.066872,148.304441 L114.505307,172.835529" id="Shape"></path>
+                    <polyline id="Shape" points="242.173296 148.321118 199.628436 123.790029 199.628436 74.7278529 242.173296 50.1967647 284.73486 74.7278529 284.73486 123.790029"></polyline>
+                    <polyline id="Shape" points="199.628436 123.790029 242.173296 99.2589412 242.173296 50.1634118 242.173296 0.400823529"></polyline>
+                    <polyline id="Shape" points="284.73486 123.790029 242.173296 99.2589412 199.628436 74.7278529"></polyline>
+                    <polyline id="Shape" points="242.173296 99.2589412 284.73486 74.7278529 313.983408 56.9840882"></polyline>
+                    <polygon id="Shape" points="242.173296 148.321118 242.173296 197.366618 199.628436 221.897706 157.066872 197.366618 157.066872 148.321118 199.628436 123.790029"></polygon>
+                    <polyline id="Shape" points="157.066872 148.321118 199.628436 172.852206 242.173296 197.366618 274.111173 214.660118 313.198324 236.189441"></polyline>
+                    <polyline id="Shape" points="114.505307 74.7111765 114.505307 123.773353 71.943743 148.304441 29.3988827 123.773353 29.3988827 74.7111765"></polyline>
+                    <polyline id="Shape" points="29.3988827 155.508676 0.918715084 139.666029 29.3988827 123.773353 71.943743 99.2422647 71.943743 50.1467353"></polyline>
+                    <path d="M114.505307,74.7111765 L71.943743,99.2422647" id="Shape"></path>
+                    <polygon id="Shape" points="199.628436 74.7278529 199.628436 123.790029 157.066872 148.321118 114.505307 123.790029 114.505307 74.7278529 157.066872 50.1967647"></polygon>
+                    <polyline id="Shape" points="114.505307 123.790029 157.066872 99.2589412 157.066872 50.1634118 114.505307 24.4649706"></polyline>
+                    <polyline id="Shape" points="199.628436 123.790029 157.066872 99.2589412 114.505307 74.7278529"></polyline>
+                    <path d="M0.918715084,205.538088 L29.3988827,221.897706" id="Shape"></path>
+                    <path d="M0.918715084,107.563824 L0.918715084,139.666029" id="Shape"></path>
+                    <polyline id="Shape" points="157.066872 294.907294 157.066872 245.978529 114.505307 221.881029 114.505307 271.276735"></polyline>
+                    <polyline id="Shape" points="242.173296 148.321118 199.628436 172.852206 199.628436 221.897706 199.628436 253.899853 228.793464 270.993235"></polyline>
+                </g>
+                <path d="M497.743128,336.881382 L582.866257,385.943559" id="Shape"></path>
+            </g>
+            <g id="dots" fill="#00152B" fill-rule="nonzero" opacity="0.3">
+                <ellipse id="Oval" cx="46.8940496" cy="92.3572674" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="17.1282645" cy="142.999419" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="46.8940496" cy="126.630407" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="88.9300826" cy="151.175581" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="131.984463" cy="175.487151" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="217.041488" cy="175.487151" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="131.984463" cy="126.630407" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="131.984463" cy="77.506686" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.487934" cy="53.5788953" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.487934" cy="102.368895" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.487934" cy="151.175581" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.487934" cy="200.032326" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="131.984463" cy="224.844477" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="131.951074" cy="274.201802" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="88.9300826" cy="249.389651" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="88.6128926" cy="298.429942" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="46.8940496" cy="273.884767" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="46.8940496" cy="324.460174" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="88.0786777" cy="347.470233" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="4.10677686" cy="347.470233" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="4.10677686" cy="300.749302" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.487934" cy="249.389651" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.621488" cy="298.429942" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="217.024793" cy="274.201802" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="131.984463" cy="324.460174" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="217.041488" cy="127.214419" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="217.158347" cy="94.6098837" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="246.00595" cy="77.506686" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="259.544959" cy="151.759593" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="274.269256" cy="110.778663" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.081818" cy="128.115465" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.081818" cy="78.8081977" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="329.89438" cy="61.3045349" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="344.902479" cy="101.868314" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="344.902479" cy="151.175581" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="429.675702" cy="150.941977" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="387.272397" cy="127.448023" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="387.439339" cy="175.487151" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="387.589587" cy="224.293837" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="472.36281" cy="224.060233" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="515.033223" cy="200.049012" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="515.033223" cy="249.339593" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="472.36281" cy="275.052791" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="430.994545" cy="299.130756" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="387.589587" cy="276.170756" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="387.272397" cy="324.877326" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="429.809256" cy="349.4225" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="344.902479" cy="350.14" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="458.272893" cy="331.668547" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="557.570083" cy="224.293837" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="600.357355" cy="251.308547" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="600.357355" cy="298.429942" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="557.570083" cy="275.052791" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="429.959504" cy="200.566279" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="430.109752" cy="248.605407" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="429.976198" cy="102.368895" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="387.439339" cy="77.506686" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="513.864628" cy="150.84186" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="471.461322" cy="127.347907" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="472.496364" cy="175.387035" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="543.196364" cy="365.474477" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="585.866777" cy="341.44657" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="585.866777" cy="389.085233" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="543.196364" cy="413.11314" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="500.793058" cy="341.980523" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="500.943306" cy="390.002965" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="500.676198" cy="438.776279" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="543.196364" cy="462.053314" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="500.676198" cy="486.431628" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="458.272893" cy="415.282326" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="387.272397" cy="373.950988" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="344.902479" cy="398.12907" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="429.809256" cy="398.512849" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="458.42314" cy="463.321453" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="387.372562" cy="422.974593" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="344.852397" cy="446.969128" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="387.372562" cy="471.914767" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="344.852397" cy="496.293081" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="344.852397" cy="528.697384" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.215372" cy="569.728372" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.215372" cy="520.537907" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="259.678512" cy="545.800581" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="259.678512" cy="496.293081" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="217.024793" cy="471.914767" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.621488" cy="496.293081" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.487934" cy="528.697384" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="146.157851" cy="480.307849" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="374.067273" cy="545.800581" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.449091" cy="425.160465" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="259.544959" cy="447.603198" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="217.141653" cy="422.974593" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="259.678512" cy="398.512849" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.081818" cy="373.950988" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.081818" cy="324.877326" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="259.544959" cy="349.4225" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="217.141653" cy="373.950988" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.621488" cy="398.462791" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.621488" cy="349.205581" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="217.024793" cy="324.827267" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="146.157851" cy="414.047558" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="146.157851" cy="382.277326" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="174.487934" cy="430.249709" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.599339" cy="473.182907" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="458.42314" cy="510.976802" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="543.346612" cy="316.801279" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="514.14843" cy="102.285465" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="557.570083" cy="45.2859302" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="472.496364" cy="77.3064535" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="557.570083" cy="77.3064535" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="559.239504" cy="144.684709" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="586.017025" cy="159.351744" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="557.570083" cy="175.387035" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="472.496364" cy="28.1827326" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="429.976198" cy="5.07255814" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="429.976198" cy="53.1283721" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="387.272397" cy="45.2859302" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="359.042479" cy="28.1827326" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="259.544959" cy="200.616337" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="217.041488" cy="225.428488" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="259.678512" cy="249.089302" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="259.795372" cy="298.129593" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.198678" cy="273.901453" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="344.902479" cy="299.130756" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.215372" cy="225.12814" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="344.902479" cy="200.032326" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="302.382314" cy="175.387035" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="344.752231" cy="248.605407" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="89.4309091" cy="200.299302" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="47.8957025" cy="225.428488" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="18.4304132" cy="208.909302" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="18.4304132" cy="241.029942" rx="4.09008264" ry="4.0880814"></ellipse>
+                <ellipse id="Oval" cx="46.8940496" cy="193.057558" rx="4.09008264" ry="4.0880814"></ellipse>
+            </g>
+            <g id="circles" transform="translate(8.000000, 33.000000)" fill="#00152B" fill-rule="nonzero">
+                <ellipse id="Oval" cx="38.9440884" cy="58.4743949" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="166.718453" cy="68.5038217" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="266.445193" cy="77.0480255" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="549.59105" cy="11.5313376" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="464.430387" cy="43.9392357" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="379.386519" cy="12.2989809" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="549.59105" cy="142.164204" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="592.354917" cy="264.786879" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="578.022431" cy="355.752611" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="492.728287" cy="453.109809" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="535.358674" cy="283.460637" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="336.822873" cy="495.380255" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="251.862431" cy="512.48535" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="166.718453" cy="462.972357" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="423.084751" cy="265.087261" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="209.232044" cy="291.53758" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="251.72895" cy="167.262803" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="10.7462983" cy="175.556688" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="138.403867" cy="381.068153" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="294.242541" cy="340.633376" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="39.1943646" cy="291.120382" rx="10.6283978" ry="10.6301911"></ellipse>
+                <ellipse id="Oval" cx="80.8903867" cy="117.58293" rx="10.6283978" ry="10.6301911"></ellipse>
+            </g>
+        </g>
+        <g id="weaviate-rings" transform="translate(152.000000, 94.000000)">
+            <path d="M277,257 L168.5,194 L61,257" id="Path-Copy" stroke="#304A6C" stroke-linejoin="round" stroke-dasharray="1,1"></path>
+            <path d="M221.599262,100.663013 L115.404629,161.974513" id="Path" stroke="#364A68" stroke-dasharray="1,1" transform="translate(168.904629, 130.976149) rotate(-60.000000) translate(-168.904629, -130.976149) "></path>
+            <g id="weaviate" transform="translate(102.000000, 117.000000)">
+                <path d="M132.5,114.631928 L132.5,39.3680716 L67,1.73001187 L1.5,39.3680716 L1.5,114.631928 L67,152.269988 L132.5,114.631928 Z" id="Path" stroke="#00152B" stroke-width="3" fill-opacity="0.8" fill="#FFFFFF"></path>
+                <g id="logos/weaviate/1/logomark/color-flat" transform="translate(29.000000, 64.000000)">
+                    <g id="Weaviate1_xc">
+                        <path d="M39.4971429,14.7007805 L38.5426286,14.1405374 L38.8169143,13.6587283 L39.7714286,14.2189714 L39.4971429,14.7007805 Z M36.9188571,14.9696973 L36.6445714,14.4878881 L37.5881143,13.927645 L37.8624,14.4094541 L36.9188571,14.9696973 Z M41.4061714,15.8212669 L40.4406857,15.2610237 L40.7149714,14.7792146 L41.6804571,15.3394578 L41.4061714,15.8212669 Z M35.0098286,16.0901836 L34.7355429,15.6083745 L35.6900571,15.0481313 L35.9643429,15.5299404 L35.0098286,16.0901836 Z M43.3042286,16.9417532 L42.3497143,16.38151 L42.624,15.8997009 L43.5785143,16.4599441 L43.3042286,16.9417532 Z M33.1227429,17.2218748 L32.8484571,16.7288608 L33.8029714,16.1686176 L34.0772571,16.6504267 L33.1227429,17.2218748 Z M45.1913143,18.0734444 L44.2477714,17.5132012 L44.5220571,17.0201872 L45.4765714,17.5916353 L45.1913143,18.0734444 Z M31.1917714,18.3423611 L30.9174857,17.860552 L31.872,17.3003088 L32.1462857,17.7821179 L31.1917714,18.3423611 Z M47.0125714,19.1939307 L46.0690286,18.6336875 L46.3433143,18.1518784 L47.2868571,18.7121216 L47.0125714,19.1939307 Z M29.2059429,19.4628474 L28.9865143,18.9810383 L29.952,18.4207951 L30.2262857,18.9026043 L29.2059429,19.4628474 Z M48.9545143,20.314417 L48,19.7541739 L48.2742857,19.2723647 L49.2288,19.8326079 L48.9545143,20.314417 Z M27.3298286,20.5833337 L27.0555429,20.1015246 L27.9990857,19.5412815 L28.2733714,20.0230906 L27.3298286,20.5833337 Z M50.8525714,21.4349033 L49.8980571,20.8746602 L50.1723429,20.3928511 L51.1268571,20.9530942 L50.8525714,21.4349033 Z M25.4317714,21.7038201 L25.1574857,21.2220109 L26.1010286,20.6617678 L26.3753143,21.1435769 L25.4317714,21.7038201 Z M52.7506286,22.5553897 L51.7961143,21.9951465 L52.0923429,21.5133374 L53.0468571,22.0735805 L52.7506286,22.5553897 Z M23.5227429,22.8243064 L23.2374857,22.3424973 L24.2029714,21.7822541 L24.4772571,22.2640632 L23.5227429,22.8243064 Z M54.6816,23.6870809 L53.76,23.1156328 L54.0342857,22.6338237 L54.9778286,23.1940669 L54.6816,23.6870809 Z M21.6356571,23.9559976 L21.3504,23.5302128 L22.3049143,22.9587647 L22.5792,23.4517787 L21.6356571,23.9559976 Z M56.5796571,24.8075672 L55.6361143,24.247324 L55.9104,23.7655149 L56.8539429,24.3257581 L56.5796571,24.8075672 Z M19.7485714,25.0764839 L19.4523429,24.6506991 L20.3958857,24.0904559 L20.6701714,24.572265 L19.7485714,25.0764839 Z M58.4996571,25.9280535 L57.5451429,25.3678103 L57.8194286,24.8860012 L58.7739429,25.4462444 L58.4996571,25.9280535 Z M17.8395429,26.1969702 L17.5542857,25.7711854 L18.4978286,25.2109422 L18.7721143,25.6927514 L17.8395429,26.1969702 Z M60.3428571,27.0485398 L59.3883429,26.4882967 L59.7504,26.0064875 L60.7049143,26.5667307 L60.3428571,27.0485398 Z M15.8646857,27.3174565 L15.6233143,26.8916717 L16.5778286,26.3314286 L16.8521143,26.8132377 L15.8646857,27.3174565 Z M62.2409143,28.1690261 L61.2864,27.608783 L61.5606857,27.1269739 L62.5152,27.687217 L62.2409143,28.1690261 Z M13.9666286,28.4379429 L13.7252571,28.0121581 L14.6797714,27.4519149 L14.9540571,27.933724 L13.9666286,28.4379429 Z M64.1389714,29.2895125 L63.1954286,28.7292693 L63.4697143,28.2474602 L64.4132571,28.8077033 L64.1389714,29.2895125 Z M12.1892571,29.569634 L11.9478857,29.1326444 L12.9024,28.5724012 L13.1766857,29.0542103 L12.1892571,29.569634 Z M66.1686857,30.4212036 L65.2141714,29.8609605 L65.4994286,29.3679465 L66.3442286,29.9393945 L66.1686857,30.4212036 Z M10.2802286,30.6901204 L10.0388571,30.2531307 L10.9824,29.6928875 L11.2566857,30.1746967 L10.2802286,30.6901204 Z M68.0777143,31.54169 L67.1232,30.9814468 L67.3974857,30.4996377 L68.352,31.0598809 L68.0777143,31.54169 Z M8.38217143,31.8106067 L8.1408,31.373617 L9.08434286,30.8133739 L9.35862857,31.295183 L8.38217143,31.8106067 Z M69.9318857,32.6621763 L68.9773714,32.1019331 L69.2516571,31.620124 L70.2061714,32.1803672 L69.9318857,32.6621763 Z M6.42925714,32.931093 L6.18788571,32.4941033 L7.1424,31.9338602 L7.41668571,32.4156693 L6.42925714,32.931093 Z M71.8409143,33.7826626 L70.8864,33.2224195 L71.1606857,32.7406103 L72.1152,33.3008535 L71.8409143,33.7826626 Z M4.4544,34.0515793 L4.21302857,33.6145897 L5.16754286,33.0543465 L5.4528,33.5361556 L4.4544,34.0515793 Z M73.7060571,34.9031489 L72.7625143,34.3429058 L73.0368,33.8610967 L73.9803429,34.4213398 L73.7060571,34.9031489 Z M2.58925714,35.1720657 L2.34788571,34.735076 L3.3024,34.1748328 L3.57668571,34.6566419 L2.58925714,35.1720657 Z M1.14102857,36.0348401 L0.866742857,35.553031 L1.34948571,35.2504997 L1.62377143,35.7435137 L1.14102857,36.0348401 Z M75.6041143,36.0348401 L74.6496,35.4633921 L74.9238857,34.981583 L75.8784,35.553031 L75.6041143,36.0348401 Z" id="Shape" fill="#38D611" fill-rule="nonzero"></path>
+                        <path d="M3.2256,36.0684547 L2.12845714,36.0684547 L2.12845714,35.553031 L3.2256,35.553031 L3.2256,36.0684547 Z M5.41988571,36.0684547 L4.32274286,36.0684547 L4.32274286,35.553031 L5.41988571,35.553031 L5.41988571,36.0684547 Z M7.61417143,36.0684547 L6.58285714,36.0684547 L6.58285714,35.553031 L7.68,35.553031 L7.61417143,36.0684547 Z M9.80845714,36.0684547 L8.77714286,36.0684547 L8.77714286,35.553031 L9.87428571,35.553031 L9.80845714,36.0684547 Z M12.0027429,36.0684547 L10.9714286,36.0684547 L10.9714286,35.553031 L12.0685714,35.553031 L12.0027429,36.0684547 Z M14.1970286,36.0684547 L13.1657143,36.0684547 L13.1657143,35.553031 L14.2628571,35.553031 L14.1970286,36.0684547 Z M16.3913143,36.0684547 L15.36,36.0684547 L15.36,35.553031 L16.4571429,35.553031 L16.3913143,36.0684547 Z M18.5856,36.0684547 L17.5542857,36.0684547 L17.5542857,35.553031 L18.6514286,35.553031 L18.5856,36.0684547 Z M20.7798857,36.0684547 L19.7485714,36.0684547 L19.7485714,35.553031 L20.8457143,35.553031 L20.7798857,36.0684547 Z M22.9741714,36.0684547 L21.9428571,36.0684547 L21.9428571,35.553031 L23.04,35.553031 L22.9741714,36.0684547 Z M25.1684571,36.0684547 L24.1371429,36.0684547 L24.1371429,35.553031 L25.2342857,35.553031 L25.1684571,36.0684547 Z M27.3627429,36.0684547 L26.3314286,36.0684547 L26.3314286,35.553031 L27.4285714,35.553031 L27.3627429,36.0684547 Z M29.5570286,36.0684547 L28.5257143,36.0684547 L28.5257143,35.553031 L29.6228571,35.553031 L29.5570286,36.0684547 Z M31.7513143,36.0684547 L30.72,36.0684547 L30.72,35.553031 L31.8171429,35.553031 L31.7513143,36.0684547 Z M33.9456,36.0684547 L32.9142857,36.0684547 L32.9142857,35.553031 L34.0114286,35.553031 L33.9456,36.0684547 Z M36.1398857,36.0684547 L35.1085714,36.0684547 L35.1085714,35.553031 L36.2057143,35.553031 L36.1398857,36.0684547 Z M38.3341714,36.0684547 L37.3028571,36.0684547 L37.3028571,35.553031 L38.4,35.553031 L38.3341714,36.0684547 Z M40.5284571,36.0684547 L39.4971429,36.0684547 L39.4971429,35.553031 L40.5942857,35.553031 L40.5284571,36.0684547 Z M42.7227429,36.0684547 L41.6914286,36.0684547 L41.6914286,35.553031 L42.7885714,35.553031 L42.7227429,36.0684547 Z M44.9170286,36.0684547 L43.8857143,36.0684547 L43.8857143,35.553031 L44.9828571,35.553031 L44.9170286,36.0684547 Z M47.1113143,36.0684547 L46.08,36.0684547 L46.08,35.553031 L47.1771429,35.553031 L47.1113143,36.0684547 Z M49.3056,36.0684547 L48.2742857,36.0684547 L48.2742857,35.553031 L49.3714286,35.553031 L49.3056,36.0684547 Z M51.4998857,36.0684547 L50.4685714,36.0684547 L50.4685714,35.553031 L51.5657143,35.553031 L51.4998857,36.0684547 Z M53.6941714,36.0684547 L52.6628571,36.0684547 L52.6628571,35.553031 L53.76,35.553031 L53.6941714,36.0684547 Z M55.8884571,36.0684547 L54.8571429,36.0684547 L54.8571429,35.553031 L55.9542857,35.553031 L55.8884571,36.0684547 Z M58.0827429,36.0684547 L57.0514286,36.0684547 L57.0514286,35.553031 L58.1485714,35.553031 L58.0827429,36.0684547 Z M60.2770286,36.0684547 L59.2457143,36.0684547 L59.2457143,35.553031 L60.3428571,35.553031 L60.2770286,36.0684547 Z M62.4713143,36.0684547 L61.44,36.0684547 L61.44,35.553031 L62.5371429,35.553031 L62.4713143,36.0684547 Z M64.6656,36.0684547 L63.6342857,36.0684547 L63.6342857,35.553031 L64.7314286,35.553031 L64.6656,36.0684547 Z M66.8598857,36.0684547 L65.7627429,36.0684547 L65.7627429,35.553031 L66.8598857,35.553031 L66.8598857,36.0684547 Z M69.0541714,36.0684547 L67.9570286,36.0684547 L67.9570286,35.553031 L69.0541714,35.553031 L69.0541714,36.0684547 Z M71.2484571,36.0684547 L70.1513143,36.0684547 L70.1513143,35.553031 L71.2484571,35.553031 L71.2484571,36.0684547 Z M73.4427429,36.0684547 L72.3456,36.0684547 L72.3456,35.553031 L73.4427429,35.553031 L73.4427429,36.0684547 Z M75.6370286,36.0684547 L74.5398857,36.0684547 L74.5398857,35.553031 L75.6370286,35.553031 L75.6370286,36.0684547 Z" id="Shape" fill="#38D611" fill-rule="nonzero"></path>
+                        <polygon id="Shape" fill="url(#linearGradient-1)" fill-rule="nonzero" points="55.9542857 0.750725836 55.9542857 22.8355112 38.4 12.4598079 20.8457143 22.8355112 20.8457143 0.750725836 0 13.0760754 0 36.4382152 19.7485714 48.1136827 38.4 37.0880973 57.0514286 48.1136827 76.8 36.4382152 76.8 13.0984851"></polygon>
+                    </g>
+                </g>
+            </g>
+            <path d="M169,319.319038 L169,192" id="Path" stroke="#364A68" stroke-dasharray="1,1"></path>
+            <path d="M278.5,257.460736 L278.5,131.539264 L169,68.5767636 L59.5,131.539264 L59.5,257.460736 L169,320.423236 L278.5,257.460736 Z" id="Path" stroke="#304A6C"></path>
+            <path d="M278,194 L169.5,132 L60,194" id="Path-Copy-2" stroke="#304A6C" stroke-linejoin="round" stroke-dasharray="1,1" transform="translate(169.000000, 163.000000) rotate(-180.000000) translate(-169.000000, -163.000000) "></path>
+            <path d="M338.5,292.210792 L338.5,97.7892081 L169.5,0.576818748 L0.5,97.7892081 L0.5,292.210792 L169.5,389.423181 L338.5,292.210792 Z" id="Path" stroke="#304A6C"></path>
+        </g>
+        <g id="industries" transform="translate(138.000000, 109.000000)" opacity="0.804454985">
+            <g id="industries-back">
+                <g id="graphics/industries/white-background/transportation-copy" transform="translate(15.000000, 57.000000)">
+                    <g id="Group">
+                        <path d="M14.5376113,0.868778039 L0.5,9.02653392 L0.5,25.3719257 L14.5404618,17.0935693 L14.5376113,0.868778039 Z" id="Shape" stroke="#EAE7E7" fill="#FFFFFF"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0435653 0 30.081024 8.7388028 30.081024 26.247168 15.040512 17.3791749"></polygon>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 26.0031827 15.0165646 17.104896 0.294912 26.0124421 15.0165646 34.799616"></polygon>
+                        <path d="M0.17104896,8.36370432 L0.42467328,8.51410944" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M0.92307456,9.10688256 L14.6335334,17.2818432" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="0.5" points="14.8812595 17.1343872 15.1348838 17.2877414 15.3885082 17.1343872"></polyline>
+                        <path d="M15.8869094,17.1343872 L29.5944192,8.95647744" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <path d="M15.040512,33.91488 L15.040512,33.619968" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M15.040512,33.1864474 L15.040512,18.579456" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5721292968750002"></path>
+                        <path d="M15.1348838,18.3287808 L15.1348838,18.0338688" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 25.9529932 29.786112 8.84662278 15.0419797 0.294912 0.294912 8.84662278 0.294912 25.9529932 15.0419797 34.504704"></polygon>
+                    </g>
+                    <g id="Group-2" transform="translate(7.077888, 9.437184)">
+                        <g id="Oval" fill-rule="nonzero">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                            <use fill="#00152B" xlink:href="#path-2"></use>
+                        </g>
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="0.71958528" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+                    </g>
+                </g>
+                <g id="graphics/industries/white-background/transportation-copy" transform="translate(114.000000, 0.000000)">
+                    <g id="Group">
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0374587 0 0 8.7388028 0 26.247168 15.040512 17.3791749"></polygon>
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0435653 0 30.081024 8.7388028 30.081024 26.247168 15.040512 17.3791749"></polygon>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 26.0031827 15.0165646 17.104896 0.294912 26.0124421 15.0165646 34.799616"></polygon>
+                        <path d="M0.17104896,8.36370432 L0.42467328,8.51410944" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M0.92307456,9.10688256 L14.6335334,17.2818432" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="0.5" points="14.8812595 17.1343872 15.1348838 17.2877414 15.3885082 17.1343872"></polyline>
+                        <path d="M15.8869094,17.1343872 L29.5944192,8.95647744" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <path d="M15.040512,33.91488 L15.040512,33.619968" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M15.040512,33.1864474 L15.040512,18.579456" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5721292968750002"></path>
+                        <path d="M15.1348838,18.3287808 L15.1348838,18.0338688" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M29.286112,25.6649813 L29.286112,9.1346347 L15.0419547,0.8729133 L0.794912,9.13466346 L0.794912,25.6649525 L15.0419547,33.9267027 L29.286112,25.6649813 Z" id="Shape" stroke="#EAE7E7" fill="#FFFFFF"></path>
+                    </g>
+                    <g id="Group-2" transform="translate(7.077888, 9.437184)">
+                        <g id="Oval" fill-rule="nonzero">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                            <use fill="#00152B" xlink:href="#path-4"></use>
+                        </g>
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="0.71958528" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+                    </g>
+                </g>
+                <g id="graphics/industries/white-background/transportation-copy" transform="translate(320.000000, 57.000000)">
+                    <g id="Group">
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0374587 0 0 8.7388028 0 26.247168 15.040512 17.3791749"></polygon>
+                        <path d="M15.5434127,0.868778039 L15.5405622,17.0935693 L29.581024,25.3719257 L29.581024,9.02653392 L15.5434127,0.868778039 Z" id="Shape" stroke="#EAE7E7" fill="#FFFFFF"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 26.0031827 15.0165646 17.104896 0.294912 26.0124421 15.0165646 34.799616"></polygon>
+                        <path d="M0.17104896,8.36370432 L0.42467328,8.51410944" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M0.92307456,9.10688256 L14.6335334,17.2818432" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="0.5" points="14.8812595 17.1343872 15.1348838 17.2877414 15.3885082 17.1343872"></polyline>
+                        <path d="M15.8869094,17.1343872 L29.5944192,8.95647744" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <path d="M15.040512,33.91488 L15.040512,33.619968" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M15.040512,33.1864474 L15.040512,18.579456" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5721292968750002"></path>
+                        <path d="M15.1348838,18.3287808 L15.1348838,18.0338688" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 25.9529932 29.786112 8.84662278 15.0419797 0.294912 0.294912 8.84662278 0.294912 25.9529932 15.0419797 34.504704"></polygon>
+                    </g>
+                    <g id="Group-2" transform="translate(7.077888, 9.437184)">
+                        <g id="Oval" fill-rule="nonzero">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-7)" xlink:href="#path-6"></use>
+                            <use fill="#00152B" xlink:href="#path-6"></use>
+                        </g>
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="0.71958528" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+                    </g>
+                </g>
+                <g id="graphics/industries/white-background/transportation-copy" transform="translate(320.000000, 270.000000)">
+                    <g id="Group">
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0374587 0 0 8.7388028 0 26.247168 15.040512 17.3791749"></polygon>
+                        <path d="M15.5434127,0.868778039 L15.5405622,17.0935693 L29.581024,25.3719257 L29.581024,9.02653392 L15.5434127,0.868778039 Z" id="Shape" stroke="#EAE7E7" fill="#FFFFFF"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 26.0031827 15.0165646 17.104896 0.294912 26.0124421 15.0165646 34.799616"></polygon>
+                        <path d="M0.17104896,8.36370432 L0.42467328,8.51410944" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M0.92307456,9.10688256 L14.6335334,17.2818432" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="0.5" points="14.8812595 17.1343872 15.1348838 17.2877414 15.3885082 17.1343872"></polyline>
+                        <path d="M15.8869094,17.1343872 L29.5944192,8.95647744" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <path d="M15.040512,33.91488 L15.040512,33.619968" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M15.040512,33.1864474 L15.040512,18.579456" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5721292968750002"></path>
+                        <path d="M15.1348838,18.3287808 L15.1348838,18.0338688" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 25.9529932 29.786112 8.84662278 15.0419797 0.294912 0.294912 8.84662278 0.294912 25.9529932 15.0419797 34.504704"></polygon>
+                    </g>
+                    <g id="Group-2" transform="translate(7.077888, 9.437184)">
+                        <g id="Oval" fill-rule="nonzero">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-9)" xlink:href="#path-8"></use>
+                            <use fill="#00152B" xlink:href="#path-8"></use>
+                        </g>
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="0.71958528" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+                    </g>
+                </g>
+                <g id="graphics/industries/white-background/transportation-copy" transform="translate(221.000000, 326.000000)">
+                    <g id="Group">
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0374587 0 0 8.7388028 0 26.247168 15.040512 17.3791749"></polygon>
+                        <path d="M15.5434127,0.868778039 L15.5405622,17.0935693 L29.581024,25.3719257 L29.581024,9.02653392 L15.5434127,0.868778039 Z" id="Shape" stroke="#EAE7E7" fill="#FFFFFF"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 26.0031827 15.0165646 17.104896 0.294912 26.0124421 15.0165646 34.799616"></polygon>
+                        <path d="M0.17104896,8.36370432 L0.42467328,8.51410944" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M0.92307456,9.10688256 L14.6335334,17.2818432" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="0.5" points="14.8812595 17.1343872 15.1348838 17.2877414 15.3885082 17.1343872"></polyline>
+                        <path d="M15.8869094,17.1343872 L29.5944192,8.95647744" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <path d="M15.040512,33.91488 L15.040512,33.619968" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M15.040512,33.1864474 L15.040512,18.579456" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5721292968750002"></path>
+                        <path d="M15.1348838,18.3287808 L15.1348838,18.0338688" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 25.9529932 29.786112 8.84662278 15.0419797 0.294912 0.294912 8.84662278 0.294912 25.9529932 15.0419797 34.504704"></polygon>
+                    </g>
+                    <g id="Group-2" transform="translate(7.077888, 9.437184)">
+                        <g id="Oval" fill-rule="nonzero">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-11)" xlink:href="#path-10"></use>
+                            <use fill="#00152B" xlink:href="#path-10"></use>
+                        </g>
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="0.71958528" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+                    </g>
+                </g>
+                <g id="graphics/industries/white-background/transportation-copy" transform="translate(221.000000, 0.000000)">
+                    <g id="Group">
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0374587 0 0 8.7388028 0 26.247168 15.040512 17.3791749"></polygon>
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0435653 0 30.081024 8.7388028 30.081024 26.247168 15.040512 17.3791749"></polygon>
+                        <path d="M28.8131228,26.0007137 L15.0171187,17.6889627 L1.26558144,26.0095267 L15.0168456,34.2174876 L28.8131228,26.0007137 Z" id="Shape" stroke="#EAE7E7" fill="#FFFFFF"></path>
+                        <path d="M0.17104896,8.36370432 L0.42467328,8.51410944" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M0.92307456,9.10688256 L14.6335334,17.2818432" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="0.5" points="14.8812595 17.1343872 15.1348838 17.2877414 15.3885082 17.1343872"></polyline>
+                        <path d="M15.8869094,17.1343872 L29.5944192,8.95647744" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <path d="M15.040512,33.91488 L15.040512,33.619968" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M15.040512,33.1864474 L15.040512,18.579456" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5721292968750002"></path>
+                        <path d="M15.1348838,18.3287808 L15.1348838,18.0338688" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 25.9529932 29.786112 8.84662278 15.0419797 0.294912 0.294912 8.84662278 0.294912 25.9529932 15.0419797 34.504704"></polygon>
+                    </g>
+                    <g id="Group-2" transform="translate(7.077888, 9.437184)">
+                        <g id="Oval" fill-rule="nonzero">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-13)" xlink:href="#path-12"></use>
+                            <use fill="#00152B" xlink:href="#path-12"></use>
+                        </g>
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="0.71958528" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+                    </g>
+                </g>
+                <g id="graphics/industries/white-background/transportation-copy" transform="translate(116.000000, 327.000000)">
+                    <g id="Group">
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0374587 0 0 8.7388028 0 26.247168 15.040512 17.3791749"></polygon>
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0435653 0 30.081024 8.7388028 30.081024 26.247168 15.040512 17.3791749"></polygon>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 26.0031827 15.0165646 17.104896 0.294912 26.0124421 15.0165646 34.799616"></polygon>
+                        <path d="M0.17104896,8.36370432 L0.42467328,8.51410944" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M0.92307456,9.10688256 L14.6335334,17.2818432" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="0.5" points="14.8812595 17.1343872 15.1348838 17.2877414 15.3885082 17.1343872"></polyline>
+                        <path d="M15.8869094,17.1343872 L29.5944192,8.95647744" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <path d="M15.040512,33.91488 L15.040512,33.619968" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M15.040512,33.1864474 L15.040512,18.579456" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5721292968750002"></path>
+                        <path d="M15.1348838,18.3287808 L15.1348838,18.0338688" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M29.286112,25.6649813 L29.286112,9.1346347 L15.0419547,0.8729133 L0.794912,9.13466346 L0.794912,25.6649525 L15.0419547,33.9267027 L29.286112,25.6649813 Z" id="Shape" stroke="#EAE7E7" fill="#FFFFFF"></path>
+                    </g>
+                    <g id="Group-2" transform="translate(7.077888, 9.437184)">
+                        <g id="Oval" fill-rule="nonzero">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-15)" xlink:href="#path-14"></use>
+                            <use fill="#00152B" xlink:href="#path-14"></use>
+                        </g>
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="0.71958528" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+                    </g>
+                </g>
+                <g id="graphics/industries/white-background/transportation-copy" transform="translate(0.000000, 160.000000)">
+                    <g id="Group">
+                        <path d="M14.5376113,0.868778039 L0.5,9.02653392 L0.5,25.3719257 L14.5404618,17.0935693 L14.5376113,0.868778039 Z" id="Shape" stroke="#EAE7E7" fill="#FFFFFF"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0435653 0 30.081024 8.7388028 30.081024 26.247168 15.040512 17.3791749"></polygon>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 26.0031827 15.0165646 17.104896 0.294912 26.0124421 15.0165646 34.799616"></polygon>
+                        <path d="M0.17104896,8.36370432 L0.42467328,8.51410944" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M0.92307456,9.10688256 L14.6335334,17.2818432" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="0.5" points="14.8812595 17.1343872 15.1348838 17.2877414 15.3885082 17.1343872"></polyline>
+                        <path d="M15.8869094,17.1343872 L29.5944192,8.95647744" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <path d="M15.040512,33.91488 L15.040512,33.619968" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M15.040512,33.1864474 L15.040512,18.579456" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5721292968750002"></path>
+                        <path d="M15.1348838,18.3287808 L15.1348838,18.0338688" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 25.9529932 29.786112 8.84662278 15.0419797 0.294912 0.294912 8.84662278 0.294912 25.9529932 15.0419797 34.504704"></polygon>
+                    </g>
+                    <g id="Group-2" transform="translate(7.077888, 9.437184)">
+                        <g id="Oval" fill-rule="nonzero">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-17)" xlink:href="#path-16"></use>
+                            <use fill="#00152B" xlink:href="#path-16"></use>
+                        </g>
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="0.71958528" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+                    </g>
+                </g>
+                <g id="graphics/industries/white-background/transportation-copy" transform="translate(336.000000, 160.000000)">
+                    <g id="Group">
+                        <path d="M14.5376113,0.868778039 L0.5,9.02653392 L0.5,25.3719257 L14.5404618,17.0935693 L14.5376113,0.868778039 Z" id="Shape" stroke="#EAE7E7" fill="#FFFFFF"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0435653 0 30.081024 8.7388028 30.081024 26.247168 15.040512 17.3791749"></polygon>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 26.0031827 15.0165646 17.104896 0.294912 26.0124421 15.0165646 34.799616"></polygon>
+                        <path d="M0.17104896,8.36370432 L0.42467328,8.51410944" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M0.92307456,9.10688256 L14.6335334,17.2818432" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="0.5" points="14.8812595 17.1343872 15.1348838 17.2877414 15.3885082 17.1343872"></polyline>
+                        <path d="M15.8869094,17.1343872 L29.5944192,8.95647744" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <path d="M15.040512,33.91488 L15.040512,33.619968" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M15.040512,33.1864474 L15.040512,18.579456" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5721292968750002"></path>
+                        <path d="M15.1348838,18.3287808 L15.1348838,18.0338688" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 25.9529932 29.786112 8.84662278 15.0419797 0.294912 0.294912 8.84662278 0.294912 25.9529932 15.0419797 34.504704"></polygon>
+                    </g>
+                    <g id="Group-2" transform="translate(7.077888, 9.437184)">
+                        <g id="Oval" fill-rule="nonzero">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-19)" xlink:href="#path-18"></use>
+                            <use fill="#00152B" xlink:href="#path-18"></use>
+                        </g>
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="0.71958528" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+                    </g>
+                </g>
+                <g id="graphics/industries/white-background/transportation-copy" transform="translate(15.000000, 270.000000)">
+                    <g id="Group">
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0374587 0 0 8.7388028 0 26.247168 15.040512 17.3791749"></polygon>
+                        <polygon id="Shape" fill="#F7F7F7" points="15.0435653 0 30.081024 8.7388028 30.081024 26.247168 15.040512 17.3791749"></polygon>
+                        <polygon id="Shape" fill="#F7F7F7" points="29.786112 26.0031827 15.0165646 17.104896 0.294912 26.0124421 15.0165646 34.799616"></polygon>
+                        <path d="M0.17104896,8.36370432 L0.42467328,8.51410944" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M0.92307456,9.10688256 L14.6335334,17.2818432" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="0.5" points="14.8812595 17.1343872 15.1348838 17.2877414 15.3885082 17.1343872"></polyline>
+                        <path d="M15.8869094,17.1343872 L29.5944192,8.95647744" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5809766484375002"></path>
+                        <path d="M15.040512,33.91488 L15.040512,33.619968" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M15.040512,33.1864474 L15.040512,18.579456" id="Shape" stroke="#FFFFFF" stroke-width="0.5" stroke-dasharray="0.5721292968750002"></path>
+                        <path d="M15.1348838,18.3287808 L15.1348838,18.0338688" id="Shape" stroke="#FFFFFF" stroke-width="0.5"></path>
+                        <path d="M29.286112,25.6649813 L29.286112,9.1346347 L15.0419547,0.8729133 L0.794912,9.13466346 L0.794912,25.6649525 L15.0419547,33.9267027 L29.286112,25.6649813 Z" id="Shape" stroke="#EAE7E7" fill="#FFFFFF"></path>
+                    </g>
+                    <g id="Group-2" transform="translate(7.077888, 9.437184)">
+                        <g id="Oval" fill-rule="nonzero">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-21)" xlink:href="#path-20"></use>
+                            <use fill="#00152B" xlink:href="#path-20"></use>
+                        </g>
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="0.71958528" cx="7.962624" cy="7.962624" r="7.962624"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

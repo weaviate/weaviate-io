@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="107px" height="122px" viewBox="0 0 107 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>media</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="27" cy="27" r="27"></circle>
+        <filter x="-66.7%" y="-57.4%" width="251.9%" height="251.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="5" dy="10" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="12" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M28.8706472,8.09746902 C28.0584594,5.54345164 26.9564423,5.01144776 23.9848608,4.44255916 C21.9403993,4.05111596 18.3132043,3.72413793 14.8965517,3.72413793 C11.4798992,3.72413793 7.85270412,4.05111596 5.80824267,4.44255916 C2.8366611,5.01144776 1.73464408,5.54345164 0.922456206,8.09746902 C0.271506612,10.1454015 0,12.3405406 0,14.8965517 C0,17.4525629 0.271506612,19.6477019 0.922456206,21.6956344 C1.73464408,24.2496518 2.8366611,24.7816557 5.80824267,25.3505443 C7.85237098,25.7419875 11.4798992,26.0689655 14.8965517,26.0689655 C18.3132043,26.0689655 21.9403993,25.7419875 23.9848608,25.3505443 C26.9564423,24.7816557 28.0584594,24.2496518 28.8706472,21.6956344 C29.5215968,19.6477019 29.7931034,17.4525629 29.7931034,14.8965517 C29.7931034,12.3405406 29.5215968,10.1454015 28.8706472,8.09746902 Z M20.6468286,15.5096355 L11.9719425,21.064939 C11.445253,21.4022182 11.0145069,21.1672858 11.0145069,20.5432363 L11.0145069,9.24986718 C11.0145069,8.62548537 11.445253,8.39088528 11.9719425,8.72816444 L20.6468286,14.2834679 C21.1735181,14.6207471 21.1735181,15.1723564 20.6468286,15.5096355 Z" id="path-3"></path>
+    </defs>
+    <g id="SeMI-Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Styleguide-–-SeMI-Graphics" transform="translate(-889.000000, -5296.000000)">
+            <g id="graphics/industries/dark-background/media" transform="translate(890.000000, 5298.000000)">
+                <g id="Group">
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" opacity="0.7" points="50.9896468 0 0 29.6318997 0 89 51 58.9300363"></polygon>
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" opacity="0.7" points="51.0103532 0 102 29.6318997 102 89 51 58.9300363"></polygon>
+                    <polygon id="Shape" fill="#BCF0A7" fill-rule="nonzero" opacity="0.7" points="101 88.1726845 50.9187982 58 1 88.2040816 50.9187982 118"></polygon>
+                    <path d="M0.58,28.36 L1.44,28.87" id="Shape" stroke="#FFFFFF"></path>
+                    <path d="M3.13,30.88 L49.62,58.6" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.97"></path>
+                    <polyline id="Shape" stroke="#FFFFFF" points="50.46 58.1 51.32 58.62 52.18 58.1"></polyline>
+                    <path d="M53.87,58.1 L100.35,30.37" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.97"></path>
+                    <path d="M51,115 L51,114" id="Shape" stroke="#FFFFFF"></path>
+                    <path d="M51,112.53 L51,63" id="Shape" stroke="#FFFFFF" stroke-dasharray="1.94"></path>
+                    <path d="M51.32,62.15 L51.32,61.15" id="Shape" stroke="#FFFFFF"></path>
+                    <polygon id="Shape" stroke="#F7F7F7" stroke-width="4" points="101 88.0024998 101 29.9975002 51.0049766 1 1 29.9975002 1 88.0024998 51.0049766 117"></polygon>
+                </g>
+                <g id="Group-2" transform="translate(24.000000, 32.000000)">
+                    <g id="Oval" fill-rule="nonzero">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#00152B" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="icons/industries/media-1" transform="translate(12.000000, 12.000000)">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <use id="Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-3"></use>
+                        <g id="background/white" mask="url(#mask-4)" fill="#FFFFFF" fill-rule="evenodd">
+                            <polygon id="Combined-Shape" points="0 0 30 0 30 29.7931034 0 29.7931034"></polygon>
+                        </g>
+                    </g>
+                    <circle id="Oval" stroke="#FFFFFF" stroke-width="2.4" cx="27" cy="27" r="27"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

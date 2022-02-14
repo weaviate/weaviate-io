@@ -1,0 +1,89 @@
+<div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+    <div class="collapse d-lg-block" id="sidenavCollapse">
+        <div class="py-7 py-lg-9 px-lg-7">
+            <!-- sets the current version tags -->
+            {% include docs-current_version_finder.html %}
+            <!-- IMPORTANT: NOTE THAT THE SUBMENU ORDER IS SET IN CONFIG.YML -->
+            {% assign sorted_documentation = site.pages | sort: 'menu-order' | group_by: 'solution' %}
+            {% for guides in sorted_documentation %}
+                {% if guides.name == page.solution %}
+                    <ul class="list mb-6">
+                      <li class="list-item">
+                        <div class="dropdown">
+                            <button class="btn btn-xs btn-primary dropdown-toggle mb-5" type="button" id="view_version" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-xs" aria-labelledby="view_version">
+                                {% for version in site.weaviate_versions %}                            
+                                    {% assign version_split = version[0] | split: "." %}
+                                    {% assign version_without_patch = version_split[0] | append: "." | append: version_split[1] %}
+                                    {% if version[0] == site.weaviate_version %}
+                                        <a class="dropdown-item" href="/developers/weaviate/current">current ({{ version_without_patch }})</a>
+                                    {% else %}
+                                        <a class="dropdown-item" href="/developers/weaviate/{{ version[0] }}">{{ version_without_patch }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                          </div>
+                      </li>
+                      <li>
+                          <!-- <h2 class="no-href">{{ page.solution }}</h2> -->
+                            <h6 class="text-uppercase fw-bold">
+                                {{ page.solution }}
+                            </h6>
+                      </li>
+                      <li class="list-item">
+                        <a href="{% if page.title == 'Introduction'%}./{% else %}../{% endif %}" 
+                            class="list-link {% if guide.title == page.title %}current{% endif %}">Introduction</a>
+                      </li>
+                    </ul>
+                    {% for menuItem in site.docs[guides.name][current_page_version] %}
+                        {% assign sorted_menus = site.pages | group_by: 'sub-menu' %}
+                        {% for menu in sorted_menus %}
+                            {% if menuItem.name == menu.name && guides.name == page.solution %}
+                                {% if menuItem.header == true %}
+                                    <!-- <h2 class="no-href">{{ menuItem.name }}</h3> -->
+                                    <ul class="list mb-6">
+                                        {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
+                                        {% for guide in sorted_sub_menus %}
+                                            {% if menu.name == guide.sub-menu %}
+                                                {% if page.solution == guide.solution %}
+                                                    {% if guide.menu-order > 0 %}
+                                                      {% if guide.url contains current_page_version_tag %}
+                                                        <li class="list-item">
+                                                          <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
+                                                        </li>
+                                                      {% endif %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <h6 class="text-uppercase fw-bold">
+                                        <a href="/developers/{{ guides.name }}/{{ current_page_version_tag }}/{{ menuItem.folder }}">{{ menu.name }}</a>
+                                    </h6>
+                                    <ul class="list mb-6">
+                                        {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
+                                        {% for guide in sorted_sub_menus %}
+                                            {% if menu.name == guide.sub-menu %}
+                                                {% if page.solution == guide.solution %}
+                                                    {% if guide.menu-order > 0 %}
+                                                      {% if guide.url contains current_page_version_tag %}
+                                                        <li class="list-item">
+                                                          <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
+                                                        </li>
+                                                      {% endif %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>  
+</div>

@@ -1,0 +1,50 @@
+<!-- sets the current version tags -->
+{% include docs-current_version_finder.html %}
+
+{% if page.solution == "weaviate" or page.solution == "contributor-guide" %}
+
+<a href="https://stackoverflow.com/tags/weaviate/" class="href-no-border">
+    <img src="https://img.shields.io/badge/stackoverflow-%23weaviate-informational?style=flat-square">
+</a>
+<a href="https://github.com/semi-technologies/weaviate/issues" class="href-no-border">
+    <img src="https://img.shields.io/badge/github-issues-informational?style=flat-square">
+</a>
+
+    {% if current_page_version_tag == "current"%}
+    <a href="https://github.com/semi-technologies/weaviate/releases/tag/{{ current_page_version }}" class="href-no-border">
+        <img src="https://img.shields.io/badge/version-{{ current_page_version }}-brightgreen?style=flat-square">
+    </a>
+
+    <a href="https://app.swaggerhub.com/apis/semi-technologies/weaviate/{{ current_page_version }}" class="href-no-border">
+        <img src="https://img.shields.io/badge/api--specs-{{ current_page_version }}-brightgreen?style=flat-square">
+    </a>
+    {% endif %}
+
+<img id="totalpulls" src="https://img.shields.io/badge/downloads-loading...-yellow?style=flat-square">
+
+
+{% elsif page.solution == "weaviate-cli" %}
+
+<a href="https://stackoverflow.com/tags/weaviate/" class="href-no-border">
+    <img src="https://img.shields.io/badge/stackoverflow-tag:weaviate-informational?style=flat-square">
+</a>
+<a href="https://github.com/semi-technologies/weaviate-cli/issues" class="href-no-border">
+    <img src="https://img.shields.io/badge/github-weaviate--cli-yellow?style=flat-square">
+</a>
+<a href="/newsletter" class="href-no-border">
+    <img src="https://img.shields.io/badge/newsletter-signup-ff69b4?style=flat-square">
+</a>
+
+{% elsif page.solution == "weaviate playground" %}
+
+<a href="https://stackoverflow.com/tags/weaviate/" class="href-no-border">
+    <img src="https://img.shields.io/badge/stackoverflow-tag:weaviate-informational?style=flat-square">
+</a>
+<a href="https://github.com/semi-technologies/weaviate-playground/issues" class="href-no-border">
+    <img src="https://img.shields.io/badge/github-weaviate--playground-yellow?style=flat-square">
+</a>
+<a href="/newsletter" class="href-no-border">
+    <img src="https://img.shields.io/badge/newsletter-signup-ff69b4?style=flat-square">
+</a>
+
+{% endif %}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="82px" viewBox="0 0 47 82" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>logos/solution-engineering/logomark/color</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-2.22044605e-14%" y1="50%" x2="100%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#364A68" offset="0%"></stop>
+            <stop stop-color="#FA0171" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-2.22044605e-14%" y1="50%" x2="100%" y2="50%" id="linearGradient-2">
+            <stop stop-color="#364A68" offset="0%"></stop>
+            <stop stop-color="#FA0171" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="logos/solution-engineering/logomark/color" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logomark">
+            <polygon id="Fill-23" fill="#EC1871" points="23.377378 27.5646075 23.377378 54.6164075 -0.000102362204 41.0792325"></polygon>
+            <polygon id="Fill-24" fill="#C3094A" points="23.377378 27.5646075 23.377378 54.6164075 46.7517874 41.0792325"></polygon>
+            <polygon id="Fill-26" fill="url(#linearGradient-1)" points="23.3774803 0.5130125 0 14.0276375 0 41.0794375 46.7518898 14.0276375"></polygon>
+            <polygon id="Fill-29" fill="url(#linearGradient-2)" points="0 68.1312375 23.3774803 81.6684125 46.7529134 68.142 46.7529134 41.0902"></polygon>
+        </g>
+    </g>
+</svg>

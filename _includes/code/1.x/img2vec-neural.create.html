@@ -1,0 +1,110 @@
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+data_properties = {
+    "labelName": "Mickey Mouse T-shirt"
+    "image": "iVBORw0KGgoAAAANS..."
+}
+
+client.data_object.create(data_properties, "FashionItem", "36ddd591-2dee-4e7e-a3cc-eb86d30a4302")
+{% endcapture %}
+
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.data
+      .creator()
+      .withClassName('FashionItem')
+      .withId("36ddd591-2dee-4e7e-a3cc-eb86d30a4302")
+      .withProperties({
+        "labelName": "Mickey Mouse T-shirt"
+        "image": "iVBORw0KGgoAAAANS..."
+    })
+      .do()
+      .then(res => {
+          console.log(res)
+      })
+      .catch(err => {
+          console.error(err)
+      });
+{% endcapture %}
+
+{% capture go %}
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+)
+
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+
+dataSchema := map[string]interface{} {
+  "labelName": "Mickey Mouse T-shirt"
+  "image": "iVBORw0KGgoAAAANS..."
+}
+
+created, err := client.Data().Creator().
+  WithClassName("FashionItem").
+  WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4302").
+  WithProperties(dataSchema).
+  Do(context.Background())
+
+if err != nil {
+  panic(err)
+}
+fmt.Printf("%v", created.Thing)
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+Map<String, Object> dataSchema = new HashMap<>();
+dataSchema.put("labelName", "Mickey Mouse T-shirt");
+dataSchema.put("image", "iVBORw0KGgoAAAANS...");
+
+Result<WeaviateObject> result = client.data().creator()
+            .withClassName("FashionItem")
+            .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4302")
+            .withProperties(dataSchema)
+            .run();
+
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+{% endcapture %}
+
+{% capture curl %}
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "class": "FashionItem",
+      "id": "36ddd591-2dee-4e7e-a3cc-eb86d30a4302",
+      "properties": {
+        "labelName": "Mickey Mouse T-shirt"
+        "image": "iVBORw0KGgoAAAANS..."
+    }
+  }' \
+    http://localhost:8080/v1/objects
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='img2vec-keras-create' %}

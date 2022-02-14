@@ -1,0 +1,62 @@
+---
+- title: >
+    Arvind Neelakantan of OpenAI • Embeddings API in Weaviate
+  description: > 
+    Arvind Neelakantan, Research Lead at Open AI, talks with Connor Shorten about their newly released embeddings API, his work at Open AI, the integration into Weaviate, and more.
+  youtube: uFxfZ0vLsoU
+  date: 2022-02-10T00:00:00Z
+  cover_image: '/img/podcasts/podcast-7.jpg'
+  is_use_case: false
+- title: >
+    Alex Cannan of Zencastr • How Zencastr searches through their podcast transcriptions with Weaviate
+  description: > 
+    Alex Cannan, a Machine Learning engineer at Zencastr, talks with Connor Shorten about a really exciting use case of applying search to look through podcast transcription. Topics discussed are the need for fine-tuning, building your own vector database versus Weaviate, data privacy for Deep Learning applications, and many more!
+  youtube: npdJAxDDtmY
+  date: 2022-02-02T00:00:00Z
+  cover_image: '/img/podcasts/podcast-6.jpg'
+  is_use_case: true
+  logo: '/img/zencastr.png'
+- title: >
+    Michael Wechner of Katie • How the knowledge management bot Katie leverages Weaviate
+  description: > 
+    Katie is a knowledge management bot, continuously improving, self-learning, and trained by humans. Under the hood, Katie is powered by the Weaviate vector search engine, during this podcast, Katie's Michael Wechner will talk about all things vector search and more!
+  youtube: dcu2xIO_lAE
+  date: 2022-01-21T00:00:00Z
+  cover_image: '/img/podcasts/podcast-5.jpg'
+  is_use_case: true
+  logo: '/img/katie.svg'
+- title: >
+    Malte Pietsch of Deepset • On Deepset's Haystack and how they leverage the Weaviate vector search engine
+  description: > 
+    NLP frameworks like Deepset's Haystack are powerful tools to help data scientists and software engineers work with the latest and greatest in natural language processing. In this interview, Malte Pietsch will be talking about Haystack and how they leverage the Weaviate vector search engine as a persistent storage engine for their data and vector representations.
+  youtube: 9DTDUHs3aB0
+  date: 2022-01-11T00:00:00Z
+  cover_image: '/img/podcasts/podcast-4.jpg'
+  is_use_case: true
+  logo: '/img/deepset.png'
+- title: >
+    Bob van Luijt of SeMI • Vector search use cases, GraphQL API UX, multimodal models, and more...
+  description: > 
+    Join Connor Shorten and Bob van Luijt (SeMI Technologies) for the third Weaviate vector search engine Podcast. During the show, they will be discussing use cases, the GraphQL API, knowledge graphs, Weaviate as a product, vector search engine use cases, and a vision for the future of vector search.
+  youtube: 8wdUREOzi2M
+  date: 2021-12-20T00:00:00Z
+  cover_image: '/img/podcasts/podcast-3.jpg'
+  is_use_case: false
+- title: >
+    Charles Pierse of Keenious • How Keenious uses Weaviate to enable semantic search through 60M+ academic PUBs
+  description: > 
+    Join Connor Shorten and Charles Pierse (Keenious) for the second Weaviate vector search engine Podcast. During the show, they will be discussing how Keenious uses Weaviate and broader, all things NLP! 
+  youtube: hU7GJEidaUE
+  date: 2021-12-13T00:00:00Z
+  cover_image: '/img/podcasts/podcast-2.jpg'
+  is_use_case: true
+  logo: '/img/keenious.png'
+- title: >
+    Etienne Dilocker of SeMI • Community and Weaviate core update
+  description: > 
+    Join Connor Shorten and Etienne Dilocker (SeMI Technologies) for the first Weaviate Podcast. During the show, they will be discussing Weaviate's horizontal scalability features in the v1.8.0 release and a wide variety of topics surrounding the Weaviate Slack channel.
+  youtube: Gjyxt1MXmm8
+  date: 2021-12-05T00:00:00Z
+  cover_image: '/img/podcasts/podcast-1.jpg'
+  is_use_case: false
+...

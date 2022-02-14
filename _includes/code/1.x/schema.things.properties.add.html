@@ -1,0 +1,110 @@
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+add_prop = {
+  "dataType": [
+      "boolean"
+  ],
+  "name": "onHomepage"
+}
+
+client.schema.property.create("Article", add_prop)
+{% endcapture %}
+
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const className = 'Article';
+const prop = {
+  dataType: ['boolean'],
+  name: 'onHomepage',
+};
+
+client.schema
+      .propertyCreator()
+      .withClassName(className)
+      .withProperty(prop)
+      .do()
+      .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.error(err)
+  });
+{% endcapture %}
+
+{% capture go %}
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+)
+
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+
+prop := &models.Property{
+  DataType:              []string{"boolean"},
+  Name:                  "onHomepage",
+}
+
+err := client.Schema().PropertyCreator().
+  WithClassName("Article").
+  WithProperty(prop).
+  Do(context.Background())
+
+if err != nil {
+  panic(err)
+}
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+Property property = Property.builder()
+      .dataType(Arrays.asList(DataType.BOOLEAN))
+      .name("onHomepage")
+      .build();
+
+Result<Boolean> result = client.schema().propertyCreator()
+      .withClassName("Article")
+      .withProperty(property)
+      .run();
+
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+{% endcapture %}
+
+{% capture curl %}
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "dataType": [
+          "boolean"
+        ],
+        "name": "onHomepage"
+    }' \
+    http://localhost:8080/v1/schema/Article/properties
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='schema-things-properties-add' %}
