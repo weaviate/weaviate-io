@@ -13,7 +13,7 @@
   website: https://www.deepset.ai/weaviate-vector-search-engine-integration
   description: deepset's Haystack is an open source NLP framework that leverages Transformer models. It enables developers to implement production-ready semantic search, question answering, information retrieval, summarization and more for a wide range of applications. Weaviate can be used in combination with Haystack to store large amounts of vectorized data.
   image: /img/deepset.png
-  type: neural search framework
+  type: NLP framework
 - name: DocArray from Jina AI
   website: https://docarray.jina.ai/advanced/document-store/weaviate/
   description: DocArray (from Jina AI) is a library for nested, unstructured data in transit, including text, image, audio, video, 3D mesh, etc. It allows deep-learning engineers to efficiently process, embed, search, recommend, store, and transfer the data with a Pythonic API. Weaviate can be used in combination with DocArray to store large amounts of vectorized data.
