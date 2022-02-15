@@ -367,3 +367,98 @@ layout: default
         </div> <!-- / .row -->
     </div> <!-- / .container -->
 </section>
+
+
+<!-- FAQ -->
+<section class="py-8 py-md-11 bg-white border-bottom">
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-md-8 text-center">
+
+        <!-- Badge -->
+        <span class="badge rounded-pill bg-primary-desat-soft mb-3">
+            <span class="h6 text-uppercase">FAQ</span>
+        </span>
+
+        <!-- Heading -->
+        <h2>
+            Frequently asked questions.
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-7 mb-md-9">
+            Let us help answer the most common questions you might have.
+        </p>
+
+        </div>
+    </div> <!-- / .row -->
+    <div class="row">
+        <div class="col-12 col-md-6">
+
+        <!-- Heading -->
+        <h3>
+            Can I use Landkit for my clients?
+        </h3>
+
+        <!-- Text -->
+        <p class="text-gray-800 mb-6 mb-md-8">
+            Absolutely. The Bootstrap Themes license allows you to build a websites for personal use or for a client. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper quam ullamcorper cursus eu in dui. Aliquam cursus accumsan laoreet.
+        </p>
+
+        <!-- Heading -->
+        <h3>
+            Is there a money back guarantee?
+        </h3>
+
+        <!-- Text -->
+        <p class="text-gray-800 mb-6 mb-md-8">
+            Yup! Bootstrap Themes come with a satisfaction guarantee. Submit a return and get your money back. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper quam ullamcorper cursus eu in dui. Aliquam cursus accumsan laoreet.
+        </p>
+
+        <!-- Heading -->
+        <h3>
+            Do I get free updates?
+        </h3>
+
+        <!-- Text -->
+        <p class="text-gray-800 mb-6 mb-md-0">
+            Yes. We update all of our themes with each Bootstrap update, plus are constantly adding new components, pages, and features to our themes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper.
+        </p>
+
+        </div>
+        <div class="col-12 col-md-6">
+
+        <!-- Heading -->
+        <h3>
+            Does it work with Rails? React? Laravel?
+        </h3>
+
+        <!-- Text -->
+        <p class="text-gray-800 mb-6 mb-md-8">
+            Yes. Landkit has basic CSS/JS files you can include. If you want to enable deeper customization, you can integrate it into your assets pipeline or build processes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper.
+        </p>
+
+        <!-- Heading -->
+        <h3>
+            Can I use Landkit for my clients?
+        </h3>
+
+        <!-- Text -->
+        <p class="text-gray-800 mb-6 mb-md-8">
+            Absolutely. The Bootstrap Themes license allows you to build a websites for personal use or for a client. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper quam ullamcorper cursus eu in dui. Aliquam cursus accumsan laoreet.
+        </p>
+
+        <!-- Heading -->
+        <h3>
+            Is there a money back guarantee?
+        </h3>
+
+        <!-- Text -->
+        <p class="text-gray-800 mb-0">
+            Yup! Bootstrap Themes come with a satisfaction guarantee. Submit a return and get your money back. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper quam ullamcorper cursus eu in dui. Aliquam cursus accumsan laoreet.
+        </p>
+
+        </div>
+    </div> <!-- / .row -->
+    </div> <!-- / .container -->
+</section>
