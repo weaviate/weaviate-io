@@ -18,13 +18,13 @@ layout: default
                 </p>
                 <!-- Buttons -->
                 <div class="text-center text-md-start">
-                    <a href="{{ site.slack_signup_url }}" class="btn btn-primary-soft lift mr-3" target="_blank">
+                    <a href="{{ site.slack_signup_url }}" class="btn btn-primary-soft lift mr-3" target="_blank" style="margin-right: 0.25rem;">
                         Slack <i class="fe fe-slack d-none d-md-inline ms-3 mr-1"></i>
                     </a>
-                    <a href="https://github.com/semi-technologies/weaviate" class="btn btn-primary-soft lift mr-3" target="_blank">
+                    <a href="https://github.com/semi-technologies/weaviate" class="btn btn-primary-soft lift mr-3" target="_blank" style="margin-right: 0.25rem;">
                         Github <i class="fe fe-github d-none d-md-inline ms-3 mr-1"></i>
                     </a>
-                    <a href="https://twitter.com/weaviate_io" class="btn btn-primary-soft lift mr-3" target="_blank">
+                    <a href="https://twitter.com/weaviate_io" class="btn btn-primary-soft lift mr-3" target="_blank" style="margin-right: 0.25rem;">
                         Twitter <i class="fe fe-twitter d-none d-md-inline ms-3 mr-1"></i>
                     </a>
                     <a href="http://weaviate-newsletter.semi.technology/" class="btn btn-primary-soft lift" target="_blank">
@@ -569,7 +569,7 @@ layout: default
                     Add a +1 to the hundreds of thousands of Weaviate downloads today.
                 </p>
                 <!-- Button -->
-                <a href="/developers/weaviate/current/" class="btn btn-success lift mb-6">
+                <a href="/developers/weaviate/current/" class="btn btn-success lift mb-6" style="margin-right: 0.25rem;">
                     Get started with open source <i class="fe fe-arrow-right"></i>
                 </a>
                 <!-- Button -->
