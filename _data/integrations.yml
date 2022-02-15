@@ -16,7 +16,7 @@
   type: neural search framework
 - name: Jina's DocArray
   website: https://docarray.jina.ai/advanced/document-store/weaviate/
-  description: Jina's DocArray is a library for nested, unstructured data in transit, including text, image, audio, video, 3D mesh, etc. It allows deep-learning engineers to efficiently process, embed, search, recommend, store, and transfer the data with a Pythonic API. Weaviate can be used in combination with Haystack to store large amounts of vectorized data.
+  description: Jina's DocArray is a library for nested, unstructured data in transit, including text, image, audio, video, 3D mesh, etc. It allows deep-learning engineers to efficiently process, embed, search, recommend, store, and transfer the data with a Pythonic API. Weaviate can be used in combination with DocArray to store large amounts of vectorized data.
   image: /img/jina.svg
   type: neural search framework
 ...
