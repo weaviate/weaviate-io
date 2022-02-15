@@ -9,9 +9,9 @@
   description: Hugginface hosts a wide variety of transformer models, and all models can be used as vectorizers or for other use cases (like Q&A, named entity recognition, and more) in Weaviate. The Weaviate transformers module comes with a wide variety of best-performing models out-of-the-box but can also be easily extended with your own, fine-tuned models. 
   image: /img/huggingface.png
   type: embeddings
-- name: Deepset's Haystack
+- name: deepset's Haystack
   website: https://www.deepset.ai/weaviate-vector-search-engine-integration
-  description: Deepset's Haystack is an open-source framework for building search systems that work intelligently over large document collections. It comes with various tools such as search pipelines, preprocessing, and more. Weaviate can be used in combination with Haystack to store large amounts of vectorized data.
+  description: deepset's Haystack is an open source NLP framework that leverages Transformer models. It enables developers to implement production-ready semantic search, question answering, information retrieval, summarization and more for a wide range of applications. Weaviate can be used in combination with Haystack to store large amounts of vectorized data.
   image: /img/deepset.png
   type: neural search framework
 - name: DocArray from Jina AI
