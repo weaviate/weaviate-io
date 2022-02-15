@@ -36,7 +36,7 @@ script:
       # cd into assets dir
       cd _site/
       # Upload data to bucket
-      gsutil -m -h "Cache-Control:public,max-age=86400" cp -r ./ gs://$GS_BUCKET/
+      gsutil -m -h "Cache-Control:public,max-age=3600" cp -r ./ gs://$GS_BUCKET/
       # set access
       gsutil iam ch allUsers:objectViewer gs://$GS_BUCKET
       # set web service

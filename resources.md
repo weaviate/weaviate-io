@@ -1,5 +1,5 @@
 ---
-title: Weaviate Vector Search Engine
+title: Weaviate Resources
 layout: default
 ---
 
