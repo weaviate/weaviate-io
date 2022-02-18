@@ -13,7 +13,7 @@ toc: true
 
 # Introduction
 
-When using Weaviate for medium to large-scale cases it is recommended to plan your
+When using Weaviate for medium to large-scale cases, it is recommended to plan your
 resources accordingly. Typically, small use cases (less than 1M objects) do not
 require resource planning. For use cases larger than that, you
 should be aware of the roles of CPU and memory which are the primary resources
@@ -73,7 +73,7 @@ HNSW vector index. Factors that influence the amount of memory include:
 - **The HNSW index setting `maxConnections`**. This setting describes the
   outgoing edges of an object in the HNSW index, each edge uses 8-10B of
   memory. Each object has at most `maxConnections` edges. The base layer allows
-  for `2 * maxConnections` as per the HNSW specification
+  for `2 * maxConnections` as per the HNSW specification.
 
 ## An example calculation
 
@@ -100,7 +100,7 @@ account overhead for Garbage Collection which is explained in the next section.
 
 Typically you should consider adding more memory if:
 - (more common) you want to import a larger dataset
-- (less common) exact lookups are disk-bound could be sped up by more memory
+- (less common) exact lookups are disk-bound and could be sped up by more memory
   for page-caching.
 
 # Effect of Garbage Collection
@@ -114,8 +114,8 @@ distinct effects on memory utilization:
 
 ## Effect 1: Memory Overhead for the Garbage Collector
 The exact memory footprint formula from above describes the state at rest.
-However, while importing more temporary memory is allocated and eventually
-freed up. Due to the async nature of Garbage collection this additional memory
+However, while importing, more temporary memory is allocated and eventually
+freed up. Due to the async nature of Garbage collection, this additional memory
 must be accounted for, which is done by the approximate formula from above. 
 
 ## Effect 2: Out-of-Memory issues due to Garbage Collection
@@ -161,32 +161,32 @@ requirements:
 
 # Vector Cache
 
-For optimal search and import performance all previously imported vectors need
+For optimal search and import performance, all previously imported vectors need
 to be held in memory. However, Weaviate also allows for limiting the number of
 vectors in memory. By default, when creating a new class, this limit is set to
 2M objects. A disk lookup for a vector is orders of magnitudes slower than
 memory lookup, so the cache should be used sparingly.
 
 Generally we recommend that:
-- During imports set the limit so that all vectors can be held in memory. Each
+- During imports, set the limit so that all vectors can be held in memory. Each
   import requires multiple searches so import performance will drop drastically
   as not all vectors can be held in the cache.
-- When only or mostly querying (as opposed to bulk importing) you can
+- When only or mostly querying (as opposed to bulk importing), you can
   experiment with vector cache limits which are lower than your total dataset
   size. Vectors which aren't currently in cache will be added to the cache if
-  there is still room. If the cache runs full it is dropped entirely and all
-  future vectors need to be read from disk for the first time. Subsequent
+  there is still room. If the cache runs full, it is dropped entirely and all
+  future vectors need to be read from disk the first time. Subsequent
   queries will be taken from the cache, until it runs full again and the
   procedure repeats. Note that the cache can be a very valuable tool if you
   have a large dataset, but a large percentage of users only query a specific
-  subset of vectors. In this case you might be able to serve the largest user
+  subset of vectors. In this case, you might be able to serve the largest user
   group from cache while requiring disk lookups for "irregular" queries.
 
 ## Imports slowed down after crossing ~2M objects - what can I do?
 
 If you notice that your import performance drops drastically after the 2M
 objects (per class) mark, you are most likely running into the default 2M limit
-of the vector cache. You can [adjust update the limit on existing
+of the vector cache. You can [adjust the limit on existing
 classes](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters)
 without having to recreate the class or reimport.
 
