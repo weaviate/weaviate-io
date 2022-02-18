@@ -13,7 +13,7 @@ toc: true
 
 # Introduction
 
-Weaviate is completely modularized. The Core of Weaviate, without any modules attached, is a pure vector-native database and search engine. Data is stored as vectors, and these vectors are searchable by the provide [vector index algorithm](../vector-index-plugins/index.html). Without any modules attached, Weaviate does not know how to *vectorize* data, i.e. *how* to calculate the vectors from a data item. Depending on the type of data you want to store and search (text, images, etc), and depending on the use case (like search, question answering, etc, depending on language, classification, ML model, training set, etc), you can choose and attach a module that best fits your use case. 
+Weaviate is completely modularized. The Core of Weaviate, without any modules attached, is a pure vector-native database and search engine. Data is stored as vectors, and these vectors are searchable by the provided [vector index algorithm](../vector-index-plugins/index.html). Without any modules attached, Weaviate does not know how to *vectorize* data, i.e. *how* to calculate the vectors from a data item. Depending on the type of data you want to store and search (text, images, etc.), and depending on the use case (like search, question answering, etc., depending on language, classification, ML model, training set, etc.), you can choose and attach a module that best fits your use case. 
 
 ## Default module
 
