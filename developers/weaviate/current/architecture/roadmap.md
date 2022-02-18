@@ -145,7 +145,7 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
   </tr>
   <tr>
     <td>
-      Instead of starting out with a cluster with *n* nodes, the cluster size can be increased or shrank at runtime. Weaviate automatically distributes the existing shards accordingly.
+      Instead of starting out with a cluster with *n* nodes, the cluster size can be increased or shrunk at runtime. Weaviate automatically distributes the existing shards accordingly.
     </td>
   </tr>
 </table>
@@ -153,7 +153,7 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
 # Download the Roadmap
 
 <a href="/img/timeline_Weaviate_architecture_isometric.jpg" rel="Weaviate vector search engine Architecture Roadmap" target="_blank">
-  You can download the complete roadmap (as image) here too
+  You can download the complete roadmap (as an image) here too
 </a>
 
 # More Resources
