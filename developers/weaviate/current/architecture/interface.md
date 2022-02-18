@@ -13,7 +13,7 @@ toc: true
 
 # Introduction
 
-Weaviate is a vector database that you can manage and use through it's APIs. Weaviate has a RESTful API and a GraphQL API. The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have several additional functionalities, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. Additionally, the APIs are intuitive to use, so it is easy to integrate Weaviate into your existing data landscape. 
+Weaviate is a vector database that you can manage and use through it's APIs. Weaviate has a RESTful API and a GraphQL API. The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. Additionally, the APIs are intuitive, so it is easy to integrate into your existing data landscape. 
 
 This page contains information on how Weaviate's APIs are designed, and how you can use Weaviate Console to search through your Weaviate instance with GraphQL.
 
@@ -21,15 +21,15 @@ This page contains information on how Weaviate's APIs are designed, and how you 
 
 ## Design: UX & Weaviate Features
 
-User Experience (UX) is one of our most valuable principles. Weaviate should be easy to understand, intuitive to use and valuable, desirable and usable to the community. The interaction with Weaviate is naturally very important for its UX. Weaviate's API is designed from the perspective of user needs, keeping the software features in mind. We do user research, user testing and prototyping to make sure all features resonate with our users. User requirements are continuously gathered during collaboration with users. We match user needs with the functions of Weaviate. When there is a strong need from user or application perspective, we may extend Weaviate's functions and API. When there is a new Weaviate function, this will naturally be accessible via (new) API functions.
+User Experience (UX) is one of our most valuable principles. Weaviate should be easy to understand, intuitive to use and valuable, desirable and usable to the community. The interaction with Weaviate is naturally very important for its UX. Weaviate's APIs are designed from the perspective of user needs, keeping the software features in mind. We do user research, user testing and prototyping to make sure all features resonate with our users. User requirements are continuously gathered during collaborative discussions. We match user needs with the functions of Weaviate. When there is a strong need from the user or application perspective, we may extend Weaviate's functions and APIs. When there is a new Weaviate function, this will naturally be accessible via (new) API functions.
 
-The UX of Weaviate's API is designed following the [UX Honeycomb](https://semanticstudios.com/user_experience_design/) usability rules, defined by [Peter Morville](https://semanticstudios.com/about/). 
+The UX of Weaviate's APIs is designed following the [UX Honeycomb](https://semanticstudios.com/user_experience_design/) usability rules, defined by [Peter Morville](https://semanticstudios.com/about/). 
 
 ![<img src="/img/api-ux.png" width="250"/>](/img/api-ux.png "Weaviate's API is designed following the UX Honeycomb")
 
 ## RESTful API and GraphQL API
 
-Weaviate has both a RESTful API and a GraphQL API. Currently, there is no feature parity between both APIs (this will be implemented later, there is an [issue](https://github.com/semi-technologies/weaviate/issues/1540) on Github). The RESTful APIs are mostly used for DB management and CRUD operations. The GraphQL API is mostly used to access data objects in Weaviate, whether it's a simple lookup or a combination of scalar and vector search. The API supports roughly the following user needs:
+Weaviate has both a RESTful API and a GraphQL API. Currently, there is no feature parity between both APIs (this will be implemented later, there is an [issue](https://github.com/semi-technologies/weaviate/issues/1540) on Github). The RESTful APIs are mostly used for DB management and CRUD operations. The GraphQL API is mostly used to access data objects in Weaviate, whether it's a simple lookup or a combination of scalar and vector search. The APIs support the following user needs, roughly speaking:
 
 * **Adding, retrieving, updating and deleting data CRUD** -> RESTful API
 * **Weaviate management operations** -> RESTful API 
@@ -47,8 +47,8 @@ We have chosen to use a GraphQL API, for multiple reasons:
   * Data in Weaviate follows a class-property structure. Data objects can be queried by their class and properties with GraphQL. 
   * It is possible to link data in Weaviate with cross-references. A Graph query language like GraphQL is very useful here.
 * **Performance**.
-  * With GraphQL, there is no over-fetching and no under-fetching. You get back exactly the information about data objects that you query, nothing more and nothing less. This is beneficial for performance.
-  * Reducing n.o. requests. With GraphQl you can make queries that usually will cost you more queries with a traditional RESTful API.
+  * With GraphQL, there is no over/under-fetching. You get back exactly the information about data objects that you query, nothing more and nothing less. This is beneficial for performance.
+  * Reducing the number of requests. With GraphQl, you can make highly efficent and precise queries that usually require many more queries with a traditional RESTful API for the same results.
 * **User Experience**
   * Reducing complexity. 
   * Less error-prone (because of its typed schema)
@@ -135,7 +135,7 @@ The [Weaviate Console](http://console.semi.technology/) is a dashboard to manage
 
 # Weaviate Clients and CLI
 
-Weaviate has several client libraries: in [Go](../client-libraries/go.html), [Java](../client-libraries/java.html), [Python](../client-libraries/python.html) and [JavaScript](../client-libraries/javascript.html). The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have several additional functionalities, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. The APIs are intuitive to use, so it is easy to integrate Weaviate into your existing data landscape. 
+Weaviate has several client libraries: in [Go](../client-libraries/go.html), [Java](../client-libraries/java.html), [Python](../client-libraries/python.html) and [JavaScript](../client-libraries/javascript.html). The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. The APIs are intuitive to use, so it is easy to integrate Weaviate into your existing data landscape. 
 
 Weaviate also has a [Command Line Interface](../client-libraries/cli.html), enabling basic management from the command line to your Weaviate instances.
 
