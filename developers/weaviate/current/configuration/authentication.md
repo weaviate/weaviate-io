@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Configuration
 title: Authentication
-intro: By default, Weaviate runs without any form of authentication. To run Weaviate with authentication, you can configure OpenID authentication in the configuration file of Weaviate. Then, use a Bearer to authenticate.
+intro: By default, Weaviate runs without any form of authentication. To run Weaviate with authentication, you can configure OpenID authentication in the configuration file of Weaviate. Then, use a Bearer token to authenticate.
 description: Authentication in Weaviate
 tags: ['authentication']
 menu-order: 3
@@ -36,7 +36,7 @@ authenticated as `user: anonymous, group: anonymous`.
 
 It is up to the authorization module to decide which
 permissions anonymous users have. By disabling anonymous access all together,
-any request without an allowed authentication scheme, will return `401
+any request without an allowed authentication scheme will return `401
 Unauthorized`.
 
 ### Configuration
@@ -55,22 +55,22 @@ authentication:
 ### How to use
 
 Simply omit any authentication headers or parameters from your REST request to
-weaviate.
+Weaviate.
 
 ## OpenID Connect (OIDC)
 
-With [OpenID Connect](https://openid.net/connect/) (based on OAuth2) an
+With [OpenID Connect](https://openid.net/connect/) (based on OAuth2), an
 external identity provider and token issuer is responsible for managing users.
 Weaviate's part when receiving a token (JSON Web Token or JWT) is to verify
 that it was indeed signed by the configured token issuer. If the signature is
-correct all content of the token is trusted. The user is then authenticated as
+correct, all content of the token is trusted. The user is then authenticated as
 the subject mentioned in the token.
 
 ### Requirements &amp; Defaults
 
 - Any "OpenID Connect" compatible token issuer implementing OpenID Connect
   Discovery can be
-  used with weaviate. Popular open source solutions include Java-based
+  used with Weaviate. Popular open source solutions include Java-based
   [Keycloak](https://www.keycloak.org/) and Golang-based
   [dex](https://github.com/dexidp/dex).
 
@@ -81,7 +81,7 @@ the subject mentioned in the token.
 - By default, weaviate will try to extract groups from a claim of your choice.
   Groups are a helpful tool to implement authorization roles for groups rather
   than single subjects. However, groups are not a required OpenID spec.
-  Therefore this extraction is optional and will not fail authentication if no
+  Therefore, this extraction is optional and will not fail authentication if no
   groups could be found.
 
 ### Configuration
@@ -140,7 +140,7 @@ authentication:
 ### How to use
 
 1. Obtain a valid token from the token issuer you configured.
-2. Send this token along any REST request in Header like so: `Authorization: Bearer <token>`. Make sure to replace `<token>` with your actual token.
+2. Send this token along any REST request in the Header like so: `Authorization: Bearer <token>`. Make sure to replace `<token>` with your actual token.
 
 # Add a Bearer to a Request
 
