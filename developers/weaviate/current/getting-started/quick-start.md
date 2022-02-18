@@ -18,7 +18,7 @@ redirect_from:
 
 # **Run Weaviate with a demo dataset**
 
-There are many different ways how you can run Weaviate, from local development setups up to large scale Kubernetes environments or hosted and managed Weaviate clusters. For this quick start guide we will be using the [Docker Compose](https://docs.docker.com/compose/) setup where you can run Weaviate on your local machine to which we will add the demo dataset with news publications.
+There are many different ways to run Weaviate, from local development setups to large-scale Kubernetes environments or hosted and managed Weaviate clusters. For this quick start guide, we will be using the [Docker Compose](https://docs.docker.com/compose/) setup where you can run Weaviate on your local machine to which we will add the demo dataset with news publications.
 
 The Docker Compose files below contain both Weaviate and the dataset.
 
@@ -28,7 +28,7 @@ Download the Docker Compose file (note, the Dockerfile has GPUs (i.e., CUDA) dis
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose.yaml
 ```
 
-If you have a GPU available ([that is reachable with Docker](https://docs.docker.com/compose/gpu-support/)) simply set `ENABLE_CUDA` to `1` in the [dockerfile](https://github.com/semi-technologies/weaviate-examples/blob/main/weaviate-transformers-newspublications/docker-compose-withgpu.yaml#L27))
+If you have a GPU available ([that is reachable with Docker](https://docs.docker.com/compose/gpu-support/)), simply set `ENABLE_CUDA` to `1` in the [Dockerfile](https://github.com/semi-technologies/weaviate-examples/blob/main/weaviate-transformers-newspublications/docker-compose-withgpu.yaml#L27))
 
 ```bash
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-gpu.yaml
@@ -47,16 +47,16 @@ Weaviate will be available and preloaded with the news article demo dataset on:
 
 # **Query via the Weaviate console**
 
-You can query your local machine via the [Weaviate console](http://console.semi.technology/). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` (you will get redirected to the "http" version of the client).
+You can query your local machine via the [Weaviate console](http://console.semi.technology/). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` ( you will be redirected to the "http" version of the client ).
 
 # **Validate via the RESTful API**
 
-You will always use Weaviate via its HTTP API interface. The interface consists of two different interfaces:
+You will always use Weaviate via its HTTP API interface. The interface consists of two different access types:
 
-- The RESTful API, which is mostly used to add and manipulate data.
-- The GraphQL API (which also runs over HTTP) to query data.
+- The RESTful API, which is mostly used to add and manipulate data
+- The GraphQL API (which also runs over HTTP) to query data
 
-We will first check if Weaviate runs correctly, if the schema is added successfully, and if the data is available. In the example below, we will show you how to do it from the command line.
+We will first check if Weaviate is running correctly, if the schema is added successfully, and if the data is available. In the example below, we perform this from the command line.
 
 First, we want to check if Weaviate is running correctly by inspecting the `/v1/meta` endpoint.
 
@@ -66,7 +66,7 @@ _Note: make sure to replace `localhost:8080` with the location of your Weaviate 
 $ curl -s http://localhost:8080/v1/meta
 ```
 
-The output will look something like this:
+The output will look like this:
 
 ```json
 {
@@ -78,15 +78,15 @@ The output will look something like this:
 }
 ```
 
-This validates that your Weaviate is running correctly.
+This validates that your Weaviate instance is running correctly.
 
-Next, we want to check if the news publication schema was added correctly, you can do this by inspecting the `/v1/schema` endpoint.
+Next, we check if the news publication schema was added correctly. You can do this by inspecting the `/v1/schema` endpoint.
 
 ```bash
 $ curl -s http://localhost:8080/v1/schema
 ```
 
-The output will look something like this:
+The output will looks like this:
 
 ```json
 {
@@ -366,13 +366,13 @@ The output will look something like this:
 
 You should be able to identify four classes: `Publication`, `Author`, `Article` and `Category`.
 
-Lastly, we will validate if all data was added correctly, we will do this via the `/v1/objects` endpoint.
+Lastly, we will validate if all the data was added correctly, by using the `/v1/objects` endpoint.
 
 ```bash
 $ curl -s http://localhost:8080/v1/objects
 ```
 
-The output will look something like this:
+The output will look like this:
 
 ```json
 {
@@ -5223,7 +5223,7 @@ The output will look something like this:
 
 # Query the dataset with GraphQL
 
-When querying Weaviate, you will always be using the GraphQL API. Weaviate has a publicly available graphical user interface (GUI) called [the Console](https://console.semi.technology/), which you can use to query.
+When querying Weaviate, you will always use the GraphQL API. Weaviate has a publicly available graphical user interface (GUI) called the [Console](https://console.semi.technology/).
 
 ### Accessing the Console
 
@@ -5231,7 +5231,7 @@ Go to [console.semi.technology](https://console.semi.technology). Log in and con
 
 ### Your First Query
 
-Let's first get all news publications out.
+Let's first access all news publications.
 
 ```graphql
 # GraphQL
@@ -5246,7 +5246,7 @@ Let's first get all news publications out.
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Publication+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
-You can also find which articles are related to these publications.
+You can also examine which articles are related to these publications.
 
 ```graphql
 # GraphQL
@@ -5292,7 +5292,7 @@ And you can even go deeper, to find which authors are related to these publicati
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28limit%3A+3%29+%7B%0D%0A++++++name%0D%0A++++++hasArticles%7B%0D%0A++++++++...+on+Article%7B%0D%0A++++++++++title%0D%0A++++++++++hasAuthors+%7B%0D%0A++++++++++++...+on+Author%7B%0D%0A++++++++++++++name%0D%0A++++++++++++%7D%0D%0A++++++++++%7D%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
 
-When querying for articles, you can also add classic filters to narrow down your search.
+When querying for articles, you can add classic filters to narrow down your search.
 
 ```graphql
 # GraphQL
@@ -5432,12 +5432,12 @@ _Tip: play around with the force variable._
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28%0D%0A++++++group%3A+%7B%0D%0A++++++++type%3A+merge%0D%0A++++++++force%3A+0.1%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D%0D%0A' %}
 
 
-# What's next
-In this tutorial you learned about how to quickly set up a Weaviate with a demo dataset, use semantic search and classification. Next, check out the following:
-- Check out how to [spin up a Weaviate](./installation.html) with your own [schema](../tutorials/how-to-create-a-schema.html) and [data](../tutorials/how-to-import-data.html).
+# What's next...
+In this tutorial you learned how to quickly set up a Weaviate with a demo dataset, and use semantic search and classification. Next, check out the following:
+- [Spin up a Weaviate instance](./installation.html) with your own [schema](../tutorials/how-to-create-a-schema.html) and [data](../tutorials/how-to-import-data.html).
 - Learn more about [authentication](../configuration/authentication.html) and [authorization](../configuration/authorization.html).
 - Install one of the [client libraries](../client-libraries/index.html) for smooth interaction with the Weaviate APIs.
-- Consult the [RESTful API references](../restful-api-references/index.html) and the [GraphQL references](../graphql-references/index.html) to learn about all interaction possibilities with Weaviate. 
+- Consult the [RESTful API references](../restful-api-references/index.html) and the [GraphQL references](../graphql-references/index.html) to learn about all the possible interactions with Weaviate. 
 
 # More resources
 
