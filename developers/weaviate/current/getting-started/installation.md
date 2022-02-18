@@ -20,7 +20,7 @@ redirect_from:
 
 # Introduction
 
-There are multiple ways to set up a Weaviate instance. For a try-out setup, we recommend you start with [docker-compose](#docker-compose). [Cloud deployment](#cloud-deployment) can be used for small and larger projects. For production setup and/or large scale projects, we encourage you to use [Kubernetes](#kubernetes-k8s).
+There are multiple ways to set up a Weaviate instance. For a testing setup, we recommend you start with [docker-compose](#docker-compose). [Cloud deployment](#cloud-deployment) can be used for small and larger projects. For production setup and/or large scale projects, we encourage you to use [Kubernetes](#kubernetes-k8s).
 
 # Customize your Weaviate Setup
 
@@ -35,11 +35,11 @@ If you want to try out Weaviate locally and on a small scale, you can use [Docke
 
 If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079).
 
-To start Weaviate with docker-compose, you need a docker-compose configuration file. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional [Environment variables](#environment-variables) can be set in this file, which regulate your Weaviate setup, authentication and authorization, module settings, and data storage settings.
+To start Weaviate with docker-compose, you need a docker-compose configuration file. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional [environment variables](#environment-variables) can be set in this file, which regulate your Weaviate setup, authentication and authorization, module settings, and data storage settings.
 
 ## Example Docker Compose Setups
 
-If you wish not to use the configuration tool above to customize your setup,
+If you do not with to use the configuration tool above to customize your setup,
 you can also use one of the following three example `docker-compose.yml` files
 below. 
 
@@ -72,9 +72,9 @@ services:
       # NVIDIA_VISIBLE_DEVICES: all # enable if running with CUDA
 ```
 
-Note that transformer models are Neural Networks which were built to run on
-GPUs. Running Weaviate with the `text2vec-transformers` module without GPU is
-still possible, but it will be slower. Enable CUDA if you have a GPU available
+Note that transformer models are Neural Networks built to run on
+GPUs. Running Weaviate with the `text2vec-transformers` module and without GPU is
+possible, but it will be slower. Enable CUDA if you have a GPU available
 (`ENABLE_CUDA=1`).
 
 For more information on how to set up the environment with the
@@ -143,18 +143,18 @@ services:
 ```
 
 
-### Attaching to the log output of only Weaviate
+### Attaching to the log output of Weaviate only
 
 The output of `docker-compose up` is quite verbose as it attaches to the logs of all containers. 
 
-You can attach the logs only to Weaviate itself, for example by running the following command instead of `docker-compose up`:
+You can attach the logs only to Weaviate itself, for example, by running the following command instead of `docker-compose up`:
 
 ```bash
 # Run Docker Compose
 $ docker-compose up -d && docker-compose logs -f weaviate
 ```
 
-Alternatively you can run docker-compose entirely detached with `docker-compose up -d` _and_ poll `{bindaddress}:{port}/v1/meta` until you receive status `200 OK`.
+Alternatively you can run docker-compose entirely detached with `docker-compose up -d` _and_ then poll `{bindaddress}:{port}/v1/meta` until you receive a status `200 OK`.
 
 
 ## Environment variables
@@ -206,7 +206,7 @@ Docker Compose will most likely be sufficient._
 * Helm (only v3 is compatible from Helm version `"v{{ site.weaviate_versions[current_page_version].helm_version }}"`)
 
 ## Installing the official Weaviate Helm chart
-To obtain and install the weaviate chart on your Kubernetes cluster take the following steps:
+To obtain and install the Weaviate chart on your Kubernetes cluster, take the following steps:
 
 ### Verify tool setup and cluster access
 ```bash
@@ -271,9 +271,9 @@ $ helm upgrade \
 
 
 The above assumes that you have permissions to create a new namespace. If you
-are have only namespace-level permissions, you can skip creating a new
+have only namespace-level permissions, you can skip creating a new
 namespace and adjust the namespace argument on `helm upgrade` according to the
-name of your pre-confiugred namespage.
+name of your pre-configured namespage.
 
 ### Updating the installation after the initial deployment
 
@@ -281,6 +281,8 @@ The above command (`helm upgrade...`) is idempotent, you can run it again, for
 example after adjusting your desired configuration.
 
 ## Limitations
+
+*** Weaviate now supports Horizontal Scalability.  The below is simply for reference:
 
 Until Weaviate fully supports Horizontal Scalability (ETA end of Q3 2021), you
 cannot increase the Weaviate replicas beyond 1. Trying to do so would lead to
@@ -293,9 +295,9 @@ others, each query would only return a fragment of the entire dataset.
 - [Cannot list resource “configmaps” in API group when deploying Weaviate k8s setup on GCP](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
 - [Error: UPGRADE FAILED: configmaps is forbidden](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
 
-# Run a not released version
+# Run an unreleased version
 
-You can run Weaviate with `docker-compose`, you can build your own container off the [`master`](https://github.com/semi-technologies/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
+You can run Weaviate with `docker-compose`, building your own container off the [`master`](https://github.com/semi-technologies/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
 
 ```sh
 git clone https://github.com/semi-technologies/weaviate.git
