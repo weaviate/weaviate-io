@@ -25,15 +25,15 @@ you can learn more about the individual sections:
 
 * **[Ways to scale Weaviate horizontally](cluster.html)**
   * Different motivations to scale
-  * Sharding vs Replication
+  * Sharding vs. Replication
   * Configuring a cluster
   * Consistency
 
 * **[How to plan resources](resources.html)**
   * The roles of CPU, Memory and GPUs
-  * How to size a cluser correctly
-  * Speed up specific processes
-  * Prevent bottlenecks
+  * How to size a cluster correctly
+  * Speeding up specific processes
+  * Preventing bottlenecks
 
 * **[The module system](../modules)**
   * How Weaviate can be extended through modules
@@ -46,7 +46,7 @@ you can learn more about the individual sections:
 
 
 * **[User-facing interfaces](interface.html)**
-  * Design-Philosophy behind user-facing APIs
+  * Design philosophy behind user-facing APIs
   * Role of the REST and GraphQL APIs
 
 * **[Roadmap](roadmap.html)**
