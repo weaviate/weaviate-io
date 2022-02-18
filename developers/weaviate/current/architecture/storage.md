@@ -15,7 +15,7 @@ toc: true
 
 Weaviate is a persistent and fault-tolerant database. This page gives you an
 overview of how objects and vectors are stored within Weaviate and how an
-inverted index is being created at import time.
+inverted index is created at import time.
 
 The components mentioned on this page aid Weaviate in creating some of its
 unique features:
@@ -23,12 +23,12 @@ unique features:
 * Each write operation is immediately persisted and also tolerant to
   application and system crashes.
 * On a vector search query, Weaviate returns the entire object (in other
-  databases sometimes called "document"), not just a reference, such as an ID.
-* When combining structured search with vector search, the filters are applied
+  databases sometimes called a "document"), not just a reference, such as an ID.
+* When combining structured search with vector search, filters are applied
   prior to performing the vector search. This means that you will always
-  receive the specified number of elements as opposed to post-filtering where
+  receive the specified number of elements as opposed to post-filtering when
   the final result count is unpredictable.
-* Objects and their vectors can be updated or deleted at will- even while
+* Objects and their vectors can be updated or deleted at will; even while
   reading from the database.
 
 ## Logical Storage Units: Indices, Shards, Stores
@@ -53,9 +53,9 @@ with Weaviate.**
 
 #### Object and Inverted Index Store
 
-The object and inverted store are implemented using an [LSM-Tree
-approach](https://en.wikipedia.org/wiki/Log-structured_merge-tree) since
-version `v1.5.0`. This means that data can be ingested at the speed of memory
+Since version `v1.5.0`, the object and inverted store are implemented using an 
+[LSM-Treeapproach](https://en.wikipedia.org/wiki/Log-structured_merge-tree).
+This means that data can be ingested at the speed of memory
 and after meeting a configured threshold, Weaviate will write the entire
 (sorted) memtable into a disk segment. When a read request comes in, Weaviate
 will first check the Memtable for the latest update for a specific object. If
@@ -68,9 +68,9 @@ Weaviate periodically merges older smaller segments into fewer larger segments.
 Since segments are already sorted, this is a relatively cheap operation - happening
 constantly in the background. Fewer, larger segments will make lookups more
 efficient. Especially on the inverted index where data is rarely replaced and
-often appended: Instead of checking all past segments and aggregating potential
-results, Weaviate can just check a single segment (or few large segments) and
-will immediately find all required object pointers. In addition, segments are used
+often appended, instead of checking all past segments and aggregating potential
+results, Weaviate can check a single segment (or few large segments) and
+immediately find all required object pointers. In addition, segments are used
 to remove past versions of an object that are no longer required, e.g. after a
 delete or multiple updates.
 
@@ -80,7 +80,7 @@ stores and is not affected by segmentation.**
 
 *Note: Prior to version `v1.5.0`, Weaviate used a B+Tree storage mechanism
 which could not keep up with the write requirements of an inverted index and
-started congesting over time. With the LSM index the pure write speed (ignoring
+started becoming congested over time. With the LSM index, the pure write speed (ignoring
 vector index building costs) is constant. There is no congestion over time.*
 
 #### HNSW Vector Index Storage
@@ -90,9 +90,9 @@ mentioned above. The vector store, however, is agnostic of the internals of the
 object storage. As a result it does not suffer from segmentation problems. 
 
 By grouping a vector index with the object storage within a shard, Weaviate can
-make sure that each shard is a fully self-contained unit which can indepenently
-serve requests for the data it owns. By placing the Vector index next to
-(instead of within) the object store, Weaviate can avoid the downsides of a
+make sure that each shard is a fully self-contained unit which can independently
+serve requests for the data it owns. By placing the vector index next to
+the object store (instead of within), Weaviate can avoid the downsides of a
 segmented vector index.
 
 ### Shard Components Optimizations
@@ -122,8 +122,8 @@ an error to the insert or update request.
 
 The LSM stores will try to flush a segment on an orderly shutdown. Only if the
 operation is successful, will the WAL be marked as "complete". This means that
-if an unexpected crash happens and Weaviate encounters and "incomplete" WAL,
-it will recover from it. As part of the recoery process Weaviate will flush a
+if an unexpected crash happens and Weaviate encounters an "incomplete" WAL,
+it will recover from it. As part of the recovery process, Weaviate will flush a
 new segment based on the WAL and mark it as complete. As a result, future
 restarts will no longer have to recover from this WAL.
 
@@ -131,14 +131,14 @@ For the HNSW vector index, the WAL serves two purposes: It is both the
 disaster-recovery mechanism, as well as the primary persistence mechanism. The
 cost in building up an HNSW index is in figuring out where to place a new
 object and how to link it with its neighbors. The WAL contains only the result
-of those calculations. Therefore by reading the WAL into memory, the HNSW index
+of those calculations. Therefore, by reading the WAL into memory, the HNSW index
 will be in the same state as it was prior to a shutdown. 
 
 Over time, an append only WAL will contain a lot of redundant information. For
 example, imagine two subsequent entries which reassign all the links of a
 specific node. The second operation will completely replace the result of the
 first operation, thus the WAL no longer needs the first entry. To keep the WALs
-fresh, a background process will continouusly compact WAL files and remove
+fresh, a background process will continuously compact WAL files and remove
 redundant information. This keeps the disk footprint small and the startup
 times fast, as Weaviate does not need to store (or load) outdated information.
 
@@ -149,7 +149,7 @@ no need for periodic snapshots.
 
 This page introduced you to the storage mechanisms of Weaviate. It outlined how
 all writes are persisted immediately and outlined the patterns used within
-Weaviate to make datasets scale well. For structured data, Weaviate makes us of
+Weaviate to make datasets scale well. For structured data, Weaviate makes use of
 segmentation to keep the write times constant. For the HNSW vector index,
 Weaviate avoids segmentation to keep query times efficient. 
 
