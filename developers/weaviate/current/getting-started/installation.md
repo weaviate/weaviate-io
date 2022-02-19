@@ -27,6 +27,8 @@ There are multiple ways to set up a Weaviate instance. For a testing setup, we r
 You can use the configuration tool below to customize your Weaviate setup for
 your desired runtime (e.g. Docker-Compose, Kubernetes, etc.):
 
+***
+
 {% include docs-config-gen.html %}
 
 # Docker Compose
