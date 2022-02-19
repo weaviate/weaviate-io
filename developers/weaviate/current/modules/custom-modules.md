@@ -13,7 +13,7 @@ toc: true
 
 # Introduction
 
-Besides using one of the out-of-the-box vectorization models, you can also attach your own machine learning model to Weaviate. This way, you can use Weaviate to scale your ML and NLP models, since Weaviate takes care of efficient data storage and retrieval. A custom vectorizer module is for example a model that you trained on your own training data, that is able to transform data (e.g. text or image data) to embeddings. 
+Besides using one of the out-of-the-box vectorization models, you can also attach your own machine learning model to Weaviate. This way, you can use Weaviate to scale your ML and NLP models, since Weaviate takes care of efficient data storage and retrieval. A custom vectorizer module is, for example, a model that you trained on your own training data, that is able to transform data (e.g. text or image data) to embeddings. 
 
 If you have model that already fits with an existing model architecture (e.g. Transformers), you don't have to write any custom code and you can just run this Transformer model with the existing [`text2vec-transformer` module](./text2vec-transformers.html).
 
@@ -33,7 +33,7 @@ _Recorded during the Weaviate meetup – custom modules section starts @ 13:30mi
 
 To understand how to create a new module, you'll need to understand how the module system of Weaviate works in general.
 
-Weaviate is entirely agnostic of how a module obtains the values it needs for the specific lifecycle hooks. For example, for a vectorizer module, the contract between Weaviate and the module is the following: At import time, each object is passed to the (configured) vectorizer module and the module must extend it with a vector (embedding). Weaviate is agnostic to how the module does that. For example if the module's purpose is to use a pre-existing ML model for inference, the module may decide to provide a second inference service and contact that inference service as part of the "vectorize" lifecycle hook. Weaviate is agnostic of how that communication occurs. For example the `text2vec-contextionary` module uses a gRPC API on its inference service, whereas the the `text2vec-transformers` module uses a REST API for the same purpose.
+Weaviate is entirely agnostic on how a module obtains the values it needs for the specific lifecycle hooks. For example, for a vectorizer module, the contract between Weaviate and the module is as follows: At import time, each object is passed to the (configured) vectorizer module and the module must extend it with a vector (embedding). Weaviate is agnostic to how the module does that. For example, if the module's purpose is to use a pre-existing ML model for inference, the module may decide to provide a second inference service and contact that inference service as part of the "vectorize" lifecycle hook. Weaviate is agnostic on how that communication occurs. For example, the `text2vec-contextionary` module uses a gRPC API on its inference service, whereas the the `text2vec-transformers` module uses a REST API for the same purpose.
 
 Typically a (vectorizer) module consists of two parts:
 1. **Module code for Weaviate, written in Go**, which hooks into specific lifecycles and provides various capabilities (like controlling the API function) to integrate the module into the regular flow in Weaviate. 
@@ -46,11 +46,11 @@ Everything that is blue belongs to a specific module (more than one module can b
 The picture shows three APIs: 
 * The first grey box inside Weaviate Core, which is the user-facing RESTful and GraphQL API.
 * The red box is the Module System API, which are interfaces written in Go.
-* The third API is completely owned by the module, which is used to communicate with the separate module container. This is in this case a Python container, shown on the left.
+* The third API is completely owned by the module, which is used to communicate with the separate module container. In this case, this is a Python container, shown on the left.
 
 To use a custom ML model with Weaviate, you have two options: ([further explained below](#how-to-build-and-use-a-custom-module))
 * A: Replace parts of an existing module, where you only replace the inference service (part 2). You don't have to touch Weaviate Core here. 
-* B: Build a complete new module and replace all existing (blue) module parts (both 1 and 2). You can configure custom behavior like extending the GraphQL API, as long as the module can hook into the 'red' Module System API. Keep in mind that you'll need to write some module code in Go to achieve this. 
+* B: Build a completely new module and replace all existing (blue) module parts (both 1 and 2). You can configure custom behavior like extending the GraphQL API, as long as the module can hook into the 'red' Module System API. Keep in mind that you'll need to write some module code in Go to achieve this. 
 
 ![Weaviate module APIs overview](/img/weaviate-module-apis.svg "Weaviate module APIs overview")
 
@@ -64,9 +64,9 @@ Let's take a more detailed example of how you configure Weaviate to use a specif
    * Provides a service that can do model inference.
    * Implements an API that is in contract with A (not with Weaviate itself). 
 
-Note that this is just one example, and variations are possible as long as both part 1 and 2 are present where 1 contains the connection to Weaviate in Go and 2 contains that inference model that part 1 uses. It would also be possible to amend for example the Weaviate `text2vec-transformers` module (part 1) to use the Huggingface API or some other third-party hosted inference service, instead of it's own container (now in part 2) that it brings. 
+Note that this is just one example, and variations are possible as long as both part 1 and 2 are present where 1 contains the connection to Weaviate in Go and 2 contains that inference model that part 1 uses. It would also be possible to amend, for example, the Weaviate `text2vec-transformers` module (part 1) to use the Huggingface API or some other third-party hosted inference service, instead of it's own container (now in part 2) that it brings. 
 
-A module completely controls the communication with any container or service it depends on. So for example in the `text2vec-transformers` module, the API of the inference container is a REST API. But for the `text2vec-contextionary` module has a gRPC, rather than a REST API or another protocol. 
+A module completely controls the communication with any container or service it depends on. So, for example, in the `text2vec-transformers` module, the API of the inference container is a REST API. But for the `text2vec-contextionary` module has a gRPC, rather than a REST API or another protocol. 
 
 ## Module characteristics
 
@@ -92,7 +92,7 @@ There are two different ways to extend Weaviate with custom vectorization capabi
 
 The quickest way to integrate a completely different inference model is replacing parts of an existing module. You reuse part 1 (the interface with Weaviate) and thus adhere to part 1's API contract, and only implement changes to or replace part 2.
 
-Because you are not touching the Go Weaviate interface code, you don't have the possibility to introduce new configuration that is specific to your module inference into Weaviate's APIs provided and consumed by existing modules that are not existing in part 1 (i.e. all the configuration parameters, e.g. those of `text2vec-transformers`). This also implies that you cannot change or introduce new (GraphQL) API functions or filters. 
+Because you are not touching the Go Weaviate interface code, you don't have the possibility to introduce a new configuration that is specific to your module inference into Weaviate's APIs provided and consumed by existing modules that are not existing in part 1 (i.e. all the configuration parameters, e.g. those of `text2vec-transformers`). This also implies that you cannot change or introduce new (GraphQL) API functions or filters. 
 _Note that Weaviate APIs are not guaranteed to be stable. Even on a non-breaking Weaviate release, 'internal' APIS could always change._
 
 To use a new inference model (part 2) with an existing Weaviate interface (part 1), you could reuse all the Go-code from the existing module and simply point it to a different inference container. As an example, here's how to use a custom inference module using the `text2vec-transformers` Go-code:
@@ -114,11 +114,11 @@ Response:
 
 ## B. Build a completely new module
 
-Implementing a full new module with both part 1 and 2 is a lot more free, because you can control naming, APIs, behavior, etc. To achieve this, you are essentially contributing to Weaviate. Note that for this option, you need to understand at least parts of Weaviate's architecture, and what a module can control and what not (what is "fixed"). You can fork [Weaviate's repository](https://github.com/semi-technologies/weaviate) and create a completely new [module](https://github.com/semi-technologies/weaviate/tree/master/modules) inside it. This new module can also depend on any number of other containers (which you will have to supply), and could use any API for communication with its dependencies (it could also have not any dependencies). 
+Implementing a fully new module with both part 1 and 2 is a lot more flexible, because you can control naming, APIs, behavior, etc. To achieve this, you are essentially contributing to Weaviate. Note that for this option, you need to understand at least parts of Weaviate's architecture, and what a module can and can not control (what is "fixed"). You can fork [Weaviate's repository](https://github.com/semi-technologies/weaviate) and create a completely new [module](https://github.com/semi-technologies/weaviate/tree/master/modules) inside it. This new module can also depend on any number of other containers (which you will have to supply), and could use any API for communication with its dependencies (it could also have not any dependencies). 
 
 Detailed instructions are described in the [contributor guide](../../../contributor-guide/current/weaviate-module-system/how-to-build-a-new-module.html)
 
-If you choose to build a completely new module including a Weaviate Go interface, you can contact us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or through an [issue on Github](https://github.com/semi-technologies/weaviate/issues) so we help you getting started.
+If you choose to build a completely new module including a Weaviate Go interface, you can contact us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or through an [issue on Github](https://github.com/semi-technologies/weaviate/issues) so we help you get started.
 
 # Important notes
 - The length of the vectors your vectorizer has influences later usage, for example if you're exploring your data by vector with the GraphQL explore filter, the length of this vector should match with the vector length of the data points. 
