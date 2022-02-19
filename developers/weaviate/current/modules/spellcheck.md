@@ -19,13 +19,13 @@ toc: true
 
 # Introduction
 
-The SpellCheck module is a Weaviate module for checking spelling in raw texts in GraphQL query inputs. Using [the Python spellchecker](https://pypi.org/project/pyspellchecker/) as service, the module analyzes text, gives a suggestion and can force an auto correction. 
+The SpellCheck module is a Weaviate module for checking spelling in raw texts in GraphQL query inputs. Using [the Python spellchecker](https://pypi.org/project/pyspellchecker/) as service, the module analyzes text, gives a suggestion and can force an auto-correction. 
 
 # How to enable (module configuration)
 
 ### Docker-compose
 
-The Q&A module can be added as a service to the docker compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example docker-compose file for using the `spellcheck` module with the `text2vec-contextionary`:
+The Q&A module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `spellcheck` module with the `text2vec-contextionary` is here:
 
 ```yaml
 ---
