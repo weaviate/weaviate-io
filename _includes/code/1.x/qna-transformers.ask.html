@@ -37,7 +37,7 @@ ask = {
   "properties": ["summary"]
 }
 
-client.query.get("Article", ["title", "_additional {hasAnswer certainty property result startPosition endPosition}"]).with_ask(ask).with_limit(1).do()
+client.query.get("Article", ["title", "_additional {answer {hasAnswer certainty property result startPosition endPosition} }"]).with_ask(ask).with_limit(1).do()
 
 {% endcapture %}
 
