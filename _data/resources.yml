@@ -1,5 +1,15 @@
 ---
 - title: >
+    TC placeholder
+  date: 2022-02-22T00:00:00Z
+  cover_image: https://techcrunch.com/wp-content/uploads/2022/02/meta-brands-glitch.jpg
+  description: > 
+    TBD
+  source: techcrunch
+  link: https://techcrunch.com/2022/02/21/instagram-limits-daily-time-limits/
+  tags:
+  - news
+- title: >
     Weaviate: Towards the New Era of Vector Search Engines
   date: 2022-02-03T00:00:00Z
   cover_image: https://cdn.analyticsvidhya.com/wp-content/uploads/2021/12/732227807104_1578230927_time_analysis_tittle-banner-1.jpg

@@ -18,22 +18,33 @@ layout: default
                 </p>
                 <!-- Buttons -->
                 <div class="text-center text-md-start">
-                    <a href="{{ site.slack_signup_url }}" class="btn btn-primary-soft lift mr-3" target="_blank" style="margin-right: 0.25rem;">
+                    <a href="{{ site.slack_signup_url }}" class="btn btn-primary-soft lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
                         Slack <i class="fe fe-slack d-none d-md-inline ms-3 mr-1"></i>
                     </a>
-                    <a href="https://github.com/semi-technologies/weaviate" class="btn btn-primary-soft lift mr-3" target="_blank" style="margin-right: 0.25rem;">
+                    <a href="https://github.com/semi-technologies/weaviate" class="btn btn-primary-soft lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
                         Github <i class="fe fe-github d-none d-md-inline ms-3 mr-1"></i>
                     </a>
-                    <a href="https://twitter.com/weaviate_io" class="btn btn-primary-soft lift mr-3" target="_blank" style="margin-right: 0.25rem;">
+                    <a href="https://twitter.com/weaviate_io" class="btn btn-primary-soft lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
                         Twitter <i class="fe fe-twitter d-none d-md-inline ms-3 mr-1"></i>
                     </a>
-                    <a href="http://weaviate-newsletter.semi.technology/" class="btn btn-primary-soft lift" target="_blank">
+                    <a href="http://weaviate-newsletter.semi.technology/" class="btn btn-primary-soft lift mt-3" target="_blank">
                         Newsletter <i class="fe fe-mail d-none d-md-inline ms-3"></i>
                     </a>
                 </div>
             </div>
         </div> <!-- / .row -->
     </div> <!-- / .container -->
+</section>
+
+<!-- FEATURES -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="lead col-12 mt-6" data-aos="fade-left">
+                Read our Series A Funding Announcement → <a href="https://techcrunch.com/2022/02/22/semi-technologies-search-engine-data/" target="_blank">Techcrunch</a> – <a href="https://www.prnewswire.com/news-releases/semi-technologies-16m-series-a-round-highlights-a-new-wave-of-ai-first-database-tech-301486766.html" target="_blank">PR Newswire</a> – <a href="https://mtsprout.nl/startups-scaleups/nederlandse-ai-zoekmachine-scoort-16-miljoen-dollar-in-silicon-valley" target="_blank">MT/Sprout (Dutch)</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- FEATURES -->
