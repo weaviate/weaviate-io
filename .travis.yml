@@ -7,16 +7,6 @@ before_install:
 - sudo apt-get update
 - sudo apt-get install -y minify
 - bundle install
-- |
-  if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-    gcloud version || true
-    if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-    echo "LOAD SOURCE"
-    source /home/travis/google-cloud-sdk/path.bash.inc
-    gcloud version
-    gcloud auth activate-service-account --key-file key.master.json
-  fi
-- rm key.master.json
 install:
 - bundle install
 - gem install jekyll html-proofer
@@ -29,6 +19,14 @@ script:
     if [ $TRAVIS_BRANCH = "main" ]; then
       # unpack secrets
       openssl aes-256-cbc -K $encrypted_617a65259523_key -iv $encrypted_617a65259523_iv -in key.master.json.enc -out key.master.json -d
+      # Install gcloud
+      gcloud version || true
+      if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+      echo "LOAD SOURCE"
+      source /home/travis/google-cloud-sdk/path.bash.inc
+      gcloud version
+      gcloud auth activate-service-account --key-file key.master.json
+      rm key.master.json
       # set project
       gcloud config set project "$GS_PROJECT"
       # rm everything
