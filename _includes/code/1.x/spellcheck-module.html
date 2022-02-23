@@ -104,7 +104,7 @@ WeaviateClient client = new WeaviateClient(config);
 
 String fields = "title _additional {spellCheck { change {corrected original} didYouMean location originalText}}";
 NearTextArgument explore = client.graphQL().arguments().nearTextArgBuilder()
-            .concepts([]string{"houssing prices"})
+            .concepts(new String[]{"houssing prices"})
             .build();
 
 Result<GraphQLResponse> result = client.graphQL().get()
