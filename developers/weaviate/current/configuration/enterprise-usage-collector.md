@@ -66,7 +66,7 @@ You can also use the Docker compose [configurator](../getting-started/installati
 
 Obtain your token as described in step 1.
 
-Get a weaviate [helm chart](https://github.com/semi-technologies/weaviate-helm/releases) of version `{{ site.weaviate_versions[current_page_version].helm_version }}` or higher. 
+Get a Weaviate [helm chart](https://github.com/semi-technologies/weaviate-helm/releases) of version `{{ site.weaviate_versions[current_page_version].helm_version }}` or higher. 
 
 Enable the proxy and configure the proxy using the `collector_proxy` key from the `values.yaml` like so:
 ```
