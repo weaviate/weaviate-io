@@ -13,7 +13,7 @@ toc: true
 
 # Introduction
 
-The `multi2vec-clip` module allows you to use a pre-trained Sentence-BERT CLIP model as Weaviate vectorization module. To use CLIP with weaviate the `multi2vec-clip` module needs to be enabled. The models typically bring separate inference containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled serves, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.
+The `multi2vec-clip` module allows you to use a pre-trained Sentence-BERT CLIP model as a Weaviate vectorization module. To use CLIP with Weaviate, the `multi2vec-clip` module needs to be enabled. The models typically bring separate inference containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled serves, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.
 
 To choose your specific model, you simply need to select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile.
 
@@ -22,7 +22,7 @@ To choose your specific model, you simply need to select the correct Docker cont
 You have three options to select your desired model:
 
 1. **Use [any of our pre-built clip model containers](#pre-built-images).** These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/semi-technologies/weaviate/issues)).
-2. **Use any SBERT Clip model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publically-available-huggingface-model). The `multi2vec-clip` module supports any CLIP-based transformer model compatible with `SentenceTransformers`. 
+2. **Use any SBERT Clip model from HuggingFace Model Hub.** [Click here to learn how](#option-2-use-any-publically-available-huggingface-model). The `multi2vec-clip` module supports any CLIP-based transformer model compatible with `SentenceTransformers`. 
 3. **Use any private or SBERT Clip model.** [Click here to learn how](#option-3-custom-build-with-a-private-or-local-model). If you have your own CLIB-based `SentenceTransformers` model in a registry or on a local disk, you can use this with Weaviate.
 
 ## Option 1: Use a pre-built transformer model container
@@ -63,7 +63,7 @@ services:
 ...
 ```
 
-Note that running Weaviate with a the multi2vec-clip module without GPU will be
+Note that running Weaviate with the multi2vec-clip module but without a GPU will be
 slower than on CPUs. Enable CUDA if you have a GPU available (`ENABLE_CUDA=1`).
 
 ### Alternative: configure your custom setup
@@ -71,7 +71,7 @@ slower than on CPUs. Enable CUDA if you have a GPU available (`ENABLE_CUDA=1`).
 *Note: The following steps are only required if you want to manually add the module to an existing setup. If you are starting from scratch, a much more convenient option is to use our [configuration and customization tool](../getting-started/installation.html#customize-your-weaviate-setup).*
 
 #### Step 1: Enable the `multi2vec-clip` module
-Make sure you set the `ENABLE_MODULES=multi2vec-clip` environment variable. Additionally make this module the default vectorizer, so you don't have to specify it on each schema class: `DEFAULT_VECTORIZER_MODULE=multi2vec-clip`
+Make sure you set the `ENABLE_MODULES=multi2vec-clip` environment variable. Additionally, make this module the default vectorizer, so you don't have to specify it on each schema class: `DEFAULT_VECTORIZER_MODULE=multi2vec-clip`
 
 #### Step 2: Run your favorite model
 
@@ -127,7 +127,7 @@ COPY ./my-text-model /app/models/text
 COPY ./my-clip-model /app/models/clip
 ```
 
-The above will make sure that your model end ups in the image at
+The above will make sure that your model ends up in the image at
 `/app/models/clip` and `/app/models/text` respectively.. This path is
 important, so that the application can find the
 model.
@@ -140,13 +140,13 @@ $ docker build -f my-models.Dockerfile -t my-models-inference .
 ```
 
 That's it! You can now push your image to your favorite registry or reference
-it locally in your Weaviate `docker-compose.yaml` using the docker tag
+it locally in your Weaviate `docker-compose.yaml` using the Docker tag
 `my-models-inference`.
 
 To debug if your inference container is working correctly, you can send queries
 to the vectorizer module’s inference container directly, so you can see exactly
 what vectors it would produce for which input. To do so, you need to expose the
-inference container. in your docker-compose add something like
+inference container. in your Docker-compose add something like
 ```yaml
 ports:
   - "9090:8080"
@@ -200,9 +200,9 @@ text fields using the `multi2vec-clip` module as a `vectorizer`:
 
 Note that:
  - `imageFields` and `textFields` in `moduleConfig.multi2vec-clip` do not both
-   need to be set. However at least one of both must be set.
+   need to be set. However, at least one of both must be set.
  - `weights` in `moduleConfig.multi2vec-clip` is optional. If only a single
-   property the property takes all the weight. If multiple properties exist and
+   property, the property takes all the weight. If multiple properties exist and
    no weights are specified, the properties are equal-weighted.
 
 You can then import data objects for the class as usual. Fill the `text` or
@@ -210,7 +210,7 @@ You can then import data objects for the class as usual. Fill the `text` or
 image.
 
 ## Limitations
-  -  As of `v1.9.0` the module requires explicit creation of a class. If you
+  -  As of `v1.9.0`, the module requires explicit creation of a class. If you
      rely on auto-schema to create the class for you, it will be missing the
      required configuration about which fields should be vectorized. This will
      be addressed in a future release. You can always manually update a class
@@ -226,7 +226,7 @@ and `Explore {}` GraphQL functions: `nearText: {}` and `nearImage: {}`. These
 operators can be used for semantically searching both text and images in your
 dataset. 
 
-Note: In the same query you cannot use multiple `'near'` filters, or a `'near'`
+Note: In the same query, you cannot use multiple `'near'` filters, or a `'near'`
 filter along with an [`'ask'`](./qna-transformers.html#how-to-use-graphql)
 filter!
 
@@ -245,7 +245,7 @@ Alternatively, you can use a helper function in the Python, Java or Go client (n
 {% include code/1.x/img2vec-neural.nearimage.encode.html %}
 ### Certainty
 
-You can set a minimum required `certainty`, which will be used to determine which data results to return. The value is a float between 0.0 (return all data objects, regardless similarity) and 1.0 (only return data objects that are matching completely, without any uncertainty). The certainty of a query result is computed by normalized distance of the fuzzy query and the data object in the vector space.
+You can set a minimum required `certainty`, which will be used to determine which data results to return. The value is a float between 0.0 (return all data objects, regardless of similarity) and 1.0 (only return data objects that match completely, without any uncertainty). The certainty of a query result is computed by normalized distance of the fuzzy query and the data object in the vector space.
 
 ### Moving
 
