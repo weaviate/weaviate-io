@@ -27,7 +27,7 @@ There are currently three different NER modules available (taken from [Huggingfa
 
 ### Docker-compose
 
-The NER module can be added as a service to the docker compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example docker-compose file for using the `ner-transformers` module (`dbmdz-bert-large-cased-finetuned-conll03-english`) in combination with the `text2vec-contextionary`:
+The NER module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `ner-transformers` module (`dbmdz-bert-large-cased-finetuned-conll03-english`) in combination with the `text2vec-contextionary`:
 
 ```yaml
 ---
@@ -81,7 +81,7 @@ This module adds a search filter to the GraphQL `_additional` field in queries: 
 
 | Field 	| Data Type 	| Required 	| Example value 	| Description 	|
 |-	|-	|-	|-	|-	|
-| `properties` 	| list of strings 	| yes 	| `["summary"]` 	| The properties of the of the queries Class which contains text (`text` or `string` Datatype). You must provide at least one property	|
+| `properties` 	| list of strings 	| yes 	| `["summary"]` 	| The properties of the queries Class which contains text (`text` or `string` Datatype). You must provide at least one property	|
 | `certainty` 	| float 	| no 	| `0.75` | Desired minimal certainty or confidence that the recognized token must have. The higher the value, the stricter the token classification. If no certainty is set, all tokens that are found by the model will be returned. |
 | `limit` 	| int 	| no 	| `1` | The maximum amount of tokens returned per data object in total. |
 
@@ -96,7 +96,7 @@ This module adds a search filter to the GraphQL `_additional` field in queries: 
 
 The answer is contained in a new GraphQL `_additional` property called `tokens`, which returns a list of tokens. It contains the following fields:
 * `entity` (`string`): The Entity group (classified token)
-* `word` (`string`): The word that that is recognized as entity
+* `word` (`string`): The word that is recognized as entity
 * `property` (`string`): The property in which the token is found
 * `certainty` (`float`): 0.0-1.0 of how certain the model is that the token is correctly classified
 * `startPosition` (`int`): The position of the first character of the word in the property value
@@ -141,7 +141,7 @@ The answer is contained in a new GraphQL `_additional` property called `tokens`,
 
 # Use another NER Transformer module from HuggingFace
 
-You can build a docker image which supports any model from the [Huggingface model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`Davlan/bert-base-multilingual-cased-ner-hrl` model](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl). 
+You can build a Docker image which supports any model from the [Huggingface model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`Davlan/bert-base-multilingual-cased-ner-hrl` model](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl). 
 
 #### Step 1: Create a `Dockerfile`
 Create a new `Dockerfile`. We will name it `my-model.Dockerfile`. Add the following lines to it: 
@@ -158,7 +158,7 @@ docker build -f my-model.Dockerfile -t davlan-bert-base-multilingual-cased-ner-h
 ```
 
 #### Step 3: That's it!
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the docker tag `davlan-bert-base-multilingual-cased-ner-hrl`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `davlan-bert-base-multilingual-cased-ner-hrl`.
 
 
 # How it works (under the hood)
