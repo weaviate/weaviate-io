@@ -23,7 +23,29 @@
     <!-- Title -->
     {% if page.layout == "layout-documentation" %}
         <title>{{ page.title }} · Weaviate Documentation</title>
+        <meta property="og:title" content="{{ page.title }} · Weaviate Documentation" />
     {% else %}
         <title>{{ page.title }}</title>
+        <meta property="og:title" content="{{ page.title }}" />
     {% endif %}
+
+    <!-- OG -->
+    {% if page.layout == "layout-documentation" %}
+        <meta property="og:image" content="/img/og/og-documentation.png" />
+    {% elsif page contains "og" %}
+        <meta property="og:image" content="{{ page.og }}" />
+    {% else %}
+        <meta property="og:image" content="/img/og/og-standard.png" />
+    {% endif %}
+
+    <!-- OG final -->
+    <meta property="og:site_name" content="Weaviate vector search engine" />
+    <meta property="og:type" content="website" />
+
+    <!-- custom CSS -->
+    <style>
+        .main-docs-content img {
+            width: 100%;
+        }
+    </style>
 </head>

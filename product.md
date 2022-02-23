@@ -1,6 +1,7 @@
 ---
 title: Weaviate Products
 layout: default
+og: /img/og/og-product.png
 ---
 
 <!-- WELCOME -->

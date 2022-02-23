@@ -1,6 +1,7 @@
 ---
 title: Weaviate Podcast
 layout: default
+og: /img/og/og-podcast.png
 ---
 
 <!-- Podcast intro -->

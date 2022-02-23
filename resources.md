@@ -1,6 +1,7 @@
 ---
 title: Weaviate Resources
 layout: default
+og: /img/og/og-resources.png
 ---
 
 <!-- WELCOME -->
