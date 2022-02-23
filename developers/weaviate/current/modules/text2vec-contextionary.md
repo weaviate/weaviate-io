@@ -13,13 +13,13 @@ toc: true
 
 # Introduction
 
-The module `text2vec-contextionary` is Weaviate's own language vectorizer. It gives context to the language used in your dataset (there are Contextionary versions available for multiple languages). The Contextionary is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe. The most recent `text2vec-contextionary` is trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data. We aim to make the Contextionary available for use cases in any domain, regardless if they are business-related, academic or other. But you can also [create your own vectorizer](./custom-modules.html) if desired.
+The module `text2vec-contextionary`, herein also referred to as the 'Contextionary',  is Weaviate's own language vectorizer. It gives context to the language used in your dataset (there are Contextionary versions available for multiple languages). `text2vec-contextionary` is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe. The most recent `text2vec-contextionary` is trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data. We aim to make the Contextionary available for use cases in any domain, regardless if they are business-related, academic or other. But you can also [create your own vectorizer](./custom-modules.html) if desired.
 
 The `text2vec-contextionary` places data into a 300-dimensional space. Each datapoint will thus have a vector of 300 numbers. This vector is computed from the pre-trained Contextionary (you never have to do any training yourself), that contains the contextual representation that allows Weaviate to store data based on its contextual meaning. An empty Weaviate with the preloaded `text2vec-contextionary` module, could be envisioned like this (in a simplified 3D visualization):
 
 ![3D Vectors visualization](/img/guides/vectors-3d.svg "3D Vectors visualization"){:height="60%" width="60%"}
 
-When you add data, the Contextionary calculates the position in the vector space that represents the real-world entity.
+When you add data, `text2vec-contextionary` calculates the position in the vector space that represents the real-world entity.
 
 The process from a data object to a vector position is calculated based on the centroid of the words weighted by the occurrences of the individual words in the original training text-corpus (e.g., the word `"has"` is seen as less important than the word `"apples"`).
 
@@ -48,7 +48,7 @@ When a new class object is created, it will be added to a Weaviate.
 
 ### Docker-compose
 
-Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. The service can be added like this
+Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. The service can be added like this:
 
 ```yaml
 ---
@@ -87,9 +87,9 @@ services:
 ```
 
 Variable explanations:
-* `EXTENSIONS_STORAGE_MODE`: where custom extensions to the contextionary are stored
+* `EXTENSIONS_STORAGE_MODE`: where custom extensions to the Contextionary are stored
 * `EXTENSIONS_STORAGE_ORIGIN`: the host of the custom extension storage
-* `NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE`: this can be used to hide very rare words. If you set it 5 that means the 5th percentile of words by occurrence are removed in the nearestNeighbor search (for example used in the GraphQL `_additional { nearestNeighbors }` feature).
+* `NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE`: this can be used to hide very rare words. If you set it to '5', this means the 5th percentile of words by occurrence are removed in the nearestNeighbor search (for example used in the GraphQL `_additional { nearestNeighbors }` feature).
 * `ENABLE_COMPOUND_SPLITTING`: see [here](#compound-splitting).
 
 ### Default vectorizer module
@@ -105,7 +105,7 @@ services:
 
 ## Per-class configuration
 
-To indicate the a data class should use the `text2vec-contextionary` as vectorizer, you need to specify this per class in the [data schema](../data-schema/schema-configuration.html). 
+To indicate that a data class should use the `text2vec-contextionary` as vectorizer, you need to specify this per class in the [data schema](../data-schema/schema-configuration.html). 
 
 Example of a class [configured to use `text2vec-contextionary` in your data schema](../data-schema/schema-configuration.html): 
 ```json
@@ -128,7 +128,7 @@ Example of a class [configured to use `text2vec-contextionary` in your data sche
 }
 ```
 
-* If `"vectorizeClassName"` is set to `true`, the name of the class (`"Article"`) in the example, is used in the calculation for the vector position of each data object that will be added. More info [here](#regulate-semantic-indexing).
+* If `"vectorizeClassName"` is set to `true`, the name of the class (`"Article"`) in the example is used in the calculation for the vector position of each data object that will be added. More info [here](#regulate-semantic-indexing).
 
 ### text2vec-contextionary as default vectorizer
 
@@ -138,7 +138,7 @@ Each class that is added to the data schema will then use the `text2vec-contexti
 
 ## Per-property configuration
 
-There is also configuration per property, to [regulate the semantic indexing](#regulate-semantic-indexing) of the property name and value. For example the following property could be part of a class in the data schema.
+There is also configuration per property, to [regulate the semantic indexing](#regulate-semantic-indexing) of the property name and value. For example, the following property could be part of a class in the data schema.
 
 ```json
     {
@@ -163,7 +163,7 @@ The `text2vec-contextionary` module has two RESTful endpoints.
 
 ## Find concepts: `/v1/modules/text2vec-contextionary/concepts`
 
-To find concepts or words or to check if a concept is part of the Contextionary, , use the `v1/modules/text2vec-contextionary/concepts/<concept>` endpoint. 
+To find concepts or words or to check if a concept is part of the Contextionary, use the `v1/modules/text2vec-contextionary/concepts/<concept>` endpoint. 
 
 ```js
 GET /v1/modules/text2vec-contextionary/concepts/<concept>
@@ -566,10 +566,10 @@ with a result similar to:
 
 ## Extending the Contextionary: `/v1/modules/text2vec-contextionary/extensions` 
 
-Custom words or abbreviations (i.e., "concepts") can be added to Weaviate directly by extending the Contextionary. Using this endpoint will enrich the Contextionary with your own words, abbreviations or concepts in context by [transfer learning](https://en.wikipedia.org/wiki/Transfer_learning). Using the `v1/modules/text2vec-contextionary/extensions/` endpoint teaches Weaviate the new concepts real-time. You can also overwrite concepts with this endpoint. Note that you need to learn Weaviate the new concepts before adding data.
+Custom words or abbreviations (i.e., "concepts") can be added to Weaviate directly by extending the Contextionary. Using this endpoint will enrich the Contextionary with your own words, abbreviations or concepts in context by [transfer learning](https://en.wikipedia.org/wiki/Transfer_learning). Using the `v1/modules/text2vec-contextionary/extensions/` endpoint teaches Weaviate the new concepts in real-time. You can also overwrite concepts with this endpoint. Note that you need to introduce the new concepts in to Weaviate before adding data.
 
 ### Parameters
-A body (in JSON or YAML) with the extension word or abbreviation you want to add to the Contextionary with the following fields:
+A body (in JSON or YAML) with the extension word or abbreviation you want to add to the Contextionary with the following fields includes a:
 - `"concept"`: a string with the word, compound word or abbreviation
 - `"definition"`: a clear description of the concept, which will be used to create the context of the concept and place it in the high dimensional Contextionary space.
 - `"weight"`: a float with the relative weight of the concept (default concepts in the Contextionary have a weight of 1.0)
@@ -629,7 +629,7 @@ Note: Cannot use multiple `'near'` operators, or a `'near'` operator along with 
 
 ### CamelCase interpretation
 
-Weaviate's vectorization module `text2vec-contextionary` splits words based on CamelCase. For example, if a user wants to explore for the iPhone (the Apple device) they should use `iphone` rather than `iPhone` because the latter will be interpreted as `[i, phone]`.
+Weaviate's vectorization module `text2vec-contextionary` splits words based on CamelCase. For example, if a user wants to explore for the term iPhone (the Apple device) they should use `iphone` rather than `iPhone` because the latter will be interpreted as `[i, phone]`.
 
 ### Concepts
 
@@ -645,7 +645,7 @@ A practical example would be: `concepts: ["beatles", "John Lennon"]`
 
 ### Certainty
 
-You can set a minimum required `certainty`, which will be used to determine which data results to return. The value is a float between 0.0 (return all data objects, regardless similarity) and 1.0 (only return data objects that are matching completely, without any uncertainty). The certainty of a query result is computed by normalized distance of the fuzzy query and the data object in the vector space.
+You can set a minimum required `certainty`, which will be used to determine which data results to return. The value is a float between 0.0 (return all data objects, regardless of similarity) and 1.0 (only return data objects that match completely, without uncertainty). The certainty of a query result is computed by normalized distance of the fuzzy query and the data object in the vector space.
 
 ### Moving
 
@@ -689,7 +689,7 @@ The `text2vec-contextionary` vectorizer module extends the `additional` properti
 
 ## Interpretation
 
-When Weaviate vectorizes your data-object, it normalizes the data so that the contextionary can interpret it. With the additional property `interpretation` you can request how Weaviate indexed your data-object.
+When Weaviate vectorizes your data-object, it normalizes the data so that the Contextionary can interpret it. With the additional property `interpretation`, you can request how Weaviate indexed your data-object.
 
 {% include code/1.x/graphql.underscoreproperties.interpretation.html %}
 
@@ -704,7 +704,7 @@ The semantic path returns an array of concepts from the query to the data object
 | `distanceToQuery` | the distance of this step to the query. |
 | `distanceToResult` | the distance of the step to this result. |
 
-_Note: Building a semantic path is only possible if an [`nearText: {}` filter](#neartext) is set. As the explore term represents the beginning of the path and each search result represents the end of the path. Since `nearText: {}` queries are currently exclusively possible in GraphQL, the `semanticPath` is therefore not available in the REST API._
+_Note: Building a semantic path is only possible if a [`nearText: {}` filter](#neartext) is set as the explore term represents the beginning of the path and each search result represents the end of the path. Since `nearText: {}` queries are currently exclusively possible in GraphQL, the `semanticPath` is therefore not available in the REST API._
 
 Example: showing a semantic path without edges.
 
@@ -723,7 +723,7 @@ The `text2vec-contextionary` also provides an additional classification method. 
 
 ### Example use case
 
-Imagine you have a dataset comprised of Magazine Articles (sources). You don’t know what each article is about, but you know that each article falls into one of three categories (targets): “politics,” “fashion,” or “technology.” There are no additional business rules involved, and you don’t have any training data. This is a good fit for a “contextual” classification. In such a classification, each Article will be analyzed, and the most important words will be extracted. These words are then compared - using their vector space distance - to one of the three targets. For example, in an article about “technology,” Weaviate has found the words “computer, “macintosh,” and “hardware” to be the most important words. These three words are closer in the vector space to “technology” than they are to “fashion” or “politics.” Weaviate will thus put them in the “technology” category. Each article is treated independently. How many articles have already been categorized into a specific category does not influence future articles.
+Imagine you have a dataset comprised of magazine articles (sources). You don’t know what each article is about, but you know that each article falls into one of three categories (targets): “politics,” “fashion,” or “technology.” There are no additional business rules involved, and you don’t have any training data. This is a good fit for a “contextual” classification. In such a classification, each article will be analyzed, and the most important words will be extracted. These words are then compared - using their vector space distance - to one of the three targets. For example, in an article about “technology,” Weaviate will find the words “computer, “macintosh,” and “hardware” to be the most important words. These three words are closer in the vector space to “technology” than they are to “fashion” or “politics.” Weaviate will thus put them in the “technology” category. Each article is treated independently. How many articles have already been categorized into a specific category does not influence future articles.
 
 ## Endpoint and parameters
 
@@ -737,10 +737,10 @@ A classification can be started via the `v1/classifications` endpoint, which can
 
 **Optional, with default values**:
 - Parameters to control weights of individual words: (Note: these parameters are highly specific to a dataset, the default values are set to work with many datasets.)
-  - `informationGainCutoffPercentile: 50`. All words in a corpus are ranked by their information gain against the possible target objects. A cutoff percentile of 40 implies that the top 40% are used and the bottom 60% are cut-off. This highly depends on the data set. On the 20 news group data set (posts written by humans, between 10 and 3000 words), the best results are with a value of 8 whereas in a dataset with 1-2 word product description the best value would be 100 (i.e. no cut-off).
+  - `informationGainCutoffPercentile: 50`. All words in a corpus are ranked by their information gain against the possible target objects. A cutoff percentile of 40 implies that the top 40% are used and the bottom 60% are cut-off. This highly depends on the data set. On the well-known '20 Newsgroups data set' (posts written by humans, between 10 and 3000 words), the best results are with a value of 8 whereas in a dataset with 1-2 word product description the best value would be 100 (i.e. no cut-off).
   - `informationGainMaximumBoost: 3`. Words in a corpus will receive an additional boost based on how high they are ranked according to information gain. Setting this value to `3` implies that the top-ranked word will be ranked 3 times as high as the bottom ranked word. The curve in between is logarithmic. A maximum boost of `1` implies that no boosting occurs.
   - `tfidfCutoffPercentile: 80`. All words in a corpus are ranked by their tf-idf score. A cutoff percentile of 80 implies that the top 80% are used and the bottom 20% are cut-off. This is very effective to remove words that occur in almost all objects, such as filler and stop words. Note that tf-idf compares the words in the corpus to those in other corpora (sources) whereas information gain compares the words in the corpus to possible target objects.
-  - `minimumUsableWords: 3`. Both information gain (IG) and tf-idf are mechanisms to remove words from the corpora. However, on very short corpora this could lead to a removal of all words, or all but a single word. This value guarantees that - regardless of tf-idf and IG score - always at least n words are used.
+  - `minimumUsableWords: 3`. Both information gain (IG) and tf-idf are mechanisms to remove words from the corpora. However, on very short corpora, this could lead to a removal of all words, or all but a single word. This value guarantees that - regardless of tf-idf and IG score - always at least n words are used.
 - Parameters to add limitations (based on e.g. background business knowledge).
   - `filters: {}` with the following possible properties:
     - `sourceWhere: {}`. Parameter to determine which data objects to classify (i.e. you can use this if you want to leave out some data objects to classify them later based on background knowledge). It accepts a [`where` filter body](../graphql-references/filters.html#where-filter).
@@ -779,7 +779,7 @@ A classification is started, and will run in the background. The following respo
 }
 ```
 
-Note that following fields where added to the [basic classification return body](../restful-api-references/classification.html#response) when the classification was done with `text2vec-contextionary-contextual`:
+Note that following fields were added to the [basic classification return body](../restful-api-references/classification.html#response) when the classification was done with `text2vec-contextionary-contextual`:
 ```json
 {
   "informationGainCutoffPercentile": int, // the configured Information Gain Cutoff percentile
@@ -797,9 +797,9 @@ After the classification is completed, the concerning reference properties data 
 
 ## Regulate semantic indexing
 
-In the schema you can define advanced settings how data is stored and used by Weaviate. 
+In the schema you can define advanced settings for how data is stored and used by Weaviate. 
 
-In some cases you want to be able to regulate specific parts of the schema to optimise indexing.
+In some cases, you want to be able to regulate specific parts of the schema to optimise indexing.
 
 For example, a data object with the following schema:
 
@@ -818,13 +818,13 @@ as his diary cows lumberred
 over for their monday
 ```
 
-By default, the `class name` and all property `values` *will* be taken in the calculation, but the `property names` *will not* be indexed. There are four ways how you can regulate the indexing.
+By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can regulate the indexing.
 
 #### 1. Index the Class name
 
 You can disable indexing of the class name by adding `vectorizeClassName` to the class definition.
 
-For example: to disable the indexing of the word `"Article"` (which is the class name) of the data object, you can set is like this:
+For example: to disable the indexing of the word `"Article"` (which is the class name) of the data object, you can set this:
 
 ```js
 {
@@ -886,7 +886,7 @@ By default, a property name and value is taken into the vector calculation of th
 
 **3a. Skip property value in data vectorization**
 
-If you don't want the value and the name of a property influence the vectorization of a data object, you can choose to `skip` the property entirely in the vectorization. For example, you can choose to skip the value of `summary` to influence the vectorization: 
+If you don't want the value and the name of a property to influence the vectorization of a data object, you can choose to `skip` the property entirely in the vectorization. For example, you can choose to skip the value of `summary` to influence the vectorization: 
 
 ```js
 {
@@ -952,7 +952,7 @@ Stopwords are words that don't add semantic meaning to your concepts and are
 extremely common in texts across different contexts. For example, the sentence
 "a car is parked on the street" contains the following stopwords: "a", "is",
 "on", "the". If we look at the sentence "a banana is lying on
-the table", you would find the exact same stop words. So in those two sentences
+the table", you would find the exact same stop words. So in those two sentences,
 over 50% of the words overlap. Therefore they would be considered somewhat
 similar (based on the overall vector position).
 
@@ -967,7 +967,7 @@ result can now be calculated with a lot less noise.
 #### Behavior around stop words
 
 Stopwords are useful for humans, so we don't want to encourage you to leave
-them out completely. Instead weaviate will remove them whenever your schema
+them out completely. Instead Weaviate will remove them whenever your schema
 information is translated to vector positions.
 
 In most cases you won't even notice that this happens in the background,
@@ -982,8 +982,8 @@ however, there are a few edge cases that might cause a validation error:
 
 #### How does Weaviate decide whether a word is a stop word or not?
 
-The list of stopwords is derived from the contextionary version used and is
-published alongside the contextionary files.
+The list of stopwords is derived from the Contextionary version used and is
+published alongside the Contextionary files.
 
 ## Compound splitting
 
@@ -1035,13 +1035,13 @@ To overcome this limitation the optional **Compound Splitting Feature** can be e
 }
   ```
 
-Note that the newly found word (made up of the parts `thunderstorm` and `cloud` has the highest weight in the vectorization. So this meaning that would have been lost without Compound Splitting can now be recognized.
+Note that the newly found word (made up of the parts `thunderstorm` and `cloud` has the highest weight in the vectorization. So this meaning, which would have been lost without Compound Splitting, can now be recognized.
 
 ### How to enable
-You can enable compound splitting in the configuration file of the `text2vec-contextionary`. See how this is done [here](#module-configuration).
+You can enable Compound Splitting in the configuration file of the `text2vec-contextionary`. See how this is done [here](#module-configuration).
 
 ### Trade-Off Import speed vs Word recognition
-Compound Splitting runs an any word that is otherwise not recognized. Depending on your dataset this can lead to a significantly longer import time (up to 100% longer). Therefore, you should carefully evaluate whether the higher precision in recognition or the faster import times are more important to your use case. As the benefit is larger in some languages (e.g. Dutch, German) than in others (e.g. English) this feature is turned off by default.
+Compound Splitting runs an any word that is otherwise not recognized. Depending on your dataset, this can lead to a significantly longer import time (up to 100% longer). Therefore, you should carefully evaluate whether the higher precision in recognition or the faster import times are more important to your use case. As the benefit is larger in some languages (e.g. Dutch, German) than in others (e.g. English) this feature is turned off by default.
 
 ## Noise filtering
 

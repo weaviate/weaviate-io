@@ -13,9 +13,9 @@ toc: true
 
 ## Introduction
 
-Because Weaviate is run by using Docker or Kubernetes, you can create a backup of your data by mounting a volume to store the data outside of the containers. When restarting a Weaviate, the data from the mounted volume is used to restore the dataset.
+Because Weaviate is run using Docker or Kubernetes, you can create a backup of your data by mounting a volume to store the data outside of the containers. When restarting a Weaviate instance, the data from the mounted volume is used to restore the dataset.
 
-## Docker compose
+## Docker Compose
 
 Creating backups is divided into two sections. First, we want to make the setup persistent. Second, we can create backups by copying the folder outside the container that contains the Weaviate DB.
 
@@ -79,7 +79,7 @@ services:
 
 ### Backups
 
-The folder that you've choosen contains as your external volume contains the Weaviate DB. You can simply copy it and store it.
+The folder that you've chosen to contain your external Docker volume contains the Weaviate DB. You can simply copy it and store it.
 
 For example:
 
@@ -90,7 +90,7 @@ $ cp /var/weavite /var/weaviate.BAK
 
 #### Running vs. stopped instance
 
-* Ideally, the setup is stopped (`docker-compose down`), because an orderly shutdown will flush everything to disk and make sure it can be read easily
+* Ideally, the setup should be stopped first (`docker-compose down`), because an orderly shutdown will flush everything to disk and make sure it can be read easily.
 * If you create a backup from a running setup, no data is lost, but not all segments have been flushed yet. This means the next startup will recover the data from an active commit log. ​This will result in a ​message: `“did Weaviate crash? Trying to recover”​`​.​ This is slightly slower than an ​orderly​ shutdown.​
 
 ## Kubernetes

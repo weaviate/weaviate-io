@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Client libraries & CLI
 title: Python
-intro: Weaviate has a Python native client to interact with Weaviate and its data. This page shows how to get started with this client. Code examples are included in all example code blocks of the API (RESTful and GraphQL) on this website. The Python client has additional functionalities (for example schema operations), which are covered in the full client documentation on <a href="https://weaviate-python-client.readthedocs.io/#">weaviate-python-client.readthedocs.io</a>.
+intro: Weaviate has a native Python client to interact with Weaviate and its data. This page shows how to get started. Code examples are included in all example code blocks of the API (RESTful and GraphQL) on this website. The Python client has additional functionalities (for example schema operations), which are covered in the full client documentation on <a href="https://weaviate-python-client.readthedocs.io/#">weaviate-python-client.readthedocs.io</a>.
 description: Python client library for Weaviate
 tags: ['python', 'client library']
 menu-order: 1
@@ -18,7 +18,7 @@ redirect_from:
 
 # Installation and setup
 
-The Python library is available on [Pypi.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for python 3.7 and higher. The current Python client version is {{ site.python_client_version }}.
+The Python library is available on [Pypi.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher. The current Python client version is {{ site.python_client_version }}.
 
 ```bash
 $ pip install weaviate-client
@@ -52,7 +52,7 @@ client = weaviate.Client("https://localhost:8080", secret)
 
 # References documentation
 
-On this Weaviate documentation website you will find how to use the Python client for all [RESTful endpoints](../restful-api-references/index.html) and [GraphQL functions](../graphql-references/index.html). For each reference, a code block is included with an example of how to use the function with the Python (and other) clients. The Python client, however, has additional functionalities, which are covered in the full client documentation on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/). Some of these additional functions are highlighted here below.
+On this Weaviate documentation website, you will find how to use the Python client for all [RESTful endpoints](../restful-api-references/index.html) and [GraphQL functions](../graphql-references/index.html). For each reference, a code block is included with an example of how to use the function with the Python (and other) clients. The Python client, however, has additional functionalities, which are covered in the full client documentation on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/). Some of these additional functions are highlighted here below.
 
 ### Example: client.schema.create(schema)
 Instead of adding classes one by one using the RESTful `v1/schema` endpoint, you can upload a full schema in JSON format at once using the Python client. Use the function `client.schema.create(schema)` as follows:
@@ -196,7 +196,7 @@ Fixes/updates in `weaviate.wcs.WCS` class:
 Updates in `weaviate.gql` sub-package:
 
 - New key-value ``autocorrect: <bool>`` introduced for the `weaviate.gql.filter.NearText` and `weaviate.gql.filter.Ask` filters.
-    The ``autocorrect`` is enabled only if Weaviate server has the ``text-spellcheck`` module enabled. If ``autocorrect`` is ``True`` the query is corrected before the query is made. Usage example:
+    The ``autocorrect`` is enabled only if Weaviate server has the ``text-spellcheck`` module enabled. If ``autocorrect`` is ``True``, the query is corrected before the query is made. Usage example:
 
 ```python
 # with 'nearText' filter
