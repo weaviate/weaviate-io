@@ -1,20 +1,30 @@
 ---
 - title: >
-    TC placeholder
+    "SeMI Technologies’ search engine opens up new ways to query your data"
   date: 2022-02-22T00:00:00Z
-  cover_image: https://techcrunch.com/wp-content/uploads/2022/02/meta-brands-glitch.jpg
+  cover_image: https://techcrunch.com/wp-content/uploads/2022/02/Bob-presenting-Weaviate-GraphQL-API-during-GraphQL-meetup-Berlin.jpg?w=1390&crop=1
   description: > 
-    TBD
+    Check out this Techcrunch article that features SeMI's Series-A investment
   source: techcrunch
-  link: https://techcrunch.com/2022/02/21/instagram-limits-daily-time-limits/
+  link: https://techcrunch.com/2022/02/22/semi-technologies-search-engine-data/
   tags:
   - news
+- title: >
+    "SeMI Technologies' $16M Series A Round Highlights a New Wave of AI-first Database Tech"
+  date: 2022-02-22T00:00:00Z
+  cover_image: https://upload.wikimedia.org/wikipedia/commons/8/8f/Yahoo%21_Finance_logo_2021.png
+  description: > 
+    Press release of SeMI's Series-A investment
+  source: yahoo-finance
+  link: https://finance.yahoo.com/news/semi-technologies-16m-series-round-141500875.html
+  tags:
+  - press-release
 - title: >
     Weaviate: Towards the New Era of Vector Search Engines
   date: 2022-02-03T00:00:00Z
   cover_image: https://cdn.analyticsvidhya.com/wp-content/uploads/2021/12/732227807104_1578230927_time_analysis_tittle-banner-1.jpg
   description: > 
-    Check out this Techcrunch article that features Weaviate and in the section: How to get coverage for your company. And, vector search.
+    Community article about vector search engines like Weaviate
   source: analyticsvidhya
   link: https://www.analyticsvidhya.com/blog/2022/02/weaviate-towards-the-new-era-of-vector-search-engines/
   tags:

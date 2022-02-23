@@ -70,7 +70,7 @@ layout: default
                             <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
                         </div>
                         <!-- Preheading -->
-                        <h6 class="text-uppercase mb-1 text-muted">Ideation</h6>
+                        <h6 class="text-uppercase mb-1 text-muted">TL;DR</h6>
                         <!-- Heading -->
                         <h4 class="mb-0">{{ case.title }}</h4>
                         <hr>
