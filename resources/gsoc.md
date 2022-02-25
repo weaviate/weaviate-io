@@ -27,7 +27,7 @@ Don't hesitate to contact us for questions about the challenge and the Open Sour
 
 If you’re interested, you can apply through [our form](https://forms.gle/H6WDByjYbs8ReEuk9), and don't forget to apply on the [GSoC website.](https://summerofcode.withgoogle.com/). So you'll need to apply on both websites! 
 
-## How to create a **project application/proposal?**
+## How to create a project application/proposal?**
 
 We expect your application to be in the range of 1000-1500 words. Your proposal should contain all the relevant information which are stated below and must explain in depth about the problem you are solving, the tools, data structures, algorithms etc. that are required in order for you to successfully complete the project. Your proposal should contain at least the following information, plus anything you think is relevant:
 
@@ -230,7 +230,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 **Documentation:**
 * [Developers · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/)  
 
-If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw]
+If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
 
 
 
