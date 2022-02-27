@@ -68,6 +68,18 @@ The response of a `GET` query of a data object will give you information about a
 
 Create a new data object. The provided meta-data and schema values are validated.
 
+### Performance
+
+💡 This endpoint is meant for individual object creations.
+
+If you have a whole dataset that you plan on importing with Weaviate sending multiple single requests sequentially comes at a large cost:
+
+0. Each sequential request would be handled by a single thread server-side while most of the server resources are idle. In addition, if you only send the second request once the first has been completed, you will wait for a lot of network overhead.
+0. It’s much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing. 
+0. You do not have to do the parallelization yourself, you can use the [`/v1/batch`](./batch.html) endpoint for this. Even if you are sending batches from a single client thread, the objects within a batch will be handled by multiple server threads.
+0. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint. 
+0. Go to the [`/v1/batch`](./batch.html) endpoint.
+
 ### Method and URL
 
 ```js

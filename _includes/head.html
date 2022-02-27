@@ -19,6 +19,8 @@
 
     <!-- fix for code blocks -->
     <style>code { max-height: 32rem !important; }</style>
+    <!-- fix for images in docs-->
+    <style>.main-docs-content img { width: 100%; }</style>
 
     <!-- Title -->
     {% if page.layout == "layout-documentation" %}
@@ -42,10 +44,6 @@
     <meta property="og:site_name" content="Weaviate vector search engine" />
     <meta property="og:type" content="website" />
 
-    <!-- custom CSS -->
-    <style>
-        .main-docs-content img {
-            width: 100%;
-        }
-    </style>
+    <!-- plausible -->
+    {% include plausible.html %}
 </head>
