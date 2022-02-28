@@ -1,5 +1,13 @@
 ---
 - title: >
+    Brady Neal of Oogway • Causal Inference in Vector Search
+  description: > 
+    Brady Neal from Oogway talks with Connor Shorten from Henry AI Labs about causal inference and many more. See the timestamps below to check out what this podcast is all about. 
+  youtube: t7g9s1GWcB8
+  date: 2022-02-28T00:00:00Z
+  cover_image: '/img/podcasts/podcast-8.jpg'
+  is_use_case: false
+- title: >
     Arvind Neelakantan of OpenAI • Embeddings API in Weaviate
   description: > 
     Arvind Neelakantan, Research Lead at Open AI, talks with Connor Shorten about their newly released embeddings API, his work at Open AI, the integration into Weaviate, and more.
