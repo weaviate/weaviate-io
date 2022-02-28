@@ -28,9 +28,7 @@ A few points to bear in mind:
 
 0. If you use a vectorizer that improves with GPU support, make sure to enable it if possible, it will drastically improve import.
 0. Avoid duplicate vectors for multiple data objects.
-0. Handle your errors, it will make you happy.
-0. As a rule of thumb, on an x-type machine you should be able to import about y data objects per minute (note that size of the data objects, inverted indices, etc play a role here) if you _bring your own vectors_.
-0. As a rule of thumb, on an x-type machine you should be able to import about y data objects per minute (note that size of the data objects, inverted indices, etc play a role here) if you use a _GPU-enabled_ module.
+0. Handle your errors, if you ignore them, it might lead to significant delays on import.
 0. If import slows down after 2M objects, consider setting the [`vectorCacheMaxObjects`](/developers/weaviate/current/vector-index-plugins/hnsw.html#:~:text=For%20optimal%20search,be%20used%20sparingly.) in your schema. Also, see [this example](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/blob/d4711f2bdc75afd503ff70092c3c5303f9dd1b3b/step-2/import.py#L58-L59).
 0. There are ways to improve your setup when using vectorizers. Like in the Wikipedia demo dataset. We will keep publishing about this, sign up for our [Slack channel]({{ site.slack_signup_url }}) to keep up to date.
 
