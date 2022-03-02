@@ -34,7 +34,7 @@ One vectorizer that is provided is [`text2vec-contextionary`](../modules/text2ve
 
 Another type of text vectorization is possible with the [`text2vec-transformers`](../modules/text2vec-transformers.html) module.
 
-_Note: at the moment, text vectorization modules cannot be combined in a single setup. This means that you can either enable the `text2vec-contextionary`, the `text2vec-transformers` or no text vectorization module._
+_Note: at the moment, text vectorization modules can be combined in a single setup, but this will disable `Explore{}`. You can't use multiple models of the same module yet, this will be part of a future release (i.e. you can’t run `all-mpnet-base` and `t5` (both transformers models) in the same setup yet._
 
 # Custom modules
 
