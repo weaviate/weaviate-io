@@ -1,5 +1,14 @@
 ---
 - title: >
+    Weaviate Podcast #9 • Karen Beckers about the role of vector search in eCommerce
+  description: > 
+    Karen Beckers, Data Scientist from Squadra Machine Learning Company, gives insightful information about how to use vector search in eCommerce.
+  youtube: brUP1OEtQ5U
+  date: 2022-03-03T00:00:00Z
+  cover_image: '/img/podcasts/podcast-9.jpg'
+  is_use_case: true
+  logo: '/img/squadra.png'
+- title: >
     Brady Neal of Oogway • Causal Inference in Vector Search
   description: > 
     Brady Neal from Oogway talks with Connor Shorten from Henry AI Labs about causal inference and many more. See the timestamps below to check out what this podcast is all about. 
