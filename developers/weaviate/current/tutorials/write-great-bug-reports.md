@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Tutorials
 title: Write great Bug Reports
-intro: Bugs are annoying, right? They don't have to be. Every discovered bug is a chance to help make Weaviate better. We are happy about bug rreports because they highlight that we missed something and help us make sure an issue will never occur again. For our engineers to quickly identify and fix a bug there is some information that we may need. This tutorial is about how to write a great bug report.
+intro: Bugs can be annoying, right? They don't have to be. Every discovered bug is a chance to help make Weaviate better. We are happy about bug rreports because they highlight that we missed something and help us make sure an issue will never occur again. For our engineers to quickly identify and fix a bug there is some information that we may need. This tutorial is about how to write a great bug report.
 description: How to write great bug reports
 tags: ['how to', 'reporting a bug', 'bugfix', 'reproducing example']
 menu-order: 2
@@ -48,7 +48,7 @@ Here are some points that make a bug report great:
   each. For example, for the image-vectorization bug we need to know a lot of
   the details about the `img2vec` module: What versions were used? Which
   inference container was running? Was there a GPU involved? What file format
-  did the image have? But looking at the performace bug, we probably need more
+  did the image have? But looking at the performance bug, we probably need more
   info regarding your hardware. How was the machine sized? What kind of disks
   were used? What were the vitals (CPU usage, Memory usage, Disk pressure)
   during the slow query, etc.? We do not expect you to know all the internals
@@ -107,7 +107,7 @@ some of the individual areas and see *how* we can write better reports.
 - If you have a suspicion that a problem doesn't actually occur in the Weaviate
   server, but possibly in one of the clients, you can verify sending a similar
   request using a different language client or no language client. The latter
-  case is the best as it rules out client problems alltogether. If you can
+  case is the best as it rules out client problems altogether. If you can
   still reproduce the error by sending a request using pure HTTP (e.g. via
   `curl`, Postman, etc.), you can be sure that the error occurs on the Weaviate
   server-side.
@@ -119,7 +119,7 @@ some of the individual areas and see *how* we can write better reports.
   client's language however, it may be an indciation that the error occurred in
   the client.
 - If you are using any other tools from the Weaviate eco-system, for example
-  the `weaviate-helm` repositiory to run on Kubernetes, there is also a chance
+  the `weaviate-helm` repository to run on Kubernetes, there is also a chance
   that something goes wrong there. If you think that the bug might be specific
   to the runtime and its manifests, it might make sense to also try the setup
   on a different runtime. Please indicate what you have already tried.
