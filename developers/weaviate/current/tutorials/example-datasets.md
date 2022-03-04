@@ -6,7 +6,7 @@ title: Example datasets
 intro: 
 description: Example datasets
 tags: ['example datasets']
-menu-order: 8
+menu-order: 10
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
