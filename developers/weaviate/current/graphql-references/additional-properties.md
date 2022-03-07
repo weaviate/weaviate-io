@@ -8,7 +8,7 @@ description: GraphQL underscore properties function
 tags: ['graphql', 'additional properties', 'additional', 'underscore']
 menu-order: 5
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/graphql-references-additional-properties.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/graphql-references/underscore-properties.html

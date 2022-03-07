@@ -9,7 +9,7 @@ description: An overview of Weaviate use cases
 tags: ['Weaviate', 'use cases']
 menu-order: 4
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/more-resources-example-use-cases.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/getting-started/use-cases.html

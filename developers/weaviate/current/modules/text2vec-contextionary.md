@@ -7,7 +7,7 @@ description: Use the GloVe and Fasttext based Weaviate module
 tags: ['text2vec-contextionary', 'contextionary']
 menu-order: 1
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/modules-text2vec-contextionary.jpg
 toc: true
 ---
 

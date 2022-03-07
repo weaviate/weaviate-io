@@ -8,7 +8,7 @@ description: 'Before adding data to Weaviate, you need to create a schema. The s
 tags: ['RESTful API', 'references', 'schema']
 menu-order: 1
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/restful-api-references-v1schema.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/restful-api-references/schema.html

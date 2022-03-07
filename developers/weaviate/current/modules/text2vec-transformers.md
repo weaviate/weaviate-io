@@ -7,7 +7,7 @@ description: Add any transformer model to Weaviate with the transformers module
 tags: ['text2vec-transformers']
 menu-order: 2
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/modules-text2vec-transformers.jpg
 toc: true
 ---
 
