@@ -8,7 +8,7 @@ description: GraphQL references overview
 tags: ['GraphQL references']
 menu-order: 0
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/graphql-index.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/graphql-references/index.html

@@ -7,7 +7,7 @@ description: Configuration overview
 tags: ['configuration']
 menu-order: 0
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/configuration-index.jpg
 toc: false
 redirect_from:
     - /documentation/weaviate/current/configuration/index.html
