@@ -8,7 +8,7 @@ description: Python client library for Weaviate
 tags: ['python', 'client library']
 menu-order: 1
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/client-libraries--cli-python.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/client-libs/python.html

@@ -7,7 +7,7 @@ description: Named Entity Recognition module in Weaviate
 tags: ['ner-transformers', 'transformers', 'token classification']
 menu-order: 7
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/modules-named-entity-recognition.jpg
 toc: true
 ---
 

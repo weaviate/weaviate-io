@@ -8,7 +8,7 @@ description: More resources overview
 tags: ['More resources']
 menu-order: 0
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/more-resources-index.jpg
 toc: false
 redirect_from:
     - /documentation/weaviate/current/restful-api-references/index.html

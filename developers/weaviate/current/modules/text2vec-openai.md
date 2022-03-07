@@ -7,7 +7,7 @@ description: Use any OpenAI model inside Weaviate
 tags: ['text2vec-openai']
 menu-order: 3
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/modules-text2vec-openai.jpg
 toc: true
 callout: This is the most recent Weaviate module that leverages an external API. We would love to know how you use it, especially on large-scale implementations. Connect with us on Slack <a href="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw">here</a>.
 ---

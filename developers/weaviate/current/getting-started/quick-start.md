@@ -9,7 +9,7 @@ description: Get started with Weaviate
 tags: ['quick start']
 menu-order: 1
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/getting-started-quick-start.jpg
 toc: true
 redirect_from:
   - /documentation/weaviate/current/get-started/quick_start.html

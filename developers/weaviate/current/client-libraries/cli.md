@@ -3,12 +3,12 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Client libraries & CLI
 title: Weaviate CLI
-intro: The Command Line Interface of Weaviate. This CLI tool is a text-based interface used to interact with a Weaviate instance by typing direct commands. This should not be confused with the <a href="./python.html">Weaviate Python client</a>, with which you can perform all RESTful and GraphQL requests, and had additional functionalities.
+intro: The Command Line Interface of Weaviate. This CLI tool is a text-based interface used to interact with a Weaviate instance by typing direct commands. This should not be confused with the <a href="./python.html">Weaviate Python client</a>, with which you can perform all RESTful and GraphQL requests, and has additional functionalities.
 description: The Command Line Interface of Weaviate
 tags: ['cli']
 menu-order: 5
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/client-libraries--cli-weaviate-cli.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/client-libs/weaviate-cli.html
@@ -16,7 +16,7 @@ redirect_from:
 
 # Installation
 
-The Weaviate CLI is available on [Pypi.org](https://pypi.org/project/weaviate-cli/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for python 3.7 and higher.
+The Weaviate CLI is available on [Pypi.org](https://pypi.org/project/weaviate-cli/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher.
 
 The Weaviate CLI can be installed with:
 
@@ -97,7 +97,7 @@ Which returns `Weaviate is reachable!` if the connection with the Weaviate serve
 
 
 ## Schema
-There are three operation with regard to the schema: [import](#import), [export](#export) and [truncate](#truncate).
+There are three operations available with regard to the schema: [import](#import), [export](#export) and [truncate](#truncate).
 
 ### Import
 
