@@ -8,7 +8,7 @@ description: GraphQL Explore{} function
 tags: ['graphql', 'explore{}']
 menu-order: 3
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/graphql-references-explore.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/query-data/explore.html

@@ -7,7 +7,7 @@ description: Interface
 tags: ['architecture', 'interface', 'API design']
 menu-order: 6
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/architecture-interface.jpg
 toc: true
 ---
 

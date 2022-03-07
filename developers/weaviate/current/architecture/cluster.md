@@ -7,7 +7,7 @@ description: Run Weaviate in a cluster, scale horizontally and shard and/or repl
 tags: ['architecture', 'horizontal scaling', 'cluster', 'replication', 'sharding']
 menu-order: 2
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/architecture-horizontal-scaling.jpg
 toc: true
 ---
 

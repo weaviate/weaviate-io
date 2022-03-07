@@ -7,7 +7,7 @@ description: Size your Weaviate nodes according to your needs
 tags: ['architecture', 'resource', 'cpu', 'memory', 'gpu']
 menu-order: 4
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/architecture-resource-planning.jpg
 toc: true
 ---
 
