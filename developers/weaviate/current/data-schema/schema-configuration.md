@@ -7,7 +7,7 @@ description:
 tags: ['Schema configuration']
 menu-order: 1
 open-graph-type: article
-og-img: og-documentation/data-schema-schema-configuration.jpg
+og: /img/og/og-documentation/data-schema-schema-configuration.jpg
 toc: true
 ---
 

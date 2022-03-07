@@ -7,7 +7,7 @@ description: Getting started overview
 tags: ['getting started']
 menu-order: 0
 open-graph-type: article
-og-img: og-documentation/getting-started-index.jpg
+og: /img/og/og-documentation/getting-started-index.jpg
 toc: false
 redirect_from:
     - /documentation/weaviate/current/getting-started/index.html

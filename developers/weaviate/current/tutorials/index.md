@@ -8,7 +8,7 @@ description: How-tos overview
 tags: ['how to']
 menu-order: 0
 open-graph-type: article
-og-img: og-documentation/more-resources-index.jpg
+og: /img/og/og-documentation/more-resources-index.jpg
 toc: false
 redirect_from:
     - /documentation/weaviate/current/how-tos/index.html

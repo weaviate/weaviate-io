@@ -32,10 +32,10 @@
     {% endif %}
 
     <!-- OG -->
-    {% if page.layout == "layout-documentation" %}
-        <meta property="og:image" content="/img/og/og-documentation.png" />
-    {% elsif page contains "og" %}
+    {% if page contains "og" %}
         <meta property="og:image" content="{{ page.og }}" />
+    {% elsif page.layout == "layout-documentation" %}
+        <meta property="og:image" content="/img/og/og-documentation.png" />
     {% else %}
         <meta property="og:image" content="/img/og/og-standard.png" />
     {% endif %}

@@ -8,7 +8,7 @@ description: GraphQL filters
 tags: ['graphql', 'filters']
 menu-order: 4
 open-graph-type: article
-og-img: og-documentation/graphql-references-filters.jpg
+og: /img/og/og-documentation/graphql-references-filters.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/query-data/filters.html

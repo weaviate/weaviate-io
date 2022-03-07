@@ -8,7 +8,7 @@ description: GraphQL Aggregate{} function
 tags: ['graphql', 'aggregate', 'aggregate{}', 'meta']
 menu-order: 2
 open-graph-type: article
-og-img: og-documentation/graphql-references-aggregate.jpg
+og: /img/og/og-documentation/graphql-references-aggregate.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/query-data/aggregate.html

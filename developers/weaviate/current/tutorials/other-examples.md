@@ -8,7 +8,7 @@ description: Other examples with Weaviate
 tags: ['example datasets']
 menu-order: 9
 open-graph-type: article
-og-img: og-documentation/more-resources-other-examples.jpg
+og: /img/og/og-documentation/more-resources-other-examples.jpg
 toc: true
 redirect_from:
 ---
