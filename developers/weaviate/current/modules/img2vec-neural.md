@@ -7,7 +7,7 @@ description: Use Resnet models in Weaviate
 tags: ['img2vec-neural']
 menu-order: 5
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/modules-img2vec-neural.jpg
 toc: true
 ---
 

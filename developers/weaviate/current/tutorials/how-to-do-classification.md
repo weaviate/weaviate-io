@@ -8,7 +8,7 @@ description: How to classify data with Weaviate?
 tags: ['how to', 'classify data', 'classification']
 menu-order: 6
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/more-resources-how-to-do-classification.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/tutorials/how-to-do-classification.html

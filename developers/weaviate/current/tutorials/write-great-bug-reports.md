@@ -8,7 +8,7 @@ description: How to write great bug reports
 tags: ['how to', 'reporting a bug', 'bugfix', 'reproducing example']
 menu-order: 8
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/more-resources-write-great-bug-reports.jpg
 toc: true
 ---
 

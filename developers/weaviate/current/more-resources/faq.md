@@ -8,7 +8,7 @@ description: Frequently Asked Questions about Weaviate
 tags: ['FAQ']
 menu-order: 1
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/more-resources-faq.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/more-resources/faq.html

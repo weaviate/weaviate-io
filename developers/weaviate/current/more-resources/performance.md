@@ -9,7 +9,7 @@ description:
 tags: ['Weaviate', 'performance']
 menu-order: 5
 open-graph-type: article
-og-img: documentation.jpg
+og-img: og-documentation/more-resources-index-types-and-performance.jpg
 toc: true
 ---
 
