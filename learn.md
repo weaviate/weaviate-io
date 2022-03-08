@@ -15,7 +15,7 @@ og: /img/og/og-learn.png
                 </h1>
                 <!-- Text -->
                 <p class="lead text-center text-md-start text-muted mb-6 mb-lg-8">
-                    Coming soon: Learn about vector databases, Natural Language Processing, search engines, structured filtering and more topics of your interest!>
+                    Coming soon: Learn about vector databases, Natural Language Processing, search engines, structured filtering and more topics of your interest!
                 </p>
             </div>
         </div> <!-- / .row -->
