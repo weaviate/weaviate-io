@@ -1,5 +1,14 @@
 ---
 - title: >
+    Han Xiao TD 
+  description: > 
+    TBD
+  youtube: 
+  date: 2022-03-08T00:00:00Z
+  cover_image: '/img/podcasts/podcast-10.jpg'
+  is_use_case: false
+  logo: '/img/company_logos/jina_ai.jpg'
+- title: >
     Karen Beckers of Squadra • vector search in eCommerce
   description: > 
     Karen Beckers, Data Scientist from Squadra Machine Learning Company, gives insightful information about how to use vector search in eCommerce.
