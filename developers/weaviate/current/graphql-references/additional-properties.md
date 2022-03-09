@@ -23,6 +23,14 @@ GraphQL additional properties can be used on data objects in Get{} Queries to ge
 
 The `id` field contains the unique uuid of the data object.
 
+# creationTimeUnix
+
+The `creationTimeUnix` field is the timestamp of when the data object was created.
+
+# lastUpdateTimeUnix
+
+The `lastUpdateTimeUnix` field is the timestamp of when the data object was last updated.
+
 # Certainty
 
 When a semantic search is performed with the `Get {}` function (`nearVector` and `nearText` if the `text2vec-contextionary` or `text2vec-transformers` module is enabled), you can get the `certainty` of the returned data objects. The `certainty` value is a measure indicating how close the data object is to the search query. This is measured by the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) between the search query (the `near...` filter in the `Get {}`  function) and the data object in the vector space. Results of GraphQL semantic search queries by the `near...` filter, will automatically be ordered with descending `certainty` values, so that the top results match your search query the most.
