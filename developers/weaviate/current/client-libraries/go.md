@@ -8,7 +8,7 @@ description: Go client library for Weaviate
 tags: ['go', 'client library']
 menu-order: 3
 open-graph-type: article
-og-img: og-documentation/client-libraries--cli-go.jpg
+og: /img/og/og-documentation/client-libraries--cli-go.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/client-libs/go.html
@@ -77,7 +77,7 @@ All [RESTful endpoints](../restful-api-references/index.html) and [GraphQL funct
 
 The Go client functions are designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../restful-api-references/index.html) and the [GraphQL reference pages](../graphql-references/index.html).
 
-The code snippet above shows a simple query similar to `RESTful GET /v1/schema`. The client is initiated with requiring the package and connecting to the running instance. Then, a query is constructed with getting the `.Schema` with `.Getter()`. The query will be sent with the `.Go()` function, this object is thus required for every function you want to build and execute. 
+The code snippet above shows a simple query similar to `RESTful GET /v1/schema`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by getting the `.Schema` with `.Getter()`. The query will be sent with the `.Go()` function, this object is thus required for every function you want to build and execute. 
 
 # Change logs
 

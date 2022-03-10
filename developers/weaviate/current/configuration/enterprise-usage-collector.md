@@ -7,7 +7,7 @@ description: Enterprise Usage Collector
 tags: ['configuration']
 menu-order: 6
 open-graph-type: article
-og-img: og-documentation/configuration-enterprise-usage-collector.jpg
+og: /img/og/og-documentation/configuration-enterprise-usage-collector.jpg
 toc: true
 ---
 

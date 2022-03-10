@@ -1,5 +1,25 @@
 ---
 - title: >
+    "Database technology evolves to combine machine learning and data storage"
+  date: 2022-03-07T00:00:01Z
+  cover_image: https://venturebeat.com/wp-content/uploads/2022/01/GettyImages-1350722251-e1644354952407.jpg?w=1200&amp;strip=all
+  description: > 
+    Article about vector search and Weaviate in VentureBeat
+  source: venturebeat
+  link: https://venturebeat.com/2022/03/07/database-technology-evolves-to-combine-machine-learning-and-data-storage/
+  tags:
+  - news
+- title: >
+    "Weaviate accepted for the Google Summer of Code 2022"
+  date: 2022-03-07T00:00:00Z
+  cover_image: /img/og/og-gsoc.jpg
+  description: > 
+    Weaviate is accepted for this year's Google Summer of Code
+  source: GSoC
+  link: /resources/gsoc.html
+  tags:
+  - news
+- title: >
     "SeMI Technologies’ search engine opens up new ways to query your data"
   date: 2022-02-22T00:00:02Z
   cover_image: https://upload.wikimedia.org/wikipedia/commons/b/b9/TechCrunch_logo.svg

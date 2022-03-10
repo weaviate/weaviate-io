@@ -7,7 +7,7 @@ description: Binary Passage Retrieval or Learning-to-hash is a way to vastly red
 tags: ['architecture', 'binary-passage-retrieval', 'memory consumption', 'learning-to-hash', 'resource optimization']
 menu-order: 5
 open-graph-type: article
-og-img: og-documentation/architecture-binary-passage-retrieval.jpg
+og: /img/og/og-documentation/architecture-binary-passage-retrieval.jpg
 intro: Vastly reduce your memory requirements by using Binary Passage Retrieval (Learning-to-hash) with Weaviate.
 toc: true
 ---

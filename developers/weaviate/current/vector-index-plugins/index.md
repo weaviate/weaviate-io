@@ -8,7 +8,7 @@ description: Vector Index (ANN) Plugins. With Weaviate, data is stored in a vect
 tags: ['Vector Index Plugins']
 menu-order: 0
 open-graph-type: article
-og-img: documentation.jpg
+og: /img/og/og-documentation/vector-index-plugin-index.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/vector-index-plugins/index.html

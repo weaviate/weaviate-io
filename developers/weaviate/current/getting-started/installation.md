@@ -8,7 +8,7 @@ description: Install Weaviate, Weaviate is completely containerized, you can use
 tags: ['installation']
 menu-order: 2
 open-graph-type: article
-og-img: og-documentation/getting-started-installation.jpg
+og: /img/og/og-documentation/getting-started-installation.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/get-started/install.html

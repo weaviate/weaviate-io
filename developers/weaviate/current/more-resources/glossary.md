@@ -8,7 +8,7 @@ description: Glossary
 tags: ['glossary', 'terminology']
 menu-order: 2
 open-graph-type: article
-og-img: og-documentation/more-resources-glossary.jpg
+og: /img/og/og-documentation/more-resources-glossary.jpg
 toc: false
 redirect_from:
     - /documentation/weaviate/current/more-resources/glossary.html

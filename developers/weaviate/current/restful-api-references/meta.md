@@ -8,7 +8,7 @@ description: RESTful API meta reference
 tags: ['RESTful API', 'references', 'meta']
 menu-order: 5
 open-graph-type: article
-og-img: og-documentation/restful-api-references-v1meta.jpg
+og: /img/og/og-documentation/restful-api-references-v1meta.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/restful-api-references/meta.html

@@ -7,7 +7,7 @@ description: Weaviate - storage
 tags: ['architecture', 'storage']
 menu-order: 3
 open-graph-type: article
-og-img: og-documentation/architecture-storage.jpg
+og: /img/og/og-documentation/architecture-storage.jpg
 toc: true
 ---
 

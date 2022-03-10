@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Google Summer of Code
+og: /img/og/og-gsoc.jpg
 ---
 
 <!-- WELCOME -->
@@ -17,7 +18,7 @@ Read more about the program and apply at the [Google Summer of Code website](htt
 
 # About Weaviate
 
-Weaviate is an open-source vector search engine that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. Read more about Weaviate [here](https://weaviate.io/developers/weaviate/current/].
+Weaviate is an open-source vector search engine that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. Read more about Weaviate [here](https://weaviate.io/developers/weaviate/current/).
 
 # How to register
 

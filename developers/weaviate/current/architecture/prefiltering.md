@@ -7,7 +7,7 @@ description: Weaviate allows for efficiently combining vector and scalar search
 tags: ['architecture', 'filtered vector search', 'pre-filtering']
 menu-order: 4
 open-graph-type: article
-og-img: og-documentation/architecture-filtered-vector-search.jpg
+og: /img/og/og-documentation/architecture-filtered-vector-search.jpg
 toc: true
 ---
 
