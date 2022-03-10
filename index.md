@@ -97,6 +97,37 @@ layout: default
     </div> <!-- / .container -->
 </section>
 
+<!-- PRESS -->
+<section class="py-6 py-md-8 border-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 align-items-center justify-content-center text-center" data-aos="fade-right">
+                <!-- Heading -->
+                <h2>
+                    Weaviate in the <span class="text-primary">news</span>
+                </h2>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center text-center" data-aos="fade-right">
+            <div class="col-sm-4 col-md-2 mb-4 mb-md-0 align-items-center justify-content-center text-center">
+                <a href="https://techcrunch.com/2022/02/22/semi-technologies-search-engine-data/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/TechCrunch_logo.svg" alt="Weaviate in Techcrunch" style="height:24px">
+                </a>
+            </div>
+            <div class="col-sm-4 col-md-2 mb-4 mb-md-0 align-items-center justify-content-center text-center">
+                <a href="https://www.zdnet.com/article/weaviate-an-open-source-search-engine-powered-by-machine-learning-vectors-graphs-and-graphql/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/ZDNet_Logo.svg" alt="Weaviate in ZDNet" style="height:80px;margin-top:11px;">
+                </a>
+            </div>
+            <div class="col-sm-4 col-md-2 mb-4 mb-md-0 align-items-center justify-content-center text-center">
+                <a href="https://venturebeat.com/2022/03/07/database-technology-evolves-to-combine-machine-learning-and-data-storage/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/VentureBeat_logo.svg" alt="Weaviate in VentureBeat" style="height:24px">
+                </a>    
+            </div>
+        </div> <!-- / .row -->
+    </div> <!-- / .container -->
+</section>
+
 <!-- INTEGRATIONS -->
 <section class="py-6 py-md-8 border-bottom">
     <div class="container">
@@ -132,6 +163,7 @@ layout: default
         </div>
     </div>
 </section>
+
 
 <!-- GRAPHQL -->
 <section class="py-8 py-md-11 border-bottom">
