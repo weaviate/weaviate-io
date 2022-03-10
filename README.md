@@ -1,4 +1,4 @@
-# weaviat.io website ![Travis Build](https://travis-ci.org/SeMI-network/semi-website.svg?branch=master "Logo Travis Build")
+# weaviate.io website ![Travis Build](https://travis-ci.org/SeMI-network/semi-website.svg?branch=master "Logo Travis Build")
 
 Dependencies:
 - [Bundler](https://bundler.io/)
