@@ -4,9 +4,9 @@
   description: OpenAI has made both the power of GPT-3 available through their Embeddings API as well as their CLIP <code>multi2vec</code> model. Both the Embeddings API and the CLIP model are integrated directly into Weaviate and can be used to vectorize and search through your text data objects, images, or code.
   image: /img/openai.svg
   type: embeddings
-- name: Hugginface Transformers
+- name: Huggingface Transformers
   website: https://huggingface.co/models
-  description: Hugginface hosts a wide variety of transformer models, and all models can be used as vectorizers or for other use cases (like Q&A, named entity recognition, and more) in Weaviate. The Weaviate transformers module comes with a wide variety of best-performing models out-of-the-box but can also be easily extended with your own, fine-tuned models. 
+  description: Huggingface hosts a wide variety of transformer models, and all models can be used as vectorizers or for other use cases (like Q&A, named entity recognition, and more) in Weaviate. The Weaviate transformers module comes with a wide variety of best-performing models out-of-the-box but can also be easily extended with your own, fine-tuned models. 
   image: /img/huggingface.png
   type: embeddings
 - name: deepset's Haystack
