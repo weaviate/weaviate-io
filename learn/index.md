@@ -14,8 +14,6 @@ toc: false
 ## Coming soon!
 Learn about vector databases, Natural Language Processing, search engines, structured filtering and more topics of your interest!
 
-![Learn OG](/img/og/og-learn.png "Weaviate Learn")
-
 
 ## More resources
 
