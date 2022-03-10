@@ -1,5 +1,13 @@
 ---
 - title: >
+    Yury Malkov co-author of HNSW • HNSW in Vector Search and Weaviate
+  description: > 
+    At the heart of Weaviate sits HNSW, the ANN algorithm that brings the vector search engine to life! Check out this amazing podcast about the science and engineering behind it.
+  youtube: WijYx9_Bpkw
+  date: 2022-03-10T00:00:00Z
+  cover_image: '/img/podcasts/podcast-10.jpg'
+  is_use_case: false
+- title: >
     Karen Beckers of Squadra • vector search in eCommerce
   description: > 
     Karen Beckers, Data Scientist from Squadra Machine Learning Company, gives insightful information about how to use vector search in eCommerce.
