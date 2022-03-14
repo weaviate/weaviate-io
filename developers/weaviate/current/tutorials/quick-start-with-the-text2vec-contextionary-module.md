@@ -8,7 +8,7 @@ description: Quick start with the text2vec-contextionary module.
 tags: ['how to', 'create a schema']
 menu-order: 1
 open-graph-type: article
-og-img: documentation.jpg
+og-img: /img/og/og-documentation/tutorials-quick-start-with-the-text2vec-contextionary-module.jpg
 toc: true
 ---
 

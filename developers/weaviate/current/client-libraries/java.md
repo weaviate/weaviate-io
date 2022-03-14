@@ -8,7 +8,7 @@ description: Java client library for Weaviate
 tags: ['java', 'client library']
 menu-order: 4
 open-graph-type: article
-og: /img/og/og-documentation/client-libraries--cli-java.jpg
+og: /img/og/og-documentation/client-libraries-java.jpg
 toc: true
 ---
 

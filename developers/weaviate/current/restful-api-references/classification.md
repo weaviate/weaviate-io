@@ -8,7 +8,7 @@ description: RESTful API classification reference
 tags: ['RESTful API', 'references', 'classification']
 menu-order: 4
 open-graph-type: article
-og: /img/og/og-documentation/restful-api-references-v1classification.jpg
+og: /img/og/og-documentation/restful-api-references-classification.jpg
 toc: false
 redirect_from:
     - /documentation/weaviate/current/classification/contextual-classification.html

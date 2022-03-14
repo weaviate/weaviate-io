@@ -8,7 +8,7 @@ description: How to query data in Weaviate?
 tags: ['how to', 'query data']
 menu-order: 4
 open-graph-type: article
-og: /img/og/og-documentation/more-resources-how-to-query-data.jpg
+og: /img/og/og-documentation/tutorials-how-to-query-data.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/tutorials/how-to-query-data.html

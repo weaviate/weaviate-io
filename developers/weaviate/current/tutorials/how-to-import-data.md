@@ -8,7 +8,7 @@ description: How to import data in Weaviate?
 tags: ['how to', 'import data']
 menu-order: 3
 open-graph-type: article
-og: /img/og/og-documentation/more-resources-how-to-import-data.jpg
+og: /img/og/og-documentation/tutorials-how-to-import-data.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/add-data/add_and_modify.html

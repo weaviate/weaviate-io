@@ -8,7 +8,7 @@ description: JavaScript client library for Weaviate
 tags: ['JavaScript', 'client library']
 menu-order: 2
 open-graph-type: article
-og: /img/og/og-documentation/client-libraries--cli-javascript.jpg
+og: /img/og/og-documentation/client-libraries-javascript.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/client-libs/javascript.html

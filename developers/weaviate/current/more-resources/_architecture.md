@@ -7,7 +7,7 @@ intro:
 tags: ['Architecture']
 menu-order: 4
 open-graph-type: article
-og-img: documentation.jpg
+og-img: img/og/og-documentation/more-resources--architecture.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/more-resources/architecture.html

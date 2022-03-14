@@ -7,7 +7,7 @@ description: Weaviate Q&A Transformers module
 tags: ['qna-transformers', 'transformers']
 menu-order: 6
 open-graph-type: article
-og: /img/og/og-documentation/modules-question-answering.jpg
+og: /img/og/og-documentation/modules-qna-transformers.jpg
 toc: true
 ---
 
