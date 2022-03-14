@@ -34,8 +34,10 @@ toc:
 # SPECIFIC SETTINGS FOR THE DOCS
 # ALSO SEE THE README FILE
 ###
-weaviate_version: v1.10.1 # the current and latest version
+weaviate_version: v1.11.0 # the current and latest version
 weaviate_versions: # order the versions how you want them displayed
+  "v1.11.0":
+    helm_version: 14.2.0 # Helm version for this Weaviate version
   "v1.10.1":
     helm_version: 14.2.0 # Helm version for this Weaviate version
   "v1.9.0":
@@ -62,6 +64,40 @@ weaviate_versions: # order the versions how you want them displayed
     helm_version: 11.0.0 # Helm version for this Weaviate version
 docs:
     weaviate:
+        'v1.11.0':
+            - name: Getting started
+              folder: getting-started
+              header: false
+            - name: Architecture
+              folder: architecture
+              header: false
+            - name: Configuration
+              folder: configuration
+              header: false
+            - name: Vector Index (ANN) Plugins
+              folder: vector-index-plugins
+              header: false
+            - name: Modules
+              folder: modules
+              header: false
+            - name: Client libraries & CLI
+              folder: client-libraries
+              header: false
+            - name: Data schema
+              folder: data-schema
+              header: false
+            - name: RESTful API references
+              folder: restful-api-references
+              header: false
+            - name: GraphQL references
+              folder: graphql-references
+              header: false
+            - name: More resources
+              folder: more-resources
+              header: false
+            - name: Tutorials
+              folder: tutorials
+              header: true
         'v1.10.1':
             - name: Getting started
               folder: getting-started
