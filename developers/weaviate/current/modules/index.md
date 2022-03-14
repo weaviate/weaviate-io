@@ -7,7 +7,6 @@ description: Weaviate Modules
 tags: ['Modules']
 menu-order: 0
 open-graph-type: article
-og: /img/og/og-documentation/modules-index.jpg
 toc: true
 ---
 

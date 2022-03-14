@@ -8,7 +8,6 @@ description: How to perform a semantic search in Weaviate?
 tags: ['how to', 'perform a semantic search']
 menu-order: 5
 open-graph-type: article
-og: /img/og/og-documentation/more-resources-how-to-perform-a-semantic-search.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/tutorials/how-to-perform-a-semantic-search.html

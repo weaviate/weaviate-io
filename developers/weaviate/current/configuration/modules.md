@@ -7,7 +7,6 @@ description: Modules
 tags: ['configuration', 'modules']
 menu-order: 1
 open-graph-type: article
-og: /img/og/og-documentation/configuration-modules.jpg
 toc: true
 ---
 

@@ -8,7 +8,6 @@ description: How to use Weaviate with your own vectors (no modules)?
 tags: ['how to', 'no modules']
 menu-order: 7
 open-graph-type: article
-og: /img/og/og-documentation/more-resources-how-to-use-weaviate-with-your-own-vectors.jpg
 toc: true
 redirect_from:
 ---

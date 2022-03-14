@@ -34,8 +34,10 @@
     <!-- OG -->
     {% if page contains "og" %}
         <meta property="og:image" content="{{ page.og }}" />
-    {% elsif page.layout == "layout-documentation" %}
-        <meta property="og:image" content="/img/og/og-documentation.png" />
+    {% elsif page.layout == "layout-documentation" %}}
+        {% assign folder = page.dir | remove: '/' | replace: ' ', '-' | replace: '_', '-'%}
+        {% assign file = page.name | remove: '.md' | replace: ' ', '-' | replace: '_', '-'%}
+        <meta property="og:image" content="/img/og/og-documentation/{{folder}}-{{file}}.jpg" />
     {% else %}
         <meta property="og:image" content="/img/og/og-standard.png" />
     {% endif %}

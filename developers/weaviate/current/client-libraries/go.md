@@ -8,7 +8,6 @@ description: Go client library for Weaviate
 tags: ['go', 'client library']
 menu-order: 3
 open-graph-type: article
-og: /img/og/og-documentation/client-libraries--cli-go.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/client-libs/go.html

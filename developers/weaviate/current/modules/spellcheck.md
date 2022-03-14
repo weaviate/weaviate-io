@@ -7,7 +7,6 @@ description: Weaviate spellcheck module
 tags: ['spellcheck']
 menu-order: 8
 open-graph-type: article
-og: /img/og/og-documentation/modules-spellcheck.jpg
 toc: true
 ---
 

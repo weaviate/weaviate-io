@@ -8,7 +8,6 @@ description: Authorization in Weaviate
 tags: ['authorization']
 menu-order: 4
 open-graph-type: article
-og: /img/og/og-documentation/configuration-authorization.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/setup/authorize.html

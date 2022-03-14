@@ -8,7 +8,6 @@ description: An overview of client libraries and CLI.
 tags: ['client libraries', 'cli']
 menu-order: 0
 open-graph-type: article
-og: /img/og/og-documentation/client-libraries-index.jpg
 toc: false
 redirect_from:
     - /documentation/weaviate/current/client-libraries/index.html

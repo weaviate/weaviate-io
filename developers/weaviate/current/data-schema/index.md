@@ -7,7 +7,6 @@ description:
 tags: ['Data schema']
 menu-order: 0
 open-graph-type: article
-og: /img/og/og-documentation/data-scheme-index.jpg
 toc: false
 ---
 

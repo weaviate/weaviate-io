@@ -8,7 +8,6 @@ description: Deprecation messages description
 tags: ['Deprecation messages']
 menu-order: 8
 open-graph-type: article
-og: /img/og/og-documentation/more-resources-deprecation-messages.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/more-resources/deprecation-messages.html

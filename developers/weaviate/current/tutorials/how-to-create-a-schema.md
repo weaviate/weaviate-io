@@ -8,7 +8,6 @@ description: How to create a schema in Weaviate?
 tags: ['how to', 'create a schema']
 menu-order: 2
 open-graph-type: article
-og: /img/og/og-documentation/more-resources-how-to-create-a-schema.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/add-data/define_schema.html

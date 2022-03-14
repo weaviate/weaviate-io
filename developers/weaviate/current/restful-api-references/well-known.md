@@ -8,7 +8,6 @@ description: RESTful API open ID configuration reference
 tags: ['RESTful API', 'references', 'discovery', 'oidc', 'well-known']
 menu-order: 6
 open-graph-type: article
-og: /img/og/og-documentation/restful-api-references-v1.well-known.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/restful-api-references/well-known.html

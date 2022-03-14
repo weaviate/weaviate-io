@@ -8,7 +8,6 @@ description: 'You can add individual data objects to a Weaviate via this end-poi
 tags: ['RESTful API', 'references', 'class']
 menu-order: 2
 open-graph-type: article
-og: /img/og/og-documentation/restful-api-references-v1objects.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/query-data/get.html

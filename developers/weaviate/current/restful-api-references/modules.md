@@ -8,7 +8,6 @@ description:
 tags: ['RESTful API', 'modules']
 menu-order: 7
 open-graph-type: article
-og: /img/og/og-documentation/restful-api-references-v1modules.jpg
 toc: false
 ---
 
