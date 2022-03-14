@@ -7,7 +7,7 @@ jobs:
       python: 3.8
       install:
         - pip install -r ./python/requirements.txt
-      script: ./python/generate_og.py
+      script: python ./python/generate_og.py
     - language: ruby
       rvm:
       - 2.7.0
