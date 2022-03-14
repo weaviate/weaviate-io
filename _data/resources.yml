@@ -1,5 +1,17 @@
 ---
 - title: >
+    Weaviate + Jina AI for Image Search presented by Laura Ham
+  date: 2022-03-14T00:00:01Z
+  cover_image: /img/podcasts/laura-vectorseach-docarray.jpg
+  description: >  
+    Use Weaviate with Jina AI's DocArray. Learn to easily set it up yourself and play around with image search!
+  source: youtube
+  link: https://youtu.be/rBKvoIGihnY
+  tags:
+  - demo
+  - dataset
+  - video
+- title: >
     "Database technology evolves to combine machine learning and data storage"
   date: 2022-03-07T00:00:01Z
   cover_image: https://venturebeat.com/wp-content/uploads/2022/01/GettyImages-1350722251-e1644354952407.jpg?w=1200&amp;strip=all
