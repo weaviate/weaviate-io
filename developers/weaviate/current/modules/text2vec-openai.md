@@ -83,6 +83,11 @@ services:
 
 _Note: you can also use the [Weaviate configuration tool](../getting-started/installation.html#customize-your-weaviate-setup) to create a Weaviate setup with this module._
 
+_Note: Starting with `v1.11.0` the `OPENAI_APIKEY` variable is now optional and you can instead provide the key at insert/query time as an HTTP header._
+
+### Providing the API Key at runtime
+Starting with version `v1.11.0` you no longer need to provide the API key as an environment variable. Alternatively you can now also set it at query time. To do so include the following HTTP Header in every request that contacts the OpenAI API (e.g. both inserts and queries): `X-OpenAI-Api-Key: <openai-api-key>`.
+
 ### Model selection on class level
 
 If you want to use the OpenAI embeddings for your data objects, you need to set the `text2vec-openai` vectorizer on a class level. Working with Weaviate classes in a schema is described in detail [here](../data-schema/schema-configuration.html). Weaviate automatically determines which endpoints need to be used for vectorizing and querying data.
