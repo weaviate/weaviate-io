@@ -31,7 +31,7 @@ def write_page(img, title, submenu, subtitle):
         print_subtitle = True
     submenu = textwrap.fill(submenu, width=22)
     subtitle = textwrap.fill(subtitle, width=18)
-    font_path = "../../../python/alegreya-sans-ht-full-pack-ttf/"
+    font_path = "../../../_python/alegreya-sans-ht-full-pack-ttf/"
     title_font = ImageFont.truetype(font_path + "AlegreyaSans-ExtraBold.ttf", 70)
     submenu_font = ImageFont.truetype(font_path + "AlegreyaSans-Bold.ttf", 50)
     subtitle_font = ImageFont.truetype(font_path + "AlegreyaSans-Regular.ttf", 50)
