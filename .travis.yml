@@ -13,7 +13,7 @@ install:
 - gem install jekyll html-proofer
 - pip install -r ./_python/requirements.txt
 script:
-- _python ./_python/generate_og.py
+- python ./_python/generate_og.py
 - bundle exec jekyll build
 - minify --match='\.html' -r -o _site_min/ _site/
 - rsync -av _site_min/ _site/
