@@ -7,7 +7,6 @@ description: Persistence & Backups
 tags: ['configuration', 'backups']
 menu-order: 5
 open-graph-type: article
-og: /img/og/og-documentation/configuration-backups-and-persistence.jpg
 toc: true
 ---
 

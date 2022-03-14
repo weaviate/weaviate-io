@@ -7,7 +7,6 @@ description:
 tags: ['Data types']
 menu-order: 2
 open-graph-type: article
-og: /img/og/og-documentation/data-schema-datatypes.jpg
 toc: true
 ---
 

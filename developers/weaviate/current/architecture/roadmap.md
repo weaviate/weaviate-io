@@ -7,7 +7,6 @@ description: Weaviate - roadmap
 tags: ['architecture', 'roadmap']
 menu-order: 1
 open-graph-type: article
-og: /img/og/og-documentation/architecture-roadmap.jpg
 toc: true
 ---
 

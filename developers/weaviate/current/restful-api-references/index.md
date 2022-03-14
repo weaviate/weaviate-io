@@ -8,7 +8,6 @@ description: This page contains information about Weaviate's RESTful API.
 tags: ['RESTful API references']
 menu-order: 0
 open-graph-type: article
-og: /img/og/og-documentation/restful-api-references-index.jpg
 toc: false
 redirect_from:
     - /documentation/weaviate/current/restful-api-references/index.html

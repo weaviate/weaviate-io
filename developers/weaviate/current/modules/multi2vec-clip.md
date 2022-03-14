@@ -7,7 +7,6 @@ description: Use OpenAI's CLIP model within Weaviate
 tags: ['multi2vec-clip']
 menu-order: 4
 open-graph-type: article
-og: /img/og/og-documentation/modules-multi2vec-clip.jpg
 toc: true
 ---
 

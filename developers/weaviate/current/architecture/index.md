@@ -7,7 +7,6 @@ description: Architecture Overview
 tags: ['architecture']
 menu-order: 0
 open-graph-type: article
-og: /img/og/og-documentation/architecture-index.jpg
 toc: false
 ---
 

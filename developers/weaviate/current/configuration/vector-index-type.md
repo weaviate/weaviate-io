@@ -7,7 +7,6 @@ description: Vector Index Type
 tags: ['configuration', 'vector index']
 menu-order: 2
 open-graph-type: article
-og: /img/og/og-documentation/configuration-vector-index-type.jpg
 toc: true
 ---
 

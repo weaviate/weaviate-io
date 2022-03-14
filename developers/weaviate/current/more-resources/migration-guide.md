@@ -7,7 +7,6 @@ intro:
 tags: ['Migration']
 menu-order: 7
 open-graph-type: article
-og: /img/og/og-documentation/more-resources-migration-guide.jpg
 toc: true
 ---
 

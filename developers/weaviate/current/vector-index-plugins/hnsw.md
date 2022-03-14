@@ -7,7 +7,6 @@ description: HNSW
 tags: ['HNSW']
 menu-order: 1
 open-graph-type: article
-og: /img/og/og-documentation/vector-index-plugins-hnsw.jpg
 toc: true
 redirect_from:
     - /documentation/weaviate/current/vector-index-plugins/hsnw.html

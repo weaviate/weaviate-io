@@ -7,7 +7,6 @@ description: How to create custom Weaviate modules
 tags: ['Custom Modules']
 menu-order: 9
 open-graph-type: article
-og: /img/og/og-documentation/modules-custom-modules.jpg
 toc: true
 ---
 
