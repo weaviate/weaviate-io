@@ -283,7 +283,7 @@
   description: > 
     A full tutorial on the Python library of the new Machine Learning based vector search engine, Weaviate
   source: tds
-  link: https://towardsdatascience.com/getting-started-with-weaviate-_python-client-e85d14f19e4f
+  link: https://towardsdatascience.com/getting-started-with-weaviate-python-client-e85d14f19e4f
   tags:
   - blog
 - title: >
