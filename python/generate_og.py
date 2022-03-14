@@ -95,6 +95,7 @@ def gen_og_images():
         for file in files:
             name = file.split(".")[0]
             name = name.replace("_", "-")
+            name = name.replace(" ", "-")
             img_info = gen_image_info(loc + "/" + file)
             img = template.copy()
             write_page(img, "Documentation", img_info[1], img_info[0])
