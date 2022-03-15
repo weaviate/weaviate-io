@@ -6,7 +6,7 @@
   youtube: HIGAQAE_xaI
   date: 2022-03-15T00:00:00Z
   cover_image: '/img/podcasts/podcast-11.jpg'
-  is_use_case: false
+  is_use_case: true
   logo: '/img/jina_ai.jpg'
 - title: >
     Yury Malkov co-author of HNSW • HNSW in Vector Search and Weaviate

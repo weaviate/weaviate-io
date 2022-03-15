@@ -49,6 +49,13 @@ secret = weaviate.AuthClientCredentials("secret")
 client = weaviate.Client("https://localhost:8080", secret)
 ```
 
+## Neural Search Frameworks
+
+There is a variety of neural search frameworks that use Weaviate under the hood to store, search through, and retrieve vectors.
+
+- deepset's [haystack](https://www.deepset.ai/weaviate-vector-search-engine-integration)
+- Jina's [DocArray](https://docarray.jina.ai/advanced/document-store/weaviate/)
+
 # References documentation
 
 On this Weaviate documentation website, you will find how to use the Python client for all [RESTful endpoints](../restful-api-references/index.html) and [GraphQL functions](../graphql-references/index.html). For each reference, a code block is included with an example of how to use the function with the Python (and other) clients. The Python client, however, has additional functionalities, which are covered in the full client documentation on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/). Some of these additional functions are highlighted here below.
