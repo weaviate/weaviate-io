@@ -9,7 +9,7 @@ menu-order: 2
 open-graph-type: article
 toc: true
 redirect_from:
-    - /documentation/weaviate/current/modules/text2vec-transformers.html
+    - /developers/weaviate/current/modules/text2vec-transformers.html
 ---
 
 # Introduction

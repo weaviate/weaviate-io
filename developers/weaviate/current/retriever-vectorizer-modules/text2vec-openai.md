@@ -10,7 +10,7 @@ open-graph-type: article
 toc: true
 callout: This is the most recent Weaviate module that leverages an external API. We would love to know how you use it, especially on large-scale implementations. Connect with us on Slack <a href="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw">here</a>.
 redirect_from:
-    - /documentation/weaviate/current/modules/text2vec-openai.html
+    - /developers/weaviate/current/modules/text2vec-openai.html
 ---
 
 # Introduction

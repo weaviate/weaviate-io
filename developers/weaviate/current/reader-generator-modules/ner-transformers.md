@@ -9,7 +9,7 @@ menu-order: 2
 open-graph-type: article
 toc: true
 redirect_from:
-    - /documentation/weaviate/current/modules/ner-transformers.html
+    - /developers/weaviate/current/modules/ner-transformers.html
 ---
 
 # In short

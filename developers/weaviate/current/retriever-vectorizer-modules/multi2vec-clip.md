@@ -9,7 +9,7 @@ menu-order: 5
 open-graph-type: article
 toc: true
 redirect_from:
-    - /documentation/weaviate/current/modules/multi2vec-clip.html
+    - /developers/weaviate/current/modules/multi2vec-clip.html
 ---
 
 # Introduction

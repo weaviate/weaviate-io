@@ -9,7 +9,7 @@ menu-order: 4
 open-graph-type: article
 toc: true
 redirect_from:
-    - /documentation/weaviate/current/modules/img2vec-neural.html
+    - /developers/weaviate/current/modules/img2vec-neural.html
 ---
 
 # Introduction

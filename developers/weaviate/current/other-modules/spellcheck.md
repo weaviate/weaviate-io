@@ -9,7 +9,7 @@ menu-order: 1
 open-graph-type: article
 toc: true
 redirect_from:
-    - /documentation/weaviate/current/modules/spellcheck.html
+    - /developers/weaviate/current/modules/spellcheck.html
 ---
 
 # In short

@@ -21,10 +21,10 @@ exclude:
     - "LICENSE.md"
     - "*.rb"
 plugins:
-    # - jekyll-redirect-from
+    - jekyll-redirect-from
     - jekyll-toc
-# whitelist:
-#     - jekyll-redirect-from
+whitelist:
+    - jekyll-redirect-from
 toc:
   max_level: 2
   list_id: table-of-contents
