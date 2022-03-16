@@ -1,13 +1,15 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Modules
+sub-menu: Reader & Generator Modules
 title: Question Answering
 description: Weaviate Q&A Transformers module
 tags: ['qna-transformers', 'transformers']
-menu-order: 6
+menu-order: 1
 open-graph-type: article
 toc: true
+redirect_from:
+    - /documentation/weaviate/current/modules/qna-transformers.html
 ---
 
 # In short

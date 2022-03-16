@@ -1,13 +1,15 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Modules
+sub-menu: Retriever & Vectorizer Modules
 title: text2vec-transformers
 description: Add any transformer model to Weaviate with the transformers module
 tags: ['text2vec-transformers']
 menu-order: 2
 open-graph-type: article
 toc: true
+redirect_from:
+    - /documentation/weaviate/current/modules/text2vec-transformers.html
 ---
 
 # Introduction

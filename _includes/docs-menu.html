@@ -26,7 +26,6 @@
                           </div>
                       </li>
                       <li>
-                          <!-- <h2 class="no-href">{{ page.solution }}</h2> -->
                             <h6 class="text-uppercase fw-bold">
                                 {{ page.solution }}
                             </h6>
@@ -41,7 +40,7 @@
                         {% for menu in sorted_menus %}
                             {% if menuItem.name == menu.name && guides.name == page.solution %}
                                 {% if menuItem.header == true %}
-                                    <!-- <h2 class="no-href">{{ menuItem.name }}</h3> -->
+                                    <h6 class="text-uppercase fw-bold">{{ menuItem.name }}</h6>
                                     <ul class="list mb-6">
                                         {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
                                         {% for guide in sorted_sub_menus %}

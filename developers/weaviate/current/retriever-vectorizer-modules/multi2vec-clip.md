@@ -1,13 +1,15 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Modules
+sub-menu: Retriever & Vectorizer Modules
 title: multi2vec-clip
 description: Use OpenAI's CLIP model within Weaviate
 tags: ['multi2vec-clip']
-menu-order: 4
+menu-order: 5
 open-graph-type: article
 toc: true
+redirect_from:
+    - /documentation/weaviate/current/modules/multi2vec-clip.html
 ---
 
 # Introduction

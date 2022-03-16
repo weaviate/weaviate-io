@@ -80,6 +80,15 @@ docs:
             - name: Modules
               folder: modules
               header: false
+            - name: Retriever & Vectorizer Modules
+              folder: retriever-vectorizer-modules
+              header: true
+            - name: Reader & Generator Modules
+              folder: reader-generator-modules
+              header: true
+            - name: Other Modules
+              folder: other-modules
+              header: true
             - name: Client libraries & CLI
               folder: client-libraries
               header: false
