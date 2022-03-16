@@ -80,10 +80,10 @@ docs:
             - name: Modules
               folder: modules
               header: false
-            - name: Retriever & Vectorizer Modules
+            - name: Retrievers & Vectorizers
               folder: retriever-vectorizer-modules
               header: true
-            - name: Reader & Generator Modules
+            - name: Readers & Generators
               folder: reader-generator-modules
               header: true
             - name: Other Modules

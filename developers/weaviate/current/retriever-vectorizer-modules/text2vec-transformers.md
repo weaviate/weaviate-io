@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Retriever & Vectorizer Modules
+sub-menu: Retrievers & Vectorizers
 title: text2vec-transformers
 description: Add any transformer model to Weaviate with the transformers module
 tags: ['text2vec-transformers']

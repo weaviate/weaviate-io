@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Other modules
+sub-menu: Other Modules
 title: spellcheck
 description: Weaviate spellcheck module
 tags: ['spellcheck']

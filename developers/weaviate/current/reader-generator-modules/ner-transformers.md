@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Reader & Generator Modules
+sub-menu: Readers & Generators
 title: Named Entity Recognition
 description: Named Entity Recognition module in Weaviate
 tags: ['ner-transformers', 'transformers', 'token classification']

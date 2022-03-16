@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Reader & Generator Modules
+sub-menu: Readers & Generators
 title: Question Answering
 description: Weaviate Q&A Transformers module
 tags: ['qna-transformers', 'transformers']

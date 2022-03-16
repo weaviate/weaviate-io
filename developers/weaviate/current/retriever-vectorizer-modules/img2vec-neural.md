@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Retriever & Vectorizer Modules
+sub-menu: Retrievers & Vectorizers
 title: img2vec-neural
 description: Use Resnet models in Weaviate
 tags: ['img2vec-neural']
