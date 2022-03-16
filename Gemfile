@@ -11,3 +11,5 @@ gem "jekyll", "~> 4.2"
 gem "jekyll-toc", "~> 0.17.1"
 
 gem "webrick", "~> 1.7"
+
+gem 'jekyll-redirect-from'
