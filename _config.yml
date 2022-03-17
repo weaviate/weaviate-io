@@ -476,6 +476,15 @@ docs:
             - name: More resources
               folder: more-resources
     contributor-guide:
+        'v1.11.0':
+            - name: Weaviate Core
+              folder: weaviate-core
+            - name: Weaviate Module System
+              folder: weaviate-module-system
+            - name: Contextionary
+              folder: contextionary
+            - name: Weaviate Clients
+              folder: weaviate-clients
         'v1.10.1':
             - name: Weaviate Core
               folder: weaviate-core
