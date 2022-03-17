@@ -9,10 +9,6 @@ menu-order: 0
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
-    - /documentation/weaviate/current/configuration/index.html
-    - /documentation/weaviate/current/configuration/
-    - /documentation/weaviate/current/setup/health_check.html
 ---
 
 When setting up a Weaviate instance, it will run without any form of authentication and authorization. Check the pages about [authentication](./authentication.html) and [authorization](./authorization.html) how to enable this.

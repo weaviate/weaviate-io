@@ -9,8 +9,6 @@ menu-order: 4
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/more-resources/architecture.html
 ---
 
 ...

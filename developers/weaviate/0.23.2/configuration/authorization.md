@@ -10,9 +10,6 @@ menu-order: 2
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/setup/authorize.html
-    - /documentation/weaviate/current/configuration/authorization.html
 ---
 
 # Admin List

@@ -11,11 +11,6 @@ menu-order: 5
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-  - /documentation/contributor-guide/current/standalone/parsing-cross-refs.html
-  - /developers/contributor-guide/current/standalone/parsing-cross-refs.html
-  - /developers/contributor-guide/current/build-run-test/parsing-cross-refs.html
-  - /documentation/contributor-guide/current/custom-db/parsing-cross-refs.html
 ---
 
 ## Overview

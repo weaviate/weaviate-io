@@ -10,10 +10,6 @@ menu-order: 2
 open-graph-type: article
 og: /img/og/og-documentation/restful-api-references-v1objects.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/query-data/get.html
-    - /documentation/weaviate/current/restful-api-references/semantic-kind.html
-    - /developers/weaviate/current/restful-api-references/semantic-kind.html
 ---
 
 # List all data objects

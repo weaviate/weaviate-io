@@ -10,9 +10,6 @@ menu-order: 0
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
-    - /documentation/weaviate/current/client-libraries/index.html
-    - /documentation/weaviate/current/client-libraries/
 ---
 
 # Client libraries

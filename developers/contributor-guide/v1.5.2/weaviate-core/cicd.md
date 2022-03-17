@@ -11,9 +11,6 @@ menu-order: 2
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
-  - /documentation/contributor-guide/current/build-run-test/cicd.html
-  - /developers/contributor-guide/current/build-run-test/cicd.html
 ---
 
 Weaviate is not a continuously deployed application, as it published as releases

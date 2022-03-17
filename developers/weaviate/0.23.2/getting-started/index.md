@@ -9,9 +9,6 @@ menu-order: 0
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
-    - /documentation/weaviate/current/getting-started/index.html
-    - /documentation/weaviate/current/getting-started/
 ---
 
 On the "Getting started" pages you can find information on how to install and start using Weaviate, but also provides information on example datasets and use cases.

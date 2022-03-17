@@ -11,8 +11,6 @@ menu-order: 5
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/getting-started/use-cases.html
 ---
 
 Most use cases of Weaviate benefit from the following two core concepts: 

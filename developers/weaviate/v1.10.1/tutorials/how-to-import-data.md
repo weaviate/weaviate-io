@@ -10,10 +10,6 @@ menu-order: 3
 open-graph-type: article
 og: /img/og/og-documentation/more-resources-how-to-import-data.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/add-data/add_and_modify.html
-    - /documentation/weaviate/current/tutorials/how-to-import-data.html
-    - /developers/weaviate/current/tutorials/how-to-import-data.html
 ---
 
 # Introduction 

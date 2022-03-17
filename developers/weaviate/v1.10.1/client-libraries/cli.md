@@ -10,8 +10,6 @@ menu-order: 5
 open-graph-type: article
 og: /img/og/og-documentation/client-libraries--cli-weaviate-cli.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/client-libs/weaviate-cli.html
 ---
 
 # Installation

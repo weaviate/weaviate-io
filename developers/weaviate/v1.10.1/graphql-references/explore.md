@@ -10,9 +10,6 @@ menu-order: 3
 open-graph-type: article
 og: /img/og/og-documentation/graphql-references-explore.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/query-data/explore.html
-    - /documentation/weaviate/current/graphql-references/explore.html
 ---
 
 # Explore{} query structure and syntax

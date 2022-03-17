@@ -11,8 +11,6 @@ menu-order: 1
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-  - /documentation/contributor-guide/current/contextionary/classification-benchmarks.html
 ---
 
 ## Model Version Details

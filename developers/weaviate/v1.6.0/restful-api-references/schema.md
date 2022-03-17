@@ -10,8 +10,6 @@ menu-order: 1
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/restful-api-references/schema.html
 ---
 
 NOTE: From v1.5.0 onwards creating a schema is now optional, learn more about [Auto Schema here](../data-schema/schema-configuration.html#auto-schema).

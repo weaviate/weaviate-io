@@ -11,9 +11,6 @@ menu-order: 3
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
-  - /documentation/contributor-guide/current/build-run-test/tests.html
-  - /developers/contributor-guide/current/build-run-test/tests.html
 ---
 
 ## Philosophy

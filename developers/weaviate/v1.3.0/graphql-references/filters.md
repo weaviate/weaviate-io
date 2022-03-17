@@ -10,9 +10,6 @@ menu-order: 4
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/query-data/filters.html
-    - /documentation/weaviate/current/graphql-references/filters.html
 ---
 
 # Where filter

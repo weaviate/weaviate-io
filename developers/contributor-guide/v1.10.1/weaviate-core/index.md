@@ -10,8 +10,7 @@ menu-order: 0
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
-  - /documentation/contributor-guide/current/build-run-test/index.html
+---
   - /documentation/contributor-guide/current/build-run-test/
   - /developers/contributor-guide/current/build-run-test/index.html
   - /developers/contributor-guide/current/build-run-test/

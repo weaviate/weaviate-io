@@ -10,8 +10,6 @@ menu-order: 8
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/more-resources/deprecation-messages.html
 ---
 
 The list below contains deprecation messages:

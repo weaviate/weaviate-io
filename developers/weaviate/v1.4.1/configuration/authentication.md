@@ -10,9 +10,6 @@ menu-order: 3
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/setup/authenticate.html
-    - /documentation/weaviate/current/configuration/authentication.html
 ---
 
 # Philosophy

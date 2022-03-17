@@ -10,8 +10,6 @@ menu-order: 3
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/how-tos/how-to-query-data.html
 ---
 
 # Introduction

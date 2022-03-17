@@ -10,9 +10,6 @@ menu-order: 0
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-  - /documentation/contributor-guide/current/weaviate-clients/index.html
-  - /documentation/contributor-guide/current/weaviate-clients/
 ---
 
 # Contributor guidelines 

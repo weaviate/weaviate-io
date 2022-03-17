@@ -10,8 +10,6 @@ menu-order: 2
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/client-libs/javascript.html
 ---
 
 # Installation and setup

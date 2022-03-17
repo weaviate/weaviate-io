@@ -10,9 +10,6 @@ menu-order: 4
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/tutorials/how-to-perform-a-semantic-search.html
-    - /developers/weaviate/current/tutorials/how-to-perform-a-semantic-search.html
 ---
 
 # Introduction

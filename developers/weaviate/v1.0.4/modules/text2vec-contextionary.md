@@ -9,8 +9,7 @@ menu-order: 1
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/about/contextionary.html
+---
     - /documentation/weaviate/current/more-resources/contextionary.html
     - /developers/weaviate/current/more-resources/contextionary.html
     - /developers/weaviate/current/more-resources/contextionary.html

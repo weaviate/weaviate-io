@@ -11,9 +11,6 @@ menu-order: 4
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
-  - /documentation/contributor-guide/current/build-run-test/setup.html
-  - /developers/contributor-guide/current/build-run-test/setup.html
 ---
 
 ## Prerequisities

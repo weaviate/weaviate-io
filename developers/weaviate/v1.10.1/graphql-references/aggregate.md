@@ -10,9 +10,6 @@ menu-order: 2
 open-graph-type: article
 og: /img/og/og-documentation/graphql-references-aggregate.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/query-data/aggregate.html
-    - /documentation/weaviate/current/graphql-references/aggregate.html
 ---
 
 # Aggregate{} syntax and query structure

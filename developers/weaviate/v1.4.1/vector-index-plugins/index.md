@@ -10,9 +10,6 @@ menu-order: 0
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/vector-index-plugins/index.html
-    - /documentation/weaviate/current/vector-index-plugins/
 ---
 
 # Introduction

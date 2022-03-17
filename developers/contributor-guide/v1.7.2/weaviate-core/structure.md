@@ -11,9 +11,6 @@ menu-order: 1
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
-  - /documentation/contributor-guide/current/build-run-test/structure.html
-  - /developers/contributor-guide/current/build-run-test/structure.html
 ---
 
 ## Package structure

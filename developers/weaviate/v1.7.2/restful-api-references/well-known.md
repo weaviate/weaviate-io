@@ -10,8 +10,6 @@ menu-order: 6
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/restful-api-references/well-known.html
 ---
 
 # OpenID Configuration

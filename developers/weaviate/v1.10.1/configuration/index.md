@@ -9,10 +9,6 @@ menu-order: 0
 open-graph-type: article
 og: /img/og/og-documentation/configuration-index.jpg
 toc: false
-redirect_from:
-    - /documentation/weaviate/current/configuration/index.html
-    - /documentation/weaviate/current/configuration/
-    - /documentation/weaviate/current/setup/health_check.html
 ---
 
 When setting up a Weaviate instance, by default, it will by default:

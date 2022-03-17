@@ -10,9 +10,6 @@ menu-order: 1
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/client-libs/go.html
-    - /documentation/weaviate/current/client-libraries/go.html
 ---
 
 # Installation and setup

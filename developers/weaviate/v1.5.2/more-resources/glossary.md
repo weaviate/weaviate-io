@@ -10,8 +10,6 @@ menu-order: 2
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
-    - /documentation/weaviate/current/more-resources/glossary.html
 ---
 
 | Term | Description |

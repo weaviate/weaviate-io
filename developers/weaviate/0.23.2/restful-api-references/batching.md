@@ -10,9 +10,6 @@ menu-order: 3
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/add-data/batching.html
-    - /documentation/weaviate/current/restful-api-references/batching.html
 ---
 
 # Batching Things or Actions

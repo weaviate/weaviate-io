@@ -10,10 +10,6 @@ menu-order: 1
 open-graph-type: article
 og: /img/og/og-documentation/client-libraries--cli-python.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/client-libs/python.html
-    - /documentation/weaviate/current/client-libraries/python.html
-    - /documentation/weaviate/current/client-libraries/javascript.html
 ---
 
 # Installation and setup

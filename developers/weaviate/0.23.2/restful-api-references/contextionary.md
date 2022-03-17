@@ -10,9 +10,6 @@ menu-order: 5
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/transfer-learning/custom-embeddings.html
-    - /documentation/weaviate/current/restful-api-references/contextionary.html
 ---
 
 # Find concepts

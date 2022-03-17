@@ -10,11 +10,6 @@ menu-order: 0
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
-    - /documentation/weaviate/current/how-tos/index.html
-    - /developers/weaviate/current/how-tos/index.html
-    - /documentation/weaviate/current/how-tos/
-    - /developers/weaviate/current/how-tos/
 ---
 
 There are currently five tutorials, stay tuned for new guides and videos in the near future!

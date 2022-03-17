@@ -10,11 +10,6 @@ menu-order: 10
 open-graph-type: article
 og: /img/og/og-documentation/more-resources-example-datasets.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/datasets/newspublications.html
-    - /documentation/weaviate/current/getting-started/example-datasets.html
-    - /developers/weaviate/current/getting-started/example-datasets.html
-    - /developers/weaviate/current/more-resources/example-datasets.html
 ---
 
 There are a few example datasets available.

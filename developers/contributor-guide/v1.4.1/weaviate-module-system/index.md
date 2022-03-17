@@ -10,7 +10,6 @@ menu-order: 0
 open-graph-type: article
 og-img: documentation.jpg
 toc: false
-redirect_from:
 ---
 
 - [Overview and High-Level Architecture](./overview.html)

@@ -10,9 +10,6 @@ menu-order: 1
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/more-resources/faq.html
-    - /developers/weaviate/more-resources/faq.html
 ---
 
 ## Q: Why would I use Weaviate as my vector search engine engine?

@@ -10,7 +10,6 @@ menu-order: 8
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
 ---
 
 You can find more examples with Weaviate [here](https://github.com/semi-technologies/weaviate-examples).

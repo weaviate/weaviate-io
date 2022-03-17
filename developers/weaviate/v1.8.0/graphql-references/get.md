@@ -10,8 +10,6 @@ menu-order: 1
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/graphql-references/get.html
 ---
 
 # Get{} syntax and query structure

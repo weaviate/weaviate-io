@@ -10,9 +10,6 @@ menu-order: 1
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/add-data/define_schema.html
-    - /documentation/weaviate/current/how-tos/how-to-create-a-schema.html
 ---
 
 # Introduction

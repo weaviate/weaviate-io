@@ -11,9 +11,6 @@ menu-order: 1
 open-graph-type: article
 og: /img/og/og-documentation/getting-started-quick-start.jpg
 toc: true
-redirect_from:
-  - /documentation/weaviate/current/get-started/quick_start.html
-  - /documentation/weaviate/current/getting-started/quick-start.html
 ---
 
 # **Run Weaviate with a demo dataset**
