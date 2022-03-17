@@ -1,13 +1,15 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Modules
+sub-menu: Retrievers & Vectorizers
 title: text2vec-contextionary
 description: Use the GloVe and Fasttext based Weaviate module
 tags: ['text2vec-contextionary', 'contextionary']
 menu-order: 1
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/current/modules/text2vec-contextionary.html
 ---
 
 # Introduction

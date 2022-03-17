@@ -1,13 +1,15 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Modules
+sub-menu: Other Modules
 title: spellcheck
 description: Weaviate spellcheck module
 tags: ['spellcheck']
-menu-order: 8
+menu-order: 1
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/current/modules/spellcheck.html
 ---
 
 # In short
