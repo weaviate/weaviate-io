@@ -469,21 +469,6 @@ docs:
             - name: Tutorials
               folder: tutorials
               header: true
-        '0.23.2':
-            - name: Getting started
-              folder: getting-started
-            - name: Configuration
-              folder: configuration
-            - name: Client libraries & CLI
-              folder: client-libraries
-            - name: How-tos
-              folder: how-tos
-            - name: RESTful API references
-              folder: restful-api-references
-            - name: GraphQL references
-              folder: graphql-references
-            - name: More resources
-              folder: more-resources
     contributor-guide:
         'v1.11.0':
             - name: Weaviate Core
@@ -585,13 +570,6 @@ docs:
             - name: Weaviate Clients
               folder: weaviate-clients
         'v1.0.4':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        '0.23.2':
             - name: Weaviate Core
               folder: weaviate-core
             - name: Contextionary
