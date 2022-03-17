@@ -55,10 +55,10 @@
                                     </h6>
 
                                     <!-- List -->
-                                    <a class="dropdown-item" href="./product.html">
+                                    <a class="dropdown-item" href="/product.html">
                                         Weaviate Cluster Service
                                     </a>
-                                    <a class="dropdown-item mb-5" href="./product.html">
+                                    <a class="dropdown-item mb-5" href="/product.html">
                                         Weaviate Cluster Service infrastructure
                                     </a>
 
@@ -69,7 +69,7 @@
 
                                     <!-- List -->
                                     {% for integration in site.data.integrations %}
-                                        <a class="dropdown-item" href="./product.html#{{ integration.name | downcase }}">
+                                        <a class="dropdown-item" href="/product.html#{{ integration.name | downcase }}">
                                             {{ integration.name }} ({{ integration.type }})
                                         </a>
                                     {% endfor %}
