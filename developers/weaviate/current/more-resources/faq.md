@@ -214,12 +214,7 @@ A: The UUID must be presented as a string matching the [Canonical Textual repres
 
 ## Q: What is the best way to iterate through objects? Can I do paginated API calls? 
 
-Pagination in GraphQL is not supported [yet](https://github.com/semi-technologies/weaviate/issues/1627). GraphQL queries return 100 results at a time. 
-
-Some suggestions to limit query time: 
-1. The easiest way would be to do add a primitive field that you can use in filters. E.g. it could just be a counter that is increased in each object. Then you could build your own pagination using filters, such as `count => 0 && count < 100`, `count >=100 && count <200`, etc.
-2. If you import in batches and you decide you also want the batches as pages later on, you could add `batchNumber` and increase the count and retrieve a specific page by using `batchNumber == 7` as a filter
-3. If you don’t have a fixed order at import time, you could also write a timestamp (in an `int` dataType to allow `LessThan`/`GreaterThan` operators).
+Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's](https://weaviate.io/developers/weaviate/current/graphql-references/filters.html#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
 
 
 ## Q: What happens when the weaviate docker container restarts? Is my data in the weaviate database lost?
