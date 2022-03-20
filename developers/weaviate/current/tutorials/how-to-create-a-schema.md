@@ -12,7 +12,6 @@ toc: true
 redirect_from:
     - /documentation/weaviate/current/add-data/define_schema.html
     - /documentation/weaviate/current/tutorials/how-to-create-a-schema.html
-    - /developers/weaviate/current/tutorials/how-to-create-a-schema.html
 ---
 
 # Introduction

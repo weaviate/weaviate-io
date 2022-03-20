@@ -11,7 +11,6 @@ open-graph-type: article
 toc: true
 redirect_from:
     - /documentation/weaviate/current/tutorials/how-to-perform-a-semantic-search.html
-    - /developers/weaviate/current/tutorials/how-to-perform-a-semantic-search.html
 ---
 
 # Introduction

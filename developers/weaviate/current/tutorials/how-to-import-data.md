@@ -12,7 +12,6 @@ toc: true
 redirect_from:
     - /documentation/weaviate/current/add-data/add_and_modify.html
     - /documentation/weaviate/current/tutorials/how-to-import-data.html
-    - /developers/weaviate/current/tutorials/how-to-import-data.html
 ---
 
 # Introduction 
