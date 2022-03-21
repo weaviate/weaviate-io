@@ -1,5 +1,16 @@
 ---
 - title: >
+    CIO insight on Vector Search
+  date: 2021-08-11T00:00:01Z
+  cover_image: https://www.cioinsight.com/wp-content/uploads/2021/08/pexels-tara-winstead-8386440-1536x1024.jpg
+  description: >
+    CIO insight on the Business Application of Vector Search. 
+  source: cioinsight
+  link: https://www.cioinsight.com/news-trends/vector-similarity-search/
+  tags:
+  - blog
+  - use-case
+- title: >
     Weaviate + Jina AI for Image Search presented by Laura Ham
   date: 2022-03-14T00:00:01Z
   cover_image: /img/podcasts/laura-vectorseach-docarray.jpg
