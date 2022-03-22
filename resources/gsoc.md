@@ -211,8 +211,30 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 [Weaviate CLI · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/client-libraries/cli.html)  
 
 ---
+   
+### 7. Create a SQL to Weaviate schema convertor
 
-### 7. Your Own Idea 
+**Project Description:** Weaviate's schema is suited to represent SQL schemas. The idea is to create a converter from SQL to Weaviate. It might be nice to even integrate an import function based on this schema. Because SQL doesn't have a concept as vector representation or vectorizers. You might want to add an example like WordPress to Weaviate.
+
+**Required Skills:** Knowledge about SQL and basic knowledge about Weaviate schemas.
+
+**topics:** SQL
+
+**Difficulty Level:** Moderate
+
+**Expected Length**: 40 Hours
+
+**Mentors**: Laura Ham, Saurabh Rai, Stefan Bogdan
+
+**Expected outcome:** A CLI tool (or extension of the Weaviate CLI too) that allows converting SQL schemas into Weaviate schemas.
+
+**Documentation:**
+[Weaviate schema · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/restful-api-references/schema.html)  
+[Weaviate CLI · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/client-libraries/cli.html)    
+   
+---
+
+### 8. Your Own Idea 
 
 **Project Description:** If you are an out of the box thinker, and have a great understanding about vector search, and you can contribute in a manner not listed above. Feel free to contact the team on Slack so that we can discuss the possibilities and create that idea. 
 
