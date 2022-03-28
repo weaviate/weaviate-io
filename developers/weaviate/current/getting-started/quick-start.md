@@ -26,12 +26,13 @@ Download the Docker Compose file:
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-simple.yml
 ```
 
-Weaviate is best exprienced with a GPU for increased index and query performance (recommanded for production). 
-Start GPU enbaled Weaviate with this docker-compose file: 
+This demo can also be GPU accelerated with the appropiate architecture and drivers.
+To enable GPU support on docker ([Docker GPU Support](https://docs.docker.com/config/containers/resource_constraints/#gpu))
+
+Start GPU enbaled demo with this docker-compose file: 
 ```bash
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-withgpu.yaml
 ```
-To enable GPU support on docker ([Docker GPU Support](https://docs.docker.com/config/containers/resource_constraints/#gpu))
 
 Run Docker (optional: run with `-d` to run Docker in the background)
 
