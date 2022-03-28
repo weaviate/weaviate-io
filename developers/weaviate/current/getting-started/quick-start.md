@@ -19,16 +19,17 @@ redirect_from:
 
 There are many different ways to run Weaviate, from local development setups to large-scale Kubernetes environments or hosted and managed Weaviate clusters. For this quick start guide, we will be using the [Docker Compose](https://docs.docker.com/compose/) setup where you can run Weaviate on your local machine to which we will add the demo dataset with news publications.
 
-The Docker Compose files below contain both Weaviate and the dataset.
+The Docker Compose files below will setup Weaviate and load the dataset.
 
-Download the Docker Compose file (note, the Dockerfile has GPUs (i.e., CUDA) disabled, this impacts import and query time significantly).
-
+Download the Docker Compose file:
 ```bash
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-simple.yml
 ```
 
-If you have a GPU available ([that is reachable with Docker](https://docs.docker.com/compose/gpu-support/)), simply set `ENABLE_CUDA` to `1` in the [Dockerfile](https://github.com/semi-technologies/weaviate-examples/blob/main/weaviate-transformers-newspublications/docker-compose-withgpu.yaml#L27))
+This demo can also be GPU accelerated with the appropiate architecture and drivers.
+To enable GPU support on docker ([Docker GPU Support](https://docs.docker.com/config/containers/resource_constraints/#gpu))
 
+Start GPU enbaled demo with this docker-compose file: 
 ```bash
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-withgpu.yaml
 ```
