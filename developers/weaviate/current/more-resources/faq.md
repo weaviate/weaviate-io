@@ -20,7 +20,7 @@ redirect_from:
 
 ## Q: Why would I use Weaviate as my vector search engine engine?
 
-A: Our goal is three-folded. Firstly, we want to make it as easy as possible for others to create their own semantic systems or vector search engines (hence, we are API based). Secondly, we have a strong focus on the semantic element (the "knowledge" in "vector search engine," if you will). Our ultimate goal is to have Weaviate help you manage, index, and "understand" your data so that you can build newer, better, and faster applications. And thirdly, we want you to be able to run it everywhere. This is the reason why Weaviate comes containerized.
+A: Our goal is three-folded. Firstly, we want to make it as easy as possible for others to create their own semantic systems or vector search engines (hence, our APIs are GraphQL based). Secondly, we have a strong focus on the semantic element (the "knowledge" in "vector search engine," if you will). Our ultimate goal is to have Weaviate help you manage, index, and "understand" your data so that you can build newer, better, and faster applications. And thirdly, we want you to be able to run it everywhere. This is the reason why Weaviate comes containerized.
 
 ## Q: Do you offer Weaviate as a managed service?
 
@@ -95,7 +95,7 @@ A: Because you are probably one of the first that needs one! Ping us [here on Gi
 
 ## Q: How to deal with custom terminology?
 
-A: Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. We are currently working on an additional API endpoint, which allows you to add custom synonyms. You can find the state of the implementation [here](https://github.com/semi-technologies/weaviate/issues/946). You can also signup for our [newsletter](http://weaviate-newsletter.semi.technology/) to receive an update when it is ready.
+A: Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here](https://weaviate.io/developers/weaviate/current/retriever-vectorizer-modules/text2vec-contextionary.html#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
 
 ## Q: How can you index data near-realtime without losing semantic meaning?
 
