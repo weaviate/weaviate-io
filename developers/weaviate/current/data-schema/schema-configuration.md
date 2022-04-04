@@ -181,6 +181,7 @@ An example of a complete property object:
     "dataType": [                         // The data type of the object as described above, When creating cross references, a property can have multiple dataTypes
     "string"
     ],
+    "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See Property Tokenization below for more detail.
     "moduleConfig": {                     // module specific settings
       "text2vec-contextionary": {
           "skip": true,                     // if true, the whole property will NOT be included in vectorization. default is false, meaning that the object will be NOT be skipped
@@ -222,6 +223,29 @@ Author
   wroteArticles
   writesFor
 ```
+
+## Property Tokenization
+
+*Note: This feature was introduced in `v1.12.0`.*
+
+Properties of type `text` and `string` use tokenization when indexing and
+searching through the inverted index. Text is always tokenized at the `word`
+level, meaning that words will be split when a non-alphanumeric character
+appears. For example, the string `"hello (beautiful) world"`, would be split
+into the tokens `"hello", "beautiful", "world"`. Each token will be indexed
+seperately in the inverted index. This means that a search for any of the three
+tokens would return this object. 
+
+Sometimes there are situation when exact string matching across the whole field
+is desired. In this case, you can use a property of type `string` and set the
+`"tokenization"` setting to `"field"`. This means the whole field will be
+indexed as one. For example the value `"hello (beautiful) world"` would be
+indexed as a single token. This means searching for `"hello"` or `"world"`
+would not return the object mentioned above, but only the exact string `"hello
+(beautiful) world"` will match.
+
+If no values are provided, properties of type `text` and `string` deafult to
+`"word"` level tokenization for backward-compatibility.
 
 # Auto-schema
 
