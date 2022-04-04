@@ -179,6 +179,8 @@ An overview of environment variables in the docker-compose file:
   | `AUTHORIZATION_ADMINLIST_ENABLED` | Enable AdminList Authorization mode | `string - true/false` | `true` |
   | `AUTHORIZATION_ADMINLIST_USERS` | Users with admin permission| `string - comma-separated list` | `jane@example.com,john@example.com` |
   | `AUTHORIZATION_ADMINLIST_READONLY_USERS` | Users with read-only permission| `string - comma-separated list` | `alice@example.com,dave@example.com` |
+| `DISK_USE_WARNING_PERCENTAGE` |  If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `80` |
+| `DISK_USE_READONLY_PERCENTAGE`  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `90` |
 
 
 
