@@ -67,11 +67,11 @@ Make sure you set the `ENABLE_MODULES=text2vec-transformers` environment variabl
 
 #### Step 2: Run your favorite model
 
-Choose [any of our pre-built transformers models](#pre-built-images) (for building your own model container, see below) and spin it up (for example using `docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2`) . Use a CUDA-enabled machine for optimal performance.
+Choose [any of our pre-built transformers models](#pre-built-images) (for building your own model container, see below) and spin it up (for example using `docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2`) . Use a CUDA-enabled machine for optimal performance. Alternatively, include this container in the same `docker-compose.yml` as Weaviate.
 
 #### Step 3: Tell Weaviate where to find the inference 
 
-Set the Weaviate environment variable `TRANSFORMERS_INFERENCE_API` to identify where your inference container is running, for example: `TRANSFORMERS_INFERENCE_API="http://localhost:8000"`
+Set the Weaviate environment variable `TRANSFORMERS_INFERENCE_API` to identify where your inference container is running, for example if Weaviate is running outside of Docker use `TRANSFORMERS_INFERENCE_API="http://localhost:8000"`. Alternatively if Weaviate is part of the same Docker network, e.g. because they are part of the same `docker-compose.yml` file, you can use Docker networking/DNS, such as `TRANSFORMERS_INFERENCE_API=http://t2v-transformers:8080`.
 
 You can now use Weaviate normally and all vectorization during import and search time will be done with the selected transformers model.
 
