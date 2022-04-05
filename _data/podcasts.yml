@@ -1,5 +1,13 @@
 ---
 - title: >
+    Rick Lamers • Data Science with Orchest
+  description: > 
+    Orchest is a software that simplifies building data pipelines. If you are into data science, get inspired by CEO Rick Lamers.
+  youtube: QlhTJ2n_Kog
+  date: 2022-04-05T00:00:00Z
+  cover_image: '/img/podcasts/podcast-13.png'
+  is_use_case: false
+- title: >
     Jonathan Frankle • Research Scientist in Deep Learning
   description: > 
     Jonathan Frankle is the Chief Scientist at MosaicML and a PhD student in Machine Learning at MIT. Learn all about Efficient Deep Learning in this inspiring podcast.
