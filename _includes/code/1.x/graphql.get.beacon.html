@@ -70,7 +70,7 @@ fields := []graphql.Field{
   {Name: "url"},
   {Name: "wordCount"},
   {Name: "inPublication", Fields: []graphql.Field{
-    {Name: "... on Publication", Fields: []graphql.Field{{Name: "name"}}},
+{% raw %}    {Name: "... on Publication", Fields: []graphql.Field{{Name: "name"}}}{% endraw %},
   }},
 }
 result, err := client.GraphQL().Get().Objects().

@@ -136,7 +136,7 @@ client := weaviate.New(cfg)
 fields := []graphql.Field{
   {Name: "name"},
   {Name: "wroteArticles", Fields: []graphql.Field{
-    {Name: "... on Article", Fields: []graphql.Field{{Name: "title"}}},
+{% raw %}    {Name: "... on Article", Fields: []graphql.Field{{Name: "title"}}}{% endraw %},
   }},
 }
 where := client.GraphQL().WhereArgBuilder().

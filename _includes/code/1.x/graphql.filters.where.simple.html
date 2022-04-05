@@ -72,7 +72,7 @@ cfg := weaviate.Config{
 }
 client := weaviate.New(cfg)
 
-fields := []graphql.Field{{Name: "title"}}
+{% raw %}fields := []graphql.Field{{Name: "title"}}{% endraw %}
 where := client.GraphQL().WhereArgBuilder().
 	WithPath([]string{"wordCount"}).
 	WithOperator(graphql.GreaterThan).

@@ -78,7 +78,7 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 
 className := "FashionItem"
-fields := []graphql.Field{{Name: "image"}}
+{% raw %}fields := []graphql.Field{{Name: "image"}}{% endraw %}
 
 filename := "my_image_path.png" 
 file, err := os.Open(filename)
