@@ -62,30 +62,43 @@ client.graphql
 <!-- SET GO TAB CONTENT -->
 {% capture go %}
 package main
-
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+    "context"
+    "fmt"
+    "github.com/semi-technologies/weaviate-go-client/v3/weaviate"
 )
-
 cfg := weaviate.Config{
   Host:   "localhost:8080",
   Scheme: "http",
 }
 client := weaviate.New(cfg)
-
 ctx := context.Background()
-
+fields := []graphql.Field{
+  {Name: "title"},
+  {Name: "url"},
+  {Name: "wordCount", Fields: []graphql.Field{
+    {Name: "mean"},
+    {Name: "maximum"},
+    {Name: "median"},
+    {Name: "minimum"},
+    {Name: "mode"},
+    {Name: "sum"},
+    {Name: "type"},
+  }},
+  {Name: "inPublication", Fields: []graphql.Field{
+    {Name: "pointingTo"},
+    {Name: "count"},
+  }},
+}
 result, err := client.GraphQL().Aggregate().
   WithClassName("Article").
-  WithFields("meta { count } wordCount { mean maximum mean median minimum mode sum type} inPublication { pointingTo count }").
+  WithFields(fields).
   Do(ctx)
-
 if err != nil {
   panic(err)
 }
 fmt.Printf("%v", result)
+
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->
@@ -93,12 +106,35 @@ fmt.Printf("%v", result)
 
 Config config = new Config("http", "localhost:8080");
 WeaviateClient client = new WeaviateClient(config);
-
+Field meta = Field.builder()
+            .name("meta")
+            .fields(new Field[]{
+                Field.builder().name("count").build()
+            }).build();
+Field wordCount = Field.builder()
+            .name("wordCount")
+            .fields(new Field[]{
+                Field.builder().name("mean").build(),
+                Field.builder().name("maximum").build(),
+                Field.builder().name("median").build(),
+                Field.builder().name("minimum").build(),
+                Field.builder().name("mode").build(),
+                Field.builder().name("sum").build(),
+                Field.builder().name("type").build()
+            }).build();
+Field inPublication = Field.builder()
+            .name("inPublication")
+            .fields(new Field[]{
+                Field.builder().name("pointingTo").build(),
+                Field.builder().name("count").build()
+            }).build();
+Fields fields = Fields.builder()
+            .fields(new Field[]{meta, wordCount, inPublication})
+            .build();
 Result<GraphQLResponse> result = client.graphQL().aggregate()
             .withClassName("Article")
-            .withFields(meta { count } wordCount { mean maximum mean median minimum mode sum type} inPublication { pointingTo count })
+            .withFields(fields)
             .run();
-
 if (result.hasErrors()) {
   System.out.println(result.getError());
   return;
