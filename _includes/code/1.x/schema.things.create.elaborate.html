@@ -224,6 +224,8 @@ WeaviateClass clazz = WeaviateClass.builder()
             .vectorIndexType("hnsw")
             .vectorizer("text2vec-contextionary")
             .invertedIndexConfig(invertedIndexConfig)
+            .shardingConfig(shardingConfig)
+            .vectorIndexConfig(vectorIndexConfig)
             .properties(new ArrayList() { {
                 add(Property.builder()
                       .dataType(new ArrayList(){ { add(DataType.STRING); } })
