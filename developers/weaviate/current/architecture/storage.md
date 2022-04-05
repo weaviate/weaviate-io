@@ -39,7 +39,7 @@ used to distribute the load among multiple server nodes automatically.
 
 ### Components of a Shard
 
-Each shard houses three main components:
+Each shard uses three main components:
 
 * An object store, essentially a key-value store
 * An [inverted index](https://en.wikipedia.org/wiki/Inverted_index)
