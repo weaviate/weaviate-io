@@ -18,10 +18,10 @@ redirect_from:
 To get the latest stable version of the Go client library, run the following:
 
 ```bash
-go get github.com/semi-technologies/weaviate-go-client/v2
+go get github.com/semi-technologies/weaviate-go-client/v3
 ```
 
-This API client is compatible with Go 1.13.
+This API client is compatible with Go 1.16+.
 
 You can use the client in your Go scripts as follows:
 
@@ -31,7 +31,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
 )
 
 func GetSchema() {
@@ -79,6 +79,11 @@ The Go client functions are designed with a 'Builder pattern'. A pattern is used
 The code snippet above shows a simple query similar to `RESTful GET /v1/schema`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by getting the `.Schema` with `.Getter()`. The query will be sent with the `.Go()` function, this object is thus required for every function you want to build and execute. 
 
 # Change logs
+
+## v3.0.0 
+- Add builders for `where` / `group` / `fields` 
+- Support settings stopwords in schema config
+- Retrieve and update shard status
 
 ## v2.3.0
 - Added support of the `spellcheck` module.
