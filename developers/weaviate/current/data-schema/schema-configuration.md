@@ -278,7 +278,7 @@ into the tokens `"hello", "beautiful", "world"`. Each token will be indexed
 seperately in the inverted index. This means that a search for any of the three
 tokens would return this object. 
 
-Sometimes there are situation when exact string matching across the whole field
+Sometimes there are situations when exact string matching across the whole field
 is desired. In this case, you can use a property of type `string` and set the
 `"tokenization"` setting to `"field"`. This means the whole field will be
 indexed as one. For example the value `"hello (beautiful) world"` would be

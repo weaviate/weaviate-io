@@ -106,7 +106,7 @@ Starting with `v1.12.0` there are two levels of disk usage notifications and act
 | `DISK_USE_READONLY_PERCENTAGE` | `90` | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. |
 
 If a shard was marked `READONLY` due to disk pressure and you want to mark the
-shard as ready again (either because you have made more space avaialble or
+shard as ready again (either because you have made more space available or
 changed the thresholds) you can use the [Shards API](../restful-api-references/schema.html#inspect-the-shards-of-a-class) to do so.
 
 # More Resources

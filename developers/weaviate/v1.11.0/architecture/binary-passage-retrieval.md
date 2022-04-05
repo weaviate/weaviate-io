@@ -123,7 +123,7 @@ Hamming distance is considerably cheaper than calculating cosine distance, the
 point where brute-force is still possible is raised considerably. So for some
 cases, you may consider skipping vector-indexing entirely and relying on a flat
 search. However, when optimizing either for low latency or high throughput, a
-vector index will produce considerably better results. We therefor expect BPR
+vector index will produce considerably better results. We therefore expect BPR
 to be used with our existing indices (currently HNSW) in most cases.
 
 ### Will my memory requirements go down by a factor of 32?

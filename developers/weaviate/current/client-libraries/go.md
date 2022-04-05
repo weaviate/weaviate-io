@@ -82,7 +82,7 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 
 ## v3.0.0 
 - Add builders for `where` / `group` / `fields` 
-- Support settings stopwords in schema config
+- Support setting stopwords in schema config
 - Retrieve and update shard status
 
 ## v2.3.0
