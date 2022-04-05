@@ -62,7 +62,8 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 
 className := "FashionItem"
-fields := "image"
+fields := []graphql.Field{{Name: "image"}}
+
 nearImage := client.GraphQL().NearImageArgBuilder().WithImage("/9j/4AAQSkZJRgABAgE...")
 ctx := context.Background()
 
@@ -85,7 +86,8 @@ Config config = new Config("http", "localhost:8080");
 WeaviateClient client = new WeaviateClient(config);
 
 String className = "FashionItem";
-String fields = "image";
+Field image = Field.builder().name("image").build();
+Fields fields = Fields.builder().fields(new Field[]{image}).build();
 NearImageArgument nearImage = client.graphQL().arguments().nearImageArgBuilder()
             .image("/9j/4AAQSkZJRgABAgE...")
             .build();

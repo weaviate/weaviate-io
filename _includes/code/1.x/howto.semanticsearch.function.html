@@ -83,9 +83,9 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+  "github.com/semi-technologies/weaviate-go-client/v3/weaviate"
 )
 
 cfg := weaviate.Config{
@@ -94,6 +94,7 @@ cfg := weaviate.Config{
 }
 client := weaviate.New(cfg)
 
+fields := []graphql.ExploreFields{graphql.Certainty, graphql.Beacon, graphql.ClassName}
 
 concepts := []string{"fashion"}
 moveTo := &MoveParameters{
@@ -104,16 +105,17 @@ moveAwayFrom := &MoveParameters{
 	Concepts: []string{"finance"},
 	Force:    0.2,
 }
-fields := []ExploreFields{Beacon, Certainty, ClassName}
+
 withNearText := client.GraphQL().NearTextArgBuilder().
-			WithConcepts(concepts).
-			WithCertainty(0.7).
-			WithMoveTo(moveTo).
-			WithMoveAwayFrom(moveAwayFrom)
+      WithConcepts(concepts).
+      WithCertainty(0.7).
+      WithMoveTo(moveTo).
+      WithMoveAwayFrom(moveAwayFrom)
+
 resultSet, gqlErr := client.GraphQL().Explore().
-			WithFields(fields).
-			WithNearText(withNearText).
-			Do(context.Background())
+      WithFields(fields).
+      WithNearText(withNearText).
+      Do(context.Background())
 
 if gqlErr != nil {
   panic(gqlErr)
@@ -127,6 +129,8 @@ fmt.Printf("%v", resultSet)
 Config config = new Config("http", "localhost:8080");
 WeaviateClient client = new WeaviateClient(config);
 
+ExploreFields[] fields = new ExploreFields[]{ExploreFields.CERTAINTY, ExploreFields.BEACON, ExploreFields.CLASS_NAME};
+
 NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
             .concepts(new String[]{"haute couture"}).force(0.45f).build();
 
@@ -134,7 +138,6 @@ NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
             .concepts(new String[]{"finance"}).force(0.85f)
             .build();
 
-String fields = "beacon certainty className";
 NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
             .concepts([]string{"fashion"})
             .moveTo(moveTo)

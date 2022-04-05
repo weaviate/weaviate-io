@@ -106,19 +106,23 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 
 className := "Publication"
-fields := "name"
-nearText := `{
-	concepts: ["fashion"] 
-	certainty: 0.7
-	moveAwayFrom: {
-		concepts: ["finance"] 
-		force: 0.45
-	} 
-	moveTo: {
-		concepts: ["haute couture"] 
-		force: 0.85
-	}
-}`
+fields := []graphql.Field{{Name: "name"}}
+
+concepts := []string{"fashion"}
+moveTo := &graphql.MoveParameters{
+  Concepts: []string{"haute couture"},
+  Force:    0.85,
+}
+moveAwayFrom := &graphql.MoveParameters{
+  Concepts: []string{"finance"},
+  Force:    0.45,
+}
+nearText := client.GraphQL().NearTextArgBuilder().
+    WithConcepts(concepts).
+    WithCertainty(0.7).
+    WithMoveTo(moveTo).
+    WithMoveAwayFrom(moveAwayFrom)
+
 ctx := context.Background()
 
 result, err := client.GraphQL().Get().Objects().
@@ -146,7 +150,8 @@ NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
             .concepts(new String[]{"finance"}).force(0.45f)
             .build();
 
-String fields = "name";
+Field name = Field.builder().name("name").build();
+Fields fields = Fields.builder().fields(new Field[]{name}).build();
 NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
             .concepts([]string{"fashion"})
             .moveTo(moveTo)
