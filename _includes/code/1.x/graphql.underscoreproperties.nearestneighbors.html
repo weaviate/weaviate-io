@@ -111,7 +111,17 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 
 className := "Article"
-fields := "title _additional {nearestNeighbors{neighbors { concept distance }}}"
+fields := []graphql.Field{
+  {Name: "title"},
+  {Name: "_additional", Fields: []graphql.Field{
+    {Name: "nearestNeighbors", Fields: []graphql.Field{
+      {Name: "neighbors", Fields: []graphql.Field{
+        {Name: "concept"},
+        {Name: "distance"},
+      }},
+    }},
+  }},
+}
 concepts := []string{"music"}
 moveTo := &graphql.MoveParameters{
  Concepts: []string{"beatles"},
@@ -144,7 +154,27 @@ NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
             .concepts(new String[]{"beatles"}).force(0.5f).build();
 
 String className = "Article";
-String fields = "_additional { nearestNeighbors { neighbors { concept distance } } }";
+
+Field title = Field.builder().name("title").build();
+Field _additional = Field.builder()
+    .name("_additional")
+    .fields(new Field[]{
+        Field.builder()
+          .name("nearestNeighbors")
+          .fields(new Field[]{
+              Field.builder()
+                .name("neighbors")
+                .fields(new Field[]{
+                  Field.builder().name("concept").build(),
+                  Field.builder().name("distance").build()
+                })
+                .build()
+          }).build()
+    }).build();
+Fields fields = Fields.builder()
+    .fields(new Field[]{title, _additional})
+    .build();
+
 NearTextArgument explore = client.graphQL().arguments().nearTextArgBuilder()
             .concepts([]string{"music"})
             .moveTo(moveTo)

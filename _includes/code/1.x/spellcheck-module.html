@@ -78,9 +78,22 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 
 className := "Article"
-fields := "title _additional {spellCheck { change {corrected original} didYouMean location originalText}}"
+fields := []graphql.Field{
+  {Name: "title"},
+  {Name: "_additional", Fields: []graphql.Field{
+    {Name: "spellCheck", Fields: []graphql.Field{
+      {Name: "change", Fields: []graphql.Field{
+        {Name: "corrected"},
+        {Name: "original"},
+      }},
+      {Name: "didYouMean"},
+      {Name: "location"},
+      {Name: "originalText"},
+    }},
+  }},
+}
 concepts := []string{"houssing prices"}
-nearText := `client.GraphQL().NearTextArgBuilder().
+nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts)
     ctx := context.Background()
 
@@ -102,7 +115,28 @@ fmt.Printf("%v", result)
 Config config = new Config("http", "localhost:8080");
 WeaviateClient client = new WeaviateClient(config);
 
-String fields = "title _additional {spellCheck { change {corrected original} didYouMean location originalText}}";
+Field title = Field.builder().name("title").build();
+Field _additional = Field.builder()
+            .name("_additional")
+            .fields(new Field[]{
+                Field.builder()
+                  .name("spellCheck")
+                  .fields(new Field[]{
+                      Field.builder()
+                        .name("change")
+                        .fields(new Field[]{
+                          Field.builder().name("corrected").build(),
+                          Field.builder().name("original").build()
+                        }).build(),
+                      Field.builder().name("didYouMean").build(),
+                      Field.builder().name("location").build(),
+                      Field.builder().name("originalText").build()
+                  }).build()
+            }).build();
+Fields fields = Fields.builder()
+            .fields(new Field[]{title, _additional})
+            .build();
+
 NearTextArgument explore = client.graphQL().arguments().nearTextArgBuilder()
             .concepts(new String[]{"houssing prices"})
             .build();
