@@ -258,6 +258,8 @@ Learn more about the schema configuration [here](../data-schema/schema-configura
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | whether name of the property is used in the calculation for the vector position of data objects. default is true. Learn more about how to regulate indexing in Weaviate [here](../modules/text2vec-contextionary.html#regulate-semantic-indexing). |
 | `properties` > `name` | body | string | The name of the property, multiple words should be concatenated in camelCase like `nameOfAuthor`. |
 | `properties` > `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](../modules/text2vec-contextionary.html#regulate-semantic-indexing). |
+| `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. See [more details here](../data-schema/schema-configuration.html#property-tokenization).|
+| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwrds and therefore be ignored on inverted indexing and querying. See [more details here](../data-schema/schema-configuration.html#invertedindexconfig--stopwords-stopword-lists). |
 
 
 ### Example request for creating a class
@@ -311,6 +313,62 @@ POST v1/schema/{class_name}/properties
 ### Example request for adding a property
 
 {% include code/1.x/schema.things.properties.add.html %}
+
+# Inspect the shards of a class
+
+As described in [Architecture >
+Storage](architecture/storage.html#logical-storage-units-indices-shards-stores),
+creation of a class leads to creating an index which manages all the disk
+storage and vector indexing. An index itself can be comprised of multiple
+shards. If a class index is used on multiple nodes of a multi-node Weaviate
+cluster there must be at least one shard per node.
+
+You can view a list of all shards for a particular class:
+
+### Method and URL
+
+*Note: This API was added in `v1.12.0`*
+
+```js
+GET v1/schema/{class_name}/shards
+```
+
+### Parameters
+
+| name | location | type | description |
+| ---- | ---- | ----------- |
+| `{class_name}` | URL | string | The name of the class |
+
+### Example request viewing shards of a class
+
+{% include code/1.x/schema.shards.get.html %}
+
+# Update shard status
+
+A shard may have been marked as read-only, for example because the disk was
+full. You can manually set a shard to `READY` again using the following API.
+There is also a convenience function in each client to set the status of all
+shards of a class. 
+
+### Method and URL
+
+*Note: This API was added in `v1.12.0`*
+
+```js
+PUT v1/schema/{class_name}/shards/{shard_name}
+```
+
+### Parameters
+
+| name | location | type | description |
+| ---- | ---- | ----------- |
+| `{class_name}` | URL | string | The name of the class |
+| `{shard_name}` | URL | string | The name/id of the shard |
+| `status` | body | string | The status to update the shard to. One of `READONLY`, `READY` |
+
+### Example requests to update the status of a shard
+
+{% include code/1.x/schema.shards.put.html %}
 
 # More Resources
 

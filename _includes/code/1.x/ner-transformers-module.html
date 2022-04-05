@@ -47,7 +47,7 @@ const client = weaviate.client({
 client.graphql
       .get()
       .withClassName('Article')
-      .withFields('title _additional {tokens ( properties: [\'title\'], limit: 1, certainty: 0.7) entity property word certainty startPosition endPosition }')
+      .withFields('title _additional {tokens ( properties: [\'title\'], limit: 1, certainty: 0.7) {entity property word certainty startPosition endPosition} }')
       .do()
       .then(res => {
         console.log(res)
@@ -64,7 +64,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
 )
 
 cfg := weaviate.Config{
@@ -74,7 +74,19 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 
 className := "Article"
-fields := "title _additional {tokens ( properties: [\"title\"], limit: 1, certainty: 0.7) entity property word certainty startPosition endPosition }"
+fields := []graphql.Field{
+  {Name: "title"},
+  {Name: "_additional", Fields: []graphql.Field{
+    {Name: "tokens(properties: [\"title\"], limit: 1, certainty: 0.7)", Fields: []graphql.Field{
+      {Name: "entity"},
+      {Name: "property"},
+      {Name: "word"},
+      {Name: "certainty"},
+      {Name: "startPosition"},
+      {Name: "endPosition"},
+    }},
+  }},
+}
 
 result, err := client.GraphQL().Get().Objects().
   WithClassName(className).
@@ -93,7 +105,24 @@ fmt.Printf("%v", result)
 Config config = new Config("http", "localhost:8080");
 WeaviateClient client = new WeaviateClient(config);
 
-String fields = "title _additional {tokens ( properties: [\"title\"], limit: 1, certainty: 0.7) entity property word certainty startPosition endPosition }";
+Field title = Field.builder().name("title").build();
+Field _additional = Field.builder()
+            .name("_additional")
+            .fields(new Field[]{
+                Field.builder()
+                  .name("tokens (properties: [\"title\"], limit: 1, certainty: 0.7)")
+                  .fields(new Field[]{
+                      Field.builder().name("entity").build(),
+                      Field.builder().name("property").build(),
+                      Field.builder().name("word").build(),
+                      Field.builder().name("certainty").build(),
+                      Field.builder().name("startPosition").build(),
+                      Field.builder().name("endPosition").build()
+                  }).build()
+            }).build();
+Fields fields = Fields.builder()
+            .fields(new Field[]{title, _additional})
+            .build();
 
 Result<GraphQLResponse> result = client.graphQL().get()
             .withClassName("Article")

@@ -96,6 +96,19 @@ $ cp /var/weavite /var/weaviate.BAK
 
 For Kubernetes setup, the only thing to bear in mind is that Weaviate needs a `PersistentVolumes` through `PersistentVolumeClaims` ([more info](../getting-started/installation.html#requirements)) but the Helm chart is already configured to store the data on an external volume.
 
+## Disk Pressure Warnings and Limits
+
+Starting with `v1.12.0` there are two levels of disk usage notifications and actions configured through environment variables. Both variables are optional. If not set they default to the values outlined below:
+
+| Variable | Default Value | Description |
+| --- | --- | --- |
+| `DISK_USE_WARNING_PERCENTAGE` | `80` | If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk |
+| `DISK_USE_READONLY_PERCENTAGE` | `90` | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. |
+
+If a shard was marked `READONLY` due to disk pressure and you want to mark the
+shard as ready again (either because you have made more space available or
+changed the thresholds) you can use the [Shards API](../restful-api-references/schema.html#inspect-the-shards-of-a-class) to do so.
+
 # More Resources
 
 {% include docs-support-links.html %}

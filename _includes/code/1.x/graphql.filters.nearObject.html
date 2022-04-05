@@ -58,7 +58,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
 )
 
 cfg := weaviate.Config{
@@ -68,7 +68,12 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 
 className := "Publication"
-fields := "name _additional {certainty}"
+fields := []graphql.Field{
+  {Name: "name"},
+  {Name: "_additional", Fields: []graphql.Field{
+    {Name: "certainty"},
+  }},
+}
 nearObject := client.GraphQL().NearObjectArgBuilder().WithID("e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf")
 ctx := context.Background()
 
@@ -86,12 +91,19 @@ fmt.Printf("%v", result)
 
 <!-- SET JAVA TAB CONTENT -->
 {% capture java %}
-
 Config config = new Config("http", "localhost:8080");
 WeaviateClient client = new WeaviateClient(config);
 
 String className = "Publication";
-String fields = "name _additional {certainty}";
+Field name = Field.builder().name("name").build();
+Field _additional = Field.builder()
+    .name("_additional")
+    .fields(new Field[]{
+        Field.builder().name("certainty").build()
+    }).build();
+Fields fields = Fields.builder()
+    .fields(new Field[]{name, _additional})
+    .build();
 NearObjectArgument nearObject = client.graphQL().arguments().nearObjectArgBuilder()
             .id("e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf")
             .build();
