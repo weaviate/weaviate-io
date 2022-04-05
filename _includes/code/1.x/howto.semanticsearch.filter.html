@@ -106,7 +106,7 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 
 className := "Publication"
-fields := []graphql.Field{{Name: "name"}}
+{% raw %}fields := []graphql.Field{{Name: "name"}}{% endraw %}
 
 concepts := []string{"fashion"}
 moveTo := &graphql.MoveParameters{

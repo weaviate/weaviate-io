@@ -58,7 +58,7 @@ cfg := weaviate.Config{
 }
 client := weaviate.New(cfg)
 
-fields := []graphql.Field{{Name: "title"}}
+{% raw %}fields := []graphql.Field{{Name: "title"}}{% endraw %}
 
 ctx := context.Background()
 result, err := client.GraphQL().Get().Objects().

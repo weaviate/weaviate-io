@@ -62,7 +62,7 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 
 className := "FashionItem"
-fields := []graphql.Field{{Name: "image"}}
+{% raw %}fields := []graphql.Field{{Name: "image"}}{% endraw %}
 
 nearImage := client.GraphQL().NearImageArgBuilder().WithImage("/9j/4AAQSkZJRgABAgE...")
 ctx := context.Background()
