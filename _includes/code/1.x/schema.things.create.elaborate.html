@@ -47,6 +47,14 @@ class_obj = {
               }
         }
     ],
+    "shardingConfig": {
+      "virtualPerPhysical": 128,
+      "desiredCount": 1,             
+      "desiredVirtualCount": 128,
+      "key": "_id",
+      "strategy": "hash",
+      "function": "murmur3"
+    },
     "invertedIndexConfig": {
       "stopwords": {
         "preset": "en",
@@ -111,6 +119,14 @@ var classObj = {
               }
         }
     ],
+    "shardingConfig": {
+      "virtualPerPhysical": 128,
+      "desiredCount": 1,             
+      "desiredVirtualCount": 128,
+      "key": "_id",
+      "strategy": "hash",
+      "function": "murmur3"
+    },
     "invertedIndexConfig": {
       "stopwords": {
         "preset": "en",
@@ -297,6 +313,14 @@ $ curl \
               }
         }
     ],
+    "shardingConfig": {
+      "virtualPerPhysical": 128,
+      "desiredCount": 1,             
+      "desiredVirtualCount": 128,
+      "key": "_id",
+      "strategy": "hash",
+      "function": "murmur3"
+    },
     "invertedIndexConfig": {
       "stopwords": {
         "preset": "en",
