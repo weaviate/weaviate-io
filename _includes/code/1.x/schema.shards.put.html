@@ -1,0 +1,125 @@
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+# Update a shard
+client.schema.update_class_shard(
+  class_name='Article',
+  status='READONLY',
+  shard_name='shard-1234',
+)
+
+# Convenience method to update all shards in a class
+client.schema.update_class_shard(
+  class_name='Article',
+  status='READONLY',
+)
+{% endcapture %}
+
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+// Update a shard
+client.schema
+  .shardUpdater()
+  .withClassName("Article")
+  .withShardName("shard-1234")
+  .withStatus("READONLY")
+  .do()
+
+// Convenience method to update all shards in a class
+client.schema
+  .shardsUpdater()
+  .withClassName("Article")
+  .withStatus("READONLY")
+  .do()
+{% endcapture %}
+
+{% capture go %}
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+)
+
+cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+}
+
+client := weaviate.New(cfg)
+
+// Update a shrard
+status, err := client.Schema().
+	ShardUpdater().
+	WithClassName("Article").
+	WithShardName("shard-1234").
+	WithStatus("READONLY").
+	Do(context.Background())
+if err != nil {
+    panic(err)
+}
+
+// Convenience method to update all shards in a class
+shards, err := client.Schema().
+	ShardsUpdater().
+	WithClassName("Article").
+	WithStatus("READY").
+	Do(context.Background())
+if err != nil {
+    panic(err)
+}
+{% endcapture %}
+
+{% capture java %}
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+// Update a shard
+Result<ShardStatus> result = client.schema()
+  .shardUpdater()
+  .withClassName("Article")
+  .withShardName("shard-1234")
+  .withStatus(ShardStatuses.READONLY)
+  .run();
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+// Convenience method to update all shards in a class
+Result<ShardStatus[]> result = client.schema()
+  .shardsUpdater()
+  .withClassName("Article")
+  .withStatus(ShardStatuses.READY)
+  .run();
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+{% endcapture %}
+
+
+{% capture curl %}
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+         "status": "READONLY"
+        }' \
+    http://localhost:8080/v1/schema/Article/shards/shard-1234
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='schema-shards-get' %}

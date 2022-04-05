@@ -326,6 +326,8 @@ You can view a list of all shards for a particular class:
 
 ### Method and URL
 
+*Note: This API was added in `v1.12.0`*
+
 ```js
 GET v1/schema/{class_name}/shards
 ```
@@ -339,6 +341,33 @@ GET v1/schema/{class_name}/shards
 ### Example request viewing shards of a class
 
 {% include code/1.x/schema.shards.get.html %}
+
+# Update shard status
+
+A shard may have been marked as read-only, for example because the disk was
+full. You can manually set a shard to `READY` again using the following API.
+There is also a convenience function in each client to set the status of all
+shards of a class. 
+
+### Method and URL
+
+*Note: This API was added in `v1.12.0`*
+
+```js
+PUT v1/schema/{class_name}/shards/{shard_name}
+```
+
+### Parameters
+
+| name | location | type | description |
+| ---- | ---- | ----------- |
+| `{class_name}` | URL | string | The name of the class |
+| `{shard_name}` | URL | string | The name/id of the shard |
+| `status` | body | string | The status to update the shard to. One of `READONLY`, `READY` |
+
+### Example requests to update the status of a shard
+
+{% include code/1.x/schema.shards.put.html %}
 
 # More Resources
 

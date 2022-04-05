@@ -107,7 +107,7 @@ Starting with `v1.12.0` there are two levels of disk usage notifications and act
 
 If a shard was marked `READONLY` due to disk pressure and you want to mark the
 shard as ready again (either because you have made more space avaialble or
-changed the thresholds) you can use the [Shards API](TODO) to do so.
+changed the thresholds) you can use the [Shards API](../restful-api-references/schema.html#inspect-the-shards-of-a-class) to do so.
 
 # More Resources
 
