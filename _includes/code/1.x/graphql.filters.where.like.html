@@ -73,15 +73,16 @@ cfg := weaviate.Config{
 }
 client := weaviate.New(cfg)
 
-where := `{
-  path: ["name"],
-  operator: Like,
-  valueString: "New *"
-}`
+fields := []graphql.Field{{Name: "name"}}
+where := client.GraphQL().WhereArgBuilder().
+	WithPath([]string{"name"}).
+	WithOperator(graphql.Like).
+	WithValueString("New *")
+
 ctx := context.Background()
 result, err := client.GraphQL().Get().Objects().
   WithClassName("Publication").
-  WithFields("name").
+  WithFields(fields).
   WithWhere(where).
   Do(ctx)
 

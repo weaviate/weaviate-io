@@ -107,7 +107,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
 )
 
 cfg := weaviate.Config{
@@ -116,16 +116,22 @@ cfg := weaviate.Config{
 }
 client := weaviate.New(cfg)
 
-where := `{
-  valueInt: 2
-  operator: GreaterThanEqual
-  path: ["WroteArticles"]
-}`
+fields := []graphql.Field{
+  {Name: "name"},
+  {Name: "wroteArticles", Fields: []graphql.Field{
+    {Name: "... on Article", Fields: []graphql.Field{{Name: "title"}}},
+  }},
+}
+where := client.GraphQL().WhereArgBuilder().
+	WithPath([]string{"WroteArticles"}).
+	WithOperator(graphql.GreaterThanEqual).
+	WithValueInt(2)
+
 ctx := context.Background()
 
 result, err := client.GraphQL().Get().Objects().
   WithClassName("Author").
-  WithFields("name wroteArticles{ ... on Article { title }}").
+  WithFields(fields).
   WithWhere(where).
   Do(ctx)
 

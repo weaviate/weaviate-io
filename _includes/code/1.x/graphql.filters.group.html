@@ -83,10 +83,13 @@ client := weaviate.New(cfg)
 
 ctx := context.Background()
 
+fields := []graphql.Field{{Name: "name"}}
+group := client.GraphQL().GroupArgBuilder().WithType(graphql.Merge).WithForce(0.05)
+
 result, err := client.GraphQL().Get().Objects().
   WithClassName("Publication").
-  WithFields("name").
-  WithGroup(`{type: merge force: 0.05}`).
+  WithFields(fields).
+  WithGroup(group).
   Do(ctx)
 
 if err != nil {

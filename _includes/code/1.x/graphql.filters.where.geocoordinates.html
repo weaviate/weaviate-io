@@ -112,24 +112,27 @@ cfg := weaviate.Config{
 }
 client := weaviate.New(cfg)
 
-where := `{
-  operator: WithinGeoRange,
-  valueGeoRange: {
-    geoCoordinates: {
-      latitude: 51.51,
-      longitude: -0.09
-    },
-    distance: {
-      max: 2000
-    }
-  },
-  path: ["headquartersGeoLocation"]
-}`
+fields := []graphql.Field{
+  {Name: "name"},
+  {Name: "headquartersGeoLocation", Fields: []graphql.Field{
+    {Name: "latitude"},
+    {Name: "longitude"},
+  }},
+}
+where := client.GraphQL().WhereArgBuilder().
+	WithOperator(graphql.WithinGeoRange).
+	WithPath([]string{"headquartersGeoLocation"}).
+	WithValueGeoRange(&graphql.GeoCoordinatesParameter{
+		Latitude:    51.51,
+		Longitude:   -0.09,
+		MaxDistance: 2000,
+	})
+
 ctx := context.Background()
 
 result, err := client.GraphQL().Get().Objects().
   WithClassName("Publication").
-  WithFields("name headquartersGeoLocation{latitude longitude}").
+  WithFields(fields).
   WithWhere(where).
   Do(ctx)
 

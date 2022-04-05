@@ -85,6 +85,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"time"
 	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
 )
 
@@ -94,23 +95,32 @@ cfg := weaviate.Config{
 }
 client := weaviate.New(cfg)
 
-where := `{
-  operator: And,
-  operands: [{
-    path: ["wordCount"],
-    operator: GreaterThan
-    valueInt: 1000
-  }, {
-    path: ["publicationDate"],
-    operator: LessThan,
-    valueDate:"2020-01-01T00:00:00-07:00"
-  }]
-}`
+fields := []graphql.Field{{Name: "title"}}
+
+dateString := "2014-11-12T11:45:26.371Z"
+date, err := time.Parse(time.RFC3339, dateString)
+if err != nil {
+    return err
+}
+
+where := client.GraphQL().WhereArgBuilder().
+	WithOperator(graphql.And).
+	WithOperands([]*graphql.WhereFilterBuilder{
+		client.GraphQL().WhereFilterBuilder().
+			WithPath([]string{"wordCount"}).
+			WithOperator(graphql.GreaterThan).
+			WithValueInt(1000),
+		client.GraphQL().WhereFilterBuilder().
+			WithPath([]string{"publicationDate"}).
+			WithOperator(graphql.LessThan).
+			WithValueDate(date),
+	})
+
 ctx := context.Background()
 
 result, err := client.GraphQL().Get().Objects().
   WithClassName("Article").
-  WithFields("title").
+  WithFields(fields).
   WithWhere(where).
   Do(ctx)
 

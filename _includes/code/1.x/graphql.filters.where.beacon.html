@@ -88,16 +88,22 @@ cfg := weaviate.Config{
 }
 client := weaviate.New(cfg)
 
-where := `{
-  path: ["inPublication", "Publication", "name"],
-  operator: Equal,
-  valueString: "New Yorker"
-}`
+fields := []graphql.Field{
+  {Name: "title"},
+  {Name: "inPublication", Fields: []graphql.Field{
+    {Name: "... on Publication", Fields: []graphql.Field{{Name: "name"}}},
+  }},
+}
+where := client.GraphQL().WhereArgBuilder().
+	WithPath([]string{"inPublication", "Publication", "name"}).
+	WithOperator(graphql.Equal).
+	WithValueString("New Yorker")
+
 ctx := context.Background()
 
 result, err := client.GraphQL().Get().Objects().
   WithClassName("Article").
-  WithFields("title inPublication{... on Publication{ name }}").
+  WithFields(fields).
   WithWhere(where).
   Do(ctx)
 

@@ -68,7 +68,12 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 
 className := "Publication"
-fields := "name _additional {certainty}"
+fields := []graphql.Field{
+  {Name: "name"},
+  {Name: "_additional", Fields: []graphql.Field{
+    {Name: "certainty"},
+  }},
+}
 nearObject := client.GraphQL().NearObjectArgBuilder().WithID("e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf")
 ctx := context.Background()
 

@@ -58,10 +58,12 @@ cfg := weaviate.Config{
 }
 client := weaviate.New(cfg)
 
+fields := []graphql.Field{{Name: "title"}}
+
 ctx := context.Background()
 result, err := client.GraphQL().Get().Objects().
   WithClassName("Article").
-  WithFields("title").
+  WithFields(fields).
   WithLimit(5).
   Do(ctx)
 

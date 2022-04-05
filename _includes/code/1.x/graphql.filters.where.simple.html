@@ -72,16 +72,17 @@ cfg := weaviate.Config{
 }
 client := weaviate.New(cfg)
 
-where := `{
-  path: ["wordCount"],
-  operator: GreaterThan,
-  valueInt: 1000
-}`
+fields := []graphql.Field{{Name: "title"}}
+where := client.GraphQL().WhereArgBuilder().
+	WithPath([]string{"wordCount"}).
+	WithOperator(graphql.GreaterThan).
+	WithValueInt(1000)
+
 ctx := context.Background()
 
 result, err := client.GraphQL().Get().Objects().
   WithClassName("Article").
-  WithFields("title").
+  WithFields(fields).
   WithWhere(where).
   Do(ctx)
 
