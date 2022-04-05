@@ -83,6 +83,9 @@ An example of a complete class object including properties:
   ],
   "invertedIndexConfig": {                  // Optional, defaults to the values shown here.
     "cleanupIntervalSeconds": 60            // Interval for async cleanup operations.
+    "stopwords": { 
+      ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
+    },
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of class in a multi-node setting, see section below
@@ -167,6 +170,45 @@ The meaning of the individual fields in detail:
   target (virtual - and therefore physical) shard. `"murmur3"` creates a 64bit
   hash making hash collisions very unlikely.
 
+### invertedIndexConfig > stopwords (Stopword lists)
+
+*Note: This feature was introduced in `v1.12.0`.*
+
+Properties of type `text` and `string` may contain words that are very common
+and have no meaning. In this case you may want to remove them entirely from
+indexing. This will save storage space on disk and speed up queries that
+contain stopwords, as they can be automatically removed from queries as well.
+This speed up is very notable on scored searches, such as `BM25`.
+
+The stopword configuration uses a preset system. You can select a preset to use
+the most common stopwords for a particular language. If you need more
+fine-grained control, you can add additional stopwords or remove stopwords that
+you believe should not be part of the list. Alternatively, you can also create
+your completely custom stopword list by starting with an empty (`"none"`)
+preset and adding all your desired stopwords as additions.
+
+```json
+  "invertedIndexConfig": {
+    "stopwords": {
+      "preset": "en",
+      "additions": ["star", "nebula"],
+      "removals": ["a", "the"]
+    }
+  }
+```
+
+This configuration allows stopwords to be configured by class. If not set, these values are set to the following defaults:
+
+| Parameter | Default value | Acceptable values |
+| --- | --- | --- | 
+| `"preset"` | `"en"` | `"en"`, `"none"` |
+| `"additions"` | `[]` | *any list of custom words* |
+| `"removals"` | `[]` | *any list of custom words* |
+
+
+**Notes**
+- If none is the selected preset, then the class' stopwords will consist entirely of the additions list.
+- If the same item is included in both additions and removals, then an error is returned
 
 # Property object
 
@@ -246,6 +288,7 @@ would not return the object mentioned above, but only the exact string `"hello
 
 If no values are provided, properties of type `text` and `string` deafult to
 `"word"` level tokenization for backward-compatibility.
+
 
 # Auto-schema
 

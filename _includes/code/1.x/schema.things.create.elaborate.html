@@ -46,7 +46,14 @@ class_obj = {
                 }
               }
         }
-    ]
+    ],
+    "invertedIndexConfig": {
+      "stopwords": {
+        "preset": "en",
+        "additions": ["star", "nebula"],
+        "removals": ["a", "the"]
+      }
+    }
 }
 
 new_class = client.schema.create_class(class_obj)
@@ -103,7 +110,14 @@ var classObj = {
                 }
               }
         }
-    ]
+    ],
+    "invertedIndexConfig": {
+      "stopwords": {
+        "preset": "en",
+        "additions": ["star", "nebula"],
+        "removals": ["a", "the"]
+      }
+    }
 }
 
 client
@@ -126,6 +140,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/semi-technologies/weaviate-go-client/v2/weaviate"
+	"github.com/semi-technologies/weaviate/entities/models"
 )
 
 cfg := weaviate.Config{
@@ -151,6 +166,12 @@ classObj := &models.Class{
             Name:        "content",
         },
     },
+    InvertedIndexConfig: &models.InvertedIndexConfig{
+      Stopwords: &models.StopwordConfig{
+          Preset:    "en",
+      Additions: []string{"star", "nebula"},
+      Removals:  []string{"a", "the"},
+    },
 }
 
 err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
@@ -165,11 +186,22 @@ if err != nil {
 Config config = new Config("http", "localhost:8080");
 WeaviateClient client = new WeaviateClient(config);
 
+StopwordConfig stopwordConfig = StopwordConfig.builder()
+            .preset("en")
+            .additions(new String[]{ "star", "nebula" })
+            .removals(new String[]{ "a", "the" })
+            .build();
+
+InvertedIndexConfig invertedIndexConfig = InvertedIndexConfig.builder()
+            .stopwords(stopwordConfig)
+            .build();
+
 WeaviateClass clazz = WeaviateClass.builder()
             .className("Article")
             .description("A written text, for example a news article or blog post")
             .vectorIndexType("hnsw")
             .vectorizer("text2vec-contextionary")
+            .invertedIndexConfig(invertedIndexConfig)
             .properties(new ArrayList() { {
                 add(Property.builder()
                       .dataType(new ArrayList(){ { add(DataType.STRING); } })
@@ -240,7 +272,14 @@ $ curl \
                 }
               }
         }
-    ]
+    ],
+    "invertedIndexConfig": {
+      "stopwords": {
+        "preset": "en",
+        "additions": ["star", "nebula"],
+        "removals": ["a", "the"]
+      }
+    }
 }' \
 http://localhost:8080/v1/schema
 {% endcapture %}
