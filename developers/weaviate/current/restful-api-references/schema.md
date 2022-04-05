@@ -313,6 +313,33 @@ POST v1/schema/{class_name}/properties
 
 {% include code/1.x/schema.things.properties.add.html %}
 
+# Inspect the shards of a class
+
+As described in [Architecture >
+Storage](architecture/storage.html#logical-storage-units-indices-shards-stores),
+creation of a class leads to creating an index which manages all the disk
+storage and vector indexing. An index itself can be comprised of multiple
+shards. If a class index is used on multiple nodes of a multi-node Weaviate
+cluster there must be at least one shard per node.
+
+You can view a list of all shards for a particular class:
+
+### Method and URL
+
+```js
+GET v1/schema/{class_name}/shards
+```
+
+### Parameters
+
+| name | location | type | description |
+| ---- | ---- | ----------- |
+| `{class_name}` | URL | string | The name of the class |
+
+### Example request viewing shards of a class
+
+{% include code/1.x/schema.shards.get.html %}
+
 # More Resources
 
 {% include docs-support-links.html %}
