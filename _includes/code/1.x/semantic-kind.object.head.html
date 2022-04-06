@@ -1,17 +1,70 @@
 {% capture python %} 
-Python support coming shortly. 
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+exists = client.data_object.exists("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+print(exists) 
 {% endcapture %} 
 
 {% capture javascript %}
-Javascript support coming shortly.
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.data
+  .checker()
+  .withId("df48b9f6-ba48-470c-bf6a-57657cb07390")
+  .do()
+  .then((exists) => {
+    console.log(exists)
+  })
+  .catch(err =>
+    console.error(err)
+  );
 {% endcapture %}
 
 {% capture go %} 
-Go support coming shortly. 
+package main
+
+import (
+  "context"
+  "fmt"
+  "github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+)
+
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+
+exists, checkErrT := client.Data().Checker().
+  WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a0923").
+  Do(context.Background())
+
+if err != nil {
+  panic(err)
+}
+fmt.Printf("%v", exists)
 {% endcapture %}
 
 {% capture java %} 
-Java support coming shortly. 
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+
+Result<Boolean> result = client.data().checker()
+  .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+  .run();
+
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
 {% endcapture %} 
 
 {% capture curl %} 
