@@ -277,6 +277,15 @@ After the build is complete, you can run this Weaviate build with docker-compose
 
 To obtain the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) from weaviate's `certainty`, you can do `cosine_sim = 2*certainty - 1`
 
+## Q: My Weaviate setup is using more memory than what I think is reasonable. How can I debug this?
+
+First of all, make sure your import runs with the latest version of Weaviate,
+since `v1.12.0`/`v1.12.1` fixed an issue where [too much data was written to
+disk](https://github.com/semi-technologies/weaviate/issues/1868) which then
+lead to unreasonable memory consumption after restarts. If this did not fix the
+issue yet, please see this post on [how to profile the memory usage of a
+Weaviate setup](https://stackoverflow.com/a/71793178/5322199). 
+
 ## More questions? 
 
 Look at the:
