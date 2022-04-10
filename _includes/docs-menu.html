@@ -1,6 +1,10 @@
 <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
     <div class="collapse d-lg-block" id="sidenavCollapse">
         <div class="py-7 py-lg-9 px-lg-7">
+            <!-- Github link -->
+            <div style="width:100%; justify-content: center;">
+                <a class="github-button" href="https://github.com/semi-technologies/weaviate" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star semi-technologies/weaviate on GitHub">Star</a>
+            </div>
             <!-- sets the current version tags -->
             {% include docs-current_version_finder.html %}
             <!-- IMPORTANT: NOTE THAT THE SUBMENU ORDER IS SET IN CONFIG.YML -->
@@ -10,7 +14,7 @@
                     <ul class="list mb-6">
                       <li class="list-item">
                         <div class="dropdown">
-                            <button class="btn btn-xs btn-primary dropdown-toggle mb-5" type="button" id="view_version" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button style="width:100%" class="btn btn-xs btn-primary dropdown-toggle mb-5" type="button" id="view_version" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             </button>
                             <div class="dropdown-menu dropdown-menu-xs" aria-labelledby="view_version">
                                 {% for version in site.weaviate_versions %}                            
