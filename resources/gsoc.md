@@ -67,7 +67,6 @@ We are happy to announce a great pool of mentors this year. Depending on the sub
 * [Marcin Antas](https://www.linkedin.com/in/antasmarcin/)
 * [Sila Uygun](https://www.linkedin.com/in/silauygun/)
 * [Donna van der Rijst](https://www.linkedin.com/in/donna-van-der-rijst-693586123/)
-* [Micha Verhagen](https://www.linkedin.com/in/michaverhagen/)
 
 ## Ideas:
 
