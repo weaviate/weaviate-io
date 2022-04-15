@@ -107,7 +107,7 @@ Nice to have:
 
 ### **Contact info**
 
-Technical writers interested in working on this project should send an email to laura AT semi.technology. Please include links to your technical writing work or portfolio/résumé/CV.
+Technical writers interested in working on this project should send an email to careers AT semi.technology. Please include links to your technical writing work or portfolio/résumé/CV.
 
 
 ## **Additional information**
