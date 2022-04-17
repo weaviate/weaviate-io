@@ -96,7 +96,7 @@ As you can see in the code snippet above, all other fields are read-only. These 
 
 The datatype blob accepts any binary data. The data should be `base64` encoded, and passed as a `string`. Characteristics:
 * Weaviate doesn't make assumptions about the type of data that is encoded. A module (e.g. `img2vec`) can investigate file headers as it wishes, but Weaviate itself does not do this. 
-* When storing, the data is `base64` decoded (so Weaviate storeS it more efficiently). 
+* When storing, the data is `base64` decoded (so Weaviate stores it more efficiently). 
 * When serving, the data is `base64` encoded (so it is safe to serve as `json`). 
 * There is no max file size limit. 
 * This `blob` field is always skipped in the inverted index, regardless of setting. This mean you can not search by this `blob` field in a Weaviate GraphQL `where` filter, and there is no `valueBlob` field accordingly. Depending on the module, this field can be used in module-specific filters (e.g. `nearImage`{} in the `img2vec-neural` filter).

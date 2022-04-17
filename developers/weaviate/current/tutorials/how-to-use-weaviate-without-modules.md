@@ -84,7 +84,7 @@ Check the [API reference](../restful-api-references/objects.html#create-a-data-o
 
 You can search through vector data with Weaviate. If you don't have any modules attached, you can enter a vector and Weaviate will return vectors that are closest to this vector (computed by the cosine distance). Make sure the length of the search vector is the same as the vector length of the objects in your Weaviate instance.
 
-Seaching for and by vectors can be done with GraphQL. You can use an `explore` filter to find data objects close to a specified vector in your dataset. The `nearVector{}` filter is structured as follows for the `Get{}` function:
+Searching for and by vectors can be done with GraphQL. You can use an `explore` filter to find data objects close to a specified vector in your dataset. The `nearVector{}` filter is structured as follows for the `Get{}` function:
 
 {% include code/1.x/howto.customvectors.nearvector.html %}
 
