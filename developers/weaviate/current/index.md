@@ -114,7 +114,7 @@ Want to get started or want to learn more? These resources might help you furthe
 - Learn more:
     - [Talk and demonstration @ FOSDEM 2020](/news/fosdem-2020.html)
     - [Weaviate introduction on Google Cloud's Stack Chat](https://www.semi.technology/news/gcp-stackchat.html)
-    - [Podcast about Weaviate](/news/gcp-podcast.html)
+    - [Podcast about Weaviate](https://weaviate.io/podcast.html)
 
 # More resources
 
