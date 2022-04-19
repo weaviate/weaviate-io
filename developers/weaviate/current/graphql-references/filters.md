@@ -2,8 +2,8 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: GraphQL references
-title: Filters
-intro: Filters can be set to order or sort your dataset or to find specific data objects. Some filters are available in multiple functions where others are only available in specific ones. Some filters are only available when specific modules are activated. Check the <a href="../modules/">modules</a> pages, like <a href="../modules/text2vec-contextionary.html#neartext">text2vec-contextionary</a> or <a href="../modules/text2vec-transformers.html#neartext">text2vec-transformers</a> for a nearText filter or <a href="../modules/qna-transformers.html#how-to-use-graphql">qna-transformers</a> for the question answering filter.
+title: Filters &amp; Search Parameters
+intro: Filters and search parameters can be set to order or sort your dataset or to find specific data objects. Some filters are available in multiple functions where others are only available in specific ones. Some filters are only available when specific modules are activated. Check the <a href="../modules/">modules</a> pages, like <a href="../modules/text2vec-contextionary.html#neartext">text2vec-contextionary</a> or <a href="../modules/text2vec-transformers.html#neartext">text2vec-transformers</a> for a nearText filter or <a href="../modules/qna-transformers.html#how-to-use-graphql">qna-transformers</a> for the question answering filter.
 description: GraphQL filters
 tags: ['graphql', 'filters']
 menu-order: 4
@@ -231,11 +231,11 @@ For example, this curious returns all in a radius of 2KM around a specific geo-l
 }
 ```
 
-# Limit filter
+# Limit Argument
 
 Supported by the `Get{}`, `Explore{}` and `Aggregate{}` function.
 
-A limit filter limits the number of results.
+A limit argument limits the number of results.
 
 An example of a stand-alone limit filter:
 
@@ -272,11 +272,11 @@ An example of a stand-alone limit filter:
 }
 ```
 
-# Offset filter (pagination)
+# Offset argument (pagination)
 
 Supported by the `Get{}`, `Explore{}` and `Aggregate{}` function.
 
-The offset filter works in conjunction with the existing limit parameter. For example, to list the first ten results, set `limit: 10`. Then, to "display the second page of 10", set `offset: 10`, `limit:10` and so on. E.g. to show the 9th page of 10 results, set `offset:80, limit:10` to effectively display results 81-90.
+The offset parameter works in conjunction with the existing limit parameter. For example, to list the first ten results, set `limit: 10`. Then, to "display the second page of 10", set `offset: 10`, `limit:10` and so on. E.g. to show the 9th page of 10 results, set `offset:80, limit:10` to effectively display results 81-90.
 
 An example of a stand-alone limit filter:
 
@@ -321,13 +321,13 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 - The pagination setup is not stateful. If the database state has changed between retrieving two pages there is no guarantee that your pages cover all results. If no writes happened, then pagination can be used to retrieve all possible within the maximum limit. This means asking for a single page of 10,000 objects will lead to the same results overall as asking for 100 pages of 100 results. 
 
 
-# NearVector filter
+# NearVector Vector Search Argument
 
-Supported by the `Get{}` function. (Note that this filter is different from the [GraphQL `Explore{}` function](explore.html) )
+Supported by the `Get{}` function. (Note that this argument is different from the [GraphQL `Explore{}` function](explore.html) )
 
-Note: Cannot use multiple `'near'` filters, or a `'near'` filter along with an [`'ask'`](../modules/qna-transformers.html#how-to-use-graphql) filter!
+Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](../modules/qna-transformers.html#how-to-use-graphql) filter!
 
-You can use an explore filter to find data objects close to a specified vector in your dataset. The `nearVector{}` filter is structured as follows for the `Get{}` function:
+You can use an `nearVector` to find data objects close to a specified vector in your dataset. The `nearVector{}` argument is structured as follows for the `Get{}` function:
 
 {% include code/1.x/graphql.filters.nearVector.html %}
 
@@ -339,13 +339,13 @@ Note that the length of the given vector in the filter needs to be of the same l
 
 You can set a minimum required `certainty`, which will be used to determine which data results to return. The value is a float between 0.0 (return all data objects, regardless similarity) and 1.0 (only return data objects that are matching completely, without any uncertainty). The certainty of a query result is computed by normalized distance of the fuzzy query and the data object in the vector space.
 
-# NearObject filter
+# NearObject Vector Search Argument
 
 Weaviate can search based on a data object. Weaviate will return data objects that are closest to this data object in the semantic space.
 
-Note: Cannot use multiple `'near'` filters, or a `'near'` filter along with an [`'ask'`](../modules/qna-transformers.html#how-to-use-graphql) filter!
+Note: Cannot use multiple `near<Media>` arguments, or a `near<Media>` argument along with an [`ask`](../modules/qna-transformers.html#how-to-use-graphql) argument!
 
-You can specify an object's `id` or `beacon` in the filter, along with a desired `certainty`: 
+You can specify an object's `id` or `beacon` in the argument, along with a desired `certainty`: 
 
 {% include code/1.x/graphql.filters.nearObject.html %}
 
@@ -356,11 +356,11 @@ Note that the first result will always be the object in the filter itself.
 Near object search can also be combined with the [`text2vec-contextionary` module](../modules/text2vec-contextionary.html#moving) as movement. 
 
 
-# Group filter (entity merging)
+# Group Operator (entity merging)
 
 Supported by the `Get{}` function.
 
-You can use a group filter to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
+You can use a group operator to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
 
 - `closest`, which shows the one result closest to the others.
 - `merge`, which merges all results into one.

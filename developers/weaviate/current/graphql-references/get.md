@@ -70,6 +70,17 @@ The above query will result in something like the following:
 
 For every Get{} request you can get additional information about the returned data object(s) by using additional properties. You can recognize these properties because they are in the object `_additional{}`. Additional properties can help you interpret query results and can for example be used for projection and visualization of the retrieved data. An overview of all additional properties and how to use them is documented [here](additional-properties.html).
 
+# Vector Search Operators
+
+To combine `Get { }` with a vector search argument, here is an overview of the supported arguments and links to their detailed documentation:
+
+| Argument | Description | Required Modules (at least one of) | Learn More |
+| --- | --- | --- | --- |
+| `nearObject` | Find the nearest neighbors of an object referenced by its id | *none - works out of the box* | [Learn more](../graphql-references/filters.html#nearobject-vector-search-argument) |
+| `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](../graphql-references/filters.html#nearvector-vector-search-argument) |
+| `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip` | [Transformers](../retriever-vectorizer-modules/text2vec-transformers.html#neartext), [Contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html#neartext), [OpenAI](../retriever-vectorizer-modules/text2vec-openai.html#neartext), [CLIP](../retriever-vectorizer-modules/multi2vec-clip.html#neartext) |
+| `nearImage` | Vectorize an image and perform a vector search based on it | `multi2vec-clip`, `img2vec-neural` | [CLIP](../retriever-vectorizer-modules/multi2vec-clip.html#neartext), [Img2Vec](../retriever-vectorizer-modules/img2vec-neural.html#nearimage-search) |
+
 # Filters
 
 `Get{}` functions can be extended with search filters (both semantic filters as traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.html).
