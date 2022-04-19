@@ -91,6 +91,10 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
   ```
   cd weaviate-io
   ```
+- Add upstream URL, this acts as a reference from original weaviate.io's repository
+  ```bash
+  git remote add upstream git@github.com:semi-technologies/weaviate-io.git
+  ```
 - Perform the following commands to install dependencies and structure the website properly:
   ```
   bundle config set --local path 'vendor/cache'
