@@ -259,7 +259,7 @@ Learn more about the schema configuration [here](../data-schema/schema-configura
 | `properties` > `name` | body | string | The name of the property, multiple words should be concatenated in camelCase like `nameOfAuthor`. |
 | `properties` > `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](../modules/text2vec-contextionary.html#regulate-semantic-indexing). |
 | `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. See [more details here](../data-schema/schema-configuration.html#property-tokenization).|
-| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwrds and therefore be ignored on inverted indexing and querying. See [more details here](../data-schema/schema-configuration.html#invertedindexconfig--stopwords-stopword-lists). |
+| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](../data-schema/schema-configuration.html#invertedindexconfig--stopwords-stopword-lists). |
 
 
 ### Example request for creating a class

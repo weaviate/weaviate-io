@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Tutorials
 title: Write great Bug Reports
-intro: Bugs can be annoying, right? They don't have to be. Every discovered bug is a chance to help make Weaviate better. We are happy about bug rreports because they highlight that we missed something and help us make sure an issue will never occur again. For our engineers to quickly identify and fix a bug there is some information that we may need. This tutorial is about how to write a great bug report.
+intro: Bugs can be annoying, right? They don't have to be. Every discovered bug is a chance to help make Weaviate better. We are happy about bug reports because they highlight that we missed something and help us make sure an issue will never occur again. For our engineers to quickly identify and fix a bug there is some information that we may need. This tutorial is about how to write a great bug report.
 description: How to write great bug reports
 tags: ['how to', 'reporting a bug', 'bugfix', 'reproducing example']
 menu-order: 8
@@ -115,7 +115,7 @@ some of the individual areas and see *how* we can write better reports.
   request, a non-2xx HTTP status code or an error message containing
   information about shards and indices, there is a good chance the bug occurred
   inside the Weaviate server. If you see something that is very specific to the
-  client's language however, it may be an indciation that the error occurred in
+  client's language however, it may be an indication that the error occurred in
   the client.
 - If you are using any other tools from the Weaviate eco-system, for example
   the `weaviate-helm` repository to run on Kubernetes, there is also a chance

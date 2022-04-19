@@ -159,7 +159,7 @@ The meaning of the individual fields in detail:
   specified in `"key"`.
 
 * `"key"`: *string, optional, immutable*. As of `v1.8.0` only supports `"_id"`.
-  This value controls the partioning key that is used for the hashing function
+  This value controls the partitioning key that is used for the hashing function
   to determine the target shard. As of now, only the internal id-field
   (containing the object's UUID) can be used to determine the target shard.
   Custom keys may be supported at a later point.
@@ -275,7 +275,7 @@ searching through the inverted index. Text is always tokenized at the `word`
 level, meaning that words will be split when a non-alphanumeric character
 appears. For example, the string `"hello (beautiful) world"`, would be split
 into the tokens `"hello", "beautiful", "world"`. Each token will be indexed
-seperately in the inverted index. This means that a search for any of the three
+separately in the inverted index. This means that a search for any of the three
 tokens would return this object. 
 
 Sometimes there are situations when exact string matching across the whole field
@@ -286,7 +286,7 @@ indexed as a single token. This means searching for `"hello"` or `"world"`
 would not return the object mentioned above, but only the exact string `"hello
 (beautiful) world"` will match.
 
-If no values are provided, properties of type `text` and `string` deafult to
+If no values are provided, properties of type `text` and `string` default to
 `"word"` level tokenization for backward-compatibility.
 
 

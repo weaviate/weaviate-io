@@ -169,7 +169,7 @@ An overview of environment variables in the docker-compose file:
   | `PERSISTENCE_DATA_PATH` | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
   | `ENABLE_MODULES` | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
   | `TRANSFORMERS_INFERENCE_API` | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
-  | `DEFAULT_VECTORIZER_MODULE` | Default vectorizer module, so this doens't need to be defined per class in the schema | `string` | `text2vec-contextionary` |
+  | `DEFAULT_VECTORIZER_MODULE` | Default vectorizer module, so this doesn't need to be defined per class in the schema | `string` | `text2vec-contextionary` |
   | `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` | Allow users to interact with weaviate without auth | `string - true/false` | `true` |
   | `AUTHENTICATION_OIDC_ENABLED` | Enable OIDC Auth | `string - true/false` | `false` |
   | `AUTHENTICATION_OIDC_ISSUER` | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |

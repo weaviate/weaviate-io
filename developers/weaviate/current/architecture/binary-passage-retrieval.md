@@ -66,7 +66,7 @@ still very efficient, because:
   re-ranking based on the original vectors requires a negligible amount of compute
   time.
 
-# Seemless integration into Weaviate
+# Seamless integration into Weaviate
 
 *Note: BPR support in Weaviate is currently under development. The initial POCs
 have provided very promising results and production-grade support is expected

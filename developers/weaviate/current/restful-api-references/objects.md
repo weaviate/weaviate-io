@@ -144,8 +144,8 @@ See [here](#response-fields) the explanation of the response fields.
 
 This endpoint can be used to check if a data object exists without retrieving
 it. Internally it skips reading the object from disk (other than checking if
-itis present), thus not using resources on marshalling, parsing, etc.
-Additionally the resulting HTTP request has no body, the existance of an object
+it is present), thus not using resources on marshalling, parsing, etc.
+Additionally the resulting HTTP request has no body, the existence of an object
 is indicated solely by the status code (`204` when the object exists, `404`
 when it doesn't).
 

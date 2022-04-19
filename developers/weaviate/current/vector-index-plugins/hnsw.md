@@ -47,7 +47,7 @@ Currently the only index type is HNSW, so all data objects will be indexed using
     reasonable when retrieving massive search result sets, e.g. 500+. Note that
     the maximum will not have any effect if the limit itself is higher than
     this maximum. In this case the limit will be chosen as `ef` to avoid a
-    situtation where `limit` would higher than `ef` which is impossible with
+    situation where `limit` would higher than `ef` which is impossible with
     HNSW. *Not available prior to `v1.10.0`. Defaults to `500`. This setting
     has no effect if `ef` has a value other than `-1`.*
   - `"dynamicEfFactor"`: If using dynamic `ef` (set to `-1`), this value

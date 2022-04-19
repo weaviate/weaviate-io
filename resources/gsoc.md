@@ -39,7 +39,7 @@ We expect your application to be in the range of 1000-1500 words. Your proposal 
 * Description of previous work, existing solutions (links to prototypes, bibliography, are more than welcome).
 * Mention the details of your academic studies, any previous work, internships, relevant work experience or to open source. (Previous GSOC, PRs your made, etc.)
 * Relevant skills that will help you to achieve the goal (programming languages, frameworks, etc. )?
-* Do you plan to have any other commitments during GSoC that may affect your work? Any vacations/holidays? Will you be available full time to work on your project? (Please refrain from applying if you cannot manage your time and cannot gaurantee 100% commitment.)
+* Do you plan to have any other commitments during GSoC that may affect your work? Any vacations/holidays? Will you be available full time to work on your project? (Please refrain from applying if you cannot manage your time and cannot guarantee 100% commitment.)
 * Also, you must join our Slack and get in touch with the mentors before hand so that they’ll help you draft an amazing application by reviewing it ahead of time. (Note:  This must be done one week ahead of the submission deadline).
 
 The best way to demonstrate your capability would be to submit a small patch/pull request ahead of the project selection for an existing issue or a new issue. We always prefer candidates who are self motivated and can do great with some guidance from the mentors, and have some understanding of Machine Learning, Natural Language Processing and Vector Search. 
