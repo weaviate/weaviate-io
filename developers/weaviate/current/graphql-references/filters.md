@@ -35,7 +35,19 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
   - `Like`
   - `WithinGeoRange`
 - `Operands`: Is a list of `Operator` objects of this same structure, only used if the parent `Operator` is set to `And` or `Or`.
-- `Path`: Is a list of strings indicating the property name of the class. If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings.
+- `Path`: Is a list of strings in Xpath style, indicating the property name of the class.
+   If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings.
+    for a schema structure like:
+```
+{
+"inPublication":{
+  "Publication":{
+    "name": "Wired"
+    }
+  }
+}
+```
+the path selector for `name` will be `["inPublication", "Publication", "name"]` 
 - `valueInt`: The integer value where the `Path`'s last property name should be compared to.
 - `valueBoolean`: The boolean value that the `Path`'s last property name should be compared to.
 - `valueString`: The string value that the `Path`'s last property name should be compared to.
