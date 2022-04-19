@@ -1,0 +1,203 @@
+<!-- SET GRAPHQL TAB CONTENT -->
+{% capture graphql %}
+{
+  Aggregate {
+    Article(nearText:{
+      concepts: ["apple iphone"]
+      certainty: 0.7       # at least one of "objectLimit", 
+    },                     # and/or "certainty" must be set
+    objectLimit: 200) {    # when using near<Media>
+      meta {
+        count
+      }
+      inPublication {
+        pointingTo
+        type
+      }
+      wordCount {
+        count
+        maximum
+        mean
+        median
+        minimum
+        mode
+        sum
+        type
+      }
+    }
+  }
+}
+{% endcapture %}
+
+<!-- SET PYTHON TAB CONTENT -->
+{% capture python %}
+coming soon
+{% endcapture %}
+
+<!-- SET JAVASCRIPT TAB CONTENT -->
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.graphql
+      .aggregate()
+      .withClassName('Article')
+      .withFields('meta { count } wordCount {count maximum mean median minimum mode sum type}')
+      .withNearText({ concepts: ["apple iphone"], certainty: 0.7 })
+      .withObjectLimit(100)
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      });
+{% endcapture %}
+
+<!-- SET GO TAB CONTENT -->
+{% capture go %}
+package main
+import (
+    "context"
+    "fmt"
+    "github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+)
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+ctx := context.Background()
+fields := []graphql.Field{
+  {Name: "title"},
+  {Name: "url"},
+  {Name: "wordCount", Fields: []graphql.Field{
+    {Name: "mean"},
+    {Name: "maximum"},
+    {Name: "median"},
+    {Name: "minimum"},
+    {Name: "mode"},
+    {Name: "sum"},
+    {Name: "type"},
+  }},
+  {Name: "inPublication", Fields: []graphql.Field{
+    {Name: "pointingTo"},
+    {Name: "count"},
+  }},
+}
+
+// nearText
+nearText := &graphql.NearTextArgumentBuilder{}
+nearText.WithCertainty(0.85). // At least one of certainty or objectLimit need to be set
+  WithConcepts([]string{"apple iphone"})
+
+
+resultSet, gqlErr := client.GraphQL().
+  Aggregate().
+  Objects().
+  WithFields(fields).
+  WithNearText(nearText).
+  WithClassName("Article").
+  WithObjectLimit(100). // At least one of certainty or objectLimit need to be set
+  Do(context.Background())
+if err != nil {
+  panic(err)
+}
+fmt.Printf("%v", result)
+
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+Field meta = Field.builder()
+            .name("meta")
+            .fields(new Field[]{
+                Field.builder().name("count").build()
+            }).build();
+Field wordCount = Field.builder()
+            .name("wordCount")
+            .fields(new Field[]{
+                Field.builder().name("mean").build(),
+                Field.builder().name("maximum").build(),
+                Field.builder().name("median").build(),
+                Field.builder().name("minimum").build(),
+                Field.builder().name("mode").build(),
+                Field.builder().name("sum").build(),
+                Field.builder().name("type").build()
+            }).build();
+Field inPublication = Field.builder()
+            .name("inPublication")
+            .fields(new Field[]{
+                Field.builder().name("pointingTo").build(),
+                Field.builder().name("count").build()
+            }).build();
+Fields fields = Fields.builder()
+            .fields(new Field[]{meta, wordCount, inPublication})
+            .build();
+
+Float[] vec = new Float[]{1.0f, 2.0f, -3.0f};
+NearTextArgument nearText = NearTextArgument.builder()
+            .certainty(0.7f) // at least one of certainty or objectLimit need to be set
+            .concepts(new String[]{"pizza"})
+            .build();
+
+Result<GraphQLResponse> result = client.graphQL().aggregate()
+            .withClassName("Article")
+            .withFields(fields)
+            .withNearText(nearText)
+            .withObjectLimit(100) // at least one of certainty or objectLimit need to be set
+            .run();
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+
+{% endcapture %}
+
+<!-- SET CURL TAB CONTENT -->
+{% capture curl %}
+$ echo '{ 
+    "query": "{
+      Aggregate {
+        Article(nearText:{
+          concepts: ["apple iphone"]
+          certainty: 0.7
+        },
+        objectLimit: 200) {
+          meta {
+            count
+          }
+          inPublication {
+            pointingTo
+            type
+          }
+          wordCount {
+            count
+            maximum
+            mean
+            median
+            minimum
+            mode
+            sum
+            type
+          }
+        }
+      }
+    }"
+  }' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    http://localhost:8080/v1/graphql
+{% endcapture %}
+
+<!-- SET BLOCK_ID TO A UNIQUE ID, OFTEN THIS IS = TO THE FILENAME WHERE . == - -->
+{% include molecule-graphql-block-request.html block_id='graphql-aggregate-neartext' %}
