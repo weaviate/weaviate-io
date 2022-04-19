@@ -85,6 +85,33 @@ To combine `Get { }` with a vector search argument, here is an overview of the s
 
 `Get{}` functions can be extended with search filters (both semantic filters as traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.html).
 
+# Sorting
+
+*Note: Support for sorting was added in `v1.13.0`.*
+
+You can sort results by any primitive property, typically a `text`, `string`,
+`number`, or `int` property. When aquery has a natural order (e.g. because of a
+`near<Media>` vector search), adding a sort operator will override the order.
+
+## Cost of Sorting / Architecture
+
+Weaviate's sorting implementation is built in a way that id does not lead to
+massive memory spikes, e.g. it does not need to load all objects to be sorted
+into memory completely. Only the property value being sorted is kept in memory.
+
+When this feature was introduced (`v1.13.0`), Weaviate does have any
+datastructures on disk specific to sorting, such as a column-oriented storage
+mechanism. As a result when an object should be sorted, the whole object is
+identified on disk and the relevant property extracted. This works reasonably
+well for small scales (10s or 100s of thousand objects), but comes with a high
+cost at large lists of objects to be sorted (millions+). A column-oriented
+storage mechanism may be introduced in the future to overcome this performance
+limitation.
+
+## Sorting API
+
+{% include code/1.x/graphql.get.sorting.html %}
+
 # More Resources
 
 {% include docs-support-links.html %}

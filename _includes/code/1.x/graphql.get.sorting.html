@@ -1,0 +1,123 @@
+<!-- SET GRAPHQL TAB CONTENT -->
+
+{% capture graphql %}
+TODO @marcin add sorting example
+{
+  Get {
+    Article {
+      title
+      url
+      wordCount
+    }
+  }
+}
+{% endcapture %}
+
+<!-- SET PYTHON TAB CONTENT -->
+{% capture python %}
+TODO @stefan add sorting example
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+result = client.query.get("Article", ["title", "url", "wordCount"]).do()
+print(result)
+{% endcapture %}
+
+<!-- SET JAVASCRIPT TAB CONTENT -->
+{% capture javascript %}
+TODO @marcin add sorting example
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.graphql
+      .get()
+      .withClassName('Article')
+      .withFields('title url wordCount')
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      });
+{% endcapture %}
+
+<!-- SET GO TAB CONTENT -->
+{% capture go %}
+TODO @marcin add sorting example
+package main
+import (
+  "context"
+  "fmt"
+  "github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+)
+cfg := weaviate.Config{
+  Host:   "localhost:8080",
+  Scheme: "http",
+}
+client := weaviate.New(cfg)
+fields := []graphql.Field{
+  {Name: "title"},
+  {Name: "url"},
+  {Name: "wordCount"},
+}
+ctx := context.Background()
+result, err := client.GraphQL().Get().Objects().
+  WithClassName("Article").
+  WithFields(fields).
+  Do(ctx)
+if err != nil {
+  panic(err)
+}
+fmt.Printf("%v", result)
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+TODO @marcin add sorting example
+
+Config config = new Config("http", "localhost:8080");
+WeaviateClient client = new WeaviateClient(config);
+Field title = Field.builder().name("title").build();
+Field url = Field.builder().name("url").build();
+Field wordCount = Field.builder().name("wordCount").build();
+Fields fields = Fields.builder()
+            .fields(new Field[]{title, url, wordCount})
+            .build();
+Result<GraphQLResponse> result = client.graphQL().get()
+            .withClassName("Article")
+            .withFields(fields)
+            .run();
+if (result.hasErrors()) {
+  System.out.println(result.getError());
+  return;
+}
+System.out.println(result.getResult());
+{% endcapture %}
+
+<!-- SET CURL TAB CONTENT -->
+{% capture curl %}
+$ echo '{ 
+  "query": "{
+    Get {
+      Article {
+        title
+        url
+        wordCount
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    http://localhost:8080/v1/graphql
+{% endcapture %}
+
+<!-- SET BLOCK_ID TO A UNIQUE ID, OFTEN THIS IS = TO THE FILENAME WHERE . == - -->
+{% include molecule-graphql-block-request.html block_id='graphql-get-sorting' %}
