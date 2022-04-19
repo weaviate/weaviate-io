@@ -44,7 +44,7 @@ combined inverted index and HNSW index.*
 # Efficient Pre-Filtered Searches in Weaviate
 
 In the section about Storage, [we have described in detail which parts make up a
-shard in Weaviate](../storage.html). Most notably, each shard contains an
+shard in Weaviate](./storage.html). Most notably, each shard contains an
 inverted index right next to the HNSW index. This allows for efficient
 pre-filtering. The process is as follows:
 
