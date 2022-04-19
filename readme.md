@@ -26,6 +26,9 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
   # install ruby 2.7.5
   rbenv install 2.7.5
 
+  # initialize rbenv
+  export PATH="$HOME/.rbenv/bin:$PATH"
+
   # set the ruby version locally to 2.7.5
   rbenv local 2.7.5
   ```
@@ -39,6 +42,7 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
 
 - Installing Dependencies Windows
   - Please use [WSL](https://docs.microsoft.com/en-us/windows/wsl/)
+  - Read the [documentation](https://docs.microsoft.com/en-us/windows/wsl/install) on installing WSL on Windows.
 
 - Installing Dependencies in macOS
   ```bash
@@ -47,7 +51,10 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
 
   # install ruby 2.7.5
   rbenv install 2.7.5
-  
+
+  # initialize rbenv
+  eval "$(rbenv init -)"
+
   # set the ruby version locally to 2.7.5
   rbenv local 2.7.5
   ```
@@ -73,9 +80,12 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
 
   **PS.:** You need to have a full Bash environment. If you're on Windows, please use WSL.
 
+- Fork the repository
+  You can get your own fork/copy of [weaviate.io](https://github.com/semi-technologies/weaviate-io) by using the `Fork` button
+
 - Create a local clone of the website:
   ```
-  git clone git@github.com:semi-technologies/weaviate-io.git
+  git clone git@github.com:[YOUR-USERNAME]/weaviate-io.git
   ```
 - Change into the weaviate-io directory
   ```
@@ -83,6 +93,7 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
   ```
 - Perform the following commands to install dependencies and structure the website properly:
   ```
+  bundle config set --local path 'vendor/cache'
   bundle install
   ```
 - Build the site and make it available on your local server
