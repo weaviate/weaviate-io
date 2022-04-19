@@ -8,6 +8,7 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
 
 - Software Dependencies
   - [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+  - Ruby Development Package (aka ruby-dev)
 
 - Installing Dependencies in **Ubuntu/Debian**
   ```bash
@@ -15,7 +16,7 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
   sudo apt update && sudo apt install -y build-essential bash git rsync
 
   # update repositories & install rbenv
-  sudo apt update && sudo apt install rbenv ruby-build
+  sudo apt update && sudo apt install rbenv ruby-build ruby_dev
 
   # initialize rbenv
   rbenv init
@@ -47,7 +48,7 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
 - Installing Dependencies in macOS
   ```bash
   # install dependencies
-  brew install rsync openssl rbenv ruby-build
+  brew install rsync openssl rbenv ruby-build ruby_dev
 
   # install ruby 2.7.5
   rbenv install 2.7.5
