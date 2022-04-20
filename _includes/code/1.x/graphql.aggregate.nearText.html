@@ -64,7 +64,7 @@ package main
 import (
     "context"
     "fmt"
-    "github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+    "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 cfg := weaviate.Config{
   Host:   "localhost:8080",
@@ -98,7 +98,6 @@ nearText.WithCertainty(0.85). // At least one of certainty or objectLimit need t
 
 resultSet, gqlErr := client.GraphQL().
   Aggregate().
-  Objects().
   WithFields(fields).
   WithNearText(nearText).
   WithClassName("Article").

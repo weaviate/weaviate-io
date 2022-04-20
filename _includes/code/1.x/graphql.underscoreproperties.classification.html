@@ -88,7 +88,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
 cfg := weaviate.Config{
@@ -111,7 +111,7 @@ fields := []graphql.Field{
 }
 ctx := context.Background()
 
-result, err := GraphQL().Get().Objects().
+result, err := GraphQL().Get().
   WithClassName(className).
   WithFields(fields).
   Do(ctx)

@@ -57,7 +57,7 @@ package main
 import (
   "context"
   "fmt"
-  "github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 cfg := weaviate.Config{
   Host:   "localhost:8080",
@@ -73,7 +73,7 @@ fields := []graphql.Field{
 {% raw %}    {Name: "... on Publication", Fields: []graphql.Field{{Name: "name"}}}{% endraw %},
   }},
 }
-result, err := client.GraphQL().Get().Objects().
+result, err := client.GraphQL().Get().
   WithClassName("Article").
   WithFields(fields).
   Do(ctx)

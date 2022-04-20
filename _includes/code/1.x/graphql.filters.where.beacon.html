@@ -79,7 +79,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
 cfg := weaviate.Config{
@@ -101,7 +101,7 @@ where := client.GraphQL().WhereArgBuilder().
 
 ctx := context.Background()
 
-result, err := client.GraphQL().Get().Objects().
+result, err := client.GraphQL().Get().
   WithClassName("Article").
   WithFields(fields).
   WithWhere(where).

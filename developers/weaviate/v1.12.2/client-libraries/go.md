@@ -18,7 +18,7 @@ redirect_from:
 To get the latest stable version of the Go client library, run the following:
 
 ```bash
-go get github.com/semi-technologies/weaviate-go-client/v3
+go get github.com/semi-technologies/weaviate-go-client/v4
 ```
 
 This API client is compatible with Go 1.16+.
@@ -31,7 +31,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
 func GetSchema() {

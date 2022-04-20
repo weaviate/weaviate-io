@@ -55,7 +55,7 @@ client.graphql
 import (
 	"context"
 	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
 cfg := weaviate.Config{
@@ -77,7 +77,7 @@ nearVector := `{
 }`
 ctx := context.Background()
 
-result, err := client.GraphQL().Get().Objects().
+result, err := client.GraphQL().Get().
   WithClassName(className).
   WithFields(fields).
   WithNearVector(nearVector).
