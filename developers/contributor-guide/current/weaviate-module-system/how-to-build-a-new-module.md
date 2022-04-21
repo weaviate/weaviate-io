@@ -39,9 +39,7 @@ On this page, you'll find how to create a complete new module (option B), so bui
 
 This requires some programming in Golang, since you'll need to build the module in Weaviate. You don't need to be a very experienced Go programmer, but you'll need some basic understanding of how this statically typed language works. You can view and copy code from other modules to your own project, which is explained later. You'll build a custom module ([part 1 of this image](./architecture.html#visualization)), as well as a custom inference service ([part 2](./architecture.html#visualization)). It is recommended to understand the module architecture of Weaviate which you can read [here](./overview.html) (overview) and [here](./architecture.html) (architecture), before you start building your own module. 
 
-If you want to make a pull request to Weaviate with your custom module, make sure to adhere to the [code structure](../weaviate-core/structure.html).
-
-# How to get started
+If you want to make a pull request to Weaviate with your custom module, make sure to adhere to the [code structure](https://weaviate.io/developers/contributor-guide/current/weaviate-core/structure.html).
 
 ## Design the internal Weaviate Module (part 1)
 
