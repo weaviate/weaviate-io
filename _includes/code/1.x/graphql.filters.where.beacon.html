@@ -77,40 +77,46 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  fields := []graphql.Field{
+    {Name: "title"},
+    {Name: "inPublication", Fields: []graphql.Field{
+      {Name: "... on Publication", Fields: []graphql.Field{
+        {Name: "name"}},
+      },
+    }},
+  }
+  where := client.GraphQL().WhereArgBuilder().
+    WithPath([]string{"inPublication", "Publication", "name"}).
+    WithOperator(graphql.Equal).
+    WithValueString("New Yorker")
+
+  ctx := context.Background()
+
+  result, err := client.GraphQL().Get().
+    WithClassName("Article").
+    WithFields(fields...).
+    WithWhere(where).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-client := weaviate.New(cfg)
-
-fields := []graphql.Field{
-  {Name: "title"},
-  {Name: "inPublication", Fields: []graphql.Field{
-{% raw %}    {Name: "... on Publication", Fields: []graphql.Field{{Name: "name"}}}{% endraw %},
-  }},
-}
-where := client.GraphQL().WhereArgBuilder().
-	WithPath([]string{"inPublication", "Publication", "name"}).
-	WithOperator(graphql.Equal).
-	WithValueString("New Yorker")
-
-ctx := context.Background()
-
-result, err := client.GraphQL().Get().
-  WithClassName("Article").
-  WithFields(fields).
-  WithWhere(where).
-  Do(ctx)
-
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

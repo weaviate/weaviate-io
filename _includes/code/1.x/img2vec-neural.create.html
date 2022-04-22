@@ -40,32 +40,34 @@ client.data
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-dataSchema := map[string]interface{} {
-  "labelName": "Mickey Mouse T-shirt"
-  "image": "iVBORw0KGgoAAAANS..."
-}
+  dataSchema := map[string]interface{}{
+    "labelName": "Mickey Mouse T-shirt",
+    "image":     "iVBORw0KGgoAAAANS...",
+  }
 
-created, err := client.Data().Creator().
-  WithClassName("FashionItem").
-  WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4302").
-  WithProperties(dataSchema).
-  Do(context.Background())
-
-if err != nil {
-  panic(err)
+  created, err := client.Data().Creator().
+    WithClassName("FashionItem").
+    WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4302").
+    WithProperties(dataSchema).
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", created)
 }
-fmt.Printf("%v", created.Thing)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

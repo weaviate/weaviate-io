@@ -62,41 +62,45 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-className := "Article"
-fields := []graphql.Field{
-  {Name: "title"},
-  {Name: "_additional", Fields: []graphql.Field{
-    {Name: "tokens(properties: [\"title\"], limit: 1, certainty: 0.7)", Fields: []graphql.Field{
-      {Name: "entity"},
-      {Name: "property"},
-      {Name: "word"},
-      {Name: "certainty"},
-      {Name: "startPosition"},
-      {Name: "endPosition"},
+  className := "Article"
+  fields := []graphql.Field{
+    {Name: "title"},
+    {Name: "_additional", Fields: []graphql.Field{
+      {Name: "tokens(properties: [\"title\"], limit: 1, certainty: 0.7)", Fields: []graphql.Field{
+        {Name: "entity"},
+        {Name: "property"},
+        {Name: "word"},
+        {Name: "certainty"},
+        {Name: "startPosition"},
+        {Name: "endPosition"},
+      }},
     }},
-  }},
-}
+  }
 
-result, err := client.GraphQL().Get().
-  WithClassName(className).
-  WithFields(fields).
-  Do(ctx)
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(fields...).
+    Do(context.Background())
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

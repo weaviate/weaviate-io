@@ -120,60 +120,64 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-className := "Publication"
-fields := []graphql.Field{
-  {Name: "name"},
-  {Name: "_additional", Fields: []graphql.Field{
-    {Name: "semanticPath", Fields: []graphql.Field{
-      {Name: "path", Fields: []graphql.Field{
-        {Name: "concept"},
-        {Name: "distanceToNext"},
-        {Name: "distanceToPrevious"},
-        {Name: "distanceToQuery"},
-        {Name: "distanceToResult"},
+  className := "Publication"
+  fields := []graphql.Field{
+    {Name: "name"},
+    {Name: "_additional", Fields: []graphql.Field{
+      {Name: "semanticPath", Fields: []graphql.Field{
+        {Name: "path", Fields: []graphql.Field{
+          {Name: "concept"},
+          {Name: "distanceToNext"},
+          {Name: "distanceToPrevious"},
+          {Name: "distanceToQuery"},
+          {Name: "distanceToResult"},
+        }},
       }},
     }},
-  }},
-}
+  }
 
-concepts := []string{"fashion"}
-moveTo := &graphql.MoveParameters{
-  Concepts: []string{"haute couture"},
-  Force:    0.85,
-}
-moveAwayFrom := &graphql.MoveParameters{
-  Concepts: []string{"finance"},
-  Force:    0.45,
-}
-nearText := client.GraphQL().NearTextArgBuilder().
+  concepts := []string{"fashion"}
+  moveTo := &graphql.MoveParameters{
+    Concepts: []string{"haute couture"},
+    Force:    0.85,
+  }
+  moveAwayFrom := &graphql.MoveParameters{
+    Concepts: []string{"finance"},
+    Force:    0.45,
+  }
+  nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts).
     WithCertainty(0.7).
     WithMoveTo(moveTo).
     WithMoveAwayFrom(moveAwayFrom)
 
-ctx := context.Background()
+  ctx := context.Background()
 
-result, err := client.GraphQL().Get().
-  WithClassName(className).
-  WithFields(fields).
-  WithNearText(nearText).
-  Do(ctx)
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(fields...).
+    WithNearText(nearText).
+    Do(ctx)
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

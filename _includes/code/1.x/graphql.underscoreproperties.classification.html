@@ -86,40 +86,43 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-className := "Article"
-fields := []graphql.Field{
-	{Name: "title"},
-	{Name: "_additional", Fields: []graphql.Field{
-		{Name: "classification", Fields: []graphql.Field{
-			{Name: "basedOn"},
-			{Name: "classifiedFields"},
-			{Name: "completed"},
-			{Name: "completed"},
-		}},
-	}},
-}
-ctx := context.Background()
+  className := "Article"
+  title := graphql.Field{Name: "title"}
+  _additional := graphql.Field{Name: "_additional", Fields: []graphql.Field{
+    {Name: "classification", Fields: []graphql.Field{
+      {Name: "basedOn"},
+      {Name: "classifiedFields"},
+      {Name: "completed"},
+      {Name: "completed"},
+    }},
+  }}
 
-result, err := GraphQL().Get().
-  WithClassName(className).
-  WithFields(fields).
-  Do(ctx)
+  ctx := context.Background()
 
-if err != nil {
-  panic(err)
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(title, _additional).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

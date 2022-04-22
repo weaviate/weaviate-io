@@ -1,10 +1,12 @@
 <!-- SET GRAPHQL TAB CONTENT -->
 
 {% capture graphql %}
-TODO @marcin add sorting example
 {
   Get {
-    Article {
+    Article(sort: {
+      path: ["title"]     # Path to the property that should be used
+      order: asc          # Sort order, possible values: asc, desc 
+    }) {
       title
       url
       wordCount
@@ -49,32 +51,42 @@ client.graphql
 
 <!-- SET GO TAB CONTENT -->
 {% capture go %}
-TODO @marcin add sorting example
 package main
+
 import (
   "context"
   "fmt"
+
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  title := graphql.Field{Name: "title"}
+  url := graphql.Field{Name: "url"}
+  wordCount := graphql.Field{Name: "wordCount"}
+
+  byTitleAsc := graphql.Sort{
+    Path: []string{"title"}, Order: graphql.Asc,
+  }
+
+  ctx := context.Background()
+  result, err := client.GraphQL().Get().
+    WithClassName("Article").
+    WithSort(byTitleAsc).
+    WithFields(title, url, wordCount).
+    Do(ctx)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-client := weaviate.New(cfg)
-fields := []graphql.Field{
-  {Name: "title"},
-  {Name: "url"},
-  {Name: "wordCount"},
-}
-ctx := context.Background()
-result, err := client.GraphQL().Get().
-  WithClassName("Article").
-  WithFields(fields).
-  Do(ctx)
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->
@@ -105,7 +117,10 @@ System.out.println(result.getResult());
 $ echo '{ 
   "query": "{
     Get {
-      Article {
+      Article(sort: {
+        path: [\"title\"]
+        order: asc
+      }) {
         title
         url
         wordCount

@@ -50,32 +50,34 @@ client.schema
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate/entities/models"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-classObj := &models.Class{
-  Class:       "Post",
-  Properties: []*models.Property{
-    {
-      DataType:    []string{"text"},
-      Name:        "content",
-    }
-  },
-  Vectorizer:  "None"
-}
+  classObj := &models.Class{
+    Class: "Post",
+    Properties: []*models.Property{
+      {
+        DataType: []string{"text"},
+        Name:     "content",
+      },
+    },
+    Vectorizer: "none",
+  }
 
-err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-
-if err != nil {
-  panic(err)
+  err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
 }
 {% endcapture %}
 

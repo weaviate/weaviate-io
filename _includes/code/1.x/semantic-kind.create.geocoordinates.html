@@ -45,35 +45,38 @@ client.data
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-dataSchema := map[string]interface{} {
-  "name": "Elsevier",
-  "headquartersGeoLocation": map[string]float32{
-    "latitude": 52.3932696,
-    "longitude": 4.8374263,
-  },
-}
+  dataSchema := map[string]interface{}{
+    "name": "Elsevier",
+    "headquartersGeoLocation": map[string]float32{
+      "latitude":  52.3932696,
+      "longitude": 4.8374263,
+    },
+  }
 
-created, err := client.Data().Creator().
-  WithClassName("Publication").
-  WithID("df48b9f6-ba48-470c-bf6a-57657cb07390").
-  WithProperties(dataSchema).
-  Do(context.Background())
+  created, err := client.Data().Creator().
+    WithClassName("Publication").
+    WithID("df48b9f6-ba48-470c-bf6a-57657cb07390").
+    WithProperties(dataSchema).
+    Do(context.Background())
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", created)
 }
-fmt.Printf("%v", created.Thing)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

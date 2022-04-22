@@ -31,22 +31,25 @@ client
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-schema, err := client.Schema().Getter().Do(context.Background())
-if err != nil {
-  panic(err)
+  schema, err := client.Schema().Getter().Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", schema)
 }
-fmt.Printf("%v", schema)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

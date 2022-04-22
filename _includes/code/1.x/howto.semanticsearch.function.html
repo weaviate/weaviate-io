@@ -85,42 +85,44 @@ package main
 import (
   "context"
   "fmt"
-  "github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  concepts := []string{"fashion"}
+  moveTo := &graphql.MoveParameters{
+    Concepts: []string{"haute couture"},
+    Force:    0.5,
+  }
+  moveAwayFrom := &graphql.MoveParameters{
+    Concepts: []string{"finance"},
+    Force:    0.2,
+  }
+
+  withNearText := client.GraphQL().NearTextArgBuilder().
+    WithConcepts(concepts).
+    WithCertainty(0.7).
+    WithMoveTo(moveTo).
+    WithMoveAwayFrom(moveAwayFrom)
+
+  result, err := client.GraphQL().Explore().
+    WithFields(graphql.Certainty, graphql.Beacon, graphql.ClassName).
+    WithNearText(withNearText).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-client := weaviate.New(cfg)
-
-fields := []graphql.ExploreFields{graphql.Certainty, graphql.Beacon, graphql.ClassName}
-
-concepts := []string{"fashion"}
-moveTo := &MoveParameters{
-	Concepts: []string{"haute couture"},
-	Force:    0.5,
-}
-moveAwayFrom := &MoveParameters{
-	Concepts: []string{"finance"},
-	Force:    0.2,
-}
-
-withNearText := client.GraphQL().NearTextArgBuilder().
-      WithConcepts(concepts).
-      WithCertainty(0.7).
-      WithMoveTo(moveTo).
-      WithMoveAwayFrom(moveAwayFrom)
-
-resultSet, gqlErr := client.GraphQL().Explore().
-      WithFields(fields).
-      WithNearText(withNearText).
-      Do(context.Background())
-
-if gqlErr != nil {
-  panic(gqlErr)
-}
-fmt.Printf("%v", resultSet)
 {% endcapture %} 
 
 <!-- SET JAVA TAB CONTENT -->

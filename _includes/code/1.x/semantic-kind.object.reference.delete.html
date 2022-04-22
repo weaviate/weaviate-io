@@ -37,27 +37,29 @@ client.data
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+    "context"
+
+    "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
-cfg := weaviate.Config{
-    Host:   "localhost:8080",
-    Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+    cfg := weaviate.Config{
+        Host:   "localhost:8080",
+        Scheme: "http",
+    }
+    client := weaviate.New(cfg)
 
-reference := client.Data().ReferencePayloadBuilder().WithID("6bb06a43-e7f0-393e-9ecf-3c0f4e129064").Payload()
+    reference := client.Data().ReferencePayloadBuilder().WithID("6bb06a43-e7f0-393e-9ecf-3c0f4e129064").Payload()
 
-err := client.Data().ReferenceDeleter().
-    WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
-    WithReferenceProperty("wroteArticles").
-    WithReference(reference).
-    Do(context.Background())
+    err := client.Data().ReferenceDeleter().
+        WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
+        WithReferenceProperty("wroteArticles").
+        WithReference(reference).
+        Do(context.Background())
 
-if err != nil {
-    panic(err)
+    if err != nil {
+        panic(err)
+    }
 }
 {% endcapture %}
 

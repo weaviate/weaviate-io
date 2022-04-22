@@ -153,46 +153,49 @@ client
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
-	"github.com/semi-technologies/weaviate/entities/models"
+  "context"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate/entities/models"
 )
 
-cfg := weaviate.Config{
+func main() {
+  cfg := weaviate.Config{
     Host:   "localhost:8080",
     Scheme: "http",
-}
-client := weaviate.New(cfg)
+  }
+  client := weaviate.New(cfg)
 
-classObj := &models.Class{
-    Class:       "Article",
-    Description: "A written text, for example a news article or blog post",
+  classObj := &models.Class{
+    Class:           "Article",
+    Description:     "A written text, for example a news article or blog post",
     VectorIndexType: "hnsw",
-    Vectorizer: "text2vec-contextionary",
+    Vectorizer:      "text2vec-contextionary",
     Properties: []*models.Property{
-        {
-            DataType:    []string{"string"},
-            Description: "Title of the article",
-            Name:        "title",
-        },
-        {
-            DataType:    []string{"text"},
-            Description: "The content of the article",
-            Name:        "content",
-        },
+      {
+        DataType:    []string{"string"},
+        Description: "Title of the article",
+        Name:        "title",
+      },
+      {
+        DataType:    []string{"text"},
+        Description: "The content of the article",
+        Name:        "content",
+      },
     },
     InvertedIndexConfig: &models.InvertedIndexConfig{
       Stopwords: &models.StopwordConfig{
-          Preset:    "en",
-      Additions: []string{"star", "nebula"},
-      Removals:  []string{"a", "the"},
+        Preset:    "en",
+        Additions: []string{"star", "nebula"},
+        Removals:  []string{"a", "the"},
+      },
     },
-}
+  }
 
-err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-if err != nil {
+  err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+  if err != nil {
     panic(err)
+  }
 }
 {% endcapture %}
 

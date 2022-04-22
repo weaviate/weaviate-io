@@ -86,48 +86,58 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-className := "Publication"
-fields := "name _additional {certainty}"
+  className := "Publication"
 
-concepts := []string{"fashion"}
-certainty := 0.7
-moveAwayFrom := &graphql.MoveParameters{
- Concepts: []string{"finance"},
- Force:    0.45,
-}
-moveTo := &graphql.MoveParameters{
- Concepts: []string{"haute couture"},
- Force:    0.85,
-}
-nearText := `client.GraphQL().NearTextArgBuilder().
+  name := graphql.Field{Name: "name"}
+  _additional := graphql.Field{
+    Name: "_additional", Fields: []graphql.Field{
+      {Name: "certainty"},
+    },
+  }
+
+  concepts := []string{"fashion"}
+  certainty := float32(0.7)
+  moveAwayFrom := &graphql.MoveParameters{
+    Concepts: []string{"finance"},
+    Force:    0.45,
+  }
+  moveTo := &graphql.MoveParameters{
+    Concepts: []string{"haute couture"},
+    Force:    0.85,
+  }
+  nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts).
     WithCertainty(certainty).
     WithMoveTo(moveTo).
     WithMoveAwayFrom(moveAwayFrom)
 
-ctx := context.Background()
+  ctx := context.Background()
 
-result, err := client.GraphQL().Get().
-  WithClassName(className).
-  WithFields(fields).
-  WithNearText(nearText).
-  Do(ctx)
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(name, _additional).
+    WithNearText(nearText).
+    Do(ctx)
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

@@ -101,47 +101,51 @@ package main
 import (
 	"context"
 	"fmt"
+
 	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+	cfg := weaviate.Config{
+		Host:   "localhost:8080",
+		Scheme: "http",
+	}
+	client := weaviate.New(cfg)
 
-className := "Article"
-fields := []graphql.Field{
-  {Name: "title"},
-  {Name: "_additional", Fields: []graphql.Field{
-    {Name: "nearestNeighbors", Fields: []graphql.Field{
-      {Name: "neighbors", Fields: []graphql.Field{
-        {Name: "concept"},
-        {Name: "distance"},
-      }},
-    }},
-  }},
-}
-concepts := []string{"music"}
-moveTo := &graphql.MoveParameters{
- Concepts: []string{"beatles"},
- Force:    0.5,
-}
-nearText := `client.GraphQL().NearTextArgBuilder().
-    WithConcepts(concepts).
-    WithMoveTo(moveTo)
-    
-ctx := context.Background()
-result, err := client.GraphQL().Get().
-  WithClassName(className).
-  WithFields(fields).
-  WithNearText(nearText).
-  Do(ctx)
+	className := "Article"
+	fields := []graphql.Field{
+		{Name: "title"},
+		{Name: "_additional", Fields: []graphql.Field{
+			{Name: "nearestNeighbors", Fields: []graphql.Field{
+				{Name: "neighbors", Fields: []graphql.Field{
+					{Name: "concept"},
+					{Name: "distance"},
+				}},
+			}},
+		}},
+	}
+	concepts := []string{"music"}
+	moveTo := &graphql.MoveParameters{
+		Concepts: []string{"beatles"},
+		Force:    0.5,
+	}
+	nearText := client.GraphQL().NearTextArgBuilder().
+		WithConcepts(concepts).
+		WithMoveTo(moveTo)
 
-if err != nil {
-  panic(err)
+	ctx := context.Background()
+	result, err := client.GraphQL().Get().
+		WithClassName(className).
+		WithFields(fields...).
+		WithNearText(nearText).
+		Do(ctx)
+
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%v", result)
 }
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

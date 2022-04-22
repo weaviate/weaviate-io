@@ -33,25 +33,28 @@ client.classifications
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-classification, err := client.Classifications().Getter().
-  WithID("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c").
-  Do(context.Background())
+  classification, err := client.Classifications().Getter().
+    WithID("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c").
+    Do(context.Background())
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", classification)
 }
-fmt.Printf("%v", classification)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

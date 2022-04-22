@@ -67,42 +67,56 @@ client.classifications
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/classifications"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
+  "github.com/semi-technologies/weaviate/entities/models"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  valueInt := func(in int64) *int64 {
+    return &in
+  }
+
+  valueString := func(in string) *string {
+    return &in
+  }
+
+  sourceWhere := &models.WhereFilter{
+    ValueInt: valueInt(100),
+    Operator: string(graphql.GreaterThan),
+    Path:     []string{"wordCount"},
+  }
+
+  targetWhere := &models.WhereFilter{
+    ValueString: valueString("Government"),
+    Operator:    string(graphql.NotEqual),
+    Path:        []string{"name"},
+  }
+
+  classification, err := client.Classifications().Scheduler().
+    WithType(classifications.ZeroShot).
+    WithClassName("Article").
+    WithClassifyProperties([]string{"ofCategory"}).
+    WithSourceWhereFilter(sourceWhere).
+    WithTargetWhereFilter(targetWhere).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", classification)
 }
-client := weaviate.New(cfg)
-
-sourceWhere := `{
-  valueInt: 100
-  operator: GreaterThan
-  path: ["wordCount"]
-}`
-
-targetWhere := `{
-  valueString: Government
-  operator: NotEqual
-  path: ["name"]
-}`
-
-classification, err := client.Classifications().Scheduler().
-  WithType(classifications.ZeroShot).
-  WithClassName("Article").
-  WithClassifyProperties([]string{"ofCategory"}).
-  WithSourceWhereFilter(sourceWhere).
-  WithTargetWhereFilter(targetWhere).
-  Do(context.Background())
-
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", classification)
-
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

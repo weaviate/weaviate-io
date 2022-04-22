@@ -73,47 +73,51 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-className := "Article"
-fields := []graphql.Field{
-  {Name: "title"},
-  {Name: "_additional", Fields: []graphql.Field{
-    {Name: "answer", Fields: []graphql.Field{
-      {Name: "hasAnswer"},
-      {Name: "certainty"},
-      {Name: "property"},
-      {Name: "result"},
-      {Name: "startPosition"},
-      {Name: "endPosition"},
+  className := "Article"
+  fields := []graphql.Field{
+    {Name: "title"},
+    {Name: "_additional", Fields: []graphql.Field{
+      {Name: "answer", Fields: []graphql.Field{
+        {Name: "hasAnswer"},
+        {Name: "certainty"},
+        {Name: "property"},
+        {Name: "result"},
+        {Name: "startPosition"},
+        {Name: "endPosition"},
+      }},
     }},
-  }},
-}
-ask := client.GraphQL().AskArgumentBuilder().
-        WithQuestion("Who is the king of the Netherlands?").
-        WithProperties([]string{"summary"})
-ctx := context.Background()
+  }
+  ask := client.GraphQL().AskArgBuilder().
+    WithQuestion("Who is the king of the Netherlands?").
+    WithProperties([]string{"summary"})
+  ctx := context.Background()
 
-result, err := client.GraphQL().Get().
-  WithClassName(className).
-  WithFields(fields).
-  WithAsk(ask).
-  WithLimit(1).
-  Do(ctx)
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(fields...).
+    WithAsk(ask).
+    WithLimit(1).
+    Do(ctx)
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

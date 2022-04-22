@@ -61,35 +61,39 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  title := graphql.Field{Name: "title"}
+  where := client.GraphQL().WhereArgBuilder().
+    WithPath([]string{"wordCount"}).
+    WithOperator(graphql.GreaterThan).
+    WithValueInt(1000)
+
+  ctx := context.Background()
+
+  result, err := client.GraphQL().Get().
+    WithClassName("Article").
+    WithFields(title).
+    WithWhere(where).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-client := weaviate.New(cfg)
-
-{% raw %}fields := []graphql.Field{{Name: "title"}}{% endraw %}
-where := client.GraphQL().WhereArgBuilder().
-	WithPath([]string{"wordCount"}).
-	WithOperator(graphql.GreaterThan).
-	WithValueInt(1000)
-
-ctx := context.Background()
-
-result, err := client.GraphQL().Get().
-  WithClassName("Article").
-  WithFields(fields).
-  WithWhere(where).
-  Do(ctx)
-
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

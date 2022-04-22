@@ -47,30 +47,34 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  title := graphql.Field{Name: "title"}
+
+  ctx := context.Background()
+  result, err := client.GraphQL().Get().
+    WithClassName("Article").
+    WithFields(title).
+    WithLimit(5).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-client := weaviate.New(cfg)
-
-{% raw %}fields := []graphql.Field{{Name: "title"}}{% endraw %}
-
-ctx := context.Background()
-result, err := client.GraphQL().Get().
-  WithClassName("Article").
-  WithFields(fields).
-  WithLimit(5).
-  Do(ctx)
-
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

@@ -32,25 +32,27 @@ client.c11y
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-err := client.C11y().ExtensionCreator().
-  WithConcept("weaviate").
-  WithDefinition("Open source cloud native real time vector search engine").
-  WithWeight(1.0).
-  Do(context.Background())
+  err := client.C11y().ExtensionCreator().
+    WithConcept("weaviate").
+    WithDefinition("Open source cloud native real time vector search engine").
+    WithWeight(1.0).
+    Do(context.Background())
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
 }
 {% endcapture %}
 

@@ -83,51 +83,55 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"time"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+  "time"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  title := graphql.Field{Name: "title"}
+
+  dateString := "2014-11-12T11:45:26.371Z"
+  date, err := time.Parse(time.RFC3339, dateString)
+  if err != nil {
+    panic(err)
+  }
+
+  where := client.GraphQL().WhereArgBuilder().
+    WithOperator(graphql.And).
+    WithOperands([]*graphql.WhereFilterBuilder{
+      client.GraphQL().WhereFilterBuilder().
+        WithPath([]string{"wordCount"}).
+        WithOperator(graphql.GreaterThan).
+        WithValueInt(1000),
+      client.GraphQL().WhereFilterBuilder().
+        WithPath([]string{"publicationDate"}).
+        WithOperator(graphql.LessThan).
+        WithValueDate(date),
+    })
+
+  ctx := context.Background()
+
+  result, err := client.GraphQL().Get().
+    WithClassName("Article").
+    WithFields(title).
+    WithWhere(where).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-client := weaviate.New(cfg)
-
-{% raw %}fields := []graphql.Field{{Name: "title"}}{% endraw %}
-
-dateString := "2014-11-12T11:45:26.371Z"
-date, err := time.Parse(time.RFC3339, dateString)
-if err != nil {
-    return err
-}
-
-where := client.GraphQL().WhereArgBuilder().
-	WithOperator(graphql.And).
-	WithOperands([]*graphql.WhereFilterBuilder{
-		client.GraphQL().WhereFilterBuilder().
-			WithPath([]string{"wordCount"}).
-			WithOperator(graphql.GreaterThan).
-			WithValueInt(1000),
-		client.GraphQL().WhereFilterBuilder().
-			WithPath([]string{"publicationDate"}).
-			WithOperator(graphql.LessThan).
-			WithValueDate(date),
-	})
-
-ctx := context.Background()
-
-result, err := client.GraphQL().Get().
-  WithClassName("Article").
-  WithFields(fields).
-  WithWhere(where).
-  Do(ctx)
-
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

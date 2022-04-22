@@ -135,42 +135,47 @@ client.batch
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate/entities/models"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-ref := []*models.BatchReference {
-  {
-    From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
-    To:   "weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
-  },
-  {
-    From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
-    To: "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32",
-  },
-  {
-    From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles",
-    To: "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32",
-  },
+  ref := []*models.BatchReference{
+    {
+      From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
+      To:   "weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
+    },
+    {
+      From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
+      To:   "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32",
+    },
+    {
+      From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles",
+      To:   "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32",
+    },
+  }
+
+  result, err := client.Batch().ReferencesBatcher().
+    WithReference(ref[0]).
+    WithReference(ref[1]).
+    WithReference(ref[2]).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
 
-result, err := client.Batch().ReferencesBatcher().
-  WithReference(ref[0]).
-  WithReference(ref[1]).
-  WithReference(ref[2]).
-  Do(context.Background())
-
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

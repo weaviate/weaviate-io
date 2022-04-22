@@ -31,27 +31,30 @@ client.c11y
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  concept, err := client.C11y().
+    ConceptsGetter().
+    WithConcept("fashionMagazine").
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+
+  fmt.Printf("%v", concept)
 }
-client := weaviate.New(cfg)
-
-concept, err := client.C11y().
-  ConceptsGetter().
-  WithConcept("fashionMagazine").
-  Do(context.Background())
-
-if err != nil {
-  panic(err)
-}
-
-fmt.Printf("%v", concept)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

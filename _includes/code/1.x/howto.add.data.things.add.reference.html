@@ -60,36 +60,38 @@ client.data
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-dataSchema := map[string]interface{} {
-  "name": "Jodi Kantor",
-}
+  dataSchema := map[string]interface{}{
+    "name": "Jodi Kantor",
+  }
 
-_, err := client.Data().Creator().WithClassName("Author").WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").WithProperties(dataSchema).Do(context.Background())
-if err != nil {
-  panic(err)
-}
+  _, err := client.Data().Creator().WithClassName("Author").WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").WithProperties(dataSchema).Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
 
-reference := client.Data().ReferencePayloadBuilder().WithID("f81bfe5e-16ba-4615-a516-46c2ae2e5a80").Payload()
+  reference := client.Data().ReferencePayloadBuilder().WithID("f81bfe5e-16ba-4615-a516-46c2ae2e5a80").Payload()
 
-err = client.Data().ReferenceCreator().
-  WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
-  WithReferenceProperty("writesFor").
-  WithReference(reference).
-  Do(context.Background())
+  err = client.Data().ReferenceCreator().
+    WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
+    WithReferenceProperty("writesFor").
+    WithReference(reference).
+    Do(context.Background())
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
 }
 {% endcapture %}
 

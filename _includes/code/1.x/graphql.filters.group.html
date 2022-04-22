@@ -70,33 +70,34 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  name := graphql.Field{Name: "name"}
+  group := client.GraphQL().GroupArgBuilder().WithType(graphql.Merge).WithForce(0.05)
+
+  result, err := client.GraphQL().Get().
+    WithClassName("Publication").
+    WithFields(name).
+    WithGroup(group).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-client := weaviate.New(cfg)
-
-ctx := context.Background()
-
-{% raw %}fields := []graphql.Field{{Name: "name"}}{% endraw %}
-group := client.GraphQL().GroupArgBuilder().WithType(graphql.Merge).WithForce(0.05)
-
-result, err := client.GraphQL().Get().
-  WithClassName("Publication").
-  WithFields(fields).
-  WithGroup(group).
-  Do(ctx)
-
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", result)
-
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

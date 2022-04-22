@@ -50,33 +50,37 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  className := "FashionItem"
+  image := graphql.Field{Name: "image"}
+
+  nearImage := client.GraphQL().NearImageArgBuilder().WithImage("/9j/4AAQSkZJRgABAgE...")
+  ctx := context.Background()
+
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(image).
+    WithNearImage(nearImage).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-client := weaviate.New(cfg)
-
-className := "FashionItem"
-{% raw %}fields := []graphql.Field{{Name: "image"}}{% endraw %}
-
-nearImage := client.GraphQL().NearImageArgBuilder().WithImage("/9j/4AAQSkZJRgABAgE...")
-ctx := context.Background()
-
-result, err := client.GraphQL().Get().
-  WithClassName(className).
-  WithFields(fields).
-  WithNearImage(nearImage).
-  Do(ctx)
-
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

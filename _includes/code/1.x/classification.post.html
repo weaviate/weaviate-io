@@ -45,31 +45,35 @@ client.classifications
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/classifications"
+  "github.com/semi-technologies/weaviate/usecases/classification"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+  
+  classification, err := client.Classifications().
+    Scheduler().
+    WithType(classifications.<e.g. KNN>).
+    WithSettings(<&classification.ParamsKNN{K: 3}>).
+    WithClassName("<ClassName>").
+    WithClassifyProperties([]string{"<property1>", "<property2>"}).
+    WithBasedOnProperties([]string{"<property3>"}).
+    WithWaitForCompletion.
+    Do(context.Background())
+  
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", classification)
 }
-client := weaviate.New(cfg)
-
-classification, err := client.Classifications().
-  Scheduler().
-  WithType(classifications.<e.g. KNN>).
-  WithSettings(<&classification.ParamsKNN{K: 3}>).
-  WithClassName("<ClassName>").
-  WithClassifyProperties([]string{"<property1>", "<property2>"}).
-  WithBasedOnProperties([]string{"<property3>"}).
-  WithWaitForCompletion.
-  Do(context.Background())
-
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", classification)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

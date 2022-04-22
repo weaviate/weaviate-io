@@ -54,33 +54,41 @@ client.graphql
 <!-- SET GO TAB CONTENT -->
 {% capture go %}
 package main
+
 import (
   "context"
   "fmt"
+
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+  ctx := context.Background()
+  fields := []graphql.Field{
+    {Name: "title"},
+    {Name: "url"},
+    {Name: "wordCount"},
+    {Name: "inPublication", Fields: []graphql.Field{
+      {Name: "... on Publication", Fields: []graphql.Field{
+        {Name: "name"},
+      }},
+    }},
+  }
+  result, err := client.GraphQL().Get().
+    WithClassName("Article").
+    WithFields(fields...).
+    Do(ctx)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-client := weaviate.New(cfg)
-ctx := context.Background()
-fields := []graphql.Field{
-  {Name: "title"},
-  {Name: "url"},
-  {Name: "wordCount"},
-  {Name: "inPublication", Fields: []graphql.Field{
-{% raw %}    {Name: "... on Publication", Fields: []graphql.Field{{Name: "name"}}}{% endraw %},
-  }},
-}
-result, err := client.GraphQL().Get().
-  WithClassName("Article").
-  WithFields(fields).
-  Do(ctx)
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

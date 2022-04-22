@@ -33,23 +33,26 @@ package main
 import (
   "context"
   "fmt"
-  "github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-exists, checkErrT := client.Data().Checker().
-  WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a0923").
-  Do(context.Background())
+  exists, err := client.Data().Checker().
+    WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a0923").
+    Do(context.Background())
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", exists)
 }
-fmt.Printf("%v", exists)
 {% endcapture %}
 
 {% capture java %} 

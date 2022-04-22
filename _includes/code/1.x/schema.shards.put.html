@@ -45,37 +45,42 @@ client.schema
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
 )
 
-cfg := weaviate.Config{
+func main() {
+  cfg := weaviate.Config{
     Host:   "localhost:8080",
     Scheme: "http",
-}
+  }
 
-client := weaviate.New(cfg)
+  client := weaviate.New(cfg)
 
-// Update a shrard
-status, err := client.Schema().
-	ShardUpdater().
-	WithClassName("Article").
-	WithShardName("shard-1234").
-	WithStatus("READONLY").
-	Do(context.Background())
-if err != nil {
+  // Update a shard
+  status, err := client.Schema().
+    ShardUpdater().
+    WithClassName("Article").
+    WithShardName("shard-1234").
+    WithStatus("READONLY").
+    Do(context.Background())
+  if err != nil {
     panic(err)
-}
+  }
+  fmt.Printf("%v", status)
 
-// Convenience method to update all shards in a class
-shards, err := client.Schema().
-	ShardsUpdater().
-	WithClassName("Article").
-	WithStatus("READY").
-	Do(context.Background())
-if err != nil {
+  // Convenience method to update all shards in a class
+  shards, err := client.Schema().
+    ShardsUpdater().
+    WithClassName("Article").
+    WithStatus("READY").
+    Do(context.Background())
+  if err != nil {
     panic(err)
+  }
+  fmt.Printf("%v", shards)
 }
 {% endcapture %}
 
