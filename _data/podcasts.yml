@@ -1,5 +1,14 @@
 ---
 - title: >
+    Rick Lamers • Orchest + Weaviate + Streamlit
+  description: > 
+    Search for comments using Weaviate's semantic search features with Orchest, Weaviate, and Streamlit.
+  youtube: ZzojafqsVA0
+  date: 2022-04-07T00:00:00Z
+  cover_image: '/img/podcasts/podcast-14.png'
+  is_use_case: true
+  logo: '/img/orchest.svg'
+- title: >
     Rick Lamers • Data Science with Orchest
   description: > 
     Orchest is a software that simplifies building data pipelines. If you are into data science, get inspired by CEO Rick Lamers.
