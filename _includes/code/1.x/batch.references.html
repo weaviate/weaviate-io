@@ -180,43 +180,57 @@ func main() {
 
 <!-- SET JAVA TAB CONTENT -->
 {% capture java %}
+package technology.semi.weaviate;
 
-Config config = new Config("http", "localhost:8080");
-WeaviateClient client = new WeaviateClient(config);
+import java.util.ArrayList;
+import java.util.List;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.batch.model.BatchReference;
+import technology.semi.weaviate.client.v1.batch.model.BatchReferenceResponse;
 
-List<BatchReference> refs = new ArrayList(){ {
-  add(
-    BatchReference.builder()
-        .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles")
-        .to("weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
-        .build()
-  );
-  add(
-    BatchReference.builder()
-        .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles")
-        .to("weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32")
-        .build()
-  );
-  add(
-    BatchReference.builder()
-        .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles")
-        .to("weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32")
-        .build()
-  );
-} };
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
 
-Result<BatchReferenceResponse[]> result = client.batch().referencesBatcher()
-            .withReference(refs.get(0))
-            .withReference(refs.get(1))
-            .withReference(refs.get(2))
-            .run();
+    List<BatchReference> refs = new ArrayList() {
+      {
+        add(
+          BatchReference.builder()
+            .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles")
+            .to("weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+            .build()
+        );
+        add(
+          BatchReference.builder()
+            .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles")
+            .to("weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32")
+            .build()
+        );
+        add(
+          BatchReference.builder()
+            .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles")
+            .to("weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32")
+            .build()
+        );
+      }
+    };
 
-if (result.hasErrors()) {
-  System.out.println(result.getError());
-  return;
+    Result<BatchReferenceResponse[]> result = client.batch().referencesBatcher()
+      .withReference(refs.get(0))
+      .withReference(refs.get(1))
+      .withReference(refs.get(2))
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
 }
-System.out.println(result.getResult());
-
 {% endcapture %}
 
 {% capture curl %}

@@ -105,39 +105,47 @@ func main() {
 
 <!-- SET JAVA TAB CONTENT -->
 {% capture java %}
+package technology.semi.weaviate;
 
-Config config = new Config("http", "localhost:8080");
-WeaviateClient client = new WeaviateClient(config);
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
+import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
 
-Field title = Field.builder().name("title").build();
-Field _additional = Field.builder()
-            .name("_additional")
-            .fields(new Field[]{
-                Field.builder()
-                  .name("tokens (properties: [\"title\"], limit: 1, certainty: 0.7)")
-                  .fields(new Field[]{
-                      Field.builder().name("entity").build(),
-                      Field.builder().name("property").build(),
-                      Field.builder().name("word").build(),
-                      Field.builder().name("certainty").build(),
-                      Field.builder().name("startPosition").build(),
-                      Field.builder().name("endPosition").build()
-                  }).build()
-            }).build();
-Fields fields = Fields.builder()
-            .fields(new Field[]{title, _additional})
-            .build();
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
 
-Result<GraphQLResponse> result = client.graphQL().get()
-            .withClassName("Article")
-            .withFields(fields)
-            .run();
+    Field title = Field.builder().name("title").build();
+    Field _additional = Field.builder()
+      .name("_additional")
+      .fields(new Field[]{
+        Field.builder()
+          .name("tokens (properties: [\"title\"], limit: 1, certainty: 0.7)")
+          .fields(new Field[]{
+            Field.builder().name("entity").build(),
+            Field.builder().name("property").build(),
+            Field.builder().name("word").build(),
+            Field.builder().name("certainty").build(),
+            Field.builder().name("startPosition").build(),
+            Field.builder().name("endPosition").build()
+          }).build()
+      }).build();
 
-if (result.hasErrors()) {
-  System.out.println(result.getError());
-  return;
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Article")
+      .withFields(title, _additional)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
 }
-System.out.println(result.getResult());
 {% endcapture %}
 
 <!-- SET CURL TAB CONTENT -->

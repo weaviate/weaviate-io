@@ -67,25 +67,35 @@ func main() {
 
 <!-- SET JAVA TAB CONTENT -->
 {% capture java %}
+package technology.semi.weaviate;
 
-Config config = new Config("http", "localhost:8080");
-WeaviateClient client = new WeaviateClient(config);
+import java.util.HashMap;
+import java.util.Map;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
 
-Map<String, Object> dataSchema = new HashMap<>();
-dataSchema.put("name", "New York Times");
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
 
-Result<Boolean> result = client.data().validator()
-            .withID("f81bfe5e-16ba-4615-a516-46c2ae2e5a80")
-            .withClassName("Publication")
-            .withProperties(dataSchema)
-            .run();
+    Map<String, Object> dataSchema = new HashMap<>();
+    dataSchema.put("name", "New York Times");
 
-if (result.hasErrors()) {
-  System.out.println(result.getError());
-  return;
+    Result<Boolean> result = client.data().validator()
+      .withID("f81bfe5e-16ba-4615-a516-46c2ae2e5a80")
+      .withClassName("Publication")
+      .withProperties(dataSchema)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
 }
-System.out.println(result.getResult());
-
 {% endcapture %}
 
 {% capture curl %}
