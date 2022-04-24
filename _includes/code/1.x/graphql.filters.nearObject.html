@@ -23,7 +23,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-nearObject = {id: "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"} # or {beacon: "weaviate://localhost/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"}
+nearObject = {"id": "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"} # or {"beacon": "weaviate://localhost/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"}
 
 client.query.get("Publication", ["name", "_additional {certainty}"]).with_near_object(nearObject).do()
 {% endcapture %}
