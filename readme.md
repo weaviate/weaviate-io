@@ -26,19 +26,6 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
 
   # install ruby 2.7.5
   rbenv install 2.7.5
-
-  # initialize rbenv
-  export PATH="$HOME/.rbenv/bin:$PATH"
-
-  # set the ruby version locally to 2.7.5
-  rbenv local 2.7.5
-  ```
-  - For installing RubyGems, read [docs](https://jekyllrb.com/docs/installation/ubuntu/)
-  ```bash
-  echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
-  echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
-  echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
-  source ~/.bashrc
   ```
 
 - Installing Dependencies Windows
@@ -52,12 +39,6 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
 
   # install ruby 2.7.5
   rbenv install 2.7.5
-
-  # initialize rbenv
-  eval "$(rbenv init -)"
-
-  # set the ruby version locally to 2.7.5
-  rbenv local 2.7.5
   ```
 
 - Check if dependencies are installed correctly
@@ -66,15 +47,6 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
   gem -v
   ```
 
-- Finally, install Jekyll and Bundler:
-  ```bash
-  gem install jekyll bundler
-  ```
-
-- Check if dependencies are installed correctly
-  ```bash
-  jekyll -v
-  ```
 ### Setting up the repository
   
 - To get the site up and running locally, follow the below steps:
@@ -98,12 +70,11 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
   ```
 - Perform the following commands to install dependencies and structure the website properly:
   ```
-  bundle config set --local path 'vendor/cache'
-  bundle install
+  ./setup.sh
   ```
 - Build the site and make it available on your local server
   ```
-  bundle exec jekyll serve
+  ./run.sh
   ```
 - Browse [http://localhost:4000](http://localhost:4000) to view the website.
 
