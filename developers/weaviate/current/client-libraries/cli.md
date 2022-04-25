@@ -108,10 +108,10 @@ $ weaviate schema import my_schema.json
 
 Where `my_schema.json` contains the schema as described [here](../tutorials/how-to-create-a-schema.html).
 
-When a schema is already present, it won't be replaced unless the flag `--force` is added to the command:
+To overwrite your schema you can use the `--force` flag, this will clear the index and replace your schema:
 
 ```sh
-$ weaviate schema import --force my_schema.json 
+$ weaviate schema import --force my_schema.json # using --force will delete your data
 ```
 
 ### Export
