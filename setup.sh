@@ -25,6 +25,9 @@ echo -e "\n💡 \033[1;34minstalling bundler packages locally \033[0m\n"
 # set bundler path
 $BUNDLER_PATH/bundle config set --local path $GEM_PATH
 
+# set ffi options
+$BUNDLER_PATH/bundle config build.ffi --enable-libffi-alloc
+
 # install bundler dependencies
 $BUNDLER_PATH/bundle install --standalone
 
