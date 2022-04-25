@@ -67,75 +67,102 @@ client.classifications
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/classifications"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
+  "github.com/semi-technologies/weaviate/entities/models"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
+func main() {
+
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  valueInt := func(in int64) *int64 {
+    return &in
+  }
+
+  valueString := func(in string) *string {
+    return &in
+  }
+
+  sourceWhere := &models.WhereFilter{
+    ValueInt: valueInt(100),
+    Operator: string(graphql.GreaterThan),
+    Path:     []string{"wordCount"},
+  }
+
+  targetWhere := &models.WhereFilter{
+    ValueString: valueString("Government"),
+    Operator:    string(graphql.NotEqual),
+    Path:        []string{"name"},
+  }
+
+  classification, err := client.Classifications().Scheduler().
+    WithType(classifications.ZeroShot).
+    WithClassName("Article").
+    WithClassifyProperties([]string{"ofCategory"}).
+    WithSourceWhereFilter(sourceWhere).
+    WithTargetWhereFilter(targetWhere).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", classification)
 }
-client := weaviate.New(cfg)
-
-sourceWhere := `{
-  valueInt: 100
-  operator: GreaterThan
-  path: ["wordCount"]
-}`
-
-targetWhere := `{
-  valueString: Government
-  operator: NotEqual
-  path: ["name"]
-}`
-
-classification, err := client.Classifications().Scheduler().
-  WithType(classifications.ZeroShot).
-  WithClassName("Article").
-  WithClassifyProperties([]string{"ofCategory"}).
-  WithSourceWhereFilter(sourceWhere).
-  WithTargetWhereFilter(targetWhere).
-  Do(context.Background())
-
-if err != nil {
-  panic(err)
-}
-fmt.Printf("%v", classification)
-
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->
 {% capture java %}
-Config config = new Config("http", "localhost:8080");
-WeaviateClient client = new WeaviateClient(config);
+package technology.semi.weaviate;
 
-WhereFilter trainingSetWhere = WhereFilter.builder()
-            .valueInt(100)
-            .operator(Operator.GreaterThan)
-            .path(new String[]{ "wordCount" })
-            .build();
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.classifications.model.Classification;
+import technology.semi.weaviate.client.v1.classifications.model.ClassificationType;
+import technology.semi.weaviate.client.v1.classifications.model.Operator;
+import technology.semi.weaviate.client.v1.classifications.model.WhereFilter;
 
-WhereFilter targetSetWhere = WhereFilter.builder()
-            .valueString("Government")
-            .operator("NotEqual")
-            .path(new String[]{ "name" })
-            .build();
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
 
-Result<Classification> result = client.classifications().scheduler()
-            .withType(ClassificationType.ZeroShot)
-            .withClassName("Article")
-            .withClassifyProperties(new String[]{"ofCategory"})
-            .withTrainingSetWhereFilter(trainingSetWhere)
-            .withTargetWhereFilter(trainingSetWhere)
-            .run();
+    WhereFilter trainingSetWhere = WhereFilter.builder()
+      .valueInt(100)
+      .operator(Operator.GreaterThan)
+      .path(new String[]{ "wordCount" })
+      .build();
 
-if (result.hasErrors()) {
-  System.out.println(result.getError());
-  return;
+    WhereFilter targetSetWhere = WhereFilter.builder()
+      .valueString("Government")
+      .operator("NotEqual")
+      .path(new String[]{ "name" })
+      .build();
+
+    Result<Classification> result = client.classifications().scheduler()
+      .withType(ClassificationType.ZeroShot)
+      .withClassName("Article")
+      .withClassifyProperties(new String[]{ "ofCategory" })
+      .withTrainingSetWhereFilter(trainingSetWhere)
+      .withTargetWhereFilter(trainingSetWhere)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
 }
-System.out.println(result.getResult());
-
 {% endcapture %}
 
 

@@ -59,51 +59,72 @@ client.classifications
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/classifications"
+  "github.com/semi-technologies/weaviate/usecases/classification"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-classification, err := client.Classifications().Scheduler().
-  WithType(classifications.KNN).
-  WithSettings(&classification.ParamsKNN{K: 3}).
-  WithClassName("Article").
-  WithClassifyProperties([]string{"hasPopularity"}).
-  WithBasedOnProperties([]string{"summary"}).
-  Do(context.Background())
+  valueInt32 := func(in int32) *int32 {
+    return &in
+  }
 
-if err != nil {
-  panic(err)
+  classification, err := client.Classifications().Scheduler().
+    WithType(classifications.KNN).
+    WithSettings(classification.ParamsKNN{K: valueInt32(3)}).
+    WithClassName("Article").
+    WithClassifyProperties([]string{"hasPopularity"}).
+    WithBasedOnProperties([]string{"summary"}).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", classification)
 }
-fmt.Printf("%v", classification)
+
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->
 {% capture java %}
+package technology.semi.weaviate;
 
-Config config = new Config("http", "localhost:8080");
-WeaviateClient client = new WeaviateClient(config);
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.classifications.model.Classification;
+import technology.semi.weaviate.client.v1.classifications.model.ClassificationType;
+import technology.semi.weaviate.client.v1.classifications.model.ParamsKNN;
 
-Result<Classification> result = client.classifications().scheduler()
-            .withType(ClassificationType.KNN)
-            .withSettings(ParamsKNN.builder().k(3).build())
-            .withClassName("Article")
-            .withClassifyProperties(new String[]{"hasPopularity"})
-            .withBasedOnProperties(new String[]{"summary"})
-            .run();
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
 
-if (result.hasErrors()) {
-  System.out.println(result.getError());
-  return;
+    Result<Classification> result = client.classifications().scheduler()
+      .withType(ClassificationType.KNN)
+      .withSettings(ParamsKNN.builder().k(3).build())
+      .withClassName("Article")
+      .withClassifyProperties(new String[]{ "hasPopularity" })
+      .withBasedOnProperties(new String[]{ "summary" })
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
 }
-System.out.println(result.getResult());
-
 {% endcapture %}
 
 

@@ -61,101 +61,117 @@ client.graphql
 <!-- SET GO TAB CONTENT -->
 {% capture go %}
 package main
+
 import (
-    "context"
-    "fmt"
-    "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
-ctx := context.Background()
-fields := []graphql.Field{
-  {Name: "title"},
-  {Name: "url"},
-  {Name: "wordCount", Fields: []graphql.Field{
-    {Name: "mean"},
-    {Name: "maximum"},
-    {Name: "median"},
-    {Name: "minimum"},
-    {Name: "mode"},
-    {Name: "sum"},
-    {Name: "type"},
-  }},
-  {Name: "inPublication", Fields: []graphql.Field{
-    {Name: "pointingTo"},
-    {Name: "count"},
-  }},
-}
 
-// nearObject
-nearObject := &graphql.NearObjectArgumentBuilder{}
-nearObject.WithCertainty(0.85). // At least one of certainty or objectLimit need to be set
-  WithID(pizza.Additional.ID)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-resultSet, gqlErr := client.GraphQL().
-  Aggregate().
-  WithFields(fields).
-  WithNearObject(nearObject).
-  WithClassName("Article").
-  WithObjectLimit(100). // At least one of certainty or objectLimit need to be set
-  Do(context.Background())
-if err != nil {
-  panic(err)
+  title := graphql.Field{Name: "title"}
+  url := graphql.Field{Name: "url"}
+  wordCount := graphql.Field{
+    Name: "wordCount", Fields: []graphql.Field{
+      {Name: "mean"},
+      {Name: "maximum"},
+      {Name: "median"},
+      {Name: "minimum"},
+      {Name: "mode"},
+      {Name: "sum"},
+      {Name: "type"},
+    },
+  }
+  inPublication := graphql.Field{
+    Name: "inPublication", Fields: []graphql.Field{
+      {Name: "pointingTo"},
+      {Name: "count"},
+    },
+  }
+
+  // nearObject
+  nearObject := &graphql.NearObjectArgumentBuilder{}
+  nearObject.WithCertainty(0.85). // At least one of certainty or objectLimit need to be set
+          WithID("9ac36e33-6611-4fb3-bade-4b1e409c6564")
+
+  result, err := client.GraphQL().
+    Aggregate().
+    WithFields(title, url, wordCount, inPublication).
+    WithNearObject(nearObject).
+    WithClassName("Article").
+    WithObjectLimit(100). // At least one of certainty or objectLimit need to be set
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-fmt.Printf("%v", result)
-
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->
 {% capture java %}
+package technology.semi.weaviate;
 
-Config config = new Config("http", "localhost:8080");
-WeaviateClient client = new WeaviateClient(config);
-Field meta = Field.builder()
-            .name("meta")
-            .fields(new Field[]{
-                Field.builder().name("count").build()
-            }).build();
-Field wordCount = Field.builder()
-            .name("wordCount")
-            .fields(new Field[]{
-                Field.builder().name("mean").build(),
-                Field.builder().name("maximum").build(),
-                Field.builder().name("median").build(),
-                Field.builder().name("minimum").build(),
-                Field.builder().name("mode").build(),
-                Field.builder().name("sum").build(),
-                Field.builder().name("type").build()
-            }).build();
-Field inPublication = Field.builder()
-            .name("inPublication")
-            .fields(new Field[]{
-                Field.builder().name("pointingTo").build(),
-                Field.builder().name("count").build()
-            }).build();
-Fields fields = Fields.builder()
-            .fields(new Field[]{meta, wordCount, inPublication})
-            .build();
-NearObjectArgument nearObject = NearObjectArgument.builder()
-            .certainty(0.7f) // at least one of certainty or objectLimit need to be set
-            .id("9199ee38-b0db-4800-b146-dea8cfc62351")
-            .build();
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
+import technology.semi.weaviate.client.v1.graphql.query.argument.NearObjectArgument;
+import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
 
-Result<GraphQLResponse> result = client.graphQL().aggregate()
-            .withClassName("Article")
-            .withFields(fields)
-            .withNearObject(nearObject)
-            .withObjectLimit(100) // at least one of certainty or objectLimit need to be set
-            .run();
-if (result.hasErrors()) {
-  System.out.println(result.getError());
-  return;
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+    Field meta = Field.builder()
+      .name("meta")
+      .fields(new Field[]{
+        Field.builder().name("count").build()
+      }).build();
+    Field wordCount = Field.builder()
+      .name("wordCount")
+      .fields(new Field[]{
+        Field.builder().name("mean").build(),
+        Field.builder().name("maximum").build(),
+        Field.builder().name("median").build(),
+        Field.builder().name("minimum").build(),
+        Field.builder().name("mode").build(),
+        Field.builder().name("sum").build(),
+        Field.builder().name("type").build()
+      }).build();
+    Field inPublication = Field.builder()
+      .name("inPublication")
+      .fields(new Field[]{
+        Field.builder().name("pointingTo").build(),
+        Field.builder().name("count").build()
+      }).build();
+
+    NearObjectArgument nearObject = NearObjectArgument.builder()
+      .certainty(0.7f) // at least one of certainty or objectLimit need to be set
+      .id("9199ee38-b0db-4800-b146-dea8cfc62351")
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().aggregate()
+      .withClassName("Article")
+      .withFields(meta, wordCount, inPublication)
+      .withNearObject(nearObject)
+      .withObjectLimit(100) // at least one of certainty or objectLimit need to be set
+      .run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
 }
-System.out.println(result.getResult());
-
 {% endcapture %}
 
 <!-- SET CURL TAB CONTENT -->

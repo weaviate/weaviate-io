@@ -76,71 +76,85 @@ client
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
-	"github.com/semi-technologies/weaviate/entities/models"
+    "context"
+
+    "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+    "github.com/semi-technologies/weaviate/entities/models"
 )
 
-cfg := weaviate.Config{
-    Host:   "localhost:8080",
-    Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+    cfg := weaviate.Config{
+        Host:   "localhost:8080",
+        Scheme: "http",
+    }
+    client := weaviate.New(cfg)
 
-classObj := &models.Class{
-    Class:       "Article",
-    Description: "A written text, for example a news article or blog post",
-    Properties: []*models.Property{
-        {
-            DataType:    []string{"string"},
-            Description: "Title of the article",
-            Name:        "title",
+    classObj := &models.Class{
+        Class:       "Article",
+        Description: "A written text, for example a news article or blog post",
+        Properties: []*models.Property{
+            {
+                DataType:    []string{"string"},
+                Description: "Title of the article",
+                Name:        "title",
+            },
+            {
+                DataType:    []string{"text"},
+                Description: "The content of the article",
+                Name:        "content",
+            },
         },
-        {
-            DataType:    []string{"text"},
-            Description: "The content of the article",
-            Name:        "content",
-        },
-    },
-}
+    }
 
-err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-if err != nil {
-    panic(err)
+    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
 }
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->
 {% capture java %}
+package technology.semi.weaviate;
 
-Config config = new Config("http", "localhost:8080");
-WeaviateClient client = new WeaviateClient(config);
+import java.util.ArrayList;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.schema.model.DataType;
+import technology.semi.weaviate.client.v1.schema.model.Property;
+import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
 
-WeaviateClass clazz = WeaviateClass.builder()
-            .className("Article")
-            .description("A written text, for example a news article or blog post")
-            .properties(new ArrayList() { {
-                add(Property.builder()
-                      .dataType(new ArrayList(){ { add(DataType.STRING); } })
-                      .description("Title of the article")
-                      .name("title")
-                      .build());
-                add(Property.builder()
-                      .dataType(new ArrayList(){ { add(DataType.TEXT); } })
-                      .description("The content of the article")
-                      .name("content")
-                      .build());
-            } })
-            .build();
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
 
-Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
-if (result.hasErrors()) {
-  System.out.println(result.getError());
-  return;
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Article")
+      .description("A written text, for example a news article or blog post")
+      .properties(new ArrayList() { {
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.STRING); } })
+          .description("Title of the article")
+          .name("title")
+          .build());
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.TEXT); } })
+          .description("The content of the article")
+          .name("content")
+          .build());
+      } })
+      .build();
+
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
 }
-System.out.println(result.getResult());
-
 {% endcapture %}
 
 {% capture curl %}
