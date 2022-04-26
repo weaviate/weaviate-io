@@ -172,16 +172,57 @@ if(requestMoreInfoBtn){
     };
 }
 
-// TawkTo
-//
-// DISABLED BECAUSE OF COOKIES
-//
-// var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-// (function(){
-//     var s1 = document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-//     s1.async=true;
-//     s1.src='https://embed.tawk.to/5cacd7a453f1e453fb8cf97f/default';
-//     s1.charset='UTF-8';
-//     s1.setAttribute('crossorigin','*');
-//     s0.parentNode.insertBefore(s1,s0);
-// })();
+// Set accordion
+function set_accordion() {
+
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function close_or_open_accordion(language){
+        var accordions = document.getElementsByClassName("accordion-button");
+        for (var i = 0; i < accordions.length; i++) {
+            var currentLanguage = accordions.item(i).dataset.language;
+            if(currentLanguage == language && accordions.item(i).getAttribute("aria-expanded") == "false"){
+                accordions.item(i).click();
+            }
+        }
+    }
+
+    var accordions = document.getElementsByClassName("accordion-button");
+    for (var i = 0; i < accordions.length; i++) {
+        var currentLanguage = accordions.item(i).dataset.language;
+        if(currentLanguage != undefined){
+            accordions.item(i).addEventListener("click", function(){
+                close_or_open_accordion(this.dataset.language);
+                setCookie("client-language", this.dataset.language, 128);
+            });
+        }
+    }
+
+    var clientLanguage = getCookie("client-language");
+    if(clientLanguage != ""){
+        close_or_open_accordion(clientLanguage);
+    }
+};
+
+set_accordion();
