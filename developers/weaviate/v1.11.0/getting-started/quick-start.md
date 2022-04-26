@@ -6,7 +6,7 @@ sub-menu: Getting started
 title: Quick start
 intro: This quick start guide will give you a 10-minute tour of Weaviate. You will set up your Weaviate with Docker, add an example dataset with news articles, make your first queries to browse through your data, and let Weaviate perform automatic classification. This guide uses the "text2vec-tranformers" module. You can find a quick start with the text2vec-contextionary module <a href="../tutorials/quick-start-with-the-text2vec-contextionary-module.html">here</a>.
 description: Get started with Weaviate
-tags: ["quick start"]
+tags: ['quick start']
 menu-order: 1
 open-graph-type: article
 toc: true
@@ -22,7 +22,6 @@ There are many different ways to run Weaviate, from local development setups to 
 The Docker Compose files below will setup Weaviate and load the dataset.
 
 Download the Docker Compose file:
-
 ```bash
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-simple.yml
 ```
@@ -30,8 +29,7 @@ $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies
 This demo can also be GPU accelerated with the appropiate architecture and drivers.
 To enable GPU support on docker ([Docker GPU Support](https://docs.docker.com/config/containers/resource_constraints/#gpu))
 
-Start GPU enbaled demo with this docker-compose file:
-
+Start GPU enbaled demo with this docker-compose file: 
 ```bash
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-withgpu.yaml
 ```
@@ -69,15 +67,14 @@ $ curl -s http://localhost:8080/v1/meta
 ```
 
 The output will look like this:
-{% include docs-current_version_finder.html %}
 
 ```json
 {
-  "hostname": "http://[::]:8080",
-  "modules": {
-    "text2vec-transformers": {}
-  },
-  "version": "{{ current_page_version }}"
+    "hostname": "http://[::]:8080",
+    "modules": {
+        "text2vec-transformers": {}
+    },
+    "version": "{{ site.weaviate_version}}"
 }
 ```
 
@@ -93,244 +90,277 @@ The output will looks like this:
 
 ```json
 {
-  "classes": [
-    {
-      "class": "Publication",
-      "description": "A publication with an online source",
-      "invertedIndexConfig": {
-        "cleanupIntervalSeconds": 60
-      },
-      "moduleConfig": {
-        "text2vec-transformers": {
-          "poolingStrategy": "masked_mean",
-          "vectorizeClassName": false
+    "classes": [
+        {
+            "class": "Publication",
+            "description": "A publication with an online source",
+            "invertedIndexConfig": {
+                "cleanupIntervalSeconds": 60
+            },
+            "moduleConfig": {
+                "text2vec-transformers": {
+                    "poolingStrategy": "masked_mean",
+                    "vectorizeClassName": false
+                }
+            },
+            "properties": [
+                {
+                    "dataType": [
+                        "string"
+                    ],
+                    "description": "Name of the publication",
+                    "moduleConfig": {
+                        "text2vec-transformers": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "name"
+                },
+                {
+                    "dataType": [
+                        "geoCoordinates"
+                    ],
+                    "description": "Geo location of the HQ",
+                    "moduleConfig": {
+                        "text2vec-transformers": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "headquartersGeoLocation"
+                },
+                {
+                    "dataType": [
+                        "Article"
+                    ],
+                    "description": "The articles this publication has",
+                    "name": "hasArticles"
+                }
+            ],
+            "vectorIndexConfig": {
+                "cleanupIntervalSeconds": 300,
+                "maxConnections": 64,
+                "efConstruction": 128,
+                "vectorCacheMaxObjects": 500000
+            },
+            "vectorIndexType": "hnsw",
+            "vectorizer": "text2vec-transformers"
+        },
+        {
+            "class": "Author",
+            "description": "Normalised types",
+            "invertedIndexConfig": {
+                "cleanupIntervalSeconds": 60
+            },
+            "moduleConfig": {
+                "text2vec-transformers": {
+                    "poolingStrategy": "masked_mean",
+                    "vectorizeClassName": true
+                }
+            },
+            "properties": [
+                {
+                    "dataType": [
+                        "string"
+                    ],
+                    "description": "Name of the author",
+                    "moduleConfig": {
+                        "text2vec-transformers": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "name"
+                },
+                {
+                    "dataType": [
+                        "Article"
+                    ],
+                    "description": "Articles this author wrote",
+                    "name": "wroteArticles"
+                },
+                {
+                    "dataType": [
+                        "Publication"
+                    ],
+                    "description": "The publication this author writes for",
+                    "name": "writesFor"
+                }
+            ],
+            "vectorIndexConfig": {
+                "cleanupIntervalSeconds": 300,
+                "maxConnections": 64,
+                "efConstruction": 128,
+                "vectorCacheMaxObjects": 500000
+            },
+            "vectorIndexType": "hnsw",
+            "vectorizer": "text2vec-transformers"
+        },
+        {
+            "class": "Article",
+            "description": "Normalised types",
+            "invertedIndexConfig": {
+                "cleanupIntervalSeconds": 60
+            },
+            "moduleConfig": {
+                "text2vec-transformers": {
+                    "poolingStrategy": "masked_mean",
+                    "vectorizeClassName": false
+                }
+            },
+            "properties": [
+                {
+                    "dataType": [
+                        "string"
+                    ],
+                    "description": "title of the article",
+                    "indexInverted": true,
+                    "moduleConfig": {
+                        "text2vec-transformers": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "title"
+                },
+                {
+                    "dataType": [
+                        "string"
+                    ],
+                    "description": "url of the article",
+                    "indexInverted": false,
+                    "moduleConfig": {
+                        "text2vec-transformers": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "url"
+                },
+                {
+                    "dataType": [
+                        "text"
+                    ],
+                    "description": "summary of the article",
+                    "indexInverted": true,
+                    "moduleConfig": {
+                        "text2vec-transformers": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "summary"
+                },
+                {
+                    "dataType": [
+                        "date"
+                    ],
+                    "description": "date of publication of the article",
+                    "moduleConfig": {
+                        "text2vec-transformers": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "publicationDate"
+                },
+                {
+                    "dataType": [
+                        "int"
+                    ],
+                    "description": "Words in this article",
+                    "moduleConfig": {
+                        "text2vec-transformers": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "wordCount"
+                },
+                {
+                    "dataType": [
+                        "boolean"
+                    ],
+                    "description": "whether the article is currently accessible through the url",
+                    "moduleConfig": {
+                        "text2vec-transformers": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "isAccessible"
+                },
+                {
+                    "dataType": [
+                        "Author",
+                        "Publication"
+                    ],
+                    "description": "authors this article has",
+                    "name": "hasAuthors"
+                },
+                {
+                    "dataType": [
+                        "Publication"
+                    ],
+                    "description": "publication this article is in",
+                    "name": "inPublication"
+                },
+                {
+                    "dataType": [
+                        "Category"
+                    ],
+                    "description": "category this article is of",
+                    "name": "ofCategory"
+                }
+            ],
+            "vectorIndexConfig": {
+                "cleanupIntervalSeconds": 300,
+                "maxConnections": 64,
+                "efConstruction": 128,
+                "vectorCacheMaxObjects": 500000
+            },
+            "vectorIndexType": "hnsw",
+            "vectorizer": "text2vec-transformers"
+        },
+        {
+            "class": "Category",
+            "description": "Category an article is a type off",
+            "invertedIndexConfig": {
+                "cleanupIntervalSeconds": 60
+            },
+            "moduleConfig": {
+                "text2vec-transformers": {
+                    "poolingStrategy": "masked_mean",
+                    "vectorizeClassName": false
+                }
+            },
+            "properties": [
+                {
+                    "dataType": [
+                        "string"
+                    ],
+                    "description": "category name",
+                    "indexInverted": true,
+                    "moduleConfig": {
+                        "text2vec-transformers": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "name"
+                }
+            ],
+            "vectorIndexConfig": {
+                "cleanupIntervalSeconds": 300,
+                "maxConnections": 64,
+                "efConstruction": 128,
+                "vectorCacheMaxObjects": 500000
+            },
+            "vectorIndexType": "hnsw",
+            "vectorizer": "text2vec-transformers"
         }
-      },
-      "properties": [
-        {
-          "dataType": ["string"],
-          "description": "Name of the publication",
-          "moduleConfig": {
-            "text2vec-transformers": {
-              "skip": false,
-              "vectorizePropertyName": false
-            }
-          },
-          "name": "name"
-        },
-        {
-          "dataType": ["geoCoordinates"],
-          "description": "Geo location of the HQ",
-          "moduleConfig": {
-            "text2vec-transformers": {
-              "skip": false,
-              "vectorizePropertyName": false
-            }
-          },
-          "name": "headquartersGeoLocation"
-        },
-        {
-          "dataType": ["Article"],
-          "description": "The articles this publication has",
-          "name": "hasArticles"
-        }
-      ],
-      "vectorIndexConfig": {
-        "cleanupIntervalSeconds": 300,
-        "maxConnections": 64,
-        "efConstruction": 128,
-        "vectorCacheMaxObjects": 500000
-      },
-      "vectorIndexType": "hnsw",
-      "vectorizer": "text2vec-transformers"
-    },
-    {
-      "class": "Author",
-      "description": "Normalised types",
-      "invertedIndexConfig": {
-        "cleanupIntervalSeconds": 60
-      },
-      "moduleConfig": {
-        "text2vec-transformers": {
-          "poolingStrategy": "masked_mean",
-          "vectorizeClassName": true
-        }
-      },
-      "properties": [
-        {
-          "dataType": ["string"],
-          "description": "Name of the author",
-          "moduleConfig": {
-            "text2vec-transformers": {
-              "skip": false,
-              "vectorizePropertyName": false
-            }
-          },
-          "name": "name"
-        },
-        {
-          "dataType": ["Article"],
-          "description": "Articles this author wrote",
-          "name": "wroteArticles"
-        },
-        {
-          "dataType": ["Publication"],
-          "description": "The publication this author writes for",
-          "name": "writesFor"
-        }
-      ],
-      "vectorIndexConfig": {
-        "cleanupIntervalSeconds": 300,
-        "maxConnections": 64,
-        "efConstruction": 128,
-        "vectorCacheMaxObjects": 500000
-      },
-      "vectorIndexType": "hnsw",
-      "vectorizer": "text2vec-transformers"
-    },
-    {
-      "class": "Article",
-      "description": "Normalised types",
-      "invertedIndexConfig": {
-        "cleanupIntervalSeconds": 60
-      },
-      "moduleConfig": {
-        "text2vec-transformers": {
-          "poolingStrategy": "masked_mean",
-          "vectorizeClassName": false
-        }
-      },
-      "properties": [
-        {
-          "dataType": ["string"],
-          "description": "title of the article",
-          "indexInverted": true,
-          "moduleConfig": {
-            "text2vec-transformers": {
-              "skip": false,
-              "vectorizePropertyName": false
-            }
-          },
-          "name": "title"
-        },
-        {
-          "dataType": ["string"],
-          "description": "url of the article",
-          "indexInverted": false,
-          "moduleConfig": {
-            "text2vec-transformers": {
-              "skip": false,
-              "vectorizePropertyName": false
-            }
-          },
-          "name": "url"
-        },
-        {
-          "dataType": ["text"],
-          "description": "summary of the article",
-          "indexInverted": true,
-          "moduleConfig": {
-            "text2vec-transformers": {
-              "skip": false,
-              "vectorizePropertyName": false
-            }
-          },
-          "name": "summary"
-        },
-        {
-          "dataType": ["date"],
-          "description": "date of publication of the article",
-          "moduleConfig": {
-            "text2vec-transformers": {
-              "skip": false,
-              "vectorizePropertyName": false
-            }
-          },
-          "name": "publicationDate"
-        },
-        {
-          "dataType": ["int"],
-          "description": "Words in this article",
-          "moduleConfig": {
-            "text2vec-transformers": {
-              "skip": false,
-              "vectorizePropertyName": false
-            }
-          },
-          "name": "wordCount"
-        },
-        {
-          "dataType": ["boolean"],
-          "description": "whether the article is currently accessible through the url",
-          "moduleConfig": {
-            "text2vec-transformers": {
-              "skip": false,
-              "vectorizePropertyName": false
-            }
-          },
-          "name": "isAccessible"
-        },
-        {
-          "dataType": ["Author", "Publication"],
-          "description": "authors this article has",
-          "name": "hasAuthors"
-        },
-        {
-          "dataType": ["Publication"],
-          "description": "publication this article is in",
-          "name": "inPublication"
-        },
-        {
-          "dataType": ["Category"],
-          "description": "category this article is of",
-          "name": "ofCategory"
-        }
-      ],
-      "vectorIndexConfig": {
-        "cleanupIntervalSeconds": 300,
-        "maxConnections": 64,
-        "efConstruction": 128,
-        "vectorCacheMaxObjects": 500000
-      },
-      "vectorIndexType": "hnsw",
-      "vectorizer": "text2vec-transformers"
-    },
-    {
-      "class": "Category",
-      "description": "Category an article is a type off",
-      "invertedIndexConfig": {
-        "cleanupIntervalSeconds": 60
-      },
-      "moduleConfig": {
-        "text2vec-transformers": {
-          "poolingStrategy": "masked_mean",
-          "vectorizeClassName": false
-        }
-      },
-      "properties": [
-        {
-          "dataType": ["string"],
-          "description": "category name",
-          "indexInverted": true,
-          "moduleConfig": {
-            "text2vec-transformers": {
-              "skip": false,
-              "vectorizePropertyName": false
-            }
-          },
-          "name": "name"
-        }
-      ],
-      "vectorIndexConfig": {
-        "cleanupIntervalSeconds": 300,
-        "maxConnections": 64,
-        "efConstruction": 128,
-        "vectorCacheMaxObjects": 500000
-      },
-      "vectorIndexType": "hnsw",
-      "vectorizer": "text2vec-transformers"
-    }
-  ]
+    ]
 }
 ```
 
@@ -5224,8 +5254,8 @@ You can also examine which articles are related to these publications.
   Get {
     Publication {
       name
-      hasArticles {
-        ... on Article {
+      hasArticles{
+        ... on Article{
           title
         }
       }
@@ -5244,11 +5274,11 @@ And you can even go deeper, to find which authors are related to these publicati
   Get {
     Publication(limit: 3) {
       name
-      hasArticles {
-        ... on Article {
+      hasArticles{
+        ... on Article{
           title
           hasAuthors {
-            ... on Author {
+            ... on Author{
               name
             }
           }
@@ -5261,6 +5291,7 @@ And you can even go deeper, to find which authors are related to these publicati
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28limit%3A+3%29+%7B%0D%0A++++++name%0D%0A++++++hasArticles%7B%0D%0A++++++++...+on+Article%7B%0D%0A++++++++++title%0D%0A++++++++++hasAuthors+%7B%0D%0A++++++++++++...+on+Author%7B%0D%0A++++++++++++++name%0D%0A++++++++++++%7D%0D%0A++++++++++%7D%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
+
 When querying for articles, you can add classic filters to narrow down your search.
 
 ```graphql
@@ -5268,7 +5299,11 @@ When querying for articles, you can add classic filters to narrow down your sear
 {
   Get {
     Article(
-      where: { operator: GreaterThanEqual, path: ["wordCount"], valueInt: 1000 }
+      where:{
+        operator: GreaterThanEqual
+        path: ["wordCount"]
+        valueInt: 1000
+      }
       limit: 10
     ) {
       title
@@ -5278,27 +5313,27 @@ When querying for articles, you can add classic filters to narrow down your sear
   }
 }
 ```
-
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++where%3A%7B%0D%0A++++++++operator%3A+GreaterThanEqual%0D%0A++++++++path%3A+%5B%22wordCount%22%5D%0D%0A++++++++valueInt%3A+1000%0D%0A++++++%7D%0D%0A++++++limit%3A+10%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++summary%0D%0A++++++wordCount%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
+
 
 Do you want to know how many articles, authors and publications there are? This is something you can find using the Aggregate{} function.
 
 ```graphql
 # GraphQL
 {
-  Aggregate {
-    Publication {
-      meta {
+  Aggregate{
+    Publication{
+      meta{
         count
       }
     }
-    Author {
-      meta {
+    Author{
+      meta{
         count
       }
     }
-    Article {
-      meta {
+    Article{
+      meta{
         count
       }
       wordCount {
@@ -5326,15 +5361,20 @@ In Weaviate, you can also semantically explore your datasets. Let's search for a
 # GraphQL
 {
   Get {
-    Article(nearText: { concepts: ["money"] }, limit: 10) {
+    Article(
+      nearText: {
+        concepts: ["money"]
+      }
+      limit: 10
+    ) {
       title
       summary
     }
   }
 }
 ```
-
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22money%22%5D%0D%0A++++++%7D%0D%0A++++++limit%3A+10%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++summary%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
+
 
 You can also combine filters!
 
@@ -5343,13 +5383,20 @@ You can also combine filters!
 {
   Get {
     Article(
-      nearText: { concepts: ["rideSharing"] }
-      where: {
-        operator: And
-        operands: [
-          { operator: GreaterThan, path: ["wordCount"], valueInt: 200 }
-          { operator: Like, path: ["title"], valueString: "*tax*" }
-        ]
+      nearText: {
+        concepts: ["rideSharing"]
+      }
+      where:{ 
+        operator:And
+        operands: [{
+          operator: GreaterThan
+          path: ["wordCount"]
+          valueInt: 200
+        }, {
+          operator:Like
+          path:["title"]
+          valueString:"*tax*"
+        }]
       }
       limit: 10
     ) {
@@ -5360,8 +5407,8 @@ You can also combine filters!
   }
 }
 ```
-
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22rideSharing%22%5D%0D%0A++++++%7D%0D%0A++++++where%3A%7B+%0D%0A++++++++operator%3AAnd%0D%0A++++++++operands%3A+%5B%7B%0D%0A++++++++++operator%3A+GreaterThan%0D%0A++++++++++path%3A+%5B%22wordCount%22%5D%0D%0A++++++++++valueInt%3A+200%0D%0A++++++++%7D%2C+%7B%0D%0A++++++++++operator%3ALike%0D%0A++++++++++path%3A%5B%22title%22%5D%0D%0A++++++++++valueString%3A%22%2Atax%2A%22%0D%0A++++++++%7D%5D%0D%0A++++++%7D%0D%0A++++++limit%3A+10%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++summary%0D%0A++++++wordCount%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
+
 
 Or group similar topics semantically together. Look how the Publications `International New York Times`, `The New York Times Company` and `New York Times` are merged.
 
@@ -5371,23 +5418,26 @@ _Tip: play around with the force variable._
 # GraphQL
 {
   Get {
-    Publication(group: { type: merge, force: 0.1 }) {
+    Publication(
+      group: {
+        type: merge
+        force: 0.1
+      }
+    ) {
       name
     }
   }
 }
 ```
-
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28%0D%0A++++++group%3A+%7B%0D%0A++++++++type%3A+merge%0D%0A++++++++force%3A+0.1%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D%0D%0A' %}
 
+
 # What's next...
-
 In this tutorial you learned how to quickly set up a Weaviate with a demo dataset, and use semantic search and classification. Next, check out the following:
-
 - [Spin up a Weaviate instance](./installation.html) with your own [schema](../tutorials/how-to-create-a-schema.html) and [data](../tutorials/how-to-import-data.html).
 - Learn more about [authentication](../configuration/authentication.html) and [authorization](../configuration/authorization.html).
 - Install one of the [client libraries](../client-libraries/index.html) for smooth interaction with the Weaviate APIs.
-- Consult the [RESTful API references](../restful-api-references/index.html) and the [GraphQL references](../graphql-references/index.html) to learn about all the possible interactions with Weaviate.
+- Consult the [RESTful API references](../restful-api-references/index.html) and the [GraphQL references](../graphql-references/index.html) to learn about all the possible interactions with Weaviate. 
 
 # More resources
 
