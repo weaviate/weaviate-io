@@ -92,6 +92,20 @@ A few tips for writing good issues/bug reports
 
 ### Pull request process
 
+Here's a few general guidelines for when to create a pull request:
+
+- If you're making visual changes, include a screenshot of the affected element before and after
+
+- Please update the documentation if you change any user-facing functionality in Weaviate
+
+- Each pull request should implement one new feature or fix one bug. Submit multiple pull requests if you want to add or fix multiple items.
+
+- Do not commit changes to files that are irrelevant to your feature or bug fix
+
+- Write a [good commit message](#commit-guidelines)
+
+How to create a pull request:
+
 - Create a new branch for the issue
   ```
   git checkout -b branch-name
