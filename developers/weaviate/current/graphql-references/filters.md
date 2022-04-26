@@ -128,6 +128,32 @@ You can filter object by their unique id or uuid, where you give the `id` as `va
 } 
 ```
 
+## Filter by timestamps
+
+Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
+
+*Note: filtering by timestamp requires the target class to be configured to index  timestamps. See [here](../data-schema/schema-configuration.html#invertedindexconfig--indexTimestamps) for details* 
+
+{% include code/1.x/graphql.filters.where.timestamps.html %}
+
+{% include molecule-gql-demo.html encoded_query='%7B%0A++Get+%7B%0A++++Article(where%3A+%7B%0A++++++++path%3A+%5B%22_creationTimeUnix%22%5D%2C%0A++++++++operator%3A+Equal%2C%0A++++++++valueString%3A+%221647653194586%22%0A++++++%7D)+%7B%0A++++++title%0A++++%7D%0A++%7D%0A%7D' %}
+
+### Example Response
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
+        },
+      ]
+  },
+  "errors": null
+} 
+```
+
 ## Multiple operands
 
 You can set multiple operands by providing an array.

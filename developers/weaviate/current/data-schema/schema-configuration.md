@@ -86,6 +86,7 @@ An example of a complete class object including properties:
     "stopwords": { 
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
+    "indexTimestamps": false                 // Optional, maintains inverted indices for each object by its internal timestamps
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of class in a multi-node setting, see section below
@@ -209,6 +210,21 @@ This configuration allows stopwords to be configured by class. If not set, these
 **Notes**
 - If none is the selected preset, then the class' stopwords will consist entirely of the additions list.
 - If the same item is included in both additions and removals, then an error is returned
+
+### invertedIndexConfig > indexTimestamps
+
+*Note: This feature was introduced in `v1.13.0`.*
+
+To perform queries which are filtered by timestamps, the target class must first be configured to maintain an inverted index for each object by their internal timestamps -- currently these include `creationTimeUnix` and `lastUpdateTimeUnix`. This configuration is done by setting the `indexTimestamps` field of the `invertedIndexConfig` object to `true`.
+
+```json
+  "invertedIndexConfig": {
+    "indexTimestamps": true
+  }
+```
+
+**Notes**
+- Using this feature requires more resources, as the additional inverted indicies must be created/maintained for the lifetime of the Class
 
 # Property object
 
