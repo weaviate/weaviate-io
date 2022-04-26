@@ -4,7 +4,21 @@ Hi there! We're thrilled that you'd like to contribute to the Weaviate's documen
 
 This guide will walk you through the entire contribution workflow, from opening an issue through creating a PR, reviewing it, and merging it.
 
-## Types of contributions
+## Table of contents
+
+- [Types of Contributions](#types-of-contributions)
+- [Getting Started](#getting-started)
+  - [Issues](#issues)
+  - [Forking and Syncing the repository](#forking-and-syncing-the-repository)
+  - [Pull request process](#pull-request-process)
+  - [Commit Guidelines](#commit-guidelines)
+  - [Self Review](#self-review)
+- [Ask for Help](#ask-for-help)
+- [Contributor License Agreement](#contributor-license-agreement)
+- [Code of Conduct](#code-of-conduct)
+- [License Information](#license-information)
+
+## Types of Contributions
 
 We welcome contributions in several forms, e.g.
 
@@ -16,7 +30,7 @@ We welcome contributions in several forms, e.g.
   - Fixing a bug
   - Adding a new feature
   - Answering questions on Slack/Mailing List
-  - Correcting typos and grammatical sentences
+  - Correcting typos and sentences
 
 ## Getting Started
 
@@ -43,7 +57,7 @@ A few tips for writing good issues/bug reports
 - Check that you are using the latest version of the project and its dependencies
 - Only include one bug per issue. If you have discovered two bugs, please file two issues
 
-### Forking and syncing the repository
+### Forking and Syncing the repository
 
 - Fork the repository, by heading over to weaviate-io's repository and clicking `Fork` button.
 
@@ -76,7 +90,7 @@ A few tips for writing good issues/bug reports
     git push origin main
     ```
 
-### Pull Request process
+### Pull request process
 
 - Create a new branch for the issue
   ```
@@ -86,6 +100,10 @@ A few tips for writing good issues/bug reports
 - Add your files to the staging area
   ```
   git add file-name
+  ```
+- Check if the file is added in the staging area
+  ```
+  git status
   ```
 - Commit your changes with a good commit message. Refer to the tips for creating [good commit messages](#commit-guidelines) below.
   ```
@@ -97,7 +115,67 @@ A few tips for writing good issues/bug reports
   ```
 - Create a Pull Request by filling out our pull request template.
 
-### Commit guidelines
+- Once your changes are ready, make sure you [self review](#self-review) your pull request to speed up the review process.
+
+### Commit Guidelines
+
+The cardinal rule for creating good commits is to ensure there is only one "logical change" per commit.
+
+Example commit
+
+```
+gh-xx: short explanation of the commit
+
+Longer explanation explaining exactly what's changed and why, whether
+any documentation or web feature has been changed, what bugs were fixed
+and so forth. Be concise but not too brief.
+
+Fixes #12345.
+```
+
+Few tips for writing good commit messages:
+
+- The commit message is primarily for the benefit of the others, and they should be able to understand it both now and six months from now.
+
+- Begin with `gh-xx` to refer to the issue that the commit is working on. Here `xx` is issue number.
+
+- Use the present tense ("Add feature" not "Added feature")
+
+- If the commit fixes an issue, add a line on the last paragraph: "Fixes: #ISSUE_NUMBER.".
+
+- Leave out the trailing period (full stop).
+
+- Each line in description must not exceed 75 characters (there is no limit on number of lines).
+
+Things to avoid when creating commits:
+
+- Combining whitespace and functional code changes
+
+- Combining two unrelated functional changes
+
+- Sending out a large number of new features in a single massive commit.
+
+If you accidentally created a wrong commit message and want to redo the latest commit, you can use this command:
+
+```
+git commit --amend -m "new commit message"
+```
+
+### Self Review
+
+You should always review your own PR first.
+
+For any changes you commit, make sure that you:
+
+- Confirm that the changes meet the objectives of the issue you created or are working on.
+
+- Compare your pull request's source changes to staging to ensure that the output matches the source and that everything is rendering as expected. This assists in detecting issues such as typos or content that isn't rendering due to versioning issues.
+
+- Check for technical accuracy in the content. You can always [ask for help](#ask-for-help) if you get stuck.
+
+- Verify that the syntax of new or updated Liquid statements is proper. Jekyll uses the [Liquid](https://shopify.github.io/liquid/) templating language to process templates.
+
+- If there are any failing checks in your PR, try troubleshooting them until they are passing or [ask for help](#ask-for-help).
 
 ## Ask for Help
 
@@ -116,7 +194,7 @@ I agree to Contributor License Agreement.
 
 ## Code of Conduct
 
-This is an open source project with a contributor community from all over the world. We want everyone in our community to feel safe, and we encourage people of all backgrounds to participate, regardless of experience level, age, gender, identity, race, religion, or nationality. We anticipate that all contributors will uphold the [Code of Conduct](CODE_OF_CONDUCT.md)
+This is an open source project with a contributor community from all over the world. We want everyone in our community to feel safe, and we encourage people of all backgrounds to participate, regardless of experience level, age, gender, identity, race, religion, or nationality. We anticipate that all contributors will uphold the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License Information
 
