@@ -64,6 +64,7 @@ $ curl -s http://localhost:8080/v1/meta
 ```
 
 The output will look like this:
+{% include docs-current_version_finder.html %}
 
 ```json
 {
@@ -71,7 +72,7 @@ The output will look like this:
     "modules": {
         "text2vec-transformers": {}
     },
-    "version": "{{ site.weaviate_version}}"
+    "version": "{{ current_page_version }}"
 }
 ```
 
