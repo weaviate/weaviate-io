@@ -66,6 +66,7 @@ import (
   "fmt"
 
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
@@ -79,7 +80,7 @@ func main() {
   name := graphql.Field{Name: "name"}
   where := client.GraphQL().WhereArgBuilder().
     WithPath([]string{"name"}).
-    WithOperator(graphql.Like).
+    WithOperator(filters.Like).
     WithValueString("New *")
 
   ctx := context.Background()

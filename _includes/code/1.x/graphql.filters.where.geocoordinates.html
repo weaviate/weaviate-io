@@ -105,6 +105,7 @@ import (
   "fmt"
 
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
@@ -123,7 +124,7 @@ func main() {
     }},
   }
   where := client.GraphQL().WhereArgBuilder().
-    WithOperator(graphql.WithinGeoRange).
+    WithOperator(filters.WithinGeoRange).
     WithPath([]string{"headquartersGeoLocation"}).
     WithValueGeoRange(&graphql.GeoCoordinatesParameter{
       Latitude:    51.51,

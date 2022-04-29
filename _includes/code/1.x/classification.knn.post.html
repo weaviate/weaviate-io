@@ -73,8 +73,7 @@ import (
 
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate/classifications"
-  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
-  "github.com/semi-technologies/weaviate/entities/models"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
   "github.com/semi-technologies/weaviate/usecases/classification"
 )
 
@@ -93,11 +92,10 @@ func main() {
     return &in
   }
 
-  trainingSetWhere := &models.WhereFilter{
-    ValueInt: valueInt64(100),
-    Operator: string(graphql.GreaterThan),
-    Path:     []string{"wordCount"},
-  }
+  trainingSetWhere := (&filters.WhereBuilder{}).
+    WithOperator(filters.GreaterThan).
+    WithPath([]string{"wordCount"}).
+    WithValueInt(100)
 
   classification, err := client.Classifications().Scheduler().
     WithType(classifications.KNN).

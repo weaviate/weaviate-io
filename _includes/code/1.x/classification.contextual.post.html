@@ -75,8 +75,7 @@ import (
 
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate/classifications"
-  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
-  "github.com/semi-technologies/weaviate/entities/models"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
 )
 
 func main() {
@@ -94,17 +93,15 @@ func main() {
     return &in
   }
 
-  sourceWhere := &models.WhereFilter{
-    ValueInt: valueInt(100),
-    Operator: string(graphql.GreaterThan),
-    Path:     []string{"wordCount"},
-  }
+  sourceWhere := (&filters.WhereBuilder{}).
+    WithOperator(filters.GreaterThan).
+    WithPath([]string{"wordCount"}).
+    WithValueInt(100)
 
-  targetWhere := &models.WhereFilter{
-    ValueString: valueString("Government"),
-    Operator:    string(graphql.NotEqual),
-    Path:        []string{"name"},
-  }
+  targetWhere := (&filters.WhereBuilder{}).
+    WithOperator(filters.NotEqual).
+    WithPath([]string{"name"}).
+    WithValueString("Government")
 
   classification, err := client.Classifications().Scheduler().
     WithType(classifications.Contextual).

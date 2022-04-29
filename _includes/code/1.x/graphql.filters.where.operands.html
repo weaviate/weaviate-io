@@ -88,6 +88,7 @@ import (
   "time"
 
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
@@ -107,15 +108,15 @@ func main() {
   }
 
   where := client.GraphQL().WhereArgBuilder().
-    WithOperator(graphql.And).
+    WithOperator(filters.And).
     WithOperands([]*graphql.WhereFilterBuilder{
       client.GraphQL().WhereFilterBuilder().
         WithPath([]string{"wordCount"}).
-        WithOperator(graphql.GreaterThan).
+        WithOperator(filters.GreaterThan).
         WithValueInt(1000),
       client.GraphQL().WhereFilterBuilder().
         WithPath([]string{"publicationDate"}).
-        WithOperator(graphql.LessThan).
+        WithOperator(filters.LessThan).
         WithValueDate(date),
     })
 
