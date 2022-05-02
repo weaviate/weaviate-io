@@ -78,7 +78,161 @@ The Go client functions are designed with a 'Builder pattern'. A pattern is used
 
 The code snippet above shows a simple query similar to `RESTful GET /v1/schema`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by getting the `.Schema` with `.Getter()`. The query will be sent with the `.Go()` function, this object is thus required for every function you want to build and execute. 
 
+# Migration Guides
+
+## From `v2` to `v4`
+
+### Unnecessary `.Objects()` removed from `GraphQL.Get()`
+
+Before:
+
+```go
+client.GraphQL().Get().Objects().WithClassName...
+```
+
+After:
+
+```go
+client.GraphQL().Get().WithClassName
+```
+
+### GraphQL `Get().WithNearVector()` uses a builder pattern
+
+In `v2` specifying a `nearVector` argument to `client.GraphQL().Get()` required passing a string. As a result the user had to know the structure of the GraphQL API. `v4` fixes this by using a builder pattern like so:
+
+Before:
+
+```go
+client.GraphQL().Get().
+  WithNearVector("{vector: [0.1, -0.2, 0.3]}")...
+```
+
+After
+
+```go
+nearVector := client.GraphQL().NearVectorArgBuilder().
+  WithVector([]float32{0.1, -0.2, 0.3})
+
+client.GraphQL().Get().
+  WithNearVector(nearVector)...
+```
+
+
+### All `where` filters use the same builder
+
+In `v2` filters were sometimes specified as strings, sometimes in a structured way. `v4` unifies this and makes sure that you can always use the same builder pattern.
+
+#### GraphQL Get
+
+Before:
+
+```go
+TODO @parker
+```
+
+After:
+
+
+```go
+TODO @parker
+```
+
+#### GraphQL Aggregate
+
+Before:
+
+```go
+TODO @parker
+```
+
+After:
+
+
+```go
+TODO @parker
+```
+
+#### Classification
+
+Before:
+
+```go
+TODO @parker
+```
+
+After:
+
+```go
+TODO @parker
+```
+
+### GraphQL `Get().WithFields()`
+
+In `v2` `.WithFields()` took a GraphQL string that required knowledge of how GraphQL fields are structured. Now this can be done with a variadic function. E.g:
+
+Before:
+
+```go
+client.GraphQL.Get().WithClassName("MyClass").WithFields("name price age")...
+```
+
+After:
+
+```go
+client.GraphQL.Get().WithClassName("MyClass").
+  WithFields(graphql.Field{Name: "name"},graphql.Field{Name: "price"}, graphql.Field{Name: "age"})...
+```
+
+### Graphql `Get().WithGroup()`
+
+In `v2` `.WithFields()` took a GraphQL string that required knowledge of how GraphQL fields are structured. Now this can be done with a builder. E.g:
+
+Before:
+
+```go
+client.GraphQL.Get().WithClassName("MyClass")
+  .WithGroup("{type:merge force:1.0}")
+```
+
+After:
+
+```go
+group := client.GraphQL().GroupArgBuilder()
+  .WithType(graphql.Merge).WithForce(1.0)
+
+client.GraphQL.Get().WithClassName("MyClass").WithGroup(group)
+```
+
+### Graphql `Data().Validator()` property renamed
+
+In `v2` the naming of the method to specify the Schema was inconsistent with other places in the client. This has been fixed in `v4`. Rename according to the following:
+
+Before:
+```go
+client.Data().Validator().WithSchema(properties)
+```
+
+After:
+```go
+client.Data().Validator().WithProperties(properties)
+```
+
+
 # Change logs
+
+## v4.0.0
+
+- (Breaking) Remove `.Objects()` from GraphQL `Get()`. See migration guide above for details
+- (Breaking) GraphQL `Aggregate`, `Explore`, and `Get`: `.WithFields()` is now a variadic function, see migration guide above
+- (Breaking) `client.Data().Validator().WithSchema(properties)` -> `client.Data().Validator().WithProperties(properties)`
+- (Breaking) GraphQL `Get`: `WithNearVector(nearVector string)` -> `WithNearVector(nearVector *NearVectorArgumentBuilder)`. See migration guide above for details
+- (Breaking) TODO @parker where filter changes
+
+- (Addition) Aggregate support for: `nearObject`, `nearVector`, `nearText`, `ask`, `nearImage`, `where`, `objectLimit`, `limit`
+- (Addition) Explore support for: `nearObject`, `nearVector`, `nearText`, `ask`, `nearImage`, `limit`, `offset`
+- (Addition) Support for sort in Get GraphQL
+- (Addition) Support for indexTimestamps
+- (Addition) Batch Delete API support
 
 ## v3.0.0 
 - Add builders for `where` / `group` / `fields` 
