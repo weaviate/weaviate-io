@@ -132,7 +132,7 @@ You can filter object by their unique id or uuid, where you give the `id` as `va
 
 Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
 
-*Note: filtering by timestamp requires the target class to be configured to index  timestamps. See [here](../data-schema/schema-configuration.html#invertedindexconfig--indexTimestamps) for details* 
+*Note: filtering by timestamp requires the target class to be configured to index  timestamps. See [here](../data-schema/schema-configuration.html#invertedindexconfig--indextimestamps) for details* 
 
 {% include code/1.x/graphql.filters.where.timestamps.html %}
 
