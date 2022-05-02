@@ -60,7 +60,8 @@ class_obj = {
         "preset": "en",
         "additions": ["star", "nebula"],
         "removals": ["a", "the"]
-      }
+      },
+      "indexTimestamps": True
     }
 }
 
@@ -132,7 +133,8 @@ var classObj = {
         "preset": "en",
         "additions": ["star", "nebula"],
         "removals": ["a", "the"]
-      }
+      },
+      "indexTimestamps": true
     }
 }
 
@@ -189,6 +191,7 @@ func main() {
         Additions: []string{"star", "nebula"},
         Removals:  []string{"a", "the"},
       },
+      IndexTimestamps: true,
     },
   }
 
@@ -228,6 +231,7 @@ public class App {
 
     InvertedIndexConfig invertedIndexConfig = InvertedIndexConfig.builder()
       .stopwords(stopwordConfig)
+      .indexTimestamps(true) # TODO <----------------------------------------------------
       .build();
 
     VectorIndexConfig vectorIndexConfig = VectorIndexConfig.builder()
@@ -345,7 +349,8 @@ $ curl \
         "preset": "en",
         "additions": ["star", "nebula"],
         "removals": ["a", "the"]
-      }
+      },
+      "indexTimestamps": true
     }
 }' \
 http://localhost:8080/v1/schema
