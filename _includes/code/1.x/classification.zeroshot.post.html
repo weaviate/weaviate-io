@@ -72,37 +72,25 @@ import (
 
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate/classifications"
-  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
-  "github.com/semi-technologies/weaviate/entities/models"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
 )
 
 func main() {
-
   cfg := weaviate.Config{
     Host:   "localhost:8080",
     Scheme: "http",
   }
   client := weaviate.New(cfg)
 
-  valueInt := func(in int64) *int64 {
-    return &in
-  }
+  sourceWhere := filters.Where().
+    WithOperator(filters.GreaterThan).
+    WithPath([]string{"wordCount"}).
+    WithValueInt(100)
 
-  valueString := func(in string) *string {
-    return &in
-  }
-
-  sourceWhere := &models.WhereFilter{
-    ValueInt: valueInt(100),
-    Operator: string(graphql.GreaterThan),
-    Path:     []string{"wordCount"},
-  }
-
-  targetWhere := &models.WhereFilter{
-    ValueString: valueString("Government"),
-    Operator:    string(graphql.NotEqual),
-    Path:        []string{"name"},
-  }
+  targetWhere := filters.Where().
+    WithOperator(filters.NotEqual).
+    WithPath([]string{"name"}).
+    WithValueString("Government")
 
   classification, err := client.Classifications().Scheduler().
     WithType(classifications.ZeroShot).

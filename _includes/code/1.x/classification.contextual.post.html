@@ -85,20 +85,12 @@ func main() {
   }
   client := weaviate.New(cfg)
 
-  valueInt := func(in int64) *int64 {
-    return &in
-  }
-
-  valueString := func(in string) *string {
-    return &in
-  }
-
-  sourceWhere := (&filters.WhereBuilder{}).
+  sourceWhere := filters.Where().
     WithOperator(filters.GreaterThan).
     WithPath([]string{"wordCount"}).
     WithValueInt(100)
 
-  targetWhere := (&filters.WhereBuilder{}).
+  targetWhere := filters.Where().
     WithOperator(filters.NotEqual).
     WithPath([]string{"name"}).
     WithValueString("Government")

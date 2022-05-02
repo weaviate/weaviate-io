@@ -127,14 +127,40 @@ In `v2` filters were sometimes specified as strings, sometimes in a structured w
 Before:
 
 ```go
-TODO @parker
+// using filter encoded as string
+where := `where :{
+  operator: Equal
+  path: ["id"]
+  valueString: "5b6a08ba-1d46-43aa-89cc-8b070790c6f2"
+}`
+
+client.GraphQL().Get().
+  Objects().
+  WithWhere(where)...
+```
+
+```go
+// using deprecated graphql arg builder
+where := client.GraphQL().WhereArgBuilder().
+  WithOperator(graphql.Equal).
+  WithPath([]string{"id"}).
+  WithValueString("5b6a08ba-1d46-43aa-89cc-8b070790c6f2")
+
+client.GraphQL().Get().
+  Objects().
+  WithWhere(where)...
 ```
 
 After:
 
-
 ```go
-TODO @parker
+where := filters.Where().
+  WithPath([]string{"id"}).
+  WithOperator(filters.Equal).
+  WithValueString("5b6a08ba-1d46-43aa-89cc-8b070790c6f2")
+
+client.GraphQL().Get().
+  WithWhere(where)...
 ```
 
 #### GraphQL Aggregate
@@ -142,14 +168,26 @@ TODO @parker
 Before:
 
 ```go
-TODO @parker
+where := client.GraphQL().WhereArgBuilder().
+  WithPath([]string{"id"}).
+  WithOperator(graphql.Equal).
+  WithValueString("5b6a08ba-1d46-43aa-89cc-8b070790c6f2")
+
+client.GraphQL().Aggregate().
+  Objects().
+  WithWhere(where)...
 ```
 
 After:
 
-
 ```go
-TODO @parker
+where := filters.Where().
+  WithPath([]string{"id"}).
+  WithOperator(filters.Equal).
+  WithValueString("5b6a08ba-1d46-43aa-89cc-8b070790c6f2")
+
+client.GraphQL().Aggregate().
+  WithWhere(where)...
 ```
 
 #### Classification
@@ -157,13 +195,42 @@ TODO @parker
 Before:
 
 ```go
-TODO @parker
+valueInt := 100
+valueString  := "Government"
+
+sourceWhere := &models.WhereFilter{
+  ValueInt: &valueInt,
+  Operator: string(graphql.GreaterThan),
+  Path:     []string{"wordCount"},
+}
+
+targetWhere := &models.WhereFilter{
+  ValueString: &valueString,
+  Operator:    string(graphql.NotEqual),
+  Path:        []string{"name"},
+}
+
+client.Classifications().Scheduler().
+  WithSourceWhereFilter(sourceWhere).
+  WithTargetWhereFilter(targetWhere)...
 ```
 
 After:
 
 ```go
-TODO @parker
+sourceWhere := filters.Where().
+  WithOperator(filters.GreaterThan).
+  WithPath([]string{"wordCount"}).
+  WithValueInt(100)
+
+targetWhere := filters.Where().
+  WithOperator(filters.NotEqual).
+  WithPath([]string{"name"}).
+  WithValueString("Government")
+
+client.Classifications().Scheduler().
+  WithSourceWhereFilter(sourceWhere).
+  WithTargetWhereFilter(targetWhere)...
 ```
 
 ### GraphQL `Get().WithFields()`
@@ -226,7 +293,7 @@ client.Data().Validator().WithProperties(properties)
 - (Breaking) GraphQL `Aggregate`, `Explore`, and `Get`: `.WithFields()` is now a variadic function, see migration guide above
 - (Breaking) `client.Data().Validator().WithSchema(properties)` -> `client.Data().Validator().WithProperties(properties)`
 - (Breaking) GraphQL `Get`: `WithNearVector(nearVector string)` -> `WithNearVector(nearVector *NearVectorArgumentBuilder)`. See migration guide above for details
-- (Breaking) TODO @parker where filter changes
+- (Breaking) `Where` filter: `WithWhere(filter string)` -> `WithWhere(filter *filters.WhereBuilder)` See migration guide above
 
 - (Addition) Aggregate support for: `nearObject`, `nearVector`, `nearText`, `ask`, `nearImage`, `where`, `objectLimit`, `limit`
 - (Addition) Explore support for: `nearObject`, `nearVector`, `nearText`, `ask`, `nearImage`, `limit`, `offset`
