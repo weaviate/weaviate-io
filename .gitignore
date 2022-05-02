@@ -4,3 +4,4 @@
 vendor/
 _site/
 .jekyll-metadata
+.ruby-version
