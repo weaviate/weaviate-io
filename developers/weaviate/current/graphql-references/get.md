@@ -112,6 +112,8 @@ limitation.
 
 {% include code/1.x/graphql.get.sorting.html %}
 
+{% include molecule-gql-demo.html encoded_query='%7B%0A++Get+%7B%0A++++Article%28sort%3A+%5B%7B%0A++++++path%3A+%5B%22title%22%5D%0A++++++order%3A+asc%0A++++%7D%5D%29+%7B%0A++++++title%0A++++++url%0A++++++wordCount%0A++++%7D%0A++%7D%0A%7D' %}
+
 # More Resources
 
 {% include docs-support-links.html %}
