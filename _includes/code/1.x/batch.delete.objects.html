@@ -1,0 +1,37 @@
+{% capture curl %}
+$ curl \
+-X DELETE \
+-H "Content-Type: application/json" \
+-d '{
+  "match": {
+    "class": "Author",
+    "where": {
+      "valueText": "Jane",
+      "path": ["name"],
+      "operator": "Equal"
+    }
+  },
+  "output": "verbose",
+  "dryRun": false
+}' \
+http://localhost:8080/v1/batch/objects
+{% endcapture %}
+
+{% capture python %}
+TODO @stefan
+{% endcapture %}
+
+{% capture javascript %}
+TODO core team
+{% endcapture %}
+
+{% capture go %}
+TODO core team
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+TODO core team
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='batch-delete-objects' %}
