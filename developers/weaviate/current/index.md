@@ -4,7 +4,7 @@ bodyclass: ["page--guides", " "]
 solution: weaviate
 sub-menu: index
 title: Introduction
-intro: Welcome to the documentation about Weaviate! Here you will find what Weaviate is all about, how to start your own Weaviate instance and interact with it, and how to use it to perform vector searches and classification.<br><br>Like what you see? Consider giving us a <a href="https://github.com/semi-technologies/weaviate/stargazers">⭐ on Github</a>.
+intro: Welcome to the Weaviate documentation. Here you will find what Weaviate is all about, how to create your Weaviate instance, interact with it, and use it to perform vector searches and classification.<br><br>Like what you see? Consider giving us a <a href="https://github.com/semi-technologies/weaviate/stargazers">⭐ on Github</a>.
 description: About Weaviate
 tags: ['Weaviate', 'about']
 menu-order: 1
