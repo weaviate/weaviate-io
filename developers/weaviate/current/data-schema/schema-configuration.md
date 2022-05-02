@@ -224,7 +224,7 @@ To perform queries which are filtered by timestamps, the target class must first
 ```
 
 **Notes**
-- Using this feature requires more resources, as the additional inverted indicies must be created/maintained for the lifetime of the Class
+- Using this feature requires more resources, as the additional inverted indices must be created/maintained for the lifetime of the Class
 
 # Property object
 
