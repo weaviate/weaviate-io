@@ -41,30 +41,31 @@ toc: true
     * Smooth and accelerated handover of your Machine Learning models to engineers.
 
 # Features
-
-Weaviate makes it easy to use state-of-the-art AI models while giving providing the scalability, ease of use, safety and cost-effectiveness of a purpose-built vector database. Most notably:
+  
+Weaviate makes it easy to use state-of-the-art AI models while providing a purpose-built vector database's scalability, ease of use, safety, and cost-effectiveness. Most notably:
 
 * **Extremely fast queries**<br>
-   Weaviate typically performs nearest neighbor (NN) searches of millions of objects in considerably less than 100ms.
-   <br><sub></sub>
-
+    Weaviate typically performs nearest neighbor (NN) searches of millions of objects in less than 100ms.
+    <br><sub></sub>
+    
 * **Ingest any media type with Weaviate Modules**<br>
-  Use State-of-the-Art AI model inference (e.g. Transformers) for accessing Text, Images, etc. data at search-and-query time to let Weaviate manage the process of vectorizing data for you - or providing for importing your own vectors.
-
+  Use State-of-the-Art AI model inference (e.g., Transformers) for accessing Text, Images, etc. data at a search-and-query time to let Weaviate manage the process of vectorizing data for you - or providing for importing your vectors.
+  
 * **Combine vector and scalar search**<br>
-  Weaviate allows for efficient, combined vector and scalar searches, e.g “articles related to the COVID 19 pandemic published within the past 7 days”. Weaviate stores both objects and the vectors and ensures the retrieval of both is always efficient. There is no need for a third party object storage. 
-
+  Weaviate allows for efficient, combined vector and scalar searches, e.g., “articles related to the COVID 19 pandemic published within the past seven days”. Weaviate stores both objects and vectors and ensure that both retrievals are always efficient. There is no need for third-party object storage.
+  
 * **Real-time and persistent**<br>
-Weaviate let’s you search through your data even if it’s currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.
+Weaviate lets you search through your data even if it’s currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.
 
 * **Horizontal Scalability**<br>
-  Scale Weaviate for your exact needs, e.g. High-Availability, maximum ingestion, largest possible dataset size, maximum queries per second, etc.
-
+  Scale Weaviate for your exact needs, e.g., High-Availability, maximum ingestion, largest possible dataset size, maximum queries per second, etc.
+  
 * **Cost-Effectiveness**<br>
-  Very large datasets do not need to be kept entirely in-memory in Weaviate. At the same time, available memory can be used to increase the speed of queries. This allows for a conscious speed/cost trade-off to suit every use case.
-
+  Extensive datasets do not need to be kept entirely in memory in Weaviate. At the same time, available memory can increase the speed of queries. This allows for a conscious speed/cost trade-off to suit every use case.
+  
 * **Graph-like connections between objects**<br>
   Make arbitrary connections between your objects in a graph-like fashion to resemble real-life connections between your data points. Traverse those connections using GraphQL.
+
 
 # How does Weaviate work?
 
