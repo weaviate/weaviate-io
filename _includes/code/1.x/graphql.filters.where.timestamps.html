@@ -61,39 +61,40 @@ client.graphql
 package main
 
 import (
-  "context"
-  "fmt"
+	"context"
+	"fmt"
+	"time"
 
-  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
-  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
-  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
 func main() {
-  cfg := weaviate.Config{
-    Host:   "localhost:8080",
-    Scheme: "http",
-  }
-  client := weaviate.New(cfg)
+	cfg := weaviate.Config{
+		Host:   "localhost:8080",
+		Scheme: "http",
+	}
+	client := weaviate.New(cfg)
 
-  title := graphql.Field{Name: "title"}
-  where := client.GraphQL().WhereArgBuilder().
-    WithPath([]string{"_creationTimeUnix"}).
-    WithOperator(filters.Greater).
-    WithValueDate("2022-03-18T20:26:34.586-0500")
+	title := graphql.Field{Name: "title"}
+	where := filters.Where().
+		WithPath([]string{"_creationTimeUnix"}).
+		WithOperator(filters.LessThan).
+		WithValueDate(time.Now())
 
-  ctx := context.Background()
+	ctx := context.Background()
 
-  result, err := client.GraphQL().Get().
-    WithClassName("Article").
-    WithFields(title).
-    WithWhere(where).
-    Do(ctx)
+	result, err := client.GraphQL().Get().
+		WithClassName("Article").
+		WithFields(title).
+		WithWhere(where).
+		Do(ctx)
 
-  if err != nil {
-    panic(err)
-  }
-  fmt.Printf("%v", result)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%v", result)
 }
 {% endcapture %}
 

@@ -26,7 +26,41 @@ TODO core team
 {% endcapture %}
 
 {% capture go %}
-TODO core team
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
+)
+
+func main() {
+	cfg := weaviate.Config{
+		Host:   "localhost:8080",
+		Scheme: "http",
+	}
+	client := weaviate.New(cfg)
+
+	where := filters.Where().
+		WithOperator(filters.GreaterThan).
+		WithPath([]string{"_creationTimeUnix"}).
+		WithValueString("1651514874263")
+
+	result, err := client.Batch().ObjectsBatchDeleter().
+		WithClassName("Article").
+		WithOutput("verbose").
+		WithDryRun(false).
+		WithWhere(where).
+		Do(context.Background())
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("%v", result)
+}
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->

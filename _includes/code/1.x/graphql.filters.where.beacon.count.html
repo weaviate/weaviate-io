@@ -134,47 +134,47 @@ client.graphql
 package main
 
 import (
-  "context"
-  "fmt"
+	"context"
+	"fmt"
 
-  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
-  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
-  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate/filters"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
 func main() {
-  cfg := weaviate.Config{
-    Host:   "localhost:8080",
-    Scheme: "http",
-  }
-  client := weaviate.New(cfg)
+	cfg := weaviate.Config{
+		Host:   "localhost:8080",
+		Scheme: "http",
+	}
+	client := weaviate.New(cfg)
 
-  fields := []graphql.Field{
-    {Name: "name"},
-    {Name: "wroteArticles", Fields: []graphql.Field{
-      {Name: "... on Article", Fields: []graphql.Field{
-        {Name: "title"},
-      }},
-    }},
-  }
+	fields := []graphql.Field{
+		{Name: "name"},
+		{Name: "wroteArticles", Fields: []graphql.Field{
+			{Name: "... on Article", Fields: []graphql.Field{
+				{Name: "title"},
+			}},
+		}},
+	}
 
-  where := client.GraphQL().WhereArgBuilder().
-    WithPath([]string{"WroteArticles"}).
-    WithOperator(filters.GreaterThanEqual).
-    WithValueInt(2)
+	where := filters.Where().
+		WithPath([]string{"WroteArticles"}).
+		WithOperator(filters.GreaterThanEqual).
+		WithValueInt(2)
 
-  ctx := context.Background()
+	ctx := context.Background()
 
-  result, err := client.GraphQL().Get().
-    WithClassName("Author").
-    WithFields(fields...).
-    WithWhere(where).
-    Do(ctx)
+	result, err := client.GraphQL().Get().
+		WithClassName("Author").
+		WithFields(fields...).
+		WithWhere(where).
+		Do(ctx)
 
-  if err != nil {
-    panic(err)
-  }
-  fmt.Printf("%v", result)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%v", result)
 }
 {% endcapture %}
 
