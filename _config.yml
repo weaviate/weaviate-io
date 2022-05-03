@@ -23,6 +23,9 @@ exclude:
   - LICENSE.md
   - "*.rb"
   - .github/
+  - .jekyll-cache
+keep_files:
+  - img
 plugins:
   - jekyll-redirect-from
   - jekyll-toc
