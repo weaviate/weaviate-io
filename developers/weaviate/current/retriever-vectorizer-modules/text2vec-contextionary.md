@@ -958,7 +958,7 @@ over 50% of the words overlap. Therefore they would be considered somewhat
 similar (based on the overall vector position).
 
 However, if we remove stopwords from both sentences, they become "car parked
-street" and "banana lying table". Suddently there are 0% identical words in the
+street" and "banana lying table". Suddenly there are 0% identical words in the
 sentences, so it becomes easier to perform vector comparisons. Note at this
 point we cannot say whether both sentences are related or not. For this we'd
 need to know how close the vector position of the sentence "car parked street"

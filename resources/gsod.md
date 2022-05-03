@@ -15,6 +15,9 @@ og: /img/og/og-gsod.png
 This is a technical writing proposal for participating in [Google Season of Docs 2022](https://developers.google.com/season-of-docs). Season of Docs gives technical writers the opportunity to gain experience in open source by contributing to documentation. 
 
 This page contains Weaviate's proposal to participate in Season of Docs 2022. In case our proposal is accepted by Google, we will be looking for Weaviate's community members with technical writer skills to help with the project described below. 
+
+Technical writers interested in working on this project should send an email to careers AT semi.technology, **before May 1st**. Please include links to your technical writing work or portfolio/résumé/CV.
+   
 # **Proposal Title - Create a comprehensive contributor onboarding guide for Weaviate**
 
 ## **About Weaviate**
@@ -107,7 +110,7 @@ Nice to have:
 
 ### **Contact info**
 
-Technical writers interested in working on this project should send an email to careers AT semi.technology. Please include links to your technical writing work or portfolio/résumé/CV.
+Technical writers interested in working on this project should send an email to careers AT semi.technology, **before May 1st**. Please include links to your technical writing work or portfolio/résumé/CV.
 
 
 ## **Additional information**

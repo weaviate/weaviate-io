@@ -1,5 +1,22 @@
 ---
 - title: >
+    Yi-Lin Sung & Jaemin Cho & Mohit Bansal • VL Adapter for Efficient CLIP Transfer
+  description: > 
+    These three interesting guests will explain their paper VL-Adapter: Parameter-Efficient Transfer Learning for Vision-and-Language Tasks.
+  youtube: BNPxg5a3NaI
+  date: 2022-04-26T00:00:00Z
+  cover_image: '/img/podcasts/podcast-15.jpg'
+  is_use_case: false
+- title: >
+    Rick Lamers • Orchest + Weaviate + Streamlit
+  description: > 
+    Search for comments using Weaviate's semantic search features with Orchest, Weaviate, and Streamlit.
+  youtube: ZzojafqsVA0
+  date: 2022-04-07T00:00:00Z
+  cover_image: '/img/podcasts/podcast-14.png'
+  is_use_case: true
+  logo: '/img/orchest.svg'
+- title: >
     Rick Lamers • Data Science with Orchest
   description: > 
     Orchest is a software that simplifies building data pipelines. If you are into data science, get inspired by CEO Rick Lamers.

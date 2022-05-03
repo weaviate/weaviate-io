@@ -5,26 +5,32 @@ markdown: kramdown
 highlighter: none
 baseurl: /
 kramdown:
-    parse_block_html: false
+  parse_block_html: false
 rdiscount extensions: [smart]
 exclude:
-    - "*.json"
-    - "Gemfile*"
-    - "*.enc"
-    - vendor
-    - README.md
-    - "*.draft"
-    - js-src
-    - node_modules
-    - webpack.config.js
-    - Dockerfile
-    - "LICENSE.md"
-    - "*.rb"
+  - "*.json"
+  - Gemfile
+  - "*.enc"
+  - vendor
+  - README.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - "*.draft"
+  - js-src
+  - node_modules/
+  - webpack.config.js
+  - Dockerfile
+  - LICENSE.md
+  - "*.rb"
+  - .github/
+  - .jekyll-cache
+keep_files:
+  - img
 plugins:
-    - jekyll-redirect-from
-    - jekyll-toc
+  - jekyll-redirect-from
+  - jekyll-toc
 whitelist:
-    - jekyll-redirect-from
+  - jekyll-redirect-from
 toc:
   max_level: 2
   list_id: table-of-contents
@@ -37,7 +43,7 @@ toc:
 weaviate_version: v1.13.0 # the current and latest version
 weaviate_versions: # order the versions how you want them displayed
   "v1.13.0":
-    helm_version: 14.2.0 # Helm version for this Weaviate version
+    helm_version: 14.3.0 # Helm version for this Weaviate version
   "v1.12.2":
     helm_version: 14.2.0 # Helm version for this Weaviate version
   "v1.11.0":
@@ -64,623 +70,621 @@ weaviate_versions: # order the versions how you want them displayed
     helm_version: 12.0.0 # Helm version for this Weaviate version
   "v1.0.4":
     helm_version: 12.0.0 # Helm version for this Weaviate version
-  "0.23.2":
-    helm_version: 11.0.0 # Helm version for this Weaviate version
 docs:
-    weaviate:
-        'v1.13.0':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Architecture
-              folder: architecture
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Retrievers & Vectorizers
-              folder: retriever-vectorizer-modules
-              header: true
-            - name: Readers & Generators
-              folder: reader-generator-modules
-              header: true
-            - name: Other Modules
-              folder: other-modules
-              header: true
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.12.2':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Architecture
-              folder: architecture
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Retrievers & Vectorizers
-              folder: retriever-vectorizer-modules
-              header: true
-            - name: Readers & Generators
-              folder: reader-generator-modules
-              header: true
-            - name: Other Modules
-              folder: other-modules
-              header: true
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.11.0':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Architecture
-              folder: architecture
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Retrievers & Vectorizers
-              folder: retriever-vectorizer-modules
-              header: true
-            - name: Readers & Generators
-              folder: reader-generator-modules
-              header: true
-            - name: Other Modules
-              folder: other-modules
-              header: true
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.10.1':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Architecture
-              folder: architecture
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.9.0':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Architecture
-              folder: architecture
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.8.0':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Architecture
-              folder: architecture
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.7.2':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Architecture
-              folder: architecture
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.6.0':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Architecture
-              folder: architecture
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.5.2':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Architecture
-              folder: architecture
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.4.1':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Architecture
-              folder: architecture
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.3.0':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.2.1':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index (ANN) Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.1.0':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-        'v1.0.4':
-            - name: Getting started
-              folder: getting-started
-              header: false
-            - name: Configuration
-              folder: configuration
-              header: false
-            - name: Vector Index Plugins
-              folder: vector-index-plugins
-              header: false
-            - name: Modules
-              folder: modules
-              header: false
-            - name: Client libraries & CLI
-              folder: client-libraries
-              header: false
-            - name: Data schema
-              folder: data-schema
-              header: false
-            - name: RESTful API references
-              folder: restful-api-references
-              header: false
-            - name: GraphQL references
-              folder: graphql-references
-              header: false
-            - name: More resources
-              folder: more-resources
-              header: false
-            - name: Tutorials
-              folder: tutorials
-              header: true
-    contributor-guide:
-        'v1.13.0':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.12.2':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.11.0':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.10.1':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.9.0':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.8.0':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.7.2':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.6.0':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.5.2':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.4.1':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.3.0':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.2.1':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.1.0':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Weaviate Module System
-              folder: weaviate-module-system
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
-        'v1.0.4':
-            - name: Weaviate Core
-              folder: weaviate-core
-            - name: Contextionary
-              folder: contextionary
-            - name: Weaviate Clients
-              folder: weaviate-clients
+  weaviate:
+    'v1.13.0':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Retrievers & Vectorizers
+        folder: retriever-vectorizer-modules
+        header: true
+      - name: Readers & Generators
+        folder: reader-generator-modules
+        header: true
+      - name: Other Modules
+        folder: other-modules
+        header: true
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.12.2':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Retrievers & Vectorizers
+        folder: retriever-vectorizer-modules
+        header: true
+      - name: Readers & Generators
+        folder: reader-generator-modules
+        header: true
+      - name: Other Modules
+        folder: other-modules
+        header: true
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.11.0':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Retrievers & Vectorizers
+        folder: retriever-vectorizer-modules
+        header: true
+      - name: Readers & Generators
+        folder: reader-generator-modules
+        header: true
+      - name: Other Modules
+        folder: other-modules
+        header: true
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.10.1':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.9.0':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.8.0':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.7.2':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.6.0':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.5.2':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.4.1':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.3.0':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.2.1':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.1.0':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+    'v1.0.4':
+      - name: Getting started
+        folder: getting-started
+        header: false
+      - name: Configuration
+        folder: configuration
+        header: false
+      - name: Vector Index Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Modules
+        folder: modules
+        header: false
+      - name: Client libraries & CLI
+        folder: client-libraries
+        header: false
+      - name: Data schema
+        folder: data-schema
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: More resources
+        folder: more-resources
+        header: false
+      - name: Tutorials
+        folder: tutorials
+        header: true
+  contributor-guide:
+    'v1.13.0':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.12.2':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.11.0':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.10.1':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.9.0':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.8.0':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.7.2':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.6.0':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.5.2':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.4.1':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.3.0':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.2.1':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.1.0':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Weaviate Module System
+        folder: weaviate-module-system
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients
+    'v1.0.4':
+      - name: Weaviate Core
+        folder: weaviate-core
+      - name: Contextionary
+        folder: contextionary
+      - name: Weaviate Clients
+        folder: weaviate-clients

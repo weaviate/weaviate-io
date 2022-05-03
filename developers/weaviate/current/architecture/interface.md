@@ -47,7 +47,7 @@ We have chosen to use a GraphQL API, for multiple reasons:
   * It is possible to link data in Weaviate with cross-references. A Graph query language like GraphQL is very useful here.
 * **Performance**.
   * With GraphQL, there is no over/under-fetching. You get back exactly the information about data objects that you query, nothing more and nothing less. This is beneficial for performance.
-  * Reducing the number of requests. With GraphQl, you can make highly efficent and precise queries that usually require many more queries with a traditional RESTful API for the same results.
+  * Reducing the number of requests. With GraphQl, you can make highly efficient and precise queries that usually require many more queries with a traditional RESTful API for the same results.
 * **User Experience**
   * Reducing complexity. 
   * Less error-prone (because of its typed schema)

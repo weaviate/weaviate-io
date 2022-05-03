@@ -26,10 +26,10 @@ Download the Docker Compose file:
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-simple.yml
 ```
 
-This demo can also be GPU accelerated with the appropiate architecture and drivers.
+This demo can also be GPU accelerated with the appropriate architecture and drivers.
 To enable GPU support on docker ([Docker GPU Support](https://docs.docker.com/config/containers/resource_constraints/#gpu))
 
-Start GPU enbaled demo with this docker-compose file: 
+Start GPU enabled demo with this docker-compose file: 
 ```bash
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-withgpu.yaml
 ```
@@ -47,7 +47,7 @@ Weaviate will be available and preloaded with the news article demo dataset on:
 
 # **Query via the Weaviate console**
 
-You can query your local machine via the [Weaviate console](http://console.semi.technology/). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` ( you will be redirected to the "http" version of the client ).
+You can query your local machine via the [Weaviate console](https://console.semi.technology/). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` ( you will be redirected to the "http" version of the client ).
 
 # **Validate via the RESTful API**
 
@@ -67,6 +67,7 @@ $ curl -s http://localhost:8080/v1/meta
 ```
 
 The output will look like this:
+{% include docs-current_version_finder.html %}
 
 ```json
 {
@@ -74,7 +75,7 @@ The output will look like this:
     "modules": {
         "text2vec-transformers": {}
     },
-    "version": "{{ site.weaviate_version}}"
+    "version": "{{ current_page_version }}"
 }
 ```
 

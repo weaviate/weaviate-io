@@ -317,7 +317,7 @@ NOTE: This version update contains breaking changes.
     See the `weaviate.batch.Batch` documentation for more information.
 - `BatchRequest` classes (`ObjectsBatchRequest` and `ReferenceBatchRequest`) are hidden from the user and should not be
     used anymore. This is due to the new `weaviate.batch.Batch` class implementation.
-- New `weaviate.schema.Schema` field is ADDED, `"shardingConfig"`. It can bu used with Weaviate version >= 1.6.0.
+- New `weaviate.schema.Schema` field is ADDED, `"shardingConfig"`. It can be used with Weaviate version >= 1.6.0.
 - New method `weaviate.schema.Schema.update_config` used to update mutable schema configuration (like `efConstruction`, ...).
 
 Migration guide from `v2.5.x` to `v.3.0.0`:

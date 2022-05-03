@@ -12,7 +12,7 @@ toc: true
 
 # Introduction
 
-Weaviate provides powerful filtered vector search capabilities, meaning that you can elimate
+Weaviate provides powerful filtered vector search capabilities, meaning that you can eliminate
 candidates in your "fuzzy" vector search based on individual properties. Thanks
 to Weaviate's efficient pre-filtering mechanism, you can keep the recall high -
 even when filters are very restrictive. Additionally, the process is efficient
@@ -31,7 +31,7 @@ and then some results are removed which do not match the filter. This leads to t
    the original vector search does not contain any match at all.
 
 The limitations of post-filtering are overcome by pre-filtering. Pre-Filtering
-describes an approach where eligble candidates are determined before a vector
+describes an approach where eligible candidates are determined before a vector
 search is started. The vector search then only considers candidates that are
 present on the "allow" list.
 
@@ -44,7 +44,7 @@ combined inverted index and HNSW index.*
 # Efficient Pre-Filtered Searches in Weaviate
 
 In the section about Storage, [we have described in detail which parts make up a
-shard in Weaviate](../storage.html). Most notably, each shard contains an
+shard in Weaviate](./storage.html). Most notably, each shard contains an
 inverted index right next to the HNSW index. This allows for efficient
 pre-filtering. The process is as follows:
 
@@ -78,7 +78,7 @@ Version `v1.8.0` introduces the ability to automatically switch to a flat
 (brute-force) vector search when a filter becomes too restrictive. This
 scenario only applies to combined vector and scalar searches. For a detailed
 explanation of why HNSW requires switching to a flat search on certain filters,
-see this artile in [towards data
+see this article in [towards data
 science](https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c).
 In short, if a filter is very restrictive (i.e. a small percentage of the
 dataset is matched), an HNSW traversal becomes exhaustive. In other words, the
@@ -155,7 +155,7 @@ This makes the second query as fast as an unfiltered vector search.
 
 The following was run single-threaded (i.e. you can add more CPU threads to
 increase throughput) on a dataset of 1M objects with random vectors of 384d
-with a warm filter chache.
+with a warm filter cache.
 
 Please note that each search uses a completely unique (random) search vector,
 meaning that only the filter portion is cached, but not the vector search

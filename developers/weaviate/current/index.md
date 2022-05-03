@@ -4,7 +4,7 @@ bodyclass: ["page--guides", " "]
 solution: weaviate
 sub-menu: index
 title: Introduction
-intro: Welcome to the documentation about Weaviate! Here you will find what Weaviate is all about, how to start your own Weaviate instance and interact with it, and how to use it to perform vector searches and classification.<br><br>Like what you see? Consider giving us a <a href="https://github.com/semi-technologies/weaviate/stargazers">⭐ on Github</a>.
+intro: Welcome to the Weaviate documentation. Here you will find what Weaviate is all about, how to create your Weaviate instance, interact with it, and use it to perform vector searches and classification.<br><br>Like what you see? Consider giving us a <a href="https://github.com/semi-technologies/weaviate/stargazers">⭐ on Github</a>.
 description: About Weaviate
 tags: ['Weaviate', 'about']
 menu-order: 1
@@ -19,25 +19,25 @@ toc: true
 
 # What is Weaviate?
 
-**Weaviate in a nutshell**: Weaviate is a vector search engine and vector database. Weaviate uses machine learning to vectorize and store data, and to find answers to natural language queries. With Weaviate you can also bring your custom ML models to production scale.
+**Weaviate in a nutshell**: Weaviate is a vector search engine and vector database. Weaviate uses machine learning to vectorize, store data, and find answers to natural language queries. With Weaviate, you can also bring your custom ML models to production scale.
 
-**Weaviate in detail**: Weaviate is a low-latency vector search engine with out-of-the-box support for different media types (text, images, etc.). It offers Semantic Search, Question-Answer Extraction, Classification, Customizable Models (PyTorch/TensorFlow/Keras), and more. Built from scratch in Go, Weaviate stores both objects and vectors, allowing for combining vector search with structured filtering and the fault-tolerance of a cloud-native database, all accessible through GraphQL, REST, and various programming language clients.
+**Weaviate in detail**: Weaviate is a low-latency vector search engine with out-of-the-box support for different media types (text, images, etc.). It offers Semantic Search, Question-Answer Extraction, Classification, Customizable Models (PyTorch/TensorFlow/Keras), etc. Built from scratch in Go, Weaviate stores both objects and vectors, allowing for combining vector search with structured filtering and the fault-tolerance of a cloud-native database, all accessible through GraphQL, REST, and various programming languages client.
 
-## Weaviate helps ...
+## Weaviate helps
 
-1. **Software Engineers** - Who use Weaviate as an ML-first database for their applications. 
-    * Out-of-the-box modules for: NLP / semantic search, automatic classification and image similarity search.
-    * Easy to integrate in current architecture, with full CRUD support like from other OSS databases.
-    * Cloud-native, distributed, runs well on Kubernetes and scales with one's workloads.
+1. **Software Engineers** - Who use Weaviate as an ML-first database for their applications.
+    * Out-of-the-box modules for NLP / semantic search, automatic classification, and image similarity search.
+    * Easy to integrate with the current architecture, with full CRUD support like other OSS databases.
+    * Cloud-native, distributed, runs well on Kubernetes, and scales with one’s workloads.
 
-2. **Data Engineers** - Who use Weaviate as a vector database that is built up from the ground with ANN at its core, and with the same UX they love from Lucene-based search engines.
-    * Weaviate has a modular setup that allows you to use your own ML models inside Weaviate. Due to it's flexibility, you can also use out-of-the-box ML models (e.g., SBERT, ResNet, fasttext, etc).
-    * Weaviate takes care of the scalability, so that you don't have to.
-    * Deploy and maintain ML models in production, reliably and efficiently.
+2. **Data Engineers** - Who use Weaviate as a vector database that is built up from the ground with ANN at its core and with the same UX they love from Lucene-based search engines.
+    * Weaviate has a modular setup that allows you to use your ML models inside Weaviate. Due to its flexibility, you can also use out-of-the-box ML models (e.g., SBERT, ResNet, fasttext, etc.).
+    * Weaviate takes care of the scalability so that you don’t have to.
+    * Deploy and maintain ML models in production reliably and efficiently.
 
 3. **Data Scientists** - Who use Weaviate for a seamless handover of their Machine Learning models to MLOps.
     * Deploy and maintain your ML models in production reliably and efficiently.
-    * Weaviate's modular design allows you to easily package any custom trained model you want.
+    * Weaviate’s modular design allows you to package any custom-trained model you want easily.
     * Smooth and accelerated handover of your Machine Learning models to engineers.
 
 # Features
@@ -114,7 +114,7 @@ Want to get started or want to learn more? These resources might help you furthe
 - Learn more:
     - [Talk and demonstration @ FOSDEM 2020](/news/fosdem-2020.html)
     - [Weaviate introduction on Google Cloud's Stack Chat](https://www.semi.technology/news/gcp-stackchat.html)
-    - [Podcast about Weaviate](/news/gcp-podcast.html)
+    - [Podcast about Weaviate](https://weaviate.io/podcast.html)
 
 # More resources
 
