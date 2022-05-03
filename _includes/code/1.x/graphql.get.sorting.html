@@ -17,13 +17,42 @@
 
 <!-- SET PYTHON TAB CONTENT -->
 {% capture python %}
-TODO @stefan add sorting example
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-result = client.query.get("Article", ["title", "url", "wordCount"]).do()
+# one sorting configurations
+result = (
+  client.query
+  .get("Article", ["title", "url", "wordCount"])
+  .with_sort({ path: ["title"], order: "asc" })
+  .do()
+)
 print(result)
+
+# multiple sorting configurations
+result = (
+  client.query
+  .get("Article", ["title", "url", "wordCount"])
+  .with_sort([
+    { path: ["title"], order: "asc" },
+    { path: ["wordCount"], order: "desc" },
+  ])
+  .do()
+)
+print(result)
+
+# or
+
+result = (
+  client.query
+  .get("Article", ["title", "url", "wordCount"])
+  .with_sort({ path: ["title"], order: "asc" })
+  .with_sort({ path: ["wordCount"], order: "desc" })
+  .do()
+)
+print(result)
+
 {% endcapture %}
 
 <!-- SET JAVASCRIPT TAB CONTENT -->
