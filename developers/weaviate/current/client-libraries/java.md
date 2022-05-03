@@ -84,7 +84,7 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/meta`. T
 
 # Migration Guides
 
-## From 2.4.0 to 2.5.0
+## From `2.4.0` to `3.0.0`
 
 ### Removed @Deprecated method `Aggregate::withFields(Fields fields)`
 
@@ -103,6 +103,9 @@ client.graphQL().aggregate().withFields(name, description)...
 
 Before:
 ```java
+// import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+// import technology.semi.weaviate.client.v1.graphql.query.fields.Fields;
+
 Fields fields = Fields.builder().fields(new Field[]{name, description}).build();
 client.graphQL().get().withFields(fields)...
 ```
@@ -121,6 +124,8 @@ client.graphQL().get().withNearVector(new Float[]{ 0f, 1f, 0.8f })...
 
 After:
 ```java
+// import technology.semi.weaviate.client.v1.graphql.query.argument.NearVectorArgument;
+
 NearVectorArgument nearVector = NearVectorArgument.builder().vector(new Float[]{ 0f, 1f, 0.8f }).certainty(0.8f).build();
 client.graphQL().get().withNearVector(nearVector)...
 ```
@@ -132,8 +137,11 @@ With `batch delete` feature, unified `filters.WhereFilter` implementation is int
 #### GraphQL
 
 Before:
-
 ```java
+// import technology.semi.weaviate.client.v1.graphql.query.argument.GeoCoordinatesParameter;
+// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereArgument;
+// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereOperator;
+
 GeoCoordinatesParameter geo = GeoCoordinatesParameter.builder()
     .latitude(50.51f)
     .longitude(0.11f)
@@ -150,6 +158,9 @@ client.graphQL().aggregate().withWhere(where)...
 
 After:
 ```java
+// import technology.semi.weaviate.client.v1.filters.Operator;
+// import technology.semi.weaviate.client.v1.filters.WhereFilter;
+
 WhereFilter where = WhereFilter.builder()
     .valueGeoRange(WhereFilter.GeoRange.builder()
         .geoCoordinates(WhereFilter.GeoCoordinates.builder()
@@ -171,8 +182,10 @@ client.graphQL().aggregate().withWhere(where)...
 ```
 
 Before:
-
 ```java
+// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereArgument;
+// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereOperator;
+
 WhereArgument where = WhereArgument.builder()
     .valueString("txt")
     .operator(WhereOperator.Equal)
@@ -183,8 +196,10 @@ client.graphQL().aggregate().withWhere(where)...
 ```
 
 After:
-
 ```java
+// import technology.semi.weaviate.client.v1.filters.Operator;
+// import technology.semi.weaviate.client.v1.filters.WhereFilter;
+
 WhereFilter where = WhereFilter.builder()
     .valueString("txt")
     .operator(Operator.Equal)
@@ -195,8 +210,11 @@ client.graphQL().aggregate().withWhere(where)...
 ```
 
 Before:
-
 ```java
+// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereArgument;
+// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereFilter;
+// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereOperator;
+
 WhereArgument where = WhereArgument.builder()
     .operands(new WhereFilter[]{
         WhereFilter.builder()
@@ -217,8 +235,10 @@ client.graphQL().aggregate().withWhere(where)...
 ```
 
 After:
-
 ```java
+// import technology.semi.weaviate.client.v1.filters.Operator;
+// import technology.semi.weaviate.client.v1.filters.WhereFilter;
+
 WhereFilter where = WhereFilter.builder()
     .operands(new WhereFilter[]{
         WhereFilter.builder()
@@ -241,8 +261,13 @@ client.graphQL().aggregate().withWhere(where)...
 #### Classification
 
 Before:
-
 ```java
+// import technology.semi.weaviate.client.v1.classifications.model.GeoCoordinates;
+// import technology.semi.weaviate.client.v1.classifications.model.Operator;
+// import technology.semi.weaviate.client.v1.classifications.model.WhereFilter;
+// import technology.semi.weaviate.client.v1.classifications.model.WhereFilterGeoRange;
+// import technology.semi.weaviate.client.v1.classifications.model.WhereFilterGeoRangeDistance;
+
 WhereFilter where = WhereFilter.builder()
     .valueGeoRange(WhereFilterGeoRange.builder()
         .geoCoordinates(GeoCoordinates.builder()
@@ -261,9 +286,11 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 ```
 
 After:
-
 ```java
-WhereFilter trainingSetWhere = WhereFilter.builder()
+// import technology.semi.weaviate.client.v1.filters.Operator;
+// import technology.semi.weaviate.client.v1.filters.WhereFilter;
+
+WhereFilter where = WhereFilter.builder()
     .valueGeoRange(WhereFilter.GeoRange.builder()
         .geoCoordinates(WhereFilter.GeoCoordinates.builder()
             .latitude(50.51f)
