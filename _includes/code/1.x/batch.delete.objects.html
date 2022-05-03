@@ -18,7 +18,22 @@ http://localhost:8080/v1/batch/objects
 {% endcapture %}
 
 {% capture python %}
-TODO @stefan
+import weaviate
+
+client = weaviate.Client('http://localhost:8080')
+
+result = client.batch.delete_objects(
+	class_name='Author',
+  where={
+    'operator': 'Equal',
+    'path': ['name'],
+    'valueText': 'Jane'
+  },
+	output='verbose',
+	dry_run=False,
+)
+
+print(result)
 {% endcapture %}
 
 {% capture javascript %}
