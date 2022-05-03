@@ -122,36 +122,36 @@ import technology.semi.weaviate.client.WeaviateClient;
 import technology.semi.weaviate.client.base.Result;
 import technology.semi.weaviate.client.v1.classifications.model.Classification;
 import technology.semi.weaviate.client.v1.classifications.model.ClassificationType;
-import technology.semi.weaviate.client.v1.classifications.model.Operator;
 import technology.semi.weaviate.client.v1.classifications.model.ParamsKNN;
-import technology.semi.weaviate.client.v1.classifications.model.WhereFilter;
+import technology.semi.weaviate.client.v1.filters.Operator;
+import technology.semi.weaviate.client.v1.filters.WhereFilter;
 
 public class App {
-  public static void main(String[] args) {
-    Config config = new Config("http", "localhost:8080");
-    WeaviateClient client = new WeaviateClient(config);
+    public static void main(String[] args) {
+        Config config = new Config("http", "localhost:8080");
+        WeaviateClient client = new WeaviateClient(config);
 
-    WhereFilter trainingSetWhere = WhereFilter.builder()
-      .valueInt(100)
-      .operator(Operator.GreaterThan)
-      .path(new String[]{ "wordCount" })
-      .build();
+        WhereFilter trainingSetWhere = WhereFilter.builder()
+                .valueInt(100)
+                .operator(Operator.GreaterThan)
+                .path(new String[]{ "wordCount" })
+                .build();
 
-    Result<Classification> result = client.classifications().scheduler()
-      .withType(ClassificationType.KNN)
-      .withSettings(ParamsKNN.builder().k(3).build())
-      .withClassName("Article")
-      .withClassifyProperties(new String[]{ "hasPopularity" })
-      .withBasedOnProperties(new String[]{ "summary" })
-      .withTrainingSetWhereFilter(trainingSetWhere)
-      .run();
+        Result<Classification> result = client.classifications().scheduler()
+                .withType(ClassificationType.KNN)
+                .withSettings(ParamsKNN.builder().k(3).build())
+                .withClassName("Article")
+                .withClassifyProperties(new String[]{ "hasPopularity" })
+                .withBasedOnProperties(new String[]{ "summary" })
+                .withTrainingSetWhereFilter(trainingSetWhere)
+                .run();
 
-    if (result.hasErrors()) {
-      System.out.println(result.getError());
-      return;
+        if (result.hasErrors()) {
+            System.out.println(result.getError());
+            return;
+        }
+        System.out.println(result.getResult());
     }
-    System.out.println(result.getResult());
-  }
 }
 {% endcapture %}
 
