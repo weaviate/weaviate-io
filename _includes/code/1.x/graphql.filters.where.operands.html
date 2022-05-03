@@ -166,8 +166,8 @@ public class App {
 
         Date date;
         try {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ");
-            date = df.parse("2020-01-01T00:00:00-07:00");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+            date = df.parse("2020-01-01T00:00:00-0700");
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }

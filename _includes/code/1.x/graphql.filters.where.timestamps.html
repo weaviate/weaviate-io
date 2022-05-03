@@ -123,12 +123,12 @@ public class App {
 
         Date date;
         try {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ");
-            date = df.parse("2022-03-18T20:26:34-05:00");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+            date = df.parse("2022-03-18T20:26:34-0500");
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        
+
         WhereFilter where = WhereFilter.builder()
                 .path(new String[]{ "_creationTimeUnix" })
                 .operator(Operator.GreaterThan)
