@@ -120,118 +120,130 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-className := "Publication"
-fields := []graphql.Field{
-  {Name: "name"},
-  {Name: "_additional", Fields: []graphql.Field{
-    {Name: "semanticPath", Fields: []graphql.Field{
-      {Name: "path", Fields: []graphql.Field{
-        {Name: "concept"},
-        {Name: "distanceToNext"},
-        {Name: "distanceToPrevious"},
-        {Name: "distanceToQuery"},
-        {Name: "distanceToResult"},
+  className := "Publication"
+  fields := []graphql.Field{
+    {Name: "name"},
+    {Name: "_additional", Fields: []graphql.Field{
+      {Name: "semanticPath", Fields: []graphql.Field{
+        {Name: "path", Fields: []graphql.Field{
+          {Name: "concept"},
+          {Name: "distanceToNext"},
+          {Name: "distanceToPrevious"},
+          {Name: "distanceToQuery"},
+          {Name: "distanceToResult"},
+        }},
       }},
     }},
-  }},
-}
+  }
 
-concepts := []string{"fashion"}
-moveTo := &graphql.MoveParameters{
-  Concepts: []string{"haute couture"},
-  Force:    0.85,
-}
-moveAwayFrom := &graphql.MoveParameters{
-  Concepts: []string{"finance"},
-  Force:    0.45,
-}
-nearText := client.GraphQL().NearTextArgBuilder().
+  concepts := []string{"fashion"}
+  moveTo := &graphql.MoveParameters{
+    Concepts: []string{"haute couture"},
+    Force:    0.85,
+  }
+  moveAwayFrom := &graphql.MoveParameters{
+    Concepts: []string{"finance"},
+    Force:    0.45,
+  }
+  nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts).
     WithCertainty(0.7).
     WithMoveTo(moveTo).
     WithMoveAwayFrom(moveAwayFrom)
 
-ctx := context.Background()
+  ctx := context.Background()
 
-result, err := client.GraphQL().Get().Objects().
-  WithClassName(className).
-  WithFields(fields).
-  WithNearText(nearText).
-  Do(ctx)
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(fields...).
+    WithNearText(nearText).
+    Do(ctx)
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->
 {% capture java %}
+package technology.semi.weaviate;
 
-Config config = new Config("http", "localhost:8080");
-WeaviateClient client = new WeaviateClient(config);
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
+import technology.semi.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import technology.semi.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
+import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
 
-String className = "Article";
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
 
-Field name = Field.builder().name("name").build();
-Field _additional = Field.builder()
-    .name("_additional")
-    .fields(new Field[]{
+    Field name = Field.builder().name("name").build();
+    Field _additional = Field.builder()
+      .name("_additional")
+      .fields(new Field[]{
         Field.builder()
           .name("semanticPath")
           .fields(new Field[]{
-              Field.builder()
-                .name("path")
-                .fields(new Field[]{
-                  Field.builder().name("concept").build(),
-                  Field.builder().name("distanceToNext").build(),
-                  Field.builder().name("distanceToPrevious").build(),
-                  Field.builder().name("distanceToQuery").build(),
-                  Field.builder().name("distanceToResult").build()
-                })
-                .build()
+            Field.builder()
+              .name("path")
+              .fields(new Field[]{
+                Field.builder().name("concept").build(),
+                Field.builder().name("distanceToNext").build(),
+                Field.builder().name("distanceToPrevious").build(),
+                Field.builder().name("distanceToQuery").build(),
+                Field.builder().name("distanceToResult").build()
+              })
+              .build()
           }).build()
-    }).build();
-Fields fields = Fields.builder()
-    .fields(new Field[]{name, _additional})
-    .build();
+      }).build();
 
-NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
-            .concepts(new String[]{"haute couture"}).force(0.85f).build();
+    NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "haute couture" }).force(0.85f).build();
 
-NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
-            .concepts(new String[]{"finance"}).force(0.45f)
-            .build();
+    NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "finance" }).force(0.45f)
+      .build();
 
-NearTextArgument explore = client.graphQL().arguments().nearTextArgBuilder()
-            .concepts([]string{"fashion"})
-            .moveTo(moveTo)
-            .moveAwayFrom(moveAway)
-            .build();
+    NearTextArgument explore = client.graphQL().arguments().nearTextArgBuilder()
+      .concepts(new String[]{ "fashion" })
+      .certainty(0.7f)
+      .moveTo(moveTo)
+      .moveAwayFrom(moveAway)
+      .build();
 
-Result<GraphQLResponse> result = client.graphQL().get()
-            .withClassName("Publication")
-            .withFields(fields)
-            .withNearText(explore)
-            .certainty(0.7f)
-            .run();
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Publication")
+      .withFields(name, _additional)
+      .withNearText(explore)
+      .run();
 
-if (result.hasErrors()) {
-  System.out.println(result.getError());
-  return;
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
 }
-System.out.println(result.getResult());
 {% endcapture %}
 
 <!-- SET CURL TAB CONTENT -->

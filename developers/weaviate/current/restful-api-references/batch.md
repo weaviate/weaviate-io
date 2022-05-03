@@ -59,6 +59,93 @@ For detailed information and instructions of batching in Python, click [here](ht
     * Case 3: Similar to Case II but uses dynamic batching, i.e. auto-creates either objects or references when one of them reached the `recommended_num_objects` or `recommended_num_references` respectively. See docs for the `configure` or `__call__` method for how to enable it.
     * **Context-manager support**: Can be use with the with statement. When it exists the context-manager it calls the flush method for you. Can be combined with `configure` or `__call__` method, in order to set it to the desired Case.
 
+# Batch Delete By Query
+
+*Note: This feature was introduced in `v1.13.0`*
+
+You can use the `/v1/batch/objects` endpoint with the HTTP Verb `DELETE` to delete all objects that match a particular expression. To determine if an object is a match [a where-Filter is used](../graphql-references/filters.html#where-filter). The request body takes a single filter, but will delete all objects matched. It returns the number of matched objects as well as any potential errors. Note that there is a limit to how many objects can be deleted using this filter at once which is explained below.
+
+## Maximum number of deletes per query
+
+There is an upper limit to how many objects can be deleted using a single query. This protects against unexpected memory surges and very-long running requests which would be prone to client-side timeouts or network interruptions. If a filter matches many objects, only the first `n` elements are deleted. You can configure the amount `n` by setting `QUERY_MAXIMUM_RESULTS` in Weaviate's config. The default value is 10,000. Objects are deleted in the same order that they would be returned using the same filter in a a Get-Query. To delete more objects than the limit, run the same query multiple times, until no objects are matched anymore.
+
+## Dry-Run before Deletion
+
+You can use the dry-run option to see which objects would be deleted using your specified filter without deleting any objects yet. Depending on the verbosity set, you will either receive the total count of affected objects or a list of the affected IDs.
+
+## Method and URL
+
+```js
+DELETE /v1/batch/objects
+```
+
+## Parameters
+
+The body requires the following field:
+
+| name | type | required | description |
+| ---- | ---- | ---- | ---- |
+| `match` | object | yes | an object outlining how to find the objects to be deleted, see an example below |
+| `output` | string | no | optional, controls the verbosity of the output, see possible values below. Defaults to `"minimal"` |
+| `dryRun` | bool | no | optional, if true, objects will not be deleted yet, but merely listed. Defaults to `false` |
+
+### A request body in detail
+
+```yaml
+{
+  "match": {
+    "class": "<ClassName>", # required
+    "where": { /* where filter object */ },  # required
+  },
+  "output": "<output verbosity>" # Optional, one of "minimal", "verbose". Defaults to "minimal"
+  "dryRun": <bool> # Optional, if true, objects will not be deleted yet, but merely listed. Defaults to "false"
+}
+```
+
+Possible values for `output`
+
+| value | effect |
+| --- | --- |
+| `minimal` | The result only includes counts. Information about objects is omitted if the deletes were successful. Only if an error occurred will the object be described. |
+| `verbose` | The result lists all affected objects with their ID and deletion status, including both successful and unsuccessful deletes |
+
+
+### A response body in detail
+
+```yaml
+{
+  "match": {
+    "class": "<ClassName>",      # matches the request
+    "where": { /* where filter object */ },  # matches the request
+  },
+  "output": "<output verbosity>" # matches the request
+  "dryRun": <bool>
+  "results": {
+    "matches": "<int>"           # how many objects were matched by the filter
+    "limit": "<int>"             # the most amount of objects that can be deleted in a single query, matches QUERY_MAXIMUM_RESULTS
+    "successful": "<int>"        # how many objects were successfully deleted in this round
+    "failed": "<int>"            # how many objects should have been deleted but could not be deleted
+    "objects": [{                # one json object per weaviate object
+      "id": "<id>",              # This successfully deleted object would be ommitted with output=minimal
+      "status": "SUCCESS",       # Possible status values are: "SUCCESS", "FAILED", "DRYRUN"
+      "error": null
+    }, {
+      "id": "<id>",              # This error'd object will always be listed, even with output=minimal
+      "status": "FAILED",
+      "errors": {
+         "error": [{
+             "message": "<error-string>"
+         }]
+      }
+    ]}
+  }
+}
+```
+
+
+## Example request
+
+{% include code/1.x/batch.delete.objects.html %}
 
 # Batch references
 

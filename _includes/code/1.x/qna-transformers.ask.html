@@ -73,90 +73,104 @@ client.graphql
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v3/weaviate"
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
 )
 
-cfg := weaviate.Config{
-  Host:   "localhost:8080",
-  Scheme: "http",
-}
-client := weaviate.New(cfg)
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
 
-className := "Article"
-fields := []graphql.Field{
-  {Name: "title"},
-  {Name: "_additional", Fields: []graphql.Field{
-    {Name: "answer", Fields: []graphql.Field{
-      {Name: "hasAnswer"},
-      {Name: "certainty"},
-      {Name: "property"},
-      {Name: "result"},
-      {Name: "startPosition"},
-      {Name: "endPosition"},
+  className := "Article"
+  fields := []graphql.Field{
+    {Name: "title"},
+    {Name: "_additional", Fields: []graphql.Field{
+      {Name: "answer", Fields: []graphql.Field{
+        {Name: "hasAnswer"},
+        {Name: "certainty"},
+        {Name: "property"},
+        {Name: "result"},
+        {Name: "startPosition"},
+        {Name: "endPosition"},
+      }},
     }},
-  }},
-}
-ask := client.GraphQL().AskArgumentBuilder().
-        WithQuestion("Who is the king of the Netherlands?").
-        WithProperties([]string{"summary"})
-ctx := context.Background()
+  }
+  ask := client.GraphQL().AskArgBuilder().
+    WithQuestion("Who is the king of the Netherlands?").
+    WithProperties([]string{"summary"})
+  ctx := context.Background()
 
-result, err := client.GraphQL().Get().Objects().
-  WithClassName(className).
-  WithFields(fields).
-  WithAsk(ask).
-  WithLimit(1).
-  Do(ctx)
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(fields...).
+    WithAsk(ask).
+    WithLimit(1).
+    Do(ctx)
 
-if err != nil {
-  panic(err)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
-fmt.Printf("%v", result)
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->
 {% capture java %}
+package technology.semi.weaviate;
 
-Config config = new Config("http", "localhost:8080");
-WeaviateClient client = new WeaviateClient(config);
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
+import technology.semi.weaviate.client.v1.graphql.query.argument.AskArgument;
+import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
 
-Field title = Field.builder().name("title").build();
-Field _additional = Field.builder()
-            .name("_additional")
-            .fields(new Field[]{
-                Field.builder()
-                  .name("answer")
-                  .fields(new Field[]{
-                      Field.builder().name("hasAnswer").build(),
-                      Field.builder().name("certainty").build(),
-                      Field.builder().name("property").build(),
-                      Field.builder().name("result").build(),
-                      Field.builder().name("startPosition").build(),
-                      Field.builder().name("endPosition").build()
-                  }).build()
-            }).build();
-Fields fields = Fields.builder()
-            .fields(new Field[]{title, _additional})
-            .build();
-AskArgument ask = AskArgument.builder()
-            .question("Who is the king of the Netherlands?")
-            .properties(new String[]{"summary"})
-            .build();
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
 
-Result<GraphQLResponse> result = client.graphQL().get()
-            .withClassName("Article")
-            .withFields(fields)
-            .withAskArgument(ask)
-            .withLimit(1)
-            .run();
+    Field title = Field.builder().name("title").build();
+    Field _additional = Field.builder()
+      .name("_additional")
+      .fields(new Field[]{
+        Field.builder()
+          .name("answer")
+          .fields(new Field[]{
+            Field.builder().name("hasAnswer").build(),
+            Field.builder().name("certainty").build(),
+            Field.builder().name("property").build(),
+            Field.builder().name("result").build(),
+            Field.builder().name("startPosition").build(),
+            Field.builder().name("endPosition").build()
+          }).build()
+      }).build();
 
-if (result.hasErrors()) {
-  System.out.println(result.getError());
-  return;
+    AskArgument ask = AskArgument.builder()
+      .question("Who is the king of the Netherlands?")
+      .properties(new String[]{ "summary" })
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Article")
+      .withFields(title, _additional)
+      .withAsk(ask)
+      .withLimit(1)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
 }
-System.out.println(result.getResult());
 {% endcapture %}
 
 <!-- SET CURL TAB CONTENT -->
