@@ -31,7 +31,21 @@
 
 <!-- SET PYTHON TAB CONTENT -->
 {% capture python %}
-coming soon
+import weaviate
+
+client = weaviate.Client('http://localhost:8080')
+
+result = (
+  client.query
+  .aggregate('Article')
+  .with_meta_count()
+  .with_fields('wordCount {count maximum mean median minimum mode sum type} inPublication {pointingTo type}')
+  .with_near_object({'id': '9199ee38-b0db-4800-b146-dea8cfc62351', 'certainty': 0.7})
+  .with_object_limit(200)
+  .do()
+)
+
+print(result)
 {% endcapture %}
 
 <!-- SET JAVASCRIPT TAB CONTENT -->
