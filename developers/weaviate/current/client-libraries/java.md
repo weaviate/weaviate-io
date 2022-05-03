@@ -90,6 +90,9 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/meta`. T
 
 Before:
 ```java
+// import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+// import technology.semi.weaviate.client.v1.graphql.query.fields.Fields;
+
 Fields fields = Fields.builder().fields(new Field[]{name, description}).build();
 client.graphQL().aggregate().withFields(fields)...
 ```
