@@ -82,6 +82,205 @@ The Java client functions are designed with a 'Builder pattern'. A pattern is us
 
 The code snippet above shows a simple query similar to `RESTful GET /v1/meta`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by using the `.metaGetter()` on `.misc()`. The query will be sent with the `.run()` function, this object is thus required for every function you want to build and execute. 
 
+# Migration Guides
+
+## From 2.4.0 to 2.5.0
+
+### Removed @Deprecated method `Aggregate::withFields(Fields fields)`
+
+Before:
+```java
+Fields fields = Fields.builder().fields(new Field[]{name, description}).build();
+client.graphQL().aggregate().withFields(fields)...
+```
+
+After:
+```java
+client.graphQL().aggregate().withFields(name, description)...
+```
+
+### Removed @Deprecated method `Get::withFields(Fields fields)`
+
+Before:
+```java
+Fields fields = Fields.builder().fields(new Field[]{name, description}).build();
+client.graphQL().get().withFields(fields)...
+```
+
+After:
+```java
+client.graphQL().get().withFields(name, description)...
+```
+
+### Removed @Deprecated method `Get::withNearVector(Float[] vector)`
+
+Before:
+```java
+client.graphQL().get().withNearVector(new Float[]{ 0f, 1f, 0.8f })...
+```
+
+After:
+```java
+NearVectorArgument nearVector = NearVectorArgument.builder().vector(new Float[]{ 0f, 1f, 0.8f }).certainty(0.8f).build();
+client.graphQL().get().withNearVector(nearVector)...
+```
+
+### All `where` filters use the same implementation
+
+With `batch delete` feature, unified `filters.WhereFilter` implementation is introduced, which replaces `classifications.WhereFilter`, `graphql.query.argument.WhereArgument` and `graphql.query.argument.WhereFilter`.
+
+#### GraphQL
+
+Before:
+
+```java
+GeoCoordinatesParameter geo = GeoCoordinatesParameter.builder()
+    .latitude(50.51f)
+    .longitude(0.11f)
+    .maxDistance(3000f)
+    .build();
+WhereArgument where = WhereArgument.builder()
+    .valueGeoRange(geo)
+    .operator(WhereOperator.WithinGeoRange)
+    .path(new String[]{ "add "})
+    .build();
+
+client.graphQL().aggregate().withWhere(where)...
+```
+
+After:
+```java
+WhereFilter where = WhereFilter.builder()
+    .valueGeoRange(WhereFilter.GeoRange.builder()
+        .geoCoordinates(WhereFilter.GeoCoordinates.builder()
+            .latitude(50.51f)
+            .longitude(0.11f)
+            .build()
+        )
+        .distance(WhereFilter.GeoDistance.builder()
+            .max(3000f)
+            .build()
+        )
+        .build()
+    )
+    .operator(Operator.WithinGeoRange)
+    .path(new String[]{ "add" })
+    .build();
+
+client.graphQL().aggregate().withWhere(where)...    
+```
+
+Before:
+
+```java
+WhereArgument where = WhereArgument.builder()
+    .valueString("txt")
+    .operator(WhereOperator.Equal)
+    .path(new String[]{ "add" })
+    .build();
+
+client.graphQL().aggregate().withWhere(where)...
+```
+
+After:
+
+```java
+WhereFilter where = WhereFilter.builder()
+    .valueString("txt")
+    .operator(Operator.Equal)
+    .path(new String[]{ "add" })
+    .build();
+
+client.graphQL().aggregate().withWhere(where)...
+```
+
+Before:
+
+```java
+WhereArgument where = WhereArgument.builder()
+    .operands(new WhereFilter[]{
+        WhereFilter.builder()
+            .valueInt(10)
+            .path(new String[]{ "wordCount" })
+            .operator(WhereOperator.LessThanEqual)
+            .build(),
+        WhereFilter.builder()
+            .valueString("word")
+            .path(new String[]{ "word" })
+            .operator(WhereOperator.LessThan)
+            .build()
+    })
+    .operator(WhereOperator.And)
+    .build();
+
+client.graphQL().aggregate().withWhere(where)...
+```
+
+After:
+
+```java
+WhereFilter where = WhereFilter.builder()
+    .operands(new WhereFilter[]{
+        WhereFilter.builder()
+            .valueInt(10)
+            .path(new String[]{ "wordCount" })
+            .operator(Operator.LessThanEqual)
+            .build(),
+        WhereFilter.builder()
+            .valueString("word")
+            .path(new String[]{ "word" })
+            .operator(Operator.LessThan)
+            .build(),
+    })
+    .operator(Operator.And)
+    .build();
+
+client.graphQL().aggregate().withWhere(where)...
+```
+
+#### Classification
+
+Before:
+
+```java
+WhereFilter where = WhereFilter.builder()
+    .valueGeoRange(WhereFilterGeoRange.builder()
+        .geoCoordinates(GeoCoordinates.builder()
+            .latitude(50.51f)
+            .longitude(0.11f)
+            .build())
+        .distance(WhereFilterGeoRangeDistance.builder()
+            .max(3000d)
+            .build())
+        .build())
+    .operator(Operator.WithinGeoRange)
+    .path(new String[]{ "geo" })
+    .build();
+
+client.classifications().scheduler().withTrainingSetWhereFilter(where)...
+```
+
+After:
+
+```java
+WhereFilter trainingSetWhere = WhereFilter.builder()
+    .valueGeoRange(WhereFilter.GeoRange.builder()
+        .geoCoordinates(WhereFilter.GeoCoordinates.builder()
+            .latitude(50.51f)
+            .longitude(0.11f)
+            .build())
+        .distance(WhereFilter.GeoDistance.builder()
+            .max(3000f)
+            .build())
+        .build())
+    .operator(Operator.WithinGeoRange)
+    .path(new String[]{ "geo" })
+    .build();
+
+client.classifications().scheduler().withTrainingSetWhereFilter(where)...
+```
+
+
 # Change logs
 
 ## 1.1.2
