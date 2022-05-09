@@ -235,7 +235,10 @@ wget https://raw.githubusercontent.com/semi-technologies/weaviate-helm/$CHART_VE
 
 ### Adjust the configuration in the values.yml (Optional)
 
-_Note: You can skip this step and run with all default values._
+_Note: You can skip this step and run with all default values. In any case,
+make sure that you set the correct Weaviate version. This may either be through
+explicitly setting it as part of the `values.yaml` or through overwriting the
+default as outlined in the deploy step below._
 
 In the
 [`values.yaml`](https://github.com/semi-technologies/weaviate-helm/blob/master/weaviate/values.yaml)
@@ -258,18 +261,25 @@ cluster.
 
 ### Deploy (install the Helm chart)
 
+{% include docs-current_version_finder.html %}
+
 You can deploy the helm charts as follows:
 
 ```bash
 # Create a Weaviate namespace
 $ kubectl create namespace weaviate
+
+# set the desired Weaviate version
+export WEAVIATE_VERSION="{{ current_page_version | remove_first: "v" }}"
+
 # Deploy
 $ helm upgrade \
   "weaviate" \
   weaviate.tgz \
   --install \
   --namespace "weaviate" \
-  --values ./values.yaml
+  --values ./values.yaml \
+  --set "image.tag=$WEAVIATE_VERSION"
 ```
 
 
