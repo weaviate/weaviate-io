@@ -277,7 +277,7 @@ $ helm upgrade \
   --install \
   --namespace "weaviate" \
   --values ./values.yaml \
-  --set image.tag "$WEAVIATE_VERSION"
+  --set "image.tag=$WEAVIATE_VERSION"
 ```
 
 
