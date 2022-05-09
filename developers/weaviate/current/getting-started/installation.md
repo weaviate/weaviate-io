@@ -261,6 +261,8 @@ cluster.
 
 ### Deploy (install the Helm chart)
 
+{% include docs-current_version_finder.html %}
+
 You can deploy the helm charts as follows:
 
 ```bash
@@ -268,7 +270,7 @@ You can deploy the helm charts as follows:
 $ kubectl create namespace weaviate
 
 # set the desired Weaviate version
-export WEAVIATE_VERSION="{{ site.weaviate_version }}"
+export WEAVIATE_VERSION="{{ current_page_version | remove_first: "v" }}"
 
 # Deploy
 $ helm upgrade \
