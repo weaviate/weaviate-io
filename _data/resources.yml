@@ -1,4 +1,15 @@
 ---
+- title: >
+    Rick Lamers • Orchest + Weaviate + Streamlit
+  description: > 
+    Search for comments using Weaviate's semantic search features with Orchest, Weaviate, and Streamlit.
+  link: https://youtu.be/ZzojafqsVA0
+  date: 2022-04-07T00:00:00Z
+  cover_image: '/img/podcasts/podcast-14.png'
+  tags: 
+  - demo
+  - video
+  - use-case
 - title: > 
     Weaviate + Haystack: Harry Potter Q&A Tutorial
   date: 2022-04-11T00:00:01Z
