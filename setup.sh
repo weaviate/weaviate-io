@@ -18,7 +18,7 @@ echo -e "\n💡 \033[1;34minstalling bundler locally \033[0m\n"
 gem uninstall bundler --all > /dev/null 2>&1
 
 # install bundler
-gem install bundler:2.3.8 --install-dir=$GEM_PATH --quiet --no-user-install
+gem install bundler:2.3.13 --install-dir=$GEM_PATH --quiet --no-user-install
 
 echo -e "\n💡 \033[1;34minstalling bundler packages locally \033[0m\n"
 
