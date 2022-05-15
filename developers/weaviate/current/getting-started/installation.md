@@ -183,11 +183,6 @@ An overview of environment variables in the docker-compose file:
 | `DISK_USE_READONLY_PERCENTAGE`  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `90` |
 
 
-
-# Cloud deployment
-
-Weaviate is available on [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/details/semi-marketplace-public/weaviate), where you can find more details on deployment on the cloud.
-
 # Weaviate Cloud Service
 
 You can create a free Weaviate sandbox cluster that lasts for 5 days completely for free. You can [try it out here](https://console.semi.technology) and if you do, we would love to hear your feedback.
@@ -198,7 +193,6 @@ _Generally, we recommend using Kubernetes to deploy Weaviate for any
 long-running deployments or those with specific availability expectations, such
 as production use cases. For local development or personal evaluation, using
 Docker Compose will most likely be sufficient._
-
 
 ## Requirements
 
