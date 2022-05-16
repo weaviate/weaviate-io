@@ -189,9 +189,70 @@ query_result = client.query\
 print(query_result)
 ```
 
-Note that you need to use the `do()` function to execute the query. 
+Note that you need to use the `.do()` method to execute the query. 
 
 # Change logs
+
+### 3.5.0
+This minor version contains functionality for the new features introduced in Weaviate `v1.13.0`.
+
+New `Batch` method `client.batch.delete_objects()` to delete all objects that match a particular expression (`where` filter).
+
+New method `client.query.get(...).with_sort()` that allows sorting data on a particular field/s.
+
+New method `client.query.aggregate(...).with_near_text()` that allows to aggregate data that is matching `nearTex`t filter.
+
+New method `client.query.aggregate(...).with_near_object()` that allows to aggregate data that is matching `nearObject` filter.
+
+New method `client.query.aggregate(...).with_near_vector()` that allows to aggregate data that is matching `nearVector` filter.
+
+### 3.4.2
+This patch version fixes another bug in `client.data_object.exists()`.
+
+### 3.4.1
+This patch version fixes bug in `client.data_object.exists()`.
+
+### 3.4.0
+This minor version fixes the bug in setting the `Schema`’s `invertedIndexConfig` field.
+
+New method `client.schema.get_class_shards()` to get all shards configuration of a particular class.
+
+New method `client.schema.update_class_shard()` to update one/all shard/s configuration of a particular class.
+
+Support for new `Property` field: `tokenization`.
+
+### 3.3.3
+This patch version fixes the `nearImage` filter requests.
+
+### 3.3.2
+This patch version allows using `UUID`s in hex format for `DataObject` too i.e.` UUID`s without hyphens.
+
+### 3.3.1
+This patch version allows using `UUID`s in hex format too i.e. `UUID`s without hyphens.
+
+### 3.3.0
+This minor version adds a new `client.query.get(...).with_offset()` for the `Get` queries. This method should be used with the `client.query.get(...).with_limit()`. This new feature (introduced in Weaviate version 1.8.0) allows to use pagination functionality with the `Get` queries. The `offset` represents the start index of the objects to be returned, and the number of objects is specified by the `with_limit()` method.
+
+For example, to list the first ten results, set `limit: 10`. Then, to “display the second page of 10”, set `offset: 10`, `limit: 10` and so on. E.g. to show the 9th page of 10 results, set `offset: 80`, `limit: 10` to effectively display results 81-90.
+
+### 3.2.5
+This patch fixes the `Batch` object is not callable error.
+
+### 3.2.4
+All `class_name` and cross-refs `dataType` are implicitly capitalized. (This functionality is added because if `class_name` is not capitalized then Weaviate server does it for you, and this was leading to errors where the client and server have different configurations.)
+
+Fixes/updates in `Schema` class:
+- This patch fixes the `client.schema.contains()` to accept separate class schemas as argument i.e. it does not expect to have only this format: `{"classes": [CLASS_1, CLASS_2, ...]}`; now it is possible to pass just `CLASS_X` as well.
+
+### 3.2.3
+This patch fixes the `client.query.get(...).with_near_object()`. It uses now explicit string literals for `id`/`beacon` in `nearoOject` clauses.
+
+### 3.2.2
+This patch adds support for array data types: `boolean[]`, `date[]`.
+
+### 3.2.1
+This patch adds support for array data types: `int[]`, `number[]`, `text[]`, `string[]`.
+
 
 ### 3.2.0
 Fixes/updates in `weaviate.wcs.WCS` class:

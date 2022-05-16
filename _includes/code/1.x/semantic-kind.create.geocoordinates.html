@@ -11,7 +11,11 @@ data_obj = {
   }
 }
 
-client.data_object.create(data_obj, "Publication", "df48b9f6-ba48-470c-bf6a-57657cb07390")
+data_uuid = client.data_object.create(
+  data_obj,
+  "Publication",
+  uuid="df48b9f6-ba48-470c-bf6a-57657cb07390", # optional, if not provided, one is going to be generated
+)
 {% endcapture %}
 
 {% capture javascript %}

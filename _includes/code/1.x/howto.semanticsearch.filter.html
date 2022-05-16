@@ -28,30 +28,28 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-get_articles_query = """
-  {
-    Get{
-      Publication(
-        nearText: {
-          concepts: ["fashion"],
-          certainty: 0.7,
-          moveAwayFrom: {
-            concepts: ["finance"],
-            force: 0.45
-          },
-          moveTo: {
-            concepts: ["haute couture"],
-            force: 0.85
-          }
-        }
-      ){
-        name
-      }
-    }
+where_filter = {
+  'concepts': ["fashion"],
+  'certainty': 0.7,
+  'moveAwayFrom': {
+    'concepts': ["finance"],
+    'force': 0.45
+  },
+  'moveTo': {
+    'concepts': ["haute couture"],
+    'force': 0.85
   }
-"""
+}
 
 query_result = client.query.raw(get_articles_query)
+
+query_result = (
+  client.query
+  .get('Publication', 'name')
+  .with_where(where_filter)
+  .do()
+)
+
 print(query_result)
 {% endcapture %}
 

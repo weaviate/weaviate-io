@@ -16,39 +16,68 @@ second_object_props = {
     }]
 }
 
-## METHOD 1: manually call .create_objects() or .flush() to send objects
-client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-client.batch.create_objects() # or client.batch.flush(), which also sends references
+def check_batch_result(results: dict) -> bool:
+  """
+  Check batch results for errors.
 
-## Or let a context manager call .flush() automatically 
+  Parameters
+  ----------
+  results : dict
+      The Weaviate batch creation return value.
+  """
+
+  if results is not None:
+    for result in results:
+      if 'result' in result and 'errors' in result['result']:
+        if 'error' in result['result']['errors']:
+          print(result['result']['errors']['error'])
+
+# References can be created in batches using 3 different methods.
+
+
+# (Recommended) Auto-batching
+
+client.batch.configure( # configurations are applied to both `objects` AND `references`, do it only once
+  batch_size=100, # `int` values enable auto-batching (`None` is used for manual batching, see example below)
+  timeout_retries=3,
+  callback=check_batch_result, # checks for batch-item creation errors
+  dynamic=False,
+)
+
 with client.batch as batch:
-    client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-    client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-    # no need to create / call flush, this goes automatically
+  batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+  batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
+  # NO need to create or call `client.batch.flush()`, this is called when exiting context-manager
 
-## METHOD 2: automatically send batch when the batch is full 
-client.batch(batch_size=2)
+
+# Dynamic-batching (adjusts batch size so that the batch is created in `creation_time` seconds)
+
+client.batch.configure( # configurations are applied to both `objects` AND `references`, do it only once
+  batch_size=100, # it is used as initial batch size
+  timeout_retries=3,
+  creation_time=10.0,
+  callback=check_batch_result, # checks for batch-item creation errors
+  dynamic=True,
+)
+
+with client.batch as batch:
+  batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+  batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
+  # NO need to create or call `client.batch.flush()`, this is called when exiting context-manager
+
+# Manual batching:
+
+client.batch.configure( # configurations are applied to both `objects` AND `references`, do it only once
+  batch_size=None, # `None` disables auto-/dynamic-batching
+  callback=None, # it is not used in manual-batching, so check the returned value of `client.batch.create_references()`
+  timeout_retries=3,
+)
+
 client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
 client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-# note that, at the end, you need to create / flush any objects that are left in a batch that is not full and thus not sent yet
+results = client.batch.create_objects()
+check_batch_result(results)
 
-## Or with a context manager and __call__ method:
-with client.batch(batch_size=2) as batch:
-    client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-    client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-    # no need to create / call flush if there are objects left in an unsent batch, this is automatically flushed
-
-## METHOD 3: Automatically send batch when full, but configure this to 'dynamic':
-client.batch(batch_size=2, dynamic=True)
-client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-
-## Or:
-client.batch.batch_size = 3
-client.batch.dynamic = True
-client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
 
 ## For more info, visit https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch
 {% endcapture %}

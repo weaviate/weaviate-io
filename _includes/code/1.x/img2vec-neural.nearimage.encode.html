@@ -21,7 +21,14 @@ client = weaviate.Client("http://localhost:8080")
 
 nearImage = {"image": "my_image_path.png"}
 
-client.query.get("FashionItem", ["image"]).with_near_image(nearImage, encode=True).do()
+result = (
+  client.query
+  .get("FashionItem", "image")
+  .with_near_image(nearImage, encode=True)
+  .do()
+)
+
+print(result)
 
 ## OR use the weaviate.utils function:
 
@@ -31,8 +38,14 @@ encoded_image = weaviate.util.image_encoder_b64("my_image_path.png")
 
 nearImage = {"image": "encoded_image"}
 
-client.query.get("FashionItem", ["image"]).with_near_image(nearImage).do()
+result = (
+  client.query
+  .get("FashionItem", "image")
+  .with_near_image(nearImage)
+  .do()
+)
 
+print(result)
 
 {% endcapture %}
 
