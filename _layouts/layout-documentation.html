@@ -16,25 +16,27 @@
           {% include docs-menu.html %}
 
           <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+            <div class="container">
 
-            <h1>{{ page.title }}</h1>
+              <h1>{{ page.title }}</h1>
 
-            <!-- BADGES -->
-            <p>
-              {% include docs-badges.html %}
-            </p>
+              <!-- BADGES -->
+              <p>
+                {% include docs-badges.html %}
+              </p>
 
-            <!-- CALLOUT -->
-            {% include callout.html %}
+              <!-- CALLOUT -->
+              {% include callout.html %}
 
-            <p>
-              {{ page.intro }}
-            </p>
+              <p>
+                {{ page.intro }}
+              </p>
 
-            <hr>
+              <hr>
 
-            <div class="main-docs-content">
-              {{ content }}
+              <div class="main-docs-content">
+                {{ content }}
+              </div>
             </div>
           </div>
 
