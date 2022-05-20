@@ -59,6 +59,31 @@ For detailed information and instructions of batching in Python, click [here](ht
     * Case 3: Similar to Case II but uses dynamic batching, i.e. auto-creates either objects or references when one of them reached the `recommended_num_objects` or `recommended_num_references` respectively. See docs for the `configure` or `__call__` method for how to enable it.
     * **Context-manager support**: Can be use with the with statement. When it exists the context-manager it calls the flush method for you. Can be combined with `configure` or `__call__` method, in order to set it to the desired Case.
 
+# Batch references
+
+For batching cross-references between data objects in bulk.
+
+### Method and URL
+
+```js
+POST /v1/batch/references
+```
+
+### Parameters
+
+The body of the data object for a new object is a list of objects containing:
+
+| name | type | required | description |
+| ---- | ---- | ---- | ---- |
+| `from` | beacon | yes | The beacon, in the form of `weaviate://{host}/{Classname}/{id}/{cref_property_name}` |
+| `to` | beacon | yes | The beacon, in the form of `weaviate://{host}/{id}` |
+
+### Example request
+
+{% include code/1.x/batch.references.html %}
+
+For detailed information and instructions of batching in Python, click [here](https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch).
+
 # Batch Delete By Query
 
 *Note: This feature was introduced in `v1.13.0`*
@@ -147,30 +172,6 @@ Possible values for `output`
 
 {% include code/1.x/batch.delete.objects.html %}
 
-# Batch references
-
-For batching cross-references between data objects in bulk.
-
-### Method and URL
-
-```js
-POST /v1/batch/references
-```
-
-### Parameters
-
-The body of the data object for a new object is a list of objects containing:
-
-| name | type | required | description |
-| ---- | ---- | ---- | ---- |
-| `from` | beacon | yes | The beacon, in the form of `weaviate://{host}/{Classname}/{id}/{cref_property_name}` |
-| `to` | beacon | yes | The beacon, in the form of `weaviate://{host}/{id}` |
-
-### Example request
-
-{% include code/1.x/batch.references.html %}
-
-For detailed information and instructions of batching in Python, click [here](https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch).
 
 # Error handling
 
