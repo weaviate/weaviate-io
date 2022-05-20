@@ -1,0 +1,66 @@
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<div class="container" style="margin-bottom: 40px">
+  <div class="row">
+    <div class="col-12">
+      <div style="width:100%; line-height:1000%; text-align: center">
+        <canvas id="siftChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const siftSource = {
+    limit1: [
+      { recall: 90.91, qps: 11445 },
+      { recall: 95.74, qps: 11391 },
+      { recall: 98.52, qps: 10443 },
+      { recall: 98.69, qps: 10287 },
+      { recall: 98.92, qps: 9760 },
+      { recall: 99.0, qps: 9462 },
+      { recall: 99.22, qps: 9249 },
+      { recall: 99.29, qps: 7155 },
+      { recall: 99.34, qps: 5694 },
+      { recall: 99.37, qps: 3578 },
+    ],
+    limit10: [
+      { recall: 93.41, qps: 10237 },
+      { recall: 94.03, qps: 10179 },
+      { recall: 98.01, qps: 9441 },
+      { recall: 98.44, qps: 9361 },
+      { recall: 98.83, qps: 8905 },
+      { recall: 98.95, qps: 8748 },
+      { recall: 99.31, qps: 8633 },
+      { recall: 99.48, qps: 8443 },
+      { recall: 99.63, qps: 8129 },
+      { recall: 99.7, qps: 6711 },
+      { recall: 99.77, qps: 6365 },
+      { recall: 99.77, qps: 5847 },
+      { recall: 99.8, qps: 5379 },
+      { recall: 99.82, qps: 5232 },
+      { recall: 99.89, qps: 5067 },
+      { recall: 99.91, qps: 4866 },
+      { recall: 99.92, qps: 4207 },
+      { recall: 99.93, qps: 3303 },
+    ],
+    limit100: [
+      { recall: 92.47, qps: 4784 },
+      { recall: 94.37, qps: 4309 },
+      { recall: 95.13, qps: 4266 },
+      { recall: 97.63, qps: 4239 },
+      { recall: 98.1, qps: 4177 },
+      { recall: 98.68, qps: 4052 },
+      { recall: 98.76, qps: 3580 },
+      { recall: 99.12, qps: 3415 },
+      { recall: 99.68, qps: 3389 },
+      { recall: 99.8, qps: 3189 },
+      { recall: 99.82, qps: 2641 },
+      { recall: 99.84, qps: 2559 },
+      { recall: 99.92, qps: 2501 },
+      { recall: 99.95, qps: 2411 },
+      { recall: 99.97, qps: 2265 },
+    ]
+  };
+
+  renderChart('siftChart', siftSource);
+</script>

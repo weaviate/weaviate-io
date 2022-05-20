@@ -12,6 +12,8 @@ open-graph-type: article
 toc: true
 ---
 
+{% include benchmarks/ann-chart-init.html %}
+
 # TODO @BOB FIX TITLE
 
 # About this benchmark
@@ -69,9 +71,12 @@ users would also experience. In particular these means:
 
 <img class="image" src="/img/weaviate_benchmark_setup.png" alt="Setup with Weaviate and benchmark machine" />
 
-For this benchmark, a GCP `c2-standard-30` (30 vCPU cores, 120 GB memory) machine
-was used. The benchmarking script itself was run form a secondary 8-core
-machine. The `c2-standard-30` was chosen for two reasons:
+For the purpose of this benchmark we've used two GCP instances within the same VPC:
+
+* **Benchmark** – a `c2-standard-30` instance with 30 vCPU cores and 120 GB memory – to host Weaviate. 
+* **Script** – a smaller instance with 8 vCPU – to run benchmarking scripts.
+
+Note, the `c2-standard-30` was chosen for benchmarking for two reasons:
 
 * It is large enough to show that Weaviate is a highly-concurrent vector search
   engine and scales well while running thousands of searches across multiple threads.
@@ -150,15 +155,7 @@ you can find alternative configurations.
 
 #### QPS vs Recall
 
-<div class="container" style="margin-bottom: 40px">
-  <div class="row">
-    <div class="col-12">
-      <div style="width:100%; line-height:1000%; background: grey; text-align: center">
-        This is a placeholder for the chart!
-      </div>
-    </div>
-  </div>
-</div>
+{% include benchmarks/ann-sift-chart.html %}
 
 {% include benchmarks/ann-sift-128.html %}
 
@@ -174,15 +171,7 @@ you can find alternative configurations.
 
 #### QPS vs Recall
 
-<div class="container" style="margin-bottom: 40px">
-  <div class="row">
-    <div class="col-12">
-      <div style="width:100%; line-height:1000%; background: grey; text-align: center">
-        This is a placeholder for the chart!
-      </div>
-    </div>
-  </div>
-</div>
+{% include benchmarks/ann-glove-chart.html %}
 
 {% include benchmarks/ann-glove-25.html %}
 
@@ -198,15 +187,7 @@ you can find alternative configurations.
 
 #### QPS vs Recall
 
-<div class="container" style="margin-bottom: 40px">
-  <div class="row">
-    <div class="col-12">
-      <div style="width:100%; line-height:1000%; background: grey; text-align: center">
-        This is a placeholder for the chart!
-      </div>
-    </div>
-  </div>
-</div>
+{% include benchmarks/ann-deep-chart.html %}
 
 {% include benchmarks/ann-deep-96.html %}
 
@@ -222,15 +203,7 @@ you can find alternative configurations.
 
 #### QPS vs Recall
 
-<div class="container" style="margin-bottom: 40px">
-  <div class="row">
-    <div class="col-12">
-      <div style="width:100%; line-height:1000%; background: grey; text-align: center">
-        This is a placeholder for the chart!
-      </div>
-    </div>
-  </div>
-</div>
+{% include benchmarks/ann-gist-chart.html %}
 
 {% include benchmarks/ann-gist-960.html %}
 
