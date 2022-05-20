@@ -19,15 +19,16 @@ toc: true
 ## Goals
 
 This benchmark is designed to illustrate Weaviate's ANN perfomance for a range
-of different scenarios.  In the [results section below](TODO), allows you to find a
+of different scenarios.  In the [results section below](#results), allows you to find a
 sample dataset that is closest to your production load. You can draw conclusions
 about what to expect from Weaviate in a production setting.
 
 Note, this is not a comparative benchmark that runs Weaviate against competing
 solutions.
 
-This benchmark is produced using [open-source scripts](TODO), so you can
-reproduce it yourself.
+This benchmark is produced using [open-source
+scripts](https://github.com/semi-technologies/weaviate-benchmarking), so you
+can reproduce it yourself.
 
 ### What is being measured?
 
@@ -239,27 +240,115 @@ you can find alternative configurations.
 
 ## What is the difference between latency and throughput?
 
-TODO
+The latency refers the to the time it takes to complete a single request. This
+is typically measured by taking a mean or percentile distribution of all
+requests. For, example, a mean latency of 5ms means that a single request takes
+on average 5ms to complete. This does not say anything about how many queries
+can be answered in a given timeframe.
+
+If Weaviate was single-threaded the throughput per second would roughly equal
+to 1s divided by mean latency. For example, with a mean latency of 5ms, this
+would mean that 200 requests can be answered in a second.
+
+However, in reality, you often don't have a single user sending one query after
+another. Instead you have multiple users sending queries. This makes the
+querying-side concurrent. Similarly, Weaviate can handle concurrent incoming
+requests. By measuring the throughput we can identify how many concurrent
+requests can be served. 
+
+We can take our single-thread calculation from before and multiply it with the
+number of server CPU cores. This will give us a rough estimate of what the
+server can handle concurrently. However, you should never trust this
+calculation alone and always measure the actual throughput. This is because
+such scaling may not always be linear. For example, to make concurrent access
+safe, there may be synchronization mechanisms used, such as locks. Not only do
+these mechanisms have a cost themselves, but if implemented incorrectly, they
+can also lead to congestion which would further decrease the concurrent
+throughput. As a result, you cannot perform a single-threaded benchmark and
+extrapolate what the numbers would be like in a multi-threaded setting.
+
+All throghput numbers ("QPS") outlined in this benchmark are actual
+multi-threaded measurements on a 30-core machine, not estimations.
 
 ## What is a p99 latency?
 
-TODO
+The mean latency gives you an average value of all requests measured. This is a
+good indication to tell you how long a user will have to wait on average for
+their request to be comleted. Based on this mean value you cannot make any
+promises to your users about wait times. 90 out of 100 users might see a
+considerably better time, but the remaining 10 might see a considerably worse
+time.
+
+To give a more precise indication percentile-based latencies are used. A
+99th-percentile latency - or "p99 latency" for short - indicates the slowest
+request that 99% of requests experience. In other words, 99% of your users will
+experience a time equal to or better than the stated value. This is a much
+better guarantee than a mean value.
+
+In production settings requirements - as stated in SLAs - are often a
+combination of throughput and a percentile latency. For example the statement
+"3000 QPS at p95 latency of 20ms" conveys the following meaning.
+
+- 3000 requests need to be succesfully completed per second
+- 95% of users must see a latency of 20ms or lower.
+- There is no assumption about the remaining 5% of users, implicitly tolerating
+  that they will experience a higher latency than 20ms.
+
+The higher the percentile chose (e.g. p99 over p95) the "safer" the quoted
+latency becomes. We have thus chosen to use p99-latencies instead of
+p95-latencies in our measurements.
 
 ## What happens if I run with fewer or more CPU cores than on the example test machine?
 
-TODO
+The benchmark outlines a QPS per core measurement. This can help you make a
+rough estimation of how the throughput would vary on smaller or larger
+machines. If you do not need the stated throughput you can run with fewer CPU
+cores. If you need more throughput you can run with more CPU cores. 
+
+Please note that - because of synchronization mechanism, disk and memory
+bottlenecks - there is a point of diminishing returns with adding more CPUs.
+Beyond that point, you can scale horizontally instead of vertically. Horizontal
+scaling with replication will be available in Weaviate soon.
 
 ## What are ef, efConstruction and maxConnections?
 
-TODO
+These parameters refer to the [HNSW build and query
+parameters](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters).
+They represent a trade-off between recall, latency & throughput, index size and
+memory consumption. This trade-off is highlighted in the benchmark results.
 
 ## I can't match the same latencies/throughput in my own setup, how can I debug this?
 
-TODO
+If you are encountering other numbers in your own dataset, here are a couple of
+hints to look at:
+
+* What CPU architecture are you using? The benchmarks above were run on a GCP
+  `c2` CPU type which is based on `amd64` architecture. Weaviate also supports
+  `arm64` architecture, but not all optimizations are presnt. If your machine
+  shows maximum CPU usage, but you cannot achieve the same throughput, consider
+  switching the CPU type to the one used in this benchmark.
+
+* Are you using an actual dataset or random vectors? HNSW is known to perform
+  considerably worse with random vectors than with actual datasets. This is due
+  to the distribution of points in actual datasets compared to randomly
+  generated vectors. If you cannot achieve the performance (and/or recall)
+  outlined above with random vectors, switch to an actual dataset.
+
+* Are your disks fast enough? While the ANN search itself is CPU-bound, after
+  the search has completed, the objects need to be read from disk. Weaviate
+  uses memory-mapped files to speed this process up. However, if not enough
+  memory is present or the operating system has allocated the cached pages
+  elsewhere, then a physical disk read needs to occurr. If your disk is slow,
+  it could then be that your benchmark is bottlnecked by those disks.
+
+* Are you using more than 2 million vectors? If yes, make sure to set the
+  [vector cache large
+  enough](../architecture/resources.html#imports-slowed-down-after-crossing-2m-objects---what-can-i-do)
+  for maximum performance.
 
 ## Where can I find the scripts to run this benchmark myself?
 
-TODO
+The [repository is located here](https://github.com/semi-technologies/weaviate-benchmarking).
 
 <style type="text/css">
 
