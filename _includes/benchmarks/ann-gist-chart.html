@@ -1,0 +1,75 @@
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<div class="container" style="margin-bottom: 40px">
+  <div class="row">
+    <div class="col-12">
+      <div style="width:100%; line-height:1000%; text-align: center">
+        <canvas id="gistChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const gistSource = {
+    limit1: [
+      { recall: 66.6, qps: 2759 },
+      { recall: 70.7, qps: 2734 },
+      { recall: 75.0, qps: 2724 },
+      { recall: 79.8, qps: 2618 },
+      { recall: 83.9, qps: 2577 },
+      { recall: 87.1, qps: 2518 },
+      { recall: 89.6, qps: 2425 },
+      { recall: 92.6, qps: 2388 },
+      { recall: 94.1, qps: 2207 },
+      { recall: 94.6, qps: 2073 },
+      { recall: 96.2, qps: 1985 },
+      { recall: 96.2, qps: 1951 },
+      { recall: 96.2, qps: 1839 },
+      { recall: 96.7, qps: 1603 },
+      { recall: 98.7, qps: 1514 },
+      { recall: 99.1, qps: 999 },
+    ],
+    limit10: [
+      { recall: 65.88, qps: 2649 },
+      { recall: 69.68, qps: 2625 },
+      { recall: 74.17, qps: 2557 },
+      { recall: 80.23, qps: 2518 },
+      { recall: 81.98, qps: 2387 },
+      { recall: 82.87, qps: 2355 },
+      { recall: 88.11, qps: 2312 },
+      { recall: 89.83, qps: 2297 },
+      { recall: 91.85, qps: 2002 },
+      { recall: 92.04, qps: 1937 },
+      { recall: 94.14, qps: 1935 },
+      { recall: 94.72, qps: 1860 },
+      { recall: 95.99, qps: 1569 },
+      { recall: 96.48, qps: 1556 },
+      { recall: 97.76, qps: 1483 },
+      { recall: 98.62, qps: 1286 },
+      { recall: 99.16, qps: 981 },
+      { recall: 99.47, qps: 880 },
+    ],
+    limit100: [
+      { recall: 56.05, qps: 1997 },
+      { recall: 60.26, qps: 1945 },
+      { recall: 61.8, qps: 1862 },
+      { recall: 68.05, qps: 1832 },
+      { recall: 77.53, qps: 1802 },
+      { recall: 78.26, qps: 1744 },
+      { recall: 79.71, qps: 1713 },
+      { recall: 80.3, qps: 1652 },
+      { recall: 86.91, qps: 1624 },
+      { recall: 88.31, qps: 1515 },
+      { recall: 89.11, qps: 1477 },
+      { recall: 92.63, qps: 1361 },
+      { recall: 94.49, qps: 1308 },
+      { recall: 96.44, qps: 1152 },
+      { recall: 96.94, qps: 1001 },
+      { recall: 97.87, qps: 893 },
+      { recall: 98.04, qps: 870 },
+      { recall: 98.8, qps: 812 },
+    ]
+  };
+
+  renderChart('gistChart', gistSource);
+</script>

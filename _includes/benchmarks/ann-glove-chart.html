@@ -1,0 +1,79 @@
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<div class="container" style="margin-bottom: 40px">
+  <div class="row">
+    <div class="col-12">
+      <div style="width:100%; line-height:1000%; text-align: center">
+        <canvas id="gloveChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const gloveSource = {
+    limit1: [
+      { recall: 94.47, qps: 19752 },
+      { recall: 95.3, qps: 19704 },
+      { recall: 99.26, qps: 17583 },
+      { recall: 99.27, qps: 17177 },
+      { recall: 99.72, qps: 15443 },
+      { recall: 99.84, qps: 15187 },
+      { recall: 99.89, qps: 14401 },
+      { recall: 99.9, qps: 13490 },
+      { recall: 99.96, qps: 12626 },
+      { recall: 99.98, qps: 8665 },
+      { recall: 99.98, qps: 7191 },
+      { recall: 99.99, qps: 6958 },
+      { recall: 100.0, qps: 6694 },
+      { recall: 100.0, qps: 4568 },
+    ],
+    limit10: [
+      { recall: 91.33, qps: 16576 },
+      { recall: 91.98, qps: 16474 },
+      { recall: 92.13, qps: 16368 },
+      { recall: 96.56, qps: 15003 },
+      { recall: 97.95, qps: 14996 },
+      { recall: 98.04, qps: 14197 },
+      { recall: 99.06, qps: 13482 },
+      { recall: 99.44, qps: 13237 },
+      { recall: 99.56, qps: 12661 },
+      { recall: 99.63, qps: 12014 },
+      { recall: 99.76, qps: 11300 },
+      { recall: 99.76, qps: 9365 },
+      { recall: 99.79, qps: 8669 },
+      { recall: 99.89, qps: 7990 },
+      { recall: 99.95, qps: 6771 },
+      { recall: 99.97, qps: 6286 },
+      { recall: 99.99, qps: 5225 },
+      { recall: 100.0, qps: 4281 },
+      { recall: 100.0, qps: 3917 },
+      { recall: 100.0, qps: 3611 },
+    ],
+    limit100: [
+      { recall: 78.16, qps: 6202 },
+      { recall: 80.07, qps: 6044 },
+      { recall: 81.93, qps: 5968 },
+      { recall: 91.28, qps: 5930 },
+      { recall: 92.52, qps: 5768 },
+      { recall: 93.17, qps: 5650 },
+      { recall: 94.91, qps: 5543 },
+      { recall: 96.07, qps: 5524 },
+      { recall: 96.45, qps: 5321 },
+      { recall: 96.54, qps: 5254 },
+      { recall: 97.48, qps: 5235 },
+      { recall: 97.79, qps: 5045 },
+      { recall: 98.21, qps: 4889 },
+      { recall: 98.75, qps: 4667 },
+      { recall: 99.01, qps: 4298 },
+      { recall: 99.43, qps: 4242 },
+      { recall: 99.57, qps: 4069 },
+      { recall: 99.61, qps: 3854 },
+      { recall: 99.79, qps: 3634 },
+      { recall: 99.92, qps: 3158 },
+      { recall: 99.95, qps: 2956 },
+      { recall: 99.98, qps: 2581 },
+    ]
+  };
+
+  renderChart('gloveChart', gloveSource);
+</script>

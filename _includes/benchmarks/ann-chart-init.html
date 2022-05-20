@@ -1,0 +1,40 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const renderChart = (name, source) => {
+    const data = {
+      datasets: [{
+        label: 'Limit1',
+        data: source.limit1.map(item => {return {x: item.recall, y: item.qps}}),
+        backgroundColor: '#e6e6e6'
+      },{
+        label: 'Limit10',
+        data: source.limit10.map(item => {return {x: item.recall, y: item.qps}}),
+        backgroundColor: '#009c00'
+      },{
+        label: 'Limit100',
+        data: source.limit100.map(item => {return {x: item.recall, y: item.qps}}),
+        backgroundColor: '#30496c'
+      }],
+    };
+
+    const config = {
+      type: 'scatter',
+      data: data,
+      options: {
+        showLine: true,
+        scales: {
+          x: {
+            type: 'linear',
+            position: 'bottom'
+          }
+        }
+      }
+    };
+
+    const myChart = new Chart(
+      document.getElementById(name),
+      config
+    );
+  }
+</script>
