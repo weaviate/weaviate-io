@@ -5,17 +5,17 @@
      <li class="nav-item" role="presentation">
       <button class="nav-link active"  id="deep-limit-1-tab" data-bs-toggle="tab" data-bs-target="#deep-limit-1" type="button" role="tab" aria-controls="deep-limit-1" aria-selected="true">Limit 1</button>
      </li>
-    
+
 
      <li class="nav-item" role="presentation">
       <button class="nav-link"  id="deep-limit-10-tab" data-bs-toggle="tab" data-bs-target="#deep-limit-10" type="button" role="tab" aria-controls="deep-limit-10" aria-selected="false">Limit 10</button>
      </li>
-    
+
 
      <li class="nav-item" role="presentation">
       <button class="nav-link"  id="deep-limit-100-tab" data-bs-toggle="tab" data-bs-target="#deep-limit-100" type="button" role="tab" aria-controls="deep-limit-100" aria-selected="false">Limit 100</button>
      </li>
-    
+
 </ul>
 <div class="tab-content" id="deep-tabs-content">
 <div class="tab-pane fade show active" id="deep-limit-1" role="tabpanel" aria-labelledby="deep-limit-1-tab">
@@ -23,13 +23,13 @@
 <table class="table table-sm">
   <thead>
     <tr>
-    
+
     <th>efConstruction</th>
     <th>maxConnections</th>
     <th>ef</th>
-    <th>Recall</th>
+    <th class="table-primary">Recall</th>
     <th class="table-primary">QPS</th>
-    <th class="table-primary">QPS/vCore</th>
+    <th>QPS/vCore</th>
     <th>Mean Latency</th>
     <th>p99 Latency</th>
     <th>Import time</th>
@@ -37,14 +37,14 @@
     </tr>
   </thead>
   <tbody>
-    
+
   <tr>
     <td>64</td>
     <td>16</td>
     <td>64</td>
-    <td>94.44 %</td>
+    <td class="table-primary">94.44 %</td>
     <td class="table-primary">9301</td>
-    <td class="table-primary">310</td>
+    <td>310</td>
     <td>3.14ms</td>
     <td>7.21ms</td>
     <td>3305s</td>
@@ -53,9 +53,9 @@
     <td>128</td>
     <td>16</td>
     <td>64</td>
-    <td>96.06 %</td>
+    <td class="table-primary">96.06 %</td>
     <td class="table-primary">8957</td>
-    <td class="table-primary">299</td>
+    <td>299</td>
     <td>3.28ms</td>
     <td>7.24ms</td>
     <td>3804s</td>
@@ -64,9 +64,9 @@
     <td>64</td>
     <td>64</td>
     <td>64</td>
-    <td>96.84 %</td>
+    <td class="table-primary">96.84 %</td>
     <td class="table-primary">8760</td>
-    <td class="table-primary">292</td>
+    <td>292</td>
     <td>3.36ms</td>
     <td>6.97ms</td>
     <td>3253s</td>
@@ -75,9 +75,9 @@
     <td>128</td>
     <td>32</td>
     <td>64</td>
-    <td>97.88 %</td>
+    <td class="table-primary">97.88 %</td>
     <td class="table-primary">8473</td>
-    <td class="table-primary">282</td>
+    <td>282</td>
     <td>3.48ms</td>
     <td>7.4ms</td>
     <td>3533s</td>
@@ -86,9 +86,9 @@
     <td>128</td>
     <td>64</td>
     <td>64</td>
-    <td>98.27 %</td>
+    <td class="table-primary">98.27 %</td>
     <td class="table-primary">7984</td>
-    <td class="table-primary">266</td>
+    <td>266</td>
     <td>3.66ms</td>
     <td>7.52ms</td>
     <td>3631s</td>
@@ -97,9 +97,9 @@
     <td>256</td>
     <td>32</td>
     <td>64</td>
-    <td>98.78 %</td>
+    <td class="table-primary">98.78 %</td>
     <td class="table-primary">7916</td>
-    <td class="table-primary">264</td>
+    <td>264</td>
     <td>3.71ms</td>
     <td>7.83ms</td>
     <td>4295s</td>
@@ -108,9 +108,9 @@
     <td>512</td>
     <td>32</td>
     <td>64</td>
-    <td>98.95 %</td>
+    <td class="table-primary">98.95 %</td>
     <td class="table-primary">7876</td>
-    <td class="table-primary">263</td>
+    <td>263</td>
     <td>3.73ms</td>
     <td>7.47ms</td>
     <td>5477s</td>
@@ -119,9 +119,9 @@
     <td>256</td>
     <td>64</td>
     <td>64</td>
-    <td>99.06 %</td>
+    <td class="table-primary">99.06 %</td>
     <td class="table-primary">7839</td>
-    <td class="table-primary">261</td>
+    <td>261</td>
     <td>3.75ms</td>
     <td>7.21ms</td>
     <td>4392s</td>
@@ -130,9 +130,9 @@
     <td>512</td>
     <td>64</td>
     <td>64</td>
-    <td>99.32 %</td>
+    <td class="table-primary">99.32 %</td>
     <td class="table-primary">7238</td>
-    <td class="table-primary">241</td>
+    <td>241</td>
     <td>4.05ms</td>
     <td>7.67ms</td>
     <td>6039s</td>
@@ -141,9 +141,9 @@
     <td>256</td>
     <td>64</td>
     <td>128</td>
-    <td>99.42 %</td>
+    <td class="table-primary">99.42 %</td>
     <td class="table-primary">5767</td>
-    <td class="table-primary">192</td>
+    <td>192</td>
     <td>5.1ms</td>
     <td>8.39ms</td>
     <td>4392s</td>
@@ -152,9 +152,9 @@
     <td>512</td>
     <td>64</td>
     <td>128</td>
-    <td>99.52 %</td>
+    <td class="table-primary">99.52 %</td>
     <td class="table-primary">5509</td>
-    <td class="table-primary">184</td>
+    <td>184</td>
     <td>5.34ms</td>
     <td>8.7ms</td>
     <td>6039s</td>
@@ -163,9 +163,9 @@
     <td>256</td>
     <td>32</td>
     <td>256</td>
-    <td>99.66 %</td>
+    <td class="table-primary">99.66 %</td>
     <td class="table-primary">4672</td>
-    <td class="table-primary">156</td>
+    <td>156</td>
     <td>6.32ms</td>
     <td>10.11ms</td>
     <td>4295s</td>
@@ -174,9 +174,9 @@
     <td>512</td>
     <td>32</td>
     <td>256</td>
-    <td>99.82 %</td>
+    <td class="table-primary">99.82 %</td>
     <td class="table-primary">4467</td>
-    <td class="table-primary">149</td>
+    <td>149</td>
     <td>6.62ms</td>
     <td>10.29ms</td>
     <td>5477s</td>
@@ -185,9 +185,9 @@
     <td>512</td>
     <td>64</td>
     <td>256</td>
-    <td>99.9 %</td>
+    <td class="table-primary">99.9 %</td>
     <td class="table-primary">3683</td>
-    <td class="table-primary">123</td>
+    <td>123</td>
     <td>7.97ms</td>
     <td>12.72ms</td>
     <td>6039s</td>
@@ -196,9 +196,9 @@
     <td>512</td>
     <td>32</td>
     <td>512</td>
-    <td>99.94 %</td>
+    <td class="table-primary">99.94 %</td>
     <td class="table-primary">2842</td>
-    <td class="table-primary">95</td>
+    <td>95</td>
     <td>10.37ms</td>
     <td>15.25ms</td>
     <td>5477s</td>
@@ -207,9 +207,9 @@
     <td>512</td>
     <td>64</td>
     <td>512</td>
-    <td>99.95 %</td>
+    <td class="table-primary">99.95 %</td>
     <td class="table-primary">2288</td>
-    <td class="table-primary">76</td>
+    <td>76</td>
     <td>12.84ms</td>
     <td>20.72ms</td>
     <td>6039s</td>
@@ -223,13 +223,13 @@
 <table class="table table-sm">
   <thead>
     <tr>
-    
+
     <th>efConstruction</th>
     <th>maxConnections</th>
     <th>ef</th>
-    <th>Recall</th>
+    <th class="table-primary">Recall</th>
     <th class="table-primary">QPS</th>
-    <th class="table-primary">QPS/vCore</th>
+    <th>QPS/vCore</th>
     <th>Mean Latency</th>
     <th>p99 Latency</th>
     <th>Import time</th>
@@ -237,14 +237,14 @@
     </tr>
   </thead>
   <tbody>
-    
+
   <tr>
     <td>64</td>
     <td>16</td>
     <td>64</td>
-    <td>91.58 %</td>
+    <td class="table-primary">91.58 %</td>
     <td class="table-primary">8679</td>
-    <td class="table-primary">289</td>
+    <td>289</td>
     <td>3.35ms</td>
     <td>7.3ms</td>
     <td>3305s</td>
@@ -253,9 +253,9 @@
     <td>128</td>
     <td>16</td>
     <td>64</td>
-    <td>93.68 %</td>
+    <td class="table-primary">93.68 %</td>
     <td class="table-primary">8402</td>
-    <td class="table-primary">280</td>
+    <td>280</td>
     <td>3.47ms</td>
     <td>6.9ms</td>
     <td>3804s</td>
@@ -264,9 +264,9 @@
     <td>64</td>
     <td>32</td>
     <td>64</td>
-    <td>94.11 %</td>
+    <td class="table-primary">94.11 %</td>
     <td class="table-primary">8255</td>
-    <td class="table-primary">275</td>
+    <td>275</td>
     <td>3.55ms</td>
     <td>7.61ms</td>
     <td>3275s</td>
@@ -275,9 +275,9 @@
     <td>64</td>
     <td>64</td>
     <td>64</td>
-    <td>94.67 %</td>
+    <td class="table-primary">94.67 %</td>
     <td class="table-primary">8184</td>
-    <td class="table-primary">273</td>
+    <td>273</td>
     <td>3.58ms</td>
     <td>7.19ms</td>
     <td>3253s</td>
@@ -286,9 +286,9 @@
     <td>128</td>
     <td>64</td>
     <td>64</td>
-    <td>96.95 %</td>
+    <td class="table-primary">96.95 %</td>
     <td class="table-primary">7575</td>
-    <td class="table-primary">253</td>
+    <td>253</td>
     <td>3.88ms</td>
     <td>7.79ms</td>
     <td>3631s</td>
@@ -297,9 +297,9 @@
     <td>256</td>
     <td>32</td>
     <td>64</td>
-    <td>97.53 %</td>
+    <td class="table-primary">97.53 %</td>
     <td class="table-primary">7539</td>
-    <td class="table-primary">251</td>
+    <td>251</td>
     <td>3.87ms</td>
     <td>7.81ms</td>
     <td>4295s</td>
@@ -308,9 +308,9 @@
     <td>512</td>
     <td>32</td>
     <td>64</td>
-    <td>97.92 %</td>
+    <td class="table-primary">97.92 %</td>
     <td class="table-primary">7399</td>
-    <td class="table-primary">247</td>
+    <td>247</td>
     <td>3.96ms</td>
     <td>8.04ms</td>
     <td>5477s</td>
@@ -319,9 +319,9 @@
     <td>256</td>
     <td>64</td>
     <td>64</td>
-    <td>98.15 %</td>
+    <td class="table-primary">98.15 %</td>
     <td class="table-primary">7287</td>
-    <td class="table-primary">243</td>
+    <td>243</td>
     <td>4.02ms</td>
     <td>7.3ms</td>
     <td>4392s</td>
@@ -330,9 +330,9 @@
     <td>512</td>
     <td>64</td>
     <td>64</td>
-    <td>98.76 %</td>
+    <td class="table-primary">98.76 %</td>
     <td class="table-primary">6838</td>
-    <td class="table-primary">228</td>
+    <td>228</td>
     <td>4.27ms</td>
     <td>7.96ms</td>
     <td>6039s</td>
@@ -341,9 +341,9 @@
     <td>256</td>
     <td>64</td>
     <td>128</td>
-    <td>98.77 %</td>
+    <td class="table-primary">98.77 %</td>
     <td class="table-primary">5658</td>
-    <td class="table-primary">189</td>
+    <td>189</td>
     <td>5.2ms</td>
     <td>8.7ms</td>
     <td>4392s</td>
@@ -352,9 +352,9 @@
     <td>512</td>
     <td>64</td>
     <td>128</td>
-    <td>99.23 %</td>
+    <td class="table-primary">99.23 %</td>
     <td class="table-primary">5233</td>
-    <td class="table-primary">174</td>
+    <td>174</td>
     <td>5.62ms</td>
     <td>9.25ms</td>
     <td>6039s</td>
@@ -363,9 +363,9 @@
     <td>256</td>
     <td>32</td>
     <td>256</td>
-    <td>99.44 %</td>
+    <td class="table-primary">99.44 %</td>
     <td class="table-primary">4454</td>
-    <td class="table-primary">148</td>
+    <td>148</td>
     <td>6.58ms</td>
     <td>10.11ms</td>
     <td>4295s</td>
@@ -374,9 +374,9 @@
     <td>512</td>
     <td>32</td>
     <td>256</td>
-    <td>99.61 %</td>
+    <td class="table-primary">99.61 %</td>
     <td class="table-primary">4270</td>
-    <td class="table-primary">142</td>
+    <td>142</td>
     <td>6.89ms</td>
     <td>10.77ms</td>
     <td>5477s</td>
@@ -385,9 +385,9 @@
     <td>512</td>
     <td>64</td>
     <td>256</td>
-    <td>99.78 %</td>
+    <td class="table-primary">99.78 %</td>
     <td class="table-primary">3534</td>
-    <td class="table-primary">118</td>
+    <td>118</td>
     <td>8.26ms</td>
     <td>12.97ms</td>
     <td>6039s</td>
@@ -396,9 +396,9 @@
     <td>256</td>
     <td>32</td>
     <td>512</td>
-    <td>99.8 %</td>
+    <td class="table-primary">99.8 %</td>
     <td class="table-primary">2932</td>
-    <td class="table-primary">98</td>
+    <td>98</td>
     <td>10.04ms</td>
     <td>14.79ms</td>
     <td>4295s</td>
@@ -407,9 +407,9 @@
     <td>512</td>
     <td>32</td>
     <td>512</td>
-    <td>99.88 %</td>
+    <td class="table-primary">99.88 %</td>
     <td class="table-primary">2767</td>
-    <td class="table-primary">92</td>
+    <td>92</td>
     <td>10.64ms</td>
     <td>15.67ms</td>
     <td>5477s</td>
@@ -418,9 +418,9 @@
     <td>512</td>
     <td>64</td>
     <td>512</td>
-    <td>99.93 %</td>
+    <td class="table-primary">99.93 %</td>
     <td class="table-primary">2233</td>
-    <td class="table-primary">74</td>
+    <td>74</td>
     <td>13.12ms</td>
     <td>21.24ms</td>
     <td>6039s</td>
@@ -434,13 +434,13 @@
 <table class="table table-sm">
   <thead>
     <tr>
-    
+
     <th>efConstruction</th>
     <th>maxConnections</th>
     <th>ef</th>
-    <th>Recall</th>
+    <th class="table-primary">Recall</th>
     <th class="table-primary">QPS</th>
-    <th class="table-primary">QPS/vCore</th>
+    <th>QPS/vCore</th>
     <th>Mean Latency</th>
     <th>p99 Latency</th>
     <th>Import time</th>
@@ -448,14 +448,14 @@
     </tr>
   </thead>
   <tbody>
-    
+
   <tr>
     <td>512</td>
     <td>8</td>
     <td>64</td>
-    <td>72.88 %</td>
+    <td class="table-primary">72.88 %</td>
     <td class="table-primary">4734</td>
-    <td class="table-primary">158</td>
+    <td>158</td>
     <td>6.06ms</td>
     <td>9.94ms</td>
     <td>4327s</td>
@@ -464,9 +464,9 @@
     <td>64</td>
     <td>16</td>
     <td>64</td>
-    <td>82.08 %</td>
+    <td class="table-primary">82.08 %</td>
     <td class="table-primary">4645</td>
-    <td class="table-primary">155</td>
+    <td>155</td>
     <td>6.25ms</td>
     <td>9.31ms</td>
     <td>3305s</td>
@@ -475,9 +475,9 @@
     <td>512</td>
     <td>16</td>
     <td>64</td>
-    <td>85.81 %</td>
+    <td class="table-primary">85.81 %</td>
     <td class="table-primary">4556</td>
-    <td class="table-primary">152</td>
+    <td>152</td>
     <td>6.33ms</td>
     <td>9.56ms</td>
     <td>4922s</td>
@@ -486,9 +486,9 @@
     <td>64</td>
     <td>32</td>
     <td>64</td>
-    <td>86.23 %</td>
+    <td class="table-primary">86.23 %</td>
     <td class="table-primary">4492</td>
-    <td class="table-primary">150</td>
+    <td>150</td>
     <td>6.43ms</td>
     <td>9.82ms</td>
     <td>3275s</td>
@@ -497,9 +497,9 @@
     <td>64</td>
     <td>64</td>
     <td>64</td>
-    <td>87.25 %</td>
+    <td class="table-primary">87.25 %</td>
     <td class="table-primary">4488</td>
-    <td class="table-primary">150</td>
+    <td>150</td>
     <td>6.45ms</td>
     <td>9.36ms</td>
     <td>3253s</td>
@@ -508,9 +508,9 @@
     <td>64</td>
     <td>32</td>
     <td>128</td>
-    <td>89.05 %</td>
+    <td class="table-primary">89.05 %</td>
     <td class="table-primary">4347</td>
-    <td class="table-primary">145</td>
+    <td>145</td>
     <td>6.67ms</td>
     <td>10.05ms</td>
     <td>3275s</td>
@@ -519,9 +519,9 @@
     <td>512</td>
     <td>16</td>
     <td>128</td>
-    <td>89.08 %</td>
+    <td class="table-primary">89.08 %</td>
     <td class="table-primary">4347</td>
-    <td class="table-primary">145</td>
+    <td>145</td>
     <td>6.65ms</td>
     <td>10.31ms</td>
     <td>4922s</td>
@@ -530,9 +530,9 @@
     <td>64</td>
     <td>64</td>
     <td>128</td>
-    <td>89.88 %</td>
+    <td class="table-primary">89.88 %</td>
     <td class="table-primary">4284</td>
-    <td class="table-primary">143</td>
+    <td>143</td>
     <td>6.78ms</td>
     <td>9.86ms</td>
     <td>3253s</td>
@@ -541,9 +541,9 @@
     <td>256</td>
     <td>32</td>
     <td>64</td>
-    <td>91.99 %</td>
+    <td class="table-primary">91.99 %</td>
     <td class="table-primary">4146</td>
-    <td class="table-primary">138</td>
+    <td>138</td>
     <td>7.01ms</td>
     <td>10.36ms</td>
     <td>4295s</td>
@@ -552,9 +552,9 @@
     <td>512</td>
     <td>32</td>
     <td>64</td>
-    <td>92.7 %</td>
+    <td class="table-primary">92.7 %</td>
     <td class="table-primary">4092</td>
-    <td class="table-primary">136</td>
+    <td>136</td>
     <td>7.08ms</td>
     <td>10.33ms</td>
     <td>5477s</td>
@@ -563,9 +563,9 @@
     <td>256</td>
     <td>64</td>
     <td>64</td>
-    <td>93.85 %</td>
+    <td class="table-primary">93.85 %</td>
     <td class="table-primary">3917</td>
-    <td class="table-primary">131</td>
+    <td>131</td>
     <td>7.39ms</td>
     <td>10.68ms</td>
     <td>4392s</td>
@@ -574,9 +574,9 @@
     <td>256</td>
     <td>32</td>
     <td>128</td>
-    <td>94.22 %</td>
+    <td class="table-primary">94.22 %</td>
     <td class="table-primary">3913</td>
-    <td class="table-primary">130</td>
+    <td>130</td>
     <td>7.43ms</td>
     <td>10.74ms</td>
     <td>4295s</td>
@@ -585,9 +585,9 @@
     <td>512</td>
     <td>32</td>
     <td>128</td>
-    <td>94.83 %</td>
+    <td class="table-primary">94.83 %</td>
     <td class="table-primary">3856</td>
-    <td class="table-primary">129</td>
+    <td>129</td>
     <td>7.54ms</td>
     <td>11.08ms</td>
     <td>5477s</td>
@@ -596,9 +596,9 @@
     <td>512</td>
     <td>64</td>
     <td>64</td>
-    <td>95.14 %</td>
+    <td class="table-primary">95.14 %</td>
     <td class="table-primary">3816</td>
-    <td class="table-primary">127</td>
+    <td>127</td>
     <td>7.6ms</td>
     <td>11.23ms</td>
     <td>6039s</td>
@@ -607,9 +607,9 @@
     <td>256</td>
     <td>64</td>
     <td>128</td>
-    <td>95.65 %</td>
+    <td class="table-primary">95.65 %</td>
     <td class="table-primary">3688</td>
-    <td class="table-primary">123</td>
+    <td>123</td>
     <td>7.9ms</td>
     <td>11.12ms</td>
     <td>4392s</td>
@@ -618,9 +618,9 @@
     <td>128</td>
     <td>32</td>
     <td>256</td>
-    <td>96.9 %</td>
+    <td class="table-primary">96.9 %</td>
     <td class="table-primary">3317</td>
-    <td class="table-primary">111</td>
+    <td>111</td>
     <td>8.78ms</td>
     <td>12.5ms</td>
     <td>3533s</td>
@@ -629,9 +629,9 @@
     <td>256</td>
     <td>32</td>
     <td>256</td>
-    <td>97.91 %</td>
+    <td class="table-primary">97.91 %</td>
     <td class="table-primary">3182</td>
-    <td class="table-primary">106</td>
+    <td>106</td>
     <td>9.19ms</td>
     <td>12.91ms</td>
     <td>4295s</td>
@@ -640,9 +640,9 @@
     <td>512</td>
     <td>32</td>
     <td>256</td>
-    <td>98.29 %</td>
+    <td class="table-primary">98.29 %</td>
     <td class="table-primary">3090</td>
-    <td class="table-primary">103</td>
+    <td>103</td>
     <td>9.48ms</td>
     <td>13.16ms</td>
     <td>5477s</td>
@@ -651,9 +651,9 @@
     <td>256</td>
     <td>64</td>
     <td>256</td>
-    <td>98.48 %</td>
+    <td class="table-primary">98.48 %</td>
     <td class="table-primary">2896</td>
-    <td class="table-primary">97</td>
+    <td>97</td>
     <td>10.1ms</td>
     <td>14.27ms</td>
     <td>4392s</td>
@@ -662,9 +662,9 @@
     <td>512</td>
     <td>64</td>
     <td>256</td>
-    <td>99.02 %</td>
+    <td class="table-primary">99.02 %</td>
     <td class="table-primary">2707</td>
-    <td class="table-primary">90</td>
+    <td>90</td>
     <td>10.78ms</td>
     <td>15.47ms</td>
     <td>6039s</td>
@@ -673,9 +673,9 @@
     <td>256</td>
     <td>32</td>
     <td>512</td>
-    <td>99.34 %</td>
+    <td class="table-primary">99.34 %</td>
     <td class="table-primary">2310</td>
-    <td class="table-primary">77</td>
+    <td>77</td>
     <td>12.65ms</td>
     <td>17.56ms</td>
     <td>4295s</td>
@@ -684,9 +684,9 @@
     <td>512</td>
     <td>32</td>
     <td>512</td>
-    <td>99.52 %</td>
+    <td class="table-primary">99.52 %</td>
     <td class="table-primary">2200</td>
-    <td class="table-primary">73</td>
+    <td>73</td>
     <td>13.27ms</td>
     <td>18.76ms</td>
     <td>5477s</td>
@@ -695,9 +695,9 @@
     <td>256</td>
     <td>64</td>
     <td>512</td>
-    <td>99.53 %</td>
+    <td class="table-primary">99.53 %</td>
     <td class="table-primary">2032</td>
-    <td class="table-primary">68</td>
+    <td>68</td>
     <td>14.3ms</td>
     <td>21.44ms</td>
     <td>4392s</td>
@@ -706,9 +706,9 @@
     <td>512</td>
     <td>64</td>
     <td>512</td>
-    <td>99.75 %</td>
+    <td class="table-primary">99.75 %</td>
     <td class="table-primary">1879</td>
-    <td class="table-primary">63</td>
+    <td>63</td>
     <td>15.56ms</td>
     <td>23.65ms</td>
     <td>6039s</td>
