@@ -67,7 +67,7 @@ users would also experience. In particular these means:
 
 ### Hardware
 
-<!-- TODO Svitlana/Sebastian add graphic -->
+<img class="image" src="/img/weaviate_benchmark_setup.png" alt="Setup with Weaviate and benchmark machine" />
 
 For this benchmark, a GCP `c2-standard-30` (30 vCPU cores, 120 GB memory) machine
 was used. The benchmarking script itself was run form a secondary 8-core
