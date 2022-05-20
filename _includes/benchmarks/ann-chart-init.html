@@ -28,6 +28,19 @@
             type: 'linear',
             position: 'bottom'
           }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              title: (tooltipItems) => {
+                return tooltipItems[0].dataset.label;
+              },
+              label: (tooltipItems) => {
+                const val = tooltipItems.parsed;
+                return `Recall: ${val.x} QPS: ${val.y}`;
+              }
+            }
+          }
         }
       }
     };
