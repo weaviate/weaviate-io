@@ -101,17 +101,43 @@ The full import and test scripts are available [here](TODO).
 
 # Results
 
+<div class="alert alert-dark" role="alert">
+   <h3 class="alert-heading">A guide for picking the right dataset</h3>
+   The following results section contains multiple datasets. To get the most of
+   this benchmark, pick the dataset that is closest to the scenario that
+   reflects your data in production based on the following criteria:
+
+   <ul>
+     <li><strong>SIFT1M</strong> - A dataset containing 1 million objects of
+     128d and using l2 distance metrics. This dataset reflects a common
+     scenario with a small number of objects.</li>
+     <li><strong>Glove-25</strong> - While similar in data size to SIFT1M, each
+     vector only has 25 dimensions in this dataset. Because of the smaller
+     vectors Weaviate can achieve the highest throghput on this dataset. The
+     distance metric used is angular (cosine distance).</li>
+     <li><strong>Deep Image 96</strong> - This dataset contains 10 million objects
+     at 96d, and is therefore about 10 times as large as SIFT1M. The throughput
+     is only slightly lower than that of the SIFT1M. This dataset gives you a
+     good indication of expected speeds and throughputs when datasets
+     grow.</li>
+     <li><strong>GIST 960</strong> - This dataset contains 1 million objects at
+     960d.  It has the lowest throughput of the datasets outlined. It
+     highlights the cost of vector comparisons with a lot of dimensions. Pick
+     this dataset if you run very high-dimensional loads.</li>
+
+   </ul>
+</div>
+
 <!-- TODO:
 * have a little section on how to navigate/read the benchmarks
 * have a little section on how to navigate/read the graph
  -->
 
-The following sections each present the results of the benchmarks with one
-particular dataset. For each dataset, there is a highlighted configuration. The
-highlighted configuration is an opinionated pick about a good
-recall/latency/throughput trade-off. The highlight sections will give you a
-good overview of Weaviate's performance with the respective dataset. Below the
-highlighted configuration, you can find alternative configurations. 
+For each dataset, there is a highlighted configuration. The highlighted
+configuration is an opinionated pick about a good recall/latency/throughput
+trade-off. The highlight sections will give you a good overview of Weaviate's
+performance with the respective dataset. Below the highlighted configuration,
+you can find alternative configurations. 
 
 ## SIFT1M (1M 128d vectors, L2 distance)
 
@@ -135,6 +161,8 @@ highlighted configuration, you can find alternative configurations.
 
 {% include benchmarks/ann-sift-128.html %}
 
+{% include benchmarks/ann-read-results-table.html %}
+
 ## Glove-25 (1.2M 25d vectors, cosine distance)
 
 ### Highlighted Configuration
@@ -156,6 +184,8 @@ highlighted configuration, you can find alternative configurations.
 </div>
 
 {% include benchmarks/ann-glove-25.html %}
+
+{% include benchmarks/ann-read-results-table.html %}
 
 ## Deep Image 96 (9.99M 96d vectors, cosine distance)
 
@@ -179,6 +209,8 @@ highlighted configuration, you can find alternative configurations.
 
 {% include benchmarks/ann-deep-96.html %}
 
+{% include benchmarks/ann-read-results-table.html %}
+
 ## GIST 960 (1.0M 960d vectors, cosine distance)
 
 ### Highlighted Configuration
@@ -200,6 +232,8 @@ highlighted configuration, you can find alternative configurations.
 </div>
 
 {% include benchmarks/ann-gist-960.html %}
+
+{% include benchmarks/ann-read-results-table.html %}
 
 # Lean more & FAQ
 
