@@ -236,7 +236,7 @@ you can find alternative configurations.
 
 {% include benchmarks/ann-read-results-table.html %}
 
-# Lean more & FAQ
+# Learn more & FAQ
 
 ## What is the difference between latency and throughput?
 
