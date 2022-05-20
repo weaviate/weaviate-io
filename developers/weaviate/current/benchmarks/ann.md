@@ -86,8 +86,9 @@ Note, the `c2-standard-30` was chosen for benchmarking for two reasons:
 Based on your throughtput requirements, it is very likely that you will run Weaviate 
 on a considerably smaller or larger machine in production. 
 
-In [this section below](TODO) we have outlined what you should expect when altering
-the configuration or setup parameters.
+In [this section below](#what-happens-if-i-run-with-fewer-or-more-cpu-cores-than-on-the-example-test-machine)
+we have outlined what you should expect when altering the configuration or
+setup parameters.
 
 ### Experiment Setup
 
@@ -103,7 +104,7 @@ send your queries using another language. For the maximum throughput we
 recommend using the [Go](../client-libraries/go.html) or
 [Java](../client-libraries/java.html) clients.
 
-The full import and test scripts are available [here](TODO).
+The full import and test scripts are available [here](https://github.com/semi-technologies/weaviate-benchmarking).
 
 # Results
 
@@ -133,11 +134,6 @@ The full import and test scripts are available [here](TODO).
 
    </ul>
 </div>
-
-<!-- TODO:
-* have a little section on how to navigate/read the benchmarks
-* have a little section on how to navigate/read the graph
- -->
 
 For each dataset, there is a highlighted configuration. The highlighted
 configuration is an opinionated pick about a good recall/latency/throughput
