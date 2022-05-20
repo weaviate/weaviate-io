@@ -188,6 +188,23 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
+
+def check_batch_result(results: dict):
+  """
+  Check batch results for errors.
+
+  Parameters
+  ----------
+  results : dict
+      The Weaviate batch creation return value, i.e. returned value of the client.batch.create_objects().
+  """
+
+  if results is not None:
+    for result in results:
+      if 'result' in result and 'errors' in result['result']:
+        if 'error' in result['result']['errors']:
+          print(result['result']['errors']['error'])
+
 object_to_add = {
     "name": "Jane Doe",
     "writesFor": [{
@@ -195,14 +212,8 @@ object_to_add = {
     }]
 }
 
-client.batch.add_data_object(object_to_add, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-results = client.batch.create_objects() # client.batch.flush() does not return something, but client.batch.create_objects() and client.batch.create_references() does
-
-if results is not None:
-    for result in results:
-        if 'result' in result and 'errors' in result['result'] and  'error' in result['result']['errors']:
-            for message in result['result']['errors']['error']:
-                print(message['message'])
+with client.batch(batch_size=100, calllback=check_batch_result) as batch:
+  batch.add_data_object(object_to_add, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
 ```
 
 This can also be applied to adding references in batch. Note that sending batches, especially references, skips some validation on object and reference level. Adding this validation on single data objects like above makes it less likely for errors to pass without discovering. 

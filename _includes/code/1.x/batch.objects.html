@@ -16,31 +16,10 @@ second_object_props = {
     }]
 }
 
-def check_batch_result(results: dict) -> bool:
-  """
-  Check batch results for errors.
-
-  Parameters
-  ----------
-  results : dict
-      The Weaviate batch creation return value.
-  """
-
-  if results is not None:
-    for result in results:
-      if 'result' in result and 'errors' in result['result']:
-        if 'error' in result['result']['errors']:
-          print(result['result']['errors']['error'])
-
-# References can be created in batches using 3 different methods.
-
-
-# (Recommended) Auto-batching
-
 client.batch.configure( # configurations are applied to both `objects` AND `references`, do it only once
   batch_size=100, # `int` values enable auto-batching (`None` is used for manual batching, see example below)
   timeout_retries=3,
-  callback=check_batch_result, # checks for batch-item creation errors
+  callback=None, # checks for batch-item creation errors
   dynamic=False,
 )
 
@@ -48,36 +27,6 @@ with client.batch as batch:
   batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
   batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
   # NO need to create or call `client.batch.flush()`, this is called when exiting context-manager
-
-
-# Dynamic-batching (adjusts batch size so that the batch is created in `creation_time` seconds)
-
-client.batch.configure( # configurations are applied to both `objects` AND `references`, do it only once
-  batch_size=100, # it is used as initial batch size
-  timeout_retries=3,
-  creation_time=10.0,
-  callback=check_batch_result, # checks for batch-item creation errors
-  dynamic=True,
-)
-
-with client.batch as batch:
-  batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-  batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-  # NO need to create or call `client.batch.flush()`, this is called when exiting context-manager
-
-# Manual batching:
-
-client.batch.configure( # configurations are applied to both `objects` AND `references`, do it only once
-  batch_size=None, # `None` disables auto-/dynamic-batching
-  callback=None, # it is not used in manual-batching, so check the returned value of `client.batch.create_references()`
-  timeout_retries=3,
-)
-
-client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-results = client.batch.create_objects()
-check_batch_result(results)
-
 
 ## For more info, visit https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch
 {% endcapture %}

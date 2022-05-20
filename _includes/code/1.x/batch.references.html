@@ -6,29 +6,10 @@ client = weaviate.Client("http://localhost:8080")
 # Format:
 # client.batch.add_reference(<from_entity_uuid>, <from_class_name>, <from_property_name>, <to_entity_uuid>)
 
-def check_batch_result(results: dict) -> bool:
-  """
-  Check batch results for errors.
-
-  Parameters
-  ----------
-  results : dict
-      The Weaviate batch creation return value.
-  """
-
-  if results is not None:
-      for result in results:
-          if 'result' in result and 'errors' in result['result']:
-              if 'error' in result['result']['errors']:
-                  print(result['result']['errors']['error'])
-
-# References can be created in batches using 3 different methods.
-
-# (Recommended) Auto-batching
 client.batch.configure( # configurations are applied to both `objects` AND `references`, do it only once
   batch_size=100, # `int` values enable auto-batching (`None` is used for manual batching, see example below)
   timeout_retries=3,
-  callback=check_batch_result, # checks for batch-item creation errors
+  callback=None, # checks for batch-item creation errors
   dynamic=False,
 )
 
@@ -37,37 +18,6 @@ with client.batch as batch:
     batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
     batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4304", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
     # NO need to create or call `client.batch.flush()`, this is called when exiting context-manager
-
-
-# Dynamic-batching (adjusts batch size so that the batch is created in `creation_time` seconds)
-
-client.batch.configure( # configurations are applied to both `objects` AND `references`, do it only once
-  batch_size=100, # it is used as initial batch size
-  timeout_retries=3,
-  creation_time=10.0,
-  callback=check_batch_result, # checks for batch-item creation errors
-  dynamic=True,
-)
-
-with client.batch as batch:
-    batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
-    batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
-    batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4304", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
-    # NO need to create or call `client.batch.flush()`, this is called when exiting context-manager
-
-# Manual-batching
-
-client.batch.configure( # configurations are applied to both `objects` AND `references`, do it only once
-  batch_size=None, # `None` disables auto-/dynamic-batching
-  callback=None, # it is not used in manual-batching, so check the returned value of `client.batch.create_references()`
-  timeout_retries=3,
-)
-
-client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
-client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
-client.batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4304", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32")
-results = client.batch.create_references()
-check_batch_result(results)
 
 ## For more info, visit https://weaviate-python-client.readthedocs.io/en/v3.5.0/weaviate.batch.html#weaviate.batch.Batch
 {% endcapture %}
