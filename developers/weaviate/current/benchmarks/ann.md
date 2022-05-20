@@ -121,6 +121,72 @@ highlighted configuration, you can find alternative configurations.
 
 {% include benchmarks/ann-sift-128.html %}
 
+## Glove-25 (1.2M 25d vectors, cosine distance)
+
+### Highlighted Configuration
+
+{% include benchmarks/ann-glove-25-highlighted.html %}
+
+### All Results
+
+#### QPS vs Recall
+
+<div class="container" style="margin-bottom: 40px">
+  <div class="row">
+    <div class="col-12">
+      <div style="width:100%; line-height:1000%; background: grey; text-align: center">
+        This is a placeholder for the chart!
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include benchmarks/ann-glove-25.html %}
+
+## Deep Image 96 (9.99M 96d vectors, cosine distance)
+
+### Highlighted Configuration
+
+{% include benchmarks/ann-deep-96-highlighted.html %}
+
+### All Results
+
+#### QPS vs Recall
+
+<div class="container" style="margin-bottom: 40px">
+  <div class="row">
+    <div class="col-12">
+      <div style="width:100%; line-height:1000%; background: grey; text-align: center">
+        This is a placeholder for the chart!
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include benchmarks/ann-deep-96.html %}
+
+## GIST 960 (1.0M 960d vectors, cosine distance)
+
+### Highlighted Configuration
+
+{% include benchmarks/ann-gist-960-highlighted.html %}
+
+### All Results
+
+#### QPS vs Recall
+
+<div class="container" style="margin-bottom: 40px">
+  <div class="row">
+    <div class="col-12">
+      <div style="width:100%; line-height:1000%; background: grey; text-align: center">
+        This is a placeholder for the chart!
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include benchmarks/ann-gist-960.html %}
+
 # Lean more & FAQ
 
 ## What is the difference between latency and throughput?
