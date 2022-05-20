@@ -18,38 +18,42 @@ toc: true
 
 ## Goals
 
-This benchmark is designed to illustrate Weaviate's perfomance for a range of differet scenarios.
-The below [results table](TODO), allows you to find a sample dataset that is closest to your
-production load and draw conclusions about what to expect from Weaviate in a
-production setting.
+This benchmark is designed to illustrate Weaviate's ANN perfomance for a range
+of different scenarios.  In the [results section below](TODO), allows you to find a
+sample dataset that is closest to your production load. You can draw conclusions
+about what to expect from Weaviate in a production setting.
 
-Note, this is not a comparative benchmark that runs Weaviate against competing solutions.
+Note, this is not a comparative benchmark that runs Weaviate against competing
+solutions.
 
-This benchmark is produced using [open-source scripts](TODO), so you can reproduce it
-yourself.
+This benchmark is produced using [open-source scripts](TODO), so you can
+reproduce it yourself.
 
 ### What is being measured?
 
-<!-- I am not sure if I understand the explanation of what this benchmark is measuring.
-Especially, that we haven't mentioned the requests first.
-
-Maybe we could start with:
 For each benchmark test, we pick paremeters of:
-- efConstruction - info
-- maxConnections	 - info
-- ef - info
+- efConstruction - The HNSW build parameter that controls the quality of the
+  search at build time.
+- maxConnections	 - The HNSW build parameter that controls how many outgoing
+  edges a node can have in the HNSW graph.
+- ef - The HNSW query time parameter that controls the quality of the search.
 
-For each we've run 10000 of requests and we measured:
+For each set of parameteres we've run 10000 requests and we measured:
 
-- name1 - a short description
-- name2 - a short description
-- ...
+- The Recall@1, Recall@10, Recall@100 by comparing Weaviate's results to the
+  ground truths specified in each dataset
+- Multi-threaded Queries per Second (QPS) - The overall throughput you can
+  achieve with each configuration
+- Individual Request Latency (mean) - The mean latency over all 10,000 requests
+- P99 Latency - 99% of all requests (9.900 out of 10.000) have a latency that
+  is lower than or equal to this number
+- Import time - Since varying the build parameters has an effect on import
+  time, the import time is also included
 
 By request, we mean:
-An unfiltered vector search across the entire dataset for the given test.
- -->
-
-Each request represents an unfiltered vector search across the entire dataset mentioned.  It measures the end-to-end time that you our your users would also experience. In particular these means:
+An unfiltered vector search across the entire dataset for the given test. All
+latency and throughput results represent the end-to-end time that you our your
+users would also experience. In particular these means:
 
 * Each request time includes the network overhead for sending the results over the
   wire. In the test setup, the client and server machines were located in the
@@ -62,7 +66,7 @@ Each request represents an unfiltered vector search across the entire dataset me
 
 ### Hardware
 
-<!-- Could we add a little graphic that visually illustratest the hardware setup? -->
+<!-- TODO Svitlana/Sebastian add graphic -->
 
 For this benchmark, a GCP `c2-standard-30` (30 vCPU cores, 120 GB memory) machine
 was used. The benchmarking script itself was run form a secondary 8-core
@@ -75,19 +79,29 @@ machine. The `c2-standard-30` was chosen for two reasons:
 
 Based on your throughtput requirements, it is very likely that you will run Weaviate 
 on a considerably smaller or larger machine in production. 
+
 In [this section below](TODO) we have outlined what you should expect when altering
-the configuration parameters.
+the configuration or setup parameters.
 
 ### Experiment Setup
 
-The selection of datasets is modelled after [ann-benchmarks](https://github.com/erikbern/ann-benchmarks). The same test
+The selection of datasets is modelled after
+[ann-benchmarks](https://github.com/erikbern/ann-benchmarks). The same test
 queries are used to test speed, throughput and recall. The provided ground
 thruths are used to calculate the recall.
+
+The imports were performed using Weaviate's python clients. The concurrent
+(multi-threaded) queries were measured using Go. Each language may have a
+slightly different performance, and you may experience different results if you
+send your queries using another language. For the maximum throughput we
+recommend using the [Go](../client-libraries/go.html) or
+[Java](../client-libraries/java.html) clients.
+
+The full import and test scripts are available [here](TODO).
 
 # Results
 
 <!-- TODO:
-* Move imports somewhere else
 * have a little section on how to navigate/read the benchmarks
 * have a little section on how to navigate/read the graph
  -->
