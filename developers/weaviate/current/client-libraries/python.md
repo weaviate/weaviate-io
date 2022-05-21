@@ -172,7 +172,7 @@ client = weaviate.Client("http://localhost:8080")
 schema = {
   'classes': [
     {
-      'class': 'Author'
+      'class': 'Author',
       'properties': [
         {
           'name': 'name',
@@ -185,7 +185,7 @@ schema = {
       ]
     },
     {
-      'class': 'Book'
+      'class': 'Book',
       'properties': [
         {
           'name': 'title',
@@ -221,14 +221,14 @@ with client.batch as batch:
   uuid_author = generate_uuid5(author, 'Author')
   batch.add_data_object(
     data_object=author,
-    class_name='Author,
+    class_name='Author',
     uuid=uuid_author,
   )
   # add book_1
   uuid_book_1 = generate_uuid5(book_1, 'Book')
   batch.add_data_object(
     data_object=book_1,
-    class_name='Book,
+    class_name='Book',
     uuid=uuid_book_1,
   )
   # add references author ---> book_1
@@ -249,7 +249,7 @@ with client.batch as batch:
   uuid_book_2 = generate_uuid5(book_2, 'Book')
   batch.add_data_object(
     data_object=book_2,
-    class_name='Book,
+    class_name='Book',
     uuid=uuid_book_2,
   )
   # add references author ---> book_2
@@ -285,7 +285,7 @@ client = weaviate.Client("http://localhost:8080")
 schema = {
   'classes': [
     {
-      'class': 'Author'
+      'class': 'Author',
       'properties': [
         {
           'name': 'name',
@@ -298,7 +298,7 @@ schema = {
       ]
     },
     {
-      'class': 'Book'
+      'class': 'Book',
       'properties': [
         {
           'name': 'title',
@@ -335,14 +335,14 @@ with client.batch as batch:
   uuid_author = generate_uuid5(author, 'Author')
   batch.add_data_object(
     data_object=author,
-    class_name='Author,
+    class_name='Author',
     uuid=uuid_author,
   )
   # add book_1
   uuid_book_1 = generate_uuid5(book_1, 'Book')
   batch.add_data_object(
     data_object=book_1,
-    class_name='Book,
+    class_name='Book',
     uuid=uuid_book_1,
   )
   # add references author ---> book_1
@@ -363,7 +363,7 @@ with client.batch as batch:
   uuid_book_2 = generate_uuid5(book_2, 'Book')
   batch.add_data_object(
     data_object=book_2,
-    class_name='Book,
+    class_name='Book',
     uuid=uuid_book_2,
   )
   # add references author ---> book_2
@@ -398,7 +398,7 @@ client = weaviate.Client("http://localhost:8080")
 schema = {
   'classes': [
     {
-      'class': 'Author'
+      'class': 'Author',
       'properties': [
         {
           'name': 'name',
@@ -411,7 +411,7 @@ schema = {
       ]
     },
     {
-      'class': 'Book'
+      'class': 'Book',
       'properties': [
         {
           'name': 'title',
@@ -447,14 +447,14 @@ with client.batch as batch:
   uuid_author = generate_uuid5(author, 'Author')
   batch.add_data_object(
     data_object=author,
-    class_name='Author,
+    class_name='Author',
     uuid=uuid_author,
   )
   # add book_1
   uuid_book_1 = generate_uuid5(book_1, 'Book')
   batch.add_data_object(
     data_object=book_1,
-    class_name='Book,
+    class_name='Book',
     uuid=uuid_book_1,
   )
   result = batch.create_objects()  # <----- implicit object creation
@@ -480,7 +480,7 @@ with client.batch as batch:
   uuid_book_2 = generate_uuid5(book_2, 'Book')
   batch.add_data_object(
     data_object=book_2,
-    class_name='Book,
+    class_name='Book',
     uuid=uuid_book_2,
   )
   result = batch.create_objects()  # <----- implicit object creation
