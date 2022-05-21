@@ -16,19 +16,24 @@ second_object_props = {
     }]
 }
 
-client.batch.configure( # configurations are applied to both `objects` AND `references`, do it only once
-  batch_size=100, # `int` values enable auto-batching (`None` is used for manual batching, see example below)
-  timeout_retries=3,
-  callback=None, # checks for batch-item creation errors
+# Python client specific configurations can be set with `client.batch.configure`
+# the settings can be applied to both `objects` AND `references`.
+# You have to only set them once.
+client.batch.configure(
+  # `batch_size` takes an `int` value to enable auto-batching
+  # (`None` is used for manual batching)
+  batch_size=100, 
+  # dynamically update the `batch_size` based on import speed
   dynamic=False,
+  # `timeout_retries` takes an `int` value to retry on time outs
+  timeout_retries=3,
+  # checks for batch-item creation errors
+  callback=None,
 )
 
 with client.batch as batch:
   batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
   batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-  # NO need to create or call `client.batch.flush()`, this is called when exiting context-manager
-
-## For more info, visit https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch
 {% endcapture %}
 
 {% capture javascript %}

@@ -48,9 +48,15 @@ The body requires the following field:
 
 {% include code/1.x/batch.objects.html %}
 
-For detailed information and instructions of batching in Python, click [here](https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch).
+## Batching objects with the Python Client
 
-## Tips for batching objects with the Python Client
+Specific documentation for the Python client
+
+### Additional documentation
+
+* Additional documentation can be found on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.batch.html)
+
+### Tips &amp; Tricks
 
 * There is no limit to how many objects/references one could add to a batch before committing/creating it. However a too large batch can lead to a TimeOut error, which means that Weaviate could not process and create all the objects from the batch in the specified time (the timeout configuration can be set like [this](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.html#weaviate.Client) or [this](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.html#weaviate.Client.timeout_config)). Note that setting a timeout configuration higher that 60s would require some changes to the docker-compose.yml/helm chart file.
 * The `batch` class in the Python Client can be used in three ways:
@@ -85,8 +91,6 @@ The body of the data object for a new object is a list of objects containing:
 For detailed information and instructions of batching in Python, click [here](https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch).
 
 # Batch Delete By Query
-
-*Note: This feature was introduced in `v1.13.0`*
 
 You can use the `/v1/batch/objects` endpoint with the HTTP Verb `DELETE` to delete all objects that match a particular expression. To determine if an object is a match [a where-Filter is used](../graphql-references/filters.html#where-filter). The request body takes a single filter, but will delete all objects matched. It returns the number of matched objects as well as any potential errors. Note that there is a limit to how many objects can be deleted using this filter at once which is explained below.
 
