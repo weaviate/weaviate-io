@@ -18,7 +18,11 @@
           <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
             <div class="container">
 
+              {% if page.SEOtitle %}
+                <h1>{{ page.SEOtitle }}</h1>
+              {% else %}
               <h1>{{ page.title }}</h1>
+              {% endif %}
 
               <!-- BADGES -->
               <p>

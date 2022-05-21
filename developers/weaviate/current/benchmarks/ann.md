@@ -3,18 +3,17 @@ layout: layout-documentation
 bodyclass: ["page--guides", " "]
 solution: weaviate
 sub-menu: Benchmarks
+SEOtitle: Weaviate ANN benchmarks
 title: ANN
-intro: 
-description: 
-tags: ['Weaviate', 'performance', 'benchmarks', 'ann benchmarks']
+intro: ANN benchmarks for the Weaviate vector search engine
+description: ANN benchmarks for the Weaviate vector search engine
+tags: ['Weaviate', 'performance', 'benchmarks', 'ANN benchmarks']
 menu-order: 5
 open-graph-type: article
 toc: true
 ---
 
 {% include benchmarks/ann-chart-init.html %}
-
-# TODO @BOB FIX TITLE
 
 # About this benchmark
 
