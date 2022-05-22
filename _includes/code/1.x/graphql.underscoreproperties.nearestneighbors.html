@@ -57,11 +57,27 @@ get_nearest_neighbors = """
   }
 """
 
-try:
-    query_result = client.query.raw(get_nearest_neighbors)
-    print(query_result)
-except weaviate.UnexpectedStatusCodeException as usce:
-    print("Got an error: ", usce.json, " with status code: ", usce.status_code)
+near_text_filter = {
+  'concepts': ["music"],
+  'moveTo': {
+    'concepts': ["beatles"],
+    'force': 0.5
+  }
+}
+
+additional_props = {
+  'nearestNeighbors': 'neighbors {concept distance}'
+} 
+
+query_result = (
+  client.query
+  .get('Publication', 'name')
+  .with_additional(additional_props)
+  .with_near_text(near_text_filter)
+  .do()
+)
+
+print(query_result)
 
 {% endcapture %}
 

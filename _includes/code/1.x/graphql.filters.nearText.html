@@ -44,7 +44,14 @@ nearText = {
   }
 }
 
-client.query.get("Article", ["title", "_additional {certainty} "]).with_near_text(nearText).do()
+result = (
+  client.query
+  .get("Article", ["title", "_additional {certainty} "])
+  .with_near_text(nearText)
+  .do()
+)
+
+print(result)
 {% endcapture %}
 
 <!-- SET JAVASCRIPT TAB CONTENT -->

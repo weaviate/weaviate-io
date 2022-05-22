@@ -48,20 +48,41 @@ The body requires the following field:
 
 {% include code/1.x/batch.objects.html %}
 
+## Batching objects with the Python Client
+
+Specific documentation for the Python client
+
+### Additional documentation
+
+* Additional documentation can be found on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.batch.html)
+* Additional documentation on different types of batching and tip &amp; tricks can be found [here](../client-libraries/python.html)
+
+# Batch references
+
+For batching cross-references between data objects in bulk.
+
+### Method and URL
+
+```js
+POST /v1/batch/references
+```
+
+### Parameters
+
+The body of the data object for a new object is a list of objects containing:
+
+| name | type | required | description |
+| ---- | ---- | ---- | ---- |
+| `from` | beacon | yes | The beacon, in the form of `weaviate://{host}/{Classname}/{id}/{cref_property_name}` |
+| `to` | beacon | yes | The beacon, in the form of `weaviate://{host}/{id}` |
+
+### Example request
+
+{% include code/1.x/batch.references.html %}
+
 For detailed information and instructions of batching in Python, click [here](https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch).
 
-## Tips for batching objects with the Python Client
-
-* There is no limit to how many objects/references one could add to a batch before committing/creating it. However a too large batch can lead to a TimeOut error, which means that Weaviate could not process and create all the objects from the batch in the specified time (the timeout configuration can be set like [this](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.html#weaviate.Client) or [this](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.html#weaviate.Client.timeout_config)). Note that setting a timeout configuration higher that 60s would require some changes to the docker-compose.yml/helm chart file.
-* The `batch` class in the Python Client can be used in three ways:
-    * Case 1: Everything should be done by the user, i.e. the user should add the objects/object-references and create them whenever the user wants. To create one of the data type use these methods of this class: `create_objects`, `create_references` and `flush`. This case has the Batch instance’s batch_size set to None (see docs for the `configure` or `__call__` method). Can be used in a context manager, see below.
-    * Case 2: Batch auto-creates when full. This can be achieved by setting the Batch instance’s batch_size set to a positive integer (see docs for the `configure` or `__call__` method). The batch_size in this case corresponds to the sum of added objects and references. This case does not require the user to create the batch/s, but it can be done. Also to create non-full batches (last batches) that do not meet the requirement to be auto-created use the `flush` method. Can be used in a context manager, see below.
-    * Case 3: Similar to Case II but uses dynamic batching, i.e. auto-creates either objects or references when one of them reached the `recommended_num_objects` or `recommended_num_references` respectively. See docs for the `configure` or `__call__` method for how to enable it.
-    * **Context-manager support**: Can be use with the with statement. When it exists the context-manager it calls the flush method for you. Can be combined with `configure` or `__call__` method, in order to set it to the desired Case.
-
 # Batch Delete By Query
-
-*Note: This feature was introduced in `v1.13.0`*
 
 You can use the `/v1/batch/objects` endpoint with the HTTP Verb `DELETE` to delete all objects that match a particular expression. To determine if an object is a match [a where-Filter is used](../graphql-references/filters.html#where-filter). The request body takes a single filter, but will delete all objects matched. It returns the number of matched objects as well as any potential errors. Note that there is a limit to how many objects can be deleted using this filter at once which is explained below.
 
@@ -147,30 +168,6 @@ Possible values for `output`
 
 {% include code/1.x/batch.delete.objects.html %}
 
-# Batch references
-
-For batching cross-references between data objects in bulk.
-
-### Method and URL
-
-```js
-POST /v1/batch/references
-```
-
-### Parameters
-
-The body of the data object for a new object is a list of objects containing:
-
-| name | type | required | description |
-| ---- | ---- | ---- | ---- |
-| `from` | beacon | yes | The beacon, in the form of `weaviate://{host}/{Classname}/{id}/{cref_property_name}` |
-| `to` | beacon | yes | The beacon, in the form of `weaviate://{host}/{id}` |
-
-### Example request
-
-{% include code/1.x/batch.references.html %}
-
-For detailed information and instructions of batching in Python, click [here](https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch).
 
 # Error handling
 
@@ -187,6 +184,23 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
+
+def check_batch_result(results: dict):
+  """
+  Check batch results for errors.
+
+  Parameters
+  ----------
+  results : dict
+      The Weaviate batch creation return value, i.e. returned value of the client.batch.create_objects().
+  """
+
+  if results is not None:
+    for result in results:
+      if 'result' in result and 'errors' in result['result']:
+        if 'error' in result['result']['errors']:
+          print(result['result']['errors']['error'])
+
 object_to_add = {
     "name": "Jane Doe",
     "writesFor": [{
@@ -194,14 +208,8 @@ object_to_add = {
     }]
 }
 
-client.batch.add_data_object(object_to_add, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-results = client.batch.create_objects() # client.batch.flush() does not return something, but client.batch.create_objects() and client.batch.create_references() does
-
-if results is not None:
-    for result in results:
-        if 'result' in result and 'errors' in result['result'] and  'error' in result['result']['errors']:
-            for message in result['result']['errors']['error']:
-                print(message['message'])
+with client.batch(batch_size=100, calllback=check_batch_result) as batch:
+  batch.add_data_object(object_to_add, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
 ```
 
 This can also be applied to adding references in batch. Note that sending batches, especially references, skips some validation on object and reference level. Adding this validation on single data objects like above makes it less likely for errors to pass without discovering. 

@@ -16,41 +16,24 @@ second_object_props = {
     }]
 }
 
-## METHOD 1: manually call .create_objects() or .flush() to send objects
-client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-client.batch.create_objects() # or client.batch.flush(), which also sends references
+# Python client specific configurations can be set with `client.batch.configure`
+# the settings can be applied to both `objects` AND `references`.
+# You have to only set them once.
+client.batch.configure(
+  # `batch_size` takes an `int` value to enable auto-batching
+  # (`None` is used for manual batching)
+  batch_size=100, 
+  # dynamically update the `batch_size` based on import speed
+  dynamic=False,
+  # `timeout_retries` takes an `int` value to retry on time outs
+  timeout_retries=3,
+  # checks for batch-item creation errors
+  callback=None,
+)
 
-## Or let a context manager call .flush() automatically 
 with client.batch as batch:
-    client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-    client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-    # no need to create / call flush, this goes automatically
-
-## METHOD 2: automatically send batch when the batch is full 
-client.batch(batch_size=2)
-client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-# note that, at the end, you need to create / flush any objects that are left in a batch that is not full and thus not sent yet
-
-## Or with a context manager and __call__ method:
-with client.batch(batch_size=2) as batch:
-    client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-    client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-    # no need to create / call flush if there are objects left in an unsent batch, this is automatically flushed
-
-## METHOD 3: Automatically send batch when full, but configure this to 'dynamic':
-client.batch(batch_size=2, dynamic=True)
-client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-
-## Or:
-client.batch.batch_size = 3
-client.batch.dynamic = True
-client.batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-client.batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
-
-## For more info, visit https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch
+  batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+  batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
 {% endcapture %}
 
 {% capture javascript %}

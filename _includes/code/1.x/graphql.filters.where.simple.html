@@ -25,7 +25,13 @@ where_filter = {
   "valueInt": 1000
 }
 
-query_result = client.query.get("Article", ["title"]).with_where(where_filter).do()
+query_result = (
+  client.query
+  .get("Article", "title")
+  .with_where(where_filter)
+  .do()
+)
+
 print(query_result)
 {% endcapture %}
 

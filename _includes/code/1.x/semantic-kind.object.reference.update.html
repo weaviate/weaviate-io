@@ -3,7 +3,11 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-client.data_object.reference.update("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "wroteArticles", ["6bb06a43-e7f0-393e-9ecf-3c0f4e129064", "b72912b9-e5d7-304e-a654-66dc63c55b32"])
+client.data_object.reference.update(
+  "36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+  "wroteArticles",
+  ["6bb06a43-e7f0-393e-9ecf-3c0f4e129064", "b72912b9-e5d7-304e-a654-66dc63c55b32"]
+)
 {% endcapture %}
 
 {% capture javascript %}

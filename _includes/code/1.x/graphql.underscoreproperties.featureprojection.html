@@ -28,34 +28,34 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-get_featureprojection = """
-  {
-    Get {
-      Article (
-        nearText:{ 
-          concepts:["music"],
-          moveTo: {
-            concepts: ["beatles"],
-            force: 0.5
-          }
-        }
-      ) {
-        title
-        _additional {
-          featureProjection(dimensions: 2) {
-            vector
-          }
-        }
-      }
-    }
+near_text_filter = {
+  'concepts': ["music"],
+  'moveTo': {
+    'concepts': ["beatles"],
+    'force': 0.5
   }
-"""
+}
+additional_clause = {
+  'featureProjection': [
+    'vector'
+  ]
+}
 
-try:
-    query_result = client.query.raw(get_featureprojection)
-    print(query_result)
-except weaviate.UnexpectedStatusCodeException as usce:
-    print("Got an error: ", usce.json, " with status code: ", usce.status_code)
+additional_setting = {
+  'dimensions': 2
+}
+
+query_result = (
+  client.query
+  .get('Article', 'title')
+  .with_near_text(near_text_filter)
+  .with_additional(
+    (additional_clause, additional_setting)
+  )
+  .do()
+)
+print(query_result)
+
 
 {% endcapture %}
 

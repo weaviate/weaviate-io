@@ -24,24 +24,19 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-query = """{
-  Get {
-    Article(where: {
-        path: ["inPublication", "Publication", "name"],
-        operator: Equal,
-        valueString: "New Yorker"
-      }) {
-      title
-      inPublication{
-        ... on Publication{
-          name
-        }
-      }
-    }
-  }
-}"""
+where_filter = {
+  'path': ["inPublication", "Publication", "name"],
+  'operator': 'Equal',
+  'valueString': "New Yorker"
+}
 
-query_result = client.query.raw(query)
+query_result = (
+  client.query
+  .get('Article', ['title', 'inPublication{... on Publication{name}}'])
+  .with_where(where_filter)
+  .do()
+)
+
 print(query_result)
 {% endcapture %}
 

@@ -8,7 +8,12 @@ data_properties = {
     "image": "iVBORw0KGgoAAAANS..."
 }
 
-client.data_object.create(data_properties, "FashionItem", "36ddd591-2dee-4e7e-a3cc-eb86d30a4302")
+result = (
+  client.data_object
+  .create(data_properties, "FashionItem", "36ddd591-2dee-4e7e-a3cc-eb86d30a4302")
+)
+
+print(result)
 {% endcapture %}
 
 {% capture javascript %}

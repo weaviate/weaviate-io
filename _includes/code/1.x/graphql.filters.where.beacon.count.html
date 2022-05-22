@@ -26,28 +26,19 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-get_articles_where = """
-  {
-    Get {
-      Author(
-        where:{
-          valueInt: 2,
-          operator: GreaterThanEqual,
-          path: ["WroteArticles"]
-        }
-      ) {
-        name
-        wroteArticles {
-          ... on Article {
-            title
-          }
-        }
-      }
-    }
-  }
-"""
+where_filter = {
+  'valueInt': 2,
+  'operator': 'GreaterThanEqual',
+  'path': ["WroteArticles"]
+}
 
-query_result = client.query.raw(get_articles_where)
+query_result = (
+  client.query
+  .get('Author', ['name', 'wroteArticles {... on Article {title}}'])
+  .with_where(where_filter)
+  .do()
+)
+
 print(query_result)
 {% endcapture %}
 

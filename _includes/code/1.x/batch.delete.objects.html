@@ -24,11 +24,12 @@ client = weaviate.Client('http://localhost:8080')
 
 result = client.batch.delete_objects(
 	class_name='Author',
-  where={
-    'operator': 'Equal',
-    'path': ['name'],
-    'valueText': 'Jane'
-  },
+	# same where operator as in the GraphQL API
+	where={
+		'operator': 'Equal',
+		'path': ['name'],
+		'valueText': 'Jane'
+	},
 	output='verbose',
 	dry_run=False,
 )

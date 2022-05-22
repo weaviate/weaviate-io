@@ -25,7 +25,13 @@ where_filter = {
   "valueDate": "2022-03-18T20:26:34.586-0500"
 }
 
-query_result = client.query.get("Article", ["title"]).with_where(where_filter).do()
+query_result = (
+  client.query
+  .get("Article", "title")
+  .with_where(where_filter)
+  .do()
+)
+
 print(query_result)
 {% endcapture %}
 
