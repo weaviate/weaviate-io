@@ -185,7 +185,7 @@ In addition you can use a class-level module config to select the pooling strate
 
 The `text2vec-transformers` vectorizer module adds one search operator for `Get {}` and `Explore {}` GraphQL functions: `nearText: {}`. This operator can be used for semantically searching text in your dataset. 
 
-Note: You cannot use multiple `'near'` filters, or a `'near'` operators along with an [`'ask'`](./qna-transformers.html) filter!
+Note: You cannot use multiple `'near'` filters, or a `'near'` operators along with an [`'ask'`](../reader-generator-modules/qna-transformers.html) filter!
 
 ### Example GraphQL Get(nearText{}) operator
 
