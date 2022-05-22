@@ -14,7 +14,7 @@ redirect_from:
 
 # Introduction
 
-The module `text2vec-contextionary`, herein also referred to as the 'Contextionary',  is Weaviate's own language vectorizer. It gives context to the language used in your dataset (there are Contextionary versions available for multiple languages). `text2vec-contextionary` is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe. The most recent `text2vec-contextionary` is trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data. We aim to make the Contextionary available for use cases in any domain, regardless if they are business-related, academic or other. But you can also [create your own vectorizer](./custom-modules.html) if desired.
+The module `text2vec-contextionary`, herein also referred to as the 'Contextionary',  is Weaviate's own language vectorizer. It gives context to the language used in your dataset (there are Contextionary versions available for multiple languages). `text2vec-contextionary` is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe. The most recent `text2vec-contextionary` is trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data. We aim to make the Contextionary available for use cases in any domain, regardless if they are business-related, academic or other. But you can also [create your own vectorizer](../modules/custom-modules.html) if desired.
 
 The `text2vec-contextionary` places data into a 300-dimensional space. Each datapoint will thus have a vector of 300 numbers. This vector is computed from the pre-trained Contextionary (you never have to do any training yourself), that contains the contextual representation that allows Weaviate to store data based on its contextual meaning. An empty Weaviate with the preloaded `text2vec-contextionary` module, could be envisioned like this (in a simplified 3D visualization):
 
@@ -614,7 +614,7 @@ The meaning of the concept `API` has now changed in your Weaviate setting.
 
 The `text2vec-contextionary` vectorizer module adds one operator for `Get {}` and `Explore {}` GraphQL functions: `nearText: {}`. This operator can be used for semantically searching text in your dataset. 
 
-Note: Cannot use multiple `'near'` operators, or a `'near'` operator along with an [`'ask'`](./qna-transformers.html#how-to-use-graphql) filter!
+Note: Cannot use multiple `'near'` operators, or a `'near'` operator along with an `'ask'` filter!
 
 ### Example GraphQL Get(nearText{}) operator
 

@@ -16,7 +16,7 @@ Weaviate is completely modularized. The Core of Weaviate, without any modules at
 
 ## Vectorization modules (*Dense Retriever* modules)
 
-Vectorization modules, like the [`text2vec-contextionary`](./text2vec-contextionary.html), [`text2vec-transformers`](./text2vec-transformers.html), [`text2vec-openai`](./text2vec-openai.html), [`multi2vec-clip`](./multi2vec-clip.html), and [`img2vec-neural`](./img2vec-neural.html), transform data into vectors. These modules are also called "Dense Retriever" modules. Retrievers function as a filter to quickly find a relevant set of data to the query.
+Vectorization modules, like the [`text2vec-contextionary`](../retriever-vectorizer-modules/text2vec-contextionary.html), [`text2vec-transformers`](../retriever-vectorizer-modules/text2vec-transformers.html), [`text2vec-openai`](../retriever-vectorizer-modules/text2vec-openai.html), [`multi2vec-clip`](../retriever-vectorizer-modules/multi2vec-clip.html), and [`img2vec-neural`](../retriever-vectorizer-modules/img2vec-neural.html), transform data into vectors. These modules are also called "Dense Retriever" modules. Retrievers function as a filter to quickly find a relevant set of data to the query.
 
 ### Dense retrievers vs. sparse retrievers
 Sparse vector retrievers for the task of finding relevant data (by calculating the similarity of two pieces of data) in a database are for example TF-IDF or BM25. These retrievers are not trainable; instead they rely on word frequency in documents. This type of retrievers are not possible as Weaviate module, because the implementation sits deep in the core of Weaviate (BM25 will be released soon!). 
@@ -24,7 +24,7 @@ Dense vector retrievers are a relatively new approach to data retrieval, which u
 
 ## Modules with additional functionalities (*Reader* or *Generator* modules)
 
-Reader or Generator modules can be used on top of a Retriever/Vectorization module. A Reader module takes the set of relevant documents that are retrieved by the Retriever module, and extracts a piece of relevant information per document. An example Reader module is [`qna-transformers`](./qna-transformers.html) module, which extracts an answer directly from a document that is retrieved by a Retriever module. A Generator module would, on the other hand, use *language generation* to generate an answer from the given document. Currently, there are no Generator modules available out-of-the-box yet, but they [may be added soon!](https://github.com/semi-technologies/weaviate/issues/1831). 
+Reader or Generator modules can be used on top of a Retriever/Vectorization module. A Reader module takes the set of relevant documents that are retrieved by the Retriever module, and extracts a piece of relevant information per document. An example Reader module is [`qna-transformers`](../reader-generator-modules/qna-transformers.html) module, which extracts an answer directly from a document that is retrieved by a Retriever module. A Generator module would, on the other hand, use *language generation* to generate an answer from the given document. Currently, there are no Generator modules available out-of-the-box yet, but they [may be added soon!](https://github.com/semi-technologies/weaviate/issues/1831). 
 
 ## Custom modules
 
@@ -32,7 +32,7 @@ Check [here](./custom-modules.html) how you can create and use your own modules.
 
 ## Dependencies
 
-Modules can be dependent on other modules to be present. For example, to use the [`qna-transformers`](./qna-transformers.html) module, *exactly one* text vectorization module is required.
+Modules can be dependent on other modules to be present. For example, to use the [`qna-transformers`](../reader-generator-modules/qna-transformers.html) module, *exactly one* text vectorization module is required.
 
 # Module ecosystem
 

@@ -16,7 +16,7 @@ toc: true
 
 * *New Features*
   * ### First Multi-modal module: CLIP Module (#1756, #1766)
-    This release [introduces the `multi2vec-clip` module](../modules/multi2vec-clip.html), a module that allows for multi-modal vectorization within a single vector space. A class can have `image` or `text` fields or both. Similarly, the module provides both a `nearText` and a `nearImage` search and allows for various search combinations, such as text-search on image-only content and various other combinations.
+    This release [introduces the `multi2vec-clip` module](../retriever-vectorizer-modules/multi2vec-clip.html), a module that allows for multi-modal vectorization within a single vector space. A class can have `image` or `text` fields or both. Similarly, the module provides both a `nearText` and a `nearImage` search and allows for various search combinations, such as text-search on image-only content and various other combinations.
 
     #### How to use
 
@@ -318,7 +318,7 @@ Check [this github page](https://github.com/semi-technologies/weaviate/releases/
 
 * No breaking changes
 * New Features:
-  * Image Module [`img2vec-neural`](../modules/img2vec-neural.html)
+  * Image Module [`img2vec-neural`](../retriever-vectorizer-modules/img2vec-neural.html)
   * Add Hardware acceleration for `amd64` CPUs (Intel, AMD)
   * Support `arm64` technology for entire Weaviate stack
   * Set `ef` at search time
@@ -337,7 +337,7 @@ Check [this github page](https://github.com/semi-technologies/weaviate/releases/
 # Changelog for version 1.3.0
 
 * No breaking changes
-* New feature: [Question Answering (Q&A) Module](../modules/qna-transformers.html)
+* New feature: [Question Answering (Q&A) Module](../reader-generator-modules/qna-transformers.html)
 * New feature: New Meta Information for all transformer-based modules
   
 Check [this github page](https://github.com/semi-technologies/weaviate/releases/tag/v1.3.0) for all the changes. 
@@ -345,7 +345,7 @@ Check [this github page](https://github.com/semi-technologies/weaviate/releases/
 # Changelog for version 1.2.0
 
 * No breaking changes
-* New feature: Introduction of the [Transformer Module](../modules/qna-transformers.html)
+* New feature: Introduction of the [Transformer Module](../reader-generator-modules/qna-transformers.html)
 
 Check [this github page](https://github.com/semi-technologies/weaviate/releases/tag/v1.2.0) for all the changes. 
 

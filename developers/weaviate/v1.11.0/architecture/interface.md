@@ -97,7 +97,7 @@ There are currently three main functions in a GraphQL request: "Get{}", "Explore
 }
 ```
 
-* **Query filters (search arguments) dependent on database setup**. You can add filters on class level to filter objects. Scalar (`where` filters) can be combined with vector (`near<...>`) filters. Depending on your Weaviate setup (which modules you have connected), additional filters may be used. A filter can look like (using the [`qna-transformers` module](./../modules/qna-transformers.html)):
+* **Query filters (search arguments) dependent on database setup**. You can add filters on class level to filter objects. Scalar (`where` filters) can be combined with vector (`near<...>`) filters. Depending on your Weaviate setup (which modules you have connected), additional filters may be used. A filter can look like (using the [`qna-transformers` module](../reader-generator-modules/qna-transformers.html)):
 
 ```graphql
 {
