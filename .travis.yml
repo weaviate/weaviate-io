@@ -13,6 +13,7 @@ install:
 - gem install jekyll
 - gem install html-proofer --user-install
 - pip install -r ./_python/requirements.txt
+- export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
 script:
 - python ./_python/generate_og.py
 - travis_wait 60 bundle exec jekyll build
