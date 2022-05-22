@@ -317,7 +317,7 @@ POST v1/schema/{class_name}/properties
 # Inspect the shards of a class
 
 As described in [Architecture >
-Storage](architecture/storage.html#logical-storage-units-indices-shards-stores),
+Storage](../architecture/storage.html#logical-storage-units-indices-shards-stores),
 creation of a class leads to creating an index which manages all the disk
 storage and vector indexing. An index itself can be comprised of multiple
 shards. If a class index is used on multiple nodes of a multi-node Weaviate

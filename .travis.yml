@@ -10,14 +10,15 @@ before_install:
 - bundle install
 install:
 - bundle install
-- gem install jekyll html-proofer
+- gem install jekyll
+- gem install html-proofer --user-install
 - pip install -r ./_python/requirements.txt
 script:
 - python ./_python/generate_og.py
 - travis_wait 60 bundle exec jekyll build
-- rake test
 - minify --match='\.html' -r -o _site_min/ _site/
 - rsync -av _site_min/ _site/
+- htmlproofer --http-status-ignore "0,999,429" --allow_hash_href --url-ignore "/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/" _site
 - |
   if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     if [ $TRAVIS_BRANCH = "main" ]; then

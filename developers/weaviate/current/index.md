@@ -111,9 +111,7 @@ Want to get started or want to learn more? These resources might help you furthe
     - [Weaviate in a 10 minutes tutorial](./getting-started/quick-start.html)
     - [Installation](./getting-started/installation.html)
 - Learn more:
-    - [Talk and demonstration @ FOSDEM 2020](/news/fosdem-2020.html)
-    - [Weaviate introduction on Google Cloud's Stack Chat](https://www.semi.technology/news/gcp-stackchat.html)
-    - [Podcast about Weaviate](https://weaviate.io/podcast.html)
+    - [Weaviate resources page](/resources.html)
 
 # More resources
 

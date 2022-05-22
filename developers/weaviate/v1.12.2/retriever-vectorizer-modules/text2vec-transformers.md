@@ -14,7 +14,7 @@ redirect_from:
 
 # Introduction
 
-The `text2vec-transformers` module allows you to use a pre-trained language transformer model as a Weaviate vectorization module. Transformer models differ from the Contextionary as they allow you to plug in a pretrained NLP module specific to your use case. This means models like `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. can be used out-of-the box with Weaviate. Transformer models handle text as sequential data, which is a different learning method than the [text2vec-contextionary](../modules/text2vec-contextionary.html). 
+The `text2vec-transformers` module allows you to use a pre-trained language transformer model as a Weaviate vectorization module. Transformer models differ from the Contextionary as they allow you to plug in a pretrained NLP module specific to your use case. This means models like `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. can be used out-of-the box with Weaviate. Transformer models handle text as sequential data, which is a different learning method than the [text2vec-contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html). 
 
 To use transformers with Weaviate, the `text2vec-transformers` module needs to be enabled. The models are encapsulated in Docker containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled serves, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.
 

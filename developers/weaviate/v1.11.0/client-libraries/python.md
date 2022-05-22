@@ -806,7 +806,7 @@ The Weaviate Python client was updated from version 0.4.1 (beta version of the c
 | `client.add_reference(from_uuid, from_property_name, to_uuid, ...)`   | `client.data_object.reference.add(from_uuid, from_property_name, to_uuid, ...)` | Adds a single reference to a data object |
 | `client.delete_reference(from_uuid, from_property_name, to_uuid, ...)`   | `client.data_object.reference.delete(from_uuid, from_property_name, to_uuid, ...)` | Deletes a single reference to a data object |
 
-- All batch operations are now available under `client.batch`. See also [here](https://www.semi.technology/documentation/weaviate/current/restful-api-references/batch.html).
+- All batch operations are now available under `client.batch`. See also [here](/developers/weaviate/current/restful-api-references/batch.html).
 
 | v0.4.1 function name | v1.0.0 function name | Description |
 | --------- | -------- | -------- |
@@ -823,7 +823,7 @@ The Weaviate Python client was updated from version 0.4.1 (beta version of the c
   While there has not been a change from `0.4.1` to `1.0.0` there where some changes in the argument positions of the reference batch before. 
   Be aware of that when you update from an older version. This was done to have a more coherent feeling between function calls.
 
-- All Contextionary specific endpoints are now available under `client.contextionary`. See also [here](../modules/text2vec-contextionary.html).
+- All Contextionary specific endpoints are now available under `client.contextionary`. See also [here](../retriever-vectorizer-modules/text2vec-contextionary.html).
   
 | v0.4.1 function name | v1.0.0 function name | Description |
 | --------- | -------- | -------- |

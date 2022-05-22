@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: GraphQL references
 title: Filters &amp; Search Parameters
-intro: Filters and search parameters can be set to order or sort your dataset or to find specific data objects. Some filters are available in multiple functions where others are only available in specific ones. Some filters are only available when specific modules are activated. Check the <a href="../modules/">modules</a> pages, like <a href="../modules/text2vec-contextionary.html#neartext">text2vec-contextionary</a> or <a href="../modules/text2vec-transformers.html#neartext">text2vec-transformers</a> for a nearText filter or <a href="../modules/qna-transformers.html#how-to-use-graphql">qna-transformers</a> for the question answering filter.
+intro: Filters and search parameters can be set to order or sort your dataset or to find specific data objects. Some filters are available in multiple functions where others are only available in specific ones. Some filters are only available when specific modules are activated. Check the <a href="../modules/">modules</a> pages, like <a href="../modules/text2vec-contextionary.html#neartext">text2vec-contextionary</a> or <a href="../modules/text2vec-transformers.html#neartext">text2vec-transformers</a> for a nearText filter or <a href="../reader-generator-modules/qna-transformers.html#how-to-use-graphql">qna-transformers</a> for the question answering filter.
 description: GraphQL filters
 tags: ['graphql', 'filters']
 menu-order: 4

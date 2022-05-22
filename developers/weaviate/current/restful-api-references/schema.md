@@ -260,7 +260,7 @@ Learn more about the schema configuration [here](../data-schema/schema-configura
 | `properties` > `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](../modules/text2vec-contextionary.html#regulate-semantic-indexing). |
 | `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. See [more details here](../data-schema/schema-configuration.html#property-tokenization).|
 | `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](../data-schema/schema-configuration.html#invertedindexconfig--stopwords-stopword-lists). |
-| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](../data-schema/schema-configuration.html#invertedindexconfig--indexTimestamps). |
+| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](../data-schema/schema-configuration.html#invertedindexconfig--indextimestamps). |
 
 ### Example request for creating a class
 
@@ -317,7 +317,7 @@ POST v1/schema/{class_name}/properties
 # Inspect the shards of a class
 
 As described in [Architecture >
-Storage](architecture/storage.html#logical-storage-units-indices-shards-stores),
+Storage](../architecture/storage.html#logical-storage-units-indices-shards-stores),
 creation of a class leads to creating an index which manages all the disk
 storage and vector indexing. An index itself can be comprised of multiple
 shards. If a class index is used on multiple nodes of a multi-node Weaviate

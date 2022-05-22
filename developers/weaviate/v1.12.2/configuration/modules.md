@@ -27,11 +27,11 @@ services:
 
 # Text vectorizer Contextionary 
 
-One vectorizer that is provided is [`text2vec-contextionary`](../modules/text2vec-contextionary.html). `text2vec-contextionary` is a text vectorizer that gives context to the textual data using a language model trained using [fasttext](https://fasttext.cc/) on Wiki data and CommonCrawl. More information can be found [here](../modules/text2vec-contextionary.html). The contextionary is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe.
+One vectorizer that is provided is [`text2vec-contextionary`](../retriever-vectorizer-modules/text2vec-contextionary.html). `text2vec-contextionary` is a text vectorizer that gives context to the textual data using a language model trained using [fasttext](https://fasttext.cc/) on Wiki data and CommonCrawl. More information can be found [here](../retriever-vectorizer-modules/text2vec-contextionary.html). The contextionary is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe.
 
 # Text vectorizer Transformers
 
-Another type of text vectorization is possible with the [`text2vec-transformers`](../modules/text2vec-transformers.html) module.
+Another type of text vectorization is possible with the [`text2vec-transformers`](../retriever-vectorizer-modules/text2vec-transformers.html) module.
 
 _Note: at the moment, text vectorization modules can be combined in a single setup, but this will disable `Explore{}`. You can't use multiple models of the same module yet, this will be part of a future release (i.e. you can’t run `all-mpnet-base` and `t5` (both transformers models) in the same setup yet._
 
