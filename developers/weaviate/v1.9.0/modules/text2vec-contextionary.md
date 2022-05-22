@@ -615,7 +615,7 @@ The meaning of the concept `API` has now changed in your Weaviate setting.
 
 The `text2vec-contextionary` vectorizer module adds one operator for `Get {}` and `Explore {}` GraphQL functions: `nearText: {}`. This operator can be used for semantically searching text in your dataset. 
 
-Note: Cannot use multiple `'near'` operators, or a `'near'` operator along with an [`'ask'`](./qna-transformers.html#how-to-use-graphql) filter!
+Note: Cannot use multiple `'near'` operators, or a `'near'` operator along with an [`'ask'`](./qna-transformers.html) filter!
 
 ### Example GraphQL Get(nearText{}) operator
 
