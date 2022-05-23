@@ -20,7 +20,7 @@ toc: true
 ## Goals
 
 This benchmark is designed to illustrate Weaviate's ANN perfomance for a range
-of different scenarios.  In the [results section below](#results), allows you to find a
+of different use cases.  In the [results section below](#results), allows you to find a
 sample dataset that is closest to your production load. You can draw conclusions
 about what to expect from Weaviate in a production setting.
 
@@ -110,13 +110,13 @@ The full import and test scripts are available [here](https://github.com/semi-te
 <div class="alert alert-dark" role="alert">
    <h3 class="alert-heading">A guide for picking the right dataset</h3>
    The following results section contains multiple datasets. To get the most of
-   this benchmark, pick the dataset that is closest to the scenario that
+   this benchmark, pick the dataset that is closest to the use case that
    reflects your data in production based on the following criteria:
 
    <ul>
      <li><strong>SIFT1M</strong> - A dataset containing 1 million objects of
      128d and using l2 distance metrics. This dataset reflects a common
-     scenario with a small number of objects.</li>
+     use case with a small number of objects.</li>
      <li><strong>Glove-25</strong> - While similar in data size to SIFT1M, each
      vector only has 25 dimensions in this dataset. Because of the smaller
      vectors Weaviate can achieve the highest throghput on this dataset. The
