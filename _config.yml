@@ -89,6 +89,9 @@ docs:
       - name: Vector Index (ANN) Plugins
         folder: vector-index-plugins
         header: false
+      - name: Benchmarks
+        folder: benchmarks
+        header: false
       - name: Modules
         folder: modules
         header: false
