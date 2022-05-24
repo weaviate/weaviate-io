@@ -17,35 +17,36 @@ toc: true
 
 # About this benchmark
 
-This benchmark is designed to illustrate Weaviate's ANN performance for different use cases. In the [results section below](#results), you can find a
-sample dataset closest to your production load. You can conclude what to expect from Weaviate in a production setting.
+This benchmark is designed to measure and illustrate Weaviate's ANN performance for a range of real-life use cases.
 
 💡 this is not a comparative benchmark that runs Weaviate against competing
 solutions.
 
-This benchmark is produced using [open-source
-scripts](https://github.com/semi-technologies/weaviate-benchmarking), so you
-can reproduce it yourself.
+To make the most of this benchmark, you can look at it from different perspectives:
 
-### What is being measured?
+- **The overall performance** – Review the [benchamrk result section below](#results) to draw conclusions about what to expect from Weaviate in a production setting.
+- **Expectation for your use case** – Find the dataset that is closest to your production use case, and estimate Weaviate's expected performance for your use case. 
+- **Fine Tuning** – In case you don't get the results you expect. Find the optimal combinations of the config parameters (efConstruction, maxConnections and ef) to achieve the best results for your production configuration.
 
-For each benchmark test, we pick parameters of:
-- efConstruction - The HNSW build parameter that controls the quality of the
+## What is being measured?
+
+For each benchmark test, we picked parameters of:
+- **efConstruction** - The HNSW build parameter that controls the quality of the
   search at build time.
-- maxConnections - The HNSW build parameter that controls how many outgoing
+- **maxConnections**	 - The HNSW build parameter that controls how many outgoing
   edges a node can have in the HNSW graph.
-- ef - The HNSW query time parameter that controls the quality of the search.
+- **ef** - The HNSW query time parameter that controls the quality of the search.
 
-For each set of parameters, we've run 10000 requests, and we measured:
+For each set of parameters we've run 10000 requests and we measured:
 
-- The Recall@1, Recall@10, and Recall@100 by comparing Weaviate's results to the
+- The **Recall@1**, **Recall@10**, **Recall@100** - by comparing Weaviate’s results to the 
   ground truths specified in each dataset
-- Multi-threaded Queries per Second (QPS) - The overall throughput you can
-  achieve with each configuration
-- Individual Request Latency (mean) - The mean latency overall of 10,000 requests
-- P99 Latency - 99% of all requests (9.900 out of 10.000) have a latency that
-  is lower than or equal to this number
-- Import time - Since varying the build parameters has an effect on import
+- **Multi-threaded Queries per Second (QPS)** - The overall throughput you can
+  achieve with each configurations
+- **Individual Request Latency (mean)** - The mean latency over all 10,000 requests
+- **P99 Latency** - 99% of all requests (9.900 out of 10.000) have a latency that
+  is lower than or equal to this number – this shows how fast 
+- **Import time** - Since varying the build parameters has an effect on import
   time, the import time is also included
 
 By request, we mean:
@@ -61,6 +62,11 @@ users would also experience. In particular, these means:
   only return the matched IDs.
 
 ## Benchmark Setup
+
+### Scripts
+
+This benchmark is produced using [open-source
+scripts](https://github.com/semi-technologies/weaviate-benchmarking), so you can reproduce it yourself.
 
 ### Hardware
 
@@ -258,7 +264,7 @@ combination of throughput and a percentile latency. For example, the statement
 - There is no assumption about the remaining 5% of users, implicitly tolerating
   that they will experience higher latencies than 20ms.
 
-The higher the percentile chosen (e.g., p99 over p95), the "safer" the quoted
+The higher the percentile (e.g. p99 over p95) the "safer" the quoted
 latency becomes. We have thus decided to use p99-latencies instead of
 p95-latencies in our measurements.
 
