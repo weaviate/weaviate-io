@@ -24,16 +24,16 @@ solutions.
 
 To make the most of this benchmark, you can look at it from different perspectives:
 
-- **The overall performance** – Review the [benchamrk result section below](#results) to draw conclusions about what to expect from Weaviate in a production setting.
-- **Expectation for your use case** – Find the dataset that is closest to your production use case, and estimate Weaviate's expected performance for your use case. 
-- **Fine Tuning** – In case you don't get the results you expect. Find the optimal combinations of the config parameters (efConstruction, maxConnections and ef) to achieve the best results for your production configuration.
+- **The overall performance** – Review the [benchmark result section below](#results) to draw conclusions about what to expect from Weaviate in a production setting.
+- **Expectation for your use case** – Find the dataset closest to your production use case, and estimate Weaviate's expected performance for your use case. 
+- **Fine Tuning** – If you don't get the results you expect. Find the optimal combinations of the config parameters (efConstruction, maxConnections and ef) to achieve the best results for your production configuration.
 
 ## What is being measured?
 
 For each benchmark test, we picked parameters of:
 - **efConstruction** - The HNSW build parameter that controls the quality of the
   search at build time.
-- **maxConnections**	 - The HNSW build parameter that controls how many outgoing
+- **maxConnections**	 - The HNSW build parameter controls how many outgoing
   edges a node can have in the HNSW graph.
 - **ef** - The HNSW query time parameter that controls the quality of the search.
 
@@ -42,11 +42,11 @@ For each set of parameters we've run 10000 requests and we measured:
 - The **Recall@1**, **Recall@10**, **Recall@100** - by comparing Weaviate’s results to the 
   ground truths specified in each dataset
 - **Multi-threaded Queries per Second (QPS)** - The overall throughput you can
-  achieve with each configurations
+  achieve with each configuration
 - **Individual Request Latency (mean)** - The mean latency over all 10,000 requests
 - **P99 Latency** - 99% of all requests (9.900 out of 10.000) have a latency that
   is lower than or equal to this number – this shows how fast 
-- **Import time** - Since varying the build parameters has an effect on import
+- **Import time** - Since varying build parameters has an effect on import
   time, the import time is also included
 
 By request, we mean:
@@ -223,15 +223,15 @@ would mean that 200 requests can be answered in a second.
 However, in reality, you often don't have a single user sending one query after
 another. Instead, you have multiple users sending queries. This makes the
 querying-side concurrent. Similarly, Weaviate can handle concurrent incoming
-requests. By measuring the throughput, we can identify how many concurrent
-requests can be served.
+requests. We can identify how many concurrent requests can be served by measuring 
+the throughput.
 
 We can take our single-thread calculation from before and multiply it with the
 number of server CPU cores. This will give us a rough estimate of what the
-server can handle concurrently. However, it would be best if you never trusted this
-calculation alone and continuously measured the actual throughput. This is because
-such scaling may not always be linear. For example, to make concurrent access
-safe, there may be synchronization mechanisms used, such as locks. Not only do
+server can handle concurrently. However, it would be best never to trust this
+calculation alone and continuously measure the actual throughput. This is because
+such scaling may not always be linear. For example, there may be synchronization 
+mechanisms used to make concurrent access safe, such as locks. Not only do
 these mechanisms have a cost themselves, but if implemented incorrectly, they
 can also lead to congestion which would further decrease the concurrent
 throughput. As a result, you cannot perform a single-threaded benchmark and
@@ -243,10 +243,10 @@ multi-threaded measurements on a 30-core machine, not estimations.
 ## What is a p99 latency?
 
 The mean latency gives you an average value of all requests measured. This is a
-good indication to tell you how long a user will have to wait on average for
+good indication of how long a user will have to wait on average for
 their request to be completed. Based on this mean value, you cannot make any
 promises to your users about wait times. 90 out of 100 users might see a
-considerably better time, but the remaining 10 might see a considerably worse
+considerably better time, but the remaining 10 might see a significantly worse
 time.
 
 To give a more precise indication, percentile-based latencies are used. A
@@ -297,15 +297,15 @@ hints to look at:
 
 * Are you using an actual dataset or random vectors? HNSW is known to perform
   considerably worse with random vectors than with real​ world​ datasets. This is due
-  to the distribution of points in world​ datasets datasets compared to randomly
+  to the distribution of points in real world​ datasets compared to randomly
   generated vectors. If you cannot achieve the performance (or recall)
   outlined above with random vectors, switch to an actual dataset.
 
-* Are your disks fast enough? While the ANN search itself is CPU-bound, after
-  the search has been completed, the objects need to be read from disk. Weaviate
+* Are your disks fast enough? While the ANN search itself is CPU-bound, the objects 
+  must be read from disk after the search has been completed. Weaviate
   uses memory-mapped files to speed this process up. However, if not enough
   memory is present or the operating system has allocated the cached pages
-  elsewhere, then a physical disk read needs to occur. If your disk is slow,
+  elsewhere, a physical disk read needs to occur. If your disk is slow,
   it could then be that your benchmark is bottlenecked by those disks.
 
 * Are you using more than 2 million vectors? If yes, make sure to set the
