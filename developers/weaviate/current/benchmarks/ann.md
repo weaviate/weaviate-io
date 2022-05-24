@@ -20,7 +20,7 @@ toc: true
 This benchmark is designed to illustrate Weaviate's ANN performance for different use cases. In the [results section below](#results), you can find a
 sample dataset closest to your production load. You can conclude what to expect from Weaviate in a production setting.
 
-Note, this is not a comparative benchmark that runs Weaviate against competing
+💡 this is not a comparative benchmark that runs Weaviate against competing
 solutions.
 
 This benchmark is produced using [open-source
@@ -71,7 +71,7 @@ For the purpose of this benchmark we've used two GCP instances within the same V
 * **Benchmark** – a `c2-standard-30` instance with 30 vCPU cores and 120 GB memory – to host Weaviate.
 * **Script** – a smaller instance with 8 vCPU – to run benchmarking scripts.
 
-Note, the `c2-standard-30` was chosen for benchmarking for two reasons:
+💡 the `c2-standard-30` was chosen for benchmarking for two reasons:
 
 * It is large enough to show that Weaviate is a highly-concurrent vector search
   engine and scales well while running thousands of searches across multiple threads.
