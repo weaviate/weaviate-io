@@ -35,7 +35,7 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
 - Installing Dependencies in macOS
   ```bash
   # install dependencies
-  brew install rsync openssl rbenv ruby-build ruby_dev
+  brew install rsync openssl rbenv ruby-build ruby-dev
 
   # install ruby 2.7.5
   rbenv install 2.7.5

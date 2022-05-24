@@ -25,9 +25,14 @@ where_filter = {
     "valueString": "New *"
 }
 
-query_result = client.query.get("Publication", ["name"]).with_where(where_filter).do()
-print(query_result)
+query_result = (
+  client.query
+  .get("Publication", "name")
+  .with_where(where_filter)
+  .do()
+)
 
+print(query_result)
 {% endcapture %}
 
 <!-- SET JAVASCRIPT TAB CONTENT -->

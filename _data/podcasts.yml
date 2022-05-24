@@ -1,11 +1,27 @@
 ---
 - title: >
+    Weaviate’s ANN Benchmarks
+  description: > 
+    Join Etienne Dilocker and Connor Shorten to learn about the latest benchmark report for Weaviate.
+  youtube: kG3ji89AFyQ
+  date: 2022-05-23T00:00:00Z
+  cover_image: '/img/podcasts/podcast-16.png'
+  is_use_case: false
+- title: >
+    Jina AI's Neural Search Framework
+  description: > 
+    In this podcast Maximilian Werk, Engineering Director at Jina AI, will talk about all things related to this neural search framework together with Connor Shorten.
+  youtube: o6MD0tWl0SM
+  date: 2022-05-03T00:00:00Z
+  cover_image: '/img/podcasts/podcast-15.jpg'
+  is_use_case: false
+- title: >
     Yi-Lin Sung & Jaemin Cho & Mohit Bansal • VL Adapter for Efficient CLIP Transfer
   description: > 
     These three interesting guests will explain their paper VL-Adapter: Parameter-Efficient Transfer Learning for Vision-and-Language Tasks.
   youtube: BNPxg5a3NaI
   date: 2022-04-26T00:00:00Z
-  cover_image: '/img/podcasts/podcast-15.jpg'
+  cover_image: '/img/podcasts/podcast-14b.jpg'
   is_use_case: false
 - title: >
     Rick Lamers • Orchest + Weaviate + Streamlit

@@ -183,11 +183,6 @@ An overview of environment variables in the docker-compose file:
 | `DISK_USE_READONLY_PERCENTAGE`  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `90` |
 
 
-
-# Cloud deployment
-
-Weaviate is available on [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/details/semi-marketplace-public/weaviate), where you can find more details on deployment on the cloud.
-
 # Weaviate Cloud Service
 
 You can create a free Weaviate sandbox cluster that lasts for 5 days completely for free. You can [try it out here](https://console.semi.technology) and if you do, we would love to hear your feedback.
@@ -198,7 +193,6 @@ _Generally, we recommend using Kubernetes to deploy Weaviate for any
 long-running deployments or those with specific availability expectations, such
 as production use cases. For local development or personal evaluation, using
 Docker Compose will most likely be sufficient._
-
 
 ## Requirements
 
@@ -235,7 +229,10 @@ wget https://raw.githubusercontent.com/semi-technologies/weaviate-helm/$CHART_VE
 
 ### Adjust the configuration in the values.yml (Optional)
 
-_Note: You can skip this step and run with all default values._
+_Note: You can skip this step and run with all default values. In any case,
+make sure that you set the correct Weaviate version. This may either be through
+explicitly setting it as part of the `values.yaml` or through overwriting the
+default as outlined in the deploy step below._
 
 In the
 [`values.yaml`](https://github.com/semi-technologies/weaviate-helm/blob/master/weaviate/values.yaml)
@@ -258,18 +255,25 @@ cluster.
 
 ### Deploy (install the Helm chart)
 
+{% include docs-current_version_finder.html %}
+
 You can deploy the helm charts as follows:
 
 ```bash
 # Create a Weaviate namespace
 $ kubectl create namespace weaviate
+
+# set the desired Weaviate version
+export WEAVIATE_VERSION="{{ current_page_version | remove_first: "v" }}"
+
 # Deploy
 $ helm upgrade \
   "weaviate" \
   weaviate.tgz \
   --install \
   --namespace "weaviate" \
-  --values ./values.yaml
+  --values ./values.yaml \
+  --set "image.tag=$WEAVIATE_VERSION"
 ```
 
 

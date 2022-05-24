@@ -32,7 +32,14 @@ near_text = {
   "concepts": ["houssing prices"],
 }
 
-client.query.get("Article", ["title", "_additional {spellCheck { change {corrected original} didYouMean location originalText}}"]).with_near_text(near_text).do()
+result = (
+  client.query
+  .get("Article", ["title", "_additional {spellCheck { change {corrected original} didYouMean location originalText}}"])
+  .with_near_text(near_text)
+  .do()
+)
+
+print(result)
 
 {% endcapture %}
 

@@ -24,11 +24,21 @@
 
     <!-- Title -->
     {% if page.layout == "layout-documentation" %}
-        <title>{{ page.title }} · Weaviate Documentation</title>
-        <meta property="og:title" content="{{ page.title }} · Weaviate Documentation" />
+        {% if page.SEOtitle %}
+            <title>{{ page.SEOtitle }}</title>
+            <meta property="og:title" content="{{ page.SEOtitle }}" />
+        {% else %}
+            <title>{{ page.title }} - Weaviate vector search engine docs</title>
+            <meta property="og:title" content="{{ page.title }} - Weaviate vector search engine docs" />
+        {% endif %}
     {% else %}
         <title>{{ page.title }}</title>
         <meta property="og:title" content="{{ page.title }}" />
+    {% endif %}
+
+    <!-- description -->
+    {% if page.description %}
+        <meta name="description" content="{{ page.description }}">
     {% endif %}
 
     <!-- OG -->

@@ -1,0 +1,70 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const parseSource = (data) => {
+    return data.map(item => {
+      return {
+        x: item.recall,
+        y: item.qps,
+        efConstruction: item.efConstruction,
+        maxConnections: item.maxConnections,
+        ef: item.ef,
+      }
+    })
+  };
+
+  const renderChart = (name, source) => {
+    const data = {
+      datasets: [{
+        label: 'Limit1',
+        data: parseSource(source.limit1),
+        backgroundColor: '#e6e6e6'
+
+      },{
+        label: 'Limit10',
+        data: parseSource(source.limit10),
+        backgroundColor: '#009c00'
+      },{
+        label: 'Limit100',
+        data: parseSource(source.limit100),
+        backgroundColor: '#30496c'
+      }],
+    };
+
+    const config = {
+      type: 'scatter',
+      data: data,
+      options: {
+        showLine: true,
+        scales: {
+          x: {
+            type: 'linear',
+            position: 'bottom'
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              title: (tooltipItems) => {
+                const item = tooltipItems[0].raw;
+
+                return `efConstruction: ${item.efConstruction}
+maxConnections: ${item.maxConnections}
+ef: ${item.ef}`;
+              },
+              label: (tooltipItems) => {
+                const val = tooltipItems.parsed;
+                return `Recall: ${val.x} QPS: ${val.y}`;
+              } 
+            }
+          }
+        }
+      }
+    };
+
+    const myChart = new Chart(
+      document.getElementById(name),
+      config
+    );
+  }
+</script>

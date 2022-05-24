@@ -28,34 +28,24 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-get_underscore_props = """
-  {
-    Get {
-      Article (
-        nearText: {
-          concepts: ["fashion"],
-        }
-      ) {
-        title
-        _additional {
-          classification {
-            basedOn
-            classifiedFields
-            completed
-            id
-            scope
-          }
-        }
-      }
-    }
-  }
-"""
+near_text_filter = {
+  'concepts': ["fashion"]
+}
 
-try:
-    query_result = client.query.raw(get_underscore_props)
-    print(query_result)
-except weaviate.UnexpectedStatusCodeException as usce:
-    print("Got an error: ", usce.json, " with status code: ", usce.status_code)
+additional_props = {
+  'classification' : ['basedOn', 'classifiedFields', 'completed', 'id']
+}
+
+query_result = (
+  client.query
+  .get('Article', 'title')
+  .with_additional(additional_props)
+  .with_near_text(near_text_filter)
+  .do()
+)
+
+print(query_result)
+
 
 {% endcapture %}
 

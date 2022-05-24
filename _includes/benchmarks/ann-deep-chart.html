@@ -1,0 +1,79 @@
+<div class="container" style="margin-bottom: 40px">
+  <div class="row">
+    <div class="col-12">
+      <div style="width:100%; line-height:1000%; text-align: center">
+        <canvas id="deepChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const deepSource = {
+    limit1: [
+      { efConstruction: 64, maxConnections: 16, ef: 64, recall: 94.44, qps: 9301 },
+      { efConstruction: 128, maxConnections: 16, ef: 64, recall: 96.06, qps: 8957 },
+      { efConstruction: 64, maxConnections: 64, ef: 64, recall: 96.84, qps: 8760 },
+      { efConstruction: 128, maxConnections: 32, ef: 64, recall: 97.88, qps: 8473 },
+      { efConstruction: 128, maxConnections: 64, ef: 64, recall: 98.27, qps: 7984 },
+      { efConstruction: 256, maxConnections: 32, ef: 64, recall: 98.78, qps: 7916 },
+      { efConstruction: 512, maxConnections: 32, ef: 64, recall: 98.95, qps: 7876 },
+      { efConstruction: 256, maxConnections: 64, ef: 64, recall: 99.06, qps: 7839 },
+      { efConstruction: 512, maxConnections: 64, ef: 64, recall: 99.32, qps: 7238 },
+      { efConstruction: 256, maxConnections: 64, ef: 128, recall: 99.42, qps: 5767 },
+      { efConstruction: 512, maxConnections: 64, ef: 128, recall: 99.52, qps: 5509 },
+      { efConstruction: 256, maxConnections: 32, ef: 256, recall: 99.66, qps: 4672 },
+      { efConstruction: 512, maxConnections: 32, ef: 256, recall: 99.82, qps: 4467 },
+      { efConstruction: 512, maxConnections: 64, ef: 256, recall: 99.9, qps: 3683 },
+      { efConstruction: 512, maxConnections: 32, ef: 512, recall: 99.94, qps: 2842 },
+      { efConstruction: 512, maxConnections: 64, ef: 512, recall: 99.95, qps: 2288 },
+    ],
+    limit10: [
+      { efConstruction: 64, maxConnections: 16, ef: 64, recall: 91.58, qps: 8679 },
+      { efConstruction: 128, maxConnections: 16, ef: 64, recall: 93.68, qps: 8402 },
+      { efConstruction: 64, maxConnections: 32, ef: 64, recall: 94.11, qps: 8255 },
+      { efConstruction: 64, maxConnections: 64, ef: 64, recall: 94.67, qps: 8184 },
+      { efConstruction: 128, maxConnections: 64, ef: 64, recall: 96.95, qps: 7575 },
+      { efConstruction: 256, maxConnections: 32, ef: 64, recall: 97.53, qps: 7539 },
+      { efConstruction: 512, maxConnections: 32, ef: 64, recall: 97.92, qps: 7399 },
+      { efConstruction: 256, maxConnections: 64, ef: 64, recall: 98.15, qps: 7287 },
+      { efConstruction: 512, maxConnections: 64, ef: 64, recall: 98.76, qps: 6838 },
+      { efConstruction: 256, maxConnections: 64, ef: 128, recall: 98.77, qps: 5658 },
+      { efConstruction: 512, maxConnections: 64, ef: 128, recall: 99.23, qps: 5233 },
+      { efConstruction: 256, maxConnections: 32, ef: 256, recall: 99.44, qps: 4454 },
+      { efConstruction: 512, maxConnections: 32, ef: 256, recall: 99.61, qps: 4270 },
+      { efConstruction: 512, maxConnections: 64, ef: 256, recall: 99.78, qps: 3534 },
+      { efConstruction: 256, maxConnections: 32, ef: 512, recall: 99.8, qps: 2932 },
+      { efConstruction: 512, maxConnections: 32, ef: 512, recall: 99.88, qps: 2767 },
+      { efConstruction: 512, maxConnections: 64, ef: 512, recall: 99.93, qps: 2233 },
+    ],
+    limit100: [
+    { efConstruction: 512, maxConnections: 8, ef: 64, recall: 72.88, qps: 4734 },
+      { efConstruction: 64, maxConnections: 16, ef: 64, recall: 82.08, qps: 4645 },
+      { efConstruction: 512, maxConnections: 16, ef: 64, recall: 85.81, qps: 4556 },
+      { efConstruction: 64, maxConnections: 32, ef: 64, recall: 86.23, qps: 4492 },
+      { efConstruction: 64, maxConnections: 64, ef: 64, recall: 87.25, qps: 4488 },
+      { efConstruction: 64, maxConnections: 32, ef: 128, recall: 89.05, qps: 4347 },
+      { efConstruction: 512, maxConnections: 16, ef: 128, recall: 89.08, qps: 4347 },
+      { efConstruction: 64, maxConnections: 64, ef: 128, recall: 89.88, qps: 4284 },
+      { efConstruction: 256, maxConnections: 32, ef: 64, recall: 91.99, qps: 4146 },
+      { efConstruction: 512, maxConnections: 32, ef: 64, recall: 92.7, qps: 4092 },
+      { efConstruction: 256, maxConnections: 64, ef: 64, recall: 93.85, qps: 3917 },
+      { efConstruction: 256, maxConnections: 32, ef: 128, recall: 94.22, qps: 3913 },
+      { efConstruction: 512, maxConnections: 32, ef: 128, recall: 94.83, qps: 3856 },
+      { efConstruction: 512, maxConnections: 64, ef: 64, recall: 95.14, qps: 3816 },
+      { efConstruction: 256, maxConnections: 64, ef: 128, recall: 95.65, qps: 3688 },
+      { efConstruction: 128, maxConnections: 32, ef: 256, recall: 96.9, qps: 3317 },
+      { efConstruction: 256, maxConnections: 32, ef: 256, recall: 97.91, qps: 3182 },
+      { efConstruction: 512, maxConnections: 32, ef: 256, recall: 98.29, qps: 3090 },
+      { efConstruction: 256, maxConnections: 64, ef: 256, recall: 98.48, qps: 2896 },
+      { efConstruction: 512, maxConnections: 64, ef: 256, recall: 99.02, qps: 2707 },
+      { efConstruction: 256, maxConnections: 32, ef: 512, recall: 99.34, qps: 2310 },
+      { efConstruction: 512, maxConnections: 32, ef: 512, recall: 99.52, qps: 2200 },
+      { efConstruction: 256, maxConnections: 64, ef: 512, recall: 99.53, qps: 2032 },
+      { efConstruction: 512, maxConnections: 64, ef: 512, recall: 99.75, qps: 1879 },
+    ]
+  };
+
+  renderChart('deepChart', deepSource);
+</script>

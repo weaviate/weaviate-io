@@ -540,7 +540,7 @@ The Weaviate Python client was updated from version 0.4.1 (beta version of the c
 | `client.add_reference(from_uuid, from_property_name, to_uuid, ...)`   | `client.data_object.reference.add(from_uuid, from_property_name, to_uuid, ...)` | Adds a single reference to a data object |
 | `client.delete_reference(from_uuid, from_property_name, to_uuid, ...)`   | `client.data_object.reference.delete(from_uuid, from_property_name, to_uuid, ...)` | Deletes a single reference to a data object |
 
-- All batch operations are now available under `client.batch`. See also [here](https://www.semi.technology/documentation/weaviate/current/restful-api-references/batch.html).
+- All batch operations are now available under `client.batch`. See also [here](/developers/weaviate/current/restful-api-references/batch.html).
 
 | v0.4.1 function name | v1.0.0 function name | Description |
 | --------- | -------- | -------- |
