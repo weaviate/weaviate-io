@@ -208,7 +208,7 @@ object_to_add = {
     }]
 }
 
-with client.batch(batch_size=100, calllback=check_batch_result) as batch:
+with client.batch(batch_size=100, callback=check_batch_result) as batch:
   batch.add_data_object(object_to_add, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
 ```
 
