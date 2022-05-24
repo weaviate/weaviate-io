@@ -80,7 +80,7 @@ possible, but it will be slower. Enable CUDA if you have a GPU available
 
 For more information on how to set up the environment with the
 `text2vec-transformers` module, see [this
-page](../modules/text2vec-transformers.html).
+page](../retriever-vectorizer-modules/text2vec-transformers.html).
 
 The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
 
@@ -118,7 +118,7 @@ does not require or benefit from GPU-accelerated hardware.
 
 For more information on how to set up the environment with the
 `text2vec-contextionary` module, see [this
-page](../modules/text2vec-contextionary.html).
+page](../retriever-vectorizer-modules/text2vec-contextionary.html).
 
 _Note: at the moment, text vectorization modules cannot be combined in a single setup. This means that you can either enable the `text2vec-contextionary`, the `text2vec-transformers` or no text vectorization module._
 

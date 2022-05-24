@@ -265,7 +265,7 @@ layout: default
                                 {% assign sortedResources = site.data.podcasts | sort: 'date' %}
                                 {% for podcast in sortedResources reversed %}
                                     {% if podcast.is_use_case == true %}
-                                        <a class="card-img-start w-100 bg-cover" style="background-image: url({{ podcast.cover_image }});" href="#!">
+                                        <a class="card-img-start w-100 bg-cover" style="background-image: url({{ podcast.cover_image }});" href="#">
                                             <!-- Image (placeholder) -->
                                             <img src="{{ podcast.cover_image }}" alt="Weaviate Podcast - {{ podcast.title }}" class="img-fluid d-md-none invisible">
                                         </a>

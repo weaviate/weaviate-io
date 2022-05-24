@@ -39,46 +39,32 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-get_semantic_path = """
-  {
-    Get {
-      Publication (
-        nearText:{ 
-            concepts: ["fashion"],
-            certainty: 0.7,
-            moveAwayFrom: {
-              concepts: ["finance"],
-              force: 0.45
-            },
-            moveTo: {
-              concepts: ["haute couture"],
-              force: 0.85
-            }
-        }
-      ) {
-        name
-        _additional {
-          semanticPath{
-            path {
-              concept
-              distanceToNext
-              distanceToPrevious
-              distanceToQuery
-              distanceToResult
-            }
-          }
-        }
-      }
-    }
+near_text_filter = {
+  'concepts': ["fashion"],
+  'certainty': 0.7,
+  'moveAwayFrom': {
+    'concepts': ["finance"],
+    'force': 0.45
+  },
+  'moveTo': {
+    'concepts': ["haute couture"],
+    'force': 0.85
   }
-"""
+}
 
-try:
-    query_result = client.query.raw(get_semantic_path)
-    print(query_result)
-except weaviate.UnexpectedStatusCodeException as usce:
-    print("Got an error: ", usce.json, " with status code: ", usce.status_code)
+additional_props = {
+  'semanticPath': 'path {distanceToNext distanceToPrevious distanceToQuery distanceToResult}'
+} 
 
+query_result = (
+  client.query
+  .get('Publication', 'name')
+  .with_additional(additional_props)
+  .with_near_text(near_text_filter)
+  .do()
+)
+
+print(query_result)
 {% endcapture %}
 
 <!-- SET JAVASCRIPT TAB CONTENT -->

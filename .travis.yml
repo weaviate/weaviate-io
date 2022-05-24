@@ -10,13 +10,16 @@ before_install:
 - bundle install
 install:
 - bundle install
-- gem install jekyll html-proofer
+- gem install jekyll
+- gem install html-proofer --user-install
 - pip install -r ./_python/requirements.txt
+- export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
 script:
 - python ./_python/generate_og.py
 - travis_wait 60 bundle exec jekyll build
 - minify --match='\.html' -r -o _site_min/ _site/
 - rsync -av _site_min/ _site/
+- htmlproofer --http-status-ignore "0,999,429,403" --allow_hash_href --url-ignore "/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/" _site || travis_terminate 1
 - |
   if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     if [ $TRAVIS_BRANCH = "main" ]; then

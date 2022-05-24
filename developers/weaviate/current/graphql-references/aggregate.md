@@ -16,7 +16,7 @@ redirect_from:
 
 # Aggregate{} syntax and query structure
 
-This example shows how to aggregate over the entire database. [Below](TODO) you
+This example shows how to aggregate over the entire database. [Below](#aggregating-a-vector-search--faceted-vector-search) you
 will find examples of how to dynamically retrieve objects using a vector search
 and then aggregating only the matches. The `Aggregate{}` function is structured
 as follows:

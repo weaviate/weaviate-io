@@ -150,6 +150,439 @@ client.schema.create(schema)
 
 A full example of how to use the Python client for Weaviate can be found in [this article on Towards Data Science](https://towardsdatascience.com/getting-started-with-weaviate-python-client-e85d14f19e4f). 
 
+# Batching
+
+Batching is a way of importing/creating `objects` and `references` in bulk using a single API request to the Weaviate Server. With python this can be done using 3 different methods:
+
+1. ***Auto-batching***
+2. ***Dynamic-batching***
+3. ***Manual-batching***
+
+## Auto-batching
+
+This method allows the python-client to handle all the `object` and `reference` import/creation. This means that the user does NOT have to explicitly import/create `objects`and `reference`, all the user has to do is add everything he want to be imported/created to the `Batch`, and the `Batch` is going to take care of it. To enable auto-batching we need to configure `batch_size` to be a positive integer (by default `None`)(see `Batch-configuration` below for more information). The `Batch` is going to import/create objects then references, if number of objects + number of references == `batch_size`. See example below:
+
+
+```python
+import weaviate
+from weaviate.util import generate_uuid5
+client = weaviate.Client("http://localhost:8080")
+
+# create schema
+schema = {
+  'classes': [
+    {
+      'class': 'Author',
+      'properties': [
+        {
+          'name': 'name',
+          'dataType': ['string']
+        },
+        {
+          'name': 'wroteBooks',
+          'dataType': ['Book']
+        }
+      ]
+    },
+    {
+      'class': 'Book',
+      'properties': [
+        {
+          'name': 'title',
+          'dataType': ['text']
+        },
+        {
+          'name': 'ofAuthor',
+          'dataType': ['Author']
+        }
+      ]
+    }
+  ]
+}
+
+client.schema.create(schema)
+
+author = {
+  'name': 'Jane Doe',
+}
+book_1 = {
+  'title': "Jane's Book 1"
+}
+book_2 = {
+  'title': "Jane's Book 2"
+}
+
+client.batch.configure(
+  batch_size=5, # int value for batch_size enables auto-batching, see Batch configuration section below
+)
+
+with client.batch as batch:
+  # add author
+  uuid_author = generate_uuid5(author, 'Author')
+  batch.add_data_object(
+    data_object=author,
+    class_name='Author',
+    uuid=uuid_author,
+  )
+  # add book_1
+  uuid_book_1 = generate_uuid5(book_1, 'Book')
+  batch.add_data_object(
+    data_object=book_1,
+    class_name='Book',
+    uuid=uuid_book_1,
+  )
+  # add references author ---> book_1
+  batch.add_reference(
+    from_object_uuid=uuid_author,
+    from_object_class_name='Author',
+    from_property_name='wroteBooks',
+    to_object_uuid=uuid_book_1,
+  )
+  # add references author <--- book_1
+  batch.add_reference(
+    from_object_uuid=uuid_book_1,
+    from_object_class_name='Book',
+    from_property_name='ofAuthor',
+    to_object_uuid=uuid_author,
+  )
+  # add book_2
+  uuid_book_2 = generate_uuid5(book_2, 'Book')
+  batch.add_data_object(
+    data_object=book_2,
+    class_name='Book',
+    uuid=uuid_book_2,
+  )
+  # add references author ---> book_2
+  batch.add_reference(
+    from_object_uuid=uuid_author,
+    from_object_class_name='Author',
+    from_property_name='wroteBooks',
+    to_object_uuid=uuid_book_2,
+  )
+  # add references author <--- book_2
+  batch.add_reference(
+    from_object_uuid=uuid_book_2,
+    from_object_class_name='Book',
+    from_property_name='ofAuthor',
+    to_object_uuid=uuid_author,
+  )
+
+# NOTE: When exiting context manager the method `batch.flush()` is called
+# done, everything is imported/created
+```
+
+## Dynamic-batching
+
+This method allows the python-client to handle all the `object` and `reference` import/creation in a dynamic manner. This means that the user does NOT have to explicitly import/create `objects`and `reference`, all the user has to do is add everything he want to be imported/created to the `Batch`, and the `Batch` is going to take care of it (same as `Auto-batching`). To enable dynamic-batching we need to configure `batch_size` to be a positive integer (by default `None`) AND `dynamic` to be `True`(by default `False`)(see `Batch-configuration` below for more information). For this method the `Batch` is going to compute the `recommended_num_objects` and `recommended_num_references` after the first `Batch` creation, where the `batch_size` is used for `recommended_num_objects` and `recommended_num_references` as the initial value. The `Batch` is going to import/create objects then references, if current number of objects reached `recommended_num_objects` OR current number of reference reached `recommended_num_references`. See example below:
+
+
+```python
+import weaviate
+from weaviate.util import generate_uuid5
+client = weaviate.Client("http://localhost:8080")
+
+# create schema
+schema = {
+  'classes': [
+    {
+      'class': 'Author',
+      'properties': [
+        {
+          'name': 'name',
+          'dataType': ['string']
+        },
+        {
+          'name': 'wroteBooks',
+          'dataType': ['Book']
+        }
+      ]
+    },
+    {
+      'class': 'Book',
+      'properties': [
+        {
+          'name': 'title',
+          'dataType': ['text']
+        },
+        {
+          'name': 'ofAuthor',
+          'dataType': ['Author']
+        }
+      ]
+    }
+  ]
+}
+
+client.schema.create(schema)
+
+author = {
+  'name': 'Jane Doe',
+}
+book_1 = {
+  'title': "Jane's Book 1"
+}
+book_2 = {
+  'title': "Jane's Book 2"
+}
+
+client.batch.configure(
+  batch_size=5, # int value for batch_size enables auto-batching, see Batch configuration section below
+  dynamic=True, # makes it dynamic
+)
+
+with client.batch as batch:
+  # add author
+  uuid_author = generate_uuid5(author, 'Author')
+  batch.add_data_object(
+    data_object=author,
+    class_name='Author',
+    uuid=uuid_author,
+  )
+  # add book_1
+  uuid_book_1 = generate_uuid5(book_1, 'Book')
+  batch.add_data_object(
+    data_object=book_1,
+    class_name='Book',
+    uuid=uuid_book_1,
+  )
+  # add references author ---> book_1
+  batch.add_reference(
+    from_object_uuid=uuid_author,
+    from_object_class_name='Author',
+    from_property_name='wroteBooks',
+    to_object_uuid=uuid_book_1,
+  )
+  # add references author <--- book_1
+  batch.add_reference(
+    from_object_uuid=uuid_book_1,
+    from_object_class_name='Book',
+    from_property_name='ofAuthor',
+    to_object_uuid=uuid_author,
+  )
+  # add book_2
+  uuid_book_2 = generate_uuid5(book_2, 'Book')
+  batch.add_data_object(
+    data_object=book_2,
+    class_name='Book',
+    uuid=uuid_book_2,
+  )
+  # add references author ---> book_2
+  batch.add_reference(
+    from_object_uuid=uuid_author,
+    from_object_class_name='Author',
+    from_property_name='wroteBooks',
+    to_object_uuid=uuid_book_2,
+  )
+  # add references author <--- book_2
+  batch.add_reference(
+    from_object_uuid=uuid_book_2,
+    from_object_class_name='Book',
+    from_property_name='ofAuthor',
+    to_object_uuid=uuid_author,
+  )
+# NOTE: When exiting context manager the method `batch.flush()` is called
+# done, everything is imported/created
+```
+
+## Manual-batching
+
+This method gives the user total control over the `Batch`, meaning the `Batch` is NOT going to perform any import/creation implicitly but will leave it to the user's discretion. See example below:
+
+
+```python
+import weaviate
+from weaviate.util import generate_uuid5
+client = weaviate.Client("http://localhost:8080")
+
+# create schema
+schema = {
+  'classes': [
+    {
+      'class': 'Author',
+      'properties': [
+        {
+          'name': 'name',
+          'dataType': ['string']
+        },
+        {
+          'name': 'wroteBooks',
+          'dataType': ['Book']
+        }
+      ]
+    },
+    {
+      'class': 'Book',
+      'properties': [
+        {
+          'name': 'title',
+          'dataType': ['text']
+        },
+        {
+          'name': 'ofAuthor',
+          'dataType': ['Author']
+        }
+      ]
+    }
+  ]
+}
+
+client.schema.create(schema)
+
+author = {
+  'name': 'Jane Doe',
+}
+book_1 = {
+  'title': "Jane's Book 1"
+}
+book_2 = {
+  'title': "Jane's Book 2"
+}
+
+client.batch.configure(
+  batch_size=None, # None disable any automatic functionality
+)
+
+with client.batch as batch:
+  # add author
+  uuid_author = generate_uuid5(author, 'Author')
+  batch.add_data_object(
+    data_object=author,
+    class_name='Author',
+    uuid=uuid_author,
+  )
+  # add book_1
+  uuid_book_1 = generate_uuid5(book_1, 'Book')
+  batch.add_data_object(
+    data_object=book_1,
+    class_name='Book',
+    uuid=uuid_book_1,
+  )
+  result = batch.create_objects()  # <----- implicit object creation
+
+  # add references author ---> book_1
+  batch.add_reference(
+    from_object_uuid=uuid_author,
+    from_object_class_name='Author',
+    from_property_name='wroteBooks',
+    to_object_uuid=uuid_book_1,
+  )
+  # add references author <--- book_1
+  batch.add_reference(
+    from_object_uuid=uuid_book_1,
+    from_object_class_name='Book',
+    from_property_name='ofAuthor',
+    to_object_uuid=uuid_author,
+  )
+  result = batch.create_references()  # <----- implicit reference creation
+
+
+  # add book_2
+  uuid_book_2 = generate_uuid5(book_2, 'Book')
+  batch.add_data_object(
+    data_object=book_2,
+    class_name='Book',
+    uuid=uuid_book_2,
+  )
+  result = batch.create_objects()  # <----- implicit object creation
+
+  # add references author ---> book_2
+  batch.add_reference(
+    from_object_uuid=uuid_author,
+    from_object_class_name='Author',
+    from_property_name='wroteBooks',
+    to_object_uuid=uuid_book_2,
+  )
+  # add references author <--- book_2
+  batch.add_reference(
+    from_object_uuid=uuid_book_2,
+    from_object_class_name='Book',
+    from_property_name='ofAuthor',
+    to_object_uuid=uuid_author,
+  )
+  result = batch.create_references()  # <----- implicit reference creation
+
+# NOTE: When exiting context manager the method `batch.flush()` is called
+# done, everything is imported/created
+```
+
+## Batch-configuration
+The `Batch` object can be configured using the `batch.configure()` method or the `batch()` (i.e. call batch object, `__call__` method), they are the same function. In the examples above we saw that we can configure the `batch_size` and `dynamic`, but it allows to set more configurations:
+
+- `batch_size` - (`int` or `None`: default `None`): If it is `int` then auto-/dynamic-batching is enabled. For Auto-batching, if number of objects + number of references == `batch_size` then the `Batch` is going to import/create current objects then references (see Auto-batching for more info). For Dynamic-batching it is used as the initial value for `recommended_num_objects` and `recommended_num_references` (see Dynamic-batching for more info). `None` value means it is Manual-batching, no automatic object/reference import/creation.
+- `dynamic` - (`bool`: default: `False`): Enables/disables Dynamic-batching. Does not have any effect if `batch_size` is `None`.
+- `creation_time` - (`int` or `float`; default: `10`): It is the interval of time in which the batch import/create should be done. It used to compute `recommended_num_objects` and `recommended_num_references`, consequently has an impact for Dynamic-batching.
+- `callback` (Optional[Callable[[dict], None]]: default `None`): It is a callback function on the results of the `batch.create_objects()` and `batch.create_references()`. It is used for Error Handling for Auto-/Dynamic-batching. Has no effect if `batch_size` is `None`.
+- `timeout_retries` - (`int`: default `0`): Number of times to re-try to import/create a batch that resulted in `TimeoutError`.
+
+
+NOTE: You have to specify all the configurations that you want at each call of this method, otherwise some setting are going to be replaced by default values.
+```python
+client.batch(
+  batch_size=100,
+  dynamic=False,
+  creation_time=5,
+  timeout_retries=3,
+  callback=None,
+)
+```
+
+## Tips &amp; Tricks
+
+* There is no limit to how many objects/references one could add to a batch before committing/creating it. However a too large batch can lead to a TimeOut error, which means that Weaviate could not process and create all the objects from the batch in the specified time (the timeout configuration can be set like [this](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.html#weaviate.Client) or [this](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.html#weaviate.Client.timeout_config)). Note that setting a timeout configuration higher that 60s would require some changes to the docker-compose.yml/helm chart file.
+* The `batch` class in the Python Client can be used in three ways:
+    * Case 1: Everything should be done by the user, i.e. the user should add the objects/object-references and create them whenever the user wants. To create one of the data type use these methods of this class: `create_objects`, `create_references` and `flush`. This case has the Batch instance’s batch_size set to None (see docs for the `configure` or `__call__` method). Can be used in a context manager, see below.
+    * Case 2: Batch auto-creates when full. This can be achieved by setting the Batch instance’s batch_size set to a positive integer (see docs for the `configure` or `__call__` method). The batch_size in this case corresponds to the sum of added objects and references. This case does not require the user to create the batch/s, but it can be done. Also to create non-full batches (last batches) that do not meet the requirement to be auto-created use the `flush` method. Can be used in a context manager, see below.
+    * Case 3: Similar to Case II but uses dynamic batching, i.e. auto-creates either objects or references when one of them reached the `recommended_num_objects` or `recommended_num_references` respectively. See docs for the `configure` or `__call__` method for how to enable it.
+    * **Context-manager support**: Can be use with the with statement. When it exists the context-manager it calls the flush method for you. Can be combined with `configure` or `__call__` method, in order to set it to the desired Case.
+
+## Error Handling
+
+Creating objects in `Batch` is faster then creating each object/reference individually but it comes at the cost of skipping some validation steps. Skipping some validation steps at object/reference level can result in some objects that failed to create or some references that could not be added. In this case the `Batch` does not fail but individual objects/references might and we can make sure that everything was imported/created without errors by checking the returned value of the `batch.create_objects()` and `batch.create_references()`. Here are examples how to catch and handle errors on individual `Batch` objects/references.
+
+Lets define a function that checks for such errors and prints them:
+```python
+def check_batch_result(results: dict):
+  """
+  Check batch results for errors.
+
+  Parameters
+  ----------
+  results : dict
+      The Weaviate batch creation return value.
+  """
+
+  if results is not None:
+    for result in results:
+      if 'result' in result and 'errors' in result['result']:
+        if 'error' in result['result']['errors']:
+          print(result['result']['errors']['error'])
+```
+
+Now we can use this function to print the error messages at item (object/reference) level. Lets look how we can do it using Auto-/Dynamic-batching where we never implicitly call the `create` methods:
+
+```python
+client.batch(
+  batch_size=100,
+  dynamic=False,
+  creation_time=5,
+  timeout_retries=3,
+  callback=check_batch_result,
+)
+
+# done, easy as that
+```
+
+For Manual-batching we can call the function on the returned value:
+```python
+# on objects
+result = client.batch.create_object()
+check_batch_result(result)
+
+# on references
+result = client.batch.create_references()
+check_batch_result(result)
+```
+
 # Design
 
 ## GraphQL query builder pattern
@@ -189,9 +622,70 @@ query_result = client.query\
 print(query_result)
 ```
 
-Note that you need to use the `do()` function to execute the query. 
+Note that you need to use the `.do()` method to execute the query. 
 
 # Change logs
+
+### 3.5.0
+This minor version contains functionality for the new features introduced in Weaviate `v1.13.0`.
+
+New `Batch` method `client.batch.delete_objects()` to delete all objects that match a particular expression (`where` filter).
+
+New method `client.query.get(...).with_sort()` that allows sorting data on a particular field/s.
+
+New method `client.query.aggregate(...).with_near_text()` that allows to aggregate data that is matching `nearTex`t filter.
+
+New method `client.query.aggregate(...).with_near_object()` that allows to aggregate data that is matching `nearObject` filter.
+
+New method `client.query.aggregate(...).with_near_vector()` that allows to aggregate data that is matching `nearVector` filter.
+
+### 3.4.2
+This patch version fixes another bug in `client.data_object.exists()`.
+
+### 3.4.1
+This patch version fixes bug in `client.data_object.exists()`.
+
+### 3.4.0
+This minor version fixes the bug in setting the `Schema`’s `invertedIndexConfig` field.
+
+New method `client.schema.get_class_shards()` to get all shards configuration of a particular class.
+
+New method `client.schema.update_class_shard()` to update one/all shard/s configuration of a particular class.
+
+Support for new `Property` field: `tokenization`.
+
+### 3.3.3
+This patch version fixes the `nearImage` filter requests.
+
+### 3.3.2
+This patch version allows using `UUID`s in hex format for `DataObject` too i.e.` UUID`s without hyphens.
+
+### 3.3.1
+This patch version allows using `UUID`s in hex format too i.e. `UUID`s without hyphens.
+
+### 3.3.0
+This minor version adds a new `client.query.get(...).with_offset()` for the `Get` queries. This method should be used with the `client.query.get(...).with_limit()`. This new feature (introduced in Weaviate version 1.8.0) allows to use pagination functionality with the `Get` queries. The `offset` represents the start index of the objects to be returned, and the number of objects is specified by the `with_limit()` method.
+
+For example, to list the first ten results, set `limit: 10`. Then, to “display the second page of 10”, set `offset: 10`, `limit: 10` and so on. E.g. to show the 9th page of 10 results, set `offset: 80`, `limit: 10` to effectively display results 81-90.
+
+### 3.2.5
+This patch fixes the `Batch` object is not callable error.
+
+### 3.2.4
+All `class_name` and cross-refs `dataType` are implicitly capitalized. (This functionality is added because if `class_name` is not capitalized then Weaviate server does it for you, and this was leading to errors where the client and server have different configurations.)
+
+Fixes/updates in `Schema` class:
+- This patch fixes the `client.schema.contains()` to accept separate class schemas as argument i.e. it does not expect to have only this format: `{"classes": [CLASS_1, CLASS_2, ...]}`; now it is possible to pass just `CLASS_X` as well.
+
+### 3.2.3
+This patch fixes the `client.query.get(...).with_near_object()`. It uses now explicit string literals for `id`/`beacon` in `nearoOject` clauses.
+
+### 3.2.2
+This patch adds support for array data types: `boolean[]`, `date[]`.
+
+### 3.2.1
+This patch adds support for array data types: `int[]`, `number[]`, `text[]`, `string[]`.
+
 
 ### 3.2.0
 Fixes/updates in `weaviate.wcs.WCS` class:
@@ -806,7 +1300,7 @@ The Weaviate Python client was updated from version 0.4.1 (beta version of the c
 | `client.add_reference(from_uuid, from_property_name, to_uuid, ...)`   | `client.data_object.reference.add(from_uuid, from_property_name, to_uuid, ...)` | Adds a single reference to a data object |
 | `client.delete_reference(from_uuid, from_property_name, to_uuid, ...)`   | `client.data_object.reference.delete(from_uuid, from_property_name, to_uuid, ...)` | Deletes a single reference to a data object |
 
-- All batch operations are now available under `client.batch`. See also [here](https://www.semi.technology/documentation/weaviate/current/restful-api-references/batch.html).
+- All batch operations are now available under `client.batch`. See also [here](/developers/weaviate/current/restful-api-references/batch.html).
 
 | v0.4.1 function name | v1.0.0 function name | Description |
 | --------- | -------- | -------- |

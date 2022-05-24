@@ -153,7 +153,7 @@ The following schema configuration uses the `babbage` model.
 
 The `text2vec-openai` vectorizer module adds one search operator for `Get {}` and `Explore {}` GraphQL functions: `nearText: {}`. This operator can be used for semantically searching text in your dataset. 
 
-Note: You cannot use multiple `'near'` filters, or a `'near'` operators along with an [`'ask'`](./qna-transformers.html#how-to-use-graphql) filter!
+Note: You cannot use multiple `'near'` filters, or a `'near'` operators along with an [`'ask'`](../reader-generator-modules/qna-transformers.html) filter!
 
 ### Example GraphQL Get(nearText{}) operator
 

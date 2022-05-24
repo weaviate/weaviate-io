@@ -25,7 +25,13 @@ where_filter = {
   "valueString": "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
 }
 
-query_result = client.query.get("Article", ["title"]).with_where(where_filter).do()
+query_result = (
+  client.query
+  .get("Article", "title")
+  .with_where(where_filter)
+  .do()
+)
+
 print(query_result)
 {% endcapture %}
 

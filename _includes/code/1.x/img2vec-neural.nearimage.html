@@ -19,7 +19,14 @@ client = weaviate.Client("http://localhost:8080")
 
 nearImage = {"image": "/9j/4AAQSkZJRgABAgE..."}
 
-client.query.get("FashionItem", ["image"]).with_near_image(nearImage).do()
+result = (
+  client.query
+  .get("FashionItem", "image")
+  .with_near_image(nearImage)
+  .do()
+)
+
+print(result)
 {% endcapture %}
 
 <!-- SET JAVASCRIPT TAB CONTENT -->

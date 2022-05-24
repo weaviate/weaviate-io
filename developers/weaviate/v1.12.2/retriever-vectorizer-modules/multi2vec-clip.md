@@ -228,8 +228,7 @@ operators can be used for semantically searching both text and images in your
 dataset. 
 
 Note: In the same query, you cannot use multiple `'near'` filters, or a `'near'`
-filter along with an [`'ask'`](./qna-transformers.html#how-to-use-graphql)
-filter!
+filter along with an `'ask'` filter!
 
 ### Example GraphQL Get(nearText{}) operator
 
