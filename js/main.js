@@ -172,31 +172,31 @@ if(requestMoreInfoBtn){
     };
 }
 
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 // Set accordion
 function set_accordion() {
-
-    function setCookie(cname, cvalue, exdays) {
-        const d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        let expires = "expires="+ d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    }
-
-    function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(';');
-        for(let i = 0; i <ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
 
     function close_or_open_accordion(language){
         var accordions = document.getElementsByClassName("accordion-button");
@@ -224,5 +224,19 @@ function set_accordion() {
         close_or_open_accordion(clientLanguage);
     }
 };
+
+// follow the sidenav
+var sidenavElem = document.getElementsByClassName('sidenav');
+if (sidenavElem.length > 0) {
+    // set location where ended
+    var lastDocScroll = getCookie('docScroll');
+    if(lastDocScroll !== ''){
+        sidenavElem[0].scrollTop = lastDocScroll;
+    }
+    // store location of scroll in cookie
+    sidenavElem[0].addEventListener('scroll', function(e) {
+        setCookie('docScroll', sidenavElem[0].scrollTop, 0.0035);
+    });
+}
 
 set_accordion();
