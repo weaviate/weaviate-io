@@ -22,3 +22,7 @@ You can find the following performance benchmarks:
 ## Benchmark code
 
 The code for the benchmarks can be found in [this repo](https://github.com/semi-technologies/weaviate-benchmarking) on Github.
+
+## Weaviate benchmark podcast
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kG3ji89AFyQ" title="Weaviate vector search benchmark podcast" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
