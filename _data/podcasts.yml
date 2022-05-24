@@ -1,5 +1,13 @@
 ---
 - title: >
+    Weaviate’s ANN Benchmarks
+  description: > 
+    Join Etienne Dilocker and Connor Shorten to learn about the latest benchmark report for Weaviate.
+  youtube: kG3ji89AFyQ
+  date: 2022-05-23T00:00:00Z
+  cover_image: '/img/podcasts/podcast-16.png'
+  is_use_case: false
+- title: >
     Jina AI's Neural Search Framework
   description: > 
     In this podcast Maximilian Werk, Engineering Director at Jina AI, will talk about all things related to this neural search framework together with Connor Shorten.
