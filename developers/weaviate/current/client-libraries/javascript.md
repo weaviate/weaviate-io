@@ -74,6 +74,35 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 
 # Change logs
 
+## v2.10.1
+- Updated `README.md` file with proper project links
+
+## v2.10.0
+- Added support for `nearText` `moveTo` and `moveAwayFrom` parameters
+
+## v2.9.0
+- Added support for `near<Media>` filters for `Aggregate` queries
+- Added suuport for `objectLimit` parameter in `Aggregate` queries
+- Added support for [sort](../graphql-references/get.html#sorting) argument in `GraphQL`
+- Added support for [batch delete by query](../restful-api-references/batch.html#batch-delete-by-query) `REST` endpoint
+
+## v2.8.0
+- Added support for configurable stopwords
+- Added support for custom bm25 params
+- Added support for property `tokenization` field setting
+- Added support for [Shards API](../restful-api-references/schema.html#inspect-the-shards-of-a-class)
+
+## v2.7.0
+- Added support for getting schema's class details (`GET /v1/schema/{className}`)
+
+## v2.6.0
+- Added support for object check request ([HEAD /v1/objects/{id}](../restful-api-references/objects.html#check-if-a-data-object-exists-without-retrieving-it))
+- Added support for `rerank` parameter in `GraphQL` `ask` argument
+- Added support for creating objects with custom vectors
+
+## v2.5.0
+- Added support of the `offset` parameter in `GraphQL` and `REST` API
+
 ## v2.4.0
 - Added support of the `spellcheck` module
 
