@@ -18,7 +18,7 @@ To get the latest stable version of the Java client library, add this dependency
 <dependency>
   <groupId>technology.semi.weaviate</groupId>
   <artifactId>client</artifactId>
-  <version>1.2.1</version>
+  <version>3.1.1</version>
 </dependency>
 ```
 
@@ -312,6 +312,59 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 
 
 # Change logs
+
+## 3.1.1
+- Updated test dependencies to newest versions
+
+## 3.1.0
+- Added support for `nearText` `moveTo` and `moveAwayFrom` parameters
+
+## 3.0.0
+- Added support for `near<Media>` filters for `Aggregate` queries
+- Added suuport for `objectLimit` parameter in `Aggregate` queries
+- Added support for [sort](../graphql-references/get.html#sorting) argument in `GraphQL`
+- Added support for [batch delete by query](../restful-api-references/batch.html#batch-delete-by-query) `REST` endpoint
+- Deprecated `withFields(Fields)` method in favor of the `withFields(Field[])`
+- Added support for `near<Media>` filters for `Explore` queries
+- Added `indexTimestamps` setting support to `invertedIndexConfig`
+- Unified `where` filter support in all `REST` and `GraphQL` queries
+- Fixed `valueDate` parameter support in `where` filter
+
+## 2.4.0
+- Added support for configurable stopwords
+- Added support for custom bm25 params
+- Added support for property `tokenization` field setting
+- Added support for [Shards API](../restful-api-references/schema.html#inspect-the-shards-of-a-class)
+
+## 2.3.0
+- Added support for getting schema's class details (`GET /v1/schema/{className}`)
+- Added support for `where` argument in `Aggregate` queries
+
+## 2.2.2
+- Fixed error parsing logic
+
+## 2.2.1
+- Fixed a bug that prevented reference properties from being serialized to Json object
+
+## 2.2.0
+- Added support for object check request ([HEAD /v1/objects/{id}](../restful-api-references/objects.html#check-if-a-data-object-exists-without-retrieving-it))
+- Added support for `rerank` parameter in `GraphQL` `ask` argument
+
+## 2.1.1
+- Added support for creating objects with custom vectors
+
+## 2.1.0
+- Added support of the `offset` parameter in `GraphQL` and `REST` API
+
+## 2.0.0
+- Introduced class builder approach for `where` and `field` clauses
+
+## 1.2.1
+- Added support for boolean[] and date[] data types
+
+## 1.2.0
+- Added support for Weaviate array data types
+- Fixed support for `UTF-8` encoded characters
 
 ## 1.1.2
 - Added support of the `spellcheck` module.
