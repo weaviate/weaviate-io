@@ -1,0 +1,14 @@
+pre {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.clip-btn {
+  padding: 10px 0 10px 2px;
+  height: 48px;
+}
+.clip-btn:hover {
+  color: #d63384;
+}
+.clip-btn:active {
+  padding-top: 12px;
+}
