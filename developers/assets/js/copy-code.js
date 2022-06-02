@@ -13,19 +13,19 @@ const generateClipboardButtons = () => {
   codeElements.forEach((codeElement, index) => {
     const code = parseCode(codeElement.innerText);
 
-    // Create a span that will act as a button for copy
-    let span = document.createElement('span');
-    span.classList.add('clip-btn');
-    span.classList.add('material-icons');
-    span.textContent = 'content_copy';
-    span.title = 'Copy to clipboard';
+    // Create a button with a span for the copy icon
+    // The styling of the button is covered by .clip-btn class
+    let btn = document.createElement('button');
+    btn.classList.add('clip-btn');
+    btn.title = 'Copy to clipboard';
+    btn.innerHTML += '<span class="material-icons">content_copy</span>';
 
     // Add a click event that performs copy to clipboard
-    span.addEventListener('click', () => {
+    btn.addEventListener('click', () => {
       window.navigator.clipboard.writeText(code);
     });
 
-    codeElement.parentElement.appendChild(span);
+    codeElement.parentElement.appendChild(btn);
   });
 };
 
