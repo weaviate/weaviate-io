@@ -3,8 +3,12 @@ pre {
   grid-template-columns: 1fr auto;
 }
 .clip-btn {
-  padding: 10px 0 10px 2px;
+  padding: 10px 0 0px 2px;
   height: 48px;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 .clip-btn:hover {
   color: #d63384;
