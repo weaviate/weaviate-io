@@ -14,11 +14,11 @@ const generateClipboardButtons = () => {
     const code = parseCode(codeElement.innerText);
 
     // Create a button with a span for the copy icon
-    // The styling of the button is covered by .clip-btn class
     let btn = document.createElement('button');
     btn.classList.add('clip-btn');
     btn.title = 'Copy to clipboard';
-    btn.innerHTML += '<span class="material-icons">content_copy</span>';
+    // Add a copy icon inside
+    btn.innerHTML += '<i class="fa-regular fa-copy"></i>';
 
     // Add a click event that performs copy to clipboard
     btn.addEventListener('click', () => {

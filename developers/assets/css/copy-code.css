@@ -3,8 +3,9 @@ pre {
   grid-template-columns: 1fr auto;
 }
 .clip-btn {
-  padding: 10px 0 0px 2px;
-  height: 48px;
+  padding: 8px 0 0px 5px;
+  height: fit-content;
+  font-size: large;
 
   background-color: transparent;
   border: none;
@@ -14,5 +15,5 @@ pre {
   color: #d63384;
 }
 .clip-btn:active {
-  padding-top: 12px;
+  padding-top: 10px;
 }
