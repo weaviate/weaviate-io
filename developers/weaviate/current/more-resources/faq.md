@@ -28,11 +28,11 @@ A: Yes, it is called the [Weaviate Console](https://console.semi.technology/).
 
 ## Q: How to configure the size of your instance?
 
-You can find this in the [architecture section](../architecture/resources.html#an-example-calculation) of the docs.
+A: You can find this in the [architecture section](../architecture/resources.html#an-example-calculation) of the docs.
 
 ## Q: Does Weaviate use Hnswlib?
 
-No
+A: No
 
 Weaviate uses a custom implementation of HNSW that overcomes certain limitations of [hnswlib](https://github.com/nmslib/hnswlib), such as durability requirements, CRUD support, pre-filtering, etc.
 
@@ -50,22 +50,27 @@ _Note I: HNSW is just one implementation in Weaviate, but Weaviate can support m
 
 ## Q: Are all ANN algorithms potential candidates to become an indexation plugin in Weaviate?
 
-No
+A: No
 
 Some algorithms (e.g., Annoy or ScaNN) are entirely immutable once built, they can neither be changed nor built up incrementally. Instead, they require you to have all of your vectors present, then you build the algorithm once. After a build, you can only query them, but cannot add more elements or change existing elements. Thus, they aren’t capable of the CRUD operations we want to support in Weaviate.
 
+## Q: Does Weaviate use pre- or post-filtering ANN index search?
+
+A: Weaviate currently uses pre-filtering exclusively on filtered ANN search.
+See "How does Weaviate's vector and scalar filtering work" for more details.
+
 ## Q: How does Weaviate's vector and scalar filtering work?
 
-It’s a 2-step process:
+A: It’s a 2-step process:
 
 1. The inverted index (which is [built at import time](#q-does-weaviate-use-hnswlib)) queries to produce an allowed list of the specified document ids. Then the ANN index is queried with this allow list (the list being one of the reasons for our custom implementation).
 2. If we encounter a document id which would be a close match, but isn’t on the allow list the id is treated as a candidate (i.e. we add it to our list of links to evaluate), but is never added to the result set. Since we only add allowed IDs to the set, we don’t exit early, i.e. before the top `k` elements are reached.
 
-_Note that there is a point - when a filter is very restrictive, e.g., matching 100 out of 1B ids - the above process becomes less efficient. In that case it would be much, much cheaper to simply perform a brute-force search on the remaining 100 vectors. This is a future optimiziation that we have planned, but which is not implemented yet._
+For more information on the technical implementations, see [this video](https://www.youtube.com/watch?v=6hdEJdHWXRE).
 
 ## Q: What is Weaviate's consistency model in a distributed setup?
 
-Weaviate is generally modeled to prefer Availability over Consistency (AP over CP). It is designed to deliver low search latencies under high throughput in situations where availability is more business-critical than consistency. If strict serializability is required on your data, we generally recommend storing your data in a different primary data store, use Weaviate as an auxiliary data store, and set up replication between the two. If you do not need serializability and eventual consistency is enough for your use case, Weaviate can be used as a primary datastore.
+A: Weaviate is generally modeled to prefer Availability over Consistency (AP over CP). It is designed to deliver low search latencies under high throughput in situations where availability is more business-critical than consistency. If strict serializability is required on your data, we generally recommend storing your data in a different primary data store, use Weaviate as an auxiliary data store, and set up replication between the two. If you do not need serializability and eventual consistency is enough for your use case, Weaviate can be used as a primary datastore.
 
 Weaviate has no notion of transactions, operations always affect exactly a single key, therefore Serializability is not applicable. In a distributed setup (under development) Weaviate's consistency model is eventual consistency. When a cluster is healthy, all changes are replicated to all affected nodes by the time the write is acknowledged by the user. Objects will immediately be present in search results on all nodes after the import request completes. If a search query occurs concurrently with an import operation nodes may not be in sync yet. This means some nodes might already include the newly added or updated objects, while others don't yet. In a healthy cluster, all nodes will have converged by the time the import request has been completed successfully. If a node is temporarily unavailable and rejoins a cluster it may temporarily be out of sync. It will then sync the missed changes from other replica nodes and eventually serve the same data again. 
 
@@ -186,7 +191,8 @@ A: In short: for convenience you can add relations to your data schema, because 
 A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example](https://www.semi.technology/developers/weaviate/current/tutorials/how-to-create-a-schema.html#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
 
 ## Q: What is the different between `text` and `string` and `valueText` and `valueString`?
-In general `value<Text|String>` should always match the data type in your schema. `text` is tokenized into basically just letters and numbers, whereas `string` is not tokenized. So if you want to have exact matches like email addresses use `string` and `valueString` because `text`/`valueText` would also match e.g. `jane doe` for `jane@doe.com`.
+
+A: In general `value<Text|String>` should always match the data type in your schema. `text` is tokenized into basically just letters and numbers, whereas `string` is not tokenized. So if you want to have exact matches like email addresses use `string` and `valueString` because `text`/`valueText` would also match e.g. `jane doe` for `jane@doe.com`.
 
 ## Q: If I run a cluster (multiple instances) of Weaviate, do all the instances have to share a filesystem(PERSISTENCE_DATA_PATH)?
 
@@ -202,19 +208,13 @@ A: At the moment, we cannot aggregate over timeseries into time buckets yet, but
 
 A: You can create multiple classes in the Weaviate schema, where one class will act like a namespace in Kubernetes or an index in Elasticsearch. So the spaces will be completely independent, this allows space 1 to use completely different embeddings from space 2. The configured vectorizer is always scoped only to a single class. You can also use Weaviate's Cross-Reference features to make a graph-like connection between an object of Class 1 to the corresponding object of Class 2 to make it easy to see the equivalent in the other space.
 
-## Q: Does Weaviate use pre- or post-filtering ANN index search? 
-
-A: It’s a 2-step process: First the inverted index (which is built at import time) is queries to produce an allow list of the specified document ids. Then the HNSW index is queried with this allow list (the list being one of the reasons for our custom implementation). If we encounter a document id which would be a close match, but isn’t on the allow list the id is treated as a candidate (i.e. we add it to our list of links to evaluate), but is never added to the result set. Since we only add allowed IDs to the set, we don’t exit early, i.e. before the top k elements are reached.
-*Note that there is a point - when a filter is very restrictive, imagine matching just 100 out of 1B ids - when this becomes very inefficient. In that case it would be much, much cheaper to simply perform a brute-force search on the remaining 100 vectors. This is a future optimiziation that we have planned, but which is not implemented yet.*
-For more information on the technical implementations, see [this video](https://www.youtube.com/watch?v=6hdEJdHWXRE). 
-
 ## Q: Are there restrictions on UUID formatting? Do I have to adhere to any standards? 
 
 A: The UUID must be presented as a string matching the [Canonical Textual representation](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format). If you don’t specify a UUID, Weaviate will generate a `v4` i.e. a random UUID. If you generate them yourself you could either use random ones or deterministically determine them based on some fields that you have. For this you’ll need to use [`v3` or `v5`](https://en.wikipedia.org/wiki/Universally_unique_identifier#Versions_3_and_5_(namespace_name-based)). There are plenty of python packages available to do this.
 
 ## Q: What is the best way to iterate through objects? Can I do paginated API calls? 
 
-Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's](https://weaviate.io/developers/weaviate/current/graphql-references/filters.html#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
+A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's](https://weaviate.io/developers/weaviate/current/graphql-references/filters.html#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
 
 
 ## Q: What happens when the weaviate docker container restarts? Is my data in the weaviate database lost?
@@ -230,6 +230,7 @@ A: Yes, a UUID will be created if not specified.
 
 ## Q: What is best practice for updating data?
 
+A: Here are top 3 best practices for updating data:
 1. Use the [batch API](../restful-api-references/batch.html)
 2. Start with a small-ish batch size e.g. 100 per batch. Adjust up if it is very fast, adjust down if you run into timeouts
 3. If you have unidirectional relationships (e.g. `Foo -> Bar`.) it's easiest to first import all `Bar` objects, then import all `Foo` objects with the refs already set. If you have more complex relationships, you can also import the objects without references, then use the [`/v1/batch/references API`](../restful-api-references/batch.html) to set links between classes in arbitrary directions.
@@ -275,11 +276,11 @@ After the build is complete, you can run this Weaviate build with docker-compose
 
 ## Q: How do I get the cosine similarity from Weaviate's certainty?
 
-To obtain the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) from weaviate's `certainty`, you can do `cosine_sim = 2*certainty - 1`
+A: To obtain the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) from weaviate's `certainty`, you can do `cosine_sim = 2*certainty - 1`
 
 ## Q: My Weaviate setup is using more memory than what I think is reasonable. How can I debug this?
 
-First of all, make sure your import runs with the latest version of Weaviate,
+A: First of all, make sure your import runs with the latest version of Weaviate,
 since `v1.12.0`/`v1.12.1` fixed an issue where [too much data was written to
 disk](https://github.com/semi-technologies/weaviate/issues/1868) which then
 lead to unreasonable memory consumption after restarts. If this did not fix the
