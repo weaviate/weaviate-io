@@ -70,7 +70,7 @@ A: Queries containing deeply nested references that need to be filtered or resol
 
 ### Q: Data import takes long / is slow (slower than before v1.0.0), what is causing this and what can I do?
 
-A: The first supported vector index type HNSW is super fast at query time, but slower on vectorization. This means that adding and updating data objects costs relatively more time. When there are other vector index types available, you van try another vector index type. 
+A: The first supported vector index type HNSW is super fast at query time, but slower on vectorization. This means that adding and updating data objects costs relatively more time. When there are other vector index types available, you can try another vector index type. 
 
 ### Q: Why did you use GraphQL instead of SPARQL?
 
