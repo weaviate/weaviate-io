@@ -13,7 +13,9 @@ toc: true
 
 In this tutorial, we imported the complete English language Wikipedia article dataset into a single Weaviate instance to conduct semantic search queries through the Wikipedia articles, besides this, we've made all the graph relations between the articles too. We have made the import scripts, pre-processed articles, and backup available so that you can run the complete setup yourself. 
 
-In this repository, you'll find the 3-steps needed to replicate the import, but there are also downlaods available to skip the first two steps.
+In this tutorial, you'll find the 3-steps needed to replicate the import, but there are also downlaods available to skip the first two steps.
+
+## Stats & Links
 
 | description | value |
 | --- | --- |
@@ -26,14 +28,13 @@ In this repository, you'll find the 3-steps needed to replicate the import, but 
 | Dataset size | `122GB` |
 | Vectorization model | `sentence-transformers-paraphrase-MiniLM-L6-v2` |
 
-Additional links:
+### Links
 
 * [💡 Live Demo Weaviate GraphQL front-end](http://console.semi.technology/console/query#weaviate_uri=http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Paragraph(%0A%20%20%20%20%20%20ask%3A%20%7B%0A%20%20%20%20%20%20%20%20question%3A%20%22Who%20was%20Stanley%20Kubrick%3F%22%0A%20%20%20%20%20%20%20%20properties%3A%20%5B%22content%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20content%0A%20%20%20%20%20%20order%0A%20%20%20%20%20%20title%0A%20%20%20%20%20%20inArticle%20%7B%0A%20%20%20%20%20%20%20%20...%20on%20Article%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20answer%20%7B%0A%20%20%20%20%20%20%20%20%20%20result%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D)
 * [💡 Live Demo Weaviate RESTful Endpoint](http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080/v1/schema)
 * [Project code](https://github.com/semi-technologies/semantic-search-through-Wikipedia-with-Weaviate)
-* [PyTorch-BigGraph search with the Weaviate vector search engine (similar project)](https://github.com/semi-technologies/PyTorch-BigGraph-search-with-Weaviate)
 * [[BLOG] Semantic search through Wikipedia with Weaviate (GraphQL, Sentence-BERT, and BERT Q&A)](https://towardsdatascience.com/semantic-search-through-wikipedia-with-weaviate-graphql-sentence-bert-and-bert-q-a-3c8a5edeacf6)
-* [[VIDEO] Wikipedia Vector Search Demo with Weaviate (Henry AI Labs)](https://www.youtube.com/watch?v=IGB8vjCuay0)
+* [[VIDEO] Wikipedia Vector Search Demo with Weaviate](https://www.youtube.com/watch?v=IGB8vjCuay0)
 
 ### Acknowledgments
 
@@ -41,6 +42,8 @@ Additional links:
 * Thanks to the team of [Obsei](https://github.com/obsei/obsei) for sharing the idea on our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) channel
 
 ![Example semantic search queries in Weaviate's GraphQL interface](https://weaviate.io/img/wikipedia-demo.gif)
+
+# 3-step Tutorial
 
 ## Import
 
