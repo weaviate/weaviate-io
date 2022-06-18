@@ -47,8 +47,42 @@ layout: default
     </div>
 </section>
 
+<!-- STATS -->
+<section class="py-7" id="homepage-stats-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4 pt-5 pb-5" data-aos="fade-up" style="background-color:#122742">
+                <!-- number -->
+                <h1 class="text-center" style="font-size:4rem;font-weight:bolder;color:#FFF" id="data-stargazers">...</h1>
+                <!-- Heading -->
+                <h2 class="text-center" style="color:#fa0171">
+                    <a href="https://github.com/semi-technologies/weaviate" target="_blank">Github Stargazers</a>
+                </h2>
+            </div>
+            <div class="col-12 col-md-4 pt-5 pb-5" data-aos="fade-up" data-aos-delay="50" style="background-color:#fa0171">
+                <!-- number -->
+                <h1 class="text-center" style="font-size:4rem;font-weight:bolder;color:#FFF" id="data-downloads">...</h1>
+                <!-- Heading -->
+                <h2 class="text-center pb-0" style="margin-bottom: 0px;">
+                    Downloads
+                </h2>
+                <!-- countries -->
+                <h5 class="text-center">from <b id="data-visitors" style="color:#FFF"></b> countries</h5>
+            </div>
+            <div class="col-12 col-md-4 pt-5 pb-5" data-aos="fade-up" data-aos-delay="100" style="background-color:#122742">
+                <!-- number -->
+                <h1 class="text-center" style="font-size:4rem;font-weight:bolder;color:#FFF" id="data-slack">...</h1>
+                <!-- Heading -->
+                <h2 class="text-center" style="color:#FFF;">
+                    <a href="{{ site.slack_signup_url }}" target="_blank">Slack users</a>
+                </h2>
+            </div>
+        </div> <!-- / .row -->
+    </div> <!-- / .container -->
+</section>
+
 <!-- FEATURES -->
-<section class="py-8 py-md-11 border-bottom">
+<section class="py-7 border-bottom">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-4" data-aos="fade-up">
@@ -315,191 +349,6 @@ layout: default
                         </div>
                     </div>
                 </div> <!-- / .row -->
-            </div>
-        </div> <!-- / .row -->
-    </div> <!-- / .container -->
-</section>
-
-<!-- STATS -->
-<section class="pt-12 pt-md-9 bg-gray-200">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-12 col-md-5 col-lg-6 order-md-2">
-                <!-- Image -->
-                <img src="/img/weaviate.svg" alt="Weaviate illustration" class="img-fluid mb-6 mb-md-0">
-            </div>
-            <div class="col-12 col-md-7 col-lg-6 order-md-1">
-                <!-- Heading -->
-                <h1>
-                    Join a growing 
-                    <span class="text-primary">community</span>
-                    of Weaviate enthusiasts
-                </h1>
-                <!-- Text -->
-                <p class="fs-lg text-gray-700 mb-6">
-                    There is a growing, global community of Weaviate users. Consider giving us a try by downloading a container and by giving us a <a href="https://github.com/semi-technologies/weaviate/stargazers" target="_blank">Github star</a> if you like what you see.
-                </p>
-                <!-- Stats -->
-                <div class="d-flex">
-                    <div class="pe-5">
-                        <h3 class="mb-0">
-                            <span id="show_containers"></span>
-                        </h3>
-                        <p class="text-gray-700 mb-0">
-                            Containers pulled
-                        </p>
-                        </div>
-                        <div class="border-start border-gray-300"></div>
-                        <div class="px-5">
-                            <h3 class="mb-0">
-                                <span id="show_github_stars"></span>
-                            </h3>
-                            <p class="text-gray-700 mb-0">
-                                Github ⭐
-                            </p>
-                        </div>
-                    <div class="border-start border-gray-300"></div>
-                </div>
-            </div>
-        </div> <!-- / .row -->
-    </div> <!-- / .container -->
-</section>
-
-<!-- PRICING -->
-<section class="pt-9 pt-md-9 bg-gray-200">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8 text-center">
-                <!-- Heading -->
-                <h2>
-                    Yes, there is a managed Weaviate service as well ☺️
-                </h2>
-                <!-- Text -->
-                <p class="lead text-gray-700">
-                    We offer Weaviate as a fully managed service (including optional ML-inference). Does your use case contain sensitive data or do you want to keep full control over where the data resides? Then we can offer a hands-off managed service on your own cloud infrastructure.
-                </p>
-            </div>
-        </div> <!-- / .row -->
-        <div class="row align-items-center gx-0">
-            <div class="col-12 col-md-6">
-                <!-- Card -->
-                <div class="card rounded-lg shadow-lg mb-6 mb-md-0" style="z-index: 1;" data-aos="fade-up">
-                    <!-- Body -->
-                    <div class="card-body py-6 py-md-8">
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-xl-9">
-                                <!-- Badge -->
-                                <div class="text-center mb-5">
-                                    <span class="badge rounded-pill bg-primary-soft">
-                                        <span class="h6 fw-bold text-uppercase">Standard</span>
-                                    </span>
-                                </div>
-                                <!-- Features -->
-                                <div class="d-flex">
-                                    <!-- Check -->
-                                    <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
-                                        <i class="fe fe-check"></i>
-                                    </div>
-                                    <!-- Text -->
-                                    <p>
-                                        Fully managed Weaviate on the Weaviate Cluster Service
-                                    </p>
-                                </div>
-                                <div class="d-flex">
-                                    <!-- Check -->
-                                    <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
-                                        <i class="fe fe-check"></i>
-                                    </div>
-                                    <!-- Text -->
-                                    <p>
-                                        Direct support from our solution engineers
-                                    </p>
-                                </div>
-                                <div class="d-flex">
-                                    <!-- Check -->
-                                    <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
-                                        <i class="fe fe-check"></i>
-                                    </div>
-                                    <!-- Text -->
-                                    <p>
-                                        Production ready Service License Agreements (SLA)
-                                    </p>
-                                </div>
-                                <div class="d-flex">
-                                    <!-- Check -->
-                                    <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
-                                        <i class="fe fe-check"></i>
-                                    </div>
-                                    <!-- Text -->
-                                    <p>
-                                        Managed or 3rd-party ML-Inference
-                                    </p>
-                                </div>
-                            </div>
-                        </div> <!-- / .row -->
-                    </div>
-                    <!-- Button -->
-                    <a href="/product.html#request-access" class="card-btn btn w-100 btn-lg btn-primary">
-                        Request early access!
-                    </a>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 ms-md-n3">
-                <!-- Card -->
-                <div class="card rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
-                    <!-- Body -->
-                    <div class="card-body py-6 py-md-8">
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-xl-10">
-                                <!-- Badge -->
-                                <p class="text-center mb-8 mb-md-2">
-                                    <span class="badge rounded-pill bg-primary-soft">
-                                        <span class="h6 fw-bold text-uppercase">Enterprise</span>
-                                    </span>
-                                </p>
-                                <!-- Text -->
-                                <p class="lead text-center text-muted mb-0 mb-md-2">
-                                    We offer variable pricing with discounts for larger organizations. Get in touch with us and we’ll figure out something that works for everyone.
-                                </p>
-                                <!-- Features -->
-                                <div class="d-flex">
-                                    <!-- Check -->
-                                    <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
-                                        <i class="fe fe-check"></i>
-                                    </div>
-                                    <!-- Text -->
-                                    <p>
-                                        Google Cloud Platform
-                                    </p>
-                                </div>
-                                <div class="d-flex">
-                                    <!-- Check -->
-                                    <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
-                                        <i class="fe fe-check"></i>
-                                    </div>
-                                    <!-- Text -->
-                                    <p>
-                                        Microsoft Azure
-                                    </p>
-                                </div>
-                                <div class="d-flex">
-                                    <!-- Check -->
-                                    <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
-                                        <i class="fe fe-check"></i>
-                                    </div>
-                                    <!-- Text -->
-                                    <p>
-                                        Amazon Web Services
-                                    </p>
-                                </div>
-                            </div>
-                        </div> <!-- / .row -->
-                    </div>
-                    <!-- Button -->
-                    <a href="/product.html#request-access" class="card-btn btn w-100 btn-lg btn-light bg-gray-300 text-gray-700">
-                        Request a quote
-                    </a>
-                </div>
             </div>
         </div> <!-- / .row -->
     </div> <!-- / .container -->
