@@ -27,28 +27,6 @@ class_obj = {
 client.schema.update_config("Article", class_obj)
 {% endcapture %}
 
-{% capture javascript %}
-
-// TO DO
-// This will be implemented soon
-
-{% endcapture %}
-
-{% capture go %}
-
-// TO DO
-// This will be implemented soon
-
-{% endcapture %}
-
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
-
-// TO DO
-// This will be implemented soon
-
-{% endcapture %}
-
 {% capture curl %}
 $ curl \
     -X PUT \
@@ -77,4 +55,4 @@ $ curl \
 {% endcapture %}
 
 
-{% include molecule-restful-block-request.html block_id='schema-thing-put' %}
+{% include molecule-python-restful-block-request.html block_id='schema-thing-put' %}
