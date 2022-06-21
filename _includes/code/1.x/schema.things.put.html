@@ -1,0 +1,52 @@
+{% capture python %}
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+class_obj = {
+    "class": "Article",
+    "description": "A written text, for example a news article or blog post",
+    "properties": [
+        {
+        "dataType": [
+            "string"
+        ],
+        "description": "Title of the article",
+        "name": "title",
+        },
+        {
+        "dataType": [
+            "text"
+        ],
+        "description": "The content of the article",
+        "name": "content"
+        }
+    ]
+}
+
+client.schema.update_config("Article", class_obj)
+{% endcapture %}
+
+{% capture javascript %}
+
+// TO DO
+// This will be implemented soon
+
+{% endcapture %}
+
+{% capture go %}
+
+// TO DO
+// This will be implemented soon
+
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+// TO DO
+// This will be implemented soon
+
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='schema-thing-put' %}

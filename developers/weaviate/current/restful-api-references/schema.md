@@ -270,6 +270,22 @@ Or with all the possible parameters:
 
 {% include code/1.x/schema.things.create.elaborate.html %}
 
+
+# Get a single class from the schema
+
+Retrieves the configuration of a single class in the schema. 
+
+### Method and URL
+
+```js
+GET /v1/schema/{className}
+```
+
+### Example request
+
+{% include code/1.x/schema.get.class.html %}
+
+
 # Delete a class
 
 Remove a class (and all data in the instances) from the schema.
@@ -289,6 +305,54 @@ DELETE v1/schema/{class_name}
 ### Example request for deleting a class
 
 {% include code/1.x/schema.things.delete.html %}
+
+# Update a class
+
+Update settings of an existing schema class. 
+
+Use this endpoint to alter an existing class in the schema. Note that not all settings are mutable. If an error about immutable fields is returned and you still need to update this particular setting, you will have to delete the class (and the underlying data) and recreate. This endpoint cannot be used to modify properties. Instead use [`POST /v1/schema/{className}/properties`](#update-a-property). A typical use case for this endpoint is to update configuration, such as the `vectorIndexConfig`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
+
+You should attach a body to this PUT request with the **entire** new configuration of the class. 
+
+### Method and URL
+
+```js
+PUT v1/schema/{class_name}
+```
+
+### Parameters
+
+Parameter in the PUT request:
+
+| name | location | type | description |
+| ---- | ---- | ----------- |
+| `{class_name}` | URL | string | The name of the class |
+
+Parameter in the PUT body:
+
+| name | location | type | description |
+| ---- | ---- | ----------- |
+| `class` | body | string | The name of the class, multiple words should be concatenated in CamelCase like `ArticleAuthor`. |
+| `description` | body | string | Description of the classname |
+| `vectorIndexType` | body | string | defaults to hnsw, can be omitted in schema definition since this is the only available type for now |
+| `vectorIndexConfig` | body | object | vector index type specific settings |
+| `vectorizer` | body | string | vectorizer to use for data objects added to this class, default can be set in Weaviate's environment variables |
+| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | include the class name in vector calculation (default true). Learn more about how to regulate indexing in Weaviate [here](../modules/text2vec-contextionary.html#regulate-semantic-indexing). |
+| `properties` | body | array | An array of property objects |
+| `properties` > `dataType` | body | array | Click [here](../data-schema/datatypes.html) for a list of available data types. |
+| `properties` > `description` | body | string | Description of the property |
+| `properties` > `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | if true, the whole property will NOT be included in vectorization. default is false, meaning that the object will be NOT be skipped |
+| `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | whether name of the property is used in the calculation for the vector position of data objects. default is true. Learn more about how to regulate indexing in Weaviate [here](../modules/text2vec-contextionary.html#regulate-semantic-indexing). |
+| `properties` > `name` | body | string | The name of the property, multiple words should be concatenated in camelCase like `nameOfAuthor`. |
+| `properties` > `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](../modules/text2vec-contextionary.html#regulate-semantic-indexing). |
+| `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. See [more details here](../data-schema/schema-configuration.html#property-tokenization).|
+| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](../data-schema/schema-configuration.html#invertedindexconfig--stopwords-stopword-lists). |
+| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](../data-schema/schema-configuration.html#invertedindexconfig--indextimestamps). |
+
+
+### Example request for updating a class
+
+{% include code/1.x/schema.things.put.html %}
 
 # Add a property
 
@@ -313,6 +377,7 @@ POST v1/schema/{class_name}/properties
 ### Example request for adding a property
 
 {% include code/1.x/schema.things.properties.add.html %}
+
 
 # Inspect the shards of a class
 
