@@ -1,0 +1,26 @@
+<div class="accordion" id="collapse-{{ include.block_id }}">
+	<div class="accordion-item">
+	   <div class="accordion-header" id="panel-{{ include.block_id }}-1">
+		  <button class="accordion-button collapsed" type="button" data-language="python" data-bs-toggle="collapse" data-bs-target="#collapse-{{ include.block_id }}-2" aria-expanded="true">
+		  Python
+		  </button>
+	   </div>
+	   <div id="collapse-{{ include.block_id }}-2" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#collapse-{{ include.block_id }}">
+		  <div class="accordion-body">
+			 {% include molecule-code.html content=python language="python" %}
+		  </div>
+	   </div>
+	</div>
+	<div class="accordion-item">
+	   <div class="accordion-header" id="panel-{{ include.block_id }}-5">
+		  <button class="accordion-button collapsed" type="button" data-language="curl" data-bs-toggle="collapse" data-bs-target="#collapse-{{ include.block_id }}-6" aria-expanded="false">
+		  curl
+		  </button>
+	   </div>
+	   <div id="collapse-{{ include.block_id }}-6" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#collapse-{{ include.block_id }}">
+		  <div class="accordion-body">
+			 {% include molecule-code.html content=curl language="bash" %}
+		  </div>
+	   </div>
+	</div>
+ </div>
