@@ -167,8 +167,9 @@ if(document.getElementById('homepage-stats-container')){
     // set downloads
     getUrl('https://europe-west1-semi-production.cloudfunctions.net/docker-hub-pulls', 'text', function(status, data){
         var result = data;
-        console.log(parseInt(result.replace(',', '')));
-        animateValue(document.getElementById('data-downloads'), 0, parseInt(result.replace(',', '')), 1820);
+        console.log(result);
+        console.log(parseInt(result.replaceAll(',', '')));
+        animateValue(document.getElementById('data-downloads'), 0, parseInt(result.replaceAll(',', '')), 1820);
     });
     // get countries
     getUrl('https://us-central1-semi-production.cloudfunctions.net/website-visitors', 'text', function(status, data){
