@@ -1,5 +1,14 @@
 ---
 - title: >
+    The AI-First Database Ecosystem
+  description: > 
+    Article about the new AI-first database ecosystem
+  link: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
+  date: 2022-06-24T00:00:00Z
+  cover_image: 'https://imageio.forbes.com/specials-images/imageserve/61950180a260c12d22db736c/Medium-wide-shot-of-male-warehouse-worker-checking-orders-at-computer-workstation-in/960x0.jpg?format=jpg&width=960'
+  tags: 
+  - blog
+- title: >
     Rick Lamers • Orchest + Weaviate + Streamlit
   description: > 
     Search for comments using Weaviate's semantic search features with Orchest, Weaviate, and Streamlit.
