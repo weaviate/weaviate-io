@@ -33,6 +33,7 @@ keep_files:
 plugins:
   - jekyll-redirect-from
   - jekyll-toc
+  - jekyll-sitemap
 whitelist:
   - jekyll-redirect-from
 toc:

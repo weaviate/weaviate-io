@@ -43,6 +43,8 @@ GEM
       jekyll (>= 3.3, < 5.0)
     jekyll-sass-converter (2.2.0)
       sassc (> 2.0.1, < 3.0)
+    jekyll-sitemap (1.4.0)
+      jekyll (>= 3.7, < 5.0)
     jekyll-toc (0.17.1)
       jekyll (>= 3.9)
       nokogiri (~> 1.11)
@@ -96,8 +98,9 @@ DEPENDENCIES
   html-proofer
   jekyll
   jekyll-redirect-from
-  jekyll-toc
-  webrick
+  jekyll-sitemap
+  jekyll-toc (~> 0.17.1)
+  webrick (~> 1.7)
 
 BUNDLED WITH
    2.2.32
