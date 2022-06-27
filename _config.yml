@@ -3,6 +3,7 @@ weaviate_cli_version: 2.1.2
 python_client_version: 3.5.0
 markdown: kramdown
 highlighter: none
+url: https://weaviate.io
 baseurl: /
 kramdown:
   parse_block_html: false

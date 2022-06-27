@@ -99,8 +99,8 @@ DEPENDENCIES
   jekyll
   jekyll-redirect-from
   jekyll-sitemap
-  jekyll-toc (~> 0.17.1)
-  webrick (~> 1.7)
+  jekyll-toc
+  webrick
 
 BUNDLED WITH
    2.2.32
