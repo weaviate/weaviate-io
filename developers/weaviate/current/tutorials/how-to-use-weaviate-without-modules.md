@@ -25,7 +25,7 @@ Make sure to have [`"docker-compose"`](https://docs.docker.com/compose/) install
 
 ### Download the Docker Compose configuration file. 
 ```bash
-$ curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&media_type=none&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
+$ curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
 ```
 
 ### Start up Weaviate
