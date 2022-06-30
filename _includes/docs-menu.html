@@ -43,8 +43,9 @@
                         {% assign sorted_menus = site.pages | group_by: 'sub-menu' %}
                         {% for menu in sorted_menus %}
                             {% if menuItem.name == menu.name && guides.name == page.solution %}
-                            <!-- If it is a header item and the current page is in the navigation space for this menu item -->
-                                {% if menuItem.header == true and menuItem.nav-parent == page.nav-parent %}
+                                {% if menuItem.header == true %}
+                                <!-- Show if the current page is in the navigation space for this menu item -->
+                                {% if menuItem.nav-parent == page.nav-parent %}
                                     <h6 class="text-uppercase fw-bold collapase.show">{{ menuItem.name }}</h6>
                                     <ul class="list mb-6 collapase.show">
                                         {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
@@ -62,6 +63,7 @@
                                             {% endif %}
                                         {% endfor %}
                                     </ul>
+                                {% endif %}
                                 {% else %}
                                     <h6 class="text-uppercase fw-bold">
                                         <a href="/developers/{{ guides.name }}/{{ current_page_version_tag }}/{{ menuItem.folder }}">{{ menu.name }}</a>
