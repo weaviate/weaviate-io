@@ -2,6 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Other Modules
+nav-parent: Modules
 title: spellcheck
 description: Weaviate spellcheck module
 tags: ['spellcheck']

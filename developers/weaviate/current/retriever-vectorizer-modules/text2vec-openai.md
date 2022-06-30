@@ -2,6 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Retrievers & Vectorizers
+nav-parent: Modules
 title: text2vec-openai
 description: Use any OpenAI model inside Weaviate
 tags: ['text2vec-openai']

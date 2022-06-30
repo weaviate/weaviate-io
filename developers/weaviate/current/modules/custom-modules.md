@@ -2,7 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Modules
-sub-sub-menu: Modules
+nav-parent: Modules
 title: Custom modules
 description: How to create custom Weaviate modules
 tags: ['Custom Modules']

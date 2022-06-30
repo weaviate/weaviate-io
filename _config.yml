@@ -102,12 +102,15 @@ docs:
       - name: Retrievers & Vectorizers
         folder: retriever-vectorizer-modules
         header: true
+        nav-parent: Modules
       - name: Readers & Generators
         folder: reader-generator-modules
         header: true
+        nav-parent: Modules
       - name: Other Modules
         folder: other-modules
         header: true
+        nav-parent: Modules
       - name: Client libraries & CLI
         folder: client-libraries
         header: false
@@ -125,7 +128,7 @@ docs:
         header: false
       - name: Tutorials
         folder: tutorials
-        header: true
+        header: false
     'v1.13.2':
       - name: Getting started
         folder: getting-started
