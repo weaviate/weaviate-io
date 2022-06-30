@@ -24,9 +24,9 @@ The picture shows how a HNSW algorithm is used to go from a search query vector 
 
 ![HNSW layers](/img/guides/hnsw-layers.svg "HNSW layers"){:height="50%" width="50%"}
 
-## Distance metric
+## Distance metrics
 
-HNSW implemented currently assumes angular distance, also known as cosine distance. This is technically implemented as a vector normalization step (to make data have the same magnitude) on import, followed by a dot product calculation, which is equivalent to cosine.
+All [distance metrics supported in Weaviate](../vector-index-plugins/distances.html) are also supported with the HNSW index type.
 
 # How to use HNSW and parameters
 Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](../data-schema/schema-configuration.html). 
