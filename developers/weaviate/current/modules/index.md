@@ -2,6 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Modules
+nav-parent: Modules
 title: Modules
 description: Weaviate Modules
 tags: ['Modules']
