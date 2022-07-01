@@ -44,18 +44,24 @@
     <!-- OG -->
     {% include docs-current_version_finder.html %}
     {% if page contains "og" %}
-        <meta property="og:image" content="{{ page.og }}" />
+        <meta property="og:image" content="https://weaviate.io{{ page.og }}" />
     {% elsif page.layout == "layout-documentation" %}
         {% assign folder = page.dir | remove: '/developers/weaviate/' | remove: '/' | remove: current_page_version_tag | replace: ' ', '-' | replace: '_', '-' %}
         {% assign file = page.name | remove: '.md' | replace: ' ', '-' | replace: '_', '-' %}
-        <meta property="og:image" content="/img/og/og-documentation/{{ folder }}-{{ file }}.jpg" />
+        <meta property="og:image" content="https://weaviate.io/img/og/og-documentation/{{ folder }}-{{ file }}.jpg" />
     {% else %}
-        <meta property="og:image" content="/img/og/og-standard.png" />
+        <meta property="og:image" content="https://weaviate.io/img/og/og-standard.png" />
     {% endif %}
 
     <!-- OG final -->
+    <meta property="og:type" content="website">
     <meta property="og:site_name" content="Weaviate vector search engine" />
     <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@weaviate_io" />
+    <meta name="twitter:creator" content="@SeMI_tech" />
 
     <!-- plausible -->
     {% include plausible.html %}
