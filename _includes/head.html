@@ -26,42 +26,51 @@
     {% if page.layout == "layout-documentation" %}
         {% if page.SEOtitle %}
             <title>{{ page.SEOtitle }}</title>
-            <meta property="og:title" content="{{ page.SEOtitle }}" />
+            <meta property="og:title" content="{{ page.SEOtitle }}">
+            <meta name="twitter:title" content="{{ page.SEOtitle }}">
         {% else %}
             <title>{{ page.title }} - Weaviate vector search engine docs</title>
-            <meta property="og:title" content="{{ page.title }} - Weaviate vector search engine docs" />
+            <meta property="og:title" content="{{ page.title }} - Weaviate vector search engine docs">
+            <meta name="twitter:title" content="{{ page.title }} - Weaviate vector search engine docs">
         {% endif %}
     {% else %}
         <title>{{ page.title }}</title>
-        <meta property="og:title" content="{{ page.title }}" />
+        <meta property="og:title" content="{{ page.title }}">
+        <meta name="twitter:title" content="{{ page.title }}">
     {% endif %}
 
     <!-- description -->
     {% if page.description %}
         <meta name="description" content="{{ page.description }}">
+        <meta name="twitter:description" content="{{ page.description }}">
     {% endif %}
 
     <!-- OG -->
     {% include docs-current_version_finder.html %}
     {% if page contains "og" %}
-        <meta property="og:image" content="https://weaviate.io{{ page.og }}" />
+        <meta property="og:image" content="https://weaviate.io{{ page.og }}">
+        <meta name="twitter:image" content="https://weaviate.io{{ page.og }}">
     {% elsif page.layout == "layout-documentation" %}
         {% assign folder = page.dir | remove: '/developers/weaviate/' | remove: '/' | remove: current_page_version_tag | replace: ' ', '-' | replace: '_', '-' %}
         {% assign file = page.name | remove: '.md' | replace: ' ', '-' | replace: '_', '-' %}
-        <meta property="og:image" content="https://weaviate.io/img/og/og-documentation/{{ folder }}-{{ file }}.jpg" />
+        <meta property="og:image" content="https://weaviate.io/img/og/og-documentation/{{ folder }}-{{ file }}.jpg">
+        <meta name="twitter:image" content="https://weaviate.io/img/og/og-documentation/{{ folder }}-{{ file }}.jpg">
     {% else %}
-        <meta property="og:image" content="https://weaviate.io/img/og/og-standard.png" />
+        <meta property="og:image" content="https://weaviate.io/img/og/og-standard.png">
+        <meta name="twitter:image" content="https://weaviate.io/img/og/og-standard.png">
     {% endif %}
 
     <!-- OG final -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Weaviate vector search engine" />
-    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Weaviate vector search engine">
+    <meta property="og:type" content="website">
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@weaviate_io" />
-    <meta name="twitter:creator" content="@SeMI_tech" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@weaviate_io">
+    <meta name="twitter:creator" content="@SeMI_tech">
+    <meta property="twitter:domain" content="weaviate.io">
+    
 
     <!-- plausible -->
     {% include plausible.html %}
