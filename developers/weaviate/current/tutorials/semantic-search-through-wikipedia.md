@@ -20,7 +20,7 @@ In this tutorial, you'll find the 3-steps needed to replicate the import, but th
 | description | value |
 | --- | --- |
 | Articles imported | `11.520.881` |
-| Paragaphs imported | `280.86.917` | 
+| Paragaphs imported | `28.086.917` | 
 | Graph cross references | `125.447.595` |
 | Wikipedia version | `truthy May 15th, 2022` | 
 | Machine for inference | `12 CPU – 100 GB RAM – 250Gb SSD – 1 x NVIDIA Tesla P4` |  
