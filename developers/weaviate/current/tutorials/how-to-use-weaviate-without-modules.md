@@ -2,7 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Tutorials
-title: How to use Weaviate with your own vectors? (No modules, pure vector storage and search)
+title: How to use Weaviate with your own vectors without modules?
 intro: Learn how to use Weaviate with your own vectors (no modules).
 description: How to use Weaviate with your own vectors (no modules)?
 tags: ['how to', 'no modules']

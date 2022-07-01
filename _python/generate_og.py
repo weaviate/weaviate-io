@@ -29,27 +29,24 @@ def write_page(img, title, submenu, subtitle):
     print_subtitle = False
     if submenu != subtitle:
         print_subtitle = True
-    submenu = textwrap.fill(submenu, width=22)
-    subtitle = textwrap.fill(subtitle, width=18)
+    submenu = textwrap.fill(submenu, width=26)
+    subtitle = textwrap.fill(subtitle, width=26)
     font_path = "../../../_python/alegreya-sans-ht-full-pack-ttf/"
-    title_font = ImageFont.truetype(font_path + "AlegreyaSans-ExtraBold.ttf", 70)
-    submenu_font = ImageFont.truetype(font_path + "AlegreyaSans-Bold.ttf", 50)
-    subtitle_font = ImageFont.truetype(font_path + "AlegreyaSans-Regular.ttf", 50)
+    title_font = ImageFont.truetype(font_path + "AlegreyaSans-Regular.ttf", 50)
+    submenu_font = ImageFont.truetype(font_path + "AlegreyaSans-Regular.ttf", 50)
+    subtitle_font = ImageFont.truetype(font_path + "AlegreyaSans-ExtraBold.ttf", 96)
     image_editable = ImageDraw.Draw(img)
-    yloc = 180
-    ydist = 80
     xloc = 320
-    xdist = 60
-    image_editable.text((xloc, yloc), title, (56, 214, 17), font=title_font)
+    xdist = 160
+    image_editable.text((112, 180), title + '  >', (255, 255, 255), font=title_font)
     image_editable.text(
-        (xloc + xdist, yloc + ydist), submenu, (56, 214, 17), font=submenu_font
+        (xloc + xdist, 180), submenu, (255, 255, 255), font=submenu_font
     )
-    dist_n = submenu.count("\n")
     if print_subtitle:
         image_editable.multiline_text(
-            (xloc + 2 * xdist, yloc + 2 * ydist + dist_n * 50),
+            (112, 244),
             subtitle,
-            (56, 214, 17),
+            (255, 255, 255),
             font=subtitle_font,
         )
 
@@ -99,7 +96,10 @@ def gen_og_images():
             img_info = gen_image_info(loc + "/" + file)
             img = template.copy()
             write_page(img, "Documentation", img_info[1], img_info[0])
-            img.save(new_img_loc + "og-documentation/" + loc_name + "-" + name + ".jpg")
+            if not os.path.exists(new_img_loc + "og-documentation"):
+                os.mkdir(new_img_loc + "og-documentation")
+            rgb_im = img.convert('RGB')
+            rgb_im.save(new_img_loc + "og-documentation/" + loc_name + "-" + name + ".jpg", dpi=(600, 600))
 
 
 if __name__ == "__main__":
