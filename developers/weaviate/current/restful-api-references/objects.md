@@ -21,16 +21,26 @@ Lists all data objects in reverse order of creation. The data will be returned a
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```js
+GET /v1/objects/{className}
+```
+
+Available for backward compatibility and deprecated:
 ```js
 GET /v1/objects
 ```
+
+{% include rest-objects-crud-classname-note.html %}
+
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
-| `limit` | URL | integer | The maximum number of data objects to return, should be 25 or lower. If you want to retrieve more objects, we recommend using [GraphQL](../graphql-references/get.html). |
-| `include` | URL | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
+| `className` |  URL Path | string | The name of the class that the object(s) belong(s) to. |
+| `limit` | URL Query Parameter | integer | The maximum number of data objects to return, should be 25 or lower. If you want to retrieve more objects, we recommend using [GraphQL](../graphql-references/get.html). |
+| `include` | URL Query Parameter | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
 
 ## Response fields
 
@@ -85,6 +95,8 @@ If you have a whole dataset that you plan on importing with Weaviate sending mul
 POST /v1/objects
 ```
 
+*Note: The className is not specified through the URL, as it is part of the request body.*
+
 ### Parameters
 
 The body of the data object for a new object takes the following fields:
@@ -123,16 +135,25 @@ Collect an individual data object.
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```bash
+GET /v1/objects/{className}/{id}
+```
+
+Available for backward compatibility and deprecated:
 ```bash
 GET /v1/objects/{id}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
-| `{id}` | URL | uuid | The uuid of the data object to retrieve. |
-| `include` | URL | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector` |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
+| `{id}` | URL Query param | uuid | The uuid of the data object to retrieve. |
+| `include` | URL Query param| string | Include additional information, such as classification info. Allowed values include: `classification`, `vector` |
 
 ### Example request
 
@@ -151,14 +172,23 @@ when it doesn't).
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```bash
+HEAD /v1/objects/{className}/{id}
+```
+
+Available for backward compatibility and deprecated:
 ```bash
 HEAD /v1/objects/{id}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to retrieve. |
 
 ### Example request
@@ -173,18 +203,25 @@ Update an individual data object based on its uuid.
 
 In the RESTful API, both `PUT` and `PATCH` methods are accepted. `PUT` replaces all property values of the data object, while `PATCH` only overwrites the given properties.
 
-```js
-PUT /v1/objects/{id}
+Available since `v1.14` and preferred way:
+```bash
+PUT /v1/objects/{className}/{id}
+PATCH /v1/objects/{className}/{id}
 ```
 
-```js
+Available for backward compatibility and deprecated:
+```bash
+PUT /v1/objects/{id}
 PATCH /v1/objects/{id}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to update. |
 
 The body of the data object for a replacing (some) properties of a object takes the following fields:
@@ -207,14 +244,23 @@ Delete an individual data object from Weaviate.
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```js
+DELETE /v1/objects/{className}/{id}
+```
+
+Available for backward compatibility and deprecated:
 ```js
 DELETE /v1/objects/{id}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to delete. |
 
 ### Example request
@@ -232,6 +278,9 @@ You can validate a data object's schema and meta data.
 ```js
 POST /v1/objects/validate
 ```
+
+*Note: As with creating an object, the className is not specified through the
+URL, as it is part of the request body.*
 
 ### Parameters
 
@@ -256,14 +305,23 @@ If the schema of the object is valid, this request should return `True`/`true` i
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```js
+POST /v1/objects/{className}/{id}/references/{property_name}
+```
+
+Available for backward compatibility and deprecated:
 ```js
 POST /v1/objects/{id}/references/{property_name}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to add the reference to. |
 | `{property_name}` | URL | yes | The name of the cross-reference property
 
@@ -285,14 +343,23 @@ A `PUT` request updates *all* references of a property of a data object.
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```js
+PUT /v1/objects/{className}/{id}/references/{property_name}
+```
+
+Available for backward compatibility and deprecated:
 ```js
 PUT /v1/objects/{id}/references/{property_name}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to add the reference to. |
 | `{property_name}` | URL | yes | The name of the cross-reference property
 
@@ -315,9 +382,17 @@ Delete the single reference that is given in the body from the list of reference
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```js
+DELETE /v1/objects/{className}/{id}/references/{property_name}
+```
+
+Available for backward compatibility and deprecated:
 ```js
 DELETE /v1/objects/{id}/references/{property_name}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
