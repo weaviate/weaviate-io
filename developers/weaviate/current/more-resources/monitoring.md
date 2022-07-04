@@ -46,10 +46,11 @@ Metrics are typically scraped into a timeseries database, such as Prometheus.
 How you consume metrics depends on your setup and environment. 
 
 
-The Weaviate examples repo contains a fully-preconfigured setup using
-Prometheus, Grafana and some example dashboards. You can start up a full-setup
-including monitoring and dashboards with a single command. In this setup the
-following components are used:
+The [Weaviate examples repo contains a fully-preconfigured setup using
+Prometheus, Grafana and some example
+dashboards](https://github.com/semi-technologies/weaviate-examples/tree/main/monitoring-prometheus-grafana).
+You can start up a full-setup including monitoring and dashboards with a single
+command. In this setup the following components are used:
 
 * Docker-compose is used to provide a fully-configured setup that can be
   started with a single command.
