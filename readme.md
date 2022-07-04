@@ -83,3 +83,21 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
 OG images for documentation are created and linked automatically. The `og` tag in 
 front matter should only be used for manual override. E.g. The `architecture/binary_passage_retrieval.md` image
 would be located at `img/og/og-documentation/architecture-binary-passage-retrieval.jpg`.
+
+## Blog posts
+
+You can add a blog post by adding a markdown file to: `/_posts/blog` the format of the markdown file should be `YEAR-MONTH-DAY-TITLE.md` for example `2022-01-01-demo-post-with-dashes.md`
+
+Inside the markdown file, add the following header:
+
+```markdown
+---
+layout: post
+title: TITLE (ALSO USED FOR SEO)
+description: DESCRIPTION (ALSO USED FOR SEO)
+published: true
+author: AUTHOR NAME
+author-img: /img/people/AUTHOR.jpg
+hero-img: /img/blog/some-image.jpg
+---
+```
