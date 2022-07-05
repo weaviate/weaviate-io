@@ -101,3 +101,17 @@ author-img: /img/people/AUTHOR.jpg
 hero-img: /img/blog/some-image.jpg
 ---
 ```
+
+In case of a repost add:
+
+```markdown
+canonical-url: ORIGINAL POST URL
+canonical-name: NAME OF OUTLET
+```
+
+Example:
+
+```markdown
+canonical-url: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
+canonical-name: Forbes
+```

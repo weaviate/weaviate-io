@@ -8,6 +8,9 @@
 
     {% include header.html %}
 
+    <!--IMG-->
+    <section data-jarallax data-speed=".8" class="py-12 py-md-15 bg-cover jarallax" style="background-image: url({{ page.hero-img }});"></section>
+
     <!-- header -->
     <section class="pt-8 pt-md-11">
       <div class="container">
@@ -44,6 +47,10 @@
                 <!-- Date -->
                 <time class="fs-sm text-muted" datetime="{{ page.date | date: '%Y-%m-%d' }}">
                   Published on {{ page.date | date: '%B %d, %Y' }}
+                  {% if page.canonical-name %}
+                    originally on
+                    <a href="{{ page.canonical-url }}" target="_blank">{{ page.canonical-name }}</a>
+                  {% endif %}
                 </time>
 
               </div>
