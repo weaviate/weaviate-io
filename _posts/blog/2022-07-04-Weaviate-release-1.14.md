@@ -61,7 +61,42 @@ We were able to import 200 million objects and more, while the import performanc
 
 ![Monitoring and Observability](/img/blog/weaviate-1.14/monitoring-and-observability.png)
 
-_TODO:_
+One of the biggest challenges of running software in production, is to really understand what is happening under the hood at all times.
+Which is especially important, when something is going wrong or we need to anticipate when more resources might be needed in advance.
+
+![It doesn't work.... why?](/img/blog/weaviate-1.14/what-is-happening.jpg)
+Without such insight, we end up looking at the black box wondering what is going on.
+
+### Announcement
+
+With Weaviate `1.14` you can get a lot more insight into the resources and the performance of differwent aspects of your Weaviate instance in Production.
+
+Now, you can expose Prometheus-compatible metrics for monitoring. Combine this with a standard Prometheus/Grafana setup to create visual dashboards for metrics around: latenticies, import speed, time spent on vector vs object storage, memory usage, and more.
+
+<!-- TODO: replace the image link -->
+<!-- ![Importing Data into Weaviate](/img/weaviate-sample-dashboard-importing.png "Importing Data Into Weaviate") -->
+
+![Importing Data into Weaviate](https://raw.githubusercontent.com/semi-technologies/weaviate-io/docs/v1.14.0/img/weaviate-sample-dashboard-importing.png "Importing Data Into Weaviate")
+
+### Example
+
+In a hypothetical scenario, you might be importing a large dataset. At one point the import process might slow down. You could then check your dashboards, where you might see that the vector indexing process is still running fast, while the object indexing slowed down. <br/>
+Then you could cross reference it with another dashboard, to see that the slow down began when the import reached 120 milion objects.<br/>
+In two steps, you could narrow down the issue to a specific area, which would get you a lot closer to finding the solution. Or you could use that data to share it with the Weaviate team to get help.
+
+### Try it yourserlf
+
+Here is an [exmple project](https://gaithub.com/semi-technologies/weaviate-examples/tree/main/monitoring-prometheus-grafana){:target="_blank"} with:
+
+* `docker-compose.yml` that spins up Weaviate (without any modules),
+* a **Prometheus** instance,
+* and a **Grafana** instance.
+
+Just spin everything up, run a few queries and navigate to the Grafana instance in the browser to see the dashboard.
+
+### Learn more
+
+To learn more, see the [documentation](https://weaviate.io/developers/weaviate/current/more-resources/monitoring.html){:target="_blank"}.
 
 ## Support for non-cosine distances
 
