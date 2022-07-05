@@ -1,0 +1,177 @@
+---
+layout: post
+title: Weaviate 1.14 release
+description: Learn, what is new in Weaviate 1.14, the most reliable and observable Weaviate release yet!
+published: true
+author: Sebastian Witalec
+author-img: /img/people/icon/sebastian.jpg
+hero-img: /img/blog/weaviate-1.14/hero.png
+---
+
+We are excited to announce the release of Weaviate 1.14, the most reliable and observable Weaviate release yet. 
+
+<!-- <blockquote class="blockquote">
+  <p class="mb-0">This is the most boring release that I am most excited about.</p>
+  <footer class="blockquote-footer">Etienne Dilocker <cite title="Source Title">– CTO at SeMI</cite></footer>
+</blockquote> -->
+
+> This is the most boring release that I am most excited about <span>Etienne Dilocker – CTO at SeMI</span>
+
+But, this release is not completely devoid of new bells and whistles. We have a few neat features that you might find interesting. In short this release covers:
+
+* Reliability fixes and improvements
+* Monitoring and Observability
+* Support for non-cosine distances
+* API Changes – Namespaces for Object IDs
+
+Read below to learn more about each of these points in more detail.
+
+## Reliability fixes and improvements
+
+![Reliability and fixes](/img/blog/weaviate-1.14/reliability.png)
+
+Bug fixing is not always the most exciting topic and we often get more excited about shiny new features. But from time to time we need to make sure that the Weaviate Core “is fine”, in order for you to truly enjoy working with it.
+
+![This IS fine](/img/blog/weaviate-1.14/this-is-fine.jpg)
+
+This is why, in this release we focused on improving Weaviate’s reliability and general improvements.
+
+Check out the changelog to see the full list of features bug 25 fixes.
+_TODO: add a link and update the numbers_
+
+## Improved performance and capacity for data imports
+
+Weaviate `1.14` significantly improves the performance of data imports and increases the potential size of the database.
+
+### Problem
+Before, the HNSW index would grow in static intervals of 25,000 objects. This was fine for datasets under 25 million objects, but after that there would be a very noticeable slowdown of the data import. Then from 50–100 million objects, the import would slow down to walking pace.
+
+### Solution
+To address this problem, we changed how the HNSW index grows. We implemented a relative growth pattern, where the HNSW index size grows by either 25% or 25’000 objects (whichever is bigger).
+
+![HNSW index growth chart](/img/blog/weaviate-1.14/hnsw-index-growth.jpg)
+
+### Test
+After introducing the relative growth patterns, we've run a few tests.
+We were able to import 200 million objects and more, while the import performance remained constant throughout the process.
+
+[See more on github](https://github.com/semi-technologies/weaviate/pull/1976){:target="_blank"}.
+
+## Monitoring and Observability
+
+![Monitoring and Observability](/img/blog/weaviate-1.14/monitoring-and-observability.png)
+
+_TODO:_
+
+## Support for non-cosine distances
+
+![Support for non-cosine distances](/img/blog/weaviate-1.14/non-cosine-distances.png)
+
+_TODO:_
+
+## Updated API endpoints to manipulate data objects of specific class
+
+![Updated API endpoints](/img/blog/weaviate-1.14/updated-API-endpoints.png)
+
+One of Weaviate's features is full CRUD support. CRUD operations enable mutability of data objects and their vectors, which is a key difference between a vector database and an ANN library. In Weaviate, every data object has an ID (UUID). This ID is stored with the data object in a key-value store. IDs don’t have to be globally unique, since in Weaviate [classes](https://weaviate.io/developers/weaviate/current/data-schema/schema-configuration.html#class-object){:target="_blank"} acts as namespaces, while each class has a different [HNSW index](https://weaviate.io/developers/weaviate/current/vector-index-plugins/hnsw.html){:target="_blank"}, including the store around it, which is isolated on disk.
+
+There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{ID}](https://weaviate.io/developers/weaviate/current/restful-api-references/objects.html{:target="_blank"} REST endpoints.
+If you wanted to retrieve, modify or delete a data object by its ID, you would just need to specify the ID, without specifying the classname. So if the same ID exists for objects in multiple classes (which is fine because of the namespaces per class), Weaviate would not know which object to address and would address all objects with that ID instead. I.e. if you tried to delete an object by ID, this would result in deletion of all objects with that ID.
+
+This issue is now fixed with a **change to the API endpoints**. To get, modify and delete a data object, you now need to provide both the ID and the class name.
+
+### Endpoint changes
+The following object functions are changed: **GET**, **HEAD**, **PUT**, **PATCH** and **DELETE**. 
+
+#### Object change
+New
+```
+/v1/objects/{className}/{id}
+```
+Deprecated
+```
+/v1/objects/{id}
+```
+
+#### References change
+New
+```
+v1/objects/{className}/{id}/references/{propertyName}
+```
+Deprecated
+```
+v1/objects/{id}/references/{propertyName}
+```
+
+### Client changes
+Changes are also applied in the clients, where you now also need to provide a class name for data object manipulation. Old functions will be kept, but are considered deprecated. When you use an old function in the API or client with Weaviate from v1.14, you will see a warning message.
+
+### No namespace changes
+There will be no changes in namespaces - classes will still act as namespaces, so the same ID can be used in different classes. 
+
+### Bug Fix - retrieving objects by id
+
+Note, while implementing the endpoint changes, we took the opportunity fix any issues that involved using object ids with the REST API.
+In one case, the REST API failed to retrieve objects when using GET by id, so the following command would fail:
+
+```
+GET /v1/objects/{some-unique-id-123456}
+```
+
+Instead you had to filter objects by id using the GraphQL API with the following command:
+
+```graphql
+{
+  Get {
+    Article(where: {
+        path: ["id"],
+        operator: Equal,
+        valueString: "some-unique-id-123456"
+      }) {
+      title
+    }
+  }
+}
+```
+
+With Weaviate 1.14, the following example will work as expected.
+
+```bash
+GET /v1/objects/Article/{some-unique-id-123456}
+```
+
+<!-- ## Top bug fixes
+
+Here are some of the highlights for the improvements and bug fixes in this release. -->
+
+<!-- ### Discrepancy fix
+
+_TODO:_ -->
+
+## Stronger together
+
+Of course, making Weaviate more reliable would be a lot harder without the great community around Weaviate.
+<br/>As it is often the case:
+![You can’t fix issues you didn’t know you have](/img/blog/weaviate-1.14/you-cant-fix.jpg)
+
+### Thank you
+Thanks to many active members on Weaviate’s Community Slack and through GitHub issues, we were able to identify, prioritize and fix many more issues than if we had to do it alone.
+
+> Together, we made Weaviate v1.14 <br/>the most stable release yet.
+
+### Help us
+If at any point during your journey with Weaviate, you discover any bugs or you have feedback to share, please don’t hesitate to reach out to us via:
+* [Weaviate’s Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} – you can join anytime
+* [GitHub issues for Weaviate Core](https://github.com/semi-technologies/weaviate/issues/new){:target="_blank"}
+* [GitHub issues for Weaviate’s documentation](https://github.com/semi-technologies/weaviate-io/issues/new/choose){:target="_blank"}
+
+We have a little favor to ask though. Often reproducing the issue takes a lot more time than it takes to fix it. When reporting new issues, please include steps on how to reproduce the issue, together with some info about your environment. This will help us tremendously to identify the root cause and fix it.
+
+### Guide
+Here is a little guide on how to write great bug reports.
+
+## Enjoy
+
+We hope you enjoy the most reliable and observable Weaviate release yet!
+
+Please share your feedback with us on Slack.
