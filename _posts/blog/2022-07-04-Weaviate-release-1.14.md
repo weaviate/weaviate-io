@@ -8,6 +8,8 @@ author-img: /img/people/icon/sebastian.jpg
 hero-img: /img/blog/weaviate-1.14/hero.png
 ---
 
+## What is new
+
 We are excited to announce the release of Weaviate 1.14, the most reliable and observable Weaviate release yet. 
 
 <!-- <blockquote class="blockquote">
@@ -86,7 +88,7 @@ In two steps, you could narrow down the issue to a specific area, which would ge
 
 ### Try it yourserlf
 
-Here is an [exmple project](https://gaithub.com/semi-technologies/weaviate-examples/tree/main/monitoring-prometheus-grafana){:target="_blank"} with:
+Here is an [example project](https://github.com/semi-technologies/weaviate-examples/tree/main/monitoring-prometheus-grafana){:target="_blank"} with:
 
 * `docker-compose.yml` that spins up Weaviate (without any modules),
 * a **Prometheus** instance,
@@ -110,7 +112,7 @@ _TODO:_
 
 One of Weaviate's features is full CRUD support. CRUD operations enable mutability of data objects and their vectors, which is a key difference between a vector database and an ANN library. In Weaviate, every data object has an ID (UUID). This ID is stored with the data object in a key-value store. IDs don’t have to be globally unique, since in Weaviate [classes](https://weaviate.io/developers/weaviate/current/data-schema/schema-configuration.html#class-object){:target="_blank"} acts as namespaces, while each class has a different [HNSW index](https://weaviate.io/developers/weaviate/current/vector-index-plugins/hnsw.html){:target="_blank"}, including the store around it, which is isolated on disk.
 
-There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{ID}](https://weaviate.io/developers/weaviate/current/restful-api-references/objects.html{:target="_blank"} REST endpoints.
+There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{id}](https://weaviate.io/developers/weaviate/current/restful-api-references/objects.html){:target="_blank"} REST endpoints.
 If you wanted to retrieve, modify or delete a data object by its ID, you would just need to specify the ID, without specifying the classname. So if the same ID exists for objects in multiple classes (which is fine because of the namespaces per class), Weaviate would not know which object to address and would address all objects with that ID instead. I.e. if you tried to delete an object by ID, this would result in deletion of all objects with that ID.
 
 This issue is now fixed with a **change to the API endpoints**. To get, modify and delete a data object, you now need to provide both the ID and the class name.
