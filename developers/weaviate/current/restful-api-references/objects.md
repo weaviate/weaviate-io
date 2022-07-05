@@ -21,24 +21,14 @@ Lists all data objects in reverse order of creation. The data will be returned a
 
 ### Method and URL
 
-Available since `v1.14` and preferred way:
-```js
-GET /v1/objects/{className}
-```
-
-Available for backward compatibility and deprecated:
 ```js
 GET /v1/objects
 ```
-
-{% include rest-objects-crud-classname-note.html %}
-
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
-| `className` |  URL Path | string | The name of the class that the object(s) belong(s) to. |
 | `limit` | URL Query Parameter | integer | The maximum number of data objects to return, should be 25 or lower. If you want to retrieve more objects, we recommend using [GraphQL](../graphql-references/get.html). |
 | `include` | URL Query Parameter | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
 
