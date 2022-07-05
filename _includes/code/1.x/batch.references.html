@@ -36,19 +36,19 @@ const client = weaviate.client({
 client.batch
       .referencesBatcher()
       .withReference({
-        from:
-          `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles`,
-        to: `weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064`,
+        from: `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles`,
+        to: `weaviate://localhost/Article/6bb06a43-e7f0-393e-9ecf-3c0f4e129064`,
+        // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
       })
       .withReference({
-        from:
-          `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles`,
-        to: `weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32`,
+        from: `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles`,
+        to: `weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32`,
+        // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
       })
       .withReference({
-        from:
-          `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles`,
-        to: `weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32`,
+        from: `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles`,
+        to: `weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32`,
+        // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
       })
       .do()
       .then(res => {
@@ -74,6 +74,7 @@ client.batch
           .withFromClassName("Author")
           .withFromRefProp('wroteArticles')
           .withFromId("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+          .withToClassName("Article") // prior to v1.14 omit .withToClassName()
           .withToId("6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
           .payload()
       )
@@ -83,6 +84,7 @@ client.batch
           .withFromClassName("Author")
           .withFromRefProp('wroteArticles')
           .withFromId("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+          .withToClassName("Article") // prior to v1.14 omit .withToClassName()
           .withToId("b72912b9-e5d7-304e-a654-66dc63c55b32")
           .payload()
       )
@@ -92,6 +94,7 @@ client.batch
           .withFromClassName("Author")
           .withFromRefProp('wroteArticles')
           .withFromId("36ddd591-2dee-4e7e-a3cc-eb86d30a4304")
+          .withToClassName("Article") // prior to v1.14 omit .withToClassName()
           .withToId("b72912b9-e5d7-304e-a654-66dc63c55b32")
           .payload()
       )
@@ -126,15 +129,18 @@ func main() {
   ref := []*models.BatchReference{
     {
       From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
-      To:   "weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
+      To:   "weaviate://localhost/Article/6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
+      // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
     },
     {
       From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
-      To:   "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32",
+      To:   "weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32",
+      // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
     },
     {
       From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles",
-      To:   "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32",
+      To:   "weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32",
+      // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
     },
   }
 
@@ -174,19 +180,22 @@ public class App {
         add(
           BatchReference.builder()
             .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles")
-            .to("weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+            .to("weaviate://localhost/Article/6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+            // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
             .build()
         );
         add(
           BatchReference.builder()
             .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles")
-            .to("weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32")
+            .to("weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32")
+            // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
             .build()
         );
         add(
           BatchReference.builder()
             .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles")
-            .to("weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32")
+            .to("weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32")
+            // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
             .build()
         );
       }
@@ -208,18 +217,21 @@ public class App {
 {% endcapture %}
 
 {% capture curl %}
+# Note that for this query to work with Weaviate versions older than v1.14 you
+# need to omit the class name in the "to" beacon and specify it as
+# weaviate://localhost/<id>. The long-form beacon used in "from" is unchanged.
 $ curl \
 -X POST \
 -H "Content-Type: application/json" \
 -d '[{
     "from": "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
-    "to": "weaviate://localhost/6bb06a43-e7f0-393e-9ecf-3c0f4e129064"
+    "to": "weaviate://localhost/Article/6bb06a43-e7f0-393e-9ecf-3c0f4e129064"
   }, {
     "from": "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
-    "to": "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32"
+    "to": "weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32"
   }, {
     "from": "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles",
-    "to": "weaviate://localhost/b72912b9-e5d7-304e-a654-66dc63c55b32"
+    "to": "weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32"
   }]' \
 http://localhost:8080/v1/batch/references
 {% endcapture %}
