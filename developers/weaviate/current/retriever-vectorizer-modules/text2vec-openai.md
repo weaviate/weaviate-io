@@ -189,7 +189,7 @@ Moving can be done based on `concepts` and/or `objects`.
         certainty: 0.7,
         moveTo: {
             objects: [{
-                beacon: "weaviate://localhost/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
+                beacon: "weaviate://localhost/Article/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
             }, {
                 id: "9f0c7463-8633-30ff-99e9-fd84349018f5" 
             }],
