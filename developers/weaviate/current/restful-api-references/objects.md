@@ -319,7 +319,17 @@ The body of the data object for a new data object is an object taking the follow
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `beacon` | v4 UUID | yes | the beacon URL of the reference |
+| `beacon` | Weaviate Beacon | yes | the beacon URL of the reference, in the format of `weaviate://localhost/<ClassName>/<id>` |
+
+*Note: In the beacon format, you need to always use `localhost` as the host,
+rather than the actual hostname. `localhost` refers to the fact that the
+beacon's target is on the same Weaviate instance, as opposed to a foreign
+instance.*
+
+*Note: For backward compatibility, you can omit the class name in the beacon
+format and specify it as weaviate://localhost/<id>. This is, however,
+considered deprecated and will be removed with a future release, as duplicate
+IDs across classes could mean that this beacon is not uniquely identifiable.*
 
 ### Example request
 
@@ -357,7 +367,17 @@ The body of the data object for a new data object is a list of beacons:
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `beacon` | v4 UUID | yes | the beacon URL of the reference |
+| `beacon` | Weaviate Beacon | yes | the beacon URL of the reference, in the format of `weaviate://localhost/<ClassName>/<id>` |
+
+*Note: In the beacon format, you need to always use `localhost` as the host,
+rather than the actual hostname. `localhost` refers to the fact that the
+beacon's target is on the same Weaviate instance, as opposed to a foreign
+instance.*
+
+*Note: For backward compatibility, you can omit the class name in the beacon
+format and specify it as weaviate://localhost/<id>. This is, however,
+considered deprecated and will be removed with a future release, as duplicate
+IDs across classes could mean that this beacon is not uniquely identifiable.*
 
 ### Example request
 
@@ -395,7 +415,20 @@ The body of the data object for a new data object is a list of beacons:
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `beacon` | v4 UUID | yes | the beacon URL of the reference |
+| `beacon` | Weaviate Beacon | yes | the beacon URL of the reference, in the format of `weaviate://localhost/<ClassName>/<id>` |
+
+*Note: In the beacon format, you need to always use `localhost` as the host,
+rather than the actual hostname. `localhost` refers to the fact that the
+beacon's target is on the same Weaviate instance, as opposed to a foreign
+instance.*
+
+*Note: For backward compatibility, beacons generally support an older,
+deprecated format without the class name, as well. This means you might find
+beacons with the old, deprecated format, as well as beacons with the new format
+in the same Weaviate instance. When deleting a reference, the beacon specified
+has to match the beacon to be deleted exactly. In other words, if a beacon is
+present using the old format (without class id) you also need to specify it the
+same way.*
 
 ### Example request
 
