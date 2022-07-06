@@ -13,8 +13,12 @@ layout: default
           Blog
         </h1>
         <!-- Text -->
-        <p class="lead mb-0" style="color:#fa0171">
+        <p class="lead mb-6" style="color:#fa0171">
           Keep up to date with what we're working on! Landkit is an ever evolving theme with regular updates.
+        </p>
+        <!-- CTA -->
+        <p class="lead">
+          <a href="http://weaviate-newsletter.semi.technology/" target="_blank" class="btn btn-primary">sign up for our newsletter</a>
         </p>
       </div>
     </div> <!-- / .row -->
@@ -27,11 +31,11 @@ layout: default
       <div class="col-12">
         <!-- Heading -->
         <h3 class="mb-0">
-          Popular Stories
+          Our most recent blog posts
         </h3>
         <!-- Text -->
         <p class="mb-5 text-muted">
-          Here’s what’s big in the past week!
+          Here’s what’s big in vector search!
         </p>
       </div>
     </div> <!-- / .row -->
@@ -43,7 +47,6 @@ layout: default
             <!-- Image -->
             <a class="card-img-top" href="{{ post.url }}">
               <!-- Image -->
-              <!-- <img src="{{ post.hero-img }}" alt="Blog header Weaviate {{ post.title }}" class="card-img-top" style="max-height: 240px;"> -->
               <div class="card-img-top" style="height:240px;background-image:url('{{ post.hero-img }}');background-size:cover;"></div>
               <!-- Shape -->
               <div class="position-relative">
@@ -60,7 +63,7 @@ layout: default
               </h3>
               <!-- Text -->
               <p class="mb-0 text-muted">
-                {{ post.description }}
+                {{ post.date | date: "%B %-d, %Y" }} – {{ post.description }}
               </p>
             </a>
             <!-- Meta -->
