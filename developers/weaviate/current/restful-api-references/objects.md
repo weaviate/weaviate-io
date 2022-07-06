@@ -30,7 +30,7 @@ GET /v1/objects
 With optional query params:
 
 ```js
-GET /v1/objects?classname={classname}&limit={limit}&include={include}
+GET /v1/objects?class={className}&limit={limit}&include={include}
 ```
 
 ## Parameters
@@ -39,7 +39,7 @@ GET /v1/objects?classname={classname}&limit={limit}&include={include}
 | ---- | ---- | ----------- |
 | `limit` | URL Query Parameter (optional) | integer | The maximum number of data objects to return. |
 | `include` | URL Query Parameter (optional) | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
-| `classname` | URL Query Parameter (optional) | string | List objects by class using the class name. |
+| `class` | URL Query Parameter (optional) | string | List objects by class using the class name. |
 
 ## Response fields
 
@@ -84,9 +84,9 @@ The response of a `GET` query of a data object will give you information about a
 
 | Cause | Description | Result |
 | --- | --- | --- |
-| No objects present | No `?classname` is provided. There are no objects present in the entire Weaviate instance. | `200 OK` - No error |
-| Valid class, no objects present | `?classname` is provided, class exists. There are no objects present for this class | `200 OK` - No error |
-| Invalid class | `?classname` is provided, class does not exist | `404 Not Found` |
+| No objects present | No `?class` is provided. There are no objects present in the entire Weaviate instance. | `200 OK` - No error |
+| Valid class, no objects present | `?class` is provided, class exists. There are no objects present for this class | `200 OK` - No error |
+| Invalid class | `?class` is provided, class does not exist | `404 Not Found` |
 | Validation | Otherwise invalid user request | `422 Unprocessable Entity` |
 | Authorization | Not allowed to view resource | `403 Forbidden` | 
 | Server-Side error | Correct user input, but request failed for another reason | `500 Internal Server Error` - contains detailed error message |
