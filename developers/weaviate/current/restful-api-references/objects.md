@@ -21,16 +21,25 @@ Lists all data objects in reverse order of creation. The data will be returned a
 
 ### Method and URL
 
+Without any restrictions (across classes, default limit):
+
 ```js
 GET /v1/objects
+```
+
+With optional query params:
+
+```js
+GET /v1/objects?classname={classname}&limit={limit}&include={include}
 ```
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
-| `limit` | URL Query Parameter | integer | The maximum number of data objects to return, should be 25 or lower. If you want to retrieve more objects, we recommend using [GraphQL](../graphql-references/get.html). |
-| `include` | URL Query Parameter | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
+| `limit` | URL Query Parameter (optional) | integer | The maximum number of data objects to return, should be 25 or lower. If you want to retrieve more objects, we recommend using [GraphQL](../graphql-references/get.html). |
+| `include` | URL Query Parameter (optional) | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
+| `classname` | URL Query Parameter (optional) | string | List objects by class using the class name. |
 
 ## Response fields
 
