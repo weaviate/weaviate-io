@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: GraphQL references
 title: Filters &amp; Search Parameters
-intro: Filters and search parameters can be set to order or sort your dataset or to find specific data objects. Some filters are available in multiple functions where others are only available in specific ones. Some filters are only available when specific modules are activated. Check the <a href="../modules/">modules</a> pages, like <a href="../modules/text2vec-contextionary.html#neartext">text2vec-contextionary</a> or <a href="../modules/text2vec-transformers.html#neartext">text2vec-transformers</a> for a nearText filter or <a href="../reader-generator-modules/qna-transformers.html">qna-transformers</a> for the question answering filter.
+intro: Filters and search parameters can be set to order or sort your dataset or to find specific data objects. Some filters are available in multiple functions where others are only available in specific ones. Some filters are only available when specific modules are activated. Check the <a href="../modules/">modules</a> pages, like <a href="../retriever-vectorizer-modules/text2vec-contextionary.html#neartext">text2vec-contextionary</a> or <a href="../retriever-vectorizer-modules/text2vec-transformers.html#neartext">text2vec-transformers</a> for a nearText filter or <a href="../reader-generator-modules/qna-transformers.html">qna-transformers</a> for the question answering filter.
 description: GraphQL filters
 tags: ['graphql', 'filters']
 menu-order: 4
@@ -363,7 +363,7 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 
 Supported by the `Get{}` function. (Note that this argument is different from the [GraphQL `Explore{}` function](explore.html) )
 
-Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](../modules/qna-transformers.html) filter!
+Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](../reader-generator-modules/qna-transformers.html) filter!
 
 You can use an `nearVector` to find data objects close to a specified vector in your dataset. The `nearVector{}` argument is structured as follows for the `Get{}` function:
 
@@ -381,7 +381,7 @@ You can set a minimum required `certainty`, which will be used to determine whic
 
 Weaviate can search based on a data object. Weaviate will return data objects that are closest to this data object in the semantic space.
 
-Note: Cannot use multiple `near<Media>` arguments, or a `near<Media>` argument along with an [`ask`](../modules/qna-transformers.html) argument!
+Note: Cannot use multiple `near<Media>` arguments, or a `near<Media>` argument along with an [`ask`](../reader-generator-modules/qna-transformers.html) argument!
 
 You can specify an object's `id` or `beacon` in the argument, along with a desired `certainty`: 
 
@@ -391,7 +391,7 @@ You can specify an object's `id` or `beacon` in the argument, along with a desir
 
 Note that the first result will always be the object in the filter itself.
 
-Near object search can also be combined with the [`text2vec-contextionary` module](../modules/text2vec-contextionary.html#moving) as movement. 
+Near object search can also be combined with the [`text2vec-contextionary` module](../retriever-vectorizer-modules/text2vec-contextionary.html#moving) as movement. 
 
 
 # Group Operator (entity merging)

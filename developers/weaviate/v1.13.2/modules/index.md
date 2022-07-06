@@ -24,7 +24,7 @@ Dense vector retrievers are a relatively new approach to data retrieval, which u
 
 ## Modules with additional functionalities (*Reader* or *Generator* modules)
 
-Reader or Generator modules can be used on top of a Retriever/Vectorization module. A Reader module takes the set of relevant documents that are retrieved by the Retriever module, and extracts a piece of relevant information per document. An example Reader module is [`qna-transformers`](./qna-transformers.html) module, which extracts an answer directly from a document that is retrieved by a Retriever module. A Generator module would, on the other hand, use *language generation* to generate an answer from the given document. Currently, there are no Generator modules available out-of-the-box yet, but they [may be added soon!](https://github.com/semi-technologies/weaviate/issues/1831). 
+Reader or Generator modules can be used on top of a Retriever/Vectorization module. A Reader module takes the set of relevant documents that are retrieved by the Retriever module, and extracts a piece of relevant information per document. An example Reader module is [`qna-transformers`](../reader-generator-modules/qna-transformers.html) module, which extracts an answer directly from a document that is retrieved by a Retriever module. A Generator module would, on the other hand, use *language generation* to generate an answer from the given document. Currently, there are no Generator modules available out-of-the-box yet, but they [may be added soon!](https://github.com/semi-technologies/weaviate/issues/1831). 
 
 ## Custom modules
 
@@ -32,7 +32,7 @@ Check [here](./custom-modules.html) how you can create and use your own modules.
 
 ## Dependencies
 
-Modules can be dependent on other modules to be present. For example, to use the [`qna-transformers`](./qna-transformers.html) module, *exactly one* text vectorization module is required.
+Modules can be dependent on other modules to be present. For example, to use the [`qna-transformers`](../reader-generator-modules/qna-transformers.html) module, *exactly one* text vectorization module is required.
 
 # Module ecosystem
 
