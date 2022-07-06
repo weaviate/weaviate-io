@@ -5,17 +5,12 @@ description: "Learn, what is new in Weaviate 1.14, the most reliable and observa
 published: true
 author: Sebastian Witalec
 author-img: /img/people/icon/sebastian.jpg
-hero-img: /img/blog/weaviate-1.14/hero.png
+hero-img: /img/blog/weaviate-1.14/reliability.png
 ---
 
 ## What is new
 
 We are excited to announce the release of Weaviate 1.14, the most reliable and observable Weaviate release yet. 
-
-<!-- <blockquote class="blockquote">
-  <p class="mb-0">This is the most boring release that I am most excited about.</p>
-  <footer class="blockquote-footer">Etienne Dilocker <cite title="Source Title">– CTO at SeMI</cite></footer>
-</blockquote> -->
 
 > This is the most boring release that I am most excited about <span>Etienne Dilocker – CTO at SeMI</span>
 
@@ -39,7 +34,38 @@ Bug fixing is not always the most exciting topic and we often get more excited a
 This is why, in this release we focused on improving Weaviate’s reliability and general improvements.
 
 Check out the changelog to see the full list of features bug 25 fixes.
-_TODO: add a link and update the numbers_
+<!-- _TODO: add a link and update the numbers_ -->
+
+### Bug Fix - retrieving objects by id
+
+One critical bug fix worth highlighting – which alone should be a reason to update to Weaviate 1.14 – is for an issue where the REST API failed to GET an object by id.
+
+For example, if we you had an object with id: **my-id-123456**.
+
+If you called the following GraphQL API with a filter on id. It would return the expected object back.
+
+```graphql
+{
+  Get {
+    Article(where: {
+        path: ["id"],
+        operator: Equal,
+        valueString: "my-id-123456"
+      }) {
+      title
+    }
+  }
+}
+```
+
+However, if you called the following REST API with the same id. You wouldn't get the object back.
+```
+GET /v1/objects/{my-id-123456}
+```
+
+### Perceived data loss
+This issue made it look like Weaviate was loosing data.<br/>
+While in fact the data was still there, but the REST API failed to retrieve the required objects.
 
 ## Improved performance and capacity for data imports
 
@@ -98,26 +124,60 @@ Just spin everything up, run a few queries and navigate to the Grafana instance 
 
 ### Learn more
 
-To learn more, see the [documentation](https://weaviate.io/developers/weaviate/current/more-resources/monitoring.html){:target="_blank"}.
+To learn more, see the [documentation](/developers/weaviate/current/more-resources/monitoring.html){:target="_blank"}.
 
 ## Support for non-cosine distances
 
 ![Support for non-cosine distances](/img/blog/weaviate-1.14/non-cosine-distances.png)
 
-_TODO:_
+Weaviate v1.14 adds support for **L2** and **Dot Product** distances.<br/>
+With this you can now use datasets that support Cosine, L2 or Dot distances. This opens up a whole new world of use cases that were not possible before.<br/>
+Additionally, this is all pluggable and very easy to add new distance metrics in the future.
+### Background
+In the past Weaviate used a single number that would control the distances between vectors and that was **certainty**. Certainty is a number between 0 and 1, which works perfectly for cosine distances, as cosine distances are limited to 360° and can be easily converted to a range of 0-1.
+
+![L2 and Dot Product distance calculations](/img/blog/weaviate-1.14/distances.png)
+
+However, some machine learning models are trained with other distance metrics, like L2 or Dot Product. If we look at euclidean-based distances, two points can be infinitely far away from each other, so translating that to a bound certainty of 0-1 is not possible.
+
+### What is new
+For this reason, we introduced a new field called **distance**, which you can choose to be based on L2 or Dot Product distances.
+
+### Raw distance
+
+The distance values provided are raw numbers, which allow you to interpret the results based on your specific use-case scenario.<br/>
+For example you can normalize and convert distance values to certainty values that fit the machine learning model you use and the kind of results you expect.
+
+### Learn more
+
+For more info, check out [the documentation](/developers/weaviate/current/vector-index-plugins/distances.html){:target="_blank"}.
+
+### Contribute
+
+Adding other distances is surprisingly easy, which could be a great way to contribute to the Weaviate project.
+
+If that is something up your street, check out [the distancer code on github](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw/distancer){:target="_blank"}, to see how other metrics have been implemented.
+
+Just make sure to include plenty of tests. Remember: “reliability, reliability, reliability”.
 
 ## Updated API endpoints to manipulate data objects of specific class
 
 ![Updated API endpoints](/img/blog/weaviate-1.14/updated-API-endpoints.png)
 
-One of Weaviate's features is full CRUD support. CRUD operations enable mutability of data objects and their vectors, which is a key difference between a vector database and an ANN library. In Weaviate, every data object has an ID (UUID). This ID is stored with the data object in a key-value store. IDs don’t have to be globally unique, since in Weaviate [classes](https://weaviate.io/developers/weaviate/current/data-schema/schema-configuration.html#class-object){:target="_blank"} acts as namespaces, while each class has a different [HNSW index](https://weaviate.io/developers/weaviate/current/vector-index-plugins/hnsw.html){:target="_blank"}, including the store around it, which is isolated on disk.
+The REST API CRUD operations now require to use both an **object id** and the target **namespace**.<br/>
+This ensures that the operations are performed on the correct objects.
 
-There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{id}](https://weaviate.io/developers/weaviate/current/restful-api-references/objects.html){:target="_blank"} REST endpoints.
+### Backround
+
+One of Weaviate's features is full CRUD support. CRUD operations enable mutability of data objects and their vectors, which is a key difference between a vector database and an ANN library. In Weaviate, every data object has an ID (UUID). This ID is stored with the data object in a key-value store. IDs don’t have to be globally unique, since in Weaviate [classes](/developers/weaviate/current/data-schema/schema-configuration.html#class-object){:target="_blank"} acts as namespaces, while each class has a different [HNSW index](/developers/weaviate/current/vector-index-plugins/hnsw.html){:target="_blank"}, including the store around it, which is isolated on disk.
+
+There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{id}](/developers/weaviate/current/restful-api-references/objects.html){:target="_blank"} REST endpoints.
 If you wanted to retrieve, modify or delete a data object by its ID, you would just need to specify the ID, without specifying the classname. So if the same ID exists for objects in multiple classes (which is fine because of the namespaces per class), Weaviate would not know which object to address and would address all objects with that ID instead. I.e. if you tried to delete an object by ID, this would result in deletion of all objects with that ID.
+
+### Endpoint changes
 
 This issue is now fixed with a **change to the API endpoints**. To get, modify and delete a data object, you now need to provide both the ID and the class name.
 
-### Endpoint changes
 The following object functions are changed: **GET**, **HEAD**, **PUT**, **PATCH** and **DELETE**. 
 
 #### Object change
@@ -145,45 +205,6 @@ Changes are also applied in the clients, where you now also need to provide a cl
 
 ### No namespace changes
 There will be no changes in namespaces - classes will still act as namespaces, so the same ID can be used in different classes. 
-
-### Bug Fix - retrieving objects by id
-
-Note, while implementing the endpoint changes, we took the opportunity fix any issues that involved using object ids with the REST API.
-In one case, the REST API failed to retrieve objects when using GET by id, so the following command would fail:
-
-```
-GET /v1/objects/{some-unique-id-123456}
-```
-
-Instead you had to filter objects by id using the GraphQL API with the following command:
-
-```graphql
-{
-  Get {
-    Article(where: {
-        path: ["id"],
-        operator: Equal,
-        valueString: "some-unique-id-123456"
-      }) {
-      title
-    }
-  }
-}
-```
-
-With Weaviate 1.14, the following example will work as expected.
-
-```bash
-GET /v1/objects/Article/{some-unique-id-123456}
-```
-
-<!-- ## Top bug fixes
-
-Here are some of the highlights for the improvements and bug fixes in this release. -->
-
-<!-- ### Discrepancy fix
-
-_TODO:_ -->
 
 ## Stronger together
 
