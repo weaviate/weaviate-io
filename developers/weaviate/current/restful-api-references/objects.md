@@ -33,17 +33,29 @@ With optional query params:
 GET /v1/objects?classname={classname}&limit={limit}&include={include}
 ```
 
-### Parameters
+## Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
-| `limit` | URL Query Parameter (optional) | integer | The maximum number of data objects to return, should be 25 or lower. If you want to retrieve more objects, we recommend using [GraphQL](../graphql-references/get.html). |
+| `limit` | URL Query Parameter (optional) | integer | The maximum number of data objects to return. |
 | `include` | URL Query Parameter (optional) | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
 | `classname` | URL Query Parameter (optional) | string | List objects by class using the class name. |
 
 ## Response fields
 
 The response of a `GET` query of a data object will give you information about all objects [(or a single object)](#get-a-data-object). Next to general information about the data objects, like schema information and property values, meta information will be shown depending on the `include` fields or `additional properties` of your request.
+
+### Response format
+
+```js
+{
+  "objects": [/* list of objects, see below */],
+  "deprecations: null,
+}
+
+```
+
+### Object fields
 
 | field name | datatype | required `include` or `additional` field |  description |
 | ---- | ---- | ---- | ---- |
@@ -67,6 +79,17 @@ The response of a `GET` query of a data object will give you information about a
 | `classification` > `id` | uuid |  `classification` | the classification id |
 | `classification` > `scope` | list of strings |  `classification` | the initial fields to classify |
 | `featureProjection` > `vector` | list of floats |  `featureProjection` | the 2D or 3D vector coordinates of the feature projection |
+
+## Status codes and error cases
+
+| Cause | Description | Result |
+| --- | --- | --- |
+| No objects present | No `?classname` is provided. There are no objects present in the entire Weaviate instance. | `200 OK` - No error |
+| Valid class, no objects present | `?classname` is provided, class exists. There are no objects present for this class | `200 OK` - No error |
+| Invalid class | `?classname` is provided, class does not exist | `404 Not Found` |
+| Validation | Otherwise invalid user request | `422 Unprocessable Entity` |
+| Authorization | Not allowed to view resource | `403 Forbidden` | 
+| Server-Side error | Correct user input, but request failed for another reason | `500 Internal Server Error` - contains detailed error message |
 
 ### Example request
 
