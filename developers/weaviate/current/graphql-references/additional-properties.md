@@ -30,9 +30,51 @@ The `creationTimeUnix` field is the timestamp of when the data object was create
 
 The `lastUpdateTimeUnix` field is the timestamp of when the data object was last updated.
 
-# Certainty
+# Distance 
 
-When a semantic search is performed with the `Get {}` function (`nearVector` and `nearText` if the `text2vec-contextionary` or `text2vec-transformers` module is enabled), you can get the `certainty` of the returned data objects. The `certainty` value is a measure indicating how close the data object is to the search query. This is measured by the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) between the search query (the `near...` filter in the `Get {}`  function) and the data object in the vector space. Results of GraphQL semantic search queries by the `near...` filter, will automatically be ordered with descending `certainty` values, so that the top results match your search query the most.
+Any time a vector search is involved, the `distance` can be displayed to show
+the distance between the query vector and each result. The distance is the raw
+distance metric that was used as part of the vector search. For example, if the
+distance metric is `cosine`, distance will return a number between 0 and 2. See
+the full overview of [distance metrics and the expected distance
+ranges](../vector-index-plugins/distances.html).
+
+A distance would be typical in any place that you retrieve objects using a
+vector, for example `Get {}` with `nearObject`, `nearVector`, or `near<Media>`.
+The results are ordered by the ascending distance - unless you explicitly sort
+by another property.
+
+A lower value for a distance always means that two vectors are closer to
+another, than a higher value. Depending on the distance metric used, this can
+also mean that distances would return negative values. For example, if dot
+product distance is used, a distance of `-50` would indicate more similarity
+between a vector pair than `20`. See [the distances
+page](../vector-index-plugins/distances.html) for details and exact
+definitions.
+
+*Note that the distance field was introduced in `v1.14.0`.*
+
+An example query:
+
+{% include code/1.x/graphql.underscoreproperties.distance.html %}
+
+## Certainty (only for cosine distance)
+
+Prior to `v1.14`, certainty was the only way to display vector similarity in
+the results. `certainty` is an opinionated measure that always returns a number
+between 0 and 1. It is therefore only usable with fixed-range distance metrics,
+such as `cosine`. 
+
+For a class with `cosine` distance metrics, the `certainty` is a
+normalization of the distance using the formula:
+
+```
+certainty = 1 - distance/2
+```
+
+Given that a cosine distance is always a number between 0 and 2, this will
+result in certainties between 0 and 1, with 1 indicating identical vectors, and
+0 indiating opposing angles. This definition only exists in an angular space.
 
 An example query:
 

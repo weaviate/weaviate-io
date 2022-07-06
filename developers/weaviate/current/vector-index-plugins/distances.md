@@ -67,3 +67,5 @@ metrics, scores may be unbounded. As a result the preferred way is to use
 
 For backward compatibility, `certainty` can still be used when the distance is
 `cosine`. If any other distance is selected `certainty` cannot be used.
+
+See also [distance and certainty _additional{} properties](../graphql-references/additional-properties.html).
