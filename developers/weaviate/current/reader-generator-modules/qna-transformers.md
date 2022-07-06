@@ -34,6 +34,8 @@ Starting with `v1.10.0`, the answer score can be used as a reranking factor for 
 
 The Q&A module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `qna-transformers` module (`bert-large-uncased-whole-word-masking-finetuned-squad (uncased)`) in combination with the `text2vec-transformers`is as follows:
 
+{% include docs-current_version_finder.html %}
+
 ```yaml
 ---
 version: '3.4'
@@ -46,7 +48,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.9.0
+    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -58,6 +60,7 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'text2vec-transformers'
       ENABLE_MODULES: 'text2vec-transformers,qna-transformers'
+      CLUSTER_HOSTNAME: 'node1'
   t2v-transformers:
     image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilbert-base-v2
     environment:

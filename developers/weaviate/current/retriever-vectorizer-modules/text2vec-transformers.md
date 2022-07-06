@@ -36,11 +36,13 @@ Note: you can also use the [Weaviate configuration tool](../getting-started/inst
 
 You can find an example Docker-compose file below, which will spin up Weaviate with the transformers module. In this example, we have selected the `sentence-transformers/msmarco-distilroberta-base-v2` which works great for [asymmetric semantic search](https://sbert.net/examples/applications/semantic-search/README.html#symmetric-vs-asymmetric-semantic-search). See below for how to select an alternative model.
 
+{% include docs-current_version_finder.html %}
+
 ```yaml
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:{{ site.weaviate_version }}
+    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
     restart: on-failure:0
     ports:
      - "8080:8080"
@@ -51,6 +53,7 @@ services:
       DEFAULT_VECTORIZER_MODULE: text2vec-transformers
       ENABLE_MODULES: text2vec-transformers
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
+      CLUSTER_HOSTNAME: 'node1'
   t2v-transformers:
     image: sentence-transformers/msmarco-distilroberta-base-v2
     environment:
@@ -200,9 +203,17 @@ Note: You cannot use multiple `'near'` filters, or a `'near'` operators along wi
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Explore+%28%0D%0A++++nearText%3A+%7B%0D%0A++++++concepts%3A+%5B%22New+Yorker%22%5D%2C%0D%0A++++++certainty%3A+0.95%2C%0D%0A++++++moveAwayFrom%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%2C+%22shop%22%5D%2C%0D%0A++++++++force%3A+0.2%0D%0A++++++%7D%0D%0A++++++moveTo%3A+%7B%0D%0A++++++++concepts%3A+%5B%22publisher%22%2C+%22articles%22%5D%2C%0D%0A++++++++force%3A+0.5%0D%0A++++++%7D%2C%0D%0A++++%7D%0D%0A++%29+%7B%0D%0A++++beacon%0D%0A++++certainty%0D%0A++++className%0D%0A++%7D%0D%0A%7D' %}
 
-### Certainty
+### Distance
 
-You can set a minimum required `certainty`, which will be used to determine which data results to return. The value is a float between 0.0 (return all data objects, regardless of similarity) and 1.0 (only return data objects that match completely, without any uncertainty). The certainty of a query result is computed by normalized distance of the fuzzy query and the data object in the vector space.
+You can set a maximum allowed `distance`, which will be used to determine which
+data results to return. The interpretation of the value of the distance field
+depends on the [distance metric used](../vector-index-plugins/distances.html).
+
+If the distance metric is `cosine` you can also use `certainty` instead of
+`distance`. Certainty normalizes the distance in a range of 0..1, where 0
+reprents a perfect opposite (cosine distance of 2) and 1 represents vectors
+with an identical angle (cosine distance of 0). Certainty is not available on
+non-cosine distance metrics.
 
 ### Moving
 
@@ -218,7 +229,7 @@ Moving can be done based on `concepts` and/or `objects`.
     Publication(
       nearText: {
         concepts: ["fashion"],
-        certainty: 0.7,
+        distance: 0.6
         moveTo: {
             objects: [{
                 beacon: "weaviate://localhost/Article/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
@@ -232,7 +243,7 @@ Moving can be done based on `concepts` and/or `objects`.
     ){
       name
       _additional {
-        certainty
+        distance
         id
       }
     }

@@ -35,6 +35,7 @@ Note: you can also use the [Weaviate configuration tool](../getting-started/inst
 ## Docker-compose file
 You can find an example Docker-compose file below, which will spin up Weaviate with the image vectorization module. This example spins up a Weaviate with only one vectorization module, the  `img2vec-neural` module of `pytorch` with the `resnet50` model.
 
+{% include docs-current_version_finder.html %}
 ```yaml
 ---
 version: '3.4'
@@ -47,7 +48,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.9.0
+    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -58,6 +59,7 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'img2vec-neural'
       ENABLE_MODULES: 'img2vec-neural'
+      CLUSTER_HOSTNAME: 'node1'
   i2v-neural:
     image: semitechnologies/img2vec-pytorch:resnet50
 ```
@@ -78,7 +80,7 @@ You can combine the image vectorization module with a text vectorization module.
       - '8080'
       - --scheme
       - http
-      image: semitechnologies/weaviate:1.9.0
+    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
       ports:
       - 8080:8080
       restart: on-failure:0
@@ -90,6 +92,7 @@ You can combine the image vectorization module with a text vectorization module.
         PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
         DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
         ENABLE_MODULES: 'text2vec-contextionary,img2vec-neural'
+        CLUSTER_HOSTNAME: 'node1'
     contextionary:
       environment:
         OCCURRENCE_WEIGHT_LINEAR_FACTOR: 0.75
