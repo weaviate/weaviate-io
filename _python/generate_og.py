@@ -51,7 +51,7 @@ def write_page(img, title, submenu, subtitle):
         )
 
 
-def gen_image_info(file):
+def gen_image_info(file, filetype):
     """Collect image info from markdown frontmatter.
 
     Args:
@@ -60,24 +60,40 @@ def gen_image_info(file):
     Returns:
         tuple[str]: Length 2 tuple containing page title and sub-menu.
     """
-    with open(file, "r") as rfile:
-        title = None
-        sub_menu = None
-        for _ in range(20):
-            line = rfile.readline()
-            if line.startswith("title:"):
-                if "404" in line:
-                    title = "404"
-                else:
-                    title = line.split("title: ")[1]
-            if line.startswith("sub-menu:"):
-                sub_menu = line.split("sub-menu: ")[1]
+    if filetype == "documentation":
+        with open(file, "r") as rfile:
+            title = None
+            sub_menu = None
+            for _ in range(20):
+                line = rfile.readline()
+                if line.startswith("title:"):
+                    if "404" in line:
+                        title = "404"
+                    else:
+                        title = line.split("title: ")[1]
+                if line.startswith("sub-menu:"):
+                    sub_menu = line.split("sub-menu: ")[1]
+        return title, sub_menu
+    if filetype == "blog":
+        with open(file, "r") as rfile:
+            title = None
+            sub_menu = None
+            for _ in range(20):
+                line = rfile.readline()
+                if line.startswith("title:"):
+                    if "404" in line:
+                        title = "404"
+                    else:
+                        title = line.split("title: ")[1]
+                if line.startswith("author:"):
+                    sub_menu = line.split("author: ")[1]
+        return title, sub_menu
+    return None, None
 
-    return title, sub_menu
 
-
-def gen_og_images():
+def gen_og_doc_images():
     """Function to locate all documentation pages and generate og images.
+    For the DOCS
 
     Returns:
         None
@@ -93,7 +109,7 @@ def gen_og_images():
             name = file.split(".")[0]
             name = name.replace("_", "-")
             name = name.replace(" ", "-")
-            img_info = gen_image_info(loc + "/" + file)
+            img_info = gen_image_info(loc + "/" + file, "documentation")
             img = template.copy()
             write_page(img, "Documentation", img_info[1], img_info[0])
             if not os.path.exists(new_img_loc + "og-documentation"):
@@ -101,6 +117,36 @@ def gen_og_images():
             rgb_im = img.convert('RGB')
             rgb_im.save(new_img_loc + "og-documentation/" + loc_name + "-" + name + ".jpg", dpi=(600, 600))
 
+def gen_og_blog_images():
+    """Function to locate all documentation pages and generate og images.
+    For the DOCS
+
+    Returns:
+        None
+    """
+    os.chdir("_posts/blog")
+    walk = [(w[0], w[2]) for w in os.walk(".")]
+    new_img_loc = "../../" + IMG_LOC
+    for loc, files in walk:
+        loc_name = "-".join(loc.split("/")[1:])
+        for file in files:
+            if file[0] == ".":
+                continue
+            name = file.split(".")[0]
+            name = name.replace("_", "-")
+            name = name.replace(" ", "-")
+            name = name[11:]
+            img_info = gen_image_info(loc + "/" + file, "blog")
+            img = template.copy()
+            write_page(img, "Blog", ' ', img_info[0])
+            if not os.path.exists(new_img_loc + "og-blog"):
+                os.mkdir(new_img_loc + "og-blog")
+            rgb_im = img.convert('RGB')
+            rgb_im.save(new_img_loc + "og-blog/" + name + ".jpg", dpi=(600, 600))
+
 
 if __name__ == "__main__":
-    gen_og_images()
+    current_dir = os.getcwd()
+    gen_og_doc_images()
+    os.chdir(current_dir)
+    gen_og_blog_images()

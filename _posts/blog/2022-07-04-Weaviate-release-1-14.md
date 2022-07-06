@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Weaviate 1.14 release
-description: Learn, what is new in Weaviate 1.14, the most reliable and observable Weaviate release yet!
+description: "Learn, what is new in Weaviate 1.14, the most reliable and observable Weaviate release yet!"
 published: true
 author: Sebastian Witalec
 author-img: /img/people/icon/sebastian.jpg
