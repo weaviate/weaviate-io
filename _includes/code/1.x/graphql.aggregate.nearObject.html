@@ -4,8 +4,10 @@
   Aggregate {
     Article(nearObject:{
       id: "9199ee38-b0db-4800-b146-dea8cfc62351"
-      certainty: 0.7       # at least one of "objectLimit", 
-    },                     # and/or "certainty" must be set
+                           # prior to v1.14 use certainty: 0.7, 
+                           # instead of distance
+      distance: 0.6        # at least one of "objectLimit", 
+    },                     # and/or "distance" must be set
     objectLimit: 200) {    # when using near<Media>
       meta {
         count
@@ -40,7 +42,7 @@ result = (
   .aggregate('Article')
   .with_meta_count()
   .with_fields('wordCount {count maximum mean median minimum mode sum type} inPublication {pointingTo type}')
-  .with_near_object({'id': '9199ee38-b0db-4800-b146-dea8cfc62351', 'certainty': 0.7})
+  .with_near_object({'id': '9199ee38-b0db-4800-b146-dea8cfc62351', 'distance': 0.6}) # prior to v1.14 use certainty instead of distance
   .with_object_limit(200)
   .do()
 )
@@ -61,7 +63,7 @@ client.graphql
       .aggregate()
       .withClassName('Article')
       .withFields('meta { count } wordCount {count maximum mean median minimum mode sum type}')
-      .withNearObject({ id: "abefd256-8574-442b-9293-9205193737ee", certainty: 0.7 })
+      .withNearObject({ id: "abefd256-8574-442b-9293-9205193737ee", distance: 0.6 }) # prior to v1.14 use certainty instead of distance
       .withObjectLimit(100)
       .do()
       .then(res => {
@@ -112,9 +114,9 @@ func main() {
   }
 
   // nearObject
-  nearObject := &graphql.NearObjectArgumentBuilder{}
-  nearObject.WithCertainty(0.85). // At least one of certainty or objectLimit need to be set
-          WithID("9ac36e33-6611-4fb3-bade-4b1e409c6564")
+  withNearObject := client.GraphQL().NearObjectArgBuilder().
+    WithDistance(0.85). // At least one of distance or objectLimit need to be set
+    WithID("9ac36e33-6611-4fb3-bade-4b1e409c6564")
 
   result, err := client.GraphQL().
     Aggregate().
@@ -169,7 +171,8 @@ public class App {
       }).build();
 
     NearObjectArgument nearObject = NearObjectArgument.builder()
-      .certainty(0.7f) // at least one of certainty or objectLimit need to be set
+      // prior to v1.14 use certainty instead of distance
+      .distance(0.6f) // at least one of certainty or objectLimit need to be set
       .id("9199ee38-b0db-4800-b146-dea8cfc62351")
       .build();
 
@@ -195,7 +198,7 @@ $ echo '{
       Aggregate {
         Article(nearObject:{
           id: "9199ee38-b0db-4800-b146-dea8cfc62351"
-          certainty: 0.7
+          distance: 0.6 # prior to v1.14 use certainty instead
         },
         objectLimit: 200) {
           meta {
