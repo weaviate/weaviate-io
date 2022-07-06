@@ -97,33 +97,7 @@
                 </time>
 
               </div>
-              <div class="col-auto">
-
-                <!-- Share -->
-                <span class="h6 text-uppercase text-muted d-none d-md-inline me-4">
-                  Share:
-                </span>
-
-                <!-- Icons -->
-                <ul class="d-inline list-unstyled list-inline list-social">
-                  <li class="list-inline-item list-social-item me-3">
-                    <a href="#!" class="text-decoration-none">
-                      <img src="./assets/img/icons/social/instagram.svg" class="list-social-icon" alt="...">
-                    </a>
-                  </li>
-                  <li class="list-inline-item list-social-item me-3">
-                    <a href="#!" class="text-decoration-none">
-                      <img src="./assets/img/icons/social/facebook.svg" class="list-social-icon" alt="...">
-                    </a>
-                  </li>
-                  <li class="list-inline-item list-social-item me-3">
-                    <a href="#!" class="text-decoration-none">
-                      <img src="./assets/img/icons/social/twitter.svg" class="list-social-icon" alt="...">
-                    </a>
-                  </li>
-                </ul>
-
-              </div>
+          
             </div>
 
           </div>
@@ -135,6 +109,13 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 col-md-10 col-lg-9 col-xl-8">
+
+            <!-- TOC -->
+            {% if page.toc == true %}
+              <h2 id="toc">Table of Contents</h2>
+              {{ content | toc_only }}
+              <hr>
+            {% endif %}
 
             {{ content }}
 

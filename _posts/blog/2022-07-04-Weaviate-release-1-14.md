@@ -6,6 +6,7 @@ published: true
 author: Sebastian Witalec
 author-img: /img/people/icon/sebastian.jpg
 hero-img: /img/blog/weaviate-1.14/reliability.png
+toc: true
 ---
 
 ## What is new

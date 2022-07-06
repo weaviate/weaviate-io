@@ -99,6 +99,7 @@ published: true
 author: AUTHOR NAME
 author-img: /img/people/AUTHOR.jpg
 hero-img: /img/blog/some-image.jpg
+toc: true # Create table of contents if set to `true`
 ---
 ```
 
