@@ -20,7 +20,7 @@ But, this release is not completely devoid of new bells and whistles. We have a 
 * Reliability fixes and improvements
 * Monitoring and Observability
 * Support for non-cosine distances
-* API Changes – Namespaces for Object IDs
+* API changes
 
 Read below to learn more about each of these points in more detail.
 
@@ -30,7 +30,7 @@ Read below to learn more about each of these points in more detail.
 
 Bug fixing is not always the most exciting topic and we often get more excited about shiny new features. But from time to time we need to make sure that the Weaviate Core “is fine”, in order for you to truly enjoy working with it.
 
-![This IS fine](/img/blog/weaviate-1.14/this-is-fine.jpg)
+<!-- ![This IS fine](/img/blog/weaviate-1.14/this-is-fine.jpg) -->
 
 This is why, in this release we focused on improving Weaviate’s reliability and general improvements.
 
@@ -210,8 +210,9 @@ There will be no changes in namespaces - classes will still act as namespaces, s
 ## Stronger together
 
 Of course, making Weaviate more reliable would be a lot harder without the great community around Weaviate.
-<br/>As it is often the case:
-![You can’t fix issues you didn’t know you have](/img/blog/weaviate-1.14/you-cant-fix.jpg)
+<br/>As it is often the case: *“You can’t fix issues you didn’t know you have”*.
+
+<!-- ![You can’t fix issues you didn’t know you have](/img/blog/weaviate-1.14/you-cant-fix.jpg) -->
 
 ### Thank you
 Thanks to many active members on Weaviate’s Community Slack and through GitHub issues, we were able to identify, prioritize and fix many more issues than if we had to do it alone.
