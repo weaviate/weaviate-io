@@ -18,6 +18,7 @@ const client = weaviate.client({
 client
     .data
     .getter()
+    .withClassName("MyClass")
     .withLimit(2)
     .do()
     .then(res => {
@@ -46,6 +47,7 @@ func main() {
     client := weaviate.New(cfg)
 
     data, err := client.Data().ObjectsGetter().
+        WithClassName("MyClass").
         WithAdditional("classification").
         Do(context.Background())
 
@@ -72,6 +74,7 @@ public class App {
     WeaviateClient client = new WeaviateClient(config);
 
     Result<List<WeaviateObject>> result = client.data().objectsGetter()
+      .withClassName("MyClass")
       .withAdditional("classification")
       .run();
 
