@@ -146,10 +146,7 @@ With Weaviate `1.14` you can get a lot more insight into the resources and the p
 
 Now, you can expose Prometheus-compatible metrics for monitoring. Combine this with a standard Prometheus/Grafana setup to create visual dashboards for metrics around latencies, import speed, time spent on vector vs object storage, memory usage, and more.
 
-<!-- TODO: replace the image link -->
-<!-- ![Importing Data into Weaviate](/img/weaviate-sample-dashboard-importing.png "Importing Data Into Weaviate") -->
-
-![Importing Data into Weaviate](https://raw.githubusercontent.com/semi-technologies/weaviate-io/docs/v1.14.0/img/weaviate-sample-dashboard-importing.png "Importing Data Into Weaviate")
+![Importing Data into Weaviate](/img/weaviate-sample-dashboard-importing.png "Importing Data Into Weaviate")
 
 ### Example
 
