@@ -73,8 +73,21 @@ The body of the data object for a new object is a list of objects containing:
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `from` | beacon | yes | The beacon, in the form of `weaviate://{host}/{Classname}/{id}/{cref_property_name}` |
-| `to` | beacon | yes | The beacon, in the form of `weaviate://{host}/{id}` |
+| `from` | Weaviate Beacon (long-form) | yes | The beacon, in the form of `weaviate://localhost/{Classname}/{id}/{cref_property_name}` |
+| `to` | Weaviate Beacon (regular) | yes | The beacon, in the form of `weaviate://localhost/{className}/{id}` |
+
+*Note: In the beacon format, you need to always use `localhost` as the host,
+rather than the actual hostname. `localhost` refers to the fact that the
+beacon's target is on the same Weaviate instance, as opposed to a foreign
+instance.*
+
+*Note: For backward compatibility, you can omit the class name in the
+short-form beacon format that is used for `to`. You can specify it as
+weaviate://localhost/<id>. This is, however, considered deprecated and will be
+removed with a future release, as duplicate IDs across classes could mean that
+this beacon is not uniquely identifiable. For the long-form beacon - used as part
+of `from` - you always need to specify the full beacon, including the reference
+property name.*
 
 ### Example request
 

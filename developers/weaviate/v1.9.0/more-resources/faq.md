@@ -181,7 +181,7 @@ A: In short: for convenience you can add relations to your data schema, because 
 
 ## Q: Is it possible to create one-to-many relationships in the schema?
 
-A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example](https://www.semi.technology/developers/weaviate/current/tutorials/how-to-create-a-schema.html#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
+A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example](https://weaviate.io/developers/weaviate/current/tutorials/how-to-create-a-schema.html#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
 
 ## Q: What is the different between `text` and `string` and `valueText` and `valueString`?
 In general `value<Text|String>` should always match the data type in your schema. `text` is tokenized into basically just letters and numbers, whereas `string` is not tokenized. So if you want to have exact matches like email addresses use `string` and `valueString` because `text`/`valueText` would also match e.g. `jane doe` for `jane@doe.com`.

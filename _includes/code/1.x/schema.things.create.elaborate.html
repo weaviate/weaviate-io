@@ -8,6 +8,7 @@ class_obj = {
     "description": "A written text, for example a news article or blog post",
     "vectorIndexType": "hnsw",
     "vectorIndexConfig": {
+        "distance": "cosine",
         "efConstruction": 128,
         "maxConnections": 64
     },
@@ -81,6 +82,7 @@ var classObj = {
     "description": "A written text, for example a news article or blog post",
     "vectorIndexType": "hnsw",
     "vectorIndexConfig": {
+        "distance": "cosine",
         "efConstruction": 128,
         "maxConnections": 64
     },
@@ -169,10 +171,16 @@ func main() {
   client := weaviate.New(cfg)
 
   classObj := &models.Class{
-    Class:           "Article",
-    Description:     "A written text, for example a news article or blog post",
-    VectorIndexType: "hnsw",
-    Vectorizer:      "text2vec-contextionary",
+    Class:             "Article",
+    Description:       "A written text, for example a news article or blog post",
+    VectorIndexType:   "hnsw",
+    Vectorizer:        "text2vec-contextionary",
+    VectorIndexConfig: map[string]interface{}{
+      "distance": "cosine",
+      "ef": float64(128),
+      "efConstruction": float64(128),
+      "maxConnections": float64(32),
+    },
     Properties: []*models.Property{
       {
         DataType:    []string{"string"},
@@ -235,6 +243,7 @@ public class App {
       .build();
 
     VectorIndexConfig vectorIndexConfig = VectorIndexConfig.builder()
+      .distance("cosine")
       .cleanupIntervalSeconds(300)
       .efConstruction(128)
       .maxConnections(64)
@@ -297,6 +306,7 @@ $ curl \
     "description": "A written text, for example a news article or blog post",
     "vectorIndexType": "hnsw",
     "vectorIndexConfig": {
+        "distance": "cosine",
         "efConstruction": 128,
         "maxConnections": 64
     },

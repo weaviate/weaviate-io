@@ -2,6 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Retrievers & Vectorizers
+nav-parent: Modules
 title: multi2vec-clip
 description: Use OpenAI's CLIP model within Weaviate
 tags: ['multi2vec-clip']
@@ -33,6 +34,8 @@ Note: you can also use the [Weaviate configuration tool](../getting-started/inst
 
 You can find an example Docker-compose file below, which will spin up Weaviate with the multi2vec-clip module. In this example we have selected the `sentence-transformers/clip-ViT-B-32-multilingual` which works great for vectorizing images and text in the same vector space. It even supports multiple languages. See below for how to select an alternative model.
 
+{% include docs-current_version_finder.html %}
+
 ```yaml
 ---
 version: '3.4'
@@ -45,7 +48,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:{{ site.weaviate_version }}
+    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -244,9 +247,18 @@ filter!
 Alternatively, you can use a helper function in the Python, Java or Go client (not with the JavaScript client). With an encoder function, you can input your image as `png` file, and the helper function encodes this to a `base64` encoded value.
 
 {% include code/1.x/img2vec-neural.nearimage.encode.html %}
-### Certainty
 
-You can set a minimum required `certainty`, which will be used to determine which data results to return. The value is a float between 0.0 (return all data objects, regardless of similarity) and 1.0 (only return data objects that match completely, without any uncertainty). The certainty of a query result is computed by normalized distance of the fuzzy query and the data object in the vector space.
+### Distance
+
+You can set a maximum allowed `distance`, which will be used to determine which
+data results to return. The interpretation of the value of the distance field
+depends on the [distance metric used](../vector-index-plugins/distances.html).
+
+If the distance metric is `cosine` you can also use `certainty` instead of
+`distance`. Certainty normalizes the distance in a range of 0..1, where 0
+reprents a perfect opposite (cosine distance of 2) and 1 represents vectors
+with an identical angle (cosine distance of 0). Certainty is not available on
+non-cosine distance metrics.
 
 ### Moving
 
@@ -262,10 +274,10 @@ Moving can be done based on `concepts` and/or `objects`.
     Publication(
       nearText: {
         concepts: ["fashion"],
-        certainty: 0.7,
+        distance: 0.6,
         moveTo: {
             objects: [{
-                beacon: "weaviate://localhost/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
+                beacon: "weaviate://localhost/Article/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
             }, {
                 id: "9f0c7463-8633-30ff-99e9-fd84349018f5" 
             }],
@@ -276,7 +288,7 @@ Moving can be done based on `concepts` and/or `objects`.
     ){
       name
       _additional {
-        certainty
+        distance
         id
       }
     }

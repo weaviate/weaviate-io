@@ -3,7 +3,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-exists = client.data_object.exists("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+exists = client.data_object.exists("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "MyClass")
 print(exists) 
 {% endcapture %} 
 
@@ -17,6 +17,7 @@ const client = weaviate.client({
 
 client.data
   .checker()
+  .withClassName("MyClass")
   .withId("df48b9f6-ba48-470c-bf6a-57657cb07390")
   .do()
   .then((exists) => {
@@ -45,6 +46,7 @@ func main() {
   client := weaviate.New(cfg)
 
   exists, err := client.Data().Checker().
+    WithClassName("MyClass").
     WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a0923").
     Do(context.Background())
 
@@ -68,6 +70,7 @@ public class App {
     WeaviateClient client = new WeaviateClient(config);
 
     Result<Boolean> result = client.data().checker()
+      .withClassName("MyClass")
       .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
       .run();
 
@@ -81,7 +84,7 @@ public class App {
 {% endcapture %} 
 
 {% capture curl %} 
-$ curl -I http://localhost:8080/v1/objects/f3e20a86-0b44-4558-a336-bd137d866387 
+$ curl -I http://localhost:8080/v1/objects/MyClass/f3e20a86-0b44-4558-a336-bd137d866387 
 {% endcapture %} 
 
 {% include molecule-restful-block-request.html block_id='semantic-kind-object-head' %}

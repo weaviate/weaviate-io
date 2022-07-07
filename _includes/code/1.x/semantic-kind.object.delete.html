@@ -3,7 +3,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-client.data_object.delete("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+client.data_object.delete("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "MyClass")
 {% endcapture %}
 
 {% capture javascript %}
@@ -16,6 +16,7 @@ const client = weaviate.client({
 
 client.data
       .deleter()
+      .withClassName("MyClass")
       .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
       .do()
       .then(res => {
@@ -43,6 +44,7 @@ func main() {
   client := weaviate.New(cfg)
 
   err := client.Data().Deleter().
+    WithClassName("MyClass").
     WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
     Do(context.Background())
 
@@ -67,6 +69,7 @@ public class App {
 
     Result<Boolean> result = client.data().deleter()
       .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+      .withClassName("MyClass")
       .run();
 
     if (result.hasErrors()) {
@@ -79,7 +82,7 @@ public class App {
 {% endcapture %}
 
 {% capture curl %}
-$ curl -X DELETE http://localhost:8080/v1/objects/36ddd591-2dee-4e7e-a3cc-eb86d30a4303
+$ curl -X DELETE http://localhost:8080/v1/objects/MyClass/36ddd591-2dee-4e7e-a3cc-eb86d30a4303
 {% endcapture %}
 
 {% include molecule-restful-block-request.html block_id='semantic-kind-object-delete' %}

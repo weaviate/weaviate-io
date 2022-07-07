@@ -5,7 +5,7 @@
     Publication (
       nearText:{ 
           concepts: ["fashion"],
-          certainty: 0.7,
+          distance: 0.6, #prior to v1.14 use certainty: 0.7
           moveAwayFrom: {
             concepts: ["finance"],
             force: 0.45
@@ -41,7 +41,7 @@ client = weaviate.Client("http://localhost:8080")
 
 near_text_filter = {
   'concepts': ["fashion"],
-  'certainty': 0.7,
+  'distance': 0.6, #prior to v1.14 use certainty: 0.7
   'moveAwayFrom': {
     'concepts': ["finance"],
     'force': 0.45
@@ -82,7 +82,7 @@ client.graphql
       .withFields('name _additional { semanticPath{ path {concept distanceToNext distanceToPrevious distanceToQuery distanceToResult}}}')
       .withNearText({
         concepts: ["fashion"],
-        certainty: 0.7,
+        distance: 0.6, #prior to v1.14 use certainty: 0.7
         moveAwayFrom: {
           concepts: ["finance"],
           force: 0.45
@@ -147,7 +147,7 @@ func main() {
   }
   nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts).
-    WithCertainty(0.7).
+    WithDistance(0.6). // prior to v1.14, use WithCertainty(0.7)
     WithMoveTo(moveTo).
     WithMoveAwayFrom(moveAwayFrom)
 
@@ -212,7 +212,7 @@ public class App {
 
     NearTextArgument explore = client.graphQL().arguments().nearTextArgBuilder()
       .concepts(new String[]{ "fashion" })
-      .certainty(0.7f)
+      .distance(0.6f) // prior to v1.14, use .certainty(0.7f)
       .moveTo(moveTo)
       .moveAwayFrom(moveAway)
       .build();
@@ -240,7 +240,7 @@ $ echo '{
       Publication (
         nearText:{ 
             concepts: [\"fashion\"],
-            certainty: 0.7,
+            distance: 0.6, #prior to v1.14 use certainty: 0.7
             moveAwayFrom: {
               concepts: [\"finance\"],
               force: 0.45

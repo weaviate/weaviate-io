@@ -373,9 +373,17 @@ You can use an `nearVector` to find data objects close to a specified vector in 
 
 Note that the length of the given vector in the filter needs to be of the same length as the data objects in your vector space (300 in case of `text2vec-contextionary`).
 
-### Certainty
+### Distance
 
-You can set a minimum required `certainty`, which will be used to determine which data results to return. The value is a float between 0.0 (return all data objects, regardless similarity) and 1.0 (only return data objects that are matching completely, without any uncertainty). The certainty of a query result is computed by normalized distance of the fuzzy query and the data object in the vector space.
+You can set a maximum allowed `distance`, which will be used to determine which
+data results to return. The interpretation of the value of the distance field
+depends on the [distance metric used](../vector-index-plugins/distances.html).
+
+If the distance metric is `cosine` you can also use `certainty` instead of
+`distance`. Certainty normalizes the distance in a range of 0..1, where 0
+reprents a perfect opposite (cosine distance of 2) and 1 represents vectors
+with an identical angle (cosine distance of 0). Certainty is not available on
+non-cosine distance metrics.
 
 # NearObject Vector Search Argument
 

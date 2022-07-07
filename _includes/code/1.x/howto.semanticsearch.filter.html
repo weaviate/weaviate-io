@@ -5,7 +5,7 @@
     Publication(
       nearText: {
         concepts: ["fashion"],
-        certainty: 0.7,
+        distance: 0.6, # prior to v1.14 use certainty: 0.7,
         moveAwayFrom: {
           concepts: ["finance"],
           force: 0.45
@@ -30,7 +30,7 @@ client = weaviate.Client("http://localhost:8080")
 
 where_filter = {
   'concepts': ["fashion"],
-  'certainty': 0.7,
+  'distance': 0.6, # prior to v1.14 use 'certainty': 0.7,
   'moveAwayFrom': {
     'concepts': ["finance"],
     'force': 0.45
@@ -68,7 +68,7 @@ client.graphql
       .withFields('name')
       .withNearText({
         concepts: ["fashion"],
-        certainty: 0.7,
+        distance: 0.6, # prior to v1.14 use certainty: 0.7,
         moveAwayFrom: {
           concepts: ["finance"],
           force: 0.45
@@ -120,7 +120,7 @@ func main() {
   }
   nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts).
-    WithCertainty(0.7).
+    WithDistance(0.6). // prior to v1.14 use WithCertainty(0.6)
     WithMoveTo(moveTo).
     WithMoveAwayFrom(moveAwayFrom)
 
@@ -169,7 +169,7 @@ public class App {
       .concepts(new String[]{ "fashion" })
       .moveTo(moveTo)
       .moveAwayFrom(moveAway)
-      .certainty(0.7f)
+      .distance(0.6f) // prior to v1.14 use .certainty(0.7f)
       .build();
 
     Result<GraphQLResponse> result = client.graphQL().get()
@@ -195,7 +195,7 @@ $ echo '{
         Publication(
           nearText: {
             concepts: [\"fashion\"],
-            certainty: 0.7,
+            distance: 0.6, # prior to v1.14 use certainty: 0.7,
             moveAwayFrom: {
               concepts: [\"finance\"],
               force: 0.45

@@ -5,7 +5,7 @@
     Publication(
       nearText: {
         concepts: ["fashion"],
-        certainty: 0.7,
+        distance: 0.6 # prior to v1.14 use "certainty" instead of "distance"
         moveAwayFrom: {
           concepts: ["finance"],
           force: 0.45
@@ -18,7 +18,8 @@
     ){
       name
       _additional {
-        certainty
+        certainty # only supported if distance==cosine. 
+        distance  # always supported
       }
     }
   }
@@ -33,7 +34,7 @@ client = weaviate.Client("http://localhost:8080")
 
 nearText = {
   "concepts": ["fashion"],
-  "certainty": 0.7,
+  "distance": 0.6 # prior to v1.14 use "certainty" instead of "distance"
   "moveAwayFrom": {
     "concepts": ["finance"],
     "force": 0.45
@@ -46,7 +47,7 @@ nearText = {
 
 result = (
   client.query
-  .get("Article", ["title", "_additional {certainty} "])
+  .get("Article", ["title", "_additional {certainty distance} "]) # note that certainty is only supported if distance==cosine
   .with_near_text(nearText)
   .do()
 )
@@ -66,10 +67,10 @@ const client = weaviate.client({
 client.graphql
       .get()
       .withClassName('Author')
-      .withFields('name wroteArticles {... on Article {title _additional{certainty}}}')
+      .withFields('name wroteArticles {... on Article {title _additional{certainty distance}}}') // note that certainty is only supported if distance==cosine
       .withNearText({
         concepts: ["fashion"],
-        certainty: 0.7,
+        distance: 0.6, // prior to v1.14 use certainty instead of distance
         moveAwayFrom: {
           concepts: ["finance"],
           force: 0.45
@@ -112,12 +113,13 @@ func main() {
   name := graphql.Field{Name: "name"}
   _additional := graphql.Field{
     Name: "_additional", Fields: []graphql.Field{
-      {Name: "certainty"},
+      {Name: "certainty"}, // only supported if distance==cosine
+      {Name: "distance"},  // always supported
     },
   }
 
   concepts := []string{"fashion"}
-  certainty := float32(0.7)
+  distance := float32(0.6)
   moveAwayFrom := &graphql.MoveParameters{
     Concepts: []string{"finance"},
     Force:    0.45,
@@ -128,7 +130,7 @@ func main() {
   }
   nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts).
-    WithCertainty(certainty).
+    WithDistance(distance). // use WithCertainty(certainty) prior to v1.14
     WithMoveTo(moveTo).
     WithMoveAwayFrom(moveAwayFrom)
 
@@ -175,12 +177,13 @@ public class App {
     Field _additional = Field.builder()
       .name("_additional")
       .fields(new Field[]{
-        Field.builder().name("certainty").build()
+        Field.builder().name("certainty").build(), // only supported if distance==cosine
+        Field.builder().name("distance").build(),  // always supported
       }).build();
 
     NearTextArgument explore = client.graphQL().arguments().nearTextArgBuilder()
       .concepts(new String[]{ "fashion" })
-      .certainty(0.7f)
+      .distance(0.6f) // use .certainty(0.7f) prior to v1.14
       .moveTo(moveTo)
       .moveAwayFrom(moveAway)
       .build();
@@ -208,7 +211,7 @@ $ echo '{
       Publication(
         nearText: {
           concepts: [\"fashion\"],
-          certainty: 0.7,
+          distance: 0.6, // use certainty instead of distance prior to v1.14
           moveAwayFrom: {
             concepts: [\"finance\"],
             force: 0.45
@@ -221,7 +224,8 @@ $ echo '{
       ){
         name
         _additional {
-          certainty
+          certainty // only supported if distance==cosine
+          distance  // always supported
         }
       }
     }

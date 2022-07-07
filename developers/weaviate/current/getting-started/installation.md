@@ -55,7 +55,7 @@ An example docker-compose setup file with the transformers model [`sentence-tran
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:1.9.0
+    image: semitechnologies/weaviate:1.14.0
     restart: on-failure:0
     ports:
      - "8080:8080"
@@ -66,6 +66,7 @@ services:
       DEFAULT_VECTORIZER_MODULE: text2vec-transformers
       ENABLE_MODULES: text2vec-transformers
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
+      CLUSTER_HOSTNAME: 'node1
   t2v-transformers:
     image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
     environment:
@@ -91,7 +92,7 @@ An example docker-compose setup file with the english language contextionary mod
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:1.9.0
+    image: semitechnologies/weaviate:1.14.0
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -102,6 +103,7 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
       ENABLE_MODULES: text2vec-contextionary
+      CLUSTER_HOSTNAME: 'node1
   contextionary:
     environment:
       OCCURRENCE_WEIGHT_LINEAR_FACTOR: 0.75
@@ -132,7 +134,7 @@ at import and search time:
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:1.9.0
+    image: semitechnologies/weaviate:1.14.0
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -141,6 +143,7 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'none'
+      CLUSTER_HOSTNAME: 'node1'
 ```
 
 
@@ -181,6 +184,7 @@ An overview of environment variables in the docker-compose file:
   | `AUTHORIZATION_ADMINLIST_READONLY_USERS` | Users with read-only permission| `string - comma-separated list` | `alice@example.com,dave@example.com` |
 | `DISK_USE_WARNING_PERCENTAGE` |  If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `80` |
 | `DISK_USE_READONLY_PERCENTAGE`  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `90` |
+| `PROMETHEUS_MONITORING_ENABLED`  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](../more-resources/monitoring.html) | `string - true/false` | `false` |
 
 
 # Weaviate Cloud Service
