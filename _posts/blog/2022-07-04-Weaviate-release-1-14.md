@@ -34,15 +34,16 @@ And yes, bug fixing is not always the most exciting topic, as we often get more 
 
 Check out [the changelog](https://github.com/semi-technologies/weaviate/releases/tag/v1.14.0){:target="_blank"} to see the complete list of features and over 25 bug fixes.
 
-## Critical bug fix in compact logic
+### Critical bug fix in compaction logic
 
-In this release we fixed a critical bug in the compact logic, which in rare situations could result in data loss. The bug affected environments with frequent updates and deletes.
+In this release we fixed a critical bug, which in rare situations could result in data loss.<br/>
+The bug affected environments with frequent updates and deletes.
 
 > This bug fix alone, makes it worth upgrading to Weaviate 1.14.
 
-### Background
+#### Background
 
-We found a critical error in the compaction logic that could lead to the compaction operation either corrupting or completely losing data elements.
+We found a critical error in the compactioniong logic that could lead to the compaction operation either corrupting or completely losing data elements.
 
 This could be obsereved through a variety of symptoms:
   * Retrieving an object by it's ID would lead to a different result than retrieving the object using a filter on the id property
@@ -51,7 +52,7 @@ This could be obsereved through a variety of symptoms:
   * Filters with `limit=1` would not return any results when there should be exactly one element, but increasing the limit would then include the object
   * Filters would return results with `null` ids
 
-### Example
+#### Example
 In the first case, if you had an object with id: **my-id-123456**.
 
 Calling the following GraphQL API with a filter on id would return the expected object.
@@ -75,29 +76,35 @@ However, calling the following REST API with the same id wouldn't get the object
 GET /v1/objects/{my-id-123456}
 ```
 
-### The problem
+#### The problem
 
 So, if your data manipulation logic depended on the above operations to perform as expected, you update and delete operations might have been issued incorrectly.
 
-## Improved performance for large scale data imports
+### Improved performance for large scale data imports
 
 Weaviate `1.14` significantly improves the performance of data imports for large datasets.
 
 Note that the performance improvements should be noticeable for imports of over 10 million objects. Furthermore, this update enables you to import over 200 million objects into the database.
 
-### Problem
+#### Problem
 Before, the HNSW index would grow in constant intervals of 25,000 objects. This was fine for datasets under 25 million objects. But once the database got to around 25 million objects, adding new objects would be significantly slower. Then from 50–100m, the import process would slow down to a walking pace.
 
-### Solution
+#### Solution
 To address this problem, we changed how the HNSW index grows. We implemented a relative growth pattern, where the HNSW index size increases by either 25% or 25’000 objects (whichever is bigger).
 
 ![HNSW index growth chart](/img/blog/weaviate-1.14/hnsw-index-growth.jpg)
 
-### Test
+#### Test
 After introducing the relative growth patterns, we've run a few tests.
 We were able to import 200 million objects and more, while the import performance remained constant throughout the process.
 
 [See more on github](https://github.com/semi-technologies/weaviate/pull/1976){:target="_blank"}.
+
+### Full changelog
+
+These are few of the many improvements and bug fixes that were included in this release.
+
+Check out [the changelog](https://github.com/semi-technologies/weaviate/releases/tag/v1.14.0){:target="_blank"} to see the complete list.
 
 ## Monitoring and Observability
 
