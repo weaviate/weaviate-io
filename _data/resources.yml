@@ -1,13 +1,13 @@
 ---
-- title: >
-    The AI-First Database Ecosystem
-  description: > 
-    Article about the new AI-first database ecosystem
-  link: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
-  date: 2022-06-24T00:00:00Z
-  cover_image: 'https://imageio.forbes.com/specials-images/imageserve/61950180a260c12d22db736c/Medium-wide-shot-of-male-warehouse-worker-checking-orders-at-computer-workstation-in/960x0.jpg?format=jpg&width=960'
-  tags: 
-  - blog
+# - title: >
+#     The AI-First Database Ecosystem
+#   description: > 
+#     Article about the new AI-first database ecosystem
+#   link: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
+#   date: 2022-06-24T00:00:00Z
+#   cover_image: 'https://imageio.forbes.com/specials-images/imageserve/61950180a260c12d22db736c/Medium-wide-shot-of-male-warehouse-worker-checking-orders-at-computer-workstation-in/960x0.jpg?format=jpg&width=960'
+#   tags: 
+#   - blog
 - title: >
     Rick Lamers • Orchest + Weaviate + Streamlit
   description: > 
@@ -146,17 +146,17 @@
   link: https://github.com/semi-technologies/semantic-search-through-Wikipedia-with-Weaviate
   tags:
   - dataset
-- title: >
-    Wikipedia and Weaviate
-  date: 2021-11-26T00:00:00Z
-  cover_image: https://miro.medium.com/max/1200/1*Yh2-SH-8PcxWQVHmjes1WA.jpeg
-  description: > 
-    Article on towardsdatascience written by Bob on semantic search through the complete Wikipedia, discussing GraphQL, Sentence-BERT, and BERT Q&A
-  source: tds
-  link: https://towardsdatascience.com/semantic-search-through-wikipedia-with-weaviate-graphql-sentence-bert-and-bert-q-a-3c8a5edeacf6
-  tags:
-  - blog
-  - use-case
+# - title: >
+#     Wikipedia and Weaviate
+#   date: 2021-11-26T00:00:00Z
+#   cover_image: https://miro.medium.com/max/1200/1*Yh2-SH-8PcxWQVHmjes1WA.jpeg
+#   description: > 
+#     Article on towardsdatascience written by Bob on semantic search through the complete Wikipedia, discussing GraphQL, Sentence-BERT, and BERT Q&A
+#   source: tds
+#   link: https://towardsdatascience.com/semantic-search-through-wikipedia-with-weaviate-graphql-sentence-bert-and-bert-q-a-3c8a5edeacf6
+#   tags:
+#   - blog
+#   - use-case
 - title: >
     BigGraph Wikidata dataset
   date: 2021-12-01T00:00:00Z

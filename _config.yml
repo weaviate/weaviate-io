@@ -8,6 +8,10 @@ baseurl: /
 kramdown:
   parse_block_html: false
 rdiscount extensions: [smart]
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:title.html
 exclude:
   - "*.json"
   - Gemfile

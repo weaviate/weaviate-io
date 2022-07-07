@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <!--IMG-->
+    <section data-jarallax data-speed=".8" class="py-12 py-md-15 bg-cover jarallax" style="background-image: url({{ page.hero-img }});"></section>
+
+    <!-- header -->
+    <section class="pt-8 pt-md-11">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-9 col-xl-8">
+
+            <!-- Heading -->
+            <h1 class="display-4 text-center">
+              {{ page.title }}
+            </h1>
+
+            <!-- Text -->
+            <p class="lead mb-7 text-center text-muted">
+              {{ page.description }}
+            </p>
+
+            <!-- Meta -->
+            <div class="row align-items-center py-5 border-top border-bottom">
+              <div class="col-auto">
+
+                <!-- Avatar -->
+                <div class="avatar avatar-lg">
+                  <img src="{{ page.author-img }}" alt="{{ page.author }}" class="avatar-img rounded-circle">
+                </div>
+
+              </div>
+              <div class="col ms-n5">
+
+                <!-- Name -->
+                <h6 class="text-uppercase mb-0">
+                  {{ page.author }}
+                </h6>
+
+                <!-- Date -->
+                <time class="fs-sm text-muted" datetime="{{ page.date | date: '%Y-%m-%d' }}">
+                  Published on {{ page.date | date: '%B %d, %Y' }}
+                  {% if page.canonical-name %}
+                    originally on
+                    <a href="{{ page.canonical-url }}" target="_blank">{{ page.canonical-name }}</a>
+                  {% endif %}
+                </time>
+
+              </div>
+              <!-- Share -->
+              <div class="col-auto">
+
+                <span class="h6 text-uppercase text-muted d-none d-md-inline me-4">
+                  Share:
+                </span>
+
+                <ul class="d-inline list-unstyled list-inline list-social">
+                  <li class="list-inline-item list-social-item me-3">
+                    <a href="https://twitter.com/intent/tweet?hashtags=weaviate&text=A great article about: {{page.title}}%0Ahttps://weaviate.io/{{page.url}}" class="text-decoration-none">
+                      <span class="fe fe-twitter"></span>
+                    </a>
+                  </li>
+                  <li class="list-inline-item list-social-item me-3">
+                    <a href="https://linkedin.com/shareArticle?url=https://weaviate.io/{{page.url}}&title={{page.title}}" class="text-decoration-none">
+                      <span class="fe fe-linkedin"></span>
+                    </a>
+                  </li>
+                  <li class="list-inline-item list-social-item me-3">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fweaviate.io%2F{{page.url}}" class="text-decoration-none">
+                      <span class="fe fe-facebook"></span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+          
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <section class="pt-6 pt-md-8 blog">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-9 col-xl-8">
+
+            <!-- TOC -->
+            {% if page.toc == true %}
+              <h2 id="toc">Table of Contents</h2>
+              {{ content | toc_only }}
+              <hr>
+            {% endif %}
+
+            {{ content }}
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    {% include footer.html %}
+
+    {% include javascript.html %}
+
+  </body>
+
+</html>

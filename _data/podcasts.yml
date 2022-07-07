@@ -1,5 +1,29 @@
 ---
 - title: >
+    Weaviate 1.14 Release!
+  description: > 
+    Join Etienne Dilocker and Connor Shorten to learn about what is new in the latest Weaviate release.
+  youtube: eiQaZIhUS_o
+  date: 2022-07-07T00:00:00Z
+  cover_image: '/img/podcasts/podcast-19.png'
+  is_use_case: false
+- title: >
+    Vincent D. Warmerdam on Applications of Nearest Neighbor Search
+  description: > 
+    Join Vincent and Connor, to learn how the nearest neighbor search can aid in tasks such as Data De-Duplication and Data Labeling!
+  youtube: Nwh7L4Do0Fg
+  date: 2022-07-07T00:00:00Z
+  cover_image: '/img/podcasts/podcast-18.png'
+  is_use_case: false
+- title: >
+    Scientific Literature Mining with Kyle Lo
+  description: > 
+    Join Kyle Lo and Connor, to learn how Vector Search enables us to find semantically similar items in large collections.
+  youtube: kUjhCsawgCo
+  date: 2022-05-31T00:00:00Z
+  cover_image: '/img/podcasts/podcast-17.png'
+  is_use_case: false
+- title: >
     Weaviate’s ANN Benchmarks
   description: > 
     Join Etienne Dilocker and Connor Shorten to learn about the latest benchmark report for Weaviate.
