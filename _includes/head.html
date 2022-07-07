@@ -59,6 +59,10 @@
         {% assign file = page.name | remove: '.md' | replace: ' ', '-' | replace: '_', '-' %}
         <meta property="og:image" content="https://weaviate.io/img/og/og-documentation/{{ folder }}-{{ file }}.jpg">
         <meta name="twitter:image" content="https://weaviate.io/img/og/og-documentation/{{ folder }}-{{ file }}.jpg">
+    {% elsif page.layout == "post" %}
+        {% assign filename = page.url | split: '/' %}
+        <meta property="og:image" content="https://weaviate.io/img/og/og-blog/{{ filename[4] | replace: '.html', '' }}.jpg">
+        <meta name="twitter:image" content="https://weaviate.io/img/og/og-blog/{{ filename[4] | replace: '.html', '' }}.jpg">
     {% else %}
         <meta property="og:image" content="https://weaviate.io/img/og/og-standard.png">
         <meta name="twitter:image" content="https://weaviate.io/img/og/og-standard.png">
