@@ -1,5 +1,14 @@
 ---
 - title: >
+    Weaviate 1.14 Release!
+  description: > 
+    Join Etienne Dilocker and Connor Shorten to learn about what is new in the latest Weaviate release.
+  youtube: eiQaZIhUS_o
+  date: 2022-07-07T00:00:00Z
+  cover_image: '/img/podcasts/podcast-17.png'
+  is_use_case: false
+
+- title: >
     Weaviate’s ANN Benchmarks
   description: > 
     Join Etienne Dilocker and Connor Shorten to learn about the latest benchmark report for Weaviate.
