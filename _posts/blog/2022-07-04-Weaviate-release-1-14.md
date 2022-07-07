@@ -100,6 +100,30 @@ We were able to import 200 million objects and more, while the import performanc
 
 [See more on github](https://github.com/semi-technologies/weaviate/pull/1976){:target="_blank"}.
 
+### Drastically improved Mean-Time-To-Recovery (MTTR)
+
+Weaviate `1.14` fixes an issue where a crash-recovery could take multiple minutes, or even hours in some extreme cases. It is now a matter of just seconds. So even in the rare event that your instance crashes, it will come back up very quickly.
+
+#### Problem
+
+If Weaviate encounters an unexpected crash, no data will be lost. To provide this guarantee, a Write-Ahead-Log (WAL) is in place. If a crash had occurred, the WAL is parsed at startup, and all previously unfinished operations are recovered, even if they were part of in-memory structures that had not yet been flushed. While this system is very safe, the recvoery could be slow for several reasons:
+
+- Unflushed memtables could become very large. This would lead to a lot of data that needs to be recovered after a crash
+- The recovery process was single-threaded. If multiple recoveries were required, they would happen in sequence. On a large machine, this could mean that startup would be slow, yet only one of many CPU cores was utilized.
+- The data structure used to hold the recovered items was never intended to hold many items. Each additional insertion would degrade its performance. As a result, the larger the WAL to recover, the slower the recovery would become.
+
+#### Solution
+
+We addressed each of the points above individually and improved the overall MTTR substantially:
+
+- A deduplication process was added, so that large WALs with a lot of updates (i.e. redundant data) could be reduced to only the necessary information.
+- The recovery process now runs in parallel. If there are multiple places that require recovery, they can each recover independently, without one recovery having to wait for the other.
+- A mechanism was added that flushes any memtable that has been idle (no writes) for 60s or more. In addition to speeding up the recovery, this change also ensures that no recovery is needed at all in many cases.
+
+
+#### Test
+We designed an extreme stress that would represent the "worst case" scenario for a recovery. It has multiple independent Write-Ahead-Logs that required recovery, and they were very large. A previous version could take multiple hours to recover with this setup. The updated setup takes only a few seconds.
+
 ### Full changelog
 
 These are few of the many improvements and bug fixes that were included in this release.
