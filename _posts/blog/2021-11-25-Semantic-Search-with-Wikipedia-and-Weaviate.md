@@ -16,7 +16,7 @@ The Wikipedia dataset used is the “truthy” version of October 9th, 2021. Aft
 
 📄 The complete dataset and code is open-source and available [on Github](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate){:target="_blank"}.
 
-![](https://miro.medium.com/max/1400/1*UrAMc2buVKmo9dRpiH4SqA.gif)
+![Demo GIF of Weaviate using the Wikipedia dataset](https://miro.medium.com/max/1400/1*UrAMc2buVKmo9dRpiH4SqA.gif)
 *Example semantic search queries in Weaviate’s GraphQL interface — GIF by Author*
 
 ## Importing the Data In Two Steps
