@@ -22,6 +22,10 @@ GraphQL additional properties can be used on data objects in Get{} Queries to ge
 
 The `id` field contains the unique uuid of the data object.
 
+# vector
+
+The `vector` fields contains the vector representation of the data object
+
 # creationTimeUnix
 
 The `creationTimeUnix` field is the timestamp of when the data object was created.
