@@ -106,7 +106,7 @@ Weaviate `1.14` fixes an issue where a crash-recovery could take multiple minute
 
 #### Problem
 
-If Weaviate encounters an unexpected crash, no data will be lost. To provide this guarantee, a Write-Ahead-Log (WAL) is in place. If a crash had occurred, the WAL is parsed at startup, and all previously unfinished operations are recovered, even if they were part of in-memory structures that had not yet been flushed. While this system is very safe, the recvoery could be slow for several reasons:
+If Weaviate encounters an unexpected crash, no data will be lost. To provide this guarantee, a Write-Ahead Log (WAL) is in place. If a crash had occurred, the WAL is parsed at startup, and all previously unfinished operations are recovered, even if they were part of in-memory structures that had not yet been flushed. While this system is very safe, the recovery could be slow for several reasons:
 
 - Unflushed memtables could become very large. This would lead to a lot of data that needs to be recovered after a crash
 - The recovery process was single-threaded. If multiple recoveries were required, they would happen in sequence. On a large machine, this could mean that startup would be slow, yet only one of many CPU cores was utilized.
@@ -122,7 +122,7 @@ We addressed each of the points above individually and improved the overall MTTR
 
 
 #### Test
-We designed an extreme stress that would represent the "worst case" scenario for a recovery. It has multiple independent Write-Ahead-Logs that required recovery, and they were very large. A previous version could take multiple hours to recover with this setup. The updated setup takes only a few seconds.
+We designed an extreme stress test that would represent the "worst-case" scenario for recovery. It has multiple very large, independent Write-Ahead Logs that required for recovery. Before, this could take many hours to recover, while now it takes only a few seconds.
 
 ### Full changelog
 
