@@ -21,20 +21,41 @@ Lists all data objects in reverse order of creation. The data will be returned a
 
 ### Method and URL
 
+Without any restrictions (across classes, default limit):
+
 ```js
 GET /v1/objects
 ```
 
-### Parameters
+With optional query params:
+
+```js
+GET /v1/objects?class={className}&limit={limit}&include={include}
+```
+
+## Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
-| `limit` | URL | integer | The maximum number of data objects to return, should be 25 or lower. If you want to retrieve more objects, we recommend using [GraphQL](../graphql-references/get.html). |
-| `include` | URL | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
+| `limit` | URL Query Parameter (optional) | integer | The maximum number of data objects to return. |
+| `include` | URL Query Parameter (optional) | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
+| `class` | URL Query Parameter (optional) | string | List objects by class using the class name. |
 
 ## Response fields
 
 The response of a `GET` query of a data object will give you information about all objects [(or a single object)](#get-a-data-object). Next to general information about the data objects, like schema information and property values, meta information will be shown depending on the `include` fields or `additional properties` of your request.
+
+### Response format
+
+```js
+{
+  "objects": [/* list of objects, see below */],
+  "deprecations: null,
+}
+
+```
+
+### Object fields
 
 | field name | datatype | required `include` or `additional` field |  description |
 | ---- | ---- | ---- | ---- |
@@ -58,6 +79,17 @@ The response of a `GET` query of a data object will give you information about a
 | `classification` > `id` | uuid |  `classification` | the classification id |
 | `classification` > `scope` | list of strings |  `classification` | the initial fields to classify |
 | `featureProjection` > `vector` | list of floats |  `featureProjection` | the 2D or 3D vector coordinates of the feature projection |
+
+## Status codes and error cases
+
+| Cause | Description | Result |
+| --- | --- | --- |
+| No objects present | No `?class` is provided. There are no objects present in the entire Weaviate instance. | `200 OK` - No error |
+| Valid class, no objects present | `?class` is provided, class exists. There are no objects present for this class | `200 OK` - No error |
+| Invalid class | `?class` is provided, class does not exist | `404 Not Found` |
+| Validation | Otherwise invalid user request | `422 Unprocessable Entity` |
+| Authorization | Not allowed to view resource | `403 Forbidden` | 
+| Server-Side error | Correct user input, but request failed for another reason | `500 Internal Server Error` - contains detailed error message |
 
 ### Example request
 
@@ -84,6 +116,8 @@ If you have a whole dataset that you plan on importing with Weaviate sending mul
 ```js
 POST /v1/objects
 ```
+
+*Note: The className is not specified through the URL, as it is part of the request body.*
 
 ### Parameters
 
@@ -123,16 +157,25 @@ Collect an individual data object.
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```bash
+GET /v1/objects/{className}/{id}
+```
+
+Available for backward compatibility and deprecated:
 ```bash
 GET /v1/objects/{id}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
-| `{id}` | URL | uuid | The uuid of the data object to retrieve. |
-| `include` | URL | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector` |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
+| `{id}` | URL Query param | uuid | The uuid of the data object to retrieve. |
+| `include` | URL Query param| string | Include additional information, such as classification info. Allowed values include: `classification`, `vector` |
 
 ### Example request
 
@@ -151,14 +194,23 @@ when it doesn't).
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```bash
+HEAD /v1/objects/{className}/{id}
+```
+
+Available for backward compatibility and deprecated:
 ```bash
 HEAD /v1/objects/{id}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to retrieve. |
 
 ### Example request
@@ -173,18 +225,25 @@ Update an individual data object based on its uuid.
 
 In the RESTful API, both `PUT` and `PATCH` methods are accepted. `PUT` replaces all property values of the data object, while `PATCH` only overwrites the given properties.
 
-```js
-PUT /v1/objects/{id}
+Available since `v1.14` and preferred way:
+```bash
+PUT /v1/objects/{className}/{id}
+PATCH /v1/objects/{className}/{id}
 ```
 
-```js
+Available for backward compatibility and deprecated:
+```bash
+PUT /v1/objects/{id}
 PATCH /v1/objects/{id}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to update. |
 
 The body of the data object for a replacing (some) properties of a object takes the following fields:
@@ -207,14 +266,23 @@ Delete an individual data object from Weaviate.
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```js
+DELETE /v1/objects/{className}/{id}
+```
+
+Available for backward compatibility and deprecated:
 ```js
 DELETE /v1/objects/{id}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to delete. |
 
 ### Example request
@@ -232,6 +300,9 @@ You can validate a data object's schema and meta data.
 ```js
 POST /v1/objects/validate
 ```
+
+*Note: As with creating an object, the className is not specified through the
+URL, as it is part of the request body.*
 
 ### Parameters
 
@@ -256,14 +327,23 @@ If the schema of the object is valid, this request should return `True`/`true` i
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```js
+POST /v1/objects/{className}/{id}/references/{property_name}
+```
+
+Available for backward compatibility and deprecated:
 ```js
 POST /v1/objects/{id}/references/{property_name}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to add the reference to. |
 | `{property_name}` | URL | yes | The name of the cross-reference property
 
@@ -271,7 +351,17 @@ The body of the data object for a new data object is an object taking the follow
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `beacon` | v4 UUID | yes | the beacon URL of the reference |
+| `beacon` | Weaviate Beacon | yes | the beacon URL of the reference, in the format of `weaviate://localhost/<ClassName>/<id>` |
+
+*Note: In the beacon format, you need to always use `localhost` as the host,
+rather than the actual hostname. `localhost` refers to the fact that the
+beacon's target is on the same Weaviate instance, as opposed to a foreign
+instance.*
+
+*Note: For backward compatibility, you can omit the class name in the beacon
+format and specify it as weaviate://localhost/<id>. This is, however,
+considered deprecated and will be removed with a future release, as duplicate
+IDs across classes could mean that this beacon is not uniquely identifiable.*
 
 ### Example request
 
@@ -285,14 +375,23 @@ A `PUT` request updates *all* references of a property of a data object.
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```js
+PUT /v1/objects/{className}/{id}/references/{property_name}
+```
+
+Available for backward compatibility and deprecated:
 ```js
 PUT /v1/objects/{id}/references/{property_name}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
+| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to add the reference to. |
 | `{property_name}` | URL | yes | The name of the cross-reference property
 
@@ -300,7 +399,17 @@ The body of the data object for a new data object is a list of beacons:
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `beacon` | v4 UUID | yes | the beacon URL of the reference |
+| `beacon` | Weaviate Beacon | yes | the beacon URL of the reference, in the format of `weaviate://localhost/<ClassName>/<id>` |
+
+*Note: In the beacon format, you need to always use `localhost` as the host,
+rather than the actual hostname. `localhost` refers to the fact that the
+beacon's target is on the same Weaviate instance, as opposed to a foreign
+instance.*
+
+*Note: For backward compatibility, you can omit the class name in the beacon
+format and specify it as weaviate://localhost/<id>. This is, however,
+considered deprecated and will be removed with a future release, as duplicate
+IDs across classes could mean that this beacon is not uniquely identifiable.*
 
 ### Example request
 
@@ -315,9 +424,17 @@ Delete the single reference that is given in the body from the list of reference
 
 ### Method and URL
 
+Available since `v1.14` and preferred way:
+```js
+DELETE /v1/objects/{className}/{id}/references/{property_name}
+```
+
+Available for backward compatibility and deprecated:
 ```js
 DELETE /v1/objects/{id}/references/{property_name}
 ```
+
+{% include rest-objects-crud-classname-note.html %}
 
 ### Parameters
 
@@ -330,7 +447,20 @@ The body of the data object for a new data object is a list of beacons:
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `beacon` | v4 UUID | yes | the beacon URL of the reference |
+| `beacon` | Weaviate Beacon | yes | the beacon URL of the reference, in the format of `weaviate://localhost/<ClassName>/<id>` |
+
+*Note: In the beacon format, you need to always use `localhost` as the host,
+rather than the actual hostname. `localhost` refers to the fact that the
+beacon's target is on the same Weaviate instance, as opposed to a foreign
+instance.*
+
+*Note: For backward compatibility, beacons generally support an older,
+deprecated format without the class name, as well. This means you might find
+beacons with the old, deprecated format, as well as beacons with the new format
+in the same Weaviate instance. When deleting a reference, the beacon specified
+has to match the beacon to be deleted exactly. In other words, if a beacon is
+present using the old format (without class id) you also need to specify it the
+same way.*
 
 ### Example request
 

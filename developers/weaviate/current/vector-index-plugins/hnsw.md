@@ -24,14 +24,15 @@ The picture shows how a HNSW algorithm is used to go from a search query vector 
 
 ![HNSW layers](/img/guides/hnsw-layers.svg "HNSW layers"){:height="50%" width="50%"}
 
-## Distance metric
+## Distance metrics
 
-HNSW implemented currently assumes angular distance, also known as cosine distance. This is technically implemented as a vector normalization step (to make data have the same magnitude) on import, followed by a dot product calculation, which is equivalent to cosine.
+All [distance metrics supported in Weaviate](../vector-index-plugins/distances.html) are also supported with the HNSW index type.
 
 # How to use HNSW and parameters
 Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](../data-schema/schema-configuration.html). 
 - `"vectorIndexType": "hnsw"`: indicates which vector index type to use, in this case hnsw, which is provided by Weaviate itself. 
 - `"vectorIndexConfig"`: an object where you can set specific parameters to the chosen vector index type, in this case to hnsw, which has the following parameters:
+  - `"distance"`: The distance metric to be used to calculate the distance between any two arbitrary vectors. Defaults to `cosine`. See [supported metrics here](../vector-index-plugins/distances.html).
   - `"ef"`: The higher `ef` is chosen, the more accurate, but also slower a search becomes. This helps in the recall/performance trade-off that is possible with HNSW. If you omit setting this field it will default to `-1` which means "Let Weaviate pick the right `ef` value". `ef` can be updated over time, and is not immutable like `efConstruction` and `maxConnections`.
   - `"efConstruction"`: controls index search speed/build speed tradeoff. Default is set to 128, the integer should be greater than 0. This setting is immutable after class initialization.
   - `"maxConnections"`: the maximum number of connections per element in all layers. Default is set to 64, the integer should be greater than 0. This setting is immutable after class initialization.

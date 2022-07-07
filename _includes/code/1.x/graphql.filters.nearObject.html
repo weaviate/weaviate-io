@@ -5,12 +5,13 @@
     Publication(
       nearObject: {
         id: "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf", # or weaviate://localhost/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf
-        certainty: 0.7
+        distance: 0.6 # prior to v1.14, use certainty: 0.7
       }
     ){
       name
       _additional {
-        certainty
+        certainty # only works if distance==cosine
+        distance  # always works
       }
     }
   }
@@ -27,7 +28,7 @@ nearObject = {"id": "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"} # or {"beacon": "wea
 
 result = (
   client.query
-  .get("Publication", ["name", "_additional {certainty}"])
+  .get("Publication", ["name", "_additional {certainty distance}"]) # certainty only supported if distance==cosine
   .with_near_object(nearObject)
   .do()
 )
@@ -47,7 +48,7 @@ const client = weaviate.client({
 client.graphql
       .get()
       .withClassName('Publication')
-      .withFields('name _additional {certainty}}')
+      .withFields('name _additional {certainty distance}}') # certainty only supported if distance==cosine
       .withNearObject({id: "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"})
       .do()
       .then(res => {
@@ -81,7 +82,8 @@ func main() {
   fields := []graphql.Field{
     {Name: "name"},
     {Name: "_additional", Fields: []graphql.Field{
-      {Name: "certainty"},
+      {Name: "certainty"}, // certainty only supported if distance==cosine
+      {Name: "distance"},  // distance always supported
     }},
   }
   nearObject := client.GraphQL().NearObjectArgBuilder().WithID("e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf")
@@ -121,7 +123,8 @@ public class App {
     Field _additional = Field.builder()
       .name("_additional")
       .fields(new Field[]{
-        Field.builder().name("certainty").build()
+        Field.builder().name("certainty").build(), // only supported if distance==cosine
+        Field.builder().name("distance").build()   // always supported
       }).build();
 
     NearObjectArgument nearObject = client.graphQL().arguments().nearObjectArgBuilder()
@@ -145,18 +148,21 @@ public class App {
 
 <!-- SET CURL TAB CONTENT -->
 {% capture curl %}
+
+
 $ echo '{ 
   "query": "{
     Get{
       Publication(
         nearObject: {
           id: "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf",
-          certainty: 0.7
+          distance: 0.6 # prior to v1.14 use certainty instead of distance 
         }
       ){
         name
         _additional {
-          certainty
+          certainty # only supported if distance==cosine
+          distance  # always supported
         }
       }
     }

@@ -57,7 +57,7 @@ An example of a complete class object including properties:
   "description": "string",                  // A description for your reference
   "vectorIndexType": "hnsw",                // defaults to hnsw, can be omitted in schema definition since this is the only available type for now
   "vectorIndexConfig": {
-    ...                                     // vector index type specific settings
+    ...                                     // vector index type specific settings, including distance metric
   },
   "vectorizer": "text2vec-contextionary",   // vectorizer to use for data objects added to this class
   "moduleConfig": {
@@ -109,7 +109,7 @@ The vectorIndexType defaults to [`hnsw`](../vector-index-plugins/hnsw.html) sinc
 
 ### vectorIndexConfig
 
-Check the [`hsnw` page](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters) for `hsnw` parameters that you can configure.
+Check the [`hsnw` page](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters) for `hsnw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
 
 ### shardingConfig (introduced in v1.8.0)
 

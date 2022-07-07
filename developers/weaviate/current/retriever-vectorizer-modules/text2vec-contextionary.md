@@ -2,6 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Retrievers & Vectorizers
+nav-parent: Modules
 title: text2vec-contextionary
 description: Use the GloVe and Fasttext based Weaviate module
 tags: ['text2vec-contextionary', 'contextionary']
@@ -51,6 +52,8 @@ When a new class object is created, it will be added to a Weaviate.
 
 Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. The service can be added like this:
 
+{% include docs-current_version_finder.html %}
+
 ```yaml
 ---
 version: '3.4'
@@ -63,7 +66,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:{{ site.weaviate_version }}
+    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -74,6 +77,7 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
       ENABLE_MODULES: 'text2vec-contextionary'
+      CLUSTER_HOSTNAME: 'node1'
   contextionary:
     environment:
       OCCURRENCE_WEIGHT_LINEAR_FACTOR: 0.75
@@ -644,9 +648,17 @@ There are three ways to define the `concepts` array argument in the Explore filt
 
 A practical example would be: `concepts: ["beatles", "John Lennon"]`
 
-### Certainty
+### Distance
 
-You can set a minimum required `certainty`, which will be used to determine which data results to return. The value is a float between 0.0 (return all data objects, regardless of similarity) and 1.0 (only return data objects that match completely, without uncertainty). The certainty of a query result is computed by normalized distance of the fuzzy query and the data object in the vector space.
+You can set a maximum allowed `distance`, which will be used to determine which
+data results to return. The interpretation of the value of the distance field
+depends on the [distance metric used](../vector-index-plugins/distances.html).
+
+If the distance metric is `cosine` you can also use `certainty` instead of
+`distance`. Certainty normalizes the distance in a range of 0..1, where 0
+reprents a perfect opposite (cosine distance of 2) and 1 represents vectors
+with an identical angle (cosine distance of 0). Certainty is not available on
+non-cosine distance metrics.
 
 ### Moving
 
@@ -662,10 +674,10 @@ Moving can be done based on `concepts` and/or `objects`.
     Publication(
       nearText: {
         concepts: ["fashion"],
-        certainty: 0.7,
+        distance: 0.6,
         moveTo: {
             objects: [{
-                beacon: "weaviate://localhost/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
+                beacon: "weaviate://localhost/Article/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
             }, {
                 id: "9f0c7463-8633-30ff-99e9-fd84349018f5" 
             }],
@@ -676,7 +688,7 @@ Moving can be done based on `concepts` and/or `objects`.
     ){
       name
       _additional {
-        certainty
+        distance
         id
       }
     }

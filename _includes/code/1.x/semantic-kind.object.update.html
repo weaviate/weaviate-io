@@ -30,11 +30,12 @@ const client = weaviate.client({
   host: 'localhost:8080',
 });
 
-var thingClassName = 'Author';
+var className = 'Author';
 var id = '36ddd591-2dee-4e7e-a3cc-eb86d30a4303';
 
 client.data
     .getterById()
+    .withClassName(className)
     .withId(id)
     .do()
     .then(res => {
@@ -132,7 +133,7 @@ $ curl \
           "name": "J. Kantor"
       }
   }' \
-    http://localhost:8080/v1/objects/36ddd591-2dee-4e7e-a3cc-eb86d30a4303
+    http://localhost:8080/v1/objects/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303
 {% endcapture %}
 
 {% include molecule-restful-block-request.html block_id='semantic-kind-object-update' %}

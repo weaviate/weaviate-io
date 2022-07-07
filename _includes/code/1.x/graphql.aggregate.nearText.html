@@ -4,11 +4,11 @@
   Aggregate {
     Article(nearText:{
       concepts: ["apple iphone"]
-      certainty: 0.7       # at least one of "objectLimit", 
-    },                     # and/or "certainty" must be set
-    objectLimit: 200) {    # when using near<Media>
-      meta {
-        count
+      distance: 0.7        # prior to v1.14 use "certainty" instead of "distance"
+    },                     
+    objectLimit: 200) {    # at least one of "objectLimit", 
+      meta {               # and/or "distance" must be set
+        count              # when using near media filters
       }
       inPublication {
         pointingTo
@@ -40,10 +40,10 @@ result = (
   .aggregate('Article')
   .with_meta_count()
   .with_fields('wordCount {count maximum mean median minimum mode sum type} inPublication {pointingTo type}')
-  .with_near_text({'concepts': ["apple iphone"], 'certainty': 0.7})
-  .with_object_limit(200)
-  .do()
-)
+  .with_near_text({'concepts': ["apple iphone"], 'distance': 0.7})  # prior to v1.14 use "certainty" instead of "distance"
+  .with_object_limit(200)  # at least one of "objectLimit", 
+  .do()                    # and/or "distance" must be set
+)                          # when using near media filters
 
 print(result)
 {% endcapture %}
@@ -61,11 +61,11 @@ client.graphql
       .aggregate()
       .withClassName('Article')
       .withFields('meta { count } wordCount {count maximum mean median minimum mode sum type}')
-      .withNearText({ concepts: ["apple iphone"], certainty: 0.7 })
-      .withObjectLimit(100)
-      .do()
-      .then(res => {
-        console.log(res)
+      .withNearText({ concepts: ["apple iphone"], distance: 0.7 })  // prior to v1.14 use "certainty" 
+      .withObjectLimit(100)                                         // instead of "distance".`
+      .do()                                                         // at least one of "objectLimit",
+      .then(res => {                                                // and/or "distance" must be set
+        console.log(res)                                            // when using near media filters
       })
       .catch(err => {
         console.error(err)
@@ -113,7 +113,7 @@ func main() {
 
   // nearText
   nearText := &graphql.NearTextArgumentBuilder{}
-  nearText.WithCertainty(0.85). // At least one of certainty or objectLimit need to be set
+  nearText.WithDistance(0.85).  // prior to v1.14 use WithCertainty()
           WithConcepts([]string{"apple iphone"})
 
   result, err := client.GraphQL().
@@ -121,7 +121,7 @@ func main() {
     WithFields(title, url, wordCount, inPublication).
     WithNearText(nearText).
     WithClassName("Article").
-    WithObjectLimit(100). // At least one of certainty or objectLimit need to be set
+    WithObjectLimit(100). // at least one of distance or objectLimit need to be set
     Do(context.Background())
   if err != nil {
     panic(err)
@@ -170,7 +170,7 @@ public class App {
       }).build();
 
     NearTextArgument nearText = NearTextArgument.builder()
-      .certainty(0.7f) // at least one of certainty or objectLimit need to be set
+      .distance(0.7f)  // prior to v1.14 use .certainty()
       .concepts(new String[]{ "pizza" })
       .build();
 
@@ -178,7 +178,7 @@ public class App {
       .withClassName("Article")
       .withFields(meta, wordCount, inPublication)
       .withNearText(nearText)
-      .withObjectLimit(100) // at least one of certainty or objectLimit need to be set
+      .withObjectLimit(100) // at least one of distance or objectLimit need to be set
       .run();
     if (result.hasErrors()) {
       System.out.println(result.getError());
@@ -196,7 +196,7 @@ $ echo '{
       Aggregate {
         Article(nearText:{
           concepts: ["apple iphone"]
-          certainty: 0.7
+          distance: 0.7 // prior to v1.14 use "certainty"
         },
         objectLimit: 200) {
           meta {
