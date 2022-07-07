@@ -11,7 +11,7 @@ IMG_LOC = "img/og/"
 template = Image.open(IMG_LOC + "og-template.png")
 
 
-def write_page(img, title, submenu, subtitle):
+def write_page(img, title, submenu, subtitle, font_path):
     """Function to write page data onto og image template.
 
     Args:
@@ -31,7 +31,6 @@ def write_page(img, title, submenu, subtitle):
         print_subtitle = True
     submenu = textwrap.fill(submenu, width=26)
     subtitle = textwrap.fill(subtitle, width=26)
-    font_path = "../../../_python/alegreya-sans-ht-full-pack-ttf/"
     title_font = ImageFont.truetype(font_path + "AlegreyaSans-Regular.ttf", 50)
     submenu_font = ImageFont.truetype(font_path + "AlegreyaSans-Regular.ttf", 50)
     subtitle_font = ImageFont.truetype(font_path + "AlegreyaSans-ExtraBold.ttf", 96)
@@ -111,7 +110,7 @@ def gen_og_doc_images():
             name = name.replace(" ", "-")
             img_info = gen_image_info(loc + "/" + file, "documentation")
             img = template.copy()
-            write_page(img, "Documentation", img_info[1], img_info[0])
+            write_page(img, "Documentation", img_info[1], img_info[0], "../../../_python/alegreya-sans-ht-full-pack-ttf/")
             if not os.path.exists(new_img_loc + "og-documentation"):
                 os.mkdir(new_img_loc + "og-documentation")
             rgb_im = img.convert('RGB')
@@ -138,7 +137,7 @@ def gen_og_blog_images():
             name = name[11:]
             img_info = gen_image_info(loc + "/" + file, "blog")
             img = template.copy()
-            write_page(img, "Blog", ' ', img_info[0])
+            write_page(img, "Blog", ' ', img_info[0], "../../_python/alegreya-sans-ht-full-pack-ttf/")
             if not os.path.exists(new_img_loc + "og-blog"):
                 os.mkdir(new_img_loc + "og-blog")
             rgb_im = img.convert('RGB')
