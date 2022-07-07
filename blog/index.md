@@ -4,7 +4,7 @@ layout: default
 ---
 
 <!-- WELCOME -->
-<section data-jarallax data-speed=".8" class="py-10 py-md-14 bg-cover jarallax" style="background-image: url(/img/blog-header.png);">
+<section data-jarallax data-speed=".8" class="py-8 py-md-10 bg-cover jarallax" style="background-image: url(/img/blog-header.png);">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-7 text-center">
@@ -13,8 +13,8 @@ layout: default
           Blog
         </h1>
         <!-- Text -->
-        <p class="lead mb-6" style="color:#fa0171">
-          Keep up to date with what we're working on! Landkit is an ever evolving theme with regular updates.
+        <p class="lead mb-6" style="color:#122742">
+          Keep up to date with what we're working on!
         </p>
         <!-- CTA -->
         <p class="lead">
