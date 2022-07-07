@@ -3,7 +3,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-all_objects = client.data_object.get()
+all_objects = client.data_object.get(class_name="MyClass")
 print(all_objects)
 {% endcapture %}
 
@@ -88,7 +88,7 @@ public class App {
 {% endcapture %}
 
 {% capture curl %}
-$ curl http://localhost:8080/v1/objects?limit=2&include=classification
+$ curl http://localhost:8080/v1/objects?limit=2&include=classification&class=MyClass
 {% endcapture %}
 
 {% include molecule-restful-block-request.html block_id='semantic-kind-get' %}
