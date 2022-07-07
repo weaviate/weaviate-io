@@ -151,67 +151,84 @@
             </div>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="/blog/">
-                Blog
-            </a>
-        </li>
-
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarPodcast" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
-                Podcast
+            <a class="nav-link dropdown-toggle" id="navbarContent" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Content
             </a>
-            <div class="dropdown-menu dropdown-menu-xl p-0" aria-labelledby="navbarPodcast">
-                <div class="row gx-0">
-                    <div class="col-12 col-lg-6">
-                        <div class="dropdown-img-start">
+            <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarContent">
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item" href="/blog/">
 
-                        <!-- Heading -->
-                        <h4 class="fw-bold text-white mb-0">
-                            Want to see more podcasts?
-                        </h4>
-
-                        <!-- Text -->
-                        <p class="fs-sm text-white">
-                            &nbsp;
-                        </p>
-
-                        <!-- Button -->
-                        <a href="/podcast.html" class="btn btn-sm btn-white shadow-dark fonFt-size-sm">
-                            Check out all episodes
-                        </a>
-
+                        <div class="icon icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M8 3v.5A1.5 1.5 0 009.5 5h5A1.5 1.5 0 0016 3.5V3h2a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h2z" fill="#335EEA" opacity=".3"/><path d="M11 2a1 1 0 012 0h1.5a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-5a.5.5 0 01-.5-.5v-1a.5.5 0 01.5-.5H11z" fill="#335EEA"/><rect fill="#335EEA" opacity=".3" x="10" y="9" width="7" height="2" rx="1"/><rect fill="#335EEA" opacity=".3" x="7" y="9" width="2" height="2" rx="1"/><rect fill="#335EEA" opacity=".3" x="7" y="13" width="2" height="2" rx="1"/><rect fill="#335EEA" opacity=".3" x="10" y="13" width="7" height="2" rx="1"/><rect fill="#335EEA" opacity=".3" x="7" y="17" width="2" height="2" rx="1"/><rect fill="#335EEA" opacity=".3" x="10" y="17" width="7" height="2" rx="1"/></g></svg>
                         </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="dropdown-body">
-                            <div class="row gx-0">
-                                <div class="col-12">
-                                    <!-- Heading -->
-                                    <h6 class="dropdown-header">
-                                        Latest releases
-                                    </h6>
-                                    {% assign sortedResources = site.data.podcasts | sort: 'date' %}
-                                    {% assign counter = 0 %}
-                                    {% for podcast in sortedResources reversed %}
-                                        {% if counter < 3 %}
-                                            <!-- List -->
-                                            <a class="dropdown-item" href="https://www.youtube.com/watch?v={{ podcast.youtube }}" target="_blank">
-                                                {{ podcast.title | truncate: 38 }}
-                                            </a>
-                                            {% assign counter = counter | plus: 1 %}
-                                        {% endif %}
-                                    {% endfor %}
-                                    <a class="dropdown-item" href="/podcast.html">
-                                        show all
-                                    </a>
-                                </div>
-                            </div> <!-- / .row -->
+
+                        <div class="ms-4">
+
+                            <h6 class="fw-bold text-uppercase text-primary mb-0">
+                                Blog
+                            </h6>
+
+                            <p class="fs-sm text-gray-700 mb-0">
+                                Weavite Blog 
+                            </p>
                         </div>
-                    </div>
-                </div> <!-- / .row -->
+                    </a>
+                    <a class="list-group-item" href="/podcast/">
+
+                        <div class="icon icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M12.998 17.93L13 18v3a1 1 0 01-2 0v-3c0-.024 0-.047.002-.07A7.002 7.002 0 015 11h2a5 5 0 0010 0h2a7.002 7.002 0 01-6.002 6.93z" fill="#335EEA"/><rect fill="#335EEA" opacity=".3" x="9" y="2" width="6" height="12" rx="3"/></g></svg>
+                        </div>
+
+                        <div class="ms-4">
+
+                            <h6 class="fw-bold text-uppercase text-primary mb-0">
+                                Podcast
+                            </h6>
+
+                            <p class="fs-sm text-gray-700 mb-0">
+                                Interviews with Weaviate community and machine learning experts
+                            </p>
+                        </div>
+                    </a>
+                    <!-- <a class="list-group-item" href="/video/">
+
+                        <div class="icon icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M4.223 4h15.614a3 3 0 012.987 2.726A46.12 46.12 0 0123 10.923c0 1.782-.08 3.564-.241 5.346A3 3 0 0119.771 19H4.223a3 3 0 01-2.987-2.72A51.277 51.277 0 011 11.5c0-1.51.079-3.104.236-4.78A3 3 0 014.223 4z" fill="#335EEA" opacity=".3"/><path d="M11.182 14.805l4.404-3.01a.5.5 0 000-.824l-4.403-3.03a.5.5 0 00-.783.413v6.039a.5.5 0 00.782.412z" fill="#335EEA"/></g></svg>
+                        </div>
+
+                        <div class="ms-4">
+
+                            <h6 class="fw-bold text-uppercase text-primary mb-0">
+                                Video
+                            </h6>
+
+                            <p class="fs-sm text-gray-700 mb-0">
+                                Videos about Weaviate and Vector Searh
+                            </p>
+                        </div>
+                    </a> -->
+                    <a class="list-group-item" href="http://weaviate-newsletter.semi.technology/" target="_blank">
+
+                        <div class="icon icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M5 6h14a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2zm13.144 1.84L12 11.148 5.856 7.84a.75.75 0 10-.712 1.32l6.5 3.5c.222.12.49.12.712 0l6.5-3.5a.75.75 0 00-.712-1.32z" fill="#335EEA"/></g></svg>
+                        </div>
+
+                        <div class="ms-4">
+
+                            <h6 class="fw-bold text-uppercase text-primary mb-0">
+                                Newsletter
+                            </h6>
+
+                            <p class="fs-sm text-gray-700 mb-0">
+                                Keep up to date with Weaviate's content
+                            </p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </li>
+
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDocumentation" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
                 Developers
