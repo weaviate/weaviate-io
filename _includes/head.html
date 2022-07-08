@@ -72,6 +72,15 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Weaviate vector search engine">
     <meta property="og:type" content="website">
+    
+    {% if page.url %}
+        <meta property='og:url' content='https://weaviate.io{{page.url}}'/>
+    {% endif %}
+
+    <!-- LinkedIn -->
+    {% if page.author %}
+        <meta name="author" content="{{page.author}}">
+    {% endif %}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
