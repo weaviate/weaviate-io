@@ -6,14 +6,13 @@ published: true
 author: Sebastian Witalec
 author-img: /img/people/icon/sebastian.jpg
 hero-img: /img/blog/weaviate-1.14/reliability.png
+date: 2022-07-06
 toc: true
 ---
 
 ## What is new
 
 We are excited to announce the release of Weaviate 1.14, the most reliable and observable Weaviate release yet. 
-
-<!-- > This is possibly the most boring release that I am most excited about <span>Etienne Dilocker – CTO at SeMI</span> -->
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Later this week, we will release Weaviate v1.14, possibly the most boring release so far.😱 Yet I&#39;m incredibly excited about it and so should you. Why? A 🧵 (1/9)</p>&mdash; Etienne Dilocker (@etiennedi) <a href="https://twitter.com/etiennedi/status/1544689150217027584?ref_src=twsrc%5Etfw">July 6, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
