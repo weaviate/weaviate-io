@@ -66,7 +66,7 @@ services:
       DEFAULT_VECTORIZER_MODULE: text2vec-transformers
       ENABLE_MODULES: text2vec-transformers
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
-      CLUSTER_HOSTNAME: 'node1
+      CLUSTER_HOSTNAME: 'node1'
   t2v-transformers:
     image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
     environment:
