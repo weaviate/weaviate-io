@@ -287,8 +287,15 @@ client.Data().Validator().WithProperties(properties)
 
 # Change logs
 
-## v4.0.0
+## v4.2.0
+- Added support for class namespaced API calls
+- Added support for `distance` user-facing similarity metric
 
+## v4.1.0
+- Fix for `nearText` `moveTo` and `moveAwayFrom` parameters
+- Fix for `where` filter operands
+
+## v4.0.0
 - (Breaking) Remove `.Objects()` from GraphQL `Get()`. See migration guide above for details
 - (Breaking) GraphQL `Aggregate`, `Explore`, and `Get`: `.WithFields()` is now a variadic function, see migration guide above
 - (Breaking) `client.Data().Validator().WithSchema(properties)` -> `client.Data().Validator().WithProperties(properties)`
