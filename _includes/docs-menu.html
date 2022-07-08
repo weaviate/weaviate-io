@@ -44,10 +44,10 @@
                         {% for menu in sorted_menus %}
                             {% if menuItem.name == menu.name && guides.name == page.solution %}
                                 {% if menuItem.header == true %}
-                                <!-- Show if the current page is in the navigation space for this menu item -->
-                                {% if menuItem.nav-parent == page.nav-parent %}
-                                    <h6 class="text-uppercase fw-bold collapase.show">{{ menuItem.name }}</h6>
-                                    <ul class="list mb-6 collapase.show">
+                                <!-- Hide if the current page is not in the navigation space for this menu item -->
+                                <div {% if menuItem.nav-parent != page.nav-parent %}class="menu-hide"{% endif %}>
+                                    <h6 class="text-uppercase fw-bold">{{ menuItem.name }}</h6>
+                                    <ul class="list mb-6">
                                         {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
                                         {% for guide in sorted_sub_menus %}
                                             {% if menu.name == guide.sub-menu %}
@@ -63,28 +63,31 @@
                                             {% endif %}
                                         {% endfor %}
                                     </ul>
-                                {% endif %}
+                                </div>
                                 {% else %}
                                     <h6 class="text-uppercase fw-bold">
-                                        <a href="/developers/{{ guides.name }}/{{ current_page_version_tag }}/{{ menuItem.folder }}">{{ menu.name }}</a>
+                                        <a href="/developers/{{ guides.name }}/{{ current_page_version_tag }}/{{ menuItem.folder }}"
+                                           {% if menu.name == page.title %}class="current"{% endif %}>{{ menu.name }}</a>
                                     </h6>
                                     <!-- menu item children – show only the children for the menu items of the current page -->
-                                    <ul class="list mb-6 collapse{% if menu.name == page.sub-menu or menu.name == page.nav-parent %}.show{% endif %}">
-                                        {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
-                                        {% for guide in sorted_sub_menus %}
-                                            {% if menu.name == guide.sub-menu %}
-                                                {% if page.solution == guide.solution %}
-                                                    {% if guide.menu-order > 0 %}
-                                                      {% if guide.url contains current_page_version_tag %}
-                                                        <li class="list-item">
-                                                          <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
-                                                        </li>
-                                                      {% endif %}
+                                    <div {% if menu.name != page.sub-menu and menu.name != page.nav-parent %}class="menu-hide"{% endif %}>
+                                        <ul class="list mb-6">
+                                            {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
+                                            {% for guide in sorted_sub_menus %}
+                                                {% if menu.name == guide.sub-menu %}
+                                                    {% if page.solution == guide.solution %}
+                                                        {% if guide.menu-order > 0 %}
+                                                          {% if guide.url contains current_page_version_tag %}
+                                                            <li class="list-item">
+                                                              <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
+                                                            </li>
+                                                          {% endif %}
+                                                        {% endif %}
                                                     {% endif %}
                                                 {% endif %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    </ul>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
                                 {% endif %}
                             {% endif %}
                         {% endfor %}

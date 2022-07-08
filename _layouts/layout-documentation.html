@@ -21,6 +21,13 @@
     .current:active {
       text-decoration: underline;
     }
+
+    /* Used to hide menu items on bigger screens, but not on mobile devices */
+    @media (min-width: 992px) {
+      .menu-hide {
+        display: none;
+      }
+    }
     </style>
 
     {% include docs-header.html %}
