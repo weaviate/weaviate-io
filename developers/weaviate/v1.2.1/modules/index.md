@@ -17,7 +17,7 @@ Weaviate is completely modularized. The Core of Weaviate, without any modules at
 
 # Module ecosystem
 
-![Weaviate {{ site.weaviate_version }} module ecosystem](/img/weaviate-modules-{{ site.weaviate_version }}.png "Weaviate {{ site.weaviate_version }} module ecosystem")
+![Weaviate module ecosystem](/img/weaviate-modules.png "Weaviate module ecosystem")
 
 # Characteristics
 

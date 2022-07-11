@@ -37,7 +37,7 @@ Modules can be dependent on other modules to be present. For example, to use the
 
 This graphic shows the available modules of the latest Weaviate version ({{site.weaviate_version}}).
 
-![Weaviate {{ site.weaviate_version }} module ecosystem](/img/weaviate-modules-{{ site.weaviate_version }}.png "Weaviate {{ site.weaviate_version }} module ecosystem")
+![Weaviate module ecosystem](/img/weaviate-modules.png "Weaviate module ecosystem")
 
 # Characteristics
 
