@@ -84,7 +84,7 @@ For example:
 
 ```sh
 $ mkdir /var/weaviate.BAK
-$ cp /var/weavite /var/weaviate.BAK
+$ cp /var/weaviate /var/weaviate.BAK
 ```
 
 #### Running vs. stopped instance
