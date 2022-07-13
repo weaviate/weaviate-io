@@ -1,8 +1,16 @@
 ---
 - title: >
+    Question Answering with Haystack
+  description: > 
+    Tuana Celik – a Developer Advocate at Deepset – and Connor to learn about many exciting ideas around Question Answering. 
+  youtube: kJtixgqdlHQ
+  date: 2022-07-13T00:00:00Z
+  cover_image: '/img/podcasts/podcast-20.png'
+  is_use_case: false
+- title: >
     Weaviate 1.14 Release!
   description: > 
-    Join Etienne Dilocker and Connor Shorten to learn about what is new in the latest Weaviate release.
+    Join Etienne Dilocker and Connor to learn about what is new in the latest Weaviate release.
   youtube: eiQaZIhUS_o
   date: 2022-07-07T00:00:00Z
   cover_image: '/img/podcasts/podcast-19.png'
@@ -12,7 +20,7 @@
   description: > 
     Join Vincent and Connor, to learn how the nearest neighbor search can aid in tasks such as Data De-Duplication and Data Labeling!
   youtube: Nwh7L4Do0Fg
-  date: 2022-07-07T00:00:00Z
+  date: 2022-06-28T00:00:00Z
   cover_image: '/img/podcasts/podcast-18.png'
   is_use_case: false
 - title: >
