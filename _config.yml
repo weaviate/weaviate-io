@@ -5,6 +5,7 @@ markdown: kramdown
 highlighter: none
 url: https://weaviate.io
 baseurl: /
+documentation_call_out: true
 kramdown:
   parse_block_html: false
 rdiscount extensions: [smart]
