@@ -2,10 +2,10 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Installation
-description: Getting started with Weaviate installation
-tags: ['basics']
-menu-order: 2
+title: Scaling
+description: Getting started with scaling Weaviate (Kubernetes)
+tags: ['modules']
+menu-order: 9
 open-graph-type: article
 toc: true
 ---

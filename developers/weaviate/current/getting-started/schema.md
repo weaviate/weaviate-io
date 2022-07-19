@@ -2,10 +2,10 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Installation
-description: Getting started with Weaviate installation
+title: Schema
+description: Getting started with the Weaviate schema
 tags: ['basics']
-menu-order: 2
+menu-order: 3
 open-graph-type: article
 toc: true
 ---

@@ -2,8 +2,8 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Getting started
-description: Getting started overview
+title: Getting started with Weaviate guide overview
+description: Getting started with Weaviate guides overview
 tags: ['getting started']
 menu-order: 0
 open-graph-type: article
@@ -13,7 +13,31 @@ redirect_from:
     - /documentation/weaviate/current/getting-started/
 ---
 
-On the "Getting started" pages you can find information on how to install and start using Weaviate, a set of example datasets and a range of use cases.
+Welcome, _Welcome_, **Welcome** to the Weaviate getting started guides.
 
-- [Get started with Weaviate in 10 minutes.](./quick-start.html)
-- [How to install Weaviate with Docker Compose or Kubernetes.](./installation.html)
+Here, on this page, we're not going to take too much of your time; it's just an overview of the guides.
+
+All guides take about 5 minutes and you can jump back and forth between them.
+
+Have fun working with Weaviate, and please do let us know on our Slack when you have questions or if you have a cool use case to share!
+
+## Before you start 
+
+In the guide, we make a few basic assumptions (you are somewhat familiar with databases, know what vector embeddings are, and can read essential JSON and GraphQL).
+
+## Weaviate Guides
+
+| Image | Topic | Description |
+| --- | --- | --- |
+| img | [Basics](./basics.html) | Learn the basics of Weaviate |
+| img | [Installation](./installation.html) | Install Weaviate |
+| img | [Schema](./schema.html) | Learn how a Weaviate schema works |
+| img | [Import](./import.html) | Learn how to efficiently import into Weaviate |
+| img | [Query](./query.html) | Learn how to query Weaviate using GraphQL and the RESTful API |
+| img | [Complex queries](./complex-queries.html) | Learn how to deal with complex queries |
+| img | [Classification](./classification.html) | Learn how to classify data in Weaviate |
+| img | [Modules](./modules.html) | Learn how to deal with modules in Weaviate |
+| img | [Scaling](./scaling.html) | Learn how to scale Weaviate with Kubernetes |
+| img | [ANN configuration](./ann-configuration.html) | Learn how to configure ANN settings in the Weaviate schema |
+| img | [Speed optimization](./speed-optimization.html) | Learn tips &amp; tricks to optimize Weaviate for speed 🏎️ |
+| img | [Neural frameworks](./optimize-for-neural-frameworks.html) | Learn how to optimize Weaviate to work with neural search framework |

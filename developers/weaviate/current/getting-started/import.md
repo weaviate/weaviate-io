@@ -2,10 +2,10 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Installation
-description: Getting started with Weaviate installation
-tags: ['basics']
-menu-order: 2
+title: Import
+description: Getting started with importing in Weaviate
+tags: ['import']
+menu-order: 4
 open-graph-type: article
 toc: true
 ---

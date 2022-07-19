@@ -2,10 +2,10 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Installation
-description: Getting started with Weaviate installation
-tags: ['basics']
-menu-order: 2
+title: Classification
+description: Getting started with classifying in Weaviate
+tags: ['classification']
+menu-order: 7
 open-graph-type: article
 toc: true
 ---

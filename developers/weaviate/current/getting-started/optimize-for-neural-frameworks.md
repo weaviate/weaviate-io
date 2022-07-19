@@ -2,10 +2,10 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Installation
-description: Getting started with Weaviate installation
-tags: ['basics']
-menu-order: 2
+title: Neural frameworks
+description: Neural framework optimization within Weaviate
+tags: ['modules']
+menu-order: 12
 open-graph-type: article
 toc: true
 ---

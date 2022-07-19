@@ -2,10 +2,10 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Installation
-description: Getting started with Weaviate installation
-tags: ['basics']
-menu-order: 2
+title: ANN configuration
+description: Getting started with ANN configuration in Weaviate (HNSW)
+tags: ['modules']
+menu-order: 10
 open-graph-type: article
 toc: true
 ---
