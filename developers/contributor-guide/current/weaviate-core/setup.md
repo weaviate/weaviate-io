@@ -27,19 +27,30 @@ In order to run local dev env issue:
 Start up all dependencies (e.g. modules inference containers) and compile/run
 Weaviate locally. This script assumes a contextionary-based setup:
 
-### Default setup (contextionary module)
+### Without any models
+This is the simplest setup, it requires no Docker/Docker compose:
+
+```bash
+tools/dev/run_dev_server.sh local-no-modules
+```
+
+### With contextionary module
+*requires Docker & Docker Compose*
+
 ```bash
 tools/dev/restart_dev_environment.sh && ./tools/dev/run_dev_server.sh
 ```
 
-You can also run with different modules, e.g.:
-
 ### Transformers t2v only
+*requires Docker & Docker Compose*
+
 ```bash
 tools/dev/restart_dev_environment.sh --transformers && ./tools/dev/run_dev_server.sh local-transformers
 ```
 
 ### Contextionary t2v & Transformers QnA
+*requires Docker & Docker Compose*
+
 ```bash
 tools/dev/restart_dev_environment.sh --qna && ./tools/dev/run_dev_server.sh local-qna
 ```
