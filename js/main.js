@@ -63,17 +63,21 @@ if (versionPicker) {
 
 // Make headers in docs clickable
 var currentElement, headerId;
+var headerNumbers = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 if(window.location.pathname.includes('/developers/')){
-    var headers = document.getElementsByTagName('h1');
-    for(var i = 0; i < headers.length; i++) {
-        if(typeof headers[i].id != 'undefined' && headers[i].id != ''){
-            currentElement = document.getElementById(headers[i].id);
-            currentElement.style.cursor = 'pointer';
-            currentElement.onclick = function(){
-                if(window.location.hash != '#' + this.id){
-                    window.location.assign('#' + this.id);
-                }
-            };
+    for (var i = 0; i < headerNumbers.length; i++) {
+        var headers = document.getElementsByTagName(headerNumbers[i]);
+        for(var i2 = 0; i2 < headers.length; i2++) {
+            if(typeof headers[i2].id != 'undefined' && headers[i2].id != ''){
+                console.log(headers[i2].id);
+                currentElement = document.getElementById(headers[i2].id);
+                currentElement.style.cursor = 'pointer';
+                currentElement.onclick = function(){
+                    if(window.location.hash != '#' + this.id){
+                        window.location.assign('#' + this.id);
+                    }
+                };
+            }
         }
     }
 }
