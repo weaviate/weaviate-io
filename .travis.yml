@@ -7,6 +7,7 @@ before_install:
 - sudo apt-get update
 - sudo apt-get install -y minify
 - sudo apt-get install python3-pip
+- sudo apt-get install curl
 - bundle install
 install:
 - bundle install
@@ -47,6 +48,8 @@ script:
       gsutil web set -m index.html -e 404.html gs://$GS_BUCKET
       # Invalidate the CDN
       gcloud compute url-maps invalidate-cdn-cache $GS_BUCKET --path "/*" --async
+      # Send sitemap to Google
+      curl https://www.google.com/ping?sitemap=https://weaviate.io/sitemap.xml
     fi
   fi
 cache: bundler
