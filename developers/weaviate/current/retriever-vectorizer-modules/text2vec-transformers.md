@@ -55,7 +55,7 @@ services:
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
       CLUSTER_HOSTNAME: 'node1'
   t2v-transformers:
-    image: sentence-transformers/msmarco-distilroberta-base-v2
+    image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
     environment:
       ENABLE_CUDA: 0 # set to 1 to enable
 ```
