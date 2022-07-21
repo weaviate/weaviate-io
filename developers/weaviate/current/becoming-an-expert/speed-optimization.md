@@ -1,11 +1,11 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Getting started
-title: Neural frameworks
-description: Neural framework optimization within Weaviate
+sub-menu: Becoming an expert
+title: Speed optimization
+description: Speed optimization
 tags: ['modules']
-menu-order: 12
+menu-order: 2
 open-graph-type: article
 toc: true
 ---

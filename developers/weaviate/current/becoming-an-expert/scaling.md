@@ -1,11 +1,11 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Getting started
-title: Complex queries
-description: Getting started with complex queries Weaviate
-tags: ['complex queries']
-menu-order: 6
+sub-menu: Becoming an expert
+title: Scaling
+description: Getting started with scaling Weaviate (Kubernetes)
+tags: ['modules']
+menu-order: 4
 open-graph-type: article
 toc: true
 ---

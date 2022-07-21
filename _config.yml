@@ -89,6 +89,12 @@ docs:
       - name: Getting started
         folder: getting-started
         header: false
+      - name: Becoming an expert
+        folder: becoming-an-expert
+        header: false
+      - name: Installation
+        folder: installation
+        header: false
       - name: Architecture
         folder: architecture
         header: false

@@ -1,11 +1,11 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Getting started
-title: Classification
-description: Getting started with classifying in Weaviate
-tags: ['classification']
-menu-order: 7
+sub-menu: Becoming an expert
+title: ANN configuration
+description: Getting started with ANN configuration in Weaviate (HNSW)
+tags: ['modules']
+menu-order: 3
 open-graph-type: article
 toc: true
 ---

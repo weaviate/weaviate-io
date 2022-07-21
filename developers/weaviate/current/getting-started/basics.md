@@ -12,7 +12,7 @@ toc: true
 
 Based on the fact that you're here, you probably like machine learning and databases as much as we do. You might even have a use case requiring semantic search, image similarity search, recommendations, classification, etc. But you have one big question: how do I scale this to production, and what database, what search engine can I use that helps me with this?
 
-If you have this question, you've already learned something in the 10 seconds it took you to read this: Weaviate is here to help.
+If you have this question, fret not, because you've already learned something in the 10 seconds it took you to read this paragraph: _Weaviate is here to help!_ 
 
 ## What will you learn?
 
@@ -24,7 +24,7 @@ Weaviate is a database of the type search engine, and it's specifically built to
 
 ## Data objects in Weaviate
 
-Inside Weaviate, you can create JSON documents where you set values to properties. These properties can be of almost any data type (e.g., string, text, date, int, float, etc.) As a Weaviate user, you can set (almost) any name for a property.
+Inside Weaviate, you can create JSON documents where you set values to properties. These properties can be of almost any data type (e.g., string, text, date, int, float, [etc.](../data-schema/datatypes.html)) As a Weaviate user, you can set (almost) any name for a property.
 
 An example of an individual data object:
 
@@ -132,12 +132,33 @@ Classes and properties are defined in the schema. While creating your use case, 
 
 The short answer is: from machine learning models.
 
-As a user, you have two ways of doing this:
+As a user, you have two ways of generating them:
 
 * You render your vector from any model you have (we don't care  where they come from, we'll store them for you)
-* You use a Weaviate module with a prepackaged integration.
+* You use a Weaviate module with a prepackaged `text2vec` integration (we call them "vectorizers", you can learn more about them [here](../modules/)).
+    * [text2vec-transformers](../retriever-vectorizer-modules/text2vec-transformers.html)
+    * [text2vec-openai](../retriever-vectorizer-modules/text2vec-openai.html)
+    * [text2vec-contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html) (custom FastText based vectorizer)
+    * [img2vec-neural](../retriever-vectorizer-modules/img2vec-neural.html)
+    * [multi2vec-clip](/retriever-vectorizer-modules/multi2vec-clip.html)
 
 We will go deeper into the guide for adding data and the guide for modules. But for whatever vector use case you have, we've got you covered.
+
+## Modules
+
+If you bring your own vectors to Weaviate, running Weaviate stand-alone is all you need. But in certain cases, you might want to use one of the prepackaged modules. For example, if you use OpenAI embeddings, you might want to use the OpenAI module, which automatically integrates with their embeddings-API. Or, if you have a use case where you want to use Sentence Transformers, you can use the Huggingface transformers module.
+
+What's important to remember is that you _can_ use Weaviate modules, but you don't _have_ to use them.
+
+Weaviate distinguishes three types of modules: retrievers & vectorizers, readers & generators, and other modules.
+
+1. *retrievers & vectorizers* are used to vectorize data objects and queries.
+2. *readers & generators* are used for reranking or processing the results.
+3. *other modules* are -often- non-ML, for example, the spell-check module.
+
+<div class="alert alert-secondary" markdown="1">
+💡 It's even possible to [create your own modules](../modules/custom-modules.html)! It takes a bit of knowledge about Go, but the module container can be written in any language.
+</div>
 
 ## Recapitulation
 

@@ -25,7 +25,7 @@ Have fun working with Weaviate, and please do let us know on our Slack when you 
 
 In the guide, we make a few basic assumptions (you are somewhat familiar with databases, know what vector embeddings are, and can read essential JSON and GraphQL).
 
-## Weaviate Guides
+## Weaviate Getting Started Guides
 
 | Image | Topic | Description |
 | --- | --- | --- |
@@ -34,10 +34,4 @@ In the guide, we make a few basic assumptions (you are somewhat familiar with da
 | img | [Schema](./schema.html) | Learn how a Weaviate schema works |
 | img | [Import](./import.html) | Learn how to efficiently import into Weaviate |
 | img | [Query](./query.html) | Learn how to query Weaviate using GraphQL and the RESTful API |
-| img | [Complex queries](./complex-queries.html) | Learn how to deal with complex queries |
-| img | [Classification](./classification.html) | Learn how to classify data in Weaviate |
 | img | [Modules](./modules.html) | Learn how to deal with modules in Weaviate |
-| img | [Scaling](./scaling.html) | Learn how to scale Weaviate with Kubernetes |
-| img | [ANN configuration](./ann-configuration.html) | Learn how to configure ANN settings in the Weaviate schema |
-| img | [Speed optimization](./speed-optimization.html) | Learn tips &amp; tricks to optimize Weaviate for speed 🏎️ |
-| img | [Neural frameworks](./optimize-for-neural-frameworks.html) | Learn how to optimize Weaviate to work with neural search framework |
