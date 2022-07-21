@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The AI-First Database Ecosystem
-description: This is the description, it describes what the post is about
+description: SeMI is one of several new companies that, operating singly or collectively, provide alternatives to established search giants.
 published: true
 author: Bob van Luijt
 author-img: /img/people/bob.jpg

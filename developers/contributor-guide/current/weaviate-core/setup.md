@@ -27,12 +27,28 @@ In order to run local dev env issue:
 Start up all dependencies (e.g. modules inference containers) and compile/run
 Weaviate locally. This script assumes a contextionary-based setup:
 
-### Without any models
+### Without any modules
 This is the simplest setup, it requires no Docker/Docker compose:
 
 ```bash
 tools/dev/run_dev_server.sh local-no-modules
 ```
+
+### Without any modules, but with Grafana & Prometheus
+This setup is identical to the one above, but it uses Docker & Docker-compose to spin up Prometheus and Grafana instances. Those are pre-confiugred to scrape metrics from Weaviate. 
+
+Using this setup, you can 
+- access Weaviate on port `8080`
+- access Grafana on port `3000` (Login: `weaviate`/`weaviate`)
+- if necessary for debugging -  access prometheus directly on port `9090`
+
+```bash
+tools/dev/restart_dev_environment.sh --prometheus && tools/dev/run_dev_server.sh local-no-modules
+```
+
+*Note: You can also combine some of the below setups with the `--prometheus` flag on `tools/dev/restart_dev_environment.sh`*
+
+*Note: This setup is only meant for contributors, as it requires a local go runtime. If a user is looking for a Prometheus-Enabled example, you can point them either to the [documentation page](https://weaviate.io/developers/weaviate/current/more-resources/monitoring.html) or straight to the [Weaviate examples repo](https://github.com/semi-technologies/weaviate-examples/tree/main/monitoring-prometheus-grafana).*
 
 ### With contextionary module
 *requires Docker & Docker Compose*

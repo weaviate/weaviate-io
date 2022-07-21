@@ -74,6 +74,10 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 
 # Change logs
 
+## v2.11.0
+- Added support for class namespaced API calls
+- Added support for `distance` user-facing similarity metric
+
 ## v2.10.1
 - Updated `README.md` file with proper project links
 

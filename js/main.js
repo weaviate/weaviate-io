@@ -181,7 +181,7 @@ if(document.getElementById('homepage-stats-container')){
         animateValue(document.getElementById('data-visitors'), 0, data, 1120);
     });
     // get Slack users
-    var slackUsers = 895;
+    var slackUsers = 908;
     animateValue(document.getElementById('data-slack'), 0, slackUsers, 1120);
 }
 
