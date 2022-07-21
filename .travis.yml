@@ -8,6 +8,8 @@ before_install:
 - sudo apt-get install -y minify
 - sudo apt-get install python3-pip
 - sudo apt-get install curl
+- sudo apt-get install snapd
+- sudo snap install yq
 - bundle install
 install:
 - bundle install
@@ -21,6 +23,12 @@ script:
 - minify --match='\.html' -r -o _site_min/ _site/
 - rsync -av _site_min/ _site/
 - htmlproofer --http-status-ignore "0,999,429,403,303" --allow_hash_href --url-ignore "/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/" _site || travis_terminate 1
+- |
+  OPENAPI_VERSION=$(curl -s -o /dev/null -w "%{http_code}" https://app.swaggerhub.com/apiproxy/registry/semi-technologies/weaviate/$(cat _config.yml | yq .weaviate_version))
+  if [[ $OPENAPI_VERSION -ne 200 ]]
+  then
+      echo "The current version is not on https://app.swaggerhub.com/apis/semi-technologies/weaviate/$(cat _config.yml | yq .weaviate_version)"
+  fi
 - |
   if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     if [ $TRAVIS_BRANCH = "main" ]; then
