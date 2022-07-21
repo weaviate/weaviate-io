@@ -626,6 +626,13 @@ Note that you need to use the `.do()` method to execute the query.
 
 # Change logs
 
+### 3.6.0
+This minor version contains functionality for the new features introduced in Weaviate `v1.14.0`.
+
+Added support for class namespaced API calls.
+
+Added support for `distance` user-facing similarity metric.
+
 ### 3.5.0
 This minor version contains functionality for the new features introduced in Weaviate `v1.13.0`.
 

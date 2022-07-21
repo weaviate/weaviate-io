@@ -18,7 +18,7 @@ To get the latest stable version of the Java client library, add this dependency
 <dependency>
   <groupId>technology.semi.weaviate</groupId>
   <artifactId>client</artifactId>
-  <version>3.1.1</version>
+  <version>3.2.0</version>
 </dependency>
 ```
 
@@ -312,6 +312,10 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 
 
 # Change logs
+
+## 3.2.0
+- Added support for class namespaced API calls
+- Added support for `distance` user-facing similarity metric
 
 ## 3.1.1
 - Updated test dependencies to newest versions
