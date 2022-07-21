@@ -24,7 +24,7 @@ In this tutorial, you'll find the 3-steps needed to replicate the import, but th
 | Graph cross references | `125.447.595` |
 | Wikipedia version | `truthy May 15th, 2022` | 
 | Machine for inference | `12 CPU – 100 GB RAM – 250Gb SSD – 1 x NVIDIA Tesla P4` |  
-| Weaviate version | `v1.13.2` |
+| Weaviate version | `v1.14.1` |
 | Dataset size | `122GB` |
 | Vectorization model | `sentence-transformers-paraphrase-MiniLM-L6-v2` |
 
