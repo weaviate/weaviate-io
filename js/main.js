@@ -166,7 +166,7 @@ if(document.getElementById('homepage-stats-container')){
     // get stars
     getUrl('https://api.github.com/repos/semi-technologies/weaviate', 'text', function(status, data){
         var result = JSON.parse(data)['watchers'];
-        animateValue(document.getElementById('data-stargazers'), 0, result, 1120);
+        animateValue(document.getElementById('data-stargazers'), 0, result, 820);
     });
     // set downloads
     getUrl('https://europe-west1-semi-production.cloudfunctions.net/docker-hub-pulls', 'text', function(status, data){
@@ -178,11 +178,11 @@ if(document.getElementById('homepage-stats-container')){
     // get countries
     getUrl('https://us-central1-semi-production.cloudfunctions.net/website-visitors', 'text', function(status, data){
         var result = data;
-        animateValue(document.getElementById('data-visitors'), 0, data, 1120);
+        animateValue(document.getElementById('data-visitors'), 0, data, 820);
     });
     // get Slack users
-    var slackUsers = 908;
-    animateValue(document.getElementById('data-slack'), 0, slackUsers, 1120);
+    var slackUsers = 922;
+    animateValue(document.getElementById('data-slack'), 0, slackUsers, 820);
 }
 
 // handle more info request
