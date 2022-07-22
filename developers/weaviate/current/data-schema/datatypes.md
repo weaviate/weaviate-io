@@ -140,7 +140,7 @@ $ curl \
 
 # DataType: cross reference
 
-The cross-reference type is the graph element of Weaviate, you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list of are names of classes that exist elsewhere in the schema. For example
+The `cross-reference` type is the graph element of Weaviate, you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list of are names of classes that exist elsewhere in the schema. For example:
 
 ```json
 {
@@ -155,6 +155,14 @@ The cross-reference type is the graph element of Weaviate, you can create a link
 }
 ```
 
+## Number of linked instances
+The `cross-reference` type objects are `arrays` by default. This allows you to link to any number `(0..n)` of instances of a given class.
+
+In the above example, our objects can be linked to:
+* **0** Articles and **1** Blog
+* **1** Article and **3** Blogs
+* **2** Articles and **5** Blogs
+* etc
 
 # More Resources
 
