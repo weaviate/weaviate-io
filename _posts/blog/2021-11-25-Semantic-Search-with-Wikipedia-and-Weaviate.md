@@ -10,6 +10,8 @@ canonical-url: https://towardsdatascience.com/semantic-search-through-wikipedia-
 canonical-name: Towards Data Science
 toc: false
 ---
+
+## Intro
 To conduct semantic search queries on a large scale, one needs a vector search engine to search through the large number of vector representations that represent the data. To show you how this can be done, [we have open-sourced the complete English language Wikipedia corpus](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate){:target="_blank"} backup in Weaviate. In this article, I will outline how we’ve created the dataset, show you how you can run the dataset yourself, and present search strategies on how to implement similar vector and semantic search solutions in your own projects and how to bring them to production.
 
 The Wikipedia dataset used is the “truthy” version of October 9th, 2021. After processing it contains 11.348.257 articles, 27.377.159 paragraphs, and 125.447.595 graph cross-references. Although a bigger machine (see below) is needed for importing the data, the serving is done on a 12 CPU, 100 GB RAM, 250Gb SSD Google Cloud VM with 1 x NVIDIA Tesla P4. The ML-models used are [multi-qa-MiniLM-L6-cos-v1](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1){:target="_blank"} and [bert-large-uncased-whole-word-masking-finetuned-squad](https://huggingface.co/bert-large-uncased-whole-word-masking-finetuned-squad){:target="_blank"} both are available as [pre-built modules](https://www.semi.technology/developers/weaviate/current/modules/text2vec-transformers.html#pre-built-images){:target="_blank"} in Weaviate.
@@ -210,9 +212,14 @@ The demo dataset runs on a Docker setup on a single machine, you can easily spin
 To bring semantic search solutions to production, you need three things:
 
 1. Data
-2. ML-Models
-3. Vector search engine
+1. ML-Models
+1. Vector search engine
 
 In this article, we have shown how you can bring the complete Wikipedia corpus (data) using open-source ML-models (Sentence-BERT) and a vector search engine (Weaviate) to production.
 
-We look forward to hearing what you will create. Make sure to let us know via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
+## What next
+Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
+
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+
+Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
