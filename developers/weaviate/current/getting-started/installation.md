@@ -20,6 +20,10 @@ There are only three ways you can run Weaviate, and they are -we believe- pretty
 2. Kubernetes
 3. Weaviate Cloud Service
 
+<div class="alert alert-secondary" markdown="1">
+💡 As you've learned in the [modules section of the basics guide](./basics.html#modules), you use Weaviate stand-alone or in combination with modules. Tweaking your configuration will be all about the setup you want to use.
+</div>
+
 ##  Docker
 
 You can use Weaviate with Docker. We would highly recommend this if you are developing. It allows you to run Weaviate on your local machine or in the cloud. You have it up and running in seconds (minutes if you use a  prepackaged transformers module).
@@ -41,6 +45,10 @@ For this one, you need to understand how Kubernetes works; these are just two ha
 
 1. If you want to use Weaviate in combination with modules, it might be handy to check out the [Docker guide](#docker) first. It will align with the Helm charts.
 2. You find all detailed Kubernetes instructions [here](../installation/#kubernetes-k8s).
+
+<div class="alert alert-secondary" markdown="1">
+If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
+</div>
 
 ## Weaviate Cloud Service
 

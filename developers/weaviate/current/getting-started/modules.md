@@ -5,7 +5,7 @@ sub-menu: Getting started
 title: Modules
 description: Getting started with querying Weaviate
 tags: ['modules']
-menu-order: 8
+menu-order: 9
 open-graph-type: article
 toc: true
 ---

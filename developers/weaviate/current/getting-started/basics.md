@@ -24,9 +24,11 @@ Weaviate is a database of the type search engine, and it's specifically built to
 
 ## Data objects in Weaviate
 
-Inside Weaviate, you can create JSON documents where you set values to properties. These properties can be of almost any data type (e.g., string, text, date, int, float, [etc.](../data-schema/datatypes.html)) As a Weaviate user, you can set (almost) any name for a property.
+Inside Weaviate, you can store _data objects_ (represented as JSON documents) which can be represented by a machine learning vector representation (i.e., an embedding).
 
-An example of an individual data object:
+The properties (i.e., JSON key values) of the data objects can be of almost any data type (e.g., string, text, date, int, float, [etc.](../data-schema/datatypes.html)) As a Weaviate user, you can set (almost) any name for a property (i.e., JSON key).
+
+An example of an individual data object as stored in Weaviate:
 
 ```json
 {
@@ -55,7 +57,7 @@ For example:
 }
 ```
 
-Within Weaviate, we can also attach vector representations to the data objects. This might look something like this:
+As mentioned above, we can also attach vector representations to the data objects. This might look something like this:
 
 ```json
 {
@@ -160,9 +162,14 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 💡 It's even possible to [create your own modules](../modules/custom-modules.html)! It takes a bit of knowledge about Go, but the module container can be written in any language.
 </div>
 
+## Weaviate Console
+
+The Weaviate console is part of the Weaviate Cluster Service and allows you to connect to any Weaviate instance and query it. You can follow [this](./console.html) getting started guide to learn more.
+
 ## Recapitulation
 
-* Weaviate stores JSON objects with a wide variety of data types.
+* Inside Weaviate, you can store _data objects_ which can be represented by a machine learning vector.
+* Weaviate represents data objects as JSON documents.
 * Every data object can contain a vector.
 * You can set cross-references as datatypes to link to other objects.
 * You will define classes and properties in a schema.
@@ -171,6 +178,7 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 * You can configure Weaviate in the schema.
 * We can query using the GraphQL-interface or -in some cases- the RESTful API.
 * Vectors come from machine learning models that you inference yourself or through a Weaviate module.
+* You can use Weaviate modules, but you don’t _have_ to use them.
 
 ## What would you like to learn next?
 

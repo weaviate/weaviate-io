@@ -5,7 +5,7 @@ sub-menu: Getting started
 title: Import
 description: Getting started with importing in Weaviate
 tags: ['import']
-menu-order: 4
+menu-order: 5
 open-graph-type: article
 toc: true
 ---

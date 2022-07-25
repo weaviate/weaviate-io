@@ -5,7 +5,7 @@ sub-menu: Getting started
 title: Query
 description: Getting started with querying Weaviate
 tags: ['basics']
-menu-order: 5
+menu-order: 6
 open-graph-type: article
 toc: true
 ---
