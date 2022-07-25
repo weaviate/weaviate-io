@@ -70,7 +70,7 @@ Will result in the following response:
 ```
 
 <!-- TODO: review the references -->
-If you want to learn more (outside this article), you can watch this [FOSDEM video](https://www.youtube.com/watch?v=3NfcAF4qm2k){:target="_blank"} or this interview at [Google Cloud’s Slack Chat](https://www.youtube.com/watch?v=SOUtWj2szOM){:target="_blank"}. All documentation for Weaviate can be found [here](developers/weaviate/current){:target="_blank"}.
+If you want to learn more (outside this article), you can watch this [FOSDEM video](https://www.youtube.com/watch?v=3NfcAF4qm2k){:target="_blank"} or this interview at [Google Cloud’s Slack Chat](https://www.youtube.com/watch?v=SOUtWj2szOM){:target="_blank"}. Check the documentation for Weaviate can be found [here](/developers/weaviate/current){:target="_blank"}.
 
 ## Running Weaviate
 The easiest way to get started with Weaviate is by running the Docker compose setup.
@@ -104,9 +104,9 @@ The first thing you need to do when working with Weaviate is create a schema, We
 
 The schema is in graph format, meaning that you can create (huge) networks (i.e., knowledge graphs) of your data if you so desire, but if you are building a simple search engine, one class with a few properties can already be enough.
 
-You can learn more about creating a schema [here](developers/weaviate/current/data-schema/index.html){:target="_blank"}. But for now, we will dive in and create a super simple schema for a photo dataset.
+You can learn more about creating a schema [here](/developers/weaviate/current/data-schema/index.html){:target="_blank"}. But for now, we will dive in and create a super simple schema for a photo dataset.
 
-In the example below, we are going to use the command line to add a schema, but you can also use the [Python library](developers/weaviate/current/client-libraries/python.html){:target="_blank"}, Postman, or any other way you like to send out HTTP requests.
+In the example below, we are going to use the command line to add a schema, but you can also use the [Python library](/developers/weaviate/current/client-libraries/python.html){:target="_blank"}, Postman, or any other way you like to send out HTTP requests.
 
 ```bash
 $ curl \
@@ -152,7 +152,7 @@ or with jq
 $ curl http://localhost:8080/v1/schema | jq .
 ```
 
-Let’s examine the JSON object to understand what we just added to Weaviate - learn more in [the documentation](developers/weaviate/current/data-schema/schema-configuration.html){:target="_blank"}.
+Let’s examine the JSON object to understand what we just added to Weaviate - learn more in [the documentation](/developers/weaviate/current/data-schema/schema-configuration.html){:target="_blank"}.
 
 ![Schema Structure](/img/blog/getting-started/schema-structure.jpeg)
 
