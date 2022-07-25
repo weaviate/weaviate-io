@@ -112,7 +112,7 @@ Yes, see next step.
 ## When should or shouldn’t I use Docker-Compose?
 Docker Compose is quick, easy and convenient, but there are situations which it isn’t suited for. We recommend to use a docker-compose based setup for trying out or evaluating Weaviate and when developing with Weaviate locally.
 
-However, for a stable production environment, we [recommend to run Weaviate on Kubernetes](/developers/weaviate/current/getting-started/installation.html#kubernetes){:target="_blank"}. You can use Helm, there is an [officially supported Weaviate Helm Chart](https://github.com/semi-technologies/weaviate-helm){:target="_blank"}.
+However, for a stable production environment, we [recommend to run Weaviate on Kubernetes](/developers/weaviate/current/getting-started/installation.html#kubernetes-k8s){:target="_blank"}. You can use Helm, there is an [officially supported Weaviate Helm Chart](https://github.com/semi-technologies/weaviate-helm){:target="_blank"}.
 
 ## Where to go from here?
 Congratulations, you now have a lot of background on Docker and containerization in general! Now there’s nothing in the way of [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate..
