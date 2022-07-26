@@ -22,7 +22,6 @@ toc: false
 | --- | --- | --- |
 | img | [Complex queries](./complex-queries.html) | Learn how to deal with complex queries |
 | img | [Classification](./classification.html) | Learn how to classify data in Weaviate |
-| img | [Modules](./modules.html) | Learn how to deal with modules in Weaviate |
 | img | [Scaling](./scaling.html) | Learn how to scale Weaviate with Kubernetes |
 | img | [ANN configuration](./ann-configuration.html) | Learn how to configure ANN settings in the Weaviate schema |
 | img | [Speed optimization](./speed-optimization.html) | Learn tips &amp; tricks to optimize Weaviate for speed 🏎️ |

@@ -108,7 +108,7 @@ People use Weaviate for cases such as semantic search, image search, similarity 
 Want to get started or want to learn more? These resources might help you further:
 
 - Get started:
-    - [Weaviate in a 10 minutes tutorial](./getting-started/quick-start.html)
+    - [Weaviate getting started guides overview](./getting-started/)
     - [Installation](./getting-started/installation.html)
 - Learn more:
     - [Weaviate resources page](/resources.html)

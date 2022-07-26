@@ -155,7 +155,7 @@ As a user, you have two ways of generating them:
     * [text2vec-openai](../retriever-vectorizer-modules/text2vec-openai.html)
     * [text2vec-contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html) (custom FastText based vectorizer)
     * [img2vec-neural](../retriever-vectorizer-modules/img2vec-neural.html)
-    * [multi2vec-clip](/retriever-vectorizer-modules/multi2vec-clip.html)
+    * [multi2vec-clip](../retriever-vectorizer-modules/multi2vec-clip.html)
 
 We will go deeper into the guide for adding data and the guide for modules. But for whatever vector use case you have, we've got you covered.
 
@@ -196,7 +196,7 @@ The Weaviate console is part of the Weaviate Cluster Service and allows you to c
 
 ## What would you like to learn next?
 
-* [I want to know how to install Weaviate](./install.html)
+* [I want to know how to install Weaviate](./installation.html)
 * [I want to learn how I can query the data](./query.html)
 * [I want to learn how to work with the Weaviate schema](./schema.html)
 

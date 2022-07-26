@@ -48,7 +48,7 @@ Some examples of Docker Compose configurations you can make with the configurato
 For this one, you need to understand how Kubernetes works; these are just two handy things to know.
 
 1. If you want to use Weaviate in combination with modules, it might be handy to check out the [Docker guide](#docker) first. It will align with the Helm charts.
-2. You find all detailed Kubernetes instructions [here](../installation/#kubernetes-k8s).
+2. You find all detailed Kubernetes instructions [here](../installation/#kubernetes).
 
 <div class="alert alert-secondary alert-getting-started" markdown="1">
 If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
