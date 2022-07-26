@@ -5,8 +5,7 @@ description: "Any kind of data storage architecture needs an API. You want your 
 published: true
 author: Laura Ham
 author-img: /img/people/icon/laura.jpg
-card-img: /img/blog//hero/graphql-api-design-card.png
-hero-img: /img/blog//hero/graphql-api-design.png
+card-img: /img/blog/hero/graphql-api-design-card.png
 canonical-url: https://medium.com/semi-technologies/how-weaviates-graphql-api-was-designed-b38885aa9cee
 canonical-name: Medium
 date: 2021-01-27

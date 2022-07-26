@@ -6,7 +6,6 @@ published: true
 author: Etienne Dilocker
 author-img: /img/people/icon/etienne.jpg
 card-img: /img/blog/hero/Docker-and-Containers-with-Weviate-card.png
-hero-img: /img/blog/hero/Docker-and-Containers-with-Weviate.png
 canonical-url: https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079
 canonical-name: Medium
 date: 2021-05-19

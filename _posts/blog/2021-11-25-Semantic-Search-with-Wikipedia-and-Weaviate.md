@@ -5,7 +5,8 @@ description: Semantic search through the complete Wikipedia with the Weaviate ve
 published: true
 author: Bob van Luijt
 author-img: /img/people/bob.jpg
-hero-img: https://miro.medium.com/max/1400/1*Yh2-SH-8PcxWQVHmjes1WA.jpeg
+card-img: /img/blog/hero/semantic-search-with-wikipedia-and-weaviate.jpg
+hero-img: /img/blog/hero/semantic-search-with-wikipedia-and-weaviate-card.jpg
 canonical-url: https://towardsdatascience.com/semantic-search-through-wikipedia-with-weaviate-graphql-sentence-bert-and-bert-q-a-3c8a5edeacf6   
 canonical-name: Towards Data Science
 toc: false

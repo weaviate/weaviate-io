@@ -6,7 +6,6 @@ published: true
 author: Laura Ham
 author-img: /img/people/icon/bob.jpg
 card-img: /img/blog/hero/history-of-weaviate-card.png
-hero-img: /img/blog/hero/history-of-weaviate.png
 canonical-url: https://medium.com/semi-technologies/the-history-of-the-weaviate-vector-search-engine-17a274f36178
 canonical-name: Medium
 date: 2021-01-20

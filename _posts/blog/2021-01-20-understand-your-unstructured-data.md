@@ -6,7 +6,6 @@ published: true
 author: Laura Ham
 author-img: /img/people/icon/laura.jpg
 card-img: /img/blog/hero/understanding-unstructured-data-card.png
-hero-img: /img/blog/hero/understanding-unstructured-data.png
 canonical-url: https://medium.com/semi-technologies/what-if-you-could-understand-your-unstructured-data-92f0861e016
 canonical-name: Medium
 date: 2021-01-20

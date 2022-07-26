@@ -6,7 +6,6 @@ published: true
 author: Etienne Dilocker
 author-img: /img/people/icon/etienne.jpg
 card-img: /img/blog/hero/CRUD-support–in-Weaviate-card.png
-hero-img: /img/blog/hero/CRUD-support–in-Weaviate.png
 canonical-url: https://db-engines.com/en/blog_post/87
 canonical-name: DB Engines
 date: 2021-02-15

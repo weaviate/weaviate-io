@@ -6,7 +6,6 @@ published: true
 author: Bob van Luijt
 author-img: /img/people/icon/bob.jpg
 card-img: /img/blog/hero/Weaviate-1-2-transformer-models-card.png
-hero-img: /img/blog/hero/Weaviate-1-2-transformer-models.png
 canonical-url: https://medium.com/semi-technologies/weaviate-version-1-2-x-now-supports-transformer-models-4a12d858cce3
 canonical-name: Medium
 date: 2021-03-30

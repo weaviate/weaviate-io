@@ -8,11 +8,8 @@
 
     {% include header.html %}
 
-    <!--IMG-->
-    <section data-jarallax data-speed=".8" class="py-12 py-md-15 bg-cover jarallax" style="background-image: url({{ page.hero-img }});"></section>
-
     <!-- header -->
-    <section class="pt-8 pt-md-11">
+    <section class="pt-8">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 col-md-10 col-lg-9 col-xl-8">
@@ -26,6 +23,12 @@
             <p class="lead mb-7 text-center text-muted">
               {{ page.description }}
             </p>
+
+            {% if page.hero-img != null %}
+            <!-- <div> -->
+              <img src="{{page.hero-img}}" class="rounded" style="width: 100%">
+            <!-- </div> -->
+            {% endif %}
 
             <!-- Meta -->
             <div class="row align-items-center py-5 border-top border-bottom">

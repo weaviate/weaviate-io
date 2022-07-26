@@ -6,7 +6,6 @@ published: true
 author: Bob van Luijt
 author-img: /img/people/icon/bob.jpg
 card-img: /img/blog/hero/Taxonomies-ontologies-and-schemas-card.png
-hero-img: /img/blog/hero/Taxonomies-ontologies-and-schemas.png
 canonical-url: https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695
 canonical-name: Medium
 date: 2021-04-20
