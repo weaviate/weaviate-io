@@ -5,8 +5,8 @@ description: "A complete implementation guide to creating a React.js app styled 
 published: true
 author: Henrique Pereira
 author-img: /img/people/icon/henrique.jpg
-card-img: /img/blog/hero/Build-a-React-app-with-Weaviate-card.png
-hero-img: /img/blog/hero/Build-a-React-app-with-Weaviate.png
+card-img: /img/blog/hero/build-a-react-app-with-weaviate-card.png
+hero-img: /img/blog/hero/build-a-react-app-with-weaviate.png
 canonical-url: https://medium.com/semi-technologies/build-a-react-based-front-end-app-for-your-weaviate-neural-search-bafac9a772b4
 canonical-name: Medium
 date: 2021-02-23
