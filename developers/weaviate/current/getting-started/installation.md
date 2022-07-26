@@ -16,13 +16,17 @@ If there will ever be a Guinness Book of Records entry for the shortest getting 
 
 There are only three ways you can run Weaviate, and they are -we believe- pretty straightforward.
 
-1. Docker
-2. Kubernetes
-3. Weaviate Cloud Service
+0. Weaviate Cloud Service
+0. Docker
+0. Kubernetes
 
-<div class="alert alert-secondary" markdown="1">
+<div class="alert alert-secondary alert-getting-started" markdown="1">
 💡 As you've learned in the [modules section of the basics guide](./basics.html#modules), you use Weaviate stand-alone or in combination with modules. Tweaking your configuration will be all about the setup you want to use.
 </div>
+
+## Weaviate Cloud Service
+
+The Weaviate Cloud Service is our managed Weaviate SaaS. Currently, the service is private beta, but (🤫) if you log in to the [Weaviate Cloud Console](http://console.semi.technology/) and create a free sandbox to play around with.
 
 ##  Docker
 
@@ -46,13 +50,9 @@ For this one, you need to understand how Kubernetes works; these are just two ha
 1. If you want to use Weaviate in combination with modules, it might be handy to check out the [Docker guide](#docker) first. It will align with the Helm charts.
 2. You find all detailed Kubernetes instructions [here](../installation/#kubernetes-k8s).
 
-<div class="alert alert-secondary" markdown="1">
+<div class="alert alert-secondary alert-getting-started" markdown="1">
 If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
 </div>
-
-## Weaviate Cloud Service
-
-The Weaviate Cloud Service is our managed Weaviate SaaS. Currently, the service is private beta, but (🤫) if you log in to the [Weaviate Cloud Console](http://console.semi.technology/) and create a free sandbox to play around with.
 
 ## Working with GPU-enabled containers
 

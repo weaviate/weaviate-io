@@ -25,7 +25,7 @@ When opening the [Weaviate Console](https://console.semi.technology), you'll se
 
 The Weaviate Cloud Service allows you to create Weaviate instances as SaaS instances on our infrastructure. There is no difference between locally run Weaviate instances or Weaviate SaaS instances other than that the latter ones are managed by us.
 
-<div class="alert alert-secondary" markdown="1">
+<div class="alert alert-secondary alert-getting-started" markdown="1">
 💡 Sandboxes are free Weaviate instances! You can create them for small test use cases if you don't want to run Weaviate locally.
 </div>
 
@@ -35,13 +35,17 @@ You can connect to any Weaviate instance as long as your computer has access to 
 
 When you're connected you can use the [GraphiQL](#graphiql) interface to interact with your Weaviate instance.
 
-<div class="alert alert-secondary" markdown="1">
+<div class="alert alert-secondary alert-getting-started" markdown="1">
 💡 You can safely connect to any Weaviate instance. The GraphiQL editor runs locally, and we don't forward any result or query to our servers.
 </div>
 
 ## GraphiQL
 
 GraphiQL is a graphical interface that allows you to manually write GraphQL queries. Within Weaviate we use it a lot, the auto-fill functionality allows you to easily navigate through your own dataset.
+
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 Curious? Try out the console [right now](https://link.semi.technology/3J8aB73) with the Wikipedia dataset.
+</div>
 
 ## Recapitulation
 

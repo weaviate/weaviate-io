@@ -22,9 +22,13 @@ This guide is all about the basics. No getting your hands dirty yet, no fancy Ku
 
 Weaviate is a database of the type search engine, and it's specifically built to work with vector representations produced by machine learning models. Hence, Weaviate is a vector search engine (but we will still like you if you call it a vector database).
 
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 When working with a database, you want [full CRUD support](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Not all approximate nearest neighbor algorithms support this, and not all incumbent databases (/search engines) are optimized for this type of indexing. These reasons are -among others- the most important to why Weaviate exists You can also learn more about this by reading [this blog post](https://db-engines.com/en/blog_post/87).
+</div>
+
 ## Data objects in Weaviate
 
-Inside Weaviate, you can store _data objects_ (represented as JSON documents) which can be represented by a machine learning vector representation (i.e., an embedding).
+Inside Weaviate, you can store _data objects_ (represented as JSON documents stored in a key-value store that's always present) which can be represented by a machine learning vector representation (i.e., an embedding).
 
 The properties (i.e., JSON key values) of the data objects can be of almost any data type (e.g., string, text, date, int, float, [etc.](../data-schema/datatypes.html)) As a Weaviate user, you can set (almost) any name for a property (i.e., JSON key).
 
@@ -122,21 +126,30 @@ Based on the UUID of the publication. We can now attach the UUID to the `Author`
 }
 ```
 
-<div class="alert alert-secondary">
+<div class="alert alert-secondary alert-getting-started" markdown="1">
 💡 Hrefs and beacons are the locations within a Weaviate where you can retrieve the cross-reference. The difference between the two will become apparent while going through the getting started guide.
 </div>
 
 ## Weaviate Schema
 
-Classes and properties are defined in the schema. While creating your use case, you will also spend some time tweaking the configuration inside the schema. As you're probably guessing, we have a separate getting started guide for working with a schema.
+Classes and properties are defined in the schema. While creating your use case, you will also spend some time tweaking the configuration inside the schema. As you're probably guessing, we have a separate getting started guide for [working with a schema](./schema.html).
 
-## Where do these vectors come from?
+For now, what's important to know is this:
+
+0. Classes and properties (as explained above) are defined in the schema.
+0. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
+0. You can link classes (even if they use different embeddings) by setting cross-references.
+0. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema getting [started guide](./schema.html)).
+
+
+
+## Where do the vectors come from?
 
 The short answer is: from machine learning models.
 
 As a user, you have two ways of generating them:
 
-* You render your vector from any model you have (we don't care  where they come from, we'll store them for you)
+* You render your vector from any model you have (we don't care  where they come from, we'll just store them for you)
 * You use a Weaviate module with a prepackaged `text2vec` integration (we call them "vectorizers", you can learn more about them [here](../modules/)).
     * [text2vec-transformers](../retriever-vectorizer-modules/text2vec-transformers.html)
     * [text2vec-openai](../retriever-vectorizer-modules/text2vec-openai.html)
@@ -158,7 +171,7 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 2. *readers & generators* are used for reranking or processing the results.
 3. *other modules* are -often- non-ML, for example, the spell-check module.
 
-<div class="alert alert-secondary" markdown="1">
+<div class="alert alert-secondary alert-getting-started" markdown="1">
 💡 It's even possible to [create your own modules](../modules/custom-modules.html)! It takes a bit of knowledge about Go, but the module container can be written in any language.
 </div>
 
@@ -176,6 +189,7 @@ The Weaviate console is part of the Weaviate Cluster Service and allows you to c
 * Different classes can represent different vector spaces.
 * The schema has a Class-property data structure.
 * You can configure Weaviate in the schema.
+* You define classes and properties in the schema.
 * We can query using the GraphQL-interface or -in some cases- the RESTful API.
 * Vectors come from machine learning models that you inference yourself or through a Weaviate module.
 * You can use Weaviate modules, but you don’t _have_ to use them.
