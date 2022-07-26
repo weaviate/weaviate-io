@@ -12,6 +12,7 @@ toc: true
 redirect_from:
     - /documentation/weaviate/current/get-started/install.html
     - /documentation/weaviate/current/getting-started/installation.html
+    - /developers/weaviate/current/getting-started/installation.html
 ---
 
 <!-- sets the current version tags -->
