@@ -923,19 +923,79 @@ To determine this, you need to ask yourself the following questions and compare 
 
 ## Classes without indices
 
+If you don't want to set an index at all, this is possible too.
+
+If we don't want to index the `Authors` we can simply skip all indices (vector _and_ inverted) like this:
+
+```js
+{
+    "class": "Author",
+    "description": "A description of this class, in this case, it's about authors",
+    "vectorIndexConfig": {
+        "skip": true // <== disable vector index
+    },
+    "properties": [
+        {
+            "indexInverted": false, // <== disable inverted index for this property
+            "dataType": [
+                "string"
+            ],
+            "description": "The name of the Author",
+            "name": "name"
+        },
+        {
+            "indexInverted": false, // <== disable inverted index for this property
+            "dataType": [
+                "int"
+            ],
+            "description": "The age of the Author",
+            "name": "age"
+        },
+        {
+            "indexInverted": false, // <== disable inverted index for this property
+            "dataType": [
+                "date"
+            ],
+            "description": "The date of birth of the Author",
+            "name": "born"
+        },
+        {
+            "indexInverted": false, // <== disable inverted index for this property
+            "dataType": [
+                "boolean"
+            ],
+            "description": "A boolean value if the Author won a nobel prize",
+            "name": "wonNobelPrize"
+        },
+        {
+            "indexInverted": false, // <== disable inverted index for this property
+            "dataType": [
+                "text"
+            ],
+            "description": "A description of the author",
+            "name": "description"
+        }
+    ]
+}
+```
+
+## Autoschema feature
+
 ...
 
 ## Recapitulation
 
-...
+* Weaviate has a schema where you will define how your data objects will be indexed.
+* Weaviate's schema is class property based.
+* The schema is highly configurable but comes with pre-defined settings.
+* The ANN index needs to be set for your use case (especially if you have a large dataset)
+* You can enable or disable the index based on your use case
 
 ## What would you like to learn next?
 
-...
-
-## Legend
-
-...
+* [Learn how to import data](./import.html)
+* [Learn how to query data based on a schema](query.html)
+* [Take me one step back to the basics](./basics.html)
 
 # More Resources
 

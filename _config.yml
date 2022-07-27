@@ -5,7 +5,7 @@ markdown: kramdown
 highlighter: none
 url: https://weaviate.io
 baseurl: /
-documentation_call_out: true
+documentation_call_out: false
 kramdown:
   parse_block_html: false
 rdiscount extensions: [smart]
@@ -96,21 +96,17 @@ docs:
       - name: Installation
         folder: installation
         header: false
-      - name: Architecture
-        folder: architecture
-        header: false
       - name: Configuration
         folder: configuration
         header: false
-      - name: Vector Index (ANN) Plugins
-        folder: vector-index-plugins
+      - name: Data schema
+        folder: data-schema
         header: false
-      - name: Benchmarks
-        folder: benchmarks
-        header: false
+        breakpointAfter: true
       - name: Modules
         folder: modules
         header: false
+        breakpointAfter: true
       - name: Retrievers & Vectorizers
         folder: retriever-vectorizer-modules
         header: true
@@ -123,23 +119,32 @@ docs:
         folder: other-modules
         header: true
         nav-parent: Modules
-      - name: Client libraries & CLI
-        folder: client-libraries
-        header: false
-      - name: Data schema
-        folder: data-schema
-        header: false
       - name: RESTful API references
         folder: restful-api-references
         header: false
       - name: GraphQL references
         folder: graphql-references
         header: false
-      - name: More resources
-        folder: more-resources
+        breakpointAfter: true
+      - name: Client libraries & CLI
+        folder: client-libraries
         header: false
+        breakpointAfter: true
+      - name: Architecture
+        folder: architecture
+        header: false
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
+        header: false
+      - name: Benchmarks
+        folder: benchmarks
+        header: false
+        breakpointAfter: true
       - name: Tutorials
         folder: tutorials
+        header: false
+      - name: More resources
+        folder: more-resources
         header: false
     'v1.13.2':
       - name: Getting started
