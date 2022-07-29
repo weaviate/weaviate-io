@@ -179,6 +179,14 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 
 The Weaviate console is part of the Weaviate Cluster Service and allows you to connect to any Weaviate instance and query it. You can follow [this](./console.html) getting started guide to learn more.
 
+## Benchmarks
+
+The [benchmark page](../benchmarks/) might be helpful when setting up your Weaviate instance. As a rule of thumb, when you choose a similar dataset to your use case, you should get similar results with similar settings. If the results diverge too much _negatively_ you probably made a mistake in hardware choices or in your Weaviate configuration. If the results are way more _positive_, [reach out to us immediately 😉]({{ site.slack_signup_url }})
+
+## Monitoring
+
+Weaviate can expose Prometheus-compatible metrics for [monitoring](../configuration/monitoring.html). We highly recommend setting this up, simply because it allows you to optimize your setup.
+
 ## Recapitulation
 
 * Inside Weaviate, you can store _data objects_ which can be represented by a machine learning vector.
@@ -193,6 +201,8 @@ The Weaviate console is part of the Weaviate Cluster Service and allows you to c
 * We can query using the GraphQL-interface or -in some cases- the RESTful API.
 * Vectors come from machine learning models that you inference yourself or through a Weaviate module.
 * You can use Weaviate modules, but you don’t _have_ to use them.
+* The benchmark page helps you to learn how far you can optimize for your use case.
+* Monitoring helps you to monitor your setup and discover potential bottlenecks.
 
 ## What would you like to learn next?
 

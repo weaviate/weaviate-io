@@ -979,7 +979,19 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
 }
 ```
 
+## Module configuration
+
+...
+
 ## Autoschema feature
+
+...
+
+## Other schema operations
+
+...
+
+see API docs
 
 ...
 

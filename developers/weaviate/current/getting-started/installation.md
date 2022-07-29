@@ -28,7 +28,28 @@ There are only three ways you can run Weaviate, and they are -we believe- pretty
 
 The Weaviate Cloud Service is our managed Weaviate SaaS. Currently, the service is private beta, but (🤫) if you log in to the [Weaviate Cloud Console](http://console.semi.technology/) and create a free sandbox to play around with.
 
-##  Docker
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 The big upside of the Weaviate Cloud Service is that it's a completely managed service.
+</div>
+
+## Running Weaviate yourself
+
+When running Weaviate yourself in production, you want to make sure you select the right hardware to run it on.  The benchmark pages in the documentation are helpful for this (more about this in this guide) too, take the following things into account when choosing the right hardware:
+
+0. **Disks** – use SSD disks if possible. Weaviate works more efficiently on solid state disks than on spinning disks.
+    0. SSD disks come in a wide variety of types and price ranges. You might want to experiment with this, but based on our experience, there is a marginal return when spending large amounts of money on extreme SSD types.
+    0.Avoid network storage and go for block storage. Internally we use;
+        0. [`gp3` on Amazon Web Services](https://aws.amazon.com/about-aws/whats-new/2020/12/introducing-new-amazon-ebs-general-purpose-volumes-gp3/)
+        0. [`premium-rwo` for Google Cloud Platform](https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/gce-pd-csi-driver#create_a_storageclass)
+        0. [`Premium SSD` for Microsoft Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssds)
+0. **Memory** – make sure there is enough available to store the indices. To calculate to amount of memory needed for your vectors. Follow [this](/architecture/resources.html#an-example-calculation) calculation. You can learn more about memory usage in Weaviate [here](../architecture/resources.html#the-role-of-memory).
+0. **CPUs** – adding more CPUs increases import speed or query time. Setting up [monitoring](../configuration/monitoring.html) for your Weaviate instance will help you determine if you need more or fewer CPUs in your setup.
+
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 For development purposes it's perfectly fine to run Weaviate on your local machine; the above goes more for production deployments.
+</div>
+
+## Docker
 
 You can use Weaviate with Docker. We would highly recommend this if you are developing. It allows you to run Weaviate on your local machine or in the cloud. You have it up and running in seconds (minutes if you use a  prepackaged transformers module).
 
