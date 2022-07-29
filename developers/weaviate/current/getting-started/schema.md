@@ -70,7 +70,7 @@ print(json.dumps(schema))
 
 Let's create your first class!
 
-We'll take the example of the basics section because you're already familiar with it.
+We'll take the example of the [basics](./basics.html#data-objects-in-weaviate) getting started guide because you're already familiar with it.
 
 ```python
 import weaviate
