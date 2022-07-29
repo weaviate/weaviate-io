@@ -40,6 +40,9 @@ plugins:
   - jekyll-redirect-from
   - jekyll-toc
   - jekyll-sitemap
+  - jekyll-last-modified-at
+last-modified-at:
+  date-format: '%d-%b-%y'
 whitelist:
   - jekyll-redirect-from
 toc:
