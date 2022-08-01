@@ -21,7 +21,7 @@
   type: neural search framework
 - name: WordPress & WooCommerce search plugin from WPSOLR
   website: https://www.wpsolr.com/feature-weaviate/
-  description: Power all or parts of your search with Weaviate. We've integrated all Weaviate modules, including transformers, Question & Answers, and CLIP to extend the WordPress and WooCommerce search with vectors while keeping the inverted index good features: filters, facets, sort, pagination, and suggestions.
+  description: "Power all or parts of your search with Weaviate. We've integrated all Weaviate modules, including transformers, Question & Answers, and CLIP to extend the WordPress and WooCommerce search with vectors while keeping the inverted index's best features: filters, facets, sort, pagination, and suggestions."
   image: /img/white-transparent-logo-wpsolr-modern.png
   type: WordPress & WooCommerce search plugin
 ...
