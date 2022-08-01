@@ -910,20 +910,55 @@ To determine this, you need to ask yourself the following questions and compare 
 | many | yes | high | Aha, this means you're a perfectionist _or_ that you have a use case which needs the best of all three worlds. What we advice to do is this: keep increasing your `efConstruction` until you've hit the time limit of imports and updates. Next, keep increasing the `ef` setting until you've reached the desired query per second vs recall trade-off. For what it's worth, many people _think_ they need this, but often they don't. We leave it up to you to decide, or ask for help on our [Slack channel]({{ site.slack_signup_url }}).
 
 <div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 If you're looking for a starting point for values, we would advise an `efConstruction` of `128`, `maxConnections` of `32`, and `ef` of `64`.
+</div>
+
+<div class="alert alert-secondary alert-getting-started" markdown="1">
 💡 The [ANN benchmark page](../benchmarks/ann.html) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are. 
 </div>
 
 ## Configure the inverted index
 
-...
+The inverted index is surprisingly simple to configure, it's on or it's off and indexes on a property level.
 
-## Configure the BM25 index
+The inverted index is by default _on_. You can simply turn it of like this:
 
-...
+```js
+{
+    "class": "Author",
+    "properties": [ // <== note that the inverted index is set per property
+        {
+            "indexInverted": false, // <== turn it off by setting `indexInverted` to false
+            "dataType": [
+                "string"
+            ],
+            "name": "name"
+        }
+    ]
+}
+```
+
+A rule of thumb to follow when determining if you turn it on or off is this: _if you don't need it to query, turn it off._
+
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](../data-schema/datatypes.html#datatype-string-vs-text).
+</div>
+
+You can also enable an inverted index to search [based on timestamps](../data-schema/schema-configuration.html#invertedindexconfig--indextimestamps).
+
+```js
+{
+    "class": "Author",
+    "invertedIndexConfig": {
+        "indexTimestamps": true // <== false by default
+    },
+    "properties": []
+}
+```
 
 ## Classes without indices
 
-If you don't want to set an index at all, this is possible too.
+If you don't want to set an index at all, nor ANN nor inverted, this is possible too.
 
 If we don't want to index the `Authors` we can simply skip all indices (vector _and_ inverted) like this:
 
@@ -981,19 +1016,60 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
 
 ## Module configuration
 
-...
+As you've learned in the [basics getting started guide](./basics.html#modules), you can use Weaviate with or without modules. To use Weaviate _with_ modules, you must configure them in the schema.
 
-## Autoschema feature
+An example configuration:
 
-...
+```js
+{
+    "class": "Author",
+    "moduleConfig": { // <== module config on class level
+        "text2vec-transformers": { // <== the name of the module (in this case `text2vec-transformers`)
+            // the settings based on the choosed modules
+        }
+    },
+    "properties": [ ]
+}
+```
+
+When using vectorizers, you need to set vectorization on the class and property level. In the case you use text vectorizers, the way the vectorizers work is explained [here](../retriever-vectorizer-modules/text2vec-contextionary.html#regulate-semantic-indexing).
+
+```js
+{
+    "class": "Author",
+    "moduleConfig": { // <== class level configuration 
+        "text2vec-transformers": { // <== name of the module
+            "vectorizeClassName": false // <== vectorize the class name?
+        }
+    },
+    "properties": [{
+        "moduleConfig": { // <== property level configuration
+            "text2vec-transformers": { // <== name of the module
+                "skip": false, // <== skip this `string` for vectorization?
+                "vectorizePropertyName": false // <== vectorize the property name?
+            }
+        },
+        "dataType": [
+            "string"
+        ],
+        "name": "name"
+    }]
+}
+```
+
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 Because Weaviate's vectorizer module configuration is set on class and property level, you can have multiple vectorizers for different classes. You can even mix multimodal, NLP, and image modules.
+</div>
+
+## Auto schema feature
+
+You can import data into Weaviate without creating a schema. Weaviate will use all default settings, and guess what data type you use. If you have a setup with modules, Weaviate will also guess the default settings for the modules.
+
+Although auto schema works well for some instances, we always advise manually setting your schema to optimize Weaviate's performance.
 
 ## Other schema operations
 
-...
-
-see API docs
-
-...
+All schema operations are available in the [API documentation for the schema endpoint](../restful-api-references/schema.html). The documentation also includes examples in different client languages.
 
 ## Recapitulation
 
@@ -1002,6 +1078,8 @@ see API docs
 * The schema is highly configurable but comes with pre-defined settings.
 * The ANN index needs to be set for your use case (especially if you have a large dataset)
 * You can enable or disable the index based on your use case
+* You can configure Weaviate modules in the schema
+* There is an auto schema function, but for optimal usage, it's better to manually create a schema
 
 ## What would you like to learn next?
 

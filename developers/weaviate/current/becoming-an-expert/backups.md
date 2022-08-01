@@ -2,10 +2,10 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Becoming an expert
-title: Neural frameworks
-description: Neural framework optimization within Weaviate
-tags: ['modules']
-menu-order: 7
+title: Backups &amp; Snapshots
+description: Becomming an expert in backing up Weaviate
+tags: ['modules', 'backups &amp; snapshots']
+menu-order: 5
 open-graph-type: article
 toc: true
 ---

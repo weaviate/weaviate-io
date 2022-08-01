@@ -5,7 +5,7 @@ sub-menu: Becoming an expert
 title: Classification
 description: Getting started with classifying in Weaviate
 tags: ['classification']
-menu-order: 5
+menu-order: 6
 open-graph-type: article
 toc: true
 ---
