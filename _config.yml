@@ -119,11 +119,11 @@ docs:
         folder: other-modules
         header: true
         nav-parent: Modules
-      - name: RESTful API references
-        folder: restful-api-references
-        header: false
       - name: GraphQL references
         folder: graphql-references
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
         header: false
         breakpointAfter: true
       - name: Client libraries & CLI
