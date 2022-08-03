@@ -66,14 +66,40 @@ Some examples of Docker Compose configurations you can make with the configurato
 
 ## Kubernetes
 
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
+</div>
+
 For this one, you need to understand how Kubernetes works; these are just two handy things to know.
 
 1. If you want to use Weaviate in combination with modules, it might be handy to check out the [Docker guide](#docker) first. It will align with the Helm charts.
 2. You find all detailed Kubernetes instructions [here](../installation/#kubernetes-k8s).
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
-</div>
+```yaml
+version: '3.4'
+services:
+  weaviate:
+    image: semitechnologies/weaviate:1.14.0
+    ports:
+    - 8080:8080
+    restart: on-failure:0
+    environment:
+      CONTEXTIONARY_URL: contextionary:9999
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
+      ENABLE_MODULES: text2vec-contextionary
+      CLUSTER_HOSTNAME: 'node1'
+  contextionary:
+    environment:
+      OCCURRENCE_WEIGHT_LINEAR_FACTOR: 0.75
+      EXTENSIONS_STORAGE_MODE: weaviate
+      EXTENSIONS_STORAGE_ORIGIN: http://weaviate:8080
+      NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE: 5
+      ENABLE_COMPOUND_SPLITTING: 'false'
+    image: semitechnologies/contextionary:en0.16.0-v1.0.2
+```
 
 ## Working with GPU-enabled containers
 
