@@ -27,11 +27,13 @@ In the guide, we make a few basic assumptions (you are somewhat familiar with da
 
 ## Weaviate Getting Started Guides
 
-| Image | Topic | Description |
-| --- | --- | --- |
-| img | [Basics](./basics.html) | Learn the basics of Weaviate |
-| img | [Installation](./installation.html) | Install Weaviate |
-| img | [Schema](./schema.html) | Learn how a Weaviate schema works |
-| img | [Import](./import.html) | Learn how to efficiently import into Weaviate |
-| img | [Query](./query.html) | Learn how to query Weaviate using GraphQL and the RESTful API |
-| img | [Modules](./modules.html) | Learn how to deal with modules in Weaviate |
+| Topic | Description |
+| --- | --- |
+| [Basics](./basics.html) | Learn the basics of Weaviate |
+| [Installation](./installation.html) | Install Weaviate |
+| [Console](./console.html) |Working with the Weaviate console |
+| [Schema](./schema.html) | Learn how a Weaviate schema works |
+| [Import](./import.html) | Learn how to efficiently import into Weaviate |
+| [Query](./query.html) | Learn how to query Weaviate using GraphQL and the RESTful API |
+| [Modules](./modules.html) | Learn how to deal with modules in Weaviate |
+| [Clients](./clients.html) | Working with the Weaviate clients |

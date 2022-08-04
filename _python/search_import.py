@@ -163,12 +163,13 @@ def add_to_weaviate(client, parsed_content):
 
 
 
-client = weaviate.Client("http://localhost:8080")
+# client = weaviate.Client("http://localhost:8080")
 
-create_weaviate_schema(client)
+# create_weaviate_schema(client)
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
         if file[-3:] == '.md':
             parsed_content = open_markdown_file(os.path.join(subdir, file))
-            add_to_weaviate(client, parsed_content)
+            print(json.dumps(parsed_content, indent=4))
+            # add_to_weaviate(client, parsed_content)

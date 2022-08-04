@@ -2,10 +2,10 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Becoming an expert
-title: Neural frameworks
-description: Neural framework optimization within Weaviate
-tags: ['modules']
-menu-order: 9
+title: Error handling
+description: Handling errors in Weaviate
+tags: ['error handling']
+menu-order: 8
 open-graph-type: article
 toc: true
 ---

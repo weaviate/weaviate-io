@@ -910,11 +910,122 @@ Last but not least, all the standard filters are documented in the [filters sect
 
 ## Aggregate{}
 
-...
+​The `Aggregate{}` can be used to show aggregated data. For example, how many objects do I have of the `Paragraph` class?
+
+​There are three core concepts to keep in mind for the `Aggregate` function.
+
+1. Doing something on a class level is done in the `meta` property.
+2. Doing something on a property level is done inside the property.
+3. Different property types (e.g., `string`, `int`, etc) support different aggregate functions.
+
+​The examples below are a bit more explanatory.
+
+Let's start with counting the number of data objects in the `Paragraph` class:
+
+```graphql
+{
+  Aggregate {
+    Paragraph {
+      meta { # <= the meta property
+        count
+      }
+    }
+  }
+}
+```
+
+[Try out ⬆️](https://link.semi.technology/3oT8cUH)
+
+You can also mix in filters like this:
+
+```graphql
+{
+  Aggregate {
+    Paragraph(
+      nearObject: { # <= vector search
+        id: "fd7383f7-f2e3-3d50-a272-db9b614417cb"
+        certainty: 0.5
+      }
+      where: { # <= where filter
+        path: ["inArticle", "Article", "title"]
+        operator: Equal
+        valueString: "Francesco Bellissimo"
+      }
+    ) {
+      meta {
+        count
+      }
+    }
+  }
+}
+```
+
+[Try out ⬆️](https://link.semi.technology/3JtmnJo)
+
+The `order` property in the `Paragraph` class is a nice example of how you can use the `Aggregate{}` function for integers.
+
+```graphql
+{
+  Aggregate {
+    Paragraph {
+      order {
+        count
+        maximum
+        mean
+        median
+        minimum
+        mode
+        sum
+        type
+      } 
+    }
+  }
+}
+```
+
+[Try out ⬆️](https://link.semi.technology/3QnXRfj)
+
+You can find detailed documentation on the `Aggregate{}` function [here](../graphql-references/aggregate.html).
 
 ## Explore{}
 
-...
+The `Explore{}` function can be used if you want to search through the complete vector space but if you don't know the class that you're targeting. Bear in mind, if you know the class, you know the properties, the types, etc.
+
+In short, the `Explore{}` function lets you explore the vector space.
+
+Important to know: in almost any situation, need to do two queries when using the `Explore{}` function and you must set a `nearObject` or `nearVector` search parameter.
+
+1. Target candidates based on your vector search or similarity search.
+2. Collect these candidates.
+
+```graphql
+{
+  Explore(
+    nearObject: {
+      id: "fd7383f7-f2e3-3d50-a272-db9b614417cb"
+      certainty: 0.95
+    }
+  ) {
+    beacon
+    className
+    certainty
+    distance
+  }
+}
+```
+
+[Try out ⬆️](https://link.semi.technology/3vFyYUj)
+
+The `Explore{}` function works very straightforwardly and only returns four properties.
+
+1. `beacon` contains the URL _and_ the id. It's a "beacon in the vector space" how you can target a data object.
+2. `className` contains the name of the class that this data object has.
+3. `certainty` is the order from the query to the dataobject.
+4. `distance` is the distance between the query and the data object.
+
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 Data objects without vectors and data objects with different vector lengths than the input vector length or ID are skipped.
+</div>
 
 ## Recapitulation
 
