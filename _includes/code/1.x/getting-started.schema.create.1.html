@@ -322,48 +322,48 @@ $ curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
-      "class": "Author", // <= note the capital "A".
-      "description": "A description of this class, in this case, it is about authors",
-      "properties": [
-          {
-              "dataType": [
-                  "string"
-              ],
-              "description": "The name of the Author",
-              "name": "name",
-          },
-          {
-              "dataType": [
-                  "int"
-              ],
-              "description": "The age of the Author",
-              "name": "age"
-          },
-          {
-              "dataType": [
-                  "date"
-              ],
-              "description": "The date of birth of the Author",
-              "name": "born"
-          },
-          {
-              "dataType": [
-                  "boolean"
-              ],
-              "description": "A boolean value if the Author won a nobel prize",
-              "name": "wonNobelPrize"
-          },
-          {
-              "dataType": [
-                  "text"
-              ],
-              "description": "A description of the author",
-              "name": "description"
-          }
-      ]
+        "class": "Author",
+        "description": "A description of this class, in this case, it is about authors",
+        "properties": [
+            {
+                "dataType": [
+                    "string"
+                ],
+                "description": "The name of the Author",
+                "name": "name"
+            },
+            {
+                "dataType": [
+                    "int"
+                ],
+                "description": "The age of the Author",
+                "name": "age"
+            },
+            {
+                "dataType": [
+                    "date"
+                ],
+                "description": "The date of birth of the Author",
+                "name": "born"
+            },
+            {
+                "dataType": [
+                    "boolean"
+                ],
+                "description": "A boolean value if the Author won a nobel prize",
+                "name": "wonNobelPrize"
+            },
+            {
+                "dataType": [
+                    "text"
+                ],
+                "description": "A description of the author",
+                "name": "description"
+            }
+        ]
     }' \
-    http://localhost:8080/v1/schema  # or https://some-endpoint.semi.network/v1/schema
-    
+    http://localhost:8080/v1/schema # or https://some-endpoint.semi.network/v1/schema
+
 {% endcapture %}
 
 {% include molecule-restful-block-request.html block_id='getting-started-schema-create-1' %}
