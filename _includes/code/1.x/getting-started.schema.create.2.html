@@ -1,0 +1,248 @@
+<!-- SET PYTHON TAB CONTENT -->
+{% capture python %}
+
+import weaviate
+import json
+
+client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
+# or
+client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
+
+# we will create the class "Publication" and the properties
+# from the basics section of this guide
+class_obj = {
+    "class": "Publication",
+    "description": "A description of this class, in this case, it is about publications",
+    "properties": [
+        {
+            "dataType": [
+                "string"
+            ],
+            "description": "The name of the Publication",
+            "name": "name",
+        }
+    ]
+}
+
+# add the schema
+client.schema.create_class(class_obj)
+
+# get the schema
+schema = client.schema.get()
+
+# print the schema
+print(json.dumps(schema, indent=4))
+
+
+{% endcapture %}
+
+<!-- SET JAVASCRIPT TAB CONTENT -->
+{% capture javascript %}
+
+const weaviate = require("weaviate-client");
+
+// if you use the WCS
+const client = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.semi.network/',
+  }); 
+
+// or 
+
+// if you use Docker-compose
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+}); 
+
+// we will create the class "Publication" and the properties
+// from the basics section of this guide
+
+var classObj = {
+    "class": "Publication",
+    "description": "A description of this class, in this case, it is about publications",
+    "properties": [
+        {
+            "dataType": [
+                "string"
+            ],
+            "description": "The name of the Publication",
+            "name": "name",
+        }
+    ]
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+
+// get and print the schema
+client
+  .schema
+  .getter()
+  .do()
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.error(err)
+  });
+{% endcapture %}
+
+<!-- SET GO TAB CONTENT -->
+{% capture go %}
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate/entities/models"
+
+)
+
+func main() {
+    // if you use the WCS
+    cfg := weaviate.Config{
+        Host:   "some-endpoint.semi.network/",
+		Scheme: "https",
+    }
+
+    // or
+
+    // if you use Docker-compose
+    cfg := weaviate.Config{
+        Host:   "localhost:8080",
+		Scheme: "http",
+    }
+
+    client := weaviate.New(cfg)
+
+    // we will create the class "Publication" and the properties
+    // from the basics section of this guide
+    classObj := &models.Class{
+        Class:       "Publication", // <= note the capital "A".
+        Description: "A description of this class, in this case, it is about publications",
+        Properties: []*models.Property{
+            {
+                DataType:    []string{"string"},
+                Description: "The name of the Publication",
+                Name:        "name",
+            },
+        },
+    }
+
+    // add the schema
+    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+
+    // get the schema
+    schema, err := client.Schema().Getter().Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+
+    // print the schema
+    fmt.Printf("%v", schema)
+}
+
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+package technology.semi.weaviate;
+
+import java.util.ArrayList;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.schema.model.DataType;
+import technology.semi.weaviate.client.v1.schema.model.Property;
+import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    // if you use the WCS
+    Config config = new Config("https", "some-endpoint.semi.network/");
+    
+    // or 
+
+    // if you use Docker-compose
+    Config config = new Config("http", "localhost:8080");
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // we will create the class "Publication" and the properties
+    // from the basics section of this guide
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Publication")
+      .description("A description of this class, in this case, it is about publications")
+      .properties(new ArrayList() { {
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.STRING); } })
+          .description("The name of the Publication")
+          .name("name")
+          .build());
+      } })
+      .build();
+    
+    // add the schema
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    // get the schema
+    Result<Schema> result = client.schema().getter().run();
+    if (result.hasErrors()) {
+        System.out.println(result.getError());
+        return;
+    }
+
+    // print the schema
+    System.out.println(result.getResult());
+    
+  }
+}
+
+{% endcapture %}
+
+<!-- SET CURL TAB CONTENT -->
+{% capture curl %}
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Publication",
+        "description": "A description of this class, in this case, it is about publications",
+        "properties": [
+            {
+                "dataType": [
+                    "string"
+                ],
+                "description": "The name of the Publication",
+                "name": "name",
+            }
+        ]
+    }' \
+    http://localhost:8080/v1/schema  # or https://some-endpoint.semi.network/v1/schema
+    
+curl http://localhost:8080/v1/schema # or https://some-endpoint.semi.network/v1/schema
+
+
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='getting-started-schema-create-2' %}

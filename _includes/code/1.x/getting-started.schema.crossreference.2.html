@@ -1,0 +1,197 @@
+<!-- SET PYTHON TAB CONTENT -->
+{% capture python %}
+import weaviate
+import json
+
+client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
+# or
+client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
+
+add_prop = {
+  "dataType": [
+      "Author" # <== note how the name of the class is the cross reference
+  ],
+  "name": "has"
+}
+
+# Add the property
+client.schema.property.create("Publication", add_prop)
+
+# get the schema
+schema = client.schema.get()
+
+# print the schema
+print(json.dumps(schema, indent=4))
+{% endcapture %}
+
+<!-- SET JAVASCRIPT TAB CONTENT -->
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+// if you use the WCS
+const client = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.semi.network/',
+  }); 
+
+// or 
+
+// if you use Docker-compose
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+}); 
+
+const className = 'Publication';
+const prop = {
+  dataType: ['Author'], // <== note how the name of the class is the cross reference
+  name: 'has',
+};
+
+client.schema
+      .propertyCreator()
+      .withClassName(className)
+      .withProperty(prop)
+      .do()
+      .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.error(err)
+  });
+
+// get and print the schema
+  client
+    .schema
+    .getter()
+    .do()
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.error(err)
+    });
+{% endcapture %}
+
+<!-- SET GO TAB CONTENT -->
+{% capture go %}
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate/entities/models"
+)
+
+func main() {
+    // if you use the WCS
+    cfg := weaviate.Config{
+        Host:   "some-endpoint.semi.network/",
+        Scheme: "https",
+    }
+
+    // or
+
+    // if you use Docker-compose
+    cfg := weaviate.Config{
+        Host:   "localhost:8080",
+        Scheme: "http",
+    }
+    client := weaviate.New(cfg)
+
+    prop := &models.Property{
+        DataType: []string{"Author"}, // <== note how the name of the class is the cross reference
+        Name:     "has",
+    }
+
+    err := client.Schema().PropertyCreator().
+        WithClassName("Publication").
+        WithProperty(prop).
+        Do(context.Background())
+
+    if err != nil {
+        panic(err)
+    }
+
+    // get the schema
+    schema, err := client.Schema().Getter().Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+
+    // print the schema
+    fmt.Printf("%v", schema)
+}
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+package technology.semi.weaviate;
+
+import java.util.Arrays;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.schema.model.DataType;
+import technology.semi.weaviate.client.v1.schema.model.Property;
+
+public class App {
+  public static void main(String[] args) {
+    // if you use the WCS
+    Config config = new Config("https", "some-endpoint.semi.network/");
+    
+    // or 
+
+    // if you use Docker-compose
+    Config config = new Config("http", "localhost:8080");
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    Property property = Property.builder()
+      .dataType(Arrays.asList("Author")) // <== note how the name of the class is the cross reference
+      .name("has")
+      .build();
+
+    Result<Boolean> result = client.schema().propertyCreator()
+      .withClassName("Publication")
+      .withProperty(property)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+
+    // get the schema
+    Result<Schema> result = client.schema().getter().run();
+    if (result.hasErrors()) {
+        System.out.println(result.getError());
+        return;
+    }
+
+    // print the schema
+    System.out.println(result.getResult());
+  }
+}
+{% endcapture %}
+
+<!-- SET CURL TAB CONTENT -->
+{% capture curl %}
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{ 
+      "dataType": [
+        "Author"
+      ],
+      "name": "has"
+    }' \
+    http://localhost:8080/v1/schema/Publication/properties # or https://some-endpoint.semi.network/v1/schema/Publication/properties
+
+curl http://localhost:8080/v1/schema # or https://some-endpoint.semi.network/v1/schema
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='getting-started-schema-crossreference' %}
