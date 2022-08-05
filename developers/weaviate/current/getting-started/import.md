@@ -81,81 +81,12 @@ An example of an array of data objects:
 
 Let's import the data (make sure you have [an empty Weaviate running](./installation.html)) and use Weaviate's [auto schema feature](./schema.html#auto-schema-feature) to generate a schema.
 
-```python
-import weaviate
-
-def check_batch_result(results: dict):
-    """
-    Check batch results for errors.
-
-    Parameters
-    ----------
-    results : dict
-        The Weaviate batch creation return value, i.e. returned value of the client.batch.create_objects().
-    """
-
-    if results is not None:
-        for result in results:
-            if 'result' in result and 'errors' in result['result']:
-                if 'error' in result['result']['errors']:
-                    print(result['result']['errors']['error'])
-
-client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
-# or
-client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
-
-# delete all classes
-client.schema.delete_all()
-
-# create the batch array
-batch_obj_array = [{
-    "id": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
-    "class": "Publication",
-    "properties": {
-        "name": "The New York Times"
-    },
-    "vector": [
-        -0.0030892247,
-        0.17440806,
-        0.024489688
-    ]
-}, {
-    "id": "f564113e-11e2-11ed-861d-0242ac120002",
-    "class": "Author",
-    "properties": {
-        "name": "Paul Krugman",
-        "age": 69,
-        "born": "1953-02-28T00:00:00.0Z",
-        "wonNobelPrize": true,
-        "description": "Paul Robin Krugman is an American economist [...] New Economic Geography."
-    },
-    "vector": [
-        -0.16147631,
-        -0.065765485,
-        -0.06546908
-    ]
-}]
-
-# import the batch
-for obj in batch_obj_array:
-    with client.batch(callback=check_batch_result) as batch:
-        # Add object with a custom vector
-        batch.add_data_object(obj['properties'], obj['class'], obj['id'], vector=obj['vector'])
-```
+{% include code/1.x/getting-started.import.create.html %}
 
 You can now see the added object here:
 
-```python
-import weaviate
-import json
+{% include code/1.x/getting-started.import.get.html %}
 
-client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
-# or
-client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
-
-all_objects = client.data_object.get()
-print(json.dumps(all_objects))
-```
 
 ## Other object operations
 

@@ -29,17 +29,7 @@ Choose one of the [client libraries](../client-libraries/) you want to use.
 
 Let's make sure that you can connect to you Weaviate instance:
 
-```python
-import weaviate
-import json
-
-client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
-# or
-client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
-
-schema = client.schema.get()
-print(json.dumps(schema))
-```
+{% include code/1.x/getting-started.schema.connect.html %}
 
 The result should look like this:
 
@@ -49,7 +39,7 @@ The result should look like this:
 
 This means you're connected to an empty Weaviate.
 
-If this is not the case and you see (old) classes, you can run:
+If this is not the case and you see (old) classes, you can run the following (only supported by the Python client):
 
 ```python
 import weaviate
@@ -72,71 +62,7 @@ Let's create your first class!
 
 We'll take the example of the [basics](./basics.html#data-objects-in-weaviate) getting started guide because you're already familiar with it.
 
-```python
-import weaviate
-import json
-
-client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
-# or
-client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
-
-# delete all classes, just to make sure we
-# start with a clean Weaviate.
-client.schema.delete_all()
-
-# we will create the class "Author" and the properties
-# from the basics section of this guide
-class_obj = {
-    "class": "Author", # <= note the capital "A".
-    "description": "A description of this class, in this case, it's about authors",
-    "properties": [
-        {
-            "dataType": [
-                "string"
-            ],
-            "description": "The name of the Author",
-            "name": "name",
-        },
-        {
-            "dataType": [
-                "int"
-            ],
-            "description": "The age of the Author",
-            "name": "age"
-        },
-        {
-            "dataType": [
-                "date"
-            ],
-            "description": "The date of birth of the Author",
-            "name": "born"
-        },
-        {
-            "dataType": [
-                "boolean"
-            ],
-            "description": "A boolean value if the Author won a nobel prize",
-            "name": "wonNobelPrize"
-        },
-        {
-            "dataType": [
-                "text"
-            ],
-            "description": "A description of the author",
-            "name": "description"
-        }
-    ]
-}
-
-# add the schema
-client.schema.create_class(class_obj)
-
-# get the schema
-schema = client.schema.get()
-
-# print the schema
-print(json.dumps(schema, indent=4))
-```
+{% include code/1.x/getting-started.schema.create.1.html %}
 
 The result should look something like this:
 
@@ -231,39 +157,7 @@ Wow! Whut, that's a lot more than we've added!
 
 Correct, that's Weaviate adding some default config for you. You can all change, improve, tweak, and update this, but that's for a later expert guide. For now, let's add a second class.
 
-```python
-import weaviate
-import json
-
-client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
-# or
-client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
-
-# we will create the class "Publication" and the properties
-# from the basics section of this guide
-class_obj = {
-    "class": "Publication",
-    "description": "A description of this class, in this case, it's about authors",
-    "properties": [
-        {
-            "dataType": [
-                "string"
-            ],
-            "description": "The name of the Publication",
-            "name": "name",
-        }
-    ]
-}
-
-# add the schema
-client.schema.create_class(class_obj)
-
-# get the schema
-schema = client.schema.get()
-
-# print the schema
-print(json.dumps(schema, indent=4))
-```
+{% include code/1.x/getting-started.schema.create.2.html %}
 
 This should look something like this:
 
@@ -419,31 +313,7 @@ An `Author`, `writesFor` a `Publication`. To achieve this, we want to update the
 
 Let's set that cross-reference:
 
-```python
-import weaviate
-import json
-
-client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
-# or
-client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
-
-
-add_prop = {
-  "dataType": [
-      "Publication" # <== note how the name of the class is the cross reference
-  ],
-  "name": "writesFor"
-}
-
-# Add the property
-client.schema.property.create("Author", add_prop)
-
-# get the schema
-schema = client.schema.get()
-
-# print the schema
-print(json.dumps(schema, indent=4))
-```
+{% include code/1.x/getting-started.schema.crossreference.1.html %}
 
 The response should contain something like this:
 
@@ -613,30 +483,7 @@ Note this part (this is just a chunk of the response):
 
 We can also set it the other way around, a `Publication`, `has`, `Author`s. To achieve this, we want to update the `Publication` class to contain the cross-reference to `Author`.
 
-```python
-import weaviate
-import json
-
-client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
-# or
-client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
-
-add_prop = {
-  "dataType": [
-      "Author" # <== note how the name of the class is the cross reference
-  ],
-  "name": "has"
-}
-
-# Add the property
-client.schema.property.create("Publication", add_prop)
-
-# get the schema
-schema = client.schema.get()
-
-# print the schema
-print(json.dumps(schema, indent=4))
-```
+{% include code/1.x/getting-started.schema.crossreference.2.html %}
 
 This results in:
 
