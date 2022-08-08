@@ -93,6 +93,9 @@ Weaviate will stay fully open source for the community to use. The SeMI Team is 
 
 ![Weaviate Console](/img/blog/history-of-weaviate/weaviate-console.jpeg)
 
+## Listen to Bob's story at the Open Source Data
+Want to learn more about the background of Vector Search and how the ecosystem is developing? [Listen to Sam Ramji from DataStax interviewing Bob van Luijt about Vector Search and the AI stack.](https://www.datastax.com/resources/podcast/vector-search-ai-stack-more-bob-van-luijt){:target="_blank"}. 
+
 ## What next
 Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
 
