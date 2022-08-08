@@ -12,7 +12,6 @@ date: 2021-01-27
 toc: true
 ---
 
-<!-- TODO: make sure the content is up to date -->
 
 Choosing a good API, its design and development, is a crucial but time-consuming process, especially if you want to develop one in an ongoing software development project.
 
@@ -20,7 +19,7 @@ Weaviate uses the API query language [GraphQL](https://graphql.org/){:target="_b
 
 In this article we explain how the use of GraphQL leverages the UX of Weaviate, and how we approach the design of this API.
 
-![GraphQL API Demo](/img/blog/graphql-api-design/graphql-api-demo.gif)
+<a href="https://weaviate.io/developers/weaviate/current/" target="_blank"><img src="https://weaviate.io/img/weaviate-demo.gif?i=8" alt="Demo of Weaviate" width="100%"></a>
 
 ## What is Weaviate and why does it need an API?
 Weaviate is an [open-source](https://github.com/semi-technologies/weaviate){:target="_blank"} Vector Search Engine: for understandable knowledge representation, enabling semantic search and automatic classification. Weaviate does not only store data, but also its (automatically derived) context, consisting of linguistic information and relations to other concepts. The result is a network of knowledge, or a graph of data.
@@ -44,16 +43,14 @@ Let’s look at an example. Consider you (digitally) store supermarket items in 
 ```graphql
 {
   Get {
-    Things {
-      Product(
-        where: {
-          path: ["inStock"], 
-          operator: LessThan, 
-          valueInt: 100
-        }) {
-        name
-        inStock
-      }
+    Product(
+      where: {
+        path: ["inStock"], 
+        operator: LessThan, 
+        valueInt: 100
+      }) {
+      name
+      inStock
     }
   }
 }
@@ -65,53 +62,49 @@ Which may return:
 {
   "data": {
     "Get": {
-      "Things": {
-        "Product": [
-          {
-            "name": "Baguette",
-            "inStock": 8
-          },
-          {
-            "name": "Banana",
-            "inStock": 46
-          },
-          {
-            "name": "Pineapple",
-            "inStock": 17
-          },
-          {
-            "name": "Toilet paper",
-            "inStock": 38
-          }
-        ]
-      }
+      "Product": [
+        {
+          "name": "Baguette",
+          "inStock": 8
+        },
+        {
+          "name": "Banana",
+          "inStock": 46
+        },
+        {
+          "name": "Pineapple",
+          "inStock": 17
+        },
+        {
+          "name": "Toilet paper",
+          "inStock": 38
+        }
+      ]
     }
   }
 }
 ```
 
-Here’s how this query is structured. “Get” and “Things” are high level schema items that we defined. “Get” is a verb that we use when we want to retrieve something. Then, Weaviate makes the distinction between “Things” and “Actions”. What comes next is defined by the data schema of the user. This supermarket use case is storing “Products”, with at least the properties “name”, and “inStock”. The user might also store properties like “barcode” and “expirationDate”, but chose not to retrieve those in this request. The goal of this query is to Get all the Products where the Stock is less than 100. See how the query is formed?
+Here’s how this query is structured. “Get” is a high level schema item that we defined. “Get” is a verb that we use when we want to retrieve something. What comes next is defined by the data schema of the user. This supermarket use case is storing “Products”, with at least the properties “name”, and “inStock”. The user might also store properties like “barcode” and “expirationDate”, but chose not to retrieve those in this request. The goal of this query is to Get all the Products where the Stock is less than 100. See how the query is formed?
 
-The following query shows the automatic contextualization of concepts in Weaviate. Let’s say we are only interested in the fruit items that are low in stock, but we never explicitly stored the supermarket products by category like ‘fruits’, ‘dairy’ and ‘household’. We can then make the following query, where we want to Get all the Products where the Stock is less than 100, exploring only fruits. Now, only the Banana and Pineapple will be returned because these items are most related to fruits. If we are looking for more results, then Baguette will be shown earlier in the list than Toilet paper, because it is semantically (and in a real supermarket) closer to fruits.)
+The following query shows the automatic contextualization of concepts in Weaviate. Let’s say we are only interested in the fruit items that are low in stock, but we never explicitly stored the supermarket products by category like ‘fruits’, ‘dairy’ and ‘household’. We can then make the following query, where we want to Get all the Products where the Stock is less than 100, which are related to the text concept "fruits". Now, only the Banana and Pineapple will be returned because these items are most related to fruits. If we are looking for more results, then Baguette will be shown earlier in the list than Toilet paper, because it is semantically (and in a real supermarket) closer to fruits.)
 
 ```graphql
 {
   Get {
-    Things {
-      Product(
-        where: {
-          path: ["inStock"], 
-          operator: LessThan, 
-          valueInt: 100
-        },
-        explore: {
-          concepts: ["fruit"],
-          certainty: 0.7
-        }
-      ) {
-        name
-        inStock
+    Product(
+      where: {
+        path: ["inStock"], 
+        operator: LessThan, 
+        valueInt: 100
+      },
+      nearText: {
+        concepts: ["fruit"],
+        certainty: 0.7
       }
+    ) {
+      name
+      inStock
     }
   }
 }

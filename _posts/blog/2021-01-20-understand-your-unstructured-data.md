@@ -12,15 +12,13 @@ date: 2021-01-20
 toc: true
 ---
 
-<!-- TODO: make sure the content is up to date -->
-
 ## Intro
 These days, more and more organizations are adopting a data-driven culture. Business processes and customer experience benefit from good data collection, management and analysis. But in order to really benefit from available data, it is essential to also understand the unstructured data, like free text in PDF documents, emails, invoices or voice transcriptions. Unstructured data is especially hard to index, manage and understand. Since around [80% of all data is unstructured](https://www.forbes.com/sites/forbestechcouncil/2019/01/29/the-80-blind-spot-are-you-ignoring-unstructured-organizational-data/){:target="_blank"}, it is hard to actually search and retrieve insights from most of the data.
 
 The Weaviate search engine unlocks the potential of unstructured data. Searching by fuzzy terms and classification of rich data like free text becomes possible with Weaviate. It uses AI-driven indexing and search technologies to enable real-time text processing. With machine learning methods, Weaviate automatically classifies texts. Finding information you are looking for and providing recommendations is possible because knowledge and information is placed in context.
 
 ## How does Weaviate work?
-Data usually refers to something in the real world. Traditional databases and search engines often struggle with understanding the context of data, a situation or a search query. The context of data is important, because it enables storage and search by fuzzy concepts instead of exact matching keywords. Weaviate automatically places concepts and words in relation to its context by using machine learning. It understands that the Eiffel Tower is a landmark in Paris, and will place these concepts closely together in the database model. Showing orange tompouces when looking for treats around King’s day in the Netherlands is an example of finding concepts related to the context.
+Data usually refers to something in the real world. Traditional databases and search engines often struggle with understanding the context of data, a situation or a search query. The context of data is important, because it enables storage and search by fuzzy concepts instead of exact matching keywords. Weaviate automatically places concepts and words in relation to its context by using machine learning. It understands that the Eiffel Tower is a landmark in Paris, and will place these concepts closely together in the database model. Showing [orange tompouces](https://en.wikipedia.org/wiki/Tompouce) when looking for treats around King’s day in the Netherlands is an example of finding concepts related to the context.
 
 ## Example use cases
 Now let’s get more serious than landmarks and holiday treats (although we should agree that tompouces are essential during King’s day), and find out how also your business could benefit from search and classification of unstructured data.

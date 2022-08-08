@@ -3,7 +3,7 @@ layout: post
 title: The History of Weaviate
 description: "Weaviate is an open-source search engine with a build-in NLP model called the Contextionary. What makes Weaviate unique, is that it stores data in a vector space rather than a traditional row-column or graph structure, allowing you to search through data based on its meaning rather than keywords alone."
 published: true
-author: Laura Ham
+author: Bob van Luijt
 author-img: /img/people/icon/bob.jpg
 card-img: /img/blog/hero/history-of-weaviate-card.png
 canonical-url: https://medium.com/semi-technologies/the-history-of-the-weaviate-vector-search-engine-17a274f36178
@@ -11,13 +11,6 @@ canonical-name: Medium
 date: 2021-01-20
 toc: true
 ---
-
-<!-- TODO: is this the best video to share? -->
-<div class="youtube">
-    <iframe src="//www.youtube.com/embed/3NfcAF4qm2k" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<!-- TODO: make sure the content is up to date -->
 
 ## Intro
 In this article, I want to share the history of Weaviate, how the concept was born, and where we are heading towards in the near future.
@@ -96,7 +89,7 @@ One of the coolest things about an open-source community and users of the softwa
 Examples of implementations include: classification of invoices to categories, searching through documents for specific concepts rather than keywords, site search, product knowledge graphs, and many other things.
 
 ## The Future
-Weaviate will stay fully open source for the community to use, this year we will launch a significant amount of new features (search functions, improved classification, semantic metadata around objects and many more things), an HNSW-based vector index, the Weaviate Cloud service and Weaviate Console (a renewed graphical user interface on top of Weaviate).
+Weaviate will stay fully open source for the community to use. The SeMI Team is growing to accelerate building Weaviate and supporting users. We are releasing new features very frequently, like new vector indices and search pipeline features, and for the Weaviate Cloud service and Weaviate Console. 
 
 ![Weaviate Console](/img/blog/history-of-weaviate/weaviate-console.jpeg)
 
