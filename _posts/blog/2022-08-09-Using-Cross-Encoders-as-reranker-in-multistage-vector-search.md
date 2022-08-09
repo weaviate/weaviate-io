@@ -22,13 +22,13 @@ In this article, you will learn about these two machine learning models, and why
 
 ## Bi-Encoder models
 
-Vector search engines like [Weaviate](/){:target="_blank"} use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector search engine can then perform a similarity search to retrieve the vectors closest to the query embedding. 
+Vector search engines like [Weaviate](/developers/weaviate/current/){:target="_blank"} use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector search engine can then perform a similarity search to retrieve the vectors closest to the query embedding. 
 
 The models that can both compute **dense vector embeddings for data** and for **search queries** are so-called *Bi-Encoder models*. Data vectors and query vectors can be compared by computing the similarity (for example cosine similarity) between vectors. All data items in the database can be represented by a vector embedding using a Bi-Encoder model before query time. This makes a Bi-Encoder highly efficient.
 
-![Vector Database](/img/blog/cross-encoders/vector-database.png)
+![Vector Search Engine](/img/blog/cross-encoders/vector-database.png)
 
-*Figure 1 - Representation of a Vector Database*
+*Figure 1 - Representation of a Vector Search Engine*
 
 ![Bi-Encoder](/img/blog/cross-encoders/bi-encoder.png)
 
