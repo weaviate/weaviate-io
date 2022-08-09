@@ -12,8 +12,6 @@ date: 2021-02-15
 toc: true
 ---
 
-<!-- TODO: make sure the content is up to date -->
-
 ## Overview
 In this article we will cover:
 

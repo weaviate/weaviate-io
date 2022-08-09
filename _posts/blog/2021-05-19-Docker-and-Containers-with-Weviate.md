@@ -12,8 +12,6 @@ date: 2021-05-19
 toc: true
 ---
 
-<!-- TODO: make sure the content is up to date -->
-
 ## Intro
 Weaviate attracts different users with various backgrounds. Some have been working with containers for years, but we understand that not everyone has. Inspired by a few recent questions and comments about Docker on the Weaviate Slack, I’ve set out to write an article to provide a better background on Docker and containers in general. After reading this article, your most common questions about these technologies should be answered and there should be nothing in the way of building amazing use cases with Weaviate.
 
