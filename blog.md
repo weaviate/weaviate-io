@@ -47,7 +47,11 @@ layout: default
             <!-- Image -->
             <a class="card-img-top" href="{{ post.url }}">
               <!-- Image -->
-              <div class="card-img-top" style="height:240px;background-image:url('{{ post.hero-img }}');background-size:cover;"></div>
+              {% if post.card-img != null %}
+              <div class="card-img-top" style="height:240px;background-image:url('{{ post.card-img }}');background-size:cover; background-position: center;"></div>
+              {% else %}
+              <div class="card-img-top" style="height:240px;background-image:url('{{ post.hero-img }}');background-size:cover;background-position: center;"></div>
+              {% endif %}
               <!-- Shape -->
               <div class="position-relative">
                 <div class="shape shape-bottom shape-fluid-x text-white">

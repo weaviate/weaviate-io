@@ -98,7 +98,8 @@ description: DESCRIPTION (ALSO USED FOR SEO)
 published: true
 author: AUTHOR NAME
 author-img: /img/people/AUTHOR.jpg
-hero-img: /img/blog/some-image.jpg
+card-img: /img/blog/some-image.jpg # should be 480x240 px
+hero-img: /img/blog/some-image.jpg # should be 1200x500 px
 toc: true # Create table of contents if set to `true`
 ---
 ```
