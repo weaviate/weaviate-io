@@ -2,7 +2,7 @@
 layout: post
 title: Taxonomies, ontologies, and schemas in Weaviate
 description: "How Weaviate deals with taxonomies, ontologies, and schemas."
-published: true
+published: false
 author: Bob van Luijt
 author-img: /img/people/icon/bob.jpg
 card-img: /img/blog/hero/Taxonomies-ontologies-and-schemas-card.png
@@ -13,7 +13,6 @@ toc: true
 ---
 
 <!-- TODO: make sure the content is up to date -->
-<!-- TODO: update markdown formatting -->
 
 ## Intro
 Because [Weaviate](/){:target="_blank"} has a graph-like data model, people often [ask questions](https://stackoverflow.com/questions/67175671/how-to-encode-a-taxonomy-in-weaviate-contextionary){:target="_blank"} about how Weaviate deals with taxonomies, ontologies, and schemas. And to make things even more complicated, Weaviate is adding terminology like vectorizers and contextionary to the mix.

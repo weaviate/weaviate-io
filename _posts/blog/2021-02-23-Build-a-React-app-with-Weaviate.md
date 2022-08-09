@@ -2,7 +2,7 @@
 layout: post
 title: Build a React-based front-end app for your Weaviate neural search
 description: "A complete implementation guide to creating a React.js app styled with Material UI that integrates with a Weaviate dataset"
-published: true
+published: false
 author: Henrique Pereira
 author-img: /img/people/icon/henrique.jpg
 card-img: /img/blog/hero/build-a-react-app-with-weaviate-card.png

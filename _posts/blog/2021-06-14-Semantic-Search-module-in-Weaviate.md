@@ -2,7 +2,7 @@
 layout: post
 title: Finding answers with Semantic Search module in Weaviate
 description: "Finding answers in complex standardizations documents using Weaviate’s semantic search modules"
-published: true
+published: false
 author: Micha Verhagen
 author-img: /img/people/icon/micha.jpg
 card-img: /img/blog/hero/Semantic-Search-module-in-Weaviate-card.png

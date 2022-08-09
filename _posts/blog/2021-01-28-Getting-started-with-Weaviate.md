@@ -2,7 +2,7 @@
 layout: post
 title: Getting Started with Weaviate
 description: "Everybody who works with data in any way shape or form knows that one of the most important challenges is searching for the correct answers to your questions. There is a whole set of excellent (open source) search engines available but there is one thing that they can’t do, search and related data based on context."
-published: true
+published: false
 author: Bob van Luijt
 author-img: /img/people/icon/bob.jpg
 card-img: /img/blog/hero/getting-started-card.png
