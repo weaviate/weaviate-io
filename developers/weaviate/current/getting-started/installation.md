@@ -103,7 +103,7 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
       ENABLE_MODULES: text2vec-contextionary
-      CLUSTER_HOSTNAME: 'node1
+      CLUSTER_HOSTNAME: 'node1'
   contextionary:
     environment:
       OCCURRENCE_WEIGHT_LINEAR_FACTOR: 0.75

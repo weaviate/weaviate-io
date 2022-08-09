@@ -5,13 +5,13 @@ description: "Learn, what is new in Weaviate 1.14, the most reliable and observa
 published: true
 author: Sebastian Witalec
 author-img: /img/people/icon/sebastian.jpg
-hero-img: /img/blog/weaviate-1.14/reliability.png
+card-img: /img/blog/hero/weaviate-1-14-card.png
+hero-img: /img/blog/hero/weaviate-1-14.png
 date: 2022-07-06
 toc: true
 ---
 
 ## What is new
-
 We are excited to announce the release of Weaviate 1.14, the most reliable and observable Weaviate release yet. 
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Later this week, we will release Weaviate v1.14, possibly the most boring release so far.😱 Yet I&#39;m incredibly excited about it and so should you. Why? A 🧵 (1/9)</p>&mdash; Etienne Dilocker (@etiennedi) <a href="https://twitter.com/etiennedi/status/1544689150217027584?ref_src=twsrc%5Etfw">July 6, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -24,7 +24,6 @@ Besides many bug fixes and reliability improvements, we have a few neat features
 * API changes
 
 ## Reliability fixes and improvements
-
 ![Reliability and fixes](/img/blog/weaviate-1.14/reliability.png)
 
 At SeMI Technologies, Reliability is one of our core values, which means that we will always strive to make our software dependable, bug-free, and behave as expected. 
@@ -34,14 +33,12 @@ And yes, bug fixing is not always the most exciting topic, as we often get more 
 Check out [the changelog](https://github.com/semi-technologies/weaviate/releases/tag/v1.14.0){:target="_blank"} to see the complete list of features and over 25 bug fixes.
 
 ### Critical bug fix in compaction logic
-
 In this release we fixed a critical bug, which in rare situations could result in data loss.<br/>
 The bug affected environments with frequent updates and deletes.
 
 > This bug fix alone, makes it worth upgrading to Weaviate 1.14.
 
 #### Background
-
 We found a critical error in the compactioniong logic that could lead to the compaction operation either corrupting or completely losing data elements.
 
 This could be obsereved through a variety of symptoms:
@@ -76,11 +73,9 @@ GET /v1/objects/{my-id-123456}
 ```
 
 #### The problem
-
 So, if your data manipulation logic depended on the above operations to perform as expected, you update and delete operations might have been issued incorrectly.
 
 ### Improved performance for large scale data imports
-
 Weaviate `1.14` significantly improves the performance of data imports for large datasets.
 
 Note that the performance improvements should be noticeable for imports of over 10 million objects. Furthermore, this update enables you to import over 200 million objects into the database.
@@ -100,11 +95,9 @@ We were able to import 200 million objects and more, while the import performanc
 [See more on github](https://github.com/semi-technologies/weaviate/pull/1976){:target="_blank"}.
 
 ### Drastically improved Mean-Time-To-Recovery (MTTR)
-
 Weaviate `1.14` fixes an issue where a crash-recovery could take multiple minutes, or even hours in some extreme cases. It is now a matter of just seconds. So even in the rare event that your instance crashes, it will come back up very quickly.
 
 #### Problem
-
 If Weaviate encounters an unexpected crash, no data will be lost. To provide this guarantee, a Write-Ahead Log (WAL) is in place. If a crash had occurred, the WAL is parsed at startup, and all previously unfinished operations are recovered, even if they were part of in-memory structures that had not yet been flushed. While this system is very safe, the recovery could be slow for several reasons:
 
 - Unflushed memtables could become very large. This would lead to a lot of data that needs to be recovered after a crash
@@ -112,7 +105,6 @@ If Weaviate encounters an unexpected crash, no data will be lost. To provide thi
 - The data structure used to hold the recovered items was never intended to hold many items. Each additional insertion would degrade its performance. As a result, the larger the WAL to recover, the slower the recovery would become.
 
 #### Solution
-
 We addressed each of the points above individually and improved the overall MTTR substantially:
 
 - A deduplication process was added, so that large WALs with a lot of updates (i.e. redundant data) could be reduced to only the necessary information.
@@ -124,13 +116,11 @@ We addressed each of the points above individually and improved the overall MTTR
 We designed an extreme stress test that would represent the "worst-case" scenario for recovery. It has multiple very large, independent Write-Ahead Logs that required for recovery. Before, this could take many hours to recover, while now it takes only a few seconds.
 
 ### Full changelog
-
 These are few of the many improvements and bug fixes that were included in this release.
 
 Check out [the changelog](https://github.com/semi-technologies/weaviate/releases/tag/v1.14.0){:target="_blank"} to see the complete list.
 
 ## Monitoring and Observability
-
 ![Monitoring and Observability](/img/blog/weaviate-1.14/monitoring-and-observability.png)
 
 One of the biggest challenges of running software in production is to understand what is happening under the hood.
@@ -140,7 +130,6 @@ That is especially important when something goes wrong, or we need to anticipate
 Without such insight, we end up looking at the black box, wondering what is going on.
 
 ### Announcement
-
 With Weaviate `1.14` you can get a lot more insight into the resources and the performance of different aspects of your Weaviate instance in Production.
 
 Now, you can expose Prometheus-compatible metrics for monitoring. Combine this with a standard Prometheus/Grafana setup to create visual dashboards for metrics around latencies, import speed, time spent on vector vs object storage, memory usage, and more.
@@ -148,13 +137,11 @@ Now, you can expose Prometheus-compatible metrics for monitoring. Combine this w
 ![Importing Data into Weaviate](/img/weaviate-sample-dashboard-importing.png "Importing Data Into Weaviate")
 
 ### Example
-
 In a hypothetical scenario, you might be importing a large dataset. At one point the import process might slow down. You could then check your dashboards, where you might see that the vector indexing process is still running fast, while the object indexing slowed down. <br/>
 Then you could cross-reference it with another dashboard, to see that the slow down began when the import reached 120 million objects.<br/>
 In two steps, you could narrow down the issue to a specific area, which would get you a lot closer to finding the solution. Or you could use that data to share it with the Weaviate team to get help.
 
 ### Try it yourserlf
-
 Here is an [example project](https://github.com/semi-technologies/weaviate-examples/tree/main/monitoring-prometheus-grafana){:target="_blank"}, it contains:
 
 * `docker-compose.yml` that spins up Weaviate (without any modules),
@@ -164,16 +151,15 @@ Here is an [example project](https://github.com/semi-technologies/weaviate-examp
 Just spin everything up, run a few queries and navigate to the Grafana instance in the browser to see the dashboard.
 
 ### Learn more
-
 To learn more, see the [documentation](/developers/weaviate/current/more-resources/monitoring.html){:target="_blank"}.
 
 ## Support for non-cosine distances
-
 ![Support for non-cosine distances](/img/blog/weaviate-1.14/non-cosine-distances.png)
 
 Weaviate v1.14 adds support for **L2** and **Dot Product** distances.<br/>
 With this, you can now use datasets that support Cosine, L2 or Dot distances. This opens up a whole new world of use cases that were not possible before.<br/>
 Additionally, this is all pluggable and very easy to add new distance metrics in the future.
+
 ### Background
 In the past Weaviate used a single number that would control the distances between vectors and that was **certainty**. A certainty is a number between 0 and 1, which works perfectly for cosine distances, as cosine distances are limited to 360° and can be easily converted to a range of 0-1.
 
@@ -185,16 +171,13 @@ However, some machine learning models are trained with other distance metrics, l
 For this reason, we introduced a new field called **distance**, which you can choose to be based on L2 or Dot Product distances.
 
 ### Raw distance
-
 The distance values provided are raw numbers, which allow you to interpret the results based on your specific use-case scenario.<br/>
 For example, you can normalize and convert **distance values** to **certainty values** that fit the machine learning model you use and the kind of results you expect.
 
 ### Learn more
-
 For more info, check out [the documentation](/developers/weaviate/current/vector-index-plugins/distances.html){:target="_blank"}.
 
 ### Contribute
-
 Adding other distances is surprisingly easy, which could be a great way to contribute to the Weaviate project.
 
 If that is something up your street, check out [the distancer code on github](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw/distancer){:target="_blank"}, to see the implementation of other metrics.
@@ -202,21 +185,18 @@ If that is something up your street, check out [the distancer code on github](ht
 Just make sure to include plenty of tests. Remember: “reliability, reliability, reliability”.
 
 ## Updated API endpoints to manipulate data objects of specific class
-
 ![Updated API endpoints](/img/blog/weaviate-1.14/updated-API-endpoints.png)
 
 The REST API CRUD operations now require you to use both an **object ID** and the target **class name**.<br/>
 This ensures that the operations are performed on the correct objects.
 
 ### Background
-
 One of Weaviate's features is full CRUD support. CRUD operations enable the mutability of data objects and their vectors, which is a key difference between a vector database and an ANN library. In Weaviate, every data object has an ID (UUID). This ID is stored with the data object in a key-value store. IDs don’t have to be globally unique, because in Weaviate [classes](/developers/weaviate/current/data-schema/schema-configuration.html#class-object){:target="_blank"} act as namespaces. While each class has a different [HNSW index](/developers/weaviate/current/vector-index-plugins/hnsw.html){:target="_blank"}, including the store around it, which is isolated on disk.
 
 There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{id}](/developers/weaviate/current/restful-api-references/objects.html){:target="_blank"} REST endpoints.
 If you wanted to retrieve, modify or delete a data object by its ID, you would just need to specify the ID, without specifying the class name. So if the same ID exists for objects in multiple classes (which is fine because of the namespaces per class), Weaviate would not know which object to address and would address all objects with that ID instead. I.e. if you tried to delete an object by ID, this would result in the deletion of all objects with that ID.
 
 ### Endpoint changes
-
 This issue is now fixed with a **change to the API endpoints**. To get, modify and delete a data object, you now need to provide both the ID and the class name.
 
 The following object functions are changed: **GET**, **HEAD**, **PUT**, **PATCH** and **DELETE**. 
@@ -245,7 +225,6 @@ v1/objects/{id}/references/{propertyName}
 There are also updates in the language clients, where you now should provide a class name for data object manipulation. Old functions will continue to work, but are considered deprecated, and you will see a deprecation warning message.
 
 ## Stronger together
-
 Of course, making Weaviate more reliable would be a lot harder without the great community around Weaviate.
 <br/>As it is often the case: *“You can’t fix issues you didn’t know you have”*.
 
@@ -268,7 +247,6 @@ We have a little favour to ask. Often reproducing the issue takes a lot more tim
 Here is a little guide on [how to write great bug reports](/developers/weaviate/current/tutorials/write-great-bug-reports.html){:target="_blank"}.
 
 ## Enjoy
-
 We hope you enjoy the most reliable and observable Weaviate release yet!
 
 Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.

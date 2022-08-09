@@ -1,10 +1,11 @@
 ---
 layout: post
 title: The AI-First Database Ecosystem
-description: SeMI is one of several new companies that, operating singly or collectively, provide alternatives to established search giants.
+description: This is the description, it describes what the post is about
 published: true
 author: Bob van Luijt
 author-img: /img/people/bob.jpg
+card-img: /img/blog/hero/AI-first-database-ecosystem-card.jpeg
 hero-img: https://imageio.forbes.com/specials-images/imageserve/61950180a260c12d22db736c/Medium-wide-shot-of-male-warehouse-worker-checking-orders-at-computer-workstation-in/960x0.jpg?format=jpg&width=960
 canonical-url: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
 canonical-name: Forbes
@@ -16,7 +17,6 @@ A new ecosystem of smaller companies is ushering in a “third wave” of AI-fir
 Much of the software involved is open source, so it functions transparently and users can customize it to meet their specific needs. Clients can retain control of their data, keeping it safely behind their own firewalls.
 
 ## How We Got Here
-
 First-wave database technology is often called by the acronym SQL—the initials of a ubiquitous query language used to manage relational databases, which are conceptually similar to spreadsheets or tables. Throughout the 1980s, this technology was dominated by companies like Oracle and Microsoft.
 
 The second wave of databases is called “NoSQL”. These are the domain of companies like MongoDB. They store data in different ways, for example, key-value stores, document stores, wide-column stores and graph databases, but what they all have in common is that they’re not relational tables. Among a long list of capabilities, first- and second-wave databases have their strengths. For example, some are very good at finding every instance of a certain value in a database, and others are very good at storing time sequences.
@@ -40,18 +40,16 @@ Using ANN allowed high-dimensional searches with near-perfect accuracy to be ret
 This leads to the simplest definition of a third wave database: A vector database stores data indexed by machine learning models. Different types of databases (e.g., vector search engines) allow users to search through these vectorized datasets and others (e.g., feature stores) allow users to store vectors on a large scale for later use.
 
 ## We’re awash in unstructured data.
-
 We’re living in a time of massive data accumulation and much, if not most of it, is unstructured: text, photos, video, audio files, as well as other things such as genetic information. Vector search is particularly good at extracting value from such data.
 
 Tech giants like Google, AWS, or Microsoft Azure offer their vector search capabilities to customers willing to upload their data. But there’s now an ecosystem of newer companies with AI-first specific (often open-source) solutions and vector-search capabilities that customers can run on a SaaS basis or on their own systems.
 
 ## The AI-first Database Ecosystem
-
 The companies that make up this ecosystem provide specialized services that overlap to various degrees. Combined, four sub-groups make up the ecosystem.
 
 1. Embedding providers (e.g., Hugging Face or OpenAI)
-2. Neural framework (e.g., deepset or Jina)
-3. Feature stores (e.g., FeatureBase, FeatureForm or Tecton)
-4. Vector search engines (e.g., Weaviate or Vertex)
+1. Neural framework (e.g., deepset or Jina)
+1. Feature stores (e.g., FeatureBase, FeatureForm or Tecton)
+1. Vector search engines (e.g., Weaviate or Vertex)
 
 While the number of data that companies are collecting in their data warehouses keeps growing, the need for better, more efficient searches keeps growing too. The more data we collect, the more complex searching through it becomes. Thanks to the advances in machine learning in the past decade and the commoditization of AI-first database technologies, you can start using it in your business tomorrow.
