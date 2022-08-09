@@ -5,7 +5,7 @@ description: "How the vector search engine Weaviate overcomes the limitations of
 published: true
 author: Etienne Dilocker
 author-img: /img/people/icon/etienne.jpg
-card-img: /img/blog/hero/CRUD-support–in-Weaviate-card.png
+card-img: /img/blog/hero/crud-support–in-weaviate-card.png
 canonical-url: https://db-engines.com/en/blog_post/87
 canonical-name: DB Engines
 date: 2021-02-15

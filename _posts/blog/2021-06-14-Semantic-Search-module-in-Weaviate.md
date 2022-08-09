@@ -5,7 +5,7 @@ description: "Finding answers in complex standardizations documents using Weavia
 published: false
 author: Micha Verhagen
 author-img: /img/people/icon/micha.jpg
-card-img: /img/blog/hero/Semantic-Search-module-in-Weaviate-card.png
+card-img: /img/blog/hero/semantic-search-module-in-weaviate-card.png
 canonical-url: https://medium.com/semi-technologies/finding-answers-in-complex-standardizations-documents-using-weaviates-semantic-search-modules-4dcdb83527fb
 canonical-name: Medium
 date: 2021-06-14
