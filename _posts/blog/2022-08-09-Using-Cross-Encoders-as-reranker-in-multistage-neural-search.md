@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Using Cross-Encoders as reranker in multistage neural search
-description: "Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the neural search experience."
+title: Using Cross-Encoders as reranker in multistage vector search
+description: "Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the vector search experience."
 published: true
 author: Laura Ham
 author-img: /img/people/icon/laura.jpg
@@ -18,11 +18,11 @@ Semantic search engines can use machine learning to capture the context and sema
 
 In search, or semantic matching of sentences, we can see this tradeoff in *Bi-Encoder* models compared with *Cross-Encoder* models. *Bi-Encoder* models are **fast**, but **less accurate**, while *Cross-Encoders* are **more accurate**, but **slow**. Luckily, we can combine them in a search pipeline to benefit from both models!
 
-In this article, you will learn about these two machine learning models, and why combining them could improve the neural search experience.
+In this article, you will learn about these two machine learning models, and why combining them could improve the vector search experience.
 
 ## Bi-Encoder models
 
-Neural search engines like [Weaviate](/){:target="_blank"} use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector search engine can then perform a similarity search to retrieve the vectors closest to the query embedding. 
+Vector search engines like [Weaviate](/){:target="_blank"} use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector search engine can then perform a similarity search to retrieve the vectors closest to the query embedding. 
 
 The models that can both compute **dense vector embeddings for data** and for **search queries** are so-called *Bi-Encoder models*. Data vectors and query vectors can be compared by computing the similarity (for example cosine similarity) between vectors. All data items in the database can be represented by a vector embedding using a Bi-Encoder model before query time. This makes a Bi-Encoder highly efficient.
 
@@ -47,7 +47,7 @@ If a Cross-Encoder model is trained on a representative training set, it [achiev
 
 ## Combining Bi-Encoders and Cross-Encoders
 
-We can combine the two methods to benefit from the strong points of both models! I’d like to illustrate this idea with an example. Imagine you are a fisherman who is looking for salmon in a sea full of fish of numerous species. First, you sail to the waters rich in fish, and you use a big net with the optimal bait for salmon to catch a lot of fish. You hope to find some salmon, but your net also catches other kinds of fish that you are not interested in. Next, you sort the catch by keeping the salmon and throwing back the other fish back into the sea. This sorting step is time-consuming and expensive, but very effective.
+We can combine the two methods to benefit from the strong points of both models! I’d like to illustrate this idea with an example. Imagine you are a fisherman who is looking for salmon in a sea full of fish of numerous species. First, you sail to the waters rich in fish, and you use a big net with the optimal bait for salmon to catch a lot of fish. You hope to find some salmon, but your net also catches other kinds of fish that you are not interested in. Next, you sort the catch by keeping the salmon and throwing the other fish back into the sea. This sorting step is time-consuming and expensive, but very effective.
 
 ![Fisherman as multistage search](/img/blog/cross-encoders/fisherman.jpg)
 
