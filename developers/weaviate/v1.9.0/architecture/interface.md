@@ -129,7 +129,7 @@ There are currently three main functions in a GraphQL request: "Get{}", "Explore
 
 # Weaviate Console
 
-The [Weaviate Console](http://console.semi.technology/) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.
+The [Weaviate Console](https://console.semi.technology/) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.
 
 ![<img src="/img/console-capture.png" width="250"/>](/img/console-capture.png "GraphQL Query Module in Weaviate Console")
 

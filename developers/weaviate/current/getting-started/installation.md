@@ -26,7 +26,7 @@ There are only three ways you can run Weaviate, and they are -we believe- pretty
 
 ## Weaviate Cloud Service
 
-The Weaviate Cloud Service is our managed Weaviate SaaS. Currently, the service is private beta, but (🤫) if you log in to the [Weaviate Cloud Console](http://console.semi.technology/) and create a free sandbox to play around with.
+The Weaviate Cloud Service is our managed Weaviate SaaS. Currently, the service is private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.semi.technology/) and create a free sandbox to play around with.
 
 <div class="alert alert-secondary alert-getting-started" markdown="1">
 💡 The big upside of the Weaviate Cloud Service is that it's a completely managed service.

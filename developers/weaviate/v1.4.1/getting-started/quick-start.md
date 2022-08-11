@@ -44,7 +44,7 @@ Weaviate will be available and preloaded with the news article demo dataset on:
 
 # **Query via the Weaviate console**
 
-You can query your local machine via the [Weaviate console](http://console.semi.technology/). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` (you will get redirected to the "http" version of the client).
+You can query your local machine via the [Weaviate console](https://console.semi.technology/). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` (you will get redirected to the "http" version of the client).
 
 # **Validate via the RESTful API**
 
