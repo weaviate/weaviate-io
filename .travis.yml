@@ -6,9 +6,15 @@ rvm:
 before_install:
 - sudo apt-get update
 - sudo apt-get install -y minify
-- sudo apt-get install python3-pip
-- sudo apt-get install curl
-- sudo apt-get install snapd
+- sudo apt-get install -y python3-pip
+- sudo apt-get install -y curl
+- sudo apt-get install -y snapd
+- sudo apt-get install -y nodejs npm
+- sudo npm cache clean -f
+- sudo npm install -g n
+- sudo n stable
+- sudo npm install -g npm@latest
+- sudo npm install netlify-cli -g
 - sudo snap install yq
 - bundle install
 install:
@@ -60,4 +66,10 @@ script:
       curl https://www.google.com/ping?sitemap=https://weaviate.io/sitemap.xml
     fi
   fi
+# set netlify
+- |
+    echo -e "User-agent: *
+    Disallow: /" >> _site/robots.txt
+- sudo netlify deploy --dir=_site --site=tangerine-buttercream-20c32f
+- rm _site/robots.txt 
 cache: bundler
