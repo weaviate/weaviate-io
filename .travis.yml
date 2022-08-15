@@ -64,6 +64,8 @@ script:
       gcloud compute url-maps invalidate-cdn-cache $GS_BUCKET --path "/*" --async
       # Send sitemap to Google
       curl https://www.google.com/ping?sitemap=https://weaviate.io/sitemap.xml
+      # back to root
+      cd ..
     fi
   fi
 # set netlify
