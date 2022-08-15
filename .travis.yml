@@ -67,6 +67,7 @@ script:
     fi
   fi
 # set netlify
+- rm _site/robots.txt
 - |
     echo -e "User-agent: *
     Disallow: /" >> _site/robots.txt
