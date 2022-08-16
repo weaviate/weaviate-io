@@ -119,7 +119,6 @@ Here’s the command to start up a Weaviate instance with the parameters describ
 ```
 docker run -it \
   -m 3GiB \
-  -e "GOMEMLIMIT=2750MiB" \
   -e "GOGC=100" \
   -e "PERSISTENCE_DATA_PATH=/var/lib/weaviate" \
   -e "AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true" \
