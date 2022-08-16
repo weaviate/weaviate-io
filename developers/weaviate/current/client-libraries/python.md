@@ -237,6 +237,7 @@ with client.batch as batch:
     from_object_class_name='Author',
     from_property_name='wroteBooks',
     to_object_uuid=uuid_book_1,
+    to_object_class_name='Book',
   )
   # add references author <--- book_1
   batch.add_reference(
@@ -244,6 +245,7 @@ with client.batch as batch:
     from_object_class_name='Book',
     from_property_name='ofAuthor',
     to_object_uuid=uuid_author,
+    to_object_class_name='Author',
   )
   # add book_2
   uuid_book_2 = generate_uuid5(book_2, 'Book')
@@ -258,6 +260,7 @@ with client.batch as batch:
     from_object_class_name='Author',
     from_property_name='wroteBooks',
     to_object_uuid=uuid_book_2,
+    to_object_class_name='Book',
   )
   # add references author <--- book_2
   batch.add_reference(
@@ -265,6 +268,7 @@ with client.batch as batch:
     from_object_class_name='Book',
     from_property_name='ofAuthor',
     to_object_uuid=uuid_author,
+    to_object_class_name='Author',
   )
 
 # NOTE: When exiting context manager the method `batch.flush()` is called
@@ -351,6 +355,7 @@ with client.batch as batch:
     from_object_class_name='Author',
     from_property_name='wroteBooks',
     to_object_uuid=uuid_book_1,
+    to_object_class_name='Book',
   )
   # add references author <--- book_1
   batch.add_reference(
@@ -358,6 +363,7 @@ with client.batch as batch:
     from_object_class_name='Book',
     from_property_name='ofAuthor',
     to_object_uuid=uuid_author,
+    to_object_class_name='Author',
   )
   # add book_2
   uuid_book_2 = generate_uuid5(book_2, 'Book')
@@ -372,6 +378,7 @@ with client.batch as batch:
     from_object_class_name='Author',
     from_property_name='wroteBooks',
     to_object_uuid=uuid_book_2,
+    to_object_class_name='Book',
   )
   # add references author <--- book_2
   batch.add_reference(
@@ -379,6 +386,7 @@ with client.batch as batch:
     from_object_class_name='Book',
     from_property_name='ofAuthor',
     to_object_uuid=uuid_author,
+    to_object_class_name='Author',
   )
 # NOTE: When exiting context manager the method `batch.flush()` is called
 # done, everything is imported/created
@@ -465,6 +473,7 @@ with client.batch as batch:
     from_object_class_name='Author',
     from_property_name='wroteBooks',
     to_object_uuid=uuid_book_1,
+    to_object_class_name='Book',
   )
   # add references author <--- book_1
   batch.add_reference(
@@ -472,6 +481,7 @@ with client.batch as batch:
     from_object_class_name='Book',
     from_property_name='ofAuthor',
     to_object_uuid=uuid_author,
+    to_object_class_name='Author',
   )
   result = batch.create_references()  # <----- implicit reference creation
 
@@ -491,6 +501,7 @@ with client.batch as batch:
     from_object_class_name='Author',
     from_property_name='wroteBooks',
     to_object_uuid=uuid_book_2,
+    to_object_class_name='Book',
   )
   # add references author <--- book_2
   batch.add_reference(
@@ -498,6 +509,7 @@ with client.batch as batch:
     from_object_class_name='Book',
     from_property_name='ofAuthor',
     to_object_uuid=uuid_author,
+    to_object_class_name='Author',
   )
   result = batch.create_references()  # <----- implicit reference creation
 
@@ -511,7 +523,7 @@ The `Batch` object can be configured using the `batch.configure()` method or the
 - `batch_size` - (`int` or `None`: default `None`): If it is `int` then auto-/dynamic-batching is enabled. For Auto-batching, if number of objects + number of references == `batch_size` then the `Batch` is going to import/create current objects then references (see Auto-batching for more info). For Dynamic-batching it is used as the initial value for `recommended_num_objects` and `recommended_num_references` (see Dynamic-batching for more info). `None` value means it is Manual-batching, no automatic object/reference import/creation.
 - `dynamic` - (`bool`: default: `False`): Enables/disables Dynamic-batching. Does not have any effect if `batch_size` is `None`.
 - `creation_time` - (`int` or `float`; default: `10`): It is the interval of time in which the batch import/create should be done. It used to compute `recommended_num_objects` and `recommended_num_references`, consequently has an impact for Dynamic-batching.
-- `callback` (Optional[Callable[[dict], None]]: default `None`): It is a callback function on the results of the `batch.create_objects()` and `batch.create_references()`. It is used for Error Handling for Auto-/Dynamic-batching. Has no effect if `batch_size` is `None`.
+- `callback` (Optional[Callable[[dict], None]]: default `weaviate.util.check_batch_result`): It is a callback function on the results of the `batch.create_objects()` and `batch.create_references()`. It is used for Error Handling for Auto-/Dynamic-batching. Has no effect if `batch_size` is `None`.
 - `timeout_retries` - (`int`: default `0`): Number of times to re-try to import/create a batch that resulted in `TimeoutError`.
 
 
@@ -625,6 +637,20 @@ print(query_result)
 Note that you need to use the `.do()` method to execute the query. 
 
 # Change logs
+### 3.7.0
+Adds rolling average (last 5 batches) for batch creation time used by Dynamic Batching method.
+
+Adds ability to use `client.query.get()` without specifying any properties IF Additional Properties (`with_additional()`) are set before executing the query (calling `.do()`/`.build()`).
+
+Adds base Weaviate Exception `WeaviateBaseError`.
+
+Adds ability to set proxies. Can be set at `Client` initialization by using the new `proxies` or `trust_env` arguments.
+
+Batch creates UUIDs (UUIDv4) for all added objects that do not have one at client side (fixes data duplication on Batch retries).
+
+Adds new methods for `WCS` for instances that have authentication enabled:
+- `get_users_of_cluster()` to get users (emails) for all the users that have access to the created Weaviate instance.
+- `add_user_to_cluster()` to add users (email) to the created Weaviate instance.
 
 ### 3.6.0
 This minor version contains functionality for the new features introduced in Weaviate `v1.14.0`.
@@ -632,6 +658,32 @@ This minor version contains functionality for the new features introduced in Wea
 Added support for class namespaced API calls.
 
 Added support for `distance` user-facing similarity metric.
+
+New function in `weaviate.util.check_batch_result()` used to print errors from batch creation.
+
+New function argument `class_name` for `weaviate.util.generate_local_beacon()`, used ONLY with Weaviate Server version >= 1.14.0
+(defaults to `None` for backwards compatibility).
+
+`check_batch_result()` is the default `callback` function for Batch (`client.batch.configure()` and `client.batch()`) (instead of `None`).
+New method argument `to_object_class_name` for `client.batch.add_reference()`, used ONLY with Weaviate Server version >= 1.14.0 (defaults to `None` for backwards compatibility).
+
+Support for `distance` in GraphQL filters (only with Weaviate server >= 1.14.0).
+
+For `client.data_object`:
+ - New method argument `class_name` for `.get_by_id()`, `.get()`, `.delete()` and  `.exists()`, used ONLY with Weaviate Server version >= 1.14.0 (defaults to `None` for backwards compatibility).
+- Deprecation Warning if Weaviate Server version >= 1.14.0 and `class_name` is `None` OR if Weaviate Server version < 1.14.0 and `class_name` is NOT `None`.
+
+For `client.data_object.reference`:
+- New method arguments `from_class_name` and `to_class_name` (`to_class_names` for `.update()`) for `.add()`, `.delete()`, `.update()`, used ONLY with Weaviate Server version >= 1.14.0 (defaults to `None` for backwards compatibility).
+- Deprecation Warning if Weaviate Server version >= 1.14.0 and `from_class_name`/`to_class_name` is `None` OR if Weaviate Server version < 1.14.0 and `from_class_name`/`to_class_name` is NOT `None`.
+
+### 3.5.1
+
+Fixes the `rerank` not being set bug in `client.query.get(...).with_ask()`.
+
+Fixes the bug when using double quotes(`”`) in question field in `client.query.get(...).with_ask()`Fixes.
+
+Fixes the bug where `nearText` filter checks for objects in `moveTo`/`moveAwayFrom` clause but never sets it.
 
 ### 3.5.0
 This minor version contains functionality for the new features introduced in Weaviate `v1.13.0`.
