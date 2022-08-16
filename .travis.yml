@@ -35,6 +35,8 @@ script:
   then
       echo "The current version is not on https://app.swaggerhub.com/apis/semi-technologies/weaviate/$(cat _config.yml | yq .weaviate_version)"
   fi
+# generate version file
+- cat _config.yml | yq .weaviate_version >> _site/version.txt
 - |
   if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     if [ $TRAVIS_BRANCH = "main" ]; then
