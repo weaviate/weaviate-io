@@ -6,6 +6,7 @@ published: true
 author: Etienne Dilocker
 author-img: /img/people/icon/etienne.jpg
 card-img: /img/blog/hero/gomemlimit-card.jpg
+og: /img/blog/hero/gomemlimit-card.jpg
 date: 2022-08-15
 toc: false
 ---
