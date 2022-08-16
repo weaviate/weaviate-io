@@ -92,6 +92,15 @@ makes clean up easy and our tests very portable. New contributors should be
 able to run the entire test pipeline locally within seconds after first cloning
 the repository.
 
+### Benchmark tests
+
+These tests have two functions:
+
+1) Identify regressions automatically before they are merged
+2) Enable performance tracking over time
+
+They are currently very limited but will be extended over time.
+
 ### Test coverage
 
 We aim to have the highest useful test coverage possibile. In some cases this
@@ -128,7 +137,7 @@ There is a convenience script available which runs the entire test pipeline in
 the same fashion that it is run on CI. It only requires a correctly setup
 Golang environment, as well as `docker-compose` to be set up on your machine.
 
-You can run the entire pipeline using:
+You can run the entire pipeline, except the benchmark tests, using:
 
 ```sh
 $ test/run.sh
@@ -155,21 +164,13 @@ $ go test ./...
   methods of the class under test without knowing too much about the internals
 * Do not use any build tags.
 
-### Integration Tests
+### Integration tests
 As outline in the Philosophy, integration tests require backing services to be
 run. We have a convenience script available which starts all required services
 in `docker-compose` and runs the tests against it:
 
 ```sh
 $ test/integration/run.sh
-```
-
-Since all integration tests are set up in a fashion where they clean up after
-themselves, you can run them in succession without having to restart the
-dependencies. For this you can append the `--no-restart` option like so:
-
-```sh
-$ test/integration/run.sh --no-restart
 ```
 
 #### Adding new integration tests
@@ -196,11 +197,10 @@ recall.
 These tests are considered "slow tests". They are an important part in our test
 pipeline, we wouldn't want to release Weaviate without them passing. However,
 they might not play a major role during every feature we develop. Therefore
-these test are opt-in with the `--include-slow` flag on the test runner. For,
-example to skip restarts, but include slow tests, run:
+these test are opt-in with the `--include-slow` flag on the test runner:
 
 ```sh
-$ test/integration/run.sh --no-restart --include-slow
+$ test/integration/run.sh --include-slow
 ```
 
 Note that while slow tests are optional on the integration test runner script,
@@ -231,6 +231,21 @@ runs.
 
 To add a new test, pick the most appropriate sub-folder (or add a new one) in
 `test/acceptance`.
+
+### Benchmark tests
+
+Benchmark tests are not run automatically with the `run.sh` script. They can be started using
+
+```sh
+$ test/run.sh --benchmark-only
+```
+
+Their output is the runtime of the benchmarks. It prints the results and additionally writes them into a file.
+
+To run these benchmarks `git lfs` must be installed and initialized by running the following in the weaviate repository:
+```sh
+$ git lfs install
+```
 
 ## Tools and Frameworks
 

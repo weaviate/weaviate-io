@@ -5,7 +5,7 @@ description: "Weaviate v1.2 introduced support for transformers (DistilBERT, BER
 published: true
 author: Bob van Luijt
 author-img: /img/people/icon/bob.jpg
-card-img: /img/blog/hero/Weaviate-1-2-transformer-models-card.png
+card-img: /img/blog/hero/weaviate-1-2-transformer-models-card.png
 canonical-url: https://medium.com/semi-technologies/weaviate-version-1-2-x-now-supports-transformer-models-4a12d858cce3
 canonical-name: Medium
 date: 2021-03-30

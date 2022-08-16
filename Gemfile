@@ -17,3 +17,7 @@ gem 'jekyll-redirect-from'
 gem 'jekyll-sitemap'
 
 gem 'html-proofer'
+
+group :jekyll_plugins do
+  gem "jekyll-last-modified-at"
+end

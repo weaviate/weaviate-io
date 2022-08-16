@@ -5,7 +5,7 @@ description: This is the description, it describes what the post is about
 published: true
 author: Bob van Luijt
 author-img: /img/people/bob.jpg
-card-img: /img/blog/hero/AI-first-database-ecosystem-card.jpeg
+card-img: /img/blog/hero/ai-first-database-ecosystem-card.jpeg
 hero-img: https://imageio.forbes.com/specials-images/imageserve/61950180a260c12d22db736c/Medium-wide-shot-of-male-warehouse-worker-checking-orders-at-computer-workstation-in/960x0.jpg?format=jpg&width=960
 canonical-url: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
 canonical-name: Forbes
