@@ -75,6 +75,15 @@ script:
 - |
     echo -e "User-agent: *
     Disallow: /" >> _site/robots.txt
-- sudo netlify deploy --dir=_site --site=tangerine-buttercream-20c32f
+- sudo netlify deploy --dir=_site --site=tangerine-buttercream-20c32f >> netlify.out
 - rm _site/robots.txt 
+# send to Slack
+- export AUTHOR_NAME="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
+- export NETLIFY_LOC=$(grep -r 'Website Draft URL:' netlify.out)
+- export NETLIFY_LOC_STRP=$(echo ${NETLIFY_LOC:29})
+- |
+    export MESSAGE="{ \"text\": \"Hey $AUTHOR_NAME - your website is live at: $NETLIFY_LOC_STRP \" }"
+- echo $MESSAGE > payload.json
+- |
+    curl -X POST -H 'Content-type: application/json' -d @payload.json https://hooks.slack.com/services/$SLACK_BOT
 cache: bundler
