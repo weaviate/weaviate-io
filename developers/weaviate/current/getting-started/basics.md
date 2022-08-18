@@ -28,13 +28,43 @@ Weaviate is a database of the type search engine, and it's specifically built to
 
 ## Data objects in Weaviate
 
-Inside Weaviate, you can store _data objects_ (represented as JSON documents stored in a key-value store that's always present) which can be represented by a machine learning vector representation (i.e., an embedding).
+Weaviate stores _data objects_ (represented as `JSON documents`) in class-based `collections`, where each object can be represented by a machine learning `vector` (i.e. an embedding).
 
-The properties (i.e., JSON key values) of the data objects can be of almost any data type (e.g., string, text, date, int, float, [etc.](../data-schema/datatypes.html)) As a Weaviate user, you can set (almost) any name for a property (i.e., JSON key).
+Each `collection` contains objects of the same `class`, which are defined by a common `schema`.
 
-An example of an individual data object as stored in Weaviate:
+Let's unpack this a bit with an example.<br/>
+
+### JSON documents
+
+Imagine we need to store information about the following renown Authors: Alice Munro and Paul Krugman.
+
+> TODO (Svitlana): add two cards, one for Alice M and one for Paul K
+
+<!-- [Alice Munro
+Born: July 10, 1931 (age 91)
+Nobel Prize Winner
+
+"Alice Ann Munro is a Canadian short story writer who won the Nobel Prize in Literature in 2013. Munro's work has been described as revolutionizing the architecture of short stories, especially in its tendency to move forward and backward in time...."
+]
+
+[Paul Krugman
+Born: February 28, 1953 (age 69)
+Nobel Prize Winner
+
+"Paul Robin Krugman is an American economist and public intellectual, who is..."
+] -->
+
+The data about these two authors can be represented in JSON like this:
 
 ```json
+{
+    "name": "Alice Munro",
+    "age": 91,
+    "born": "1931-07-10T00:00:00.0Z",
+    "wonNobelPrize": true,
+    "description": "Alice Ann Munro is a Canadian short story writer who won the Nobel Prize in Literature in 2013. Munro's work has been described as revolutionizing the architecture of short stories, especially in its tendency to move forward and backward in time."
+}
+
 {
     "name": "Paul Krugman",
     "age": 69,
@@ -44,12 +74,32 @@ An example of an individual data object as stored in Weaviate:
 }
 ```
 
-Within Weaviate, we group these data objects into classes. 
+> Note, each JSON object is made of a `key-value` pairs, called `properties`.<br/>
+> The `values` can be of almost any data type, like string, text, date, int, float, etc. – [check the full list here](../data-schema/datatypes.html){:target="_blank"}.
 
-For example:
+### Collections
+
+Weaviate groups all Authors under the `Author` class and place them in the same `collection`.<br/>
+
+> Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), which guarantees uniqueness across all collections.
+
+Following on our authors example, Weaviate can store them like this:
 
 ```json
 {
+    "id": "dedd462a-23c8-32d0-9412-6fcf9c1e8149",
+    "class": "Author",
+    "properties": {
+        "name": "Alice Munro",
+        "age": 91,
+        "born": "1931-07-10T00:00:00.0Z",
+        "wonNobelPrize": true,
+        "description": "Alice Ann Munro is a Canadian short story writer who won the Nobel Prize in Literature in 2013. Munro's work has been described as revolutionizing the architecture of short stories, especially in its tendency to move forward and backward in time."
+    }
+}
+
+{
+    "id": "779c8970-0594-301c-bff5-d12907414002",
     "class": "Author",
     "properties": {
         "name": "Paul Krugman",
@@ -61,17 +111,17 @@ For example:
 }
 ```
 
-As mentioned above, we can also attach vector representations to the data objects. This might look something like this:
+### Vectors
+
+As mentioned earlier, we can also attach `vector` representations to our data objects. This is represented as an array of numbers under a `"vector"` property, like this: 
 
 ```json
 {
+    "id": "779c8970-0594-301c-bff5-d12907414002",
     "class": "Author",
     "properties": {
         "name": "Paul Krugman",
-        "age": 69,
-        "born": "1953-02-28T00:00:00.0Z",
-        "wonNobelPrize": true,
-        "description": "Paul Robin Krugman is an American economist and public intellectual, who is Distinguished Professor of Economics at the Graduate Center of the City University of New York, and a columnist for The New York Times. In 2008, Krugman was the winner of the Nobel Memorial Prize in Economic Sciences for his contributions to New Trade Theory and New Economic Geography."
+        (...)
     },
     "vector": [
         -0.16147631,
@@ -81,9 +131,14 @@ As mentioned above, we can also attach vector representations to the data object
 }
 ```
 
-Every data object has a UUID that we can use to retrieve individual data objects or make cross references. 
+### Cross-references
 
-Let's say we have a second data object that looks something like this:
+In some cases we need to link data objects with each other.
+
+For example: *"Paul Krugman writes for the New York Times"*.<br/>
+To represent this relationship between the `Author` and the `Publication`, we need to cross reference the objects.
+
+Let's say we have a *New York Times* object, like this:
 
 ```json
 {
@@ -92,25 +147,23 @@ Let's say we have a second data object that looks something like this:
     "properties": {
         "name": "The New York Times"
     },
-    "vector": [
-        -0.0030892247,
-        0.17440806,
-        0.024489688
-    ]
+    "vector": [...]
 }
 ```
 
-Based on the UUID of the publication. We can now attach the UUID to the `Author` like this:
+Then we can use the `UUID` from the above object, to attach it to the `Author` like this (see `"writesFor"`):
+
+<!-- TODO: check if the href format is correct. Shouldn't this include /Publication ?
+ "href": "/v1/objects/Publication/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6"
+ -->
 
 ```json
 {
+    "id": "779c8970-0594-301c-bff5-d12907414002",
     "class": "Author",
     "properties": {
         "name": "Paul Krugman",
-        "age": 69,
-        "born": "1953-02-28T00:00:00.0Z",
-        "wonNobelPrize": true,
-        "description": "Paul Robin Krugman is an American economist [...] New Economic Geography.",
+        ...
         "writesFor": [
             {
                 "beacon": "weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
@@ -118,16 +171,15 @@ Based on the UUID of the publication. We can now attach the UUID to the `Author`
             }
         ]
     },
-    "vector": [
-        -0.16147631,
-        -0.065765485,
-        -0.06546908
-    ]
+    "vector": [...]
 }
 ```
 
+
+
 <div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 Hrefs and beacons are the locations within a Weaviate where you can retrieve the cross-reference. The difference between the two will become apparent while going through the getting started guide.
+💡 `Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. <br/>
+The difference between the two will become apparent while going through the getting started guide.
 </div>
 
 ## Weaviate Schema
