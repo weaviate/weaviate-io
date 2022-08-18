@@ -55,7 +55,7 @@ Usually, there is no need to obtain individual images, as we distribute entire `
 ![Weaviate Configuration Tool](/img/blog/docker-and-containers/weaviate-configuration-tool.png)
 *An example of the Weaviate Customizer which produces a complete docker-compose file — tailored to your needs.*
 
-The easiest way to obtain a `docker-compose.yml` is to use the [Weaviate configuration tool](/developers/weaviate/current/getting-started/installation.html#customize-your-weaviate-setup){:target="_blank"} on our website. It will ask you a few questions about what you plan to do with Weaviate and customize a Compose file (including all module containers, if you select any) in the last step.
+The easiest way to obtain a `docker-compose.yml` is to use the [Weaviate configuration tool](/developers/weaviate/current/installation/#customize-your-weaviate-setup){:target="_blank"} on our website. It will ask you a few questions about what you plan to do with Weaviate and customize a Compose file (including all module containers, if you select any) in the last step.
 
 If you don’t want to use the customizer you can also copy/paste one of [the example files from the documentation](/developers/weaviate/current/installation/#example-docker-compose-setups){:target="_blank"}.
 
