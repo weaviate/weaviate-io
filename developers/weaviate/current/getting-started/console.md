@@ -14,9 +14,7 @@ The Weaviate Console allows you to connect to Weaviate instances that are runnin
 
 💻 The console is available on: [console.semi.technology](https://console.semi.technology).
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 The console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
-</div>
+> 💡 The console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 
 ## Login page
 
@@ -29,9 +27,7 @@ When opening the [Weaviate Console](https://console.semi.technology), you'll se
 
 The Weaviate Cloud Service allows you to create Weaviate instances as SaaS instances on our infrastructure. There is no difference between locally run Weaviate instances or Weaviate SaaS instances other than that the latter ones are managed by us.
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 Sandboxes are free Weaviate instances! You can create them for small test use cases if you don't want to run Weaviate locally.
-</div>
+> 💡 Sandboxes are free Weaviate instances! You can create them for small test use cases if you don't want to run Weaviate locally.
 
 ## Connect to a self-hosted Weaviate
 
@@ -39,17 +35,13 @@ You can connect to any Weaviate instance as long as your computer has access to 
 
 When you're connected you can use the [GraphiQL](#graphiql) interface to interact with your Weaviate instance.
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 You can safely connect to any Weaviate instance. The GraphiQL editor runs locally, and we don't forward any result or query to our servers.
-</div>
+> 💡 You can safely connect to any Weaviate instance. The GraphiQL editor runs locally, and we don't forward any result or query to our servers.
 
 ## GraphiQL
 
 GraphiQL is a graphical interface that allows you to manually write GraphQL queries. Within Weaviate we use it a lot, the auto-fill functionality allows you to easily navigate through your own dataset.
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 Curious? Try out the console [right now](https://link.semi.technology/3J8aB73) with the Wikipedia dataset.
-</div>
+> 💡 Curious? Try out the console [right now](https://link.semi.technology/3J8aB73) with the Wikipedia dataset.
 
 ## Try out the console
 
@@ -62,9 +54,7 @@ GraphiQL is a graphical interface that allows you to manually write GraphQL quer
 2. In the Self-hosted Weaviate section, provide the endpoint of you instance. If you run Weaviate locally this will be `http://localhost:8080`.
 3. Click "connect"
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 The console might ask to downgrade to HTTP. This is done to avoid [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors.
-</div>
+> 💡 The console might ask to downgrade to HTTP. This is done to avoid [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors.
 
 ## Recapitulation
 

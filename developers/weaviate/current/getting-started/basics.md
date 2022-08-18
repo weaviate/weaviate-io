@@ -22,23 +22,57 @@ This guide is all about the basics. No getting your hands dirty yet, no fancy Ku
 
 Weaviate is a database of the type search engine, and it's specifically built to work with vector representations produced by machine learning models. Hence, Weaviate is a vector search engine (but we will still like you if you call it a vector database).
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 When working with a database, you want [full CRUD support](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Not all approximate nearest neighbor algorithms support this, and not all incumbent databases (/search engines) are optimized for this type of indexing. These reasons are -among others- the most important to why Weaviate exists You can also learn more about this by reading [this blog post](https://db-engines.com/en/blog_post/87).
-</div>
+> 💡 When working with a database, you want [full CRUD support](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Not all approximate nearest neighbor algorithms support this, and not all incumbent databases (/search engines) are optimized for this type of indexing. These reasons are -among others- the most important to why Weaviate exists You can also learn more about this by reading [this blog post](https://db-engines.com/en/blog_post/87).
 
 ## Data objects in Weaviate
 
-Weaviate stores _data objects_ (represented as `JSON documents`) in class-based `collections`, where each object can be represented by a machine learning `vector` (i.e. an embedding).
+Weaviate stores _data objects_ (represented as JSON-documents) in _class-based collections_, where each object can be represented by a machine learning _vector_ (i.e. an embedding).
 
-Each `collection` contains objects of the same `class`, which are defined by a common `schema`.
+Each _class-based collection_ contains objects of the same _class_, which are defined by a common _schema_.
 
 Let's unpack this a bit with an example.<br/>
 
-### JSON documents
+### JSON documents as objects
 
-Imagine we need to store information about the following renown Authors: Alice Munro and Paul Krugman.
+Imagine we need to store information about the following renown author: Alice Munro.
 
-> TODO (Svitlana): add two cards, one for Alice M and one for Paul K
+The data about this author can be represented in JSON like this:
+
+```json
+{
+    "name": "Alice Munro",
+    "age": 91,
+    "born": "1931-07-10T00:00:00.0Z",
+    "wonNobelPrize": true,
+    "description": "Alice Ann Munro is a Canadian short story writer who won the Nobel Prize in Literature in 2013. Munro's work has been described as revolutionizing the architecture of short stories, especially in its tendency to move forward and backward in time."
+}
+```
+
+### Vectors
+
+As mentioned earlier, we can also attach `vector` representations to our data objects. This is represented as an array of numbers under a `"vector"` property, like this: 
+
+```json
+{
+    "id": "779c8970-0594-301c-bff5-d12907414002",
+    "class": "Author",
+    "properties": {
+        "name": "Alice Munro",
+        (...)
+    },
+    "vector": [
+        -0.16147631,
+        -0.065765485,
+        -0.06546908
+    ]
+}
+```
+
+### Class Collections
+
+Weaviate groups all Authors under the `Author` class and place them in the same _class collection_.
+
+> 💡 TODO (Svitlana): add two cards, one for Alice M and one for Paul K
 
 <!-- [Alice Munro
 Born: July 10, 1931 (age 91)
@@ -54,39 +88,10 @@ Nobel Prize Winner
 "Paul Robin Krugman is an American economist and public intellectual, who is..."
 ] -->
 
-The data about these two authors can be represented in JSON like this:
+Following on our author example, Weaviate can store multipe authors like this:
 
 ```json
-{
-    "name": "Alice Munro",
-    "age": 91,
-    "born": "1931-07-10T00:00:00.0Z",
-    "wonNobelPrize": true,
-    "description": "Alice Ann Munro is a Canadian short story writer who won the Nobel Prize in Literature in 2013. Munro's work has been described as revolutionizing the architecture of short stories, especially in its tendency to move forward and backward in time."
-}
-
-{
-    "name": "Paul Krugman",
-    "age": 69,
-    "born": "1953-02-28T00:00:00.0Z",
-    "wonNobelPrize": true,
-    "description": "Paul Robin Krugman is an American economist and public intellectual, who is Distinguished Professor of Economics at the Graduate Center of the City University of New York, and a columnist for The New York Times. In 2008, Krugman was the winner of the Nobel Memorial Prize in Economic Sciences for his contributions to New Trade Theory and New Economic Geography."
-}
-```
-
-> Note, each JSON object is made of a `key-value` pairs, called `properties`.<br/>
-> The `values` can be of almost any data type, like string, text, date, int, float, etc. – [check the full list here](../data-schema/datatypes.html){:target="_blank"}.
-
-### Collections
-
-Weaviate groups all Authors under the `Author` class and place them in the same `collection`.<br/>
-
-> Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), which guarantees uniqueness across all collections.
-
-Following on our authors example, Weaviate can store them like this:
-
-```json
-{
+[{
     "id": "dedd462a-23c8-32d0-9412-6fcf9c1e8149",
     "class": "Author",
     "properties": {
@@ -95,10 +100,13 @@ Following on our authors example, Weaviate can store them like this:
         "born": "1931-07-10T00:00:00.0Z",
         "wonNobelPrize": true,
         "description": "Alice Ann Munro is a Canadian short story writer who won the Nobel Prize in Literature in 2013. Munro's work has been described as revolutionizing the architecture of short stories, especially in its tendency to move forward and backward in time."
-    }
-}
-
-{
+    },
+    "vector": [
+        -0.16147631,
+        -0.065765485,
+        -0.06546908
+    ]
+}, {
     "id": "779c8970-0594-301c-bff5-d12907414002",
     "class": "Author",
     "properties": {
@@ -107,29 +115,16 @@ Following on our authors example, Weaviate can store them like this:
         "born": "1953-02-28T00:00:00.0Z",
         "wonNobelPrize": true,
         "description": "Paul Robin Krugman is an American economist and public intellectual, who is Distinguished Professor of Economics at the Graduate Center of the City University of New York, and a columnist for The New York Times. In 2008, Krugman was the winner of the Nobel Memorial Prize in Economic Sciences for his contributions to New Trade Theory and New Economic Geography."
-    }
-}
-```
-
-### Vectors
-
-As mentioned earlier, we can also attach `vector` representations to our data objects. This is represented as an array of numbers under a `"vector"` property, like this: 
-
-```json
-{
-    "id": "779c8970-0594-301c-bff5-d12907414002",
-    "class": "Author",
-    "properties": {
-        "name": "Paul Krugman",
-        (...)
     },
     "vector": [
-        -0.16147631,
-        -0.065765485,
-        -0.06546908
+        -0.93070928,
+        -0.03782172,
+        -0.56288009
     ]
-}
+}]
 ```
+
+> 💡 Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), which guarantees uniqueness across all collections.
 
 ### Cross-references
 
@@ -175,12 +170,8 @@ Then we can use the `UUID` from the above object, to attach it to the `Author` l
 }
 ```
 
-
-
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 `Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. <br/>
+> 💡 `Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. <br/>
 The difference between the two will become apparent while going through the getting started guide.
-</div>
 
 ## Weaviate Schema
 
@@ -192,7 +183,6 @@ For now, what's important to know is this:
 0. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
 0. You can link classes (even if they use different embeddings) by setting cross-references.
 0. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema getting [started guide](./schema.html)).
-
 
 
 ## Where do the vectors come from?
@@ -223,9 +213,7 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 2. *readers & generators* are used for reranking or processing the results.
 3. *other modules* are -often- non-ML, for example, the spell-check module.
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 It's even possible to [create your own modules](../modules/custom-modules.html)! It takes a bit of knowledge about Go, but the module container can be written in any language.
-</div>
+> 💡 It's even possible to [create your own modules](../modules/custom-modules.html)! It takes a bit of knowledge about Go, but the module container can be written in any language.
 
 ## Weaviate Console
 

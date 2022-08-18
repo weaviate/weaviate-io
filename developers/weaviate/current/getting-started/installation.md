@@ -22,17 +22,13 @@ There are only three ways you can run Weaviate, and they are -we believe- pretty
 0. Docker
 0. Kubernetes
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 As you've learned in the [modules section of the basics guide](./basics.html#modules), you use Weaviate stand-alone or in combination with modules. Tweaking your configuration will be all about the setup you want to use.
-</div>
+> 💡 As you've learned in the [modules section of the basics guide](./basics.html#modules), you use Weaviate stand-alone or in combination with modules. Tweaking your configuration will be all about the setup you want to use.
 
 ## Weaviate Cloud Service
 
 The Weaviate Cloud Service is our managed Weaviate SaaS. Currently, the service is private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.semi.technology/) and create a free sandbox to play around with.
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 The big upside of the Weaviate Cloud Service is that it's a completely managed service.
-</div>
+> 💡 The big upside of the Weaviate Cloud Service is that it's a completely managed service.
 
 ## Running Weaviate yourself
 
@@ -47,9 +43,7 @@ When running Weaviate yourself in production, you want to make sure you select t
 0. **Memory** – make sure there is enough available to store the indices. To calculate to amount of memory needed for your vectors. Follow [this](../architecture/resources.html#an-example-calculation) calculation. You can learn more about memory usage in Weaviate [here](../architecture/resources.html#the-role-of-memory).
 0. **CPUs** – adding more CPUs increases import speed or query time. Setting up [monitoring](../configuration/monitoring.html) for your Weaviate instance will help you determine if you need more or fewer CPUs in your setup.
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 For development purposes it's perfectly fine to run Weaviate on your local machine; the above goes more for production deployments.
-</div>
+> 💡 For development purposes it's perfectly fine to run Weaviate on your local machine; the above goes more for production deployments.
 
 ## Docker
 
@@ -68,9 +62,7 @@ Some examples of Docker Compose configurations you can make with the configurato
 
 ## Kubernetes
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
-</div>
+> 💡 If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
 
 For this one, you need to understand how Kubernetes works; these are just two handy things to know.
 

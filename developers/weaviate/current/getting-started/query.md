@@ -57,9 +57,7 @@ Weaviate's GraphQL-API has three root functions:
 }
 ```
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 A more detailed explanation of Weaviate's GraphQL design is available [here](../graphql-references/#query-structure).
-</div>
+> 💡 A more detailed explanation of Weaviate's GraphQL design is available [here](../graphql-references/#query-structure).
 
 ## Get{}
 
