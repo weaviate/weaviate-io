@@ -40,6 +40,9 @@ plugins:
   - jekyll-redirect-from
   - jekyll-toc
   - jekyll-sitemap
+  - jekyll-last-modified-at
+last-modified-at:
+  date-format: '%d-%b-%y'
 whitelist:
   - jekyll-redirect-from
 toc:
@@ -89,10 +92,11 @@ docs:
       - name: Getting started
         folder: getting-started
         header: false
-      - name: Becoming an expert
-        folder: becoming-an-expert
-        header: false
         breakpointAfter: true
+      # - name: Becoming an expert
+      #   folder: becoming-an-expert
+      #   header: false
+      #   breakpointAfter: true
       - name: Installation
         folder: installation
         header: false

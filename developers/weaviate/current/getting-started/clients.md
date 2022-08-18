@@ -63,17 +63,27 @@ result = client.query.raw(query)
 print(result)
 ```
 
+## Installation
+
+Clients have their [own installation pages](../client-libraries/) per language.
+
+Currently Weaviate supports:
+
+- [Python](../client-libraries/python.html)
+- [Javascript](../client-libraries/javascript.html)
+- [Go](../client-libraries/go.html)
+- [Java](../client-libraries/java.html)
+- Do you want to contribute one? Please let us know on our [Slack]({{ site.slack_signup_url }})
+
 ## Recapitulation
 
-...
+Weaviate clients are an easy way to connect with your Weaviate instance or cluster through a language of choice. Some users prefer to use a client and others prefer to connect directly with the APIs directly. Both are possible.
 
 ## What would you like to learn next?
 
-...
-
-## Legend
-
-...
+- [Show me how to query](./query.html)
+- [Show me how the schema works](./schema.html)
+- [One more time the basics](./basics.html)
 
 # More Resources
 

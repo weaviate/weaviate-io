@@ -14,6 +14,10 @@ The Weaviate Console allows you to connect to Weaviate instances that are runnin
 
 💻 The console is available on: [console.semi.technology](https://console.semi.technology).
 
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 The console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
+</div>
+
 ## Login page
 
 When opening the [Weaviate Console](https://console.semi.technology), you'll see two options:
@@ -45,6 +49,21 @@ GraphiQL is a graphical interface that allows you to manually write GraphQL quer
 
 <div class="alert alert-secondary alert-getting-started" markdown="1">
 💡 Curious? Try out the console [right now](https://link.semi.technology/3J8aB73) with the Wikipedia dataset.
+</div>
+
+## Try out the console
+
+1. Go to: [https://link.semi.technology/3CUuDgQ](https://link.semi.technology/3CUuDgQ)
+2. Start querying :)
+
+## Try out the console with your own instance
+
+1. Go to: [https://console.semi.technology](https://console.semi.technology)
+2. In the Self-hosted Weaviate section, provide the endpoint of you instance. If you run Weaviate locally this will be `http://localhost:8080`.
+3. Click "connect"
+
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 The console might ask to downgrade to HTTP. This is done to avoid [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors.
 </div>
 
 ## Recapitulation

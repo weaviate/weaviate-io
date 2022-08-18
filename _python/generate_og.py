@@ -30,10 +30,10 @@ def write_page(img, title, submenu, subtitle, font_path):
     if submenu != subtitle:
         print_subtitle = True
     submenu = textwrap.fill(submenu, width=26)
-    subtitle = textwrap.fill(subtitle, width=26)
+    subtitle = textwrap.fill(subtitle, width=38)
     title_font = ImageFont.truetype(font_path + "AlegreyaSans-Regular.ttf", 50)
     submenu_font = ImageFont.truetype(font_path + "AlegreyaSans-Regular.ttf", 50)
-    subtitle_font = ImageFont.truetype(font_path + "AlegreyaSans-ExtraBold.ttf", 96)
+    subtitle_font = ImageFont.truetype(font_path + "AlegreyaSans-ExtraBold.ttf", 64)
     image_editable = ImageDraw.Draw(img)
     xloc = 320
     xdist = 160

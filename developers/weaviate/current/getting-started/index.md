@@ -11,6 +11,7 @@ toc: false
 redirect_from:
     - /documentation/weaviate/current/getting-started/index.html
     - /documentation/weaviate/current/getting-started/
+    - /developers/weaviate/current/getting-started/quick-start.html
 ---
 
 Welcome, _Welcome_, **Welcome** to the Weaviate getting started guides.
