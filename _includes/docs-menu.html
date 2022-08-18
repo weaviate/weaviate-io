@@ -25,7 +25,7 @@
                 <!-- Go over the contributor guide categories from _config.yml -->
                 {% for guide_category in site.docs["contributor-guide"] %}
                     <h6 class="text-uppercase fw-bold">
-                        <a href="/developers/contributor-guide/{{guide_category.folder}}"
+                        <a href="/developers/contributor-guide/current/{{guide_category.folder}}"
                         {% if guide_category.name == page.title %}class="current"{% endif %}>{{ guide_category.name }}</a>
                     </h6>
                     
