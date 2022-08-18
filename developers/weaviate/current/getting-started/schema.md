@@ -10,9 +10,9 @@ open-graph-type: article
 toc: true
 ---
 
-You've made it to the schema getting started guide! The schema is the place where you will not only set data types, cross-references, and more, but you'll be tweaking index settings (ANN, reverse index,  BM25).
+You've made it to the schema getting started guide! The schema is the place where you will not only set data types, cross-references, and more, but you'll be tweaking index settings (ANN, reverse index, BM25).
 
-This will also be a guide to getting your hands dirty! This guide is a bit longer, tho 😉
+This will also be a guide to getting your hands dirty! O, and this guide is a bit longer 😉
 
 ## Set up your Weaviate instance
 
@@ -39,7 +39,7 @@ The result should look like this:
 
 This means you're connected to an empty Weaviate.
 
-If this is not the case and you see (old) classes, you can run the following (only supported by the Python client):
+If this is not the case and you see (old) classes, you can restart your instance, or you can run the following if you're using the Python client:
 
 ```python
 import weaviate

@@ -92,10 +92,11 @@ docs:
       - name: Getting started
         folder: getting-started
         header: false
-      - name: Becoming an expert
-        folder: becoming-an-expert
-        header: false
         breakpointAfter: true
+      # - name: Becoming an expert
+      #   folder: becoming-an-expert
+      #   header: false
+      #   breakpointAfter: true
       - name: Installation
         folder: installation
         header: false

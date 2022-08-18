@@ -210,17 +210,6 @@ Weaviate can expose Prometheus-compatible metrics for [monitoring](../configurat
 * [I want to learn how I can query the data](./query.html)
 * [I want to learn how to work with the Weaviate schema](./schema.html)
 
-## Legend
-
-* vectors
-* data object
-* class
-* property
-* cross reference
-* beacon
-* href
-* vector space
-
 # More Resources
 
 {% include docs-support-links.html %}
