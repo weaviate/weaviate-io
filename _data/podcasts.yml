@@ -1,5 +1,21 @@
 ---
 - title: >
+    Yaoshiang Ho of Masterful AI
+  description: > 
+    Yaoshiang is a Co-Founder of Masterful AI, a company doing incredible work in the Computer Vision model training and deployment space.
+  youtube: dHhQjlrLu9k
+  date: 2022-08-10T00:00:00Z
+  cover_image: '/img/podcasts/podcast-22.png'
+  is_use_case: false
+- title: >
+    Laura Ham on Weaviate User Experience
+  description: > 
+    Laura Ham has had a heavy influence on all things from the GraphQL User Experience design to the Graph data model, and creation of educational content!
+  youtube: gjJBYcYMB-o
+  date: 2022-07-27T00:00:00Z
+  cover_image: '/img/podcasts/podcast-21.png'
+  is_use_case: false
+- title: >
     Question Answering with Haystack
   description: > 
     Tuana Celik – a Developer Advocate at Deepset – and Connor to learn about many exciting ideas around Question Answering. 
