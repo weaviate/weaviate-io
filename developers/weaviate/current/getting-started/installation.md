@@ -8,8 +8,8 @@ tags: ['basics']
 menu-order: 2
 open-graph-type: article
 toc: true
-redirect_from:
-  - /developers/weaviate/current/getting-started/installation.html
+# redirect_from:
+#   - /developers/weaviate/current/getting-started/installation.html
 ---
 
 {% include docs-current_version_finder.html %}

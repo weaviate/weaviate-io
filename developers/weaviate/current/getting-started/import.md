@@ -27,7 +27,7 @@ First of all, some rules of thumb.
 * Process error messages.
 * Some clients (especially Python) have some build-in logic to efficiently regulate batch importing.
 
-Assuming that you've read the [schema getting started guide](./schema.html), you import data based on the classes and properties defined in the schema (no 💩, 🕵️). The big difference between [importing a single object](#importing-single-data-objects) in Weaviate and batch importing is that instead of sending a single JSON object, you import an array of JSON objects.
+Assuming that you've read the [schema getting started guide](./schema.html), you import data based on the classes and properties defined in the schema (no 💩, 🕵️). The big difference between importing a single object in Weaviate and batch importing is that instead of sending a single JSON object, you import an array of JSON objects.
 
 As you've seen in the [basics getting started guide](./basics.html#data-objects-in-weaviate), Weaviate data objects are class/property based JSON-objects.
 
@@ -90,7 +90,7 @@ You can now see the added object here:
 
 ## Other object operations
 
-All other CRUD object operations are available in the [objects RESTful API documentation](../restful-api-references/objects.html) and the [batch RESTful API documentation](/restful-api-references/batch.html).
+All other CRUD object operations are available in the [objects RESTful API documentation](../restful-api-references/objects.html) and the [batch RESTful API documentation](../restful-api-references/batch.html).
 
 ## Recapitulation
 
