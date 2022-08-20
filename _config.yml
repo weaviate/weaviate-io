@@ -107,6 +107,13 @@ docs:
         folder: data-schema
         header: false
         breakpointAfter: true
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+        breakpointAfter: true
       - name: Modules
         folder: modules
         header: false
@@ -123,13 +130,6 @@ docs:
         folder: other-modules
         header: true
         nav-parent: Modules
-      - name: GraphQL references
-        folder: graphql-references
-        header: false
-      - name: RESTful API references
-        folder: restful-api-references
-        header: false
-        breakpointAfter: true
       - name: Client libraries & CLI
         folder: client-libraries
         header: false
