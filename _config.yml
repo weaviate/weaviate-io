@@ -632,6 +632,8 @@ docs:
         folder: tutorials
         header: true
   contributor-guide:
+      - name: Weaviate Contributor's Guide
+        folder: weaviate-contributors-guide
       - name: Weaviate Core
         folder: weaviate-core
       - name: Weaviate Module System

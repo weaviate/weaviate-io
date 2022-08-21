@@ -3,6 +3,9 @@
 
 {% if page.solution == "weaviate" or page.solution == "contributor-guide" %}
 
+<a href="https://github.com/semi-technologies/weaviate" class="href-no-border">
+    <img src="https://img.shields.io/github/license/semi-technologies/weaviate?style=flat-square" alt="License badge">
+</a>
 <a href="https://stackoverflow.com/tags/weaviate/" class="href-no-border">
     <img src="https://img.shields.io/badge/stackoverflow-%23weaviate-informational?style=flat-square" alt="Weaviate on Stackoverflow badge">
 </a>
@@ -17,6 +20,10 @@
 
     <a href="https://app.swaggerhub.com/apis/semi-technologies/weaviate/{{ current_page_version }}" class="href-no-border">
         <img src="https://img.shields.io/badge/api--specs-{{ current_page_version }}-brightgreen?style=flat-square" alt="Weaviate {{ current_page_version }} version badge">
+    </a>
+
+    <a href="https://goreportcard.com/report/github.com/semi-technologies/weaviate" class="href-no-border">
+        <img src="https://goreportcard.com/badge/github.com/semi-technologies/weaviate?style=flat-square" alt="Weaviate Go report card">
     </a>
     {% endif %}
 
