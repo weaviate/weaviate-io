@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Client libraries & CLI
 title: Client libraries & CLI
-intro: Weaviate now has three client libraries available, for Python, JavaScript and Go. Additionally, you can interact with Weaviate via a command line interface (CLI).
+intro: Weaviate now has four client libraries available, for Python, JavaScript, Java and Go. Additionally, you can interact with Weaviate via a command line interface (CLI).
 description: An overview of client libraries and CLI.
 tags: ['client libraries', 'cli']
 menu-order: 0
@@ -15,13 +15,13 @@ redirect_from:
 ---
 
 # Client libraries
-To interact with Weaviate's APIs from Python, JavaScript or Go codes, you can use client libraries. With these clients you can perform *all* RESTful and GraphQL requests. This means you can use any endpoint, and perform all GraphQL queries directly from your Python, JS or Go scripts!
+To interact with Weaviate's APIs from Python, JavaScript, Java or Go codes, you can use client libraries. With these clients you can perform *all* RESTful and GraphQL requests. This means you can use any endpoint, and perform all GraphQL queries directly from your Python, JS, Java or Go scripts!
 
 How to use these clients for RESTful API requests and GraphQL queries, code snippets are included in the code blocks on the dedicated [Restful API](../restful-api-references/index.html) and [GraphQL](../graphql-references/index.html) reference pages. The methods of the clients are designed to reflect the API functions 1-1, but are designed (structured and named) in the way native to the language.
 
-Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages ([Python](./python.html), [JavaScript](./javascript.html) and [Go](./go.html)). An overview of features of the clients: 
+Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages ([Python](./python.html), [JavaScript](./javascript.html), [Java](./java.html) and [Go](./go.html)). An overview of features of the clients: 
 
-| Feature  | Python client | JavaScript client | Go client | Java client | 
+| Feature  | Python client | JavaScript client | Java client | Go client | 
 | --- | --- | --- | --- | --- |
 | RESTful API endpoints | **V** | **V** | **V** | **V** |
 | GraphQL Get | **V** | **V** | **V** | **V** |
