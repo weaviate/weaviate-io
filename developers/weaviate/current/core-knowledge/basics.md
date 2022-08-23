@@ -210,7 +210,7 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 2. *readers & generators* are used for reranking or processing the results.
 3. *other modules* are -often- non-ML, for example, the spell-check module.
 
-> 💡 It's even possible to [create your own modules](../modules/custom-modules.html)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing you module) can be written in any language.
+> 💡 It's even possible to [create your own modules](../other-modules/custom-modules.html)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing you module) can be written in any language.
 
 ## Weaviate Console
 

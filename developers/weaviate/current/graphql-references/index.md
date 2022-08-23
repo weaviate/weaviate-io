@@ -22,6 +22,7 @@ All references have their individual subpages, click on one of the references be
 - [Aggregate{}](aggregate.html)
 - [Explore{}](explore.html)
 - [filters](filters.html)
+- [vector search parameters](vector-search-parameters.html)
 - [additional properties](additional-properties.html)
 
 # GraphQL 

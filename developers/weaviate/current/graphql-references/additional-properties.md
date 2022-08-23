@@ -6,7 +6,7 @@ title: Additional properties
 intro: 
 description: GraphQL underscore properties function
 tags: ['graphql', 'additional properties', 'additional', 'underscore']
-menu-order: 5
+menu-order: 6
 open-graph-type: article
 toc: true
 redirect_from:

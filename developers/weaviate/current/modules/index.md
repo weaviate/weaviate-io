@@ -29,7 +29,18 @@ Reader or Generator modules can be used on top of a Retriever/Vectorization modu
 
 ## Custom modules
 
-Check [here](./custom-modules.html) how you can create and use your own modules.
+Check [here](../other-modules/custom-modules.html) how you can create and use your own modules.
+
+## Default vectorizer module
+
+Unless you specify a default vectorization module in Weaviate's configuration, you'll need to specify which vectorization module is used per class you add to the data schema (or you need to enter a vector for each data point you add manually). Set the default with the environment variable `DEFAULT_VECTORIZER_MODULE` to `text2vec-contextionary` in the docker-compose configuration file: 
+
+``` yaml
+services:
+  weaviate:
+    environment:
+      DEFAULT_VECTORIZER_MODULE: text2vec-contextionary
+```
 
 ## Dependencies
 
