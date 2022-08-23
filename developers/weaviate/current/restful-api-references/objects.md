@@ -144,7 +144,7 @@ If you want to fill the value of a `geoCoordinates` property, you need to specif
 
 When you don't want to use a vectorizer to calculate a vector for your data object, and want to enter the vector yourself, you can this this as follows. 
 
-1. First, make sure that the `"vectorizer"` is set to `"none"` in the right class in the [data schema](../data-schema/schema-configuration.html#vectorizer) (`"vectorizer": "none"`). This is important so Weaviate knows not to do rely on any of it's modules to do model inference. *Note: If you are running without any modules and have therefore already configured the default vectorizer to be `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), you can omit this step.*
+1. First, make sure that the `"vectorizer"` is set to `"none"` in the right class in the [data schema](../schema/schema-configuration.html#vectorizer) (`"vectorizer": "none"`). This is important so Weaviate knows not to do rely on any of it's modules to do model inference. *Note: If you are running without any modules and have therefore already configured the default vectorizer to be `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), you can omit this step.*
 2. Then, attach the vector in a special `"vector"` field. An example of this looks like: 
 
 {% include code/1.x/semantic-kind.create.vector.html %}

@@ -95,7 +95,7 @@ Starting with version `v1.11.0` you no longer need to provide the API key as an 
 
 ### Model selection on class level
 
-If you want to use the OpenAI embeddings for your data objects, you need to set the `text2vec-openai` vectorizer on a class level. Working with Weaviate classes in a schema is described in detail [here](../data-schema/schema-configuration.html). Weaviate automatically determines which endpoints need to be used for vectorizing and querying data.
+If you want to use the OpenAI embeddings for your data objects, you need to set the `text2vec-openai` vectorizer on a class level. Working with Weaviate classes in a schema is described in detail [here](../schema/schema-configuration.html). Weaviate automatically determines which endpoints need to be used for vectorizing and querying data.
 
 #### Available models
 

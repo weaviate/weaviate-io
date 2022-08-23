@@ -81,8 +81,8 @@ Weaviate clients are an easy way to connect with your Weaviate instance or clust
 
 ## What would you like to learn next?
 
-- [Show me how to query](./query.html)
-- [Show me how the schema works](./schema.html)
+- [Show me how to query](../getting-started/query.html)
+- [Show me how the schema works](../getting-started/schema.html)
 - [One more time the basics](./basics.html)
 
 # More Resources

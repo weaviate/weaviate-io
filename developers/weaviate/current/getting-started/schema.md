@@ -99,7 +99,7 @@ print(json.dumps(schema))
 
 Let's create your first class!
 
-We'll take the example of the **Author** from the [basics](./basics.html#data-objects-in-weaviate)  guide.
+We'll take the example of the **Author** from the [basics](../core-knowledge/basics.html#data-objects-in-weaviate)  guide.
 
 Our **Authors** have the following properties:
 * `name`: type `string`
@@ -723,7 +723,7 @@ Note this part (this is just a chunk of the response):
 }
 ```
 
-> 💡 You can set cross-references in all directions and later (as we will see [while querying](./query.html)) filter on them. Please, be aware that Weaviate is **not** a graph database ([remember](./basics.html#what-is-weaviate)?). This means that dealing with -for example- many-to-many relationships or things like shortest path algorithms is not in our wheelhouse.
+> 💡 You can set cross-references in all directions and later (as we will see [while querying](./query.html)) filter on them. Please, be aware that Weaviate is **not** a graph database ([remember](../core-knowledge/basics.html#what-is-weaviate)?). This means that dealing with -for example- many-to-many relationships or things like shortest path algorithms is not in our wheelhouse.
 
 ## Other schema operations
 
@@ -740,7 +740,7 @@ All schema operations are available in the [API documentation for the schema end
 
 * [Learn how to import data](./import.html)
 * [Learn how to query data based on a schema](query.html)
-* [Take me one step back to the basics](./basics.html)
+* [Take me one step back to the basics](../core-knowledge/basics.html)
 
 # More Resources
 

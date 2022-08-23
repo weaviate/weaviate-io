@@ -29,7 +29,7 @@ First of all, some rules of thumb.
 
 Assuming that you've read the [schema getting started guide](./schema.html), you import data based on the classes and properties defined in the schema (no 💩, 🕵️). The big difference between importing a single object in Weaviate and batch importing is that instead of sending a single JSON object, you import an array of JSON objects.
 
-As you've seen in the [basics getting started guide](./basics.html#data-objects-in-weaviate), Weaviate data objects are class/property based JSON-objects.
+As you've seen in the [basics getting started guide](../core-knowledge/basics.html#data-objects-in-weaviate), Weaviate data objects are class/property based JSON-objects.
 
 An example of a single object:
 
@@ -79,14 +79,13 @@ An example of an array of data objects:
 }]
 ```
 
-Let's import the data (make sure you have [an empty Weaviate running](./installation.html)) and use Weaviate's [auto schema feature](./schema.html#auto-schema-feature) to generate a schema.
+Let's import the data (make sure you have [an empty Weaviate running](./installation.html)) and use Weaviate's auto schema feature to generate a schema.
 
 {% include code/1.x/getting-started.import.create.html %}
 
 You can now see the added object here:
 
 {% include code/1.x/getting-started.import.get.html %}
-
 
 ## Other object operations
 

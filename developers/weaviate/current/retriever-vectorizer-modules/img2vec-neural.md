@@ -118,9 +118,9 @@ If you prefer not to use Docker-compose (but instead for example Kubernetes in a
 
 # Schema configuration
 
-You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](../data-schema/schema-configuration.html). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector. 
+You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](../schema/schema-configuration.html). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector. 
 
-When adding a class with vectorizer type `img2vec-neural`, the configuration must contain information about which field holds the image. The dataType of the `imageFields` should be [`blob`](../data-schema/datatypes.html#datatype-blob). This can be achieved with the following config in a class object:
+When adding a class with vectorizer type `img2vec-neural`, the configuration must contain information about which field holds the image. The dataType of the `imageFields` should be [`blob`](../schema/datatypes.html#datatype-blob). This can be achieved with the following config in a class object:
 
 ```json
   "moduleConfig": {

@@ -58,9 +58,9 @@ GraphiQL is a graphical interface that allows you to manually write GraphQL quer
 
 ## What would you like to learn next?
 
-* [Let me query Weaviate!](./query.html)
-* [Learn how to add a schema](./schema.html)
-* [Learn how to import data](./import.html)
+* [Let me query Weaviate!](../getting-started/query.html)
+* [Learn how to add a schema](../getting-started/schema.html)
+* [Learn how to import data](../getting-started/import.html)
 
 ## Legend
 

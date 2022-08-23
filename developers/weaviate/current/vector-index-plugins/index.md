@@ -36,9 +36,9 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 The first vector-storage plugin Weaviate supports is [HNSW](./hnsw.html), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when it comes to the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type, stay tuned for updates!
 
 # Configuration of vector index type
-The index type can be specified per data class. Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](../data-schema/schema-configuration.html). 
+The index type can be specified per data class. Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](../schema/schema-configuration.html). 
 
-Example of a class [vector index configuration in your data schema](../data-schema/schema-configuration.html): 
+Example of a class [vector index configuration in your data schema](../schema/schema-configuration.html): 
 ```json
 {
   "class": "Article",
@@ -55,7 +55,7 @@ Example of a class [vector index configuration in your data schema](../data-sche
 }
 ```
 
-Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](../modules/index.html) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](../data-schema/schema-configuration.html).
+Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](../modules/index.html) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](../schema/schema-configuration.html).
 
 # Can Weaviate support multiple vector index (ANN) plugins?
 

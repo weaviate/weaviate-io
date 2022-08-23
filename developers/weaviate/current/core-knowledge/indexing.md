@@ -118,9 +118,9 @@ The inverted index is by default _on_. You can simply turn it of like this:
 
 A rule of thumb to follow when determining if you turn it on or off is this: _if you don't need it to query, turn it off._
 
-> 💡 We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](../data-schema/datatypes.html#datatype-string-vs-text).
+> 💡 We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](../schema/datatypes.html#datatype-string-vs-text).
 
-You can also enable an inverted index to search [based on timestamps](../data-schema/schema-configuration.html#invertedindexconfig--indextimestamps).
+You can also enable an inverted index to search [based on timestamps](../schema/schema-configuration.html#invertedindexconfig--indextimestamps).
 
 ```js
 {
@@ -244,8 +244,8 @@ When using vectorizers, you need to set vectorization on the class and property 
 
 ## What would you like to learn next?
 
-* [Learn how to import data](./import.html)
-* [Learn how to query data based on a schema](query.html)
+* [Learn how to import data](../getting-started/import.html)
+* [Learn how to query data based on a schema](../getting-started/query.html)
 * [Take me one step back to the basics](./basics.html)
 
 # More Resources

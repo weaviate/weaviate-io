@@ -110,9 +110,9 @@ services:
 
 ## Per-class configuration
 
-To indicate that a data class should use the `text2vec-contextionary` as vectorizer, you need to specify this per class in the [data schema](../data-schema/schema-configuration.html). 
+To indicate that a data class should use the `text2vec-contextionary` as vectorizer, you need to specify this per class in the [data schema](../schema/schema-configuration.html). 
 
-Example of a class [configured to use `text2vec-contextionary` in your data schema](../data-schema/schema-configuration.html): 
+Example of a class [configured to use `text2vec-contextionary` in your data schema](../schema/schema-configuration.html): 
 ```json
 {
   "class": "Article",
@@ -139,7 +139,7 @@ Example of a class [configured to use `text2vec-contextionary` in your data sche
 
 The `text2vec-contextionary` can be set as default vectorizer module with the environment variable `DEFAULT_VECTORIZER_MODULE`:
 - `DEFAULT_VECTORIZER_MODULE="text2vec-contextionary"`
-Each class that is added to the data schema will then use the `text2vec-contextionary` module as vectorizer unless an explicit other module (or `"none"`) is specified in the [schema](../data-schema/schema-configuration.html#vectorizer). 
+Each class that is added to the data schema will then use the `text2vec-contextionary` module as vectorizer unless an explicit other module (or `"none"`) is specified in the [schema](../schema/schema-configuration.html#vectorizer). 
 
 ## Per-property configuration
 

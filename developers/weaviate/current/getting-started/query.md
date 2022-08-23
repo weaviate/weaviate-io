@@ -20,8 +20,8 @@ But before we start, some basics:
   * New to GraphQL? Check [this](https://www.youtube.com/watch?v=eIQh02xuVw4) 100-second explainer video.
 * Weaviate also has a RESTful API but it is used for other operations.
 * You can also use the clients to query Weaviate natively in your language of choice. The clients will automatically determine which API to use for the request.
-  * Clients have their own [getting started guide](./clients.html).
-* The [Weaviate Console](./console.html) contains a cool auto-complete feature to write queries easily.
+  * Clients have their own [getting started guide](../core-knowledge/clients.html).
+* The [Weaviate Console](../core-knowledge/console.html) contains a cool auto-complete feature to write queries easily.
 
 Let's get started!
 
@@ -61,7 +61,7 @@ Weaviate's GraphQL-API has three root functions:
 
 ## Get{}
 
-In the basics getting started guide, you've learned [how Weaviate uses a class-property structure](./basics.html#data-objects-in-weaviate) and in the schema getting started guide you've learned [how you can define the class-property structure](./schema.html#create-your-first-class).
+In the basics getting started guide, you've learned [how Weaviate uses a class-property structure](../core-knowledge/basics.html#data-objects-in-weaviate) and in the schema getting started guide you've learned [how you can define the class-property structure](./schema.html#create-your-first-class).
 
 Our demo dataset has two classes: `Article` and `Paragraph`. The `Article` class has the properties: `title` of the data type `string`, `hasParagraphs` of the data type `Paragraph`, and `linksToArticles` of the data type `Article`. The `Paragraph` class has the properties: `title` of the data type `string`, `content` of the data type `text`, `order` of the data type `int`, and `inArticle` of the data type `Article`. You can also inspect the schem of the demo dataset in JSON format [here](http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080/v1/schema).
 
@@ -1031,7 +1031,7 @@ Weaviate's GraphQL-API is used to query your datasets. The structure of the data
 
 ## What would you like to learn next?
 
-- [Show me how to set up the clients](./clients.html)
+- [Show me how to set up the clients](../core-knowledge/clients.html)
 - [Get me back to the schema guide](./schema.html)
 - [Get me back to the import guide](./import.html)
 

@@ -183,7 +183,7 @@ Next, [learn about the Weaviate Schema](./schema.html).
 
 Alternatively, you can:
 * [Skip to Querying in Weaviate](./query.html)
-* [Go back to the basics](./basics.html)
+* [Go back to the basics](../core-knowledge/basics.html)
 
 # More Resources
 

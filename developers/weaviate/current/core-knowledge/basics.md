@@ -172,14 +172,14 @@ Then we can use the `UUID` from the above object, to attach it to the `Author` l
 
 ## Weaviate Schema
 
-Classes and properties are defined in the schema. While creating your use case, you will also spend some time tweaking the configuration inside the schema. As you're probably guessing, we have a separate getting started guide for [working with a schema](./schema.html).
+Classes and properties are defined in the schema. While creating your use case, you will also spend some time tweaking the configuration inside the schema. As you're probably guessing, we have a separate getting started guide for [working with a schema](../getting-started/schema.html).
 
 For now, what's important to know is this:
 
 0. Classes and properties (as explained above) are defined in the schema.
 0. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
 0. You can link classes (even if they use different embeddings) by setting cross-references.
-0. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema getting [started guide](./schema.html)).
+0. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema getting [started guide](../getting-started/schema.html)).
 
 
 ## Where do the vectors come from?
@@ -243,9 +243,9 @@ Weaviate can expose Prometheus-compatible metrics for [monitoring](../configurat
 
 ## What would you like to learn next?
 
-* [I want to know how to install Weaviate](./installation.html)
-* [I want to learn how I can query the data](./query.html)
-* [I want to learn how to work with the Weaviate schema](./schema.html)
+* [I want to know how to install Weaviate](../getting-started/installation.html)
+* [I want to learn how I can query the data](../getting-started/query.html)
+* [I want to learn how to work with the Weaviate schema](../getting-started/schema.html)
 
 # More Resources
 

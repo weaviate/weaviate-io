@@ -84,11 +84,11 @@ the path selector for `name` will be `["inPublication", "Publication", "name"]`
 ### Filter behavior of multi-word queries in `Equal` operator
 The behavior for the `Equal` operator on multi-word string and text properties in `where` filters is as follows. Multi-word queries are broken up into single word segments. An object must contain all segments. How words are broken up depends on the datatype. For `string` properties only spaces defined word boundaries. For `text` properties all non-alphanumeric properties are considered word boundaries. E.g. for `text`: `my email is alice@example.com` is split into `["my", "email", "is", "alice" "example", "com"]`, whereas the same query string on a `string` property would be broken into `["my", "email", "is", "alice@example.com"]`.
 
-Starting with `v1.12.0` you can [configure tokenization of `string` types](../data-schema/schema-configuration.html#property-tokenization) to take the whole field into account instead of individual words.
+Starting with `v1.12.0` you can [configure tokenization of `string` types](../schema/schema-configuration.html#property-tokenization) to take the whole field into account instead of individual words.
 
 ### Stopwords in `text`/`string` filter values
 
-Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](../data-schema/schema-configuration.html#invertedindexconfig--stopwords-stopword-lists). 
+Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](../schema/schema-configuration.html#invertedindexconfig--stopwords-stopword-lists). 
 
 ## Single operand
 
@@ -144,7 +144,7 @@ You can filter object by their unique id or uuid, where you give the `id` as `va
 
 Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
 
-*Note: filtering by timestamp requires the target class to be configured to index  timestamps. See [here](../data-schema/schema-configuration.html#invertedindexconfig--indextimestamps) for details* 
+*Note: filtering by timestamp requires the target class to be configured to index  timestamps. See [here](../schema/schema-configuration.html#invertedindexconfig--indextimestamps) for details* 
 
 {% include code/1.x/graphql.filters.where.timestamps.html %}
 
