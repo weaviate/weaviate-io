@@ -12,6 +12,9 @@ toc: true
 redirect_from:
     - /documentation/weaviate/current/add-data/batching.html
     - /documentation/weaviate/current/restful-api-references/batch.html
+    - /documentation/weaviate/current/add-data/add_and_modify.html
+    - /documentation/weaviate/current/tutorials/how-to-import-data.html
+    - /developers/weaviate/current/tutorials/how-to-import-data.html
 ---
 
 # Batch data objects
