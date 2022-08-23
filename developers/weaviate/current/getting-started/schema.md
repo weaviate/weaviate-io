@@ -99,9 +99,9 @@ print(json.dumps(schema))
 
 Let's create your first class!
 
-We'll take the example of the **Author** from the [basics](./basics.html#data-objects-in-weaviate) getting started guide because you're already familiar with it.
+We'll take the example of the **Author** from the [basics](./basics.html#data-objects-in-weaviate)  guide.
 
-Our Author has the following properties:
+Our **Authors** have the following properties:
 * `name`: type `string`
 * `age`: type `int`
 * `born`: type `date`
@@ -207,7 +207,7 @@ Correct, that's Weaviate adding some default config for you. You can change, imp
 
 Now, let's add a second class called **Publication**. We will use to it store info about publication outlets like *The New York Time* or *The Guardian*.
 
-Our Publication is made of:
+Our **Publication** will contain one property:
 * `name`: type `string`
 
 Run the below code in your application.
