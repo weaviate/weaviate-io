@@ -19,8 +19,8 @@ You also get to participate in mentorship programs like [Google Summer of Code](
 
 There are numerous exciting ways to contribute to the Weaviate core. The list below illustrates how contributions are acknowledged in the project:
 
-* [Suggesting Enhancements](Suggesting-enhancements.md)
-* [Reporting Bugs](Reporting-bugs.md)
+* [Suggesting Enhancements](./suggesting-enhancements.html)
+* [Reporting Bugs](./reporting-bugs.html)
 * [Improving Documentation](Improving-docs.md)
 * [Writing blog posts](Writing-blogs.md)
 * [Creating tutorials](Creating-tutorials.md)
