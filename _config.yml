@@ -89,6 +89,10 @@ weaviate_versions: # order the versions how you want them displayed
 docs:
   weaviate:
     'v1.14.1':
+      - name: Core Knowledge
+        folder: core-knowledge
+        header: false
+        breakpointAfter: false
       - name: Getting started
         folder: getting-started
         header: false

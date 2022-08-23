@@ -5,7 +5,7 @@ sub-menu: Getting started
 title: Installation
 description: Getting started with Weaviate installation
 tags: ['installation']
-menu-order: 2
+menu-order: 1
 open-graph-type: article
 toc: true
 # redirect_from:
@@ -169,7 +169,7 @@ You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on 
 * You can run Weaviate with Docker, Kubernetes, or with the Weaviate Cloud Service.
 * Running Weaviate Modules with an encepsulated ML-model on CPUs is slow. -->
 
-## Recap
+## Recapitulation
 
 * You can run Weaviate with Weaviate Cloud Service, Docker or Kubernetes.
 * Weaviate Cloud Service is a managed Weaviate SaaS - great for development and production.

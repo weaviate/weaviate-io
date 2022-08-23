@@ -1,11 +1,11 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Getting started
+sub-menu: Core Knowledge
 title: Clients
-description: Getting started with Weaviate Clients
+description: Core Knowledge for the Weaviate Clients
 tags: ['Clients']
-menu-order: 10
+menu-order: 4
 open-graph-type: article
 toc: true
 ---

@@ -1,11 +1,11 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Getting started
+sub-menu: Core Knowledge
 title: Console
-description: Getting started with Weaviate Console
+description: Core Knowledge for the Weaviate Console
 tags: ['Weaviate console']
-menu-order: 3
+menu-order: 2
 open-graph-type: article
 toc: true
 ---

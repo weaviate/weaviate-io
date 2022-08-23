@@ -1,9 +1,9 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Getting started
+sub-menu: Core Knowledge
 title: Basics
-description: Getting started with the Weaviate vector search engine basics
+description:  Weaviate vector search engine basics
 tags: ['basics']
 menu-order: 1
 open-graph-type: article
