@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Data schema
+sub-menu: Schema
 title: Data schema
 description: 
 tags: ['Data schema']

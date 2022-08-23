@@ -103,8 +103,9 @@ docs:
       - name: Configuration
         folder: configuration
         header: false
-      - name: Data schema
-        folder: data-schema
+        breakpointAfter: true
+      - name: Schema
+        folder: schema
         header: false
         breakpointAfter: true
       - name: GraphQL references
