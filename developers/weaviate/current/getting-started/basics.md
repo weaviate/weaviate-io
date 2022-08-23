@@ -30,11 +30,11 @@ Weaviate stores _data objects_ (represented as JSON-documents) in _class-based c
 
 Each _class-based collection_ contains objects of the same _class_, which are defined by a common _schema_.
 
-Let's unpack this a bit with an example.<br/>
+Let's unpack this with an example.
 
 ### JSON documents as objects
 
-Imagine we need to store information about the following renown author: Alice Munro.
+Imagine we need to store information about the following author: Alice Munro.
 
 The data about this author can be represented in JSON like this:
 
@@ -71,8 +71,6 @@ As mentioned earlier, we can also attach `vector` representations to our data ob
 ### Class Collections
 
 Weaviate groups all Authors under the `Author` class and place them in the same _class collection_.
-
-> 💡 TODO (Svitlana): add two cards, one for Alice M and one for Paul K
 
 <!-- [Alice Munro
 Born: July 10, 1931 (age 91)
@@ -170,8 +168,7 @@ Then we can use the `UUID` from the above object, to attach it to the `Author` l
 }
 ```
 
-> 💡 `Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. <br/>
-The difference between the two will become apparent while going through the getting started guide.
+> 💡 `Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. The difference between the two will become apparent while going through the getting started guide.
 
 ## Weaviate Schema
 
@@ -191,7 +188,7 @@ The short answer is: from machine learning models.
 
 As a user, you have two ways of generating them:
 
-* You render your vector from any model you have (we don't care  where they come from, we'll just store them for you)
+* You render your vector from any model you have (we don't care  where they come from, we'll just index them for you 👍)
 * You use a Weaviate module with a prepackaged `text2vec` integration (we call them "vectorizers", you can learn more about them [here](../modules/)).
     * [text2vec-transformers](../retriever-vectorizer-modules/text2vec-transformers.html)
     * [text2vec-openai](../retriever-vectorizer-modules/text2vec-openai.html)
@@ -213,11 +210,11 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 2. *readers & generators* are used for reranking or processing the results.
 3. *other modules* are -often- non-ML, for example, the spell-check module.
 
-> 💡 It's even possible to [create your own modules](../modules/custom-modules.html)! It takes a bit of knowledge about Go, but the module container can be written in any language.
+> 💡 It's even possible to [create your own modules](../modules/custom-modules.html)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing you module) can be written in any language.
 
 ## Weaviate Console
 
-The Weaviate console is part of the Weaviate Cluster Service and allows you to connect to any Weaviate instance and query it. You can follow [this](./console.html) getting started guide to learn more.
+The Weaviate console is part of the Weaviate Cloud Service and allows you to connect to any Weaviate instance and query it. You can follow [this](./console.html) getting started guide to learn more.
 
 ## Benchmarks
 
