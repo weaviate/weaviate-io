@@ -17,7 +17,7 @@ Go ahead and submit a pull request in [Awesome Weaviate](https://github.com/semi
 
 ## Contribute to the community by writing a blog post about Weaviate.
 
-Your could also contribute by writing a blog post about Weaviate. It could be anything! An experience about your Weaviate journey, concepts you've learnt and used with Weaviate like vector search engines, and guides on how to integrate Weaviate with something...It could be anywhere! We accept article submissions on any well-known platform, such as Medium, Dev.to, HashNode, your own blogging site or something else.
+You could also contribute by writing a blog post about Weaviate. It could be anything! An experience about your Weaviate journey, concepts you've learnt and used with Weaviate like vector search engines, and guides on how to integrate Weaviate with something...It could be anywhere! We accept article submissions on any well-known platform, such as Medium, Dev.to, HashNode, your own blogging site or something else.
 
 A few things to note:
 
