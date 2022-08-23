@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Schema operations
+sub-menu: Schema
 title: Schema configuration
 description: 
 tags: ['Schema configuration']

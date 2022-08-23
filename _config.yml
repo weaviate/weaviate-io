@@ -111,8 +111,8 @@ docs:
         folder: client-libraries
         header: false
         breakpointAfter: true
-      - name: Schema operations
-        folder: schema-operations
+      - name: Schema
+        folder: schema
         header: false
         breakpointAfter: true
       - name: GraphQL references

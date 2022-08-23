@@ -12,7 +12,7 @@ toc: true
 
 Weaviate modules can be added to your instance and are mostly used to vectorize data or process results (e.g., question answering). The structure of the module name (`x2vec`) informs you of what the module does. E.g., `text2vec` generates text embeddings, `img2vec` image embeddings, etc.
 
-### Readers & Generators
+## Readers & Generators
 
 Readers and generators are mostly used to vectorize data, which goes both for vectorizing the data objects and the queries. For example, if you use the `text2vec` modules, the GraphQL filter [`nearText`](../retriever-vectorizer-modules/text2vec-transformers.html#neartext) becomes available. It will automatically vectorize your query and match it against the vectors stored in the index.
 
