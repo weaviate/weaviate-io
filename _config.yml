@@ -104,8 +104,8 @@ docs:
         folder: configuration
         header: false
         breakpointAfter: true
-      - name: Schema
-        folder: schema
+      - name: Schema operations
+        folder: schema operations
         header: false
         breakpointAfter: true
       - name: GraphQL references
