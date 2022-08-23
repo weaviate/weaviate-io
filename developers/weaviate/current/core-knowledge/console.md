@@ -10,11 +10,9 @@ open-graph-type: article
 toc: true
 ---
 
-The Weaviate Console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Service (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets.
+The Weaviate Console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Service (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 
 💻 The console is available on: [console.semi.technology](https://console.semi.technology).
-
-> 💡 The console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 
 ## Login page
 
@@ -31,17 +29,13 @@ The Weaviate Cloud Service allows you to create Weaviate instances as SaaS insta
 
 ## Connect to a self-hosted Weaviate
 
-You can connect to any Weaviate instance as long as your computer has access to it (yes, this also includes over a VPN).
+You can connect to any Weaviate instance as long as your computer has access to it (yes, this also includes over a VPN). The GraphiQL editor runs locally, and we don't forward any result or query to our servers
 
 When you're connected you can use the [GraphiQL](#graphiql) interface to interact with your Weaviate instance.
 
-> 💡 You can safely connect to any Weaviate instance. The GraphiQL editor runs locally, and we don't forward any result or query to our servers.
-
 ## GraphiQL
 
-GraphiQL is a graphical interface that allows you to manually write GraphQL queries. Within Weaviate we use it a lot, the auto-fill functionality allows you to easily navigate through your own dataset.
-
-> 💡 Curious? Try out the console [right now](https://link.semi.technology/3J8aB73) with the Wikipedia dataset.
+GraphiQL is a graphical interface that allows you to manually write GraphQL queries. Within Weaviate we use it a lot, the auto-fill functionality allows you to easily navigate through your own dataset. Curious? Try out the console [right now](https://link.semi.technology/3J8aB73) with the Wikipedia dataset.
 
 ## Try out the console
 
