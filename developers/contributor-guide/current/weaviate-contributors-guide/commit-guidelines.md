@@ -4,7 +4,7 @@ solution: contributor-guide
 sub-menu: Weaviate Contributor's Guide
 title: Commit Guidelines 
 tags: ['contributor-guide']
-menu-order: 7
+menu-order: 8
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
