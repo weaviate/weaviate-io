@@ -4,9 +4,7 @@
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
-# or
-client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
+client = weaviate.Client("https://some-endpoint.semi.network/") # <== update the endpoint here!
 
 # we will create the class "Author" and the properties
 # from the basics section of this guide
@@ -69,19 +67,11 @@ print(json.dumps(schema, indent=4))
 
 const weaviate = require("weaviate-client");
 
-// if you use the WCS
+// update the endpoint here!
 const client = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.semi.network/',
   }); 
-
-// or 
-
-// if you use Docker-compose
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-}); 
 
 // we will create the class "Author" and the properties
 // from the basics section of this guide
@@ -166,18 +156,10 @@ import (
 )
 
 func main() {
-    // if you use the WCS
+    // update the endpoint here!
     cfg := weaviate.Config{
         Host:   "some-endpoint.semi.network/",
 		Scheme: "https",
-    }
-
-    // or
-
-    // if you use Docker-compose
-    cfg := weaviate.Config{
-        Host:   "localhost:8080",
-		Scheme: "http",
     }
 
     client := weaviate.New(cfg)
@@ -362,7 +344,8 @@ $ curl \
             }
         ]
     }' \
-    http://localhost:8080/v1/schema # or https://some-endpoint.semi.network/v1/schema
+    # update the endpoint here!
+    https://some-endpoint.semi.network/v1/schema
 
 {% endcapture %}
 

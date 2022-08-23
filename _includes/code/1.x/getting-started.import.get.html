@@ -4,9 +4,7 @@
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
-# or
-client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
+client = weaviate.Client("https://some-endpoint.semi.network/")
 
 all_objects = client.data_object.get()
 print(json.dumps(all_objects))
@@ -18,19 +16,10 @@ print(json.dumps(all_objects))
 
 const weaviate = require("weaviate-client");
 
-// if you use the WCS
 const client = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.semi.network/',
   }); 
-
-// or 
-
-// if you use Docker-compose
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-}); 
 
 client
     .data
@@ -57,18 +46,9 @@ import (
 )
 
 func GetSchema() {
-    // if you use the WCS
     cfg := weaviate.Config{
         Host:   "some-endpoint.semi.network/",
-		Scheme: "https",
-    }
-
-    // or
-
-    // if you use Docker-compose
-    cfg := weaviate.Config{
-        Host:   "localhost:8080",
-		Scheme: "http",
+        Scheme: "https",
     }
 
     client := weaviate.New(cfg)
@@ -96,13 +76,7 @@ import technology.semi.weaviate.client.v1.data.model.WeaviateObject;
 
 public class App {
   public static void main(String[] args) {
-    // if you use the WCS
     Config config = new Config("https", "some-endpoint.semi.network/");
-    
-    // or 
-
-    // if you use Docker-compose
-    Config config = new Config("http", "localhost:8080");
 
     WeaviateClient client = new WeaviateClient(config);
 
@@ -123,9 +97,6 @@ public class App {
 {% capture curl %}
 $ curl https://some-endpoint.semi.network/v1/objects
 
-# or
-
-$ curl http://localhost:8080/v1/objects
 {% endcapture %}
 
 {% include molecule-restful-block-request.html block_id='getting-started-import-get' %}

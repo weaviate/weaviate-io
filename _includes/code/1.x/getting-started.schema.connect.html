@@ -60,7 +60,7 @@ func GetSchema() {
     // if you use the WCS
     cfg := weaviate.Config{
         Host:   "some-endpoint.semi.network/",
-		Scheme: "https",
+        Scheme: "https",
     }
 
     // or
@@ -68,7 +68,7 @@ func GetSchema() {
     // if you use Docker-compose
     cfg := weaviate.Config{
         Host:   "localhost:8080",
-		Scheme: "http",
+        Scheme: "http",
     }
 
     client := weaviate.New(cfg)
