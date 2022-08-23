@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Client libraries & CLI
+sub-menu: Client libraries
 title: Java
 intro: A Java client library for Weaviate.
 description: Java client library for Weaviate

@@ -103,9 +103,12 @@ docs:
       - name: Configuration
         folder: configuration
         header: false
+      - name: Client libraries
+        folder: client-libraries
+        header: false
         breakpointAfter: true
       - name: Schema operations
-        folder: schema operations
+        folder: schema-operations
         header: false
         breakpointAfter: true
       - name: GraphQL references
@@ -131,10 +134,6 @@ docs:
         folder: other-modules
         header: true
         nav-parent: Modules
-      - name: Client libraries & CLI
-        folder: client-libraries
-        header: false
-        breakpointAfter: true
       - name: Architecture
         folder: architecture
         header: false

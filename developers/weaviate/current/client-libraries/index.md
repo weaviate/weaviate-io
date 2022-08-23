@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Client libraries & CLI
+sub-menu: Client libraries
 title: Client libraries & CLI
 intro: Weaviate now has four client libraries available, for Python, JavaScript, Java and Go. Additionally, you can interact with Weaviate via a command line interface (CLI).
 description: An overview of client libraries and CLI.

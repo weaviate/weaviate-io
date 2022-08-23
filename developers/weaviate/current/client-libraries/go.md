@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Client libraries & CLI
+sub-menu: Client libraries
 title: Go
 intro: A Go client library for Weaviate.
 description: Go client library for Weaviate

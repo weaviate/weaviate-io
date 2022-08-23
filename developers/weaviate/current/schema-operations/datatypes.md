@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Schema
+sub-menu: Schema operations
 title: Data types
 description: 
 tags: ['Data types']
