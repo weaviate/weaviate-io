@@ -16,29 +16,25 @@ toc: true
 
 There are three ways you can run Weaviate, and they are -we believe- pretty straightforward.
 
-0. Weaviate Cloud Service
-0. Docker
-0. Kubernetes
+0. [Weaviate Cloud Service](#weaviate-cloud-service)
+0. [Docker](#docker)
+0. [Kubernetes](#kubernetes)
 
 ## Weaviate Cloud Service
 
-The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use the `Weaviate Cloud Service` (WCS).
-
-> 💡 Weaviate Cloud Service is our managed Weaviate SaaS. It is a completely managed service, so you don't have to install or maintain anything to run Weaviate.
->
-> Currently, the service is in private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.semi.technology/), you can create a free sandbox to play around with.
+The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use the _Weaviate Cloud Service_ (aka, the WCS). The WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate. Currently, the service is in private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.semi.technology/), you can create a free sandbox to play around with.
 
 If you are itching to get started with WCS, just skip to the [WCS hands-on section](#wcs-hands-on).
 
 ## Running Weaviate yourself
 
-Alternatively, if you prefer to install and deploy Weaviate yourself, then you can work with either `Docker` or `Kubernetes`.
-
-> 💡 For development purposes, it's perfectly fine to run Weaviate on your local machine.
+Alternatively, if you prefer to install and deploy Weaviate yourself, then you can work with either _Docker_ or _Kubernetes_.
 
 <!-- TODO: create deploying to production guide and link it here.
 >  
 > Consult the [following guide](--link-here--) on how to run Weaviate in Production.
+> 
+> This is added as a blog post option
 -->
 
 ### Docker
@@ -46,6 +42,8 @@ Alternatively, if you prefer to install and deploy Weaviate yourself, then you c
 Working with Docker is great if you are building an application around Weaviate and want to run Weaviate on your local machine or in the cloud. If you have Docker already installed, you could have it all up and running in seconds (minutes if you use a  prepackaged transformers module).
 
 We even have a handy [step-by-step configurator](../installation/#customize-your-weaviate-setup){:target="_blank"}, which let's you pick you configuration, and as a result you will receive a command to spin up your docker setup.
+
+You can find the installation instructions for Kubernetes [here](../installation/#kubernetes-k8s).
 
 <!--
 Some examples of Docker Compose configurations you can make with the configurator.
@@ -69,11 +67,11 @@ The installation and configuration with Docker and Kubernetes is out of scope fo
 
 ## WCS hands-on
 
-To create a new Weaviate instance with WCS, we need to follow these steps:
+To create a new Weaviate instance on the Weaviate Cloud Service, we need to follow these steps:
 
-0. Sign in to WCS
-0. Create a `Weaviate Cluster`
-0. Test the connection
+0. [Sign in to WCS](#sign-in-to-wcs)
+0. [Create a Weaviate Cluster](#create-a-weaviate-cluster)
+0. [Test the connection](#test-the-connection)
 
 ### Sign in to WCS
 
