@@ -2,7 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Core Knowledge
-title: Core Knowledge for Weaviate
+title: Core knowledge about the Weaviate vector search engine
 description: Getting started with Weaviate guides overview
 tags: ['getting started']
 menu-order: 0
