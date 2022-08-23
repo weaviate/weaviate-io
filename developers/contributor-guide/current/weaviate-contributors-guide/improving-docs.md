@@ -2,7 +2,7 @@
 layout: layout-documentation
 solution: contributor-guide
 sub-menu: Weaviate Contributor's Guide
-title: Reporting Bugs 
+title: Improving Documentation 
 tags: ['contributor-guide']
 menu-order: 4
 open-graph-type: article
