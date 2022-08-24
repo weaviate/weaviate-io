@@ -29,7 +29,18 @@ Reader or Generator modules can be used on top of a Retriever/Vectorization modu
 
 ## Custom modules
 
-Check [here](./custom-modules.html) how you can create and use your own modules.
+Check [here](../other-modules/custom-modules.html) how you can create and use your own modules.
+
+## Default vectorizer module
+
+Unless you specify a default vectorization module in Weaviate's configuration, you'll need to specify which vectorization module is used per class you add to the data schema (or you need to enter a vector for each data point you add manually). Set the default with the environment variable `DEFAULT_VECTORIZER_MODULE` to `text2vec-contextionary` in the docker-compose configuration file: 
+
+``` yaml
+services:
+  weaviate:
+    environment:
+      DEFAULT_VECTORIZER_MODULE: text2vec-contextionary
+```
 
 ## Dependencies
 
@@ -53,7 +64,7 @@ Modules can be "vectorizers" (defines how the numbers in the vectors are chosen 
 - General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](../restful-api-references/meta.html).
 - Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](../graphql-references/additional-properties.html).
 - A module can add [filters](../graphql-references/filters.html) in GraphQL queries.
-- Which vectorizer and other modules are applied to which data classes is configured in the [schema](../data-schema/schema-configuration.html#vectorizer).
+- Which vectorizer and other modules are applied to which data classes is configured in the [schema](../schema/schema-configuration.html#vectorizer).
 
 # Weaviate without modules
 

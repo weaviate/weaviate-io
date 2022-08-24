@@ -14,6 +14,10 @@ redirect_from:
     - /documentation/weaviate/current/graphql-references/
 ---
 
+# GraphQL 
+
+Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a query language built on using graph data structures. It is an efficient method of data retrieval and mutation, since it mitigates the common over-fetching and under-fetching problems of other query languages. You can query a Weaviate after you've created a [schema](../tutorials/how-to-create-a-schema.html) and [populated it](../tutorials/how-to-import-data.html) with data. The GraphQL interface inside the [Weaviate Console](https://console.semi.technology/) GUI enables easy querying.
+
 # All references
 
 All references have their individual subpages, click on one of the references below for more information.
@@ -22,11 +26,8 @@ All references have their individual subpages, click on one of the references be
 - [Aggregate{}](aggregate.html)
 - [Explore{}](explore.html)
 - [filters](filters.html)
+- [vector search parameters](vector-search-parameters.html)
 - [additional properties](additional-properties.html)
-
-# GraphQL 
-
-Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a query language built on using graph data structures. It is an efficient method of data retrieval and mutation, since it mitigates the common over-fetching and under-fetching problems of other query languages. You can query a Weaviate after you've created a [schema](../tutorials/how-to-create-a-schema.html) and [populated it](../tutorials/how-to-import-data.html) with data. The GraphQL interface inside the [Weaviate Console](https://console.semi.technology/) GUI enables easy querying.
 
 ## Query structure
 

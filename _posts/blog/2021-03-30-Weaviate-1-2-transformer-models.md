@@ -25,7 +25,7 @@ In the v1.0 release of Weaviate ([docs](/developers/weaviate/current/){:target="
 A [transformer](https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)){:target="_blank"} (e.g., [BERT](https://en.wikipedia.org/wiki/BERT_(language_model)){:target="_blank"}) is a deep learning model that is used for NLP-tasks. Within Weaviate the transformer module can be used to vectorize and query your data.
 
 ## Getting started with out-of-the-box transformers in Weaviate
-By selecting the text-module in the [Weaviate configuration tool](/developers/weaviate/current/getting-started/installation.html#customize-your-weaviate-setup){:target="_blank"}, you can run Weaviate with transformers in one command. You can learn more about the Weaviate transformer module [here](/developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-transformers.html){:target="_blank"}.
+By selecting the text-module in the [Weaviate configuration tool](/developers/weaviate/current/installation/docker-compose.html#configurator){:target="_blank"}, you can run Weaviate with transformers in one command. You can learn more about the Weaviate transformer module [here](/developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-transformers.html){:target="_blank"}.
 
 ![Weaviate configurator — selecting the Transformers module](/img/blog/weaviate-1.2/configurator-demo.gif)
 *Weaviate configurator — selecting the Transformers module*

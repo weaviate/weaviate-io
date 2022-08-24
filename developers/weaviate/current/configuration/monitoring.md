@@ -2,15 +2,16 @@
 layout: layout-documentation
 bodyclass: ["page--guides", " "]
 solution: weaviate
-sub-menu: More resources
+sub-menu: Configuration
 title: Monitoring
 intro: Use Weaviate's built-in monitoring for an observable setup in production.
 description: Weaviate supports Prometheus-compatible metrics for easy monitoring in production. See concurrent requests, request durations, database vitals, and much more.
 tags: ['Weaviate', 'operations', 'monitoring', 'observability']
-menu-order: 2
+menu-order: 7
 open-graph-type: article
 toc: true
 redirect_from:
+  - /developers/weaviate/current/more-resources/monitoring.html
 ---
 
 Weaviate can expose Prometheus-compatible metrics for monitoring. A standard

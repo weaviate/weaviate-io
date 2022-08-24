@@ -5,7 +5,7 @@ markdown: kramdown
 highlighter: none
 url: https://weaviate.io
 baseurl: /
-documentation_call_out: true
+documentation_call_out: false
 kramdown:
   parse_block_html: false
 rdiscount extensions: [smart]
@@ -89,24 +89,43 @@ weaviate_versions: # order the versions how you want them displayed
 docs:
   weaviate:
     'v1.14.1':
+      - name: Core Knowledge
+        folder: core-knowledge
+        header: false
+        breakpointAfter: false
       - name: Getting started
         folder: getting-started
         header: false
-      - name: Architecture
-        folder: architecture
+        breakpointAfter: true
+      # - name: Becoming an expert
+      #   folder: becoming-an-expert
+      #   header: false
+      #   breakpointAfter: true
+      - name: Installation
+        folder: installation
         header: false
       - name: Configuration
         folder: configuration
         header: false
-      - name: Vector Index (ANN) Plugins
-        folder: vector-index-plugins
+      - name: Client libraries
+        folder: client-libraries
         header: false
-      - name: Benchmarks
-        folder: benchmarks
+        breakpointAfter: true
+      - name: Schema
+        folder: schema
         header: false
+        breakpointAfter: true
+      - name: GraphQL references
+        folder: graphql-references
+        header: false
+      - name: RESTful API references
+        folder: restful-api-references
+        header: false
+        breakpointAfter: true
       - name: Modules
         folder: modules
         header: false
+        breakpointAfter: true
       - name: Retrievers & Vectorizers
         folder: retriever-vectorizer-modules
         header: true
@@ -119,23 +138,21 @@ docs:
         folder: other-modules
         header: true
         nav-parent: Modules
-      - name: Client libraries & CLI
-        folder: client-libraries
+      - name: Architecture
+        folder: architecture
         header: false
-      - name: Data schema
-        folder: data-schema
+      - name: Vector Index (ANN) Plugins
+        folder: vector-index-plugins
         header: false
-      - name: RESTful API references
-        folder: restful-api-references
+      - name: Benchmarks
+        folder: benchmarks
         header: false
-      - name: GraphQL references
-        folder: graphql-references
+        breakpointAfter: true
+      - name: Tutorials
+        folder: tutorials
         header: false
       - name: More resources
         folder: more-resources
-        header: false
-      - name: Tutorials
-        folder: tutorials
         header: false
     'v1.13.2':
       - name: Getting started

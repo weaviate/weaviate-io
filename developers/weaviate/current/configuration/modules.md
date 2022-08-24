@@ -37,7 +37,7 @@ _Note: at the moment, text vectorization modules can be combined in a single set
 
 # Custom modules
 
-Check [here](../modules/custom-modules.html) how you can create and use your own modules.
+Check [here](../other-modules/custom-modules.html) how you can create and use your own modules.
 
 # More Resources
 

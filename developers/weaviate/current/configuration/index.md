@@ -20,4 +20,4 @@ When setting up a Weaviate instance, by default, it will by default:
 
 How to configure your docker-compose file, check the [Installation page](../getting-started/installation.html#docker-compose).
 
-For configuration of your data schema, check the [Tutorial](../tutorials/how-to-create-a-schema.html) or the [data schema reference page](../data-schema/schema-configuration.html).
+For configuration of your data schema, check the [Tutorial](../tutorials/how-to-create-a-schema.html) or the [data schema reference page](../schema/schema-configuration.html).

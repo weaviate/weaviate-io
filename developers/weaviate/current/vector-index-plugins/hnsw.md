@@ -29,7 +29,7 @@ The picture shows how a HNSW algorithm is used to go from a search query vector 
 All [distance metrics supported in Weaviate](../vector-index-plugins/distances.html) are also supported with the HNSW index type.
 
 # How to use HNSW and parameters
-Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](../data-schema/schema-configuration.html). 
+Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](../schema/schema-configuration.html). 
 - `"vectorIndexType": "hnsw"`: indicates which vector index type to use, in this case hnsw, which is provided by Weaviate itself. 
 - `"vectorIndexConfig"`: an object where you can set specific parameters to the chosen vector index type, in this case to hnsw, which has the following parameters:
   - `"distance"`: The distance metric to be used to calculate the distance between any two arbitrary vectors. Defaults to `cosine`. See [supported metrics here](../vector-index-plugins/distances.html).
@@ -83,7 +83,7 @@ Currently the only index type is HNSW, so all data objects will be indexed using
   - `"cleanupIntervalSeconds"`: How often the async process runs that “repairs” the HNSW graph after deletes and updates. (Prior to the repair/cleanup process, deleted objects are simply marked as deleted, but still a fully connected member of the HNSW graph. After the repair has run, the edges are reassigned and the datapoints deleted for good). Typically this value does not need to be adjusted, but if deletes or updates are very frequent it might make sense to adjust the value up or down. (Higher value means it runs less frequently, but cleans up more in a single batch. Lower value means it runs more frequently, but might not be as efficient with each run).
   - `"skip"`: There are situations where it doesn't make sense to vectorize a class. For example if the class is just meant as glue between two other class (consisting only of references) or if the class contains mostly duplicate elements (Note that importing duplicate vectors into HNSW is very expensive as the algorithm uses a check whether a candidate's distance is higher than the worst candidate's distance for an early exit condition. With (mostly) identical vectors, this early exit condition is never met leading to an exhaustive search on each import or query). In this case, you can `skip` indexing a vector all-together. To do so, set `"skip"` to `"true"`. `skip` defaults to `false`; if not set to `true`, classes will be indexed normally. This setting is immutable after class initialization. _Note that the creation of a vector through a module is decoupled from storing the vector in Weaviate. So, simply skipping the indexing does not skip the generation of a vector if a vectorizer other than `none` is configured on the class (for example through a global default). It is therefore recommended to always set: `"vectorizer": "none"` explicitly when skipping the vector indexing. If vector indexing is skipped, but a vectorizer is configured (or a vector is provided manually) a warning is logged on each import._
 
-Example of a class could be [configured in your data schema](../data-schema/schema-configuration.html): 
+Example of a class could be [configured in your data schema](../schema/schema-configuration.html): 
 ```json
 {
   "class": "Article",
@@ -105,7 +105,7 @@ Example of a class could be [configured in your data schema](../data-schema/sche
 }
 ```
 
-Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](../modules/index.html) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](../data-schema/schema-configuration.html).
+Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](../modules/index.html) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](../schema/schema-configuration.html).
 
 
 # More Resources

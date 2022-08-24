@@ -16,7 +16,7 @@ redirect_from:
 
 # Introduction
 
-When you start with an empty Weaviate, you need to define a schema to explain what kind of data you will add (or you can use the [auto-schema feature](../data-schema/schema-configuration.html#auto-schema), available from Weaviate version v1.5.0). Because Weaviate is a search graph, the linguistic element plays an important role. When creating concepts, Weaviate will validate if it can understand the schema concepts you want to add based on the vectorizer module. You might notice that a lot of definitions are related to the everyday language we use. And this is the first best practice to bear in mind. When defining the schema, you should do this in the form like you would explain it to another person, not like tables and columns you would add to a traditional data solution.
+When you start with an empty Weaviate, you need to define a schema to explain what kind of data you will add (or you can use the [auto-schema feature](../schema/schema-configuration.html#auto-schema), available from Weaviate version v1.5.0). Because Weaviate is a search graph, the linguistic element plays an important role. When creating concepts, Weaviate will validate if it can understand the schema concepts you want to add based on the vectorizer module. You might notice that a lot of definitions are related to the everyday language we use. And this is the first best practice to bear in mind. When defining the schema, you should do this in the form like you would explain it to another person, not like tables and columns you would add to a traditional data solution.
 For a more elaborate example check this blog post: - [Link to schema article](https://hackernoon.com/what-is-weaviate-and-how-to-create-data-schemas-in-it-7hy3460)
 
 #  Basics
@@ -25,7 +25,7 @@ For a more elaborate example check this blog post: - [Link to schema article](ht
 - Words in the schema (names of classes and properties) must be part of the `text2vec-contextionary`.
 - The schema can be modified through the [RESTful API](../restful-api-references/schema.html). Python, JavaScript and Go clients are available.
 - A class or property in Weaviate becomes immutable, but can always be extended.
-- Learn about Concepts, Classes, Properties and dataTypes in the [API reference guide](../data-schema/index.html).
+- Learn about Concepts, Classes, Properties and dataTypes in the [API reference guide](../schema/index.html).
 
 # Prerequisites
 
@@ -51,7 +51,7 @@ Schemas are defined in JSON format. An empty schema to start with:
 
 Let's say there are three classes you want to capture from this dataset in Weaviate: `Publication`, `Article` and `Author`. Notice that these words are *singular* (which is best practice, each data object is *one* of these classes).
 
-Classes always start with a capital letter. Properties always begin with a small letter. When you want to concatenate words into one class name or one property name, you can do that with camelCasing the words. Read more about schema classes, properties and data types [here](../data-schema/schema-configuration.html#data-objects-and-structure).
+Classes always start with a capital letter. Properties always begin with a small letter. When you want to concatenate words into one class name or one property name, you can do that with camelCasing the words. Read more about schema classes, properties and data types [here](../schema/schema-configuration.html#data-objects-and-structure).
 
 Let's define the class `Publication` with the properties `name`, `hasArticles` and `headquartersGeoLocation` in JSON format. `name` will be the name of the `Publication`, in string format. `hasArticles` will be a reference to Article objects. We need to define the class `Articles` in the same schema to make sure the reference is possible. `headquartersGeoLocation` will be of the special dataType `geoCoordinates`.
 

@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Modules
+sub-menu: Other Modules
 nav-parent: Modules
 title: Custom modules
 description: How to create custom Weaviate modules
@@ -15,7 +15,7 @@ toc: true
 
 Besides using one of the out-of-the-box vectorization models, you can also attach your own machine learning model to Weaviate. This way, you can use Weaviate to scale your ML and NLP models, since Weaviate takes care of efficient data storage and retrieval. A custom vectorizer module is, for example, a model that you trained on your own training data, that is able to transform data (e.g. text or image data) to embeddings. 
 
-If you have model that already fits with an existing model architecture (e.g. Transformers), you don't have to write any custom code and you can just run this Transformer model with the existing [`text2vec-transformer` module](./text2vec-transformers.html).
+If you have model that already fits with an existing model architecture (e.g. Transformers), you don't have to write any custom code and you can just run this Transformer model with the existing [`text2vec-transformer` module](../retriever-vectorizer-modules/text2vec-transformers.html).
 
 This page contains information about how you can attach your own ML model to Weaviate. You will need to attach your ML model to Weaviate's Module API as a module. First, there is some information about how (vectorizer/embedding) modules in Weaviate work.
 
@@ -54,7 +54,7 @@ To use a custom ML model with Weaviate, you have two options: ([further explaine
 
 ![Weaviate module APIs overview](/img/weaviate-module-apis.svg "Weaviate module APIs overview")
 
-Let's take a more detailed example of how you configure Weaviate to use a specific module: if we look at the [`text2vec-transformers`](./text2vec-transformers.html) module, you set `ENABLE_MODULES=text2vec-transformers` in the docker-compose configuration, which instructs Weaviate to load the respective Go code (part 1). Additionally, you include another service in `docker-compose.yml` which contains the actual model for inference (part 2). In more detail, let's look at how a specific (GraphQL) function is implemented in the [`text2vec-transformers`](./text2vec-transformers.html) module:
+Let's take a more detailed example of how you configure Weaviate to use a specific module: if we look at the [`text2vec-transformers`](../retriever-vectorizer-modules/text2vec-transformers.html) module, you set `ENABLE_MODULES=text2vec-transformers` in the docker-compose configuration, which instructs Weaviate to load the respective Go code (part 1). Additionally, you include another service in `docker-compose.yml` which contains the actual model for inference (part 2). In more detail, let's look at how a specific (GraphQL) function is implemented in the [`text2vec-transformers`](../retriever-vectorizer-modules/text2vec-transformers.html) module:
 
 1. **Module code for Weaviate, written in Go:**
    * Tells the Weaviate GraphQL API that the module provides a specific `nearText` method.
@@ -82,7 +82,7 @@ Modules can be "vectorizers" (defines how the numbers in the vectors are chosen 
 - General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](../restful-api-references/meta.html).
 - Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](../graphql-references/additional-properties.html).
 - A module can add [filters](../graphql-references/filters.html) in GraphQL queries.
-- Which vectorizer and other modules are applied to which data classes is configured in the [schema](../data-schema/schema-configuration.html#vectorizer).
+- Which vectorizer and other modules are applied to which data classes is configured in the [schema](../schema/schema-configuration.html#vectorizer).
 
 # How to build and use a custom module
 
@@ -96,7 +96,7 @@ Because you are not touching the Go Weaviate interface code, you don't have the 
 _Note that Weaviate APIs are not guaranteed to be stable. Even on a non-breaking Weaviate release, 'internal' APIS could always change._
 
 To use a new inference model (part 2) with an existing Weaviate interface (part 1), you could reuse all the Go-code from the existing module and simply point it to a different inference container. As an example, here's how to use a custom inference module using the `text2vec-transformers` Go-code:
-1. In a valid `docker-compose.yml` that’s configured to use transformers (e.g. for example configure one via the [configuration configurator](../getting-started/installation.html#customize-your-weaviate-setup)), you will find an env var like this: `TRANSFORMERS_INFERENCE_API: 'http://t2v-transformers:8080'`, you can point that to any app you like. You should keep the variable name `TRANSFORMERS_INFERENCE_API`. 
+1. In a valid `docker-compose.yml` that’s configured to use transformers (e.g. for example configure one via the [configuration configurator](../installation/docker-compose.html#configurator)), you will find an env var like this: `TRANSFORMERS_INFERENCE_API: 'http://t2v-transformers:8080'`, you can point that to any app you like. You should keep the variable name `TRANSFORMERS_INFERENCE_API`. 
 2. Build a small HTTP API wrapper around your model, it should at the minimum have the endpoints listed below (which is in this example entirely specific to the `text2vec-transformers` module and fully in its control):
    1. `GET /.well-known/live` -> respond `204` when the app is alive
    2. `GET /.well-known/ready` -> respond `204` when the app is ready to serve traffic

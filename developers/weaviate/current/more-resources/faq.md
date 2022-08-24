@@ -112,7 +112,7 @@ A: How can Weaviate interpret that you mean a company, as in business, and not a
 
 ## Q: Can I connect my own module?
 
-[Yes!](../modules/custom-modules.html)
+[Yes!](../other-modules/custom-modules.html)
 
 ## Q: What is the difference between Weaviate and for example Elasticsearch?
 

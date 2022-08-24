@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Client libraries & CLI
+sub-menu: Client libraries
 title: Python
 intro: Weaviate has a native Python client to interact with Weaviate and its data. This page shows how to get started. Code examples are included in all example code blocks of the API (RESTful and GraphQL) on this website. The Python client has additional functionalities (for example schema operations), which are covered in the full client documentation on <a href="https://weaviate-python-client.readthedocs.io/#">weaviate-python-client.readthedocs.io</a>.
 description: Python client library for Weaviate

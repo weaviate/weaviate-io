@@ -255,7 +255,7 @@ layout: default
                         </h4>
                         <!-- Text -->
                         <p class="text-muted mb-6">
-                            Need to scale for production? Check out the Weaviate K8s docs <a href="/developers/weaviate/current/getting-started/installation.html#kubernetes-k8s">here</a>.
+                            Need to scale for production? Check out the Weaviate K8s docs <a href="/developers/weaviate/current/getting-started/installation.html#kubernetes">here</a>.
                         </p>
                     </div>
                 </div>

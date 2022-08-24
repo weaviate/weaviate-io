@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Data schema
+sub-menu: Schema
 title: Schema configuration
 description: 
 tags: ['Schema configuration']
@@ -23,6 +23,18 @@ You can upload schema classes to Weaviate via the RESTful endpoint `/v1/schema`.
 # Data objects and structure
 
 Data objects in Weaviate always belongs to a Class, and has one or more Properties.
+
+## Auto-schema
+
+If you don't create a schema manually before adding data, a schema will be generated automatically (available from Weaviate version v1.5.0). This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
+
+It has the following characteristics:
+
+* When the module is present, the schema can still be created manually.
+* When a previously seen class is imported, which contains a property that Weaviate has not seen yet, the module alters the schema before importing the object. See section "DataTypes" below for details on how a property should be created.
+* When a previously seen class is imported, which contains a property which conflicts with the current schema type, an error is thrown. (e.g. trying to import a `string` into a field that exists in the schema as `int`).
+* When a previously unseen class is imported, the class is created alongside all the properties.
+* Also Weaviate automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`. 
 
 ## Class
 
@@ -95,6 +107,7 @@ An example of a complete class object including properties:
 ```
 
 ### vectorizer
+
 The vectorizer (`"vectorizer": "..."`) can be specified per class in the [schema object](#schema-object). Check the [modules page](../modules/index.html) for available vectorizer modules.
 
 In case you don't want to use a vectorization module to calculate vectors from data objects, and want to enter the vectors per data object yourself when adding data objects, make sure to set `"vectorizer": "none"`.
@@ -250,7 +263,6 @@ An example of a complete property object:
 }
 ```
 
-
 ## Concatenate classes and properties
 
 Sometimes you might want to use multiple words to set as a class or property
@@ -305,18 +317,32 @@ would not return the object mentioned above, but only the exact string `"hello
 If no values are provided, properties of type `text` and `string` default to
 `"word"` level tokenization for backward-compatibility.
 
+# Regulate semantic indexing
 
-# Auto-schema
+* Only for `text2vec` module
 
-If you don't create a schema manually before adding data, a schema will be generated automatically (available from Weaviate version v1.5.0). This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
+In the schema you can define advanced settings for how data is stored and used by Weaviate. 
 
-It has the following characteristics:
+In some cases, you want to be able to regulate specific parts of the schema to optimise indexing.
 
-* When the module is present, the schema can still be created manually.
-* When a previously seen class is imported, which contains a property that Weaviate has not seen yet, the module alters the schema before importing the object. See section "DataTypes" below for details on how a property should be created.
-* When a previously seen class is imported, which contains a property which conflicts with the current schema type, an error is thrown. (e.g. trying to import a `string` into a field that exists in the schema as `int`).
-* When a previously unseen class is imported, the class is created alongside all the properties.
-* Also Weaviate automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`. 
+For example, a data object with the following schema:
+
+```yaml
+Article:
+  title: Cows lose their jobs as milk prices drop
+  summary: As his 100 diary cows lumberred over for their Monday...
+```
+
+which will be vectorized as:
+
+```md
+article cows lose their
+jobs as milk prices drop summary
+as his diary cows lumberred
+over for their monday
+```
+
+By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can regulate the indexing.
 
 ### Datatypes
 

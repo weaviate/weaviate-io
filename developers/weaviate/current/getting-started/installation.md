@@ -3,90 +3,133 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
 title: Installation
-intro: Weaviate is completely containerized, you can use Docker Compose and/or Kubernetes to run it.
-description: Install Weaviate, Weaviate is completely containerized, you can use Docker Compose and/or Kubernetes to run it.
+description: Getting started with Weaviate installation
 tags: ['installation']
-menu-order: 2
+menu-order: 1
 open-graph-type: article
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/get-started/install.html
-    - /documentation/weaviate/current/getting-started/installation.html
+# redirect_from:
+#   - /developers/weaviate/current/getting-started/installation.html
 ---
 
-<!-- sets the current version tags -->
 {% include docs-current_version_finder.html %}
 
-# Introduction
+There are three ways you can run Weaviate, and they are -we believe- pretty straightforward.
 
-There are multiple ways to set up a Weaviate instance. For a testing setup, we recommend you start with [docker-compose](#docker-compose). [Cloud deployment](#cloud-deployment) can be used for small and larger projects. For production setup and/or large scale projects, we encourage you to use [Kubernetes](#kubernetes-k8s).
+0. [Weaviate Cloud Service](#weaviate-cloud-service)
+0. [Docker](#docker)
+0. [Kubernetes](#kubernetes)
 
-# Customize your Weaviate Setup
+## Weaviate Cloud Service
 
-You can use the configuration tool below to customize your Weaviate setup for
-your desired runtime (e.g. Docker-Compose, Kubernetes, etc.):
+The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use the _Weaviate Cloud Service_ (aka, the WCS). The WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate. Currently, the service is in private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.semi.technology/), you can create a free sandbox to play around with.
 
-***
+If you are itching to get started with WCS, just skip to the [WCS hands-on section](#wcs-hands-on).
 
-{% include docs-config-gen.html %}
+## Running Weaviate yourself
 
-# Docker Compose
+Alternatively, if you prefer to install and deploy Weaviate yourself, then you can work with either _Docker_ or _Kubernetes_.
 
-If you want to try out Weaviate locally and on a small scale, you can use [Docker Compose](https://docs.docker.com/compose/). 
+<!-- TODO: create deploying to production guide and link it here.
+>  
+> Consult the [following guide](--link-here--) on how to run Weaviate in Production.
+> 
+> This is added as a blog post option
+-->
 
-If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079).
+### Docker
 
-To start Weaviate with docker-compose, you need a docker-compose configuration file. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional [environment variables](#environment-variables) can be set in this file, which regulate your Weaviate setup, authentication and authorization, module settings, and data storage settings.
+Working with Docker is great if you are building an application around Weaviate and want to run Weaviate on your local machine or in the cloud. If you have Docker already installed, you could have it all up and running in seconds (minutes if you use a  prepackaged transformers module).
 
-## Example Docker Compose Setups
+We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator){:target="_blank"}, which let's you pick you configuration, and as a result you will receive a command to spin up your docker setup.
 
-If you do not with to use the configuration tool above to customize your setup,
-you can also use one of the following three example `docker-compose.yml` files
-below. 
+You can find the installation instructions for Kubernetes [here](../installation/docker-compose.html#configurator).
 
-To run any of the below examples, save one of the snippets as
-`docker-compose.yml` and start them by running `docker-compose up` from within
-the same folder.
+<!--
+Some examples of Docker Compose configurations you can make with the configurator.
 
-### Weaviate with the `text2vec-transformers` model
-An example docker-compose setup file with the transformers model [`sentence-transformers/msmarco-distilroberta-base-v2`](https://huggingface.co/sentence-transformers/msmarco-distilroberta-base-v2) is: 
+* [Weaviate stand-alone (no modules)](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ current_page_version }})
+* [Weaviate with the `text2vec-transformers` module with GPU support](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&gpu_support=true&media_type=text&modules=modules&ner_module=false&qna_module=false&runtime=docker-compose&spellcheck_module=false&text_module=text2vec-transformers&transformers_model=sentence-transformers-multi-qa-MiniLM-L6-cos-v1&weaviate_version={{ current_page_version }})
+* [Weaviate with the `text2vec-openai` module](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&media_type=text&modules=modules&ner_module=false&openai_key_approval=yes&qna_module=false&runtime=docker-compose&spellcheck_module=false&text_module=text2vec-openai&weaviate_version={{ current_page_version }})
+* [Weaviate with `multi2vec-clip` module](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?clip_model=sentence-transformers-clip-ViT-B-32&enterprise_usage_collector=false&media_type=clip&modules=modules&ner_module=false&qna_module=false&runtime=docker-compose&spellcheck_module=false&weaviate_version={{ current_page_version }})
+* [Weaviate with the `text2vec-openai` module and `Question Answering` transformers module with GPU support](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&gpu_support=true&media_type=text&modules=modules&ner_module=false&openai_key_approval=yes&qna_module=true&qna_module_model=distilbert-base-uncased-distilled-squad&runtime=docker-compose&spellcheck_module=false&text_module=text2vec-openai&weaviate_version={{ current_page_version }})
+* etcetera. -->
 
-```yaml
-version: '3.4'
-services:
-  weaviate:
-    image: semitechnologies/weaviate:1.14.0
-    restart: on-failure:0
-    ports:
-     - "8080:8080"
-    environment:
-      QUERY_DEFAULTS_LIMIT: 20
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-      PERSISTENCE_DATA_PATH: "./data"
-      DEFAULT_VECTORIZER_MODULE: text2vec-transformers
-      ENABLE_MODULES: text2vec-transformers
-      TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
-      CLUSTER_HOSTNAME: 'node1'
-  t2v-transformers:
-    image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
-    environment:
-      ENABLE_CUDA: 0 # set to 1 to enable
-      # NVIDIA_VISIBLE_DEVICES: all # enable if running with CUDA
-```
+### Kubernetes
 
-Note that transformer models are Neural Networks built to run on
-GPUs. Running Weaviate with the `text2vec-transformers` module and without GPU is
-possible, but it will be slower. Enable CUDA if you have a GPU available
-(`ENABLE_CUDA=1`).
+Generally, we recommend using Kubernetes to deploy Weaviate for any long-running deployments or those with specific availability expectations, such as production use cases.
 
-For more information on how to set up the environment with the
-`text2vec-transformers` module, see [this
-page](../modules/text2vec-transformers.html).
+For local development or personal evaluation, using Docker Compose will most likely be sufficient.
 
-The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
+### Self-deployment instructions 
 
-### Weaviate with the `text2vec-contextionary` model
-An example docker-compose setup file with the english language contextionary model is:
+The installation and configuration with Docker and Kubernetes is out of scope for this tutorial. If you prefer to deploy Weaviate yourself, see the [installation documentation](/developers/weaviate/current/installation/){:target="_blank"} page. Then you can continue with the tutorial with at [Schema](/developers/weaviate/current/getting-started/schema.html) page.
+
+## WCS hands-on
+
+To create a new Weaviate instance on the Weaviate Cloud Service, we need to follow these steps:
+
+0. [Sign in to WCS](#sign-in-to-wcs)
+0. [Create a Weaviate Cluster](#create-a-weaviate-cluster)
+0. [Test the connection](#test-the-connection)
+
+### Sign in to WCS
+
+In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.semi.technology/){:target="_blank"} and "Sign in with the Weaviate Cloud Service", where you will be able to create and manage your Weaviate Clusters.
+
+#### No account, no problem
+If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs){:target="_blank"} link and create an account.
+
+![Register link](/img/getting-started/install/register.jpg){:style="max-width: 400px"}
+
+### Create a Weaviate Cluster
+
+To create a new Weaviate Cluster:
+0. Press the "Create a Weaviate Cluster" button
+0. Configure the cluster:
+    0. Set the `name` for your cluster – note: The name will become part of the URL we will use to access this instance. Please use a different name than "getting-started".
+    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 5 days
+    0. Leave the `Weaviate Version` as the latest
+    0. Leave the `Standalone Or Modules` as `Standalone, no Modules`
+    0. **change** the `OIDC Authentication` to `Diabled`
+    
+    ![Cluster Configuration](/img/getting-started/install/cluster-configuration.jpg){:style="max-width: 600px"}
+0. Finally, press **Create**.
+
+This will start the process to create a new cluster. The status indicator on the left will show the progress (in %); after a few minutes, you should see a green tick ✔️ - indicating that the cluster is ready.
+
+### Test the connection
+
+To test the connection, click on the `Cluster Id` link, which will open a new page in your browser and display all the available endpoints.
+![Weaviate Cluster](/img/getting-started/install/weaviate-cluster.jpg)
+
+> 💡 Note: For every endpoint, there is a `documentationHref` link, which points us to relevant documentation pages.
+
+Now, we are ready to start working with Weaviate. 🎉
+
+
+<!-- 
+## Running Weaviate yourself
+
+When running Weaviate yourself in production, you want to make sure you select the right hardware to run it on.  The benchmark pages in the documentation are helpful for this (more about this in this guide) too, take the following things into account when choosing the right hardware:
+
+0. **Disks** – use SSD disks if possible. Weaviate works more efficiently on solid state disks than on spinning disks.
+    0. SSD disks come in a wide variety of types and price ranges. You might want to experiment with this, but based on our experience, there is a marginal return when spending large amounts of money on extreme SSD types.
+    0.Avoid network storage and go for block storage. Internally we use;
+        0. [`gp3` on Amazon Web Services](https://aws.amazon.com/about-aws/whats-new/2020/12/introducing-new-amazon-ebs-general-purpose-volumes-gp3/)
+        0. [`premium-rwo` for Google Cloud Platform](https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/gce-pd-csi-driver#create_a_storageclass)
+        0. [`Premium SSD` for Microsoft Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssds)
+0. **Memory** – make sure there is enough available to store the indices. To calculate to amount of memory needed for your vectors. Follow [this](../architecture/resources.html#an-example-calculation) calculation. You can learn more about memory usage in Weaviate [here](../architecture/resources.html#the-role-of-memory).
+0. **CPUs** – adding more CPUs increases import speed or query time. Setting up [monitoring](../configuration/monitoring.html) for your Weaviate instance will help you determine if you need more or fewer CPUs in your setup.
+
+## Kubernetes
+
+> 💡 If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
+
+For this one, you need to understand how Kubernetes works; these are just two handy things to know.
+
+1. If you want to use Weaviate in combination with modules, it might be handy to check out the [Docker guide](#docker) first. It will align with the Helm charts.
+2. You find all detailed Kubernetes instructions [here](../installation/#kubernetes-k8s).
 
 ```yaml
 version: '3.4'
@@ -114,236 +157,33 @@ services:
     image: semitechnologies/contextionary:en0.16.0-v1.0.2
 ```
 
+## Working with GPU-enabled containers
 
-The `text2vec-contextionary` module is designed to run with CPU hardware and
-does not require or benefit from GPU-accelerated hardware.
+Let's just cut straight to the chase; running modules with ML models yourself (i.e., a Weaviate module where the model is encapsulated inside the module) on a CPU is just not going to work well. It's sloooow 🐌.
 
-For more information on how to set up the environment with the
-`text2vec-contextionary` module, see [this
-page](../modules/text2vec-contextionary.html).
+You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on a machine with a GPU ([this Github Gist](https://gist.github.com/bobvanluijt/af6fe0fa392ca8f93e1fdc96fc1c86d8) contains an installation script to install Docker Compose with GPU support on a Debian machine)
 
-_Note: at the moment, text vectorization modules cannot be combined in a single setup. This means that you can either enable the `text2vec-contextionary`, the `text2vec-transformers` or no text vectorization module._
+## Recapitulation
 
-### Weaviate without any modules
-An example docker-compose setup for Weaviate without any modules can be found
-below. In this case, no model inference is performed at either import or search
-time. You will need to provide your own vectors (e.g. from an outside ML model)
-at import and search time:
+* There is a configurator you can use to configure your Weaviate instance.
+* You can run Weaviate with Docker, Kubernetes, or with the Weaviate Cloud Service.
+* Running Weaviate Modules with an encepsulated ML-model on CPUs is slow. -->
 
-```yaml
-version: '3.4'
-services:
-  weaviate:
-    image: semitechnologies/weaviate:1.14.0
-    ports:
-    - 8080:8080
-    restart: on-failure:0
-    environment:
-      QUERY_DEFAULTS_LIMIT: 25
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'none'
-      CLUSTER_HOSTNAME: 'node1'
-```
+## Recapitulation
 
+* You can run Weaviate with Weaviate Cloud Service, Docker or Kubernetes.
+* Weaviate Cloud Service is a managed Weaviate SaaS - great for development and production.
+* Docker alows you to set up Weaviate on your machine or in the cloud – great for development and production.
+* Kubernetes is great for long-running Weaviate deployments
+* You have a working instance of Weaviate in WCS.
 
-### Attaching to the log output of Weaviate only
+## Next Steps
 
-The output of `docker-compose up` is quite verbose as it attaches to the logs of all containers. 
+Next, [learn about the Weaviate Schema](./schema.html).
 
-You can attach the logs only to Weaviate itself, for example, by running the following command instead of `docker-compose up`:
-
-```bash
-# Run Docker Compose
-$ docker-compose up -d && docker-compose logs -f weaviate
-```
-
-Alternatively you can run docker-compose entirely detached with `docker-compose up -d` _and_ then poll `{bindaddress}:{port}/v1/meta` until you receive a status `200 OK`.
-
-
-## Environment variables
-
-An overview of environment variables in the docker-compose file:
-
-| Variable | Description | Type | Example Value |
-  | --- | --- | --- | --- |
-  | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
-  | `CONTEXTIONARY_URL` | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
-  | `PERSISTENCE_DATA_PATH` | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
-  | `ENABLE_MODULES` | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
-  | `TRANSFORMERS_INFERENCE_API` | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
-  | `DEFAULT_VECTORIZER_MODULE` | Default vectorizer module, so this doesn't need to be defined per class in the schema | `string` | `text2vec-contextionary` |
-  | `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` | Allow users to interact with weaviate without auth | `string - true/false` | `true` |
-  | `AUTHENTICATION_OIDC_ENABLED` | Enable OIDC Auth | `string - true/false` | `false` |
-  | `AUTHENTICATION_OIDC_ISSUER` | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
-  | `AUTHENTICATION_OIDC_CLIENT_ID` | OIDC Client ID | `string` | `my-client-id` |
-  | `AUTHENTICATION_OIDC_USERNAME_CLAIM` | OIDC Username Claim | `string` | `email` |
-  | `AUTHENTICATION_OIDC_GROUPS_CLAIM` | OIDC Groups Claim | `string` | `groups` |
-  | `AUTHORIZATION_ADMINLIST_ENABLED` | Enable AdminList Authorization mode | `string - true/false` | `true` |
-  | `AUTHORIZATION_ADMINLIST_USERS` | Users with admin permission| `string - comma-separated list` | `jane@example.com,john@example.com` |
-  | `AUTHORIZATION_ADMINLIST_READONLY_USERS` | Users with read-only permission| `string - comma-separated list` | `alice@example.com,dave@example.com` |
-| `DISK_USE_WARNING_PERCENTAGE` |  If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `80` |
-| `DISK_USE_READONLY_PERCENTAGE`  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `90` |
-| `PROMETHEUS_MONITORING_ENABLED`  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](../more-resources/monitoring.html) | `string - true/false` | `false` |
-
-
-# Weaviate Cloud Service
-
-You can create a free Weaviate sandbox cluster that lasts for 5 days completely for free. You can [try it out here](https://console.semi.technology) and if you do, we would love to hear your feedback.
-
-# Kubernetes (K8s)
-
-_Generally, we recommend using Kubernetes to deploy Weaviate for any
-long-running deployments or those with specific availability expectations, such
-as production use cases. For local development or personal evaluation, using
-Docker Compose will most likely be sufficient._
-
-## Requirements
-
-* A Kuberentes Cluster with a recent version (e.g. between 1.14 and 1.19)
-* The cluster needs to be able to provision `PersistentVolumes` through
-  `PersistentVolumeClaims`. No special file systems are required. Any default
-  file system capable of `ReadWriteOnce` access mode is sufficient.
-* Helm (only v3 is compatible from Helm version `"v{{ site.weaviate_versions[current_page_version].helm_version }}"`)
-
-## Installing the official Weaviate Helm chart
-To obtain and install the Weaviate chart on your Kubernetes cluster, take the following steps:
-
-### Verify tool setup and cluster access
-```bash
-# Check if helm is installed
-$ helm version
-# Make sure `kubectl` is configured correctly and you can access the cluster. 
-# For example, try listing the pods in the currently configured namespace.
-$ kubectl get pods
-```
-
-### Obtain the Helm Chart
-
-Get the Helm chart and `values.yml` configuration file.
-
-```bash
-# Set the Weaviate chart version
-export CHART_VERSION="v{{ site.weaviate_versions[current_page_version].helm_version }}"
-# Download the Weaviate Helm chart
-wget https://github.com/semi-technologies/weaviate-helm/releases/download/$CHART_VERSION/weaviate.tgz
-# Download an example values.yml (with the default configuration)
-wget https://raw.githubusercontent.com/semi-technologies/weaviate-helm/$CHART_VERSION/weaviate/values.yaml
-```
-
-### Adjust the configuration in the values.yml (Optional)
-
-_Note: You can skip this step and run with all default values. In any case,
-make sure that you set the correct Weaviate version. This may either be through
-explicitly setting it as part of the `values.yaml` or through overwriting the
-default as outlined in the deploy step below._
-
-In the
-[`values.yaml`](https://github.com/semi-technologies/weaviate-helm/blob/master/weaviate/values.yaml)
-file you can tweak the configuration to align it with your
-setup. The yaml file is extensively documented to help you align the
-configuration with your setup.
-
-Out of the box, the configuration file is setup for:
-
-- 1 Weaviate replica. (This cannot be changed at the moment, [see below](#limitations))
-- The `text2vec-contextionary` module is enabled and running with 1 replica.
-  (This can be adjusted based on the expected load).
-- Other modules, such as `text2vec-transformers`, `qna-transformers` or
-  `img2vec-neural` are disabled by default. They can be enabled by setting the
-  respective `enabled` flag to `true`.
-
-See the resource requests and limits in the example `values.yml`. You can
-adjust them based on your expected load and the resources available on the
-cluster.
-
-### Deploy (install the Helm chart)
-
-{% include docs-current_version_finder.html %}
-
-You can deploy the helm charts as follows:
-
-```bash
-# Create a Weaviate namespace
-$ kubectl create namespace weaviate
-
-# set the desired Weaviate version
-export WEAVIATE_VERSION="{{ current_page_version | remove_first: "v" }}"
-
-# Deploy
-$ helm upgrade \
-  "weaviate" \
-  weaviate.tgz \
-  --install \
-  --namespace "weaviate" \
-  --values ./values.yaml \
-  --set "image.tag=$WEAVIATE_VERSION"
-```
-
-
-The above assumes that you have permissions to create a new namespace. If you
-have only namespace-level permissions, you can skip creating a new
-namespace and adjust the namespace argument on `helm upgrade` according to the
-name of your pre-configured namespage.
-
-### Updating the installation after the initial deployment
-
-The above command (`helm upgrade...`) is idempotent, you can run it again, for
-example after adjusting your desired configuration.
-
-## Limitations
-
-*** Weaviate now supports Horizontal Scalability.  The below is simply for reference:
-
-Until Weaviate fully supports Horizontal Scalability (ETA end of Q3 2021), you
-cannot increase the Weaviate replicas beyond 1. Trying to do so would lead to
-unexpected behavior, as the loadbalancer would switch between replicas without
-their state being in sync. Some data would land on some replicas, other data on
-others, each query would only return a fragment of the entire dataset.
-
-## Additional Configuration Help
-
-- [Cannot list resource “configmaps” in API group when deploying Weaviate k8s setup on GCP](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
-- [Error: UPGRADE FAILED: configmaps is forbidden](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
-
-# Run an unreleased version
-
-You can run Weaviate with `docker-compose`, building your own container off the [`master`](https://github.com/semi-technologies/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
-
-```sh
-git clone https://github.com/semi-technologies/weaviate.git
-cd weaviate
-docker build --target weaviate -t name-of-your-weaviate-image .
-```
-
-Then, make a `docker-compose.yml` file with this new image. For example:
-
-```yml
-version: '3.4'
-services:
-  weaviate:
-    image: name-of-your-weaviate-image
-    ports:
-      - 8080:8080
-    environment:
-      CONTEXTIONARY_URL: contextionary:9999
-      QUERY_DEFAULTS_LIMIT: 25
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-      PERSISTENCE_DATA_PATH: './data'
-      ENABLE_MODULES: 'text2vec-contextionary'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
-      AUTOSCHEMA_ENABLED: 'false'
-  contextionary:
-    environment:
-      OCCURRENCE_WEIGHT_LINEAR_FACTOR: 0.75
-      EXTENSIONS_STORAGE_MODE: weaviate
-      EXTENSIONS_STORAGE_ORIGIN: http://weaviate:8080
-      NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE: 5
-      ENABLE_COMPOUND_SPLITTING: 'false'
-    image: semitechnologies/contextionary:en0.16.0-v1.0.2
-```
-
-After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`. 
+Alternatively, you can:
+* [Skip to Querying in Weaviate](./query.html)
+* [Go back to the basics](../core-knowledge/basics.html)
 
 # More Resources
 

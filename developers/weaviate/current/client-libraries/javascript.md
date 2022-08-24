@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Client libraries & CLI
+sub-menu: Client libraries
 title: JavaScript
 intro: A JavaScript client library for Weaviate.
 description: JavaScript client library for Weaviate

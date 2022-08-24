@@ -1,12 +1,12 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Client libraries & CLI
+sub-menu: Client libraries
 title: Go
 intro: A Go client library for Weaviate.
 description: Go client library for Weaviate
 tags: ['go', 'client library']
-menu-order: 3
+menu-order: 4
 open-graph-type: article
 toc: true
 redirect_from:
