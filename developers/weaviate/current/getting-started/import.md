@@ -22,68 +22,46 @@ Although importing itself is pretty straightforward, creating an optimized impor
 
 First of all, some rules of thumb.
 
-* In almost all cases, you want to batch import data.
+* You should always use batch import.
 * As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
 * Process error messages.
 * Some clients (especially Python) have some build-in logic to efficiently regulate batch importing.
 
-Assuming that you've read the [schema getting started guide](./schema.html), you import data based on the classes and properties defined in the schema (no 💩, 🕵️). The big difference between importing a single object in Weaviate and batch importing is that instead of sending a single JSON object, you import an array of JSON objects.
+Assuming that you've read the [schema getting started guide](./schema.html), you import data based on the classes and properties defined in the schema.
 
-As you've seen in the [basics getting started guide](../core-knowledge/basics.html#data-objects-in-weaviate), Weaviate data objects are class/property based JSON-objects.
+<!-- > 💡 The big difference between creating a single object in Weaviate and batch imports is that instead of sending a single JSON object, batch sends an array of JSON objects. -->
 
-An example of a single object:
+<!-- As you've seen in the [basics getting started guide](./basics.html#data-objects-in-weaviate), Weaviate data objects are class-property-based JSON objects. -->
 
-```json
-{
-    "id": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
-    "class": "Publication",
-    "properties": {
-        "name": "The New York Times"
-    },
-    "vector": [
-        -0.0030892247,
-        0.17440806,
-        0.024489688
-    ]
-}
+For the purpose of this tutorial, we've prepared a **data.json** file, which contains a few Authors and Publications. Download it from <!-- TODO: Add a link here --> [here](), and add it to your project.
+
+Now, to import the data we need to follow these steps:
+0. Connect to your Weaviate instance
+0. Load objects from the `data.json` file
+0. Prepare a batch process
+0. Loop through all Publications
+  * Parse each publication – to a structure expected by the language client of your choice
+  * Push the object through a batch process
+0. Loop through all Authors
+  * Parse each author – to a structure expected by the language client of your choice
+  * Push the object through a batch process
+0. Flush the batch process – in case there are any remaining objects in the buffer
+
+Here is the code you need to import the **Publications**.
+
+{% include code/1.x/getting-started.import.publications.html %}
+
+And here is the code to import **Authors**.
+
+{% include code/1.x/getting-started.import.authors.html %}
+
+You can quickly check the imported object by opening – your `weaviate-endpoint/v1/objects` in a browser, like this:
+
+```
+https://some-endpoint.semi.network/v1/objects
 ```
 
-An example of an array of data objects:
-
-```json
-[{
-    "id": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
-    "class": "Publication",
-    "properties": {
-        "name": "The New York Times"
-    },
-    "vector": [
-        -0.0030892247,
-        0.17440806,
-        0.024489688
-    ]
-}, {
-    "class": "Author",
-    "properties": {
-        "name": "Paul Krugman",
-        "age": 69,
-        "born": "1953-02-28T00:00:00.0Z",
-        "wonNobelPrize": true,
-        "description": "Paul Robin Krugman is an American economist [...] New Economic Geography."
-    },
-    "vector": [
-        -0.16147631,
-        -0.065765485,
-        -0.06546908
-    ]
-}]
-```
-
-Let's import the data (make sure you have [an empty Weaviate running](./installation.html)) and use Weaviate's auto schema feature to generate a schema.
-
-{% include code/1.x/getting-started.import.create.html %}
-
-You can now see the added object here:
+Or you can read the objects in your project, like this:
 
 {% include code/1.x/getting-started.import.get.html %}
 
