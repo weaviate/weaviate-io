@@ -44,7 +44,7 @@ toc: true
 
 # Features
 
-Weaviate makes it easy to use state-of-the-art AI models while giving providing the scalability, ease of use, safety and cost-effectiveness of a purpose-built vector database. Most notably:
+Weaviate makes it easy to use state-of-the-art AI models while providing the scalability, ease of use, safety and cost-effectiveness of a purpose-built vector database. Most notably:
 
 * **Fast queries**<br>
    Weaviate typically performs nearest neighbor (NN) searches of millions of objects in considerably less than 100ms. You can find more information on our [benchmark](./benchmarks/) page.
