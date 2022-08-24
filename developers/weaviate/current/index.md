@@ -16,9 +16,9 @@ toc: true
 
 **Weaviate in a nutshell**: 
 
-* Weaviate is an open source ​database of the type ​vector search engine. 
+* Weaviate is an open-source ​database of the type ​vector search engine. 
 * Weaviate allows you to store JSON documents in a class property-like fashion while attaching machine learning vectors to these documents to represent them in vector space.
-* Weaviate can be used stand-alone (aka _bring your vectors_), with a wide variety of modules that can do the vectorization for you or extend the core capabilities.
+* Weaviate can be used stand-alone (aka _bring your vectors_) or with a variety of modules that can do the vectorization for you and extend the core capabilities.
 * Weaviate has a GraphQL-API to access your data easily.
 * ​We aim to bring your vector search set up to production to query in mere milliseconds (check our [open source benchmarks](./benchmarks/) to see if Weaviate fits your use case).
 * Get to know Weaviate in the [basics getting started guide](./core-knowledge/basics.html) in under five minutes. 
