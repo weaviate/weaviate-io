@@ -53,7 +53,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-* Note: you can also use the [Weaviate configuration tool](../getting-started/installation.html#customize-your-weaviate-setup) to create a Weaviate setup with this module.
+* Note: you can also use the [Weaviate configuration tool](../installation/docker-compose.html#configurator) to create a Weaviate setup with this module.
 * Note: Starting with `v1.11.0` the `OPENAI_APIKEY` variable is now optional and you can instead provide the key at insert/query time as an HTTP header.
 
 # How to configure
