@@ -73,57 +73,47 @@ importAuthors();
 <!-- SET GO TAB CONTENT -->
 {% capture go %}
 
-package main
+func importAuthors(ctx context.Context, client *weaviate.Client) error {
+	filePath := "./data.json"
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		panic("error reading data file")
+	}
 
-import (
-	"context"
-	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
-  "github.com/semi-technologies/weaviate/entities/models"
+	var d Data
+	if err = json.Unmarshal(data, &d); err != nil {
+		panic("error parsing data file")
+	}
 
-)
+	authorObjects := []*models.Object{}
+	for _, author := range d.Authors {
+		authorObjects = append(authorObjects, &models.Object{
+			Class: "Author",
+			ID:    strfmt.UUID(author.ID),
+			Properties: map[string]interface{}{
+				"name":          author.Name,
+				"age":           author.Age,
+				"born":          author.Born,
+				"wonNobelPrize": author.WonNobelPrize,
+				"description":   author.Description,
+			},
+			Vector: author.Vector,
+		})
+	}
 
-func GetSchema() {
-    cfg := weaviate.Config{
-        Host:   "some-endpoint.semi.network/",
-		Scheme: "https",
-    }
+	batcher = client.Batch().ObjectsBatcher()
+	for _, authorObject := range authorObjects {
+		batcher.WithObject(authorObject)
+	}
+	resp, err = batcher.Do(ctx)
+	if err != nil {
+		panic("error importing authors")
+	} else if len(resp) != len(authorObjects) {
+		panic("invalid number of imported authors")
+	}
 
-    client := weaviate.New(cfg)
-
-    objects := []*models.Object{
-      {
-        "ID": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
-        "Class": "Publication",
-        "Properties": map[string]interface{}{
-            "name": "The New York Times"
-        },
-        "Vector": []float32{-0.0030892247, 0.17440806, 0.024489688}
-      },
-      {
-        "ID": "f564113e-11e2-11ed-861d-0242ac120002",
-        "Class": "Author",
-        "Properties": map[string]interface{}{
-          "name": "Paul Krugman",
-          "age": 69,
-          "born": "1953-02-28T00:00:00.0Z",
-          "wonNobelPrize": true,
-          "description": "Paul Robin Krugman is an American economist [...] New Economic Geography."
-        },
-        "Vector": []float32{-0.16147631, -0.065765485, -0.06546908}
-      },
-    }
-  
-    result, err := client.Batch().ObjectsBatcher().
-      WithObject(objects[0]).
-      WithObject(objects[1]).
-      Do(context.Background())
-  
-    if err != nil {
-      panic(err)
-    }
-    fmt.Printf("%v", result)
-  }
+	return nil
+}
   
 {% endcapture %}
 

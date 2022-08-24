@@ -111,54 +111,91 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
-  "github.com/semi-technologies/weaviate/entities/models"
+	"os"
 
+	"github.com/go-openapi/strfmt"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+	"github.com/semi-technologies/weaviate/entities/models"
 )
 
-func GetSchema() {
-    cfg := weaviate.Config{
-        Host:   "some-endpoint.semi.network/",
-		Scheme: "https",
-    }
+func main() {
+	ctx := context.Background()
 
-    client := weaviate.New(cfg)
+	cfg := weaviate.Config{
+		Host:   "localhost:8080",
+		Scheme: "http",
+	}
+	client := weaviate.New(cfg)
 
-    objects := []*models.Object{
-      {
-        "ID": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
-        "Class": "Publication",
-        "Properties": map[string]interface{}{
-            "name": "The New York Times"
-        },
-        "Vector": []float32{-0.0030892247, 0.17440806, 0.024489688}
-      },
-      {
-        "ID": "f564113e-11e2-11ed-861d-0242ac120002",
-        "Class": "Author",
-        "Properties": map[string]interface{}{
-          "name": "Paul Krugman",
-          "age": 69,
-          "born": "1953-02-28T00:00:00.0Z",
-          "wonNobelPrize": true,
-          "description": "Paul Robin Krugman is an American economist [...] New Economic Geography."
-        },
-        "Vector": []float32{-0.16147631, -0.065765485, -0.06546908}
-      },
-    }
-  
-    result, err := client.Batch().ObjectsBatcher().
-      WithObject(objects[0]).
-      WithObject(objects[1]).
-      Do(context.Background())
-  
-    if err != nil {
-      panic(err)
-    }
-    fmt.Printf("%v", result)
-  }
-  
+	fmt.Printf("Import publications\n")
+	if err := importPublications(ctx, client); err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("Successfully imported data\n")
+}
+
+func importPublications(ctx context.Context, client *weaviate.Client) error {
+	filePath := "./data.json"
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		panic("error reading data file")
+	}
+
+	var d Data
+	if err = json.Unmarshal(data, &d); err != nil {
+		panic("error parsing data file")
+	}
+
+	publicationObjects := []*models.Object{}
+	for _, publication := range d.Publications {
+		publicationObjects = append(publicationObjects, &models.Object{
+			Class: "Publication",
+			ID:    strfmt.UUID(publication.ID),
+			Properties: map[string]interface{}{
+				"name": publication.Name,
+			},
+			Vector: publication.Vector,
+		})
+	}
+
+	batcher := client.Batch().ObjectsBatcher()
+	for _, publicationObject := range publicationObjects {
+		batcher.WithObject(publicationObject)
+	}
+	resp, err := batcher.Do(ctx)
+	if err != nil {
+		panic("error importing publications")
+	} else if len(resp) != len(publicationObjects) {
+		panic("invalid number of imported publications")
+	}
+
+	return nil
+}
+
+type Data struct {
+	Authors      []Author      `json:"authors"`
+	Publications []Publication `json:"publications"`
+}
+
+type Author struct {
+	ID            string    `json:"id"`
+	Name          string    `json:"name"`
+	Age           int32     `json:"age"`
+	Born          string    `json:"born"`
+	WonNobelPrize bool      `json:"wonNobelPrize"`
+	Description   string    `json:"description"`
+	Vector        []float32 `json:"vector"`
+}
+
+type Publication struct {
+	ID     string    `json:"id"`
+	Name   string    `json:"name"`
+	Vector []float32 `json:"vector"`
+}
+
 {% endcapture %}
 
 <!-- SET JAVA TAB CONTENT -->
