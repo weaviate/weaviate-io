@@ -8,11 +8,19 @@ description: This page contains information about Weaviate's RESTful API.
 tags: ['RESTful API references']
 menu-order: 0
 open-graph-type: article
-toc: false
+toc: true
 redirect_from:
     - /documentation/weaviate/current/restful-api-references/index.html
     - /documentation/weaviate/current/restful-api-references/
 ---
+
+# RESTful API
+
+Weaviate has a basic RESTful API which will be used to offer CRUD support on all data objects. The clients automatically determine if they should call the RESTful or GraphQL-API. You can also choose to call the APIs themselves.
+
+## Open API specs
+
+The Open API specs for the current Weaviate version number can be found [here](https://app.swaggerhub.com/apis/semi-technologies/weaviate/{{ site.weaviate_version }}).
 
 # All references
 

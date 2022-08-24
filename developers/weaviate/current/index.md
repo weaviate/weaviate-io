@@ -12,13 +12,16 @@ open-graph-type: article
 toc: true
 ---
 
-# Introduction video
-
-<iframe width="100%" height="375" src="https://www.youtube.com/embed/IExopg1r4fw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 # What is Weaviate?
 
-**Weaviate in a nutshell**: Weaviate is a vector search engine and vector database. Weaviate uses machine learning to vectorize, store data, and find answers to natural language queries. With Weaviate, you can also bring your custom ML models to production scale.
+**Weaviate in a nutshell**: 
+
+* Weaviate is an open source ​database of the type ​vector search engine. 
+* Weaviate allows you to store JSON documents in a class property-like fashion while attaching machine learning vectors to these documents to represent them in vector space.
+* Weaviate can be used stand-alone (aka _bring your vectors_), with a wide variety of modules that can do the vectorization for you or extend the core capabilities.
+* Weaviate has a GraphQL-API to access your data easily.
+* ​We aim to bring your vector search set up to production to query in mere milliseconds (check our [open source benchmarks](./benchmarks/) to see if Weaviate fits your use case).
+* Get to know Weaviate in the [basics getting started guide](./core-knowledge/basics.html) in under five minutes. 
 
 **Weaviate in detail**: Weaviate is a low-latency vector search engine with out-of-the-box support for different media types (text, images, etc.). It offers Semantic Search, Question-Answer Extraction, Classification, Customizable Models (PyTorch/TensorFlow/Keras), etc. Built from scratch in Go, Weaviate stores both objects and vectors, allowing for combining vector search with structured filtering and the fault-tolerance of a cloud-native database, all accessible through GraphQL, REST, and various programming languages client.
 
@@ -43,9 +46,8 @@ toc: true
 
 Weaviate makes it easy to use state-of-the-art AI models while giving providing the scalability, ease of use, safety and cost-effectiveness of a purpose-built vector database. Most notably:
 
-* **Extremely fast queries**<br>
-   Weaviate typically performs nearest neighbor (NN) searches of millions of objects in considerably less than 100ms.
-   <br><sub></sub>
+* **Fast queries**<br>
+   Weaviate typically performs nearest neighbor (NN) searches of millions of objects in considerably less than 100ms. You can find more information on our [benchmark](./benchmarks/) page.
 
 * **Ingest any media type with Weaviate Modules**<br>
   Use State-of-the-Art AI model inference (e.g. Transformers) for accessing Text, Images, etc. data at search-and-query time to let Weaviate manage the process of vectorizing data for you - or providing for importing your own vectors.
@@ -57,7 +59,10 @@ Weaviate makes it easy to use state-of-the-art AI models while giving providing 
 Weaviate let’s you search through your data even if it’s currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.
 
 * **Horizontal Scalability**<br>
-  Scale Weaviate for your exact needs, e.g. High-Availability, maximum ingestion, largest possible dataset size, maximum queries per second, etc.
+  Scale Weaviate for your exact needs, e.g., maximum ingestion, largest possible dataset size, maximum queries per second, etc.
+
+* **High-Availability**<br>
+  Is on our [roadmap](./architecture/roadmap.html) and will be released later this year.
 
 * **Cost-Effectiveness**<br>
   Very large datasets do not need to be kept entirely in-memory in Weaviate. At the same time, available memory can be used to increase the speed of queries. This allows for a conscious speed/cost trade-off to suit every use case.
@@ -77,7 +82,7 @@ Weaviates [vector indexing mechanism is modular](./vector-index-plugins/), and t
 
 Weaviate modules are used to extend Weaviate's capabilities and optional. There are Weaviate modules that automatically vectorize your content (i.e., `*2vec`) or extend Weaviate's capabilities (often related to the type of vectors you have.) You can also create your own modules. Click [here](./modules) to get started with them.
 
-# Why a vector search engine?
+# What is a vector search engine?
 
 If you work with data, you probably work with search engine technology. The best search engines are amazing pieces of software, but because of their core architecture, they come with limitations when it comes to finding the data you are looking for.
 

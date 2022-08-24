@@ -15,7 +15,7 @@ redirect_from:
 # Available Distance Metrics
 
 If not specified explicitly, the default distance metric in Weaviate is
-`cosine`. It can be [set in the vectorIndexConfig](http://localhost:4000/developers/weaviate/current/vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters) field as part of the
+`cosine`. It can be [set in the vectorIndexConfig](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters) field as part of the
 schema ([Example to add new schema class](../restful-api-references/schema.html#create-a-class)) to any of the following types:
 
 | Name | Description | Definition | Range |

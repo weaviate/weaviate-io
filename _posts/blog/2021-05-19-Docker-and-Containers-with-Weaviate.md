@@ -55,9 +55,9 @@ Usually, there is no need to obtain individual images, as we distribute entire `
 ![Weaviate Configuration Tool](/img/blog/docker-and-containers/weaviate-configuration-tool.png)
 *An example of the Weaviate Customizer which produces a complete docker-compose file — tailored to your needs.*
 
-The easiest way to obtain a `docker-compose.yml` is to use the [Weaviate configuration tool](/developers/weaviate/current/installation/#customize-your-weaviate-setup){:target="_blank"} on our website. It will ask you a few questions about what you plan to do with Weaviate and customize a Compose file (including all module containers, if you select any) in the last step.
+The easiest way to obtain a `docker-compose.yml` is to use the [Weaviate configuration tool](/developers/weaviate/current/installation/docker-compose.html#configurator){:target="_blank"} on our website. It will ask you a few questions about what you plan to do with Weaviate and customize a Compose file (including all module containers, if you select any) in the last step.
 
-If you don’t want to use the customizer you can also copy/paste one of [the example files from the documentation](/developers/weaviate/current/installation/#example-docker-compose-setups){:target="_blank"}.
+If you don’t want to use the customizer you can also copy/paste one of [the example files from the documentation](/developers/weaviate/current/installation/docker-compose.html){:target="_blank"}.
 
 ## How do I start up the docker-compose file I just obtained?
 Make sure that:
@@ -109,7 +109,7 @@ Yes, see next step.
 ## When should or shouldn’t I use Docker-Compose?
 Docker Compose is quick, easy and convenient, but there are situations which it isn’t suited for. We recommend to use a docker-compose based setup for trying out or evaluating Weaviate and when developing with Weaviate locally.
 
-However, for a stable production environment, we [recommend to run Weaviate on Kubernetes](/developers/weaviate/current/installation/#kubernetes-k8s){:target="_blank"}. You can use Helm, there is an [officially supported Weaviate Helm Chart](https://github.com/semi-technologies/weaviate-helm){:target="_blank"}.
+However, for a stable production environment, we [recommend to run Weaviate on Kubernetes](/developers/weaviate/current/installation/kubernetes.html){:target="_blank"}. You can use Helm, there is an [officially supported Weaviate Helm Chart](https://github.com/semi-technologies/weaviate-helm){:target="_blank"}.
 
 ## Where to go from here?
 Congratulations, you now have a lot of background on Docker and containerization in general! Now there’s nothing in the way of [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate..

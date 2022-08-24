@@ -5,7 +5,7 @@ solution: weaviate
 sub-menu: Benchmarks
 title: Benchmarks
 intro: 
-description: 
+description: Overview of benchmarks for the Weaviate vector search engine
 tags: ['Weaviate', 'performance', 'benchmarks', 'ann benchmarks']
 menu-order: 0
 open-graph-type: article
