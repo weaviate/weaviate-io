@@ -182,11 +182,13 @@ Here are a few basic syntax which we use in our code:
 This executes the block of code only if the given condition is true. It is executed in the following manner:
 
 ```
+{% raw %}
 Published on {{ page.date | date: '%B %d, %Y' }}
 {% if page.canonical-name %}
     originally on
     <a href="{{ page.canonical-url }}" target="_blank">{{ page.canonical-name }}</a>
 {% endif %}
+{% endraw %}
 ```
 
 * `for` loop
@@ -194,11 +196,13 @@ Published on {{ page.date | date: '%B %d, %Y' }}
 The for statement executes a block of code repeatedly. It is wriiten in the following manner:
 
 ```
+{% raw %}
 {% for integration in site.data.integrations %}
     <a class="dropdown-item" href="/product.html#{{ integration.name | downcase }}">
         {{ integration.name }} ({{ integration.type }})
     </a>
 {% endfor %}
+{% endraw %}
 ```
 
 * Include
@@ -206,7 +210,9 @@ The for statement executes a block of code repeatedly. It is wriiten in the foll
 The above tag is used to insert a already rendered file within the current template. It is written in the following manner:
 
 ```
+{% raw %}
 {% include docs-current_version_finder.html %}
+{% endraw %}
 ```
 
 * Assign
@@ -214,7 +220,9 @@ The above tag is used to insert a already rendered file within the current templ
 The assign tag is used to create a new variable. It is written in the following manner:
 
 ```
-  {% assign sortedResources = site.data.podcasts | sort: 'date' %}
+{% raw %}
+{% assign sortedResources = site.data.podcasts | sort: 'date' %}
+{% endraw %}
 ```  
 
 Also read repository specific [CONTRIBUTION.md](https://github.com/semi-technologies/weaviate-io/blob/main/CONTRIBUTING.md) to get more familiar with the code base and contribution style.
