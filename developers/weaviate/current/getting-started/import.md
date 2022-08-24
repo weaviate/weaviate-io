@@ -47,7 +47,7 @@ Now, to import the data we need to follow these steps:
   * Push the object through a batch process
 0. Flush the batch process – in case there are any remaining objects in the buffer
 
-Here is the code you need to import the **Publications**.
+Here is the full code you need to import the **Publications** (note, the **importAuthors** example is shorter).
 
 {% include code/1.x/getting-started.import.publications.html %}
 
