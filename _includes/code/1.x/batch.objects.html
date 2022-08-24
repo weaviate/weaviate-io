@@ -29,7 +29,8 @@ client.batch.configure(
   # `timeout_retries` takes an `int` value to retry on time outs
   timeout_retries=3,
   # checks for batch-item creation errors
-  callback=None,
+  # this is the default in weaviate-client >= 3.6.0
+  callback=weaviate.util.check_batch_result,
 )
 
 with client.batch as batch:

@@ -1,6 +1,6 @@
 slack_signup_url: "https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw"
 weaviate_cli_version: 2.1.2
-python_client_version: 3.5.0
+python_client_version: 3.7.0
 markdown: kramdown
 highlighter: none
 url: https://weaviate.io
@@ -57,7 +57,7 @@ toc:
 weaviate_version: v1.14.1 # the current and latest version
 weaviate_versions: # order the versions how you want them displayed
   "v1.14.1":
-    helm_version: 14.3.0 # Helm version for this Weaviate version
+    helm_version: 14.4.0 # Helm version for this Weaviate version
   "v1.13.2":
     helm_version: 14.3.0 # Helm version for this Weaviate version
   "v1.12.2":
