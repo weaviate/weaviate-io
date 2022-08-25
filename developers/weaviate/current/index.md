@@ -76,11 +76,11 @@ Within Weaviate, all individual data objects are based on a class property struc
 
 You can add data to Weaviate through the [RESTful API](./restful-api-references/) end-points and retrieve data through the [GraphQL interface](./graphql-references/).
 
-Weaviates [vector indexing mechanism is modular](./vector-index-plugins/), and the current available plugin is the [Hierarchical Navigable Small World (HNSW) multilayered graph](./vector-index-plugins/hnsw.html).
+Weaviate's [vector indexing mechanism is modular](./vector-index-plugins/), and the current available plugin is the [Hierarchical Navigable Small World (HNSW) multilayered graph](./vector-index-plugins/hnsw.html).
 
 # What are Weaviate modules?
 
-Weaviate modules are used to extend Weaviate's capabilities and optional. There are Weaviate modules that automatically vectorize your content (i.e., `*2vec`) or extend Weaviate's capabilities (often related to the type of vectors you have.) You can also create your own modules. Click [here](./modules) to get started with them.
+Weaviate modules are used to extend Weaviate's capabilities and are optional. There are Weaviate modules that automatically vectorize your content (i.e., `*2vec`) or extend Weaviate's capabilities (often related to the type of vectors you have.) You can also create your own modules. Click [here](./modules) to get started with them.
 
 # What is a vector search engine?
 
@@ -88,11 +88,11 @@ If you work with data, you probably work with search engine technology. The best
 
 Take for example the data object: `{ "data": "The Eiffel Tower is a wrought iron lattice tower on the Champ de Mars in Paris." }`
 
-Storing this in a traditional search engine might leverage inverted indices to index the data. This means that to retrieve the data; you need to search for "Eiffel Tower" or "wrought iron lattice", etc. to find it. But what if you have vast amounts of data and you want the document about the Eiffel Tower but you search for: "landmarks in France"? Traditional search engines can't help you there and this is where vector search engines show their superiority.
+Storing this in a traditional search engine might leverage inverted indices to index the data. This means that to retrieve the data; you need to search for "Eiffel Tower" or "wrought iron lattice", etc. to find it. But what if you have vast amounts of data and you want the document about the Eiffel Tower but you search for: "landmarks in France?" Traditional search engines can't help you there, so this is where vector search engines show their superiority.
 
-Weaviate uses vector indexing mechanisms at its core to represent the data. The vectorization modules (e.g., the NLP module) vectorizes the above-mentioned data object in a vector-space where the data object sits _near_ the text "landmarks in France". This means that Weaviate can't make a 100% match, but a very high one to show you the results.
+Weaviate uses vector indexing mechanisms at its core to represent the data. The vectorization modules (e.g., the NLP module) vectorizes the above-mentioned data object in a vector-space where the data object sits _near_ the text "landmarks in France." This means that Weaviate can't make a 100% match, but a very high one to show you the results.
 
-The above example is for text (i.e., NLP) but you can use it for any machine learning model that vectorizes, like images, audio, video, genes, etc.
+The above example is for text (i.e., NLP), but you can use it for any machine learning model that vectorizes, like images, audio, video, genes, etc.
 
 Last but not least, using a vector search engine for your machine learning is something you do for the same reason you've been using a traditional search engine. It allows you to scale fast, search, and classify in real-time and it can be used in a robust production environment.
 
