@@ -50,13 +50,13 @@ Weaviate makes it easy to use state-of-the-art AI models while providing the sca
    Weaviate typically performs nearest neighbor (NN) searches of millions of objects in considerably less than 100ms. You can find more information on our [benchmark](./benchmarks/) page.
 
 * **Ingest any media type with Weaviate Modules**<br>
-  Use State-of-the-Art AI model inference (e.g. Transformers) for accessing Text, Images, etc. data at search-and-query time to let Weaviate manage the process of vectorizing data for you - or providing for importing your own vectors.
+Use State-of-the-Art AI model inference (e.g., Transformers) for accessing data (text, images, etc.) at search-and-query time to let Weaviate manage the process of vectorizing data for you - or provide your own vectors.
 
 * **Combine vector and scalar search**<br>
-  Weaviate allows for efficient, combined vector and scalar searches, e.g “articles related to the COVID 19 pandemic published within the past 7 days”. Weaviate stores both objects and the vectors and ensures the retrieval of both is always efficient. There is no need for a third party object storage. 
+ Weaviate allows for efficient, combined vector and scalar searches. For example, “articles related to the COVID-19 pandemic published within the past 7 days.” Weaviate stores both objects and vectors and ensures the retrieval of both is always efficient. There is no need for a third-party object storage. 
 
 * **Real-time and persistent**<br>
-Weaviate let’s you search through your data even if it’s currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.
+Weaviate lets you search through your data even if it’s currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.
 
 * **Horizontal Scalability**<br>
   Scale Weaviate for your exact needs, e.g., maximum ingestion, largest possible dataset size, maximum queries per second, etc.
