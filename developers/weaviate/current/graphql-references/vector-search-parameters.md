@@ -169,11 +169,21 @@ This filter allows you to find data objects in the vicinity of the vector repres
 | `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](../vector-index-plugins/distances.html). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
 
-### Example
+### Example I
+
+This example shows a basic overview of using the nearText filter.
 
 {% include code/1.x/graphql.filters.nearText.html %}
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Publication%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveAwayFrom%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++++force%3A+0.45%0D%0A++++++++%7D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++name%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
+
+### Example II
+
+You can also bias results toward other data objects' vector representations. For example, in this dataset, we have an ambiguous query on our news article dataset, which we bias towards an article called: ["Tohoku: A Japan destination for all seasons."](https://link.semi.technology/3Czhg9p)
+
+{% include code/1.x/graphql.filters.nearText.2obj.html %}
+
+{% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Article%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22traveling+in+Asia%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++objects%3A+%5B%7B%0D%0A++++++++++++%23+this+ID+is+of+the+article%3A%0D%0A++++++++++++%23+%22Tohoku%3A+A+Japan+destination+for+all+seasons.%22%0D%0A++++++++++++id%3A+%222faf2b7d-f185-30c0-8c80-a01b7cfeefb4%22%0D%0A++++++++++%7D%5D%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++title%0D%0A++++++summary%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
 ### Additional information
 
