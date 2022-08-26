@@ -24,6 +24,22 @@ your desired runtime.
 
 To start Weaviate with docker-compose, you need a docker-compose configuration file. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional [environment variables](#environment-variables) can be set in this file, which regulate your Weaviate setup, authentication and authorization, module settings, and data storage settings.
 
+## Persistent Volume
+
+It's recommended to set a persistent volume to avoid data loss and improve reading and writing speeds.
+
+Add the following snippet to your Docker Compose YAML file:
+
+```yaml
+services:
+  weaviate:
+    volumes:
+      - /var/weaviate:/var/lib/weaviate
+    # etc
+```
+
+Make sure to run `$ docker-compose down` when shutting down, this writes all the files from memory to disk.
+
 ## Weaviate without any modules
 
 An example docker-compose setup for Weaviate without any modules can be found
