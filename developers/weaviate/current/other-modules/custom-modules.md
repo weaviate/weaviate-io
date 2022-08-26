@@ -9,6 +9,8 @@ tags: ['Custom Modules']
 menu-order: 9
 open-graph-type: article
 toc: true
+redirect_from:
+   - /developers/weaviate/current/modules/custom-modules.html
 ---
 
 # Introduction

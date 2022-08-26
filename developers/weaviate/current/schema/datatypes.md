@@ -8,6 +8,8 @@ tags: ['Data types']
 menu-order: 2
 open-graph-type: article
 toc: true
+redirect_from:
+  - /developers/weaviate/current/data-schema/datatypes.html
 ---
 
 # Introduction
