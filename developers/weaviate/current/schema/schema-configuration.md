@@ -20,6 +20,8 @@ A Weaviate data schema is slightly different from a taxonomy, which has a hierar
 
 You can upload schema classes to Weaviate via the RESTful endpoint `/v1/schema`. Learn more [here](../restful-api-references/schema.html).
 
+> 💡 Check out the [schema getting started guide](/developers/weaviate/current/getting-started/schema.html) to learn how to work with the Weaviate schema in under 10 minutes.
+
 # Data objects and structure
 
 Data objects in Weaviate always belongs to a Class, and has one or more Properties.

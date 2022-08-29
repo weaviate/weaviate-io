@@ -18,6 +18,9 @@ layout: default
                 </p>
                 <!-- Buttons -->
                 <div class="text-center text-md-start">
+                <a href="/developers/weaviate/current/" class="btn btn-primary lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
+                        Weaviate Documentation <i class="fe fe-code d-none d-md-inline ms-3 mr-1"></i>
+                    </a>
                     <a href="{{ site.slack_signup_url }}" class="btn btn-primary-soft lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
                         Slack <i class="fe fe-slack d-none d-md-inline ms-3 mr-1"></i>
                     </a>
