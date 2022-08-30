@@ -168,7 +168,9 @@ It is also very exciting to think about the generality of this algorithm. We cou
 Although not tested in the paper, these top-k searches can further leverage **Approximate Nearest Neighbor (ANN)** indexes such as **HNSW** to achieve polylogarithmic scaling with respect to search time and the number of total documents. This is a very important detail for practical engineering of billion-scale similarity search.
 
 ## Custom Retrievers in Weaviate
-	
+
+![Spider with Weaviate](/img/blog/self-supervised-retrieval/weaviate-spider-diagram.jpg)
+
 Advances such as Spider can be added to the Weaviate Vector Search Engine by creating a custom module. The authors have open-sourced their model publishing the weights on the HuggingFace model hub. Weaviate has a tight integration with HuggingFace in examples such as the nearText module. This enables users to change the path in their Weaviate docker image to access different HuggingFace models.
 
 ## Conclusion
