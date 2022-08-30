@@ -60,7 +60,7 @@ Some quick terms before diving in:
 
 As an exercise, I’ve prepared a [Google Colab notebook](https://colab.research.google.com/github/CShorten/Small-Weaviate-Examples/blob/main/Recurring-Spans.ipynb){:target="_blank"}, where I implemented a basic version of the Spider Algorithm. The idea is to identify the longest Recurring Spans in the “Deep learning” Wikipedia article.
 
-### Exercise – Pseudo code
+### Exercise – pseudocode
 In case you are curious on how my implementation works.
 I can explain it in 4 steps:
 
