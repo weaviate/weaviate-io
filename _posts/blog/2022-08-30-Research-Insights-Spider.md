@@ -5,7 +5,7 @@ description: "A new algorithm presents evidence that Self-Supervised Retrieval c
 published: true
 author: Connor Shorten
 author-img: /img/people/icon/connor.jpg
-card-img: /img/blog/hero/research-insights-spider.png
+card-img: /img/blog/hero/research-insights-spider-card.jpg
 date: 2022-08-30
 toc: true
 isMLResearch: true
