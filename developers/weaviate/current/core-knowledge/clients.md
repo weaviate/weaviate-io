@@ -19,7 +19,7 @@ There are two ways how you can interact with Weaviate:
 
 Weaviate examples in the documentation are always shown in a handy accordion menu.
 
-The following example show you how you can get the Weaviate schema using different clients.
+The following example shows you how to get the Weaviate schema using different clients.
 
 {% include code/1.x/schema.dump.html %}
 
