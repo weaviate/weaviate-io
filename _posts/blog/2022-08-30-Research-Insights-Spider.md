@@ -173,7 +173,7 @@ Although not tested in the paper, these top-k searches can further leverage **Ap
 
 ![Spider with Weaviate](/img/blog/self-supervised-retrieval/weaviate-spider-diagram.jpg)
 
-Advances such as Spider can be added to the Weaviate Vector Search Engine by creating a custom module. The authors have open-sourced their model publishing the weights on the HuggingFace model hub. Weaviate has a tight integration with HuggingFace in examples such as the nearText module. This enables users to change the path in their Weaviate docker image to access different HuggingFace models.
+Advances such as Spider can be added to the Weaviate Vector Search Engine by creating a custom module. The authors have [open-sourced their model](https://github.com/oriram/spider){:target="_blank"} and published the weights on the [HuggingFace model hub](https://huggingface.co/tau/spider){:target="_blank"}. Weaviate has a tight integration with HuggingFace in examples such as the nearText module. This enables users to change the path in their Weaviate docker image to access different HuggingFace models.
 
 ## Conclusion
 
