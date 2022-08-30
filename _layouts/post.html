@@ -14,20 +14,42 @@
         <div class="row justify-content-center">
           <div class="col-12 col-md-10 col-lg-9 col-xl-8">
 
+            <!-- Research headers-->
+            {% if page.isMLResearch == true %}
+              <div class="text-center mb-4">
+                <div class="badge badge-pill badge-success" style="background-color: #ff5fa0">🔬 Weaviate search &amp; recommendation research</div>
+              </div>
+            {% endif %}
+            {% if page.isDBResearch == true %}
+              <div class="text-center mb-4">
+                <div class="badge badge-pill badge-success" style="background-color: #77a4f9">🔬 Weaviate database research</div>
+              </div>
+            {% endif %}
+
             <!-- Heading -->
-            <h1 class="display-4 text-center">
+            <h1 class="display-4 text-center" style="font-weight: bold;">
               {{ page.title }}
             </h1>
 
             <!-- Text -->
-            <p class="lead mb-7 text-center text-muted">
+            <p class="lead text-center">
               {{ page.description }}
             </p>
 
+            <!-- Research header-->
+            {% if page.isMLResearch == true or page.isDBResearch == true %}
+              <p class="text-center">
+                <small class="text-muted text-center">
+                  We publish our internal ML and database research on search and recommendation that might end up as part of Weaviate on this blog.
+                  You can stay up to date by signing up for our <a href="http://weaviate-newsletter.semi.technology/" target="_blank">newsletter</a> or by joining our <a href="{{ site.slack_signup_url }}" target="_blank">Slack channel</a>.
+                </small>
+              </p>
+            {% endif %}
+
             {% if page.hero-img != null %}
-            <div class="hero-container">
-              <img src="{{page.hero-img}}" alt="hero image" class="rounded" style="width: 100%">
-            </div>
+              <div class="hero-container">
+                <img src="{{page.hero-img}}" alt="hero image" class="rounded" style="width: 100%">
+              </div>
             {% endif %}
 
             <!-- Meta -->
