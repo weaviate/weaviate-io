@@ -1,11 +1,12 @@
 ---
 layout: post
-title: Learning to Retrieve Passages without Supervision
+title: Research Insights – Learning to Retrieve Passages without Supervision
 description: "A new algorithm presents evidence that Self-Supervised Retrieval can surpass BM25 and Supervised techniques. This technique also pairs very well alongside BM25 in Hybrid Retrieval."
 published: true
 author: Connor Shorten
 author-img: /img/people/icon/connor.jpg
 card-img: /img/blog/hero/research-insights-spider-card.jpg
+og: /img/blog/hero/research-insights-spider-og.png
 date: 2022-08-30
 toc: true
 isMLResearch: true
