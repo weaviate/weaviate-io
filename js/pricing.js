@@ -2,6 +2,7 @@ var priceCounter;
 
 function getPrice(){
   clearTimeout(priceCounter);
+
   priceCounter = setTimeout(function(){
     var dims = $('#rangeslider1_input').val().replace(/[^0-9]/g, '');
     var objects = $('#rangeslider2_input').val().replace(/[^0-9]/g, '');
@@ -11,8 +12,18 @@ function getPrice(){
 
     var finalUrl = 'https://us-central1-semi-production.cloudfunctions.net/pricing-calculator?embeddingSize=' + dims + '&amountOfDataObjs=' + objects + '&queriesPerMonth=' + queries + '&slaTier=' + sla;
     
+    console.log(finalUrl);
+
     $.getJSON(finalUrl, function( data ) {
-      console.log(data);
+      if(data['message'] == 'Contact sales'){
+        $('#contact-sales').show();
+        $('.total-price').hide();
+      } else {
+        $('#contact-sales').hide();
+        $('.total-price').show();
+        var price = new Intl.NumberFormat().format((data['priceInt'] / 100).toFixed(2));
+        $('#total-price-val').text(price);
+      }
     });
 
 
@@ -80,6 +91,11 @@ function setSlider(i){
   });
 }
 
+$('#sla-select').change(function(){
+  getPrice();
+});
+
+// set sliders
 setSlider('1')
 setSlider('2')
 setSlider('3')

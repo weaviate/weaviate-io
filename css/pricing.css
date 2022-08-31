@@ -121,7 +121,7 @@ html {
 .pricing-banner {
   background-color: #122742;
   background-image: url(../img/price-banner.png);
-  background-position: center;
+  background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
   overflow: visible;
@@ -753,21 +753,21 @@ input[type=range]:focus {
   }
 }
 
-.sec-newslater {
+.sec-newsletter {
   background-color: #112C4B;
 }
 
-.newslater-content {
+.newsletter-content {
   background-color: #fff;
   padding: 40px 35px;
   border-radius: 5px;
   text-align: center;
   margin-top: -100px;
 }
-.newslater-content h2 {
+.newsletter-content h2 {
   margin: 10px 0 15px;
 }
-.newslater-content .submit-btn {
+.newsletter-content .submit-btn {
   width: 100%;
   color: #fff;
   font-size: 20px;
@@ -777,7 +777,7 @@ input[type=range]:focus {
   background-color: #FA0171;
 }
 @media (min-width: 768px) {
-  .newslater-content p {
+  .newsletter-content p {
     padding: 0 50px;
   }
 }

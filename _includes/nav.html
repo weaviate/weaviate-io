@@ -19,67 +19,13 @@
     <!-- Navigation -->
     <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"   data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
-                Product
+            <a class="nav-link" href="/pricing.html">
+                Pricing
             </a>
-            <div class="dropdown-menu dropdown-menu-xl p-0" aria-labelledby="navbarLandings">
-                <div class="row gx-0">
-                    <div class="col-12 col-lg-6">
-                        <div class="dropdown-img-start">
-
-                        <!-- Heading -->
-                        <h4 class="fw-bold text-white mb-0">
-                            Weaviate Cloud Service
-                        </h4>
-
-                        <!-- Text -->
-                        <p class="fs-sm text-white">
-                            Fill in the form and get more information
-                        </p>
-
-                        <!-- Button -->
-                        <a href="/product.html#request-access" class="btn btn-sm btn-white shadow-dark fonFt-size-sm">
-                            Request access &amp; pricing info
-                        </a>
-
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="dropdown-body">
-                            <div class="row gx-0">
-                                <div class="col-12">
-
-                                    <!-- Heading -->
-                                    <h6 class="dropdown-header">
-                                        Products
-                                    </h6>
-
-                                    <!-- List -->
-                                    <a class="dropdown-item" href="/product.html">
-                                        Weaviate Cloud Service Pricing
-                                    </a>
-
-                                    <!-- Heading -->
-                                    <h6 class="dropdown-header">
-                                        Integrations
-                                    </h6>
-
-                                    <!-- List -->
-                                    {% for integration in site.data.integrations %}
-                                        <a class="dropdown-item" href="/product.html#{{ integration.name | downcase }}">
-                                            {{ integration.name }} ({{ integration.type }})
-                                        </a>
-                                    {% endfor %}
-                                </div>
-                            </div> <!-- / .row -->
-                        </div>
-                    </div>
-                </div> <!-- / .row -->
-            </div>
         </li>
 
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"   data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
                 Learn
             </a>
             <div class="dropdown-menu dropdown-menu-xl p-0" aria-labelledby="navbarLandings">
@@ -355,9 +301,9 @@
         </li>
     </ul>
 
-    <!-- Github -->
-    <a class="navbar-btn btn btn-sm btn-primary lift ms-auto" href="{{ site.slack_signup_url }}" target="_blank">
-        Slack <i class="fe fe-slack d-none d-md-inline"></i>
+    <!-- Slack and WCS -->
+    <a class="navbar-btn btn btn-sm btn-primary lift" href="https://console.semi.technology" target="_blank">
+        Weaviate Cloud Service <i class="fe fe-upload-cloud d-none d-md-inline" style="margin-left:0.1rem;"></i>
     </a>
 
 </div>

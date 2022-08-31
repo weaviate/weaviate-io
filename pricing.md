@@ -1,6 +1,9 @@
 ---
 title: Weaviate Pricing
 layout: default
+og: /img/og/og-product.png
+redirect_from:
+  - /product.html
 ---
 
 <section class="sec banner-sec pricing-banner pb-0">
@@ -12,19 +15,25 @@ layout: default
                         <span>Weaviate </span> Cloud Services
                     </h1>
                     <p>
-                        Start for free and pay as you go. All paid plans deliver unlimited capacity without any configuration, so your apps may scale seamlessly. Requests over plan quota are charged based on your metered usage, and volume discounts kick-in automatically based on your total usage!
+                        Start for <b style="color:var(--primary-color); text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">free</b> and <b style="color:var(--primary-color); text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">pay as you go</b> per <b style="color:var(--primary-color); text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">vector dimension</b> stored or queried
+                    </p>
+                    <p>
+                        All paid plans deliver unlimited capacity over three different tiers, so your DBs may scale seamlessly
                     </p>   
+                    <p>
+                        Starting from <b style="color:var(--primary-color); text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">$0.05</b> per <b style="color:var(--primary-color); text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">1 million vector dimensions</b>
+                    </p>
                     <div class="gap"></div>
                     <div class="btn-group">
                         <ul class="unstyled">
                             <li>
-                                <a href="#" class="w-btn w-btn-fill">Register for Private Beta</a>
+                                <a href="#register" class="w-btn w-btn-fill">Register for Private Beta</a>
                             </li>
                             <li>
-                                <a href="#" class="w-btn w-btn-outline">Create a free sandbox</a>
+                                <a href="https://console.semi.technology/" class="w-btn w-btn-fill" target="_blank">Create a free sandbox</a>
                             </li>
                         </ul>
-                    </div>                 
+                    </div>     
                 </div>
             </div>
         </div>
@@ -36,16 +45,16 @@ layout: default
                     <img src="/img/free.png" alt="discount">
                     <h2>Get started for free</h2>
                     <p>
-                        Signup and get to your first query with Fauna in minutes. No credit card necessary.
+                        Signup and get to your first 10k data objects for free. No credit card necessary.
                     </p>
                 </div>
             </div>
             <div class="col-md-4 text-center">
                 <div class="feature-box">
                     <img src="/img/vector.png" alt="discount">
-                    <h2>Pay per vector</h2>
+                    <h2>Pay per ML-vector</h2>
                     <p>
-                        Select metered plans that deliver the features you need, without hidden costs.
+                        Starting from<br>$0.00000005 per ML-vector dimension​.
                     </p>
                 </div>
             </div>
@@ -71,7 +80,7 @@ layout: default
                         Pay as you grow
                     </h2>
                     <p>
-                        Plug in your expected usage to see your estimated monthly bill (not inclusive of discounts and taxes).
+                        Plug in your expected usage to see your estimated monthly bill<br><small>(not inclusive of discounts and taxes)</small>.
                     </p>
                 </div>
             </div>
@@ -82,7 +91,7 @@ layout: default
                 <div class="calculator-wrap">
                     <div class="item item-one">
                         <div class="item-title">
-                            <span>Vector dimensions</span>
+                            <span>Vector Dimensions</span>
                         </div>
                         <div class="item-input">
                             <input type="range" class="rangeinput" id="rangeslider1" value="100" min="0" max="12800" step="100">
@@ -93,10 +102,10 @@ layout: default
                     </div>
                     <div class="item">
                         <div class="item-title">
-                            <span>Data objects</span>
+                            <span>Data Objects</span>
                         </div>
                         <div class="item-input">
-                            <input type="range" class="rangeinput" id="rangeslider2" value="0" min="0" max="250000000" step="10000">
+                            <input type="range" class="rangeinput" id="rangeslider2" value="0" min="0" max="100000000" step="10000">
                         </div>
                         <div style="margin-left:2rem;">
                             <input style="max-width: 9rem;" type="text" class="form-control rangeslider_input" id="rangeslider2_input" value="0" min="0" max="250000000">
@@ -104,10 +113,10 @@ layout: default
                     </div>
                     <div class="item">
                         <div class="item-title">
-                            <span>Queries</span>
+                            <span>Queries P/M</span>
                         </div>
                         <div class="item-input">
-                            <input type="range" class="rangeinput" id="rangeslider3" value="0" min="0" max="1000000000" step="10000">
+                            <input type="range" class="rangeinput" id="rangeslider3" value="0" min="0" max="250000000" step="10000">
                         </div>
                         <div style="margin-left:2rem;">
                             <input style="max-width: 9rem;" type="text" class="form-control rangeslider_input" id="rangeslider3_input" value="0" min="0" max="1000000000">
@@ -127,7 +136,7 @@ layout: default
                     </div>
                     <div class="item item-submit">      
                         <div class="item-title">
-                            <span>High avaliability</span>
+                            <span>High Avaliability</span>
                         </div>                  
                         <div class="item-input submitfield">
                             <div class="button-wrap">
@@ -137,10 +146,11 @@ layout: default
                                 </label>
                             </div>
                             <div class="main-price">
-                                <span>Your estimated price</span>
+                                <a href="mailto:sales@semi.technology" class="w-btn" id="contact-sales" style="display: none">Contact Sales</a>
+                                <span class="total-price">Your estimated price</span>
                                 <div class="total-price">
                                     <span>$</span>
-                                    <strong>45</strong>
+                                    <strong id="total-price-val">25</strong>
                                     <span>/mo</span>
                                 </div>
                             </div>
@@ -186,7 +196,7 @@ layout: default
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg>
-                                        1 day lifetime
+                                        30 days lifetime
                                     </li>
                                 </ul>
                             </div>
@@ -200,7 +210,7 @@ layout: default
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg>
-                                        Public Slack
+                                        <a href="{{ site.slack_signup_url }}">Public Slack</a>
                                     </li>
                                 </ul>
                             </div>
@@ -252,7 +262,7 @@ layout: default
                             </li>
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg>
-                                Cold start 1 hour
+                                Hibernation after 1 hour
                             </li>
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg>
@@ -312,7 +322,7 @@ layout: default
                             </li>
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg>
-                                Cold start 1 hour
+                                Hibernation after 8 hours
                             </li>
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg>
@@ -405,7 +415,7 @@ layout: default
         <div class="gap gap3x"></div>
         <div class="row">
             <div class="col-12 text-center">
-                <a href="#" class="w-btn">Register for Private Beta</a>
+                <a href="#register" class="w-btn">Register for Private Beta</a>
             </div>
         </div>
     </div>
@@ -471,39 +481,42 @@ layout: default
         <div class="gap gap3x"></div>
     </div>
 </section>
-<section class="sec sec-newslater pt-0">
+<section class="sec sec-newsletter pt-0">
     <div class="row justify-content-center">
         <div class="col-md-7">
-            <div class="newslater-content">
+            <div class="newsletter-content" id="register">
                 <img src="/img/register1.png" alt="register">
                 <h2>
                     Register for Private Beta
                 </h2>
                 <p>
-                    We are currently onboarding customers onto the Weaviate Cloud Services. Please leave your contact details below if you want to join the first wave of managed vector search users. After leaving your details, you will directly receive an additional information deck, and within 24 hours a representative will reach out to you.
+                    We are currently onboarding customers onto the Weaviate Cloud Services via the Private Beta program. Please leave your contact details below if you want to join the first wave of managed vector search users. After leaving your details, a representative will reach out to you within 24 hours to investigate if you qualify for the private beta program.
                 </p>
                 <form class="subscribe-form">
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="text" class="finput bdr-bottom" placeholder="Name*" required>
+                            <input type="text" class="finput bdr-bottom" placeholder="Name" id="signUpForPrivateBeta-name" required>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="finput bdr-bottom" placeholder="Name*" required>
+                            <input type="email" class="finput bdr-bottom" placeholder="email" id="signUpForPrivateBeta-email" required>
                         </div>
                         <div class="col-md-12">
-                            <select class="finput inputselect">
-                                <option value="standard">Conference Talk</option>
-                                <option value="enterprise">Blogpost</option>
-                                <option value="businessCritical">Search engine</option>
-                                <option value="hybrid">Github list</option>
-                                <option value="hybrid">Reddit</option>
-                                <option value="hybrid">Twitter</option>
-                                <option value="hybrid">A friend</option>
-                                <option value="hybrid"> Other </option>
+                            <select class="finput inputselect" id="signUpForPrivateBeta-foundHow">
+                                <option value="conference talk">Conference Talk</option>
+                                <option value="blogpost">Blogpost</option>
+                                <option value="search-engine">Search engine (e.g., Google or DuckDuckGo)</option>
+                                <option value="github-list">Github list</option>
+                                <option value="reddit">Reddit</option>
+                                <option value="twitter">Twitter</option>
+                                <option value="friend">A friend</option>
+                                <option value="other">Other</option>
                             </select>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn w-btn-fill submit-btn">Complete Registration</button>
+                            <button class="btn w-btn-fill submit-btn" id="signUpForPrivateBeta">Sign Up for the Private Beta</button>
+                        </div>
+                        <div class="col-md-12" id="thank-you" style="display:none">
+                            Thank you! You've received a confirmation email 🙏
                         </div>
                     </div>
                 </form>
