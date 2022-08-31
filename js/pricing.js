@@ -1,14 +1,85 @@
-$('#rangeslider1').rangeslider({polyfill: false });
-$('#rangeslider1').on('change input', function () {
-  $('#rangeslider1_output').val(String($(this).val().replace(/[^0-9.]/g, '')).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'M');
-});
+var priceCounter;
 
-$('#rangeslider2').rangeslider({polyfill: false });
-$('#rangeslider2').on('change input', function () {
-  $('#rangeslider2_output').val(String($(this).val().replace(/[^0-9.]/g, '')).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'M');
-});
+function getPrice(){
+  clearTimeout(priceCounter);
+  priceCounter = setTimeout(function(){
+    var dims = $('#rangeslider1_input').val().replace(/[^0-9]/g, '');
+    var objects = $('#rangeslider2_input').val().replace(/[^0-9]/g, '');
+    var queries =  $('#rangeslider3_input').val().replace(/[^0-9]/g, '');
+    var sla = $('#sla-select').val();
+    var ha = $('#ha-select').is(':selected');
 
-$('#rangeslider3').rangeslider({polyfill: false });
-$('#rangeslider3').on('change input', function () {
-  $('#rangeslider3_output').val(String($(this).val().replace(/[^0-9.]/g, '')).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'M');
-});
+    var finalUrl = 'https://us-central1-semi-production.cloudfunctions.net/pricing-calculator?embeddingSize=' + dims + '&amountOfDataObjs=' + objects + '&queriesPerMonth=' + queries + '&slaTier=' + sla;
+    
+    $.getJSON(finalUrl, function( data ) {
+      console.log(data);
+    });
+
+
+  }, 250)
+}
+
+function setValue(i, c){
+  
+  // set value
+  $(c).val(new Intl.NumberFormat().format($(i).val()));
+
+  // set slider
+  if(c == '#rangeslider2_input' || c == '#rangeslider3_input'){
+    var mainDiv = c.replace('_input', '');
+    if($(i).val() < 10000000){
+      $(mainDiv).attr('step', '100000');
+      $(mainDiv).rangeslider('update', true);
+    } else if($(i).val() < 250000000){
+      $(mainDiv).attr('step', '500000');
+      $(mainDiv).rangeslider('update', true);
+    } else {
+      $(mainDiv).attr('step', '50000000');
+      $(mainDiv).rangeslider('update', true);
+    }
+  }
+
+  // get the price
+  getPrice();
+
+}
+
+function setSlider(i){
+  // set sliders
+  $('#rangeslider' + i).rangeslider({polyfill: false });
+  $('#rangeslider' + i).on('change input', function () {
+    setValue($(this), '#rangeslider' + i + '_input');
+  });
+  // on focus on input
+  $('.rangeslider_input').focus(function() {
+    var valNoNum = $(this).val().replace(/[^0-9]/g, '');
+    $(this).val(valNoNum);
+  });
+  // leave focus
+  $('.rangeslider_input').focusout(function() {
+    var formattedVal = $(this).val();
+    if(isNaN(formattedVal) === false){
+      $(this).val(new Intl.NumberFormat().format(formattedVal));
+    }
+  });
+  // on change of input
+  $('.rangeslider_input').keydown(function(event) {
+    // Allow only backspace and delete
+    if ( event.keyCode == 46 || event.keyCode == 8 ) {
+        // this is okay
+    } else {
+        // Ensure that it is a number and stop the keypress
+        if (event.keyCode < 48 || event.keyCode > 57 ) {
+            event.preventDefault(); 
+        }   
+    }
+    // set div
+    var mainDiv = '#' + $(this).attr('id').replace('_input', '');
+    $(mainDiv).attr('value', $(this).val());
+    $(mainDiv).rangeslider('update', true);
+  });
+}
+
+setSlider('1')
+setSlider('2')
+setSlider('3')
