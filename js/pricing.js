@@ -11,8 +11,6 @@ function getPrice(){
     var ha = $('#ha-select').is(':selected');
 
     var finalUrl = 'https://us-central1-semi-production.cloudfunctions.net/pricing-calculator?embeddingSize=' + dims + '&amountOfDataObjs=' + objects + '&queriesPerMonth=' + queries + '&slaTier=' + sla;
-    
-    console.log(finalUrl);
 
     $.getJSON(finalUrl, function( data ) {
       if(data['message'] == 'Contact sales'){
