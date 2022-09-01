@@ -90,7 +90,8 @@ The following schema configuration uses the `babbage` model.
           },
           "name": "content"
         }
-      ]
+      ],
+      "vectorizer": "text2vec-openai"
     }
   ]
 }
