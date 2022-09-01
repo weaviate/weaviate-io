@@ -2,6 +2,7 @@
 title: Weaviate Pricing
 layout: default
 og: /img/og/og-product.png
+redirect_from: /product.html
 ---
 
 <section class="sec banner-sec pricing-banner pb-0">
