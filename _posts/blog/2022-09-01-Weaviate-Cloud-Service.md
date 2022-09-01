@@ -5,8 +5,8 @@ description: "Press Release: Pay-as-you-grow comes to vector search."
 published: true
 author: Bob van Luijt
 author-img: /img/people/icon/bob.jpg
-card-img: /img/blog/hero/research-insights-spider-card.jpg
-og: /img/blog/hero/research-insights-spider-og.png
+card-img: /img/blog/hero/weaviate-cloud-services-cta_5.png
+og: /img/og/og-blog/weaviate-cloud-services-cta.jpg
 date: 2022-09-01
 toc: false
 isMLResearch: false
@@ -15,7 +15,7 @@ isDBResearch: false
 
 Amsterdam NL – September 1, 2022
  
-SeMI Technologies, the leader in open-source vector-search technology, announces an entirely new pricing model for its Weaviate Cloud Service.
+SeMI Technologies, the leader in open-source vector-search technology, announces an [entirely new pricing model](/pricing.html) for its Weaviate Cloud Service.
  
 Inspired by “pay-as-you-grow” pricing used in cloud storage, SeMI has introduced a new business model that makes it easier and more affordable for enterprises of any scale to take advantage of its Weaviate vector-search engine. Beginning today, users have the option of paying a usage-based rate for search on a per-dimension basis. Pricing begins at $0.05 per million dimensions. (No, that’s not a typo; the rate is five cents per million.)
    

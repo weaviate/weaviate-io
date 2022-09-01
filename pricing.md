@@ -428,10 +428,10 @@ redirect_from:
             <div class="col-md-6">
                 <div class="faq-item">
                     <h3>
-                        Is there a difference between Weaviate open source and the Weaviate Cloud Service?
+                        Is there a difference between Weaviate open source and the Weaviate version used by the WCS?
                     </h3>
                     <p>
-                        No,​ the Weaviate Cloud Service is ​a separate solution from Weaviate, maintained and run by SeMI Technologies. 
+                        No, the Weaviate Cloud Service (WCS) is a different solution using the same code as Weaviate open-source. The difference is the WCS itself (i.e., SaaS) and different SLA types (opposed to the open-source BSD3 license).
                     </p>
                 </div>
             </div>
