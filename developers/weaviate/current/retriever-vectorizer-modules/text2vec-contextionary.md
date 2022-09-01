@@ -129,7 +129,8 @@ For example
           },
           "name": "content"
         }
-      ]
+      ],
+      "vectorizer": "text2vec-contextionary"
     }
   ]
 }
