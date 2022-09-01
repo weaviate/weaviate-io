@@ -190,14 +190,6 @@ layout: default
                 </div>
             {% endfor %}
         </div> <!-- / .row -->
-        <div class="row">
-            <div class="col-12 align-items-center justify-content-center text-center">
-                <!-- CTA -->
-                <p>
-                    <a href="/product.html#integrations" class="btn btn-primary-soft lift">Learn more about integrations <i class="fe fe-youtube d-none d-md-inline ms-3"></i></a>
-                </p>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -468,8 +460,8 @@ layout: default
                     Get started with open source <i class="fe fe-arrow-right"></i>
                 </a>
                 <!-- Button -->
-                <a href="/product.html#request-access" class="btn btn-success lift mb-6">
-                    Request early access to the managed service <i class="fe fe-arrow-right"></i>
+                <a href="/pricing.html" class="btn btn-success lift mb-6">
+                    Request early access to the Weaviate Cloud Service <i class="fe fe-arrow-right"></i>
                 </a>
             </div>
         </div> <!-- / .row -->
