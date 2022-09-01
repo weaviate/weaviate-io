@@ -11,14 +11,12 @@ open-graph-type: article
 toc: true
 ---
 
-<!-- TODO: (Marcin) Review the Text -->
 # In short
 * The Summarization (SUM) module is a Weaviate module that summarizes whole paragraps into a short text.
 * The module depends on a SUM Transformers model that should be running with Weaviate. There are pre-built models available, but you can also attach another HuggingFace Transformer or custom SUM model.
 * The module adds a `summary {}` filter to the GraphQL `_additional {}` field.
-* The module returns data objects as usual, with recognized tokens in the GraphQL `_additional { summary {} }` field. 
+* The module returns the results in the GraphQL `_additional { summary {} }` field. 
 
-<!-- TODO: update Intro -->
 # Introduction
 
 The Summarization module is a Weaviate module that is used to summarize Weaviate text objects at query time.
@@ -37,7 +35,7 @@ and transform it to a short sentence like this:
 
 ## Available modules
 
-Here is the cuurent list of available SUM modules - sourced from [Huggingface](https://huggingface.co/):
+Here is the current list of available SUM modules - sourced from [Huggingface](https://huggingface.co/):
 * [`bart-large-cnn`](https://huggingface.co/facebook/bart-large-cnn)
 <!-- TODO: include when/if the build completes -->
 <!-- * [`pegasus-xsum`](https://huggingface.co/google/pegasus-xsum) -->
