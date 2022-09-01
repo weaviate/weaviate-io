@@ -105,6 +105,11 @@ $('#ha-select').change(function(){
   getPrice();
 });
 
+// on SLA change
+$('#sla-select').change(function(){
+  getPrice();
+});
+
 // set sliders
 setSlider('1')
 setSlider('2')
