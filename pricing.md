@@ -13,13 +13,13 @@ og: /img/og/og-product.png
                         <span>Weaviate </span> Cloud Services
                     </h1>
                     <p>
-                        Start for <b style="color:var(--primary-color); text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">free</b> and <b style="color:var(--primary-color); text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">pay as you go</b> per <b style="color:var(--primary-color); text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">vector dimension</b> stored or queried
+                        Start for <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">free</b> and <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">pay as you go</b> per <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">vector dimension</b> stored or queried
                     </p>
                     <p>
                         All paid plans deliver unlimited capacity over three different tiers, so your DBs may scale seamlessly
                     </p>   
                     <p>
-                        Starting from <b style="color:var(--primary-color); text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">$0.05</b> per <b style="color:var(--primary-color); text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">1 million vector dimensions</b>
+                        Starting from <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">$0.05</b> per <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">1 million vector dimensions</b>
                     </p>
                     <div class="gap"></div>
                     <div class="btn-group">

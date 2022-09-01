@@ -104,6 +104,9 @@ function setSlider(i){
 $('#ha-select').change(function(){
   getPrice();
 });
+$('#sla-select').change(function(){
+  getPrice();
+});
 
 // on SLA change
 $('#sla-select').change(function(){
