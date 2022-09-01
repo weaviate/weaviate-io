@@ -109,3 +109,8 @@ $('#ha-select').change(function(){
 setSlider('1')
 setSlider('2')
 setSlider('3')
+
+// set popper overlay
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})

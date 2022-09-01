@@ -2,8 +2,6 @@
 title: Weaviate Pricing
 layout: default
 og: /img/og/og-product.png
-redirect_from:
-  - /product.html
 ---
 
 <section class="sec banner-sec pricing-banner pb-0">
@@ -91,7 +89,7 @@ redirect_from:
                 <div class="calculator-wrap">
                     <div class="item item-one">
                         <div class="item-title">
-                            <span>Vector Dimensions</span>
+                            <span>Vector Dimensions <b style="cursor:help;color:#D20268;text-decoration:underline;" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" title="V​ector dimensions are the individual dimensions per individual embedding produced by your machine learning model. ​For example, some sentence transformers have 384​ dimensions, whereas some OpenAI dimensions have up to 12,800 dimensions.​">[?]</b></span>
                         </div>
                         <div class="item-input">
                             <input type="range" class="rangeinput" id="rangeslider1" value="100" min="0" max="12800" step="1">
@@ -425,6 +423,16 @@ redirect_from:
         <div class="gap"></div>
         <div class="gap"></div>
         <div class="row">
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
+                        Why do you price per vector dimension?
+                    </h3>
+                    <p>
+                        In Weaviate, you can attach a vector embedding to a data object. A vector embedding can have an x-amount of dimensions. Some vectors have a lot of embeddings (sometimes more than 10k), some just a few (e.g., 90). The more vector dimensions you store, the more infrastructure is needed to optimize and maintain performance, this is the reason why we calculate with individual dimensions. We believe it's the fairest and most accurate price to give you the best experience.
+                    </p>
+                </div>
+            </div>
             <div class="col-md-6">
                 <div class="faq-item">
                     <h3>
