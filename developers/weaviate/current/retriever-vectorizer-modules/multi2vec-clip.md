@@ -168,35 +168,39 @@ text fields using the `multi2vec-clip` module as a `vectorizer`:
 
 ```json
 {
-  "class": "ClipExample",
-  "moduleConfig": {
-      "multi2vec-clip": {
+  "classes": [
+    {
+      "class": "ClipExample",
+      "moduleConfig": {
+        "multi2vec-clip": {
           "imageFields": [
-              "image"
+            "image"
           ],
           "textFields": [
-              "name"
+            "name"
           ],
           "weights": {
             "textFields": [0.7],
             "imageFields": [0.3]
           }
-      }
-  },
-  "vectorIndexType": "hnsw",
-  "vectorizer": "multi2vec-clip",
-  "properties": [
-    {
-      "dataType": [
-        "string"
+        }
+      },
+      "properties": [
+        {
+          "dataType": [
+            "string"
+          ],
+          "name": "name"
+        },
+        {
+          "dataType": [
+            "blob"
+          ],
+          "name": "image"
+        }
       ],
-      "name": "name"
-    },
-    {
-      "dataType": [
-          "blob"
-      ],
-      "name": "image"
+      "vectorIndexType": "hnsw",
+      "vectorizer": "multi2vec-clip"
     }
   ]
 }

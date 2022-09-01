@@ -139,44 +139,45 @@ A full example of a class using the `img2vec-neural` module is shown below. This
 
 ```json
 {
-    "classes": [{
-        "class": "FashionItem",
-        "description": "Each example is a 28x28 grayscale image, associated with a label from 10 classes.",
-        "moduleConfig": {
-            "img2vec-neural": {
-                "imageFields": [
-                    "image"
-                ]
-            }
+  "classes": [
+    {
+      "class": "FashionItem",
+      "description": "Each example is a 28x28 grayscale image, associated with a label from 10 classes.",
+      "moduleConfig": {
+        "img2vec-neural": {
+          "imageFields": [
+            "image"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "dataType": [
+            "blob"
+          ],
+          "description": "Grayscale image",
+          "name": "image"
         },
-        "properties": [
-            {
-                "dataType": [
-                    "blob"
-                ],
-                "description": "Grayscale image",
-                "name": "image"
-            },
-            {
-                "dataType": [
-                    "number"
-                ],
-                "description": "Label number for the given image.",
-                "name": "labelNumber"
-            },
-            {
-                "dataType": [
-                    "string"
-                ],
-                "description": "label name (description) of the given image.",
-                "name": "labelName"
-            }
-
-        ],
-
-        "vectorIndexType": "hnsw",
-        "vectorizer": "img2vec-neural"
-    }]}
+        {
+          "dataType": [
+            "number"
+          ],
+          "description": "Label number for the given image.",
+          "name": "labelNumber"
+        },
+        {
+          "dataType": [
+            "string"
+          ],
+          "description": "label name (description) of the given image.",
+          "name": "labelName"
+        }
+      ],
+      "vectorIndexType": "hnsw",
+      "vectorizer": "img2vec-neural"
+    }
+  ]
+}
 ```
 
 _Note:_ Other properties, for example the name of the image that is given in another field, will not be taken into consideration. This means that you can only find the image with semantic search by [another image](#nearimage-search), [data object](../graphql-references/filters.html#nearobject-filter), or [raw vector](../graphql-references/filters.html#nearvector-filter). Semantic search of images by text field (using `nearText`) is not possible, because this requires a `text2vec` vectorization module. Multiple modules cannot be combined at class level yet (might become possible in the future, since `image-text-combined transformers` exists). We recommend to use one of the following workarounds:
