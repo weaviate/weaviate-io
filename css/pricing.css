@@ -814,4 +814,11 @@ input[type=range]:focus {
 .calculator-wrap .rangeslider__handle::after {
   display: none;
 }
+@media (max-width: 992px) {
+  .rangeslider_input {
+    margin-top: 2rem;
+  }
+}
+
+
 /*# sourceMappingURL=new-style.css.map */

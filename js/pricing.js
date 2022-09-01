@@ -8,9 +8,15 @@ function getPrice(){
     var objects = $('#rangeslider2_input').val().replace(/[^0-9]/g, '');
     var queries =  $('#rangeslider3_input').val().replace(/[^0-9]/g, '');
     var sla = $('#sla-select').val();
-    var ha = $('#ha-select').is(':selected');
+    var ha = document.getElementById('ha-select').checked;
 
-    var finalUrl = 'https://us-central1-semi-production.cloudfunctions.net/pricing-calculator?embeddingSize=' + dims + '&amountOfDataObjs=' + objects + '&queriesPerMonth=' + queries + '&slaTier=' + sla;
+    if(ha == true){
+      ha = '&highAvailability=true';
+    } else {
+      ha = '';
+    }
+
+    var finalUrl = 'https://us-central1-semi-production.cloudfunctions.net/pricing-calculator?embeddingSize=' + dims + '&amountOfDataObjs=' + objects + '&queriesPerMonth=' + queries + '&slaTier=' + sla + ha;
 
     $.getJSON(finalUrl, function( data ) {
       if(data['message'] == 'Contact sales'){
@@ -19,12 +25,10 @@ function getPrice(){
       } else {
         $('#contact-sales').hide();
         $('.total-price').show();
-        var price = new Intl.NumberFormat().format((data['priceInt'] / 100).toFixed(2));
+        var price = new Intl.NumberFormat().format((data['priceInt'] / 100).toFixed(0));
         $('#total-price-val').text(price);
       }
     });
-
-
   }, 250)
 }
 
@@ -68,13 +72,20 @@ function setSlider(i){
   $('.rangeslider_input').focusout(function() {
     var formattedVal = $(this).val();
     if(isNaN(formattedVal) === false){
+      // set the value
       $(this).val(new Intl.NumberFormat().format(formattedVal));
+      // get the price
+      getPrice();
+      // set the sliders to reflect the update
+      var sliderId = $(this).attr('id').replace('_input', '');
+      $('#' + sliderId).val(formattedVal).change();
+      // console.log('#' + sliderId, formattedVal);
     }
   });
   // on change of input
   $('.rangeslider_input').keydown(function(event) {
     // Allow only backspace and delete
-    if ( event.keyCode == 46 || event.keyCode == 8 ) {
+    if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 9) {
         // this is okay
     } else {
         // Ensure that it is a number and stop the keypress
@@ -89,7 +100,8 @@ function setSlider(i){
   });
 }
 
-$('#sla-select').change(function(){
+// on change of input
+$('#ha-select').change(function(){
   getPrice();
 });
 

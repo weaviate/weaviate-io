@@ -94,7 +94,7 @@ redirect_from:
                             <span>Vector Dimensions</span>
                         </div>
                         <div class="item-input">
-                            <input type="range" class="rangeinput" id="rangeslider1" value="100" min="0" max="12800" step="100">
+                            <input type="range" class="rangeinput" id="rangeslider1" value="100" min="0" max="12800" step="1">
                         </div>
                         <div style="margin-left:2rem;">
                             <input style="max-width: 9rem;" class="form-control rangeslider_input" id="rangeslider1_input" value="100" min="0" max="12800">
@@ -146,7 +146,7 @@ redirect_from:
                                 </label>
                             </div>
                             <div class="main-price">
-                                <a href="mailto:sales@semi.technology" class="w-btn" id="contact-sales" style="display: none">Contact Sales</a>
+                                <a href="mailto:hello@semi.technology" class="w-btn" id="contact-sales" style="display: none">Contact Us</a>
                                 <span class="total-price">Your estimated price</span>
                                 <div class="total-price">
                                     <span>$</span>
@@ -428,40 +428,90 @@ redirect_from:
             <div class="col-md-6">
                 <div class="faq-item">
                     <h3>
-                        Does my plan include support?
+                        Is there a difference between Weaviate open source and the Weaviate Cloud Service?
                     </h3>
                     <p>
-                        We believe the economy is better when everyone has access. When everyone has room to grow. No one should be left out because the cost is too great or the technology too complex. We started with a little white credit card reader.
+                        No,​ the Weaviate Cloud Service is ​a separate solution from Weaviate, maintained and run by SeMI Technologies. 
                     </p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="faq-item">
                     <h3>
-                        Does my plan include support?
+                        Is there a discount for non-profits, startups, or students?
                     </h3>
                     <p>
-                        We believe the economy is better when everyone has access. When everyone has room to grow. No one should be left out because the cost is too great or the technology too complex. We started with a little white credit card reader.
+                        ​Yes, please reach out to us at <a href="mailto:hello+discount@semi.technology">hello+discount@semi.technology</a>.​
                     </p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="faq-item">
                     <h3>
-                        Does my plan include support?
+                        ​Is the Weaviate Cloud Service SOC2 compliment?
                     </h3>
                     <p>
-                        We believe the economy is better when everyone has access. When everyone has room to grow. No one should be left out because the cost is too great or the technology too complex. We started with a little white credit card reader.
+                        Not yet; we are currently in the process of becoming SOC2 compliant. Feel free to email us for a status update on <a href="mailto:hello+soc2@semi.technology">hello+soc2@semi.technology</a>.​
                     </p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="faq-item">
                     <h3>
-                        Does my plan include support?
+                        What is Hibernation?
                     </h3>
                     <p>
-                        We believe the economy is better when everyone has access. When everyone has room to grow. No one should be left out because the cost is too great or the technology too complex. We started with a little white credit card reader.
+                        ​Hibernation ​is a process where a cluster goes down (i.e., "hybernates") while retaining your data after a given period. This is ideal for research or development purposes; when the service endpoints are used again, the service comes back up with a short time delay.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
+                        ​What is round-robin provisioning?​
+                    </h3>
+                    <p>
+                        ​If your SLA tier contains round-robin provisioning, the Weaviate Cloud Service will provision on Amazon Web Services (AWS), Google Cloud Platform (GCP), ​or Microsoft Azure where enough resources are available.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
+                        Do I pay for data objects without embeddings?
+                    </h3>
+                    <p>
+                        ​No, storage of data objects without vector embeddings is on us.​
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
+                        ​W​hich Weaviate modules​ are available?​
+                    </h3>
+                    <p>
+                        ​Weaviate modules based on inference APIs are automatically integrated in the cloud service. These modules currently include Hugging Face Inference and OpenAI's embeddings end-points.​
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
+                        What if I have an unexpected ​usage spike?
+                    </h3>
+                    <p>
+                        Usage spikes are -almost- always a good sign! Your Weaviate-powered app or platform is being actively used, and we don't want your bill to be in the way of your success. Spikes are analyzed at the end of the month, and occasional ones are on us.​
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
+                        Who is behind Weaviate?​
+                    </h3>
+                    <p>
+                        ​The company behind Weaviate is <a href="https://semi.technology" target="_blank">SeMI Technologies</a>. They run the Cloud Service and maintain the open source software.​
                     </p>
                 </div>
             </div>
