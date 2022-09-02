@@ -2,12 +2,14 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Configuration
-title: Persistence &amp; Backups
-description: Persistence & Backups
-tags: ['configuration', 'backups']
+title: Persistence
+description: Persistence
+tags: ['configuration', 'persistence']
 menu-order: 5
 open-graph-type: article
 toc: true
+redirect_from:
+  - /developers/weaviate/current/configuration/backups-and-persistence.html
 ---
 
 ## Introduction
@@ -78,19 +80,7 @@ services:
 
 ### Backups
 
-The folder that you've chosen to contain your external Docker volume contains the Weaviate DB. You can simply copy it and store it.
-
-For example:
-
-```sh
-$ mkdir /var/weaviate.BAK
-$ cp /var/weaviate /var/weaviate.BAK
-```
-
-#### Running vs. stopped instance
-
-* Ideally, the setup should be stopped first (`docker-compose down`), because an orderly shutdown will flush everything to disk and make sure it can be read easily.
-* If you create a backup from a running setup, no data is lost, but not all segments have been flushed yet. This means the next startup will recover the data from an active commit log. ​This will result in a ​message: `“did Weaviate crash? Trying to recover”​`​.​ This is slightly slower than an ​orderly​ shutdown.​
+See [Backups](./backups.html).
 
 ## Kubernetes
 
