@@ -1,0 +1,86 @@
+{% capture python %}
+
+# to be done
+
+{% endcapture %}
+
+
+{% capture javascript %}
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.backup.getter()
+  .withStorageName("filesystem")
+  .do()
+  .then(console.log)
+  .catch(console.error)
+{% endcapture %}
+
+
+{% capture go %}
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  result, err := client.Backup().Getter().
+    WithStorageName(backup.STORAGE_FILESYSTEM).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+{% endcapture %}
+
+
+{% capture java %}
+package technology.semi.weaviate;
+
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.backup.model.BackupCreateMeta;
+import technology.semi.weaviate.client.v1.backup.model.Storage;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Result<BackupCreateMeta[]> result = client.backup().getter()
+      .withStorageName(Storage.FILESYSTEM)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+{% endcapture %}
+
+
+{% capture curl %}
+$ curl http://localhost:8080/v1/backups/filesystem
+{% endcapture %}
+
+
+{% include molecule-restful-block-request.html block_id='backups-status-create' %}
