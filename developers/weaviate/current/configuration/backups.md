@@ -94,9 +94,33 @@ This makes it easy to use the same module in different setups. For example, you 
 ## API
 
 ### Create Backup
+
+TODO
+
+{% include code/1.x/backup.create.html %}
+
+#### Asynchronous Status Checking
+
+TODO
+
+{% include code/1.x/backup.status.create.html %}
 ### Restore Backup
 
+TODO
+
+{% include code/1.x/backup.restore.html %}
+
+#### Asynchronous Status Checking
+
+TODO
+
+{% include code/1.x/backup.status.restore.html %}
+
 ## Technical Considerations
+
+### Read &amp; Write requests while a backup is running
+
+### Async Components of a backup
 
 ## Limitations & Outlook
 
