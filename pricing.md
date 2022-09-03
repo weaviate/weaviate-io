@@ -71,7 +71,7 @@ og: /img/og/og-product.png
 <section class="sec bg-gray sec-calculator">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center">
+            <div class="col-md-6 text-center" id="calculator">
                 <div class="gap"></div>
                 <div class="box-content">
                     <h2>

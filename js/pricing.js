@@ -193,6 +193,12 @@ $(document).ready(function() {
   setSlider('2')
   setSlider('3')
 
+  // scroll to calculator if preset
+  if(window.location.href.includes('embeddingSize=')){
+    var target_offset = $('#calculator').offset();
+    $('html, body').animate({scrollTop:target_offset.top}, 500);
+  }
+
   // set popper overlay
   $(function () {
     $('[data-toggle="popover"]').popover()
