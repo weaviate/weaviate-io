@@ -145,27 +145,26 @@ The answer is contained in a new GraphQL `_additional` property called `summary`
 }
 ```
 
-<!-- TODO: (Marcin) Can we use the [facebook/bart-large-cnn] as an example? -->
-<!-- # Use another SUM Transformer module from HuggingFace
+# Use another Summarization module from HuggingFace
 
-You can build a Docker image which supports any model from the [Huggingface model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`facebook/bart-large-cnn` model](https://huggingface.co/facebook/bart-large-cnn). 
+You can build a Docker image which supports any summarization model from the [Huggingface model hub](https://huggingface.co/models?pipeline_tag=summarization) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`google/pegasus-pubmed` model](https://huggingface.co/google/pegasus-pubmed). 
 
 #### Step 1: Create a `Dockerfile`
 Create a new `Dockerfile`. We will name it `my-model.Dockerfile`. Add the following lines to it: 
 ```
-FROM semitechnologies/ner-transformers:custom
+FROM semitechnologies/sum-transformers:custom
 RUN chmod +x ./download.py
-RUN MODEL_NAME=facebook/bart-large-cnn ./download.py
+RUN MODEL_NAME=google/pegasus-pubmed ./download.py
 ```
 
 #### Step 2: Build and tag your Dockerfile.
-We will tag our Dockerfile as `facebook-bart-large-cnn`:
+We will tag our Dockerfile as `google-pegasus-pubmed`:
 ```
-docker build -f my-model.Dockerfile -t facebook-bart-large-cnn .
+docker build -f my-model.Dockerfile -t google-pegasus-pubmed .
 ```
 
 #### Step 3: That's it!
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `facebook-bart-large-cnn`. -->
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `google-pegasus-pubmed`.
 
 
 # How it works (under the hood)
