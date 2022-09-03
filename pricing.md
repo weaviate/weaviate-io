@@ -151,6 +151,13 @@ og: /img/og/og-product.png
                                     <strong id="total-price-val">25</strong>
                                     <span>/mo</span>
                                 </div>
+                                <div id="getLinkToPrice" style="display:none">
+                                    <p>
+                                        <button type="button" class="btn btn-secondary btn-sm" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; margin-top: 1rem;">
+                                            get a link to this price
+                                        </button>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -570,3 +577,19 @@ og: /img/og/og-product.png
         </div>
     </div>
 </section>
+
+<!-- modal window for sharing link -->
+<div class="modal fade" id="shareLinkModal" tabindex="-1" role="dialog" aria-labelledby="shareLinkModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>
+            Copy this link to share this pricing configuration
+        </p>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" id="linkToShare">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
