@@ -1,7 +1,49 @@
 var priceCounter;
 
+
+function setPrice(i){
+  window.location.hash = i;
+}
+
+function updateSliders(i){
+  var formattedVal = i.val();
+  if(isNaN(formattedVal) === false){
+    // set the value
+    i.val(new Intl.NumberFormat().format(formattedVal));
+    // get the price
+    getPrice();
+    // set the sliders to reflect the update
+    var sliderId = i.attr('id').replace('_input', '');
+    $('#' + sliderId).val(formattedVal).change();
+  }
+}
+
+function setShareLink(){
+  $('#getLinkToPrice').show();
+
+  $('#getLinkToPrice').click(function(){
+    $.ajax({
+      type: "POST",
+      url: 'https://us-central1-semi-production.cloudfunctions.net/create-bitly',
+      data: JSON.stringify({ 'url': window.location.href }),
+      success: function(data) {
+        $('#linkToShare').val(data);
+        $('#shareLinkModal').modal('show');
+      },
+      dataType: 'text',
+      contentType: 'application/json',
+      error: function (xhr, ajaxOptions, thrownError) {
+          console.log(xhr.status);
+          console.log(thrownError);
+      }
+    });
+  });
+}
+
 function getPrice(){
   clearTimeout(priceCounter);
+
+  setShareLink();
 
   priceCounter = setTimeout(function(){
     var dims = $('#rangeslider1_input').val().replace(/[^0-9]/g, '');
@@ -15,6 +57,8 @@ function getPrice(){
     } else {
       ha = '';
     }
+
+    setPrice('embeddingSize=' + dims + '&amountOfDataObjs=' + objects + '&queriesPerMonth=' + queries + '&slaTier=' + sla + ha);
 
     var finalUrl = 'https://us-central1-semi-production.cloudfunctions.net/pricing-calculator?embeddingSize=' + dims + '&amountOfDataObjs=' + objects + '&queriesPerMonth=' + queries + '&slaTier=' + sla + ha;
 
@@ -33,10 +77,8 @@ function getPrice(){
 }
 
 function setValue(i, c){
-  
   // set value
   $(c).val(new Intl.NumberFormat().format($(i).val()));
-
   // set slider
   if(c == '#rangeslider2_input' || c == '#rangeslider3_input'){
     var mainDiv = c.replace('_input', '');
@@ -51,10 +93,8 @@ function setValue(i, c){
       $(mainDiv).rangeslider('update', true);
     }
   }
-
   // get the price
   getPrice();
-
 }
 
 function setSlider(i){
@@ -79,7 +119,6 @@ function setSlider(i){
       // set the sliders to reflect the update
       var sliderId = $(this).attr('id').replace('_input', '');
       $('#' + sliderId).val(formattedVal).change();
-      // console.log('#' + sliderId, formattedVal);
     }
   });
   // on change of input
@@ -100,22 +139,63 @@ function setSlider(i){
   });
 }
 
-// on change of input
-$('#ha-select').change(function(){
-  getPrice();
+// set pricing sliders
+// set sliders if loaded
+$(document).ready(function() {
+  function getQueryVariable(variable) {
+    var query = window.location.hash.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (decodeURIComponent(pair[0]) == variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+    return null;
+  }
+
+  function getSet(i, t){
+    var v = getQueryVariable(i);
+    if(v !== null){
+      $(t).val(v);
+      updateSliders($(t));
+    }
+  }
+
+  function getCheck(i, t){
+    var v = getQueryVariable(i);
+    if(v !== null){
+      $(t).prop('checked', true);
+    } else {
+      $(t).prop('checked', false);
+    }
+  }
+
+  // set values from shared links
+  getSet('embeddingSize', '#rangeslider1_input')
+  getSet('amountOfDataObjs', '#rangeslider2_input')
+  getSet('queriesPerMonth', '#rangeslider3_input')
+  getSet('slaTier', '#sla-select')
+  getCheck('highAvailability', '#ha-select')
+
+  // on change of input
+  $('#ha-select').change(function(){
+    getPrice();
+  });
+
+  // on SLA change
+  $('#sla-select').change(function(){
+    getPrice();
+  });
+
+  // set sliders
+  setSlider('1')
+  setSlider('2')
+  setSlider('3')
+
+  // set popper overlay
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
+
 });
-
-// on SLA change
-$('#sla-select').change(function(){
-  getPrice();
-});
-
-// set sliders
-setSlider('1')
-setSlider('2')
-setSlider('3')
-
-// set popper overlay
-$(function () {
-  $('[data-toggle="popover"]').popover()
-})
