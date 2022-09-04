@@ -78,7 +78,7 @@ og: /img/og/og-product.png
                         Pay as you grow
                     </h2>
                     <p>
-                        Our pricing is built around storage and querying based on the number of vector dimensions stored. You pay for the number of data objects stored and the number of queries per month, both multiplied by the size of the vector embeddings.<br><small>(not inclusive of discounts and taxes)</small>.
+                        Our pricing is built around vector dimensions stored and queried, and different SLA-tiers have different prices per dimension. The exact calculation can be found in the <a href="#FAQ">FAQ</a> below.<br><small>(not inclusive of discounts and taxes)</small>.
                     </p>
                 </div>
             </div>
@@ -418,7 +418,7 @@ og: /img/og/og-product.png
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
                 <div class="box-content">
-                    <h2>
+                    <h2 id="FAQ">
                         Frequently asked questions
                     </h2>
                     <p>
