@@ -13,7 +13,7 @@ og: /img/og/og-product.png
                         <span>Weaviate </span> Cloud Services
                     </h1>
                     <p>
-                        Start for <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">free</b> and <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">pay as you go</b> per <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">vector dimension</b> stored or queried
+                        Start for <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">free</b> and <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">pay as you go</b> per <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">vector dimension</b> stored and queried
                     </p>
                     <p>
                         All paid plans deliver unlimited capacity over three different tiers, so your DBs may scale seamlessly
@@ -59,9 +59,9 @@ og: /img/og/og-product.png
             <div class="col-md-4 text-center">
                 <div class="feature-box">
                     <img src="/img/discount.png" alt="discount">
-                    <h2>Volume discounts</h2>
+                    <h2>Different SLAs</h2>
                     <p>
-                        Built-in volume discounts and options for deeper discounts for annual commits.
+                        Choose from the three different SLA types, for startups and enterprises
                     </p>
                 </div>
             </div>
@@ -78,7 +78,7 @@ og: /img/og/og-product.png
                         Pay as you grow
                     </h2>
                     <p>
-                        Plug in your expected usage to see your estimated monthly bill<br><small>(not inclusive of discounts and taxes)</small>.
+                        Our pricing is built around storage and querying based on the number of vector dimensions stored. You pay for the number of data objects stored and the number of queries per month, both multiplied by the size of the vector embeddings.<br><small>(not inclusive of discounts and taxes)</small>.
                     </p>
                 </div>
             </div>
@@ -443,6 +443,18 @@ og: /img/og/og-product.png
             <div class="col-md-6">
                 <div class="faq-item">
                     <h3>
+                        What's the Weaviate pricing formula?
+                    </h3>
+                    <p>
+                        You pay for the total amount of embedding dimensions stored per data object and per data object queried. For example, if you have a 100-dimensional embedding and you store 1k documents that you query 1k times per month. You pay for 200k dimensions. 
+                        <br><br>
+                        <code>(stored objects + objects queried) * embedding dimension size * SLA tier price per dimension</code>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
                         Is there a difference between Weaviate open source and the Weaviate version used by the WCS?
                     </h3>
                     <p>
@@ -507,6 +519,26 @@ og: /img/og/og-product.png
                     </h3>
                     <p>
                         ​Weaviate modules based on inference APIs are automatically integrated in the cloud service. These modules currently include Hugging Face Inference and OpenAI's embeddings end-points.​
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
+                        Can I store data from different models with different embedding sizes?
+                    </h3>
+                    <p>
+                        Yes
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
+                        ​My use case fluctuates in the number of data objects stored per month, how do you calculate the total number of objects per month?
+                    </h3>
+                    <p>
+                        ​We take the median number of vectors per month measured per hour.
                     </p>
                 </div>
             </div>

@@ -22,6 +22,7 @@ function setShareLink(){
   $('#getLinkToPrice').show();
 
   $('#getLinkToPrice').click(function(){
+    $('#getLinkToPrice').hide();
     $.ajax({
       type: "POST",
       url: 'https://us-central1-semi-production.cloudfunctions.net/create-bitly',
@@ -29,12 +30,14 @@ function setShareLink(){
       success: function(data) {
         $('#linkToShare').val(data);
         $('#shareLinkModal').modal('show');
+        $('#getLinkToPrice').show();
       },
       dataType: 'text',
       contentType: 'application/json',
       error: function (xhr, ajaxOptions, thrownError) {
           console.log(xhr.status);
           console.log(thrownError);
+          $('#getLinkToPrice').show();
       }
     });
   });
