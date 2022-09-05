@@ -82,7 +82,7 @@ services:
       OPENAI_APIKEY: sk-foobar # request a key on openai.com
 ```
 
-_Note: you can also use the [Weaviate configuration tool](../getting-started/installation.html#customize-your-weaviate-setup) to create a Weaviate setup with this module._
+_Note: you can also use the [Weaviate configuration tool](../installation/docker-compose.html#configurator) to create a Weaviate setup with this module._
 
 _Note: Starting with `v1.11.0` the `OPENAI_APIKEY` variable is now optional and you can instead provide the key at insert/query time as an HTTP header._
 

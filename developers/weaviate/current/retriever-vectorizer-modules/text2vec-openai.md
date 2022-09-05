@@ -9,6 +9,7 @@ tags: ['text2vec-openai']
 menu-order: 1
 open-graph-type: article
 toc: true
+enabled-on-wcs: true
 redirect_from:
     - /developers/weaviate/current/modules/text2vec-openai.html
 ---
@@ -17,6 +18,7 @@ redirect_from:
 
 The `text2vec-​openai` module allows you to use the [OpenAI embeddings](https://beta.openai.com/docs/guides/embeddings) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using OpenAI's Ada, Babbage, Curie, or Davinci models.
 
+* Note: this module uses a third-party API.
 * Note: make sure to check the OpenAI [pricing page](https://openai.com/api/pricing/) before vectorizing large amounts of data.
 * Note: Weaviate automatically parallelizes requests to the OpenAI-API when using the batch endpoint, see the previous note.
 * Note: [Check-out the demo dataset](https://github.com/semi-technologies/DEMO-text2vec-openai).

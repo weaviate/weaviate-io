@@ -28,7 +28,7 @@ script:
 - travis_wait 60 bundle exec jekyll build
 - minify --match='\.html' -r -o _site_min/ _site/
 - rsync -av _site_min/ _site/
-- htmlproofer --ignore-status-codes '0,999,429,403,303' --allow-missing-href=true --ignore-files "/developers\/weaviate\/v/," --ignore-urls "/developers/weaviate/v/,/weaviate-newsletter.semi.technology/,/demo.dataset.playground.semi.technology/,/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/" --allow_hash_href --assume-extension ./_site --swap-urls '^/BASEURL/:/' || travis_terminate 1
+- htmlproofer --ignore-status-codes '0,999,429,403,303' --allow-missing-href=true --ignore-files "/developers\/weaviate\/v/," --ignore-urls "release\/tag\/v1.15.0,/developers\/weaviate\/v/,/weaviate-newsletter.semi.technology/,/demo.dataset.playground.semi.technology/,/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/" --allow_hash_href --assume-extension ./_site --swap-urls '^/BASEURL/:/' || travis_terminate 1
 - |
   OPENAPI_VERSION=$(curl -s -o /dev/null -w "%{http_code}" https://app.swaggerhub.com/apiproxy/registry/semi-technologies/weaviate/$(cat _config.yml | yq .weaviate_version))
   if [[ $OPENAPI_VERSION -ne 200 ]]

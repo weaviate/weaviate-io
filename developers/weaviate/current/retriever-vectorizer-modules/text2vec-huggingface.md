@@ -9,12 +9,14 @@ tags: ['text2vec-huggingface']
 menu-order: 2
 open-graph-type: article
 toc: true
+enabled-on-wcs: true
 ---
 
 # Introduction
 
 The `text2vec-huggingface` module allows you to use any [Huggingface model](https://huggingface.co/models) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using the chosen module.
 
+* Note: this module uses a third-party API.
 * Note: make sure to check the Inference [pricing page](https://huggingface.co/inference-api#pricing) before vectorizing large amounts of data.
 * Note: Weaviate automatically parallelizes requests to the Inference-API when using the batch endpoint, see the previous note.
 * Note: This module only supports [sentence similarity](https://huggingface.co/models?pipeline_tag=sentence-similarity) models.

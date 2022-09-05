@@ -30,7 +30,7 @@ For a more elaborate example check this blog post: - [Link to schema article](ht
 # Prerequisites
 
 **1. Connect to a Weaviate instance running with the text2vec-contextionary module.**\\
-If you haven't set up a Weaviate instance yet, check the [Installation guide](../getting-started/installation.html). Make sure you use the [text2vec-contextionary](../getting-started/installation.html#weaviate-with-the-text2vec-contextionary-model) as vectorization module. In this guide we assume your instance is running at `http://localhost:8080`.
+If you haven't set up a Weaviate instance yet, check the [Installation guide](../getting-started/installation.html). Make sure you use the the `text2vec-contextionary` as vectorization module. In this guide we assume your instance is running at `http://localhost:8080`.
 
 # Creating your first schema (with the Python client)
 
