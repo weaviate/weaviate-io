@@ -6,7 +6,7 @@ nav-parent: Modules
 title: text2vec-transformers
 description: Add any transformer model to Weaviate with the transformers module
 tags: ['text2vec-transformers']
-menu-order: 2
+menu-order: 3
 open-graph-type: article
 toc: true
 redirect_from:

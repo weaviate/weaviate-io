@@ -6,7 +6,7 @@ nav-parent: Modules
 title: img2vec-neural
 description: Use Resnet models in Weaviate
 tags: ['img2vec-neural']
-menu-order: 4
+menu-order: 5
 open-graph-type: article
 toc: true
 redirect_from:
