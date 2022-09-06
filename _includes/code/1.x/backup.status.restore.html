@@ -65,7 +65,7 @@ package technology.semi.weaviate;
 import technology.semi.weaviate.client.Config;
 import technology.semi.weaviate.client.WeaviateClient;
 import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.backup.model.BackupRestoreMeta;
+import technology.semi.weaviate.client.v1.backup.model.BackupRestoreStatusResponse;
 import technology.semi.weaviate.client.v1.backup.model.Storage;
 
 public class App {
@@ -73,7 +73,7 @@ public class App {
     Config config = new Config("http", "localhost:8080");
     WeaviateClient client = new WeaviateClient(config);
 
-    Result<BackupRestoreMeta> result = client.backup().restoreStatusGetter()
+    Result<BackupRestoreStatusResponse> result = client.backup().restoreStatusGetter()
       .withStorageName(Storage.FILESYSTEM)
       .withBackupId("my-very-first-backup")
       .run();
