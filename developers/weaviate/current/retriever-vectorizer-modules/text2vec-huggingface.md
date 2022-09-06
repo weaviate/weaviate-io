@@ -14,7 +14,7 @@ enabled-on-wcs: true
 
 # Introduction
 
-The `text2vec-huggingface` module allows you to use any [Huggingface model](https://huggingface.co/models) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using the chosen module.
+The `text2vec-huggingface` module allows you to use [Hugging Face models](https://huggingface.co/models) directly in Weaviate as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using the chosen module.
 
 * Note: this module uses a third-party API.
 * Note: make sure to check the Inference [pricing page](https://huggingface.co/inference-api#pricing) before vectorizing large amounts of data.
@@ -27,13 +27,13 @@ Request a Huggingface API Token via [their website](https://huggingface.co/setti
 
 ## Weaviate Cloud Service
 
-This module is enabled by default on the WCS
+This module is enabled by default on the WCS.
 
 ## Weaviate open source
 
 {% include docs-current_version_finder.html %}
 
-You can find an example Docker-compose file below, which will spin up Weaviate with the OpenAI module.
+Here is an example Docker-compose file, which will spin up Weaviate with the Hugging Face module.
 
 ```yaml
 version: '3.4'
@@ -117,12 +117,12 @@ The following schema configuration uses the `all-MiniLM-L6-v2` model.
 
 ​| setting | type | description | example |
 | --- | --- | --- | --- |
-| `model` | `string` | This can be any public or private Huggingface model, [sentence similarity models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads) work best for vectorization. Should be set without `queryModel` and `passageModel` | `"bert-base-uncased"` |
-| `passageModel` | `string` | DPR passage model. Should be set with a `queryModel` and without `model` | `"sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base"` |
-| `queryModel` | `string` | DPR query model. Should be set with a `passageModel` and without `model` | `"sentence-transformers/facebook-dpr-question_encoder-single-nq-base"` |
+| `model` | `string` | This can be any public or private Huggingface model, [sentence similarity models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads) work best for vectorization.<br/><br/>Don't use with `queryModel` nor `passageModel`. | `"bert-base-uncased"` |
+| `passageModel` | `string` | DPR passage model.<br/><br/>Should be set together with `queryModel`, but without `model`. | `"sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base"` |
+| `queryModel` | `string` | DPR query model.<br/><br/>Should be set together with `passageModel`, but without `model`. | `"sentence-transformers/facebook-dpr-question_encoder-single-nq-base"` |
 | `options.waitForModel` | `boolean` | If the model is not ready, wait for it instead of receiving 503.​ | |
-| `options.useGPU` | `boolean` | Use GPU instead of CPU for inference (requires Hugginface's [Startup plan](https://huggingface.co/inference-api#pricing) at least) | |
-| `options.useCache` | `boolean` | There is a cache layer on the inference API to speedup requests we have already seen. Most models can use those results as is as models are deterministic (meaning the results will be the same anyway). However if you use a non deterministic model, you can set this parameter to prevent the caching mechanism from being used resulting in a real new query. | | 
+| `options.useGPU` | `boolean` | Use GPU instead of CPU for inference.<br/>(requires Hugginface's [Startup plan](https://huggingface.co/inference-api#pricing) or higher) | |
+| `options.useCache` | `boolean` | There is a cache layer on the inference API to speedup requests we have already seen. Most models can use those results as is as models are deterministic (meaning the results will be the same anyway). However if you use a non-deterministic model, you can set this parameter to prevent the caching mechanism from being used resulting in a real new query. | | 
 
 # More resources
 
