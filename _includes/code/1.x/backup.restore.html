@@ -1,7 +1,16 @@
 {% capture python %}
+import weaviate
 
-# to be done
+client = weaviate.Client('http://localhost:8080')
 
+result = client.backup.restore(
+  backup_id='my-very-first-backup',
+  storage_name='filesystem',
+  exclude_classes="Article",
+  wait_for_completion=True,
+)
+
+print(result)
 {% endcapture %}
 
 
