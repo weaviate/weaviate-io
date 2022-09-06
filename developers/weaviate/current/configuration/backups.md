@@ -3,9 +3,10 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Configuration
 title: Backups
-description: Weaviate cloud-native backups allow backing up to and restoring
-from S3, GCS, etc. Supports backups without downtimes, even accepts new write requests
-while backups are running.
+description: |-
+  Weaviate cloud-native backups allow backing up to and restoring
+  from S3, GCS, etc. Supports backups without downtimes, even accepts new write requests
+  while backups are running.
 tags: ['configuration', 'backups']
 menu-order: 5
 open-graph-type: article
@@ -330,7 +331,7 @@ instances while they are serving user requests.
 ## Async nature of the Backup API
 
 The backup API is built in a way that no long-running network requests are
-required. The requestto create a new backup returns immediately. It does some
+required. The request to create a new backup returns immediately. It does some
 basic validation, then returns to the user. The backup is now in status
 `STARTED`. To get the status of a running backup you can use poll the [status
 endpoint](#asynchronous-status-checking). This makes the backup itself
