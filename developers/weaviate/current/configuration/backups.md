@@ -3,9 +3,10 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Configuration
 title: Backups
-description: Weaviate cloud-native backups allow backing up to and restoring
-from S3, GCS, etc. Supports backups without downtimes, even accepts new write requests
-while backups are running.
+description: |-
+  Weaviate cloud-native backups allow backing up to and restoring
+  from S3, GCS, etc. Supports backups without downtimes, even accepts new write requests
+  while backups are running.
 tags: ['configuration', 'backups']
 menu-order: 5
 open-graph-type: article
