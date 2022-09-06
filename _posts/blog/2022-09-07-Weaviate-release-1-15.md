@@ -15,7 +15,6 @@ We are happy to announce the release of Weaviate 1.15, which is packed with grea
 
 ## The brief
 
-<!-- TODO: turn each point to a link -->
 If you like your content brief and to the point, here is the TL;DR of this release:
 0. [☁️Cloud-native backups](#cloud-native-backups) – allows you to configure your environment to create backups – of selected classes or the whole database – straight into AWS S3, GCS or local filesystem
 0. [Improved memory management](#improved-memory-management) – with the introduction of GOMEMLIMIT we were able to gain more control over the garbage collector, which significantly reduces the chances of OOM kills for your Weaviate setups
@@ -192,8 +191,7 @@ Now, you can set your **soft memory cap** by setting the `GOMEMLIMIT` environmen
 GOMEMLIMIT=120GiB
 ```
 
-<!-- TODO: add a link to the docs -->
-<!-- For more information, check the [docs]. -->
+For more information, see the [Docker Compose environment variables](/developers/weaviate/current/installation/docker-compose.html#environment-variables) in the docs.
 
 ## Faster imports for ordered data
 
