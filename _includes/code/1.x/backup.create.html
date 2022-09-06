@@ -24,7 +24,7 @@ const client = weaviate.client({
 
 client.backup.creator()
   .withIncludeClassNames("Article", "Publication")
-  .withStorageName("filesystem")
+  .withBackend("filesystem")
   .withBackupId("my-very-first-backup")
   .withWaitForCompletion(true)
   .do()
@@ -52,7 +52,7 @@ func main() {
 
   result, err := client.Backup().Creator().
     WithIncludeClassNames("Article", "Publication").
-    WithStorageName(backup.STORAGE_FILESYSTEM).
+    WithBackend(backup.BACKEND_FILESYSTEM).
     WithBackupID("my-very-first-backup").
     WithWaitForCompletion(true).
     Do(context.Background())
@@ -71,8 +71,8 @@ package technology.semi.weaviate;
 import technology.semi.weaviate.client.Config;
 import technology.semi.weaviate.client.WeaviateClient;
 import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.backup.model.Backend;
 import technology.semi.weaviate.client.v1.backup.model.BackupCreateResponse;
-import technology.semi.weaviate.client.v1.backup.model.Storage;
 
 public class App {
   public static void main(String[] args) {
@@ -81,7 +81,7 @@ public class App {
 
     Result<BackupCreateResponse> result = client.backup().creator()
       .withIncludeClassNames("Article", "Publication")
-      .withStorageName(Storage.FILESYSTEM)
+      .withBackend(Backend.FILESYSTEM)
       .withBackupId("my-very-first-backup")
       .withWaitForCompletion(true)
       .run();

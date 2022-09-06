@@ -21,7 +21,7 @@ const client = weaviate.client({
 });
 
 client.backup.restoreStatusGetter()
-  .withStorageName("filesystem")
+  .withBackend("filesystem")
   .withBackupId("my-very-first-backup")
   .do()
   .then(console.log)
@@ -47,7 +47,7 @@ func main() {
   client := weaviate.New(cfg)
 
   result, err := client.Backup().RestoreStatusGetter().
-    WithStorageName(backup.STORAGE_FILESYSTEM).
+    WithBackend(backup.BACKEND_FILESYSTEM).
     WithBackupID("my-very-first-backup").
     Do(context.Background())
 
@@ -65,8 +65,8 @@ package technology.semi.weaviate;
 import technology.semi.weaviate.client.Config;
 import technology.semi.weaviate.client.WeaviateClient;
 import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.backup.model.Backend;
 import technology.semi.weaviate.client.v1.backup.model.BackupRestoreStatusResponse;
-import technology.semi.weaviate.client.v1.backup.model.Storage;
 
 public class App {
   public static void main(String[] args) {
@@ -74,7 +74,7 @@ public class App {
     WeaviateClient client = new WeaviateClient(config);
 
     Result<BackupRestoreStatusResponse> result = client.backup().restoreStatusGetter()
-      .withStorageName(Storage.FILESYSTEM)
+      .withBackend(Backend.FILESYSTEM)
       .withBackupId("my-very-first-backup")
       .run();
 

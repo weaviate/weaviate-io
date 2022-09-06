@@ -14,7 +14,7 @@ const client = weaviate.client({
 });
 
 client.backup.getter()
-  .withStorageName("filesystem")
+  .withBackend("filesystem")
   .do()
   .then(console.log)
   .catch(console.error)
@@ -39,7 +39,7 @@ func main() {
   client := weaviate.New(cfg)
 
   result, err := client.Backup().Getter().
-    WithStorageName(backup.STORAGE_FILESYSTEM).
+    WithBackend(backup.BACKEND_FILESYSTEM).
     Do(context.Background())
 
   if err != nil {
@@ -56,8 +56,8 @@ package technology.semi.weaviate;
 import technology.semi.weaviate.client.Config;
 import technology.semi.weaviate.client.WeaviateClient;
 import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.backup.model.Backend;
 import technology.semi.weaviate.client.v1.backup.model.BackupCreateResponse;
-import technology.semi.weaviate.client.v1.backup.model.Storage;
 
 public class App {
   public static void main(String[] args) {
@@ -65,7 +65,7 @@ public class App {
     WeaviateClient client = new WeaviateClient(config);
 
     Result<BackupCreateResponse[]> result = client.backup().getter()
-      .withStorageName(Storage.FILESYSTEM)
+      .withBackend(Backend.FILESYSTEM)
       .run();
 
     if (result.hasErrors()) {
@@ -83,4 +83,4 @@ $ curl http://localhost:8080/v1/backups/filesystem
 {% endcapture %}
 
 
-{% include molecule-restful-block-request.html block_id='backups-status-create' %}
+{% include molecule-restful-block-request.html block_id='backups-get' %}
