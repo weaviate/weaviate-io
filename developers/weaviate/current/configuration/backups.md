@@ -3,7 +3,9 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Configuration
 title: Backups
-description: Backups TODO
+description: Weaviate cloud-native backups allow backing up to and restoring
+from S3, GCS, etc. Supports backups without downtimes, even accepts new write requests
+while backups are running.
 tags: ['configuration', 'backups']
 menu-order: 5
 open-graph-type: article
@@ -37,7 +39,7 @@ environment variables.
 ## S3 (AWS or S3-compatible)
 
 Use the `backup-s3` module to enable backing up to and restoring from any
-S3-compatible blob storage. This includes AWS S3, and minIO.
+S3-compatible blob storage. This includes AWS S3, and MinIO.
 
 To enable the module set the following environment variable
 
@@ -75,6 +77,7 @@ access-key or ARN-based authentication:
 | --- | --- |
 | `AWS_ACCESS_KEY_ID` | The id of the AWS access key for the desired account. |
 | `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
+| `AWS_REGION` | The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
 ### Option 2: With IAM and ARN roles
 
@@ -118,6 +121,7 @@ This makes it easy to use the same module in different setups. For example, you 
 | Environment variable | Example value | Description |
 | --- | --- | --- |
 | `GOOGLE_APPLICATION_CREDENTIALS` | `/your/google/credentials.json` | The path to the secret GCP service account or workload identity file. |
+| `GCP_PROJECT` | `my-gcp-project` | Optional. If you use a service account with `GOOGLE_APPLICATION_CREDENTIALS` the service account will already contain a Google project. You can use this variable to explicitly set a project if you are using user credentials which may have access to more than one project. |
 
 
 ## Filesystem
@@ -281,13 +285,89 @@ restore is complete. If the status is `FAILED`, an additional error is provided.
 
 ## Read &amp; Write requests while a backup is running
 
-## Async Components of a backup
+The backup process is designed to be minimally invasive to a running setup.
+Even on very large setups, where terrabytes of data need to be copied, Weaviate
+stays fully usable. It even accepts write requests while a backup process is
+running. This sections explains how backups work under the hood and why
+Weaviate can safely accept writes while a backup is copied.
+
+Weaviate uses a custom [LSM
+Store](../architecture/storage.html#object-and-inverted-index-store) for it's
+object store and inverted index. LSM stores are a hybrid of immutable disk
+segments and an in-memory structure called a memtable that accepts all writes
+(including updates and deletes). For most of the time, files on disk are
+immutable, there are only three situations where files are changed:
+
+1. Anytime a memtable is flushed. This creates a new segment. Existing segments
+   are not changed.
+2. Any write into the memtable is also written into a Write-Ahead-Log (WAL).
+   The WAL is only needed for disaster-recovery. Once a segment has been
+   orderly flushed, the WAL can be discarded.
+3. There is an async background process called Compaction that optimizes
+   existing segments. It can merge two small segments into a larger big segment
+   and remove redundant data as part of the process.
+
+Weaviate's Backup implementation makes use of the above properties in the
+following ways:
+
+1. Weaviate first flushes all active memtables to disk. This process takes in
+   the 10s or 100s of milliseconds. Any pending write requests simply waits for
+   a new memtable to be created without any failing requests or substantial
+   delays.
+2. Now that the memtables are flushed, there is a guarantee: All data that
+   should be part of the backup is present in the existing disk segments. Any
+   data that will be imported after the backup request ends up in new disk
+   segments. The backup references a list of immutable files.
+3. To prevent a compaction process from changing the files on disk while they
+   are being copied, compactions are temporarily paused until all files have
+   been copied. They are automatically resumed right after.
+
+This way the backup process can guarantee that the files that are transferred to the remote backend are immutable (and thus safe to copy) even with new writes coming in. Even if it takes minutes or hours to backup a very large setup, Weaviate stays fully usable without any user impact while the backup process is running.
+
+It is not just safe - but even recommended - to create backups on live production
+instances while they are serving user requests.
+
+## Async nature of the Backup API
+
+The backup API is built in a way that no long-running network requests are
+required. The requestto create a new backup returns immediately. It does some
+basic validation, then returns to the user. The backup is now in status
+`STARTED`. To get the status of a running backup you can use poll the [status
+endpoint](#asynchronous-status-checking). This makes the backup itself
+resilient to network or client failures.
+
+If you would like your application to wait for an async process to complete you
+can use the "wait for completion" feature that is present in all language
+clients. The clients will poll the status endpoint in the background and block
+until the status is either `SUCCESS` or `FAILED`. This makes it easy to write
+simple synchronous backup scripts, even with the async nature of the API.
 
 # Limitations & Outlook
+
+As of Weaviate v1.15, backups are limited to single-node setups. Weaviate v1.16 will
+introduce support for multi-node setups. You can read the technical proposal
+and track the progress on the feature
+[here](https://github.com/semi-technologies/weaviate/issues/2153). The same
+proposal will also make backups more resiliant against node restarts. In v1.15
+an unexpected node restart during a backup operation leads to a
+failed backup. You can alwasy create a new backup after the restart.
 
 # Other Use cases
 
 ## Migrating to another environment
+
+The flexibility around backup providers opens up new use cases. Besides using
+the backup & restore feature for disaster recovery, you can also use it for
+duplicating environments or migrating between clusters. 
+
+For example, consider the following situation: You would like to do a load test
+on production data. If you would do the load test in production it might affect
+users. An easy way to get meaningful results without affecting uses it to
+duplicate your entire environment. Once the new production-like "lodatest"
+environment is up, simple create a backup from your production environment and
+restore it into your "loadtest" environment. This even works if the production
+environment is running on a completely different cloud provider than the new
+environment.
 
 # More Resources
 
