@@ -3,7 +3,9 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Configuration
 title: Backups
-description: Backups TODO
+description: Weaviate cloud-native backups allow backing up to and restoring
+from S3, GCS, etc. Supports backups without downtimes, even accepts new write requests
+while backups are running.
 tags: ['configuration', 'backups']
 menu-order: 5
 open-graph-type: article
@@ -37,7 +39,7 @@ environment variables.
 ## S3 (AWS or S3-compatible)
 
 Use the `backup-s3` module to enable backing up to and restoring from any
-S3-compatible blob storage. This includes AWS S3, and minIO.
+S3-compatible blob storage. This includes AWS S3, and MinIO.
 
 To enable the module set the following environment variable
 
