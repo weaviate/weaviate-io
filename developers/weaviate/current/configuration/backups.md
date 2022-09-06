@@ -77,6 +77,7 @@ access-key or ARN-based authentication:
 | --- | --- |
 | `AWS_ACCESS_KEY_ID` | The id of the AWS access key for the desired account. |
 | `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
+| `AWS_REGION` | The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
 ### Option 2: With IAM and ARN roles
 
@@ -120,6 +121,7 @@ This makes it easy to use the same module in different setups. For example, you 
 | Environment variable | Example value | Description |
 | --- | --- | --- |
 | `GOOGLE_APPLICATION_CREDENTIALS` | `/your/google/credentials.json` | The path to the secret GCP service account or workload identity file. |
+| `GCP_PROJECT` | `my-gcp-project` | The name of the GCP project that your GCS bucket is located in. |
 
 
 ## Filesystem
