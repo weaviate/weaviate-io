@@ -283,7 +283,7 @@ restore is complete. If the status is `FAILED`, an additional error is provided.
 
 The backup process is designed to be minimally invasive to a running setup.
 Even on very large setups, where terrabytes of data need to be copied, Weaviate
-stays fully usable. It even accepts write request while a backup process is
+stays fully usable. It even accepts write requests while a backup process is
 running. This sections explains how backups work under the hood and why
 Weaviate can safely accept writes while a backup is copied.
 
@@ -323,13 +323,47 @@ This way the backup process can guarantee that the files that are transferred to
 It is not just safe - but even recommended - to create backups on live production
 instances while they are serving user requests.
 
-## Async Components of a backup
+## Async nature of the Backup API
+
+The backup API is built in a way that no long-running network requests are
+required. The requestto create a new backup returns immediately. It does some
+basic validation, then returns to the user. The backup is now in status
+`STARTED`. To get the status of a running backup you can use poll the [status
+endpoint](#asynchronous-status-checking). This makes the backup itself
+resilient to network or client failures.
+
+If you would like your application to wait for an async process to complete you
+can use the "wait for completion" feature that is present in all language
+clients. The clients will poll the status endpoint in the background and block
+until the status is either `SUCCESS` or `FAILED`. This makes it easy to write
+simple synchronous backup scripts, even with the async nature of the API.
 
 # Limitations & Outlook
+
+As of Weaviate v1.15, backups are limited to single-node setups. Weaviate v1.16 will
+introduce support for multi-node setups. You can read the technical proposal
+and track the progress on the feature
+[here](https://github.com/semi-technologies/weaviate/issues/2153). The same
+proposal will also make backups more resiliant against node restarts. In v1.15
+an unexpected node restart during a backup operation leads to a
+failed backup. You can alwasy create a new backup after the restart.
 
 # Other Use cases
 
 ## Migrating to another environment
+
+The flexibility around backup providers opens up new use cases. Besides using
+the backup & restore feature for disaster recovery, you can also use it for
+duplicating environments or migrating between clusters. 
+
+For example, consider the following situation: You would like to do a load test
+on production data. If you would do the load test in production it might affect
+users. An easy way to get meaningful results without affecting uses it to
+duplicate your entire environment. Once the new production-like "lodatest"
+environment is up, simple create a backup from your production environment and
+restore it into your "loadtest" environment. This even works if the production
+environment is running on a completely different cloud provider than the new
+environment.
 
 # More Resources
 
