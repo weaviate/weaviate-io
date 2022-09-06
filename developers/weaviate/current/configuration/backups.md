@@ -121,7 +121,7 @@ This makes it easy to use the same module in different setups. For example, you 
 | Environment variable | Example value | Description |
 | --- | --- | --- |
 | `GOOGLE_APPLICATION_CREDENTIALS` | `/your/google/credentials.json` | The path to the secret GCP service account or workload identity file. |
-| `GCP_PROJECT` | `my-gcp-project` | The name of the GCP project that your GCS bucket is located in. |
+| `GCP_PROJECT` | `my-gcp-project` | Optional. If you use a service account with `GOOGLE_APPLICATION_CREDENTIALS` the service account will already contain a Google project. You can use this variable to explicitly set a project if you are using user credentials which may have access to more than one project. |
 
 
 ## Filesystem
