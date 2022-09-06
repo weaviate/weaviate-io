@@ -286,12 +286,25 @@ Check out the [metrics documentation page](/developers/weaviate/current/vector-i
 The Hamming distance is a metric for comparing two numerical vectors. <br/>
 It compares the vector values dimension by dimension, and returns a total count of differing values. The fewer differences the closer the vectors.
 
+For example, the Hamming distance for the following vectors, would be **3**. As that is the number of matching values.
+* A `[1, 9, 3, 4, 5]`
+* B `[1, 2, 3, 9, 5]`
+
 ### Manhattan distance
-The Manhattan distance (also known as L1 norm and Taxicab Distance) – calculates the distance between a pair of vectors, as if simulating a route for a Manhattan taxi driver going from point A (vector A) to point B (vector B) – who is navigating the **streets of Manhattan** with the grid layout and one-way streets.
+The Manhattan distance (also known as L1 norm and Taxicab Distance) – calculates the distance between a pair of vectors, as if simulating a route for a Manhattan taxi driver driving from point A to point B – who is navigating the **streets of Manhattan** with the grid layout and one-way streets. For each difference in the compared vectors, the taxi driver needs to make a turn, thus making the ride this much longer.
 
 ![Manhattan taxi driver](/img/blog/weaviate-1.15/manhatten-distance-cars.png)
 
-For each difference in the compared vectors, the taxi driver needs to make a turn, thus making the ride this much longer. The distance is calculated by summing the differences of each point of the vectors. The fastest route is one with fewer twists and turns.
+The Manhattan distance is calculated by adding up the differences between vector values.
+
+Following our previous example:
+* A `[1, 9, 3, 4, 5]`
+* B `[1, 2, 3, 9, 5]`
+
+The Manhattan distance could be calculated in these steps:
+0. distance = `|1-1| + |9-2| + |3-3| + |4-9| + |5-5|`
+0. distance = `0 + 7 + 0 + 5 + 0`
+0. distance = `12`
 
 <!-- TODO: add a link to Erika's blog -->
 <!-- ### Dive deeper
