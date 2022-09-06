@@ -216,13 +216,64 @@ backup is complete. If the status is `FAILED`, an additional error is provided.
 
 ## Restore Backup
 
-TODO
+You can restore any backup to any machine as long as the number of nodes
+between source and target are identical. The backup does not need to be created
+on the same instance. Once a backup backend is configured, you can restore a
+backup with a single HTTP request.
+
+Note that a restore fails if any of the classes already exist on this instance.
+
+### Method and URL
+
+```js
+POST /v1/backups/{backend}/{backup_id}/restore
+```
+
+### Parameters
+
+#### URL Parameters
+
+| name | type | required | description |
+| ---- | ---- | ---- | ---- |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
+
+#### Request Body
+
+The request takes a json object with the following properties:
+
+| name | type | required | description |
+| ---- | ---- | ---- | ---- |
+| `include` | list of strings | no | An optional list of class names to be included in the backup. If not set, all classes are included. |
+| `exclude` | list of strings | no | An optional list of class names to be excluded from the backup. If not set, no classes are excluded. |
+
+*Note 1: You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.*
+
+*Note 2: `include` and `exclude` is relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
 
 {% include code/1.x/backup.restore.html %}
 
 ### Asynchronous Status Checking
 
-TODO
+All client implentations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
+
+If you set the "wait for completion" option to false, you can also check the status yourself using the Backup Restore Status API.
+
+```js
+GET /v1/backups/{backend}/{backup_id}/restore
+```
+
+#### Parameters
+
+##### URL Parameters
+
+| name | type | required | description |
+| ---- | ---- | ---- | ---- |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backup_id` | string | yes | The user-provided backup identifier that was used when sending the requests to create and restore the backup. |
+
+The response contains a `"status"` field. If the status is `SUCCESS`, the
+restore is complete. If the status is `FAILED`, an additional error is provided.
 
 {% include code/1.x/backup.status.restore.html %}
 
