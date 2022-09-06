@@ -6,6 +6,7 @@ published: true
 author: Sebastian Witalec
 author-img: /img/people/icon/sebastian.jpg
 card-img: /img/blog/hero/weaviate-1-15-card.png
+og: /img/blog/hero/weaviate-1-15-card.png
 # hero-img: /img/blog/hero/weaviate-1-15.png
 date: 2022-09-06
 toc: false
