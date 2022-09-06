@@ -45,18 +45,44 @@ To enable the module set the following environment variable
 ENABLE_MODULES=backup-s3
 ```
 
-Modules are comma-separated, for example to combine the module with the `text2vec-transformers` module, set:
+Modules are comma-separated, for example to combine the module with the
+`text2vec-transformers` module, set:
 
 ```
 ENABLE_MODULES=backup-s3,text2vec-transformers
 ```
 
-In addition to activating the module, you need to provide configuration:
+#### S3 Configuration (vendor-agnostic)
+In addition to activating the module, you need to provide configuration. This
+configuration applies to any S3-compatible backend.
+
+| Environment variable | Required | Description |
+| --- | --- | --- |
+| `BACKUP_S3_BUCKET` | yes | The name of the S3 bucket for all backups. |
+| `BACKUP_S3_PATH` | no | The root path inside your bucket that all your backups will be copied into and retrieved from. Optional, defaults to `""` which means that the backups will be stored in the bucket root instead of a sub-folder. |
+| `BACKUP_S3_ENDPOINT` | no | The S3 endpoint to be used. Optional, defaults to `"s3.amazonaws.com"`. |
+| `BACKUP_S3_USE_SSL` | no | Whether the connection should be secured with SSL/TLS. Optional, defaults to `"true"`. |
+
+#### S3 Configuration (AWS-specific)
+
+In addition to the vendor-agnostic configuration from above, you can set
+AWS-specific configuration for authentication. You can choose between
+access-key or ARN-based authentication:
+
+#### Option 1: With access key and secret access key
 
 | Environment variable | Description |
 | --- | --- |
-| TODO | TODO |
+| `AWS_ACCESS_KEY_ID` | The id of the AWS access key for the desired account. |
+| `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
 
+#### Option 2: With IAM and ARN roles
+
+| Environment variable | Description |
+| --- | --- |
+| `AWS_ROLE_ARN` | The unique AWS identifier of the role. |
+| `AWS_WEB_IDENTITY_TOKEN_FILE` | The path to the web identity token file. |
+| `AWS_REGION` | The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
 ### GCS (Google Cloud Storage)
 
@@ -77,9 +103,9 @@ ENABLE_MODULES=backup-gcs,text2vec-transformers
 
 In addition to activating the module, you need to provide configuration:
 
-| Environment variable | Description |
-| --- | --- |
-| TODO | TODO |
+| Environment variable | Required | Description |
+| --- | --- | --- |
+| `BACKUP_GCS_PATH` | no | The root path inside your bucket that all your backups will be copied into and retrieved from. Optional, defaults to `""` which means that the backups will be stored in the bucket root instead of a sub-folder. |
 
 #### Google Application Default Credentials
 
@@ -87,9 +113,44 @@ The `backup-gcs` module follows the Google [Application Default Credentials](htt
 
 This makes it easy to use the same module in different setups. For example, you can use the environment-based approach in production, and the CLI-based approach on your local machine. This way you can easily pull a backup that was created in a remote environment to your local system. This can be helpful in debugging an issue, for example.
 
+##### Environment-based Configuration
+
+| Environment variable | Example value | Description |
+| --- | --- | --- |
+| `GOOGLE_APPLICATION_CREDENTIALS` | `/your/google/credentials.json` | The path to the secret GCP service account or workload identity file. |
+
+
 ### Filesystem
 
-### Other Storage Backends
+Instead of backing up to a remote backend, you can also backup to the local
+filesystem. This may be helpful during development, for example to be able to
+quickly exchange setups, or to save a state from accidental future changes.
+
+To allow backups to the local filesystem, simply enable the `backup-filesystem` module like so:
+
+```
+ENABLE_MODULES=backup-filesystem
+```
+
+Modules are comma-separated, for example to combine the module with the `text2vec-transformers` module, set:
+
+```
+ENABLE_MODULES=backup-filesystem,text2vec-transformers
+```
+
+In addition to activating the module, you need to provide configuration:
+
+| Environment variable | Required | Description |
+| --- | --- | --- |
+| `BACKUP_FILESYSTEM_PATH` | yes | The root path that all your backups will be copied into and retrieved from |
+
+### Other Backup Backends
+
+Weaviate uses its module system to decouple the backup orchestration from the
+remote backup storage backends. It is easy to add new providers and use them
+with the existing backup API. If you are missing your desired backup module,
+you can open a feature request or contribute it yourself. For either option,
+join our Slack community to have a quick chat with us on how to get started.
 
 ## API
 
