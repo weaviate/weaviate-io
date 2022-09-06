@@ -281,6 +281,48 @@ restore is complete. If the status is `FAILED`, an additional error is provided.
 
 ## Read &amp; Write requests while a backup is running
 
+The backup process is designed to be minimally invasive to a running setup.
+Even on very large setups, where terrabytes of data need to be copied, Weaviate
+stays fully usable. It even accepts write request while a backup process is
+running. This sections explains how backups work under the hood and why
+Weaviate can safely accept writes while a backup is copied.
+
+Weaviate uses a custom [LSM
+Store](../architecture/storage.html#object-and-inverted-index-store) for it's
+object store and inverted index. LSM stores are a hybrid of immutable disk
+segments and an in-memory structure called a memtable that accepts all writes
+(including updates and deletes). For most of the time, files on disk are
+immutable, there are only three situations where files are changed:
+
+1. Anytime a memtable is flushed. This creates a new segment. Existing segments
+   are not changed.
+2. Any write into the memtable is also written into a Write-Ahead-Log (WAL).
+   The WAL is only needed for disaster-recovery. Once a segment has been
+   orderly flushed, the WAL can be discarded.
+3. There is an async background process called Compaction that optimizes
+   existing segments. It can merge two small segments into a larger big segment
+   and remove redundant data as part of the process.
+
+Weaviate's Backup implementation makes use of the above properties in the
+following ways:
+
+1. Weaviate first flushes all active memtables to disk. This process takes in
+   the 10s or 100s of milliseconds. Any pending write requests simply waits for
+   a new memtable to be created without any failing requests or substantial
+   delays.
+2. Now that the memtables are flushed, there is a guarantee: All data that
+   should be part of the backup is present in the existing disk segments. Any
+   data that will be imported after the backup request ends up in new disk
+   segments. The backup references a list of immutable files.
+3. To prevent a compaction process from changing the files on disk while they
+   are being copied, compactions are temporarily paused until all files have
+   been copied. They are automatically resumed right after.
+
+This way the backup process can guarantee that the files that are transferred to the remote backend are immutable (and thus safe to copy) even with new writes coming in. Even if it takes minutes or hours to backup a very large setup, Weaviate stays fully usable without any user impact while the backup process is running.
+
+It is not just safe - but even recommended - to create backups on live production
+instances while they are serving user requests.
+
 ## Async Components of a backup
 
 # Limitations & Outlook
