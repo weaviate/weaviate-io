@@ -6,7 +6,7 @@ title: /v1/classification
 intro: The RESTful classification endpoint allows you to start a <a href="#knn-classification">kNN</a> classification, and get the status, results and metadata of a previously created classification.
 description: RESTful API classification reference
 tags: ['RESTful API', 'references', 'classification']
-menu-order: 4
+menu-order: 5
 open-graph-type: article
 toc: false
 redirect_from:
