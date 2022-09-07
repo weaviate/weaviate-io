@@ -427,7 +427,7 @@ You need a `Hugging Face API Token` to use the Hugging Face module. You can [req
 *Note. Hugging Face Inference uses [a pay-per-use pricing model](https://huggingface.co/inference-api#pricing){:target="_blank"}.<br />
 Make sure to study it well before you run a big job.*
 
-To learn more, head to the [HuggingFace Module docs page](developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html){:target="_blank"}.
+To learn more, head to the [HuggingFace Module docs page](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html){:target="_blank"}.
 
 ## Other improvements and bug fixes
 
