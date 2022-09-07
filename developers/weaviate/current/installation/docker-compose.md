@@ -120,6 +120,7 @@ An overview of environment variables in the docker-compose file:
 
 | Variable | Description | Type | Example Value |
   | --- | --- | --- | --- |
+  | `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](https://weaviate.io/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html). | `string - memory limit in SI uints` | `4096MiB` |
   | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
   | `CONTEXTIONARY_URL` | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
   | `PERSISTENCE_DATA_PATH` | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
@@ -138,6 +139,7 @@ An overview of environment variables in the docker-compose file:
 | `DISK_USE_WARNING_PERCENTAGE` |  If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `80` |
 | `DISK_USE_READONLY_PERCENTAGE`  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `90` |
 | `PROMETHEUS_MONITORING_ENABLED`  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](../more-resources/monitoring.html) | `string - true/false` | `false` |
+| `BACKUP_*` | Various configuration variables for backup provider modules. They are outlined in detail on the [Backups page](../configuration/backups.html). | |
 
 # More Resources
 

@@ -29,7 +29,7 @@ You have three options to select your desired model:
 ## Option 1: Use a pre-built transformer model container
 
 ### Example docker-compose file
-Note: you can also use the [Weaviate configuration tool](../getting-started/installation.html#customize-your-weaviate-setup).
+Note: you can also use the [Weaviate configuration tool](../installation/docker-compose.html#configurator).
 
 You can find an example Docker-compose file below, which will spin up Weaviate with the multi2vec-clip module. In this example we have selected the `sentence-transformers/clip-ViT-B-32-multilingual` which works great for vectorizing images and text in the same vector space. It even supports multiple languages. See below for how to select an alternative model.
 
@@ -69,14 +69,14 @@ slower than on CPUs. Enable CUDA if you have a GPU available (`ENABLE_CUDA=1`).
 
 ### Alternative: configure your custom setup
 
-*Note: The following steps are only required if you want to manually add the module to an existing setup. If you are starting from scratch, a much more convenient option is to use our [configuration and customization tool](../getting-started/installation.html#customize-your-weaviate-setup).*
+*Note: The following steps are only required if you want to manually add the module to an existing setup. If you are starting from scratch, a much more convenient option is to use our [configuration and customization tool](../installation/docker-compose.html#configurator).*
 
 #### Step 1: Enable the `multi2vec-clip` module
 Make sure you set the `ENABLE_MODULES=multi2vec-clip` environment variable. Additionally, make this module the default vectorizer, so you don't have to specify it on each schema class: `DEFAULT_VECTORIZER_MODULE=multi2vec-clip`
 
 #### Step 2: Run your favorite model
 
-Choose [any of our pre-built CLIP models](../getting-started/installation.html#customize-your-weaviate-setup) (for building your own model container, see below) and spin it up with your setup. Use a CUDA-enabled machine for optimal performance.
+Choose [any of our pre-built CLIP models](../installation/docker-compose.html#configurator) (for building your own model container, see below) and spin it up with your setup. Use a CUDA-enabled machine for optimal performance.
 
 #### Step 3: Tell Weaviate where to find the inference 
 

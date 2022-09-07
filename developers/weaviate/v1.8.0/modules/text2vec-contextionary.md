@@ -1040,7 +1040,7 @@ To overcome this limitation the optional **Compound Splitting Feature** can be e
 Note that the newly found word (made up of the parts `thunderstorm` and `cloud` has the highest weight in the vectorization. So this meaning that would have been lost without Compound Splitting can now be recognized.
 
 ### How to enable
-You can enable compound splitting in the configuration file of the `text2vec-contextionary`. See how this is done [here](#module-configuration).
+You can enable compound splitting in the configuration file of the `text2vec-contextionary`. See how this is done [here](#compound-splitting).
 
 ### Trade-Off Import speed vs Word recognition
 Compound Splitting runs an any word that is otherwise not recognized. Depending on your dataset this can lead to a significantly longer import time (up to 100% longer). Therefore, you should carefully evaluate whether the higher precision in recognition or the faster import times are more important to your use case. As the benefit is larger in some languages (e.g. Dutch, German) than in others (e.g. English) this feature is turned off by default.

@@ -6,7 +6,7 @@ title: Authorization
 intro: Similar to our philosophy regarding database back-ends and the overall authentication scheme, authorization is also implemented in a pluggable fashion. This means you can choose the plugin that fits your use case best. If you have only a few users and don’t need to differentiate between their rights, the Admin List plugin is a perfect fit. If you need to control each user’s permissions at a very fine-grained level however, you should opt to use the RBAC plugin.
 description: Authorization in Weaviate
 tags: ['authorization']
-menu-order: 4
+menu-order: 5
 open-graph-type: article
 toc: true
 redirect_from:

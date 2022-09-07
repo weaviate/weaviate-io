@@ -111,7 +111,7 @@ og: /img/og/og-product.png
                     </div>
                     <div class="item">
                         <div class="item-title">
-                            <span>Queries P/M</span>
+                            <span>Monthly Queries</span>
                         </div>
                         <div class="item-input">
                             <input type="range" class="rangeinput" id="rangeslider3" value="0" min="0" max="250000000" step="10000">
@@ -134,7 +134,7 @@ og: /img/og/og-product.png
                     </div>
                     <div class="item item-submit">      
                         <div class="item-title">
-                            <span>High Avaliability</span>
+                            <span>High Availability</span>
                         </div>                  
                         <div class="item-input submitfield">
                             <div class="button-wrap">

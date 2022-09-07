@@ -10,7 +10,7 @@ open-graph-type: article
 toc: true
 ---
 
-The Weaviate Cloud Service can be accessed via the [console](http://console.semi.technology/) and is the SaaS version of Weaviate.
+The Weaviate Cloud Service can be accessed via the [console](https://console.semi.technology/) and is the SaaS version of Weaviate.
 
 * You can learn more about the console in [this guide](../core-knowledge/console.html).
 * You can create free-tier sandboxes and [sign up](https://console.semi.technology) for the private beta of our production SaaS.

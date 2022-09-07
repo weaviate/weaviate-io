@@ -84,6 +84,13 @@
               <hr>
 
               <div class="main-docs-content">
+                
+                {% if page.enabled-on-wcs == true %}
+                  <blockquote>
+                    <p>💡 This module is standard enabled on the Weaviate Cloud Service​</p>
+                  </blockquote>
+                {% endif %}
+
                 {{ content }}
               </div>
             </div>

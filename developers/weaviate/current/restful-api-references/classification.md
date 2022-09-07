@@ -6,7 +6,7 @@ title: /v1/classification
 intro: The RESTful classification endpoint allows you to start a <a href="#knn-classification">kNN</a> classification, and get the status, results and metadata of a previously created classification.
 description: RESTful API classification reference
 tags: ['RESTful API', 'references', 'classification']
-menu-order: 4
+menu-order: 5
 open-graph-type: article
 toc: false
 redirect_from:
@@ -23,7 +23,7 @@ redirect_from:
 - [KNN classification](#knn-classification)
   - [Endpoint and parameters](#endpoint-and-parameters)
 - [Zero-Shot Classification](#zero-shot-classification)
-- [Contextual Classification](../modules/text2vec-contextionary.html#contextual-classification)
+- [Contextual Classification](../retriever-vectorizer-modules/text2vec-contextionary.html)
 - [More Resources](#more-resources)
 
 # Start a classification
@@ -31,8 +31,8 @@ redirect_from:
 Weaviate's classification features allows you to classify data objects by predicting cross-references based on the semantic meaning of the data objects. Weaviate Core (without any modules) provides one type of classification: 
 - **[kNN classification](#knn-classification)**: Uses the k-nearest neighbors algorithm and requiring training data to predict cross-references. Weaviate finds similar objects and checks how they were labeled in the past. Especially when there isn’t a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful.
 
-The vectorizer module `text2vec-contextionary` provides a second type of classification. Information about this classification type can be found [here](../modules/text2vec-contextionary.html#contextual-classification).
-- **[Contextual classification](../modules/text2vec-contextionary.html#contextual-classification)**: Predicts cross-references based on the context, without training data. If you don't have any training data and want to classify how similar a source item is to a potential target item, contextual classification is the right pick. Especially when there is a strong semantic relation in your data (e.g., `The Landmark Eiffel Tower` and `The City Paris`).
+The vectorizer module `text2vec-contextionary` provides a second type of classification. Information about this classification type can be found [here](../retriever-vectorizer-modules/text2vec-contextionary.html).
+- **[Contextual classification](../retriever-vectorizer-modules/text2vec-contextionary.html)**: Predicts cross-references based on the context, without training data. If you don't have any training data and want to classify how similar a source item is to a potential target item, contextual classification is the right pick. Especially when there is a strong semantic relation in your data (e.g., `The Landmark Eiffel Tower` and `The City Paris`).
 
 A classification can be started using the RESTful API, via the `v1/classification` endpoint with a `POST` request. This triggers the start of the classification, after which it will run in the background. This can also be achieved using one of the client libraries. Use the [`GET` method](#get-status-results-and-metadata) to see the status of the classification:
 

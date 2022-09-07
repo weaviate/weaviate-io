@@ -21,7 +21,7 @@ redirect_from:
 # Prerequisites
 
  1. **Connect to a Weaviate instance.**\\
- If you haven't set up a Weaviate instance yet, check the [Getting started guide](../getting-started/installation.html). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](../getting-started/installation.html#weaviate-with-the-text2vec-contextionary-model) as vectorization module.
+ If you haven't set up a Weaviate instance yet, check the [Getting started guide](../getting-started/installation.html). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](../getting-started/installation.html) as vectorization module.
  2. **Upload a schema**. \\
  Learn how to create and upload a schema [here](./how-to-create-a-schema.html). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
  3. **Add data**. \\
