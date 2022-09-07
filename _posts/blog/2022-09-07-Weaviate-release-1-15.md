@@ -250,17 +250,9 @@ You can try it yourself [here](https://www.cs.usfca.edu/~galles/visualization/Re
 ### Results
 We've run a few local tests to paint a better picture of what you could expect.
 
-First, we saw that the RB-Tree is up to 4 faster than the binary tree (**2292ns** vs **9147ns** per operation) when adding objects with sequential keys (just the tree, without anything else).
+First, we saw that the RB-Tree is a factor of 20 faster than the binary tree when adding objects with sequential keys (just the tree, without anything else).
 
-
-| name | time* | avg allocated bytes* | # of allocations* |
-|---|---|---|---|
-| RB-Tree  | 2292 ns/op | 48 B/op | 2 allocs/op |
-| Binary-Tree  | 9147 ns/op | 1160 B/op | 10 allocs/op |
-
-**all metrics are per operation*
-
-Then with a full import test, we saw a **3x performance improvement** 🚀.
+With a full import test, we saw a **3x performance improvement** 🚀.
 
 * Weaviate `1.14.1` – import time **~38 minutes**
 * Weaviate `1.15.0` – import time **~13 minutes** 🔥
@@ -320,7 +312,7 @@ Check out the [metrics documentation page](/developers/weaviate/current/vector-i
 The Hamming distance is a metric for comparing two numerical vectors. <br/>
 It compares the vector values dimension by dimension and returns a total count of differing values. The fewer differences, the closer the vectors.
 
-For example, the Hamming distance for the below vectors is **3**, which is the count of matching values.
+For example, the Hamming distance for the below vectors is **2**, which is the count of differing values.
 * A `[1, 9, 3, 4, 5]`
 * B `[1, 2, 3, 9, 5]`
 
@@ -344,7 +336,7 @@ We can calculate the Manhattan distance in these steps:
 <!-- ### Dive deeper
 For a deeper dive into the Hamming and Manhattan distances, check out this [amazing blog post](). There you will learn how each of the distances work in more detail, when to use each and how they compare to other metrics. -->
 
-## New Weavaite modules
+## New Weaviate modules
 
 <!-- TODO: add an image for Weaviate modules -->
 ![New Weavaite modules](/img/blog/weaviate-1.15/weaviate-modules.png)
