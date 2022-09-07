@@ -8,7 +8,7 @@ description: |-
   from S3, GCS, etc. Supports backups without downtimes, even accepts new write requests
   while backups are running.
 tags: ['configuration', 'backups']
-menu-order: 5
+menu-order: 2
 open-graph-type: article
 toc: true
 ---
