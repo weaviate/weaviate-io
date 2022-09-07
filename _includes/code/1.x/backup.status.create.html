@@ -5,7 +5,7 @@ client = weaviate.Client('http://localhost:8080')
 
 result = client.backup.get_create_status(
   backup_id='my-very-first-backup',
-  storage_name='filesystem',
+  backend='filesystem',
 )
 
 print(result)
