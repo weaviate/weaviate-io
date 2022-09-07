@@ -117,6 +117,15 @@ if (dockerPulls && githubStars) {
             githubStars.innerHTML = addCommas(data.stargazers_count);
         }
     });
+    // get Docker pulls
+    getUrl('https://us-central1-semi-production.cloudfunctions.net/slack_users', 'text', 
+        function(err, data) {
+        if (err !== null) {
+            dockerPulls.innerHTML = '🤷';
+        } else {
+            dockerPulls.innerHTML = data;
+        }
+    });
 }
 
 // ToC links
@@ -181,8 +190,11 @@ if(document.getElementById('homepage-stats-container')){
         animateValue(document.getElementById('data-visitors'), 0, data, 820);
     });
     // get Slack users
-    var slackUsers = 1001;
-    animateValue(document.getElementById('data-slack'), 0, slackUsers, 820);
+    // set downloads
+    getUrl('https://us-central1-semi-production.cloudfunctions.net/slack_users', 'text', function(status, data){
+        var slackUsers = data;
+        animateValue(document.getElementById('data-slack'), 0, slackUsers, 820);
+    });
 }
 
 // handle more info request
