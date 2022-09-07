@@ -7,8 +7,7 @@ author: Sebastian Witalec
 author-img: /img/people/icon/sebastian.jpg
 card-img: /img/blog/hero/weaviate-1-15-card.png
 og: /img/blog/hero/weaviate-1-15-card.png
-# hero-img: /img/blog/hero/weaviate-1-15.png
-date: 2022-09-06
+date: 2022-09-07
 toc: false
 ---
 
@@ -18,9 +17,10 @@ We are happy to announce the release of Weaviate 1.15, which is packed with grea
 
 If you like your content brief and to the point, here is the TL;DR of this release:
 0. [☁️Cloud-native backups](#cloud-native-backups) – allows you to configure your environment to create backups – of selected classes or the whole database – straight into AWS S3, GCS or local filesystem
-0. [Improved memory management](#improved-memory-management) – with the introduction of GOMEMLIMIT we were able to gain more control over the garbage collector, which significantly reduces the chances of OOM kills for your Weaviate setups
+0. [Reduced memory usage](#reduced-memory-usage) - we found new ways to optimize memory useage, reducing RAM usage by 10-30%.
+0. [Better controll over Garbage Collector](#better-control-over-garbage-collector) – with the introduction of GOMEMLIMIT we were able to gain more control over the garbage collector, which significantly reduces the chances of OOM kills for your Weaviate setups. 
 0. [Faster imports for ordered data](#faster-imports-for-ordered-data) – by extending Binary Search Tree structure with with a self-balancing Red-black tree, we were able to speed up imports from O(n) to O(log n)
-0. [More efficient filtered aggregations](#more-efficient-filtered-aggregations) – thanks to optimization to a library reading binary data, filtered aggregations are up to 20x faster and require a lot less memory
+0. [More efficient filtered aggregations](#more-efficient-filtered-aggregations) – thanks to optimization to a library reading binary data, filtered aggregations are now 10-20 faster and require a lot less memory.
 <!-- (TODO: add the claim by Juraj) -->
 0. [Two new distance metrics](#new-distance-metrics) – with the addition Hamming and Manhattan to the ever growing list of available distance metrics, you can choose the metric (or a combination of) to best suit your data and use cases
 0. [Two new Weaviate modules](#new-weavaite-modules) – with the Summarization module you can summarize any text on the fly, while with the HuggingFace module you can use compatible transformers from the HuggingFace
@@ -29,9 +29,11 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 Read below to learn more about each of these points in more detail.
 
 ### Community effort
-😀We are extremely happy about this release, as it includes two big community contributions from Aakash Thatte and Dasith Edirisinghe. Over the last few weeks they collaborated with our engineers to make their contributions.
+![New Contributors](/img/blog/weaviate-1.15/new-contributors.jpg)
 
-🚀Aakash implemented the two new distance metrics, while Dasith contributed by implementing the two new Weaviate modules.
+😀We are extremely happy about this release, as it includes two big community contributions from [Aakash Thatte](https://github.com/sky-2002){:target="_blank"} and [Dasith Edirisinghe](https://github.com/DasithEdirisinghe){:target="_blank"}. Over the last few weeks they collaborated with our engineers to make their contributions.
+
+🚀**Aakash** implemented the two **new distance metrics**, while **Dasith** contributed by implementing the two **new Weaviate modules**.
 
 👕I guess we will be sending some Weaviate t-shirts to Aakash and Dasith soon.
 
@@ -155,7 +157,35 @@ This might now be immediately obvious, but you can use the above workflow to mig
 Are you ready to set up backups for your environment?
 Head to the [documentation](/developers/weaviate/current/configuration/backups.html){:target="_blank"} for a more in-depth overview and instructions.
 
-## Improved memory management
+## Reduced memory usage
+
+![Reduced memory usage](/img/blog/weaviate-1.15/reduced-memory-usage.jpg)
+
+As part of the continuous effort to make Weaviate faster, leaner and more powerful, we introduced new optimizations to use less RAM without sacrificing performance.
+
+### Thread pooling optimization
+
+First, we set our sights on parallel imports, where we introduced thread pooling to reduce memory spikes while importing data. 
+
+Previously if you had, e.g., 8 CPUs and would import from 4 client threads, each client request would run with a parallelization factor of 8 (one per CPU core). So, in the worst case, you could end up with 32 parallel imports (on a machine with "only" 8 CPUs). There is no performance gain if we have more parallelization than we have CPUs. However, each thread needs additional memory). So with 32 parallel imports, we had the worst of both worlds: High memory usage, and no performance gains beyond 8.
+
+With the fix, even if you import from multiple clients, Weaviate automatically handles the parallelization to ensure that it does not exceed the number of CPU cores. This means we get the maximum performance without "unnecessary" memory usage.
+
+### HNSW optimization
+
+Next, we optimized how the in-memory structures for the HNSW (Vector) index were stored in memory.
+
+The data structures relied on dynamic allocations that could have been static allocations. So, even if we knew that an array would never be longer that 64 elements, the Go runtime could decide to allocate an array[100] in the background when the array reaches 51 elements.
+
+With the fix, Weaviate now instructs the Go runtime to allocate the exact number of elements. This reduced **static** memory usage even when idle.
+
+### Results
+
+🎉 Between these two major updates, plus some smaller ones, we saw a **significant reduction in memory usage of 10-30%**🚀.
+
+🤔 With this, you can get more out of your existing setups and push your Weaviate instances to do more, or you could save on the resources.
+
+## Better control over Garbage Collector
 
 ![GOMEMLIMIT](/img/blog/weaviate-1.15/gomemlimit.jpg)
 
@@ -396,7 +426,15 @@ Make sure to study it well before you run a big job.*
 
 To learn more, head to the [HuggingFace Module docs page](developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html){:target="_blank"}.
 
+## Smaller improvements and bug fixes
+
+![Smaller improvements and bug fixes](/img/blog/weaviate-1.15/smaller-improvements.jpg)
+
+And of course, there are many other improvements and bug fixes that went into this release.
+
+You can find the full list, together with the relevant links in the [release notes](https://github.com/semi-technologies/weaviate/releases/tag/v1.15.0){:target="_blank"}.
+
 ## Enjoy
-We hope you enjoy the most reliable and observable Weaviate release yet!
+We hope you enjoy all the new features, performance improvements, memory savings and bug fixes that made this the best Weaviate release yet!🔥
 
 Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
