@@ -1,7 +1,7 @@
 ---
 title: Weaviate Pricing
 layout: default
-og: /img/og/og-product.png
+og: /img/og/og-pricing-v2.jpg
 ---
 
 <section class="sec banner-sec pricing-banner pb-0">
