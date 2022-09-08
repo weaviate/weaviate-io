@@ -61,7 +61,7 @@
     <!-- OG -->
     {% include docs-current_version_finder.html %}
 
-    {% if page.og != "" %}
+    {% if page.og %}
         <meta property="og:image" content="https://weaviate.io{{ page.og }}">
         <meta name="twitter:image" content="https://weaviate.io{{ page.og }}">
     {% elsif page.layout == "layout-documentation" %}
