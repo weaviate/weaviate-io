@@ -1,5 +1,13 @@
 ---
 - title: >
+    Weaviate 1.15 Release!
+  description: > 
+    Join Etienne, Dirk and Connor to learn about what is new in the latest Weaviate release.
+  youtube: 8lyA3mf7FjY
+  date: 2022-08-31T00:00:00Z
+  cover_image: '/img/podcasts/podcast-24.png'
+  is_use_case: false
+- title: >
     Ori Ram on Self-Supervised Retrieval
   description: > 
     This episode dives into a new technique for Self-Supervised retrieval in NLP with some incredible results!
