@@ -1,6 +1,5 @@
 ---
 layout: post
-title: How is Vector Search so fast?
 description: "Vector Search engines can run semantic queries on multi-million datasets in milliseconds. How is that possible?"
 published: true
 author: Laura Ham
