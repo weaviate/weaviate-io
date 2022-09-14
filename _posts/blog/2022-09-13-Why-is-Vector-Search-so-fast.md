@@ -109,4 +109,10 @@ A quick recap:
 ## Learn more
 The Weaviate Core team is currently working on research and implementation for other ANN algorithms. We are going to publish some of our findings in the next couple of weeks. So, stay tuned for more content on the topic.
 
-Until then, you can listen to a [podcast about ANN Benchmarks](https://youtu.be/kG3ji89AFyQ){:target="_blank"} with Connor and Etienne from SeMI Technologies.
+Until then, you can:
+* Listen to a [podcast about ANN Benchmarks](https://youtu.be/kG3ji89AFyQ){:target="_blank"} with Connor and Etienne from SeMI Technologies.
+* Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
+* Join our community on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, where we can all talk about vector search engines.
+* Reach out to us on [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+
+Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
