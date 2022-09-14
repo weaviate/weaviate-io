@@ -1,22 +1,22 @@
 ---
 layout: post
-title: How is Vector Search so fast?
+title: Why is Vector Search so fast?
 description: "Vector Search engines can run semantic queries on multi-million datasets in milliseconds. How is that possible?"
 published: true
 author: Laura Ham
 author-img: /img/people/icon/laura.jpg
-hero-img: /img/blog/hero/how-is-vector-search-so-fast-card.png
-card-img: /img/blog/hero/how-is-vector-search-so-fast-card.png
-og: /img/blog/hero/how-is-vector-search-so-fast-card.png
+hero-img: /img/blog/hero/why-is-vector-search-so-fast-card.png
+card-img: /img/blog/hero/why-is-vector-search-so-fast-card.png
+og: /img/blog/hero/why-is-vector-search-so-fast-card.png
 date: 2022-09-13
 toc: true
 ---
 
-## How is this so incredibly fast?
+## Why is this so incredibly fast?
 
 Whenever I talk about vector search, I like to demonstrate it with an example of a semantic search. To add the wow factor, I like to run my queries on a Wikipedia dataset, which is populated with over 28 million paragraphs sourced from Wikipedia.
 
-For example, I can ask: “What is the tallest building in Berlin?”, and the Vector Search engine (in the case of my demo – Weaviate) responds with “Fernsehturm Berlin”.<br/>
+For example, I can ask: “What is the tallest building in Berlin?”, and the Vector Search engine (in the case of my demo – [Weaviate](/developers/weaviate/current/){:target="_blank"}) responds with “Fernsehturm Berlin”.<br/>
 You can try it for yourself by following this [link](https://link.semi.technology/3QYy9xX){:target="_blank"}, which is already pre-populated with the above question. Press the play button, to see the magic happen.
 
 Here is the thing, finding the correct answer in a gigantic repository of unstructured data is not the most impressive part of this demonstration (I mean, it is very impressive), but it is the 🚀 speed at which it all happens. It takes a fraction of a second for the UI to show the results.
@@ -27,9 +27,9 @@ We are talking about a semantic search query, which **takes milliseconds** to fi
 
 The inevitable question that follows up this demonstration is always:
 
-> How is this so incredibly fast?
+> Why is this so incredibly fast?
 
-## How do vector search engines work?
+## What is a vector search?
 To answer this question we need to look at how vector search engines work. 
 
 Vector search engines index data, unlike other databases, based on data vectors (or vector embeddings). Vector embeddings capture the meaning and context of data, usually predicted by Machine Learning models. 
@@ -66,7 +66,7 @@ The *brute* force of a **kNN search is computationally very expensive** - and de
 In summary, kNN search doesn’t scale well, and it is hard to image using it with a large dataset in production.
 
 ## The answer - Approximate nearest neighbors (ANN)
-Instead of comparing vectors one by one, Vector Search engines use [Approximate Nearest Neighbor (ANN) algorithms](https://en.wikipedia.org/wiki/Nearest_neighbor_search#Approximation_methods){:target="_blank"}, which trade off a bit of accuracy (hence the A in the name) for a huge gain in speed.
+Instead of comparing vectors one by one, vector search engines use [Approximate Nearest Neighbor (ANN) algorithms](https://en.wikipedia.org/wiki/Nearest_neighbor_search#Approximation_methods){:target="_blank"}, which trade off a bit of accuracy (hence the A in the name) for a huge gain in speed.
 
 ANN algorithms may not return the true k nearest vectors, but they are very efficient. ANN algorithms maintain good performance (sublinear time, e.g. (poly)logarithmic complexity, see Figure 2) on very large-scale datasets.
 
@@ -95,16 +95,16 @@ So, ANN is not some magic method that will always find the true k nearest neighb
 *[Figure 4 - Proximity graph-based ANN search]*
 
 Check out [Weaviate ANN benchmarks](/developers/weaviate/current/benchmarks/ann.html){:target="_blank"} to see how HNSW performed on realistic large-scale datasets. You can use it to compare the tradeoffs between recall, QPS, latency, and import time.<br/>
-You will find it interesting to see, that Weaviate can maintain can be very high recall rates (>95%), whilst maintaining high throughput and low latency (both in milliseconds). That is exactly what you need for fast, but reliable Vector Search!
+You will find it interesting to see, that Weaviate can maintain can be very high recall rates (>95%), whilst maintaining high throughput and low latency (both in milliseconds). That is exactly what you need for fast, but reliable vector search!
 
 ## Summary
 A quick recap:
-* Vector Search engines use Machine Learning models to calculate and attach Vector embeddings to all data objects
-* Vector embeddings allow us to find semantically similar objects
-* Vector Search engines offer super fast queries thanks to ANN algorithms
+* Vector search engines use Machine Learning models to calculate and attach Vector embeddings to all data objects
+* Vector embeddings capture the meaning and context of data
+* Vector search engines offer super fast queries thanks to ANN algorithms
 * ANN algorithms trade a small amount of accuracy for huge gains in performance
 
-Of course, there is a lot more going on in a vector search engine that makes it so efficient. But that is content for another article.😉
+*Of course, there is a lot more going on in a vector search engine that makes it so efficient. But that is content for another article.😉*
 
 ## Learn more
 The Weaviate Core team is currently working on research and implementation for other ANN algorithms. We are going to publish some of our findings in the next couple of weeks. So, stay tuned for more content on the topic.
