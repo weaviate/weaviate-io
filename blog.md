@@ -18,7 +18,10 @@ layout: default
         </p>
         <!-- CTA -->
         <p class="lead">
-          <a href="http://weaviate-newsletter.semi.technology/" target="_blank" class="btn btn-primary">sign up for our newsletter</a>
+          <a href="http://weaviate-newsletter.semi.technology/" target="_blank" class="btn btn-primary">Sign up for our Newsletter</a>
+        </p>
+        <p class="lead">
+          <a href="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw" target="_blank" class="btn btn-primary">Join our Community Slack</a>
         </p>
       </div>
     </div> <!-- / .row -->
