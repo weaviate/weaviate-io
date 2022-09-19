@@ -95,18 +95,18 @@ You can sort results by any primitive property, typically a `text`, `string`,
 
 ## Cost of Sorting / Architecture
 
-Weaviate's sorting implementation is built in a way that id does not lead to
-massive memory spikes, e.g. it does not need to load all objects to be sorted
+Weaviate's sorting implementation is built in a way that it does not lead to
+massive memory spikes; it does not need to load all objects to be sorted
 into memory completely. Only the property value being sorted is kept in memory.
 
-When this feature was introduced (`v1.13.0`), Weaviate does have any
+As of now, Weaviate does not have any
 datastructures on disk specific to sorting, such as a column-oriented storage
 mechanism. As a result when an object should be sorted, the whole object is
 identified on disk and the relevant property extracted. This works reasonably
-well for small scales (10s or 100s of thousand objects), but comes with a high
-cost at large lists of objects to be sorted (millions+). A column-oriented
-storage mechanism may be introduced in the future to overcome this performance
-limitation.
+well for small scales (100s of thousand or millions), but comes with a high
+cost at large lists of objects to be sorted (100s of millions, billions). 
+A column-oriented storage mechanism may be introduced in the future to 
+overcome this performance limitation.
 
 ## Sorting API
 
