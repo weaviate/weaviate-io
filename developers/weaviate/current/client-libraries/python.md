@@ -41,9 +41,9 @@ If you want to use the client against an authenticated Weaviate, you'll need to 
 import weaviate
 
 # Creating a client with a secret
-secret = weaviate.AuthClientCredentials("secret")
+secret = weaviate.AuthClientPassword("user", "pass")
 # Alternative:
-# secret = weaviate.AuthClientPassword("user", "pass")
+# secret = weaviate.AuthClientCredentials("secret")
 
 # Initiate the client with the secret
 client = weaviate.Client("https://localhost:8080", secret)
@@ -170,30 +170,30 @@ client = weaviate.Client("http://localhost:8080")
 
 # create schema
 schema = {
-  'classes': [
+  "classes": [
     {
-      'class': 'Author',
-      'properties': [
+      "class": "Author",
+      "properties": [
         {
-          'name': 'name',
-          'dataType': ['string']
+          "name": "name",
+          "dataType": ["string"]
         },
         {
-          'name': 'wroteBooks',
-          'dataType': ['Book']
+          "name": "wroteBooks",
+          "dataType": ["Book"]
         }
       ]
     },
     {
-      'class': 'Book',
-      'properties': [
+      "class": "Book",
+      "properties": [
         {
-          'name': 'title',
-          'dataType': ['text']
+          "name": "title",
+          "dataType": ["text"]
         },
         {
-          'name': 'ofAuthor',
-          'dataType': ['Author']
+          "name": "ofAuthor",
+          "dataType": ["Author"]
         }
       ]
     }
@@ -203,13 +203,13 @@ schema = {
 client.schema.create(schema)
 
 author = {
-  'name': 'Jane Doe',
+  "name": "Jane Doe",
 }
 book_1 = {
-  'title': "Jane's Book 1"
+  "title": "Jane's Book 1"
 }
 book_2 = {
-  'title': "Jane's Book 2"
+  "title": "Jane's Book 2"
 }
 
 client.batch.configure(
@@ -218,57 +218,57 @@ client.batch.configure(
 
 with client.batch as batch:
   # add author
-  uuid_author = generate_uuid5(author, 'Author')
+  uuid_author = generate_uuid5(author, "Author")
   batch.add_data_object(
     data_object=author,
-    class_name='Author',
+    class_name="Author",
     uuid=uuid_author,
   )
   # add book_1
-  uuid_book_1 = generate_uuid5(book_1, 'Book')
+  uuid_book_1 = generate_uuid5(book_1, "Book")
   batch.add_data_object(
     data_object=book_1,
-    class_name='Book',
+    class_name="Book",
     uuid=uuid_book_1,
   )
   # add references author ---> book_1
   batch.add_reference(
     from_object_uuid=uuid_author,
-    from_object_class_name='Author',
-    from_property_name='wroteBooks',
+    from_object_class_name="Author",
+    from_property_name="wroteBooks",
     to_object_uuid=uuid_book_1,
-    to_object_class_name='Book',
+    to_object_class_name="Book",
   )
   # add references author <--- book_1
   batch.add_reference(
     from_object_uuid=uuid_book_1,
-    from_object_class_name='Book',
-    from_property_name='ofAuthor',
+    from_object_class_name="Book",
+    from_property_name="ofAuthor",
     to_object_uuid=uuid_author,
-    to_object_class_name='Author',
+    to_object_class_name="Author",
   )
   # add book_2
-  uuid_book_2 = generate_uuid5(book_2, 'Book')
+  uuid_book_2 = generate_uuid5(book_2, "Book")
   batch.add_data_object(
     data_object=book_2,
-    class_name='Book',
+    class_name="Book",
     uuid=uuid_book_2,
   )
   # add references author ---> book_2
   batch.add_reference(
     from_object_uuid=uuid_author,
-    from_object_class_name='Author',
-    from_property_name='wroteBooks',
+    from_object_class_name="Author",
+    from_property_name="wroteBooks",
     to_object_uuid=uuid_book_2,
-    to_object_class_name='Book',
+    to_object_class_name="Book",
   )
   # add references author <--- book_2
   batch.add_reference(
     from_object_uuid=uuid_book_2,
-    from_object_class_name='Book',
-    from_property_name='ofAuthor',
+    from_object_class_name="Book",
+    from_property_name="ofAuthor",
     to_object_uuid=uuid_author,
-    to_object_class_name='Author',
+    to_object_class_name="Author",
   )
 
 # NOTE: When exiting context manager the method `batch.flush()` is called
@@ -287,30 +287,30 @@ client = weaviate.Client("http://localhost:8080")
 
 # create schema
 schema = {
-  'classes': [
+  "classes": [
     {
-      'class': 'Author',
-      'properties': [
+      "class": "Author",
+      "properties": [
         {
-          'name': 'name',
-          'dataType': ['string']
+          "name": "name",
+          "dataType": ["string"]
         },
         {
-          'name': 'wroteBooks',
-          'dataType': ['Book']
+          "name": "wroteBooks",
+          "dataType": ["Book"]
         }
       ]
     },
     {
-      'class': 'Book',
-      'properties': [
+      "class": "Book",
+      "properties": [
         {
-          'name': 'title',
-          'dataType': ['text']
+          "name": "title",
+          "dataType": ["text"]
         },
         {
-          'name': 'ofAuthor',
-          'dataType': ['Author']
+          "name": "ofAuthor",
+          "dataType": ["Author"]
         }
       ]
     }
@@ -320,13 +320,13 @@ schema = {
 client.schema.create(schema)
 
 author = {
-  'name': 'Jane Doe',
+  "name": "Jane Doe",
 }
 book_1 = {
-  'title': "Jane's Book 1"
+  "title": "Jane's Book 1"
 }
 book_2 = {
-  'title': "Jane's Book 2"
+  "title": "Jane's Book 2"
 }
 
 client.batch.configure(
@@ -336,57 +336,57 @@ client.batch.configure(
 
 with client.batch as batch:
   # add author
-  uuid_author = generate_uuid5(author, 'Author')
+  uuid_author = generate_uuid5(author, "Author")
   batch.add_data_object(
     data_object=author,
-    class_name='Author',
+    class_name="Author",
     uuid=uuid_author,
   )
   # add book_1
-  uuid_book_1 = generate_uuid5(book_1, 'Book')
+  uuid_book_1 = generate_uuid5(book_1, "Book")
   batch.add_data_object(
     data_object=book_1,
-    class_name='Book',
+    class_name="Book",
     uuid=uuid_book_1,
   )
   # add references author ---> book_1
   batch.add_reference(
     from_object_uuid=uuid_author,
-    from_object_class_name='Author',
-    from_property_name='wroteBooks',
+    from_object_class_name="Author",
+    from_property_name="wroteBooks",
     to_object_uuid=uuid_book_1,
-    to_object_class_name='Book',
+    to_object_class_name="Book",
   )
   # add references author <--- book_1
   batch.add_reference(
     from_object_uuid=uuid_book_1,
-    from_object_class_name='Book',
-    from_property_name='ofAuthor',
+    from_object_class_name="Book",
+    from_property_name="ofAuthor",
     to_object_uuid=uuid_author,
-    to_object_class_name='Author',
+    to_object_class_name="Author",
   )
   # add book_2
-  uuid_book_2 = generate_uuid5(book_2, 'Book')
+  uuid_book_2 = generate_uuid5(book_2, "Book")
   batch.add_data_object(
     data_object=book_2,
-    class_name='Book',
+    class_name="Book",
     uuid=uuid_book_2,
   )
   # add references author ---> book_2
   batch.add_reference(
     from_object_uuid=uuid_author,
-    from_object_class_name='Author',
-    from_property_name='wroteBooks',
+    from_object_class_name="Author",
+    from_property_name="wroteBooks",
     to_object_uuid=uuid_book_2,
-    to_object_class_name='Book',
+    to_object_class_name="Book",
   )
   # add references author <--- book_2
   batch.add_reference(
     from_object_uuid=uuid_book_2,
-    from_object_class_name='Book',
-    from_property_name='ofAuthor',
+    from_object_class_name="Book",
+    from_property_name="ofAuthor",
     to_object_uuid=uuid_author,
-    to_object_class_name='Author',
+    to_object_class_name="Author",
   )
 # NOTE: When exiting context manager the method `batch.flush()` is called
 # done, everything is imported/created
@@ -404,30 +404,30 @@ client = weaviate.Client("http://localhost:8080")
 
 # create schema
 schema = {
-  'classes': [
+  "classes": [
     {
-      'class': 'Author',
-      'properties': [
+      "class": "Author",
+      "properties": [
         {
-          'name': 'name',
-          'dataType': ['string']
+          "name": "name",
+          "dataType": ["string"]
         },
         {
-          'name': 'wroteBooks',
-          'dataType': ['Book']
+          "name": "wroteBooks",
+          "dataType": ["Book"]
         }
       ]
     },
     {
-      'class': 'Book',
-      'properties': [
+      "class": "Book",
+      "properties": [
         {
-          'name': 'title',
-          'dataType': ['text']
+          "name": "title",
+          "dataType": ["text"]
         },
         {
-          'name': 'ofAuthor',
-          'dataType': ['Author']
+          "name": "ofAuthor",
+          "dataType": ["Author"]
         }
       ]
     }
@@ -437,13 +437,13 @@ schema = {
 client.schema.create(schema)
 
 author = {
-  'name': 'Jane Doe',
+  "name": "Jane Doe",
 }
 book_1 = {
-  'title': "Jane's Book 1"
+  "title": "Jane's Book 1"
 }
 book_2 = {
-  'title': "Jane's Book 2"
+  "title": "Jane's Book 2"
 }
 
 client.batch.configure(
@@ -452,17 +452,17 @@ client.batch.configure(
 
 with client.batch as batch:
   # add author
-  uuid_author = generate_uuid5(author, 'Author')
+  uuid_author = generate_uuid5(author, "Author")
   batch.add_data_object(
     data_object=author,
-    class_name='Author',
+    class_name="Author",
     uuid=uuid_author,
   )
   # add book_1
-  uuid_book_1 = generate_uuid5(book_1, 'Book')
+  uuid_book_1 = generate_uuid5(book_1, "Book")
   batch.add_data_object(
     data_object=book_1,
-    class_name='Book',
+    class_name="Book",
     uuid=uuid_book_1,
   )
   result = batch.create_objects()  # <----- implicit object creation
@@ -470,27 +470,27 @@ with client.batch as batch:
   # add references author ---> book_1
   batch.add_reference(
     from_object_uuid=uuid_author,
-    from_object_class_name='Author',
-    from_property_name='wroteBooks',
+    from_object_class_name="Author",
+    from_property_name="wroteBooks",
     to_object_uuid=uuid_book_1,
-    to_object_class_name='Book',
+    to_object_class_name="Book",
   )
   # add references author <--- book_1
   batch.add_reference(
     from_object_uuid=uuid_book_1,
-    from_object_class_name='Book',
-    from_property_name='ofAuthor',
+    from_object_class_name="Book",
+    from_property_name="ofAuthor",
     to_object_uuid=uuid_author,
-    to_object_class_name='Author',
+    to_object_class_name="Author",
   )
   result = batch.create_references()  # <----- implicit reference creation
 
 
   # add book_2
-  uuid_book_2 = generate_uuid5(book_2, 'Book')
+  uuid_book_2 = generate_uuid5(book_2, "Book")
   batch.add_data_object(
     data_object=book_2,
-    class_name='Book',
+    class_name="Book",
     uuid=uuid_book_2,
   )
   result = batch.create_objects()  # <----- implicit object creation
@@ -498,18 +498,18 @@ with client.batch as batch:
   # add references author ---> book_2
   batch.add_reference(
     from_object_uuid=uuid_author,
-    from_object_class_name='Author',
-    from_property_name='wroteBooks',
+    from_object_class_name="Author",
+    from_property_name="wroteBooks",
     to_object_uuid=uuid_book_2,
-    to_object_class_name='Book',
+    to_object_class_name="Book",
   )
   # add references author <--- book_2
   batch.add_reference(
     from_object_uuid=uuid_book_2,
-    from_object_class_name='Book',
-    from_property_name='ofAuthor',
+    from_object_class_name="Book",
+    from_property_name="ofAuthor",
     to_object_uuid=uuid_author,
-    to_object_class_name='Author',
+    to_object_class_name="Author",
   )
   result = batch.create_references()  # <----- implicit reference creation
 
@@ -565,9 +565,11 @@ def check_batch_result(results: dict):
 
   if results is not None:
     for result in results:
-      if 'result' in result and 'errors' in result['result']:
-        if 'error' in result['result']['errors']:
-          print(result['result']['errors']['error'])
+      if "result" in result and "errors" in result["result"]:
+        if "error" in result["result"]["errors"]:
+          # print(result["result"]["errors"]["error"])  # prints only the error
+          print(result["result"])                       # prints the error and the object
+
 ```
 
 Now we can use this function to print the error messages at item (object/reference) level. Lets look how we can do it using Auto-/Dynamic-batching where we never implicitly call the `create` methods:
@@ -769,78 +771,78 @@ Updates in `weaviate.gql` sub-package:
     The ``autocorrect`` is enabled only if Weaviate server has the ``text-spellcheck`` module enabled. If ``autocorrect`` is ``True``, the query is corrected before the query is made. Usage example:
 
 ```python
-# with 'nearText' filter
+# with "nearText" filter
 client.query\
-    .get('Article', ['title', 'author'])\
+    .get("Article", ["title", "author"])\
     .near_text(
         {
-            'concepts': ['Ecconomy'],
-            'autocorrect': True
+            "concepts": ["Ecconomy"],
+            "autocorrect": True
         }
     )
-    # the concept should be corrected to 'Economy'
-# with 'ask' filter
+    # the concept should be corrected to "Economy"
+# with "ask" filter
 client.query\
-    .get('Article', ['title', 'author'])\
+    .get("Article", ["title", "author"])\
     .with_ask(
         {
-            'question': 'When was the last financial crysis?',
-            'autocorrect': True
+            "question": "When was the last financial crysis?",
+            "autocorrect": True
         }
     )
-    # the question should be corrected to 'When was the last financial crisis?'
+    # the question should be corrected to "When was the last financial crisis?"
 ```
 - New method `weaviate.gql.get.GetBuilder.with_additional` is added to GET the `_additional` properties. Usage example:
 
 ```python
 # single additional property
 client.query\
-    .get('Article', ['title', 'author'])\
-    .with_additional('id']) # argument as `str`
+    .get("Article", ["title", "author"])\
+    .with_additional("id"]) # argument as `str`
 # multiple additional property
 client.query\
-    .get('Article', ['title', 'author'])\
-    .with_additional(['id', 'certainty']) # argument as `List[str]`
+    .get("Article", ["title", "author"])\
+    .with_additional(["id", "certainty"]) # argument as `List[str]`
 # additional properties as clause
 client.query\
-    .get('Article', ['title', 'author'])\
+    .get("Article", ["title", "author"])\
     .with_additional(
         {
-            'classification' : [
-                'basedOn',
-                'classifiedFields',
-                'completed',
-                'id',
-                'scope'
+            "classification" : [
+                "basedOn",
+                "classifiedFields",
+                "completed",
+                "id",
+                "scope"
             ]
         }
     ) # argument as `Dict[str, List[str]]`
 # or
 client.query\
-    .get('Article', ['title', 'author'])\
+    .get("Article", ["title", "author"])\
     .with_additional(
         {
-            'classification' : 'completed'
+            "classification" : "completed"
         }
     ) # argument as `dict[str, str]`
 # additional properties as clause and clause settings
 clause = {
-    'token': [
-        'certainty',
-        'endPosition',
-        'entity',
-        'property',
-        'startPosition',
-        'word',
+    "token": [
+        "certainty",
+        "endPosition",
+        "entity",
+        "property",
+        "startPosition",
+        "word",
     ]
 }
 settings = {
-    'properties': ["content"], # is required
-    'limit': 10, # optional, int
-    'certainty': 0.8 # optional, float
+    "properties": ["content"], # is required
+    "limit": 10, # optional, int
+    "certainty": 0.8 # optional, float
 }
 client.query\
-    .get('Article', ['title', 'author'])\
+    .get("Article", ["title", "author"])\
     .with_additional(
         (clause, settings)
     ) # argument as `Tuple[Dict[str, List[str]], Dict[str, Any]]`
@@ -896,15 +898,15 @@ Migration guide from `v2.5.x` to `v.3.0.0`:
 >>> BATCH_SIZE = 128
 >>> for i in range(len((objects)): # for some objects to be created
 ...     objects_batch.add(
-...         class_name=objects[i]['class_name'],
-...         data_object=objects[i]['data_object'],
-...         uuid=objects[i]['uuid'],
+...         class_name=objects[i]["class_name"],
+...         data_object=objects[i]["data_object"],
+...         uuid=objects[i]["uuid"],
 ...     )
 ...     references_batch.add(
-...         from_object_class_name=objects[i]['class_name'],
-...         from_object_uuid=objects[i]['uuid'],
-...         from_property_name=objects[i]['nextObject'],
-...         to_object_uuid=objects[(i + 1) % len(objects)]['uuid']
+...         from_object_class_name=objects[i]["class_name"],
+...         from_object_uuid=objects[i]["uuid"],
+...         from_property_name=objects[i]["nextObject"],
+...         to_object_uuid=objects[(i + 1) % len(objects)]["uuid"]
 ...     )
 ...     if i % BATCH_SIZE == 0:
 ...         client.batch.create_objects(objects_batch)
@@ -922,15 +924,15 @@ Migration guide from `v2.5.x` to `v.3.0.0`:
 >>> BATCH_SIZE = 128
 >>> for i in range(len((objects)): # for some objects to be created
 ...     client.batch.add_data_object(
-...         class_name=objects[i]['class_name'],
-...         data_object=objects[i]['data_object'],
-...         uuid=objects[i]['uuid'],
+...         class_name=objects[i]["class_name"],
+...         data_object=objects[i]["data_object"],
+...         uuid=objects[i]["uuid"],
 ...     )
 ...     client.batch.add_reference(
-...         from_object_class_name=objects[i]['class_name'],
-...         from_object_uuid=objects[i]['uuid'],
-...         from_property_name=objects[i]['nextObject'],
-...         to_object_uuid=objects[(i + 1) % len(objects)]['uuid']
+...         from_object_class_name=objects[i]["class_name"],
+...         from_object_uuid=objects[i]["uuid"],
+...         from_property_name=objects[i]["nextObject"],
+...         to_object_uuid=objects[(i + 1) % len(objects)]["uuid"]
 ...     )
 ...     if i % BATCH_SIZE == 0:
 ...         client.batch.create_objects(objects_batch)
@@ -946,15 +948,15 @@ Or in a context manager:
 >>> with client.batch as batch:
 ...     for i in range(len((objects)): # for some objects to be created
 ...         batch.add_data_object(
-...             class_name=objects[i]['class_name'],
-...             data_object=objects[i]['data_object'],
-...             uuid=objects[i]['uuid'],
+...             class_name=objects[i]["class_name"],
+...             data_object=objects[i]["data_object"],
+...             uuid=objects[i]["uuid"],
 ...         )
 ...         batch.add_reference(
-...             from_object_class_name=objects[i]['class_name'],
-...             from_object_uuid=objects[i]['uuid'],
-...             from_property_name=objects[i]['nextObject'],
-...             to_object_uuid=objects[(i + 1) % len(objects)]['uuid']
+...             from_object_class_name=objects[i]["class_name"],
+...             from_object_uuid=objects[i]["uuid"],
+...             from_property_name=objects[i]["nextObject"],
+...             to_object_uuid=objects[(i + 1) % len(objects)]["uuid"]
 ...         )
 ...         if i % BATCH_SIZE == 0:
 ...             batch.create_objects(objects_batch)
@@ -968,15 +970,15 @@ Or in a context manager:
 >>> # client.batch.configure(batch_size=BATCH_SIZE) is the same as client.batch(batch_size=BATCH_SIZE)
 >>> for i in range(len((objects)): # for some objects to be created
 ...     client.batch.add_data_object(
-...         class_name=objects[i]['class_name'],
-...         data_object=objects[i]['data_object'],
-...         uuid=objects[i]['uuid'],
+...         class_name=objects[i]["class_name"],
+...         data_object=objects[i]["data_object"],
+...         uuid=objects[i]["uuid"],
 ...     )
 ...     client.batch.add_reference(
-...         from_object_class_name=objects[i]['class_name'],
-...         from_object_uuid=objects[i]['uuid'],
-...         from_property_name=objects[i]['nextObject'],
-...         to_object_uuid=objects[(i + 1) % len(objects)]['uuid']
+...         from_object_class_name=objects[i]["class_name"],
+...         from_object_uuid=objects[i]["uuid"],
+...         from_property_name=objects[i]["nextObject"],
+...         to_object_uuid=objects[(i + 1) % len(objects)]["uuid"]
 ...     )
 >>> client.batch.flush()
 ```
@@ -988,15 +990,15 @@ Or in a context manager:
 ...     # client.batch.configure(batch_size=BATCH_SIZE) is the same as client.batch(batch_size=BATCH_SIZE)
 ...     for i in range(len((objects)): # for some objects to be created
 ...         batch.add_data_object(
-...             class_name=objects[i]['class_name'],
-...             data_object=objects[i]['data_object'],
-...             uuid=objects[i]['uuid'],
+...             class_name=objects[i]["class_name"],
+...             data_object=objects[i]["data_object"],
+...             uuid=objects[i]["uuid"],
 ...         )
 ...         batch.add_reference(
-...             from_object_class_name=objects[i]['class_name'],
-...             from_object_uuid=objects[i]['uuid'],
-...             from_property_name=objects[i]['nextObject'],
-...             to_object_uuid=objects[(i + 1) % len(objects)]['uuid']
+...             from_object_class_name=objects[i]["class_name"],
+...             from_object_uuid=objects[i]["uuid"],
+...             from_property_name=objects[i]["nextObject"],
+...             to_object_uuid=objects[(i + 1) % len(objects)]["uuid"]
 ...         )
 ```
 
@@ -1007,15 +1009,15 @@ Or in a context manager:
 >>> # client.batch.configure(batch_size=BATCH_SIZE) is the same as client.batch(batch_size=BATCH_SIZE)
 >>> for i in range(len((objects)): # for some objects to be created
 ...     client.batch.add_data_object(
-...         class_name=objects[i]['class_name'],
-...         data_object=objects[i]['data_object'],
-...         uuid=objects[i]['uuid'],
+...         class_name=objects[i]["class_name"],
+...         data_object=objects[i]["data_object"],
+...         uuid=objects[i]["uuid"],
 ...     )
 ...     client.batch.add_reference(
-...         from_object_class_name=objects[i]['class_name'],
-...         from_object_uuid=objects[i]['uuid'],
-...         from_property_name=objects[i]['nextObject'],
-...         to_object_uuid=objects[(i + 1) % len(objects)]['uuid']
+...         from_object_class_name=objects[i]["class_name"],
+...         from_object_uuid=objects[i]["uuid"],
+...         from_property_name=objects[i]["nextObject"],
+...         to_object_uuid=objects[(i + 1) % len(objects)]["uuid"]
 ...     )
 >>> client.batch.flush()
 ```
@@ -1027,15 +1029,15 @@ Or in a context manager:
 ...     # client.batch.configure(batch_size=BATCH_SIZE) is the same as client.batch(batch_size=BATCH_SIZE)
 ...     for i in range(len((objects)): # for some objects to be created
 ...         batch.add_data_object(
-...             class_name=objects[i]['class_name'],
-...             data_object=objects[i]['data_object'],
-...             uuid=objects[i]['uuid'],
+...             class_name=objects[i]["class_name"],
+...             data_object=objects[i]["data_object"],
+...             uuid=objects[i]["uuid"],
 ...         )
 ...         batch.add_reference(
-...             from_object_class_name=objects[i]['class_name'],
-...             from_object_uuid=objects[i]['uuid'],
-...             from_property_name=objects[i]['nextObject'],
-...             to_object_uuid=objects[(i + 1) % len(objects)]['uuid']
+...             from_object_class_name=objects[i]["class_name"],
+...             from_object_uuid=objects[i]["uuid"],
+...             from_property_name=objects[i]["nextObject"],
+...             to_object_uuid=objects[(i + 1) % len(objects)]["uuid"]
 ...         )
 ```
 
@@ -1085,7 +1087,7 @@ The new version is compatible with Weaviate `v1.3.0`.
     ```python
     WCS.create(self,
                 cluster_name: str=None,
-                cluster_type: str='sandbox',
+                cluster_type: str="sandbox",
                 with_auth: bool=False, # <- NEW
                 module: Optional[Union[str, dict]]=None,
                 config: dict=None,
@@ -1118,7 +1120,7 @@ The new version is compatible with Weaviate `v1.3.0`.
 - ADDED new Object `WCS` to create/delete WCS clusters from python.
   - `WCS(auth_client_secret: AuthCredentials, dev: bool=False)`
       `dev` is for development URL.
-  - `WCS.create(cluster_name: str=None, cluster_type: str='sandbox', config: dict=None, wait_for_completion: bool=True) -> str:`
+  - `WCS.create(cluster_name: str=None, cluster_type: str="sandbox", config: dict=None, wait_for_completion: bool=True) -> str:`
       Create a cluster. Returns the cluster URL.
   - `WCS.is_ready(self, cluster_name: str) -> bool:`
       Check if cluster is created and ready to use.

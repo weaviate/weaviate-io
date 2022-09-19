@@ -6,7 +6,7 @@ import weaviate
 client = weaviate.Client("https://some-endpoint.semi.network/")
 
 # Load data from the data.json file
-data_file = open('data.json')
+data_file = open("data.json")
 data = json.load(data_file)
 # Closing file
 data_file.close()
@@ -20,17 +20,15 @@ client.batch.configure(
 )
 
 # Batch import all Publications
-for publication in data['publications']:
-  print("importing publication: ", publication["name"])
+with client.batch as batch:
+  for publication in data["publications"]:
+    print("importing publication: ", publication["name"])
 
-  properties = {
-    "name": publication["name"]
-  }
+    properties = {
+      "name": publication["name"]
+    }
 
-  client.batch.add_data_object(properties, "Publication", publication["id"], publication["vector"])
-
-# Flush the remaining buffer to make sure all objects are imported
-client.batch.flush()
+    batch.add_data_object(properties, "Publication", publication["id"], publication["vector"])
 
 {% endcapture %}
 

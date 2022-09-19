@@ -33,14 +33,14 @@
 {% capture python %}
 import weaviate
 
-client = weaviate.Client('http://localhost:8080')
+client = weaviate.Client("http://localhost:8080")
 
 result = (
   client.query
-  .aggregate('Article')
+  .aggregate("Article")
   .with_meta_count()
-  .with_fields('wordCount {count maximum mean median minimum mode sum type}')
-  .with_near_vector({'vector': [0.1, 0.2, -0.3], 'certainty': 0.7})
+  .with_fields("wordCount {count maximum mean median minimum mode sum type}")
+  .with_near_vector({"vector": [0.1, 0.2, -0.3], "certainty": 0.7})
   .with_object_limit(100)
   .do()
 )

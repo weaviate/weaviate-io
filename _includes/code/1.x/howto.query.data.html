@@ -27,14 +27,14 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 where_filter = {
-  'operator': 'Equal',
-  'valueString': "Wired",
-  'path': ["inPublication", "Publication", "name"]
+  "operator": "Equal",
+  "valueString": "Wired",
+  "path": ["inPublication", "Publication", "name"]
 }
 
 query_result = (
   client.query
-  .get('Article', ['title', 'url', 'hasAuthors{... on Author {name}}'])
+  .get("Article", ["title", "url", "hasAuthors{... on Author {name}}"])
   .with_where(where_filter)
   .do
 )

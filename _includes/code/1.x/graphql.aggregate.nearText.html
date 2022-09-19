@@ -33,14 +33,14 @@
 {% capture python %}
 import weaviate
 
-client = weaviate.Client('http://localhost:8080')
+client = weaviate.Client("http://localhost:8080")
 
 result = (
   client.query
-  .aggregate('Article')
+  .aggregate("Article")
   .with_meta_count()
-  .with_fields('wordCount {count maximum mean median minimum mode sum type} inPublication {pointingTo type}')
-  .with_near_text({'concepts': ["apple iphone"], 'distance': 0.7})  # prior to v1.14 use "certainty" instead of "distance"
+  .with_fields("wordCount {count maximum mean median minimum mode sum type} inPublication {pointingTo type}")
+  .with_near_text({"concepts": ["apple iphone"], "distance": 0.7})  # prior to v1.14 use "certainty" instead of "distance"
   .with_object_limit(200)  # at least one of "objectLimit", 
   .do()                    # and/or "distance" must be set
 )                          # when using near media filters

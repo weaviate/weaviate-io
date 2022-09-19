@@ -1,11 +1,11 @@
 {% capture python %}
 import weaviate
 
-client = weaviate.Client('http://localhost:8080')
+client = weaviate.Client("http://localhost:8080")
 
 result = client.backup.create(
-  backup_id='my-very-first-backup',
-  backend='filesystem',
+  backup_id="my-very-first-backup",
+  backend="filesystem",
   include_classes=["Article", "Publication"],
   wait_for_completion=True,
 )

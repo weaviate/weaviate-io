@@ -24,13 +24,13 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 near_text_filter = {
-  'concepts': ['fashion']
+  "concepts": ["fashion"]
 }
 
 query_result = (
   client.query
-  .get('Article', 'title')
-  .with_additional(['id', 'certainty'])
+  .get("Article", "title")
+  .with_additional(["id", "certainty"])
   .with_near_text(near_text_filter)
   .do()
 )

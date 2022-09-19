@@ -15,9 +15,10 @@ def check_batch_result(results: dict):
 
     if results is not None:
         for result in results:
-            if 'result' in result and 'errors' in result['result']:
-                if 'error' in result['result']['errors']:
-                    print(result['result']['errors']['error'])
+            if "result" in result and "errors" in result["result"]:
+                if "error" in result["result"]["errors"]:
+                    # print(result["result"]["errors"]["error"])  # prints only the error
+                    print(result["result"])                       # prints the error and the object
 
 client = weaviate.Client("https://some-endpoint.semi.network/")
 
@@ -54,10 +55,10 @@ batch_obj_array = [{
 }]
 
 # import the batch
-for obj in batch_obj_array:
-    with client.batch(callback=check_batch_result) as batch:
+with client.batch(callback=check_batch_result) as batch:
+    for obj in batch_obj_array:
         # Add object with a custom vector
-        batch.add_data_object(obj['properties'], obj['class'], obj['id'], vector=obj['vector'])
+        batch.add_data_object(obj["properties"], obj["class"], obj["id"], vector=obj["vector"])
 
 {% endcapture %}
 

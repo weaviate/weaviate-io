@@ -15,7 +15,7 @@ client.classification.schedule()\
             .with_based_on_properties(["summary"])\
             .with_classify_properties(["hasPopularity"])\
             .with_training_set_where_filter(trainingSetWhere)\
-            .with_settings({'k':3})\
+            .with_settings({"k":3})\
             .do()
 {% endcapture %}
 

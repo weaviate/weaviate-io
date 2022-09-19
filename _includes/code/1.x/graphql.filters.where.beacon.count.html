@@ -27,14 +27,14 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 where_filter = {
-  'valueInt': 2,
-  'operator': 'GreaterThanEqual',
-  'path': ["WroteArticles"]
+  "valueInt": 2,
+  "operator": "GreaterThanEqual",
+  "path": ["WroteArticles"]
 }
 
 query_result = (
   client.query
-  .get('Author', ['name', 'wroteArticles {... on Article {title}}'])
+  .get("Author", ["name", "wroteArticles {... on Article {title}}"])
   .with_where(where_filter)
   .do()
 )

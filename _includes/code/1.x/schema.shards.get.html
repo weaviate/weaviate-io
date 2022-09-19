@@ -3,7 +3,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-client.schema.get_class_shards('Article')
+client.schema.get_class_shards("Article")
 {% endcapture %}
 
 {% capture javascript %}

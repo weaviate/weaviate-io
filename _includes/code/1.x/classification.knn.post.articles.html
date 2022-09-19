@@ -8,7 +8,7 @@ client.classification.schedule()\
             .with_class_name("Article")\
             .with_based_on_properties(["summary"])\
             .with_classify_properties(["hasPopularity"])\
-            .with_settings({'k':3})\
+            .with_settings({"k":3})\
             .do()
 {% endcapture %}
 
