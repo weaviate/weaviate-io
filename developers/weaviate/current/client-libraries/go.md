@@ -289,8 +289,8 @@ client.Data().Validator().WithProperties(properties)
 
 ## v4.3.0
 - Added support for [backup](../configuration/backups.html) API
-- Added method `WithObjects` method to `ObjectsBatcher`
-- Added method `WithReferences` method to `ReferencesBatcher`
+- Added method `WithObjects` to `ObjectsBatcher`
+- Added method `WithReferences` to `ReferencesBatcher`
 
 ## v4.2.1
 - Fixed fetching db version

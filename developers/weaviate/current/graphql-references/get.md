@@ -90,7 +90,7 @@ To combine `Get { }` with a vector search argument, here is an overview of the s
 *Note: Support for sorting was added in `v1.13.0`.*
 
 You can sort results by any primitive property, typically a `text`, `string`,
-`number`, or `int` property. When aquery has a natural order (e.g. because of a
+`number`, or `int` property. When a query has a natural order (e.g. because of a
 `near<Media>` vector search), adding a sort operator will override the order.
 
 ## Cost of Sorting / Architecture
@@ -100,13 +100,31 @@ massive memory spikes; it does not need to load all objects to be sorted
 into memory completely. Only the property value being sorted is kept in memory.
 
 As of now, Weaviate does not have any
-datastructures on disk specific to sorting, such as a column-oriented storage
+data structures on disk specific to sorting, such as a column-oriented storage
 mechanism. As a result when an object should be sorted, the whole object is
 identified on disk and the relevant property extracted. This works reasonably
 well for small scales (100s of thousand or millions), but comes with a high
 cost at large lists of objects to be sorted (100s of millions, billions). 
 A column-oriented storage mechanism may be introduced in the future to 
 overcome this performance limitation.
+
+## Sorting decisions
+
+### booleans order
+`false` is considered smaller than `true`. `false` comes before `true` in ascending order and after `true` in descending order.
+
+### nulls order
+`null` values are considered smaller than any non-`null` values. `null` values come first in ascending order and last in descending order.
+
+### arrays order
+Arrays are compared by each element separately. Elements at the same position are compared to each other, starting from the beginning of an array. First element smaller than its counterpart makes whole array smaller.
+Arrays are equal if they have the same size and all elements are equal. If array is subset of other array it is considered smaller.
+
+Examples:
+- `[1, 2, 3] = [1, 2, 3]`
+- `[1, 2, 4] < [1, 3, 4]`
+- `[2, 2] > [1, 2, 3, 4]`
+- `[1, 2, 3] < [1, 2, 3, 4]`
 
 ## Sorting API
 
