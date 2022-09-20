@@ -116,7 +116,7 @@ Manhattan distance, also known as L1 norm and Taxicab Distance, calculates the d
 
 The name comes from the grid layout resembling the streets of Manhattan. The city is designed with buildings on every corner and one-way streets. If you're trying to go from point A to point B, the shortest path isn't straight through because you cannot drive through buildings. You will run into buildings, cars, and people. The fastest route is one with fewer twists and turns.
 
-![Manhattan Distance](/img/blog/distance-metrics/weaviate-manhatten-distance.png){:width="50%"}
+![Manhattan Distance](/img/blog/distance-metrics/weaviate-manhatten-distance.png)
 
 #### Manhattan versus Euclidean Distance
 The Manhattan distance (L1 norm) and Euclidean distance (L2 norm) are two metrics used in machine learning models. The L1 norm is calculated by taking the sum of the absolute values of the vector. The L2 norm takes the square root of the sum of the squared vector values. The Manhattan distance is faster to calculate since the values are typically smaller than the Euclidean distance.
@@ -124,7 +124,7 @@ The Manhattan distance (L1 norm) and Euclidean distance (L2 norm) are two metric
 #### When to use it 
 Generally, there is an accuracy speed tradeoff when choosing between the Manhattan and Euclidean distance. It is hard to say precisely when the Manhattan distance will be more accurate than Euclidean; however, Manhattan is faster in speed since you don’t have to square the differences. You want to use the Manhattan distance as the dimension of your data increases. For more information on which distance metric to use in high-dimensional spaces, check out this paper by [Aggarwal et al.](https://bib.dbvis.de/uploadedFiles/155.pdf){:target="_blank"}
 
-![Hamming and Manhattan Distance](/img/blog/distance-metrics/hamming-manhattan.png){:width="50%"}
+![Hamming and Manhattan Distance](/img/blog/distance-metrics/hamming-manhattan.png)
 
 ### Hamming Distance 
 The Hamming distance is a metric for comparing two numeric vectors. It computes how many changes are needed to convert one vector to the other. There are two ways to implement the Hamming distance: 1. Compare two numeric vectors 2. Compare two binary vectors. Weaviate has implemented the first option to compare numeric vectors. In the next section, I will describe an idea to use Hamming distance in tandem with Binary Passage Retrieval. 
