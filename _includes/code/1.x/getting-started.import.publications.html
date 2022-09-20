@@ -73,7 +73,7 @@ async function importPublications() {
 
     // When the batch counter reaches 20, push the objects to Weaviate
     if (counter++ == 20) {
-      // flush the batch queue (use await to execute the promise)
+      // flush the batch queue
       batcher
       .do()
       .then(res => {
