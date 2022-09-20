@@ -4,7 +4,7 @@ title: What are Distance Metrics in Vector Search
 description: ""
 published: true
 author: Erika Cardenas 
-author-img: /img/people/icon/sebastian.jpg
+author-img: /img/people/erika.jpg
 card-img: /img/blog/hero/weaviate-1-15-card.png
 og: /img/blog/hero/weaviate-1-15-card.png
 date: 2022-09-20
@@ -18,14 +18,14 @@ In a nutshell, a vector embedding is an array of numbers, that is used to descri
 
 Vector search can be used in many use cases, we could use a CLIP model, to vectorize and search through text and image data with a single query. We could use a text transformer model to vectorize text and search using the semantic meaning of the query and data, without having to worry about matching keywords. There are many more use cases, even outside of search – like automatic data classification – but this is outside of the scope of this article.
 
-### Vectors in Multi-Dimensional Space 
+## Vectors in Multi-Dimensional Space 
 Vector search engines keep the semantic meaning of your data by representing each object as a vector embedding. Each embedding is a point in a high-dimensional space. For example, the vectors for bananas (both the text and the image) are located near apples and not cats.
 
 ![Visual of Vector Search](/img/blog/distance-metrics/weaviate-vector-search-engine.png){:width="50%"}
 
 *The above image is a perfect visual of what a vector engine is. To perform a search, your search query is converted to a vector - similar to your data vectors. The search engine then computes the similarity between the search query and the collection of data points in the vector space.*
 
-## Vector Search Engines are Fast 
+### Vector Search Engines are Fast 
 The best thing is, that vector search engines can **query large datasets**, containing **tens or hundreds of millions of objects** and still **respond** to queries in a tiny **fraction of a second**. 
 
 Without getting too much into details, one of the big reasons why Vector Search engines are so fast is because they use the **Approximate Nearest Neighbor** (ANN) algorithm to index data based on vectors. ANN algorithms organize indexes so that the vectors that are closely related are stored next to each other. 
@@ -33,7 +33,7 @@ Without getting too much into details, one of the big reasons why Vector Search 
 Check out this article to learn [Why Vector Search engines are so fast](https://weaviate.io/blog/2022/09/Why-is-Vector-Search-so-fast.html){:target="_blank"} and how they work.
 
 ## Distance Metrics 
-And here comes the real questions and the main purpose of this article:
+Here comes the real question and the purpose of this article:
 > How does a Vector Search engine know which vectors should be grouped closely and which should be far apart?
 
 **The Answer**:
