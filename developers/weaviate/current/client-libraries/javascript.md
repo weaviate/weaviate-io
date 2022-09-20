@@ -76,8 +76,8 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 
 ## v2.12.0
 - Added support for [backup](../configuration/backups.html) API
-- Added method `withObjects` method to `objectsBatcher`
-- Added method `withReferences` method to `referencesBatcher`
+- Added method `withObjects` to `objectsBatcher`
+- Added method `withReferences` to `referencesBatcher`
 
 ## v2.11.1
 - Fixed fetching db version

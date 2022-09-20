@@ -315,8 +315,8 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 
 ## 3.3.0
 - Added support for [backup](../configuration/backups.html) API
-- Added method `withObjects` method to `objectsBatcher`
-- Added method `withReferences` method to `referencesBatcher`
+- Added method `withObjects` to `objectsBatcher`
+- Added method `withReferences` to `referencesBatcher`
 
 ## 3.2.1
 - Fixed fetching db version
