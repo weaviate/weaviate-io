@@ -2,11 +2,12 @@
 layout: post
 title: What are Distance Metrics in Vector Search 
 description: ""
+description: "Learn about why you need distance metrics in vector search and the metrics implemented in Weaviate (Cosine, Dot Product, L2-Squared, Manhattan, and Hamming)."
 published: true
 author: Erika Cardenas 
 author-img: /img/people/erika.jpg
-card-img: /img/blog/hero/weaviate-1-15-card.png
-og: /img/blog/hero/weaviate-1-15-card.png
+card-img: /img/blog/hero/weaviate-what-is-distance-metrics_1.png
+og: /img/blog/hero/weaviate-what-is-distance-metrics_1.png
 date: 2022-09-20
 toc: true
 ---
