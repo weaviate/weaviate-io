@@ -21,9 +21,8 @@ a role.
 
 Note that Weaviate has an option to limit the amount of vectors held in memory
 to prevent unexpected Out-of-Memory ("OOM") situations. This limit is entirely
-configurable and by default is set to 2M objects per class. If your import
-performance drops drastically after reaching 2M objects, see section [Vector
-Cache](#vector-cache) below.
+configurable and by default is set to `math.MaxInt64` (i.e., `9223372036854775807`)
+objects per class.
 
 # The role of CPUs 
 
@@ -163,8 +162,8 @@ requirements:
 For optimal search and import performance, all previously imported vectors need
 to be held in memory. However, Weaviate also allows for limiting the number of
 vectors in memory. By default, when creating a new class, this limit is set to
-2M objects. A disk lookup for a vector is orders of magnitudes slower than
-memory lookup, so the cache should be used sparingly.
+`math.MaxInt64` (i.e., `9223372036854775807`) objects. A disk lookup for a vector
+is orders of magnitudes slower than memory lookup, so the cache should be used sparingly.
 
 Generally we recommend that:
 - During imports, set the limit so that all vectors can be held in memory. Each
@@ -180,14 +179,6 @@ Generally we recommend that:
   have a large dataset, but a large percentage of users only query a specific
   subset of vectors. In this case, you might be able to serve the largest user
   group from cache while requiring disk lookups for "irregular" queries.
-
-## Imports slowed down after crossing ~2M objects - what can I do?
-
-If you notice that your import performance drops drastically after the 2M
-objects (per class) mark, you are most likely running into the default 2M limit
-of the vector cache. You can [adjust the limit on existing
-classes](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters)
-without having to recreate the class or reimport.
 
 # The role of GPUs in Weaviate
 
