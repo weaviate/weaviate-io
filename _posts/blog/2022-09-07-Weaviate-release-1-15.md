@@ -28,6 +28,10 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 
 Read below to learn more about each of these points in more detail.
 
+### Patch 1.15.1 note
+We have published a patch release v1.15.1.<br/>
+To learn more check the [Weaviate 1.15.1 patch release](/blog/2022/09/Weaviate-release-1-15-1.html){:target="_blank"} blog.
+
 ### Community effort
 ![New Contributors](/img/blog/weaviate-1.15/new-contributors.jpg)
 
