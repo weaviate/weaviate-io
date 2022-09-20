@@ -192,6 +192,7 @@ As a user, you have two ways of generating them:
 * You use a Weaviate module with a prepackaged `text2vec` integration (we call them "vectorizers", you can learn more about them [here](../modules/)).
     * [text2vec-transformers](../retriever-vectorizer-modules/text2vec-transformers.html)
     * [text2vec-openai](../retriever-vectorizer-modules/text2vec-openai.html)
+    * [text2vec-huggingface](../retriever-vectorizer-modules/text2vec-huggingface.html)
     * [text2vec-contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html) (custom FastText based vectorizer)
     * [img2vec-neural](../retriever-vectorizer-modules/img2vec-neural.html)
     * [multi2vec-clip](../retriever-vectorizer-modules/multi2vec-clip.html)
