@@ -1,7 +1,6 @@
 ---
 layout: post
 title: What are Distance Metrics in Vector Search?
-description: ""
 description: "Learn about why you need distance metrics in vector search and the metrics implemented in Weaviate (Cosine, Dot Product, L2-Squared, Manhattan, and Hamming)."
 published: true
 author: Erika Cardenas 
@@ -11,14 +10,14 @@ og: /img/blog/hero/what-are-distance-metrics-card.png
 date: 2022-09-21
 toc: true
 ---
-Vector Search engines – like [Weaviate](/developers/weaviate/current/){:target="_blank"} – use **Machine Learning models** to analyze data and **calculate vector embeddings**, which are **stored together with the data** in a database, and later are used to query the data.
+Vector Search engines – like [Weaviate](/developers/weaviate/current/){:target="_blank"} – use **Machine Learning models** to analyze data and **calculate vector embeddings**. The vector embeddings are **stored together with the data** in a database, and later are used to query the data.
 
 In a nutshell, a vector embedding is an array of numbers, that is used to describe an object. For example, strawberries could have a vector `[3, 0, 1]` – more likely the array would be a lot longer than that.<br/>
 *Note*, the meaning of each value in the array, depends on what Machine Learning model we use to generate them.
 
 In order to judge how similar or different two objects are, we can compare their vector values, by using various **Distance Metrics** to calculate similarity, distance, angle etc.
 
-In this article, we explore the variety of distance metrics, what is the idea behind each, how they are calculated and how they compare to each other.
+In this article, we explore the variety of distance metrics, the idea behind each, how they are calculated, and how they compare to each other.
 
 We will dive into five vector distance metrics currently used in [Weaviate](/developers/weaviate/current/vector-index-plugins/distances.html){:target="_blank"}: Cosine, Dot product, Euclidean, Manhattan, and Hamming.
 
@@ -26,21 +25,21 @@ We will dive into five vector distance metrics currently used in [Weaviate](/dev
 If you already have a working knowledge of Vector Search, then you can skip straight to the [Cosine Distance](#cosine-distance) section.
 
 ### Vectors in Multi-Dimensional Space 
-Vector search engines keep the semantic meaning of your data by representing each object as a vector embedding. Each embedding is a point in a high-dimensional space. For example, the vectors for bananas (both the text and the image) are located near apples and not cats.
+Vector search engines keep the semantic meaning of your data by representing each object as a vector embedding. Each embedding is a point in a high-dimensional space. For example, the vector for bananas (both the text and the image) are located near apples and not cats.
 
 ![Visual of Vector Search](/img/blog/distance-metrics/weaviate-vector-search-engine.png)
 
 *The above image is a perfect visual of what a vector engine is. To perform a search, your search query is converted to a vector - similar to your data vectors. The search engine then computes the similarity between the search query and the collection of data points in the vector space.*
 
 ### Vector Search Engines are Fast 
-The best thing is, that vector search engines can **query large datasets**, containing **tens or hundreds of millions of objects** and still **respond** to queries in a tiny **fraction of a second**. 
+The best thing is, vector search engines can **query large datasets**, containing **tens or hundreds of millions of objects** and still **respond** to queries in a tiny **fraction of a second**. 
 
 Without getting too much into details, one of the big reasons why Vector Search engines are so fast is because they use the **Approximate Nearest Neighbor** (ANN) algorithm to index data based on vectors. ANN algorithms organize indexes so that the vectors that are closely related are stored next to each other. 
 
 Check out this article to learn [Why Vector Search engines are so fast](https://weaviate.io/blog/2022/09/Why-is-Vector-Search-so-fast.html){:target="_blank"} and how they work.
 
-### Why different distance metrics?
-Depending on the Machine Learning model used, vectors can have ~100 dimensions or they could go into thousands of dimensions.
+### Why are there different distance metrics?
+Depending on the Machine Learning model used, vectors can have ~100 dimensions or go into thousands of dimensions.
 
 The time it takes to calculate the distance between two vectors grows based on the number of vector dimensions. Furthermore, some distance metrics are more compute heavy than others. Which might be a challenge for calculating distance for vectors with thousands of dimensions.
 
@@ -170,7 +169,7 @@ The distance metrics in Weaviate have been optimized to be highly efficient usin
 ### Open source contributions
 Weaviate is open-source and values feedback and input from the community. A community member contributed to the Weaviate project by adding two new metrics to the 1.15 release. How cool is that! If this is something you're interested in, [here](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw/distancer){:target="_blank"} is the repository to see the implementation of the current metrics. 
 
-## What next
+## What's next
 Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
