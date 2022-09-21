@@ -37,7 +37,7 @@ In short, these fixes make indexing more stable, prevent degrading both the vect
 ## Sorting
 We added support for sorting in Weaviate `v1.13`, which has been a popular feature. Instead of just sorting by one property, Weaviate lets you sort by any number of properties. The idea is that if the values for the first property are identical, Weaviate uses the second property to determine the order. There was a bug that occurred when you would specify multiple sorting properties in combination with a limit. You could end up in a situation where some results were missing. The new release fixes the sorting implementation and ensures that results are in the correct order and the limit is applied at the very end. This way, no more results can be missing because of sorting. While we were at it, we added plenty of new tests to prevent future regressions.
 
-👏Big thanks to our community user **Patrice Bourgougno** – the creator of the [WPSolr plugin](https://www.wpsolr.com/){:target="_blank"} – for spotting this issue.
+👏Big thanks to our community user **Patrice Bourgougnon** – the creator of the [WPSolr plugin](https://www.wpsolr.com/){:target="_blank"} – for spotting this issue.
 
 ## Aggregation
 The previous release already contained substantial performance improvements for (filtered) aggregations. This patch release goes one step further. We fixed seven issues where an aggregation would return incorrect results or an error. We have fixed calculation mode and median, cross-reference aggregations, filtered-date aggregations, and issues with multi-shard aggregations. If you want to dig deeper, here is the [pull request that introduces all seven fixes](https://github.com/semi-technologies/weaviate/pull/2192){:target="_blank"}.
