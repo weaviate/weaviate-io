@@ -6,6 +6,7 @@ published: true
 author: Erika Cardenas 
 author-img: /img/people/erika.jpg
 card-img: /img/blog/hero/what-are-distance-metrics-card.png
+hero-img: /img/blog/hero/what-are-distance-metrics-card.png
 og: /img/blog/hero/what-are-distance-metrics-card.png
 date: 2022-09-21
 toc: true
@@ -15,11 +16,13 @@ Vector Search engines – like [Weaviate](/developers/weaviate/current/){:target
 In a nutshell, a vector embedding is an array of numbers, that is used to describe an object. For example, strawberries could have a vector `[3, 0, 1]` – more likely the array would be a lot longer than that.<br/>
 *Note*, the meaning of each value in the array, depends on what Machine Learning model we use to generate them.
 
-In order to judge how similar or different two objects are, we can compare their vector values, by using various **Distance Metrics** to calculate similarity, distance, angle etc.
+In order to judge how similar two objects are, we can compare their vector values, by using various **Distance Metrics**.
 
-In this article, we explore the variety of distance metrics, the idea behind each, how they are calculated, and how they compare to each other.
+In the *context of a Vector Search*, **Distance Metric** is a function that takes two vectors as input and calculates a distance value between the vectors. The distance can take many shapes, it can be the geometric distance between two points, it could be an angle between the vectors, it could be a count of vector component differences, etc. Ultimately, we use the calculated distance to judge how close or far apart two vector embeddings are. These metrics are used in machine learning for classification and clustering tasks, especially in semantic search.
 
-We will dive into five vector distance metrics currently used in [Weaviate](/developers/weaviate/current/vector-index-plugins/distances.html){:target="_blank"}: Cosine, Dot product, Euclidean, Manhattan, and Hamming.
+> Distance Metrics convey how similar or dissimilar two vector embeddings are.  
+
+In this article, we explore the variety of distance metrics ([Cosine](#cosine-distance), [Dot product](#dot-product-distance), [Euclidean](#l2-squared-distance), [Manhattan](#manhattan-distance), and [Hamming](#hamming-distance)), the idea behind each, how they are calculated, and how they compare to each other.
 
 ## Background
 If you already have a working knowledge of Vector Search, then you can skip straight to the [Cosine Distance](#cosine-distance) section.
