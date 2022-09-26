@@ -34,6 +34,7 @@ exclude:
   - .github/
   - .jekyll-cache
   - readme.md
+  - tools/
 keep_files:
   - img
 plugins:
@@ -140,6 +141,9 @@ docs:
         folder: other-modules
         header: true
         nav-parent: Modules
+      - name: Roadmap
+        folder: roadmap
+        header: false
       - name: Architecture
         folder: architecture
         header: false
