@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to Choose a Sentence Transformer from Hugging Face?
+title: How to choose a Sentence Transformer from Hugging Face
 description: "Learn about the various Sentence Transformers from Hugging Face!"
 published: true
 author: Connor Shorten 
