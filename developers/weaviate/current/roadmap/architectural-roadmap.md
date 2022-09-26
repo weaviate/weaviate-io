@@ -1,13 +1,15 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Architecture
-title: Roadmap
-description: Weaviate - roadmap
+sub-menu: Roadmap
+title: Architectural roadmap
+description: Weaviate's architectural roadmap
 tags: ['architecture', 'roadmap']
-menu-order: 1
+menu-order: 2
 open-graph-type: article
 toc: true
+redirect_from:
+    - /documentation/weaviate/current/architecture/roadmap.html
 ---
 
 <!-- style for roadmap table -->

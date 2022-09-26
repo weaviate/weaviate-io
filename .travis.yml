@@ -17,6 +17,9 @@ before_install:
 - sudo npm install netlify-cli -g
 - sudo snap install yq
 - bundle install
+# Collect Github API data
+- pip3 install pyyaml
+- python3 tools/create-roadmap.py
 install:
 - bundle install
 - gem install jekyll
