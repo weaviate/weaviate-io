@@ -9,7 +9,7 @@ menu-order: 2
 open-graph-type: article
 toc: true
 redirect_from:
-    - /documentation/weaviate/current/architecture/roadmap.html
+    - /developers/weaviate/current/architecture/roadmap.html
 ---
 
 <!-- style for roadmap table -->
