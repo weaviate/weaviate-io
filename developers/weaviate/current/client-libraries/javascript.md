@@ -74,6 +74,9 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 
 # Change logs
 
+## v2.12.1
+- Added support for GraphQL raw queries
+
 ## v2.12.0
 - Added support for [backup](../configuration/backups.html) API
 - Added method `withObjects` to `objectsBatcher`

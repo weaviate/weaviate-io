@@ -287,6 +287,9 @@ client.Data().Validator().WithProperties(properties)
 
 # Change logs
 
+## v4.3.1
+- Added support for GraphQL raw queries
+
 ## v4.3.0
 - Added support for [backup](../configuration/backups.html) API
 - Added method `WithObjects` to `ObjectsBatcher`

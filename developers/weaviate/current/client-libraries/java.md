@@ -18,7 +18,7 @@ To get the latest stable version of the Java client library, add this dependency
 <dependency>
   <groupId>technology.semi.weaviate</groupId>
   <artifactId>client</artifactId>
-  <version>3.2.0</version>
+  <version>3.3.1</version>
 </dependency>
 ```
 
@@ -312,6 +312,9 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 
 
 # Change logs
+
+## 3.3.1
+- Added support for GraphQL raw queries
 
 ## 3.3.0
 - Added support for [backup](../configuration/backups.html) API
