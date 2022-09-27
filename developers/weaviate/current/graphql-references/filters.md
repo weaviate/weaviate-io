@@ -42,6 +42,7 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
   - `LessThanEqual`
   - `Like`
   - `WithinGeoRange`
+  - `IsNull`
 - `Operands`: Is a list of `Operator` objects of this same structure, only used if the parent `Operator` is set to `And` or `Or`.
 - `Path`: Is a list of strings in Xpath style, indicating the property name of the class.
    If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings.
@@ -274,6 +275,21 @@ For example, this curious returns all in a radius of 2KM around a specific geo-l
     }
   },
   "errors": null
+}
+```
+
+## IsNull filter
+
+Using the `IsNull` operator allows you to do filter for objects that are `null` or `not null`. To use this operator `IndexNullState` must be set to `true` in the inverted index configuration.
+
+```graphql
+{
+  Get {
+    <Class>(where: {
+        operator: IsNull,
+        valueBoolean: <true/false>
+        path: [<property>]
+  }
 }
 ```
 
