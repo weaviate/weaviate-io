@@ -1,45 +1,48 @@
 ---
 layout: post
-title: Hugging Face models in Weaviate
+title: Support for Hugging Face Inference API in Weaviate
 description: "Running ML Model Inference in production is hard. You can use Weaviate – a vector search engine – with Hugging Face Inference module to delegate the heavy lifting."
 published: true
 author: Sebastian Witalec 
 author-img: /img/people/icon/sebastian.jpg
-card-img: /img/blog/hero/hugging-face-models-in-Weaviate-card.png
-hero-img: /img/blog/hero/hugging-face-models-in-Weaviate-card.png
-og: /img/blog/hero/hugging-face-models-in-Weaviate-card.png
-date: 2022-09-26
+card-img: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
+hero-img: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
+og: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
+date: 2022-09-27
 toc: true
 ---
 
-Vector Search engines use Machine Learning models to offer incredible functionality to operate on your data. We are looking at anything from **summarizers** (that can summarize any text into a short) sentence), through **auto-labelers** (that can classify your data tokens), to **transformers** and **vectorizers** (that can convert any data – text, image, audio etc. – into vectors and use that for context based queries) and many more use cases.
+Vector Search engines use Machine Learning models to offer incredible functionality to operate on your data. We are looking at anything from **summarizers** (that can summarize any text into a short) sentence), through **auto-labelers** (that can classify your data tokens), to **transformers** and **vectorizers** (that can convert any data – text, image, audio, etc. – into vectors and use that for context-based queries) and many more use cases.
 
-All of these use cases require `Machine Learning model inference` – a process of running data through an ML model and calculating an output (e.g. take a paragraph, and summarize it to a short sentence) – which is a compute heavy process.
+All of these use cases require `Machine Learning model inference` – a process of running data through an ML model and calculating an output (e.g. take a paragraph, and summarize into to a short sentence) – which is a compute-heavy process.
 
 ### The elephant in the room
 Running model inference in production is hard.
 * It requires expensive specialized hardware.
-* You need a lot more compute power during the initial data import.
+* You need a lot more computing power during the initial data import.
 * Hardware tends to be underutilized once the bulk of the heavy work is done.
-* Sharing and prioritising resources with other teams is hard.
+* Sharing and prioritizing resources with other teams is hard.
 
-There are companies – like Hugging Face, OpenAI and Cohere – that offer running model inference as a service.
+The good neews is, there are companies – like Hugging Face, OpenAI, and Cohere – that offer running model inference as a service.
 
 > “Running model inference in production is hard,
 let them do it for you.”
 
-## Support for Hugging Face models in Weaviate
-Starting from Weaviate `v1.15`, Weaviate includes a Hugging Face module, which provides support for Hugging Face models straight from the Vector Search engine.
-
-> You can choose between `text2vec-huggingface` (Hugging Face) and `text2vec-openai` (OpenAI) modules to delegate your model inference tasks.
+## Support for Hugging Face Inference API in Weaviate
+Starting from Weaviate `v1.15`, Weaviate includes a Hugging Face module, which provides support for Hugging Face Inference straight from the Vector Search engine.
 
 The Hugging Face module, allows you to use the [Hugging Face Inference service](https://huggingface.co/inference-api#pricing){:target="_blank"} with sentence similarity models, to vectorize and query your data, straight from Weaviate. No need to run the Inference API yourself.
 
+> You can choose between `text2vec-huggingface` (Hugging Face) and `text2vec-openai` (OpenAI) modules to delegate your model inference tasks.<br/>
+> Both modules are enabled by default in the [Weaviate Cloud Service](/pricing.html){:target="_blank"}.
+
 ## Overview
+![Overview](/img/blog/hugging-face-inference-api/hugging-face-module-overview.png)
+
 The Hugging Face module is quite incredible, for many reasons.
 
 ### Public models
-You get access to over 600 of already pretrained [sentence similarity models]. No need to train your own models, if there is already one that works well for your use case.
+You get access to over 600 already pre-trained [sentence similarity models]. No need to train your own models, if there is already one that works well for your use case.
 
 <!-- TODO: update with a link to the article once it is ready -->
 *In case, you struggle with picking the right model for you, we are working on an article that will provide you with guidance on how to pick the right model for you.*
@@ -53,10 +56,10 @@ If you have your own models, trained specially for your data, then you can uploa
 ### Fully automated and optimized
 Weaviate manages the whole process for you. From the perspective of writing your code – once you have your schema configuration – you can almost forget that Hugging Face is involved at all.
 
-For example, when you import data into Weaviate, Weaviate will automatically extract the relevant text fields, send them Hugging Face to vectorize and store the data with the new vectors in the database.
+For example, when you import data into Weaviate, Weaviate will automatically extract the relevant text fields, send them Hugging Face to vectorize, and store the data with the new vectors in the database.
 
 ### Ready to use with a minimum of fuss
-Every new Weaviate instance created with the [Weaviate Cloud Service](/pricing.html){:target="_blank"} has the Hugging Face module enabled out of the box.
+Every new Weaviate instance created with the [Weaviate Cloud Service](/pricing.html){:target="_blank"} has the Hugging Face module enabled out of the box. You don't need to update any configs or anything, it is there ready and waiting.
 
 On the other hand, to use the Hugging Face module in Weaviate open source (`v1.15` or newer), you only need to set `text2vec-huggingface` as the default vectorizer. Like this:
 
@@ -71,11 +74,7 @@ For more detailed instructions please check the [documentation](/developers/weav
 
 The overall process to use a Hugging Face module with Weaviate is fairly straightforward.
 
-<!-- 
-TODO: update image from Svitlana
-[image of a recipe]
-[ingredients – data, hugging face token]
-[cookware – a Weaviate instance] -->
+![Recipe for using the Hugging Face module](/img/blog/hugging-face-inference-api/how-to-get-started-recipe.png)
 If this was a cooking class and you were following a recipe.
 
 You would need the following ingredients:
@@ -87,7 +86,7 @@ Then you would follow these steps.
 
 ### Step 1 – initial preparation – create schema and select the hf models
 Once you have a Weaviate instance up and running.
-Define your schema (standard stuff – pick a class name, select properties and data types). As part the schema definition, you also need to provide, which Hugging Face model you want to use for each schema class. 
+Define your schema (standard stuff – pick a class name, select properties, and data types). As a part of the schema definition, you also need to provide, which Hugging Face model you want to use for each schema class. 
 
 
 This is done by adding a `moduleConfig` property with the `model` name, to the schema definition, like this:
@@ -105,7 +104,7 @@ This is done by adding a `moduleConfig` property with the `model` name, to the s
 }
 ```
 
-*If you are wondering, yes, you can use different model for each class.*
+*If you are wondering, yes, you can use a different model for each class.*
 
 ### Step 2 – cook for some time – import data
 Start importing data into Weaviate.
@@ -128,7 +127,7 @@ Then import the data the same way as always. And Weaviate will handle all the co
 Once, you imported some or all of the data, you can start running queries. 
 (yes, you can start querying your database even during the import).
 
-Running queries, also requires the same token.
+Running queries also requires the same token.
 But you can reuse the same client, so you are good to go.
 
 Then, you just run the queries, as per usual:
@@ -157,7 +156,7 @@ Just pick the model, provide your API key and start working with your data.
 Weaviate optimizes the communication process with the Inference API for you, so that you can focus on the challenges and requirements of your applications. No need to run the Inference API yourself.
 
 ## What next
-Check out the [text2vec-huggingface documentation](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html){:target="_blank"} to learn more about the new module.
+Check out the [text2vec-huggingface](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html){:target="_blank"} documentation to learn more about the new module.
 
 If you are new to Weaviate, check out the [getting started guide](/developers/weaviate/current/getting-started/index.html){:target="_blank"}.
 
@@ -165,4 +164,4 @@ Let us know if you found this article interesting or useful. We are always happy
 
 We are always working on new articles and are looking for new topics. Let us know if there is anything that you would like us to write about. 🤗
 
-Please reach out to use via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
+Please reach out to us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
