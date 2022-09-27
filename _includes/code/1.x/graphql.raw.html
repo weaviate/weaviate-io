@@ -1,6 +1,12 @@
 <!-- SET GRAPHQL TAB CONTENT -->
 {% capture graphql %}
-// TODO
+{
+  Get {
+    Article(limit:5) {
+      title
+    }
+  }
+}
 {% endcapture %}
 
 <!-- SET PYTHON TAB CONTENT -->
@@ -9,7 +15,18 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-// TODO
+graphql_query = """
+{
+  Get {
+    Article(limit:5) {
+      title
+    }
+  }
+}
+"""
+
+result = client.query.raw(graphql_query)
+print(result)
 {% endcapture %}
 
 <!-- SET JAVASCRIPT TAB CONTENT -->
@@ -21,7 +38,16 @@ const client = weaviate.client({
   host: 'localhost:8080',
 });
 
-// TODO
+client.graphql
+      .raw()
+      .withQuery("{ Get { Article(limit:5) { title } } }")
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      });
 {% endcapture %}
 
 <!-- SET GO TAB CONTENT -->
@@ -43,7 +69,15 @@ func main() {
   }
   client := weaviate.New(cfg)
 
-  // TODO
+  ctx := context.Background()
+  result, err := client.GraphQL().Raw().
+    WithQuery("{ Get { Article(limit:5) { title } } }").
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
 }
 {% endcapture %}
 
@@ -61,7 +95,15 @@ public class App {
     Config config = new Config("http", "localhost:8080");
     WeaviateClient client = new WeaviateClient(config);
 
-    // TODO
+    Result<GraphQLResponse> result = client.graphQL().raw()
+      .withQuery("{ Get { Article(limit:5) { title } } }")
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
 }
 {% endcapture %}
 
@@ -69,7 +111,11 @@ public class App {
 {% capture curl %}
 $ echo '{ 
   "query": "{
-    // TODO
+    Get {
+      Article(limit:5) {
+        title
+      }
+    }
   }"
 }' | curl \
     -X POST \
