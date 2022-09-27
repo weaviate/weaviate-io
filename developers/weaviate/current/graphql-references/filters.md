@@ -176,6 +176,30 @@ Filtering can be performed with internal timestamps as well, such as `creationTi
 } 
 ```
 
+## Filter by property length
+
+Filtering can be performed with the length of properties.
+
+The length of properties is calculated differently depending on the type:
+- array types: the number of entries in the array is used, where null (property not present) and empty arrays both have the length 0. 
+- strings and texts: the number of characters, unicode characters such as 世 count as one character.
+- numbers, booleans, geo-coordinates, phone-numbers and data-blobs are not supported.
+
+```graphql
+{
+  Get {
+    <Class>(where: {
+        operator: <Operator>,
+        valueInt: <value>
+        path: [len(<property>)]
+  }
+}
+```
+Supported operators are `(not) equal` and `greater/less than (equal)` and values need to be 0 or larger.
+
+*Note: filtering by property length requires the target class to be configured to index the length. See [here](../schema/schema-configuration.html#invertedindexconfig--indexpropertylength) for details* 
+
+
 ## Multiple operands
 
 You can set multiple operands by providing an array.
@@ -281,7 +305,7 @@ For example, this curious returns all in a radius of 2KM around a specific geo-l
 
 ## IsNull filter
 
-Using the `IsNull` operator allows you to do filter for objects that are `null` or `not null`. To use this operator `IndexNullState` must be set to `true` in the inverted index configuration.
+Using the `IsNull` operator allows you to do filter for objects where given properties are `null` or `not null`.
 
 ```graphql
 {
@@ -293,6 +317,9 @@ Using the `IsNull` operator allows you to do filter for objects that are `null` 
   }
 }
 ```
+
+*Note: filtering by null-state requires the target class to be configured to index this. See [here](../schema/schema-configuration.html#invertedindexconfig--indexnullstate) for details* 
+
 
 # Limit Argument
 
