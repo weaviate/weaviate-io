@@ -8,7 +8,7 @@ author-img: /img/people/icon/connor.jpg
 card-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
 hero-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
 og: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
-date: 2022-09-28
+date: 2022-09-29
 toc: true 
 ---
 
