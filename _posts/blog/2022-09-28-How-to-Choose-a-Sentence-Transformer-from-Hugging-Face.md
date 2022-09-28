@@ -5,13 +5,16 @@ description: "Learn about the various Sentence Transformers from Hugging Face!"
 published: true
 author: Connor Shorten 
 author-img: /img/people/icon/connor.jpg
-card-img: 
-hero-img: 
-og: 
-date: 2022-09-26
-toc: false
+card-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
+hero-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
+og: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
+date: 2022-09-28
+toc: true 
 ---
+
 Weaviate has recently unveiled a new module which allows users to easily integrate models from Hugging Face to vectorize their data and incoming queries. [Over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads){:target="_blank"} (704 at the time of writing this) can now be easily plugged into Weaviate. There are too many models to summarize in one flowchart leading you to the perfect model for your use case. Instead, we describe the factors of how these models are different from others that will arm readers with a deep knowledge of: **Why are there so many models? What makes them different?**
+
+![Weaviate Sentence Transformers](/img/blog/How-to-Choose-a-Sentence-Transformer-from-HuggingFace/weaviate-sentence transformers huggingface.png){:width="70%"}
 
 Not too long ago, Deep Learning models were typically differentiated based on architectural decisions. For example, ResNet differs from DenseNet based on how frequently they implement skip connections between layers. Fast forward to today, the Deep Learning community has fallen in love with attention layers and the transformer network architecture. Transformers mostly differ between encoder, decoder, and encoder-decoder designs. They additionally vary at the level of details such as the number of layers and hidden dimension sizes. However, the consideration of these kinds of details is mostly a thing of the past thanks to the beauty of the Hugging Face transformers library and the success of this particular model architecture. These details can generally be summarized into the “parameter count” metric, of which most sentence transformers contain about 22 million parameters.
 
