@@ -12,9 +12,14 @@ date: 2022-09-29
 toc: true 
 ---
 
-Weaviate has recently unveiled a new module which allows users to easily integrate models from Hugging Face to vectorize their data and incoming queries. [Over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads){:target="_blank"} (704 at the time of writing this) can now be easily plugged into Weaviate. There are too many models to summarize in one flowchart leading you to the perfect model for your use case. Instead, we describe the factors of how these models are different from others that will arm readers with a deep knowledge of: **Why are there so many models? What makes them different?**
+Weaviate has recently unveiled a new module which allows users to easily [integrate models from Hugging Face](/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html){:target="_blank"} to vectorize their data and incoming queries. [Over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads){:target="_blank"} (at the time of writing this) that can be easily plugged into Weaviate. 
+
+You may ask: **Why are there so many models? What makes them different?**<br/>
+There are too many models to summarize in one flowchart. So instead, we will describe factors on how to differentiate these models and give you tools to choose the perfect model for your use case.
 
 ![Weaviate Sentence Transformers](/img/blog/How-to-Choose-a-Sentence-Transformer-from-HuggingFace/weaviate-sentence transformers huggingface.png){:width="70%"}
+
+## Differences in Deep Learning models
 
 Not too long ago, Deep Learning models were typically differentiated based on architectural decisions. For example, ResNet differs from DenseNet based on how frequently they implement skip connections between layers. Fast forward to today, the Deep Learning community has fallen in love with attention layers and the transformer network architecture. Transformers mostly differ between encoder, decoder, and encoder-decoder designs. They additionally vary at the level of details such as the number of layers and hidden dimension sizes. However, the consideration of these kinds of details is mostly a thing of the past thanks to the beauty of the Hugging Face transformers library and the success of this particular model architecture. These details can generally be summarized into the “parameter count” metric, of which most sentence transformers contain about 22 million parameters.
 
@@ -37,11 +42,11 @@ For every model, Hugging Face displays a list of important **color-coded** detai
 
 So, if we look at two Deep Learning models, we can see that [dangvantuan/sentence-camembert-large](https://huggingface.co/dangvantuan/sentence-camembert-large){:target="_blank"} was trained on **stsb_multi_mt**, which is a **French** dataset. 
 
-![Camembert Hugging Face Model Card](/img/blog/How-to-Choose-a-Sentence-Transformer-from-HuggingFace/camembert-model-card-min.png){:width="80%"}
+![Camembert Hugging Face Model Card](/img/blog/How-to-Choose-a-Sentence-Transformer-from-HuggingFace/camembert-model-card-min.png)
 
-While the [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2){:target="_blank"} model was trained on several datasets in **English**.
+While [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2){:target="_blank"} was trained on several datasets in **English**.
 
-![all-MiniLM Hugging Face Model Card](/img/blog/How-to-Choose-a-Sentence-Transformer-from-HuggingFace/minilm-model-card-min.png){:width="80%"}
+![all-MiniLM Hugging Face Model Card](/img/blog/How-to-Choose-a-Sentence-Transformer-from-HuggingFace/minilm-model-card-min.png)
 
 To put it as bluntly as possible, what makes dangvantuan/sentence-camembert-large better at French sentence embeddings than sentence-transformers/all-MiniLM-L6-v2 is that… it was trained on French sentences! There are many examples like this, models trained on biomedical text, legal documents, or Spanish are generally going to perform better when tested on that domain compared to models that haven’t been explicitly trained for the domain. 
 
@@ -64,11 +69,11 @@ Two excellent benchmarks that collect Supervised Learning tasks to evaluate  Sen
 
 **KILT** uses the same domain for all tasks, Wikipedia. Each task is labeled with a different task: Slot Filling, Question Answering, Dialogue, Fact Checking, or Entity Linking.
 
-![KILT Benchmark](/img/blog/How-to-Choose-a-Sentence-Transformer-from-HuggingFace/KILT-min-correct.png){:width="70%"}
+![KILT Benchmark](/img/blog/How-to-Choose-a-Sentence-Transformer-from-HuggingFace/KILT-min-correct.png)
 
 **BEIR** tests many different tasks: Fact Checking, Citation Prediction, Duplicate Question Retrieval, Argument Retrieval and more.  BEIR also tests a diverse set of domains such as Wikipedia, Scientific Papers, Quora, Stack Exchange, Internet scrapes, News, Financial Documents, and Tweets. 
 
-![BEIR Benchmark](/img/blog/How-to-Choose-a-Sentence-Transformer-from-HuggingFace/BEIR-min.png){:width="70%"}
+![BEIR Benchmark](/img/blog/How-to-Choose-a-Sentence-Transformer-from-HuggingFace/BEIR-min.png)
 
 **[MS MARCO](https://arxiv.org/abs/1611.09268){:target="_blank"}** is another influential dataset containing real human queries on Microsoft bing’s search engine paired with passages that the human user clicked on in hope of answering their query. As another example, **[Quora Question Pairs](https://arxiv.org/abs/1907.01041){:target="_blank"}** contains human labels of whether or not two questions are asking the same thing. The Sentence Transformer documentation presents 5 main categories of training data - Semantic Textual Similarity (STS):  Natural Language Inference (NLI), Paraphrase Data, Quora Duplicate Questions (QQP), and MS MARCO.
 
