@@ -13,14 +13,17 @@ og: /img/og/og-pricing-v2.jpg
                         <span>Weaviate </span> Cloud Services
                     </h1>
                     <p>
-                        Start for <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">free</b> and <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">pay as you go</b> per <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">vector dimension</b> stored and queried
+                        Start for <b class="text-primary">free</b> and <b class="text-primary">pay as you go</b> per <span class="text-secondary">*</span><b class="text-primary">vector dimension</b> stored and queried
                     </p>
                     <p>
                         All paid plans deliver unlimited capacity over three different tiers, so your DBs may scale seamlessly
                     </p>   
                     <p>
-                        Starting from <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">$0.05</b> per <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">1 million vector dimensions</b>
+                        Starting from <b class="text-primary">$0.05</b> per <b class="text-primary">1 million <span class="text-secondary">*</span>vector dimensions</b>
                     </p>
+                    <p><small>
+                        <span class="text-secondary">*</span><span class="text-primary">[vector dimensions]</span> = [# data objects] x [# embedding dimensions]
+                    </small></p>
                     <div class="gap"></div>
                     <div class="btn-group">
                         <ul class="unstyled">
@@ -52,7 +55,7 @@ og: /img/og/og-pricing-v2.jpg
                     <img src="/img/vector.png" alt="discount">
                     <h2>Pay per ML-vector</h2>
                     <p>
-                        Starting from<br>$0.00000005 per ML-vector dimension​.
+                        Starting from<br>$0.05/million vector dimension​s
                     </p>
                 </div>
             </div>
