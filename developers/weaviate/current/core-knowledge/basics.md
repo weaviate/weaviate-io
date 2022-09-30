@@ -22,7 +22,7 @@ This guide is all about the basics. No getting your hands dirty yet, no fancy Ku
 
 Weaviate is a database of the type search engine, and it's specifically built to work with vector representations produced by machine learning models. Hence, Weaviate is a vector search engine (but we will still like you if you call it a vector database).
 
-> 💡 When working with a database, you want [full CRUD support](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Not all approximate nearest neighbor algorithms support this, and not all incumbent databases (/search engines) are optimized for this type of indexing. These reasons are -among others- the most important to why Weaviate exists You can also learn more about this by reading [this blog post](https://db-engines.com/en/blog_post/87).
+> 💡 When working with a database, you want [full CRUD support](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Not all approximate nearest neighbor algorithms support this, and not all incumbent databases (/search engines) are optimized for this type of indexing. These reasons are -among others- the most important to why Weaviate exists. You can also learn more about this by reading [this blog post](https://db-engines.com/en/blog_post/87).
 
 ## Data objects in Weaviate
 
@@ -70,7 +70,7 @@ As mentioned earlier, we can also attach `vector` representations to our data ob
 
 ### Class Collections
 
-Weaviate groups all Authors under the `Author` class and place them in the same _class collection_.
+Weaviate groups all Authors under the `Author` class and places them in the same _class collection_.
 
 <!-- [Alice Munro
 Born: July 10, 1931 (age 91)
@@ -179,7 +179,7 @@ For now, what's important to know is this:
 0. Classes and properties (as explained above) are defined in the schema.
 0. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
 0. You can link classes (even if they use different embeddings) by setting cross-references.
-0. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema getting [started guide](../getting-started/schema.html)).
+0. You can configure module behavior, ANN index settings, reverse index types, etc. in the schema as well (more about this in the schema getting [started guide](../getting-started/schema.html)).
 
 
 ## Where do the vectors come from?
@@ -211,7 +211,7 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 2. *readers & generators* are used for reranking or processing the results.
 3. *other modules* are -often- non-ML, for example, the spell-check module.
 
-> 💡 It's even possible to [create your own modules](../other-modules/custom-modules.html)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing you module) can be written in any language.
+> 💡 It's even possible to [create your own modules](../other-modules/custom-modules.html)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing your module) can be written in any language.
 
 ## Weaviate Console
 
