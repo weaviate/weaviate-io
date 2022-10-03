@@ -13,17 +13,14 @@ og: /img/og/og-pricing-v2.jpg
                         <span>Weaviate </span> Cloud Services
                     </h1>
                     <p>
-                        Start for <b class="text-primary">free</b> and <b class="text-primary">pay as you go</b> per <span class="text-secondary">*</span><b class="text-primary">vector dimension</b> stored and queried
+                        Start for <b class="text-primary">free</b> and <b class="text-primary">pay as you go</b> per <b class="text-primary">vector dimension</b> stored and queried
                     </p>
                     <p>
                         All paid plans deliver unlimited capacity over three different tiers, so your DBs may scale seamlessly
                     </p>   
                     <p>
-                        Starting from <b class="text-primary">$0.05</b> per <b class="text-primary">1 million <span class="text-secondary">*</span>vector dimensions</b>
+                        Starting from <b class="text-primary">$0.05</b> per <b class="text-primary">1 million vector dimensions</b>
                     </p>
-                    <p><small>
-                        <span class="text-secondary">*</span><span class="text-primary">[vector dimensions]</span> = [# data objects] x [# embedding dimensions]
-                    </small></p>
                     <div class="gap"></div>
                     <div class="btn-group">
                         <ul class="unstyled">
@@ -436,10 +433,21 @@ og: /img/og/og-pricing-v2.jpg
             <div class="col-md-6">
                 <div class="faq-item">
                     <h3>
+                        What do you mean by "1 million vector dimensions"?
+                    </h3>
+                    <p>
+                        In Weaviate, you can attach a vector embedding to a data object. A vector embedding can have an x-amount of dimensions. <br/>
+                        To calculate <b class="text-secondary">vector dimensions</b>, multiply the <b class="text-primary">number of data objects</b> by the <b class="text-primary"> number of embedding dimensions</b>.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
                         Why do you price per vector dimension?
                     </h3>
                     <p>
-                        In Weaviate, you can attach a vector embedding to a data object. A vector embedding can have an x-amount of dimensions. Some vectors have a lot of embeddings (sometimes more than 10k), some just a few (e.g., 90). The more vector dimensions you store, the more infrastructure is needed to optimize and maintain performance, this is the reason why we calculate with individual dimensions. We believe it's the fairest and most accurate price to give you the best experience.
+                        Some vectors have a lot of embeddings (sometimes more than 10k), some just a few (e.g., 90). The more vector dimensions you store, the more infrastructure is needed to optimize and maintain performance, this is the reason why we calculate with individual dimensions. We believe it's the fairest and most accurate price to give you the best experience.
                     </p>
                 </div>
             </div>
