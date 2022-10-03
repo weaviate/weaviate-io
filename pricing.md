@@ -13,13 +13,13 @@ og: /img/og/og-pricing-v2.jpg
                         <span>Weaviate </span> Cloud Services
                     </h1>
                     <p>
-                        Start for <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">free</b> and <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">pay as you go</b> per <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">vector dimension</b> stored and queried
+                        Start for <b class="text-primary">free</b> and <b class="text-primary">pay as you go</b> per <b class="text-primary">vector dimension</b> stored and queried
                     </p>
                     <p>
                         All paid plans deliver unlimited capacity over three different tiers, so your DBs may scale seamlessly
                     </p>   
                     <p>
-                        Starting from <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">$0.05</b> per <b style="color:#FF5FA0; text-shadow: 0 0 2.25rem rgba(255,255,255, 0.85);">1 million vector dimensions</b>
+                        Starting from <b class="text-primary">$0.05</b> per <b class="text-primary">1 million vector dimensions</b>
                     </p>
                     <div class="gap"></div>
                     <div class="btn-group">
@@ -52,7 +52,7 @@ og: /img/og/og-pricing-v2.jpg
                     <img src="/img/vector.png" alt="discount">
                     <h2>Pay per ML-vector</h2>
                     <p>
-                        Starting from<br>$0.00000005 per ML-vector dimension​.
+                        Starting from<br>$0.05/million vector dimension​s
                     </p>
                 </div>
             </div>
@@ -433,10 +433,21 @@ og: /img/og/og-pricing-v2.jpg
             <div class="col-md-6">
                 <div class="faq-item">
                     <h3>
+                        What do you mean by "1 million vector dimensions"?
+                    </h3>
+                    <p>
+                        In Weaviate, you can attach a vector embedding to a data object. A vector embedding can have an x-amount of dimensions. <br/>
+                        To calculate <b class="text-secondary">vector dimensions</b>, multiply the <b class="text-primary">number of data objects</b> by the <b class="text-primary"> number of embedding dimensions</b>.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-item">
+                    <h3>
                         Why do you price per vector dimension?
                     </h3>
                     <p>
-                        In Weaviate, you can attach a vector embedding to a data object. A vector embedding can have an x-amount of dimensions. Some vectors have a lot of embeddings (sometimes more than 10k), some just a few (e.g., 90). The more vector dimensions you store, the more infrastructure is needed to optimize and maintain performance, this is the reason why we calculate with individual dimensions. We believe it's the fairest and most accurate price to give you the best experience.
+                        Some vectors have a lot of embeddings (sometimes more than 10k), some just a few (e.g., 90). The more vector dimensions you store, the more infrastructure is needed to optimize and maintain performance, this is the reason why we calculate with individual dimensions. We believe it's the fairest and most accurate price to give you the best experience.
                     </p>
                 </div>
             </div>
