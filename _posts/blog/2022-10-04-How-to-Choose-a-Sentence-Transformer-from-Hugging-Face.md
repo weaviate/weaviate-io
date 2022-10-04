@@ -12,7 +12,7 @@ date: 2022-10-04
 toc: true 
 ---
 
-Weaviate has recently unveiled a new module which allows users to easily [integrate models from Hugging Face](/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html){:target="_blank"} to vectorize their data and incoming queries. [Over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads){:target="_blank"} (at the time of writing this) that can be easily plugged into Weaviate. 
+[Weaviate](/developers/weaviate/current/){:target="_blank"} has recently unveiled a new module which allows users to easily [integrate models from Hugging Face](/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html){:target="_blank"} to vectorize their data and incoming queries. [Over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads){:target="_blank"} (at the time of writing this) that can be easily plugged into Weaviate. 
 
 You may ask: **Why are there so many models and how do they differ?**<br/>
 And more importantly: **How to choose a Sentence Transformer for Semantic Search?**
