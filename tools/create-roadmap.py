@@ -4,8 +4,12 @@ roadmap = {}
 
 # Get all roadmap labels
 include_labels = []
-labels = requests.get('https://api.github.com/repos/semi-technologies/weaviate/labels?per_page=1000')
-for label in labels.json():
+labels_response = requests.get('https://api.github.com/repos/semi-technologies/weaviate/labels?per_page=1000')
+
+if (labels_response.status_code != 200):
+    raise Exception("Failed to get labels => https://api.github.com/repos/semi-technologies/weaviate/labels?per_page=1000")
+
+for label in labels_response.json():
     if label['name'].find('backlog') >= 0 or label['name'].find('planned-') >= 0:
         include_labels.append(label['name'])
         roadmap[label['name']] = {
@@ -15,8 +19,12 @@ for label in labels.json():
 
 # Collect all issues
 for label in include_labels:
-    issues = requests.get('https://api.github.com/repos/semi-technologies/weaviate/issues?per_page=1000&labels=' + label)
-    for issue in issues.json():
+    issues_response = requests.get('https://api.github.com/repos/semi-technologies/weaviate/issues?per_page=1000&labels=' + label)
+
+    if (issues_response.status_code != 200):
+        raise Exception("Failed to get issues => https://api.github.com/repos/semi-technologies/weaviate/issues?per_page=1000&labels=" + label)
+
+    for issue in issues_response.json():
         roadmap[label]['items'].append({
             'title': issue['title'],
             'url': issue['html_url'],
