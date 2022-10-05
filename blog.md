@@ -1,6 +1,7 @@
 ---
 title: Blogs
 layout: default
+regenerate: true
 ---
 
 <!-- WELCOME -->
