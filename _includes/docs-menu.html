@@ -126,6 +126,8 @@
                                                 {% endfor %}
                                             </ul>
                                         </div>
+                                    {% if menuItem.breakpointAfter %}
+                                        <hr class="docs-menu-divider">
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}

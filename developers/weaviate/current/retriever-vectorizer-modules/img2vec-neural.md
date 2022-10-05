@@ -6,7 +6,7 @@ nav-parent: Modules
 title: img2vec-neural
 description: Use Resnet models in Weaviate
 tags: ['img2vec-neural']
-menu-order: 4
+menu-order: 5
 open-graph-type: article
 toc: true
 redirect_from:
@@ -30,7 +30,7 @@ There are two different inference models you can choose from. Depending on your 
 
 # How to enable in Weaviate
 
-Note: you can also use the [Weaviate configuration tool](../getting-started/installation.html#customize-your-weaviate-setup).
+Note: you can also use the [Weaviate configuration tool](../installation/docker-compose.html#configurator).
 
 ## Docker-compose file
 You can find an example Docker-compose file below, which will spin up Weaviate with the image vectorization module. This example spins up a Weaviate with only one vectorization module, the  `img2vec-neural` module of `pytorch` with the `resnet50` model.
@@ -118,9 +118,9 @@ If you prefer not to use Docker-compose (but instead for example Kubernetes in a
 
 # Schema configuration
 
-You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](../data-schema/schema-configuration.html). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector. 
+You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](../schema/schema-configuration.html). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector. 
 
-When adding a class with vectorizer type `img2vec-neural`, the configuration must contain information about which field holds the image. The dataType of the `imageFields` should be [`blob`](../data-schema/datatypes.html#datatype-blob). This can be achieved with the following config in a class object:
+When adding a class with vectorizer type `img2vec-neural`, the configuration must contain information about which field holds the image. The dataType of the `imageFields` should be [`blob`](../schema/datatypes.html#datatype-blob). This can be achieved with the following config in a class object:
 
 ```json
   "moduleConfig": {
@@ -139,44 +139,45 @@ A full example of a class using the `img2vec-neural` module is shown below. This
 
 ```json
 {
-    "classes": [{
-        "class": "FashionItem",
-        "description": "Each example is a 28x28 grayscale image, associated with a label from 10 classes.",
-        "moduleConfig": {
-            "img2vec-neural": {
-                "imageFields": [
-                    "image"
-                ]
-            }
+  "classes": [
+    {
+      "class": "FashionItem",
+      "description": "Each example is a 28x28 grayscale image, associated with a label from 10 classes.",
+      "moduleConfig": {
+        "img2vec-neural": {
+          "imageFields": [
+            "image"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "dataType": [
+            "blob"
+          ],
+          "description": "Grayscale image",
+          "name": "image"
         },
-        "properties": [
-            {
-                "dataType": [
-                    "blob"
-                ],
-                "description": "Grayscale image",
-                "name": "image"
-            },
-            {
-                "dataType": [
-                    "number"
-                ],
-                "description": "Label number for the given image.",
-                "name": "labelNumber"
-            },
-            {
-                "dataType": [
-                    "string"
-                ],
-                "description": "label name (description) of the given image.",
-                "name": "labelName"
-            }
-
-        ],
-
-        "vectorIndexType": "hnsw",
-        "vectorizer": "img2vec-neural"
-    }]}
+        {
+          "dataType": [
+            "number"
+          ],
+          "description": "Label number for the given image.",
+          "name": "labelNumber"
+        },
+        {
+          "dataType": [
+            "string"
+          ],
+          "description": "label name (description) of the given image.",
+          "name": "labelName"
+        }
+      ],
+      "vectorIndexType": "hnsw",
+      "vectorizer": "img2vec-neural"
+    }
+  ]
+}
 ```
 
 _Note:_ Other properties, for example the name of the image that is given in another field, will not be taken into consideration. This means that you can only find the image with semantic search by [another image](#nearimage-search), [data object](../graphql-references/filters.html#nearobject-filter), or [raw vector](../graphql-references/filters.html#nearvector-filter). Semantic search of images by text field (using `nearText`) is not possible, because this requires a `text2vec` vectorization module. Multiple modules cannot be combined at class level yet (might become possible in the future, since `image-text-combined transformers` exists). We recommend to use one of the following workarounds:

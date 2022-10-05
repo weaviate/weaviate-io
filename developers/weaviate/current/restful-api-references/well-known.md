@@ -6,7 +6,7 @@ title: /v1/.well-known
 intro: OpenID Configuration, Liveness and Readiness, all endpoints under the .well-known endpoint, give you information about the configuration and status of the Weaviate instance.
 description: RESTful API open ID configuration reference
 tags: ['RESTful API', 'references', 'discovery', 'oidc', 'well-known']
-menu-order: 6
+menu-order: 7
 open-graph-type: article
 toc: true
 redirect_from:

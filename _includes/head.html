@@ -17,13 +17,19 @@
     
     <!-- Theme CSS -->
     <link rel="stylesheet" href="https://style.semi.technology/css/theme.bundle.css?build={{ 'now' | date: '%Y%m%d%H%M' }}" />
-
+    
     <!-- font icon - Font Awesome  -->
     <script src="https://kit.fontawesome.com/48042407d8.js" crossorigin="anonymous"></script>
-
+    
     <!-- Highlight JS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai-sublime.min.css" />
 
+    <!-- pricing page -->
+    {% if page.title == 'Weaviate Pricing' %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.0.0/rangeslider.min.css" />
+        <link href="{{ '/css/pricing.css' | relative_url }}?build={{ 'now' | date: '%Y%m%d%H%M' }}" rel="stylesheet">
+    {% endif %}
+    
     <!-- fix for code blocks -->
     <style>code { max-height: 32rem !important; }</style>
     <!-- fix for images in docs-->
@@ -55,7 +61,7 @@
     <!-- OG -->
     {% include docs-current_version_finder.html %}
 
-    {% if page.og != "" %}
+    {% if page.og %}
         <meta property="og:image" content="https://weaviate.io{{ page.og }}">
         <meta name="twitter:image" content="https://weaviate.io{{ page.og }}">
     {% elsif page.layout == "layout-documentation" %}

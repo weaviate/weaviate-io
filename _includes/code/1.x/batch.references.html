@@ -15,14 +15,33 @@ client.batch.configure(
   # `timeout_retries` takes an `int` value to retry on time outs
   timeout_retries=3,
   # checks for batch-item creation errors
-  callback=None,
+  # this is the default in weaviate-client >= 3.6.0
+  callback=weaviate.util.check_batch_result,
 )
 
 with client.batch as batch:
     # Format for batching is as follows:
-    # `client.batch.add_reference(<from_entity_uuid>, <from_class_name>, <from_property_name>, <to_entity_uuid>, <to_class_name>)`
-    batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "6bb06a43-e7f0-393e-9ecf-3c0f4e129064", "Article")
-    batch.add_reference("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "Author", "wroteArticles", "b72912b9-e5d7-304e-a654-66dc63c55b32", "Article")
+    # client.batch.add_reference(
+    #   from_object_uuid=<from_object_uuid>,
+    #   from_object_class_name=<from_object_class_name>,
+    #   from_property_name=<from_property_name>
+    #   to_object_uuid=<to_object_uuid>,
+    #   to_object_class_name=<to_object_class_name>,
+    # )
+    batch.add_reference(
+      from_object_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+      from_object_class_name="Author",
+      from_property_name="wroteArticles",
+      to_object_uuid="6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
+      to_object_class_name="Article",
+    )
+    batch.add_reference(
+      from_object_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+      from_object_class_name="Author",
+      from_property_name="wroteArticles",
+      to_object_uuid="b72912b9-e5d7-304e-a654-66dc63c55b32",
+      to_object_class_name="Article",
+    )
 {% endcapture %}
 
 {% capture javascript %}

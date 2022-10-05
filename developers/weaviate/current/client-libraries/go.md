@@ -1,12 +1,12 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Client libraries & CLI
+sub-menu: Client libraries
 title: Go
 intro: A Go client library for Weaviate.
 description: Go client library for Weaviate
 tags: ['go', 'client library']
-menu-order: 3
+menu-order: 4
 open-graph-type: article
 toc: true
 redirect_from:
@@ -286,6 +286,14 @@ client.Data().Validator().WithProperties(properties)
 
 
 # Change logs
+
+## v4.3.0
+- Added support for [backup](../configuration/backups.html) API
+- Added method `WithObjects` to `ObjectsBatcher`
+- Added method `WithReferences` to `ReferencesBatcher`
+
+## v4.2.1
+- Fixed fetching db version
 
 ## v4.2.0
 - Added support for class namespaced API calls

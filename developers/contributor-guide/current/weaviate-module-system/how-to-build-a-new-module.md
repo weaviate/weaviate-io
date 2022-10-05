@@ -30,7 +30,7 @@ To use a custom ML model with Weaviate, you have two options:
 * A: Replace parts of an existing module, where you only replace the inference service (part 2). You don't have to touch Weaviate Core here. This is a good option for fast prototyping and proofs of concepts. In this case, you simply replace the inference model (part 2), but keep the interface with Weaviate in Go. This is a quick way to integrate completely different model types. 
 * B: Build a complete new module and replace all existing (blue) module parts (both 1 and 2). You can configure custom behavior like extending the GraphQL API, as long as the module can hook into the 'red' Module System API. Keep in mind that you'll need to write some module code in Go to achieve this. 
 
-On this page, you'll find how to create a complete new module (option B), so building part 1 and 2. If you only want to replace part 2 (so making use of an existing Weaviate module's API design), you can find instructions [here](../../../weaviate/current/modules/custom-modules.html#a-replace-parts-of-an-existing-module).
+On this page, you'll find how to create a complete new module (option B), so building part 1 and 2. If you only want to replace part 2 (so making use of an existing Weaviate module's API design), you can find instructions [here](../../../weaviate/current/other-modules/custom-modules.html#a-replace-parts-of-an-existing-module).
 
 ![Weaviate module APIs overview](/img/weaviate-module-apis.svg "Weaviate module APIs overview")
 

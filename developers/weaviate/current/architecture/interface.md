@@ -22,7 +22,8 @@ This page contains information on how Weaviate's APIs are designed, and how you 
 
 User Experience (UX) is one of our most valuable principles. Weaviate should be easy to understand, intuitive to use and valuable, desirable and usable to the community. The interaction with Weaviate is naturally very important for its UX. Weaviate's APIs are designed from the perspective of user needs, keeping the software features in mind. We do user research, user testing and prototyping to make sure all features resonate with our users. User requirements are continuously gathered during collaborative discussions. We match user needs with the functions of Weaviate. When there is a strong need from the user or application perspective, we may extend Weaviate's functions and APIs. When there is a new Weaviate function, this will naturally be accessible via (new) API functions.
 
-The UX of Weaviate's APIs is designed following the [UX Honeycomb](https://semanticstudios.com/user_experience_design/) usability rules, defined by [Peter Morville](https://semanticstudios.com/about/). 
+<!-- The UX of Weaviate's APIs is designed following the [UX Honeycomb](https://semanticstudios.com/user_experience_design/) usability rules, defined by [Peter Morville](https://semanticstudios.com/about/).  -->
+The UX of Weaviate's APIs is designed following the UX Honeycomb usability rules, defined by Peter Morville.
 
 ![<img src="/img/api-ux.png" width="250"/>](/img/api-ux.png "Weaviate's API is designed following the UX Honeycomb")
 
@@ -128,7 +129,7 @@ There are currently three main functions in a GraphQL request: "Get{}", "Explore
 
 # Weaviate Console
 
-The [Weaviate Console](http://console.semi.technology/) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.
+The [Weaviate Console](https://console.semi.technology/) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.
 
 ![<img src="/img/console-capture.png" width="250"/>](/img/console-capture.png "GraphQL Query Module in Weaviate Console")
 

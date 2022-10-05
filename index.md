@@ -18,6 +18,9 @@ layout: default
                 </p>
                 <!-- Buttons -->
                 <div class="text-center text-md-start">
+                <a href="/developers/weaviate/current/" class="btn btn-primary lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
+                        Weaviate Documentation <i class="fe fe-code d-none d-md-inline ms-3 mr-1"></i>
+                    </a>
                     <a href="{{ site.slack_signup_url }}" class="btn btn-primary-soft lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
                         Slack <i class="fe fe-slack d-none d-md-inline ms-3 mr-1"></i>
                     </a>
@@ -187,14 +190,6 @@ layout: default
                 </div>
             {% endfor %}
         </div> <!-- / .row -->
-        <div class="row">
-            <div class="col-12 align-items-center justify-content-center text-center">
-                <!-- CTA -->
-                <p>
-                    <a href="/product.html#integrations" class="btn btn-primary-soft lift">Learn more about integrations <i class="fe fe-youtube d-none d-md-inline ms-3"></i></a>
-                </p>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -255,7 +250,7 @@ layout: default
                         </h4>
                         <!-- Text -->
                         <p class="text-muted mb-6">
-                            Need to scale for production? Check out the Weaviate K8s docs <a href="/developers/weaviate/current/getting-started/installation.html#kubernetes-k8s">here</a>.
+                            Need to scale for production? Check out the Weaviate K8s docs <a href="/developers/weaviate/current/getting-started/installation.html#kubernetes">here</a>.
                         </p>
                     </div>
                 </div>
@@ -465,8 +460,8 @@ layout: default
                     Get started with open source <i class="fe fe-arrow-right"></i>
                 </a>
                 <!-- Button -->
-                <a href="/product.html#request-access" class="btn btn-success lift mb-6">
-                    Request early access to the managed service <i class="fe fe-arrow-right"></i>
+                <a href="/pricing.html" class="btn btn-success lift mb-6">
+                    Request early access to the Weaviate Cloud Service <i class="fe fe-arrow-right"></i>
                 </a>
             </div>
         </div> <!-- / .row -->

@@ -29,7 +29,7 @@ There are two different inference models you can choose from. Depending on your 
 
 # How to enable in Weaviate
 
-Note: you can also use the [Weaviate configuration tool](../getting-started/installation.html#customize-your-weaviate-setup).
+Note: you can also use the [Weaviate configuration tool](../installation/docker-compose.html#configurator).
 
 ## Docker-compose file
 You can find an example Docker-compose file below, which will spin up Weaviate with the image vectorization module. This example spins up a Weaviate with only one vectorization module, the  `img2vec-neural` module of `pytorch` with the `resnet50` model.

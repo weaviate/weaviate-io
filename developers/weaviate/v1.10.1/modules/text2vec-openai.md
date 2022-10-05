@@ -81,7 +81,7 @@ services:
       OPENAI_APIKEY: sk-foobar # request a key on openai.com
 ```
 
-_Note: you can also use the [Weaviate configuration tool](../getting-started/installation.html#customize-your-weaviate-setup) to create a Weaviate setup with this module._
+_Note: you can also use the [Weaviate configuration tool](../installation/docker-compose.html#configurator) to create a Weaviate setup with this module._
 
 ### Model selection on class level
 

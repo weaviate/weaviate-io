@@ -18,7 +18,7 @@ Read more about the program and apply at the [Google Summer of Code website](htt
 
 # About Weaviate
 
-Weaviate is an open-source vector search engine that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. Read more about Weaviate [here](https://weaviate.io/developers/weaviate/current/).
+Weaviate is an open-source vector search engine that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. Read more about Weaviate [here](/developers/weaviate/current/).
 
 # How to register
 
@@ -88,9 +88,9 @@ We are happy to announce a great pool of mentors this year. Depending on the sub
 
 **Documentation:**
 
-* [Developers · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/)  
-* [Modules · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/configuration/modules.html)  
-* [CLIP · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/modules/multi2vec-clip.html)  
+* [Developers · Weaviate Documentation](/developers/weaviate/current/)  
+* [Modules · Weaviate Documentation](/developers/weaviate/current/configuration/modules.html)  
+* [CLIP · Weaviate Documentation](/developers/weaviate/current/modules/multi2vec-clip.html)  
 
 ---
 
@@ -135,14 +135,14 @@ If you're new to ML and Weaviate, but are already a bit familiar with Python, th
 
 **Documentation**
 
-* [JavaScript · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/client-libraries/javascript.html)  
-* [Weaviate CLI · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/client-libraries/cli.html)  
+* [JavaScript · Weaviate Documentation](/developers/weaviate/current/client-libraries/javascript.html)  
+* [Weaviate CLI · Weaviate Documentation](/developers/weaviate/current/client-libraries/cli.html)  
 
 ---
 
 ### 4. Make a new Weaviate module (e.g. [gene2vec](https://github.com/jingcheng-du/Gene2vec#:~:text=Gene2Vec%20is%20a%20distributed%20representation,sets%20from%20the%20GEO%20databases.), or a new type of ML model) 
 
-**Project Description:** Weaviate is a vector search engine that is completely modularized. The Core of Weaviate, without any modules attached, is a pure vector-native database and search engine. The functionality of the vector-native database can be enriched by modules. One or more modules can be attached, for example to vectorize data or other functionalities like question answering. The goal of this project is to make a new module for Weaviate. Think about a gene2vec model or a text2text generation like summarization model).  See [here](https://weaviate.io/developers/weaviate/current/modules/custom-modules.html#how-to-build-and-use-a-custom-module) for more details.
+**Project Description:** Weaviate is a vector search engine that is completely modularized. The Core of Weaviate, without any modules attached, is a pure vector-native database and search engine. The functionality of the vector-native database can be enriched by modules. One or more modules can be attached, for example to vectorize data or other functionalities like question answering. The goal of this project is to make a new module for Weaviate. Think about a gene2vec model or a text2text generation like summarization model).  See [here](/developers/weaviate/current/other-modules/custom-modules.html#how-to-build-and-use-a-custom-module) for more details.
 You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you can learn along the way
 
 **Required Skills:**  Creating a new type of weaviate module by using our Weaviate.go module. Basic knowledge of golang is required.
@@ -155,7 +155,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 **Mentors**: Laura Ham, Saurabh Rai, Etienne Dilocker, Marcin Antas
 
-**Expected outcome:** A new Weaviate module [code](https://github.com/semi-technologies/weaviate/tree/master/modules) and [documentation](https://weaviate.io/developers/weaviate/current/modules/index.html).
+**Expected outcome:** A new Weaviate module [code](https://github.com/semi-technologies/weaviate/tree/master/modules) and [documentation](/developers/weaviate/current/modules/index.html).
 
 **Documentation:**
 
@@ -165,7 +165,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 ### 5. Make Weaviate support a new datatype (e.g. videos, or 3D models, etc)
 
-**Project Description:** At the moment, Weaviate is able to store [datatypes](https://weaviate.io/developers/weaviate/current/data-schema/datatypes.html) like text and images. The goal of this project is to create a new datatype for Weaviate, like speech, videos or 3D mesh. You'll work in Go.
+**Project Description:** At the moment, Weaviate is able to store [datatypes](/developers/weaviate/current/data-schema/datatypes.html) like text and images. The goal of this project is to create a new datatype for Weaviate, like speech, videos or 3D mesh. You'll work in Go.
 You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you can learn along the way. 
 
 **Required Skills:** Check the Go Documentation and Modules Documentation below to get an understanding of how to create new/custom modules. The knowledge of Machine Learning & NLP Based Models like text2vec, word vectors, etc. is important. Medium-advanced knowledge of golang is desired. 
@@ -182,9 +182,9 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 **Documentation:**
 
-* [Go · Weaviate Documentation) (https://weaviate.io/developers/weaviate/current/client-libraries/go.html)  
-* [Custom modules · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/modules/custom-modules.html)  
-* [Modules · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/modules/index.html)  
+* [Go · Weaviate Documentation) (/developers/weaviate/current/client-libraries/go.html)  
+* [Custom modules · Weaviate Documentation](/developers/weaviate/current/modules/custom-modules.html)  
+* [Modules · Weaviate Documentation](/developers/weaviate/current/modules/index.html)  
 
 ---
 
@@ -207,7 +207,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
     * Data REST calls
 
 **Documentation:**
-[Weaviate CLI · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/client-libraries/cli.html)  
+[Weaviate CLI · Weaviate Documentation](/developers/weaviate/current/client-libraries/cli.html)  
 
 ---
    
@@ -228,8 +228,8 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 **Expected outcome:** A CLI tool (or extension of the Weaviate CLI too) that allows converting SQL schemas into Weaviate schemas.
 
 **Documentation:**
-[Weaviate schema · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/restful-api-references/schema.html)  
-[Weaviate CLI · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/client-libraries/cli.html)    
+[Weaviate schema · Weaviate Documentation](/developers/weaviate/current/restful-api-references/schema.html)  
+[Weaviate CLI · Weaviate Documentation](/developers/weaviate/current/client-libraries/cli.html)    
    
 ---
 
@@ -250,7 +250,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 **Expected outcome:** A new great idea... Surprise us!
 
 **Documentation:**
-* [Developers · Weaviate Documentation](https://weaviate.io/developers/weaviate/current/)  
+* [Developers · Weaviate Documentation](/developers/weaviate/current/)  
 
 If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
 

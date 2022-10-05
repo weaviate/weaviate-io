@@ -6,7 +6,7 @@ title: Authentication
 intro: By default, Weaviate runs without any form of authentication. To run Weaviate with authentication, you can configure OpenID authentication in the configuration file of Weaviate. Then, use a Bearer token to authenticate.
 description: Authentication in Weaviate
 tags: ['authentication']
-menu-order: 3
+menu-order: 4
 open-graph-type: article
 toc: true
 redirect_from:

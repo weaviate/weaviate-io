@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Client libraries & CLI
+sub-menu: Client libraries
 title: JavaScript
 intro: A JavaScript client library for Weaviate.
 description: JavaScript client library for Weaviate
@@ -73,6 +73,14 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 - Internally the client uses isomorphic-fetch to do the REST calls, so the client should work from both the browser as well as NodeJS backend applications without any required changes.
 
 # Change logs
+
+## v2.12.0
+- Added support for [backup](../configuration/backups.html) API
+- Added method `withObjects` to `objectsBatcher`
+- Added method `withReferences` to `referencesBatcher`
+
+## v2.11.1
+- Fixed fetching db version
 
 ## v2.11.0
 - Added support for class namespaced API calls

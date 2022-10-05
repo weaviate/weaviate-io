@@ -8,6 +8,8 @@ author-img: /img/people/icon/laura.jpg
 card-img: /img/blog/hero/cross-encoder-reranker-card.png
 date: 2022-08-09
 toc: true
+isMLResearch: true
+isDBResearch: false
 ---
 
 ## Intro

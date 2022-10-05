@@ -18,4 +18,4 @@ echo -e "\n💡 \033[1;31mDocumentation outside the current folders will not be 
 
 echo -e "\n🎉 \033[1;34mstarting jekyll \033[0m\n"
 
-$BUNDLER_PATH/bundle exec jekyll s --watch --livereload --incremental --host=localhost --baseurl="" --config "_config.yml,_config_dev.yml"
+$BUNDLER_PATH/bundle exec jekyll s --watch --livereload --incremental --host=localhost --baseurl="" --config "_config.yml,_config_dev.yml" --open-url http://localhost:4000/

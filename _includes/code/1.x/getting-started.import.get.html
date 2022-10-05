@@ -1,0 +1,102 @@
+<!-- SET PYTHON TAB CONTENT -->
+{% capture python %}
+
+import weaviate
+import json
+
+client = weaviate.Client("https://some-endpoint.semi.network/")
+
+all_objects = client.data_object.get()
+print(json.dumps(all_objects))
+
+{% endcapture %}
+
+<!-- SET JAVASCRIPT TAB CONTENT -->
+{% capture javascript %}
+
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.semi.network/',
+  }); 
+
+client
+    .data
+    .getter()
+    .do()
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.error(err)
+    });
+
+{% endcapture %}
+
+<!-- SET GO TAB CONTENT -->
+{% capture go %}
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+)
+
+func GetSchema() {
+    cfg := weaviate.Config{
+        Host:   "some-endpoint.semi.network/",
+        Scheme: "https",
+    }
+
+    client := weaviate.New(cfg)
+
+    data, err := client.Data().ObjectsGetter().
+        Do(context.Background())
+
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("%v", data)
+
+}
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+package technology.semi.weaviate;
+
+import java.util.List;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.data.model.WeaviateObject;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "some-endpoint.semi.network/");
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    Result<List<WeaviateObject>> result = client.data().objectsGetter()
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+
+{% endcapture %}
+
+<!-- SET CURL TAB CONTENT -->
+{% capture curl %}
+$ curl https://some-endpoint.semi.network/v1/objects
+
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='getting-started-import-get' %}
