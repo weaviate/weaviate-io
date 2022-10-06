@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: contributor-guide
-sub-menu: Weaviate Contributor's Guide
+sub-menu: Getting Started
 title: Improving Documentation 
 tags: ['contributor-guide']
 menu-order: 4

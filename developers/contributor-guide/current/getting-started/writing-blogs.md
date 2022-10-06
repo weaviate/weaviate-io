@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: contributor-guide
-sub-menu: Weaviate Contributor's Guide
+sub-menu: Getting Started
 title: Writing Blogs 
 tags: ['contributor-guide']
 menu-order: 5

@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: contributor-guide
-sub-menu: Weaviate Contributor's Guide
+sub-menu: Getting Started
 title: Git and GitHub guide 
 tags: ['contributor-guide']
 menu-order: 7

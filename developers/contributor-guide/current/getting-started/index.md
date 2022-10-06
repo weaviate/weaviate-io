@@ -1,8 +1,8 @@
 ---
 layout: layout-documentation
 solution: contributor-guide
-sub-menu: Weaviate Contributor's Guide
-title: Weaviate Contributor's Guide
+sub-menu: Getting Started
+title: Getting Started
 intro: This guide contains all of the resources you will need to contribute to Weaviate..
 description: This guide contains all of the resources you will need to contribute to Weaviate.
 tags: ['index', 'contributor-guide']

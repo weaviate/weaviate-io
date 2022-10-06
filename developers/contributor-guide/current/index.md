@@ -30,7 +30,7 @@ If you’re using Weaviate or if you like the project, please <a href="https://g
 
 We are delighted to have you here. We are thrilled that you want to contribute to the Weaviate core, as together we can make Weaviate even better. We strive to build an engaging community and we encourage you to participate, share your ideas and make friends. As you become more acquainted with the community, there are several initiatives to consider, which are listed below. Everyone is welcome to join our [Slack](https://weaviate.slack.com/) channel and interact with other members of the community.
 
-Please change your Slack workspace display name to your name so that you can connect with other members more easily. 
+Please change your Slack workspace display name to your name so that you can connect with other members more easily.
 
 **Recommend resources**
 
