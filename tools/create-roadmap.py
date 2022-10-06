@@ -1,31 +1,46 @@
 import requests, yaml
 
+# Function to call github API with an access token
+def call_githubAPI(query):
+    base_url = 'https://api.github.com/repos/semi-technologies/weaviate/'
+    url = base_url + query
+
+    # TODO: add code to retrieve the token
+    token = '<<here>>'
+
+    response = requests.get(url, headers={'Authorization': 'access_token ' + token})
+
+    if response.status_code != 200:
+        raise Exception("Failed Request.get => " + url + "\n" + response.content.decode())
+
+    return response.json()
+
+# Return True if label is planned-* or backlog
+def isRoadmapLabel(label):
+    return (
+        label['name'].startswith('planned-') or
+        label['name'] == 'backlog'
+    )
+
+# Get all roadmap labels and filter out unrelated labels
+labels = call_githubAPI('labels?per_page=1000')
+labels = list(filter(isRoadmapLabel, labels))
+
+# Construct Roadmap for each label
 roadmap = {}
+for label in labels:
+    label_name = label['name']
+    
+    roadmap[label_name] = {
+        'description': label['description'],
+        'items': []
+    }
 
-# Get all roadmap labels
-include_labels = []
-labels_response = requests.get('https://api.github.com/repos/semi-technologies/weaviate/labels?per_page=1000')
+    # Get issues for each label and add them to the roadmap object
+    issues = call_githubAPI('issues?per_page=1000&labels=' + label_name)
 
-if (labels_response.status_code != 200):
-    raise Exception("Failed to get labels => https://api.github.com/repos/semi-technologies/weaviate/labels?per_page=1000")
-
-for label in labels_response.json():
-    if label['name'].find('backlog') >= 0 or label['name'].find('planned-') >= 0:
-        include_labels.append(label['name'])
-        roadmap[label['name']] = {
-            'description': label['description'],
-            'items': []
-        }
-
-# Collect all issues
-for label in include_labels:
-    issues_response = requests.get('https://api.github.com/repos/semi-technologies/weaviate/issues?per_page=1000&labels=' + label)
-
-    if (issues_response.status_code != 200):
-        raise Exception("Failed to get issues => https://api.github.com/repos/semi-technologies/weaviate/issues?per_page=1000&labels=" + label)
-
-    for issue in issues_response.json():
-        roadmap[label]['items'].append({
+    for issue in issues:
+        roadmap[label_name]['items'].append({
             'title': issue['title'],
             'url': issue['html_url'],
             '+1': issue['reactions']['+1'],
