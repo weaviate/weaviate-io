@@ -8,7 +8,6 @@ def call_githubAPI(query):
     # Add code to retrieve the token
     token = os.environ["GITHUB_API_TOKEN"]
 
-    response = requests.get(url, headers={'Authorization': 'access_token ' + token})
     response = requests.get(url, headers={'Authorization': 'Bearer ' + token})
 
     if response.status_code != 200:
