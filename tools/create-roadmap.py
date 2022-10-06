@@ -1,12 +1,12 @@
-import requests, yaml
+import requests, yaml, os
 
 # Function to call github API with an access token
 def call_githubAPI(query):
     base_url = 'https://api.github.com/repos/semi-technologies/weaviate/'
     url = base_url + query
 
-    # TODO: add code to retrieve the token
-    token = '<<here>>'
+    # Add code to retrieve the token
+    token = os.environ["GITHUB_API_TOKEN"]
 
     response = requests.get(url, headers={'Authorization': 'access_token ' + token})
 
