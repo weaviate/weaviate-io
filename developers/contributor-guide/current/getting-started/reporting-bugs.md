@@ -13,11 +13,11 @@ toc: true
 
 This section walks you through the process of submitting a bug report for Weaviate. Following these guidelines can help you make a better bug report, and make it easier for the maintainers and the community to understand and reproduce your behavior and find related bugs.
 
-When filling out the [bug report template](https://github.com/semi-technologies/weaviate-io/blob/main/.github/ISSUE_TEMPLATE/report_bug.yml), be sure to include all the steps you would take to reproduce the bug. 
+When filling out the [bug report template](https://github.com/semi-technologies/weaviate-io/blob/main/.github/ISSUE_TEMPLATE/report_bug.yml), be sure to include all the steps you would take to reproduce the bug. Bugs are tracked as [GitHub issues](https://github.com/semi-technologies/weaviate/issues). Be sure to check the current issues to see if the bug has already been reported.
 
-## How Do I Submit A (Good) Bug Report?
+## What makes a good bug report?
 
-Bugs are tracked as [GitHub issues](https://github.com/semi-technologies/weaviate/issues). Be sure to check the current issues to see if the bug has already been reported.. Once you've determined which repository your bug is related to, open an issue in that repository and fill out the [template](https://github.com/semi-technologies/weaviate-io/blob/main/.github/ISSUE_TEMPLATE/report_bug.yml) with the following information.
+Once you've determined which repository your bug is related to, open an issue in that repository and fill out the [template](https://github.com/semi-technologies/weaviate-io/blob/main/.github/ISSUE_TEMPLATE/report_bug.yml) with the following information.
 
 * **Use a clear and descriptive title** for the issue to identify the problem.
 * **Describe the exact steps** that you took to reproduce the problem in as much detail as possible. Explain how you did it. For example, while setting up Weaviate, state what was your custom configurations, which modules did you use or which command exactly you used in the terminal. 

@@ -91,7 +91,7 @@ tools/dev/restart_dev_environment.sh --qna && ./tools/dev/run_dev_server.sh loca
 
 The above commands are subject to change as we add more modules and require specific combinations for local testing. You can always inspect the two files to see which options are contained. The first option without any arguments is always guarateed to work.
 
-To make query search use this link for console: [https://console.semi.technology/](https://console.semi.technology/).
+You can use the [SeMI GraphQL console](https://console.semi.technology/) to make queries.
 
 There are multiple ways to set up a Weaviate instance. For a testing setup, we recommend you start with docker-compose. Cloud deployment can be used for small and larger projects. For production setup and/or large scale projects, we encourage you to use Kubernetes.
 
@@ -99,7 +99,7 @@ For setting up your Weaviate instance, go through this detailed [quickstart guid
 
 ## Additional References
 
-We recommend that you read through these guides, which will provide you with a clear understanding of Weaviate's code structure and style, CI/CD philosophy, and so on. These will assist you in making more feature-rich recommendations.
+We recommend that you read through these guides, which will provide you with a clear understanding of Weaviate's code structure and style, CI/CD philosophy. These will assist you in making more feature-rich recommendations.
 
 * [Code structure and style](../weaviate-core/structure.html)
 * [CI/CD Philosophy](../weaviate-core/cicd.html)
