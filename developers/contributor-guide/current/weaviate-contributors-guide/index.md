@@ -15,11 +15,11 @@ redirect_from:
 
 ## Why to contribute?
 
-A project like Weaviate is excellent opportunity to gain experience with Vector Search Engines, Docker, Kubernetes, GraphQL, REST and various other language clients. You will work on the forefront of search, ML/AI and cloud-native technologies, but most of all, you be part of an amazing open source project. You will also get amazing networking opportunities with experienced and like-minded software engineers.
+Weaviate is excellent opportunity to gain experience with vector search engines, Docker, Kubernetes, GraphQL, REST and various other language clients. You will work on the forefront of search, ML/AI and cloud-native technologies, but most of all, you be part of an amazing open source project. You will also get amazing networking opportunities with experienced and like-minded software engineers.
      
 ## Ways of contributing
 
-There are numerous exciting ways to contribute to Weaviate. The list below illustrates how contributions are acknowledged in the project:
+There are numerous exciting ways to contribute to Weaviate. These are the different types of contributions acknowledged in the project:
 
 * [Suggesting Enhancements](./suggesting-enhancements.html)
 * [Reporting Bugs](./reporting-bugs.html)
