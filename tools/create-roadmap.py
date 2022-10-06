@@ -9,6 +9,7 @@ def call_githubAPI(query):
     token = '<<here>>'
 
     response = requests.get(url, headers={'Authorization': 'access_token ' + token})
+    response = requests.get(url, headers={'Authorization': 'Bearer ' + token})
 
     if response.status_code != 200:
         raise Exception("Failed Request.get => " + url + "\n" + response.content.decode())
