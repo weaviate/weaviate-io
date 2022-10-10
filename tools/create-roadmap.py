@@ -1,14 +1,17 @@
 import requests, yaml, os
 
+# Set Github API token if available in the env variables
+headers = {}
+if 'GITHUB_API_TOKEN' in os.environ:
+    headers = { 'Authorization': 'Bearer ' + os.environ['GITHUB_API_TOKEN'] }
+
 # Function to call github API with an access token
 def call_githubAPI(query):
     base_url = 'https://api.github.com/repos/semi-technologies/weaviate/'
     url = base_url + query
 
     # Add code to retrieve the token
-    token = os.environ["GITHUB_API_TOKEN"]
-
-    response = requests.get(url, headers={'Authorization': 'Bearer ' + token})
+    response = requests.get(url, headers=headers)
 
     if response.status_code != 200:
         raise Exception("Failed Request.get => " + url + "\n" + response.content.decode())
