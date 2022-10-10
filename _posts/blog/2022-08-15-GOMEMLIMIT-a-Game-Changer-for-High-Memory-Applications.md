@@ -9,6 +9,8 @@ card-img: /img/blog/hero/gomemlimit-card.jpg
 og: /img/blog/hero/gomemlimit-og.jpg
 date: 2022-08-15
 toc: false
+isMLResearch: false
+isDBResearch: true
 ---
 
 ## Intro

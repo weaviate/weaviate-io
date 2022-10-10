@@ -21,7 +21,7 @@ To choose your specific model, you simply need to select the correct Docker cont
 
 # How to use
 
-Note: you can also use the [Weaviate configuration tool](../getting-started/installation.html#customize-your-weaviate-setup).
+Note: you can also use the [Weaviate configuration tool](../installation/docker-compose.html#configurator).
 
 ## Option 1: With an example docker-compose file 
 You can find an example Docker-compose file below, which will spin up Weaviate with the transformers module. In this example we have selected the `sentence-transformers/msmarco-distilroberta-base-v2` which works great for [asymmetric semantic search](https://sbert.net/examples/applications/semantic-search/README.html#symmetric-vs-asymmetric-semantic-search). See below for how to select an alternative model.

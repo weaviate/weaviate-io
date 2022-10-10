@@ -20,6 +20,8 @@ A Weaviate data schema is slightly different from a taxonomy, which has a hierar
 
 You can upload schema classes to Weaviate via the RESTful endpoint `/v1/schema`. Learn more [here](../restful-api-references/schema.html).
 
+> 💡 Check out the [schema getting started guide](/developers/weaviate/current/getting-started/schema.html) to learn how to work with the Weaviate schema in under 10 minutes.
+
 # Data objects and structure
 
 Data objects in Weaviate always belongs to a Class, and has one or more Properties.
@@ -108,13 +110,13 @@ An example of a complete class object including properties:
 
 ### vectorizer
 
-The vectorizer (`"vectorizer": "..."`) can be specified per class in the [schema object](#schema-object). Check the [modules page](../modules/index.html) for available vectorizer modules.
+The vectorizer (`"vectorizer": "..."`) can be specified per class in the schema object. Check the [modules page](../modules/index.html) for available vectorizer modules.
 
 In case you don't want to use a vectorization module to calculate vectors from data objects, and want to enter the vectors per data object yourself when adding data objects, make sure to set `"vectorizer": "none"`.
 
 __Regulate semantic indexing__
 
-With the [`text2vec-contextionary`](../modules/text2vec-contextionary.html) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](../modules/text2vec-contextionary.html#regulate-semantic-indexing) how this works.
+With the [`text2vec-contextionary`](../modules/text2vec-contextionary.html) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/developers/weaviate/current/schema/schema-configuration.html#regulate-semantic-indexing) how this works.
 
 ### vectorIndexType
 

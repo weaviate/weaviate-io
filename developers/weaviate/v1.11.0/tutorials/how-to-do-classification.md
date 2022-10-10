@@ -26,7 +26,7 @@ In this how-to guide, you will learn how to classify with Contextual and kNN cla
 
 **1. Connect to a Weaviate instance**
 
-If you haven't set up a Weaviate instance yet, check the [Getting started guide](../getting-started/installation.html). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](../getting-started/installation.html#weaviate-with-the-text2vec-contextionary-model) as vectorization module.
+If you haven't set up a Weaviate instance yet, check the [Getting started guide](../getting-started/installation.html). In this guide we assume your instance is running at `http://localhost:8080` with the `text2vec-contextionary` as vectorization module.
 
 **2. Upload a schema**
 

@@ -44,9 +44,9 @@ Custom HNSW implementation in Weaviate references:
 More information:
 
 - [Weaviate, an ANN Database with CRUD support – DB-Engines.com](https://db-engines.com/en/blog_post/87) ⬅️ best resource on the topic
-- [Weaviate's HNSW implementation in the docs](https://www.semi.technology/developers/weaviate/current/vector-index-plugins/hnsw.html)
+- [Weaviate's HNSW implementation in the docs](https://weaviate.io/developers/weaviate/current/vector-index-plugins/hnsw.html)
 
-_Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here](https://www.semi.technology/developers/weaviate/current/vector-index-plugins/)_
+_Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here](https://weaviate.io/developers/weaviate/current/vector-index-plugins/)_
 
 ## Q: Are all ANN algorithms potential candidates to become an indexation plugin in Weaviate?
 
@@ -188,7 +188,7 @@ A: In short: for convenience you can add relations to your data schema, because 
 
 ## Q: Is it possible to create one-to-many relationships in the schema?
 
-A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example](https://www.semi.technology/developers/weaviate/current/tutorials/how-to-create-a-schema.html#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
+A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example](https://weaviate.io/developers/weaviate/current/tutorials/how-to-create-a-schema.html#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
 
 ## Q: What is the different between `text` and `string` and `valueText` and `valueString`?
 
@@ -337,5 +337,5 @@ Look at the:
 
 0. [Knowledge base of old issues](https://github.com/semi-technologies/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
 0. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
-0. For issues: [Github](//github.com/semi-technologies/weaviate/issues). Or,
+0. For issues: [Github](https://github.com/semi-technologies/weaviate/issues). Or,
 0. Ask your question in the Slack channel: [Slack]({{ site.slack_signup_url }}).

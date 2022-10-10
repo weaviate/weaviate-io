@@ -157,7 +157,7 @@ Note: `startPosition`, `endPosition` and `property` in the response are not guar
 
 # Custom Q&A Transformer module
 
-You can use the same approach as for `text2vec-transformers`, see [here](./text2vec-transformers.html#option-3-custom-build-with-a-private-or-local-model), i.e. either pick one of the pre-built containers or build your own container from your own model using the `semitechnologies/qna-transformers:custom` base image. Make sure that your model is compatible with Huggingfaces' `transformers.AutoModelForQuestionAnswering`.
+You can use the same approach as for `text2vec-transformers`, see [here](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-transformers.html#option-3-custom-build-with-a-private-or-local-model), i.e. either pick one of the pre-built containers or build your own container from your own model using the `semitechnologies/qna-transformers:custom` base image. Make sure that your model is compatible with Huggingfaces' `transformers.AutoModelForQuestionAnswering`.
 
 # How it works (under the hood)
 

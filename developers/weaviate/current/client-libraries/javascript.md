@@ -74,6 +74,14 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 
 # Change logs
 
+## v2.12.0
+- Added support for [backup](../configuration/backups.html) API
+- Added method `withObjects` to `objectsBatcher`
+- Added method `withReferences` to `referencesBatcher`
+
+## v2.11.1
+- Fixed fetching db version
+
 ## v2.11.0
 - Added support for class namespaced API calls
 - Added support for `distance` user-facing similarity metric

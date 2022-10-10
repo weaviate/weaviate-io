@@ -287,6 +287,14 @@ client.Data().Validator().WithProperties(properties)
 
 # Change logs
 
+## v4.3.0
+- Added support for [backup](../configuration/backups.html) API
+- Added method `WithObjects` to `ObjectsBatcher`
+- Added method `WithReferences` to `ReferencesBatcher`
+
+## v4.2.1
+- Fixed fetching db version
+
 ## v4.2.0
 - Added support for class namespaced API calls
 - Added support for `distance` user-facing similarity metric

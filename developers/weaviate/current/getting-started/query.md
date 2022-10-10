@@ -116,7 +116,7 @@ inArticle {
 * `... on Article` is set because we can have a single property cross reference to _multiple_ classes (did you notice that the cross-reference is set inside an array?). In this specific dataset, we only reference to `Article` but this could be more than one class.
 * `title` is a property of `Article`. Because we told GraphQL that we are going to query over the cross-reference `Article`, it knows that the properties of `Article` should be the available options.
 
-You might remember that the `Article` class also has a cross-reference back to `Paragraph`. So, the following query is valid ([we can go even deeper](https://i.kym-cdn.com/photos/images/original/000/531/557/a88.jpg), but in this specific case [slightly recursive](https://memegenerator.net/img/instances/11229951/not-sure-if-recursive-or-inception-joke.jpg)).
+You might remember that the `Article` class also has a cross-reference back to `Paragraph`. So, the following query is valid:
 
 ```graphql
 {

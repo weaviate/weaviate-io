@@ -6,3 +6,4 @@ _site/
 .jekyll-metadata
 .ruby-version
 img/og/og-documentation
+_data/roadmap.yml
