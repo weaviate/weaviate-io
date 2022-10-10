@@ -34,7 +34,7 @@ Alternatively, if you prefer to install and deploy Weaviate yourself, then you c
 
 Working with Docker is great if you are building an application around Weaviate and want to run Weaviate on your local machine or in the cloud. If you have Docker already installed, you could have it all up and running in seconds (minutes if you use a  prepackaged transformers module).
 
-We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator){:target="_blank"}, which let's you pick you configuration, and as a result you will receive a command to spin up your docker setup.
+We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator){:target="_blank"}, which lets you pick your configuration, and as a result you will receive a command to spin up your docker setup.
 
 You can find the installation instructions for Docker [here](../installation/docker-compose.html#configurator).
 
@@ -50,7 +50,7 @@ Using Weaviate with Kubernetes is out of scope for this tutorial. You can find m
 
 The installation and configuration with Docker and Kubernetes is out of scope for this tutorial, as all code examples include references to a WCS instance. To learn about deploying Weaviate locally, follow the [installation documentation](/developers/weaviate/current/installation/){:target="_blank"} page.
 
-If you feel comfortable making a few changes to the code examples in the tutorial and you prefer to run Weaviate locally. You can set up Weaviate with Docker in two steps:
+If you feel comfortable making a few changes to the code examples in the tutorial and you prefer to run Weaviate locally, you can set up Weaviate with Docker in two steps:
 
 0. Get `docker-compose.yml` configuration file by calling:
     ```js
