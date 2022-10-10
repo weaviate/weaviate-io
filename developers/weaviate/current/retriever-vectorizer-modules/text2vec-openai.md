@@ -70,6 +70,7 @@ The following schema configuration uses the `babbage` model.
     {
       "class": "Document",
       "description": "A class called document",
+      "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "text2vec-openai": {
           "model": "babbage",
@@ -90,8 +91,7 @@ The following schema configuration uses the `babbage` model.
           },
           "name": "content"
         }
-      ],
-      "vectorizer": "text2vec-openai"
+      ]
     }
   ]
 }
