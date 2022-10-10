@@ -23,7 +23,7 @@ before_install:
 install:
 - bundle install
 - gem install jekyll
-- gem install html-proofer -v 4.4.3 --user-install
+- gem install html-proofer --user-install
 - pip install -r ./_python/requirements.txt
 - export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
 script:
