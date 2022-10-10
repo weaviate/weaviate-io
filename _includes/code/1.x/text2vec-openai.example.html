@@ -4,9 +4,9 @@ from weaviate import Client
 import time
 
 
-def configure_batch(client: Client, batch_size: int, batch_tagret_rate: int):
+def configure_batch(client: Client, batch_size: int, batch_target_rate: int):
     """
-    Configure the weaviate client's batch so it creates objects at `batch_tagret_rate`.
+    Configure the weaviate client's batch so it creates objects at `batch_target_rate`.
 
     Parameters
     ----------
@@ -14,8 +14,8 @@ def configure_batch(client: Client, batch_size: int, batch_tagret_rate: int):
         The Weaviate client instance.
     batch_size : int
         The batch size.
-    batch_tagret_rate : int
-        The batch target rate as # objects per second.
+    batch_target_rate : int
+        The batch target rate as # of objects per second.
     """
 
     def callback(batch_results: dict) -> None:
@@ -23,7 +23,7 @@ def configure_batch(client: Client, batch_size: int, batch_tagret_rate: int):
         # you could print batch errors here
         time_took_to_create_batch = batch_size * (client.batch.creation_time/client.batch.recommended_num_objects)
         time.sleep(
-            max(batch_size/batch_tagret_rate - time_took_to_create_batch + 1, 0)
+            max(batch_size/batch_target_rate - time_took_to_create_batch + 1, 0)
         )
 
     client.batch.configure(
