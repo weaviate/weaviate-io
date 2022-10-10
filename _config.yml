@@ -55,9 +55,9 @@ toc:
 # SPECIFIC SETTINGS FOR THE DOCS
 # ALSO SEE THE README FILE
 ###
-weaviate_version: v1.15.2 # the current and latest version
+weaviate_version: v1.15.4 # the current and latest version
 weaviate_versions: # order the versions how you want them displayed
-  "v1.15.2":
+  "v1.15.4":
     helm_version: 15.0.0 # Helm version for this Weaviate version
   "v1.14.1":
     helm_version: 14.4.0 # Helm version for this Weaviate version
@@ -91,7 +91,7 @@ weaviate_versions: # order the versions how you want them displayed
     helm_version: 12.0.0 # Helm version for this Weaviate version
 docs:
   weaviate:
-    'v1.15.2':
+    'v1.15.4':
       - name: Core Knowledge
         folder: core-knowledge
         header: false
@@ -721,7 +721,7 @@ docs:
         folder: tutorials
         header: true
   contributor-guide:
-    'v1.15.2':
+    'v1.15.4':
       - name: Weaviate Core
         folder: weaviate-core
       - name: Weaviate Module System
