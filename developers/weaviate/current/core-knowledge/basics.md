@@ -26,7 +26,7 @@ Weaviate is a database of the type search engine, and it's specifically built to
 
 ## Data objects in Weaviate
 
-Weaviate stores _data objects_ (represented as JSON-documents) in _class-based collections_, where each object can be represented by a machine learning _vector_ (i.e. an embedding).
+Weaviate stores _data objects_ (represented as JSON-documents) in _class-based collections_, where each object can be represented by a machine learning _vector_ (i.e., an embedding).
 
 Each _class-based collection_ contains objects of the same _class_, which are defined by a common _schema_.
 
@@ -179,8 +179,7 @@ For now, what's important to know is this:
 0. Classes and properties (as explained above) are defined in the schema.
 0. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
 0. You can link classes (even if they use different embeddings) by setting cross-references.
-0. You can configure module behavior, ANN index settings, reverse index types, etc. in the schema as well (more about this in the schema getting [started guide](../getting-started/schema.html)).
-
+0. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema [getting started guide](../getting-started/schema.html)).
 
 ## Where do the vectors come from?
 
@@ -201,7 +200,7 @@ We will go deeper into the guide for adding data and the guide for modules. But 
 
 ## Modules
 
-If you bring your own vectors to Weaviate, running Weaviate stand-alone is all you need. But in certain cases, you might want to use one of the prepackaged modules. For example, if you use OpenAI embeddings, you might want to use the OpenAI module, which automatically integrates with their embeddings-API. Or, if you have a use case where you want to use Sentence Transformers, you can use the Huggingface transformers module.
+If you bring your own vectors to Weaviate, running Weaviate stand-alone is all you need. But in certain cases, you might want to use one of the prepackaged modules. For example, if you use OpenAI embeddings, you might want to use the OpenAI module, which automatically integrates with their embeddings-API. Or, if you have a use case where you want to use Sentence Transformers, you can use the Hugging Face Transformers module.
 
 What's important to remember is that you _can_ use Weaviate modules, but you don't _have_ to use them.
 
@@ -233,7 +232,7 @@ Weaviate can expose Prometheus-compatible metrics for [monitoring](../configurat
 * You can set cross-references as datatypes to link to other objects.
 * You will define classes and properties in a schema.
 * Different classes can represent different vector spaces.
-* The schema has a Class-property data structure.
+* The schema has a class-property data structure.
 * You can configure Weaviate in the schema.
 * You define classes and properties in the schema.
 * We can query using the GraphQL-interface or -in some cases- the RESTful API.

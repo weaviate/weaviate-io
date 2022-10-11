@@ -12,7 +12,7 @@ toc: true
 
 You've made it to the schema getting started guide! The schema is the place where you will not only set data types, cross-references, and more, but you'll be tweaking index settings (ANN, reverse index, BM25).
 
-This will also be a guide to getting your hands dirty! O, and this guide is a bit longer 😉
+This will also be a guide to getting your hands dirty! Oh, and this guide is a bit longer 😉
 
 ## Prerequisites 
 
@@ -201,7 +201,7 @@ The result should look something like this:
 }
 ```
 
-Wow! Whut, that's a lot more than we've added!
+ Wow! What, that’s a lot more than we’ve added?
 
 Correct, that's Weaviate adding some default config for you. You can change, improve, tweak, and update this, but that's for a later expert guide. 
 
