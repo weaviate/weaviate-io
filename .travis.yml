@@ -17,10 +17,13 @@ before_install:
 - sudo npm install netlify-cli -g
 - sudo snap install yq
 - bundle install
+# Collect Github API data
+- pip3 install pyyaml
+- python3 tools/create-roadmap.py
 install:
 - bundle install
 - gem install jekyll
-- gem install html-proofer --user-install
+- gem install html-proofer -v 4.4.3 --user-install
 - pip install -r ./_python/requirements.txt
 - export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
 script:
