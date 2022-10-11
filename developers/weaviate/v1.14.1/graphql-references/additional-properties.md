@@ -10,8 +10,8 @@ menu-order: 6
 open-graph-type: article
 toc: true
 redirect_from:
-    - /documentation/weaviate/current/graphql-references/underscore-properties.html
-    - /developers/weaviate/current/graphql-references/underscore-properties.html
+    - /documentation/weaviate/v1.14.1/graphql-references/underscore-properties.html
+    - /developers/weaviate/v1.14.1/graphql-references/underscore-properties.html
 ---
 
 # Introduction

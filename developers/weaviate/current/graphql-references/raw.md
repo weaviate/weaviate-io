@@ -9,9 +9,6 @@ tags: ['graphql', 'raw queries']
 menu-order: 7
 open-graph-type: article
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/graphql-references/underscore-properties.html
-    - /developers/weaviate/current/graphql-references/underscore-properties.html
 ---
 
 # Introduction
