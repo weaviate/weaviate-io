@@ -4,7 +4,7 @@ title: What are Distance Metrics in Vector Search?
 description: "Learn about why you need distance metrics in vector search and the metrics implemented in Weaviate (Cosine, Dot Product, L2-Squared, Manhattan, and Hamming)."
 published: true
 author: Erika Cardenas 
-author-img: /img/people/erika.jpg
+author-img: /img/people/icon/erika.jpg
 card-img: /img/blog/hero/what-are-distance-metrics-card.png
 hero-img: /img/blog/hero/what-are-distance-metrics-card.png
 og: /img/blog/hero/what-are-distance-metrics-card.png
@@ -173,8 +173,8 @@ The distance metrics in Weaviate have been optimized to be highly efficient usin
 Weaviate is open-source and values feedback and input from the community. A community member contributed to the Weaviate project by adding two new metrics to the 1.15 release. How cool is that! If this is something you're interested in, [here](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw/distancer){:target="_blank"} is the repository to see the implementation of the current metrics. 
 
 ## What's next
-Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
 
 Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.

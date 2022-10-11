@@ -164,4 +164,4 @@ Let us know if you found this article interesting or useful. We are always happy
 
 We are always working on new articles and are looking for new topics. Let us know if there is anything that you would like us to write about. 🤗
 
-Please reach out to us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
+Please reach out to us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/weaviate_io){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
