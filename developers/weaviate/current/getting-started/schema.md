@@ -29,9 +29,9 @@ At this point, you should have Weaviate running either:
 
 You can communicate with Weaviate from your code by using one of the available [client libraries](../client-libraries/) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/).
 
-First, point of business, is to add the client library to your project.
+The first order of business, is to add the client library to your project.
 
-<!-- TODO: update it accordion -->
+<!-- TODO: update in accordion -->
 
 * For `Python` add the `weaviate-client` to your system libraries with `pip`:
   ```bash

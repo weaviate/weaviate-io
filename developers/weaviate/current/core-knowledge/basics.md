@@ -181,7 +181,6 @@ For now, what's important to know is this:
 0. You can link classes (even if they use different embeddings) by setting cross-references.
 0. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema [getting started guide](../getting-started/schema.html)).
 
-
 ## Where do the vectors come from?
 
 The short answer is: from machine learning models.
