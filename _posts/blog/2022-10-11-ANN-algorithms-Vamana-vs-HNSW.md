@@ -154,7 +154,7 @@ There are still some challenges to overcome and questions to answer. For example
 * How can we guarantee the excellent database UX – so valuable to many Weaviate users – while reaping the benefits of a disk-based solution?
 
 Stay tuned as we explore these challenges and questions. We will share our insights as we go. 😀 <br/>
-Keep in touch and check [our blogs](/blogs.html) from time to time.
+Keep in touch and check [our blogs](/blog.html) from time to time.
 
 ## What's next
 Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
