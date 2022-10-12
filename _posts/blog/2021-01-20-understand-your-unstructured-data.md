@@ -10,6 +10,7 @@ canonical-url: https://medium.com/semi-technologies/what-if-you-could-understand
 canonical-name: Medium
 date: 2021-01-20
 toc: true
+redirect_from: /blog/2021/01/understand-your-unstructured-data.html
 ---
 
 ## Intro

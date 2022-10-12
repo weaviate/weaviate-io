@@ -10,6 +10,7 @@ date: 2022-08-09
 toc: true
 isMLResearch: true
 isDBResearch: false
+redirect_from: /blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search.html
 ---
 
 ## Intro

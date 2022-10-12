@@ -10,6 +10,7 @@ canonical-url: https://medium.com/semi-technologies/how-weaviates-graphql-api-wa
 canonical-name: Medium
 date: 2021-01-27
 toc: true
+redirect_from: /blog/2021/01/GraphQL-API-design.html
 ---
 
 

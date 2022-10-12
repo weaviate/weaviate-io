@@ -9,6 +9,7 @@ card-img: /img/blog/hero/weaviate-1-14-card.png
 hero-img: /img/blog/hero/weaviate-1-14.png
 date: 2022-07-06
 toc: true
+redirect_from: /blog/2022/07/Weaviate-release-1-14.html
 ---
 
 ## What is new

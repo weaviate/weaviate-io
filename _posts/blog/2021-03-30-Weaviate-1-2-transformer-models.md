@@ -10,6 +10,7 @@ canonical-url: https://medium.com/semi-technologies/weaviate-version-1-2-x-now-s
 canonical-name: Medium
 date: 2021-03-30
 toc: true
+redirect_from: /blog/2021/03/Weaviate-1-2-transformer-models.html
 ---
 
 ## Intro

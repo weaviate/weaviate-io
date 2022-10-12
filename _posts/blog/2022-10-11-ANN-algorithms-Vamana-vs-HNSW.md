@@ -9,7 +9,10 @@ card-img: /img/blog/hero/ann-algorithms-vamana-vs-hnsw.png
 hero-img: /img/blog/hero/ann-algorithms-vamana-vs-hnsw.png
 og: /img/blog/hero/ann-algorithms-vamana-vs-hnsw.png
 date: 2022-10-11
-toc: true 
+toc: true
+isMLResearch: false
+isDBResearch: true
+redirect_from: /blog/2022/10/ANN-algorithms-Vamana-vs-HNSW.html
 ---
 
 Vector Search engines must be able to search through a vast number of vectors at speed. This is a huge technical challenge that is only becoming more difficult over time as the vector dimensions and dataset sizes increase.

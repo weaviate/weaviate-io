@@ -9,7 +9,10 @@ card-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.p
 hero-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
 og: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
 date: 2022-10-04
-toc: true 
+toc: true
+isMLResearch: true
+isDBResearch: false
+redirect_from: /blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face.html
 ---
 
 [Weaviate](/developers/weaviate/current/){:target="_blank"} has recently unveiled a new module which allows users to easily [integrate models from Hugging Face](/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html){:target="_blank"} to vectorize their data and incoming queries. [Over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads){:target="_blank"} (at the time of writing this) that can be easily plugged into Weaviate. 

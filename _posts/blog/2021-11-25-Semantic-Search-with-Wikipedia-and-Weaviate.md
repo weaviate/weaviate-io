@@ -10,6 +10,7 @@ hero-img: /img/blog/hero/semantic-search-with-wikipedia-and-weaviate-card.jpg
 canonical-url: https://towardsdatascience.com/semantic-search-through-wikipedia-with-weaviate-graphql-sentence-bert-and-bert-q-a-3c8a5edeacf6   
 canonical-name: Towards Data Science
 toc: false
+redirect_from: /blog/2021/11/Semantic-Search-with-Wikipedia-and-Weaviate.html
 ---
 
 ## Intro

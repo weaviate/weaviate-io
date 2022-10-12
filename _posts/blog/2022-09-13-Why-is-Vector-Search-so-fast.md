@@ -10,6 +10,7 @@ card-img: /img/blog/hero/why-is-vector-search-so-fast-card.png
 og: /img/blog/hero/why-is-vector-search-so-fast-card.png
 date: 2022-09-13
 toc: true
+redirect_from: /blog/2022/09/Why-is-Vector-Search-so-fast.html
 ---
 
 ## Why is this so incredibly fast?

@@ -10,6 +10,7 @@ canonical-url: https://db-engines.com/en/blog_post/87
 canonical-name: DB Engines
 date: 2021-02-15
 toc: true
+redirect_from: /blog/2021/02/CRUD-support-in-Weaviate.html
 ---
 
 ## Overview

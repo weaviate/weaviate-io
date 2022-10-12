@@ -12,6 +12,7 @@ date: 2022-09-01
 toc: false
 isMLResearch: false
 isDBResearch: false
+redirect_from: /blog/2022/09/Weaviate-Cloud-Service.html
 ---
 
 **Amsterdam NL – September 1, 2022**
