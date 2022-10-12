@@ -10,6 +10,7 @@ menu-order: 1
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/data-schema/schema-configuration.html
     - /documentation/weaviate/current/restful-api-references/schema.html
 ---
 

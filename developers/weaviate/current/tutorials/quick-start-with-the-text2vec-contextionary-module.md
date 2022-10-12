@@ -9,6 +9,8 @@ tags: ['how to', 'create a schema']
 menu-order: 1
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.9.0/tutorials/quick-start-with-the-text2vec-contextionary-module.html
 ---
 
 # **Run Weaviate with a demo dataset**

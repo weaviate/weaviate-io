@@ -10,6 +10,8 @@ menu-order: 6
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.3.0/tutorials/how-to-do-classification.html
+    - /developers/weaviate/v1.4.1/tutorials/how-to-do-classification.html
     - /documentation/weaviate/current/tutorials/how-to-do-classification.html
 ---
 

@@ -10,6 +10,7 @@ menu-order: 8
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.14.1/more-resources/deprecation-messages.html
     - /documentation/weaviate/current/more-resources/deprecation-messages.html
 ---
 

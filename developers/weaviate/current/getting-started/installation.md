@@ -8,8 +8,8 @@ tags: ['installation']
 menu-order: 1
 open-graph-type: article
 toc: true
-# redirect_from:
-#   - /developers/weaviate/current/getting-started/installation.html
+redirect_from:
+    - /developers/weaviate/v1.7.2/getting-started/installation.html
 ---
 
 There are three ways you can run Weaviate, and they are -we believe- pretty straightforward.

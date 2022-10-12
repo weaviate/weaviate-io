@@ -10,6 +10,7 @@ menu-order: 1
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/reader-generator-modules/qna-transformers.html
     - /developers/weaviate/current/modules/qna-transformers.html
 ---
 

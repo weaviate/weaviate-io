@@ -10,6 +10,8 @@ menu-order: 3
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.5.2/modules/text2vec-transformers.html
+    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-transformers.html
     - /developers/weaviate/current/modules/text2vec-transformers.html
 ---
 

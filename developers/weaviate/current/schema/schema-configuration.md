@@ -8,6 +8,9 @@ tags: ['Schema configuration']
 menu-order: 1
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.4.1/data-schema/schema-configuration.html
+    - /developers/weaviate/v1.11.0/data-schema/schema-configuration.html
 ---
 
 # Introduction
