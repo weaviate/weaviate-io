@@ -1,6 +1,7 @@
 ---
 title: Blogs
 layout: default
+regenerate: true
 ---
 
 <!-- WELCOME -->
@@ -18,7 +19,10 @@ layout: default
         </p>
         <!-- CTA -->
         <p class="lead">
-          <a href="http://weaviate-newsletter.semi.technology/" target="_blank" class="btn btn-primary">sign up for our newsletter</a>
+          <a href="http://weaviate-newsletter.semi.technology/" target="_blank" class="btn btn-primary">Sign up for our Newsletter</a>
+        </p>
+        <p class="lead">
+          <a href="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw" target="_blank" class="btn btn-primary">Join our Community Slack</a>
         </p>
       </div>
     </div> <!-- / .row -->
@@ -48,9 +52,9 @@ layout: default
             <a class="card-img-top" href="{{ post.url }}">
               <!-- Image -->
               {% if post.card-img != null %}
-              <div class="card-img-top" style="height:240px;background-image:url('{{ post.card-img }}');background-size:cover; background-position: center;"></div>
+              <div class="card-img-top" style="height:240px;background-image:url('{{ post.card-img }}');background-size:cover; background-position: left !important;"></div>
               {% else %}
-              <div class="card-img-top" style="height:240px;background-image:url('{{ post.hero-img }}');background-size:cover;background-position: center;"></div>
+              <div class="card-img-top" style="height:240px;background-image:url('{{ post.hero-img }}');background-size:cover;background-position: left !important;"></div>
               {% endif %}
               <!-- Shape -->
               <div class="position-relative">

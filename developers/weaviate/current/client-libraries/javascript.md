@@ -10,6 +10,7 @@ menu-order: 2
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.2.1/client-libraries/javascript.html
     - /documentation/weaviate/current/client-libs/javascript.html
 ---
 
@@ -73,6 +74,14 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 - Internally the client uses isomorphic-fetch to do the REST calls, so the client should work from both the browser as well as NodeJS backend applications without any required changes.
 
 # Change logs
+
+## v2.12.0
+- Added support for [backup](../configuration/backups.html) API
+- Added method `withObjects` to `objectsBatcher`
+- Added method `withReferences` to `referencesBatcher`
+
+## v2.11.1
+- Fixed fetching db version
 
 ## v2.11.0
 - Added support for class namespaced API calls

@@ -6,10 +6,11 @@ nav-parent: Modules
 title: multi2vec-clip
 description: Use OpenAI's CLIP model within Weaviate
 tags: ['multi2vec-clip']
-menu-order: 5
+menu-order: 6
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/multi2vec-clip.html
     - /developers/weaviate/current/modules/multi2vec-clip.html
 ---
 
@@ -34,8 +35,6 @@ Note: you can also use the [Weaviate configuration tool](../installation/docker-
 
 You can find an example Docker-compose file below, which will spin up Weaviate with the multi2vec-clip module. In this example we have selected the `sentence-transformers/clip-ViT-B-32-multilingual` which works great for vectorizing images and text in the same vector space. It even supports multiple languages. See below for how to select an alternative model.
 
-{% include docs-current_version_finder.html %}
-
 ```yaml
 ---
 version: '3.4'
@@ -48,7 +47,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -168,35 +167,39 @@ text fields using the `multi2vec-clip` module as a `vectorizer`:
 
 ```json
 {
-  "class": "ClipExample",
-  "moduleConfig": {
-      "multi2vec-clip": {
+  "classes": [
+    {
+      "class": "ClipExample",
+      "moduleConfig": {
+        "multi2vec-clip": {
           "imageFields": [
-              "image"
+            "image"
           ],
           "textFields": [
-              "name"
+            "name"
           ],
           "weights": {
             "textFields": [0.7],
             "imageFields": [0.3]
           }
-      }
-  },
-  "vectorIndexType": "hnsw",
-  "vectorizer": "multi2vec-clip",
-  "properties": [
-    {
-      "dataType": [
-        "string"
+        }
+      },
+      "properties": [
+        {
+          "dataType": [
+            "string"
+          ],
+          "name": "name"
+        },
+        {
+          "dataType": [
+            "blob"
+          ],
+          "name": "image"
+        }
       ],
-      "name": "name"
-    },
-    {
-      "dataType": [
-          "blob"
-      ],
-      "name": "image"
+      "vectorIndexType": "hnsw",
+      "vectorizer": "multi2vec-clip"
     }
   ]
 }

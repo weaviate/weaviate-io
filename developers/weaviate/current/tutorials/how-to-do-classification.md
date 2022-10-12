@@ -10,6 +10,8 @@ menu-order: 6
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.3.0/tutorials/how-to-do-classification.html
+    - /developers/weaviate/v1.4.1/tutorials/how-to-do-classification.html
     - /documentation/weaviate/current/tutorials/how-to-do-classification.html
 ---
 
@@ -17,7 +19,7 @@ redirect_from:
 
 You can use Weaviate to automatically classify data, that is, you can ask Weaviate to automatically make references between concepts. Since Weaviate stores data objects based on semantics in a vector position, a variety of automated classification tasks can be performed in near-realtime. Weaviate offers two different types of classification:
 
-1. **Contextual classification**. Provided by the `text2vec-contextionary` module, thus can only be used when this module is active in your Weaviate instance. Uses the context of data points to make new references. There is no training data needed, and this type of classification is the right pick if you have a strong semantic relation in your data. See [here](../modules/text2vec-contextionary.html#contextual-classification) for more information. 
+1. **Contextual classification**. Provided by the `text2vec-contextionary` module, thus can only be used when this module is active in your Weaviate instance. Uses the context of data points to make new references. There is no training data needed, and this type of classification is the right pick if you have a strong semantic relation in your data. See [here](../retriever-vectorizer-modules/text2vec-contextionary.html) for more information. 
 2. **kNN classification**. To assign property values and references of data objects based on how similar objects are labeled that Weaviate finds. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn’t a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful. See more [here](../restful-api-references/classification.html#knn-classification).
 
 In this how-to guide, you will learn how to classify with Contextual and kNN classification.
@@ -26,7 +28,7 @@ In this how-to guide, you will learn how to classify with Contextual and kNN cla
 
 **1. Connect to a Weaviate instance**
 
-If you haven't set up a Weaviate instance yet, check the [Getting started guide](../getting-started/installation.html). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](../getting-started/installation.html#weaviate-with-the-text2vec-contextionary-model) as vectorization module.
+If you haven't set up a Weaviate instance yet, check the [Getting started guide](../getting-started/installation.html). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](../getting-started/installation.html) as vectorization module.
 
 **2. Upload a schema**
 

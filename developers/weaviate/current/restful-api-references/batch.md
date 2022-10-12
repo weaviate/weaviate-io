@@ -10,6 +10,7 @@ menu-order: 3
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.1.0/restful-api-references/batch.html
     - /documentation/weaviate/current/add-data/batching.html
     - /documentation/weaviate/current/restful-api-references/batch.html
     - /documentation/weaviate/current/add-data/add_and_modify.html

@@ -10,6 +10,8 @@ menu-order: 3
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/tutorials/example-datasets.html
+    - /developers/weaviate/v1.14.1/more-resources/example-datasets.html
     - /documentation/weaviate/current/datasets/newspublications.html
     - /documentation/weaviate/current/getting-started/example-datasets.html
     - /developers/weaviate/current/getting-started/example-datasets.html
@@ -18,10 +20,10 @@ redirect_from:
 # Multi-Modal Text/Image search using CLIP
 
 This example application spins up a Weaviate instance using the
-[multi2vec-clip](https://www.semi.technology/developers/weaviate/current/modules/multi2vec-clip.html)
+[multi2vec-clip](https://weaviate.io/developers/weaviate/current/modules/multi2vec-clip.html)
 module, imports a few sample images (you can add your own images, too!) and
 provides a very simple search frontend in [React](https://reactjs.org/) using
-the [Weaviate JS Client](https://www.semi.technology/developers/weaviate/current/client-libraries/javascript.html)
+the [Weaviate JS Client](https://weaviate.io/developers/weaviate/current/client-libraries/javascript.html)
 
 [Get started here](https://github.com/semi-technologies/weaviate-examples/blob/main/clip-multi-modal-text-image-search/README.md)
 

@@ -8,11 +8,9 @@ tags: ['installation']
 menu-order: 1
 open-graph-type: article
 toc: true
-# redirect_from:
-#   - /developers/weaviate/current/getting-started/installation.html
+redirect_from:
+    - /developers/weaviate/v1.7.2/getting-started/installation.html
 ---
-
-{% include docs-current_version_finder.html %}
 
 There are three ways you can run Weaviate, and they are -we believe- pretty straightforward.
 
@@ -30,30 +28,13 @@ If you are itching to get started with WCS, just skip to the [WCS hands-on secti
 
 Alternatively, if you prefer to install and deploy Weaviate yourself, then you can work with either _Docker_ or _Kubernetes_.
 
-<!-- TODO: create deploying to production guide and link it here.
->  
-> Consult the [following guide](--link-here--) on how to run Weaviate in Production.
-> 
-> This is added as a blog post option
--->
-
 ### Docker
 
 Working with Docker is great if you are building an application around Weaviate and want to run Weaviate on your local machine or in the cloud. If you have Docker already installed, you could have it all up and running in seconds (minutes if you use a  prepackaged transformers module).
 
-We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator){:target="_blank"}, which let's you pick you configuration, and as a result you will receive a command to spin up your docker setup.
+We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator){:target="_blank"}, which lets you pick your configuration, and as a result you will receive a command to spin up your docker setup.
 
-You can find the installation instructions for Kubernetes [here](../installation/docker-compose.html#configurator).
-
-<!--
-Some examples of Docker Compose configurations you can make with the configurator.
-
-* [Weaviate stand-alone (no modules)](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ current_page_version }})
-* [Weaviate with the `text2vec-transformers` module with GPU support](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&gpu_support=true&media_type=text&modules=modules&ner_module=false&qna_module=false&runtime=docker-compose&spellcheck_module=false&text_module=text2vec-transformers&transformers_model=sentence-transformers-multi-qa-MiniLM-L6-cos-v1&weaviate_version={{ current_page_version }})
-* [Weaviate with the `text2vec-openai` module](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&media_type=text&modules=modules&ner_module=false&openai_key_approval=yes&qna_module=false&runtime=docker-compose&spellcheck_module=false&text_module=text2vec-openai&weaviate_version={{ current_page_version }})
-* [Weaviate with `multi2vec-clip` module](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?clip_model=sentence-transformers-clip-ViT-B-32&enterprise_usage_collector=false&media_type=clip&modules=modules&ner_module=false&qna_module=false&runtime=docker-compose&spellcheck_module=false&weaviate_version={{ current_page_version }})
-* [Weaviate with the `text2vec-openai` module and `Question Answering` transformers module with GPU support](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&gpu_support=true&media_type=text&modules=modules&ner_module=false&openai_key_approval=yes&qna_module=true&qna_module_model=distilbert-base-uncased-distilled-squad&runtime=docker-compose&spellcheck_module=false&text_module=text2vec-openai&weaviate_version={{ current_page_version }})
-* etcetera. -->
+You can find the installation instructions for Docker [here](../installation/docker-compose.html#configurator).
 
 ### Kubernetes
 
@@ -61,9 +42,24 @@ Generally, we recommend using Kubernetes to deploy Weaviate for any long-running
 
 For local development or personal evaluation, using Docker Compose will most likely be sufficient.
 
+Using Weaviate with Kubernetes is out of scope for this tutorial. You can find more info on Kubernetes [here](/developers/weaviate/current/installation/kubernetes.html).
+
 ### Self-deployment instructions 
 
-The installation and configuration with Docker and Kubernetes is out of scope for this tutorial. If you prefer to deploy Weaviate yourself, see the [installation documentation](/developers/weaviate/current/installation/){:target="_blank"} page. Then you can continue with the tutorial with at [Schema](/developers/weaviate/current/getting-started/schema.html) page.
+The installation and configuration with Docker and Kubernetes is out of scope for this tutorial, as all code examples include references to a WCS instance. To learn about deploying Weaviate locally, follow the [installation documentation](/developers/weaviate/current/installation/){:target="_blank"} page.
+
+If you feel comfortable making a few changes to the code examples in the tutorial and you prefer to run Weaviate locally, you can set up Weaviate with Docker in two steps:
+
+0. Get `docker-compose.yml` configuration file by calling:
+    ```js
+    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
+    ```
+0. Sping up docker
+    ```js
+    docker-compose up -d
+    ```
+
+Then you can continue with the tutorial and skip to the [Schema](/developers/weaviate/current/getting-started/schema.html) page.
 
 ## WCS hands-on
 
@@ -88,10 +84,10 @@ To create a new Weaviate Cluster:
 0. Press the "Create a Weaviate Cluster" button
 0. Configure the cluster:
     0. Set the `name` for your cluster – note: The name will become part of the URL we will use to access this instance. Please use a different name than "getting-started".
-    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 5 days
+    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 30 days
     0. Leave the `Weaviate Version` as the latest
     0. Leave the `Standalone Or Modules` as `Standalone, no Modules`
-    0. **change** the `OIDC Authentication` to `Diabled`
+    0. **change** the `OIDC Authentication` to `Disabled`
     
     ![Cluster Configuration](/img/getting-started/install/cluster-configuration.jpg){:style="max-width: 600px"}
 0. Finally, press **Create**.

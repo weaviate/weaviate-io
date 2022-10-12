@@ -6,10 +6,11 @@ nav-parent: Modules
 title: text2vec-contextionary
 description: Use the GloVe and Fasttext based Weaviate module
 tags: ['text2vec-contextionary', 'contextionary']
-menu-order: 3
+menu-order: 4
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-contextionary.html
     - /developers/weaviate/current/modules/text2vec-contextionary.html
 ---
 
@@ -53,8 +54,6 @@ The `text2vec-contextionary` module is not available on the WCS.
 
 Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. The service can be added like this:
 
-{% include docs-current_version_finder.html %}
-
 ```yaml
 ---
 version: '3.4'
@@ -67,7 +66,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -129,7 +128,8 @@ For example
           },
           "name": "content"
         }
-      ]
+      ],
+      "vectorizer": "text2vec-contextionary"
     }
   ]
 }
@@ -692,7 +692,7 @@ To overcome this limitation the optional **Compound Splitting Feature** can be e
 Note that the newly found word (made up of the parts `thunderstorm` and `cloud` has the highest weight in the vectorization. So this meaning, which would have been lost without Compound Splitting, can now be recognized.
 
 ### How to enable
-You can enable Compound Splitting in the configuration file of the `text2vec-contextionary`. See how this is done [here](#module-configuration).
+You can enable Compound Splitting in the configuration file of the `text2vec-contextionary`. See how this is done [here](#compound-splitting).
 
 ### Trade-Off Import speed vs Word recognition
 Compound Splitting runs an any word that is otherwise not recognized. Depending on your dataset, this can lead to a significantly longer import time (up to 100% longer). Therefore, you should carefully evaluate whether the higher precision in recognition or the faster import times are more important to your use case. As the benefit is larger in some languages (e.g. Dutch, German) than in others (e.g. English) this feature is turned off by default.

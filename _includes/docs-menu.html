@@ -5,30 +5,11 @@
             <div style="width:100%; justify-content: center; {% if site.documentation_call_out == true %}margin-top: 0.75rem;{% endif %}">
                 <a class="github-button" href="https://github.com/semi-technologies/weaviate" data-size="large" data-show-count="true" aria-label="Star semi-technologies/weaviate on GitHub">Star</a>
             </div>
-            <!-- sets the current version tags -->
-            {% include docs-current_version_finder.html %}
             <!-- IMPORTANT: NOTE THAT THE SUBMENU ORDER IS SET IN CONFIG.YML -->
             {% assign sorted_documentation = site.pages | sort: 'menu-order' | group_by: 'solution' %}
             {% for guides in sorted_documentation %}
                 {% if guides.name == page.solution %}
                     <ul class="list mb-6">
-                      <li class="list-item">
-                        <div class="dropdown">
-                            <button style="width:100%;max-width:120px;" class="btn btn-xs btn-primary dropdown-toggle mb-5" type="button" id="view_version" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-xs" aria-labelledby="view_version">
-                                {% for version in site.weaviate_versions %}                            
-                                    {% assign version_split = version[0] | split: "." %}
-                                    {% assign version_without_patch = version_split[0] | append: "." | append: version_split[1] %}
-                                    {% if version[0] == site.weaviate_version %}
-                                        <a class="dropdown-item" href="/developers/weaviate/current">current ({{ version_without_patch }})</a>
-                                    {% else %}
-                                        <a class="dropdown-item" href="/developers/weaviate/{{ version[0] }}">{{ version_without_patch }}</a>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                          </div>
-                      </li>
                       <li>
                             <h6 class="text-uppercase fw-bold">
                                 {{ page.solution }}
@@ -39,7 +20,7 @@
                             class="list-link {% if guide.title == page.title %}current{% endif %}">Introduction</a>
                       </li>
                     </ul>
-                    {% for menuItem in site.docs[guides.name][current_page_version] %}
+                    {% for menuItem in site.docs[guides.name]['current'] %}
                         {% assign sorted_menus = site.pages | group_by: 'sub-menu' %}
                         {% for menu in sorted_menus %}
                             {% if menuItem.name == menu.name && guides.name == page.solution %}
@@ -53,11 +34,9 @@
                                             {% if menu.name == guide.sub-menu %}
                                                 {% if page.solution == guide.solution %}
                                                     {% if guide.menu-order > 0 %}
-                                                      {% if guide.url contains current_page_version_tag %}
                                                         <li class="list-item">
-                                                          <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
+                                                            <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
                                                         </li>
-                                                      {% endif %}
                                                     {% endif %}
                                                 {% endif %}
                                             {% endif %}
@@ -66,7 +45,7 @@
                                 </div>
                                 {% else %}
                                     <h6 class="text-uppercase fw-bold">
-                                        <a href="/developers/{{ guides.name }}/{{ current_page_version_tag }}/{{ menuItem.folder }}"
+                                        <a href="/developers/{{ guides.name }}/current/{{ menuItem.folder }}"
                                            {% if menu.name == page.title %}class="current"{% endif %}>{{ menu.name }}</a>
                                     </h6>
                                     <!-- menu item children – show only the children for the menu items of the current page -->
@@ -77,11 +56,9 @@
                                                 {% if menu.name == guide.sub-menu %}
                                                     {% if page.solution == guide.solution %}
                                                         {% if guide.menu-order > 0 %}
-                                                          {% if guide.url contains current_page_version_tag %}
                                                             <li class="list-item">
-                                                              <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
+                                                                <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
                                                             </li>
-                                                          {% endif %}
                                                         {% endif %}
                                                     {% endif %}
                                                 {% endif %}

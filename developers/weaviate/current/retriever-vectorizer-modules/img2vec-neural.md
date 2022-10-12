@@ -6,10 +6,11 @@ nav-parent: Modules
 title: img2vec-neural
 description: Use Resnet models in Weaviate
 tags: ['img2vec-neural']
-menu-order: 4
+menu-order: 5
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/img2vec-neural.html
     - /developers/weaviate/current/modules/img2vec-neural.html
 ---
 
@@ -35,7 +36,6 @@ Note: you can also use the [Weaviate configuration tool](../installation/docker-
 ## Docker-compose file
 You can find an example Docker-compose file below, which will spin up Weaviate with the image vectorization module. This example spins up a Weaviate with only one vectorization module, the  `img2vec-neural` module of `pytorch` with the `resnet50` model.
 
-{% include docs-current_version_finder.html %}
 ```yaml
 ---
 version: '3.4'
@@ -48,7 +48,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -80,7 +80,7 @@ You can combine the image vectorization module with a text vectorization module.
       - '8080'
       - --scheme
       - http
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
       ports:
       - 8080:8080
       restart: on-failure:0
@@ -139,44 +139,45 @@ A full example of a class using the `img2vec-neural` module is shown below. This
 
 ```json
 {
-    "classes": [{
-        "class": "FashionItem",
-        "description": "Each example is a 28x28 grayscale image, associated with a label from 10 classes.",
-        "moduleConfig": {
-            "img2vec-neural": {
-                "imageFields": [
-                    "image"
-                ]
-            }
+  "classes": [
+    {
+      "class": "FashionItem",
+      "description": "Each example is a 28x28 grayscale image, associated with a label from 10 classes.",
+      "moduleConfig": {
+        "img2vec-neural": {
+          "imageFields": [
+            "image"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "dataType": [
+            "blob"
+          ],
+          "description": "Grayscale image",
+          "name": "image"
         },
-        "properties": [
-            {
-                "dataType": [
-                    "blob"
-                ],
-                "description": "Grayscale image",
-                "name": "image"
-            },
-            {
-                "dataType": [
-                    "number"
-                ],
-                "description": "Label number for the given image.",
-                "name": "labelNumber"
-            },
-            {
-                "dataType": [
-                    "string"
-                ],
-                "description": "label name (description) of the given image.",
-                "name": "labelName"
-            }
-
-        ],
-
-        "vectorIndexType": "hnsw",
-        "vectorizer": "img2vec-neural"
-    }]}
+        {
+          "dataType": [
+            "number"
+          ],
+          "description": "Label number for the given image.",
+          "name": "labelNumber"
+        },
+        {
+          "dataType": [
+            "string"
+          ],
+          "description": "label name (description) of the given image.",
+          "name": "labelName"
+        }
+      ],
+      "vectorIndexType": "hnsw",
+      "vectorizer": "img2vec-neural"
+    }
+  ]
+}
 ```
 
 _Note:_ Other properties, for example the name of the image that is given in another field, will not be taken into consideration. This means that you can only find the image with semantic search by [another image](#nearimage-search), [data object](../graphql-references/filters.html#nearobject-filter), or [raw vector](../graphql-references/filters.html#nearvector-filter). Semantic search of images by text field (using `nearText`) is not possible, because this requires a `text2vec` vectorization module. Multiple modules cannot be combined at class level yet (might become possible in the future, since `image-text-combined transformers` exists). We recommend to use one of the following workarounds:

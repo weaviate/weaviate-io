@@ -117,6 +117,15 @@ if (dockerPulls && githubStars) {
             githubStars.innerHTML = addCommas(data.stargazers_count);
         }
     });
+    // get Docker pulls
+    getUrl('https://us-central1-semi-production.cloudfunctions.net/slack_users', 'text', 
+        function(err, data) {
+        if (err !== null) {
+            dockerPulls.innerHTML = '🤷';
+        } else {
+            dockerPulls.innerHTML = data;
+        }
+    });
 }
 
 // ToC links
@@ -181,34 +190,39 @@ if(document.getElementById('homepage-stats-container')){
         animateValue(document.getElementById('data-visitors'), 0, data, 820);
     });
     // get Slack users
-    var slackUsers = 1001;
-    animateValue(document.getElementById('data-slack'), 0, slackUsers, 820);
+    // set downloads
+    getUrl('https://us-central1-semi-production.cloudfunctions.net/slack_users', 'text', function(status, data){
+        var slackUsers = data;
+        animateValue(document.getElementById('data-slack'), 0, slackUsers, 820);
+    });
 }
 
 // handle more info request
-var requestMoreInfoBtn = document.getElementById('requestMoreInfo');
-if(requestMoreInfoBtn){
+var signUpForPrivateBeta = document.getElementById('signUpForPrivateBeta');
+if(signUpForPrivateBeta){
     // validate the email
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
     // send the documents
-    function requestDocs(emailAddress, downloadlinkid){
+    function signUp(emailAddress, name, foundHow){
         var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('GET', 'https://europe-west1-semi-production.cloudfunctions.net/sendgrid-request-slidedeck?email=' + emailAddress + '&downloadLinkId=' + downloadlinkid);
+        xmlHttp.open('GET', 'https://us-central1-semi-production.cloudfunctions.net/sign-up-for-private-beta?email=' + emailAddress + '&name=' + name + '&foundHow=' + foundHow);
         xmlHttp.send(null);
         return xmlHttp.status;
     }
-    requestMoreInfoBtn.onclick = function(){
-        // e.preventDefault();
-        var emailAddress = document.getElementById('requestMoreInfo-email').value;
+    signUpForPrivateBeta.onclick = function(e){
+        e.preventDefault();
+        // set UX
+        $('#signUpForPrivateBeta').parent().hide();
+        $('#thank-you').show();
+        // take action
+        var emailAddress = document.getElementById('signUpForPrivateBeta-email').value;
+        var name = document.getElementById('signUpForPrivateBeta-name').value;
+        var foundHow = document.getElementById('signUpForPrivateBeta-foundHow').value;
         if(validateEmail(emailAddress) === true){
-            requestDocs(emailAddress, requestMoreInfoBtn.dataset.downloadlinkid);
-            document.getElementById('requestMoreInfo-box-success').style.display = 'block';
-            document.getElementById('requestMoreInfo-box-invalid-email').style.display = 'none';
-        } else {
-            document.getElementById('requestMoreInfo-box-invalid-email').style.display = 'block';
+            signUp(emailAddress, name, foundHow);
         }
     };
 }

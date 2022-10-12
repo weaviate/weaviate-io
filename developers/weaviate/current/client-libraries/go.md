@@ -10,6 +10,7 @@ menu-order: 4
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.1.0/client-libraries/go.html
     - /documentation/weaviate/current/client-libs/go.html
     - /documentation/weaviate/current/client-libraries/go.html
 ---
@@ -286,6 +287,14 @@ client.Data().Validator().WithProperties(properties)
 
 
 # Change logs
+
+## v4.3.0
+- Added support for [backup](../configuration/backups.html) API
+- Added method `WithObjects` to `ObjectsBatcher`
+- Added method `WithReferences` to `ReferencesBatcher`
+
+## v4.2.1
+- Fixed fetching db version
 
 ## v4.2.0
 - Added support for class namespaced API calls

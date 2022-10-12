@@ -12,14 +12,14 @@ toc: true
 
 You've made it to the schema getting started guide! The schema is the place where you will not only set data types, cross-references, and more, but you'll be tweaking index settings (ANN, reverse index, BM25).
 
-This will also be a guide to getting your hands dirty! O, and this guide is a bit longer 😉
+This will also be a guide to getting your hands dirty! Oh, and this guide is a bit longer 😉
 
 ## Prerequisites 
 
 At this point, you should have Weaviate running either:
 
 * in a sandbox on the [Weaviate Cloud Service](https://console.semi.technology)
-    * if not, refer to the [Installation](./schema.html) lesson for instructions
+    * if not, refer to the [Installation](./installation.html) lesson for instructions
 * or locally with Docker
     0. Download [this `docker-compose.yml` file](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}).
     0. Run `$ docker-compose up`
@@ -29,9 +29,9 @@ At this point, you should have Weaviate running either:
 
 You can communicate with Weaviate from your code by using one of the available [client libraries](../client-libraries/) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/).
 
-First, point of business, is to add the client library to your project.
+The first order of business, is to add the client library to your project.
 
-<!-- TODO: update it accordion -->
+<!-- TODO: update in accordion -->
 
 * For `Python` add the `weaviate-client` to your system libraries with `pip`:
   ```bash
@@ -201,7 +201,7 @@ The result should look something like this:
 }
 ```
 
-Wow! Whut, that's a lot more than we've added!
+ Wow! What, that’s a lot more than we’ve added?
 
 Correct, that's Weaviate adding some default config for you. You can change, improve, tweak, and update this, but that's for a later expert guide. 
 

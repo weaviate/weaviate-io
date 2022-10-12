@@ -9,7 +9,9 @@ tags: ['text2vec-openai']
 menu-order: 1
 open-graph-type: article
 toc: true
+enabled-on-wcs: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-openai.html
     - /developers/weaviate/current/modules/text2vec-openai.html
 ---
 
@@ -17,6 +19,7 @@ redirect_from:
 
 The `text2vec-​openai` module allows you to use the [OpenAI embeddings](https://beta.openai.com/docs/guides/embeddings) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using OpenAI's Ada, Babbage, Curie, or Davinci models.
 
+* Note: this module uses a third-party API.
 * Note: make sure to check the OpenAI [pricing page](https://openai.com/api/pricing/) before vectorizing large amounts of data.
 * Note: Weaviate automatically parallelizes requests to the OpenAI-API when using the batch endpoint, see the previous note.
 * Note: [Check-out the demo dataset](https://github.com/semi-technologies/DEMO-text2vec-openai).
@@ -31,15 +34,13 @@ This module is enabled by default on the WCS
 
 ## Weaviate open source
 
-{% include docs-current_version_finder.html %}
-
 You can find an example Docker-compose file below, which will spin up Weaviate with the OpenAI module.
 
 ```yaml
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     restart: on-failure:0
     ports:
      - "8080:8080"
@@ -68,6 +69,7 @@ The following schema configuration uses the `babbage` model.
     {
       "class": "Document",
       "description": "A class called document",
+      "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "text2vec-openai": {
           "model": "babbage",
@@ -101,7 +103,7 @@ The following schema configuration uses the `babbage` model.
 
 ## Example
 
-{% include code/1.x/graphql.filters.nearText.html %}
+{% include code/1.x/graphql.filters.nearText.openai.html %}
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Publication%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveAwayFrom%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++++force%3A+0.45%0D%0A++++++++%7D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++name%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 

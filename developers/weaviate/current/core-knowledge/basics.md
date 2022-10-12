@@ -22,11 +22,11 @@ This guide is all about the basics. No getting your hands dirty yet, no fancy Ku
 
 Weaviate is a database of the type search engine, and it's specifically built to work with vector representations produced by machine learning models. Hence, Weaviate is a vector search engine (but we will still like you if you call it a vector database).
 
-> 💡 When working with a database, you want [full CRUD support](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Not all approximate nearest neighbor algorithms support this, and not all incumbent databases (/search engines) are optimized for this type of indexing. These reasons are -among others- the most important to why Weaviate exists You can also learn more about this by reading [this blog post](https://db-engines.com/en/blog_post/87).
+> 💡 When working with a database, you want [full CRUD support](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Not all approximate nearest neighbor algorithms support this, and not all incumbent databases (/search engines) are optimized for this type of indexing. These reasons are -among others- the most important to why Weaviate exists. You can also learn more about this by reading [this blog post](https://db-engines.com/en/blog_post/87).
 
 ## Data objects in Weaviate
 
-Weaviate stores _data objects_ (represented as JSON-documents) in _class-based collections_, where each object can be represented by a machine learning _vector_ (i.e. an embedding).
+Weaviate stores _data objects_ (represented as JSON-documents) in _class-based collections_, where each object can be represented by a machine learning _vector_ (i.e., an embedding).
 
 Each _class-based collection_ contains objects of the same _class_, which are defined by a common _schema_.
 
@@ -70,7 +70,7 @@ As mentioned earlier, we can also attach `vector` representations to our data ob
 
 ### Class Collections
 
-Weaviate groups all Authors under the `Author` class and place them in the same _class collection_.
+Weaviate groups all Authors under the `Author` class and places them in the same _class collection_.
 
 <!-- [Alice Munro
 Born: July 10, 1931 (age 91)
@@ -179,8 +179,7 @@ For now, what's important to know is this:
 0. Classes and properties (as explained above) are defined in the schema.
 0. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
 0. You can link classes (even if they use different embeddings) by setting cross-references.
-0. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema getting [started guide](../getting-started/schema.html)).
-
+0. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema [getting started guide](../getting-started/schema.html)).
 
 ## Where do the vectors come from?
 
@@ -192,6 +191,7 @@ As a user, you have two ways of generating them:
 * You use a Weaviate module with a prepackaged `text2vec` integration (we call them "vectorizers", you can learn more about them [here](../modules/)).
     * [text2vec-transformers](../retriever-vectorizer-modules/text2vec-transformers.html)
     * [text2vec-openai](../retriever-vectorizer-modules/text2vec-openai.html)
+    * [text2vec-huggingface](../retriever-vectorizer-modules/text2vec-huggingface.html)
     * [text2vec-contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html) (custom FastText based vectorizer)
     * [img2vec-neural](../retriever-vectorizer-modules/img2vec-neural.html)
     * [multi2vec-clip](../retriever-vectorizer-modules/multi2vec-clip.html)
@@ -200,7 +200,7 @@ We will go deeper into the guide for adding data and the guide for modules. But 
 
 ## Modules
 
-If you bring your own vectors to Weaviate, running Weaviate stand-alone is all you need. But in certain cases, you might want to use one of the prepackaged modules. For example, if you use OpenAI embeddings, you might want to use the OpenAI module, which automatically integrates with their embeddings-API. Or, if you have a use case where you want to use Sentence Transformers, you can use the Huggingface transformers module.
+If you bring your own vectors to Weaviate, running Weaviate stand-alone is all you need. But in certain cases, you might want to use one of the prepackaged modules. For example, if you use OpenAI embeddings, you might want to use the OpenAI module, which automatically integrates with their embeddings-API. Or, if you have a use case where you want to use Sentence Transformers, you can use the Hugging Face Transformers module.
 
 What's important to remember is that you _can_ use Weaviate modules, but you don't _have_ to use them.
 
@@ -210,7 +210,7 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 2. *readers & generators* are used for reranking or processing the results.
 3. *other modules* are -often- non-ML, for example, the spell-check module.
 
-> 💡 It's even possible to [create your own modules](../other-modules/custom-modules.html)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing you module) can be written in any language.
+> 💡 It's even possible to [create your own modules](../other-modules/custom-modules.html)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing your module) can be written in any language.
 
 ## Weaviate Console
 
@@ -232,7 +232,7 @@ Weaviate can expose Prometheus-compatible metrics for [monitoring](../configurat
 * You can set cross-references as datatypes to link to other objects.
 * You will define classes and properties in a schema.
 * Different classes can represent different vector spaces.
-* The schema has a Class-property data structure.
+* The schema has a class-property data structure.
 * You can configure Weaviate in the schema.
 * You define classes and properties in the schema.
 * We can query using the GraphQL-interface or -in some cases- the RESTful API.

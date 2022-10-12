@@ -8,6 +8,8 @@ tags: ['architecture', 'interface', 'API design']
 menu-order: 6
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.14.1/architecture/
 ---
 
 # Introduction
@@ -22,7 +24,8 @@ This page contains information on how Weaviate's APIs are designed, and how you 
 
 User Experience (UX) is one of our most valuable principles. Weaviate should be easy to understand, intuitive to use and valuable, desirable and usable to the community. The interaction with Weaviate is naturally very important for its UX. Weaviate's APIs are designed from the perspective of user needs, keeping the software features in mind. We do user research, user testing and prototyping to make sure all features resonate with our users. User requirements are continuously gathered during collaborative discussions. We match user needs with the functions of Weaviate. When there is a strong need from the user or application perspective, we may extend Weaviate's functions and APIs. When there is a new Weaviate function, this will naturally be accessible via (new) API functions.
 
-The UX of Weaviate's APIs is designed following the [UX Honeycomb](https://semanticstudios.com/user_experience_design/) usability rules, defined by [Peter Morville](https://semanticstudios.com/about/). 
+<!-- The UX of Weaviate's APIs is designed following the [UX Honeycomb](https://semanticstudios.com/user_experience_design/) usability rules, defined by [Peter Morville](https://semanticstudios.com/about/).  -->
+The UX of Weaviate's APIs is designed following the UX Honeycomb usability rules, defined by Peter Morville.
 
 ![<img src="/img/api-ux.png" width="250"/>](/img/api-ux.png "Weaviate's API is designed following the UX Honeycomb")
 

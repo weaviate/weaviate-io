@@ -9,6 +9,8 @@ tags: ['java', 'client library']
 menu-order: 3
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.11.0/client-libraries/java.html
 ---
 
 # Installation and setup
@@ -313,6 +315,14 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 
 # Change logs
 
+## 3.3.0
+- Added support for [backup](../configuration/backups.html) API
+- Added method `withObjects` to `objectsBatcher`
+- Added method `withReferences` to `referencesBatcher`
+
+## 3.2.1
+- Fixed fetching db version
+
 ## 3.2.0
 - Added support for class namespaced API calls
 - Added support for `distance` user-facing similarity metric
@@ -325,7 +335,7 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 
 ## 3.0.0
 - Added support for `near<Media>` filters for `Aggregate` queries
-- Added suuport for `objectLimit` parameter in `Aggregate` queries
+- Added support for `objectLimit` parameter in `Aggregate` queries
 - Added support for [sort](../graphql-references/get.html#sorting) argument in `GraphQL`
 - Added support for [batch delete by query](../restful-api-references/batch.html#batch-delete-by-query) `REST` endpoint
 - Deprecated `withFields(Fields)` method in favor of the `withFields(Field[])`

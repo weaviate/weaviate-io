@@ -29,6 +29,7 @@ All references have their individual subpages, click on one of the references be
 - [/v1/schema](schema.html)
 - [/v1/objects](objects.html)
 - [/v1/batch](batch.html)
+- [/v1/backups](backups.html)
 - [/v1/classification](classification.html)
 - [/v1/meta](meta.html)
 - [/v1/.well-known](well-known.html)
