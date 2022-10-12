@@ -12,7 +12,7 @@ rdiscount extensions: [smart]
 collections:
   posts:
     output: true
-    permalink: /blog/:year/:month/:title.html
+    permalink: /blog/:title.html
 exclude:
   - "*.json"
   - Gemfile
