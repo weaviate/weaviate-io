@@ -33,15 +33,13 @@ This module is enabled by default on the WCS
 
 ## Weaviate open source
 
-{% include docs-current_version_finder.html %}
-
 You can find an example Docker-compose file below, which will spin up Weaviate with the OpenAI module.
 
 ```yaml
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     restart: on-failure:0
     ports:
      - "8080:8080"

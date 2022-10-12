@@ -12,8 +12,6 @@ toc: true
 #   - /developers/weaviate/current/getting-started/installation.html
 ---
 
-{% include docs-current_version_finder.html %}
-
 There are three ways you can run Weaviate, and they are -we believe- pretty straightforward.
 
 0. [Weaviate Cloud Service](#weaviate-cloud-service)
@@ -54,7 +52,7 @@ If you feel comfortable making a few changes to the code examples in the tutoria
 
 0. Get `docker-compose.yml` configuration file by calling:
     ```js
-    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ current_page_version }}"
+    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
     ```
 0. Sping up docker
     ```js
