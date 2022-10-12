@@ -65,16 +65,6 @@
   tags:
   - news
 - title: >
-    "Weaviate accepted for the Google Summer of Code 2022"
-  date: 2022-03-07T00:00:00Z
-  cover_image: /img/og/og-gsoc.jpg
-  description: > 
-    Weaviate is accepted for this year's Google Summer of Code
-  source: GSoC
-  link: /resources/gsoc.html
-  tags:
-  - news
-- title: >
     "SeMI Technologies’ search engine opens up new ways to query your data"
   date: 2022-02-22T00:00:02Z
   cover_image: https://upload.wikimedia.org/wikipedia/commons/b/b9/TechCrunch_logo.svg
