@@ -35,7 +35,6 @@
                                                 {% if page.solution == guide.solution %}
                                                     {% if guide.menu-order > 0 %}
                                                         <li class="list-item">
-                                                            <h6>== {{ guide.url }} ==</h6>
                                                             <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
                                                         </li>
                                                     {% endif %}
