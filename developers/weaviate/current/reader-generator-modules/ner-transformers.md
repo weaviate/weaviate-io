@@ -31,8 +31,6 @@ There are currently three different NER modules available (taken from [Huggingfa
 
 The NER module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `ner-transformers` module (`dbmdz-bert-large-cased-finetuned-conll03-english`) in combination with the `text2vec-contextionary`:
 
-{% include docs-current_version_finder.html %}
-
 ```yaml
 ---
 version: '3.4'
@@ -45,7 +43,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     ports:
     - 8080:8080
     restart: on-failure:0

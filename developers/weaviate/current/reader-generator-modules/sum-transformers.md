@@ -46,8 +46,6 @@ Here is the current list of available SUM modules - sourced from [Huggingface](h
 
 The SUM module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `sum-transformers` module (`facebook-bart-large-cnn`) in combination with the `text2vec-contextionary`:
 
-{% include docs-current_version_finder.html %}
-
 ```yaml
 ---
 version: '3.4'
@@ -60,7 +58,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     ports:
     - 8080:8080
     restart: on-failure:0

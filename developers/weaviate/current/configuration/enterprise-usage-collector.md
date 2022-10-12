@@ -10,9 +10,6 @@ open-graph-type: article
 toc: true
 ---
 
-<!-- sets the current version tags -->
-{% include docs-current_version_finder.html %}
-
 # Introduction
 
 When using Weaviate Enterprise, a proxy service is placed in between the user (or load balancer) and Weaviate. The service measures how Weaviate is used without sending through any sensitive information (e.g., function, durations, payload sizes). Below you can find an outline on how to add the proxy service to your setup.
@@ -65,7 +62,7 @@ You can also use the Docker compose [configurator](../getting-started/installati
 
 Obtain your token as described in step 1.
 
-Get a Weaviate [helm chart](https://github.com/semi-technologies/weaviate-helm/releases) of version `{{ site.weaviate_versions[current_page_version].helm_version }}` or higher. 
+Get a Weaviate [helm chart](https://github.com/semi-technologies/weaviate-helm/releases) of version `{{ site.helm_version }}` or higher. 
 
 Enable the proxy and configure the proxy using the `collector_proxy` key from the `values.yaml` like so:
 ```
