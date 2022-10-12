@@ -9,7 +9,6 @@ tags: ['example datasets']
 menu-order: 9
 open-graph-type: article
 toc: true
-redirect_from:
 ---
 
 You can find more examples with Weaviate [here](https://github.com/semi-technologies/weaviate-examples).

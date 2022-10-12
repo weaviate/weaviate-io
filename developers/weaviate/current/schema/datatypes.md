@@ -9,7 +9,8 @@ menu-order: 2
 open-graph-type: article
 toc: true
 redirect_from:
-  - /developers/weaviate/current/data-schema/datatypes.html
+    - /developers/weaviate/v1.3.0/data-schema/datatypes.html
+    - /developers/weaviate/current/data-schema/datatypes.html
 ---
 
 # Introduction

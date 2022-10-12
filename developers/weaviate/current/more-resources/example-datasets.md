@@ -10,6 +10,8 @@ menu-order: 3
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/tutorials/example-datasets.html
+    - /developers/weaviate/v1.14.1/more-resources/example-datasets.html
     - /documentation/weaviate/current/datasets/newspublications.html
     - /documentation/weaviate/current/getting-started/example-datasets.html
     - /developers/weaviate/current/getting-started/example-datasets.html

@@ -11,6 +11,7 @@ open-graph-type: article
 toc: true
 enabled-on-wcs: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-openai.html
     - /developers/weaviate/current/modules/text2vec-openai.html
 ---
 

@@ -10,6 +10,7 @@ menu-order: 1
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.9.0/more-resources/faq.html
     - /documentation/weaviate/current/more-resources/faq.html
     - /developers/weaviate/more-resources/faq.html
 ---

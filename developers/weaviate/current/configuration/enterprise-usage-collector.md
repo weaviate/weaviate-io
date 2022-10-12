@@ -8,6 +8,8 @@ tags: ['configuration']
 menu-order: 6
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.1.0/configuration/enterprise-usage-collector.html
 ---
 
 # Introduction

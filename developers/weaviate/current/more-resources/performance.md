@@ -10,6 +10,8 @@ tags: ['Weaviate', 'performance']
 menu-order: 5
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.11.0/more-resources/performance.html
 ---
 
 # Index types

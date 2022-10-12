@@ -11,6 +11,9 @@ tags: ['configuration', 'backups']
 menu-order: 2
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.8.0/configuration/backups-and-persistence.html
+    - /developers/weaviate/v1.9.0/configuration/backups-and-persistence.html
 ---
 
 # Introduction
