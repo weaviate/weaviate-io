@@ -19,7 +19,7 @@ Weaviate uses the API query language [GraphQL](https://graphql.org/){:target="_b
 
 In this article we explain how the use of GraphQL leverages the UX of Weaviate, and how we approach the design of this API.
 
-<a href="https://weaviate.io/developers/weaviate/current/" target="_blank"><img src="https://weaviate.io/img/weaviate-demo.gif?i=8" alt="Demo of Weaviate" width="100%"></a>
+<a href="/developers/weaviate/current/" target="_blank"><img src="/img/weaviate-demo.gif?i=8" alt="Demo of Weaviate" width="100%"></a>
 
 ## What is Weaviate and why does it need an API?
 Weaviate is an [open-source](https://github.com/semi-technologies/weaviate){:target="_blank"} Vector Search Engine: for understandable knowledge representation, enabling semantic search and automatic classification. Weaviate does not only store data, but also its (automatically derived) context, consisting of linguistic information and relations to other concepts. The result is a network of knowledge, or a graph of data.

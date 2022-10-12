@@ -20,10 +20,10 @@ redirect_from:
 # Multi-Modal Text/Image search using CLIP
 
 This example application spins up a Weaviate instance using the
-[multi2vec-clip](https://weaviate.io/developers/weaviate/current/modules/multi2vec-clip.html)
+[multi2vec-clip](/developers/weaviate/current/modules/multi2vec-clip.html)
 module, imports a few sample images (you can add your own images, too!) and
 provides a very simple search frontend in [React](https://reactjs.org/) using
-the [Weaviate JS Client](https://weaviate.io/developers/weaviate/current/client-libraries/javascript.html)
+the [Weaviate JS Client](/developers/weaviate/current/client-libraries/javascript.html)
 
 [Get started here](https://github.com/semi-technologies/weaviate-examples/blob/main/clip-multi-modal-text-image-search/README.md)
 

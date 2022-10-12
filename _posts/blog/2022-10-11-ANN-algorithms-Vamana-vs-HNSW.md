@@ -35,7 +35,7 @@ In order for a vector database to efficiently search through a vast number of ve
 [Weaviate](/developers/weaviate/current/), an open-source vector search engine written in Go, can serve thousands of queries per second. Running Weaviate on Sift1M (a 128-dimensional representation of objects) lets you serve queries in single-digit milliseconds. But how is this possible?
 
 ![SIFT1M Benchmark example](/img/blog/ann-algorithms-vamana-vs-hnsw/SIFT1M-benchmark.png)
-*See the [benchmark](https://weaviate.io/developers/weaviate/current/benchmarks/ann.html) page for more stats.*
+*See the [benchmark](/developers/weaviate/current/benchmarks/ann.html) page for more stats.*
 
 Weaviate does not look for the exact closest vectors in the store. Instead, it looks for approximate (close enough) elements. This means you could have a much faster reply, but there is no guarantee that you will actually have the closest element from your search. In the vector search space, we use [recall](https://en.wikipedia.org/wiki/Precision_and_recall){:target="_blank"} to measure the rate of the expected matches returned. The trade-off between recall and latency can be tuned by adjusting indexing parameters. Weaviate comes with reasonable defaults, but also it allows you to adjust build and query-time parameters to find the right balance.
 

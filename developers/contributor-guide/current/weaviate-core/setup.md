@@ -48,7 +48,7 @@ tools/dev/restart_dev_environment.sh --prometheus && tools/dev/run_dev_server.sh
 
 *Note: You can also combine some of the below setups with the `--prometheus` flag on `tools/dev/restart_dev_environment.sh`*
 
-*Note: This setup is only meant for contributors, as it requires a local go runtime. If a user is looking for a Prometheus-Enabled example, you can point them either to the [documentation page](https://weaviate.io/developers/weaviate/current/more-resources/monitoring.html) or straight to the [Weaviate examples repo](https://github.com/semi-technologies/weaviate-examples/tree/main/monitoring-prometheus-grafana).*
+*Note: This setup is only meant for contributors, as it requires a local go runtime. If a user is looking for a Prometheus-Enabled example, you can point them either to the [documentation page](/developers/weaviate/current/more-resources/monitoring.html) or straight to the [Weaviate examples repo](https://github.com/semi-technologies/weaviate-examples/tree/main/monitoring-prometheus-grafana).*
 
 ### With contextionary module
 *requires Docker & Docker Compose*
