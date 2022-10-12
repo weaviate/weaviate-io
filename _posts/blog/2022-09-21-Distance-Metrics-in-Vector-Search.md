@@ -10,6 +10,7 @@ hero-img: /img/blog/hero/what-are-distance-metrics-card.png
 og: /img/blog/hero/what-are-distance-metrics-card.png
 date: 2022-09-21
 toc: true
+redirect_from: /blog/2022/09/Distance-Metrics-in-Vector-Search.html
 ---
 Vector Search engines – like [Weaviate](/developers/weaviate/current/){:target="_blank"} – use **Machine Learning models** to analyze data and **calculate vector embeddings**. The vector embeddings are **stored together with the data** in a database, and later are used to query the data.
 

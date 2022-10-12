@@ -10,6 +10,7 @@ hero-img: /img/blog/hero/weaviate-1-15-1-card.png
 og: /img/blog/hero/weaviate-1-15-1-card.png
 date: 2022-09-21
 toc: false
+redirect_from: /blog/2022/09/Weaviate-release-1-15-1.html
 ---
 
 We usually wouldn’t write a whole blog post about a patch release. But when I chatted with Sebastian (the regular author of our “big” release blog posts series), about the contents of Weaviate `v1.15.1` patch, we quickly realized that this release is too important to end up as a [side note](https://github.com/semi-technologies/weaviate/releases/tag/v1.15.1){:target="_blank"} somewhere.

@@ -10,6 +10,7 @@ hero-img: /img/blog/hero/weaviate-1-15-card.png
 og: /img/blog/hero/weaviate-1-15-card.png
 date: 2022-09-07
 toc: false
+redirect_from: /blog/2022/09/Weaviate-release-1-15.html
 ---
 
 We are happy to announce the release of Weaviate 1.15, which is packed with great features, significant performance improvements, new distance metrics and modules, and many smaller improvements and fixes.

@@ -10,6 +10,7 @@ canonical-url: https://medium.com/semi-technologies/the-history-of-the-weaviate-
 canonical-name: Medium
 date: 2021-01-20
 toc: true
+redirect_from: /blog/2021/01/The-history-of-Weaviate.html
 ---
 
 ## Intro

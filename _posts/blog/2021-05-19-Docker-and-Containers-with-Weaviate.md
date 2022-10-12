@@ -10,6 +10,7 @@ canonical-url: https://medium.com/semi-technologies/what-weaviate-users-should-k
 canonical-name: Medium
 date: 2021-05-19
 toc: true
+redirect_from: /blog/2021/05/Docker-and-Containers-with-Weaviate.html
 ---
 
 ## Intro

@@ -11,6 +11,7 @@ date: 2022-08-15
 toc: false
 isMLResearch: false
 isDBResearch: true
+redirect_from: /blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html
 ---
 
 ## Intro
