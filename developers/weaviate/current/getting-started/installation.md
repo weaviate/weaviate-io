@@ -12,56 +12,19 @@ redirect_from:
     - /developers/weaviate/v1.7.2/getting-started/installation.html
 ---
 
-There are three ways you can run Weaviate, and they are -we believe- pretty straightforward.
+## Ways to run Weaviate
 
-0. [Weaviate Cloud Service](#weaviate-cloud-service)
-0. [Docker](#docker)
-0. [Kubernetes](#kubernetes)
+We offer three main ways to run Weaviate.
+
+You can use our Weaviate Cloud Service (WCS) managed service, or one of self-deployment options with Docker or Kubernetes. If you are unsure as to which one might be best suited for your needs, take a look at this [short guide on Weaviate deployment options - TBC]().
+
+Here, you will be creating a new Weaviate instance with WCS for use throughout the getting started guide. 
 
 ## Weaviate Cloud Service
 
-The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use the _Weaviate Cloud Service_ (aka, the WCS). The WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate. Currently, the service is in private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.semi.technology/), you can create a free sandbox to play around with.
+The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use _Weaviate Cloud Service_ (WCS). WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate. 
 
-If you are itching to get started with WCS, just skip to the [WCS hands-on section](#wcs-hands-on).
-
-## Running Weaviate yourself
-
-Alternatively, if you prefer to install and deploy Weaviate yourself, then you can work with either _Docker_ or _Kubernetes_.
-
-### Docker
-
-Working with Docker is great if you are building an application around Weaviate and want to run Weaviate on your local machine or in the cloud. If you have Docker already installed, you could have it all up and running in seconds (minutes if you use a  prepackaged transformers module).
-
-We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator){:target="_blank"}, which lets you pick your configuration, and as a result you will receive a command to spin up your docker setup.
-
-You can find the installation instructions for Docker [here](../installation/docker-compose.html#configurator).
-
-### Kubernetes
-
-Generally, we recommend using Kubernetes to deploy Weaviate for any long-running deployments or those with specific availability expectations, such as production use cases.
-
-For local development or personal evaluation, using Docker Compose will most likely be sufficient.
-
-Using Weaviate with Kubernetes is out of scope for this tutorial. You can find more info on Kubernetes [here](/developers/weaviate/current/installation/kubernetes.html).
-
-### Self-deployment instructions 
-
-The installation and configuration with Docker and Kubernetes is out of scope for this tutorial, as all code examples include references to a WCS instance. To learn about deploying Weaviate locally, follow the [installation documentation](/developers/weaviate/current/installation/){:target="_blank"} page.
-
-If you feel comfortable making a few changes to the code examples in the tutorial and you prefer to run Weaviate locally, you can set up Weaviate with Docker in two steps:
-
-0. Get `docker-compose.yml` configuration file by calling:
-    ```js
-    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
-    ```
-0. Sping up docker
-    ```js
-    docker-compose up -d
-    ```
-
-Then you can continue with the tutorial and skip to the [Schema](/developers/weaviate/current/getting-started/schema.html) page.
-
-## WCS hands-on
+Although WCS is in private beta, but (🤫) a free sandbox is live for you to play around with. Click here to connect to the [Weaviate Cloud Console](https://console.semi.technology/).
 
 To create a new Weaviate instance on the Weaviate Cloud Service, we need to follow these steps:
 
@@ -71,12 +34,12 @@ To create a new Weaviate instance on the Weaviate Cloud Service, we need to foll
 
 ### Sign in to WCS
 
-In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.semi.technology/){:target="_blank"} and "Sign in with the Weaviate Cloud Service", where you will be able to create and manage your Weaviate Clusters.
+In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.semi.technology/){:target="_blank"} and "Sign in with the Weaviate Cloud Service".
 
-#### No account, no problem
-If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs){:target="_blank"} link and create an account.
-
-![Register link](/img/getting-started/install/register.jpg){:style="max-width: 400px"}
+> #### No account? No problem
+> If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs){:target="_blank"} link and create an account.
+>
+> ![Register link](/img/getting-started/install/register.jpg){:style="max-width: 400px"}
 
 ### Create a Weaviate Cluster
 
@@ -84,25 +47,60 @@ To create a new Weaviate Cluster:
 0. Press the "Create a Weaviate Cluster" button
 0. Configure the cluster:
     0. Set the `name` for your cluster – note: The name will become part of the URL we will use to access this instance. Please use a different name than "getting-started".
-    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 30 days
+    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after a number of days
     0. Leave the `Weaviate Version` as the latest
-    0. Leave the `Standalone Or Modules` as `Standalone, no Modules`
+    0. If asked, leave the `Standalone Or Modules` as `Standalone, no Modules`
     0. **change** the `OIDC Authentication` to `Disabled`
     
     ![Cluster Configuration](/img/getting-started/install/cluster-configuration.jpg){:style="max-width: 600px"}
 0. Finally, press **Create**.
 
-This will start the process to create a new cluster. The status indicator on the left will show the progress (in %); after a few minutes, you should see a green tick ✔️ - indicating that the cluster is ready.
+This will start the process to create a new cluster. The status indicator on the page will show the progress (in %); after a short while, you should see a green tick ✔️ - indicating that the cluster is ready.
 
-### Test the connection
+### Connect to Weaviate
 
-To test the connection, click on the `Cluster Id` link, which will open a new page in your browser and display all the available endpoints.
+Click on the `Cluster Id` link, which will open a new page in your browser and display all the available endpoints.
 ![Weaviate Cluster](/img/getting-started/install/weaviate-cluster.jpg)
 
 > 💡 Note: For every endpoint, there is a `documentationHref` link, which points us to relevant documentation pages.
 
-Now, we are ready to start working with Weaviate. 🎉
+If you see this JSON response, *congratulations!* you have successfully started up an instance of Weaviate. 🎉
 
+## Client Libraries
+
+You can communicate with Weaviate from your code by using one of the available [client libraries](../client-libraries/) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/).
+
+First, let's add the client library to your project.
+
+<!-- TODO: update it accordion -->
+
+* For `Python` add the `weaviate-client` to your system libraries with `pip`:
+  ```bash
+  $ pip install weaviate-client
+  ```
+
+* For `JavaScript` add `weaviate-client` to your project with `npm`:
+  ```bash
+  $ npm install weaviate-client
+  ```
+
+* For `Java` add this dependency to your project:
+  ```xml
+  <dependency>
+    <groupId>technology.semi.weaviate</groupId>
+    <artifactId>client</artifactId>
+    <version>3.2.0</version>
+  </dependency>
+  ```
+
+* For `Go` add `weaviate-go-client` to your project with `go get`:
+  ```bash
+  go get github.com/semi-technologies/weaviate-go-client/v4
+  ```
+
+That was easy, wasn't it? Now you are ready to continue with the rest of the tutorial.
+
+Next up, we will show you how you can add a schema to your Weaviate database.
 
 <!-- 
 ## Running Weaviate yourself
@@ -165,21 +163,16 @@ You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on 
 * You can run Weaviate with Docker, Kubernetes, or with the Weaviate Cloud Service.
 * Running Weaviate Modules with an encepsulated ML-model on CPUs is slow. -->
 
-## Recapitulation
+## Recap
 
 * You can run Weaviate with Weaviate Cloud Service, Docker or Kubernetes.
 * Weaviate Cloud Service is a managed Weaviate SaaS - great for development and production.
-* Docker alows you to set up Weaviate on your machine or in the cloud – great for development and production.
-* Kubernetes is great for long-running Weaviate deployments
 * You have a working instance of Weaviate in WCS.
+* You have installed a client library in your preferred language.
 
 ## Next Steps
 
-Next, [learn about the Weaviate Schema](./schema.html).
-
-Alternatively, you can:
-* [Skip to Querying in Weaviate](./query.html)
-* [Go back to the basics](../core-knowledge/basics.html)
+[Add a schema](./schema.html).
 
 # More Resources
 

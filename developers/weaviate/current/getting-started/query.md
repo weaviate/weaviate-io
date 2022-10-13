@@ -10,20 +10,89 @@ open-graph-type: article
 toc: true
 ---
 
-Finally! It's time to start and query Weaviate!
+We have come a long way in a short time, having spun up a database and populated it with objects. Now let's put the Weaviate database to work by querying all of that data.
 
-For this guide, you don't have to load any data into a Weaviate, we are going to use the Wikipedia demo dataset.
+## Prerequisites 
 
-But before we start, some basics:
+At this point, you should have: 
+- Weaviate running either in a sandbox on the [Weaviate Cloud Service](https://console.semi.technology) or locally with Docker
+- Installed the appropriate client library in a language of your choice
+- Added a schema for the **Publication** and **Author** classes, and
+- Imported **Publication** and **Author** data.
 
-* Weaviate's main API is its GraphQL-API
-  * New to GraphQL? Check [this](https://www.youtube.com/watch?v=eIQh02xuVw4) 100-second explainer video.
-* Weaviate also has a RESTful API but it is used for other operations.
-* You can also use the clients to query Weaviate natively in your language of choice. The clients will automatically determine which API to use for the request.
-  * Clients have their own [getting started guide](../core-knowledge/clients.html).
-* The [Weaviate Console](../core-knowledge/console.html) contains a cool auto-complete feature to write queries easily.
+If you have not done these, go back to [set up your Weaviate instance and client library](./installation.html), [add a schema](./schema.html) and [import data](./import.html) first. It will make it easier to follow along with this section :).
 
-Let's get started!
+## Querying Weaviate
+
+You can query a Weaviate database with a semantic (i.e. vector) search, with a scalar search, or with a combination of both. 
+
+All of this happens at lightning fast 🚀 speeds. let's start with a few examples.
+
+### Vector search
+
+First off, we will start easy by querying Weaviate about the **Publication** objects that we imported earlier.
+
+> Weaviate's queries use GraphQL syntax. If you're new, don't worry, we will take it step-by-step and build up from the basics. By the time you've seen a few examples, you will be familiar with the basic structure, and hopefully see why we use it :).
+
+To retrieve objects, you will often be using the `Get{}` function. Try out the below code to connect to your Weaviate instance and retrieve a few **Publication** objects.
+
+{% include code/1.x/getting-started.query.publication.basic.html %}
+
+You should then see a result that resembles this:
+
+```json
+{
+    "data": {
+        "Get": {
+            "Publication": [
+                {
+                    "name": "Fox News"
+                },
+                {
+                    "name": "Wired"
+                },
+                {
+                    "name": "The New York Times Company"
+                },
+                {
+                    "name": "Game Informer"
+                },
+                {
+                    "name": "New Yorker"
+                },
+                {
+                    "name": "Wall Street Journal"
+                },
+                {
+                    "name": "New York Times"
+                },
+                {
+                    "name": "Vogue"
+                },
+                {
+                    "name": "The Economist"
+                },
+                {
+                    "name": "International New York Times"
+                },
+                {
+                    "name": "Financial Times"
+                },
+                {
+                    "name": "The Guardian"
+                },
+                {
+                    "name": "CNN"
+                }
+            ]
+        }
+    }
+}
+```
+
+
+
+Each of the **Publication** objects that we imported included simple vectors. To begin with, let's query Weaviate to get those objects back, as well as see what vector informati
 
 ## Root GraphQL functions
 
