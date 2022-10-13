@@ -5,9 +5,11 @@ rvm:
 - 2.7.0
 cache:
   bundler: true
+  npm: true
   directories:
-  - vendor/bundle
+  # - vendor/bundle
   - node_modules # NPM packages
+  - /home/travis/build/semi-technologies/weaviate-io/vendor/bundle
 before_install:
 - sudo apt-get update
 - sudo apt-get install -qq -y minify python3-pip curl snapd nodejs npm
@@ -16,19 +18,21 @@ before_install:
 - sudo n stable
 - sudo npm install -g npm@latest netlify-cli
 - export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
-- bundle config set deployment 'true'
-- bundle install
+# - bundle config set deployment 'true'
+# - bundle install
+- bundle install --without=development --path=/home/travis/build/semi-technologies/weaviate-io/vendor/bundle
 # Collect Github API data
 - pip3 install pyyaml
 - python3 tools/create-roadmap.py
-install:
-- export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
-- bundle config set deployment 'true'
-- bundle install
+# install:
+# - export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
+# - bundle config set deployment 'true'
+# - bundle install
+script:
+- bundle install --without=development --path=/home/travis/build/semi-technologies/weaviate-io/vendor/bundle
 - gem install jekyll
 - gem install html-proofer -v 4.4.3 --user-install
 - pip install -r ./_python/requirements.txt
-script:
 - python ./_python/generate_og.py
 - travis_wait 60 bundle exec jekyll build
 - minify --match='\.html' -r -o _site_min/ _site/
