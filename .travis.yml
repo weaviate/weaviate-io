@@ -3,29 +3,31 @@ dist: focal
 language: ruby
 rvm:
 - 2.7.0
+cache:
+  bundler: true
+  directories:
+  - vendor/bundle
+  - node_modules # NPM packages
 before_install:
 - sudo apt-get update
-- sudo apt-get install -y minify
-- sudo apt-get install -y python3-pip
-- sudo apt-get install -y curl
-- sudo apt-get install -y snapd
-- sudo apt-get install -y nodejs npm
-- sudo npm cache clean -f
+- sudo apt-get install -qq -y minify python3-pip curl snapd nodejs npm
+- sudo snap install yq
 - sudo npm install -g n
 - sudo n stable
-- sudo npm install -g npm@latest
-- sudo npm install netlify-cli -g
-- sudo snap install yq
+- sudo npm install -g npm@latest netlify-cli
+- export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
+- bundle config set deployment 'true'
 - bundle install
 # Collect Github API data
 - pip3 install pyyaml
 - python3 tools/create-roadmap.py
 install:
+- export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
+- bundle config set deployment 'true'
 - bundle install
 - gem install jekyll
 - gem install html-proofer -v 4.4.3 --user-install
 - pip install -r ./_python/requirements.txt
-- export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
 script:
 - python ./_python/generate_og.py
 - travis_wait 60 bundle exec jekyll build
@@ -110,4 +112,3 @@ script:
       cd ..
     fi
   fi
-cache: bundler
