@@ -8,6 +8,8 @@ tags: ['Migration']
 menu-order: 7
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.7.2/more-resources/migration-guide.html
 ---
 
 # Changlog for version v1.9.0

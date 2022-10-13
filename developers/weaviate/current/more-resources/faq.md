@@ -10,6 +10,7 @@ menu-order: 1
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.9.0/more-resources/faq.html
     - /documentation/weaviate/current/more-resources/faq.html
     - /developers/weaviate/more-resources/faq.html
 ---
@@ -44,9 +45,9 @@ Custom HNSW implementation in Weaviate references:
 More information:
 
 - [Weaviate, an ANN Database with CRUD support – DB-Engines.com](https://db-engines.com/en/blog_post/87) ⬅️ best resource on the topic
-- [Weaviate's HNSW implementation in the docs](https://weaviate.io/developers/weaviate/current/vector-index-plugins/hnsw.html)
+- [Weaviate's HNSW implementation in the docs)[/developers/weaviate/current/vector-index-plugins/hnsw.html)
 
-_Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here](https://weaviate.io/developers/weaviate/current/vector-index-plugins/)_
+_Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here)[/developers/weaviate/current/vector-index-plugins/)_
 
 ## Q: Are all ANN algorithms potential candidates to become an indexation plugin in Weaviate?
 
@@ -100,7 +101,7 @@ A: Because you are probably one of the first that needs one! Ping us [here on Gi
 
 ## Q: How to deal with custom terminology?
 
-A: Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here](https://weaviate.io/developers/weaviate/current/retriever-vectorizer-modules/text2vec-contextionary.html#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
+A: Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here)[/developers/weaviate/current/retriever-vectorizer-modules/text2vec-contextionary.html#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
 
 ## Q: How can you index data near-realtime without losing semantic meaning?
 
@@ -188,7 +189,7 @@ A: In short: for convenience you can add relations to your data schema, because 
 
 ## Q: Is it possible to create one-to-many relationships in the schema?
 
-A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example](https://weaviate.io/developers/weaviate/current/tutorials/how-to-create-a-schema.html#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
+A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example)[/developers/weaviate/current/tutorials/how-to-create-a-schema.html#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
 
 ## Q: What is the different between `text` and `string` and `valueText` and `valueString`?
 
@@ -214,7 +215,7 @@ A: The UUID must be presented as a string matching the [Canonical Textual repres
 
 ## Q: What is the best way to iterate through objects? Can I do paginated API calls? 
 
-A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's](https://weaviate.io/developers/weaviate/current/graphql-references/filters.html#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
+A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's)[/developers/weaviate/current/graphql-references/filters.html#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
 
 
 ## Q: What happens when the weaviate docker container restarts? Is my data in the weaviate database lost?

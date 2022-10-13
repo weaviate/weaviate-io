@@ -1,6 +1,7 @@
 ---
 title: Blogs
 layout: default
+regenerate: true
 ---
 
 <!-- WELCOME -->
@@ -51,9 +52,9 @@ layout: default
             <a class="card-img-top" href="{{ post.url }}">
               <!-- Image -->
               {% if post.card-img != null %}
-              <div class="card-img-top" style="height:240px;background-image:url('{{ post.card-img }}');background-size:cover; background-position: center;"></div>
+              <div class="card-img-top" style="height:240px;background-image:url('{{ post.card-img }}');background-size:cover; background-position: left !important;"></div>
               {% else %}
-              <div class="card-img-top" style="height:240px;background-image:url('{{ post.hero-img }}');background-size:cover;background-position: center;"></div>
+              <div class="card-img-top" style="height:240px;background-image:url('{{ post.hero-img }}');background-size:cover;background-position: left !important;"></div>
               {% endif %}
               <!-- Shape -->
               <div class="position-relative">

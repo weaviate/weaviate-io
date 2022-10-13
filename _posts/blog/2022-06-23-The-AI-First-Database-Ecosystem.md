@@ -10,6 +10,7 @@ hero-img: https://imageio.forbes.com/specials-images/imageserve/61950180a260c12d
 canonical-url: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
 canonical-name: Forbes
 toc: false
+redirect_from: /blog/2022/06/The-AI-First-Database-Ecosystem.html
 ---
 
 A new ecosystem of smaller companies is ushering in a “third wave” of AI-first database technology. New search engines and databases brilliantly answer queries posed in natural language, but their machine-learning models are not limited to text searches. The same approach can also be used to search anything from images to DNA.

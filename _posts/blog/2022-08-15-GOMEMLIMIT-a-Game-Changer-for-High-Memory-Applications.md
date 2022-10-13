@@ -11,6 +11,7 @@ date: 2022-08-15
 toc: false
 isMLResearch: false
 isDBResearch: true
+redirect_from: /blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html
 ---
 
 ## Intro
@@ -248,8 +249,8 @@ We have covered quite a few points in this article, so let me summarize the key 
 Does that mean that GOMEMLIMIT is your *get-out-of-jail-free* card for heap allocations? No. A Go application that gets heavy usage still has to ensure allocation efficiency. Simply setting a GOMEMLIMIT will not make an inefficient application efficient. For an already well-optimized application such as Weaviate, GOMEMLIMIT can help you get the most out of your machines. It prevents unnecessary and annoying OOM kills.
 
 ## What next
-Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
 
 Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.

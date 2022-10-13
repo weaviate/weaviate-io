@@ -6,9 +6,11 @@ published: true
 author: Sebastian Witalec
 author-img: /img/people/icon/sebastian.jpg
 card-img: /img/blog/hero/weaviate-1-15-card.png
+hero-img: /img/blog/hero/weaviate-1-15-card.png
 og: /img/blog/hero/weaviate-1-15-card.png
 date: 2022-09-07
 toc: false
+redirect_from: /blog/2022/09/Weaviate-release-1-15.html
 ---
 
 We are happy to announce the release of Weaviate 1.15, which is packed with great features, significant performance improvements, new distance metrics and modules, and many smaller improvements and fixes.
@@ -23,7 +25,7 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 0. [More efficient filtered aggregations](#more-efficient-filtered-aggregations) – thanks to optimization to a library reading binary data, filtered aggregations are now 10-20 faster and require a lot less memory.
 <!-- (TODO: add the claim by Juraj) -->
 0. [Two new distance metrics](#new-distance-metrics) – with the addition of Hamming and Manhattan distance metrics, you can choose the metric (or a combination of) to best suit your data and use case.
-0. [Two new Weaviate modules](#new-weavaite-modules) – with the Summarization module, you can summarize any text on the fly, while with the HuggingFace module, you can use compatible transformers from the HuggingFace
+0. [Two new Weaviate modules](#new-weaviate-modules) – with the Summarization module, you can summarize any text on the fly, while with the HuggingFace module, you can use compatible transformers from the HuggingFace
 0. [Other improvements and bug fixes](#other-improvements-and-bug-fixes) – it goes without saying that with every Weaviate release, we strive to make Weaviate more stable – through bug fixes – and more efficient – through many optimizations.
 
 Read below to learn more about each of these points in more detail.
@@ -436,4 +438,4 @@ You can find the complete list and the relevant links in the [release notes](htt
 ## Enjoy
 We hope you enjoy all the new features, performance improvements, memory savings and bug fixes that made this the best Weaviate release yet!🔥
 
-Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
+Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/weaviate_io){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.

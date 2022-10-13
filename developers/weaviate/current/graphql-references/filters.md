@@ -10,6 +10,7 @@ menu-order: 4
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.4.1/graphql-references/filters.html
     - /documentation/weaviate/current/query-data/filters.html
     - /documentation/weaviate/current/graphql-references/filters.html
 ---

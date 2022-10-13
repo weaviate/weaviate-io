@@ -9,6 +9,8 @@ tags: ['java', 'client library']
 menu-order: 3
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.11.0/client-libraries/java.html
 ---
 
 # Installation and setup

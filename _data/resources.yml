@@ -65,16 +65,6 @@
   tags:
   - news
 - title: >
-    "Weaviate accepted for the Google Summer of Code 2022"
-  date: 2022-03-07T00:00:00Z
-  cover_image: /img/og/og-gsoc.jpg
-  description: > 
-    Weaviate is accepted for this year's Google Summer of Code
-  source: GSoC
-  link: /resources/gsoc.html
-  tags:
-  - news
-- title: >
     "SeMI Technologies’ search engine opens up new ways to query your data"
   date: 2022-02-22T00:00:02Z
   cover_image: https://upload.wikimedia.org/wikipedia/commons/b/b9/TechCrunch_logo.svg
@@ -94,16 +84,6 @@
   link: https://finance.yahoo.com/news/semi-technologies-16m-series-round-141500875.html
   tags:
   - press-release
-- title: >
-    Weaviate: Towards the New Era of Vector Search Engines
-  date: 2022-02-03T00:00:00Z
-  cover_image: https://cdn.analyticsvidhya.com/wp-content/uploads/2021/12/732227807104_1578230927_time_analysis_tittle-banner-1.jpg
-  description: > 
-    Community article about vector search engines like Weaviate
-  source: analyticsvidhya
-  link: https://www.analyticsvidhya.com/blog/2022/02/weaviate-towards-the-new-era-of-vector-search-engines/
-  tags:
-  - blog
 - title: >
     Weaviate in Techcrunch
   date: 2021-12-09T00:00:00Z

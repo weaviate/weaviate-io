@@ -14,9 +14,6 @@ redirect_from:
     - /documentation/weaviate/current/getting-started/installation.html
 ---
 
-<!-- sets the current version tags -->
-{% include docs-current_version_finder.html %}
-
 # Running Weaviate
 
 ​Weaviate versions on the Weaviate Cloud Service (WCS) and Weaviate open source are identical, with the only difference that the WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/semi-technologies/weaviate/blob/master/LICENSE).

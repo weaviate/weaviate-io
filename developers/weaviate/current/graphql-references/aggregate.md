@@ -10,6 +10,7 @@ menu-order: 2
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.8.0/graphql-references/aggregate.html
     - /documentation/weaviate/current/query-data/aggregate.html
     - /documentation/weaviate/current/graphql-references/aggregate.html
 ---

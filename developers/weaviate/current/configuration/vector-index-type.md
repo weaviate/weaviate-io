@@ -8,6 +8,8 @@ tags: ['configuration', 'vector index']
 menu-order: 2
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.11.0/configuration/vector-index-type.html
 ---
 
 # Introduction

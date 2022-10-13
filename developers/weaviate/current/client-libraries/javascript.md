@@ -10,6 +10,7 @@ menu-order: 2
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.2.1/client-libraries/javascript.html
     - /documentation/weaviate/current/client-libs/javascript.html
 ---
 
