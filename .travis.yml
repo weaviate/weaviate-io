@@ -29,6 +29,7 @@ before_install:
 # - bundle config set deployment 'true'
 # - bundle install
 script:
+- printenv
 - bundle install --without=development --path=/home/travis/build/semi-technologies/weaviate-io/vendor/bundle
 - gem install jekyll
 - gem install html-proofer -v 4.4.3 --user-install
