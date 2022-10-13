@@ -2,7 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Import
+title: Import data
 description: Getting started with importing in Weaviate
 tags: ['import']
 menu-order: 3
@@ -13,30 +13,28 @@ redirect_from:
   - /developers/weaviate/v1.14.1/getting-started/import.html
 ---
 
-Although importing itself is pretty straightforward, creating an optimized import strategy needs a bit of planning on your end. Hence, before we start with this guide, there are a few things to keep in mind.
+In this section, we will show you how you can now import data objects into your Weaviate database according to the schema which you defined earlier.
 
-0. When importing, you want to make sure that you max out all the CPUs available. It's more often than not the case that the import script is the bottleneck.
-    0. Tip, use `htop` when importing to see if all CPUs are maxed out.
-    0. Learn more about how to plan your setup [here](./installation.html#running-weaviate-yourself).
-0. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
-0. For Kubernetes, fewer large machines are faster than more small machines, simply because of network latency.
+## Prerequisites 
 
-## Importing
+At this point, you should have: 
+- Weaviate running either in a sandbox on the [Weaviate Cloud Service](https://console.semi.technology) or locally with Docker
+- Installed the appropriate client library in a language of your choice, and
+- Added a schema for the **Publication** and **Author** classes.
 
-First of all, some rules of thumb.
+If you have not done these, go back to [set up your Weaviate instance and client library](./installation.html) and [add a schema](./schema.html) first and come back :).
 
-* You should always use batch import.
-* As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
-* Process error messages.
-* Some clients (especially Python) have some built-in logic to efficiently regulate batch importing.
+## Importing data
 
-Assuming that you've read the [schema getting started guide](./schema.html), you import data based on the classes and properties defined in the schema.
+The data to be imported needs to match the classes and properties defined in the Weaviate database schema. So in our case, we will import data according to the properties of the **Publication** and **Author** classes defined in the previous section.
+
+Weaviate allows data objects to be created as a single object or in batches. For importing data, we **strongly suggest that you use batch imports**. Accordingly, this guide is written for batch import methods.
 
 <!-- > 💡 The big difference between creating a single object in Weaviate and batch imports is that instead of sending a single JSON object, batch sends an array of JSON objects. -->
 
 <!-- As you've seen in the [basics getting started guide](./basics.html#data-objects-in-weaviate), Weaviate data objects are class-property-based JSON objects. -->
 
-For the purpose of this tutorial, we've prepared a **data.json** file, which contains a few Authors and Publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json){:target="_blank"}, and add it to your project.
+For the purpose of this guide, we've prepared a **data.json** file containing a few Authors and Publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json){:target="_blank"}, and add it to your project.
 
 Now, to import the data we need to follow these steps:
 0. Connect to your Weaviate instance
@@ -68,20 +66,171 @@ Or you can read the objects in your project, like this:
 
 {% include code/1.x/getting-started.import.get.html %}
 
+The result should look something like this:
+
+```json
+{
+  deprecations: null,
+  objects: [
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: '16476dca-59ce-395e-b896-050080120cd4',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: '212e56a6-e535-3569-ad1b-2215526c1d9d',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: '7abf5426-5048-31ce-9c0a-822c58b19b47',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: '7e9b9ffe-e645-302d-9d94-517670623b35',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: '8e14bddf-cd2e-3f5b-8fd5-6e34ee13999e',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: '9f0c7463-8633-30ff-99e9-fd84349018f5',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: 'ac884d35-ccb4-3937-81f8-8474a4d7a549',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: 'b7285ce8-a172-3053-b74d-7200a96bce26',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: 'c9a0e53b-93fe-38df-a6ea-4c8ff4501783',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: 'eaa33b83-3927-3aaf-af4b-4990c79485da',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: 'f2968730-9ce5-3e6f-8e64-b6b9f68984b0',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: 'fa207f19-e080-3902-982c-393d321776be',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Author',
+      creationTimeUnix: 1665494795016,
+      id: '779c8970-0594-301c-bff5-d12907414002',
+      lastUpdateTimeUnix: 1665494795016,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Author',
+      creationTimeUnix: 1665494795016,
+      id: 'dedd462a-23c8-32d0-9412-6fcf9c1e8149',
+      lastUpdateTimeUnix: 1665494795016,
+      properties: [Object],
+      vectorWeights: null
+    }
+  ],
+  totalResults: 15
+}
+```
+
+Congratulations! You have built a fully functioning Weaviate vector database 🚀🎉. We hope that was pretty straightforward. 
+
+One important note from us is that for importing large datasets, creating an optimized import strategy will make a big difference in import time. So please read our tips below on [data import best practices](#data-import---best-practices) if this is the case for you.
+
+## Recap
+
+* Data to be imported should match the database schema
+* Use batch import if possible
+* For importing large datasets, make sure to consider and optimize your import strategy.
+
+## Next
+
+- [Perform queries with Weaviate](./query.html)
+
+# More Resources
+
+## Data import - best practices
+
+Although importing itself is pretty straightforward, creating an optimized import strategy needs a bit of planning. Here are a few things to keep in mind.
+
+0. When importing, you want to make sure that you max out all the CPUs available. It's more often than not the case that the import script is the bottleneck.
+    0. Tip, use `htop` when importing to see if all CPUs are maxed out.
+    0. Learn more about how to plan your setup [here](./installation.html#running-weaviate-yourself).
+0. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
+0. For Kubernetes, fewer large machines are faster than more small machines. Just because of network latency.
+
+Our rules of thumb are:
+* You should always use batch import.
+* As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
+* Process error messages.
+* Some clients (especially Python) have some build-in logic to efficiently regulate batch importing.
+
 ## Other object operations
 
 All other CRUD object operations are available in the [objects RESTful API documentation](../restful-api-references/objects.html) and the [batch RESTful API documentation](../restful-api-references/batch.html).
-
-## Recapitulation
-
-Importing into Weaviate needs some planning on your side. In almost all cases, you want to use the [batch endpoint](../restful-api-references/batch.html) to create data objects. More often than not, the bottleneck sits in the import script and not in Weaviate. Try to optimize for maxing out all CPUs to get the fastest import speeds.
-
-## What would you like to learn next?
-
-- [Learn how to query with the GraphQL-API](./query.html)
-- [Bring me back to working with the schema](./schema.html)
-- [Show me how modules work](./modules.html)
-
-# More Resources
 
 {% include docs-support-links.html %}

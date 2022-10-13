@@ -2,7 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Schema
+title: Add Schema
 description: Getting started with the Weaviate schema
 tags: ['basics']
 menu-order: 2
@@ -10,52 +10,19 @@ open-graph-type: article
 toc: true
 ---
 
-You've made it to the schema getting started guide! The schema is the place where you will not only set data types, cross-references, and more, but you'll be tweaking index settings (ANN, reverse index, BM25).
+Now we are ready start to work on our Weaviate database! 
 
-This will also be a guide to getting your hands dirty! Oh, and this guide is a bit longer 😉
+Before populating our database with data objects like authors or publications, we must tell the database about the structure of the information. This is called a _schema_.
+
+Here, you will get your hands dirty and learn how to set up a schema for your Weaviate database.
 
 ## Prerequisites 
 
-At this point, you should have Weaviate running either:
+At this point, you should have: 
+- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology), and
+- Installed the appropriate client library in a language of your choice. 
 
-* in a sandbox on the [Weaviate Cloud Service](https://console.semi.technology)
-    * if not, refer to the [Installation](./installation.html) lesson for instructions
-* or locally with Docker
-    0. Download [this `docker-compose.yml` file](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}).
-    0. Run `$ docker-compose up`
-    0. Make sure that you always run `$ docker-compose down` after a shutdown(!)
-
-## Client Libraries
-
-You can communicate with Weaviate from your code by using one of the available [client libraries](../client-libraries/) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/).
-
-The first order of business, is to add the client library to your project.
-
-<!-- TODO: update in accordion -->
-
-* For `Python` add the `weaviate-client` to your system libraries with `pip`:
-  ```bash
-$ pip install weaviate-client
-  ```
-
-* For `JavaScript` add `weaviate-client` to your project with `npm`:
-  ```bash
-$ npm install weaviate-client
-  ```
-
-* For `Java` add this dependency to your project:
-  ```xml
-  <dependency>
-    <groupId>technology.semi.weaviate</groupId>
-    <artifactId>client</artifactId>
-    <version>3.2.0</version>
-  </dependency>
-  ```
-
-* For `Go` add `weaviate-go-client` to your project with `go get`:
-  ```bash
-go get github.com/semi-technologies/weaviate-go-client/v4
-  ```
+If you have not done these, [go back](./installation.html) to set up your Weaviate instance and client library first and come back :).
 
 ## Connect to Weaviate
 
@@ -64,6 +31,8 @@ To do this we need the `host` endpoint to your instance.
 
 * If you use WCS – it should be based on the `cluster-id` you've created in the previous lesson - just replace `some-endpoint` in the code example below with the `cluster-id`
 * or `localhost:8080` if you are running Weaviate locally.
+
+> Note: From now on, all examples will provide the code using the WCS endpoint:<br/> `"some-endpoint.semi.network/"`<br/>Replace the value to match your (local or WCS) host endpoint.
 
 Run the below code in your project.
 
@@ -75,12 +44,10 @@ The result should look like this:
 {"classes": []}
 ```
 
-This means you're connected to an empty Weaviate.
-
-> From now on, all examples will provide the code using the WCS endpoint:<br/> `"some-endpoint.semi.network/"`<br/>Replace the value to match your host endpoint.
+Great! You've successfully make your first client query to Weaviate 🎉. The output tells us that this instance of Weaviate does not contain any classes. So let's create some.
 
 ### Resetting your Weaviate instance
-If this is not the case and you see (old) classes, you can restart your instance, or you can run the following if you're using the Python client:
+If this is not the case and you see (old) classes, you can reset your instance, or you can manually delete the schema, which will also delete all associated objects. For example, the Python code to do so is:
 
 ```python
 import weaviate
@@ -97,20 +64,14 @@ print(json.dumps(schema))
 
 ## Create your first class!
 
-Let's create your first class!
+First let's add a simple class called **Publication**. We will use it to store info about publication outlets like *The New York Times* or *The Guardian*.
 
-We'll take the example of the **Author** from the [basics](../core-knowledge/basics.html#data-objects-in-weaviate)  guide.
-
-Our **Authors** have the following properties:
+Our **Publication** class will contain one property:
 * `name`: type `string`
-* `age`: type `int`
-* `born`: type `date`
-* `wonNobelPrize`: type `boolean`
-* `description`: type `text`
 
-Run the below code in you application, which will define the schema for the **Author** class.
+Run the below code in you application, which will define the schema for the **Publication** class and display the created schema information.
 
-{% include code/1.x/getting-started.schema.create.1.html %}
+{% include code/1.x/getting-started.schema.create.2.html %}
 
 The result should look something like this:
 
@@ -118,8 +79,8 @@ The result should look something like this:
 {
     "classes": [
         {
-            "class": "Author",
-            "description": "A description of this class, in this case, it's about authors",
+            "class": "Publication",
+            "description": "A description of this class, in this case, it's about publications",
             "invertedIndexConfig": {
                 "bm25": {
                     "b": 0.75,
@@ -137,37 +98,8 @@ The result should look something like this:
                     "dataType": [
                         "string"
                     ],
-                    "description": "The name of the Author",
+                    "description": "The name of the Publication",
                     "name": "name",
-                    "tokenization": "word"
-                },
-                {
-                    "dataType": [
-                        "int"
-                    ],
-                    "description": "The age of the Author",
-                    "name": "age"
-                },
-                {
-                    "dataType": [
-                        "date"
-                    ],
-                    "description": "The date of birth of the Author",
-                    "name": "born"
-                },
-                {
-                    "dataType": [
-                        "boolean"
-                    ],
-                    "description": "A boolean value if the Author won a nobel prize",
-                    "name": "wonNobelPrize"
-                },
-                {
-                    "dataType": [
-                        "text"
-                    ],
-                    "description": "A description of the author",
-                    "name": "description",
                     "tokenization": "word"
                 }
             ],
@@ -201,18 +133,20 @@ The result should look something like this:
 }
 ```
 
- Wow! What, that’s a lot more than we’ve added?
+Wow! That's a lot more settings than what we specified!
 
-Correct, that's Weaviate adding some default config for you. You can change, improve, tweak, and update this, but that's for a later expert guide. 
+This is just one way that Weaviate makes your life easier. Where you didn't specify options,Weaviate has added some default configurations for you. (You can change these these options if you wish, but there is no need to for this guide.)
 
-Now, let's add a second class called **Publication**. We will use to it store info about publication outlets like *The New York Time* or *The Guardian*.
-
-Our **Publication** will contain one property:
+Now, let's add an **Author** class. Our **Author** class is a little more complex and will include the following properties:
 * `name`: type `string`
+* `age`: type `int`
+* `born`: type `date`
+* `wonNobelPrize`: type `boolean`
+* `description`: type `text`
 
-Run the below code in your application.
+Run the below code in your application to add the **Author** class.
 
-{% include code/1.x/getting-started.schema.create.2.html %}
+{% include code/1.x/getting-started.schema.create.1.html %}
 
 The result should look something like this:
 
@@ -536,7 +470,30 @@ Note this part (this is just a chunk of the response):
 }
 ```
 
-We can also set it the other way around, a `Publication`, `has`, `Authors`. To achieve this, we want to update the `Publication` class to contain the `has` cross-reference to `Author`.
+> 💡 You can set cross-references in the other direction, or in both directions. [See more below](#more-on-cross-referencing)
+
+Great! Your database is set up with a schema and ready to go. Next, we will show you how you can add **Publication** and **Author** data to your Weaviate database.
+
+## Recap
+
+* Weaviate has a schema where you will define how your data objects will be indexed.
+* Weaviate's schema is class property based.
+* The schema is highly configurable but comes with pre-defined settings.
+* There is an auto schema function, but for optimal usage, it's better to manually create a schema
+
+## Next steps
+
+* [Learn how to import data](./import.html)
+
+# More Resources
+
+## Other schema operations
+
+All schema operations are available in the [API documentation for the schema endpoint](../restful-api-references/schema.html). The documentation also includes examples in different client languages.
+
+## More on cross-referencing
+
+To set this page's cross-reference the other way around so that a `Publication`, `has`, `Authors`, you should update the `Publication` class instead of the `Author` class. More specifically, update the `Publication` class to contain the `has` cross-reference to `Author`.
 
 {% include code/1.x/getting-started.schema.crossreference.2.html %}
 
@@ -723,25 +680,6 @@ Note this part (this is just a chunk of the response):
 }
 ```
 
-> 💡 You can set cross-references in all directions and later (as we will see [while querying](./query.html)) filter on them. Please, be aware that Weaviate is **not** a graph database ([remember](../core-knowledge/basics.html#what-is-weaviate)?). This means that dealing with -for example- many-to-many relationships or things like shortest path algorithms is not in our wheelhouse.
-
-## Other schema operations
-
-All schema operations are available in the [API documentation for the schema endpoint](../restful-api-references/schema.html). The documentation also includes examples in different client languages.
-
-## Recapitulation
-
-* Weaviate has a schema where you will define how your data objects will be indexed.
-* Weaviate's schema is class property based.
-* The schema is highly configurable but comes with pre-defined settings.
-* There is an auto schema function, but for optimal usage, it's better to manually create a schema
-
-## What would you like to learn next?
-
-* [Learn how to import data](./import.html)
-* [Learn how to query data based on a schema](query.html)
-* [Take me one step back to the basics](../core-knowledge/basics.html)
-
-# More Resources
+> Weaviate allows filtering on cross-referenced data as well. However, please be aware that Weaviate is **not** a graph database ([Read more: what is Weaviate?](../core-knowledge/basics.html#what-is-weaviate)). This means that dealing with -for example- many-to-many relationships or things like shortest path algorithms is not in our wheelhouse.
 
 {% include docs-support-links.html %}
