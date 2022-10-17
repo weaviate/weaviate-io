@@ -2,7 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Add Schema
+title: Add a schema
 description: Getting started with the Weaviate schema
 tags: ['basics']
 menu-order: 2
@@ -64,7 +64,7 @@ print(json.dumps(schema))
 
 ## Create your first class!
 
-First let's add a simple class called **Publication**. We will use it to store info about publication outlets like *The New York Times* or *The Guardian*.
+First let's add a class called **Publication**. We will use it to store info about publication outlets like *The New York Times* or *The Guardian*.
 
 Our **Publication** class will contain one property:
 * `name`: type `string`
@@ -235,7 +235,7 @@ The result should look something like this:
         },
         {
             "class": "Publication",
-            "description": "A description of this class, in this case, it's about authors",
+            "description": "A description of this class, in this case, it's about publications",
             "invertedIndexConfig": {
                 "bm25": {
                     "b": 0.75,
@@ -296,7 +296,7 @@ Note, we now have the **Author** _and_ the **Publication** in there!
 > 
 > Although auto schema works well for some instances, we always advise manually setting your schema to optimize Weaviate's performance.
 
-## Setting cross-references
+## Set cross-references
 
 Now, that we have these two classes, we can use a **cross-reference** to indicate that an `Author`, `writesFor` a `Publication`. To achieve this, we want to update the `Author` class to contain the cross-reference to `Publication`.
 
@@ -481,7 +481,7 @@ Great! Your database is set up with a schema and ready to go. Next, we will show
 * The schema is highly configurable but comes with pre-defined settings.
 * There is an auto schema function, but for optimal usage, it's better to manually create a schema
 
-## Next steps
+## Next
 
 * [Learn how to import data](./import.html)
 

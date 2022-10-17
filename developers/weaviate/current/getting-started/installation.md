@@ -98,7 +98,7 @@ First, let's add the client library to your project.
   go get github.com/semi-technologies/weaviate-go-client/v4
   ```
 
-That was easy, wasn't it? Now you are ready to continue with the rest of the tutorial.
+Hopefully that didn't take too long! And best of all, you are now ready to continue with the rest of the tutorial.
 
 Next up, we will show you how you can add a schema to your Weaviate database.
 
@@ -170,7 +170,7 @@ You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on 
 * You have a working instance of Weaviate in WCS.
 * You have installed a client library in your preferred language.
 
-## Next Steps
+## Next
 
 [Add a schema](./schema.html).
 
