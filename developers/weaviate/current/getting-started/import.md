@@ -13,20 +13,20 @@ redirect_from:
   - /developers/weaviate/v1.14.1/getting-started/import.html
 ---
 
-In this section, we will show you how you can now import data objects into your Weaviate database according to the schema which you defined earlier.
+In this section, we will show you how to import data objects into your Weaviate database.
 
 ## Prerequisites 
 
 At this point, you should have: 
 - Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology)
 - Installed the appropriate client library in a language of your choice, and
-- Added a schema for the **Publication** and **Author** classes.
+- Added a schema for the **Publication** class.
 
 If you have not done these, go back to [set up your Weaviate instance and client library](./installation.html) and [add a schema](./schema.html) first and come back :).
 
 ## Import data
 
-The data to be imported needs to match the classes and properties defined in the Weaviate database schema. So in our case, we will import data according to the properties of the **Publication** and **Author** classes defined in the previous section.
+The data to be imported needs to match the classes and properties defined in the Weaviate database schema. So in our case, we will import data according to the properties of the **Publication** class defined in the previous section.
 
 Weaviate allows data objects to be created as a single object or in batches. For importing data, we **strongly suggest that you use batch imports**. Accordingly, this guide is written for batch import methods.
 
@@ -34,7 +34,7 @@ Weaviate allows data objects to be created as a single object or in batches. For
 
 <!-- As you've seen in the [basics getting started guide](./basics.html#data-objects-in-weaviate), Weaviate data objects are class-property-based JSON objects. -->
 
-For the purpose of this guide, we've prepared a **data.json** file containing a few Authors and Publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json){:target="_blank"}, and add it to your project.
+For the purpose of this guide, we've prepared a **data.json** file containing a few publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json){:target="_blank"}, and add it to your project.
 
 Now, to import the data we need to follow these steps:
 0. Connect to your Weaviate instance
@@ -43,18 +43,11 @@ Now, to import the data we need to follow these steps:
 0. Loop through all Publications
   * Parse each publication – to a structure expected by the language client of your choice
   * Push the object through a batch process
-0. Loop through all Authors
-  * Parse each author – to a structure expected by the language client of your choice
-  * Push the object through a batch process
 0. Flush the batch process – in case there are any remaining objects in the buffer
 
-Here is the full code you need to import the **Publications** (note, the **importAuthors** example is shorter).
+Here is the full code you need to import the **Publications**.
 
 {% include code/1.x/getting-started.import.publications.html %}
-
-And here is the code to import **Authors**.
-
-{% include code/1.x/getting-started.import.authors.html %}
 
 You can quickly check the imported object by opening – `weaviate-endpoint/v1/objects` in a browser, like this:
 
@@ -176,30 +169,16 @@ The result should look something like this:
       properties: [Object],
       vectorWeights: null
     },
-    {
-      class: 'Author',
-      creationTimeUnix: 1665494795016,
-      id: '779c8970-0594-301c-bff5-d12907414002',
-      lastUpdateTimeUnix: 1665494795016,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Author',
-      creationTimeUnix: 1665494795016,
-      id: 'dedd462a-23c8-32d0-9412-6fcf9c1e8149',
-      lastUpdateTimeUnix: 1665494795016,
-      properties: [Object],
-      vectorWeights: null
-    }
   ],
-  totalResults: 15
+  totalResults: 13
 }
 ```
 
-Congratulations! You have built a fully functioning Weaviate vector database 🚀🎉. We hope that was pretty straightforward. 
+If you see something like the result above - congratulations! You have built a fully functioning Weaviate database and populated it with data 🚀🎉. 
 
-One important note from us is that for importing large datasets, creating an optimized import strategy will make a big difference in import time. So please read our tips below on [data import best practices](#data-import---best-practices) if this is the case for you.
+Now you are ready to start asking some big questions to Weaviate.
+
+> For importing large datasets, creating an optimized import strategy will make a big difference in import time. So please read our tips below on [data import best practices](#data-import---best-practices) if this is the case for you.
 
 ## Recap
 
@@ -218,7 +197,7 @@ One important note from us is that for importing large datasets, creating an opt
 Although importing itself is pretty straightforward, creating an optimized import strategy needs a bit of planning. Here are a few things to keep in mind.
 
 0. When importing, you want to make sure that you max out all the CPUs available. It's more often than not the case that the import script is the bottleneck.
-    0. Tip, use `htop` when importing to see if all CPUs are maxed out.
+    0. Use `htop` when importing to see if all CPUs are maxed out.
     0. Learn more about how to plan your setup [here](./installation.html#running-weaviate-yourself).
 0. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
 0. For Kubernetes, fewer large machines are faster than more small machines. Just because of network latency.
