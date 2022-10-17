@@ -2,7 +2,7 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Modules
+title: Introduction to modules
 description: Getting started with querying Weaviate
 tags: ['modules']
 menu-order: 9
@@ -24,7 +24,7 @@ You can set up the vectorization per class as follows:
     "vectorizer": "text2vec-openai",
 }
 ```
-
+ 
 Next, you need to tell Weaviate what you want to have vectorized. Only the payload, or do you also want to include the class name and the property name?
 
 ```json

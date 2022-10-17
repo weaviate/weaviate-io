@@ -1,0 +1,80 @@
+<!-- SET PYTHON TAB CONTENT -->
+{% capture python %}
+
+import weaviate
+import json
+
+client = weaviate.Client("https://some-endpoint.semi.network/")
+
+where_filter = {
+  "path": ["name"],
+  "operator": "Like",
+  "valueString": "New York*"
+}
+
+query_result = (
+  client.query
+  .aggregate("Publication")
+  .with_fields("meta { count }")
+  .with_where(where_filter)
+  .do()
+)
+
+print(json.dumps(query_result, indent=4))
+
+{% endcapture %}
+
+<!-- SET JAVASCRIPT TAB CONTENT -->
+{% capture javascript %}
+
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.semi.network/',
+  }); 
+
+
+const where_filter = {
+  "path": ["name"],
+  "operator": "Like",
+  "valueString": "Times"
+}
+
+client.graphql
+  .aggregate()
+  .withClassName('Publication')
+  .withFields('meta { count }')
+  .withWhere(where_filter)
+  .do()
+  .then(res => {
+      console.log(res)
+  })
+  .catch(err => {
+      console.error(err)
+  });
+
+
+{% endcapture %}
+
+<!-- SET GO TAB CONTENT -->
+{% capture go %}
+
+TBC 
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+ TBC
+
+{% endcapture %}
+
+<!-- SET CURL TAB CONTENT -->
+{% capture curl %}
+
+TBC
+
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='getting-started-query-aggregate-2' %}
