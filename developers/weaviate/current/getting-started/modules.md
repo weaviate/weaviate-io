@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: weaviate
-sub-menu: Getting started
+# sub-menu: Getting started
 title: Introduction to modules
 description: Getting started with querying Weaviate
 tags: ['modules']
