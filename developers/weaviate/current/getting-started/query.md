@@ -21,8 +21,8 @@ By the end of this section, you will have performed vector and scalar searches s
 At this point, you should have: 
 - Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology)
 - Installed the appropriate client library in a language of your choice
-- Added a schema for the **Publication** and **Author** classes, and
-- Imported **Publication** and **Author** data.
+- Added a schema for the **Publication** class, and
+- Imported **Publication** data.
 
 If you have not done these, go back to [set up your Weaviate instance and client library](./installation.html), [add a schema](./schema.html) and [import data](./import.html) first. It will make it easier to follow along with this section, and you will have more fun with it :).
 
@@ -32,7 +32,7 @@ A Weaviate database can be queried using one or a combination of a semantic (i.e
 
 First, we will start by making queries to Weaviate to retrieve **Publication** objects that we imported earlier.
 
-> Weaviate's queries are built using GraphQL. If you're new, don't worry, we will take it step-by-step and build up from the basics. By the time you've seen a few examples, you will be familiar with the basic structure, and hopefully see why we use it :).
+> Note: Weaviate's queries are built using GraphQL. If this is new to you, don't worry. We will take it step-by-step and build up from the basics. Also, in many cases the GraphQL syntax is abstracted by the client.
 
 The function to use in retrieving objects from your Weaviate database is `Get`. If this looks familiar, that's because you have already used it! 
 
@@ -44,7 +44,7 @@ Let's build on this query by adding a vector search.
 
 Each of the **Publication** objects that we imported earlier included vectors comprised of three dimensions. For example, *Wired* included the vector `[-0.13612957, -0.06287188, -0.066284634]`. 
 
-So try the following code example, where our client queries Weaviate with (`[-0.14, -0.06, -0.07]`), which is a rounded version of *Wired*'s vector. It should return *Wired* as well as any other similar **Publication** objects. 
+So try the following code example, where our client queries Weaviate with a rounded version of *Wired*'s vector (i.e. `[-0.14, -0.06, -0.07]`). It should return *Wired* as well as any other similar **Publication** objects. 
 
 {% include code/1.x/getting-started.query.publication.nearvector.html %}
 
@@ -98,19 +98,19 @@ Try it out, and you should see a response like this:
 }
 ```
 
-Congratulations, you've performed your first vector search with Weaviate! 
+And now you've performed your first vector search with Weaviate. :) 
 
-As we expected, the top result is *Wired* with near 1 `certainty` value. (Remember that our query vector was a truncation of *Wired*'s vector value.) Weaviate also returns two additional **Publication** objects whose `certainty` values are within our specified threshold. 
+As we expected, the top result is *Wired* with near-maximum (i.e. 1) `certainty` value. (Remember that our query vector was a truncation of *Wired*'s vector value.) Weaviate also returns two additional **Publication** objects whose `certainty` values are within our specified threshold. 
 
 Hopefully, you can begin to see how vector searches work. The core concept is to retrieve objects based on their similarity to the query vector. 
 
 ## Filters
 
-Vector search alone may not be sufficient, however, as it may return too many objects, or too many irrelevant results. 
+As useful as it is, sometimes vector search alone may not be sufficient. For example, you may actually only be interested in **Publication** objects similar to *Wired* that are published outside of the United States, or was established after the year 2010. 
 
-For example, you may actually only be interested in **Publication** objects that are published outside of the United States, or was established after the year 2010. 
+In these cases, you can use Weaviate's scalar filtering capabilities - either alone, or in combination with the vector search. 
 
-In these cases, you can use Weaviate's scalar (also known as *lexical*) search capabilities to filter results of the vector search. Try the following:
+Try the following:
 
 {% include code/1.x/getting-started.query.publication.where.1.html %}
 
@@ -141,11 +141,11 @@ This query asks Weaviate for **Publication** objects whose names contain the str
 
 > Notice here that even though the wildcard (*) was only appended to the end of "New York", it still found names that does not begin with "New York". So why use the wildcard, you ask? Without it, the publication _New Yorker_ would not have been returned. Try it out!
 
-That's quite straightforward, isn't it? And now, let's see how scalar filters can be combined with vector search functions. 
+Now that you've seen a scalar filter, let's see how it can be combined with vector search functions. 
 
 ### Vector search with scalar filters
 
-Combining a filter with a vector search is a straightforward, additive process. 
+Combining a filter with a vector search is an additive process. Let us show you what we mean by that.
 
 Take a look at the below example, where we start from the `nearVector` search used above and add a `where` filter to only retrieve **Publication** objects containing the string `Times`.
 
@@ -175,7 +175,9 @@ Running this code should result in the below:
 }
 ```
 
-Instead of the three results that you saw earlier, Weaviate now only returns one (*Financial Times*) that is within the specified vector `certainty`, and includes the search string ("Times"). Arguments set in the filter simply applies to the search in addition to the criteria set by the search vector and the certainty value. 
+Instead of the three objects that you saw earlier, Weaviate now only returns one (*Financial Times*) object that is within the specified vector `certainty`, *and* includes the search string ("Times"). 
+
+In other words, the restrictions imposed by the filter simply applies in addition to the criteria set by the search vector and the certainty value. 
 
 Now that we've seen various ways to get individual data objects, let's take a look at the `Aggregate` function before we go.
 
@@ -267,21 +269,22 @@ As you can see, the `Explore{}` can be a very useful tool for search through the
 
 ## Recap
 
-Congratulations - you've made it through our getting started guide!
+Congratulations - you've made it through our getting started guide! We hope that this guide was a useful introduction to Weaviate, all the way from installation to performing queries.
 
-We hope that this guide gave you a glimpse into Weaviate, all the way from installation to its search capabilities.
+Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us. 
 
-Of course, there is a lot more to Weaviate. So below, we include a few links that might help you to tailor Weaviate to meet your needs.
+Also, please feel free to reach out to us on our community [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw). We love to hear from our users. 
+
+See you soon!
 
 # More Resources
 
 ## What next?
 
-- [Modules](./modules.html)
-- [Show me how to set up the clients](../core-knowledge/clients.html)
-- [More on `Get{}`](../graphql-references/get.html)
-- [More on `Aggregate{}`](../graphql-references/aggregate.html)
-- [More on `Explore{}`](../graphql-references/explore.html)
+- [Introduction to modules](./modules.html)
+- [Installation options](../installation/index.html)
+- [Roadmap](../roadmap/index.html)
+- [Learn more about Weaviate](../core-knowledge/index.html)
 
 ## How is certainty calculated?
 
