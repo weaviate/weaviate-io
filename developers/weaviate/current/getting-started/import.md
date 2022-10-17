@@ -18,13 +18,13 @@ In this section, we will show you how you can now import data objects into your 
 ## Prerequisites 
 
 At this point, you should have: 
-- Weaviate running either in a sandbox on the [Weaviate Cloud Service](https://console.semi.technology) or locally with Docker
+- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology)
 - Installed the appropriate client library in a language of your choice, and
 - Added a schema for the **Publication** and **Author** classes.
 
 If you have not done these, go back to [set up your Weaviate instance and client library](./installation.html) and [add a schema](./schema.html) first and come back :).
 
-## Importing data
+## Import data
 
 The data to be imported needs to match the classes and properties defined in the Weaviate database schema. So in our case, we will import data according to the properties of the **Publication** and **Author** classes defined in the previous section.
 

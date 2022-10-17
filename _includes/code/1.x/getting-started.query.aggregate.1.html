@@ -1,0 +1,65 @@
+<!-- SET PYTHON TAB CONTENT -->
+{% capture python %}
+
+import weaviate
+import json
+
+client = weaviate.Client("https://some-endpoint.semi.network/")
+
+query_result = (
+  client.query
+  .aggregate("Publication")
+  .with_fields("meta { count }")
+  .do()
+)
+
+print(json.dumps(query_result, indent=4))
+
+{% endcapture %}
+
+<!-- SET JAVASCRIPT TAB CONTENT -->
+{% capture javascript %}
+
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.semi.network/',
+  }); 
+
+client.graphql
+    .aggregate()
+    .withClassName('Publication')
+    .withFields('meta { count }')
+    .do()
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.error(err)
+    });
+
+{% endcapture %}
+
+<!-- SET GO TAB CONTENT -->
+{% capture go %}
+
+TBC 
+
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+ TBC
+
+{% endcapture %}
+
+<!-- SET CURL TAB CONTENT -->
+{% capture curl %}
+
+TBC
+
+{% endcapture %}
+
+{% include molecule-restful-block-request.html block_id='getting-started-query-aggregate-1' %}
