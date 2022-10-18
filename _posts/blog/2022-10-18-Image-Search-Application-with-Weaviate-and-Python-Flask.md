@@ -42,29 +42,25 @@ Note, make sure you add the new images to the `flask-app/static/img` folder and 
 
 For a use case like ours, where we would like to identify similar types of dogs, the vectorization must work in a way that captures the information about the dog (breed, size, color, etc.). 
 
-The img2vec-neural module in Weaviate is designed to solve this exact problem! The module vectorizes each image to something that represents its contents, so that we can search images based on their semantic similarity. In other words, we can use img2vec-neural to query our database to see how similar the dogs are based on the image. Before we show you how to implement this, let’s quickly review the Weaviate img2vec-neural module.
+The `img2vec-neural` module in Weaviate is designed to solve this exact problem! The module vectorizes each image to something that represents its contents, so that we can search images based on their semantic similarity. In other words, we can use `img2vec-neural` to query our database to see how similar the dogs are based on the image. 
 
 ### Img2vec-neural Module 
-[Weaviate’s img2vec-neural module](https://weaviate.io/developers/weaviate/current/retriever-vectorizer-modules/img2vec-neural.html){:target="_blank"} is a flexible vectorizer that enables conversion of images to meaningful vectors. In this guide, we will use `ResNet-50` for vectorization, where the activations of the last hidden layer are extracted and used as the vector representing the image in our database.
+[Weaviate’s img2vec-neural module](https://weaviate.io/developers/weaviate/current/retriever-vectorizer-modules/img2vec-neural.html){:target="_blank"} is a flexible vectorizer that enables conversion of images to meaningful vectors. `ResNet-50` is the first model that is supported on Weaviate. `ResNet-50` is a Convolutional Neural Network (CNN) that was trained on the ImageNet database. The model was trained on more than 10 million images and 20,000 classes.  
 
 ## Weaviate Database
 ### Setup
-We have prepared a `docker-compose.yml` file for an instance of Weaviate with the `img2vec-neural` module pre-configured. To spin up your Weaviate instance, navigate to the `nearest-neighbor-dog-search` directory from the cloned git repository, and run 
+The demo contains a `docker-compose.yml` file, which defines all the Weaviate modules required to run this demo. In this file, you will see the module, which in our case is `img2vec-neural` trained on the `ResNet-50` model. To spin up your Weaviate instance, navigate to the `nearest-neighbor-dog-search` directory from the cloned git repository, and run;
 
 ```
 docker-compose up -d
 ``` 
-Once Weaviate is up, check that it is running and that you can connect to it like so:
+Once Weaviate is up, check that it is running with; 
 
-``` 
-import weaviate
-
-client = weaviate.Client("http://localhost:8080")
-schema = client.schema.get()
-print(schema)
+```bash
+python weaviate-test.py
 ```
 
-You should see something like this, and we are ready to go:
+You should see something like this, and we are ready to go!
 ```
 {"classes": []}
 ```
@@ -75,7 +71,7 @@ The dataset we’re using contains ten dogs, each containing the following prope
 
 This includes the class name, which in our case is “Dog” and the properties, such as `breed`, `image`, and `filepath`. In this case, we also need to add in the vectorizer definition, which is the `img2vec-neural` module, so that Weaviate knows to use that specific vectorizer. 
 
-We will tell Weaviate that breed and filepath values are strings, weight is stored as an integer, and images are stored as a `blob` dataType. Putting it all together, the schema definition should look like the following:
+We will tell Weaviate that breed and filepath values are strings, weight is stored as an integer, and images are stored as a `blob` dataType. Putting it all together, the schema definition should look like the following;
 
 ```
 schema = {
@@ -113,12 +109,12 @@ schema = {
    ]
 }
 ```
-Once you’ve defined the schema, it is added to Weaviate with 
+Once you’ve defined the schema, it is then added to Weaviate. 
 ```
 client.schema.create(schema)
 ```
 
-Run the `create-schema.py` to add the schema to your Weaviate instance:
+Run the `create-schema.py` to add the schema to your Weaviate instance;
 
 ```bash
 python create-schema.py
@@ -127,11 +123,13 @@ python create-schema.py
 ### Images to Base64
 We are almost ready to populate our Weaviate database full of cute dogs! We first need to encode the images to base64 values. Encoding the images to base64 is a requirement for using the blob dataType, which we defined in the schema. 
 
-There is an `images-to-base64.py` file that will create a new folder (`base64_images`) that stores the base64 image. The ten images in our dataset have already been converted and are in the base64_images folder. If you add more images to the dataset, make sure you run:
+The ten images in the dataset are stored in the `flask-app/static/img` folder. To convert the images to base64 run; 
 
 ```bash
 python images-to-base64.py
 ```
+
+Note, the base64 images are stored in the `base64_images` folder. 
 
 ### Upload the Data Objects
 Now that we have defined the schema and converted the images to base64 values, we can upload the data objects to Weaviate.  
@@ -190,7 +188,7 @@ clear_up_dogs()
 import_data()
 ```
 
-Run this file with:
+Run this file with;
 ```bash
 python upload-data-objects.py
 ```
@@ -205,7 +203,7 @@ Here is a recap of what we’ve done so far:
 ![Weaviate Dogs](/img/blog/image-search-application-with-weaviate-and-python-flask/weaviate-dogs1.jpg)
 
 ## Flask Application
-Flask is a web application framework written in Python. Using Flask is a quick and easy way to build a web application, so we will use it in this guide. 
+[Flask](https://flask.palletsprojects.com/en/2.2.x/){:target="_blank"} is a web application framework written in Python. Using Flask is a quick and easy way to build a web application, so we will use it in this guide. 
 
 ### Application File 
 First, we will need to create our Flask application and connect it to our Weaviate client. 
@@ -216,7 +214,7 @@ app.config["UPLOAD_FOLDER"] = "/temp_images"
 client = weaviate.Client("http://localhost:8080")
 ```
 
-We will use the nearImage operator in Weaviate, so that it will search for images closest to the users’ upload image. To do this we will construct the `weaviate_img_search` function to get the relevant results. The response from our search query will include the closest objects in the Dog class. From the response, the function will output the dog image with the breed name and filepath. Note that the query is also formulated so that the response is limited to two results. 
+We will use the `nearImage` operator in Weaviate, so that it will search for images closest to the users’ upload image. To do this we will construct the `weaviate_img_search` function to get the relevant results. The response from our search query will include the closest objects in the Dog class. From the response, the function will output the dog image with the breed name and filepath. Note that the query is also formulated so that the response is limited to two results. 
 
 ```
 def weaviate_img_search(img_str):
@@ -230,6 +228,7 @@ def weaviate_img_search(img_str):
  
    return weaviate_results["data"]["Get"]["Dog"]
 ```
+How cool is that? We can find visually similar dogs in just a simple query to Weaviate. We could even scale this to millions of images running in milliseconds with [Weaviate's ANN index](https://weaviate.io/developers/weaviate/current/vector-index-plugins/index.html){:target="_blank"}. 
 
 Once we’ve created the app, we need to define the pages that will be on the website. The homepage will have the ten images of the dogs in our dataset. If you add images, it will also populate on the homepage!
 
@@ -238,7 +237,7 @@ The `/process_image` page will show the uploaded image along with the results fr
 The code block below will:
 1. Populate the homepage with the images from the dataset.
 2. Save the uploaded image and convert it to base64
-3. Return the nearImage results from Weaviate to return the filepaths and breeds
+3. Return the `nearImage` results from Weaviate to return the filepaths and breeds
 
 ```
 @app.route("/") # defining the pages that will be on the website
@@ -278,13 +277,13 @@ Our `index.html` template has been set up to show images of the returned dog bre
 { % endfor % }
 ```
 
-We then run the application as such, 
+We then run the application as such; 
 ```
 if __name__ == "__main__":
    app.run()
 ```
 
-Now you will run this file with:
+Now you will run this file with;
 
 ```bash
 python flask-app/application.py
@@ -302,8 +301,8 @@ And while this example uses a small dataset, Weaviate can power image searches l
 Thanks for reading, and see you soon. You can also check out the other great [Weaviate demos](https://github.com/semi-technologies/weaviate-examples){:target="_blank"} on Github!  
 
 ## What’s Next
-Check out the [Getting Started with Weaviate](https://weaviate.io/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](https://weaviate.io/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
 
 Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don’t forget to give us a ⭐️ while you are there.
