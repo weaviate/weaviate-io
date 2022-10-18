@@ -8,7 +8,7 @@ author-img: /img/people/icon/erika.jpg
 card-img: /img/blog/hero/image-search-application-with-weaviate-and-python-flask.png
 hero-img: /img/blog/hero/image-search-application-with-weaviate-and-python-flask.png
 og: /img/blog/hero/image-search-application-with-weaviate-and-python-flask.png
-date: 2022-10-17
+date: 2022-10-18
 toc: true
 ---
 Recently, I was working with my colleague Marcin (an engineer from Weaviate core) on a really cool demo project. The idea was to build an image-search application for dogs, which allows a user to provide a picture of a dog, and the app would respond with the most similar breed. And if a user provides a picture of their partner (I might've tested this on my boyfriend 😄), it returns the breed most similar to them.
