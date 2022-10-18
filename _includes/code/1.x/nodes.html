@@ -1,5 +1,10 @@
 {% capture python %}
-// TODO
+import weaviate
+
+client = weaviate.Client('http://localhost:8080')
+
+nodes_status = client.cluster.get_nodes_status()
+print(nodes_status)
 {% endcapture %}
 
 {% capture javascript %}
