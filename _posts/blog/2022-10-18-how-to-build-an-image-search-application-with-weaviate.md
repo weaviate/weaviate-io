@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Image Search Application with Weaviate and Python Flask
-description: Learn how to use the Img2vec-neural module in Weaviate and build a web application with Python Flask
+title: How to build an Image Search Application with Weaviate 
+description: Learn how to use build an image search application using the Img2vec-neural module in Weaviate
 published: true
 author: Erika Cardenas 
 author-img: /img/people/icon/erika.jpg
-card-img: /img/blog/hero/image-search-application-with-weaviate-and-python-flask.png
-hero-img: /img/blog/hero/image-search-application-with-weaviate-and-python-flask.png
-og: /img/blog/hero/image-search-application-with-weaviate-and-python-flask.png
+card-img: /img/blog/hero/Image-Search-Application-with-Weaviate.png
+hero-img: /img/blog/hero/Image-Search-Application-with-Weaviate.png
+og: /img/blog/hero/Image-Search-Application-with-Weaviate.png
 date: 2022-10-18
 toc: true
 ---
@@ -288,7 +288,13 @@ Now you will run this file with;
 ```bash
 python flask-app/application.py
 ```
-If you navigate to 127.0.0.1, you will see the running web app. And just like that, you’ve built a complete app! Users can load an image of their favorite dog and see the nearest neighbor breed in the database!
+If you navigate to 127.0.0.1, you will see the running web app. 
+
+Let's test a query to see which dog looks most similar to a Goldendoodle puppy. We can see that the puppy resembles the Goldendoodle and Golden Retriever that are in our database.
+
+![Results](/img/blog/image-search-application-with-weaviate-and-python-flask/results.jpg){:width="70%"}
+
+And just like that, you’ve built a complete app! Users can load an image of their favorite dog and see the nearest neighbor breed in the database!
 
 ## Summary 
 In this demo, we reviewed how to:
