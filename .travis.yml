@@ -5,10 +5,11 @@ rvm:
 - 2.7.0
 before_install:
 - echo 0
-- git remote set-branches --add origin $TRAVIS_BRANCH
+# - git remote set-branches --add origin $TRAVIS_BRANCH
+- git remote set-branches --add origin main
 - git fetch
 - echo 1
-- git diff --name-only --diff-filter=AC origin/main..$TRAVIS_BRANCH
+- git diff --name-only --diff-filter=AC main..$TRAVIS_BRANCH
 - echo 2
 - git diff --name-only --diff-filter=AC origin/main..HEAD
 - echo 3
