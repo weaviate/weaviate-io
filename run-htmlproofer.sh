@@ -1,13 +1,14 @@
 #!/bin/bash
-URL_IGNORES="/console.semi.technology/,/weaviate-newsletter.semi.technology/,/demo.dataset.playground.semi.technology/,/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/,/computerhope.com/"
+set -e
 
+URL_IGNORES="/console.semi.technology/,/weaviate-newsletter.semi.technology/,/demo.dataset.playground.semi.technology/,/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/,/computerhope.com/"
 
 # FOR LOCAL TEST
 # read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main... | sed -e "s/ /\\\ /g"`
 
 # GET git diff – to get a list of new files in this PR
-# read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main...$TRAVIS_BRANCH | sed -e "s/ /\\\ /g"`
 read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC HEAD...$TRAVIS_BRANCH | sed -e "s/ /\\\ /g"`
+# read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main...$TRAVIS_BRANCH | sed -e "s/ /\\\ /g"`
 
 # then add them all to a string containing all the new .html files that htmlproofer should ignore
 DIFF_IGNORES=""
