@@ -6,7 +6,8 @@ URL_IGNORES="/console.semi.technology/,/weaviate-newsletter.semi.technology/,/de
 # read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main... | sed -e "s/ /\\\ /g"`
 
 # GET git diff – to get a list of new files in this PR
-read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main...$TRAVIS_BRANCH | sed -e "s/ /\\\ /g"`
+# read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main...$TRAVIS_BRANCH | sed -e "s/ /\\\ /g"`
+read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC HEAD...$TRAVIS_BRANCH | sed -e "s/ /\\\ /g"`
 
 # then add them all to a string containing all the new .html files that htmlproofer should ignore
 DIFF_IGNORES=""
@@ -28,7 +29,6 @@ bundle exec htmlproofer --ignore-status-codes '0,999,429,403,303' \
 --allow-missing-href=true \
 --allow_hash_href \
 --assume-extension \
---enforce_https=false \
-./_site \
 --ignore-urls "${URL_IGNORES}${DIFF_IGNORES}" \
 --swap-urls '^/BASEURL/:/'
+./_site \
