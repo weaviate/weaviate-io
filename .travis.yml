@@ -4,7 +4,6 @@ language: ruby
 rvm:
 - 2.7.0
 before_install:
-- git diff --name-only --diff-filter=AC origin/main..$TRAVIS_BRANCH
 - echo 0
 - git remote set-branches --add origin $TRAVIS_BRANCH
 - git fetch
