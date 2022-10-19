@@ -9,11 +9,11 @@ before_install:
 - git remote set-branches --add origin html-proofer-update
 - git fetch
 - echo 1
-- git diff --name-only --diff-filter=AC main..html-proofer-update
+# - git diff --name-only --diff-filter=AC main..html-proofer-update
 - echo 2
-- git diff --name-only --diff-filter=AC origin/main..HEAD
+# - git diff --name-only --diff-filter=AC origin/main..HEAD
 - echo 3
-- git diff --name-only --diff-filter=AC origin/main..HEAD
+- git diff --name-only --diff-filter=AC main..HEAD
 - 
 - sudo apt-get update
 - sudo apt-get install -y minify
