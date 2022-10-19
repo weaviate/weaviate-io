@@ -58,7 +58,8 @@ script:
 # Validate versions
 ##
 # - htmlproofer --ignore-status-codes '0,999,429,403,303' --check-external-hash=false --check-internal-hash=false --allow-missing-href=true --ignore-files "/developers\/weaviate\/v/," --ignore-urls "/console.semi.technology/,/weaviate-newsletter.semi.technology/,/demo.dataset.playground.semi.technology/,/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/,/computerhope.com/" --allow_hash_href --assume-extension ./_site --swap-urls '^/BASEURL/:/' || travis_terminate 1
-- git remote set-branches --add origin $TRAVIS_BRNACH
+- echo "$TRAVIS_BRANCH"
+- git remote set-branches --add origin $TRAVIS_BRANCH
 - git fetch
 - bash ./run-htmlproofer.sh || travis_terminate 1
 - |
