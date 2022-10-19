@@ -30,5 +30,5 @@ bundle exec htmlproofer --ignore-status-codes '0,999,429,403,303' \
 --allow_hash_href \
 --assume-extension \
 --ignore-urls "${URL_IGNORES}${DIFF_IGNORES}" \
---swap-urls '^/BASEURL/:/'
-./_site \
+--swap-urls '^/BASEURL/:/' \
+./_site
