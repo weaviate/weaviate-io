@@ -4,6 +4,17 @@ language: ruby
 rvm:
 - 2.7.0
 before_install:
+- git diff --name-only --diff-filter=AC origin/main..$TRAVIS_BRANCH
+- echo 0
+- git remote set-branches --add origin $TRAVIS_BRANCH
+- git fetch
+- echo 1
+- git diff --name-only --diff-filter=AC main..$TRAVIS_BRANCH
+- echo 2
+- git diff --name-only --diff-filter=AC main..HEAD
+- echo 3
+- git diff --name-only --diff-filter=AC origin/main..HEAD
+- 
 - sudo apt-get update
 - sudo apt-get install -y minify
 - sudo apt-get install -y python3-pip
