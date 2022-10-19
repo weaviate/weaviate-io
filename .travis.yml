@@ -5,6 +5,7 @@ rvm:
 - 2.7.0
 before_install:
 - sudo apt-get update
+- bash ./run-htmlproofer.sh
 - sudo apt-get install -y minify
 - sudo apt-get install -y python3-pip
 - sudo apt-get install -y curl

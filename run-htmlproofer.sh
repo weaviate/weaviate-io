@@ -17,7 +17,9 @@ for i in "${DIFF_FILES[@]}"; do
         DIFF_IGNORES="${DIFF_IGNORES},$FILE_TO_IGNORE"
     fi
 done
-# echo $DIFF_IGNORES
+echo ======DIFF_IGNORES======
+echo $DIFF_IGNORES
+echo ========================
 
 # RUN htmlproofer
 bundle exec htmlproofer --ignore-status-codes '0,999,429,403,303' \
