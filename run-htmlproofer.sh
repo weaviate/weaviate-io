@@ -12,6 +12,7 @@ read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC HEAD...$TRAVIS_BR
 # then add them all to a string containing all the new .html files that htmlproofer should ignore
 DIFF_IGNORES=""
 for i in "${DIFF_FILES[@]}"; do
+    echo "DIFF: $i"
     if [[ $i =~ ^developers/.* ]]
     then
         FILE_TO_IGNORE=https://weaviate.io\/${i%.md}.html
