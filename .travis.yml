@@ -4,8 +4,8 @@ language: ruby
 rvm:
 - 2.7.0
 before_install:
-- echo 0
-- echo "::>" $(git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD))
+# - echo 0
+# - echo "::>" $()
 # - git remote set-branches --add origin $TRAVIS_BRANCH
 # - git remote set-branches --add origin html-proofer-update
 # - git fetch
@@ -13,9 +13,9 @@ before_install:
 # - git diff --name-only --diff-filter=AC main..html-proofer-update
 # - echo 2
 # - git diff --name-only --diff-filter=AC origin/main..HEAD
-- echo 3
-- git diff --name-only --diff-filter=AC main..HEAD
-- 
+# - echo 3
+# - git diff --name-only --diff-filter=AC main..HEAD
+# - 
 - sudo apt-get update
 - sudo apt-get install -y minify
 - sudo apt-get install -y python3-pip
