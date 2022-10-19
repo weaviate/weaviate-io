@@ -5,7 +5,7 @@ rvm:
 - 2.7.0
 before_install:
 - echo 0
-- git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD)
+- echo "::>" $(git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD))
 # - git remote set-branches --add origin $TRAVIS_BRANCH
 # - git remote set-branches --add origin html-proofer-update
 # - git fetch
