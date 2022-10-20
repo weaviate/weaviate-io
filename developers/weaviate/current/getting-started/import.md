@@ -18,11 +18,11 @@ In this section, we will show you how to import data objects into your Weaviate 
 ## Prerequisites 
 
 At this point, you should have: 
-- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology)
+- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology){:target="_blank"}
 - Installed the appropriate client library in a language of your choice, and
 - Added a schema for the **Publication** class.
 
-If you have not done these, go back to [set up your Weaviate instance and client library](./installation.html) and [add a schema](./schema.html) first and come back :).
+If you have not done this, go back to [set up your Weaviate instance and client library](./installation.html){:target="_blank"} and [add a schema](./schema.html){:target="_blank"} first and come back 🙂.
 
 ## Import data
 
@@ -45,7 +45,7 @@ Now, to import the data we need to follow these steps:
   * Push the object through a batch process
 0. Flush the batch process – in case there are any remaining objects in the buffer
 
-Here is the full code you need to import the **Publications**.
+Here is the full code you need to import the **Publications**;
 
 {% include code/1.x/getting-started.import.publications.html %}
 

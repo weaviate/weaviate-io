@@ -12,25 +12,25 @@ toc: true
 
 Now we are ready start to work on our Weaviate database.
 
-For this guide, imagine that we are to build a database of publications. Before populating our database with data objects, we must first tell the database about the structure of the information to be saved. 
+For this guide, let's build a database containing news publications. Before populating our database with data objects, we must first tell the database about the structure of the information to be saved. 
 
-This is called a _schema_. In our case, our schema would specify the structure of **Publication** and objects that Weaviate will store.
+This is called a _schema_. In our case, our schema specifies the structure of the **Publication** and objects that Weaviate will store.
 
-Here, we will show you how you can set up such a schema.
+Here, we will show you how to set up such a schema.
 
 ## Prerequisites 
 
 At this point, you should have: 
-- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology), and
+- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology){:target="_blank"}, and
 - Installed the appropriate client library in a language of your choice. 
 
-If you have not done these, [go back](./installation.html) to set up your Weaviate instance and client library first and come back :).
+If you have not done this, [go back](./installation.html) to set up your Weaviate instance and client library first and come back :).
 
 ## Connect to Weaviate
 
 First, let's make sure that you can connect to your Weaviate instance.
 
-To do this we need to point the `host` endpoint to *your* instance. Just replace `some-endpoint` in the code example below with the `cluster-id`.
+To do this we need to point the `host` endpoint to *your* instance. Just replace `some-endpoint` in the code example below with the `cluster-id` you created in the previous step.
 
 > Note: From now on, all examples will provide the code using the WCS endpoint:<br/> `"some-endpoint.semi.network/"`<br/>Replace the value to match your host endpoint.
 
@@ -46,10 +46,12 @@ The result should look like this:
 
 Great! You've successfully made your first client query to Weaviate 🎉. The output tells us that this instance of Weaviate does not contain any classes. So let's create some.
 
-### Note: Resetting your Weaviate instance
+### Resetting your Weaviate instance
 If this is not the case and your Weaviate instance contains classes, you can reset your instance, or you can manually delete the schema.
 
-**But beware that will also delete all associated objects!** So you do not want to be doing this to a production database. For example, the Python code to do so is:
+**But beware that will also delete all associated objects!** So you do not want to do this to a production database. 
+
+Run this Python code to reset your instance;
 
 ```python
 import weaviate
@@ -161,6 +163,6 @@ Although auto schema works well for some instances, we generally advise manually
 
 ## Other schema operations
 
-All schema operations are available in the [API documentation for the schema endpoint](../restful-api-references/schema.html). The documentation also includes examples in different client languages.
+All schema operations are available in the [API documentation for the schema endpoint](../restful-api-references/schema.html){:target="_blank"}. The documentation also includes examples in different client languages.
 
 {% include docs-support-links.html %}
