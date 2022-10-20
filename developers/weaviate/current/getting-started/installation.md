@@ -16,9 +16,9 @@ Here, you will be creating a new Weaviate instance for use throughout the gettin
 
 ## Weaviate Cloud Service
 
-The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use _Weaviate Cloud Service_ (WCS). WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate. 
+The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use _Weaviate Cloud Service_ (WCS). WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate.   
 
-We offer a free sandbox in WCS for you to play around with, so let's use that for this guide. 
+WCS offers a free sandbox for you to play around with, so let's use that for this guide. 
 
 ### Sign in to WCS
 
@@ -34,12 +34,11 @@ To create a new Weaviate Cluster:
 0. Press the "Create a Weaviate Cluster" button
 0. Configure the cluster:
     0. Set a unique `name` for your cluster – note: The name will become part of the URL uses to access this instance. 
-    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after a number of days
+    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 30 days
     0. Leave the `Weaviate Version` as the latest
-    0. If asked, leave the `Standalone Or Modules` as `Standalone, no Modules`
-    0. **change** the `OIDC Authentication` to `Disabled`
+    0. **Change** the `OIDC Authentication` to `Disabled`
     
-    ![Cluster Configuration](/img/getting-started/install/cluster-configuration.jpg){:style="max-width: 600px"}
+    ![Cluster Configuration](/img/getting-started/install/WCS-screenshot.jpg){:style="max-width: 600px"}
 0. Finally, press **Create**.
 
 This will start the process to create a new cluster. The status indicator on the page will show the progress (in %); after a short while, you should see a green tick ✔️ - indicating that the cluster is ready.
@@ -55,23 +54,23 @@ If you see this JSON response, *congratulations!* you have successfully started 
 
 ## Client Libraries
 
-You can communicate with Weaviate from your code by using one of the available [client libraries](../client-libraries/) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/).
+You can communicate with Weaviate from your code by using one of the available [client libraries](../client-libraries/){:target="_blank"} (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/){:target="_blank"}.
 
 Add the client library to your project as follows:
 
 <!-- TODO: update it accordion -->
 
-* For `Python` add the `weaviate-client` to your system libraries with `pip`:
+* For `Python` add the `weaviate-client` to your system libraries with `pip`;
   ```bash
   $ pip install weaviate-client
   ```
 
-* For `JavaScript` add `weaviate-client` to your project with `npm`:
+* For `JavaScript` add `weaviate-client` to your project with `npm`;
   ```bash
   $ npm install weaviate-client
   ```
 
-* For `Java` add this dependency to your project:
+* For `Java` add this dependency to your project;
   ```xml
   <dependency>
     <groupId>technology.semi.weaviate</groupId>
@@ -80,7 +79,7 @@ Add the client library to your project as follows:
   </dependency>
   ```
 
-* For `Go` add `weaviate-go-client` to your project with `go get`:
+* For `Go` add `weaviate-go-client` to your project with `go get`;
   ```bash
   go get github.com/semi-technologies/weaviate-go-client/v4
   ```
@@ -164,8 +163,8 @@ You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on 
 
 ## Other ways to run Weaviate
 
-We use WCS here to help you get started as quickly as possible. But you can also use one of self-deployment options with Docker or Kubernetes.
+We use WCS here to help you get started as quickly as possible. But you can also use one of self-deployment options with [Docker](https://weaviate.io/developers/weaviate/current/getting-started/installation.html#docker){:target="_blank"} or [Kubernetes](https://weaviate.io/developers/weaviate/current/getting-started/installation.html#kubernetes){:target="_blank"}. 
 
-[Read more](../installation/index.html) about different ways to run Weaviate, and installation options.
+[Read more](../installation/index.html){:target="_blank"} about different ways to run Weaviate, and installation options.
 
 {% include docs-support-links.html %}

@@ -32,7 +32,7 @@ Have fun working with Weaviate, and please do let us know when you have question
 
 The guide assumes that you are somewhat familiar with databases and vector embeddings. 
 
-But don't worry too much even if you are uncomfortable with any of these. The guide is structured so you should be able to follow along the it even if some of the concepts are unfamiliar. And you can always revisit some of these ideas other parts of our documentation. 
+But don't worry too much even if you are uncomfortable with any of these. The guide is structured so you should be able to follow along even if some of the concepts are unfamiliar. And you can always revisit some of these ideas in the documentation. 
 
 ## Next
 
