@@ -22,9 +22,9 @@ WCS offers a free sandbox for you to play around with, so let's use that for thi
 
 ### Sign in to WCS
 
-In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.semi.technology/){:target="_blank"} and "Sign in with the Weaviate Cloud Service". 
+In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.semi.technology/) and "Sign in with the Weaviate Cloud Service". 
 
-If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs){:target="_blank"} link and create an account.
+If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs) link and create an account.
 
 ![Register link](/img/getting-started/install/register.jpg){:style="max-width: 400px"}
 
@@ -54,23 +54,23 @@ If you see this JSON response, *congratulations!* you have successfully started 
 
 ## Client Libraries
 
-You can communicate with Weaviate from your code by using one of the available [client libraries](../client-libraries/){:target="_blank"} (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/){:target="_blank"}.
+You can communicate with Weaviate from your code by using one of the available [client libraries](../client-libraries/) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/).
 
 Add the client library to your project as follows:
 
 <!-- TODO: update it accordion -->
 
-* For `Python` add the `weaviate-client` to your system libraries with `pip`;
+* For `Python` add the `weaviate-client` to your system libraries with `pip`:
   ```bash
   $ pip install weaviate-client
   ```
 
-* For `JavaScript` add `weaviate-client` to your project with `npm`;
+* For `JavaScript` add `weaviate-client` to your project with `npm`:
   ```bash
   $ npm install weaviate-client
   ```
 
-* For `Java` add this dependency to your project;
+* For `Java` add this dependency to your project:
   ```xml
   <dependency>
     <groupId>technology.semi.weaviate</groupId>
@@ -79,7 +79,7 @@ Add the client library to your project as follows:
   </dependency>
   ```
 
-* For `Go` add `weaviate-go-client` to your project with `go get`;
+* For `Go` add `weaviate-go-client` to your project with `go get`:
   ```bash
   go get github.com/semi-technologies/weaviate-go-client/v4
   ```
@@ -163,8 +163,8 @@ You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on 
 
 ## Other ways to run Weaviate
 
-We use WCS here to help you get started as quickly as possible. But you can also use one of self-deployment options with [Docker](https://weaviate.io/developers/weaviate/current/getting-started/installation.html#docker){:target="_blank"} or [Kubernetes](https://weaviate.io/developers/weaviate/current/getting-started/installation.html#kubernetes){:target="_blank"}. 
+We use WCS here to help you get started as quickly as possible. But you can also use one of self-deployment options with [Docker](https://weaviate.io/developers/weaviate/current/getting-started/installation.html#docker) or [Kubernetes](https://weaviate.io/developers/weaviate/current/getting-started/installation.html#kubernetes). 
 
-[Read more](../installation/index.html){:target="_blank"} about different ways to run Weaviate, and installation options.
+[Read more](../installation/index.html) about different ways to run Weaviate, and installation options.
 
 {% include docs-support-links.html %}

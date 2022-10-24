@@ -14,7 +14,7 @@ Now we are ready start to work on our Weaviate database.
 
 For this guide, let's build a database containing news publications. Before populating our database with data objects, we must first tell the database about the structure of the information to be saved. 
 
-This is called a _schema_. In our case, our schema specifies the structure of the **Publication** and objects that Weaviate will store.
+This is called a _schema_. In our case, our schema will specify the structure of the **Publication** and objects that Weaviate will store.
 
 Here, we will show you how to set up such a schema.
 
