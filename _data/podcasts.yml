@@ -1,5 +1,13 @@
 ---
 - title: >
+    MosaicML Cloud
+  description: > 
+    Jonathan Frankle explains the new MosaicML Cloud, cost estimates for custom Large Language Models, and more!
+  youtube: oFyYaZbRviY
+  date: 2022-10-19T00:00:00Z
+  cover_image: '/img/podcasts/podcast-26.png'
+  is_use_case: false
+- title: >
     Vector Search in Production
   description: > 
     Erik Bernhardsson and Etienne Dilocker discuss Erik's work on ANNOY at Spotify and many more topics related to running Vector Search in Production!
