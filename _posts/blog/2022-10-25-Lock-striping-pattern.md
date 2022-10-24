@@ -1,13 +1,13 @@
 ---
 layout: post
-title: How striped locking pattern helped us avoid race conditions 
-description: On rare occasions, parallelized batch imports used to cause race conditions - when multiple batches contained identical objects with the same UUID. Thanks to the striped locking pattern, we found a reliable solution without any performance sacrifices.
+title: How Lock Striping pattern can solve race conditions 
+description: The Lock Striping pattern is a great way to solve race conditions - for example when dealing with concurent batch imports containing objects with the same UUID - witout sacrificing performance.
 published: true
 author: Dirk Kulawiak 
 author-img: /img/people/icon/dirk.jpg
-card-img: /img/blog/hero/striped-locking-pattern.png
-hero-img: /img/blog/hero/striped-locking-pattern.png
-og: /img/blog/hero/striped-locking-pattern.png
+card-img: /img/blog/hero/lock-striping-pattern.png
+hero-img: /img/blog/hero/lock-striping-pattern.png
+og: /img/blog/hero/lock-striping-pattern.png
 date: 2022-10-24
 toc: true
 ---
@@ -25,14 +25,15 @@ In the initial solution, we added a lock (sync.Mutex in Go), so now only a singl
 
 Upon further consideration, our team concluded that while using a single lock works, it is overkill. Almost all objects are unique and it is not a problem to process those concurrently. What we really needed was just a lock for each unique UUID. Cleverly, this approach would ensure that only one object per UUID is handled at each point in time, so that Weaviate cannot add multiple instances of objects with the same UUID. Meanwhile, it would still allow full parallelization of import processes to maximize performance.
 
-As it often happens, implementing a lock-per-key solution created a different issue. Due to the large dataset size mentioned earlier, there can be millions or even billions of objects with unique UUIDs in Weaviate, and creating a lock for each of them would require a ton of memory. So we found an elegant solution that is in-between both of the solutions above - a striped lock pattern.
+As it often happens, implementing a lock-per-key solution created a different issue. Due to the large dataset size mentioned earlier, there can be millions or even billions of objects with unique UUIDs in Weaviate, and creating a lock for each of them would require a ton of memory. So we found an elegant solution that is in-between both of the solutions above - a **lock striping** pattern.
 
 ## Solving both challenges
-Based on the UUID we assign each object to one of the 128 locks. This process is deterministic so objects with an identical UUID will always use the same lock. This gives us the best of both worlds: we have a small, fixed amount of locks, but still it guarantees that two objects with the same UUID are never processed concurrently. While with 128 locks, we only have 1/128th of the congestion of a single lock while still only using 128 * 8B = 1KB of memory. With the striped-lock pattern, the import time is the same as without a lock, and we fixed the race condition without any negative performance impact.
+Based on the UUID we assign each object to one of the 128 locks. This process is deterministic so objects with an identical UUID will always use the same lock. This gives us the best of both worlds: we have a small, fixed amount of locks, but still it guarantees that two objects with the same UUID are never processed concurrently. While with 128 locks, we only have 1/128th of the congestion of a single lock while still only using 128 * 8B = 1KB of memory. With the **lock striping** pattern, the import time is the same as without a lock, and we fixed the race condition without any negative performance impact.
 
 We are very pleased to introduce this solution, which should eliminate the above issues that can be caused by data duplication at import. Additionally, we are also very happy to have arrived at a solution that comes with no data import performance penalty, having seen the mammoth datasets that our users often deal with.
 
-The striped locking pattern was introduced in Weaviate `v1.15.4`. So if you are a Weaviate user, we encourage you to update Weaviate to the latest release as usual to take advantage of this improvement as well as many others.
+## Update Weaviate
+The **lock striping** pattern was introduced in Weaviate `v1.15.4`. So if you are a Weaviate user, we encourage you to update Weaviate to the latest release as usual to take advantage of this improvement as well as many others.
 
 Thank you for reading, and see you next time!
 
