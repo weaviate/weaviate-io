@@ -18,11 +18,11 @@ In this section, we will show you how to import data objects into your Weaviate 
 ## Prerequisites 
 
 At this point, you should have: 
-- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology){:target="_blank"}
+- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology)
 - Installed the appropriate client library in a language of your choice, and
 - Added a schema for the **Publication** class.
 
-If you have not done this, go back to [set up your Weaviate instance and client library](./installation.html){:target="_blank"} and [add a schema](./schema.html){:target="_blank"} first and come back 🙂.
+If you have not done this, go back to [set up your Weaviate instance and client library](./installation.html) and [add a schema](./schema.html) first and come back 🙂.
 
 ## Import data
 
@@ -34,7 +34,7 @@ Weaviate allows data objects to be created as a single object or in batches. For
 
 <!-- As you've seen in the [basics getting started guide](./basics.html#data-objects-in-weaviate), Weaviate data objects are class-property-based JSON objects. -->
 
-For the purpose of this guide, we've prepared a **data.json** file containing a few publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json){:target="_blank"}, and add it to your project.
+For the purpose of this guide, we've prepared a **data.json** file containing a few publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json), and add it to your project.
 
 Now, to import the data we need to follow these steps:
 0. Connect to your Weaviate instance
@@ -45,7 +45,7 @@ Now, to import the data we need to follow these steps:
   * Push the object through a batch process
 0. Flush the batch process – in case there are any remaining objects in the buffer
 
-Here is the full code you need to import the **Publications**;
+Here is the full code you need to import the **Publications**:
 
 {% include code/1.x/getting-started.import.publications.html %}
 

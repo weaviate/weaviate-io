@@ -19,12 +19,12 @@ By the end of this section, you will have performed vector and scalar searches s
 ## Prerequisites 
 
 At this point, you should have: 
-- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology){:target="_blank"}
+- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology)
 - Installed the appropriate client library in a language of your choice
 - Added a schema for the **Publication** class, and
 - Imported **Publication** data.
 
-If you have not done this, go back to [set up your Weaviate instance and client library](./installation.html){:target="_blank"}, [add a schema](./schema.html){:target="_blank"} and [import data](./import.html){:target="_blank"} first. It will make it easier to follow along with this section, and you will have more fun with it 🙂.
+If you have not done this, go back to [set up your Weaviate instance and client library](./installation.html), [add a schema](./schema.html) and [import data](./import.html) first. It will make it easier to follow along with this section, and you will have more fun with it 🙂.
 
 ## Vector search
 
@@ -36,7 +36,7 @@ First, we will start by making queries to Weaviate to retrieve **Publication** o
 
 The function to use in retrieving objects from your Weaviate database is `Get`. If this looks familiar, that's because you have already used it! 
 
-You should have performed a `Get` query at the end of the last section to confirm that the data import was successful. Here is the same code as a reminder.
+You should have performed a `Get` query at the end of the last section to confirm that the data import was successful. Here is the same code as a reminder:
 
 {% include code/1.x/getting-started.import.get.html %}
 
@@ -279,15 +279,15 @@ See you soon!
 
 # More Resources
 
-## How is certainty calculated?
-
-`certainty` in Weaviate is a measure of distance from the vector to the data objects. You can also calculate the cosine similarity based on the certainty as described [here](../more-resources/faq.html#q-how-do-i-get-the-cosine-similarity-from-weaviates-certainty){:target="_blank"}.
-
 ## What next?
 
-- [Introduction to modules](./modules.html){:target="_blank"}
-- [Installation options](../installation/index.html){:target="_blank"}
-- [Roadmap](../roadmap/index.html){:target="_blank"}
-- [Learn more about Weaviate](../core-knowledge/index.html){:target="_blank"}
+- [Introduction to modules](./modules.html)
+- [Installation options](../installation/index.html)
+- [Roadmap](../roadmap/index.html)
+- [Learn more about Weaviate](../core-knowledge/index.html)
+
+## How is certainty calculated?
+
+`certainty` in Weaviate is a measure of distance from the vector to the data objects. You can also calculate the cosine similarity based on the certainty as described [here](../more-resources/faq.html#q-how-do-i-get-the-cosine-similarity-from-weaviates-certainty).
 
 {% include docs-support-links.html %}
