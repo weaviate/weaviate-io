@@ -1,37 +1,28 @@
 #!/bin/bash
 set -e
 
+# Set default ignore domains
 URL_IGNORES="/console.semi.technology/,/weaviate-newsletter.semi.technology/,/demo.dataset.playground.semi.technology/,/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/,/computerhope.com/"
 
-# FOR LOCAL TEST
-# read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main... | sed -e "s/ /\\\ /g"`
-
-# GET git diff – to get a list of new files in this PR
-
+# Get the main branch – this is needed as Travis does only a shallow fetch
 git remote set-branches --add origin main
 git fetch
 
+# GET github diff between this branch and main
 read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD) developers/ | sed -e "s/ /\\\ /g"`
-# read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD) | sed -e "s/ /\\\ /g"`
-
-# read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC $(git merge-base main HEAD) | sed -e "s/ /\\\ /g"`
-
-# read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main..$TRAVIS_BRANCH | sed -e "s/ /\\\ /g"`
-# read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main..$TRAVIS_BRANCH | sed -e "s/ /\\\ /g"`
-# read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main...$TRAVIS_BRANCH | sed -e "s/ /\\\ /g"`
 
 # then add them all to a string containing all the new .html files that htmlproofer should ignore
 DIFF_IGNORES=""
+echo ======NEW_FILES_TO_IGNORE_BY_htmlproofer======
 for i in "${DIFF_FILES[@]}"; do
     # echo "DIFF: $i"
     if [[ $i =~ ^developers/.* ]]
     then
         FILE_TO_IGNORE=https://weaviate.io\/${i%.md}.html
         DIFF_IGNORES="${DIFF_IGNORES},$FILE_TO_IGNORE"
+        echo $FILE_TO_IGNORE
     fi
 done
-echo ======NEW_FILES_TO_IGNORE_BY_htmlproofer======
-echo $DIFF_IGNORES
 echo ==============================================
 
 # RUN htmlproofer
