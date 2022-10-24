@@ -53,11 +53,14 @@ script:
 ##
 # End Netlify
 ##
-
 ##
-# Validate versions
+# Run htmlproofer
 ##
-- htmlproofer --ignore-status-codes '0,999,429,403,303' --check-external-hash=false --check-internal-hash=false --allow-missing-href=true --ignore-files "/developers\/weaviate\/v/," --ignore-urls "/console.semi.technology/,/weaviate-newsletter.semi.technology/,/demo.dataset.playground.semi.technology/,/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/,/computerhope.com/" --allow_hash_href --assume-extension ./_site --swap-urls '^/BASEURL/:/' || travis_terminate 1
+# - htmlproofer --ignore-status-codes '0,999,429,403,303' --check-external-hash=false --check-internal-hash=false --allow-missing-href=true --ignore-files "/developers\/weaviate\/v/," --ignore-urls "/console.semi.technology/,/weaviate-newsletter.semi.technology/,/demo.dataset.playground.semi.technology/,/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/,/computerhope.com/" --allow_hash_href --assume-extension ./_site --swap-urls '^/BASEURL/:/' || travis_terminate 1
+- bash ./run-htmlproofer.sh || travis_terminate 1
+##
+# Update OpenAPI versions
+##
 - |
   OPENAPI_VERSION=$(curl -s -o /dev/null -w "%{http_code}" https://app.swaggerhub.com/apiproxy/registry/semi-technologies/weaviate/$(cat _config.yml | yq .weaviate_version))
   if [[ $OPENAPI_VERSION -ne 200 ]]
