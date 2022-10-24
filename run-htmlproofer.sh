@@ -23,18 +23,18 @@ read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC $(git merge-base 
 # then add them all to a string containing all the new .html files that htmlproofer should ignore
 DIFF_IGNORES=""
 for i in "${DIFF_FILES[@]}"; do
-    echo "DIFF: $i"
+    # echo "DIFF: $i"
     if [[ $i =~ ^developers/.* ]]
     then
         FILE_TO_IGNORE=https://weaviate.io\/${i%.md}.html
         DIFF_IGNORES="${DIFF_IGNORES},$FILE_TO_IGNORE"
     fi
 done
-echo ======DIFF_IGNORES======
+echo ======NEW_FILES_TO_IGNORE_BY_htmlproofer======
 echo $DIFF_IGNORES
-echo ========================
+echo ==============================================
 
-RUN htmlproofer
+# RUN htmlproofer
 bundle exec htmlproofer --ignore-status-codes '0,999,429,403,303' \
 --check-external-hash=false \
 --check-internal-hash=false \
