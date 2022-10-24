@@ -11,7 +11,9 @@ URL_IGNORES="/console.semi.technology/,/weaviate-newsletter.semi.technology/,/de
 git remote set-branches --add origin main
 git fetch
 
-read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD) | sed -e "s/ /\\\ /g"`
+read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD) developers/ | sed -e "s/ /\\\ /g"`
+# read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD) | sed -e "s/ /\\\ /g"`
+
 # read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC $(git merge-base main HEAD) | sed -e "s/ /\\\ /g"`
 
 # read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC main..$TRAVIS_BRANCH | sed -e "s/ /\\\ /g"`
@@ -32,13 +34,15 @@ echo ======DIFF_IGNORES======
 echo $DIFF_IGNORES
 echo ========================
 
+STOP HERE!!!
+
 # RUN htmlproofer
-bundle exec htmlproofer --ignore-status-codes '0,999,429,403,303' \
---check-external-hash=false \
---check-internal-hash=false \
---allow-missing-href=true \
---ignore-files "/developers\/weaviate\/v/," \
---ignore-urls "${URL_IGNORES}${DIFF_IGNORES}" \
---allow_hash_href \
---assume-extension \
-./_site --swap-urls '^/BASEURL/:/'
+# bundle exec htmlproofer --ignore-status-codes '0,999,429,403,303' \
+# --check-external-hash=false \
+# --check-internal-hash=false \
+# --allow-missing-href=true \
+# --ignore-files "/developers\/weaviate\/v/," \
+# --ignore-urls "${URL_IGNORES}${DIFF_IGNORES}" \
+# --allow_hash_href \
+# --assume-extension \
+# ./_site --swap-urls '^/BASEURL/:/'
