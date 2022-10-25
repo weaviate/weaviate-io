@@ -11,6 +11,9 @@ og: /img/blog/hero/lock-striping-pattern.png
 date: 2022-10-25
 toc: true
 ---
+## Lock striping in database design
+We at SeMI come across some interesting database design challenges from time to time. In this post, we wanted to share how we solved a race condition issue with 'lock striping'. Lock striping refers to an arrangement where locking occurs on multiple buckets or 'stripes'. But how was it relevant to our database product, Weaviate? Read on :).
+
 ## Background
 Databases must be able to import data quickly and reliably while maintaining data integrity and reducing time overhead. Weaviate is no exception to this! Given that our users populate Weaviate with hundreds of millions of data objects (if not more), we appreciate that import performance is of the highest ... *import-ance* (sorry) 🥁.
 
@@ -18,7 +21,7 @@ Weaviate offers and strongly recommends the [batch import feature](/developers/w
 
 We uncovered that there could be a race condition in this process. Sometimes when multiple batches contained identical objects with the same UUID, they could be added more than once to Weaviate, each time with different DocIDs. This, in turn, could cause issues within Weaviate.
 
-Luckily, we’ve addressed this issue without sacrificing performance (yay!🥳). We thought it might be interesting to share how we arrived at a solution to tackle this issue.
+Luckily, we’ve addressed this issue without sacrificing performance (yay!🥳). Here's our journey that got us to the current solution.
 
 ## Our initial solutions
 In the initial solution, we added a lock (sync.Mutex in Go), so that now only a single goroutine can hold the lock, check for duplicate UUIDs, and assign DocIDs. This lock makes sure that the race does not occur anymore, but as an unintended side-effect the import time increased by ~20% due to lock-congestion.
