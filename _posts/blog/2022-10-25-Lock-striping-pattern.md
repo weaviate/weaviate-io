@@ -12,7 +12,9 @@ date: 2022-10-25
 toc: true
 ---
 ## Lock striping in database design
-Database design comes with interesting challenges. Like, dealing with race conditions when importing data in parallel streams. But for every new challenge, there is a clever solution. Lock striping refers to an arrangement where locking occurs on multiple buckets or 'stripes'. But how was it relevant to databases? Read on :).
+Database design comes with interesting challenges. Like, dealing with race conditions when importing data in parallel streams. But for every new challenge, there is a clever solution. One of those clever soltions is Lock striping. It refers to an arrangement where locking occurs on multiple buckets or 'stripes'. 
+
+Are you curious about, the challenge that we faced, which solutions we considered, and what was our final solution? Read on 😀.
 
 ## Background
 Databases must be able to import data quickly and reliably while maintaining data integrity and reducing time overhead. Weaviate is no exception to this! Given that our users populate Weaviate with hundreds of millions of data objects (if not more), we appreciate that import performance is of the highest ... *import-ance* (sorry) 🥁.
