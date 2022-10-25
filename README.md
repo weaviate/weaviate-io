@@ -142,37 +142,3 @@ Example:
 canonical-url: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
 canonical-name: Forbes
 ```
-
-## Blog posts
-
-You can add a blog post by adding a markdown file to: `/_posts/blog` the format of the markdown file should be `YEAR-MONTH-DAY-TITLE.md` for example `2022-01-01-demo-post-with-dashes.md`
-
-Inside the markdown file, add the following header:
-
-```markdown
----
-layout: post
-title: TITLE (ALSO USED FOR SEO)
-description: DESCRIPTION (ALSO USED FOR SEO)
-published: true
-author: AUTHOR NAME
-author-img: /img/people/AUTHOR.jpg
-card-img: /img/blog/some-image.jpg # should be 480x240 px
-hero-img: /img/blog/some-image.jpg # should be 1200x500 px
-toc: true # Create table of contents if set to `true`
----
-```
-
-In case of a repost add:
-
-```markdown
-canonical-url: ORIGINAL POST URL
-canonical-name: NAME OF OUTLET
-```
-
-Example:
-
-```markdown
-canonical-url: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
-canonical-name: Forbes
-```
