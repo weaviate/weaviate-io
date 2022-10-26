@@ -281,7 +281,7 @@ See you soon!
 
 ## What next?
 
-- [Introduction to modules](./modules.html)
+- [Introduction to modules](../configuration/modules.html)
 - [Installation options](../installation/index.html)
 - [Roadmap](../roadmap/index.html)
 - [Learn more about Weaviate](../core-knowledge/index.html)
