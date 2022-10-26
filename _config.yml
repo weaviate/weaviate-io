@@ -55,7 +55,7 @@ toc:
 # SPECIFIC SETTINGS FOR THE DOCS
 # ALSO SEE THE README FILE
 ###
-weaviate_version: v1.15.4 # the current and latest version
+weaviate_version: v1.15.5 # the current and latest version
 helm_version: 15.0.0 # Helm version for this Weaviate version
 docs:
   weaviate:
