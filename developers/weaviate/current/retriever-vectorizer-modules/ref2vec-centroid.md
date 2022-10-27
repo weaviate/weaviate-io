@@ -138,7 +138,7 @@ An object whose class is configured to use ref2vec-centroid will have its vector
   - Reference `POST`: create a new reference to an existing object
   - Reference `PUT`: update all of the object's references
 - Deleting references from the object. Note that this can happen several ways:
-  - Object `PUT`:update all of the object's properties, removing all references
+  - Object `PUT`: update all of the object's properties, removing all references
   - Reference `DELETE`: delete an existing reference from the object's list of references
 
 ## Making queries
