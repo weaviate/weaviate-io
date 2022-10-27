@@ -11,6 +11,7 @@ git remote set-branches --add origin v1.16_ref2fec-centroid
 git fetch
 
 echo "BRANCH: $TRAVIS_BRANCH"
+echo "BRANCH LAST COMMIT: $(git log -1 --format=%H)"
 echo "HEAD: $(git merge-base origin/main HEAD)"
 
 # GET github diff between this branch and main
