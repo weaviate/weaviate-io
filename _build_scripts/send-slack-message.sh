@@ -21,8 +21,7 @@ git_slack_map=(
 
 # Get the Author name and map it to their Slack handle
 github_name="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
-# if it is not a PR and we have a Slack ID
-if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ ${git_slack_map[$github_name]+_} ]; then
+if [ ${git_slack_map[$github_name]+_} ]; then
     AUTHOR_NAME=${git_slack_map[$github_name]}
 else
     AUTHOR_NAME=$github_name
