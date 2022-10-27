@@ -6,8 +6,10 @@ URL_IGNORES="/console.semi.technology/,/weaviate-newsletter.semi.technology/,/de
 
 # Get the main branch – this is needed as Travis does only a shallow fetch
 git remote set-branches --add origin main
+git remote set-branches --add origin $TRAVIS_BRANCH
 git fetch
 
+echo "BRANCH: $TRAVIS_BRANCH"
 echo "HEAD: $(git merge-base origin/main HEAD)"
 
 # GET github diff between this branch and main
