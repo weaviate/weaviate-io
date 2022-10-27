@@ -15,7 +15,7 @@ echo "BRANCH LAST COMMIT: $(git log -1 --format=%H)"
 echo "HEAD: $(git merge-base origin/main HEAD)"
 
 # GET github diff between this branch and main
-echo `git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD)...$TRAVIS_BRANCH developers/
+echo `git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD)...$TRAVIS_BRANCH developers/`
 read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD)...$TRAVIS_BRANCH developers/ | sed -e "s/ /\\\ /g"`
 
 # then add them all to a string containing all the new .html files that htmlproofer should ignore
