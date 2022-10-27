@@ -15,7 +15,7 @@ redirect_from:
 
 # Introduction
 
-The `ref2Vec-centroid` module is used to calculate vectors based on the centroid of existing vectors. The idea is that this centroid vector would be calculated from the vectors of an object's references, enabling associations between clusters of objects. This is useful in applications such as making suggestions based on the aggregation of a user's actions, or preferences.
+The `ref2Vec-centroid` module is used to calculate object vectors based on the centroid of referenced vectors. The idea is that this centroid vector would be calculated from the vectors of an object's references, enabling associations between clusters of objects. This is useful in applications such as making suggestions based on the aggregation of a user's actions or preferences.
 
 # How to enable
 
@@ -25,7 +25,7 @@ The `ref2vec-centroid` module is not currently available on the WCS.
 
 ## Weaviate open source
 
-Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. The service can be added like this:
+Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. Ref2Vec-centroid can be added like this:
 
 ```yaml
 ---
@@ -61,7 +61,7 @@ For example, here is an `Article` class which is configured to use ref2vec-centr
 1. `referenceProperties`: a list of the class' reference properties which should be used during the calculation of the centroid.
 2. `method`: the method by which the centroid is calculated. Currently only `mean` is supported.
 
-The `Article` class specifies its `hasParagraphs` property as the only reference property to be used in the calculation of an `Article` object's vector. In this case, the `Paragraph` class is configured to generate vectors using the text2vec-contextionary module.
+The `Article` class specifies its `hasParagraphs` property as the only reference property to be used in the calculation of an `Article` object's vector. In this case, the `Paragraph` class is configured to generate vectors using the text2vec-contextionary module. Thus, the vector representation of the `Article` class is an average of text2vec-contextionary vectors sourced from referenced `Paragraph` instances.
 
 It is important to note that unlike the other text2vec/multi2vec/image2vec modules, ref2vec-centroid does not generate embeddings based on the contents of an object. Rather, the point of this module is to calculate an object's vector based on its *references*.
 
@@ -133,7 +133,7 @@ Once we are ready to reference one or more existing `Paragraph` objects (with no
 An object whose class is configured to use ref2vec-centroid will have its vector calculated (or recalculated) as a result of these events:
 - Creating the object with references already assigned as properties 
 - Updating an existing object's list of references. Note that this can happen several ways:
-  - Object `PUT`: update all of the object's properties, containing a different set of references. This totally replaces the object's existing reference list with the newly provided one
+  - Object `PUT`: update all of the object's properties with a new set of references. This totally replaces the object's existing reference list with the newly provided one
   - Object `PATCH`: update an existing object by adding any newly provided reference(s) to the object's existing reference list
   - Reference `POST`: create a new reference to an existing object
   - Reference `PUT`: update all of the object's references
