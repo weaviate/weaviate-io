@@ -7,6 +7,7 @@ URL_IGNORES="/console.semi.technology/,/weaviate-newsletter.semi.technology/,/de
 # Get the main branch – this is needed as Travis does only a shallow fetch
 git remote set-branches --add origin main
 git remote set-branches --add origin $TRAVIS_BRANCH
+git remote set-branches --add origin v1.16_ref2fec-centroid
 git fetch
 
 echo "BRANCH: $TRAVIS_BRANCH"
