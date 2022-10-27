@@ -6,6 +6,7 @@ rvm:
 before_install:
 - echo "TRAVIS_COMMIT $TRAVIS_COMMIT "
 - echo "$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
+- echo "TRAVIS_AUTHOR $TRAVIS_AUTHOR "
 - STOP HERE
 - sudo apt-get update
 - sudo apt-get install -y minify
