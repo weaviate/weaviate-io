@@ -34,10 +34,11 @@ script:
 ##
 # Netlify
 ##
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-- bash ./_build_scripts/publish-to-netlify.sh
-- bash ./_build_scripts/send-slack-message.sh
-- fi
+- |
+  if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+  bash ./_build_scripts/publish-to-netlify.sh
+  bash ./_build_scripts/send-slack-message.sh
+  fi
 ##
 # End Netlify
 ##
