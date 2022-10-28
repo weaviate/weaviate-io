@@ -4,7 +4,7 @@ language: ruby
 rvm:
 - 2.7.0
 before_install:
-- bash source ./_build_scripts/slack-find-author.sh
+- source ./_build_scripts/slack-find-author.sh
 - echo "AUTHOR $AUTHOR_NAME"
 - STOP HERE
 - sudo apt-get update
