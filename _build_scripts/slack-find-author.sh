@@ -22,17 +22,7 @@ git_slack_map=(
 # Get the Author name and map it to their Slack handle
 github_name="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
 if [ ${git_slack_map[$github_name]+_} ]; then
-    AUTHOR_NAME=${git_slack_map[$github_name]}
+    export AUTHOR_NAME=${git_slack_map[$github_name]}
 else
-    AUTHOR_NAME=$github_name
+    export AUTHOR_NAME=$github_name
 fi
-
-# Prepare the message and send it to Slack
-NETLIFY_LOC=$(grep -r 'Website Draft URL:' netlify.out)
-NETLIFY_LOC_STRP=$(echo ${NETLIFY_LOC:29})
-MESSAGE="{ \"text\": \"Hey $AUTHOR_NAME - your website (\`$TRAVIS_BRANCH\`) is live at: $NETLIFY_LOC_STRP \" }"
-
-echo $MESSAGE > payload.json
-
-# Send the slack message
-curl -X POST -H 'Content-type: application/json' -d @payload.json https://hooks.slack.com/services/$SLACK_BOT

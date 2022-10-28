@@ -31,13 +31,15 @@ script:
 - travis_wait 60 bundle exec jekyll build
 - minify --match='\.html' -r -o _site_min/ _site/
 - rsync -av _site_min/ _site/
+# Find author's name or Slack handle for slack messages
+- bash ./_build_scripts/slack-find-author.sh
 ##
 # Netlify
 ##
 - |
   if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
   bash ./_build_scripts/publish-to-netlify.sh
-  bash ./_build_scripts/send-slack-message.sh
+  bash ./_build_scripts/slack-netlify-message.sh
   fi
 ##
 # End Netlify
@@ -93,10 +95,8 @@ script:
       gcloud compute url-maps invalidate-cdn-cache $GS_BUCKET --path "/*" --async
       # Send sitemap to Google
       curl https://www.google.com/ping?sitemap=https://weaviate.io/sitemap.xml
-      # push message
-      export MESSAGE="{ \"text\": \"Hey $AUTHOR_NAME - your website is live at: 🔥 https://weaviate.io 🔥 \" }"
-      echo $MESSAGE > payload.json
-      curl -X POST -H 'Content-type: application/json' -d @payload.json https://hooks.slack.com/services/$SLACK_BOT
+      # Send release message to Slack
+      bash ./_build_scripts/slack-release-message.sh
       # back to root
       cd ..
     fi
