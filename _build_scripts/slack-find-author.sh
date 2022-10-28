@@ -22,7 +22,7 @@ git_slack_map=(
 # Get the Author name and map it to their Slack handle
 github_name="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
 if [ ${git_slack_map[$github_name]+_} ]; then
-    export AUTHOR_NAME=${git_slack_map[$github_name]}
+    exit ${git_slack_map[$github_name]}
 else
-    export AUTHOR_NAME=$github_name
+    exit $github_name
 fi
