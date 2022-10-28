@@ -9,7 +9,7 @@ git remote set-branches --add origin main
 git fetch
 
 # GET github diff between this branch and main
-read -ra DIFF_FILES <<< `git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD) developers/ | sed -e "s/ /\\\ /g"`
+DIFF_FILES=( $(git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD) developers/ | sed 's/:.*//') )
 
 # then add them all to a string containing all the new .html files that htmlproofer should ignore
 DIFF_IGNORES=""
