@@ -4,9 +4,6 @@ language: ruby
 rvm:
 - 2.7.0
 before_install:
-- source _build_scripts/slack-find-author.sh
-- echo "AUTHOR $AUTHOR_NAME"
-- STOP HERE
 - sudo apt-get update
 - sudo apt-get install -y minify
 - sudo apt-get install -y python3-pip
@@ -35,14 +32,15 @@ script:
 - minify --match='\.html' -r -o _site_min/ _site/
 - rsync -av _site_min/ _site/
 # Find author's name or Slack handle for slack messages
-- bash ./_build_scripts/slack-find-author.sh
+# Sets result in $AUTHOR_NAME
+- source _build_scripts/slack-find-author.sh
 ##
 # Netlify
 ##
 - |
   if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-  bash ./_build_scripts/publish-to-netlify.sh
-  bash ./_build_scripts/slack-netlify-message.sh
+    bash _build_scripts/publish-to-netlify.sh
+    bash _build_scripts/slack-netlify-message.sh
   fi
 ##
 # End Netlify
@@ -51,7 +49,7 @@ script:
 # Run htmlproofer
 ##
 # - htmlproofer --ignore-status-codes '0,999,429,403,303' --check-external-hash=false --check-internal-hash=false --allow-missing-href=true --ignore-files "/developers\/weaviate\/v/," --ignore-urls "/console.semi.technology/,/weaviate-newsletter.semi.technology/,/demo.dataset.playground.semi.technology/,/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/,/computerhope.com/" --allow_hash_href --assume-extension ./_site --swap-urls '^/BASEURL/:/' || travis_terminate 1
-- bash ./_build_scripts/run-htmlproofer.sh || travis_terminate 1
+- bash _build_scripts/run-htmlproofer.sh || travis_terminate 1
 ##
 # Update OpenAPI versions
 ##
@@ -99,7 +97,7 @@ script:
       # Send sitemap to Google
       curl https://www.google.com/ping?sitemap=https://weaviate.io/sitemap.xml
       # Send release message to Slack
-      bash ./_build_scripts/slack-release-message.sh
+      bash _build_scripts/slack-release-message.sh
       # back to root
       cd ..
     fi
