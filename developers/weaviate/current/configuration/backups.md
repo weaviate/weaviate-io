@@ -21,21 +21,22 @@ redirect_from:
 Weaviate's Backup feature is designed to feel very easy to use and work natively with
 cloud technology. Most notably:
 
-* Neatless integration with widely-used cloud blob storage, such as AWS S3 or GCS
+* Seamless integration with widely-used cloud blob storage, such as AWS S3 or GCS
 * Backup and Restore between different storage providers
 * Single-command backup and restore from the REST API
 * Supports whole instance backups, as well as selecting specific classes
 * Zero downtimes & minimal effects for your users when backups are running
 * Easy Migrations to new environments
 
-_Note: The backup functionality was introduced in Weaviate `v1.15`_
+_Note: The backup functionality was introduced in Weaviate `v1.15`, but for single-node instances only. Support for multi-node backups was introduced in `v1.16`_
 
 # Configuration
 
 In order to perform backups, a backup provider module must be activated.
 Multiple backup providers can be active at the same time. Currently Weaviate
 supports the the `backup-s3`, `backup-gcs`, and `backup-filesystem` providers.
-Providers are well decoupled which makes it easy to add new ones in the future.
+Built on Weaviate's [module system](/developers/weaviate/current/configuration/modules.html), adding additional providers in the
+future is simple.
 
 All service-discovery and authentication-related configuration is set using
 environment variables.
@@ -112,6 +113,7 @@ In addition to activating the module, you need to provide configuration:
 
 | Environment variable | Required | Description |
 | --- | --- | --- |
+| `BACKUP_GCS_BUCKET` | yes | The name of the GCS bucket for all backups. |
 | `BACKUP_GCS_PATH` | no | The root path inside your bucket that all your backups will be copied into and retrieved from. Optional, defaults to `""` which means that the backups will be stored in the bucket root instead of a sub-folder. |
 
 ### Google Application Default Credentials
@@ -129,6 +131,16 @@ This makes it easy to use the same module in different setups. For example, you 
 
 
 ## Filesystem
+
+---
+
+### ⚠️ Caution ⚠️
+
+`backup-filesystem` is only compatible with single-node backups. Use `backup-gcs` or `backup-s3` if support for multi-node backups is needed.
+
+The filesystem provider is not intended for production use, as its availability is directly tied to the node on which it operates.
+
+---
 
 Instead of backing up to a remote backend, you can also backup to the local
 filesystem. This may be helpful during development, for example to be able to
@@ -154,11 +166,12 @@ In addition to activating the module, you need to provide configuration:
 
 ## Other Backup Backends
 
-Weaviate uses its module system to decouple the backup orchestration from the
-remote backup storage backends. It is easy to add new providers and use them
-with the existing backup API. If you are missing your desired backup module,
-you can open a feature request or contribute it yourself. For either option,
-join our Slack community to have a quick chat with us on how to get started.
+Weaviate uses its [module system](/developers/weaviate/current/configuration/modules.html) 
+to decouple the backup orchestration from the remote backup storage backends. 
+It is easy to add new providers and use them with the existing backup API. 
+If you are missing your desired backup module, you can open a feature request 
+or contribute it yourself. For either option, join our Slack community to have 
+a quick chat with us on how to get started.
 
 # API
 
@@ -179,7 +192,7 @@ POST /v1/backups/{backend}
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 
 #### Request Body
 
@@ -200,7 +213,7 @@ While you are waiting for a backup to complete, [Weaviate stays fully usable](#r
 
 ### Asynchronous Status Checking
 
-All client implentations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
+All client implementations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
 
 If you set the "wait for completion" option to false, you can also check the status yourself using the Backup Creation Status API.
 
@@ -214,7 +227,7 @@ GET /v1/backups/{backend}/{backup_id}
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
 The response contains a `"status"` field. If the status is `SUCCESS`, the
@@ -224,7 +237,7 @@ backup is complete. If the status is `FAILED`, an additional error is provided.
 
 ## Restore Backup
 
-You can restore any backup to any machine as long as the number of nodes
+You can restore any backup to any machine as long as the name and number of nodes
 between source and target are identical. The backup does not need to be created
 on the same instance. Once a backup backend is configured, you can restore a
 backup with a single HTTP request.
@@ -243,7 +256,7 @@ POST /v1/backups/{backend}/{backup_id}/restore
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
 #### Request Body
@@ -257,13 +270,13 @@ The request takes a json object with the following properties:
 
 *Note 1: You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.*
 
-*Note 2: `include` and `exclude` is relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
+*Note 2: `include` and `exclude` are relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
 
 {% include code/1.x/backup.restore.html %}
 
 ### Asynchronous Status Checking
 
-All client implentations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
+All client implementations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
 
 If you set the "wait for completion" option to false, you can also check the status yourself using the Backup Restore Status API.
 
@@ -277,7 +290,7 @@ GET /v1/backups/{backend}/{backup_id}/restore
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the requests to create and restore the backup. |
 
 The response contains a `"status"` field. If the status is `SUCCESS`, the
@@ -290,7 +303,7 @@ restore is complete. If the status is `FAILED`, an additional error is provided.
 ## Read &amp; Write requests while a backup is running
 
 The backup process is designed to be minimally invasive to a running setup.
-Even on very large setups, where terrabytes of data need to be copied, Weaviate
+Even on very large setups, where terabytes of data need to be copied, Weaviate
 stays fully usable. It even accepts write requests while a backup process is
 running. This sections explains how backups work under the hood and why
 Weaviate can safely accept writes while a backup is copied.
@@ -308,7 +321,7 @@ immutable, there are only three situations where files are changed:
    The WAL is only needed for disaster-recovery. Once a segment has been
    orderly flushed, the WAL can be discarded.
 3. There is an async background process called Compaction that optimizes
-   existing segments. It can merge two small segments into a larger big segment
+   existing segments. It can merge two small segments into a single larger segment
    and remove redundant data as part of the process.
 
 Weaviate's Backup implementation makes use of the above properties in the
@@ -336,25 +349,20 @@ instances while they are serving user requests.
 The backup API is built in a way that no long-running network requests are
 required. The request to create a new backup returns immediately. It does some
 basic validation, then returns to the user. The backup is now in status
-`STARTED`. To get the status of a running backup you can use poll the [status
+`STARTED`. To get the status of a running backup you can poll the [status
 endpoint](#asynchronous-status-checking). This makes the backup itself
 resilient to network or client failures.
 
-If you would like your application to wait for an async process to complete you
-can use the "wait for completion" feature that is present in all language
+If you would like your application to wait for the background backup process to complete,
+you can use the "wait for completion" feature that is present in all language
 clients. The clients will poll the status endpoint in the background and block
 until the status is either `SUCCESS` or `FAILED`. This makes it easy to write
 simple synchronous backup scripts, even with the async nature of the API.
 
 # Limitations & Outlook
 
-As of Weaviate v1.15, backups are limited to single-node setups. Weaviate v1.16 will
-introduce support for multi-node setups. You can read the technical proposal
-and track the progress on the feature
-[here](https://github.com/semi-technologies/weaviate/issues/2153). The same
-proposal will also make backups more resiliant against node restarts. In v1.15
-an unexpected node restart during a backup operation leads to a
-failed backup. You can always create a new backup after the restart.
+In Weaviate v1.15, backups were limited to single-node setups. Weaviate v1.16 introduces support for multi-node setups. Currently, an unexpected node restart during a backup or restore operation leads to a failed operation. In the future, backups will become resilient to this problem. You can read the technical proposal
+and track the progress on the feature [here](https://github.com/semi-technologies/weaviate/issues/2153).
 
 # Other Use cases
 
