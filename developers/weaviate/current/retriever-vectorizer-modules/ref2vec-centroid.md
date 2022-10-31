@@ -56,16 +56,18 @@ services:html
 
 ​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](../getting-started/schema.html) first.
 
-For example, here is an `Article` class which is configured to use ref2vec-centroid. This module requires only a class-level `moduleConfig`, containing two fields:
+For example, here is an `Article` class which is configured to use ref2vec-centroid. Doing so requires only a class-level `moduleConfig`, containing two fields:
 
 1. `referenceProperties`: a list of the class' reference properties which should be used during the calculation of the centroid.
 2. `method`: the method by which the centroid is calculated. Currently only `mean` is supported.
 
-The `Article` class specifies its `hasParagraphs` property as the only reference property to be used in the calculation of an `Article` object's vector. In this case, the `Paragraph` class is configured to generate vectors using the text2vec-contextionary module. Thus, the vector representation of the `Article` class is an average of text2vec-contextionary vectors sourced from referenced `Paragraph` instances.
+The `Article` class specifies its `hasParagraphs` property as the only reference property to be used in the calculation of an `Article` object's vector. 
 
-It is important to note that unlike the other text2vec/multi2vec/image2vec modules, ref2vec-centroid does not generate embeddings based on the contents of an object. Rather, the point of this module is to calculate an object's vector based on its *references*.
+It is important to note that unlike the other vectorizer modules (e.g. text2vec/multi2vec/image2vec), ref2vec-centroid does not generate embeddings based on the contents of an object. Rather, the point of this module is to calculate an object's vector based on vectors of its *references*.
 
-Although this example shows how to use a Weaviate module to generate vectors for the `Paragraph` class, it is perfectly possible to simply provide your own vectors and skip the vectorization process entirely. Either way, ref2vec-centroid only uses existing vectors of referenced objects for its calculations.
+In this case, the `Paragraph` class is configured to generate vectors using the text2vec-contextionary module. Thus, the vector representation of the `Article` class is an average of text2vec-contextionary vectors sourced from referenced `Paragraph` instances.
+
+Although this example uses text2vec-contextionary to generate vectors for the `Paragraph` class, ref2vec-centroid's behavior remains identical for user-provided vectors. In such a case, ref2vec-centroid's output will still be calculated as an average of the reference vectors; the only difference being the provenance of the reference vectors.
 
 ```json
 {
@@ -143,14 +145,14 @@ An object whose class is configured to use ref2vec-centroid will have its vector
 
 ## Making queries
 
-This module does not add any additional GraphQL extensions like `nearText`, but can be used with the existing [nearVector](/developers/weaviate/current/graphql-references/vector-search-parameters.html#nearvector) and [`nearObject`](/developers/weaviate/current/graphql-references/vector-search-parameters.html#nearobject) filters.
+This module can be used with the existing [nearVector](/developers/weaviate/current/graphql-references/vector-search-parameters.html#nearvector) and [`nearObject`](/developers/weaviate/current/graphql-references/vector-search-parameters.html#nearobject) filters. It does not add any additional GraphQL extensions like `nearText`.
 
 # Additional information
 
-⚠️ It is important to note that if a _referenced_ object is updated, the _referencing_ object's vector is not affected. ⚠️
+⚠️ It is important to note that updating a _referenced_ object will not automatically trigger an udpate to the _referencing_ object's vector. ⚠️
 
 In other words, using our `Article`/`Paragraph` example:
 
-Let's say an `Article` object, `"On the Philosophy of Modern Ant Colonies"`, references three `Paragraph` objects: `"intro"`, `"body"`, and `"conclusion"`. Eventually, `"body"` is updated as more research has been conducted on the dynamic between worker ants and soldier ants. The existing vector for the article will not be updated with a new vector, based on the refactored `"body"`.
+Let's say an `Article` object, `"On the Philosophy of Modern Ant Colonies"`, references three `Paragraph` objects: `"intro"`, `"body"`, and `"conclusion"`. Over time, `"body"` may be updated as more research has been conducted on the dynamic between worker ants and soldier ants. In this case, the existing vector for the article will not be updated with a new vector based on the refactored `"body"`.
 
-If we would want `"On the Philosophy of Modern Ant Colonies"`'s reference vector to be recalculated, we could either remove the reference to `"body"` and add it back, or simply `PUT` the `Article` object with an identical object.
+If we want `"On the Philosophy of Modern Ant Colonies"`'s centroid vector to be recalculated, we would need to otherwise trigger an update. For example, we could either remove the reference to `"body"` and add it back, or simply `PUT` the `Article` object with an identical object.

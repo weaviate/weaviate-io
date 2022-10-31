@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: RESTful API references
 title: /v1/nodes
-intro: The RESTful nodes endpoint gives information about nodes status in Weaviate cluster. It can be used to learn about Weaviate instances running in the cluster, theirs versions and basic statistics.
+intro: The RESTful nodes endpoint gives information about each node's status in a Weaviate cluster. It can be used to learn about Weaviate instances running in the cluster, their versions and basic statistics.
 description: RESTful API nodes reference
 tags: ['RESTful API', 'references', 'nodes']
 menu-order: 6
@@ -21,7 +21,7 @@ The nodes endpoint accepts a `GET` request:
 GET /v1/nodes
 ```
 
-And it returns `nodes` field containing array of nodes with following fields:
+And it returns a `nodes` field containing array of nodes with following fields:
 - `name`: Name of the node.
 - `status`: Status of the node (one of: HEALTHY, UNHEALTHY, UNAVAILABLE).
 - `version`: Version of Weaviate running on the node.
