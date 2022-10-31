@@ -104,7 +104,7 @@ An example of a complete class object including properties:
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
     "indexTimestamps": false,                 // Optional, maintains inverted indices for each object by its internal timestamps
-    "IndexNullState": false,                 // Optional, maintains inverted indices for each property if it is null or not null
+    "IndexNullState": false,                 // Optional, maintains inverted indices for each property regarding its null state
     "IndexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
   },
   "shardingConfig": {
