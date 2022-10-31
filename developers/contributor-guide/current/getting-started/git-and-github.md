@@ -56,6 +56,8 @@ Fill out all of the information correctly. To learn more about what each field m
 
 ## Forking the repository
 
+> A **fork** is a copy of a repository that you manage. Forks let you make changes to a project without affecting the original repository. You can fetch updates from or submit changes to the original repository with pull requests.
+
 * Simply click the `Fork` button on the GitHub website. That's how easy it is. This will create a copy of the repository in your account.
 
 ![fork repo](/img/guides/contributor/fork.png)
