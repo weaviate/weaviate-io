@@ -85,7 +85,7 @@ To combine `Get { }` with a vector search argument, here is an overview of the s
 
 `Get{}` functions can be extended with search filters (both semantic filters as traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.html).
 
-# Sorting
+## Sorting
 
 *Note: Support for sorting was added in `v1.13.0`.*
 
@@ -93,44 +93,7 @@ You can sort results by any primitive property, typically a `text`, `string`,
 `number`, or `int` property. When a query has a natural order (e.g. because of a
 `near<Media>` vector search), adding a sort operator will override the order.
 
-## Cost of Sorting / Architecture
-
-Weaviate's sorting implementation is built in a way that it does not lead to
-massive memory spikes; it does not need to load all objects to be sorted
-into memory completely. Only the property value being sorted is kept in memory.
-
-As of now, Weaviate does not have any
-data structures on disk specific to sorting, such as a column-oriented storage
-mechanism. As a result when an object should be sorted, the whole object is
-identified on disk and the relevant property extracted. This works reasonably
-well for small scales (100s of thousand or millions), but comes with a high
-cost at large lists of objects to be sorted (100s of millions, billions). 
-A column-oriented storage mechanism may be introduced in the future to 
-overcome this performance limitation.
-
-## Sorting decisions
-
-### booleans order
-`false` is considered smaller than `true`. `false` comes before `true` in ascending order and after `true` in descending order.
-
-### nulls order
-`null` values are considered smaller than any non-`null` values. `null` values come first in ascending order and last in descending order.
-
-### arrays order
-Arrays are compared by each element separately. Elements at the same position are compared to each other, starting from the beginning of an array. First element smaller than its counterpart makes whole array smaller.
-Arrays are equal if they have the same size and all elements are equal. If array is subset of other array it is considered smaller.
-
-Examples:
-- `[1, 2, 3] = [1, 2, 3]`
-- `[1, 2, 4] < [1, 3, 4]`
-- `[2, 2] > [1, 2, 3, 4]`
-- `[1, 2, 3] < [1, 2, 3, 4]`
-
-## Sorting API
-
-{% include code/1.x/graphql.get.sorting.html %}
-
-{% include molecule-gql-demo.html encoded_query='%7B%0A++Get+%7B%0A++++Article%28sort%3A+%5B%7B%0A++++++path%3A+%5B%22title%22%5D%0A++++++order%3A+asc%0A++++%7D%5D%29+%7B%0A++++++title%0A++++++url%0A++++++wordCount%0A++++%7D%0A++%7D%0A%7D' %}
+See [filters – sorting](./filters.html#sorting) for more information.
 
 # More Resources
 
