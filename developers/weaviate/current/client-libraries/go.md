@@ -19,10 +19,10 @@ redirect_from:
 To get the latest stable version of the Go client library, run the following:
 
 ```bash
-go get github.com/semi-technologies/weaviate-go-client/v4
+go get github.com/semi-technologies/weaviate-go-client/v5
 ```
 
-This API client is compatible with Go 1.16+.
+This API client is compatible with Go 1.19+.
 
 You can use the client in your Go scripts as follows:
 
@@ -32,7 +32,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+	"github.com/semi-technologies/weaviate-go-client/v5/weaviate"
 )
 
 func GetSchema() {
@@ -81,7 +81,7 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 
 # Migration Guides
 
-## From `v2` to `v4`
+## From `v2` to `v5`
 
 ### Unnecessary `.Objects()` removed from `GraphQL.Get()`
 
@@ -99,7 +99,7 @@ client.GraphQL().Get().WithClassName
 
 ### GraphQL `Get().WithNearVector()` uses a builder pattern
 
-In `v2` specifying a `nearVector` argument to `client.GraphQL().Get()` required passing a string. As a result the user had to know the structure of the GraphQL API. `v4` fixes this by using a builder pattern like so:
+In `v2` specifying a `nearVector` argument to `client.GraphQL().Get()` required passing a string. As a result the user had to know the structure of the GraphQL API. Since `v4`, a `WithNearVector` method was introduced to set the search vector using the builder pattern.
 
 Before:
 
@@ -121,7 +121,7 @@ client.GraphQL().Get().
 
 ### All `where` filters use the same builder
 
-In `v2` filters were sometimes specified as strings, sometimes in a structured way. `v4` unifies this and makes sure that you can always use the same builder pattern.
+In `v2` filters were sometimes specified as strings, sometimes in a structured way. Since `v4`, this was unified to make sure that you can always use the same builder pattern.
 
 #### GraphQL Get
 
@@ -273,7 +273,7 @@ client.GraphQL.Get().WithClassName("MyClass").WithGroup(group)
 
 ### Graphql `Data().Validator()` property renamed
 
-In `v2` the naming of the method to specify the Schema was inconsistent with other places in the client. This has been fixed in `v4`. Rename according to the following:
+In `v2` the naming of the method to specify the Schema was inconsistent with other places in the client. This has been fixed since `v4`. Rename according to the following:
 
 Before:
 ```go
@@ -287,6 +287,9 @@ client.Data().Validator().WithProperties(properties)
 
 
 # Change logs
+
+## v5.0.0
+- Minimum Go version set to 1.19
 
 ## v4.3.0
 - Added support for [backup](../configuration/backups.html) API

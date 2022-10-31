@@ -54,7 +54,7 @@ $ npm install weaviate-client
 
 * For `Go` add `weaviate-go-client` to your project with `go get`:
   ```bash
-go get github.com/semi-technologies/weaviate-go-client/v4
+go get github.com/semi-technologies/weaviate-go-client/v5
   ```
 
 ## Connect to Weaviate
