@@ -20,21 +20,23 @@ redirect_from:
 
 # Welcome to the Weaviate's Contributing Guide 
 
+🎉 First off, thank you for taking the time to contribute! 🎉
+
+We are delighted to have you here. We are thrilled that you want to contribute to the Weaviate core, as together we can make Weaviate even better. We strive to build an engaging community and we encourage you to participate, share your ideas and make friends.
+
+##  Weaviate on GitHub
+
 If you’re using Weaviate or if you like the project, please <a href="https://github.com/semi-technologies/weaviate">⭐</a> this repository to show your support!
 
 [Weaviate](https://weaviate.io/) is a cloud-native, modular, real-time vector search engine.
 
 ## Contributing to Weaviate
 
-🎉 First off, thank you for taking the time to contribute! 🎉
-
-We are delighted to have you here. We are thrilled that you want to contribute to the Weaviate core, as together we can make Weaviate even better. We strive to build an engaging community and we encourage you to participate, share your ideas and make friends. As you become more acquainted with the community, there are several initiatives to consider, which are listed below. Everyone is welcome to join our [Slack](https://weaviate.slack.com/) channel and interact with other members of the community.
-
-Please change your Slack workspace display name to your name so that you can connect with other members more easily.
+Listed below are several ways to get involved with the community.
 
 **Recommend resources**
 
-Here are some resources that will help you familiarize with Weaviate and its applications:
+Here are some resources that will help you familiarize with Weaviate and it's applications:
 
 * [Weaviate Blog](/blog.html){:target="_blank"} – a series of blog around Weaviate and the overall vector search space.
 * [Weaviate Newsletter](http://weaviate-newsletter.semi.technology/) – bi-weekly newsletter with updates on the latest and greatest announcements.
@@ -47,6 +49,8 @@ Here are some resources that will help you familiarize with Weaviate and its app
 A lot of community discussion happens on the [Weaviate Community Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}. Everyone is welcome to [join](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}.
 
 To get involved in our community, please make sure to familiarize yourself with the project's [Code of Conduct](https://www.semi.technology/playbooks/misc/code-of-conduct.html).
+
+Please set your Slack workspace display name to your name. This will make it easier to connect with other community members.
 
 Navigating a new project can be difficult, and it takes time to become acquainted with the codebase. If at any time you face any difficulties, don't hesitate to reach out in the `#general` channel on our Slack. Our team and the community will help you solve your problem.
 

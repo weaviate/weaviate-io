@@ -10,17 +10,9 @@ og-img: documentation.jpg
 toc: true
 ---
 
-Have some suggestions in your mind? We are glad you want to improve our product by suggesting new feature(s). We’d love to hear your ideas. We at Weaviate standardize the work, procedures and focus on continuous improvement.
+Have some suggestions in mind? We’d love to hear your ideas!
 
-How suggesting enhancements will help you?
-
-* Receive timely feedback from engineers on requests.
-
-* Learn more about upcoming releases.
-
-* Increase your involvement over feature development
-
-This section walks you through the process of submitting an enhancement for an addition to Weaviate core, such as a brand-new feature or a small change to an already-existing feature. 
+This section walks you through the process of making a contribution to Weaviate.
 
 Following these guidelines can help you make a better suggestion, and make it easier for the maintainers and the community to understand your proposal and find other similar suggestions.
 
@@ -44,8 +36,6 @@ Enhancement suggestions are tracked as GitHub issues. Check if there's already a
 * **Include images, animated GIFs, or video links** that can be used to illustrate the steps or highlight the area of Weaviate that the suggestion relates to.
 * **Explain why this enhancement would be useful** to most Weaviate users.
 * Specify which **version of Weaviate** you're using. Check the version in your `docker-compose.yml` file.
-
-In order to get your requests into these prioritization meetings, make sure they are clearly written with details about what you’re trying to accomplish (Your use cases) , your current workaround (if you have one), what problems you’re having, and any other details that will help build a case for why this is an important request to you. 
 
 ## Folder Structure
 
@@ -88,8 +78,6 @@ tools/dev/restart_dev_environment.sh --transformers && ./tools/dev/run_dev_serve
 ```
 tools/dev/restart_dev_environment.sh --qna && ./tools/dev/run_dev_server.sh local-qna
 ```
-
-The above commands are subject to change as we add more modules and require specific combinations for local testing. You can always inspect the two files to see which options are contained. The first option without any arguments is always guarateed to work.
 
 You can use the [SeMI GraphQL console](https://console.semi.technology/) to make queries.
 

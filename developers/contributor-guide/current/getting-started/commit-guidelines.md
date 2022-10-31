@@ -25,13 +25,13 @@ The cardinal rule for creating good commits is to ensure there is only one "logi
 
 Examples of **good commit messages**:
 
-* `feat: add sitemap plugin to the website`
+* `add sitemap plugin to the website`
 
-* `chore: update ruby version to 2.7.5`
+* `update ruby version to 2.7.5`
 
-* `fix: update version number dynamically`
+* `update version number dynamically`
 
-* `docs: fix typo in introduction to user guide`
+* `fix typo in introduction to user guide`
 
 Example of **bad commit messages**:
 
@@ -54,7 +54,7 @@ A commit message consists of three parts:
 Commit template
 
 ```
-tag: short explanation of the commit
+short explanation of the commit
 ```
 **Note:** This is how the commit message should appear when you use git to commit files and push them to GitHub.
 
@@ -80,32 +80,16 @@ It is preferable to follow these guidelines for each patch before pushing it to 
 Example:
 
 ```
-feat: add blog pages
+add new blog "blog title"
 ```
 
 * Be sure to not exceed 50 characters. Maintaining summary lines at this length makes them readable and provides a clear explanation of the change.
 
-* After adding `tag`, the summary line should begin with a lowercase letter, unless it begins with a symbol or identifier.
+* The summary line should begin with a lowercase letter, unless it begins with a symbol or identifier.
 
 * Use imperative present tense ("add feature" not "added feature")
 
-* Prefix your commit with one `tag`, to make it easier to know what type of change you have done. See the list of **`tags`** below
-
 * Leave out the trailing period (full stop).
-
-`tag` types:
-
-* **`feat`**: A new feature
-
-* **`fix`**: A bug fix
-
-* **`docs`**: Documentation only changes
-
-* **`style`**: Changes that do not affect the meaning of the code or documentation (white-space, spelling errors, missing semi-colons, line endings, etc)
-
-* **`refactor`**: A code change that neither fixes a bug or adds a feature
-
-* **`perf`**: A code change that improves performance
 
 ### Issue reference
 
@@ -189,7 +173,7 @@ This has been tested locally by building and running the site
 * Implementing a feature
 
 ```
-feat: add copy to clipboard functionality to docs
+add copy to clipboard functionality to docs
 
 What's being changed:
 
@@ -209,7 +193,7 @@ This has been tested locally by building and running the site
 * Documentation changes
 
 ```
-docs: fix typo in getting started docker-compose example
+fix typo in getting started docker-compose example
 
 What's being changed:
 
