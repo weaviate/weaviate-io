@@ -9,10 +9,6 @@ open-graph-type: article
 og-img: documentation.jpg
 toc: true
 ---
-## Contributing to Weaviate Docs
-
-Writing useful documentation takes time and must be updated with each software release. Has the installation procedure changed? Is it possible to configure performance more effectively? Has the user interface been altered? Were new features added? These types of updates must be communicated to both new and existing customers.
-
 ## Documentation Framework
 
 Weaviate documentation is made of these components:
