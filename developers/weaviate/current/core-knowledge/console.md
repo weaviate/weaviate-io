@@ -29,9 +29,9 @@ The Weaviate Cloud Service allows you to create Weaviate instances as SaaS insta
 
 ## Connect to a self-hosted Weaviate
 
-You can connect to any Weaviate instance as long as your computer has access to it (yes, this also includes over a VPN). The GraphiQL editor runs locally, and we don't forward any result or query to our servers
+You can connect to any Weaviate instance as long as your computer has access to it (yes, this also includes over a VPN). The GraphiQL editor runs locally, and we don't forward any result or query to our servers.
 
-When you're connected you can use the [GraphiQL](#graphiql) interface to interact with your Weaviate instance.
+When you're connected, you can use the [GraphiQL](#graphiql) interface to interact with your Weaviate instance.
 
 ## GraphiQL
 

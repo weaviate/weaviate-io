@@ -11,6 +11,9 @@ tags: ['configuration', 'backups']
 menu-order: 2
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.8.0/configuration/backups-and-persistence.html
+    - /developers/weaviate/v1.9.0/configuration/backups-and-persistence.html
 ---
 
 # Introduction
@@ -109,6 +112,7 @@ In addition to activating the module, you need to provide configuration:
 
 | Environment variable | Required | Description |
 | --- | --- | --- |
+| `BACKUP_GCS_BUCKET` | yes | The name of the GCS bucket for backups. |
 | `BACKUP_GCS_PATH` | no | The root path inside your bucket that all your backups will be copied into and retrieved from. Optional, defaults to `""` which means that the backups will be stored in the bucket root instead of a sub-folder. |
 
 ### Google Application Default Credentials

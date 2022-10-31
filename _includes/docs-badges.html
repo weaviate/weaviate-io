@@ -1,5 +1,3 @@
-<!-- sets the current version tags -->
-{% include docs-current_version_finder.html %}
 
 {% if page.solution == "weaviate" or page.solution == "contributor-guide" %}
 
@@ -13,18 +11,15 @@
     <img src="https://img.shields.io/badge/github-issues-informational?style=flat-square" alt="Weaviate issues on Github badge">
 </a>
 
-    {% if current_page_version_tag == "current"%}
-    <a href="https://github.com/semi-technologies/weaviate/releases/tag/{{ current_page_version }}" class="href-no-border">
-        <img src="https://img.shields.io/badge/version-{{ current_page_version }}-brightgreen?style=flat-square" alt="Weaviate {{ current_page_version }} version badge">
-    </a>
+<a href="https://github.com/semi-technologies/weaviate/releases/tag/{{ site.weaviate_version }}" class="href-no-border">
+    <img src="https://img.shields.io/badge/version-{{ site.weaviate_version }}-brightgreen?style=flat-square" alt="Weaviate {{ site.weaviate_version }} version badge">
+</a>
 
-    <a href="https://app.swaggerhub.com/apis/semi-technologies/weaviate/{{ current_page_version }}" class="href-no-border">
-        <img src="https://img.shields.io/badge/open--api--specs-{{ current_page_version }}-brightgreen?style=flat-square" alt="Weaviate {{ current_page_version }} version badge">
-    </a>
-    {% endif %}
+<a href="https://app.swaggerhub.com/apis/semi-technologies/weaviate/{{ site.weaviate_version }}" class="href-no-border">
+    <img src="https://img.shields.io/badge/open--api--specs-{{ site.weaviate_version }}-brightgreen?style=flat-square" alt="Weaviate {{ site.weaviate_version }} version badge">
+</a>
 
 <img id="totalpulls" src="https://img.shields.io/badge/downloads-loading...-yellow?style=flat-square" alt="Weaviate total Docker pulls badge">
-
 
 {% elsif page.solution == "weaviate-cli" %}
 

@@ -8,10 +8,9 @@ tags: ['configuration']
 menu-order: 6
 open-graph-type: article
 toc: true
+redirect_from:
+    - /developers/weaviate/v1.1.0/configuration/enterprise-usage-collector.html
 ---
-
-<!-- sets the current version tags -->
-{% include docs-current_version_finder.html %}
 
 # Introduction
 
@@ -65,7 +64,7 @@ You can also use the Docker compose [configurator](../getting-started/installati
 
 Obtain your token as described in step 1.
 
-Get a Weaviate [helm chart](https://github.com/semi-technologies/weaviate-helm/releases) of version `{{ site.weaviate_versions[current_page_version].helm_version }}` or higher. 
+Get a Weaviate [helm chart](https://github.com/semi-technologies/weaviate-helm/releases) of version `{{ site.helm_version }}` or higher. 
 
 Enable the proxy and configure the proxy using the `collector_proxy` key from the `values.yaml` like so:
 ```

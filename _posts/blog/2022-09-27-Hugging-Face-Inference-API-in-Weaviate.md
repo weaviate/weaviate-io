@@ -10,6 +10,7 @@ hero-img: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
 og: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
 date: 2022-09-27
 toc: true
+redirect_from: /blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html
 ---
 
 Vector Search engines use Machine Learning models to offer incredible functionality to operate on your data. We are looking at anything from **summarizers** (that can summarize any text into a short) sentence), through **auto-labelers** (that can classify your data tokens), to **transformers** and **vectorizers** (that can convert any data – text, image, audio, etc. – into vectors and use that for context-based queries) and many more use cases.
@@ -164,4 +165,4 @@ Let us know if you found this article interesting or useful. We are always happy
 
 We are always working on new articles and are looking for new topics. Let us know if there is anything that you would like us to write about. 🤗
 
-Please reach out to us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
+Please reach out to us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/weaviate_io){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.

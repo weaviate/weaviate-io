@@ -10,6 +10,7 @@ canonical-url: https://db-engines.com/en/blog_post/87
 canonical-name: DB Engines
 date: 2021-02-15
 toc: true
+redirect_from: /blog/2021/02/CRUD-support-in-Weaviate.html
 ---
 
 ## Overview
@@ -69,11 +70,11 @@ It is the combination of the above that makes Weaviate the perfect solution for 
 ## Choose what’s right for your use case — and try it out yourself!
 Now that you’ve learned about some of the limitations imposed by popular ANN libraries and how Weaviate helps you overcome them, there is just one question left to answer: When should you choose which? If you know for certain that you will never need to update your data, will never add a new data point, and don’t need real-time abilities, a library like the ones mentioned above will be a good solution. But if you want to update your data, import additional objects even while queries are occurring, and not sacrifice real-time or persistence, then you should take a look at Weaviate.
 
-Check out the [quickstart guide](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} in the documentation or [learn more about Weaviate here](/developers/weaviate/current){:target="_blank"}. If you like what you’ve read and would consider using Weaviate in the future, feel free to leave a star on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}.
+Check out the [quickstart guide](/developers/weaviate/current/getting-started/index.html){:target="_blank"} in the documentation or [learn more about Weaviate here](/developers/weaviate/current){:target="_blank"}. If you like what you’ve read and would consider using Weaviate in the future, feel free to leave a star on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}.
 
 ## What next
-Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
 
-Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.

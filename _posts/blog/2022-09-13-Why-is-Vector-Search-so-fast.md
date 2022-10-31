@@ -10,6 +10,7 @@ card-img: /img/blog/hero/why-is-vector-search-so-fast-card.png
 og: /img/blog/hero/why-is-vector-search-so-fast-card.png
 date: 2022-09-13
 toc: true
+redirect_from: /blog/2022/09/Why-is-Vector-Search-so-fast.html
 ---
 
 ## Why is this so incredibly fast?
@@ -111,8 +112,8 @@ The Weaviate Core team is currently working on research and implementation for o
 
 Until then, you can:
 * Listen to a [podcast about ANN Benchmarks](https://youtu.be/kG3ji89AFyQ){:target="_blank"} with Connor and Etienne from SeMI Technologies.
-* Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
+* Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
 * Join our community on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, where we can all talk about vector search engines.
-* Reach out to us on [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+* Reach out to us on [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
 
-Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.

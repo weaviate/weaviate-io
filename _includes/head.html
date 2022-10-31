@@ -59,13 +59,11 @@
     {% endif %}
 
     <!-- OG -->
-    {% include docs-current_version_finder.html %}
-
     {% if page.og %}
         <meta property="og:image" content="https://weaviate.io{{ page.og }}">
         <meta name="twitter:image" content="https://weaviate.io{{ page.og }}">
     {% elsif page.layout == "layout-documentation" %}
-        {% assign folder = page.dir | remove: '/developers/weaviate/' | remove: '/' | remove: current_page_version_tag | replace: ' ', '-' | replace: '_', '-' %}
+        {% assign folder = page.dir | remove: '/developers/weaviate/' | remove: '/' | remove: 'current' | replace: ' ', '-' | replace: '_', '-' %}
         {% assign file = page.name | remove: '.md' | replace: ' ', '-' | replace: '_', '-' %}
         <meta property="og:image" content="https://weaviate.io/img/og/og-documentation/{{ folder }}-{{ file }}.jpg">
         <meta name="twitter:image" content="https://weaviate.io/img/og/og-documentation/{{ folder }}-{{ file }}.jpg">

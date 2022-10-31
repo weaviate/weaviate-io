@@ -11,6 +11,7 @@ open-graph-type: article
 og-img: documentation.jpg
 toc: true
 redirect_from:
+  - /developers/contributor-guide/v1.0.4/weaviate-clients/
   - /documentation/contributor-guide/current/weaviate-clients/index.html
   - /documentation/contributor-guide/current/weaviate-clients/
 ---

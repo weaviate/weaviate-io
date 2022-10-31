@@ -10,6 +10,7 @@ canonical-url: https://medium.com/semi-technologies/the-history-of-the-weaviate-
 canonical-name: Medium
 date: 2021-01-20
 toc: true
+redirect_from: /blog/2021/01/The-history-of-Weaviate.html
 ---
 
 ## Intro
@@ -97,8 +98,8 @@ Weaviate will stay fully open source for the community to use. The SeMI Team is 
 Want to learn more about the background of Vector Search and how the ecosystem is developing? [Listen to Sam Ramji from DataStax interviewing Bob van Luijt about Vector Search and the AI stack.](https://www.datastax.com/resources/podcast/vector-search-ai-stack-more-bob-van-luijt){:target="_blank"}. 
 
 ## What next
-Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
 
-Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.

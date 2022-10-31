@@ -11,6 +11,8 @@ menu-order: 2
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
+redirect_from:
+    - /developers/contributor-guide/v1.2.1/weaviate-module-system/architecture.html
 ---
 
 ## Architecture (Code Level)

@@ -10,6 +10,7 @@ menu-order: 2
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.1.0/restful-api-references/objects.html
     - /documentation/weaviate/current/query-data/get.html
     - /documentation/weaviate/current/restful-api-references/semantic-kind.html
     - /developers/weaviate/current/restful-api-references/semantic-kind.html

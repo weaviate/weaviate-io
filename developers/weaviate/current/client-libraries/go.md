@@ -10,6 +10,7 @@ menu-order: 4
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.1.0/client-libraries/go.html
     - /documentation/weaviate/current/client-libs/go.html
     - /documentation/weaviate/current/client-libraries/go.html
 ---
