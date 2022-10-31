@@ -11,6 +11,7 @@ date: 2022-08-30
 toc: true
 isMLResearch: true
 isDBResearch: false
+redirect_from: /blog/2022/08/Research-Insights-Spider.html
 ---
 
 ## Intro

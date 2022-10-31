@@ -10,6 +10,7 @@ menu-order: 5
 open-graph-type: article
 toc: false
 redirect_from:
+    - /developers/weaviate/v1.1.0/restful-api-references/classification.html
     - /documentation/weaviate/current/classification/contextual-classification.html
     - /documentation/weaviate/current/classification/knn-classification.html
     - /documentation/weaviate/current/restful-api-references/classification.html

@@ -10,6 +10,7 @@ canonical-url: https://medium.com/semi-technologies/what-weaviate-users-should-k
 canonical-name: Medium
 date: 2021-05-19
 toc: true
+redirect_from: /blog/2021/05/Docker-and-Containers-with-Weaviate.html
 ---
 
 ## Intro
@@ -112,8 +113,8 @@ Docker Compose is quick, easy and convenient, but there are situations which it 
 However, for a stable production environment, we [recommend to run Weaviate on Kubernetes](/developers/weaviate/current/installation/kubernetes.html){:target="_blank"}. You can use Helm, there is an [officially supported Weaviate Helm Chart](https://github.com/semi-technologies/weaviate-helm){:target="_blank"}.
 
 ## Where to go from here?
-Congratulations, you now have a lot of background on Docker and containerization in general! Now there’s nothing in the way of [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate..
+Congratulations, you now have a lot of background on Docker and containerization in general! Now there’s nothing in the way of [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate..
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
 
-Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.

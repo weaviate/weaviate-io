@@ -16,14 +16,14 @@ toc: true
 
 **Weaviate in a nutshell**: 
 
-* Weaviate is an open source ​database of the type ​vector search engine. 
+* Weaviate is an open-source ​database of the type ​vector search engine. 
 * Weaviate allows you to store JSON documents in a class property-like fashion while attaching machine learning vectors to these documents to represent them in vector space.
-* Weaviate can be used stand-alone (aka _bring your vectors_), with a wide variety of modules that can do the vectorization for you or extend the core capabilities.
+* Weaviate can be used stand-alone (aka _bring your vectors_) or with a variety of modules that can do the vectorization for you and extend the core capabilities.
 * Weaviate has a GraphQL-API to access your data easily.
 * ​We aim to bring your vector search set up to production to query in mere milliseconds (check our [open source benchmarks](./benchmarks/) to see if Weaviate fits your use case).
 * Get to know Weaviate in the [basics getting started guide](./core-knowledge/basics.html) in under five minutes. 
 
-**Weaviate in detail**: Weaviate is a low-latency vector search engine with out-of-the-box support for different media types (text, images, etc.). It offers Semantic Search, Question-Answer Extraction, Classification, Customizable Models (PyTorch/TensorFlow/Keras), etc. Built from scratch in Go, Weaviate stores both objects and vectors, allowing for combining vector search with structured filtering and the fault-tolerance of a cloud-native database, all accessible through GraphQL, REST, and various programming languages client.
+**Weaviate in detail**: Weaviate is a low-latency vector search engine with out-of-the-box support for different media types (text, images, etc.). It offers Semantic Search, Question-Answer Extraction, Classification, Customizable Models (PyTorch/TensorFlow/Keras), etc. Built from scratch in Go, Weaviate stores both objects and vectors, allowing for combining vector search with structured filtering and the fault tolerance of a cloud-native database. It is all accessible through GraphQL, REST, and various client-side programming languages.
 
 ## Weaviate helps
 
@@ -44,19 +44,19 @@ toc: true
 
 # Features
 
-Weaviate makes it easy to use state-of-the-art AI models while giving providing the scalability, ease of use, safety and cost-effectiveness of a purpose-built vector database. Most notably:
+Weaviate makes it easy to use state-of-the-art AI models while providing the scalability, ease of use, safety and cost-effectiveness of a purpose-built vector database. Most notably:
 
 * **Fast queries**<br>
    Weaviate typically performs nearest neighbor (NN) searches of millions of objects in considerably less than 100ms. You can find more information on our [benchmark](./benchmarks/) page.
 
 * **Ingest any media type with Weaviate Modules**<br>
-  Use State-of-the-Art AI model inference (e.g. Transformers) for accessing Text, Images, etc. data at search-and-query time to let Weaviate manage the process of vectorizing data for you - or providing for importing your own vectors.
+Use State-of-the-Art AI model inference (e.g., Transformers) for accessing data (text, images, etc.) at search-and-query time to let Weaviate manage the process of vectorizing data for you - or provide your own vectors.
 
 * **Combine vector and scalar search**<br>
-  Weaviate allows for efficient, combined vector and scalar searches, e.g “articles related to the COVID 19 pandemic published within the past 7 days”. Weaviate stores both objects and the vectors and ensures the retrieval of both is always efficient. There is no need for a third party object storage. 
+ Weaviate allows for efficient, combined vector and scalar searches. For example, “articles related to the COVID-19 pandemic published within the past 7 days.” Weaviate stores both objects and vectors and ensures the retrieval of both is always efficient. There is no need for a third-party object storage. 
 
 * **Real-time and persistent**<br>
-Weaviate let’s you search through your data even if it’s currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.
+Weaviate lets you search through your data even if it’s currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.
 
 * **Horizontal Scalability**<br>
   Scale Weaviate for your exact needs, e.g., maximum ingestion, largest possible dataset size, maximum queries per second, etc.
@@ -76,11 +76,11 @@ Within Weaviate, all individual data objects are based on a class property struc
 
 You can add data to Weaviate through the [RESTful API](./restful-api-references/) end-points and retrieve data through the [GraphQL interface](./graphql-references/).
 
-Weaviates [vector indexing mechanism is modular](./vector-index-plugins/), and the current available plugin is the [Hierarchical Navigable Small World (HNSW) multilayered graph](./vector-index-plugins/hnsw.html).
+Weaviate's [vector indexing mechanism is modular](./vector-index-plugins/), and the current available plugin is the [Hierarchical Navigable Small World (HNSW) multilayered graph](./vector-index-plugins/hnsw.html).
 
 # What are Weaviate modules?
 
-Weaviate modules are used to extend Weaviate's capabilities and optional. There are Weaviate modules that automatically vectorize your content (i.e., `*2vec`) or extend Weaviate's capabilities (often related to the type of vectors you have.) You can also create your own modules. Click [here](./modules) to get started with them.
+Weaviate modules are used to extend Weaviate's capabilities and are optional. There are Weaviate modules that automatically vectorize your content (i.e., `*2vec`) or extend Weaviate's capabilities (often related to the type of vectors you have.) You can also create your own modules. Click [here](./modules) to get started with them.
 
 # What is a vector search engine?
 
@@ -88,11 +88,11 @@ If you work with data, you probably work with search engine technology. The best
 
 Take for example the data object: `{ "data": "The Eiffel Tower is a wrought iron lattice tower on the Champ de Mars in Paris." }`
 
-Storing this in a traditional search engine might leverage inverted indices to index the data. This means that to retrieve the data; you need to search for "Eiffel Tower" or "wrought iron lattice", etc. to find it. But what if you have vast amounts of data and you want the document about the Eiffel Tower but you search for: "landmarks in France"? Traditional search engines can't help you there and this is where vector search engines show their superiority.
+Storing this in a traditional search engine might leverage inverted indices to index the data. This means that to retrieve the data; you need to search for "Eiffel Tower" or "wrought iron lattice", etc. to find it. But what if you have vast amounts of data and you want the document about the Eiffel Tower but you search for: "landmarks in France?" Traditional search engines can't help you there, so this is where vector search engines show their superiority.
 
-Weaviate uses vector indexing mechanisms at its core to represent the data. The vectorization modules (e.g., the NLP module) vectorizes the above-mentioned data object in a vector-space where the data object sits _near_ the text "landmarks in France". This means that Weaviate can't make a 100% match, but a very high one to show you the results.
+Weaviate uses vector indexing mechanisms at its core to represent the data. The vectorization modules (e.g., the NLP module) vectorizes the above-mentioned data object in a vector-space where the data object sits _near_ the text "landmarks in France." This means that Weaviate can't make a 100% match, but a very high one to show you the results.
 
-The above example is for text (i.e., NLP) but you can use it for any machine learning model that vectorizes, like images, audio, video, genes, etc.
+The above example is for text (i.e., NLP), but you can use it for any machine learning model that vectorizes, like images, audio, video, genes, etc.
 
 Last but not least, using a vector search engine for your machine learning is something you do for the same reason you've been using a traditional search engine. It allows you to scale fast, search, and classify in real-time and it can be used in a robust production environment.
 

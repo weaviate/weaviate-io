@@ -10,6 +10,8 @@ menu-order: 3
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.5.2/modules/text2vec-transformers.html
+    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-transformers.html
     - /developers/weaviate/current/modules/text2vec-transformers.html
 ---
 
@@ -42,13 +44,11 @@ Note: you can also use the [Weaviate configuration tool](../installation/docker-
 
 You can find an example Docker-compose file below, which will spin up Weaviate with the transformers module. In this example, we have selected the `sentence-transformers/msmarco-distilroberta-base-v2` which works great for [asymmetric semantic search](https://sbert.net/examples/applications/semantic-search/README.html#symmetric-vs-asymmetric-semantic-search). See below for how to select an alternative model.
 
-{% include docs-current_version_finder.html %}
-
 ```yaml
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     restart: on-failure:0
     ports:
      - "8080:8080"

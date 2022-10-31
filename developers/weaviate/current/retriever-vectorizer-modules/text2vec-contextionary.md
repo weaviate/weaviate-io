@@ -10,6 +10,7 @@ menu-order: 4
 open-graph-type: article
 toc: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-contextionary.html
     - /developers/weaviate/current/modules/text2vec-contextionary.html
 ---
 
@@ -53,8 +54,6 @@ The `text2vec-contextionary` module is not available on the WCS.
 
 Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. The service can be added like this:
 
-{% include docs-current_version_finder.html %}
-
 ```yaml
 ---
 version: '3.4'
@@ -67,7 +66,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     ports:
     - 8080:8080
     restart: on-failure:0

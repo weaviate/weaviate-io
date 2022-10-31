@@ -9,7 +9,10 @@ card-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.p
 hero-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
 og: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
 date: 2022-10-04
-toc: true 
+toc: true
+isMLResearch: true
+isDBResearch: false
+redirect_from: /blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face.html
 ---
 
 [Weaviate](/developers/weaviate/current/){:target="_blank"} has recently unveiled a new module which allows users to easily [integrate models from Hugging Face](/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html){:target="_blank"} to vectorize their data and incoming queries. [Over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads){:target="_blank"} (at the time of writing this) that can be easily plugged into Weaviate. 
@@ -128,8 +131,8 @@ Deep Learning research has mainly been focused on Text, Image, and Image-Text mo
 To recap, the HuggingFace Sentence Transformer checkpoints mostly differ in the **data** they were trained on. Picking the model that best aligns with your use case is a matter of identifying the most similar Domain and Task, while mostly welcoming additional scale in the dataset size. Most applications of the Weaviate Vector Search Engine that involve Sentence Transformers are mostly concerned with **Modalities** of Text, Image, or Image-Text space, but the number of these categories seems likely to explode in the near future.
 
 ## What's next
-Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
 
-Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.

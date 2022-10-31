@@ -8,11 +8,9 @@ tags: ['installation']
 menu-order: 1
 open-graph-type: article
 toc: true
-# redirect_from:
-#   - /developers/weaviate/current/getting-started/installation.html
+redirect_from:
+    - /developers/weaviate/v1.7.2/getting-started/installation.html
 ---
-
-{% include docs-current_version_finder.html %}
 
 There are three ways you can run Weaviate, and they are -we believe- pretty straightforward.
 
@@ -34,7 +32,7 @@ Alternatively, if you prefer to install and deploy Weaviate yourself, then you c
 
 Working with Docker is great if you are building an application around Weaviate and want to run Weaviate on your local machine or in the cloud. If you have Docker already installed, you could have it all up and running in seconds (minutes if you use a  prepackaged transformers module).
 
-We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator){:target="_blank"}, which let's you pick you configuration, and as a result you will receive a command to spin up your docker setup.
+We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator){:target="_blank"}, which lets you pick your configuration, and as a result you will receive a command to spin up your docker setup.
 
 You can find the installation instructions for Docker [here](../installation/docker-compose.html#configurator).
 
@@ -50,11 +48,11 @@ Using Weaviate with Kubernetes is out of scope for this tutorial. You can find m
 
 The installation and configuration with Docker and Kubernetes is out of scope for this tutorial, as all code examples include references to a WCS instance. To learn about deploying Weaviate locally, follow the [installation documentation](/developers/weaviate/current/installation/){:target="_blank"} page.
 
-If you feel comfortable making a few changes to the code examples in the tutorial and you prefer to run Weaviate locally. You can set up Weaviate with Docker in two steps:
+If you feel comfortable making a few changes to the code examples in the tutorial and you prefer to run Weaviate locally, you can set up Weaviate with Docker in two steps:
 
 0. Get `docker-compose.yml` configuration file by calling:
     ```js
-    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ current_page_version }}"
+    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
     ```
 0. Sping up docker
     ```js
@@ -86,7 +84,7 @@ To create a new Weaviate Cluster:
 0. Press the "Create a Weaviate Cluster" button
 0. Configure the cluster:
     0. Set the `name` for your cluster – note: The name will become part of the URL we will use to access this instance. Please use a different name than "getting-started".
-    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 5 days
+    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 30 days
     0. Leave the `Weaviate Version` as the latest
     0. Leave the `Standalone Or Modules` as `Standalone, no Modules`
     0. **change** the `OIDC Authentication` to `Disabled`

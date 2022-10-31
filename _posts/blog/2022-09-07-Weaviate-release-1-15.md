@@ -10,6 +10,7 @@ hero-img: /img/blog/hero/weaviate-1-15-card.png
 og: /img/blog/hero/weaviate-1-15-card.png
 date: 2022-09-07
 toc: false
+redirect_from: /blog/2022/09/Weaviate-release-1-15.html
 ---
 
 We are happy to announce the release of Weaviate 1.15, which is packed with great features, significant performance improvements, new distance metrics and modules, and many smaller improvements and fixes.
@@ -437,4 +438,4 @@ You can find the complete list and the relevant links in the [release notes](htt
 ## Enjoy
 We hope you enjoy all the new features, performance improvements, memory savings and bug fixes that made this the best Weaviate release yet!🔥
 
-Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
+Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/weaviate_io){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.

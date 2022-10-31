@@ -38,10 +38,10 @@ In this tutorial, you'll find the 3-steps needed to replicate the import, but th
 
 ### Acknowledgments
 
-* The [`t2v-transformers` module](https://weaviate.io/developers/weaviate/current/modules/text2vec-transformers.html) used contains the [sentence-transformers-paraphrase-MiniLM-L6-v2](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/tree/main/step-3/docker-compose-gpu.yml#L32) transformer created by the [SBERT team](https://www.sbert.net/)
+* The [`t2v-transformers` module)[/developers/weaviate/current/modules/text2vec-transformers.html) used contains the [sentence-transformers-paraphrase-MiniLM-L6-v2](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/tree/main/step-3/docker-compose-gpu.yml#L32) transformer created by the [SBERT team](https://www.sbert.net/)
 * Thanks to the team of [Obsei](https://github.com/obsei/obsei) for sharing the idea on our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) channel
 
-![Example semantic search queries in Weaviate's GraphQL interface](https://weaviate.io/img/wikipedia-demo.gif)
+![Example semantic search queries in Weaviate's GraphQL interface)[/img/wikipedia-demo.gif)
 
 # 3-step Tutorial
 
@@ -84,9 +84,9 @@ Weaviate takes care of the complete import and vectorization process but you'll 
 
 We will be using a single Weaviate instance, but four Tesla P4 GPUs that we will stuff with 8 models each. To efficiently do this, we are going to add an NGINX load balancer between Weaviate and the vectorizers.
 
-![Weaviate Wikipedia import architecture with transformers and vectorizers](https://weaviate.io/img/4GPU-wikipedia-dataset.png)
+![Weaviate Wikipedia import architecture with transformers and vectorizers)[/img/4GPU-wikipedia-dataset.png)
 
-* Every Weaviate [text2vec-module](https://weaviate.io/developers/weaviate/current/modules/text2vec-transformers.html) will be using a [semitechnologies/tparaphrase-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L6-v2) sentence transformer.
+* Every Weaviate [text2vec-module)[/developers/weaviate/current/modules/text2vec-transformers.html) will be using a [semitechnologies/tparaphrase-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L6-v2) sentence transformer.
 * The volume is mounted _outside_ the container to `/var/weaviate`. This allows us to use this folder as a backup that can be imported in the next step.
 * Make sure to have Docker-compose _with_ GPU support [installed](https://gist.github.com/bobvanluijt/af6fe0fa392ca8f93e1fdc96fc1c86d8).
 * The import scripts assumes that the JSON file is called `wikipedia-en-articles.json`.
@@ -311,10 +311,10 @@ Get all Wikipedia graph connections for _"jazz saxophone players"_ [try it live!
 
 | Q | A |
 | --- | --- |
-| Can I run this setup with a non-English dataset? | Yes – first, you need to go through the whole process (i.e., start with Step 1). E.g., if you want French, you can download the French version of Wikipedia like this: `https://dumps.wikimedia.org/frwiki/latest/frwiki-latest-pages-articles.xml.bz2`  (note that `en` if replaced with `fr`). Next, you need to change the Weaviate vectorizer module to an appropriate language. You can choose an OOTB language model as outlined [here](https://weaviate.io/developers/weaviate/current/modules/text2vec-transformers.html#option-1-use-a-pre-built-transformer-model-container) or add your own model as outlined [here](https://weaviate.io/developers/weaviate/current/modules/text2vec-transformers.html#option-2-use-any-publically-available-huggingface-model). |
+| Can I run this setup with a non-English dataset? | Yes – first, you need to go through the whole process (i.e., start with Step 1). E.g., if you want French, you can download the French version of Wikipedia like this: `https://dumps.wikimedia.org/frwiki/latest/frwiki-latest-pages-articles.xml.bz2`  (note that `en` if replaced with `fr`). Next, you need to change the Weaviate vectorizer module to an appropriate language. You can choose an OOTB language model as outlined [here)[/developers/weaviate/current/modules/text2vec-transformers.html#option-1-use-a-pre-built-transformer-model-container) or add your own model as outlined [here)[/developers/weaviate/current/modules/text2vec-transformers.html#option-2-use-any-publically-available-huggingface-model). |
 | Can I run this setup with all languages? | Yes – you can follow two strategies. You can use a multilingual model or extend the Weaviate schema to store different languages with different classes. The latter has the upside that you can use multiple vectorizers (e.g., per language) or a more elaborate sharding strategy. But in the end, both are possible. | 
-| Can I run this with Kubernetes? | Of course, you need to start from Step 2. But if you follow the Kubernetes set up in the [docs](https://weaviate.io/developers/weaviate/current/getting-started/installation.html#kubernetes-k8s) you should be good :-) |
-| Can I run this with my own data? | Yes! This is just a demo dataset, you can use any data you have and like. Go to the [Weaviate docs](https://weaviate.io/developers/weaviate/current/) or join our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to get started. |
+| Can I run this with Kubernetes? | Of course, you need to start from Step 2. But if you follow the Kubernetes set up in the [docs)[/developers/weaviate/current/getting-started/installation.html#kubernetes-k8s) you should be good :-) |
+| Can I run this with my own data? | Yes! This is just a demo dataset, you can use any data you have and like. Go to the [Weaviate docs)[/developers/weaviate/current/) or join our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to get started. |
 | Can I run the dataset without the Q&A module? | Yes, see [this](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/issues/2#issuecomment-995595909) answer |
 
 # More Resources

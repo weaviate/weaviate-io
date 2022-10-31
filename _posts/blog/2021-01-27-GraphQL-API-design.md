@@ -10,6 +10,7 @@ canonical-url: https://medium.com/semi-technologies/how-weaviates-graphql-api-wa
 canonical-name: Medium
 date: 2021-01-27
 toc: true
+redirect_from: /blog/2021/01/GraphQL-API-design.html
 ---
 
 
@@ -19,7 +20,7 @@ Weaviate uses the API query language [GraphQL](https://graphql.org/){:target="_b
 
 In this article we explain how the use of GraphQL leverages the UX of Weaviate, and how we approach the design of this API.
 
-<a href="https://weaviate.io/developers/weaviate/current/" target="_blank"><img src="https://weaviate.io/img/weaviate-demo.gif?i=8" alt="Demo of Weaviate" width="100%"></a>
+<a href="/developers/weaviate/current/" target="_blank"><img src="/img/weaviate-demo.gif?i=8" alt="Demo of Weaviate" width="100%"></a>
 
 ## What is Weaviate and why does it need an API?
 Weaviate is an [open-source](https://github.com/semi-technologies/weaviate){:target="_blank"} Vector Search Engine: for understandable knowledge representation, enabling semantic search and automatic classification. Weaviate does not only store data, but also its (automatically derived) context, consisting of linguistic information and relations to other concepts. The result is a network of knowledge, or a graph of data.
@@ -119,8 +120,8 @@ With Weaviate, we want to allow the end-user to be focused on their data, and th
 [Click here](/developers/weaviate/current/graphql-references/index.html){:target="_blank"} to learn more about the complete GraphQL structure.
 
 ## What next
-Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/quick-start.html){:target="_blank"} and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}.
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
 
-Weaviate is open source, you can see the follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.

@@ -9,6 +9,7 @@ card-img: /img/blog/hero/weaviate-1-14-card.png
 hero-img: /img/blog/hero/weaviate-1-14.png
 date: 2022-07-06
 toc: true
+redirect_from: /blog/2022/07/Weaviate-release-1-14.html
 ---
 
 ## What is new
@@ -249,4 +250,4 @@ Here is a little guide on [how to write great bug reports](/developers/weaviate/
 ## Enjoy
 We hope you enjoy the most reliable and observable Weaviate release yet!
 
-Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/SeMI_tech){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
+Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/weaviate_io){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.

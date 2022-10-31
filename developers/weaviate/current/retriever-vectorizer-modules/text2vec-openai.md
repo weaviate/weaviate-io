@@ -11,6 +11,7 @@ open-graph-type: article
 toc: true
 enabled-on-wcs: true
 redirect_from:
+    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-openai.html
     - /developers/weaviate/current/modules/text2vec-openai.html
 ---
 
@@ -33,15 +34,13 @@ This module is enabled by default on the WCS
 
 ## Weaviate open source
 
-{% include docs-current_version_finder.html %}
-
 You can find an example Docker-compose file below, which will spin up Weaviate with the OpenAI module.
 
 ```yaml
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     restart: on-failure:0
     ports:
      - "8080:8080"
@@ -70,6 +69,7 @@ The following schema configuration uses the `babbage` model.
     {
       "class": "Document",
       "description": "A class called document",
+      "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "text2vec-openai": {
           "model": "babbage",
@@ -90,8 +90,7 @@ The following schema configuration uses the `babbage` model.
           },
           "name": "content"
         }
-      ],
-      "vectorizer": "text2vec-openai"
+      ]
     }
   ]
 }

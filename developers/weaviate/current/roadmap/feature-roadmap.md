@@ -23,20 +23,24 @@ The following is an overview of features planned for Weaviate. By clicking the l
 {% if description != '' %}
 <small>{{ description }}</small>
 {% endif %}
+
 <ul class="list-group mb-4">
-{% for issue in label[1].items reversed sort_by:'+1' %}
+{% assign issues = label[1].items | sort: '+1' | reverse %}
+{% for issue in issues %}
 <li class="list-group-item">
     <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a> – 👍 {{ issue['+1'] }}
 </li>
 {% endfor %}
 </ul>
+
 {% endif %}
 {% endfor %}
 
 <!-- ADDS BACKLOG -->
 ## Backlog
 <ul class="list-group mb-4">
-{% for issue in site.data.roadmap['backlog'].items %}
+{% assign backlog = site.data.roadmap['backlog'].items | sort: '+1' | reverse %}
+{% for issue in backlog %}
 <li class="list-group-item">
     <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a> – 👍 {{ issue['+1'] }}
 </li>

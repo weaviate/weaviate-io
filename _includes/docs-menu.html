@@ -5,137 +5,75 @@
             <div style="width:100%; justify-content: center; {% if site.documentation_call_out == true %}margin-top: 0.75rem;{% endif %}">
                 <a class="github-button" href="https://github.com/semi-technologies/weaviate" data-size="large" data-show-count="true" aria-label="Star semi-technologies/weaviate on GitHub">Star</a>
             </div>
-
-            <!-- Contributor Guide Menu -->
-            {% if page.solution == "contributor-guide" %}
-                <!-- First – get the pages that belong to the contributor-guide -->
-                {% assign contributor_guide_pages = site.pages | sort: "menu-order" | where: "solution", "contributor-guide" %}
-
-                <!-- Display the index Pages -->
-                <h4 class="text-uppercase fw-bold">Contributor Guide</h4>
-                {% assign index_pages = contributor_guide_pages | where: "sub-menu", "index" %}
-                <ul class="list mb-6">
-                    {% for guide_page in index_pages %}
-                    <li class="list-item">
-                        <a href="{{ guide_page.url }}" class="list-link {% if guide_page.title == page.title %}current{% endif %}">{{guide_page.title}}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-
-                <!-- Go over the contributor guide categories from _config.yml -->
-                {% for guide_category in site.docs["contributor-guide"] %}
-                    <h6 class="text-uppercase fw-bold">
-                        <a href="/developers/contributor-guide/current/{{guide_category.folder}}"
-                        {% if guide_category.name == page.title %}class="current"{% endif %}>{{ guide_category.name }}</a>
-                    </h6>
-                    
-                    <!-- Find the pages that belong to the currently displayed guide | but skip(shift) the first (index page) -->
-                    {% assign pages_in_guide = contributor_guide_pages | where: "sub-menu", guide_category.name | shift %}
-                    
-                    <!-- Display all the pages for the current guide category -->
+            <!-- IMPORTANT: NOTE THAT THE SUBMENU ORDER IS SET IN CONFIG.YML -->
+            {% assign sorted_documentation = site.pages | sort: 'menu-order' | group_by: 'solution' %}
+            {% for guides in sorted_documentation %}
+                {% if guides.name == page.solution %}
                     <ul class="list mb-6">
-                        {% for guide_page in pages_in_guide %}
-                        <li class="list-item">
-                            <a href="{{ guide_page.url }}" class="list-link {% if guide_page.title == page.title %}current{% endif %}">{{guide_page.title}}</a>
-                        </li>
-                        {% endfor %}
+                      <li>
+                            <h6 class="text-uppercase fw-bold">
+                                {{ page.solution }}
+                            </h6>
+                      </li>
+                      <li class="list-item">
+                        <a href="{% if page.title == 'Introduction'%}./{% else %}../{% endif %}" 
+                            class="list-link {% if guide.title == page.title %}current{% endif %}">Introduction</a>
+                      </li>
                     </ul>
-                {% endfor %}
-            {% else %}
-
-                <!-- sets the current version tags -->
-                {% include docs-current_version_finder.html %}
-                <!-- IMPORTANT: NOTE THAT THE SUBMENU ORDER IS SET IN CONFIG.YML -->
-                {% assign sorted_documentation = site.pages | sort: 'menu-order' | group_by: 'solution' %}
-                {% for guides in sorted_documentation %}
-                    {% if guides.name == page.solution %}
-                        <ul class="list mb-6">
-                        <li class="list-item">
-                            <div class="dropdown">
-                                <button style="width:100%;max-width:120px;" class="btn btn-xs btn-primary dropdown-toggle mb-5" type="button" id="view_version" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-xs" aria-labelledby="view_version">
-                                    {% for version in site.weaviate_versions %}                            
-                                        {% assign version_split = version[0] | split: "." %}
-                                        {% assign version_without_patch = version_split[0] | append: "." | append: version_split[1] %}
-                                        {% if version[0] == site.weaviate_version %}
-                                            <a class="dropdown-item" href="/developers/weaviate/current">current ({{ version_without_patch }})</a>
-                                        {% else %}
-                                            <a class="dropdown-item" href="/developers/weaviate/{{ version[0] }}">{{ version_without_patch }}</a>
-                                        {% endif %}
-                                    {% endfor %}
+                    {% for menuItem in site.docs[guides.name]['current'] %}
+                        {% assign sorted_menus = site.pages | group_by: 'sub-menu' %}
+                        {% for menu in sorted_menus %}
+                            {% if menuItem.name == menu.name && guides.name == page.solution %}
+                                {% if menuItem.header == true %}
+                                <!-- Hide if the current page is not in the navigation space for this menu item -->
+                                <div {% if menuItem.nav-parent != page.nav-parent %}class="menu-hide"{% endif %}>
+                                    <h6 class="text-uppercase fw-bold">{{ menuItem.name }}</h6>
+                                    <ul class="list mb-6">
+                                        {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
+                                        {% for guide in sorted_sub_menus %}
+                                            {% if menu.name == guide.sub-menu %}
+                                                {% if page.solution == guide.solution %}
+                                                    {% if guide.menu-order > 0 %}
+                                                        <li class="list-item">
+                                                            <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
+                                                        </li>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
                                 </div>
-                            </div>
-                        </li>
-                        <li>
-                                <h6 class="text-uppercase fw-bold">
-                                    {{ page.solution }}
-                                </h6>
-                        </li>
-                        <li class="list-item">
-                            <a href="{% if page.title == 'Introduction'%}./{% else %}../{% endif %}" 
-                                class="list-link {% if guide.title == page.title %}current{% endif %}">Introduction</a>
-                        </li>
-                        </ul>
-                        {% for menuItem in site.docs[guides.name][current_page_version] %}
-                            {% assign sorted_menus = site.pages | group_by: 'sub-menu' %}
-                            {% for menu in sorted_menus %}
-                                {% if menuItem.name == menu.name && guides.name == page.solution %}
-                                    {% if menuItem.header == true %}
-                                    <!-- Hide if the current page is not in the navigation space for this menu item -->
-                                    <div {% if menuItem.nav-parent != page.nav-parent %}class="menu-hide"{% endif %}>
-                                        <h6 class="text-uppercase fw-bold">{{ menuItem.name }}</h6>
+                                {% else %}
+                                    <h6 class="text-uppercase fw-bold">
+                                        <a href="/developers/{{ guides.name }}/current/{{ menuItem.folder }}"
+                                           {% if menu.name == page.title %}class="current"{% endif %}>{{ menu.name }}</a>
+                                    </h6>
+                                    <!-- menu item children – show only the children for the menu items of the current page -->
+                                    <div {% if menu.name != page.sub-menu and menu.name != page.nav-parent %}class="menu-hide"{% endif %}>
                                         <ul class="list mb-6">
                                             {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
                                             {% for guide in sorted_sub_menus %}
                                                 {% if menu.name == guide.sub-menu %}
                                                     {% if page.solution == guide.solution %}
                                                         {% if guide.menu-order > 0 %}
-                                                        {% if guide.url contains current_page_version_tag %}
                                                             <li class="list-item">
-                                                            <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
+                                                                <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
                                                             </li>
-                                                        {% endif %}
                                                         {% endif %}
                                                     {% endif %}
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
                                     </div>
-                                    {% else %}
-                                        <h6 class="text-uppercase fw-bold">
-                                            <a href="/developers/{{ guides.name }}/{{ current_page_version_tag }}/{{ menuItem.folder }}"
-                                            {% if menu.name == page.title %}class="current"{% endif %}>{{ menu.name }}</a>
-                                        </h6>
-                                        <!-- menu item children – show only the children for the menu items of the current page -->
-                                        <div {% if menu.name != page.sub-menu and menu.name != page.nav-parent %}class="menu-hide"{% endif %}>
-                                            <ul class="list mb-6">
-                                                {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
-                                                {% for guide in sorted_sub_menus %}
-                                                    {% if menu.name == guide.sub-menu %}
-                                                        {% if page.solution == guide.solution %}
-                                                            {% if guide.menu-order > 0 %}
-                                                            {% if guide.url contains current_page_version_tag %}
-                                                                <li class="list-item">
-                                                                <a href="{{ guide.url }}" class="list-link {% if guide.title == page.title %}current{% endif %}">{{guide.title}}</a>
-                                                                </li>
-                                                            {% endif %}
-                                                            {% endif %}
-                                                        {% endif %}
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-                                        {% if menuItem.breakpointAfter %}
-                                            <hr class="docs-menu-divider">
-                                        {% endif %}
+                                    {% if menuItem.breakpointAfter %}
+                                        <hr class="docs-menu-divider">
                                     {% endif %}
                                 {% endif %}
-                            {% endfor %}
+                            {% endif %}
                         {% endfor %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
         </div>
     </div>  
 </div>

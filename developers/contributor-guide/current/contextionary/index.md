@@ -11,6 +11,7 @@ open-graph-type: article
 og-img: documentation.jpg
 toc: false
 redirect_from:
+  - /developers/contributor-guide/v1.6.0/contextionary/
   - /documentation/contributor-guide/current/contextionary/index.html
   - /documentation/contributor-guide/current/contextionary/
 ---

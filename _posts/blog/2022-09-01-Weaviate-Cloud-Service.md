@@ -12,6 +12,7 @@ date: 2022-09-01
 toc: false
 isMLResearch: false
 isDBResearch: false
+redirect_from: /blog/2022/09/Weaviate-Cloud-Service.html
 ---
 
 **Amsterdam NL – September 1, 2022**
@@ -28,7 +29,7 @@ SeMI Technologies’ Weaviate vector-search engine is an example of a “third w
  
 > “Depending on the machine-learning model used, a “document”—basically a data object—in a vector database typically has anywhere from 120 to 12,800 dimensions,” van Luijt explains. “Since vector dimensions are the lowest common denominator, it makes sense for vector dimensions to be the cost basis, as opposed to API calls. We feel that this very transparent and predictable pricing model is consistent with our open-source philosophy.”
 
-For more information about the open-source vector search engine Weaviate visit: [https://weaviate.io](https://weaviate.io)
+For more information about the open-source vector search engine Weaviate visit: [https://weaviate.io](/)
 For more information about SeMI Technologies visit: [https://semi.technology](https://semi.technology)
  
 Customers interested in the private beta of the Weaviate Cloud Service can purchase service for $0.05 per million dimensions. Or, spend an entire dollar and get 20 million dimensions.
