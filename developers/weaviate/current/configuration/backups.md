@@ -19,24 +19,23 @@ redirect_from:
 # Introduction
 
 Weaviate's Backup feature is designed to feel very easy to use and work natively with
-cloud technology. Most notably:
+cloud technology. Most notably, it allows:
 
 * Seamless integration with widely-used cloud blob storage, such as AWS S3 or GCS
 * Backup and Restore between different storage providers
 * Single-command backup and restore from the REST API
-* Supports whole instance backups, as well as selecting specific classes
-* Zero downtimes & minimal effects for your users when backups are running
-* Easy Migrations to new environments
+* Choice of backing up an entire instance, or selected classes only
+* Zero downtime & minimal impact for your users when backups are running
+* Easy Migration to new environments
 
 _Note: The backup functionality was introduced in Weaviate `v1.15`, but for single-node instances only. Support for multi-node backups was introduced in `v1.16`_
 
 # Configuration
 
 In order to perform backups, a backup provider module must be activated.
-Multiple backup providers can be active at the same time. Currently Weaviate
-supports the the `backup-s3`, `backup-gcs`, and `backup-filesystem` providers.
-Built on Weaviate's [module system](/developers/weaviate/current/configuration/modules.html), adding additional providers in the
-future is simple.
+Multiple backup providers can be active at the same time. Currently `backup-s3`, `backup-gcs`, and `backup-filesystem` modules are available for S3, GCS or filesystem backups.
+Built on Weaviate's [module system](/developers/weaviate/current/configuration/modules.html), additional providers can be added in the
+future.
 
 All service-discovery and authentication-related configuration is set using
 environment variables.
@@ -46,7 +45,7 @@ environment variables.
 Use the `backup-s3` module to enable backing up to and restoring from any
 S3-compatible blob storage. This includes AWS S3, and MinIO.
 
-To enable the module set the following environment variable
+To enable the module set the following environment variable:
 
 ```
 ENABLE_MODULES=backup-s3
@@ -97,7 +96,7 @@ access-key or ARN-based authentication:
 Use the `backup-gcs` module to enable backing up to and restoring from any
 Google Cloud Storage.
 
-To enable the module set the following environment variable
+To enable the module set the following environment variable:
 
 ```
 ENABLE_MODULES=backup-gcs
@@ -132,27 +131,23 @@ This makes it easy to use the same module in different setups. For example, you 
 
 ## Filesystem
 
----
+> ### ⚠️ Caution ⚠️
+>
+> `backup-filesystem` is only compatible with single-node backups. Use `backup-gcs` or `backup-s3` if support for multi-node backups is needed.
+>
+> The filesystem provider is not intended for production use, as its availability is directly tied to the node on which it operates.
 
-### ⚠️ Caution ⚠️
-
-`backup-filesystem` is only compatible with single-node backups. Use `backup-gcs` or `backup-s3` if support for multi-node backups is needed.
-
-The filesystem provider is not intended for production use, as its availability is directly tied to the node on which it operates.
-
----
-
-Instead of backing up to a remote backend, you can also backup to the local
+Instead of backing up to a remote backend, you can also back up to the local
 filesystem. This may be helpful during development, for example to be able to
 quickly exchange setups, or to save a state from accidental future changes.
 
-To allow backups to the local filesystem, simply enable the `backup-filesystem` module like so:
+To allow backups to the local filesystem, enable the `backup-filesystem` module like so:
 
 ```
 ENABLE_MODULES=backup-filesystem
 ```
 
-Modules are comma-separated, for example to combine the module with the `text2vec-transformers` module, set:
+Modules are comma-separated. For example, to combine the module with the `text2vec-transformers` module, set:
 
 ```
 ENABLE_MODULES=backup-filesystem,text2vec-transformers
@@ -304,7 +299,7 @@ restore is complete. If the status is `FAILED`, an additional error is provided.
 
 The backup process is designed to be minimally invasive to a running setup.
 Even on very large setups, where terabytes of data need to be copied, Weaviate
-stays fully usable. It even accepts write requests while a backup process is
+stays fully usable during backup. It even accepts write requests while a backup process is
 running. This sections explains how backups work under the hood and why
 Weaviate can safely accept writes while a backup is copied.
 
@@ -312,7 +307,7 @@ Weaviate uses a custom [LSM
 Store](../architecture/storage.html#object-and-inverted-index-store) for it's
 object store and inverted index. LSM stores are a hybrid of immutable disk
 segments and an in-memory structure called a memtable that accepts all writes
-(including updates and deletes). For most of the time, files on disk are
+(including updates and deletes). Most of the time, files on disk are
 immutable, there are only three situations where files are changed:
 
 1. Anytime a memtable is flushed. This creates a new segment. Existing segments
@@ -376,7 +371,7 @@ For example, consider the following situation: You would like to do a load test
 on production data. If you would do the load test in production it might affect
 users. An easy way to get meaningful results without affecting uses it to
 duplicate your entire environment. Once the new production-like "loadtest"
-environment is up, simple create a backup from your production environment and
+environment is up, create a backup from your production environment and
 restore it into your "loadtest" environment. This even works if the production
 environment is running on a completely different cloud provider than the new
 environment.

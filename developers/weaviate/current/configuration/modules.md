@@ -45,7 +45,7 @@ _Note: at the moment, text vectorization modules can be combined in a single set
 
 # Backup Provider Modules
 
-Backup and restore operations in Weaviate are facilitated by the use of a backup provider module. These are interchangeable storage backends which exist either internally or externally. The following sections will explain the difference between these two types of backup provider modules, and their intended usages.
+Backup and restore operations in Weaviate are facilitated by the use of backup provider modules. These are interchangeable storage backends which exist either internally or externally. The following sections will explain the difference between these two types of backup provider modules, and their intended usages.
 
 ## External provider
 
@@ -59,7 +59,7 @@ As of Weaviate `v1.16`, the supported external backup providers are:
 - [S3](/developers/weaviate/current/configuration/backups.html#s3-aws-or-s3-compatible)
 - [GCS](/developers/weaviate/current/configuration/backups.html#gcs-google-cloud-storage)
 
-Thanks to the extensibility of the module system, adding a new provider is easy. If you are interested in an external provider other than the ones listed above, feel free to reach out via our [community Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), or open an issue on [GitHub](https://github.com/semi-technologies/weaviate).
+Thanks to the extensibility of the module system, new providers can be readily added. If you are interested in an external provider other than the ones listed above, feel free to reach out via our [community Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), or open an issue on [GitHub](https://github.com/semi-technologies/weaviate).
 
 ## Internal provider
 
