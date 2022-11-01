@@ -2,8 +2,8 @@
 layout: layout-documentation
 solution: weaviate
 sub-menu: Getting started
-title: Getting started with Weaviate guide overview
-description: Getting started with Weaviate guides overview
+title: Getting started with Weaviate
+description: Getting started with Weaviate guide - Overview
 tags: ['getting started']
 menu-order: 0
 open-graph-type: article
@@ -16,23 +16,24 @@ redirect_from:
 
 Welcome to the Weaviate **Getting Started** guide.
 
-Here, on this page, we're not going to take too much of your time; it's just an overview of the guides.
+The Getting Started is designed to quickly teach you how to use Weaviate, from spinning up an instance to performing queries. Each section should just take a few minutes of your time.
 
-The purpose of the Getting Started is to teach you how to use Weaviate in an application.
+In this guide, we will show you how to:
+- Spin up an instance of Weaviate
+- Set up a database schema, including cross-references
+- Import data to populate the database, and
+- Perform queries to retrieve relevant data 
 
-Have fun working with Weaviate, and please do let us know on our Slack when you have questions or if you have a cool use case to share!
+By the end of the guide, you will end up with a basic, but fully functioning vector database. You will also have performed vector searches to retrieve information from that database.
+
+Have fun working with Weaviate, and please do let us know when you have questions or if you have a cool use case to share!
 
 ## Before you start 
 
-In the guide, we make a few basic assumptions (you are somewhat familiar with databases, know what vector embeddings are, and can read essential JSON and GraphQL).
+The guide assumes that you are somewhat familiar with databases and vector embeddings. 
 
-## Weaviate Getting Started lessons
+But don't worry too much even if you are uncomfortable with any of these. The guide is structured so you should be able to follow along the it even if some of the concepts are unfamiliar. And you can always revisit some of these ideas other parts of our documentation. 
 
-You should follow the lessons in the order provided.
+## Next
 
-| Topic | Description |
-| --- | --- |
-| [Installation](./installation.html) | Install Weaviate |
-| [Schema](./schema.html) | Learn how a Weaviate schema works |
-| [Import](./import.html) | Learn how to efficiently import into Weaviate |
-| [Query](./query.html) | Learn how to query Weaviate using GraphQL and the RESTful API |
+Get started by [installing Weaviate](./installation.html).
