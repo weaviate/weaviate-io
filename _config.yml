@@ -55,7 +55,7 @@ toc:
 # SPECIFIC SETTINGS FOR THE DOCS
 # ALSO SEE THE README FILE
 ###
-weaviate_version: v1.15.5 # the current and latest version
+weaviate_version: v1.16.0 # the current and latest version
 helm_version: 15.0.0 # Helm version for this Weaviate version
 docs:
   weaviate:
@@ -129,12 +129,12 @@ docs:
         folder: more-resources
         header: false
   contributor-guide:
+    current:
       - name: Getting Started
         folder: getting-started
-    current:
       - name: Weaviate Core
         folder: weaviate-core
-      - name: Weaviate Module System
+      - name: Weaviate Modules
         folder: weaviate-module-system
       - name: Contextionary
         folder: contextionary

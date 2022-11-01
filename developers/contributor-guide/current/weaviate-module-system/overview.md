@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: contributor-guide
-sub-menu: Weaviate Module System
+sub-menu: Weaviate Modules
 title: Overview 
 intro: |-
   Weaviate's Module system allows extending Weaviate with different

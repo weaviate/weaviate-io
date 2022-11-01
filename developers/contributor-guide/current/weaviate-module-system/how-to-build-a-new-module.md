@@ -1,7 +1,7 @@
 ---
 layout: layout-documentation
 solution: contributor-guide
-sub-menu: Weaviate Module System
+sub-menu: Weaviate Modules
 title: How to build a custom module
 intro: |-
   Learn how you can build your own modules
