@@ -99,11 +99,13 @@ An example of a complete class object including properties:
     }
   ],
   "invertedIndexConfig": {                  // Optional, defaults to the values shown here.
-    "cleanupIntervalSeconds": 60            // Interval for async cleanup operations.
+    "cleanupIntervalSeconds": 60,            // Interval for async cleanup operations.
     "stopwords": { 
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
-    "indexTimestamps": false                 // Optional, maintains inverted indices for each object by its internal timestamps
+    "indexTimestamps": false,                 // Optional, maintains inverted indices for each object by its internal timestamps
+    "IndexNullState": false,                 // Optional, maintains inverted indices for each property regarding its null state
+    "IndexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of class in a multi-node setting, see section below
@@ -241,8 +243,33 @@ To perform queries which are filtered by timestamps, the target class must first
   }
 ```
 
+### invertedIndexConfig > IndexNullState
+
+*Note: This feature was introduced in `v1.16.0`.*
+
+To perform queries which are filtered by being null or not null, the target class must first be configured to maintain an inverted index for each property of a class that tracks if objects are null or not. This configuration is done by setting the `IndexNullState` field of the `invertedIndexConfig` object to `true`.
+
+```json
+  "invertedIndexConfig": {
+    "IndexNullState": true
+  }
+```
+
+### invertedIndexConfig > IndexPropertyLength
+
+*Note: This feature was introduced in `v1.16.0`.*
+
+To perform queries which are filtered by the length of a property, the target class must first be configured to maintain an inverted index for this. This configuration is done by setting the `IndexPropertyLength` field of the `invertedIndexConfig` object to `true`.
+
+```json
+  "invertedIndexConfig": {
+    "IndexPropertyLength": true
+  }
+```
+
+
 **Notes**
-- Using this feature requires more resources, as the additional inverted indices must be created/maintained for the lifetime of the Class
+- Using these features requires more resources, as the additional inverted indices must be created/maintained for the lifetime of the Class
 
 # Property object
 
@@ -363,6 +390,9 @@ In addition, we need to catch types we do not support at all:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what the class of the resolved beacon is, since it needs the ClassName to be able to alter the schema.
 
+### Default distance metric
+
+Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every class unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
 
 # More Resources
 
