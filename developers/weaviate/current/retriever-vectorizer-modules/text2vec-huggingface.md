@@ -111,7 +111,7 @@ The following schema configuration uses the `all-MiniLM-L6-v2` model.
 
 ## Support for Hugging Face Inference Endpoints
 
-The `text2vec-huggingface` module also supports [HuggingFace Inference Endpoints](https://huggingface.co/inference-endpoints). You can use your own inference endpoints with `text2vec-huggingface` module just pass your `endpointURL` to class configuration to vectorize your objects. Please note that only `feature extraction` inference endpoint types are supported.
+The `text2vec-huggingface` module also supports [HuggingFace Inference Endpoints](https://huggingface.co/inference-endpoints), where you can deploy your own model as an endpoint. To use your own HuggingFace Inference Endpoint for vectorization with the `text2vec-huggingface` module, just pass the endpoint url in the class configuration as the `endpointURL` setting. Please note that only `feature extraction` inference endpoint types are supported.
 
 ## Available settings
 
@@ -125,7 +125,7 @@ The `text2vec-huggingface` module also supports [HuggingFace Inference Endpoints
 | `options.waitForModel` | `boolean` | If the model is not ready, wait for it instead of receiving 503.​ | |
 | `options.useGPU` | `boolean` | Use GPU instead of CPU for inference.<br/>(requires Hugginface's [Startup plan](https://huggingface.co/inference-api#pricing) or higher) | |
 | `options.useCache` | `boolean` | There is a cache layer on the inference API to speedup requests we have already seen. Most models can use those results as is as models are deterministic (meaning the results will be the same anyway). However if you use a non-deterministic model, you can set this parameter to prevent the caching mechanism from being used resulting in a real new query. | | 
-| `endpointURL` | `string` | This can be any public or private Huggingface Inference URL, to find out how to deploy your own Hugging Face Inference Endpoint click [here](https://huggingface.co/inference-endpoints).<br/><br/>When set all other settings like `model` `queryModel` and `passageModel` are ignored. | |
+| `endpointURL` | `string` | This can be any public or private Huggingface Inference URL. To find out how to deploy your own Hugging Face Inference Endpoint click [here](https://huggingface.co/inference-endpoints).<br/><br/>Note: when this variable is set, the module will ignore model settings like `model` `queryModel` and `passageModel`. | |
 
 # More resources
 

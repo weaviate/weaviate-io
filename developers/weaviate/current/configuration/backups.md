@@ -77,7 +77,7 @@ access-key or ARN-based authentication:
 
 ### Option 1: With IAM and ARN roles
 
-Our backup module will first try to authenticate itself using AWS IAM, if it's not possible then it will try to authenticate with `Option 2`.
+The backup module will first try to authenticate itself using AWS IAM. If the authentication fails then it will try to authenticate with `Option 2`.
 
 ### Option 2: With access key and secret access key
 

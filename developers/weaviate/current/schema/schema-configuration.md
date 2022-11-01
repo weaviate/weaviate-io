@@ -392,7 +392,7 @@ In addition, we need to catch types we do not support at all:
 
 ### Default distance metric
 
-With Weaviate you can configure the `DEFAULT_VECTOR_DISTANCE_METRIC` that you want to use during the creation of all of your classes. You can choose from: `cosine`, `dot`, `l2-squared`, `manhattan`, `hamming`, default setting is: `cosine`.
+Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every class unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
 
 # More Resources
 
