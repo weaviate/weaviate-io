@@ -125,7 +125,7 @@ To get the site up and running locally, follow the below steps:
   ```
   ./run.sh
   ```
-* Browse [http://localhost:4000](http://localhost:4000) to view the website.
+* Browse to <a href="http://localhost:4000" data-proofer-ignore target="_blank">http://localhost:4000</a> to view the website.
 
 ## Basic Folder Structure of Documentation Site
 
