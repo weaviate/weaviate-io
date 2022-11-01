@@ -288,77 +288,7 @@ client.Data().Validator().WithProperties(properties)
 
 # Change logs
 
-## v4.3.0
-- Added support for [backup](../configuration/backups.html) API
-- Added method `WithObjects` to `ObjectsBatcher`
-- Added method `WithReferences` to `ReferencesBatcher`
-
-## v4.2.1
-- Fixed fetching db version
-
-## v4.2.0
-- Added support for class namespaced API calls
-- Added support for `distance` user-facing similarity metric
-
-## v4.1.0
-- Fix for `nearText` `moveTo` and `moveAwayFrom` parameters
-- Fix for `where` filter operands
-
-## v4.0.0
-- (Breaking) Remove `.Objects()` from GraphQL `Get()`. See migration guide above for details
-- (Breaking) GraphQL `Aggregate`, `Explore`, and `Get`: `.WithFields()` is now a variadic function, see migration guide above
-- (Breaking) `client.Data().Validator().WithSchema(properties)` -> `client.Data().Validator().WithProperties(properties)`
-- (Breaking) GraphQL `Get`: `WithNearVector(nearVector string)` -> `WithNearVector(nearVector *NearVectorArgumentBuilder)`. See migration guide above for details
-- (Breaking) `Where` filter: `WithWhere(filter string)` -> `WithWhere(filter *filters.WhereBuilder)` See migration guide above
-
-- (Addition) Aggregate support for: `nearObject`, `nearVector`, `nearText`, `ask`, `nearImage`, `where`, `objectLimit`, `limit`
-- (Addition) Explore support for: `nearObject`, `nearVector`, `nearText`, `ask`, `nearImage`, `limit`, `offset`
-- (Addition) Support for sort in Get GraphQL
-- (Addition) Support for indexTimestamps
-- (Addition) Batch Delete API support
-
-## v3.0.0 
-- Add builders for `where` / `group` / `fields` 
-- Support setting stopwords in schema config
-- Retrieve and update shard status
-
-## v2.3.0
-- Added support of the `spellcheck` module.
-
-## v2.2.0
-
-- The new version is compatible with Weaviate `v1.4.0` (supports the new `img2vec-neural` module).
-
-## v2.1.x
-
-- Added `QnA-transformers` module support.
-
-## v2.0.x
-
-This change contains breaking changes over previous version as it is aligned with the new API of Weaviate `v1`. Use the client version `v2.0.0` and up for Weaviate instances running `v1.0.0` and up. Use client version `v1.1.x` for Weaviate version `0.23.y`.
-Changes (and migration guide):
-
-* **`.WithKind()` removed**
-
-  Due to the removal of semantic Kinds ("things/actions") in Weaviate, the `.WithKind()` method is removed on all builders
-
-* **`.WithSchema()` -> `.WithProperties()`**
-  
-  Due to the renaming of `Object.Schema` to `Object.Properties` in Weaviate, all `.WithSchema(propertySchema)` methods were renamed to `.WithProperties(propertySchema)`
-
-* **`.WithAdditionalInterpretation()` => `.WithAdditional("interpretation")` on ObjectsGetter**
-  
-  This change reflects two changes in Weaviate: First up, "Underscore Properties" are now called "Additional Properties", furthermore the presence of such properties may depend on modules and is thus now dynamic. As such, the desired additional property is now passed in as a string.
-  
-  Note: There is one exception: `.WithVector()` can still be used, as the field `vector` has been "upgraded" from an underscore/additional property to a regular property
-
-* **`.WithExplore()` -> `.WithNearText()`**
-  
-  Following the renaming of `explore` to `nearText` in Weaviate the builder method was renamed accordingly. Additionally, the new method `.WithNearVector("{vector: [...]}")` was introduced to allow for nearVector searches.
-
-* **`.WithK(3)` -> `.WithSettings(&classification.ParamsKNN{K: &k})`** in classification builder
-  
-  To reflect the API changes in the classification builder the kNN-specific method `.WithK()`, was replaced with a more generic `.WithSettings(interface{})` which takes any classification type-specific settings, such as `&classification.ParamsKNN{K: &k}` for kNN or `&classification.ParamsContextual{TfidfCutoffPercentile: &value}` for text2vec-contextual.
+Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-go-client/releases){:target="_blank"} for updates on the latest `Go client` changes.
 
 # More Resources
 

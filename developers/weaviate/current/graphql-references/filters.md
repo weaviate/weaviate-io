@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: GraphQL references
 title: Filters
-intro: Filters can be set to order or sort your dataset or to find specific data objects. ​They are "traditional" ​filters that can be used to find data objects with operators such as GreaterThan, LessThanEqual, Like, etc. You can mix filters with <a href="./vector-search-parameters.html">vector search parameters</a> too.
+intro:  Filters allow you to find specific data objects based on operators such as GreaterThan, LessThanEqual, Like, etc. You can mix filters with <a href="./vector-search-parameters.html">vector search parameters</a> too. Also, you can use filters to sort or limit the number of returned objects.
 description: GraphQL filters
 tags: ['graphql', 'filters']
 menu-order: 4
@@ -43,6 +43,7 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
   - `LessThanEqual`
   - `Like`
   - `WithinGeoRange`
+  - `IsNull`
 - `Operands`: Is a list of `Operator` objects of this same structure, only used if the parent `Operator` is set to `And` or `Or`.
 - `Path`: Is a list of strings in Xpath style, indicating the property name of the class.
    If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings.
@@ -175,6 +176,30 @@ Filtering can be performed with internal timestamps as well, such as `creationTi
 } 
 ```
 
+## Filter by property length
+
+Filtering can be performed with the length of properties.
+
+The length of properties is calculated differently depending on the type:
+- array types: the number of entries in the array is used, where null (property not present) and empty arrays both have the length 0. 
+- strings and texts: the number of characters, unicode characters such as 世 count as one character.
+- numbers, booleans, geo-coordinates, phone-numbers and data-blobs are not supported.
+
+```graphql
+{
+  Get {
+    <Class>(where: {
+        operator: <Operator>,
+        valueInt: <value>
+        path: [len(<property>)]
+  }
+}
+```
+Supported operators are `(not) equal` and `greater/less than (equal)` and values need to be 0 or larger.
+
+*Note: filtering by property length requires the target class to be configured to index the length. See [here](../schema/schema-configuration.html#invertedindexconfig--indexpropertylength) for details* 
+
+
 ## Multiple operands
 
 You can set multiple operands by providing an array.
@@ -278,13 +303,67 @@ For example, this curious returns all in a radius of 2KM around a specific geo-l
 }
 ```
 
+## IsNull filter
+
+Using the `IsNull` operator allows you to do filter for objects where given properties are `null` or `not null`.
+
+```graphql
+{
+  Get {
+    <Class>(where: {
+        operator: IsNull,
+        valueBoolean: <true/false>
+        path: [<property>]
+  }
+}
+```
+
+*Note: filtering by null-state requires the target class to be configured to index this. See [here](../schema/schema-configuration.html#invertedindexconfig--indexnullstate) for details* 
+
+# Sorting
+
+*Note: Support for sorting was added in `v1.13.0`.*
+
+You can sort results by any primitive property, typically a `text`, `string`, `number`, or `int` property. When a query has a natural order (e.g. because of a `near<Media>` vector search), adding a sort operator will override the order.
+
+## Cost of Sorting / Architecture
+
+Weaviate's sorting implementation is built in a way that it does not lead to massive memory spikes; it does not need to load all objects to be sorted into memory completely. Only the property value being sorted is kept in memory.
+
+As of now, Weaviate does not have any data structures on disk specific to sorting, such as a column-oriented storage mechanism. As a result when an object should be sorted, the whole object is identified on disk and the relevant property extracted. This works reasonably well for small scales (100s of thousand or millions), but comes with a high cost at large lists of objects to be sorted (100s of millions, billions).  A column-oriented storage mechanism may be introduced in the future to  overcome this performance limitation.
+
+## Sorting decisions
+
+### booleans order
+`false` is considered smaller than `true`. `false` comes before `true` in ascending order and after `true` in descending order.
+
+### nulls order
+`null` values are considered smaller than any non-`null` values. `null` values come first in ascending order and last in descending order.
+
+### arrays order
+Arrays are compared by each element separately. Elements at the same position are compared to each other, starting from the beginning of an array. First element smaller than its counterpart makes whole array smaller.
+
+Arrays are equal if they have the same size and all elements are equal. If array is subset of other array it is considered smaller.
+
+Examples:
+- `[1, 2, 3] = [1, 2, 3]`
+- `[1, 2, 4] < [1, 3, 4]`
+- `[2, 2] > [1, 2, 3, 4]`
+- `[1, 2, 3] < [1, 2, 3, 4]`
+
+## Sorting API
+
+{% include code/1.x/graphql.get.sorting.html %}
+
+{% include molecule-gql-demo.html encoded_query='%7B%0A++Get+%7B%0A++++Article%28sort%3A+%5B%7B%0A++++++path%3A+%5B%22title%22%5D%0A++++++order%3A+asc%0A++++%7D%5D%29+%7B%0A++++++title%0A++++++url%0A++++++wordCount%0A++++%7D%0A++%7D%0A%7D' %}
+
 # Limit Argument
 
 Supported by the `Get{}`, `Explore{}` and `Aggregate{}` function.
 
-A limit argument limits the number of results.
+A `limit` argument limits the number of results.
 
-An example of a stand-alone limit filter:
+An example of a stand-alone `limit` filter:
 
 {% include code/1.x/graphql.filters.limit.html %}
 
@@ -325,7 +404,7 @@ Supported by the `Get{}`, `Explore{}` and `Aggregate{}` function.
 
 The offset parameter works in conjunction with the existing limit parameter. For example, to list the first ten results, set `limit: 10`. Then, to "display the second page of 10", set `offset: 10`, `limit:10` and so on. E.g. to show the 9th page of 10 results, set `offset:80, limit:10` to effectively display results 81-90.
 
-An example of a stand-alone limit filter:
+An example of a stand-alone `limit` filter:
 
 {% include code/1.x/graphql.filters.offset.html %}
 
