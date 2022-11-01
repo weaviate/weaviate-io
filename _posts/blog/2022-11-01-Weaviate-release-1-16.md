@@ -178,7 +178,7 @@ Every great choreographed dance needs a conductor. And the conductor of this who
 ## ref2vec-centroid Module
 ![ref2vec-centroid Module](/img/blog/weaviate-1.16/ref2vec-centroid.png)
 
-Weaviate `1.16` unveils the [ref2vec-centroid](developers/weaviate/current/retriever-vectorizer-modules/ref2vec-centroid.html){:target="_blank"} module! Ref2Vec is about representing a data object based on the objects it references. The `ref2vec-centroid` module uses the average, or centroid vector, of the cross-referenced vectors to represent the referencing object.
+Weaviate `1.16` unveils the [ref2vec-centroid](/developers/weaviate/current/retriever-vectorizer-modules/ref2vec-centroid.html){:target="_blank"} module! Ref2Vec is about representing a data object based on the objects it references. The `ref2vec-centroid` module uses the average, or centroid vector, of the cross-referenced vectors to represent the referencing object.
 
 Or in other words, if you have an object (i.e. a shopping basket) that contains a number of cross-references (i.e. *"shorts"*, *"shoes"*, and a *"t-shirt"*), Ref2Vec can provide you with a vector that is at the center (i.e. close to all other similar clothing items). This way you can use the references to find more relevant objects.
 
