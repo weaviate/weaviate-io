@@ -8,19 +8,11 @@ URL_IGNORES="/console.semi.technology/,/weaviate-newsletter.semi.technology/,/de
 git remote set-branches --add origin main
 git fetch
 
-## Find Git differences between this build and the previous once
-## To find which documentation pages are not live yes, so that we could ignore them
-
-if [ $TRAVIS_BRANCH = "main" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ] then
-    # If build on main brach – then get dif between this version and the previous 2 versions
-    DIFF_FILES=( $(git diff --name-only --diff-filter=AC HEAD^^ HEAD developers/ | sed 's/:.*//') )
-else
-    # Otherwise – get git diff between this branch and main
-    DIFF_FILES=( $(git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD) developers/ | sed 's/:.*//') )
-fi
+# GET github diff between this branch and main
+DIFF_FILES=( $(git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD) developers/ | sed 's/:.*//') )
 
 # then add them all to a string containing all the new .html files that htmlproofer should ignore
-DIFF_IGNORES=""
+DIFF_IGNORES=",https://weaviate.io/developers/weaviate/current/retriever-vectorizer-modules/ref2vec-centroid.html,https://weaviate.io/developers/weaviate/current/restful-api-references/nodes.html"
 echo ======NEW_FILES_TO_IGNORE_BY_htmlproofer======
 for i in "${DIFF_FILES[@]}"; do
     # echo "DIFF: $i"
