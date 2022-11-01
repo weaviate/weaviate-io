@@ -75,7 +75,11 @@ In addition to the vendor-agnostic configuration from above, you can set
 AWS-specific configuration for authentication. You can choose between
 access-key or ARN-based authentication:
 
-### Option 1: With access key and secret access key
+### Option 1: With IAM and ARN roles
+
+The backup module will first try to authenticate itself using AWS IAM. If the authentication fails then it will try to authenticate with `Option 2`.
+
+### Option 2: With access key and secret access key
 
 | Environment variable | Description |
 | --- | --- |
@@ -83,13 +87,6 @@ access-key or ARN-based authentication:
 | `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
 | `AWS_REGION` | The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
-### Option 2: With IAM and ARN roles
-
-| Environment variable | Description |
-| --- | --- |
-| `AWS_ROLE_ARN` | The unique AWS identifier of the role. |
-| `AWS_WEB_IDENTITY_TOKEN_FILE` | The path to the web identity token file. |
-| `AWS_REGION` | The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
 ## GCS (Google Cloud Storage)
 
