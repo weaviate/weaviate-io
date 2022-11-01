@@ -390,6 +390,9 @@ In addition, we need to catch types we do not support at all:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what the class of the resolved beacon is, since it needs the ClassName to be able to alter the schema.
 
+### Default distance metric
+
+With Weaviate you can configure the `DEFAULT_VECTOR_DISTANCE_METRIC` that you want to use during the creation of all of your classes. You can choose from: `cosine`, `dot`, `l2-squared`, `manhattan`, `hamming`, default setting is: `cosine`.
 
 # More Resources
 
