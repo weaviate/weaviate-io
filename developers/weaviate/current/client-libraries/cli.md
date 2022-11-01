@@ -175,21 +175,7 @@ $ weaviate data delete
 ```
 # Change logs
 
-## 2.1.2
-
-From 2.1.1 to 2.1.2: fixes compatibility for Weaviate client v3.0.0.
-
-## 2.0.0
-
-From 1.2.0 to 2.0.0.
-
-New release of the weaviate CLI that is compatible with weaviate v1.x.x and uses weaviate-python-client v2.0.x.
-
-Changes with this release:
-  1. The name of the CLI command is changed from `weaviate-cli` to `weaviate`.
-  2. The name of `schema truncate` is changed to `schema delete`, because delete is more appropriate for its functionality.
-  3. The name of `data empty` is changed to `data delete`, because `empty` might be confused with checking if it is empty.
-
+Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-cli/releases){:target="_blank"} for updates on the latest `CLI` changes.
 
 # More Resources
 
