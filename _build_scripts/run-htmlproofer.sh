@@ -12,7 +12,7 @@ git fetch
 DIFF_FILES=( $(git diff --name-only --diff-filter=AC $(git merge-base origin/main HEAD) developers/ | sed 's/:.*//') )
 
 # then add them all to a string containing all the new .html files that htmlproofer should ignore
-DIFF_IGNORES=""
+DIFF_IGNORES=",https://weaviate.io/developers/weaviate/current/retriever-vectorizer-modules/ref2vec-centroid.html,https://weaviate.io/developers/weaviate/current/restful-api-references/nodes.html"
 echo ======NEW_FILES_TO_IGNORE_BY_htmlproofer======
 for i in "${DIFF_FILES[@]}"; do
     # echo "DIFF: $i"
