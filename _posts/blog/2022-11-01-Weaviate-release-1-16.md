@@ -21,7 +21,7 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 1. [Ref2Vec Centroid Module](#ref2vec-centroid-module) – a new module that calculates a mean vector of referenced objects
 1. [Node Status API](#node-status-api) – to quickly check on the health of your running clusters
 1. [Support for Azure-issued OIDC tokens](#azure-based-oidc) – now you can authenticate with Azure, Keycloak, or Dex OIDC tokens
-1. [Stable Patch releases](#more-frequent-patch-releases) – starting with Weaviate `1.15`, we publish new patch releases as soon as new important fixes are available, so that you get access to all updates as soon as possible
+1. [Patch releases – ready sooner](#patch-releases-ready-sooner) – starting with Weaviate `1.15`, we publish new patch releases as soon as new important fixes are available, so that you get access to all updates as soon as possible
 
 Read below to learn more about each of these points in more detail.
 
@@ -167,7 +167,7 @@ Before we give you a peek under the hood of how the new distributed backup and r
 > We believe that this seamless user experience is one of the greatest value generators.
 
 ### A peek under the hood - The delicate dance of distributed backup and restore:
-<!-- TODO: img dance -->
+![The dance of distributed backup and restore](/img/blog/weaviate-1.16/backup-dance.png)
 
 Every node in Weaviate takes part in the delicate dance that allows for the backup and restore operations to take place across this distributed system. 
 
@@ -178,7 +178,7 @@ Every great choreographed dance needs a conductor. And the conductor of this who
 ## ref2vec-centroid Module
 ![ref2vec-centroid Module](/img/blog/weaviate-1.16/ref2vec-centroid.png)
 
-Weaviate `1.16` unveils the `ref2vec-centroid` module! Ref2Vec is about representing a data object based on the objects it references. The `ref2vec-centroid` module uses the average, or centroid vector, of the cross-referenced vectors to represent the referencing object.
+Weaviate `1.16` unveils the [ref2vec-centroid](developers/weaviate/current/retriever-vectorizer-modules/ref2vec-centroid.html){:target="_blank"} module! Ref2Vec is about representing a data object based on the objects it references. The `ref2vec-centroid` module uses the average, or centroid vector, of the cross-referenced vectors to represent the referencing object.
 
 Or in other words, if you have an object (i.e. a shopping basket) that contains a number of cross-references (i.e. *"shorts"*, *"shoes"*, and a *"t-shirt"*), Ref2Vec can provide you with a vector that is at the center (i.e. close to all other similar clothing items). This way you can use the references to find more relevant objects.
 
@@ -204,16 +204,57 @@ This is a big step for Weaviate to combine the power of content-based representa
 
 We are very excited about the roadmap to continue developing Ref2Vec for personalization and recommendation. We have begun with an average, or single centroid, to combine referenced vectors. In future iterations, we are looking at limiting the referenced vectors used in the calculator to a recent interaction window. We are also exploring how we can cluster the referenced vectors to represent users with multiple centroids to capture diverse interests. We are also developing query designs to leverage Collaborative Filtering in Weaviate through Ref2Vec.
 
-As excited as we are about the applications in personalization and recommendation, we believe we are just scratching the surface of how we leverage semantic graphs in Weaviate for a better search experience. 
+As excited as we are about the applications in personalization and recommendation, we believe we are just scratching the surface of how we leverage semantic graphs in Weaviate for a better search experience.
+
+### Learn more
+
+Check the [ref2vec-centroid](/developers/weaviate/current/retriever-vectorizer-modules/ref2vec-centroid.html){:target="_blank"} documentation to learn how to work with Ref2Vec.
 
 ## Node Status API
 ![Node status API](/img/blog/weaviate-1.16/node-status-api.png)
 
-The cluster doctor is in the house! Weaviate 1.16 introduces the node API endpoint, which allows you to check in on the health of your running clusters quickly. You can do this by sending a GET request to the node endpoint. As a response, you will receive a status check on all your nodes.
+The cluster doctor is in the house! Weaviate 1.16 introduces the node API endpoint, which allows you to check in on the health of your running clusters quickly. You can do this by sending a GET request to the node endpoint. As a response, you will receive a status check on all your nodes. Like this:
 
-<!-- TODO: <replace with API response from demo> -->
+```json
+{
+  "nodes": [
+    {
+      "gitHash": "9e74add52",
+      "name": "node1",
+      "shards": [
+        {
+          "class": "Category",
+          "name": "XyPjB4rlWSwc",
+          "objectCount": 13
+        },
+        {
+          "class": "MainCategory",
+          "name": "LF1XCj88BjHK",
+          "objectCount": 4
+        },
+        {
+          "class": "Post",
+          "name": "GAi4O2TQ5oZw",
+          "objectCount": 221
+        },
+        {
+          "class": "Post",
+          "name": "bCWGjYHuNkv9",
+          "objectCount": 256
+        }
+      ],
+      "stats": {
+        "objectCount": 494,
+        "shardCount": 4
+      },
+      "status": "UNHEALTHY",
+      "version": "1.16.0"
+    }
+  ]
+}
+```
 
-As seen above (explain what information is returned - nodes, shard configuration, object count etc. - need a picture to complete this). You can check the state of your cluster, where:
+The node `status` can take one of the following values:
 * `healthy` – means all nodes are functional,
 * `disconnected` – means a node is in the process of going down,
 * `unhealthy` – means at least one of the nodes had encountered a problem and is now down.
@@ -221,6 +262,10 @@ As seen above (explain what information is returned - nodes, shard configuration
 ### Next steps
 
 While right now this API can only display the current state of your clusters, in the future you'll also be able to manipulate the cluster (e.g. drain a node prior to removing it).
+
+### Learn more
+
+Check the [/v1/nodes](/developers/weaviate/current/restful-api-references/nodes.html){:target="_blank"} documentation to learn how to use the `Node Status API`.
 
 ## More powerful OIDC Auth
 ![More powerful OIDC Auth](/img/blog/weaviate-1.16/oidc.png)
@@ -241,7 +286,7 @@ You can read more about each aspect below:
 * [Authorization](/developers/weaviate/current/configuration/authorization.html){:target="_blank"}
 * [Environment variables](/developers/weaviate/current/installation/docker-compose.html#environment-variables){:target="_blank"}
 
-## More frequent Patch releases
+## Patch releases ready sooner
 
 In the past, whenever we were working on bug fixes between releases, we would wait until we had several bug fixes complete before cutting a patch release.
 
