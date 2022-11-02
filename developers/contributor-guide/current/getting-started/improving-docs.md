@@ -9,125 +9,21 @@ open-graph-type: article
 og-img: documentation.jpg
 toc: true
 ---
-## Documentation Framework
+## Introduction
 
-Weaviate documentation is made of these components:
+Contributing to the documentation is a great way to improve the user experience for everybody. 
 
-* Framework - Jekyll
-* Repository - https://github.com/semi-technologies/weaviate-io
+If you spot any typos, errors, unclear explanations, missing references or any other opportunities for improvement, please let us know. 
 
-The site generates content using the following file types:
+Weaviate's documentation is built with a static site builder (Jekyll) with data from our [GitHub repository](https://github.com/semi-technologies/weaviate-io). Before you get started, we suggest you set up a local development environment first. This will allow you to preview any changes locally. 
 
-* HTML files with extension .html
-* Markdown files with extension .md
+For instructions on setting up the development environment, please take a look at the [README file](https://github.com/semi-technologies/weaviate-io/blob/main/README.md) in our repository.
 
-The data used by the site is stored in the form of following files:
+Once your local environment is set up, you can make your proposed changes, preview them locally, and submit them for review. 
 
-* YAML files with extension .yml
+## Documentation folders
 
-## Setting up your development environment
-
-To setup and install our documentation site on your local machine, follow the steps given below
-
-## Dependencies
-
-* Software dependencies which are required to run Jekyll in your development environment
-  
-  * [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
-
-* Installing additional dependencies in **Ubuntu/Debian**:
-  
-  * Update repositories & install basic build dependencies
-  
-  ```
-  sudo apt update && sudo apt install -y build-essential bash git rsync
-  ```
-  
-  * Update repositories & install rbenv
-
-  ```
-  sudo apt update && sudo apt install rbenv ruby-build
-  ```
-
-  * Initialize rbenv
-
-  ```
-  rbenv init
-  ```
-  
-  * Update ruby-build local packages
-  
-  ```
-  git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-  ```
-
-  * Finally, install ruby 2.7.5
-  
-  ```
-  rbenv install 2.7.5
-  ```
-
-* If you are using **Windows OS**, please follow these steps:
-  
-  * Please use [WSL](https://docs.microsoft.com/en-us/windows/wsl/)
-  * Read the [documentation](https://docs.microsoft.com/en-us/windows/wsl/install) on installing WSL on Windows.
-
-* If you are using **MacOS**, please follow these steps:
- 
-  * Install dependencies
-
-  ```
-  brew install rsync openssl rbenv ruby-build 
-  ```
-
-  * Finally, install ruby 2.7.5
-
-  ```
-  rbenv install 2.7.5
-  ```
-
-* To check if dependencies are installed correctly, run this command:
-  
-  ```
-  ruby -v  #outputs ruby version
-  gem -v   #outputs gem version
-  ```
-
-## Setting up the repository
-
-If you're new to git and GitHub, check out the beginners guide to [git and GitHub](./git-and-github.html).
-  
-To get the site up and running locally, follow the below steps:
-
-  **PS.:** You need to have a full Bash environment. If you're on Windows, please use [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
-
-* Fork the repository
-  
-  You can get your own fork/copy of [weaviate.io](https://github.com/semi-technologies/weaviate-io) by using the `Fork` button
-
-* Create a local clone of the website:
-  ```
-  git clone git@github.com:<USERNAME>/weaviate-io.git
-  ```
-* Change into the weaviate-io directory
-  ```
-  cd weaviate-io
-  ```
-* Add upstream URL, this acts as a reference from original weaviate.io's repository
-  ```bash
-  git remote add upstream git@github.com:semi-technologies/weaviate-io.git
-  ```
-* Perform the following commands to install dependencies and structure the website properly:
-  ```
-  ./setup.sh
-  ```
-* Build the site and make it available on your local server
-  ```
-  ./run.sh
-  ```
-* Browse to <a href="http://localhost:4000" data-proofer-ignore target="_blank">http://localhost:4000</a> to view the website.
-
-## Basic Folder Structure of Documentation Site
+The documentation repository is structured as below:
 
 ```
 ├── .github/                            #contains GitHub template files for issues and pull requests
@@ -167,13 +63,15 @@ To get the site up and running locally, follow the below steps:
 └── setup.sh                            #script for setting up the website
 ```
 
+The content is stored on HTML and Markdown (.md) files, and YAML files are used for configurations.
+
 ## Liquid syntax
 
 Jekyll uses the [Liquid](https://shopify.github.io/liquid/) templating language to process templates. To learn more about Liquid, check out the [official Liquid Documentation](https://shopify.github.io/liquid/).
 
 Here are a few basic syntax which we use in our code:
 
-* `if` condititional
+* `if` conditional
 
 This executes the block of code only if the given condition is true. It is executed in the following manner:
 
@@ -189,7 +87,7 @@ Published on {{ page.date | date: '%B %d, %Y' }}
 
 * `for` loop
 
-The for statement executes a block of code repeatedly. It is wriiten in the following manner:
+The for statement executes a block of code repeatedly. It is written in the following manner:
 
 ```
 {% raw %}

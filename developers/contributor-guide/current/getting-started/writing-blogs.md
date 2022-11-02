@@ -2,35 +2,44 @@
 layout: layout-documentation
 solution: contributor-guide
 sub-menu: Getting Started
-title: Writing Blogs 
+title: Creating Content
 tags: ['contributor-guide']
 menu-order: 5
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
 ---
-Weaviate has always been and will continue to be an open source vector search engine. To highlight this, we want to give Weaviate users and community members the best developer experience possible by offering plenty of tutorials and examples.
+The Weaviate community produces a lot of great content including blog posts, tutorials, and demo applications.To help get the word out, we maintain a curated list of these in our [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) repository. 
 
-Are you good at creating content? Do you enjoy educating and engaging with community and have a strong interest in open source? You can help Weaviate by writing blog posts, tutorials, and creating demo applications. We will store them in our [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) repository and help your content reach out to other developers!
+If you would like to share your own work with the community, we welcome it. We can help it reach the wider Weaviate community, who will in turn benefit from your work. Here are some ideas and tips:
 
-Go ahead and submit a pull request in [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) repository today!
+## Write a blog post
 
-## Contribute to the community by writing a blog post about Weaviate.
+You could contribute by writing a blog post about Weaviate. 
 
-You could also contribute by writing a blog post about Weaviate. It could be anything! An experience about your Weaviate journey, concepts you've learnt and used with Weaviate like vector search engines, and guides on how to integrate Weaviate with something...It could be anywhere! We accept article submissions on any well-known platform, such as Medium, Dev.to, HashNode, your own blogging site or something else.
+It could be about anything from your Weaviate journey, concepts you've learnt and used with Weaviate like vector search engines, or guides on how to integrate Weaviate with something. 
 
-A few things to note:
+We do not mind where it is hosted. It could be at a well-known platform such as Medium, Dev.to, or HashNode, or somewhere smaller like your own blog.
 
-* Your article must be freely accessible to the public
-* Your article should use `weaviate` tag
-* Your article should contain code blocks rather than screenshots of actual code.
-* You should self review your article once before creating a pull request
+But we do ask of your article to:
 
-Ready to write great technical blogs? Let's go! We welcome as many articles as you can create. One thing to keep in mind: **quality over quantity**.
+* Be freely accessible
+* Use the `weaviate` tag (where applicable)
+* Use code blocks (no screenshots of code)
 
-After you are done with publishing your article, create a pull request in [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) repsository by filling out the template.
+## Develop a demo app
 
-You should take a look at this [Developer Style Guide](https://www.freecodecamp.org/news/developer-news-style-guide/) by [freeCodeCamp](https://www.freecodecamp.org/), which can assist you in producing outstanding technical content!
+You could also contribute by creating a demo application that uses Weaviate under the hood. It can be a web app, mobile app or demos showing certain [integrations](/product.html).
+
+We ask for the app to:
+
+* Be unique
+* Include a good README.md file 
+* Disclose the Weaviate [module(s)](/developers/weaviate/current/modules/index.html) used
+
+## Create a PR when ready
+
+When you are ready to share your work, create a pull request in [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) repository.
 
 ## Resources
 
@@ -38,5 +47,6 @@ You should take a look at this [Developer Style Guide](https://www.freecodecamp.
 * [Example Datasets](/developers/weaviate/current/tutorials/example-datasets.html)
 * [Podcasts by Weaviate](/podcast.html)
 * [Our resource page](/resources.html)
+* [Developer Style Guide (FreeCodeCamp)](https://www.freecodecamp.org/news/developer-news-style-guide/)
 
 If you need any help, reach out to us on our [Slack](https://weaviate.slack.com/).

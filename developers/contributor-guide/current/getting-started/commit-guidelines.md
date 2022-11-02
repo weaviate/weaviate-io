@@ -4,7 +4,7 @@ solution: contributor-guide
 sub-menu: Getting Started
 title: Commit Guidelines 
 tags: ['contributor-guide']
-menu-order: 8
+menu-order: 7
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
@@ -15,7 +15,7 @@ The cardinal rule for creating good commits is to ensure there is only one "logi
 
 ## Why do we need good commit messages
 
-* Good commit messages are simpler to read. Reviewers and contributors will be able to review more quickly, find more bugs, and suggest changes as needed.
+* Good commit messages are simple. Reviewers and contributors will be able to review more quickly, find more bugs, and suggest changes as needed.
 
 * Commit messages serve as documentation for your code changes. You can easily search the commit history for the commit that caused the bug in the first place.
 

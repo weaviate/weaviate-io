@@ -3,8 +3,8 @@ layout: layout-documentation
 solution: contributor-guide
 sub-menu: Getting Started
 title: Getting Started
-intro: This guide contains all of the resources you will need to contribute to Weaviate..
-description: This guide contains all of the resources you will need to contribute to Weaviate.
+intro: To help you get started contributing to Weaviate.
+description: To help you get started contributing to Weaviate.
 tags: ['index', 'contributor-guide']
 menu-order: 0
 open-graph-type: article
@@ -13,13 +13,17 @@ toc: true
 redirect_from:
 ---
 
-## Why to contribute?
+## Introduction
 
-Weaviate is excellent opportunity to gain experience with vector search engines, Docker, Kubernetes, GraphQL, REST and various other language clients. You will work on the forefront of search, ML/AI and cloud-native technologies, but most of all, you be part of an amazing open source project. You will also get amazing networking opportunities with experienced and like-minded software engineers.
+Welcome! We are very excited to have you be part of our amazing community. This guide is designed to help you get started. 
+
+Working with Weaviate, many of us in the team and the community are exposed to a suite of interesting technologies. They include not only vector search engines, but also Docker, Kubernetes, GraphQL, REST and clients in various languages. 
+
+So we hope that you will find something that is relevant and interesting to you to contribute on. 
      
-## Ways of contributing
+## How can I contribute?
 
-There are numerous exciting ways to contribute to Weaviate. These are the different types of contributions acknowledged in the project:
+These are just some of the ways that you could apply your skills to the project:
 
 * [Suggesting Enhancements](./suggesting-enhancements.html)
 * [Reporting Bugs](./reporting-bugs.html)
@@ -29,4 +33,4 @@ There are numerous exciting ways to contribute to Weaviate. These are the differ
 
 ## GitHub
 
-If you are not familiar with git and GitHub basics, we have an excellent guide on [how to contribute to Weaviate with git and GitHub](./git-and-github.html).
+If you are not familiar with git and GitHub basics, we have a guide on [how to contribute to Weaviate with git and GitHub](./git-and-github.html).
