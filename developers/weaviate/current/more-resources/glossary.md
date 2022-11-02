@@ -15,7 +15,7 @@ redirect_from:
 
 | Term | Description |
 | --- | --- |
-| **Beacon** | A beacon is a reference to a particular data object in Weaviate or inside the knowledge network, this data object in turn has a position in the vector space. Often defined as follows: `weaviate://{peerName}/{UUID}` |
+| **Beacon** | A beacon is a reference to a particular data object in Weaviate or inside the knowledge network, this data object in turn has a position in the vector space. Often defined as follows: `weaviate://{peerName}/{className}/{UUID}` |
 | **Class** | A class is a definition of a semantic kind. E.g., the Class Company or the Class Move. In Weaviate, classes can be recognized because they always have a capitalized first character. You can set as many classes with a naming you choose. |
 | **Concept** | Concepts are related to entities. Often you will use concepts to search in your datasets. If your dataset has data about _An Actor with the name Arnold Schwarzenegger_ and _an Actor with the name Al Pacino_, the concepts _Movie_ and _Terminator_ will find a closer relation to the first actor rather than the latter. |
 | **Contextionary** | Derived from *dictionary* with *context*. The Contextionary (text2vec-contextionary) gives context to the language used in the dataset, inspired by the [*Global Vectors for Word Representation*](https://github.com/stanfordnlp/GloVe) concept. Read more about the Contextionary [here](../modules/text2vec-contextionary.html). |
