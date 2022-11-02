@@ -38,7 +38,7 @@ script:
 # Netlify
 ##
 - |
-  if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+  if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
     bash _build_scripts/publish-to-netlify.sh
     bash _build_scripts/slack-netlify-message.sh
   fi
@@ -97,7 +97,7 @@ script:
       # Send sitemap to Google
       curl https://www.google.com/ping?sitemap=https://weaviate.io/sitemap.xml
       # Send release message to Slack
-      # bash _build_scripts/slack-release-message.sh
+      bash _build_scripts/slack-release-message.sh
       # back to root
       cd ..
     fi
