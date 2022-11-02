@@ -96,10 +96,10 @@ script:
       gcloud compute url-maps invalidate-cdn-cache $GS_BUCKET --path "/*" --async
       # Send sitemap to Google
       curl https://www.google.com/ping?sitemap=https://weaviate.io/sitemap.xml
-      # Send release message to Slack
-      bash _build_scripts/slack-release-message.sh
       # back to root
       cd ..
+      # Send release message to Slack
+      bash _build_scripts/slack-release-message.sh
     fi
   fi
 cache: bundler
