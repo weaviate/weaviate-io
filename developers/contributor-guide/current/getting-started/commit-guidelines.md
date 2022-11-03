@@ -9,21 +9,21 @@ open-graph-type: article
 og-img: documentation.jpg
 toc: true
 ---
-## What makes a good commit
+## Introduction
 
-The cardinal rule for creating good commits is to ensure there is only one "logical change" per commit. Why? Because more changes per commit may result in more bugs.
+When collaborating with git, each commit provides a frozen snapshot of work for you or others to review. Typically, good practice is to create a commit per "logical change", so that each commit is a "unit" of work done. 
 
-## Why do we need good commit messages
+You might have heard that changing one variable at a time during scientific experimentation makes the output and therefore its effect easier to interpret. In the same way, creating one commit per theme or unit of work helps the reviewer understand and review your work, and it will create logical, isolated checkpoints from which changes can be integrated into other branches.
 
-* Good commit messages are simple. Reviewers and contributors will be able to review more quickly, find more bugs, and suggest changes as needed.
+Another big part of creating good commits is writing good commit messages. Writing good commit messages helps the whole team. It will help others understand what you have done, and help you become a better software developer.
 
-* Commit messages serve as documentation for your code changes. You can easily search the commit history for the commit that caused the bug in the first place.
+## Tips on writing good commit messages
 
-* Writing good commit messages makes it easier for people to contribute to your projects because it allows them to navigate a more structured commit history.
+* Be concise. This will speed up review, and thus the feedback loop.
 
-* Writing good commit messages will help you become a better software developer in the long run.
+* Be precise and specific, as to help people searching or navigating through the commit history. 
 
-Examples of **good commit messages**:
+Examples of **good commit messages** include:
 
 * `add sitemap plugin to the website`
 
@@ -33,32 +33,34 @@ Examples of **good commit messages**:
 
 * `fix typo in introduction to user guide`
 
-Example of **bad commit messages**:
+Example of **bad commit messages**, with reasons, include:
 
-* `Fixed typo in the doc`
+* `Fixed typo in the doc` (which doc?)
 
-* `Changed CSS style`
+* `Changed CSS style` (why? how?)
 
-* `modified README.md`
+* `modified README.md` (why? how?)
 
-* `Added search feature in the docs`
+* `Added search feature in the docs` (which files? how?)
 
-## How to write good commit messages
+Note: Some people prefer to use an imperative present tense in commit messages. There is [no consensus on this](https://stackoverflow.com/questions/3580013/should-i-use-past-or-present-tense-in-git-commit-messages), and is likely to be situational. The most important thing is to ensure that the substance of the changes are clear in the message.
 
-A commit message consists of three parts:
+## Example commit message structure
+
+One way to write good commit messages is to use a template structure. One structure would be to think of it like a GitHub issue, with three parts:
 
 * [Summary line](#summary-line)
 * [Issue reference](#issue-reference)
 * [Description](#description)
 
-Commit template
+A commit summary line is just that; a line:
 
-```
+```text
 short explanation of the commit
 ```
-**Note:** This is how the commit message should appear when you use git to commit files and push them to GitHub.
+A commit message body might be structured as below.
 
-```
+```text
 Why:
 This PR fixes: [issue link]
 
@@ -71,31 +73,23 @@ Type of change:
 
 How Has This Been Tested?
 ```
-**Note:** This is a pull request template which you have to fill out while creating a pull request on GitHub.
-
-It is preferable to follow these guidelines for each patch before pushing it to git.
+**Note:** This is a pull request template from GitHub - but it makes a fine, informative commit message template.
 
 ### Summary Line:
 
+Summary line are used throughout git. So try not to exceed 50 characters (while being informative), and put a blank line afterwards before the message body. This will help git parse the summary line correctly.
+
 Example:
 
+```text
+add new blog "Why vector search is so fast"
 ```
-add new blog "blog title"
-```
-
-* Be sure to not exceed 50 characters. Maintaining summary lines at this length makes them readable and provides a clear explanation of the change.
-
-* The summary line should begin with a lowercase letter, unless it begins with a symbol or identifier.
-
-* Use imperative present tense ("add feature" not "added feature")
-
-* Leave out the trailing period (full stop).
 
 ### Issue reference
 
 Example:
 
-```
+```text
 Why:
 This PR fixes: #123
 ```
@@ -110,7 +104,7 @@ Every repository has a [pull request template](https://github.com/semi-technolog
 
 Example:
 
-```
+```text
 What's being changed:
 
 This pull request adds blog page feature to the documentation website, 
@@ -126,7 +120,7 @@ Type of change:
 How Has This Been Tested?
 
 This has been tested locally by building and running the site
-```
+```text
 
 * Each description line must be no more than 75 characters long (there is no limit on number of lines).
 
@@ -139,12 +133,14 @@ This has been tested locally by building and running the site
 * If the summary is self-explanatory, you can omit writing the description.
 
 * Tests are essential, and you should describe how you tested your changes locally and whether you discovered any other breaking changes.
+```
 
 ## More Examples
+Additional examples of git commit message are below:
 
 * Fixing a bug
 
-```
+```text
 fix: static version number on quickstart page
 
 Why:
@@ -172,7 +168,7 @@ This has been tested locally by building and running the site
 
 * Implementing a feature
 
-```
+```text
 add copy to clipboard functionality to docs
 
 What's being changed:
@@ -192,7 +188,7 @@ This has been tested locally by building and running the site
 
 * Documentation changes
 
-```
+```text
 fix typo in getting started docker-compose example
 
 What's being changed:
