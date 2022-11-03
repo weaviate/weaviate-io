@@ -30,4 +30,4 @@ Suggestions are tracked as GitHub issues, such as these in [Weaviate core]](http
 
 You are welcome to implement your own suggestion and submit it! If you have any questions, feel free to reach out to us and the wider community on [Slack](https://weaviate.slack.com/).
 
-For this, you will need a local development setup. Please follow the instructions in the [Weaviate development setup](../weaviate-core/setup.md) documentation.
+For this, you will need a local development setup. Please follow the instructions in the [Weaviate development setup](../weaviate-core/setup.html) documentation.
