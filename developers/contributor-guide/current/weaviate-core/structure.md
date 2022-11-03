@@ -2,7 +2,6 @@
 layout: layout-documentation
 solution: contributor-guide
 sub-menu: Weaviate Core
-solution-order: 1
 title: Code structure and Style
 intro: This page contains how Weaviate code is structured and styled.
 description: How Weaviate code is structured and styled
@@ -34,7 +33,7 @@ following reasons:
   fits very well with this model. A use case (inner layer) defines what it
   needs from an adapter (e.g. handler, database) of an outer layer. It
   therefore does not need to know which outer layers exist
-* The general goal of pluggability is import to Weaviate: Over the history of
+* The general goal of pluggability is important to Weaviate: Over the history of
   Weaviate the persistence layer has changed considerably. Originally it
   depended on Janusgraph, which was later migrated to Elasticsearch. As of
   `v1.0.0` the persistence is done "in-house", but the same abstraction

@@ -2,7 +2,7 @@
 layout: layout-documentation
 solution: contributor-guide
 sub-menu: Weaviate Core
-title: Weaviate Core development
+title: Weaviate Core
 intro: An overview of the Build, Run, Test setup for contributors of Weaviate Core.
 description: An overview of the Build, Run, Test setup for Weaviate Core contributors.
 tags: ['build, run, test']
@@ -28,3 +28,4 @@ redirect_from:
 - [CICD philosophy](./cicd.html)
 - [Test philosophy of Weaviate](./tests.html)
 - [Weaviate development setup](./setup.html)
+- [Parsing Objects & Resolving References](./parsing-cross-refs.html)

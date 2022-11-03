@@ -2,7 +2,6 @@
 layout: layout-documentation
 solution: contributor-guide
 sub-menu: Weaviate Core
-solution-order: 2
 title: CICD Philosophy
 intro: 
 description: Our Philosophy on CICD and trunk-based development and releases
@@ -16,7 +15,7 @@ redirect_from:
   - /developers/contributor-guide/current/build-run-test/cicd.html
 ---
 
-Weaviate is not a continuously deployed application, as it published as releases
+Weaviate is not a continuously deployed application, as it is published as releases
 and users install Weaviate themselves. Nevertheless, we aim to treat it with
 the same level of CI/CD-maturity as one would a continuously deployed
 application.
@@ -29,7 +28,7 @@ don't have write access to our `master`/`main` branches. And the "GitHub flow"
 (small PRs for every contribution) is well established in the OSS community.
 
 Nevertheless, we believe in the benefits of trunk-based development and want to
-get as close to trunk-based development as possible.
+get as close to it as possible.
 
 In practice this means:
 
@@ -55,11 +54,10 @@ In practice this means:
 
 We generally aim to avoid breaking changes. Having to update a major version
 frequently is annoying - but it is even more annoying for the user to have to
-
+try to fix a bug themselves.
 
 Weaviate uses semantic versioning to indicate to users that an upgrade path is
-safe. However, as long as Weaviate has not reached version `v1.0.0` yet (aimed
-for early 2021), there are some special situations:
+safe. Having said that, pre-`v1.0.0`, there were some special situations:
 
 ### Versions 0.x.y
 
@@ -77,7 +75,7 @@ version `v1.0.0`:
 
 ### Versions 1.x.y and larger
 
-Once v1.0.0 is reached, we aim to use Semantic Versioning as it was intended.
+Versions v1.0.0 and onwards use Semantic Versioning as it was intended.
 
 ## Deprecations
 
@@ -118,9 +116,9 @@ There is a convenience script located at `tools/prepare_release.sh`, to use it
 adhere to the following steps:
 
 1. Merge everything that should be included, make sure CI is happy.
-2. Udpate the desired target version in `openapi-specs/schema.json`.
+2. Update the desired target version in `openapi-specs/schema.json`.
 3. Run all auto-code generation using `tools/gen-code-from-swagger.sh`.
-4. Run the convenience sript at `tools/prepare_release.sh`. It will create a
+4. Run the convenience script at `tools/prepare_release.sh`. It will create a
    commit and tag and print a release note template to the terminal.
 5. Push the commit and tag using `git push && git push --tags`
 6. Create a new GitHub Release using the template. Clearly indicate all

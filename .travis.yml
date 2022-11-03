@@ -19,7 +19,6 @@ before_install:
 - bundle install
 # Collect Github API data
 - pip3 install pyyaml
-- python3 tools/create-roadmap.py
 install:
 - bundle install
 - gem install jekyll
@@ -27,6 +26,10 @@ install:
 - pip install -r ./_python/requirements.txt
 - export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
 script:
+- |
+  if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH = "main" ]; then
+    python3 tools/create-roadmap.py
+  fi
 - python ./_python/generate_og.py
 - travis_wait 60 bundle exec jekyll build
 - minify --match='\.html' -r -o _site_min/ _site/

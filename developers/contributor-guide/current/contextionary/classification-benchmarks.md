@@ -2,7 +2,6 @@
 layout: layout-documentation
 solution: contributor-guide
 sub-menu: Contextionary
-solution-order: 1
 title: Classification Benchmarks
 intro: This page contains various released and unreleased contextionary versions run through classification benchmarks. This is meant to give an initial impression of where the strengths and weaknesses of various versions lie.
 description: Testing various classification datasets against each other

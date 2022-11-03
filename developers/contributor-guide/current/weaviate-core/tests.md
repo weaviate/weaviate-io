@@ -2,7 +2,6 @@
 layout: layout-documentation
 solution: contributor-guide
 sub-menu: Weaviate Core
-solution-order: 2
 title: Tests
 intro: This page introduces the test philosophy of Weaviate. It provides guidance on how we differentiate between test levels and how to make sure we achieve the most gain from our tests.
 description: Test philosophy and instructions on how to run tests
@@ -103,7 +102,7 @@ They are currently very limited but will be extended over time.
 
 ### Test coverage
 
-We aim to have the highest useful test coverage possibile. In some cases this
+We aim to have the highest useful test coverage possible. In some cases this
 might mean 100% test coverages, in other scenarios this might be considerably
 less. Golang is very explicit about it's error handling. Especially as errors
 are wrapped (or "annotated") you will find a lot of `if err != nil { ... }`

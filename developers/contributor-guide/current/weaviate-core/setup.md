@@ -2,7 +2,6 @@
 layout: layout-documentation
 solution: contributor-guide
 sub-menu: Weaviate Core
-solution-order: 1
 title: Weaviate development setup
 intro: This page contains how to set up your local environment for development on Weaviate.
 description: How to setup for development on Weaviate
@@ -35,7 +34,7 @@ tools/dev/run_dev_server.sh local-no-modules
 ```
 
 ### Without any modules, but with Grafana & Prometheus
-This setup is identical to the one above, but it uses Docker & Docker-compose to spin up Prometheus and Grafana instances. Those are pre-confiugred to scrape metrics from Weaviate. 
+This setup is identical to the one above, but it uses Docker & Docker-compose to spin up Prometheus and Grafana instances. Those are pre-configured to scrape metrics from Weaviate. 
 
 Using this setup, you can 
 - access Weaviate on port `8080`
@@ -74,7 +73,7 @@ tools/dev/restart_dev_environment.sh --qna && ./tools/dev/run_dev_server.sh loca
 The above commands are subject to change as we add more modules and require
 specific combinations for local testing. You can always inspect the two files
 to see which options are contained. The first option without any arguments is
-always guarateed to work.
+always guaranteed to work.
 
 
 To make query search use this link for console:
