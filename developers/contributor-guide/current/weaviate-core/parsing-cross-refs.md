@@ -41,8 +41,7 @@ by the rest of the application (usually in the form of a `search.Result` or
 However, cross-references aren't predictable. They could point to an item in
 another shard or even to an item of another index (because they are a different
 user-facing `Class`). When running in multi-node mode (horizontal replication)
-(Note: not present yet at the time of writing this article) the shards could be
-distributed on any node in the cluster.
+the shards could be distributed on any node in the cluster.
 
 Furthermore it is more efficient (see cached resolver) to resolve references
 for a list of objects as opposed to a single object. At shard-level we do not

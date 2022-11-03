@@ -87,16 +87,16 @@ add new blog "Why vector search is so fast"
 
 ### Issue reference
 
+* If the commit fixes an issue, reference that issue using `#` symbol: "This PR fixes: #ISSUE_NUMBER.".
+
+* The issue reference will add the commit link to the issue automatically.
+
 Example:
 
 ```text
 Why:
 This PR fixes: #123
 ```
-
-* If the commit fixes an issue, reference that issue using `#` symbol: "This PR fixes: #ISSUE_NUMBER.".
-
-* The issue reference will add the commit link to the issue automatically.
 
 ### Description
 
@@ -135,10 +135,12 @@ This has been tested locally by building and running the site
 * Tests are essential, and you should describe how you tested your changes locally and whether you discovered any other breaking changes.
 ```
 
-## More Examples
-Additional examples of git commit message are below:
+Taking time to write consist, specific, and accurate git commit messages will help the reader, who will thank you for it. This will often include your future self! So think of it as an investment, with a focus on communicating your message clearly.
 
-* Fixing a bug
+## More Examples
+We include additional git commit message examples below:
+
+* For a bugfix
 
 ```text
 fix: static version number on quickstart page
@@ -166,7 +168,7 @@ How Has This Been Tested?
 This has been tested locally by building and running the site
 ```
 
-* Implementing a feature
+* For a new feature
 
 ```text
 add copy to clipboard functionality to docs
@@ -186,7 +188,7 @@ How Has This Been Tested?
 This has been tested locally by building and running the site
 ```
 
-* Documentation changes
+* For documentation changes
 
 ```text
 fix typo in getting started docker-compose example

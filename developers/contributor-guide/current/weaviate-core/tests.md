@@ -102,7 +102,7 @@ They are currently very limited but will be extended over time.
 
 ### Test coverage
 
-We aim to have the highest useful test coverage possibile. In some cases this
+We aim to have the highest useful test coverage possible. In some cases this
 might mean 100% test coverages, in other scenarios this might be considerably
 less. Golang is very explicit about it's error handling. Especially as errors
 are wrapped (or "annotated") you will find a lot of `if err != nil { ... }`

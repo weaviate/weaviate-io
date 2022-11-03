@@ -28,3 +28,4 @@ redirect_from:
 - [CICD philosophy](./cicd.html)
 - [Test philosophy of Weaviate](./tests.html)
 - [Weaviate development setup](./setup.html)
+- [Parsing Objects & Resolving References](./parsing-cross-refs.html)

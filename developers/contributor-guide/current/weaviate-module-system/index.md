@@ -15,3 +15,4 @@ redirect_from:
 
 - [Overview and High-Level Architecture](./overview.html)
 - [Code-Level Architecture](./architecture.html)
+- [How to build a custom module](./how-to-build-a-new-module.html)

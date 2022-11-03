@@ -34,7 +34,7 @@ tools/dev/run_dev_server.sh local-no-modules
 ```
 
 ### Without any modules, but with Grafana & Prometheus
-This setup is identical to the one above, but it uses Docker & Docker-compose to spin up Prometheus and Grafana instances. Those are pre-confiugred to scrape metrics from Weaviate. 
+This setup is identical to the one above, but it uses Docker & Docker-compose to spin up Prometheus and Grafana instances. Those are pre-configured to scrape metrics from Weaviate. 
 
 Using this setup, you can 
 - access Weaviate on port `8080`
@@ -73,7 +73,7 @@ tools/dev/restart_dev_environment.sh --qna && ./tools/dev/run_dev_server.sh loca
 The above commands are subject to change as we add more modules and require
 specific combinations for local testing. You can always inspect the two files
 to see which options are contained. The first option without any arguments is
-always guarateed to work.
+always guaranteed to work.
 
 
 To make query search use this link for console:

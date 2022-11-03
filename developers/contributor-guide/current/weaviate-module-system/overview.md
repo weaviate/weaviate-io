@@ -20,10 +20,10 @@ toc: true
 
 ## Weaviate Module System
 
-The Module system in Weaviate is a way to extend Weaviate functionality.
+The Module system in Weaviate is a way to extend Weaviate's functionality.
 Modules often provide access to various machine-learning models which can be
 used to turn media into vectors at query and import time. However, that's not
-the only thing a module can do, any extension on functionality can be
+the only thing a module can do; any extension on functionality can be
 incorporated into a module.
 
 The user decides which modules are activated at startup through configuration.
