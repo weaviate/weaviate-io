@@ -11,13 +11,17 @@ toc: true
 ---
 ## Introduction
 
-Contributing to the documentation is a great way to improve the user experience for everybody. 
+Maintaining consistent, accurate and readable documentation is way to improve the user experience for everybody, including experienced users. 
 
-If you spot any typos, errors, unclear explanations, missing references or any other opportunities for improvement, please let us know. 
+The truth is that while we try our best, mistakes happen (we are not perfect! 😅). And if you found something difficult to understand, others may have too, which presents an opportunity for improvement. 
 
-Weaviate's documentation is built with a static site builder (Jekyll) with data from our [GitHub repository](https://github.com/semi-technologies/weaviate-io). Before you get started, we suggest you set up a local development environment first. This will allow you to preview any changes locally. 
+So if you spot any typos, errors, unclear explanations, missing references or anything that stands out, please let us know, and we can work on it together.
 
-For instructions on setting up the development environment, please take a look at the [README file](https://github.com/semi-technologies/weaviate-io/blob/main/README.md) in our repository.
+## How Weaviate documentation is built
+
+Weaviate's documentation is built with a static site builder (Jekyll) with data from our [GitHub repository](https://github.com/semi-technologies/weaviate-io). Before you get started, we suggest you set up a local development environment first. This will allow you to preview any changes on your computer as you work on it. 
+
+For instructions on setting up the development environment, please take a look at this [README file](https://github.com/semi-technologies/weaviate-io/blob/main/README.md).
 
 Once your local environment is set up, you can make your proposed changes, preview them locally, and submit them for review. 
 
@@ -25,7 +29,7 @@ Once your local environment is set up, you can make your proposed changes, previ
 
 The documentation repository is structured as below:
 
-```
+```text
 ├── .github/                            #contains GitHub template files for issues and pull requests
 ├── _data/                              #contains site's data files
 ├── _includes/                          #contains numerous templates like header, footer, navbar, etc
@@ -69,13 +73,14 @@ The content is stored on HTML and Markdown (.md) files, and YAML files are used 
 
 Jekyll uses the [Liquid](https://shopify.github.io/liquid/) templating language to process templates. To learn more about Liquid, check out the [official Liquid Documentation](https://shopify.github.io/liquid/).
 
-Here are a few basic syntax which we use in our code:
+Here are some syntax which we commonly use in our code:
 
 * `if` conditional
 
-This executes the block of code only if the given condition is true. It is executed in the following manner:
+This executes the block of code only if the given condition is true. For example:
 
-```
+<!-- Using html rather than liquid code block as display style for liquid/jinja does not use a black background -->
+```html 
 {% raw %}
 Published on {{ page.date | date: '%B %d, %Y' }}
 {% if page.canonical-name %}
@@ -87,9 +92,9 @@ Published on {{ page.date | date: '%B %d, %Y' }}
 
 * `for` loop
 
-The for statement executes a block of code repeatedly. It is written in the following manner:
+The for statement executes a block of code repeatedly. For example:
 
-```
+```html
 {% raw %}
 {% for integration in site.data.integrations %}
     <a class="dropdown-item" href="/product.html#{{ integration.name | downcase }}">
@@ -101,9 +106,9 @@ The for statement executes a block of code repeatedly. It is written in the foll
 
 * Include
 
-The above tag is used to insert a already rendered file within the current template. It is written in the following manner:
+The above tag is used to insert a already rendered file within the current template. For example:
 
-```
+```html
 {% raw %}
 {% include docs-current_version_finder.html %}
 {% endraw %}
@@ -111,12 +116,10 @@ The above tag is used to insert a already rendered file within the current templ
 
 * Assign
 
-The assign tag is used to create a new variable. It is written in the following manner:
+The assign tag is used to create a new variable. For example:
 
-```
+```html
 {% raw %}
 {% assign sortedResources = site.data.podcasts | sort: 'date' %}
 {% endraw %}
 ```  
-
-Also read repository specific [CONTRIBUTION.md](https://github.com/semi-technologies/weaviate-io/blob/main/CONTRIBUTING.md) to get more familiar with the code base and contribution style.

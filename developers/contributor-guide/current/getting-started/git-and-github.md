@@ -9,9 +9,15 @@ open-graph-type: article
 og-img: documentation.jpg
 toc: true
 ---
-## Contributing to Weaviate using git and GitHub
+## Introduction
 
-This is a short guide on using git and GitHub to help you contribute to Weaviate. If you are relatively new to working on open-source projects, you may find this section helpful.
+Git and GitHub are indispensible tools for working with open-source communities.
+
+So we prepared a guide on using git and GitHub to help you contribute to Weaviate. If you are relatively new to working on open-source projects, you may find this section helpful.
+
+If you are new to git/GitHub, you can go through this section like a tutorial and follow along. Alternatively, you can treat it as a reference and jump to the relevant section. The commands shown below are shell commands.
+
+## Contributing to Weaviate using git and GitHub
 
 There are four major GitHub repositories of Weaviate, any of which you can contribute to. This includes:
 
@@ -30,7 +36,7 @@ Generally speaking, the process to contribute using git and GitHub goes like thi
     - [Create a new branch and make changes](#create-a-new-branch-to-work-on)
     - [Push your changes and create a pull request](#pull-request-process)
 
-The below are some summary information on git and GitHub, as well as these steps.
+The below are some information on git and GitHub, as well as these steps.
 
 ## Git 
 
@@ -56,9 +62,7 @@ Git is a version control tool. GitHub is an online platform that serves as a rem
 
 You can just use git on your local machine, but using a remote repository such as GitHub enables efficient collaboration with other team members.
 
-Check out [**GitHub Skills**](https://skills.github.com/), a learning program provided by GitHub that will teach you the fundamentals of git and GitHub.
-
-Now, let's talk about how we use git and GitHub to contribute to Weaviate.
+Now, let's take a look at how we can use git and GitHub to contribute to Weaviate.
 
 ## Report an issue
 
@@ -92,19 +96,23 @@ The original repository is typically called the "upstream" repo.
 
 ### Make (clone) a local copy
 
-* Now head over to the forked repository, and `clone` your repo. This will place a local copy of the repository on your machine so that you can make changes.
+* Now we need to `clone` your new repo. This will place a local copy of the repository on your machine so that you can make changes. Go to GitHub, and copy the URI of the repository.
 
 ![clone repo](/img/guides/contributor/clone.png)
 
-```
+Using this URI, type into your shell:
+
+```shell
 git clone git@github.com:<USERNAME>/weaviate.git
 ```
 
+Where `git@github.com:<USERNAME>/weaviate.git` is the URI you copied.
+
 **Note:** ("weaviate" is used as the example repo. Make sure to cite the particular repository you are contributing to (for example, "weaviate-io")
 
-* After cloning the repository from GitHub, use the `change directory` command to navigate to the cloned folder.
+After cloning the repository from GitHub, use the `change directory` command to navigate to the cloned folder.
 
-```
+```shell
 cd weaviate
 ```
 
@@ -121,18 +129,19 @@ Create a new branch with a simple informative name. For example:
 - For enhancements use `feature/issue#` or `feature/nameOfFeature`
 - For bugs use `bug/issue#` or `bug/nameOfBug`
 
-To work with a new branch you can use either
+To work with a new branch you can run either
 
-```
+```shell
 git branch feature/newPage      #create a new branch
 git checkout feature/newPage    #checkout on created branch
 ```
 
 Or
 
-```
+```shell
 git checkout -b feature/newPage  
 ```
+
 **Note:** 
 * `checkout` will switch to the newly created branch.
 * `-b` will create a new branch if the branch doesn’t already exist
@@ -143,7 +152,7 @@ This will create a new branch and move to it. Now, start hacking away and making
 
 After you've fixed the issue and tested it (Tests are critical! Never submit a change that hasn't been tested), you can keep track of your progress using this command:
 
-```
+```shell
 git status
 ```
 
@@ -159,7 +168,7 @@ Fetch the upstream main branch and update your local repository by following the
 
 Rebase your development branch if there were any new commits
 
-```
+```shell
 git checkout feature/newPage
 git rebase <default>
 ```
@@ -182,36 +191,41 @@ Here are some general guidelines about how to submit a Pull Request:
 
 **Adding the files and committing:**
 
-Make sure you are on your development branch
+First, make sure you are on your development branch. 
 
-* Add your files to the staging area
+In git, files need to be 'staged' before being added to a commit. Prior to adding files to the staging area, always validate visually which files need to be staged. Check the tracked modifications in the git repository like so:
 
-```
-git add filename
-```
-
-You can also use `git add .` to stage all the files, but it is not recommended to use. You might include created files, backups, and configuration files containing information you don't want included. Prior to adding files to the staging area, always validate visually which files need to be staged.
-
-* Check if the files are added in the staging area
-
-```
+```shell
 git status
 ```
 
-* If everything is good to go, proceed with commiting your changes with a **good commit message**. More information on how to write good commit messages can be found on this [page](./commit-guidelines.html).
+From here, you can add relevant files to the staging area. You can do so based on their filename:
 
+```shell
+git add filename
 ```
+
+You can also use `git add .` to stage all modified files in the current directory as well as subdirectories. But use this with care, as doing so might add irrelevant files, such as local configuration files for temporary files. 
+
+To systematically ignore certain files or directories, you can create a [.gitignore](https://www.atlassian.com/git/tutorials/saving-changes/gitignore) file.
+
+You can run `git status` as many times as necessary to check what has been staged. You can also [unstage files](https://docs.gitlab.com/ee/topics/git/unstage.html) as necessary.
+
+* If everything is good to go, proceed with committing your changes. Try to add a concise and informative commit message - your future self and others will thank you for it. Read more about [commit guidelines here](./commit-guidelines.html).
+
+```shell
 git commit -m "your commit message"
 ```
+
 **Pushing the commit:**
 
-* Now you must push to the remote repository so that your GitHub repo reflects changes made to your local repo. You can do so with:
+* To have your GitHub repo reflect changes made to your local repo, **push** to the remote repo:
 
-```
+```shell
 git push origin feature/newPage
 ```
 
-If asked, enter your GitHub login credentials. When complete, your commit will be on your forked GitHub repository.
+If asked, enter your GitHub login credentials. When complete, all local commits will be on your GitHub repository.
 
 When all of your changes have been committed and pushed to GitHub, visit the page for your fork there, choose the development branch, and then press the `Compare & Pull Request` button. 
 
@@ -264,19 +278,19 @@ A fork separates a repository from its upstream equivalent. So, you will need to
 
 To do this, first track the upstream repo by adding a remote upstream URL to the local repository.
 
-```
+```shell
 git remote add upstream https://github.com/semi-technologies/weaviate.git
 ```
 
 * To check if your local copy properly references the upstream repository on GitHub, run the command below
 
-```
+```shell
 git remote -v
 ```
 
 You should see:
 
-```
+```shell
 origin    https://github.com/Your_Username/weaviate.git (fetch)
 origin    https://github.com/Your_Username/weaviate.git (push)
 upstream  https://github.com/semi-technologies/weaviate.git (fetch)
@@ -294,7 +308,7 @@ To bring in upstream changes to your fork, you need to fetch and pull the upstre
 
 * The next step is to bring those changes to the local repository. If you have made any changes, make sure to commit them locally. Then check out the `main` (or `master` for weaviate) branch like so:
 
-```
+```shell
 git checkout main
 ```
 
@@ -302,7 +316,7 @@ git checkout main
 
 * Then pull the changes into local repository
 
-```
+```shell
 git pull origin main
 ```
 
@@ -314,36 +328,43 @@ Or you can just use the git CLI as below:
 
 * Check out the `main` branch first
 
-```
+```shell
 git checkout main
 ```
 
 * Fetch the upstream changes 
 
-```
+```shell
 git fetch upstream
 ```
 
 * Then pull any changes from the upstream `main` branch into the current local branch (i.e. `main` - checked out earlier)
 
-```
+```shell
 git pull upstream main
 ```
 
 * Last, push to your own remote repository (named `origin`) to keep the forked GitHub repo in sync
 
-```
+```shell
 git push origin main
 ```
 
 One liner script for super users:
 
-```
+```shell
 git remote add upstream https://github.com/semi-technologies/weaviate.git || true && git fetch upstream && git checkout main && git pull upstream main && git push origin main
 ```
 
 ### View all branches including remote branches
 
-```
+```shell
 git branch -a
 ```
+
+## Additional resources
+
+There are lots of resources out there on git and GitHub. For example:
+
+- [**GitHub Skills**](https://skills.github.com/){:target="_blank"} is a learning program provided by GitHub that will teach you the fundamentals of git and GitHub
+- [**Pro Git Book**](https://git-scm.com/book/en/v2){:target="_blank"} is a comprehensive reference book on git

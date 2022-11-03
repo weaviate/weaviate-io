@@ -2,30 +2,32 @@
 layout: layout-documentation
 solution: contributor-guide
 sub-menu: Getting Started
-title: Creating Content
+title: Creating Content / Apps
 tags: ['contributor-guide']
 menu-order: 5
 open-graph-type: article
 og-img: documentation.jpg
 toc: true
 ---
-The Weaviate community produces a lot of great content including blog posts, tutorials, and demo applications.To help get the word out, we maintain a curated list of these in our [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) repository. 
+The Weaviate community produces a lot of great content including blog posts, tutorials, and demo applications. To help these reach the broader community, we maintain a curated list of these in our [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) repository. 
 
-If you would like to share your own work with the community, we welcome it. We can help it reach the wider Weaviate community, who will in turn benefit from your work. Here are some ideas and tips:
+If you would like to share your own work, we would love to hear from you. We can help it reach the wider Weaviate community, who will in turn benefit from your work. 
 
-## Write a blog post
+Here are some ideas and tips on how:
 
-You could contribute by writing a blog post about Weaviate. 
+## Write a blog post or tutorial
+
+You could contribute by writing a blog post, or tutorial relating to Weaviate. 
 
 It could be about anything from your Weaviate journey, concepts you've learnt and used with Weaviate like vector search engines, or guides on how to integrate Weaviate with something. 
 
-We do not mind where it is hosted. It could be at a well-known platform such as Medium, Dev.to, or HashNode, or somewhere smaller like your own blog.
+It can be hosted anywhere. It could be at a well-known platform such as Medium, Dev.to, or HashNode, or somewhere smaller like your own blog.
 
-But we do ask of your article to:
+We ask of your article to:
 
 * Be freely accessible
 * Use the `weaviate` tag (where applicable)
-* Use code blocks (no screenshots of code)
+* Use code blocks, rather than screenshots of code (for usability)
 
 ## Develop a demo app
 
@@ -34,7 +36,7 @@ You could also contribute by creating a demo application that uses Weaviate unde
 We ask for the app to:
 
 * Be unique
-* Include a good README.md file 
+* Include a descriptive README.md file if possible
 * Disclose the Weaviate [module(s)](/developers/weaviate/current/modules/index.html) used
 
 ## Create a PR when ready
