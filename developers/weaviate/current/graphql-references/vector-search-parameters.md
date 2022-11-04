@@ -84,8 +84,8 @@ You can use a group operator to combine similar concepts (aka _entity merging_).
 
 | Variables | Mandatory | Type | Description |
 | --- | --- | --- | --- |
-| `type` | yes | `closest`, `merge` | ​You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
-| `force` | yes | `url` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
+| `type` | yes | `string` | ​You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
+| `force` | yes | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
 
 ### Example
 
