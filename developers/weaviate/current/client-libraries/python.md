@@ -176,7 +176,7 @@ Batching is a way of importing/creating `objects` and `references` in bulk using
 ## New: Multi-threading batch import (weaviate-client>=3.9.0)
 Python client version `3.9.0` introduces Multi-threading Batch import which works with both `Auto-batching` and `Dynamic-batching`. You can set the number of workers (threads) can be configured using the `.configure(...)` (same as `.__call__(...)`) by setting the argument `num_workers`. See also *Batch-configuration* below.
 
-**NOTE: *Use with care to not overload your weaviate instance.***
+**NOTE: *Multithreading is disabled by default (num_workers=1). Use with care to not overload your weaviate instance.***
 
 **Example**
 
@@ -556,7 +556,7 @@ The `Batch` object can be configured using the `batch.configure()` method or the
 - `callback` (Optional[Callable[[dict], None]]: default `weaviate.util.check_batch_result`): It is a callback function on the results of the `batch.create_objects()` and `batch.create_references()`. It is used for Error Handling for Auto-/Dynamic-batching. Has no effect if `batch_size` is `None`.
 - `timeout_retries` - (`int`: default `3`): Number of re-try to do on import/create a batch that resulted in `TimeoutError`.
 - `connection_error_retries` - (`int`: default `3`): Number of re-try to do on import/create a batch that resulted in `ConnectionError`. **NOTE:** Available in `weaviate-client>=3.9.0`.
-- `num_workers` - (`int`: default `0`): The maximal number of concurrent threads to run batch import. Only used for non-MANUAL batching. i.e. is used only with AUTO or DYNAMIC batching. ***Use with care to not overload your weaviate instance.*** **NOTE:** Available in `weaviate-client>=3.9.0`.
+- `num_workers` - (`int`: default `1`): The maximal number of concurrent threads to run batch import. Only used for non-MANUAL batching. i.e. is used only with AUTO or DYNAMIC batching. ***Use with care to not overload your weaviate instance.*** **NOTE:** Available in `weaviate-client>=3.9.0`.
 
 NOTE: You have to specify all the configurations that you want at each call of this method, otherwise some setting are going to be replaced by default values.
 ```python
