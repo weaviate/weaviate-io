@@ -1,6 +1,6 @@
 slack_signup_url: "https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw"
 weaviate_cli_version: 2.1.2
-python_client_version: 3.8.0
+python_client_version: 3.9.0
 markdown: kramdown
 highlighter: none
 url: https://weaviate.io
