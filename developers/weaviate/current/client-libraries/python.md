@@ -62,8 +62,6 @@ client = weaviate.Client(
 )
 ```
 
-If you want to authenticate to Weaviate using a bearer toke
-
 ## Neural Search Frameworks
 
 There is a variety of neural search frameworks that use Weaviate under the hood to store, search through, and retrieve vectors.
