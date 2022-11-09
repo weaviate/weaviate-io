@@ -122,23 +122,23 @@ An overview of environment variables in the docker-compose file:
   | --- | --- | --- | --- |
   | `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html). | `string - memory limit in SI uints` | `4096MiB` |
   | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
-  | `CONTEXTIONARY_URL` | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
-  | `PERSISTENCE_DATA_PATH` | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
-  | `ENABLE_MODULES` | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
-  | `TRANSFORMERS_INFERENCE_API` | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
-  | `DEFAULT_VECTORIZER_MODULE` | Default vectorizer module, so this doesn't need to be defined per class in the schema | `string` | `text2vec-contextionary` |
-  | `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` | Allow users to interact with weaviate without auth | `string - true/false` | `true` |
-  | `AUTHENTICATION_OIDC_ENABLED` | Enable OIDC Auth | `string - true/false` | `false` |
-  | `AUTHENTICATION_OIDC_ISSUER` | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
-  | `AUTHENTICATION_OIDC_CLIENT_ID` | OIDC Client ID | `string` | `my-client-id` |
-  | `AUTHENTICATION_OIDC_USERNAME_CLAIM` | OIDC Username Claim | `string` | `email` |
-  | `AUTHENTICATION_OIDC_GROUPS_CLAIM` | OIDC Groups Claim | `string` | `groups` |
-  | `AUTHORIZATION_ADMINLIST_ENABLED` | Enable AdminList Authorization mode | `string - true/false` | `true` |
-  | `AUTHORIZATION_ADMINLIST_USERS` | Users with admin permission| `string - comma-separated list` | `jane@example.com,john@example.com` |
-  | `AUTHORIZATION_ADMINLIST_READONLY_USERS` | Users with read-only permission| `string - comma-separated list` | `alice@example.com,dave@example.com` |
-| `DISK_USE_WARNING_PERCENTAGE` |  If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `80` |
-| `DISK_USE_READONLY_PERCENTAGE`  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `90` |
-| `PROMETHEUS_MONITORING_ENABLED`  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](../more-resources/monitoring.html) | `string - true/false` | `false` |
+  | <code>CONTEXTIONARY_<wbr>URL</code> | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
+  | <code>PERSISTENCE_<wbr>DATA_<wbr>PATH</code> | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
+  | <code>ENABLE_<wbr>MODULES</code> | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
+  | <code>TRANSFORMERS_<wbr>INFERENCE_<wbr>API</code> | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
+  | <code>DEFAULT_<wbr>VECTORIZER_<wbr>MODULE</code> | Default vectorizer module, so this doesn't need to be defined per class in the schema | `string` | `text2vec-contextionary` |
+  | <code>AUTHENTICATION_<wbr>ANONYMOUS_<wbr>ACCESS_<wbr>ENABLED</code> | Allow users to interact with weaviate without auth | `string - true/false` | `true` |
+  | <code>AUTHENTICATION_<wbr>OIDC_<wbr>ENABLED</code> | Enable OIDC Auth | `string - true/false` | `false` |
+  | <code>AUTHENTICATION_<wbr>OIDC_<wbr>ISSUER</code> | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
+  | <code>AUTHENTICATION_<wbr>OIDC_<wbr>CLIENT_<wbr>ID</code> | OIDC Client ID | `string` | `my-client-id` |
+  | <code>AUTHENTICATION_<wbr>OIDC_<wbr>USERNAME_<wbr>CLAIM</code> | OIDC Username Claim | `string` | `email` |
+  | <code>AUTHENTICATION_<wbr>OIDC_<wbr>GROUPS_<wbr>CLAIM</code> | OIDC Groups Claim | `string` | `groups` |
+  | <code>AUTHORIZATION_<wbr>ADMINLIST_<wbr>ENABLED</code> | Enable AdminList Authorization mode | `string - true/false` | `true` |
+  | <code>AUTHORIZATION_<wbr>ADMINLIST_<wbr>USERS</code> | Users with admin permission| `string - comma-separated list` | <code>jane@example.com,<wbr>john@example.com</code> |
+  | <code>AUTHORIZATION_<wbr>ADMINLIST_<wbr>READONLY_<wbr>USERS</code> | Users with read-only permission| `string - comma-separated list` | <code>alice@example.com,<wbr>dave@example.com</code> |
+| <code>DISK_<wbr>USE_<wbr>WARNING_<wbr>PERCENTAGE</code> |  If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `80` |
+| <code>DISK_<wbr>USE_<wbr>READONLY_<wbr>PERCENTAGE</code>  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](../configuration/backups-and-persistence.html#disk-pressure-warnings-and-limits). | `string - number` | `90` |
+| <code>PROMETHEUS_<wbr>MONITORING_<wbr>ENABLED</code>  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](../more-resources/monitoring.html) | `string - true/false` | `false` |
 | `BACKUP_*` | Various configuration variables for backup provider modules. They are outlined in detail on the [Backups page](../configuration/backups.html). | |
 
 # More Resources
