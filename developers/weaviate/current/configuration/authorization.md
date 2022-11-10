@@ -41,9 +41,9 @@ services:
     ...
     environment:
       ...
-      AUTHORIZATION_ADMINLIST_ENABLED=true
-      AUTHORIZATION_ADMINLIST_USERS=jane@doe.com,john@doe.com
-      AUTHORIZATION_ADMINLIST_READONLY_USERS=roberta@doe.com
+      AUTHORIZATION_ADMINLIST_ENABLED: 'true'
+      AUTHORIZATION_ADMINLIST_USERS: 'jane@doe.com,john@doe.com'
+      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'roberta@doe.com'
 ```
 
 The above would enable the plugin and make users `jane@doe.com` and
