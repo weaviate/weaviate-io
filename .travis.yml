@@ -41,7 +41,7 @@ script:
 # Netlify
 ##
 - |
-  if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
+  if [ $TRAVIS_BRANCH != "main" ]; then
     bash _build_scripts/publish-to-netlify.sh
     bash _build_scripts/slack-netlify-message.sh
   fi
