@@ -12,7 +12,7 @@ date: 2022-10-25
 toc: true
 ---
 ## Lock striping in database design
-Database design comes with interesting challenges. Like, dealing with race conditions when importing data in parallel streams. But for every new challenge, there is a clever solution. One of those clever soltions is Lock striping. It refers to an arrangement where locking occurs on multiple buckets or 'stripes'. 
+Database design comes with interesting challenges. Like, dealing with race conditions when importing data in parallel streams. But for every new challenge, there is a clever solution. One of those clever solutions is Lock striping. It refers to an arrangement where locking occurs on multiple buckets or 'stripes'. 
 
 Are you curious about, the challenge that we faced, which solutions we considered, and what was our final solution? Read on 😀.
 

@@ -8,14 +8,16 @@ git_slack_map=(
     ["Bob van Luijt"]="<@U6P955HC4>"
     ["Charlie Harr"]="<@U044XTHRVFA>"
     ["Connor Shorten"]="<@U03FRH53SUT>"
+    ["Dan Dascalescu"]="<@U048SAV350W>"
     ["Dirk Kulawiak"]="<@U03MWHK4KV3>"
     ["Erika Cardenas"]="<@U03RSSRAMLN>"
-    ["Etienne Dilocker"]="<@UCZDBEZ5F>"
+    ["etiennedi"]="<@UCZDBEZ5F>"
     ["John Trengrove"]="<@U03KPAE8Y7K>"
     ["JP Hwang"]="<@U0441J6PYGN>"
     ["Marcin Antas"]="<@U01E5BJ3UV7>"
     ["Parker Duckworth"]="<@U034QPLGSCU>"
     ["Sebastian Witalec"]="<@U03DENV56CR>"
+    ["Stefan Bogdan"]="<@U01DPKTVA93>"
     ["Svitlana"]="<@U03DQTXFDHS>"
 )
 
