@@ -39,7 +39,7 @@ any request without an allowed authentication scheme will return `401
 Unauthorized`.
 
 ### Configuration
-Anonymous Access can be configured like so in the Docker Compose yaml file like so:
+Anonymous Access can be configured like so in the Docker Compose yaml:
 
 ```yaml
 services:
