@@ -18,14 +18,16 @@ Maintaining data integrity is one of the key goals for database users. So it sho
 
 Although it has been possible to back up Weaviate data, doing so used to require our users to perform many manual and inelegant steps. So, we have introduced a [backup feature](https://weaviate.io/developers/weaviate/current/configuration/backups.html) in Weaviate v1.15 that streamlines the backup process, whether it be to a local file system or to a cloud storage provider.
 
-If you have not yet had a chance to use this cool feature, don't worry! We have prepared a tutorial that shows you how to use this feature to back up your data and restore it to another instance of Weaviate. By the end of this tutorial, you will have:
+If you have not yet had a chance to use this cool feature, don't worry! We have prepared a tutorial that shows you how to use this feature to back up your data and restore it to another instance of Weaviate. 
+
+By the end of this tutorial, you will have:
 - Spun up two instances of Weaviate,
 - Populated one Weaviate instance with a new schema & data,
 - Backed up the Weaviate instance, and
 - Restored the backup data to the other instance.
 
 ## Preparations
-To get started, clone [this repository](https://github.com/weaviate-tutorials/weaviate-backup) then run `docker-compose up -d` to spin up Weaviate. 
+To get started, clone [this repository](https://github.com/weaviate-tutorials/weaviate-backup){:target="_blank"} then run `docker-compose up -d` to spin up Weaviate. 
 
 The Docker configuration file (`docker-compose.yaml`) has been set up to spin up two Weaviate instances for this tutorial. You should be able to connect to them at `http://localhost:8080` and `http://localhost:8090` respectively. We’ll call them W1 and W2 from this point on for convenience.
 
