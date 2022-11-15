@@ -96,7 +96,7 @@ So, ANN is not some magic method that will always find the true k nearest neighb
 *[Figure 4 - Proximity graph-based ANN search]*
 
 Check out [Weaviate ANN benchmarks](/developers/weaviate/current/benchmarks/ann.html){:target="_blank"} to see how HNSW performed on realistic large-scale datasets. You can use it to compare the tradeoffs between recall, QPS, latency, and import time.<br/>
-You will find it interesting to see, that Weaviate can maintain can be very high recall rates (>95%), whilst maintaining high throughput and low latency (both in milliseconds). That is exactly what you need for fast, but reliable vector search!
+You will find it interesting to see, that Weaviate can maintain very high recall rates (>95%), whilst keeping high throughput and low latency (both in milliseconds). That is exactly what you need for fast, but reliable vector search!
 
 ## Summary
 A quick recap:
