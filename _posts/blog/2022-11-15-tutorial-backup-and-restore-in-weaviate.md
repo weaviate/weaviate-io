@@ -54,13 +54,13 @@ The `volumes` parameter [mounts a volume](/developers/weaviate/current/configura
 
 Now let’s dive into it to see the backup functionality in action!
 
+### Utility scripts
+To begin with, both Weaviate instances **W1** and **W2** should be empty. In order to get straight to the point of this tutorial, we've prepared a set of scripts (located in the `scripts` folder) that will help you prepare your Weaviate instances and test them out.
+
 -----
 **Note**: The tutorial text refers to shell scripts (e.g. `0_query_instances.sh`), but we also provide code examples in other languages including **Python** and **JavaScript**. These files are located in `scripts` subdirectory and we encourage you to try them out yourself using your favorite client. 
 
 -----
-
-### Utility scripts
-To begin with, both Weaviate instances **W1** and **W2** should be empty. In order to get straight to the point of this tutorial, we've prepared a set of scripts (located in the `scripts` folder) that will help you prepare your Weaviate instances and test them out.
 
 If you run the `0_query_instances` script, you should see that neither instances contain a schema.
 
@@ -150,8 +150,6 @@ If you wish to back up your data to a different location, edit the `volumes` par
 
 For example, changing it from `./backups:/tmp/backups` to `./my_archive:/tmp/backups` would change the backup destination from `./backups` to `./my_archive/`.
 
-
-
 ### Cloud storage systems
 Note, you can also configure Weaviate backup to work with **cloud storage systems** like **Google Cloud Storage** (**GCS**) and **S3-compatible blob storage** (like **AWS S3** or **MinIO**).
 
@@ -203,7 +201,7 @@ curl http://localhost:8090/v1/backups/filesystem/my-very-first-backup/restore
 
 Weaviate remains available for read and write operations while backup operations are ongoing. And you can poll the endpoint to check its status, without worrying about any potential downtime.
 
-Check out `3a_check_backup_status.sh' and '4b_check_restore_status.sh` for examples of how to query **W1** for the backup status, or **W2** for the restore status respectively.
+Check out `3a_check_backup_status.sh` and `4b_check_restore_status.sh` for examples of how to query **W1** for the backup status, or **W2** for the restore status respectively.
  
 ## Wrap-up
 That's it for our quick overview of the new backup feature available in Weaviate. We are excited about this feature as it will make it easier and faster for you to back up your data, which will help make your applications more robust.
