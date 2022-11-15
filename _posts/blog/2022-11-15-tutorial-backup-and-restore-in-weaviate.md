@@ -13,7 +13,7 @@ toc: false
 ---
 Maintaining data integrity is one of the key goals for database users. So it should come as no surprise that backing up the data is an important part of database best practices.
 
-Although it has always been possible to back up Weaviate data, doing so used to required many manual and inelegant steps. So, we have introduced a [backup feature](/developers/weaviate/current/configuration/backups.html){:target="_blank"} in Weaviate `v1.15` that streamlines the backup process, whether it be to a **local file system** or to a **cloud storage provider**.
+Although it has always been possible to back up Weaviate data, doing so used to require many manual and inelegant steps. So, we have introduced a [backup feature](/developers/weaviate/current/configuration/backups.html){:target="_blank"} in Weaviate `v1.15` that streamlines the backup process, whether it be to a **local file system** or to a **cloud storage provider**.
 
 If you have not yet had a chance to use this cool feature, don't worry! This tutorial will show you how to use this feature to back up your data and restore it to another Weaviate instance.
 
@@ -55,11 +55,11 @@ The `volumes` parameter [mounts a volume](/developers/weaviate/current/configura
 Now let’s dive into it to see the backup functionality in action!
 
 -----
-**Note**: The tutorial text refers to shell scripts (e.g. `scripts/0_query_instances.sh`), but we also provide code examples in other languages including **Python** and **JavaScript**. These files are located in `scripts` subdirectory and we encourage you to try them out yourself using your favorite client. 
+**Note**: The tutorial text refers to shell scripts (e.g. `0_query_instances.sh`), but we also provide code examples in other languages including **Python** and **JavaScript**. These files are located in `scripts` subdirectory and we encourage you to try them out yourself using your favorite client. 
 
 -----
 
-### Preparation scripts
+### Utility scripts
 To begin with, both Weaviate instances **W1** and **W2** should be empty. In order to get straight to the point of this tutorial, we've prepared a set of scripts (located in the `scripts` folder) that will help you prepare your Weaviate instances and test them out.
 
 If you run the `0_query_instances` script, you should see that neither instances contain a schema.
@@ -68,7 +68,7 @@ If you run the `0_query_instances` script, you should see that neither instances
 scripts/0_query_instances.sh
 ```
 
-If it is not empty, or at any point you would like to reset your Weaviate instances, you can run the `9_delete_all` script, which will delete all of the existing schema and data at those locations.
+If it is not empty, or if at any point you would like to reset your Weaviate instances, you can run the `9_delete_all` script, which will delete all of the existing schema and data at those locations.
 
 ```bash
 scripts/9_delete_all.sh
@@ -76,7 +76,7 @@ scripts/9_delete_all.sh
 
 ### Populate **W1** with data
 
-As our first order of action, we will populate **W1** with data. Run the following to create a schema, and import data:
+As our first order of action, we will populate **W1** with data. Run the following to create a schema and import data:
 
 ```bash
 scripts/1_create_schema.sh
@@ -164,10 +164,10 @@ Check our documentation to learn more about:
 * [GCS backup](/developers/weaviate/current/configuration/backups.html#gcs-google-cloud-storage){:target="_blank"}
 * [S3 backup](/developers/weaviate/current/configuration/backups.html#s3-aws-or-s3-compatible){:target="_blank"}
 
-### Partial backup and restores
+### Partial backup and restore
 Weaviate’s backup feature allows you to back up or restore a subset of available classes. This might be very useful in cases where, for example, you may wish to partially export a subset of data to a development environment or import an updated class.
 
-For example, the below `bash` command will restore only the `Author` class regardless of whether any other classes have been also included in `my-very-first-backup`.
+For example, the below `curl` command will restore only the `Author` class regardless of whether any other classes have been also included in `my-very-first-backup`.
 ```bash
 curl \
 -X POST \
@@ -179,7 +179,7 @@ curl \
 http://localhost:8090/v1/backups/filesystem/my-very-first-backup/restore
 ```
 
-Delete everything in **W2** first with `8_delete_w2`, and try out the partial restore with `scripts/4a_partial_restore`. 
+Delete everything in **W2** first with `8_delete_w2`, and try out the partial restore with `4a_partial_restore`. 
 
 ```bash
 scripts/8_delete_w2.sh
@@ -203,7 +203,7 @@ curl http://localhost:8090/v1/backups/filesystem/my-very-first-backup/restore
 
 Weaviate remains available for read and write operations while backup operations are ongoing. And you can poll the endpoint to check its status, without worrying about any potential downtime.
 
-Check out `scripts/3a_check_backup_status.sh' and 'scripts/4b_check_restore_status.sh` for examples of how to query **W1** for the backup status, or **W2** for the restore status respectively.
+Check out `3a_check_backup_status.sh' and '4b_check_restore_status.sh` for examples of how to query **W1** for the backup status, or **W2** for the restore status respectively.
  
 ## Wrap-up
 That's it for our quick overview of the new backup feature available in Weaviate. We are excited about this feature as it will make it easier and faster for you to back up your data, which will help make your applications more robust.
