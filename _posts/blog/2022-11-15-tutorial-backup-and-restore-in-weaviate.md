@@ -153,7 +153,7 @@ For example, changing it from `./backups:/tmp/backups` to `./my_archive:/tmp/bac
 ### Cloud storage systems
 Note, you can also configure Weaviate backup to work with **cloud storage systems** like **Google Cloud Storage** (**GCS**) and **S3-compatible blob storage** (like **AWS S3** or **MinIO**).
 
-Each requires a different Weaviate backup module (`backups-gcs` and `backups-s3`), configuration parameters and authentication.
+Each requires a different Weaviate backup module (`backup-gcs` and `backup-s3`), configuration parameters and authentication.
 
 ### Learn more
 Check our documentation to learn more about:
