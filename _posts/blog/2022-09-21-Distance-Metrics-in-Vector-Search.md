@@ -45,12 +45,12 @@ Check out this article to learn [Why Vector Search engines are so fast](/blog/20
 ### Why are there different distance metrics?
 Depending on the Machine Learning model used, vectors can have ~100 dimensions or go into thousands of dimensions.
 
-The time it takes to calculate the distance between two vectors grows based on the number of vector dimensions. Furthermore, some distance metrics are more compute heavy than others. That might be a challenge for calculating distances between vectors with thousands of dimensions.
+The time it takes to calculate the distance between two vectors grows based on the number of vector dimensions. Furthermore, some distance metrics are more compute-heavy than others. That might be a challenge for calculating distances between vectors with thousands of dimensions.
 
 For that reason, we have different distance metrics that balance the speed and accuracy of calculating distances between vectors.
 
 ## Cosine distance 
-The cosine similarity measures the angle between two vectors in a multi-dimensional space – with the idea that similar vectors point in a similar direction. Cosine similarity is commonly used in Natural Language Processing (NLP). It measures the similarity between documents regardless of the magnitude. This is advantageous because if two documents are far apart by the euclidean distance, the angle between them could still be small. For example, if the word ‘fruit’ appears 30 times in one document and 10 in the other, they can still be similar by taking the angle. The smaller the angle is, the more similar the documents are.  
+The cosine similarity measures the angle between two vectors in a multi-dimensional space – with the idea that similar vectors point in a similar direction. Cosine similarity is commonly used in Natural Language Processing (NLP). It measures the similarity between documents regardless of the magnitude. This is advantageous because if two documents are far apart by the euclidean distance, the angle between them could still be small. For example, if the word ‘fruit’ appears 30 times in one document and 10 in the other, that is a clear difference in magnitude, but the documents can still be similar if we only consider the angle. The smaller the angle is, the more similar the documents are.  
 
 The cosine similarity and cosine distance have an inverse relationship. As the distance between two vectors increases, the similarity will decrease. Likewise, if the distance decreases, then the similarity between the two vectors increases. 
 
@@ -142,7 +142,7 @@ Let's use an example to calculate the Hamming distance. Imagine we have a datase
 | Blueberries     | [5,6,9] |         1        	   |
 | Broccoli     	  | [8,2,9] |         3        	   |
 
-As seen above, blueberries are a better pairing than a broccoli. This was done by comparing the position of the numbers in the vector representations of foods. 
+As seen above, blueberries are a better pairing than broccoli. This was done by comparing the position of the numbers in the vector representations of foods. 
 
 ### Hamming distance and Binary Passage Retrieval 
 Binary Passage Retrieval (BPR) translates vectors into a binary sequence. For example, if you have text data that has been converted into a vector ("Hi there" -> [0.2618, 0.1175, 0.38, …]), it can then be translated to a string of binary numbers (0 or 1). Although it is condensing the information in the vector, this technique can keep the semantic structure despite representing it as 0 or 1.
@@ -154,9 +154,9 @@ To compute the Hamming distance between two strings, you compare the position of
 There are three positions where the numbers are different (highlighted above). Therefore, the Hamming distance is equal to 3. [Norouzi et al.](https://papers.nips.cc/paper/2012/hash/59b90e1005a220e2ebc542eb9d950b1e-Abstract.html){:target="_blank"} stated that binary sequences are storage efficient and allow storing massive datasets in memory. There is a great page in the [Weaviate documentation](/developers/weaviate/current/architecture/binary-passage-retrieval.html){:target="_blank"} that explains this in more detail.
 
 ## How to Choose a Distance Metric 
-As a rule of thumb, it is best to use the distance metric that matches the model that you’re using. For example, if you’re using a Siamese Neural Network (SNN) the contrastive loss function incorporates the euclidean distance. Similarly, when fine-tuning your sentence transformer you define the loss function. The [CosineSimilarityLoss](https://www.sbert.net/docs/package_reference/losses.html#cosinesimilarityloss){:target="_blank"} takes two embeddings and computes the similarity based on the cosine similarity.
+As a rule of thumb, it is best to use the distance metric that matches the model that you’re using. For example, if you’re using a [Siamese Neural Network](https://en.wikipedia.org/wiki/Siamese_neural_network) (SNN) the contrastive loss function incorporates the euclidean distance. Similarly, when fine-tuning your sentence transformer you define the loss function. The [CosineSimilarityLoss](https://www.sbert.net/docs/package_reference/losses.html#cosinesimilarityloss){:target="_blank"} takes two embeddings and computes the similarity based on the cosine similarity.
  
-To summarize, there is no ‘one size fits all’ distance metric. It depends on your data, model, and application. As mentioned above, there are cases where the cosine distance and dot product are the same; however, it depends on if the magnitude is important. This also goes for the accuracy/speed tradeoff between the Manhattan and euclidean distance.  
+To summarize, there is no ‘one size fits all’ distance metric. It depends on your data, model, and application. As mentioned above, there are cases where the cosine distance and dot product are the same; however, the magnitude may or may not be important. This also goes for the accuracy/speed tradeoff between the Manhattan and euclidean distance.  
 
 > Use the distance metric that matches the model that you’re using.
 
@@ -168,7 +168,7 @@ In total, Weaviate users can choose between five various distance metrics to sup
 ### Optimizations
 Even with ANN-indexes, which reduce the number of distance calculations necessary, a vector search engine still spends a large portion of its compute time calculating vector distances. As a result, it is very important that the engine can do this not just correctly, but also efficiently.
 
-The distance metrics in Weaviate have been optimized to be highly efficient using “Single Instruction, Multiple Data” (“SIMD”) instructions sets. Using these instructions, a CPU can do multiple calculations in a single CPU cycle. To achieve this, we had to write some of our distance metrics in [pure Assembly code](https://github.com/semi-technologies/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s){:target="_blank"}. [Here is an overview](/developers/weaviate/current/vector-index-plugins/distances.html#distance-implementations-and-optimizations){:target="_blank"} of the current state of optimizations; including which distance metrics have SIMD optimizations for which architecture.
+The distance metrics in Weaviate have been optimized to be highly efficient using “Single Instruction, Multiple Data” (“SIMD”) instruction sets. Using these instructions, a CPU can do multiple calculations in a single CPU cycle. To achieve this, we had to write some of our distance metrics in [pure Assembly code](https://github.com/semi-technologies/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s){:target="_blank"}. [Here is an overview](/developers/weaviate/current/vector-index-plugins/distances.html#distance-implementations-and-optimizations){:target="_blank"} of the current state of optimizations; including which distance metrics have SIMD optimizations for which architecture.
 
 ### Open source contributions
 Weaviate is open-source and values feedback and input from the community. A community member contributed to the Weaviate project by adding two new metrics to the 1.15 release. How cool is that! If this is something you're interested in, [here](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw/distancer){:target="_blank"} is the repository with the implementation of the current metrics. 
