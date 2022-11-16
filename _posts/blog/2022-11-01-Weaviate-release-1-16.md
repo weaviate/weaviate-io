@@ -101,7 +101,7 @@ where: {
 }
 ```
 
-For more information on how to use the `IsNull` filter, check out the [documentation](/developers/weaviate/current/graphql-references/filters.html#isnull-filter){:target="_blank"}.
+For more information on how to use the `IsNull` filter, check out the [documentation](/developers/weaviate/current/graphql-references/filters.html#filter-by-null-state){:target="_blank"}.
 
 ### Filtering by Array Length
 While designing the solution for filtering null values, we realized that we also needed an elegant solution to filter by array length. <br/>
