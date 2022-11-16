@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Configuration
 title: Authentication
-intro: By default, Weaviate runs without any form of authentication. To run Weaviate with authentication, you can configure OpenID authentication in the configuration file of Weaviate. Then, use a Bearer token to authenticate.
+intro: By default, Weaviate runs without any form of authentication. To run Weaviate with authentication, you can enable OpenID authentication in Weaviate's configuration file. Then, use a Bearer token to authenticate.
 description: Authentication in Weaviate
 tags: ['authentication']
 menu-order: 4
@@ -14,27 +14,19 @@ redirect_from:
     - /documentation/weaviate/current/configuration/authentication.html
 ---
 
-# Philosophy
+# Overview
 
-Weaviate should be as easy-to-use as possible regardless of the setting. Trying it out locally can be a very different case than running it in production in an enterprise environment.
+We built Weaviate to be as easy to use as possible while catering to different cases such as for trying it out locally, or in production in an enterprise environment.
 
-We want to make sure that Authentication reflects this. Thus, different authentication schemes can be selected and even combined. This allows scenarios such as _"Anonymous users can read some resources, but not all. Authenticated users can read all resources. Only a special group can write or delete resources."_
-
-# OpenID Details
-
-If you have authentication enabled, you can request all details needed from the following endpoint:
-
-```bash
-$ curl http://localhost:8080/v1/.well-known/openid-configuration
-```
+Weaviate's authentication capabilities reflect this by allowing for both anonymous uses as well as authenticated uses through OpenID Connect (OIDC). Thus, different authentication schemes can be selected and even combined, from which different [authorization](./authorization.html) options can be specified for different groups of users. This allows scenarios such as _"Anonymous users can read some resources, but not all. Authenticated users can read all resources. Only a special group can write or delete resources."_
 
 ## Anonymous Access
-If anonymous access is selected, weaviate will accept requests without any
-authentication headers or parameters. Users sending such a request will be
+If anonymous access is selected, Weaviate will accept requests without any
+authentication headers or parameters. Users sending such requests will be
 authenticated as `user: anonymous, group: anonymous`.
 
-It is up to the authorization module to decide which
-permissions anonymous users have. By disabling anonymous access altogether,
+You can use the authorization module to specify which
+permissions to apply to anonymous users. When anonymous access is disabled altogether,
 any request without an allowed authentication scheme will return `401
 Unauthorized`.
 
@@ -52,17 +44,16 @@ services:
 
 ### How to use
 
-Simply omit any authentication headers or parameters from your REST request to
-Weaviate.
+Send REST requests to Weaviate without any additional authentication headers or parameters.
 
 ## OpenID Connect (OIDC)
 
 With [OpenID Connect](https://openid.net/connect/) (based on OAuth2), an
 external identity provider and token issuer ('token issuer' hereafter) is responsible for managing users.
-Weaviate's part when receiving a token (JSON Web Token or JWT) is to verify
+
+When Weaviate receives a token (JSON Web Token or JWT), it verifies
 that it was indeed signed by the configured token issuer. If the signature is
-correct, all content of the token is trusted. The user is then authenticated as
-the subject mentioned in the token.
+correct, all contents of the token are trusted, which authenticates the user based on the information in the token.
 
 ### Requirements &amp; Defaults
 
@@ -72,20 +63,17 @@ the subject mentioned in the token.
   [Keycloak](https://www.keycloak.org/) and Golang-based
   [dex](https://github.com/dexidp/dex).
 
-- By default, weaviate will validate that the token includes a specified client
+- By default, Weaviate will validate that the token includes a specified client
   id in the audience claim. If your token issuer does not support this feature,
   you can turn it off as outlined in the configuration section below.
 
-- By default, weaviate will try to extract groups from a claim of your choice.
-  Groups are a helpful tool to implement authorization roles for groups rather
-  than single subjects. However, groups are not a required OpenID spec.
-  Therefore, this extraction is optional and will not fail authentication if no
-  groups could be found.
-
 ### Configuration
 
-OpenID Connect (OIDC) can be configured like so in the respective environment variables in the Docker-Compose yaml. Please see the inline-yaml comments for details around
-the respective fields:
+To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the Docker-Compose yaml. Additionally, the **OIDC token issuer** must be configured as appropriate. Configuring the OIDC token issuer is outside the scope of this document.
+
+> As of November 2022, we are aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff){:target="_blank"} may be useful.
+
+Please see the inline-yaml comments for details around the respective fields:
 
 ```yaml
 services:
@@ -135,19 +123,55 @@ services:
       AUTHENTICATION_OIDC_SKIP_CLIENT_ID_CHECK: 'false'
 ```
 
-### How to use
+#### Weaviate OpenID endpoint
 
-Depending on 
-
-1. Obtain a valid token from the token issuer you configured.
-2. Send this token along with any REST request in the Header like so: `Authorization: Bearer <token>`. Make sure to replace `<token>` with your actual token.
-
-# Add a Bearer to a Request
-
-When you've received a Bearer token, you can authenticate in the following manner where `{Bearer}` is the Bearer token.
+If you have authentication enabled, you can request all details needed from the following endpoint:
 
 ```bash
-# List all objects with a Bearer
+$ curl http://localhost:8080/v1/.well-known/openid-configuration
+```
+
+### How to use
+
+OIDC authentication requires obtaining a valid token from the token issuer so that it can be sent in the header of any REST request.
+
+The OIDC standard allows for many different methods *(flows)* of obtaining a token. The appropriate method can vary depending on your situation, including configurations at the token issuer, and your requirements. 
+
+While it is outside the scope of our documentation to cover every OIDC authentication flow, some possible options are to:
+- Use the `resource owner password flow` for trusted applications. 
+- Or use the `hybrid flow` if Microsoft Azure AD is your token issuer or if you would like to prevent exposing passwords.
+
+We outline the steps below for both methods of obtaining a token.
+
+#### Resource owner password flow
+1. Send a GET request to `[WEAVIATE_URL]/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`)
+2. Parse the `clientId` and `href` from `wv_oidc_config`
+3. Send a GET request to `href` to fetch the token issuer's OIDC configuration (`token_oidc_config`)
+4. Ensure that `password` is in the `grant_types_supported` list in `token_oidc_config`.
+  - If this is not the case, the token issuer is likely not configured for `resource owner password flow`. You may need to reconfigure the token issuer or use another method.
+5. Send a POST request to the `token_endpoint` of `token_oidc_config` with the body: 
+  - `{"grant_type": "password", "client_id": client_id, "username": [USERNAME], "password": [PASSWORD]}`. 
+  - Where `[USERNAME]` and `[PASSWORD]` are replaced with the actual values for each.
+6. Parse the response (`token_resp`), and look for `access_token` in `token_resp`. This is your Bearer token.
+
+#### Hybrid flow
+1. Send a GET request to `[WEAVIATE_URL]/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`)
+2. Parse the `clientId` and `href` from `wv_oidc_config`
+3. Send a GET request to `href` to fetch the token issuer's OIDC configuration (`token_oidc_config`)
+4. Construct a URL (`auth_url`) with the following parameters, based on `authorization_endpoint` from `token_oidc_config`. This will look like the following:
+- `{authorization_endpoint}`?client_id=`{clientId}`&response_type=code%20id_token&response_mode=fragment&redirect_url=`{redirect_url}`&scope=openid&nonce=abcd
+- The `redirect_url` here can be any address. 
+5. Go to the `auth_url` in your browser, and log in if prompted. If successful, the token issuer will redirect the browser to the `redirect_url`, with additional parameters that includes an `id_token` parameter. 
+6. Parse the `id_token` parameter value. This is your Bearer token.
+
+## Add a Bearer to a Request
+
+Once you have obtained a token, attach it to all REST requests to Weaviate in the header like so: `Authorization: Bearer <token>`, where `<token>` is your actual token.
+
+For example, you can use a CURL command as shown below:
+
+```bash
+# List all objects with a Bearer token
 $ curl http://localhost:8080/v1/objects -H "Authorization: Bearer {Bearer}"
 ```
 
