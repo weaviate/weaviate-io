@@ -33,17 +33,17 @@ error on startup due to the invalid configuration.
 
 # Usage
 
-Simply configure the admin plugin in the config yaml like so:
+Configure the admin plugin in the Docker Compose configuration yaml like so:
 
 ```yaml
-authorization:
-  admin_list:
-    enabled: true
-    users:
-      - jane@doe.com
-      - john@doe.com
-    read_only_users:
-      - roberta@doe.com
+services:
+  weaviate:
+    ...
+    environment:
+      ...
+      AUTHORIZATION_ADMINLIST_ENABLED: 'true'
+      AUTHORIZATION_ADMINLIST_USERS: 'jane@doe.com,john@doe.com'
+      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'roberta@doe.com'
 ```
 
 The above would enable the plugin and make users `jane@doe.com` and

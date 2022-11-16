@@ -39,16 +39,15 @@ any request without an allowed authentication scheme will return `401
 Unauthorized`.
 
 ### Configuration
-Anonymous Access can be configured like so in the respective environment in the
-`configuration.yaml`:
-
-*Note that this example uses yaml, however configuration can also be written as
-json.*
+Anonymous Access can be configured like so in the Docker Compose yaml:
 
 ```yaml
-authentication:
-    anonymous_access:
-        enabled: true
+services:
+  weaviate:
+    ...
+    environment:
+      ...
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
 ```
 
 ### How to use
@@ -85,19 +84,18 @@ the subject mentioned in the token.
 
 ### Configuration
 
-OpenID Connect (OIDC) can be configured like so in the respective environment in the
-`configuration.yaml`. Please see the inline-yaml comments for details around
+OpenID Connect (OIDC) can be configured like so in the respective environment variables in the Docker-Compose yaml. Please see the inline-yaml comments for details around
 the respective fields:
 
-*Note that this example uses yaml, however configuration can also be written as
-json.*
-
 ```yaml
-authentication:
-    oidc:
+services:
+  weaviate:
+    ...
+    environment:
+      ...
       # enabled (optional - defaults to false) turns OIDC auth on. All other fields in
-      # this section will only be validated if enabled is set to true.
-      enabled: true
+      # this section will only be validated if enabled is set to true.      
+      AUTHENTICATION_OIDC_ENABLED: 'true'
 
       # issuer (required) tells weaviate how to discover the token issuer. This
       # endpoint must implement the OpenID Connect Discovery spec, so that weaviate
@@ -107,18 +105,8 @@ authentication:
       # where an example realm 'my-weaviate-usecase' was created. The exact
       # path structure will depend on the token issuer of your choice. Please
       # see the respective documentation of your issuer about which endpoint
-      # implements OIDC Discovery.
-      issuer: http://my-token-issuer/auth/realms/my-weaviate-usecase
-
-      # username_claim (required) tells weaviate which claim to use for extracting
-      # the username. The username will be passed to the authorization module.
-      username_claim: email
-
-      # groups_claim (optional) tells weaviate which claim to use for extracting
-      # the groups. Groups must be an array of string. If groups_claim is not set
-      # weaviate will not try to extract groups and pass an empty array to the 
-      # authorization module.
-      groups_claim: groups
+      # implements OIDC Discovery.      
+      AUTHENTICATION_OIDC_ISSUER: 'http://my-token-issuer/auth/realms/my-weaviate-usecase'
 
       # client_id (required unless skip_client_id_check is set to true) tells 
       # weaviate to check for a particular OAuth 2.0 client_id in the audience claim.
@@ -126,14 +114,24 @@ authentication:
       # but never intended to be used with weaviate can be used for authentication.
       #
       # For more information on what clients are in OAuth 2.0, see
-      # https://tools.ietf.org/html/rfc6749#section-1.1
-      client_id: my-weaviate-client
+      # https://tools.ietf.org/html/rfc6749#section-1.1      
+      AUTHENTICATION_OIDC_CLIENT_ID: 'my-weaviate-client'
+
+      # username_claim (required) tells weaviate which claim to use for extracting
+      # the username. The username will be passed to the authorization module.      
+      AUTHENTICATION_OIDC_USERNAME_CLAIM: 'email'
+
+      # groups_claim (optional) tells weaviate which claim to use for extracting
+      # the groups. Groups must be an array of string. If groups_claim is not set
+      # weaviate will not try to extract groups and pass an empty array to the 
+      # authorization module.      
+      AUTHENTICATION_OIDC_GROUPS_CLAIM: 'groups'
 
       # skip_client_id_check (optional, defaults to false) skips the client_id
       # validation in the audience claim as outlined in the section above.
       # Not recommended to set this option as it reduces security, only set this
       # if your token issuer is unable to provide a correct audience claim
-      skip_client_id_check: false
+      AUTHENTICATION_OIDC_SKIP_CLIENT_ID_CHECK: 'false'
 ```
 
 ### How to use
