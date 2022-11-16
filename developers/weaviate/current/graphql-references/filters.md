@@ -303,9 +303,9 @@ For example, this curious returns all in a radius of 2KM around a specific geo-l
 }
 ```
 
-## IsNull filter
+## Filter by null state
 
-Using the `IsNull` operator allows you to do filter for objects where given properties are `null` or `not null`.
+Using the `IsNull` operator allows you to do filter for objects where given properties are `null` or `not null`. Note that zero-length arrays and empty strings are equivalent to a null value.
 
 ```graphql
 {
