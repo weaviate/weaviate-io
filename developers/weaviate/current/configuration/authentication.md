@@ -34,7 +34,7 @@ authentication headers or parameters. Users sending such a request will be
 authenticated as `user: anonymous, group: anonymous`.
 
 It is up to the authorization module to decide which
-permissions anonymous users have. By disabling anonymous access all together,
+permissions anonymous users have. By disabling anonymous access altogether,
 any request without an allowed authentication scheme will return `401
 Unauthorized`.
 
@@ -58,7 +58,7 @@ Weaviate.
 ## OpenID Connect (OIDC)
 
 With [OpenID Connect](https://openid.net/connect/) (based on OAuth2), an
-external identity provider and token issuer is responsible for managing users.
+external identity provider and token issuer ('token issuer' hereafter) is responsible for managing users.
 Weaviate's part when receiving a token (JSON Web Token or JWT) is to verify
 that it was indeed signed by the configured token issuer. If the signature is
 correct, all content of the token is trusted. The user is then authenticated as
@@ -68,7 +68,7 @@ the subject mentioned in the token.
 
 - Any "OpenID Connect" compatible token issuer implementing OpenID Connect
   Discovery can be
-  used with Weaviate. Popular open source solutions include Java-based
+  used with Weaviate. Popular open-source solutions include Java-based
   [Keycloak](https://www.keycloak.org/) and Golang-based
   [dex](https://github.com/dexidp/dex).
 
@@ -125,7 +125,8 @@ services:
       # the groups. Groups must be an array of string. If groups_claim is not set
       # weaviate will not try to extract groups and pass an empty array to the 
       # authorization module.      
-      AUTHENTICATION_OIDC_GROUPS_CLAIM: 'groups'
+      # NOTE: Groups are not yet implemented in Weaviate's authorization module. Please do not use groups option for now.
+      # AUTHENTICATION_OIDC_GROUPS_CLAIM: 'groups'
 
       # skip_client_id_check (optional, defaults to false) skips the client_id
       # validation in the audience claim as outlined in the section above.
@@ -136,12 +137,14 @@ services:
 
 ### How to use
 
+Depending on 
+
 1. Obtain a valid token from the token issuer you configured.
-2. Send this token along any REST request in the Header like so: `Authorization: Bearer <token>`. Make sure to replace `<token>` with your actual token.
+2. Send this token along with any REST request in the Header like so: `Authorization: Bearer <token>`. Make sure to replace `<token>` with your actual token.
 
 # Add a Bearer to a Request
 
-When you've received a Bearer, you can authenticate in the following manner where `{Bearer}` is the bearer-code.
+When you've received a Bearer token, you can authenticate in the following manner where `{Bearer}` is the Bearer token.
 
 ```bash
 # List all objects with a Bearer
