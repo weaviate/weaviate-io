@@ -87,7 +87,7 @@ Examples of ANN methods are:
 
 Which algorithm works best depends on your project. Performance can be measured in terms of latency, throughput (queries per second), build time, and accuracy (recall). These four components often have a tradeoff, so it depends on the use case which method works best. 
 
-So, ANN is not some magic method that will always find the true k nearest neighbors in a dataset, it can find a pretty good approximation of the true k neighbors. But it can do this in a fraction of the time! 
+So, while ANN is not some magic method that will always find the true k nearest neighbors in a dataset, it can find a pretty good approximation of the true k neighbors. And it can do this in a fraction of the time! 
 
 ## HNSW in Weaviate
 [Weaviate](/developers/weaviate/current/){:target="_blank"} is a great example of a vector search engine that uses ANN algorithms to offer ultra-fast queries. The first ANN algorithm introduced to Weaviate is a custom implementation of [Hierarchical Navigable Small World graphs (HNSW)](/developers/weaviate/current/vector-index-plugins/hnsw.html){:target="_blank"}.
