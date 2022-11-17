@@ -18,10 +18,10 @@ redirect_from:
 
 We built Weaviate to be as easy to use as possible while catering to different cases such as for trying it out locally, or in production in an enterprise environment.
 
-Weaviate's authentication capabilities reflect this by allowing for both anonymous uses as well as authenticated uses through OpenID Connect (OIDC). Thus, different authentication schemes can be selected and even combined, from which different [authorization](./authorization.html) options can be specified for different groups of users. This allows scenarios such as _"Anonymous users can read some resources, but not all. Authenticated users can read all resources. Only a special group can write or delete resources."_
+Weaviate's authentication capabilities reflect this by allowing for both anonymous uses as well as authenticated uses through OpenID Connect (OIDC). Thus, different authentication schemes can be selected and even combined, from which different [authorization](./authorization.html) options can be specified for different sets of users. This allows scenarios such as _"Anonymous users can read some resources, but not all. Authenticated users can read all resources. Only a special group can write or delete resources."_
 
 ## Anonymous Access
-If anonymous access is selected, Weaviate will accept requests without any
+By default, Weaviate is configured to  accept requests without any
 authentication headers or parameters. Users sending such requests will be
 authenticated as `user: anonymous, group: anonymous`.
 
@@ -31,7 +31,7 @@ any request without an allowed authentication scheme will return `401
 Unauthorized`.
 
 ### Configuration
-Anonymous Access can be configured like so in the Docker Compose yaml:
+Anonymous access can be enabled or disabled in the Docker Compose yaml using the environment variable shown below:
 
 ```yaml
 services:
@@ -139,15 +139,18 @@ The OIDC standard allows for many different methods *(flows)* of obtaining a tok
 
 While it is outside the scope of our documentation to cover every OIDC authentication flow, some possible options are to:
 - Use the `resource owner password flow` for trusted applications. 
+  - You can use WCS (`https://auth.wcs.api.semi.technology/`) as the token issuer using the `resource owner password flow`.
+  - Weaviate's Python client directly supports this method.
 - Or use the `hybrid flow` if Microsoft Azure AD is your token issuer or if you would like to prevent exposing passwords.
 
 We outline the steps below for both methods of obtaining a token.
 
 #### Resource owner password flow
+
 1. Send a GET request to `[WEAVIATE_URL]/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`)
 2. Parse the `clientId` and `href` from `wv_oidc_config`
 3. Send a GET request to `href` to fetch the token issuer's OIDC configuration (`token_oidc_config`)
-4. Ensure that `password` is in the `grant_types_supported` list in `token_oidc_config`.
+4. If `token_oidc_config` includes the optional `grant_types_supported` key, check that `password` is in the list of values.
   - If this is not the case, the token issuer is likely not configured for `resource owner password flow`. You may need to reconfigure the token issuer or use another method.
 5. Send a POST request to the `token_endpoint` of `token_oidc_config` with the body: 
   - `{"grant_type": "password", "client_id": client_id, "username": [USERNAME], "password": [PASSWORD]}`. 
@@ -160,9 +163,13 @@ We outline the steps below for both methods of obtaining a token.
 3. Send a GET request to `href` to fetch the token issuer's OIDC configuration (`token_oidc_config`)
 4. Construct a URL (`auth_url`) with the following parameters, based on `authorization_endpoint` from `token_oidc_config`. This will look like the following:
 - `{authorization_endpoint}`?client_id=`{clientId}`&response_type=code%20id_token&response_mode=fragment&redirect_url=`{redirect_url}`&scope=openid&nonce=abcd
-- The `redirect_url` here can be any address. 
+- the `redirect_url` must have been [pre-registered](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest){:target="_blank"} with your token issuer. 
 5. Go to the `auth_url` in your browser, and log in if prompted. If successful, the token issuer will redirect the browser to the `redirect_url`, with additional parameters that includes an `id_token` parameter. 
 6. Parse the `id_token` parameter value. This is your Bearer token.
+
+#### Token lifetime
+
+The token has a configurable expiry time that is set by the token issuer. We suggest establishing a workflow to periodically obtain a new token before expiry. 
 
 ## Add a Bearer to a Request
 
