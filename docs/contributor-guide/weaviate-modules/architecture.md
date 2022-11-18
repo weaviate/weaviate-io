@@ -1,18 +1,19 @@
 ---
-layout: layout-documentation
-solution: contributor-guide
-sub-menu: Weaviate Modules
 title: Architecture
-intro: |-
-  Learn how a module is built up and how you can build your own modules
-description: Code-level architecture of Weaviate Modules
-tags: ['contributor-guide', 'weaviate module system']
 sidebar_position: 2
-open-graph-type: article
-og-img: documentation.jpg
-toc: true
-redirect_from:
-    - /developers/contributor-guide/v1.2.1/weaviate-module-system/architecture.html
+
+# layout: layout-documentation
+# solution: contributor-guide
+# sub-menu: Weaviate Modules
+# intro: |-
+#   Learn how a module is built up and how you can build your own modules
+# description: Code-level architecture of Weaviate Modules
+# tags: ['contributor-guide', 'weaviate module system']
+# open-graph-type: article
+# og-img: documentation.jpg
+# toc: true
+# redirect_from:
+#     - /developers/contributor-guide/v1.2.1/weaviate-module-system/architecture.html
 ---
 
 ## Architecture (Code Level)

@@ -1,13 +1,14 @@
 ---
-layout: layout-documentation
-solution: contributor-guide
-sub-menu: Getting Started
 title: Reporting Bugs 
-tags: ['contributor-guide']
 sidebar_position: 3
-open-graph-type: article
-og-img: documentation.jpg
-toc: true
+
+# layout: layout-documentation
+# solution: contributor-guide
+# sub-menu: Getting Started
+# tags: ['contributor-guide']
+# open-graph-type: article
+# og-img: documentation.jpg
+# toc: true
 ---
 
 We include brief guidelines below for submitting bug reports. These guidelines are designed to make it easier for the maintainers and the community to understand the report and to quash that bug.

@@ -1,18 +1,19 @@
 ---
-layout: layout-documentation
-solution: contributor-guide
-sub-menu: Weaviate Core
 title: Tests
-intro: This page introduces the test philosophy of Weaviate. It provides guidance on how we differentiate between test levels and how to make sure we achieve the most gain from our tests.
-description: Test philosophy and instructions on how to run tests
-tags: ['contributor-guide', 'item']
 sidebar_position: 3
-open-graph-type: article
-og-img: documentation.jpg
-toc: false
-redirect_from:
-  - /documentation/contributor-guide/current/build-run-test/tests.html
-  - /developers/contributor-guide/current/build-run-test/tests.html
+
+# layout: layout-documentation
+# solution: contributor-guide
+# sub-menu: Weaviate Core
+# intro: This page introduces the test philosophy of Weaviate. It provides guidance on how we differentiate between test levels and how to make sure we achieve the most gain from our tests.
+# description: Test philosophy and instructions on how to run tests
+# tags: ['contributor-guide', 'item']
+# open-graph-type: article
+# og-img: documentation.jpg
+# toc: false
+# redirect_from:
+#   - /documentation/contributor-guide/current/build-run-test/tests.html
+#   - /developers/contributor-guide/current/build-run-test/tests.html
 ---
 
 ## Philosophy

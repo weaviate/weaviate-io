@@ -1,13 +1,14 @@
 ---
-layout: layout-documentation
-solution: contributor-guide
-sub-menu: Getting Started
 title: Suggesting Enhancements 
-tags: ['contributor-guide']
 sidebar_position: 2
-open-graph-type: article
-og-img: documentation.jpg
-toc: true
+
+# layout: layout-documentation
+# solution: contributor-guide
+# sub-menu: Getting Started
+# tags: ['contributor-guide']
+# open-graph-type: article
+# og-img: documentation.jpg
+# toc: true
 ---
 
 We love to hear your ideas.

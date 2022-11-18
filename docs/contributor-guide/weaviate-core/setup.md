@@ -1,18 +1,19 @@
 ---
-layout: layout-documentation
-solution: contributor-guide
-sub-menu: Weaviate Core
 title: Weaviate development setup
-intro: This page contains how to set up your local environment for development on Weaviate.
-description: How to setup for development on Weaviate
-tags: ['contributor-guide', 'item']
 sidebar_position: 4
-open-graph-type: article
-og-img: documentation.jpg
-toc: false
-redirect_from:
-  - /documentation/contributor-guide/current/build-run-test/setup.html
-  - /developers/contributor-guide/current/build-run-test/setup.html
+
+# layout: layout-documentation
+# solution: contributor-guide
+# sub-menu: Weaviate Core
+# intro: This page contains how to set up your local environment for development on Weaviate.
+# description: How to setup for development on Weaviate
+# tags: ['contributor-guide', 'item']
+# open-graph-type: article
+# og-img: documentation.jpg
+# toc: false
+# redirect_from:
+#   - /documentation/contributor-guide/current/build-run-test/setup.html
+#   - /developers/contributor-guide/current/build-run-test/setup.html
 ---
 
 ## Prerequisities

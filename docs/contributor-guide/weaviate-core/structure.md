@@ -1,18 +1,19 @@
 ---
-layout: layout-documentation
-solution: contributor-guide
-sub-menu: Weaviate Core
 title: Code structure and Style
-intro: This page contains how Weaviate code is structured and styled.
-description: How Weaviate code is structured and styled
-tags: ['contributor-guide', 'item']
 sidebar_position: 1
-open-graph-type: article
-og-img: documentation.jpg
-toc: false
-redirect_from:
-  - /documentation/contributor-guide/current/build-run-test/structure.html
-  - /developers/contributor-guide/current/build-run-test/structure.html
+
+# layout: layout-documentation
+# solution: contributor-guide
+# sub-menu: Weaviate Core
+# intro: This page contains how Weaviate code is structured and styled.
+# description: How Weaviate code is structured and styled
+# tags: ['contributor-guide', 'item']
+# open-graph-type: article
+# og-img: documentation.jpg
+# toc: false
+# redirect_from:
+#   - /documentation/contributor-guide/current/build-run-test/structure.html
+#   - /developers/contributor-guide/current/build-run-test/structure.html
 ---
 
 ## Package structure

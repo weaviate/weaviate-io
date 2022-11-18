@@ -1,16 +1,17 @@
 ---
-layout: layout-documentation
-solution: contributor-guide
-sub-menu: Weaviate Modules
 title: How to build a custom module
-intro: |-
-  Learn how you can build your own modules
-description: How to build a custom module
-tags: ['contributor-guide', 'weaviate module system', 'custom module']
 sidebar_position: 3
-open-graph-type: article
-og-img: documentation.jpg
-toc: true
+
+# layout: layout-documentation
+# solution: contributor-guide
+# sub-menu: Weaviate Modules
+# intro: |-
+#   Learn how you can build your own modules
+# description: How to build a custom module
+# tags: ['contributor-guide', 'weaviate module system', 'custom module']
+# open-graph-type: article
+# og-img: documentation.jpg
+# toc: true
 ---
 
 # Module creation in a nutshell

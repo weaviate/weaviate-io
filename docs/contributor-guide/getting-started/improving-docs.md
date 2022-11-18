@@ -1,13 +1,14 @@
 ---
-layout: layout-documentation
-solution: contributor-guide
-sub-menu: Getting Started
 title: Improving Documentation 
-tags: ['contributor-guide']
 sidebar_position: 4
-open-graph-type: article
-og-img: documentation.jpg
-toc: true
+
+# layout: layout-documentation
+# solution: contributor-guide
+# sub-menu: Getting Started
+# tags: ['contributor-guide']
+# open-graph-type: article
+# og-img: documentation.jpg
+# toc: true
 ---
 ## Introduction
 

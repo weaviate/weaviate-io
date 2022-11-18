@@ -1,21 +1,22 @@
 ---
-layout: layout-documentation
-solution: contributor-guide
-sub-menu: Weaviate Modules
 title: Overview 
-intro: |-
-  Weaviate's Module system allows extending Weaviate with different
-  use-case specific capabilities. For example, text2vec modules can use NLP
-  models, such as transformers or the contextionary to turn text objects into
-  vectors, whearas an img2vec module would do the same for images. But the module
-  system is not limited to ML model inference. It could also provide completely
-  new capabilities, such as provide network connectivity.
-description: Overview of Weaviate's Module System
-tags: ['contributor-guide', 'weaviate module system']
 sidebar_position: 1
-open-graph-type: article
-og-img: documentation.jpg
-toc: true
+
+# layout: layout-documentation
+# solution: contributor-guide
+# sub-menu: Weaviate Modules
+# intro: |-
+#   Weaviate's Module system allows extending Weaviate with different
+#   use-case specific capabilities. For example, text2vec modules can use NLP
+#   models, such as transformers or the contextionary to turn text objects into
+#   vectors, whearas an img2vec module would do the same for images. But the module
+#   system is not limited to ML model inference. It could also provide completely
+#   new capabilities, such as provide network connectivity.
+# description: Overview of Weaviate's Module System
+# tags: ['contributor-guide', 'weaviate module system']
+# open-graph-type: article
+# og-img: documentation.jpg
+# toc: true
 ---
 
 ## Weaviate Module System

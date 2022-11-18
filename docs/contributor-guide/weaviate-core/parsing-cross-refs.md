@@ -1,20 +1,21 @@
 ---
-layout: layout-documentation
-solution: contributor-guide
-sub-menu: Weaviate Core
 title: Parsing Objects & Resolving References
-intro: This page outlines the process of how objects are returned to the user (in more detail to the use case requesting data from the db) and how and and what level cross-references are resolved.
-description: Standalone Migration Status, Features and Limitations
-tags: ['contributor-guide', 'item']
 sidebar_position: 5
-open-graph-type: article
-og-img: documentation.jpg
-toc: true
-redirect_from:
-  - /documentation/contributor-guide/current/standalone/parsing-cross-refs.html
-  - /developers/contributor-guide/current/standalone/parsing-cross-refs.html
-  - /developers/contributor-guide/current/build-run-test/parsing-cross-refs.html
-  - /documentation/contributor-guide/current/custom-db/parsing-cross-refs.html
+
+# layout: layout-documentation
+# solution: contributor-guide
+# sub-menu: Weaviate Core
+# intro: This page outlines the process of how objects are returned to the user (in more detail to the use case requesting data from the db) and how and and what level cross-references are resolved.
+# description: Standalone Migration Status, Features and Limitations
+# tags: ['contributor-guide', 'item']
+# open-graph-type: article
+# og-img: documentation.jpg
+# toc: true
+# redirect_from:
+#   - /documentation/contributor-guide/current/standalone/parsing-cross-refs.html
+#   - /developers/contributor-guide/current/standalone/parsing-cross-refs.html
+#   - /developers/contributor-guide/current/build-run-test/parsing-cross-refs.html
+#   - /documentation/contributor-guide/current/custom-db/parsing-cross-refs.html
 ---
 
 ## Overview
