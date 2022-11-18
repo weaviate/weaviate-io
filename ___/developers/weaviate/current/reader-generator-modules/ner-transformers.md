@@ -6,7 +6,7 @@ nav-parent: Modules
 title: Named Entity Recognition
 description: Named Entity Recognition module in Weaviate
 tags: ['ner-transformers', 'transformers', 'token classification']
-menu-order: 2
+sidebar_position: 2
 open-graph-type: article
 toc: true
 redirect_from:

@@ -1,16 +1,21 @@
 ---
-layout: post
 title: What are Distance Metrics in Vector Search?
-description: "Learn about why you need distance metrics in vector search and the metrics implemented in Weaviate (Cosine, Dot Product, L2-Squared, Manhattan, and Hamming)."
-published: true
-author: Erika Cardenas 
-author-img: /img/people/icon/erika.jpg
-card-img: /img/blog/hero/what-are-distance-metrics-card.png
-hero-img: /img/blog/hero/what-are-distance-metrics-card.png
-og: /img/blog/hero/what-are-distance-metrics-card.png
+slug: Distance-Metrics-in-Vector-Search
+authors: [erika] 
 date: 2022-09-21
-toc: true
-redirect_from: /blog/2022/09/Distance-Metrics-in-Vector-Search.html
+tags: []
+image: ./img/hero.png
+
+# description: "Learn about why you need distance metrics in vector search and the metrics implemented in Weaviate (Cosine, Dot Product, L2-Squared, Manhattan, and Hamming)."
+# published: true
+# author: Erika Cardenas 
+# author-img: /img/people/icon/erika.jpg
+# card-img: /img/blog/hero/what-are-distance-metrics-card.png
+# hero-img: /img/blog/hero/what-are-distance-metrics-card.png
+# og: /img/blog/hero/what-are-distance-metrics-card.png
+# date: 2022-09-21
+# toc: true
+# redirect_from: /blog/2022/09/Distance-Metrics-in-Vector-Search.html
 ---
 Vector Search engines – like [Weaviate](/developers/weaviate/current/){:target="_blank"} – use **Machine Learning models** to analyze data and **calculate vector embeddings**. The vector embeddings are **stored together with the data** in a database, and later are used to query the data.
 
@@ -31,7 +36,7 @@ If you already have a working knowledge of Vector Search, then you can skip stra
 ### Vectors in Multi-Dimensional Space 
 Vector search engines keep the semantic meaning of your data by representing each object as a vector embedding. Each embedding is a point in a high-dimensional space. For example, the vector for bananas (both the text and the image) is located near apples and not cats.
 
-![Visual of Vector Search](/img/blog/distance-metrics/weaviate-vector-search-engine.png)
+![Visual of Vector Search](./img/weaviate-vector-search-engine.png)
 
 *The above image is a visual representation of a vector space. To perform a search, your search query is converted to a vector - similar to your data vectors. The search engine then computes the similarity between the search query and the collection of data points in the vector space.*
 
@@ -54,11 +59,11 @@ The cosine similarity measures the angle between two vectors in a multi-dimensio
 
 The cosine similarity and cosine distance have an inverse relationship. As the distance between two vectors increases, the similarity will decrease. Likewise, if the distance decreases, then the similarity between the two vectors increases. 
 
-![Similarity-Distance](/img/blog/distance-metrics/new-similarity-distance.png){:width="50%"}
+![Similarity-Distance](./img/new-similarity-distance.png){:width="50%"}
 
 The cosine similarity is calculated as: 
 
-![Cosine Similarity Formula](/img/blog/distance-metrics/cosine-similarity-formula.png){:width="50%"}
+![Cosine Similarity Formula](./img/cosine-similarity-formula.png){:width="50%"}
 
 __A·B__ is the product (dot) of the vectors A and B
 
@@ -73,7 +78,7 @@ Let’s use an example to calculate the similarity between two fruits – strawb
 Strawberry → `[4, 0, 1]`<br/>
 Blueberry →  `[3, 0, 1]`
 
-![Cosine Similarity Example](/img/blog/distance-metrics/cosine-example.png){:width="50%"}
+![Cosine Similarity Example](./img/cosine-example.png){:width="50%"}
 
 A distance of 0 indicates that the vectors are identical, whereas a distance of 2 represents opposite vectors. The similarity between the two vectors is 0.998 and the distance is 0.002. This means that strawberries and blueberries are closely related. 
 
@@ -83,11 +88,11 @@ To calculate the cosine distance, you need to use the dot product. Likewise, the
 ## Dot Product distance
 The dot product takes two or more vectors and multiplies them together. It is also known as the scalar product since the output is a single (scalar) value. The dot product is a similarity metric and shows the direction of two vectors. The output value can be any real number. If the vectors are in different directions, then the dot product will be negative (see image below). Similarly, if the vectors are in the same direction, then the dot product is positive. 
 
-![Direction of Vectors](/img/blog/distance-metrics/direction.png){:width="50%"}
+![Direction of Vectors](./img/direction.png){:width="50%"}
 
 The dot product is calculated as:
 
-![Dot Product Calculation](/img/blog/distance-metrics/dot-product-formula.png){:width="50%"}
+![Dot Product Calculation](./img/dot-product-formula.png){:width="50%"}
 
 We will use the same example from above to calculate the dot product of the two vectors.
 
@@ -103,7 +108,7 @@ The Squared Euclidean (L2-Squared) calculates the distance between two vectors b
 
 The squared euclidean distance is calculated as:
 
-![L2-Squared Formula](/img/blog/distance-metrics/l2-squared-formula.png){:width="50%"}
+![L2-Squared Formula](./img/l2-squared-formula.png){:width="50%"}
 
 The squared euclidean distance of strawberries `[4, 0, 1]` and blueberries `[3, 0, 1]` is equal to 1. 
 
@@ -112,11 +117,11 @@ The squared euclidean distance of strawberries `[4, 0, 1]` and blueberries `[3, 
 ## Manhattan distance 
 Manhattan distance, also known as "L1 norm" and "Taxicab Distance", calculates the distance between a pair of vectors. The metric is calculated by summing the absolute distance between the components of the two vectors. 
 
-![Manhattan Distance Formula](/img/blog/distance-metrics/manhattan-formula.png){:width="50%"}
+![Manhattan Distance Formula](./img/manhattan-formula.png){:width="50%"}
 
 The name comes from the grid layout resembling the streets of Manhattan. The city is designed with buildings on every corner and one-way streets. If you're trying to go from point A to point B, the shortest path isn't straight through because you cannot drive through buildings. The fastest route is one with fewer twists and turns.
 
-![Manhattan Distance](/img/blog/distance-metrics/weaviate-manhatten-distance.png)
+![Manhattan Distance](./img/weaviate-manhatten-distance.png)
 
 ### Manhattan versus Euclidean Distance
 The Manhattan distance (L1 norm) and Euclidean distance (L2 norm) are two metrics used in machine learning models. The L1 norm is calculated by taking the sum of the absolute values of the vector. The L2 norm takes the square root of the sum of the squared vector values. The Manhattan distance is faster to calculate since the values are typically smaller than the Euclidean distance.
@@ -124,15 +129,15 @@ The Manhattan distance (L1 norm) and Euclidean distance (L2 norm) are two metric
 ### When to use it 
 Generally, there is an accuracy vs. speed tradeoff when choosing between the Manhattan and Euclidean distance. It is hard to say precisely when the Manhattan distance will be more accurate than Euclidean; however, Manhattan is faster since you don’t have to square the differences. You want to use the Manhattan distance as the dimension of your data increases. For more information on which distance metric to use in high-dimensional spaces, check out this paper by [Aggarwal et al.](https://bib.dbvis.de/uploadedFiles/155.pdf){:target="_blank"}
 
-![Hamming and Manhattan Distance](/img/blog/distance-metrics/hamming-manhattan.png)
+![Hamming and Manhattan Distance](./img/hamming-manhattan.png)
 
 ## Hamming distance 
 The Hamming distance is a metric for comparing two numeric vectors. It computes how many changes are needed to convert one vector to the other. The fewer changes are required, the more similar the vectors.
 
 There are two ways to implement the Hamming distance:
 
-0. Compare two numeric vectors
-0. Compare two binary vectors 
+1. Compare two numeric vectors
+1. Compare two binary vectors 
 
 Weaviate has implemented the first method, comparing numeric vectors. In the next section, I will describe an idea to use the Hamming distance in tandem with Binary Passage Retrieval. 
 
@@ -149,7 +154,7 @@ Binary Passage Retrieval (BPR) translates vectors into a binary sequence. For ex
 
 To compute the Hamming distance between two strings, you compare the position of each bit in the sequence. This is done with an XOR bit operation. XOR stands for “exclusive or”, meaning if the bits in the sequence do not match, then the output is 1. Keep in mind that the strings need to be of equal length to perform the comparison. Below is an example of comparing two binary sequences.
 
-![XOR Operation](/img/blog/distance-metrics/hamming-xor.png){:width="40%"}
+![XOR Operation](./img/hamming-xor.png){:width="40%"}
 
 There are three positions where the numbers are different (highlighted above). Therefore, the Hamming distance is equal to 3. [Norouzi et al.](https://papers.nips.cc/paper/2012/hash/59b90e1005a220e2ebc542eb9d950b1e-Abstract.html){:target="_blank"} stated that binary sequences are storage efficient and allow storing massive datasets in memory. There is a great page in the [Weaviate documentation](/developers/weaviate/current/architecture/binary-passage-retrieval.html){:target="_blank"} that explains this in more detail.
 

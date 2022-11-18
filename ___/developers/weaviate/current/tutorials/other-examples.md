@@ -6,7 +6,7 @@ title: Other examples
 intro: 
 description: Other examples with Weaviate
 tags: ['example datasets']
-menu-order: 9
+sidebar_position: 9
 open-graph-type: article
 toc: true
 ---

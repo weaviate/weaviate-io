@@ -6,7 +6,7 @@ title: How to use Weaviate with your own vectors without modules?
 intro: Learn how to use Weaviate with your own vectors (no modules).
 description: How to use Weaviate with your own vectors (no modules)?
 tags: ['how to', 'no modules']
-menu-order: 7
+sidebar_position: 7
 open-graph-type: article
 toc: true
 ---

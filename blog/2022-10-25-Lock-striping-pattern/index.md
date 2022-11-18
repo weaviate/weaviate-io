@@ -1,15 +1,20 @@
 ---
-layout: post
 title: How we solved a race condition with the Lock Striping pattern
-description: The Lock Striping pattern is a great way to solve race conditions - for example, when dealing with concurrent batch imports containing objects with the same UUID - without sacrificing performance.
-published: true
-author: Dirk Kulawiak
-author-img: /img/people/icon/dirk.jpg
-card-img: /img/blog/hero/lock-striping-pattern.png
-hero-img: /img/blog/hero/lock-striping-pattern.png
-og: /img/blog/hero/lock-striping-pattern.png
+slug: Lock-striping-pattern
+authors: [dirk] 
 date: 2022-10-25
-toc: true
+tags: []
+image: ./img/hero.png
+
+# layout: post
+# description: The Lock Striping pattern is a great way to solve race conditions - for example, when dealing with concurrent batch imports containing objects with the same UUID - without sacrificing performance.
+# published: true
+# author: Dirk Kulawiak
+# author-img: /img/people/icon/dirk.jpg
+# card-img: /img/blog/hero/lock-striping-pattern.png
+# hero-img: /img/blog/hero/lock-striping-pattern.png
+# og: /img/blog/hero/lock-striping-pattern.png
+# toc: true
 ---
 ## Lock striping in database design
 Database design comes with interesting challenges. Like, dealing with race conditions when importing data in parallel streams. But for every new challenge, there is a clever solution. One of those clever solutions is Lock striping. It refers to an arrangement where locking occurs on multiple buckets or 'stripes'. 
@@ -30,14 +35,14 @@ In the initial solution, we added a lock (sync.Mutex in Go), so that now only a 
 
 Upon further consideration, our team concluded that while using a single lock is effective, it’s also overkill. Almost all objects are unique and it is not a problem to process those concurrently. We found that what we really needed was just a lock for each unique UUID. Cleverly, this approach would ensure that only one object per UUID is handled at each point in time, so that Weaviate cannot add multiple instances of objects with the same UUID. Meanwhile, it would still allow full parallelization of import processes to maximize performance.
 
-![Single-lock solution](/img/blog/lock-striping-pattern/single-lock-solution.png)
+![Single-lock solution](./img/single-lock-solution.png)
 
 As it often happens, implementing a lock-per-key solution created a different issue. Due to the large dataset size mentioned earlier, there can be millions or even billions of objects with unique UUIDs in Weaviate, and creating a lock for each of them would require a lot of memory. We found an elegant solution that is in-between both of the solutions above - a **lock striping** pattern.
 
 ## Solving both challenges
 Based on the UUID we assign each object to one of the 128 locks. This process is deterministic so objects with an identical UUID will always use the same lock. This gives us the best of both worlds: we have a small, fixed number of locks, but it still guarantees that two objects with the same UUID are never processed concurrently. With 128 locks, we only have 1/128th of the congestion of a single lock while still only using 128 * 8B = 1KB of memory. With the **lock striping** pattern, the import time is the same as without a lock, and we fixed the race condition without any negative performance impact.
 
-![lock striping solution](/img/blog/lock-striping-pattern/lock-striping-solution.png)
+![lock striping solution](./img/lock-striping-solution.png)
 
 We are very pleased to introduce this solution, which should eliminate the above issues that can be caused by data duplication at import. Additionally, we are also very happy to have arrived at a solution that comes with no data import performance penalty, having seen the mammoth datasets that our users often deal with.
 

@@ -6,7 +6,7 @@ title: How to perform a semantic search?
 intro: How to perform a semantic search in Weaviate?
 description: How to perform a semantic search in Weaviate?
 tags: ['how to', 'perform a semantic search']
-menu-order: 5
+sidebar_position: 5
 open-graph-type: article
 toc: true
 redirect_from:

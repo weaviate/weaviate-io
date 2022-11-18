@@ -5,7 +5,7 @@ sub-menu: Roadmap
 title: Architectural roadmap
 description: Weaviate's architectural roadmap
 tags: ['architecture', 'roadmap']
-menu-order: 2
+sidebar_position: 2
 open-graph-type: article
 toc: true
 redirect_from:

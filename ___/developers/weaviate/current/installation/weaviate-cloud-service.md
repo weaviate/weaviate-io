@@ -5,7 +5,7 @@ sub-menu: Installation
 title: Weaviate Cloud Service
 description: DESC
 tags: ['installation', 'Weaviate Cloud Service']
-menu-order: 1
+sidebar_position: 1
 open-graph-type: article
 toc: true
 ---

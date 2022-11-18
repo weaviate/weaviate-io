@@ -1,15 +1,19 @@
 ---
-layout: post
 title: How to build an Image Search Application with Weaviate 
-description: Learn how to use build an image search application using the Img2vec-neural module in Weaviate
-published: true
-author: Erika Cardenas 
-author-img: /img/people/icon/erika.jpg
-card-img: /img/blog/hero/Image-Search-Application-with-Weaviate.png
-hero-img: /img/blog/hero/Image-Search-Application-with-Weaviate.png
-og: /img/blog/hero/Image-Search-Application-with-Weaviate.png
+slug: how-to-build-an-image-search-application-with-weaviate
+authors: [erika] 
 date: 2022-10-18
-toc: true
+tags: []
+image: ./img/hero.png
+
+# description: Learn how to use build an image search application using the Img2vec-neural module in Weaviate
+# published: true
+# author: Erika Cardenas 
+# author-img: /img/people/icon/erika.jpg
+# card-img: /img/blog/hero/Image-Search-Application-with-Weaviate.png
+# hero-img: /img/blog/hero/Image-Search-Application-with-Weaviate.png
+# og: /img/blog/hero/Image-Search-Application-with-Weaviate.png
+# toc: true
 ---
 Recently, I was working with my colleague Marcin (an engineer from Weaviate core) on a really cool demo project. The idea was to build an image-search application for dogs, which allows a user to provide a picture of a dog, and the app would respond with the most similar breed. And if a user provides a picture of their partner (I might've tested this on my boyfriend 😄), it returns the breed most similar to them.
 
@@ -200,7 +204,7 @@ Here is a recap of what we’ve done so far:
 2. Converted the images to base64 values 
 3. Uploaded the data objects to Weaviate 
 
-![Weaviate Dogs](/img/blog/image-search-application-with-weaviate-and-python-flask/weaviate-dogs1.jpg)
+![Weaviate Dogs](./img/weaviate-dogs1.jpg)
 
 ## Flask Application
 [Flask](https://flask.palletsprojects.com/en/2.2.x/){:target="_blank"} is a web application framework written in Python. Using Flask is a quick and easy way to build a web application, so we will use it in this guide. 
@@ -292,7 +296,7 @@ If you navigate to 127.0.0.1, you will see the running web app.
 
 Let's test a query to see which dog looks most similar to a Goldendoodle puppy. We can see that the puppy resembles the Goldendoodle and Golden Retriever that are in our database.
 
-![Results](/img/blog/image-search-application-with-weaviate-and-python-flask/results.jpg){:width="70%"}
+![Results](./img/results.jpg){:width="70%"}
 
 And just like that, you’ve built a complete app! Users can load an image of their favorite dog and see the nearest neighbor breed in the database!
 

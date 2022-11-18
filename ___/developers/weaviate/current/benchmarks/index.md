@@ -7,7 +7,7 @@ title: Benchmarks
 intro: 
 description: Overview of benchmarks for the Weaviate vector search engine
 tags: ['Weaviate', 'performance', 'benchmarks', 'ann benchmarks']
-menu-order: 0
+sidebar_position: 0
 open-graph-type: article
 toc: true
 ---

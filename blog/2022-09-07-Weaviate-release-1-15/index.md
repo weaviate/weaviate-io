@@ -1,16 +1,21 @@
 ---
-layout: post
 title: Weaviate 1.15 release
-description: "Learn, what is new in Weaviate 1.15. Cloud-native backups, memory optimizations, faster filtered aggregations and ordered imports, new distance metrics and Weaviate modules."
-published: true
-author: Sebastian Witalec
-author-img: /img/people/icon/sebastian.jpg
-card-img: /img/blog/hero/weaviate-1-15-card.png
-hero-img: /img/blog/hero/weaviate-1-15-card.png
-og: /img/blog/hero/weaviate-1-15-card.png
+slug: Weaviate-release-1-15
+authors: [connor, erika, laura, sebastian] 
 date: 2022-09-07
-toc: false
-redirect_from: /blog/2022/09/Weaviate-release-1-15.html
+tags: []
+image: ./img/hero.png
+
+# description: "Learn, what is new in Weaviate 1.15. Cloud-native backups, memory optimizations, faster filtered aggregations and ordered imports, new distance metrics and Weaviate modules."
+# published: true
+# author: Sebastian Witalec
+# author-img: /img/people/icon/sebastian.jpg
+# card-img: /img/blog/hero/weaviate-1-15-card.png
+# hero-img: /img/blog/hero/weaviate-1-15-card.png
+# og: /img/blog/hero/weaviate-1-15-card.png
+# date: 2022-09-07
+# toc: false
+# redirect_from: /blog/2022/09/Weaviate-release-1-15.html
 ---
 
 We are happy to announce the release of Weaviate 1.15, which is packed with great features, significant performance improvements, new distance metrics and modules, and many smaller improvements and fixes.
@@ -18,15 +23,15 @@ We are happy to announce the release of Weaviate 1.15, which is packed with grea
 ## The brief
 
 If you like your content brief and to the point, here is the TL;DR of this release:
-0. [☁️Cloud-native backups](#cloud-native-backups) – allows you to configure your environment to create backups – of selected classes or the whole database – straight into AWS S3, GCS or local filesystem
-0. [Reduced memory usage](#reduced-memory-usage) - we found new ways to optimize memory usage, reducing RAM usage by 10-30%.
-0. [Better control over Garbage Collector](#better-control-over-garbage-collector) – with the introduction of GOMEMLIMIT we gained more control over the garbage collector, which significantly reduced the chances of OOM kills for your Weaviate setups. 
-0. [Faster imports for ordered data](#faster-imports-for-ordered-data) – by extending the Binary Search Tree structure with a self-balancing Red-black tree, we were able to speed up imports from O(n) to O(log n)
-0. [More efficient filtered aggregations](#more-efficient-filtered-aggregations) – thanks to optimization to a library reading binary data, filtered aggregations are now 10-20 faster and require a lot less memory.
+1. [☁️Cloud-native backups](#cloud-native-backups) – allows you to configure your environment to create backups – of selected classes or the whole database – straight into AWS S3, GCS or local filesystem
+1. [Reduced memory usage](#reduced-memory-usage) - we found new ways to optimize memory usage, reducing RAM usage by 10-30%.
+1. [Better control over Garbage Collector](#better-control-over-garbage-collector) – with the introduction of GOMEMLIMIT we gained more control over the garbage collector, which significantly reduced the chances of OOM kills for your Weaviate setups. 
+1. [Faster imports for ordered data](#faster-imports-for-ordered-data) – by extending the Binary Search Tree structure with a self-balancing Red-black tree, we were able to speed up imports from O(n) to O(log n)
+1. [More efficient filtered aggregations](#more-efficient-filtered-aggregations) – thanks to optimization to a library reading binary data, filtered aggregations are now 10-20 faster and require a lot less memory.
 <!-- (TODO: add the claim by Juraj) -->
-0. [Two new distance metrics](#new-distance-metrics) – with the addition of Hamming and Manhattan distance metrics, you can choose the metric (or a combination of) to best suit your data and use case.
-0. [Two new Weaviate modules](#new-weaviate-modules) – with the Summarization module, you can summarize any text on the fly, while with the HuggingFace module, you can use compatible transformers from the HuggingFace
-0. [Other improvements and bug fixes](#other-improvements-and-bug-fixes) – it goes without saying that with every Weaviate release, we strive to make Weaviate more stable – through bug fixes – and more efficient – through many optimizations.
+1. [Two new distance metrics](#new-distance-metrics) – with the addition of Hamming and Manhattan distance metrics, you can choose the metric (or a combination of) to best suit your data and use case.
+1. [Two new Weaviate modules](#new-weaviate-modules) – with the Summarization module, you can summarize any text on the fly, while with the HuggingFace module, you can use compatible transformers from the HuggingFace
+1. [Other improvements and bug fixes](#other-improvements-and-bug-fixes) – it goes without saying that with every Weaviate release, we strive to make Weaviate more stable – through bug fixes – and more efficient – through many optimizations.
 
 Read below to learn more about each of these points in more detail.
 
@@ -35,7 +40,7 @@ We have published a patch release v1.15.1.<br/>
 To learn more check the [Weaviate 1.15.1 patch release](/blog/2022/09/Weaviate-release-1-15-1.html){:target="_blank"} blog.
 
 ### Community effort
-![New Contributors](/img/blog/weaviate-1.15/new-contributors.jpg)
+![New Contributors](./img/new-contributors.jpg)
 
 😀We are extremely happy about this release, as it includes two big community contributions from [Aakash Thatte](https://github.com/sky-2002){:target="_blank"} and [Dasith Edirisinghe](https://github.com/DasithEdirisinghe){:target="_blank"}. Over the last few weeks, they collaborated with our engineers to make their contributions.
 
@@ -47,7 +52,7 @@ To learn more check the [Weaviate 1.15.1 patch release](/blog/2022/09/Weaviate-r
 
 ## Cloud-native backups
 
-![Cloud-native backups](/img/blog/weaviate-1.15/cloud-native-backup.png)
+![Cloud-native backups](./img/cloud-native-backup.png)
 
 Creating and restoring database backups in Weaviate was one of the most requested features from the Weaviate community and customers.
 
@@ -167,7 +172,7 @@ Head to the [documentation](/developers/weaviate/current/configuration/backups.h
 
 ## Reduced memory usage
 
-![Reduced memory usage](/img/blog/weaviate-1.15/reduced-memory-usage.jpg)
+![Reduced memory usage](./img/reduced-memory-usage.jpg)
 
 As part of the continuous effort to make Weaviate faster, leaner and more powerful, we introduced new optimizations to use less RAM without sacrificing performance.
 
@@ -195,7 +200,7 @@ To fix that, we switched to static allocations, and Weaviate instructs the Go ru
 
 ## Better control over Garbage Collector
 
-![GOMEMLIMIT](/img/blog/weaviate-1.15/gomemlimit.jpg)
+![GOMEMLIMIT](./img/gomemlimit.jpg)
 
 Weaviate is built from the ground up in Go, which allows for building very performant and memory-safe applications. Go is a garbage-collected language.
 
@@ -234,7 +239,7 @@ For more information, see the [Docker Compose environment variables](/developers
 
 ## Faster imports for ordered data
 
-![Faster imports for ordered data](/img/blog/weaviate-1.15/ordered-imports.png)
+![Faster imports for ordered data](./img/ordered-imports.png)
 
 Weaviate `v1.5` introduced an **LSM store** (Log-Structured Merge Trees) to increase write-throughput. The high-level idea is that writes are batched up in logs, sorted into a **Binary Search Tree** (BST) structure, and then these batched-up trees are merged into the tree on disk.
 
@@ -248,7 +253,7 @@ To address that in Weaviate `v1.15`, we've extended the BST with a **self-balanc
 
 Through rotations of the tree at insert, [Red-black trees](https://www.programiz.com/dsa/red-black-tree){:target="_blank"} ensure that no path from the root to leaf is more than twice as long as any other path. This achieves O(log n) insert times for ordered inserts.
 
-![Red-black tree demonstration](/img/blog/weaviate-1.15/red-black-tree.gif)
+![Red-black tree demonstration](./img/red-black-tree.gif)
 *A visual representation of how the RBT works.*
 
 You can try it yourself [here](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html){:target="_blank"}. Add any ordered input, for example, 1, 2, 3, 4 and see how the tree stays balanced.
@@ -265,7 +270,7 @@ With a full import test, we saw a **3x performance improvement** 🚀.
 
 ## More efficient filtered aggregations
 
-![More efficient filtered aggregations](/img/blog/weaviate-1.15/filtered-aggregation.png)
+![More efficient filtered aggregations](./img/filtered-aggregation.png)
 
 Recently we’ve been working with a customer who was running multiple filtered aggregations on a large dataset. Unfortunately, the queries were slow, resulting in Out Of Memory kills in some cases. This was not good enough for what we expected of Weaviate. 
 
@@ -308,7 +313,7 @@ But don’t take our word for it, this was from a test run by one of our communi
 
 ## New distance metrics
 
-![Hamming and Manhattan distance metrics](/img/blog/weaviate-1.15/distance-metrics.png)
+![Hamming and Manhattan distance metrics](./img/distance-metrics.png)
 
 Thanks to the community contributions from [Aakash Thatte](https://github.com/sky-2002){:target="_blank"}, Weaviate `v1.15` adds two new distance metrics: **Hamming** distance and **Manhattan** distance. In total, you can now choose between five various distance metrics to support your datasets.
 
@@ -325,7 +330,7 @@ For example, the Hamming distance for the below vectors is **2**, which is the c
 ### Manhattan distance
 The Manhattan distance (also known as L1 norm and Taxicab Distance) – calculates the distance between a pair of vectors, as if simulating a route for a Manhattan taxi driver driving from point A to point B – who is navigating the **streets of Manhattan** with the grid layout and one-way streets. For each difference in the compared vectors, the taxi driver needs to make a turn, thus making the ride this much longer.
 
-![Manhattan taxi driver](/img/blog/weaviate-1.15/manhatten-distance-cars.png)
+![Manhattan taxi driver](./img/manhatten-distance-cars.png)
 
 The Manhattan distance is calculated by adding up the differences between vector values.
 
@@ -334,9 +339,9 @@ Following our previous example:
 * B `[1, 2, 3, 9, 5]`
 
 We can calculate the Manhattan distance in these steps:
-0. distance = `|1-1| + |9-2| + |3-3| + |4-9| + |5-5|`
-0. distance = `0 + 7 + 0 + 5 + 0`
-0. distance = `12`
+1. distance = `|1-1| + |9-2| + |3-3| + |4-9| + |5-5|`
+1. distance = `0 + 7 + 0 + 5 + 0`
+1. distance = `12`
 
 <!-- TODO: add a link to Erika's blog -->
 <!-- ### Dive deeper
@@ -345,7 +350,7 @@ For a deeper dive into the Hamming and Manhattan distances, check out this [amaz
 ## New Weaviate modules
 
 <!-- TODO: add an image for Weaviate modules -->
-![New Weavaite modules](/img/blog/weaviate-1.15/weaviate-modules.png)
+![New Weavaite modules](./img/weaviate-modules.png)
 
 The list of the new goodies included with Weaviate `v1.15` goes on. Courtesy of a fantastic community contribution from [Dasith Edirisinghe](https://github.com/DasithEdirisinghe){:target="_blank"}, we have two new Weaviate modules for you: Summarization and Hugging Face modules.
 
@@ -429,7 +434,7 @@ To learn more, head to the [HuggingFace Module docs page](/developers/weaviate/c
 
 ## Other improvements and bug fixes
 
-![Other improvements and bug fixes](/img/blog/weaviate-1.15/smaller-improvements.jpg)
+![Other improvements and bug fixes](./img/smaller-improvements.jpg)
 
 And, of course, there are many other improvements and bug fixes that went into this release.
 

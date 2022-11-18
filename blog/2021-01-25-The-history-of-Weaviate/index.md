@@ -1,16 +1,21 @@
 ---
 layout: post
 title: The History of Weaviate
-description: "Weaviate is an open-source search engine with a build-in NLP model called the Contextionary. What makes Weaviate unique, is that it stores data in a vector space rather than a traditional row-column or graph structure, allowing you to search through data based on its meaning rather than keywords alone."
-published: true
-author: Bob van Luijt
-author-img: /img/people/icon/bob.jpg
-card-img: /img/blog/hero/history-of-weaviate-card.png
-canonical-url: https://medium.com/semi-technologies/the-history-of-the-weaviate-vector-search-engine-17a274f36178
-canonical-name: Medium
-date: 2021-01-20
-toc: true
-redirect_from: /blog/2021/01/The-history-of-Weaviate.html
+slug: The-history-of-Weaviate
+authors: [bob] 
+date: 2021-01-25
+tags: []
+image: ./img/hero.png
+# canonical-url: https://medium.com/semi-technologies/the-history-of-the-weaviate-vector-search-engine-17a274f36178
+# canonical-name: Medium
+
+# description: "Weaviate is an open-source search engine with a build-in NLP model called the Contextionary. What makes Weaviate unique, is that it stores data in a vector space rather than a traditional row-column or graph structure, allowing you to search through data based on its meaning rather than keywords alone."
+# published: true
+# author: Bob van Luijt
+# author-img: /img/people/icon/bob.jpg
+# card-img: /img/blog/hero/history-of-weaviate-card.png
+# toc: true
+# redirect_from: /blog/2021/01/The-history-of-Weaviate.html
 ---
 
 ## Intro
@@ -52,7 +57,7 @@ Finding more context around a word has to do with a concept called disambiguatio
 
 To validate if we could disambiguate the word “apple” the following simple step was taken. What if we looked for all the words that are in the neighborhood of the space in between “apple” and “fruit”? Turns out the results are way better! We can disambiguate by moving through the hyperspace while using individual words as beacons to navigate.
 
-![Vector Space](/img/blog/history-of-weaviate/vector-space.jpeg)
+![Vector Space](./img/vector-space.jpeg)
 
 In the next step, the goal was to validate if we could keep semantic meaning when storing a data object in the hyperspace by calculating the centroid using the individual words as beacons. We did that as follows, the title of this Vogue article: “Louis Vuitton’s New Capsule with League of Legends Brings French High Fashion to Online Gaming — and Vice Versa”.
 
@@ -92,7 +97,7 @@ Examples of implementations include: classification of invoices to categories, s
 ## The Future
 Weaviate will stay fully open source for the community to use. The SeMI Team is growing to accelerate building Weaviate and supporting users. We are releasing new features very frequently, like new vector indices and search pipeline features, and for the Weaviate Cloud service and Weaviate Console. 
 
-![Weaviate Console](/img/blog/history-of-weaviate/weaviate-console.jpeg)
+![Weaviate Console](./img/weaviate-console.jpeg)
 
 ## Listen to Bob's story at the Open Source Data
 Want to learn more about the background of Vector Search and how the ecosystem is developing? [Listen to Sam Ramji from DataStax interviewing Bob van Luijt about Vector Search and the AI stack.](https://www.datastax.com/resources/podcast/vector-search-ai-stack-more-bob-van-luijt){:target="_blank"}. 

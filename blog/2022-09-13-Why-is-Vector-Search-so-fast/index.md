@@ -1,16 +1,21 @@
 ---
-layout: post
 title: Why is Vector Search so fast?
-description: "Vector Search engines can run semantic queries on multi-million datasets in milliseconds. How is that possible?"
-published: true
-author: Laura Ham
-author-img: /img/people/icon/laura.jpg
-hero-img: /img/blog/hero/why-is-vector-search-so-fast-card.png
-card-img: /img/blog/hero/why-is-vector-search-so-fast-card.png
-og: /img/blog/hero/why-is-vector-search-so-fast-card.png
+slug: Why-is-Vector-Search-so-fast
+authors: [laura] 
 date: 2022-09-13
-toc: true
-redirect_from: /blog/2022/09/Why-is-Vector-Search-so-fast.html
+tags: []
+image: ./img/hero.png
+
+# description: "Vector Search engines can run semantic queries on multi-million datasets in milliseconds. How is that possible?"
+# published: true
+# author: Laura Ham
+# author-img: /img/people/icon/laura.jpg
+# hero-img: /img/blog/hero/why-is-vector-search-so-fast-card.png
+# card-img: /img/blog/hero/why-is-vector-search-so-fast-card.png
+# og: /img/blog/hero/why-is-vector-search-so-fast-card.png
+# date: 2022-09-13
+# toc: true
+# redirect_from: /blog/2022/09/Why-is-Vector-Search-so-fast.html
 ---
 
 ## Why is this so incredibly fast?
@@ -53,7 +58,7 @@ One way to find similar vectors is with a simple [k-nearest neighbors (kNN) algo
 
 In our boules example (as illustraded below), with 6 boules, the kNN algorithm would measure the distance between the jack and each of the 6 boules on the ground. This would result in 6 separate calaculations.
 
-![kNN search in a game of Boules](/img/blog/how-is-vector-search-so-fast/knn-boules.png){:width="50%"}<br/>
+![kNN search in a game of Boules](./img/knn-boules.png){:width="50%"}<br/>
 *[Figure 1 - kNN search in a game of Boules.]*
 
 ### A kNN search is computationally very expensive
@@ -61,7 +66,7 @@ Comparing a search vector with 10, 100, or 1000 data vectors in just two dimensi
 
 The *brute* force of a **kNN search is computationally very expensive** - and depending on the size of your database, a single query could take anything from several seconds to even hours (yikes😅). If you compare a vector with 300 dimensions with 10M vectors, the search engine would need to do 300 x 10M = 3B computations! The number of required calculations increases linearly with the number of data points (O(n)) (Figure 2).
 
-![kNN - O(n) complexity](/img/blog/how-is-vector-search-so-fast/knn-linear.png){:width="50%"}<br/>
+![kNN - O(n) complexity](./img/knn-linear.png){:width="50%"}<br/>
 *[Figure 2 - O(n) and O(log n) complexity]*
 
 In summary, kNN search doesn’t scale well, and it is hard to image using it with a large dataset in production.
@@ -82,7 +87,7 @@ Examples of ANN methods are:
 * **hashing** - e.g. [LSH](https://en.wikipedia.org/wiki/Locality-sensitive_hashing){:target="_blank"},
 * **vector compression** - e.g. [PQ](https://ieeexplore.ieee.org/document/5432202){:target="_blank"} or [SCANN](https://ai.googleblog.com/2020/07/announcing-scann-efficient-vector.html){:target="_blank"}.
 
-![ANNOY](/img/blog/how-is-vector-search-so-fast/ann-annoy.png)<br/>
+![ANNOY](./img/ann-annoy.png)<br/>
 *[Figure 3 - Tree-based ANN search]*
 
 Which algorithm works best depends on your project. Performance can be measured in terms of latency, throughput (queries per second), build time, and accuracy (recall). These four components often have a tradeoff, so it depends on the use case which method works best. 
@@ -92,7 +97,7 @@ So, ANN is not some magic method that will always find the true k nearest neighb
 ## HNSW in Weaviate
 [Weaviate](/developers/weaviate/current/){:target="_blank"} is a great example of a vector search engine that uses ANN algorithms to offer ultra-fast queries. The first ANN algorithm introduced to Weaviate is a custom implementation of [Hierarchical Navigable Small World graphs (HNSW)](/developers/weaviate/current/vector-index-plugins/hnsw.html){:target="_blank"}.
 
-![HNSW](/img/blog/how-is-vector-search-so-fast/ann-hnsw.png){:width="50%"}<br/>
+![HNSW](./img/ann-hnsw.png){:width="50%"}<br/>
 *[Figure 4 - Proximity graph-based ANN search]*
 
 Check out [Weaviate ANN benchmarks](/developers/weaviate/current/benchmarks/ann.html){:target="_blank"} to see how HNSW performed on realistic large-scale datasets. You can use it to compare the tradeoffs between recall, QPS, latency, and import time.<br/>

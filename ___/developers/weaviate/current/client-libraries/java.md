@@ -6,7 +6,7 @@ title: Java
 intro: A Java client library for Weaviate.
 description: Java client library for Weaviate
 tags: ['java', 'client library']
-menu-order: 3
+sidebar_position: 3
 open-graph-type: article
 toc: true
 redirect_from:

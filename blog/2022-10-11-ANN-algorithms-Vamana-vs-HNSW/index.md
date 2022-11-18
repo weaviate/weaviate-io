@@ -1,18 +1,23 @@
 ---
-layout: post
 title: Vamana vs HNSW - Exploring ANN algorithms Part 1
-description: "Vector search on disks: How does Vamana compare to HNSW?"
-published: true
-author: Abdel Rodriguez 
-author-img: /img/people/icon/abdel.jpg
-card-img: /img/blog/hero/ann-algorithms-vamana-vs-hnsw.png
-hero-img: /img/blog/hero/ann-algorithms-vamana-vs-hnsw.png
-og: /img/blog/hero/ann-algorithms-vamana-vs-hnsw.png
+slug: ANN-algorithms-Vamana-vs-HNSW
+authors: [abdel] 
 date: 2022-10-11
-toc: true
-isMLResearch: false
-isDBResearch: true
-redirect_from: /blog/2022/10/ANN-algorithms-Vamana-vs-HNSW.html
+tags: []
+image: ./img/hero.png
+
+# description: "Vector search on disks: How does Vamana compare to HNSW?"
+# published: true
+# author: Abdel Rodriguez 
+# author-img: /img/people/icon/abdel.jpg
+# card-img: /img/blog/hero/ann-algorithms-vamana-vs-hnsw.png
+# hero-img: /img/blog/hero/ann-algorithms-vamana-vs-hnsw.png
+# og: /img/blog/hero/ann-algorithms-vamana-vs-hnsw.png
+# date: 
+# toc: true
+# isMLResearch: false
+# isDBResearch: true
+# redirect_from: /blog/2022/10/ANN-algorithms-Vamana-vs-HNSW.html
 ---
 
 Vector Search engines must be able to search through a vast number of vectors at speed. This is a huge technical challenge that is only becoming more difficult over time as the vector dimensions and dataset sizes increase.
@@ -37,7 +42,7 @@ In order for a vector database to efficiently search through a vast number of ve
 
 [Weaviate](/developers/weaviate/current/), an open-source vector search engine written in Go, can serve thousands of queries per second. Running Weaviate on Sift1M (a 128-dimensional representation of objects) lets you serve queries in single-digit milliseconds. But how is this possible?
 
-![SIFT1M Benchmark example](/img/blog/ann-algorithms-vamana-vs-hnsw/SIFT1M-benchmark.png)
+![SIFT1M Benchmark example](./img/SIFT1M-benchmark.png)
 *See the [benchmark](/developers/weaviate/current/benchmarks/ann.html) page for more stats.*
 
 Weaviate does not look for the exact closest vectors in the store. Instead, it looks for approximate (close enough) elements. This means you could have a much faster reply, but there is no guarantee that you will actually have the closest element from your search. In the vector search space, we use [recall](https://en.wikipedia.org/wiki/Precision_and_recall){:target="_blank"} to measure the rate of the expected matches returned. The trade-off between recall and latency can be tuned by adjusting indexing parameters. Weaviate comes with reasonable defaults, but also it allows you to adjust build and query-time parameters to find the right balance.
@@ -80,11 +85,11 @@ Traversing a graph is a bit like planning international travel. First, we could 
 
 For a better understanding, consider the below graphic, which shows a graph with all the connections generated using 1000 objects in two dimensions.
 
-![Vamana graph with 1000 objects](/img/blog/ann-algorithms-vamana-vs-hnsw/vamana-graph.png){:width="75%"}
+![Vamana graph with 1000 objects](./img/vamana-graph.png){:width="75%"}
 
 If we iterate over it in steps – we can analyze how Vamana navigates through the graph.
 
-![Vamana graph - animated in 3/6/9 steps](/img/blog/ann-algorithms-vamana-vs-hnsw/vamana-graph-animated.gif){:width="75%"}
+![Vamana graph - animated in 3/6/9 steps](./img/vamana-graph-animated.gif){:width="75%"}
 
 In the **first step**, you can see that the entry point for the search is in the center, and then the long-range connections allow jumping to the edges. This means that when a query comes, it will quickly move in the appropriate direction.<br/>
 The **second**, **third**, and **final steps** highlight the nodes reachable within **three**, **six**, and **nine** hops from the entry node.
@@ -98,17 +103,17 @@ The chart below illustrates a comparison of the C++ Vamana [reference code](http
 
 *Keep in mind that – while Vamana is the algorithm that powers DiskANN – at this stage, we are comparing both solutions in memory.*
 
-![Recall vs Latency when retrieving the ten approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-1.png)
+![Recall vs Latency when retrieving the ten approximate nearest neighbors](./img/fig-1.png)
 *Fig. 1: Recall vs Latency when retrieving the ten approximate nearest neighbors.*
 
 
-![Recall vs Latency when retrieving the hundred approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-2.png)
+![Recall vs Latency when retrieving the hundred approximate nearest neighbors](./img/fig-2.png)
 *Fig. 2: Recall vs Latency when retrieving the hundred approximate nearest neighbors.*
 
 ## Vamana implementation details
 We have also included a development implementation of the Vamana indexing algorithm in Weaviate. For the algorithm to perform well, such an implementation needs careful attention to the optimization of the code. The original algorithm from Microsoft rests upon the greedy search and the robust prune methods, which are described in the [DiskANN paper](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf){:target="_blank"} as follows:
 
-![Vamana algorithm](/img/blog/ann-algorithms-vamana-vs-hnsw/vamana-algorithm.png)
+![Vamana algorithm](./img/vamana-algorithm.png)
 
 ### In plain English
 These pseudo-code snippets are notoriously difficult to read, so here's a plain-English explanation of how Vamana works.
@@ -132,10 +137,10 @@ We evaluated different data structures and achieved the best performance by:
 * Making insertions use binary search.
 * Making the copy function from Go to move full memory sections.
 
-![Recall vs Latency when retrieving the ten approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-3.png)
+![Recall vs Latency when retrieving the ten approximate nearest neighbors](./img/fig-3.png)
 *Fig. 3: Recall vs Latency when retrieving the ten approximate nearest neighbors.*
 
-![Recall vs Latency when retrieving the hundred approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-4.png)
+![Recall vs Latency when retrieving the hundred approximate nearest neighbors](./img/fig-4.png)
 *Fig. 4: Recall vs Latency when retrieving the hundred approximate nearest neighbors.*
 
 ## So, when do SSDs come into play? 

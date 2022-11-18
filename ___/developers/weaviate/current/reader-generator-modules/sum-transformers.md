@@ -6,7 +6,7 @@ nav-parent: Modules
 title: Summarization
 description: Summarization module in Weaviate
 tags: ['transformers', 'text summary']
-menu-order: 3
+sidebar_position: 3
 open-graph-type: article
 toc: true
 ---

@@ -5,7 +5,7 @@ sub-menu: Architecture
 title: Interface
 description: Interface
 tags: ['architecture', 'interface', 'API design']
-menu-order: 6
+sidebar_position: 6
 open-graph-type: article
 toc: true
 redirect_from:

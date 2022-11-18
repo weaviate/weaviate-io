@@ -1,18 +1,22 @@
 ---
-layout: post
 title: SeMI Technologies introduces an all-new business model for vector search
-description: "Press Release: Pay-as-you-grow comes to vector search."
-published: true
-author: Bob van Luijt
-author-img: /img/people/icon/bob.jpg
-card-img: /img/blog/hero/weaviate-cloud-services-cta_5.png
-hero-img: /img/blog/hero/weaviate-cloud-services-cta_5.png
-og: /img/og/og-blog/weaviate-cloud-services-cta.jpg
+slug: Weaviate-Cloud-Service
+authors: [bob] 
 date: 2022-09-01
-toc: false
-isMLResearch: false
-isDBResearch: false
-redirect_from: /blog/2022/09/Weaviate-Cloud-Service.html
+tags: []
+image: ./img/hero.png
+
+# description: "Press Release: Pay-as-you-grow comes to vector search."
+# published: true
+# author: Bob van Luijt
+# author-img: /img/people/icon/bob.jpg
+# card-img: /img/blog/hero/weaviate-cloud-services-cta_5.png
+# hero-img: /img/blog/hero/weaviate-cloud-services-cta_5.png
+# og: /img/og/og-blog/weaviate-cloud-services-cta.jpg
+# toc: false
+# isMLResearch: false
+# isDBResearch: false
+# redirect_from: /blog/2022/09/Weaviate-Cloud-Service.html
 ---
 
 **Amsterdam NL – September 1, 2022**

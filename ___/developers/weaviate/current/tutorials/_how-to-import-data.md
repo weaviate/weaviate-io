@@ -6,7 +6,7 @@ title: How to import data?
 intro: How to import data in Weaviate?
 description: How to import data in Weaviate?
 tags: ['how to', 'import data']
-menu-order: 3
+sidebar_position: 3
 open-graph-type: article
 toc: true
 redirect_from:

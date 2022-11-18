@@ -6,7 +6,7 @@ title: Aggregate{}
 intro: You can use Weaviate's Aggregation{} function to obtain meta information about collections of data. Meta information can be queried over all objects in a class or by groups in a class.
 description: GraphQL Aggregate{} function
 tags: ['graphql', 'aggregate', 'aggregate{}', 'meta']
-menu-order: 2
+sidebar_position: 2
 open-graph-type: article
 toc: true
 redirect_from:

@@ -1,16 +1,20 @@
 ---
-layout: post
 title: Weaviate 1.15.1 patch release
-description: "Two weeks after the 1.15 release, we have a patch (v1.15.1) release for you, which brings 15 bug fixes and 2 UX improvements."
-published: true
-author: Etienne Dilocker 
-author-img: /img/people/icon/etienne.jpg
-card-img: /img/blog/hero/weaviate-1-15-1-card.png
-hero-img: /img/blog/hero/weaviate-1-15-1-card.png
-og: /img/blog/hero/weaviate-1-15-1-card.png
+slug: Weaviate-release-1-15-1
+authors: [etienne] 
 date: 2022-09-21
-toc: false
-redirect_from: /blog/2022/09/Weaviate-release-1-15-1.html
+tags: []
+image: ./img/hero.png
+
+# description: "Two weeks after the 1.15 release, we have a patch (v1.15.1) release for you, which brings 15 bug fixes and 2 UX improvements."
+# published: true
+# author: Etienne Dilocker 
+# author-img: /img/people/icon/etienne.jpg
+# card-img: /img/blog/hero/weaviate-1-15-1-card.png
+# hero-img: /img/blog/hero/weaviate-1-15-1-card.png
+# og: /img/blog/hero/weaviate-1-15-1-card.png
+# toc: false
+# redirect_from: /blog/2022/09/Weaviate-release-1-15-1.html
 ---
 
 We usually wouldn’t write a whole blog post about a patch release. But when I chatted with Sebastian (the regular author of our “big” release blog posts series), about the contents of Weaviate `v1.15.1` patch, we quickly realized that this release is too important to end up as a [side note](https://github.com/semi-technologies/weaviate/releases/tag/v1.15.1){:target="_blank"} somewhere.

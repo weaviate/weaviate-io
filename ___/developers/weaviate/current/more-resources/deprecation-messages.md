@@ -6,7 +6,7 @@ title: Deprecation messages
 intro: Deprecation messages intro
 description: Deprecation messages description
 tags: ['Deprecation messages']
-menu-order: 8
+sidebar_position: 8
 open-graph-type: article
 toc: true
 redirect_from:

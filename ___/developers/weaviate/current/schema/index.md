@@ -5,7 +5,7 @@ sub-menu: Schema
 title: Data schema
 description: 
 tags: ['Data schema']
-menu-order: 0
+sidebar_position: 0
 open-graph-type: article
 toc: false
 ---

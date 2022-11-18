@@ -5,7 +5,7 @@ sub-menu: More resources
 title: Migration Guide
 intro: 
 tags: ['Migration']
-menu-order: 7
+sidebar_position: 7
 open-graph-type: article
 toc: true
 redirect_from:
@@ -414,15 +414,15 @@ This contains most overall changes, but not all details. Those are documented in
 
 ### Removal of Things and Actions
 `Things` and `Actions` are removed from the Data Schema. This comes with the following changes in the schema definition and API endpoints:
-0. **Data schema:** The `semantic kind` (`Things` and `Actions`) is removed from the Schema Endpoint. This means the URLs will change:
+1. **Data schema:** The `semantic kind` (`Things` and `Actions`) is removed from the Schema Endpoint. This means the URLs will change:
   * from `/v1/schema/things/{ClassName}` to `/v1/schema/{ClassName}`
   * from `/v1/schema/actions/{ClassName} `to `/v1/schema/{ClassName}`
-0. **Data RESTful API endpoint:** The `semantic kind` (`Things` and `Actions`) is removed from the data Endpoint. Instead it will be namespaced as `/objects`. This means the URLs will change:
+1. **Data RESTful API endpoint:** The `semantic kind` (`Things` and `Actions`) is removed from the data Endpoint. Instead it will be namespaced as `/objects`. This means the URLs will change:
   * from `/v1/things` to `/v1/objects`
   * from `/v1/actions` to `/v1/objects`
   * from `/v1/batching/things`to `/v1/batch/objects` (see also the [change in batching](#renaming-batching-to-batch))
   * from `/v1/batching/actions`to `/v1/batch/objects` (see also the [change in batching](#renaming-batching-to-batch))
-0. **GraphQL:** The `Semantic Kind` "level" in the query hierarchy will be removed without replacement (In `Get` and `Aggregate` queries), i.e. 
+1. **GraphQL:** The `Semantic Kind` "level" in the query hierarchy will be removed without replacement (In `Get` and `Aggregate` queries), i.e. 
    ```graphql
    { 
      Get { 
@@ -446,7 +446,7 @@ This contains most overall changes, but not all details. Those are documented in
      } 
    }
    ``` 
-0. **Data Beacons:** The `Semantic Kind` will be removed from beacons:
+1. **Data Beacons:** The `Semantic Kind` will be removed from beacons:
    * **Short-form Beacon:**
   
      * `weaviate://localhost/things/4fbacd6e-1153-47b1-8cb5-f787a7f01718`

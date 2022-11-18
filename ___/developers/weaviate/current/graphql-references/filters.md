@@ -6,7 +6,7 @@ title: Filters
 intro:  Filters allow you to find specific data objects based on operators such as GreaterThan, LessThanEqual, Like, etc. You can mix filters with <a href="./vector-search-parameters.html">vector search parameters</a> too. Also, you can use filters to sort or limit the number of returned objects.
 description: GraphQL filters
 tags: ['graphql', 'filters']
-menu-order: 4
+sidebar_position: 4
 open-graph-type: article
 toc: true
 redirect_from:

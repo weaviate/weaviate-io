@@ -5,7 +5,7 @@ sub-menu: Schema
 title: Schema configuration
 description: 
 tags: ['Schema configuration']
-menu-order: 1
+sidebar_position: 1
 open-graph-type: article
 toc: true
 redirect_from:

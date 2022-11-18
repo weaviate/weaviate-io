@@ -1,16 +1,21 @@
 ---
-layout: post
 title: Using Cross-Encoders as reranker in multistage vector search
-description: "Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the vector search experience."
-published: true
-author: Laura Ham
-author-img: /img/people/icon/laura.jpg
-card-img: /img/blog/hero/cross-encoder-reranker-card.png
+slug: Using-Cross-Encoders-as-reranker-in-multistage-vector-search
+authors: [laura] 
 date: 2022-08-09
-toc: true
-isMLResearch: true
-isDBResearch: false
-redirect_from: /blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search.html
+tags: []
+image: ./img/hero.png
+
+# description: "Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the vector search experience."
+# published: true
+# author: Laura Ham
+# author-img: /img/people/icon/laura.jpg
+# card-img: /img/blog/hero/cross-encoder-reranker-card.png
+# date: 2022-08-09
+# toc: true
+# isMLResearch: true
+# isDBResearch: false
+# redirect_from: /blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search.html
 ---
 
 ## Intro
@@ -31,11 +36,11 @@ The models that compute **dense vector embeddings for data** (which later can be
 
 > Note. Vector search engines **compute** dense vector embeddings **during import**. Calculating vectors up-front coupled with [ANN algorithms](/developers/weaviate/current/vector-index-plugins/index.html){:target="_blank"} (for faster retrieval) makes working with Bi-Encoder highly efficient.
 
-![Vector Search Engine](/img/blog/cross-encoders/vector-database.png)
+![Vector Search Engine](./img/vector-database.png)
 
 *Figure 1 - Representation of a Vector Search Engine*
 
-![Bi-Encoder](/img/blog/cross-encoders/bi-encoder.png)
+![Bi-Encoder](./img/bi-encoder.png)
 
 *Figure 2 - Representation of a Bi-Encoder model*
 
@@ -43,7 +48,7 @@ The models that compute **dense vector embeddings for data** (which later can be
 
 Bi-Encoders models are not the only possible way of scoring pairs of data on similarity. A different strategy is using *Cross-Encoders*. Cross-Encoder models do not produce vector embeddings for data, but use a classification mechanism for data pairs instead. The input of the model always consists of a **data pair**, for example two sentences, and outputs a value between 0 and 1 indicating the similarity between these two sentences (Figure 3). So, individual sentences cannot be passed to a Cross-Encoder model, it always needs a **pair** of “items”. In terms of search, you need to use the Cross-Encoder with **each** data item and the search query, to calculate the similarity between the query and data object.
 
-![Cross-Encoder](/img/blog/cross-encoders/cross-encoder.png)
+![Cross-Encoder](./img/cross-encoder.png)
 
 *Figure 3 - Representation of a Cross-Encoder model*
 
@@ -54,13 +59,13 @@ If a Cross-Encoder model is trained on a representative training set, it [achiev
 
 We can combine the two methods to benefit from the strong points of both models! I’d like to illustrate this idea with an example. Imagine you are a fisherman who is looking for salmon in a sea full of fish of numerous species. First, you sail to the waters rich in fish, and you use a big net with the optimal bait for salmon to catch a lot of fish. You hope to find some salmon, but your net also catches other kinds of fish that you are not interested in. Next, you sort the catch by keeping the salmon and throwing the other fish back into the sea. This sorting step is time-consuming and expensive, but very effective.
 
-![Fisherman as multistage search](/img/blog/cross-encoders/fisherman.jpg)
+![Fisherman as multistage search](./img/fisherman.jpg)
 
 *Figure 4 - Fisherman as multistage search*
 
 Catching fish with the big net represents how Bi-Encoders work. Bi-Encoders are fast, but are not as accurate as the expensive fisherman aka the Cross-Encoder. Cross-Encoders are time consuming, like the fisherman who would need to limit the number of fishing rounds they could do. So we can chain those two methods behind each other (see Figure 5). First, you use a Bi-Encoder to retrieve a *list of result candidates*, then you use a Cross-Encoder on this list of candidates to pick out (or rerank) the most relevant results. This way, you benefit from the efficient retrieval method using Bi-Encoders and the high accuracy of the Cross-Encoder, so you can use this on large scale datasets!
 
-![Multistage search pipeline](/img/blog/cross-encoders/weaviate-pipeline-long.png)
+![Multistage search pipeline](./img/weaviate-pipeline-long.png)
 
 *Figure 5 - Multistage search pipeline using Weaviate*
 

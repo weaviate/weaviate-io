@@ -1,15 +1,18 @@
 ---
-layout: post
 title: Tutorial - Backup and Restore in Weaviate
-description: "Learn how to quickly and easily back up and restore your Weaviate data with the native backup feature."
-published: true
-author: Stefan Bogdan
-author-img: /img/people/icon/stefan.jpg
-card-img: /img/blog/hero/tutorial-backup-restore.png
-hero-img: /img/blog/hero/tutorial-backup-restore.png
-og: /img/blog/hero/tutorial-backup-restore.png
+slug: tutorial-backup-and-restore-in-weaviate
+authors: [stefan, jp]
 date: 2022-11-15
-toc: false
+tags: []
+image: ./img/hero.png
+
+# description: "Learn how to quickly and easily back up and restore your Weaviate data with the native backup feature."
+# author: Stefan Bogdan
+# author-img: /img/people/icon/stefan.jpg
+# card-img: /img/blog/hero/tutorial-backup-restore.png
+# hero-img: /img/blog/hero/tutorial-backup-restore.png
+# og: /img/blog/hero/tutorial-backup-restore.png
+# toc: false
 ---
 Maintaining data integrity is one of the key goals for database users. So it should come as no surprise that backing up the data is an important part of database best practices.
 

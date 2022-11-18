@@ -6,7 +6,7 @@ title: More resources
 intro: More resources overview
 description: More resources overview
 tags: ['More resources']
-menu-order: 0
+sidebar_position: 0
 open-graph-type: article
 toc: false
 redirect_from:

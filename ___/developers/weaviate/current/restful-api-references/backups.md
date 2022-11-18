@@ -7,7 +7,7 @@ intro: |-
   Weaviate's backup API allows you to backup to and restore from any attached backend with a single command.
 description: RESTful API batch reference
 tags: ['RESTful API', 'references', 'batching']
-menu-order: 4
+sidebar_position: 4
 open-graph-type: article
 toc: true
 redirect_from:

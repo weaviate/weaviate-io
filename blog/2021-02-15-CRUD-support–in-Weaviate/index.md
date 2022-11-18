@@ -1,16 +1,20 @@
 ---
-layout: post
 title: Weaviate, an ANN Database with CRUD support
-description: "How the vector search engine Weaviate overcomes the limitations of popular Approximate Nearest Neighbor (ANN) libraries."
-published: true
-author: Etienne Dilocker
-author-img: /img/people/icon/etienne.jpg
-card-img: /img/blog/hero/crud-support–in-weaviate-card.png
-canonical-url: https://db-engines.com/en/blog_post/87
-canonical-name: DB Engines
+slug: CRUD-support–in-Weaviate
+authors: [etienne] 
 date: 2021-02-15
-toc: true
-redirect_from: /blog/2021/02/CRUD-support-in-Weaviate.html
+tags: []
+image: ./img/hero.png
+# canonical-url: https://db-engines.com/en/blog_post/87
+# canonical-name: DB Engines
+
+# description: "How the vector search engine Weaviate overcomes the limitations of popular Approximate Nearest Neighbor (ANN) libraries."
+# published: true
+# author: Etienne Dilocker
+# author-img: /img/people/icon/etienne.jpg
+# card-img: /img/blog/hero/crud-support–in-weaviate-card.png
+# toc: true
+# redirect_from: /blog/2021/02/CRUD-support-in-Weaviate.html
 ---
 
 ## Overview

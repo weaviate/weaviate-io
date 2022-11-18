@@ -1,23 +1,28 @@
 ---
-layout: post
 title: GOMEMLIMIT is a game changer for high-memory applications
-description: "It can be very frustrating when Go applications use less memory than what is available to them, and yet they still manage to run out of memory and crash. Go 1.19 introduced GOMEMLIMIT, which completely changes how you can manage memory limits in Go."
-published: true
-author: Etienne Dilocker
-author-img: /img/people/icon/etienne.jpg
-card-img: /img/blog/hero/gomemlimit-card.jpg
-og: /img/blog/hero/gomemlimit-og.jpg
+slug: GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications
+authors: [etienne] 
 date: 2022-08-15
-toc: false
-isMLResearch: false
-isDBResearch: true
-redirect_from: /blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html
+tags: []
+image: ./img/hero.jpg
+
+# description: "It can be very frustrating when Go applications use less memory than what is available to them, and yet they still manage to run out of memory and crash. Go 1.19 introduced GOMEMLIMIT, which completely changes how you can manage memory limits in Go."
+# published: true
+# author: Etienne Dilocker
+# author-img: /img/people/icon/etienne.jpg
+# card-img: /img/blog/hero/gomemlimit-card.jpg
+# og: /img/blog/hero/gomemlimit-og.jpg
+# date: 2022-08-15
+# toc: false
+# isMLResearch: false
+# isDBResearch: true
+# redirect_from: /blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html
 ---
 
 ## Intro
 Running out of memory is never fun, but it’s incredibly frustrating when you’ve already taken some precautions and calculated your exact memory needs. “My application requires 4GB of memory. How is it possible I ran out of memory on my 6GB machine!?”. As it turns out, this was a real possibility in a garbage collected (“GC”)  language like Golang. The emphasis is on the word “was” because Go 1.19 changes everything: The new `GOMEMLIMIT` feature can help you both increase GC-related performance as well as avoid GC-related out-of-memory (“OOM”) situations.
 
-![GOMEMLIMIT Gopher](/img/blog/gomemlimit/intro.jpg)
+![GOMEMLIMIT Gopher](./img/intro.jpg)
 
 In this article, I will invite you on a journey. We will cover:
 * How memory allocations work in Go.
@@ -69,15 +74,15 @@ In the previous sections, we outlined that most applications have short-lived an
 
 To understand why it is possible to run OOM in this situation, we need to look at when the Garbage collector runs. Let’s first think of an example where it never runs. We know that we have 4GB of live memory, and - simply from using the application - we add a few short-lived heap allocations here and there. We do not expect them to stick around long-term, but since there is no GC cycle running at the moment, they will never be freed, either. Eventually, we will run OOM when the intentional and unintentional live heap exceeds 6GB:
 
-![OOM Kill over 6GB](/img/blog/gomemlimit/oom-kill.png)
+![OOM Kill over 6GB](./img/oom-kill.png)
 
 Now let’s look at the other extreme. Let’s say the Garbage Collector runs extremely frequently. Any time our heap reaches 4.1GB, it runs and removes the 100MB of temporary allocations. An OOM situation is improbable now, but we have far exceeded our cost target. Our application might now spend 25-30% (or more) on GC. In other words, it is no longer efficient:
 
-![Intense garpace collector](/img/blog/gomemlimit/intense-garbage-collector.png)
+![Intense garpace collector](./img/intense-garbage-collector.png)
 
 So, we want the best of both worlds; to get as close to our limit as possible but never beyond it. This way, we can delay GC cycles until they are really necessary. That makes our program fast. But at the same time, we can be sure that we never cross the threshold. That makes our program safe from being OOM-killed. In other words, our ideal situation would look something like the following:
 
-![Delayed garbage collector](/img/blog/gomemlimit/delayed-garbage-collector.png)
+![Delayed garbage collector](./img/delayed-garbage-collector.png)
 
 ### Previously GC targets were always relative.
 Looking at the three graphs above, you might think this is pretty obvious. We want to make use of the memory we have without going above it. However, before Go 1.19, you only had a single knob to turn: the GOGC environment variable. This variable accepted a relative target compared to the current live heap size. The default value for GOGC is 100, meaning that the heap should double (i.e. grow by 100 percent) before GC should run again. 
@@ -157,7 +162,7 @@ It is now time to start our import and see what happens. As predicted, I was not
 
 So, what does the heap chart look like that we get from the monitoring?
 
-![Just before the OOM kill](/img/blog/gomemlimit/just-before-oom-kill.jpg)
+![Just before the OOM kill](./img/just-before-oom-kill.jpg)
 
 This is typically the point where everyone says, *“I couldn’t possibly have been OOM-killed. Look at the heap graph; we never exceeded 2.5GiB”*. And they’d be both right and wrong at the same time.
 
@@ -213,7 +218,7 @@ curl localhost:8080/v1/graphql \
 
 As you can see, the imports are all present, let’s take a look at the heap usage according to the Prometheus metrics:
 
-![GOMEMLIMIT helps to collect garbage before a OOM crash](/img/blog/gomemlimit/gomemlimit-in-action.jpg)
+![GOMEMLIMIT helps to collect garbage before a OOM crash](./img/gomemlimit-in-action.jpg)
 
 The chart shows exactly what we expected:
 * At no time did the test exceed our hard 3GiB limit (hence no OOM kill)

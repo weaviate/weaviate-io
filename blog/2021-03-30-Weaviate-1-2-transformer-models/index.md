@@ -1,16 +1,20 @@
 ---
-layout: post
 title: Weaviate 1.2 release – transformer models
-description: "Weaviate v1.2 introduced support for transformers (DistilBERT, BERT, RoBERTa, Sentence-BERT, etc) to vectorize and semantically search through your data"
-published: true
-author: Bob van Luijt
-author-img: /img/people/icon/bob.jpg
-card-img: /img/blog/hero/weaviate-1-2-transformer-models-card.png
-canonical-url: https://medium.com/semi-technologies/weaviate-version-1-2-x-now-supports-transformer-models-4a12d858cce3
-canonical-name: Medium
+slug: Weaviate-1-2-transformer-models
+authors: [etienne] 
 date: 2021-03-30
-toc: true
-redirect_from: /blog/2021/03/Weaviate-1-2-transformer-models.html
+tags: []
+image: ./img/hero.png
+# canonical-url: https://medium.com/semi-technologies/weaviate-version-1-2-x-now-supports-transformer-models-4a12d858cce3
+# canonical-name: Medium
+
+# description: "Weaviate v1.2 introduced support for transformers (DistilBERT, BERT, RoBERTa, Sentence-BERT, etc) to vectorize and semantically search through your data"
+# published: true
+# author: Bob van Luijt
+# author-img: /img/people/icon/bob.jpg
+# card-img: /img/blog/hero/weaviate-1-2-transformer-models-card.png
+# toc: true
+# redirect_from: /blog/2021/03/Weaviate-1-2-transformer-models.html
 ---
 
 ## Intro
@@ -28,7 +32,7 @@ A [transformer](https://en.wikipedia.org/wiki/Transformer_(machine_learning_mode
 ## Getting started with out-of-the-box transformers in Weaviate
 By selecting the text-module in the [Weaviate configuration tool](/developers/weaviate/current/installation/docker-compose.html#configurator){:target="_blank"}, you can run Weaviate with transformers in one command. You can learn more about the Weaviate transformer module [here](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-transformers.html){:target="_blank"}.
 
-![Weaviate configurator — selecting the Transformers module](/img/blog/weaviate-1.2/configurator-demo.gif)
+![Weaviate configurator — selecting the Transformers module](./img/configurator-demo.gif)
 *Weaviate configurator — selecting the Transformers module*
 
 ## Custom transformer models

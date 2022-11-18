@@ -6,7 +6,7 @@ title: Example datasets
 intro: There are currently two demo datasets available. If you have a dataset you want to add, please contact us, we're happy to help you setting it up.
 description: Example datasets
 tags: ['example datasets']
-menu-order: 3
+sidebar_position: 3
 open-graph-type: article
 toc: true
 redirect_from:

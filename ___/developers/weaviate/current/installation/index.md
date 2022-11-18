@@ -6,7 +6,7 @@ title: Installation
 intro: You can run Weaviate using the Weaviate Cloud Service or ​host it yourself. ​For self-hosted versions, ​Weaviate is completely containerized; you can use Docker Compose and/or Kubernetes to run it.
 description: Install Weaviate, Weaviate is completely containerized, you can use Docker Compose and/or Kubernetes to run it.
 tags: ['installation']
-menu-order: 0
+sidebar_position: 0
 open-graph-type: article
 toc: true
 redirect_from:

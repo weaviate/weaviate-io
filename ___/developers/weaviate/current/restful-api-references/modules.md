@@ -6,7 +6,7 @@ title: /v1/modules/
 intro: 
 description: 
 tags: ['RESTful API', 'modules']
-menu-order: 8
+sidebar_position: 8
 open-graph-type: article
 toc: false
 redirect_from:

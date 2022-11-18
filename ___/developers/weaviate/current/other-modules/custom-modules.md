@@ -6,7 +6,7 @@ nav-parent: Modules
 title: Custom modules
 description: How to create custom Weaviate modules
 tags: ['Custom Modules']
-menu-order: 9
+sidebar_position: 9
 open-graph-type: article
 toc: true
 redirect_from:

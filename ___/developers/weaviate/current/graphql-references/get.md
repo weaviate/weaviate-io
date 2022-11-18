@@ -6,7 +6,7 @@ title: Get{}
 intro: The Get{} function is Weaviate's bread and butter. It is the most direct way to access data. Especially if combined with filters, you can easily browse your Weaviate.
 description: GraphQL Get{} function
 tags: ['graphql', 'get{}']
-menu-order: 1
+sidebar_position: 1
 open-graph-type: article
 toc: true
 redirect_from:

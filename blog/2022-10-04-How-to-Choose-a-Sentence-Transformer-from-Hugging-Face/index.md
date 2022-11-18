@@ -1,18 +1,23 @@
 ---
-layout: post
 title: How to choose a Sentence Transformer from Hugging Face
-description: "Learn about the various Sentence Transformers from Hugging Face!"
-published: true
-author: Connor Shorten 
-author-img: /img/people/icon/connor.jpg
-card-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
-hero-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
-og: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
+slug: How-to-Choose-a-Sentence-Transformer-from-Hugging-Face
+authors: [connor] 
 date: 2022-10-04
-toc: true
-isMLResearch: true
-isDBResearch: false
-redirect_from: /blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face.html
+tags: []
+image: ./img/hero.png
+
+# description: "Learn about the various Sentence Transformers from Hugging Face!"
+# published: true
+# author: Connor Shorten 
+# author-img: /img/people/icon/connor.jpg
+# card-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
+# hero-img: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
+# og: /img/blog/hero/How-to-choose-a-Sentence-Transformer-from-HuggingFace.png
+# date: 
+# toc: true
+# isMLResearch: true
+# isDBResearch: false
+# redirect_from: /blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face.html
 ---
 
 [Weaviate](/developers/weaviate/current/){:target="_blank"} has recently unveiled a new module which allows users to easily [integrate models from Hugging Face](/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html){:target="_blank"} to vectorize their data and incoming queries. [Over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads){:target="_blank"} (at the time of writing this) that can be easily plugged into Weaviate. 
@@ -22,7 +27,7 @@ And more importantly: **How to choose a Sentence Transformer for Semantic Search
 
 There are too many models to summarize in one flowchart. So instead, we will describe factors on how to differentiate these models and give you tools to **choose the perfect model for your use case**.
 
-![Weaviate Sentence Transformers](/img/blog/choosing-sentence-transformer-huggingface/huggingface-sentence-transformers.png){:width="70%"}
+![Weaviate Sentence Transformers](./img/huggingface-sentence-transformers.png){:width="70%"}
 
 ## Differences in Deep Learning models
 
@@ -48,17 +53,17 @@ For every model, Hugging Face displays a list of important **color-coded** detai
 
 So, if we look at two Deep Learning models, we can see that [dangvantuan/sentence-camembert-large](https://huggingface.co/dangvantuan/sentence-camembert-large){:target="_blank"} was trained on **stsb_multi_mt**, which is a **French** dataset. 
 
-![Camembert Hugging Face Model Card](/img/blog/choosing-sentence-transformer-huggingface/camembert-model-card-min.png)
+![Camembert Hugging Face Model Card](./img/camembert-model-card-min.png)
 
 While [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2){:target="_blank"} was trained on **several datasets** in **English**.
 
-![all-MiniLM Hugging Face Model Card](/img/blog/choosing-sentence-transformer-huggingface/minilm-model-card-min.png)
+![all-MiniLM Hugging Face Model Card](./img/minilm-model-card-min.png)
 
 To put it as bluntly as possible, what makes `dangvantuan/sentence-camembert-large` better at French sentence embeddings than `sentence-transformers/all-MiniLM-L6-v2` is that… it was trained on **French** sentences! There are many examples like this, models trained on **biomedical text**, **legal documents**, or **Spanish** are generally going to perform better when tested on that domain compared to models that haven’t been explicitly trained for the domain.
 
 Note that these tags are a part of Hugging Face’s **model cards**, an impressive effort to continue advancing the organization of Machine Learning models. At the time of this writing, model cards still rely on **manual tagging**. It may be the case that the developer uploading the model hasn’t filled out these details. If you are new to Hugging Face, please consider annotating your uploaded models this way, an example of how to do this is shown below:
 
-![How to populate a Hugging Face model card](/img/blog/choosing-sentence-transformer-huggingface/how-to-populate-model-card-min.png){:width="50%"}
+![How to populate a Hugging Face model card](./img/how-to-populate-model-card-min.png){:width="50%"}
 
 ### Private models
 A large part of the beauty of Weaviate’s integration with Hugging Face is that **anyone** can upload their models to Hugging Face and use them in Weaviate’s vector search engine. For example, I am doing research on COVID-19 literature, so I have fine-tuned a model on CORD-19 title to abstract matching and uploaded it to [CShorten/CORD-19-Title-Abstracts](https://huggingface.co/CShorten/CORD-19-Title-Abstracts-1-more-epoch){:target="_blank"}.
@@ -78,11 +83,11 @@ Two excellent benchmarks that collect Supervised Learning tasks to evaluate Sent
 
 **KILT** uses the same domain for all tasks, Wikipedia. Each task is labeled with a different task: Slot Filling, Question Answering, Dialogue, Fact Checking, or Entity Linking.
 
-![KILT Benchmark](/img/blog/choosing-sentence-transformer-huggingface/KILT-min-correct.png)
+![KILT Benchmark](./img/KILT-min-correct.png)
 
 **BEIR** tests many different tasks: Fact Checking, Citation Prediction, Duplicate Question Retrieval, Argument Retrieval and more.  BEIR also tests a diverse set of domains such as Wikipedia, Scientific Papers, Quora, Stack Exchange, Internet scrapes, News, Financial Documents, and Tweets. 
 
-![BEIR Benchmark](/img/blog/choosing-sentence-transformer-huggingface/BEIR-min.png)
+![BEIR Benchmark](./img/BEIR-min.png)
 
 ### Real human query-based datasets
 **[MS MARCO](https://arxiv.org/abs/1611.09268){:target="_blank"}** is another influential dataset containing real human queries on Microsoft bing’s search engine paired with passages that the human user clicked on in hope of answering their query. As another example, **[Quora Question Pairs](https://arxiv.org/abs/1907.01041){:target="_blank"}** contains human labels of whether or not two questions are asking the same thing. The Sentence Transformer documentation presents 5 main categories of training data - Semantic Textual Similarity (STS):  Natural Language Inference (NLI), Paraphrase Data, Quora Duplicate Questions (QQP), and MS MARCO.

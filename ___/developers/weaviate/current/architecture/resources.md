@@ -5,7 +5,7 @@ sub-menu: Architecture
 title: Resource Planning
 description: Size your Weaviate nodes according to your needs
 tags: ['architecture', 'resource', 'cpu', 'memory', 'gpu']
-menu-order: 4
+sidebar_position: 4
 open-graph-type: article
 toc: true
 ---

@@ -6,7 +6,7 @@ nav-parent: Modules
 title: text2vec-openai
 description: Use any OpenAI model inside Weaviate
 tags: ['text2vec-openai']
-menu-order: 1
+sidebar_position: 1
 open-graph-type: article
 toc: true
 enabled-on-wcs: true

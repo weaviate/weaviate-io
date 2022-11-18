@@ -5,7 +5,7 @@ sub-menu: Architecture
 title: Storage
 description: Weaviate - storage
 tags: ['architecture', 'storage']
-menu-order: 3
+sidebar_position: 3
 open-graph-type: article
 toc: true
 ---

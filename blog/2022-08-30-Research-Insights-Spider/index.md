@@ -1,17 +1,21 @@
 ---
-layout: post
 title: Research Insights – Learning to Retrieve Passages without Supervision
-description: "A new algorithm presents evidence that Self-Supervised Retrieval can surpass BM25 and Supervised techniques. This technique also pairs very well alongside BM25 in Hybrid Retrieval."
-published: true
-author: Connor Shorten
-author-img: /img/people/icon/connor.jpg
-card-img: /img/blog/hero/research-insights-spider-card.jpg
-og: /img/blog/hero/research-insights-spider-og.png
+slug: Research-Insights-Spider
+authors: [connor] 
 date: 2022-08-30
-toc: true
-isMLResearch: true
-isDBResearch: false
-redirect_from: /blog/2022/08/Research-Insights-Spider.html
+tags: []
+image: ./img/hero.jpg
+# 
+# description: "A new algorithm presents evidence that Self-Supervised Retrieval can surpass BM25 and Supervised techniques. This technique also pairs very well alongside BM25 in Hybrid Retrieval."
+# published: true
+# author: Connor Shorten
+# author-img: /img/people/icon/connor.jpg
+# card-img: /img/blog/hero/research-insights-spider-card.jpg
+# og: /img/blog/hero/research-insights-spider-og.png
+# toc: true
+# isMLResearch: true
+# isDBResearch: false
+# redirect_from: /blog/2022/08/Research-Insights-Spider.html
 ---
 
 ## Intro
@@ -42,7 +46,7 @@ The image below illustrates the concept of Contrastive Learning. We want to alig
 
 <!-- TODO: update the image from Svitlana -->
 
-![Bad Negative vs Good Negative](/img/blog/self-supervised-retrieval/contrastive-learning-example.jpg)
+![Bad Negative vs Good Negative](./img/contrastive-learning-example.jpg)
 *Images sourced from Unsplash – Thanks to Bastian Riccardi, Dan Dennis, Clay Banks, and Shayna Douglas!*
 
 The problem with Contrastive Learning is that the construction of positive and negative samples typically requires expensive and time-consuming manual labeling. Self-Supervised Learning, on the other hand, aims to minimize this cost and offers a clear breakthrough in the performance of these techniques.
@@ -116,7 +120,7 @@ The authors experimentally ablate the effectiveness of applying this query trans
 
 The image below demonstrates two examples with the matching Recurring Spans **“the priesthood for himself and his male descendants”** and **“Yoko Ono”**. The first anchor point keeps the Recurring Span in the positive. The second anchor deletes the phrase **“Yoko Ono”**. 
 
-![Construction of positive and negative samples](/img/blog/self-supervised-retrieval/positive-negative-samples.jpg)
+![Construction of positive and negative samples](./img/positive-negative-samples.jpg)
 *Image source: Learning to Retrieve Passages without Supervision, Ram et al. 2022.*
 
 ## Experimental Evaluation
@@ -131,11 +135,11 @@ The results of this paper are extremely exciting for Self-Supervised text retrie
 
 This is an absolutely amazing result and testimony to the excitement of Self-Supervised Learning methods! Who knows how much further we can take the performance of Spider since we are no longer limited by manual labeling costs? Thus, further investment in model size, unlabeled dataset size, and training time will likely yield even further improvements. The core graphic comparing Spider with Hybrid Retrieval Spider + BM25, DPR, Hybrid Retrieval DPR + BM25, BM25, and ICT is shown below:
 
-![Graph comparing Spider vs Supervised models](/img/blog/self-supervised-retrieval/retrieval-accuracy-graph.jpg)
+![Graph comparing Spider vs Supervised models](./img/retrieval-accuracy-graph.jpg)
 
 The exact numbers behind the visualization shown above and evaluations with Natural Questions (NQ), TriviaQA, and Web Questions (WQ) are presented below:
 
-![Data comparing Spider vs Supervised models](/img/blog/self-supervised-retrieval/retrieval-accuracy-data.jpg)
+![Data comparing Spider vs Supervised models](./img/retrieval-accuracy-data.jpg)
 
 ### Zero-Shot Generalization
 
@@ -143,7 +147,7 @@ The results above look at DPR models which have been trained on the dataset they
 
 Shown below, the Spider models have a much better **Zero-Shot Generalization** than the Supervised DPR models. The generalization of Supervised Learning is very limited to the training data distribution. In contrast, Self-Supervised Learning techniques such as Spider are more robust to esoteric details of questions such as the style or length. This is of course in addition to the general content such as biomedical text versus legal text.
 
-![Zero-Shot Generalization data](/img/blog/self-supervised-retrieval/zero-shot-generalization-data.jpg)
+![Zero-Shot Generalization data](./img/zero-shot-generalization-data.jpg)
 
 ### Supervised Fine-Tuning of Spider
 
@@ -151,7 +155,7 @@ Perhaps more practically is to use Spider in tandem with Supervised Learning. Ag
 
 An interesting question with this is: How many questions do we need to label? Spider further provides a benefit here, greatly reducing the number of examples needed for strong Transfer Learning performance. As described by the Ram et al., “Spider fine-tuned on 128 examples is able to outperform all other baselines when they are trained on 1024 examples”. The image below presents the results of Supervised Fine-tuning with 128 examples, 1024 examples, and the full dataset.
 
-![Fine-tuning comparison - data](/img/blog/self-supervised-retrieval/fine-tuning-comparison-data.jpg)
+![Fine-tuning comparison - data](./img/fine-tuning-comparison-data.jpg)
 
 ### Similar Techniques
 
@@ -173,7 +177,7 @@ Although not tested in the paper, these top-k searches can further leverage **Ap
 
 ## Custom Retrievers in Weaviate
 
-![Spider with Weaviate](/img/blog/self-supervised-retrieval/weaviate-spider-diagram.jpg)
+![Spider with Weaviate](./img/weaviate-spider-diagram.jpg)
 
 Advances such as Spider can be added to the Weaviate Vector Search Engine by creating a custom module. The authors have [open-sourced their model](https://github.com/oriram/spider){:target="_blank"} and published the weights on the [HuggingFace model hub](https://huggingface.co/tau/spider){:target="_blank"}. Weaviate has a tight integration with HuggingFace in examples such as the nearText module. This enables users to change the path in their Weaviate docker image to access different HuggingFace models.
 

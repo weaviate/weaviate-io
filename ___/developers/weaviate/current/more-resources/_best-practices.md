@@ -7,7 +7,7 @@ title: Tips and best practices
 intro: 
 description: 
 tags: ['Weaviate', 'tips', 'best practices']
-menu-order: 6
+sidebar_position: 6
 open-graph-type: article
 toc: true
 ---

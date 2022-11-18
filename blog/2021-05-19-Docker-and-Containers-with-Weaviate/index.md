@@ -1,16 +1,21 @@
 ---
-layout: post
 title: Docker and Containers with Weaviate
-description: "What Weaviate users should know about Docker & Containers"
-published: true
-author: Etienne Dilocker
-author-img: /img/people/icon/etienne.jpg
-card-img: /img/blog/hero/docker-and-containers-with-weviate-card.png
-canonical-url: https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079
-canonical-name: Medium
+slug: Docker-and-Containers-with-Weaviate
+authors: [etienne] 
 date: 2021-05-19
-toc: true
-redirect_from: /blog/2021/05/Docker-and-Containers-with-Weaviate.html
+tags: []
+image: ./img/hero.png
+# canonical-url: https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079
+# canonical-name: Medium
+
+# description: "What Weaviate users should know about Docker & Containers"
+# published: true
+# author: Etienne Dilocker
+# author-img: /img/people/icon/etienne.jpg
+# card-img: /img/blog/hero/docker-and-containers-with-weviate-card.png
+# date: 2021-05-19
+# toc: true
+# redirect_from: /blog/2021/05/Docker-and-Containers-with-Weaviate.html
 ---
 
 ## Intro
@@ -53,7 +58,7 @@ You need to make sure that you have both the `docker` and the `docker-compose` C
 Usually, there is no need to obtain individual images, as we distribute entire `docker-compose.yml` files. See next step.
 
 ## How do I obtain a Weaviate Docker-Compose file?
-![Weaviate Configuration Tool](/img/blog/docker-and-containers/weaviate-configuration-tool.png)
+![Weaviate Configuration Tool](./img/weaviate-configuration-tool.png)
 *An example of the Weaviate Customizer which produces a complete docker-compose file — tailored to your needs.*
 
 The easiest way to obtain a `docker-compose.yml` is to use the [Weaviate configuration tool](/developers/weaviate/current/installation/docker-compose.html#configurator){:target="_blank"} on our website. It will ask you a few questions about what you plan to do with Weaviate and customize a Compose file (including all module containers, if you select any) in the last step.

@@ -6,7 +6,7 @@ nav-parent: Modules
 title: Question Answering
 description: Weaviate Q&A Transformers module
 tags: ['qna-transformers', 'transformers']
-menu-order: 1
+sidebar_position: 1
 open-graph-type: article
 toc: true
 redirect_from:

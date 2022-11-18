@@ -6,7 +6,7 @@ title: /v1/schema
 intro: 'Before adding data to Weaviate, you need to create a schema. The schema contains the structure of your Weaviate in graph format. You will use the graph format to search through your Weaviate instance using <a href="../graphql-references/">GraphQL</a>. To learn how to create a schema, you can follow <a href="../tutorials/how-to-create-a-schema.html">this How-To tutorial</a>.'
 description: 'Before adding data to Weaviate, you need to create a schema. The schema contains the structure of your Weaviate in graph format. You will use the graph format to search through your Weaviate instance.'
 tags: ['RESTful API', 'references', 'schema']
-menu-order: 1
+sidebar_position: 1
 open-graph-type: article
 toc: true
 redirect_from:

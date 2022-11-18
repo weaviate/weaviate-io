@@ -1,15 +1,20 @@
 ---
-layout: post
 title: Weaviate 1.14 release
-description: "Learn, what is new in Weaviate 1.14, the most reliable and observable Weaviate release yet!"
-published: true
-author: Sebastian Witalec
-author-img: /img/people/icon/sebastian.jpg
-card-img: /img/blog/hero/weaviate-1-14-card.png
-hero-img: /img/blog/hero/weaviate-1-14.png
+slug: Weaviate-release-1-14
+authors: [connor, etienne, laura, sebastian] 
 date: 2022-07-06
-toc: true
-redirect_from: /blog/2022/07/Weaviate-release-1-14.html
+tags: []
+image: ./img/hero.png
+
+# description: "Learn, what is new in Weaviate 1.14, the most reliable and observable Weaviate release yet!"
+# published: true
+# author: Sebastian Witalec
+# author-img: /img/people/icon/sebastian.jpg
+# card-img: /img/blog/hero/weaviate-1-14-card.png
+# hero-img: /img/blog/hero/weaviate-1-14.png
+# date: 2022-07-06
+# toc: true
+# redirect_from: /blog/2022/07/Weaviate-release-1-14.html
 ---
 
 ## What is new
@@ -25,7 +30,7 @@ Besides many bug fixes and reliability improvements, we have a few neat features
 * API changes
 
 ## Reliability fixes and improvements
-![Reliability and fixes](/img/blog/weaviate-1.14/reliability.png)
+![Reliability and fixes](./img/reliability.png)
 
 At SeMI Technologies, Reliability is one of our core values, which means that we will always strive to make our software dependable, bug-free, and behave as expected. 
 
@@ -87,7 +92,7 @@ Before, the HNSW index would grow in constant intervals of 25,000 objects. This 
 #### Solution
 To address this problem, we changed how the HNSW index grows. We implemented a relative growth pattern, where the HNSW index size increases by either 25% or 25’000 objects (whichever is bigger).
 
-![HNSW index growth chart](/img/blog/weaviate-1.14/hnsw-index-growth.jpg)
+![HNSW index growth chart](./img/hnsw-index-growth.jpg)
 
 #### Test
 After introducing the relative growth patterns, we've run a few tests.
@@ -122,12 +127,12 @@ These are few of the many improvements and bug fixes that were included in this 
 Check out [the changelog](https://github.com/semi-technologies/weaviate/releases/tag/v1.14.0){:target="_blank"} to see the complete list.
 
 ## Monitoring and Observability
-![Monitoring and Observability](/img/blog/weaviate-1.14/monitoring-and-observability.png)
+![Monitoring and Observability](./img/monitoring-and-observability.png)
 
 One of the biggest challenges of running software in production is to understand what is happening under the hood.
 That is especially important when something goes wrong, or we need to anticipate in advance when more resources are required.
 
-![It doesn't work.... why?](/img/blog/weaviate-1.14/what-is-happening.jpg)
+![It doesn't work.... why?](./img/what-is-happening.jpg)
 Without such insight, we end up looking at the black box, wondering what is going on.
 
 ### Announcement
@@ -135,7 +140,7 @@ With Weaviate `1.14` you can get a lot more insight into the resources and the p
 
 Now, you can expose Prometheus-compatible metrics for monitoring. Combine this with a standard Prometheus/Grafana setup to create visual dashboards for metrics around latencies, import speed, time spent on vector vs object storage, memory usage, and more.
 
-![Importing Data into Weaviate](/img/weaviate-sample-dashboard-importing.png "Importing Data Into Weaviate")
+![Importing Data into Weaviate](./img/weaviate-sample-dashboard-importing.png "Importing Data Into Weaviate")
 
 ### Example
 In a hypothetical scenario, you might be importing a large dataset. At one point the import process might slow down. You could then check your dashboards, where you might see that the vector indexing process is still running fast, while the object indexing slowed down. <br/>
@@ -155,7 +160,7 @@ Just spin everything up, run a few queries and navigate to the Grafana instance 
 To learn more, see the [documentation](/developers/weaviate/current/more-resources/monitoring.html){:target="_blank"}.
 
 ## Support for non-cosine distances
-![Support for non-cosine distances](/img/blog/weaviate-1.14/non-cosine-distances.png)
+![Support for non-cosine distances](./img/non-cosine-distances.png)
 
 Weaviate v1.14 adds support for **L2** and **Dot Product** distances.<br/>
 With this, you can now use datasets that support Cosine, L2 or Dot distances. This opens up a whole new world of use cases that were not possible before.<br/>
@@ -164,7 +169,7 @@ Additionally, this is all pluggable and very easy to add new distance metrics in
 ### Background
 In the past Weaviate used a single number that would control the distances between vectors and that was **certainty**. A certainty is a number between 0 and 1, which works perfectly for cosine distances, as cosine distances are limited to 360° and can be easily converted to a range of 0-1.
 
-![L2 and Dot Product distance calculations](/img/blog/weaviate-1.14/distances.png)
+![L2 and Dot Product distance calculations](./img/distances.png)
 
 However, some machine learning models are trained with other distance metrics, like L2 or Dot Product. If we look at euclidean-based distances, two points can be infinitely far away from each other, so translating that to a bound certainty of 0-1 is not possible.
 
@@ -186,7 +191,7 @@ If that is something up your street, check out [the distancer code on github](ht
 Just make sure to include plenty of tests. Remember: “reliability, reliability, reliability”.
 
 ## Updated API endpoints to manipulate data objects of specific class
-![Updated API endpoints](/img/blog/weaviate-1.14/updated-API-endpoints.png)
+![Updated API endpoints](./img/updated-API-endpoints.png)
 
 The REST API CRUD operations now require you to use both an **object ID** and the target **class name**.<br/>
 This ensures that the operations are performed on the correct objects.
@@ -229,7 +234,7 @@ There are also updates in the language clients, where you now should provide a c
 Of course, making Weaviate more reliable would be a lot harder without the great community around Weaviate.
 <br/>As it is often the case: *“You can’t fix issues you didn’t know you have”*.
 
-<!-- ![You can’t fix issues you didn’t know you have](/img/blog/weaviate-1.14/you-cant-fix.jpg) -->
+<!-- ![You can’t fix issues you didn’t know you have](./img/you-cant-fix.jpg) -->
 
 ### Thank you
 Thanks to many active members on Weaviate’s Community Slack and through GitHub issues, we were able to identify, prioritize and fix many more issues than if we had to do it alone.

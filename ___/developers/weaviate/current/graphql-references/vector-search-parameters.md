@@ -6,7 +6,7 @@ title: Vector search parameters
 intro: ​Vector search parameters allow you to conduct specific vector search operations. Some are built into Weaviate directly, and others are enabled through Weaviate modules.
 description: GraphQL search parameters
 tags: ['graphql', 'vector search parameters']
-menu-order: 5
+sidebar_position: 5
 open-graph-type: article
 toc: true
 ---

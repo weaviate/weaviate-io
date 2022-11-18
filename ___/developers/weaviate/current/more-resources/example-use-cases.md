@@ -7,7 +7,7 @@ title: Example use cases
 intro: Here you'll read about four example use cases with Weaviate.
 description: An overview of Weaviate use cases 
 tags: ['Weaviate', 'use cases']
-menu-order: 4
+sidebar_position: 4
 open-graph-type: article
 toc: true
 redirect_from:

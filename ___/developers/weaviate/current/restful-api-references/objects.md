@@ -6,7 +6,7 @@ title: /v1/objects
 intro: 'You can get, add, update, and delete individual data objects to and from a Weaviate via this end-point. If you want to add multiple data objects in one request, checkout the <a href="./batch.html">batch</a> endpoint. To query and search through the data checkout the <a href="../graphql-references/get.html">GraphQL</a> section.'
 description: 'You can add individual data objects to a Weaviate via this end-point.'
 tags: ['RESTful API', 'references', 'class']
-menu-order: 2
+sidebar_position: 2
 open-graph-type: article
 toc: true
 redirect_from:
@@ -106,11 +106,11 @@ Create a new data object. The provided meta-data and schema values are validated
 
 If you have a whole dataset that you plan on importing with Weaviate sending multiple single requests sequentially comes at a large cost:
 
-0. Each sequential request would be handled by a single thread server-side while most of the server resources are idle. In addition, if you only send the second request once the first has been completed, you will wait for a lot of network overhead.
-0. It’s much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing. 
-0. You do not have to do the parallelization yourself, you can use the [`/v1/batch`](./batch.html) endpoint for this. Even if you are sending batches from a single client thread, the objects within a batch will be handled by multiple server threads.
-0. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint. 
-0. Go to the [`/v1/batch`](./batch.html) endpoint.
+1. Each sequential request would be handled by a single thread server-side while most of the server resources are idle. In addition, if you only send the second request once the first has been completed, you will wait for a lot of network overhead.
+1. It’s much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing. 
+1. You do not have to do the parallelization yourself, you can use the [`/v1/batch`](./batch.html) endpoint for this. Even if you are sending batches from a single client thread, the objects within a batch will be handled by multiple server threads.
+1. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint. 
+1. Go to the [`/v1/batch`](./batch.html) endpoint.
 
 ### Method and URL
 

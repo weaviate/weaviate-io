@@ -6,7 +6,7 @@ title: FAQ
 intro: Aha, you have a question! We hope that you can find the answer here, but if you don't, you can reach us via Stackoverflow (make sure to tag your question with weaviate), Github, or Slack. If your question serves a general-purpose, we will add it to this page.
 description: Frequently Asked Questions about Weaviate
 tags: ['FAQ']
-menu-order: 1
+sidebar_position: 1
 open-graph-type: article
 toc: true
 redirect_from:
@@ -326,8 +326,8 @@ values based on the limit:
 
 If you need a higher search quality for a given limit you can consider the following options:
 
-0. Instead of using a dynamic `ef` value, use a fixed one that provides the desired recall.
-0. If your search quality varies a lot depending on the query-time `ef` values,
+1. Instead of using a dynamic `ef` value, use a fixed one that provides the desired recall.
+1. If your search quality varies a lot depending on the query-time `ef` values,
    you should also consider choosing stronger build parameters. The [ANN
    benchmarks section](../benchmarks/ann.html#results) present a combination of
    many different parameter combination for various datasets.
@@ -336,7 +336,7 @@ If you need a higher search quality for a given limit you can consider the follo
 
 Look at the:
 
-0. [Knowledge base of old issues](https://github.com/semi-technologies/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
-0. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
-0. For issues: [Github](https://github.com/semi-technologies/weaviate/issues). Or,
-0. Ask your question in the Slack channel: [Slack]({{ site.slack_signup_url }}).
+1. [Knowledge base of old issues](https://github.com/semi-technologies/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
+1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
+1. For issues: [Github](https://github.com/semi-technologies/weaviate/issues). Or,
+1. Ask your question in the Slack channel: [Slack]({{ site.slack_signup_url }}).

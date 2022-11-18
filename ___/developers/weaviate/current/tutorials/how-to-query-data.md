@@ -6,7 +6,7 @@ title: How to query data?
 intro: How to query data in Weaviate?
 description: How to query data in Weaviate?
 tags: ['how to', 'query data']
-menu-order: 4
+sidebar_position: 4
 open-graph-type: article
 toc: true
 redirect_from:

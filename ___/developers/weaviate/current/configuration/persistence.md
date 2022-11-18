@@ -5,7 +5,7 @@ sub-menu: Configuration
 title: Persistence
 description: Persistence
 tags: ['configuration', 'persistence']
-menu-order: 5
+sidebar_position: 5
 open-graph-type: article
 toc: true
 redirect_from:

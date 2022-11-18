@@ -6,7 +6,7 @@ title: How to do classification?
 intro: How to classify data with Weaviate?
 description: How to classify data with Weaviate?
 tags: ['how to', 'classify data', 'classification']
-menu-order: 6
+sidebar_position: 6
 open-graph-type: article
 toc: true
 redirect_from:

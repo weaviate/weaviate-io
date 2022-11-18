@@ -6,7 +6,7 @@ title: GraphQL references
 intro: GraphQL references overview
 description: GraphQL references overview
 tags: ['GraphQL references']
-menu-order: 0
+sidebar_position: 0
 open-graph-type: article
 toc: true
 redirect_from:

@@ -6,7 +6,7 @@ title: Glossary
 intro: 
 description: Glossary
 tags: ['glossary', 'terminology']
-menu-order: 2
+sidebar_position: 2
 open-graph-type: article
 toc: false
 redirect_from:

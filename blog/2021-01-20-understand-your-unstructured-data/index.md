@@ -1,16 +1,21 @@
 ---
 layout: post
 title: What if you could understand your unstructured data?
-description: "Learn how the AI-first search engine Weaviate unlocks the potential of unstructured data and why this is important."
-published: true
-author: Laura Ham
-author-img: /img/people/icon/laura.jpg
-card-img: /img/blog/hero/understanding-unstructured-data-card.png
-canonical-url: https://medium.com/semi-technologies/what-if-you-could-understand-your-unstructured-data-92f0861e016
-canonical-name: Medium
+slug: understand-your-unstructured-data
+authors: [laura] 
 date: 2021-01-20
-toc: true
-redirect_from: /blog/2021/01/understand-your-unstructured-data.html
+tags: []
+image: ./img/hero.png
+# canonical-url: https://medium.com/semi-technologies/what-if-you-could-understand-your-unstructured-data-92f0861e016
+# canonical-name: Medium
+
+# description: "Learn how the AI-first search engine Weaviate unlocks the potential of unstructured data and why this is important."
+# published: true
+# author: Laura Ham
+# author-img: /img/people/icon/laura.jpg
+# card-img: /img/blog/hero/understanding-unstructured-data-card.png
+# toc: true
+# redirect_from: /blog/2021/01/understand-your-unstructured-data.html
 ---
 
 ## Intro

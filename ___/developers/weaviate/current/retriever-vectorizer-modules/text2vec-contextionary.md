@@ -6,7 +6,7 @@ nav-parent: Modules
 title: text2vec-contextionary
 description: Use the GloVe and Fasttext based Weaviate module
 tags: ['text2vec-contextionary', 'contextionary']
-menu-order: 4
+sidebar_position: 4
 open-graph-type: article
 toc: true
 redirect_from:

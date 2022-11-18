@@ -6,7 +6,7 @@ title: Docker Compose
 intro: Weaviate can be run using Docker-compose. This setup is ideal to develop locally or in the cloud. The handy configurator can be used to configure a setup to your liking.
 description: DESC
 tags: ['installation', 'Docker']
-menu-order: 2
+sidebar_position: 2
 open-graph-type: article
 toc: true
 ---

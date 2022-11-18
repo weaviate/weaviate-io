@@ -8,7 +8,7 @@ title: ANN
 intro: ANN benchmarks for the Weaviate vector search engine
 description: ANN benchmarks for the Weaviate vector search engine
 tags: ['Weaviate', 'performance', 'benchmarks', 'ANN benchmarks']
-menu-order: 5
+sidebar_position: 5
 open-graph-type: article
 toc: true
 ---

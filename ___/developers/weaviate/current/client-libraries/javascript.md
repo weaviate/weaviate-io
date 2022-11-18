@@ -6,7 +6,7 @@ title: JavaScript
 intro: A JavaScript client library for Weaviate.
 description: JavaScript client library for Weaviate
 tags: ['JavaScript', 'client library']
-menu-order: 2
+sidebar_position: 2
 open-graph-type: article
 toc: true
 redirect_from:

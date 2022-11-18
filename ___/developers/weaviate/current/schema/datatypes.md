@@ -5,7 +5,7 @@ sub-menu: Schema
 title: Data types
 description: 
 tags: ['Data types']
-menu-order: 2
+sidebar_position: 2
 open-graph-type: article
 toc: true
 redirect_from:

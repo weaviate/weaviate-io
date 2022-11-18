@@ -6,7 +6,7 @@ title: /v1/meta
 intro: The RESTful meta endpoint gives information about the current Weaviate instance. It can be used to learn about your current Weaviate instance and to provide information to another Weaviate instances that wants to interact with the current instance.
 description: RESTful API meta reference
 tags: ['RESTful API', 'references', 'meta']
-menu-order: 6
+sidebar_position: 6
 open-graph-type: article
 toc: true
 redirect_from:

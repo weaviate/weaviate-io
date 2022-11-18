@@ -7,7 +7,7 @@ title: Index types and performance
 intro: 
 description: 
 tags: ['Weaviate', 'performance']
-menu-order: 5
+sidebar_position: 5
 open-graph-type: article
 toc: true
 redirect_from:

@@ -6,7 +6,7 @@ title: Explore{}
 intro: You can explore the search graph based on the semantic meaning of the data concepts in a Weaviate using the GraphQL Explore{} function. Search results are based on given data, meta data and the Contextionary used in Weaviate.
 description: GraphQL Explore{} function
 tags: ['graphql', 'explore{}']
-menu-order: 3
+sidebar_position: 3
 open-graph-type: article
 toc: true
 redirect_from:

@@ -1,16 +1,21 @@
 ---
-layout: post
 title: The AI-First Database Ecosystem
-description: This is the description, it describes what the post is about
-published: true
-author: Bob van Luijt
-author-img: /img/people/bob.jpg
-card-img: /img/blog/hero/ai-first-database-ecosystem-card.jpeg
-hero-img: https://imageio.forbes.com/specials-images/imageserve/61950180a260c12d22db736c/Medium-wide-shot-of-male-warehouse-worker-checking-orders-at-computer-workstation-in/960x0.jpg?format=jpg&width=960
-canonical-url: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
-canonical-name: Forbes
-toc: false
-redirect_from: /blog/2022/06/The-AI-First-Database-Ecosystem.html
+slug: The-AI-First-Database-Ecosystem
+authors: [bob] 
+date: 2022-06-23
+tags: []
+image: ./img/hero.jpeg
+# canonical-url: https://www.forbes.com/sites/forbestechcouncil/2022/06/23/the-ai-first-database-ecosystem/
+# canonical-name: Forbes
+
+# description: This is the description, it describes what the post is about
+# published: true
+# author: Bob van Luijt
+# author-img: /img/people/bob.jpg
+# card-img: /img/blog/hero/ai-first-database-ecosystem-card.jpeg
+# hero-img: https://imageio.forbes.com/specials-images/imageserve/61950180a260c12d22db736c/Medium-wide-shot-of-male-warehouse-worker-checking-orders-at-computer-workstation-in/960x0.jpg?format=jpg&width=960
+# toc: false
+# redirect_from: /blog/2022/06/The-AI-First-Database-Ecosystem.html
 ---
 
 A new ecosystem of smaller companies is ushering in a “third wave” of AI-first database technology. New search engines and databases brilliantly answer queries posed in natural language, but their machine-learning models are not limited to text searches. The same approach can also be used to search anything from images to DNA.

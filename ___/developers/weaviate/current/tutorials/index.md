@@ -6,7 +6,7 @@ title: Tutorials
 intro: How-to guides help you to get more familiar with Weaviate. You will learn how to get started, how to interact with the data, how to perform more advanced actions like semantic search and classification, and how to interpret and evaluate the results. These guides are more elaborate then the API references, to give you some background idea which might help you to understand the workflow and possibilities.
 description: How-tos overview
 tags: ['how to']
-menu-order: 0
+sidebar_position: 0
 open-graph-type: article
 toc: false
 redirect_from:

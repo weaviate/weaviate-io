@@ -6,7 +6,7 @@ nav-parent: Modules
 title: ref2vec-centroid
 description: Calculate vectors based on the centroid of references
 tags: ['ref2vec-centroid', 'centroid']
-menu-order: 7
+sidebar_position: 7
 open-graph-type: article
 toc: true
 redirect_from:

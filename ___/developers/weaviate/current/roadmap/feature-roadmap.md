@@ -5,7 +5,7 @@ sub-menu: Roadmap
 title: Feature roadmap
 description: Weaviate's Feature Roadmap
 tags: ['functional', 'roadmap']
-menu-order: 1
+sidebar_position: 1
 open-graph-type: article
 toc: true
 ---

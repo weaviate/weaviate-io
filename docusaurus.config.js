@@ -37,7 +37,10 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+
+          path: 'docs',                // folder name – where the docs are
+          routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
         },
         blog: {
           showReadingTime: true,
@@ -57,52 +60,74 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: '',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/site/logo.svg',
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Tutorial',
+            type: 'dropdown',
+            label: 'Content',
+            position: 'right',
+            items: [
+              { to: '/blog', label: 'Blog' },
+              // { to: '/podcast', label: 'Podcast' },
+            ]
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            type: 'dropdown',
+            label: 'Developers',
+            position: 'right',
+            items: [
+              {
+                label: 'Docs',
+                sidebarId: 'docsSidebar',
+                type: 'doc',
+                docId: 'weaviate/index',
+              },
+              {
+                label: 'Contributor Guide',
+                sidebarId: 'contributorSidebar',
+                type: 'doc',
+                docId: 'contributor-guide/index',
+              },
+            ]
+          },
+          {
+            href: 'https://github.com/semi-technologies/weaviate-io',
             label: 'GitHub',
             position: 'right',
           },
         ],
       },
+
       footer: {
         style: 'dark',
         links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
+          // {
+          //   title: 'Docs',
+          //   items: [
+          //     {
+          //       label: 'Tutorial',
+          //       to: '/developers/weaviate/getting-started',
+          //     },
+          //   ],
+          // },
           {
             title: 'Community',
             items: [
               {
                 label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                href: 'https://stackoverflow.com/tags/weaviate/',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'Slack',
+                href: 'https://weaviate.slack.com/',
               },
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://twitter.com/weaviate_io',
               },
             ],
           },
@@ -113,14 +138,18 @@ const config = {
                 label: 'Blog',
                 to: '/blog',
               },
+              // {
+              //   label: 'Podcast',
+              //   to: '/podcast',
+              // },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/semi-technologies/weaviate-io',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Weaviate, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

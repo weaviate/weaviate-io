@@ -5,7 +5,7 @@ sub-menu: More resources
 title: Architecture
 intro: 
 tags: ['Architecture']
-menu-order: 4
+sidebar_position: 4
 open-graph-type: article
 toc: true
 redirect_from:

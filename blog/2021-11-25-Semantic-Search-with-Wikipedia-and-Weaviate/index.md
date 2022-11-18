@@ -1,16 +1,21 @@
 ---
-layout: post
 title: Wikipedia and Weaviate
-description: Semantic search through the complete Wikipedia with the Weaviate vector search engine
-published: true
-author: Bob van Luijt
-author-img: /img/people/bob.jpg
-card-img: /img/blog/hero/semantic-search-with-wikipedia-and-weaviate.jpg
-hero-img: /img/blog/hero/semantic-search-with-wikipedia-and-weaviate-card.jpg
-canonical-url: https://towardsdatascience.com/semantic-search-through-wikipedia-with-weaviate-graphql-sentence-bert-and-bert-q-a-3c8a5edeacf6   
-canonical-name: Towards Data Science
-toc: false
-redirect_from: /blog/2021/11/Semantic-Search-with-Wikipedia-and-Weaviate.html
+slug: Semantic-Search-with-Wikipedia-and-Weaviate
+authors: [bob] 
+date: 2021-11-25
+tags: []
+image: ./img/hero.jpg
+# canonical-url: https://towardsdatascience.com/semantic-search-through-wikipedia-with-weaviate-graphql-sentence-bert-and-bert-q-a-3c8a5edeacf6   
+# canonical-name: Towards Data Science
+
+# description: Semantic search through the complete Wikipedia with the Weaviate vector search engine
+# published: true
+# author: Bob van Luijt
+# author-img: /img/people/bob.jpg
+# card-img: /img/blog/hero/semantic-search-with-wikipedia-and-weaviate.jpg
+# hero-img: /img/blog/hero/semantic-search-with-wikipedia-and-weaviate-card.jpg
+# toc: false
+# redirect_from: /blog/2021/11/Semantic-Search-with-Wikipedia-and-Weaviate.html
 ---
 
 ## Intro
@@ -20,7 +25,7 @@ The Wikipedia dataset used is the “truthy” version of October 9th, 2021. Aft
 
 📄 The complete dataset and code is open-source and available [on Github](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate){:target="_blank"}.
 
-![Demo GIF of Weaviate using the Wikipedia dataset](https://miro.medium.com/max/1400/1*UrAMc2buVKmo9dRpiH4SqA.gif)
+![Demo GIF of Weaviate using the Wikipedia dataset](./img/weaviate-using-the-Wikipedia-dataset.gif)
 *Example semantic search queries in Weaviate’s GraphQL interface — GIF by Author*
 
 ## Importing the Data In Two Steps
@@ -39,17 +44,17 @@ Within Weaviate we will be using a schema that determines how we want to query t
 
 First, because our use case is semantic search over Wikipedia, we will be dividing the dataset into paragraphs and use Weaviate’s graph schema to link them back to the articles. Therefore we need two classes; *Article* and *Paragraph*.
 
-![Weaviate class structure](https://miro.medium.com/max/1400/1*EiNwH-6mzFV9XEzUbzOs4g.png)
+![Weaviate class structure](./img/class-schema.png)
 *Weaviate class structure*
 
 Next, we want to make sure that the content of the paragraphs gets vectorized properly, the vector representations that the SentenceBERT transformers will generate are used for all our semantic search queries.
 
-![A single data type that gets vectorized](https://miro.medium.com/max/1400/1*hr-hXkHxRunaFE_DyCYniA.png)
+![A single data type that gets vectorized](./img/property-definition.png)
 *A single data type that gets vectorized*
 
 Last, we want to make graph relations, in the dataset from step one we will distill all the graph relations between articles that we can reference like this:
 
-![Paragraph cross-references](https://miro.medium.com/max/1400/1*KQ6bMvifjVFW0Vge9OMJ8g.png)
+![Paragraph cross-references](./img/cross-references.png)
 *Paragraph cross-references*
 
 The complete schema we import using the [Python client](/developers/weaviate/current/client-libraries/python.html){:target="_blank"} can be found [here](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/blob/main/step-2/import.py#L19-L120){:target="_blank"}.
@@ -57,7 +62,7 @@ The complete schema we import using the [Python client](/developers/weaviate/cur
 ## Step 2.2 — Import the Data
 Because we are going to vectorize a lot of data. We will be using the same machine as mentioned in the opening but with 4 instead of 1 GPU.
 
-![Google Cloud GPU setup with a Weaviate load balancer](https://miro.medium.com/max/1400/1*vlqMiJ6yJXtj_C9vwi3fzw.png)
+![Google Cloud GPU setup with a Weaviate load balancer](./img/load-balancer.png)
 *Google Cloud GPU setup with a Weaviate load balancer*
 
 The load balancer will redirect the traffic to available Weaviate transformer modules so that the import speed significantly increases. In the section: *Implementation Strategies — Bringing Semantic Search to Production* below you’ll find more info about how you can run this in production.
@@ -66,12 +71,12 @@ Most critically, we are going to set an external volume in the Docker Compose fi
 
 In the environment variables, we set a CLUSTER_HOSTNAME, an arbitrary name you can set to identify a cluster.
 
-![Docker environment setup](https://miro.medium.com/max/1400/1*jWIfbgrUzQ_J4ahetu6Q1g.png)
+![Docker environment setup](./img/docker-configuration.png)
 *Docker environment setup*
 
 We will also set the location of the volume outside Weaviate, in this case the data will be stored in the /var/weaviate folder
 
-![Volumes for backup](https://miro.medium.com/max/1400/1*sdVTsJn6hqH4YefQvYK3YA.png)
+![Volumes for backup](./img/backup-configuration.png)
 *Volumes for backup*
 
 You can find the complete docker-compose file we’ve used here.

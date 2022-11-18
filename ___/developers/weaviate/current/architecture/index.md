@@ -5,7 +5,7 @@ sub-menu: Architecture
 title: Architecture
 description: Architecture Overview
 tags: ['architecture']
-menu-order: 0
+sidebar_position: 0
 open-graph-type: article
 toc: false
 ---

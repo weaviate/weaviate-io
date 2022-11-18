@@ -1,16 +1,21 @@
 ---
-layout: post
 title: Support for Hugging Face Inference API in Weaviate
-description: "Running ML Model Inference in production is hard. You can use Weaviate – a vector search engine – with Hugging Face Inference module to delegate the heavy lifting."
-published: true
-author: Sebastian Witalec 
-author-img: /img/people/icon/sebastian.jpg
-card-img: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
-hero-img: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
-og: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
+slug: Hugging-Face-Inference-API-in-Weaviate
+authors: [sebastian] 
 date: 2022-09-27
-toc: true
-redirect_from: /blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html
+tags: []
+image: ./img/hero.png
+
+# description: "Running ML Model Inference in production is hard. You can use Weaviate – a vector search engine – with Hugging Face Inference module to delegate the heavy lifting."
+# published: true
+# author: Sebastian Witalec 
+# author-img: /img/people/icon/sebastian.jpg
+# card-img: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
+# hero-img: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
+# og: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
+# date: 2022-09-27
+# toc: true
+# redirect_from: /blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html
 ---
 
 Vector Search engines use Machine Learning models to offer incredible functionality to operate on your data. We are looking at anything from **summarizers** (that can summarize any text into a short) sentence), through **auto-labelers** (that can classify your data tokens), to **transformers** and **vectorizers** (that can convert any data – text, image, audio, etc. – into vectors and use that for context-based queries) and many more use cases.
@@ -38,7 +43,7 @@ The Hugging Face module, allows you to use the [Hugging Face Inference service](
 > Both modules are enabled by default in the [Weaviate Cloud Service](/pricing.html){:target="_blank"}.
 
 ## Overview
-![Overview](/img/blog/hugging-face-inference-api/hugging-face-module-overview.png)
+![Overview](./img/hugging-face-module-overview.png)
 
 The Hugging Face module is quite incredible, for many reasons.
 
@@ -75,7 +80,7 @@ For more detailed instructions please check the [documentation](/developers/weav
 
 The overall process to use a Hugging Face module with Weaviate is fairly straightforward.
 
-![Recipe for using the Hugging Face module](/img/blog/hugging-face-inference-api/how-to-get-started-recipe.png)
+![Recipe for using the Hugging Face module](./img/how-to-get-started-recipe.png)
 If this was a cooking class and you were following a recipe.
 
 You would need the following ingredients:

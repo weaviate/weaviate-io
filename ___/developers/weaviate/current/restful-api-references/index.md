@@ -6,7 +6,7 @@ title: RESTful API references
 intro: This page contains information about Weaviate's RESTful API.
 description: This page contains information about Weaviate's RESTful API.
 tags: ['RESTful API references']
-menu-order: 0
+sidebar_position: 0
 open-graph-type: article
 toc: true
 redirect_from:

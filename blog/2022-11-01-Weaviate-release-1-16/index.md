@@ -1,18 +1,25 @@
 ---
-layout: post
 title: Weaviate 1.16 release
-description: "Learn, what is new in Weaviate 1.16. New filter operators, distributed backups, centroid module, node status API, Azure-based OIDC, and more frequent stable releases."
-published: true
-author: Sebastian Witalec
-author-img: /img/people/icon/sebastian.jpg
-card-img: /img/blog/hero/weaviate-1-16-card.png
-hero-img: /img/blog/hero/weaviate-1-16-card.png
-og: /img/blog/hero/weaviate-1-16-card.png
+slug: Weaviat-1-16-release
+authors: [connor, jp, erika, sebastian, zain] 
 date: 2022-11-01
-toc: false
+tags: []
+image: ./img/hero.png
+
+# layout: post
+# title: Weaviate 1.16 release
+# description: "Learn, what is new in Weaviate 1.16. New filter operators, distributed backups, centroid module, node status API, Azure-based OIDC, and more frequent stable releases."
+# published: true
+# card-img: /img/blog/hero/weaviate-1-16-card.png
+# hero-img: /img/blog/hero/weaviate-1-16-card.png
+# og: /img/blog/hero/weaviate-1-16-card.png
+# date: 2022-11-01
+# toc: false
 ---
 
 We are happy to announce the release of Weaviate `1.16`, which brings a set of great features, performance and UX improvements, and fixes.
+
+<!-- truncate -->
 
 ## The brief
 If you like your content brief and to the point, here is the TL;DR of this release:
@@ -26,7 +33,7 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 Read below to learn more about each of these points in more detail.
 
 ## New Filter Operators
-![New Filter Operators](/img/blog/weaviate-1.16/filters.png)
+![New Filter Operators](./img/filters.png)
 
 One of the core functionalities of databases are the index structures that allow us to find data objects quickly. The ability to seamlessly combine an inverted index with a vector index is part of what makes Weaviate so powerful. An inverted index maps the property value to the objects that it appears in. This is important when filtering through your database to find specific data objects.
 
@@ -150,7 +157,7 @@ where: {
 For more information on how to filter by the property length, check out the [documentation](/developers/weaviate/current/graphql-references/filters.html#filter-by-property-length){:target="_blank"}.
 
 ## Distributed Backups
-![Distributed Backups](/img/blog/weaviate-1.16/distributed-backups.png)
+![Distributed Backups](./img/distributed-backups.png)
 
 In Weaviate `1.15`, we introduced backup functionality, which allows you to back up and restore your Weaviate schema and data (to local storage or a cloud provider, like GCS or AWS S3) with a single command.
 
@@ -167,7 +174,7 @@ Before we give you a peek under the hood of how the new distributed backup and r
 > We believe that this seamless user experience is one of the greatest value generators.
 
 ### A peek under the hood - The delicate dance of distributed backup and restore:
-![The dance of distributed backup and restore](/img/blog/weaviate-1.16/backup-dance.png)
+![The dance of distributed backup and restore](./img/backup-dance.png)
 
 Every node in Weaviate takes part in the delicate dance that allows for the backup and restore operations to take place across this distributed system. 
 
@@ -176,7 +183,7 @@ Individual nodes are responsible for carrying out their own backup and restore o
 Every great choreographed dance needs a conductor. And the conductor of this whole distributed backup and restore show is a node called the Coordinator - a servant leader that makes sure that all participating nodes and shards carry out their own individual backup and restore operations, and communicate back to it once these tasks are completed.
 
 ## ref2vec-centroid Module
-![ref2vec-centroid Module](/img/blog/weaviate-1.16/ref2vec-centroid.png)
+![ref2vec-centroid Module](./img/ref2vec-centroid.png)
 
 Weaviate `1.16` unveils the [ref2vec-centroid](/developers/weaviate/current/retriever-vectorizer-modules/ref2vec-centroid.html){:target="_blank"} module! Ref2Vec is about representing a data object based on the objects it references. The `ref2vec-centroid` module uses the average, or centroid vector, of the cross-referenced vectors to represent the referencing object.
 
@@ -186,8 +193,11 @@ Or in other words, if you have an object (i.e. a shopping basket) that contains 
 This module has applications in recommendation, knowledge graph representation, and representing long or complex multimodal objects.
 
 ### Demo
+<!-- TODO: check if this works. -->
+<!-- Might need to do a static image load trick -->
+<!-- MAKE sure to check other <img> and <video> across blogs -->
 <video width="100%" autoplay loop controls>
-  <source src="/img/blog/weaviate-1.16/ref2vec-centroid-demo.mp4" type="video/mp4">
+  <source src="./img/ref2vec-centroid-demo.mp4" type="video/mp4" />
 Your browser does not support the video tag.
 </video>
 
@@ -211,7 +221,7 @@ As excited as we are about the applications in personalization and recommendatio
 Check the [ref2vec-centroid](/developers/weaviate/current/retriever-vectorizer-modules/ref2vec-centroid.html){:target="_blank"} documentation to learn how to work with Ref2Vec.
 
 ## Node Status API
-![Node status API](/img/blog/weaviate-1.16/node-status-api.png)
+![Node status API](./img/node-status-api.png)
 
 The cluster doctor is in the house! Weaviate 1.16 introduces the node API endpoint, which allows you to check in on the health of your running clusters quickly. You can do this by sending a GET request to the node endpoint. As a response, you will receive a status check on all your nodes. Like this:
 
@@ -268,7 +278,7 @@ While right now this API can only display the current state of your clusters, in
 Check the [/v1/nodes](/developers/weaviate/current/restful-api-references/nodes.html){:target="_blank"} documentation to learn how to use the `Node Status API`.
 
 ## More powerful OIDC Auth
-![More powerful OIDC Auth](/img/blog/weaviate-1.16/oidc.png)
+![More powerful OIDC Auth](./img/oidc.png)
 
 Security is very, very important. And let’s face it - nobody wants to deal with yet another password. That’s why we support OpenID Connect (OIDC) [authentication](/developers/weaviate/current/configuration/authentication.html){:target="_blank"} in Weaviate, which users experience as a convenient and secure single sign-on. 
 
@@ -299,14 +309,14 @@ So, whenever we complete an important fix (or group of fixes) or introduce a sig
 
 During the lifetime of `v1.15`, we created **five stable releases**. So that you didn’t have to wait a day longer than necessary to get access to the important improvements. 
 
-![Fixes since v1.15](/img/blog/weaviate-1.16/fixes-since-1.15.png)
+![Fixes since v1.15](./img/fixes-since-1.15.png)
 
 ## Other improvements and bug fixes
 And, of course, many other improvements and bug fixes went into this release.
 
 You can find the complete list and the relevant links in the [release notes](https://github.com/semi-technologies/weaviate/releases/tag/v1.16.0){:target="_blank"}.
 
-![Fixes in v1.16](/img/blog/weaviate-1.16/fixes-1.16.png)
+![Fixes in v1.16](./img/fixes-1.16.png)
 
 ## Enjoy
 We hope you enjoy all the new features, new operators, new modules, performance improvements, and bug fixes that made this the best Weaviate release yet!🔥

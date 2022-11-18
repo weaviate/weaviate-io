@@ -1,16 +1,20 @@
 ---
-layout: post
 title: How Weaviate’s GraphQL API was designed
-description: "Any kind of data storage architecture needs an API. You want your users, and their applications, to access and interact with their data. And no matter how complicated the database architecture itself is, you want this interaction to happen as intuitively as possible."
-published: true
-author: Laura Ham
-author-img: /img/people/icon/laura.jpg
-card-img: /img/blog/hero/graphql-api-design-card.png
-canonical-url: https://medium.com/semi-technologies/how-weaviates-graphql-api-was-designed-b38885aa9cee
-canonical-name: Medium
+slug: GraphQL-API-design
+authors: [laura] 
 date: 2021-01-27
-toc: true
-redirect_from: /blog/2021/01/GraphQL-API-design.html
+tags: []
+image: ./img/hero.png
+# canonical-url: https://medium.com/semi-technologies/how-weaviates-graphql-api-was-designed-b38885aa9cee
+# canonical-name: Medium
+
+# description: "Any kind of data storage architecture needs an API. You want your users, and their applications, to access and interact with their data. And no matter how complicated the database architecture itself is, you want this interaction to happen as intuitively as possible."
+# published: true
+# author: Laura Ham
+# author-img: /img/people/icon/laura.jpg
+# card-img: /img/blog/hero/graphql-api-design-card.png
+# toc: true
+# redirect_from: /blog/2021/01/GraphQL-API-design.html
 ---
 
 
@@ -20,7 +24,7 @@ Weaviate uses the API query language [GraphQL](https://graphql.org/){:target="_b
 
 In this article we explain how the use of GraphQL leverages the UX of Weaviate, and how we approach the design of this API.
 
-<a href="/developers/weaviate/current/" target="_blank"><img src="/img/weaviate-demo.gif?i=8" alt="Demo of Weaviate" width="100%"></a>
+<a href="/developers/weaviate/current/" target="_blank"><img src="./img/weaviate-demo.gif?i=8" alt="Demo of Weaviate" width="100%" /></a>
 
 ## What is Weaviate and why does it need an API?
 Weaviate is an [open-source](https://github.com/semi-technologies/weaviate){:target="_blank"} Vector Search Engine: for understandable knowledge representation, enabling semantic search and automatic classification. Weaviate does not only store data, but also its (automatically derived) context, consisting of linguistic information and relations to other concepts. The result is a network of knowledge, or a graph of data.

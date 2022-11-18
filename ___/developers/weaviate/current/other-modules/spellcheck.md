@@ -6,7 +6,7 @@ nav-parent: Modules
 title: spellcheck
 description: Weaviate spellcheck module
 tags: ['spellcheck']
-menu-order: 1
+sidebar_position: 1
 open-graph-type: article
 toc: true
 redirect_from:

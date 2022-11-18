@@ -6,7 +6,7 @@ title: Semantic search through Wikipedia
 intro: 
 description: Semantic search through Wikipedia with Weaviate
 tags: ['semantic search', 'wikipedia']
-menu-order: 2
+sidebar_position: 2
 open-graph-type: article
 toc: true
 ---

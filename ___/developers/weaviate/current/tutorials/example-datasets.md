@@ -6,7 +6,7 @@ title: Example datasets
 intro: 
 description: Example datasets
 tags: ['example datasets']
-menu-order: 10
+sidebar_position: 10
 open-graph-type: article
 toc: true
 redirect_from:
