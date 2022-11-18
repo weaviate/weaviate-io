@@ -48,7 +48,7 @@ Send REST requests to Weaviate without any additional authentication headers or 
 
 ## OpenID Connect (OIDC)
 
-With [OpenID Connect](https://openid.net/connect/) (based on OAuth2), an
+With [OpenID Connect](https://openid.net/connect/){:target="_blank"} (based on OAuth2), an
 external identity provider and token issuer ('token issuer' hereafter) is responsible for managing users.
 
 When Weaviate receives a token (JSON Web Token or JWT), it verifies
@@ -60,8 +60,8 @@ correct, all contents of the token are trusted, which authenticates the user bas
 - Any "OpenID Connect" compatible token issuer implementing OpenID Connect
   Discovery can be
   used with Weaviate. Popular open-source solutions include Java-based
-  [Keycloak](https://www.keycloak.org/) and Golang-based
-  [dex](https://github.com/dexidp/dex).
+  [Keycloak](https://www.keycloak.org/){:target="_blank"} and Golang-based
+  [dex](https://github.com/dexidp/dex){:target="_blank"}.
 
 - By default, Weaviate will validate that the token includes a specified client
   id in the audience claim. If your token issuer does not support this feature,
@@ -69,11 +69,11 @@ correct, all contents of the token are trusted, which authenticates the user bas
 
 ### Configuration
 
-To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the Docker-Compose yaml. Additionally, the **OIDC token issuer** must be configured as appropriate. Configuring the OIDC token issuer is outside the scope of this document.
+To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the Docker Compose yaml for Weaviate. Additionally, the **OIDC token issuer** must be configured as appropriate. Configuring the OIDC token issuer is outside the scope of this document.
 
 > As of November 2022, we are aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff){:target="_blank"} may be useful.
 
-Please see the inline-yaml comments for details around the respective fields:
+The OIDC-related Docker Compose environment variables are shown below. Please see the inline-yaml comments for details around the respective fields:
 
 ```yaml
 services:
@@ -118,10 +118,10 @@ services:
 
 #### Weaviate OpenID endpoint
 
-If you have authentication enabled, you can request all details needed from the following endpoint:
+If you have authentication enabled, you can obtain Weaviate's OIDC configuration from the following endpoint:
 
 ```bash
-$ curl http://localhost:8080/v1/.well-known/openid-configuration
+$ curl [WEAVIATE URL]/v1/.well-known/openid-configuration
 ```
 
 ### How to use
