@@ -1,8 +1,0 @@
-.bundle/
-.jekyll-cache/
-.DS_Store
-vendor/
-_site/
-.jekyll-metadata
-.ruby-version
-img/og/og-documentation
