@@ -22,6 +22,8 @@ Vector Search engines – like [Weaviate](/developers/weaviate/current/){:target
 In a nutshell, a vector embedding is an array of numbers, that is used to describe an object. For example, strawberries could have a vector `[3, 0, 1]` – more likely the array would be a lot longer than that.<br/>
 *Note*, the meaning of each value in the array, depends on what Machine Learning model we use to generate them.
 
+<!-- truncate -->
+
 In order to judge how similar two objects are, we can compare their vector values, by using various **Distance Metrics**.
 
 In the *context of a Vector Search*, **Distance Metric** is a function that takes two vectors as input and calculates a distance value between the vectors. The distance can take many shapes, it can be the geometric distance between two points, it could be an angle between the vectors, it could be a count of vector component differences, etc. Ultimately, we use the calculated distance to judge how close or far apart two vector embeddings are. These metrics are used in machine learning for classification and clustering tasks, especially in semantic search.

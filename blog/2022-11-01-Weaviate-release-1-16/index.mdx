@@ -19,8 +19,6 @@ image: ./img/hero.png
 
 We are happy to announce the release of Weaviate `1.16`, which brings a set of great features, performance and UX improvements, and fixes.
 
-<!-- truncate -->
-
 ## The brief
 If you like your content brief and to the point, here is the TL;DR of this release:
 1. [New Filter Operators](#new-filter-operators) – that allow you to filter data based on null values or array lengths
@@ -193,13 +191,14 @@ Or in other words, if you have an object (i.e. a shopping basket) that contains 
 This module has applications in recommendation, knowledge graph representation, and representing long or complex multimodal objects.
 
 ### Demo
-<!-- TODO: check if this works. -->
+
+<!-- TODO: The video doesn't work find a way to fix it. -->
 <!-- Might need to do a static image load trick -->
 <!-- MAKE sure to check other <img> and <video> across blogs -->
-<video width="100%" autoplay loop controls>
-  <source src="./img/ref2vec-centroid-demo.mp4" type="video/mp4" />
+<!--<video width="100%" autoplay loop controls>
+  <source src={require('./img/ref2vec-centroid-demo.mp4')} type="video/mp4" />
 Your browser does not support the video tag.
-</video>
+</video>-->
 
 The demo above illustrates `ref2vec-centroid` in action for sports apparel recommendation. You can see how the list of available items changes with every user's click. Ref2Vec aggregates the embeddings of the user's interactions and converts them into a vector to search through.
 

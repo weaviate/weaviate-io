@@ -19,6 +19,10 @@ const config = {
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
 
+  customFields: {
+    weaviateVersion: '1.16.4'
+  },
+
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
@@ -82,13 +86,13 @@ const config = {
             items: [
               {
                 label: 'Docs',
-                sidebarId: 'docsSidebar',
+                sidebarid: 'docsSidebar',
                 type: 'doc',
                 docId: 'weaviate/index',
               },
               {
                 label: 'Contributor Guide',
-                sidebarId: 'contributorSidebar',
+                sidebarid: 'contributorSidebar',
                 type: 'doc',
                 docId: 'contributor-guide/index',
               },

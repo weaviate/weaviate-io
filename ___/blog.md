@@ -67,7 +67,7 @@ regenerate: true
             <a class="card-body" href="{{ post.url }}">
               <!-- Heading -->
               <h3>
-                {{ post.title }}
+                {{ post.title }} AA
               </h3>
               <!-- Text -->
               <p class="mb-0 text-muted">
