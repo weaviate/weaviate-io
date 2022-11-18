@@ -161,6 +161,73 @@ We outline the steps below for both methods of obtaining a token.
 5. Go to the `auth_url` in your browser, and log in if prompted. If successful, the token issuer will redirect the browser to the `redirect_url`, with additional parameters that include an `id_token` parameter. 
 6. Parse the `id_token` parameter value. This is your Bearer token.
 
+#### Code example
+
+We include an illustrative code example below in Python for demonstrating how to obtain an OIDC token. 
+
+```python
+import requests
+import re
+
+url = "http://localhost:8080"  # <-- Replace with your actual Weaviate URL
+
+# Get Weaviate's OIDC configuration
+weaviate_open_id_config = requests.get(url + "/v1/.well-known/openid-configuration")
+if weaviate_open_id_config.status_code == "404":
+    print("Your Weaviate instance is not configured with openid")
+
+response_json = weaviate_open_id_config.json()
+client_id = response_json["clientId"]
+href = response_json["href"]
+
+# Get the token issuer's OIDC configuration
+response_auth = requests.get(href)
+
+if "grant_types_supported" in response_auth.json():  
+    # For resource owner password flow
+    assert "password" in response_auth.json()["grant_types_supported"]
+
+    username = "username"  # <-- Replace with the actual username
+    password = "password"  # <-- Replace with the actual password
+
+    # Construct the POST request to send to 'token_endpoint'
+    auth_body = {
+        "grant_type": "password",
+        "client_id": client_id,
+        "username": username,
+        "password": password,
+    }
+    response_post = requests.post(response_auth.json()["token_endpoint"], auth_body)
+    print("Your access_token is:")
+    print(response_post.json()["access_token"])
+else:  
+    # For hybrid flow
+    authorization_url = response_auth.json()["authorization_endpoint"]
+    parameters = {
+        "client_id": client_id,
+        "response_type": "code%20id_token",
+        "response_mode": "fragment",
+        "redirect_url": url,
+        "scope": "openid",
+        "nonce": "abcd",
+    }
+    # Construct 'auth_url'
+    parameter_string = "&".join([key + "=" + item for key, item in parameters.items()])
+    response_auth = requests.get(authorization_url + "?" + parameter_string)
+
+    print("Please visit the following url with your browser to login:")
+    print(authorization_url + "?" + parameter_string)
+    print(
+        "After the login you will be redirected, the token is the 'id_token' parameter of the redirection url."
+    )
+
+    # You could use this regular expression to parse the token
+    resp_txt = "Redirection URL"
+    token = re.search("(?<=id_token=).+(?=&)", resp_txt)[0]
+
+print("Set as bearer token in the clients to access Weaviate.")
+```
+
 #### Token lifetime
 
 The token has a configurable expiry time that is set by the token issuer. We suggest establishing a workflow to periodically obtain a new token before expiry. 
