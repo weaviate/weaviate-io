@@ -132,7 +132,7 @@ The OIDC standard allows for many different methods *(flows)* of obtaining a tok
 
 While it is outside the scope of our documentation to cover every OIDC authentication flow, some possible options are to:
 - Use the `resource owner password flow` for trusted applications. 
-  - You can use WCS (`https://auth.wcs.api.semi.technology/`) as the token issuer using the `resource owner password flow`.
+  - You can use Weaviate Cloud Services / WCS (`https://auth.wcs.api.semi.technology/`) as the token issuer using the `resource owner password flow`.
   - Weaviate's Python client directly supports this method.
 - Or use the `hybrid flow` if Microsoft Azure AD is your token issuer or if you would like to prevent exposing passwords.
 
