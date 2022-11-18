@@ -98,14 +98,13 @@ An example of a complete class object including properties:
       "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector-search. You can ignore properties in searches by explicitly setting index to false.
     }
   ],
-  "invertedIndexConfig": {                  // Optional, defaults to the values shown here.
-    "cleanupIntervalSeconds": 60,            // Interval for async cleanup operations.
+  "invertedIndexConfig": {                  // Optional, index configuration.
     "stopwords": { 
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
     "indexTimestamps": false,                 // Optional, maintains inverted indices for each object by its internal timestamps
-    "IndexNullState": false,                 // Optional, maintains inverted indices for each property regarding its null state
-    "IndexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
+    "indexNullState": false,                 // Optional, maintains inverted indices for each property regarding its null state
+    "indexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of class in a multi-node setting, see section below
@@ -243,27 +242,27 @@ To perform queries which are filtered by timestamps, the target class must first
   }
 ```
 
-### invertedIndexConfig > IndexNullState
+### invertedIndexConfig > indexNullState
 
 *Note: This feature was introduced in `v1.16.0`.*
 
-To perform queries which are filtered by being null or not null, the target class must first be configured to maintain an inverted index for each property of a class that tracks if objects are null or not. This configuration is done by setting the `IndexNullState` field of the `invertedIndexConfig` object to `true`.
+To perform queries which are filtered by being null or not null, the target class must first be configured to maintain an inverted index for each property of a class that tracks if objects are null or not. This configuration is done by setting the `indexNullState` field of the `invertedIndexConfig` object to `true`.
 
 ```json
   "invertedIndexConfig": {
-    "IndexNullState": true
+    "indexNullState": true
   }
 ```
 
-### invertedIndexConfig > IndexPropertyLength
+### invertedIndexConfig > indexPropertyLength
 
 *Note: This feature was introduced in `v1.16.0`.*
 
-To perform queries which are filtered by the length of a property, the target class must first be configured to maintain an inverted index for this. This configuration is done by setting the `IndexPropertyLength` field of the `invertedIndexConfig` object to `true`.
+To perform queries which are filtered by the length of a property, the target class must first be configured to maintain an inverted index for this. This configuration is done by setting the `indexPropertyLength` field of the `invertedIndexConfig` object to `true`.
 
 ```json
   "invertedIndexConfig": {
-    "IndexPropertyLength": true
+    "indexPropertyLength": true
   }
 ```
 
