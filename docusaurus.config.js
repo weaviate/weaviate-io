@@ -6,9 +6,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'Weaviate Docs',
+  tagline: 'Vector Search Engine',
+  // url: 'https://weaviate-docusaurus.netlify.app',
+  url: 'https://weaviate.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -16,8 +17,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'semi-technologies', // Usually your GitHub org/user name.
+  projectName: 'weaviate-io', // Usually your repo name.
 
   customFields: {
     weaviateVersion: '1.16.4'

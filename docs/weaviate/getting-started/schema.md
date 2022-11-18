@@ -10,6 +10,9 @@ sidebar_position: 2
 # open-graph-type: article
 # toc: true
 ---
+<!-- TODO: find a way to import Tabs and TabItem by default in all documantation pages -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 You've made it to the schema getting started guide! The schema is the place where you will not only set data types, cross-references, and more, but you'll be tweaking index settings (ANN, reverse index, BM25).
 
@@ -18,7 +21,8 @@ This will also be a guide to getting your hands dirty! Oh, and this guide is a b
 ## Prerequisites 
 
 At this point, you should have Weaviate running either:
-
+<!-- TODO: Find a way to reference customFields.weaviateVersion from docusaurus.config.js -->
+<!-- And use it in place of {{ site.weaviate_version }} -->
 * in a sandbox on the [Weaviate Cloud Service](https://console.semi.technology)
     * if not, refer to the [Installation](./installation.html) lesson for instructions
 * or locally with Docker
@@ -32,31 +36,44 @@ You can communicate with Weaviate from your code by using one of the available [
 
 The first order of business, is to add the client library to your project.
 
-<!-- TODO: update in accordion -->
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
 
-* For `Python` add the `weaviate-client` to your system libraries with `pip`:
-  ```bash
+For `Python` add the `weaviate-client` to your system libraries with `pip`:
+```bash
 $ pip install weaviate-client
-  ```
+```
 
-* For `JavaScript` add `weaviate-client` to your project with `npm`:
-  ```bash
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+For `JavaScript` add `weaviate-client` to your project with `npm`:
+```bash
 $ npm install weaviate-client
-  ```
+```
 
-* For `Java` add this dependency to your project:
-  ```xml
-  <dependency>
-    <groupId>technology.semi.weaviate</groupId>
-    <artifactId>client</artifactId>
-    <version>3.2.0</version>
-  </dependency>
-  ```
+</TabItem>
+<TabItem value="java" label="Java">
 
-* For `Go` add `weaviate-go-client` to your project with `go get`:
-  ```bash
+For `Java` add this dependency to your project:
+```xml
+<dependency>
+  <groupId>technology.semi.weaviate</groupId>
+  <artifactId>client</artifactId>
+  <version>3.2.0</version>
+</dependency>
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+For `Go` add `weaviate-go-client` to your project with `go get`:
+```bash
 go get github.com/semi-technologies/weaviate-go-client/v4
-  ```
+```
+
+</TabItem>
+</Tabs>
 
 ## Connect to Weaviate
 
