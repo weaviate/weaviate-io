@@ -39,12 +39,12 @@ Read below to learn more about each of these points in more detail.
 
 ### Patch 1.15.1 note
 We have published a patch release v1.15.1.<br/>
-To learn more check the [Weaviate 1.15.1 patch release](/blog/2022/09/Weaviate-release-1-15-1.html){:target="_blank"} blog.
+To learn more check the [Weaviate 1.15.1 patch release](/blog/2022/09/Weaviate-release-1-15-1.html) blog.
 
 ### Community effort
 ![New Contributors](./img/new-contributors.jpg)
 
-😀We are extremely happy about this release, as it includes two big community contributions from [Aakash Thatte](https://github.com/sky-2002){:target="_blank"} and [Dasith Edirisinghe](https://github.com/DasithEdirisinghe){:target="_blank"}. Over the last few weeks, they collaborated with our engineers to make their contributions.
+😀We are extremely happy about this release, as it includes two big community contributions from [Aakash Thatte](https://github.com/sky-2002) and [Dasith Edirisinghe](https://github.com/DasithEdirisinghe). Over the last few weeks, they collaborated with our engineers to make their contributions.
 
 🚀**Aakash** implemented the two **new distance metrics**, while **Dasith** contributed by implementing the two **new Weaviate modules**.
 
@@ -78,7 +78,7 @@ Cloud-native backups in Weaviate are handled with the addition of the new **back
 * `backup-gcs` – for GCS
 * `backup-fs` – for local filesystem
 
-Without getting into too many details (see the [docs for more precise instructions](/developers/weaviate/current/configuration/backups.html){:target="_blank"}), each module requires a different set of settings.
+Without getting into too many details (see the [docs for more precise instructions](/developers/weaviate/current/configuration/backups.html)), each module requires a different set of settings.
 
 For S3 and GCS, you need your cloud bucket name, authentication details and some extra details like a project name or the cloud region.
 
@@ -170,7 +170,7 @@ So, if one day you find yourself with an environment that is not set up for what
 
 ### Follow up
 Are you ready to set up backups for your environment?
-Head to the [documentation](/developers/weaviate/current/configuration/backups.html){:target="_blank"} for a more in-depth overview and instructions.
+Head to the [documentation](/developers/weaviate/current/configuration/backups.html) for a more in-depth overview and instructions.
 
 ## Reduced memory usage
 
@@ -225,7 +225,7 @@ At the beginning of August, the Go team released `Go 1.19`, which introduced `GO
 
 With GOMEMLIMIT we can provide a soft memory cap, which tells Go how much memory we expect the application to need. This makes the GC more relaxed when RAM is plentiful and more aggressive when memory is scarce.
 
-To learn more about memory management, GC and GOMEMLIMIT, check out [this article](/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html){:target="_blank"}, which explains it all in more depth.
+To learn more about memory management, GC and GOMEMLIMIT, check out [this article](/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html), which explains it all in more depth.
 
 ### Announcement
 
@@ -253,12 +253,12 @@ When importing objects with an inherent order, such as timestamps or row numbers
 
 To address that in Weaviate `v1.15`, we've extended the BST with a **self-balancing Red-black tree**.
 
-Through rotations of the tree at insert, [Red-black trees](https://www.programiz.com/dsa/red-black-tree){:target="_blank"} ensure that no path from the root to leaf is more than twice as long as any other path. This achieves O(log n) insert times for ordered inserts.
+Through rotations of the tree at insert, [Red-black trees](https://www.programiz.com/dsa/red-black-tree) ensure that no path from the root to leaf is more than twice as long as any other path. This achieves O(log n) insert times for ordered inserts.
 
 ![Red-black tree demonstration](./img/red-black-tree.gif)
 *A visual representation of how the RBT works.*
 
-You can try it yourself [here](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html){:target="_blank"}. Add any ordered input, for example, 1, 2, 3, 4 and see how the tree stays balanced.
+You can try it yourself [here](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html). Add any ordered input, for example, 1, 2, 3, 4 and see how the tree stays balanced.
 
 ### Results
 We've run a few local tests to paint a better picture of what you could expect.
@@ -317,9 +317,9 @@ But don’t take our word for it, this was from a test run by one of our communi
 
 ![Hamming and Manhattan distance metrics](./img/distance-metrics.png)
 
-Thanks to the community contributions from [Aakash Thatte](https://github.com/sky-2002){:target="_blank"}, Weaviate `v1.15` adds two new distance metrics: **Hamming** distance and **Manhattan** distance. In total, you can now choose between five various distance metrics to support your datasets.
+Thanks to the community contributions from [Aakash Thatte](https://github.com/sky-2002), Weaviate `v1.15` adds two new distance metrics: **Hamming** distance and **Manhattan** distance. In total, you can now choose between five various distance metrics to support your datasets.
 
-Check out the [metrics documentation page](/developers/weaviate/current/vector-index-plugins/distances.html#distance-implementations-and-optimizations){:target="_blank"} for a complete overview of all available metrics in Weaviate.
+Check out the [metrics documentation page](/developers/weaviate/current/vector-index-plugins/distances.html#distance-implementations-and-optimizations) for a complete overview of all available metrics in Weaviate.
 
 ### Hamming distance
 The Hamming distance is a metric for comparing two numerical vectors. <br/>
@@ -354,7 +354,7 @@ For a deeper dive into the Hamming and Manhattan distances, check out this [amaz
 <!-- TODO: add an image for Weaviate modules -->
 ![New Weavaite modules](./img/weaviate-modules.png)
 
-The list of the new goodies included with Weaviate `v1.15` goes on. Courtesy of a fantastic community contribution from [Dasith Edirisinghe](https://github.com/DasithEdirisinghe){:target="_blank"}, we have two new Weaviate modules for you: Summarization and Hugging Face modules.
+The list of the new goodies included with Weaviate `v1.15` goes on. Courtesy of a fantastic community contribution from [Dasith Edirisinghe](https://github.com/DasithEdirisinghe), we have two new Weaviate modules for you: Summarization and Hugging Face modules.
 
 ### Summarization Module
 The Summarization module allows you to summarize text data at query time.
@@ -418,21 +418,21 @@ Which would return the following result:
 }
 ```
 
-Head to the [Summarization Module docs page](/developers/weaviate/current/reader-generator-modules/sum-transformers.html){:target="_blank"} to learn more.
+Head to the [Summarization Module docs page](/developers/weaviate/current/reader-generator-modules/sum-transformers.html) to learn more.
 
 ### Hugging Face Module
-The Hugging Face module (`text2vec-huggingface`) opens up doors to over 600 [Hugging Face sentence similarity models](https://huggingface.co/models?pipeline_tag=sentence-similarity){:target="_blank"}, ready to be used in Weaviate as a vectorization module.
+The Hugging Face module (`text2vec-huggingface`) opens up doors to over 600 [Hugging Face sentence similarity models](https://huggingface.co/models?pipeline_tag=sentence-similarity), ready to be used in Weaviate as a vectorization module.
 Now, that's a lot of new models. 😉
 
 #### How this works
 The way the module works, Weaviate coordinates the efforts around data imports, data updates, queries, etc. and delegates requests to the Hugging Face Inference API.
 
-You need a `Hugging Face API Token` to use the Hugging Face module. You can [request it here](https://huggingface.co/login?next=%2Fsettings%2Ftokens){:target="_blank"}.
+You need a `Hugging Face API Token` to use the Hugging Face module. You can [request it here](https://huggingface.co/login?next=%2Fsettings%2Ftokens).
 
-*Note. Hugging Face Inference uses [a pay-per-use pricing model](https://huggingface.co/inference-api#pricing){:target="_blank"}.<br />
+*Note. Hugging Face Inference uses [a pay-per-use pricing model](https://huggingface.co/inference-api#pricing).<br />
 Make sure to study it well before you run a big job.*
 
-To learn more, head to the [HuggingFace Module docs page](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html){:target="_blank"}.
+To learn more, head to the [HuggingFace Module docs page](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html).
 
 ## Other improvements and bug fixes
 
@@ -440,9 +440,9 @@ To learn more, head to the [HuggingFace Module docs page](/developers/weaviate/c
 
 And, of course, there are many other improvements and bug fixes that went into this release.
 
-You can find the complete list and the relevant links in the [release notes](https://github.com/semi-technologies/weaviate/releases/tag/v1.15.0){:target="_blank"}.
+You can find the complete list and the relevant links in the [release notes](https://github.com/semi-technologies/weaviate/releases/tag/v1.15.0).
 
 ## Enjoy
 We hope you enjoy all the new features, performance improvements, memory savings and bug fixes that made this the best Weaviate release yet!🔥
 
-Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, [Twitter](https://twitter.com/weaviate_io){:target="_blank"}, or [Github](https://github.com/semi-technologies/weaviate){:target="_blank"}.
+Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [Github](https://github.com/semi-technologies/weaviate).

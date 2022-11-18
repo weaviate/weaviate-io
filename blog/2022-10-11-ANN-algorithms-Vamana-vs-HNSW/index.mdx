@@ -36,7 +36,7 @@ In this series of blog posts, we will take you on a journey with us as we resear
 
 In this article, we will cover the need for disk-based solutions, explore Vamana (how it works and contrast it against HNSW), and present the result of Vamana implementation.
 
-> If you are new to vector search engines and ANN, I recommend you to read “[Why is Vector Search so fast?](/blog/2022/09/Why-is-Vector-Search-so-fast.html){:target="_blank"}”<br/>
+> If you are new to vector search engines and ANN, I recommend you to read “[Why is Vector Search so fast?](/blog/2022/09/Why-is-Vector-Search-so-fast.html)”<br/>
 > The article explains what vector search engines are and how they work.
 
 ## Need for approximation
@@ -47,7 +47,7 @@ In order for a vector database to efficiently search through a vast number of ve
 ![SIFT1M Benchmark example](./img/SIFT1M-benchmark.png)
 *See the [benchmark](/developers/weaviate/current/benchmarks/ann.html) page for more stats.*
 
-Weaviate does not look for the exact closest vectors in the store. Instead, it looks for approximate (close enough) elements. This means you could have a much faster reply, but there is no guarantee that you will actually have the closest element from your search. In the vector search space, we use [recall](https://en.wikipedia.org/wiki/Precision_and_recall){:target="_blank"} to measure the rate of the expected matches returned. The trade-off between recall and latency can be tuned by adjusting indexing parameters. Weaviate comes with reasonable defaults, but also it allows you to adjust build and query-time parameters to find the right balance.
+Weaviate does not look for the exact closest vectors in the store. Instead, it looks for approximate (close enough) elements. This means you could have a much faster reply, but there is no guarantee that you will actually have the closest element from your search. In the vector search space, we use [recall](https://en.wikipedia.org/wiki/Precision_and_recall) to measure the rate of the expected matches returned. The trade-off between recall and latency can be tuned by adjusting indexing parameters. Weaviate comes with reasonable defaults, but also it allows you to adjust build and query-time parameters to find the right balance.
 
 Weaviate incrementally builds up an index (graph representation of the vectors and their closest neighbors) with each incoming object. Then when a query arrives, Weaviate traverses the index to obtain a good approximated answer to the query in a fraction of the time that a brute-force approach would take.
 
@@ -56,14 +56,14 @@ Weaviate incrementally builds up an index (graph representation of the vectors a
 ## Need for disk solutions
 There are other challenges to overcome. Databases have grown so fast that even the above-described algorithms will not be enough. We no longer talk about thousands of vectors but **hundred of millions** or **even billions**! Keeping all the vectors in memory and adding a graph representation of vector connections **requires a lot of RAM**. This sparked the emergence of a new set of algorithms that allow vectors to reside on disk instead of in memory whilst retaining high performance.
 
-Some prominent examples of disk-based solutions include [DiskANN](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf){:target="_blank"} and [SPANN](https://arxiv.org/abs/2111.08566){:target="_blank"}.
+Some prominent examples of disk-based solutions include [DiskANN](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf) and [SPANN](https://arxiv.org/abs/2111.08566).
 
 ## The future of Weaviate
 Today, users use Weaviate in production to serve large-scale use cases with single-digit millisecond latencies and massive throughput. But not every use case requires such a high throughput that the cost of keeping all indexes in memory is justified. What if you have a case where you have a large-scale dataset but very few queries? What if cost-effectiveness is more of a priority than the lowest possible latencies?
 
 We believe there is a need for other index types besides the battle-tested HNSW implementation. But cost-effectiveness can never justify sacrificing the user experience. As a result, we are working on establishing a new type of vector index that combines the low operating cost of SSD-based solutions with the ease of use of existing in-memory solutions.
 
-At [SeMI Technologies](https://www.semi.technology){:target="_blank"}, we pride ourselves on our research acumen and on providing state-of-the-art solutions. So we took time to explore these solutions to identify and evaluate the right building blocks for Weaviate’s future.  Here we share some of our findings from this research.
+At [SeMI Technologies](https://www.semi.technology), we pride ourselves on our research acumen and on providing state-of-the-art solutions. So we took time to explore these solutions to identify and evaluate the right building blocks for Weaviate’s future.  Here we share some of our findings from this research.
 
 ## On HNSW vs Vamana comparison
 As the first step to disk-based vector indexing, we decided to explore Vamana – the algorithm behind the DiskANN solution. Here are some key differences between Vamana and HNSW:
@@ -101,7 +101,7 @@ HNSW, on the other hand, implements the same idea a bit differently. Instead of 
 ## Performance comparison
 So, how do they perform? Let’s take a look in terms of speed as well as recall.
 
-The chart below illustrates a comparison of the C++ Vamana [reference code](https://github.com/microsoft/DiskANN){:target="_blank"} provided by Microsoft and our [HNSW implementation](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw){:target="_blank"} when using Sift1M. Following Microsoft’s experiments, we have used sift-query.fvecs (100,000 vectors sample) for building the index and sift-query.fvecs (1,000 vectors sample) for querying. We are retrieving 10 **(fig. 1)** and 100 **(fig. 2)** objects per query. The chart shows the recall vs latency on the same Google Cloud setup Microsoft used. In both cases, you might notice that both Vamana and HNSW implementations are performing similarly.
+The chart below illustrates a comparison of the C++ Vamana [reference code](https://github.com/microsoft/DiskANN) provided by Microsoft and our [HNSW implementation](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw) when using Sift1M. Following Microsoft’s experiments, we have used sift-query.fvecs (100,000 vectors sample) for building the index and sift-query.fvecs (1,000 vectors sample) for querying. We are retrieving 10 **(fig. 1)** and 100 **(fig. 2)** objects per query. The chart shows the recall vs latency on the same Google Cloud setup Microsoft used. In both cases, you might notice that both Vamana and HNSW implementations are performing similarly.
 
 *Keep in mind that – while Vamana is the algorithm that powers DiskANN – at this stage, we are comparing both solutions in memory.*
 
@@ -113,7 +113,7 @@ The chart below illustrates a comparison of the C++ Vamana [reference code](http
 *Fig. 2: Recall vs Latency when retrieving the hundred approximate nearest neighbors.*
 
 ## Vamana implementation details
-We have also included a development implementation of the Vamana indexing algorithm in Weaviate. For the algorithm to perform well, such an implementation needs careful attention to the optimization of the code. The original algorithm from Microsoft rests upon the greedy search and the robust prune methods, which are described in the [DiskANN paper](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf){:target="_blank"} as follows:
+We have also included a development implementation of the Vamana indexing algorithm in Weaviate. For the algorithm to perform well, such an implementation needs careful attention to the optimization of the code. The original algorithm from Microsoft rests upon the greedy search and the robust prune methods, which are described in the [DiskANN paper](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf) as follows:
 
 ![Vamana algorithm](./img/vamana-algorithm.png)
 
@@ -167,8 +167,8 @@ Stay tuned as we explore these challenges and questions. We will share our insig
 Keep in touch and check [our blogs](/blog.html) from time to time.
 
 ## What's next
-Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html) and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
-Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don't forget to give us a ⭐️ while you are there.

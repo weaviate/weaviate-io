@@ -366,5 +366,5 @@ git branch -a
 
 There are lots of resources out there on git and GitHub. For example:
 
-- [**GitHub Skills**](https://skills.github.com/){:target="_blank"} is a learning program provided by GitHub that will teach you the fundamentals of git and GitHub
-- [**Pro Git Book**](https://git-scm.com/book/en/v2){:target="_blank"} is a comprehensive reference book on git
+- [**GitHub Skills**](https://skills.github.com/) is a learning program provided by GitHub that will teach you the fundamentals of git and GitHub
+- [**Pro Git Book**](https://git-scm.com/book/en/v2) is a comprehensive reference book on git

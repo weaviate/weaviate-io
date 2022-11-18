@@ -36,7 +36,7 @@ Example of **bad commit messages**, with reasons, include:
 * `modified README.md` (why? how?)
 * `Added search feature in the docs` (which files? how?)
 
-Note: Some people prefer to use an imperative present tense in commit messages. There is [no consensus on this](https://stackoverflow.com/questions/3580013/should-i-use-past-or-present-tense-in-git-commit-messages), and is likely to be situational. The most important thing is to ensure that the substance of the changes are clear in the message. In other words, [don't do this](https://xkcd.com/1296/){:target="_blank"} 😉. 
+Note: Some people prefer to use an imperative present tense in commit messages. There is [no consensus on this](https://stackoverflow.com/questions/3580013/should-i-use-past-or-present-tense-in-git-commit-messages), and is likely to be situational. The most important thing is to ensure that the substance of the changes are clear in the message. In other words, [don't do this](https://xkcd.com/1296/) 😉. 
 
 Taking time to write a consistent, specific, and accurate git commit messages will help the reader, who will thank you for it. This will often include your future self! So think of it as an investment where the return is based primarily on clarity of communication.
 

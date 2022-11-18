@@ -33,7 +33,7 @@ Alternatively, if you prefer to install and deploy Weaviate yourself, then you c
 
 Working with Docker is great if you are building an application around Weaviate and want to run Weaviate on your local machine or in the cloud. If you have Docker already installed, you could have it all up and running in seconds (minutes if you use a  prepackaged transformers module).
 
-We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator){:target="_blank"}, which lets you pick your configuration, and as a result you will receive a command to spin up your docker setup.
+We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator), which lets you pick your configuration, and as a result you will receive a command to spin up your docker setup.
 
 You can find the installation instructions for Docker [here](../installation/docker-compose.html#configurator).
 
@@ -47,7 +47,7 @@ Using Weaviate with Kubernetes is out of scope for this tutorial. You can find m
 
 ### Self-deployment instructions 
 
-The installation and configuration with Docker and Kubernetes is out of scope for this tutorial, as all code examples include references to a WCS instance. To learn about deploying Weaviate locally, follow the [installation documentation](/developers/weaviate/current/installation/){:target="_blank"} page.
+The installation and configuration with Docker and Kubernetes is out of scope for this tutorial, as all code examples include references to a WCS instance. To learn about deploying Weaviate locally, follow the [installation documentation](/developers/weaviate/current/installation/) page.
 
 If you feel comfortable making a few changes to the code examples in the tutorial and you prefer to run Weaviate locally, you can set up Weaviate with Docker in two steps:
 
@@ -72,10 +72,10 @@ To create a new Weaviate instance on the Weaviate Cloud Service, we need to foll
 
 ### Sign in to WCS
 
-In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.semi.technology/){:target="_blank"} and "Sign in with the Weaviate Cloud Service", where you will be able to create and manage your Weaviate Clusters.
+In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.semi.technology/) and "Sign in with the Weaviate Cloud Service", where you will be able to create and manage your Weaviate Clusters.
 
 #### No account, no problem
-If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs){:target="_blank"} link and create an account.
+If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs) link and create an account.
 
 ![Register link](./img/register.jpg){:style="max-width: 400px"}
 

@@ -37,7 +37,7 @@ Assuming that you've read the [schema getting started guide](./schema.html), you
 
 <!-- As you've seen in the [basics getting started guide](./basics.html#data-objects-in-weaviate), Weaviate data objects are class-property-based JSON objects. -->
 
-For the purpose of this tutorial, we've prepared a **data.json** file, which contains a few Authors and Publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json){:target="_blank"}, and add it to your project.
+For the purpose of this tutorial, we've prepared a **data.json** file, which contains a few Authors and Publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json), and add it to your project.
 
 Now, to import the data we need to follow these steps:
 1. Connect to your Weaviate instance

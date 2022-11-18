@@ -22,8 +22,8 @@ image: ./img/hero.png
 
 Whenever I talk about vector search, I like to demonstrate it with an example of a semantic search. To add the wow factor, I like to run my queries on a Wikipedia dataset, which is populated with over 28 million paragraphs sourced from Wikipedia.
 
-For example, I can ask: “What is the tallest building in Berlin?”, and the Vector Search engine (in the case of my demo – [Weaviate](/developers/weaviate/current/){:target="_blank"}) responds with “Fernsehturm Berlin”.<br/>
-You can try it for yourself by following this [link](https://link.semi.technology/3QYy9xX){:target="_blank"}, which is already pre-populated with the above question. Press the play button, to see the magic happen.
+For example, I can ask: “What is the tallest building in Berlin?”, and the Vector Search engine (in the case of my demo – [Weaviate](/developers/weaviate/current/)) responds with “Fernsehturm Berlin”.<br/>
+You can try it for yourself by following this [link](https://link.semi.technology/3QYy9xX), which is already pre-populated with the above question. Press the play button, to see the magic happen.
 
 <!-- truncate -->
 
@@ -48,7 +48,7 @@ At the time of entry/import (or any significant changes to data objects), for ev
 
 In a nutshell, vector embeddings are an array of numbers, which can be used as coordinates in a high-dimensional space. Although it is hard to imagine coordinates in more than 3-dimensional space (x, y, z), we can still use the vectors to compute the distance between vectors, which can be used to indicate similarity between objects. <br/>
 
-There are many different distance metrics, like [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity){:target="_blank"} and [Euclidean distance (L2 distance)](https://en.wikipedia.org/wiki/Euclidean_distance){:target="_blank"}.
+There are many different distance metrics, like [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) and [Euclidean distance (L2 distance)](https://en.wikipedia.org/wiki/Euclidean_distance).
 
 ### The search part
 In a similar fashion, whenever we run a query (like: “What is the tallest building in Berlin?”), a vector search engine can also convert it to a “query” vector. The task of a vector search engine is to identify and retrieve a list of vectors that are closest to the given vector of your query, using a distance metric and a search algorithm. 
@@ -56,7 +56,7 @@ In a similar fashion, whenever we run a query (like: “What is the tallest buil
 This is a bit like a game of boules – where the small marker (jack) is the location of our query vector, and the balls (boules) are our data vectors – and we need to find the boules that are nearest to the marker.
 
 ## k-nearest neighbors (kNN)
-One way to find similar vectors is with a simple [k-nearest neighbors (kNN) algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm){:target="_blank"}, which returns the k nearest vectors, by comparing every data vector in the database to the query vector. 
+One way to find similar vectors is with a simple [k-nearest neighbors (kNN) algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm), which returns the k nearest vectors, by comparing every data vector in the database to the query vector. 
 
 In our boules example (as illustraded below), with 6 boules, the kNN algorithm would measure the distance between the jack and each of the 6 boules on the ground. This would result in 6 separate calaculations.
 
@@ -74,7 +74,7 @@ The *brute* force of a **kNN search is computationally very expensive** - and de
 In summary, kNN search doesn’t scale well, and it is hard to image using it with a large dataset in production.
 
 ## The answer - Approximate nearest neighbors (ANN)
-Instead of comparing vectors one by one, vector search engines use [Approximate Nearest Neighbor (ANN) algorithms](https://en.wikipedia.org/wiki/Nearest_neighbor_search#Approximation_methods){:target="_blank"}, which trade off a bit of accuracy (hence the A in the name) for a huge gain in speed.
+Instead of comparing vectors one by one, vector search engines use [Approximate Nearest Neighbor (ANN) algorithms](https://en.wikipedia.org/wiki/Nearest_neighbor_search#Approximation_methods), which trade off a bit of accuracy (hence the A in the name) for a huge gain in speed.
 
 ANN algorithms may not return the true k nearest vectors, but they are very efficient. ANN algorithms maintain good performance (sublinear time, e.g. (poly)logarithmic complexity, see Figure 2) on very large-scale datasets.
 
@@ -83,11 +83,11 @@ ANN algorithms may not return the true k nearest vectors, but they are very effi
 
 ### Examples of ANN algorithms
 Examples of ANN methods are:
-* **trees** – e.g. [ANNOY](https://github.com/spotify/annoy){:target="_blank"} (Figure 3),
-* **proximity** **graphs** - e.g. [HNSW](https://arxiv.org/abs/1603.09320){:target="_blank"} (Figure 4),
-* **clustering** - e.g. [FAISS](https://github.com/facebookresearch/faiss){:target="_blank"},
-* **hashing** - e.g. [LSH](https://en.wikipedia.org/wiki/Locality-sensitive_hashing){:target="_blank"},
-* **vector compression** - e.g. [PQ](https://ieeexplore.ieee.org/document/5432202){:target="_blank"} or [SCANN](https://ai.googleblog.com/2020/07/announcing-scann-efficient-vector.html){:target="_blank"}.
+* **trees** – e.g. [ANNOY](https://github.com/spotify/annoy) (Figure 3),
+* **proximity** **graphs** - e.g. [HNSW](https://arxiv.org/abs/1603.09320) (Figure 4),
+* **clustering** - e.g. [FAISS](https://github.com/facebookresearch/faiss),
+* **hashing** - e.g. [LSH](https://en.wikipedia.org/wiki/Locality-sensitive_hashing),
+* **vector compression** - e.g. [PQ](https://ieeexplore.ieee.org/document/5432202) or [SCANN](https://ai.googleblog.com/2020/07/announcing-scann-efficient-vector.html).
 
 ![ANNOY](./img/ann-annoy.png)<br/>
 *[Figure 3 - Tree-based ANN search]*
@@ -97,12 +97,12 @@ Which algorithm works best depends on your project. Performance can be measured 
 So, ANN is not some magic method that will always find the true k nearest neighbors in a dataset, it can find a pretty good approximation of the true k neighbors. But it can do this in a fraction of the time! 
 
 ## HNSW in Weaviate
-[Weaviate](/developers/weaviate/current/){:target="_blank"} is a great example of a vector search engine that uses ANN algorithms to offer ultra-fast queries. The first ANN algorithm introduced to Weaviate is a custom implementation of [Hierarchical Navigable Small World graphs (HNSW)](/developers/weaviate/current/vector-index-plugins/hnsw.html){:target="_blank"}.
+[Weaviate](/developers/weaviate/current/) is a great example of a vector search engine that uses ANN algorithms to offer ultra-fast queries. The first ANN algorithm introduced to Weaviate is a custom implementation of [Hierarchical Navigable Small World graphs (HNSW)](/developers/weaviate/current/vector-index-plugins/hnsw.html).
 
 ![HNSW](./img/ann-hnsw.png){:width="50%"}<br/>
 *[Figure 4 - Proximity graph-based ANN search]*
 
-Check out [Weaviate ANN benchmarks](/developers/weaviate/current/benchmarks/ann.html){:target="_blank"} to see how HNSW performed on realistic large-scale datasets. You can use it to compare the tradeoffs between recall, QPS, latency, and import time.<br/>
+Check out [Weaviate ANN benchmarks](/developers/weaviate/current/benchmarks/ann.html) to see how HNSW performed on realistic large-scale datasets. You can use it to compare the tradeoffs between recall, QPS, latency, and import time.<br/>
 You will find it interesting to see, that Weaviate can maintain very high recall rates (>95%), whilst keeping high throughput and low latency (both in milliseconds). That is exactly what you need for fast, but reliable vector search!
 
 ## Summary
@@ -118,9 +118,9 @@ A quick recap:
 The Weaviate Core team is currently working on research and implementation for other ANN algorithms. We are going to publish some of our findings in the next couple of weeks. So, stay tuned for more content on the topic.
 
 Until then, you can:
-* Listen to a [podcast about ANN Benchmarks](https://youtu.be/kG3ji89AFyQ){:target="_blank"} with Connor and Etienne from SeMI Technologies.
-* Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
-* Join our community on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}, where we can all talk about vector search engines.
-* Reach out to us on [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
+* Listen to a [podcast about ANN Benchmarks](https://youtu.be/kG3ji89AFyQ) with Connor and Etienne from SeMI Technologies.
+* Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html) and begin building amazing apps with Weaviate.
+* Join our community on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), where we can all talk about vector search engines.
+* Reach out to us on [Twitter](https://twitter.com/weaviate_io).
 
-Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don't forget to give us a ⭐️ while you are there.

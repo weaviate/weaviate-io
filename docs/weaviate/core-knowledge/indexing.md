@@ -33,7 +33,7 @@ As you've learned in the [basics section](./basics.html#what-is-weaviate), one o
 <!-- TODO: Not sure if we need this here -->
 <!-- If you always want total recall (i.e., a 100% recall, not to be confused with the Arnold Schwarzenegger movie), you need brute-force vector comparisons that are super slow (as in, _really_ slow) and not useful for production settings (hence ANN algorithms exist). -->
 
-> 💡 Because vector search use cases are growing rapidly, more and more ANN-algorithm are produced. A "good" ANN algorithm means that the recall is high _and_ that it's fast. You can dive into the rabbit hole right [here](https://arxiv.org/search/?query=approximate+nearest+neighbor&searchtype=all){:target="_blank"}. But! Don't be like Alice; just make sure to come back here.
+> 💡 Because vector search use cases are growing rapidly, more and more ANN-algorithm are produced. A "good" ANN algorithm means that the recall is high _and_ that it's fast. You can dive into the rabbit hole right [here](https://arxiv.org/search/?query=approximate+nearest+neighbor&searchtype=all). But! Don't be like Alice; just make sure to come back here.
 
 Let's take a look at the ANN settings Weaviate predefined for us when we created the classes.
 

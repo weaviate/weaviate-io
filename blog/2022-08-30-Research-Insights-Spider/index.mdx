@@ -24,7 +24,7 @@ There is a lot of excitement around Deep Learning systems with new ML models bei
 
 <!-- truncate -->
 
-We found interesting ideas in the [Learning to Retrieve Passages without Supervision](https://arxiv.org/pdf/2112.07708.pdf){:target="_blank"} paper by Ori Ram, Gal Shachaf, Omer Levy, Jonathan Berant and Amir Globerson. Where the authors explore
+We found interesting ideas in the [Learning to Retrieve Passages without Supervision](https://arxiv.org/pdf/2112.07708.pdf) paper by Ori Ram, Gal Shachaf, Omer Levy, Jonathan Berant and Amir Globerson. Where the authors explore
 Self-Supervised Learning – a class of learning algorithms that can bootstrap loss functions – as an alternative route to training new models **without** the need for human labeling!
 
 Self-Supervised Learning has led to massive advances in generative modeling and representation learning. In this article, we will explain **Span-based Unsupervised Dense Retriever (Spider)**, a recent breakthrough for Self-Supervised representation learning applied to text retrieval in search.
@@ -68,7 +68,7 @@ Some quick terms before diving in:
 
 ### Exercise – Spider implementation
 
-As an exercise, I’ve prepared a [Google Colab notebook](https://colab.research.google.com/github/CShorten/Small-Weaviate-Examples/blob/main/Recurring-Spans.ipynb){:target="_blank"}, where I implemented a basic version of the Spider Algorithm. The idea is to identify the longest Recurring Spans in the “Deep learning” Wikipedia article.
+As an exercise, I’ve prepared a [Google Colab notebook](https://colab.research.google.com/github/CShorten/Small-Weaviate-Examples/blob/main/Recurring-Spans.ipynb), where I implemented a basic version of the Spider Algorithm. The idea is to identify the longest Recurring Spans in the “Deep learning” Wikipedia article.
 
 ### Exercise – pseudocode
 In case you are curious on how my implementation works.
@@ -105,7 +105,7 @@ With that we can construct an Anchor, Positive & Negative samples, like this:
 
 It was a fun exercise seeing which spans re-appeared in the “Deep Learning” wikipedia article such as *“toxic effects of environmental chemicals in nutrients household products”* or *“competitive with traditional speech recognizers on certain tasks”*.
 
-Feel free to open my [Google Colab notebook](https://colab.research.google.com/github/CShorten/Small-Weaviate-Examples/blob/main/Recurring-Spans.ipynb){:target="_blank"}, and replace the `Raw_Document` text with the text of your document of choice! It will be interesting to see what you get.
+Feel free to open my [Google Colab notebook](https://colab.research.google.com/github/CShorten/Small-Weaviate-Examples/blob/main/Recurring-Spans.ipynb), and replace the `Raw_Document` text with the text of your document of choice! It will be interesting to see what you get.
 
 ## SPIDER – deeper dive
 The notion of passages is a clever Self-Supervised Learning trick that uses the structure inherent in documents such as Wikipedia articles. A passage is the abstraction of atomic units, i.e. sentences, paragraphs, or some arbitrary sequence length. Passages are sourced from documents such as the Wikipedia article “Oxygen”. Thus positive pairs are passages that share an overlapping n-gram and negative pairs are passages that do not. 
@@ -181,7 +181,7 @@ Although not tested in the paper, these top-k searches can further leverage **Ap
 
 ![Spider with Weaviate](./img/weaviate-spider-diagram.jpg)
 
-Advances such as Spider can be added to the Weaviate Vector Search Engine by creating a custom module. The authors have [open-sourced their model](https://github.com/oriram/spider){:target="_blank"} and published the weights on the [HuggingFace model hub](https://huggingface.co/tau/spider){:target="_blank"}. Weaviate has a tight integration with HuggingFace in examples such as the nearText module. This enables users to change the path in their Weaviate docker image to access different HuggingFace models.
+Advances such as Spider can be added to the Weaviate Vector Search Engine by creating a custom module. The authors have [open-sourced their model](https://github.com/oriram/spider) and published the weights on the [HuggingFace model hub](https://huggingface.co/tau/spider). Weaviate has a tight integration with HuggingFace in examples such as the nearText module. This enables users to change the path in their Weaviate docker image to access different HuggingFace models.
 
 ## Conclusion
 

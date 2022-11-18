@@ -75,7 +75,7 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 
 # Change logs
 
-Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-javascript-client/releases){:target="_blank"} for updates on the latest `JavaScript client` changes.
+Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-javascript-client/releases) for updates on the latest `JavaScript client` changes.
 
 # More Resources
 

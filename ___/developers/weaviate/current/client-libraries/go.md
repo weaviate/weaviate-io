@@ -288,7 +288,7 @@ client.Data().Validator().WithProperties(properties)
 
 # Change logs
 
-Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-go-client/releases){:target="_blank"} for updates on the latest `Go client` changes.
+Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-go-client/releases) for updates on the latest `Go client` changes.
 
 # More Resources
 

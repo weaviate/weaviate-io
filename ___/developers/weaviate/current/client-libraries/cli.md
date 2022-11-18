@@ -175,7 +175,7 @@ $ weaviate data delete
 ```
 # Change logs
 
-Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-cli/releases){:target="_blank"} for updates on the latest `CLI` changes.
+Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-cli/releases) for updates on the latest `CLI` changes.
 
 # More Resources
 

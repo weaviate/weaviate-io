@@ -32,11 +32,11 @@ In this article, you will learn about these two machine learning models, and why
 
 ## Bi-Encoder models
 
-Vector search engines like [Weaviate](/developers/weaviate/current/){:target="_blank"} use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector search engine can then perform a similarity search to retrieve the vectors closest to the query embedding. 
+Vector search engines like [Weaviate](/developers/weaviate/current/) use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector search engine can then perform a similarity search to retrieve the vectors closest to the query embedding. 
 
 The models that compute **dense vector embeddings for data** (which later can be used for **search queries**) are so-called *Bi-Encoder models*. Data vectors and query vectors can be compared by computing the similarity (for example cosine similarity) between vectors. All data items in the database can be represented by a vector embedding using a Bi-Encoder model.
 
-> Note. Vector search engines **compute** dense vector embeddings **during import**. Calculating vectors up-front coupled with [ANN algorithms](/developers/weaviate/current/vector-index-plugins/index.html){:target="_blank"} (for faster retrieval) makes working with Bi-Encoder highly efficient.
+> Note. Vector search engines **compute** dense vector embeddings **during import**. Calculating vectors up-front coupled with [ANN algorithms](/developers/weaviate/current/vector-index-plugins/index.html) (for faster retrieval) makes working with Bi-Encoder highly efficient.
 
 ![Vector Search Engine](./img/vector-database.png)
 
@@ -55,7 +55,7 @@ Bi-Encoders models are not the only possible way of scoring pairs of data on sim
 *Figure 3 - Representation of a Cross-Encoder model*
 
 
-If a Cross-Encoder model is trained on a representative training set, it [achieves higher accuracy than Bi-Encoders](https://arxiv.org/abs/1908.10084){:target="_blank"}. However, since you need to use the Cross-Encoder model during a search for every single data item in combination with the query, this method is very inefficient. For a real-life semantic search application – with thousands or millions of objects – this would be impractical, as it would take "forever" to perform the search.
+If a Cross-Encoder model is trained on a representative training set, it [achieves higher accuracy than Bi-Encoders](https://arxiv.org/abs/1908.10084). However, since you need to use the Cross-Encoder model during a search for every single data item in combination with the query, this method is very inefficient. For a real-life semantic search application – with thousands or millions of objects – this would be impractical, as it would take "forever" to perform the search.
 
 ## Combining Bi-Encoders and Cross-Encoders
 
@@ -75,18 +75,18 @@ Catching fish with the big net represents how Bi-Encoders work. Bi-Encoders are 
 
 As noted, Cross-Encoders can achieve high *in-domain* accuracy. To get the most accurate results, we train our models on datasets representative of their specialized use case.
 
-Pretrained Sentence Transformers Cross-Encoder models are [available on HuggingFace](https://huggingface.co/Cross-Encoder){:target="_blank"}. There you can find many different models, for example [a model trained on MS Marco](https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1){:target="_blank"}, which you could use in a search application with general natural language data (the model is trained on Bing search queries). If you have a search task for a dataset that is *out-of-domain*, you should train or fine-tune a model, see [here](https://www.sbert.net/examples/training/cross-encoder/README.html){:target="_blank"} for examples.
+Pretrained Sentence Transformers Cross-Encoder models are [available on HuggingFace](https://huggingface.co/Cross-Encoder). There you can find many different models, for example [a model trained on MS Marco](https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1), which you could use in a search application with general natural language data (the model is trained on Bing search queries). If you have a search task for a dataset that is *out-of-domain*, you should train or fine-tune a model, see [here](https://www.sbert.net/examples/training/cross-encoder/README.html) for examples.
 
 ## Conclusion
 
-We can combine the fast Bi-Encoders and accurate Cross-Encoders in a search pipeline to improve search experience. With a vector search engine like [Weaviate](/){:target="_blank"}, you can store and retrieve vectors and data efficiently using Bi-Encoder models to encode data and queries. A search pipeline can then continue with a Cross-Encoder model which reranks a list of retrieved search result candidates. 
+We can combine the fast Bi-Encoders and accurate Cross-Encoders in a search pipeline to improve search experience. With a vector search engine like [Weaviate](/), you can store and retrieve vectors and data efficiently using Bi-Encoder models to encode data and queries. A search pipeline can then continue with a Cross-Encoder model which reranks a list of retrieved search result candidates. 
 
-This blog post was inspired by [Nils Reimer’s work on Bi-Encoders and Cross-Encoders](https://www.sbert.net/examples/applications/cross-encoder/README.html){:target="_blank"}.
+This blog post was inspired by [Nils Reimer’s work on Bi-Encoders and Cross-Encoders](https://www.sbert.net/examples/applications/cross-encoder/README.html).
 
 
 ## What next
-Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html) and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.
+You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
-Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don't forget to give us a ⭐️ while you are there.
