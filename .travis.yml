@@ -1,108 +1,14 @@
-os: linux
-dist: focal
-language: ruby
-rvm:
-- 2.7.0
-before_install:
-- sudo apt-get update
-- sudo apt-get install -y minify
-- sudo apt-get install -y python3-pip
-- sudo apt-get install -y curl
-- sudo apt-get install -y snapd
-- sudo apt-get install -y nodejs npm
-- sudo npm cache clean -f
-- sudo npm install -g n
-- sudo n stable
-- sudo npm install -g npm@latest
-- sudo npm install netlify-cli -g
-- sudo snap install yq
-- bundle install
-# Collect Github API data
-- pip3 install pyyaml
-install:
-- bundle install
-- gem install jekyll
-- gem install html-proofer -v 4.4.3 --user-install
-- pip install -r ./_python/requirements.txt
-- export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
+language: node_js
+node_js:
+  - 18
+branches:
+  only:
+    - main
+cache:
+  yarn: true
 script:
-- |
-  if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH = "main" ]; then
-    python3 tools/create-roadmap.py
-  fi
-- python ./_python/generate_og.py
-- travis_wait 60 bundle exec jekyll build
-- minify --match='\.html' -r -o _site_min/ _site/
-- rsync -av _site_min/ _site/
-# Find author's name or Slack handle for slack messages
-# Sets result in $AUTHOR_NAME
-- source _build_scripts/slack-find-author.sh
-##
-# Netlify
-##
-- |
-  if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
-    bash _build_scripts/publish-to-netlify.sh
-    bash _build_scripts/slack-netlify-message.sh
-  fi
-##
-# End Netlify
-##
-##
-# Run htmlproofer
-##
-# - htmlproofer --ignore-status-codes '0,999,429,403,303' --check-external-hash=false --check-internal-hash=false --allow-missing-href=true --ignore-files "/developers\/weaviate\/v/," --ignore-urls "/console.semi.technology/,/weaviate-newsletter.semi.technology/,/demo.dataset.playground.semi.technology/,/vectors.network/,/codepen.io/,/linkedin.com/,/twitter.com/,/t.co/,/arxiv.org/,/semi-technologies\/weaviate-io\/tree/,/computerhope.com/" --allow_hash_href --assume-extension ./_site --swap-urls '^/BASEURL/:/' || travis_terminate 1
-- bash _build_scripts/run-htmlproofer.sh || travis_terminate 1
-##
-# Update OpenAPI versions
-##
-- |
-  OPENAPI_VERSION=$(curl -s -o /dev/null -w "%{http_code}" https://app.swaggerhub.com/apiproxy/registry/semi-technologies/weaviate/$(cat _config.yml | yq .weaviate_version))
-  if [[ $OPENAPI_VERSION -ne 200 ]]
-  then
-      echo "The current version is not on https://app.swaggerhub.com/apis/semi-technologies/weaviate/$(cat _config.yml | yq .weaviate_version)"
-  fi
-# generate version file
-- cat _config.yml | yq .weaviate_version >> _site/version.txt
-##
-# End Validate
-##
-##
-# Push live if main
-##
-- |
-  if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-    if [ $TRAVIS_BRANCH = "main" ]; then
-      # unpack secrets
-       openssl aes-256-cbc -K $encrypted_617a65259523_key -iv $encrypted_617a65259523_iv -in key.master.json.enc -out key.master.json -d
-      # Install gcloud
-      gcloud version || true
-      if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-      echo "LOAD SOURCE"
-      source /home/travis/google-cloud-sdk/path.bash.inc
-      gcloud version
-      gcloud auth activate-service-account --key-file key.master.json
-      rm key.master.json
-      # set project
-      gcloud config set project "$GS_PROJECT"
-      # rm everything
-      gsutil -m rm -r gs://$GS_BUCKET/**
-      # cd into assets dir
-      cd _site/
-      # Upload data to bucket
-      gsutil -m -h "Cache-Control:public,max-age=3600" cp -r ./ gs://$GS_BUCKET/
-      # set access
-      gsutil iam ch allUsers:objectViewer gs://$GS_BUCKET
-      # set web service
-      gsutil web set -m index.html -e 404.html gs://$GS_BUCKET
-      # Invalidate the CDN
-      gcloud compute url-maps invalidate-cdn-cache $GS_BUCKET --path "/*" --async
-      # Send sitemap to Google
-      curl https://www.google.com/ping?sitemap=https://weaviate.io/sitemap.xml
-      # back to root
-      cd ..
-      # Send release message to Slack
-      bash _build_scripts/slack-release-message.sh
-    fi
-  fi
-cache: bundler
+  - git config --global user.name "${GH_NAME}"
+  - git config --global user.email "${GH_EMAIL}"
+  - echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
+  - yarn install
+  # - GIT_USER="${GH_NAME}" yarn deploy
