@@ -23,12 +23,12 @@ install:
 - bundle install
 - gem install jekyll
 - gem install html-proofer -v 4.4.3 --user-install
-- pip install -r ./_python/requirements.txt
+- pip3 install -r ./_python/requirements.txt
 - export PATH="$PATH:/home/travis/.gem/ruby/2.7.0/bin"
 script:
 - |
   if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH = "main" ]; then
-    python3 tools/create-roadmap.py
+    python3 _python/create-roadmap.py
   fi
 - python ./_python/generate_og.py
 - travis_wait 60 bundle exec jekyll build
@@ -66,6 +66,18 @@ script:
 - cat _config.yml | yq .weaviate_version >> _site/version.txt
 ##
 # End Validate
+##
+##
+# Import into Weaviate for web search
+##
+- |
+  if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+    if [ $TRAVIS_BRANCH = "main" ]; then
+      python3 _python/import-site-search.py ./ /developers/weaviate/current /_posts/blog
+    fi
+  fi
+##
+# End import for web search
 ##
 ##
 # Push live if main

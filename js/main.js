@@ -69,7 +69,7 @@ if(window.location.pathname.includes('/developers/')){
         var headers = document.getElementsByTagName(headerNumbers[i]);
         for(var i2 = 0; i2 < headers.length; i2++) {
             if(typeof headers[i2].id != 'undefined' && headers[i2].id != ''){
-                console.log(headers[i2].id);
+                // console.log(headers[i2].id);
                 currentElement = document.getElementById(headers[i2].id);
                 currentElement.style.cursor = 'pointer';
                 currentElement.onclick = function(){
@@ -180,8 +180,6 @@ if(document.getElementById('homepage-stats-container')){
     // set downloads
     getUrl('https://europe-west1-semi-production.cloudfunctions.net/docker-hub-pulls', 'text', function(status, data){
         var result = data;
-        console.log(result);
-        console.log(parseInt(result.replaceAll(',', '')));
         animateValue(document.getElementById('data-downloads'), 0, parseInt(result.replaceAll(',', '')), 1120);
     });
     // get countries
@@ -280,6 +278,173 @@ function set_accordion() {
     }
 };
 
+// get search results
+function search_website(q, cb){
+
+    var query = `{
+        Get {
+          PageChunk(
+            nearText: {
+              concepts: ["` + q + `"]
+              certainty: 0.675
+            }
+            sort: {
+              path: ["order"]
+              order: asc
+            }
+            limit: 5
+          ) {
+            pageTitle
+            anchor
+            title
+            typeOfItem
+            url
+          } 
+        }
+      }`
+
+    $.ajax({
+        type: 'POST',
+        headers: { 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json' 
+        },
+        url: 'http://localhost:8080/v1/graphql',
+        data: JSON.stringify({ 'query': query }),
+        success: cb,
+        dataType: 'json'
+    });
+}
+
+function format_type(i){
+    if(i == 'doc'){
+        return 'Docs: '
+    }
+    return 'Blog: '
+}
+
+function format_icon(i){
+    if(i == 'doc'){
+        return 'article'
+    }
+    return 'school'
+}
+
+// get command K for search
+function set_command_k(){
+    var ninja = document.querySelector("ninja-keys");
+
+    var core_menu = [
+        {
+          id: 'Documentation',
+          title: 'Open Documentation',
+          hotkey: 'cmd+D',
+          mdIcon: 'article',
+          handler: () => {
+            location.href = '/developers/weaviate/current/';
+          },
+        },
+        {
+            id: 'Blog',
+            title: 'Open Blogs',
+            mdIcon: 'school',
+            handler: () => {
+              location.href = '/blog.html';
+            },
+        },
+        {
+            id: 'Podcast',
+            title: 'Open Podcasts',
+            mdIcon: 'podcasts',
+            handler: () => {
+              location.href = '/podcast.html';
+            },
+        },
+        {
+            id: 'Weaviate Cloud Service',
+            title: 'Open Weaviate Cloud Service',
+            mdIcon: 'cloud',
+            handler: () => {
+              window.open('https://console.semi.technology/', '_blank')
+            },
+        },
+        {
+            id: 'ModelToUse',
+            title: 'Change ML-model',
+            children: ['OpenAI', 'Cohere'],
+            mdIcon: 'inventory_2',
+            hotkey: 'cmd+M',
+            handler: () => {
+                ninja.open({ parent: 'ModelToUse' });
+                return {keepOpen: true};
+            },
+        },
+        {
+            id: 'OpenAI',
+            title: 'Change vectorization model to OpenAI\'s Curie',
+            parent: 'ModelToUse',
+            mdIcon: 'inventory_2',
+            handler: () => {
+                console.log('to OpenAI');
+            },
+        },
+        {
+            id: 'Cohere',
+            title: 'Change vectorization model to Cohere',
+            parent: 'ModelToUse',
+            mdIcon: 'inventory_2',
+            handler: () => {
+                console.log('to Cohere');
+            },
+        },
+    ]
+
+    ninja.addEventListener('change', (event) => {
+        ninja.data = core_menu;
+        var menu = core_menu;
+        menu.push({
+            id: event.detail.search,
+            title: event.detail.search,
+            mdIcon: 'search',
+            handler: () => {
+                search_website(event.detail.search, function(results){
+                    var results_menu = core_menu;
+                    if(results.data.Get.PageChunk.length == 0){
+                        results_menu.push({
+                            id: 'noResults',
+                            title: 'Whoops, nothing found',
+                            parent: 'SearchResults',
+                            mdIcon: 'info',
+                            handler: () => {
+                                return {keepOpen: true};
+                            },
+                        });
+                    } else {
+                        results.data.Get.PageChunk.forEach(function(result){
+                            results_menu.push({
+                                id: result.title,
+                                title: result.title,
+                                parent: 'SearchResults',
+                                mdIcon: format_icon(result.typeOfItem),
+                                section: format_type(result.typeOfItem) + result.pageTitle,
+                                handler: () => {
+                                    location.href = result.url + '#' + result.anchor;
+                                },
+                            });
+                        })
+                    }
+                    ninja.data = menu;
+                    ninja.open({ parent: 'SearchResults' });
+                });
+                return {keepOpen: true};
+            },
+        });
+        ninja.data = menu;
+    });
+
+    ninja.data = core_menu;
+}
+
 // follow the sidenav
 var sidenavElem = document.getElementsByClassName('sidenav');
 if (sidenavElem.length > 0) {
@@ -295,3 +460,4 @@ if (sidenavElem.length > 0) {
 }
 
 set_accordion();
+set_command_k();
