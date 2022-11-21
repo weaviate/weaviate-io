@@ -129,7 +129,7 @@ The vectorIndexType defaults to [`hnsw`](../vector-index-plugins/hnsw.html) sinc
 
 ### vectorIndexConfig
 
-Check the [`hsnw` page](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters) for `hsnw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
+Check the [`hnsw` page](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters) for `hnsw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
 
 ### shardingConfig (introduced in v1.8.0)
 

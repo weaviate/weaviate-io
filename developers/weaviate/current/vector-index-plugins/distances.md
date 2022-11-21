@@ -8,8 +8,6 @@ tags: ['HNSW']
 menu-order: 2
 open-graph-type: article
 toc: true
-redirect_from:
-    - /documentation/weaviate/current/vector-index-plugins/hsnw.html
 ---
 
 # Available Distance Metrics
