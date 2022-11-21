@@ -1,13 +1,14 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Installation
 title: Weaviate Cloud Service
-description: DESC
-tags: ['installation', 'Weaviate Cloud Service']
 sidebar_position: 1
-open-graph-type: article
-toc: true
+
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Installation
+# description: DESC
+# tags: ['installation', 'Weaviate Cloud Service']
+# open-graph-type: article
+# toc: true
 ---
 
 The Weaviate Cloud Service can be accessed via the [console](https://console.semi.technology/) and is the SaaS version of Weaviate.
