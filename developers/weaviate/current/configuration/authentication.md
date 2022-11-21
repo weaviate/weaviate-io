@@ -126,7 +126,7 @@ $ curl [WEAVIATE URL]/v1/.well-known/openid-configuration
 
 ### How to use
 
-OIDC authentication requires obtaining a valid token from the token issuer so that it can be sent in the header of any REST request.
+OIDC authentication requires obtaining a valid token from the token issuer so that it can be sent in the header of any request to Weaviate. This applies to both REST and GraphQL requests.
 
 The OIDC standard allows for many different methods *(flows)* of obtaining a token. The appropriate method can vary depending on your situation, including configurations at the token issuer, and your requirements. 
 
@@ -234,7 +234,7 @@ The token has a configurable expiry time that is set by the token issuer. We sug
 
 ## Add a Bearer to a Request
 
-Once you have obtained a token, attach it to all REST requests to Weaviate in the header like so: `Authorization: Bearer <token>`, where `<token>` is your actual token.
+Once you have obtained a token, attach it to all requests to Weaviate in the header like so: `Authorization: Bearer <token>`, where `<token>` is your actual token.
 
 For example, you can use a CURL command as shown below:
 
