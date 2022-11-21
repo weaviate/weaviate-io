@@ -13,7 +13,9 @@ sidebar_position: 2
 
 The Weaviate Console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Service (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 
-💻 The console is available on: [console.semi.technology](https://console.semi.technology).
+:::tip
+The console is available on: [console.semi.technology](https://console.semi.technology).
+:::
 
 ## Login page
 
@@ -26,7 +28,9 @@ When opening the [Weaviate Console](https://console.semi.technology), you'll se
 
 The Weaviate Cloud Service allows you to create Weaviate instances as SaaS instances on our infrastructure. There is no difference between locally run Weaviate instances or Weaviate SaaS instances other than that the latter ones are managed by us.
 
-> 💡 Sandboxes are free Weaviate instances! You can create them for small test use cases if you don't want to run Weaviate locally.
+:::note
+Sandboxes are free Weaviate instances! You can create them for small test use cases if you don't want to run Weaviate locally.
+:::
 
 ## Connect to a self-hosted Weaviate
 
@@ -49,7 +53,9 @@ GraphiQL is a graphical interface that allows you to manually write GraphQL quer
 2. In the Self-hosted Weaviate section, provide the endpoint of you instance. If you run Weaviate locally this will be `http://localhost:8080`.
 3. Click "connect"
 
-> 💡 The console might ask to downgrade to HTTP. This is done to avoid [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors.
+:::note
+The console might ask to downgrade to HTTP. This is done to avoid [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors.
+:::
 
 ## Recapitulation
 

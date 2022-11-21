@@ -24,7 +24,9 @@ This guide is all about the basics. No getting your hands dirty yet, no fancy Ku
 
 Weaviate is a database of the type search engine, and it's specifically built to work with vector representations produced by machine learning models. Hence, Weaviate is a vector search engine (but we will still like you if you call it a vector database).
 
-> 💡 When working with a database, you want [full CRUD support](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Not all approximate nearest neighbor algorithms support this, and not all incumbent databases (/search engines) are optimized for this type of indexing. These reasons are -among others- the most important to why Weaviate exists. You can also learn more about this by reading [this blog post](https://db-engines.com/en/blog_post/87).
+:::tip
+When working with a database, you want [full CRUD support](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Not all approximate nearest neighbor algorithms support this, and not all incumbent databases (/search engines) are optimized for this type of indexing. These reasons are -among others- the most important to why Weaviate exists. You can also learn more about this by reading [this blog post](https://db-engines.com/en/blog_post/87).
+:::
 
 ## Data objects in Weaviate
 
@@ -124,7 +126,9 @@ Following on our author example, Weaviate can store multipe authors like this:
 }]
 ```
 
-> 💡 Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), which guarantees uniqueness across all collections.
+:::tip
+Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), which guarantees uniqueness across all collections.
+:::
 
 ### Cross-references
 
@@ -170,7 +174,9 @@ Then we can use the `UUID` from the above object, to attach it to the `Author` l
 }
 ```
 
-> 💡 `Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. The difference between the two will become apparent while going through the getting started guide.
+:::tip
+`Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. The difference between the two will become apparent while going through the getting started guide.
+:::
 
 ## Weaviate Schema
 
@@ -212,7 +218,9 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 2. *readers & generators* are used for reranking or processing the results.
 3. *other modules* are -often- non-ML, for example, the spell-check module.
 
-> 💡 It's even possible to [create your own modules](../other-modules/custom-modules.html)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing your module) can be written in any language.
+:::tip
+It's even possible to [create your own modules](../other-modules/custom-modules.html)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing your module) can be written in any language.
+:::
 
 ## Weaviate Console
 
