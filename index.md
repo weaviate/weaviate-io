@@ -39,17 +39,6 @@ layout: default
     </div> <!-- / .container -->
 </section>
 
-<!-- FEATURES -->
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="lead col-12 mt-6" data-aos="fade-left">
-                Read our Series A Funding Announcement → <a href="https://techcrunch.com/2022/02/22/semi-technologies-search-engine-data/" target="_blank">Techcrunch</a> – <a href="https://finance.yahoo.com/news/semi-technologies-16m-series-round-141500875.html" target="_blank">Yahoo Finance</a> – <a href="https://mtsprout.nl/startups-scaleups/nederlandse-ai-zoekmachine-scoort-16-miljoen-dollar-in-silicon-valley" target="_blank">MT/Sprout (Dutch)</a>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- STATS -->
 <section class="py-7" id="homepage-stats-container">
     <div class="container">

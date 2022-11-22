@@ -60,14 +60,14 @@ Although Noah is missing the allergy property, it will still be imported as if i
 #### Stage 2: Indexing Null Values
 Indexing null values is an optional feature since not everyone needs it, and it might add to import costs and space.
 
-To filter by the null state, you need to first configure your schema to handle this. The target class needs the capability to track if a property within a class is null or not. This is done by setting the `IndexNullState` field to True in the `invertedIndexConfig` object.
+To filter by the null state, you need to first configure your schema to handle this. The target class needs the capability to track if a property within a class is null or not. This is done by setting the `indexNullState` field to True in the `invertedIndexConfig` object.
 
 ```json
 class_obj = {
     "class": "FoodAllergies", 
     "description": "Properties include people, their age, and allergy",
     "invertedIndexConfig": {
-        "IndexNullState": True,         
+        "indexNullState": True,         
     },
     "properties": [ ... ]
 }
