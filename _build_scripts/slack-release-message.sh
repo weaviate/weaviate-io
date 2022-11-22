@@ -2,7 +2,7 @@
 set -e
 
 # Get commit message
-commit_message="$(git log -1 $TRAVIS_COMMIT --pretty="%s%b")"
+commit_message="$(git log -1 $TRAVIS_COMMIT --pretty="%s")"
 
 # Replace &, <, and > – as per Slack API instructions
 commit_message=${commit_message//&/&amp;}
