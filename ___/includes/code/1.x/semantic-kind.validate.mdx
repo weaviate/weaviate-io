@@ -1,0 +1,137 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+schema = {"name": "New York Times"}
+
+valid_thing = client.data_object.validate(
+  schema,
+  'Publication',
+  'f81bfe5e-16ba-4615-a516-46c2ae2e5a80'
+)
+print(valid_thing)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+var schema = {"name": "New York Times"};
+
+client.data
+      .validator()
+      .withId("f81bfe5e-16ba-4615-a516-46c2ae2e5a80")
+      .withClassName("Publication")
+      .withProperties(schema)
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      });
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  dataSchema := map[string]interface{}{
+    "name": "New York Times",
+  }
+
+  err := client.Data().Validator().
+    WithID("f81bfe5e-16ba-4615-a516-46c2ae2e5a80").
+    WithClassName("Publication").
+    WithProperties(dataSchema).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package technology.semi.weaviate;
+
+import java.util.HashMap;
+import java.util.Map;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Map<String, Object> dataSchema = new HashMap<>();
+    dataSchema.put("name", "New York Times");
+
+    Result<Boolean> result = client.data().validator()
+      .withID("f81bfe5e-16ba-4615-a516-46c2ae2e5a80")
+      .withClassName("Publication")
+      .withProperties(dataSchema)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Publication",
+        "id": "f81bfe5e-16ba-4615-a516-46c2ae2e5a80",
+        "properties": {
+            "name": "New York Times"
+        }
+    }' \
+    http://localhost:8080/v1/objects/validate
+```
+
+</TabItem>
+</Tabs>

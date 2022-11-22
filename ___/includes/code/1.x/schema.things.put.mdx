@@ -1,0 +1,67 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+class_obj = {
+    "class": "Article",
+    "description": "A written text, for example a news article or blog post",
+    "properties": [
+        {
+        "dataType": [
+            "string"
+        ],
+        "description": "Title of the article",
+        "name": "title",
+        },
+        {
+        "dataType": [
+            "text"
+        ],
+        "description": "The content of the article",
+        "name": "content"
+        }
+    ]
+}
+
+client.schema.update_config("Article", class_obj)
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+$ curl \
+    -X PUT \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Article",
+        "description": "A written text, for example a news article or blog post",
+        "properties": [
+            {
+            "dataType": [
+                "string"
+            ],
+            "description": "Title of the article",
+            "name": "title"
+            },
+            {
+            "dataType": [
+                "text"
+            ],
+            "description": "The content of the article",
+            "name": "content"
+            }
+        ]
+    }' \
+    http://localhost:8080/v1/schema/Article
+```
+
+</TabItem>
+</Tabs>
