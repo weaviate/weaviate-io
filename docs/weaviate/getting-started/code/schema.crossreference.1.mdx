@@ -1,3 +1,6 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 
@@ -9,13 +12,13 @@ client = weaviate.Client("https://some-endpoint.semi.network/")
 
 add_prop = {
   "dataType": [
-      "Author" # <== note how the name of the class is the cross reference
+      "Publication" # <== note how the name of the class is the cross reference
   ],
-  "name": "has"
+  "name": "writesFor"
 }
 
 # Add the property
-client.schema.property.create("Publication", add_prop)
+client.schema.property.create("Author", add_prop)
 
 # get the schema
 schema = client.schema.get()
@@ -35,10 +38,10 @@ const client = weaviate.client({
     host: 'some-endpoint.semi.network/',
   }); 
 
-const className = 'Publication';
+const className = 'Author';
 const prop = {
-  dataType: ['Author'], // <== note how the name of the class is the cross reference
-  name: 'has',
+  dataType: ['Publication'], // <== note how the name of the class is the cross reference
+  name: 'writesFor',
 };
 
 client.schema
@@ -74,7 +77,7 @@ package main
 
 import (
   "context"
-  "fmt"
+	"fmt"
 
   "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
   "github.com/semi-technologies/weaviate/entities/models"
@@ -89,12 +92,12 @@ func main() {
     client := weaviate.New(cfg)
 
     prop := &models.Property{
-        DataType: []string{"Author"}, // <== note how the name of the class is the cross reference
-        Name:     "has",
+        DataType: []string{"Publication"}, // <== note how the name of the class is the cross reference
+        Name:     "writesFor",
     }
 
     err := client.Schema().PropertyCreator().
-        WithClassName("Publication").
+        WithClassName("Author").
         WithProperty(prop).
         Do(context.Background())
 
@@ -129,16 +132,16 @@ import technology.semi.weaviate.client.v1.schema.model.Property;
 public class App {
   public static void main(String[] args) {
     Config config = new Config("https", "some-endpoint.semi.network/");
-    
+
     WeaviateClient client = new WeaviateClient(config);
 
     Property property = Property.builder()
-      .dataType(Arrays.asList("Author")) // <== note how the name of the class is the cross reference
-      .name("has")
+      .dataType(Arrays.asList("Publication")) // <== note how the name of the class is the cross reference
+      .name("writesFor")
       .build();
 
     Result<Boolean> result = client.schema().propertyCreator()
-      .withClassName("Publication")
+      .withClassName("Author")
       .withProperty(property)
       .run();
 
@@ -170,11 +173,11 @@ $ curl \
     -H "Content-Type: application/json" \
     -d '{ 
       "dataType": [
-        "Author"
+        "Publication"
       ],
-      "name": "has"
+      "name": "writesFor"
     }' \
-    https://some-endpoint.semi.network/v1/schema/Publication/properties
+    https://some-endpoint.semi.network/v1/schema/Author/properties
 
 curl https://some-endpoint.semi.network/v1/schema
 ```
