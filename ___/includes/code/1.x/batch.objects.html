@@ -1,4 +1,7 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -40,9 +43,12 @@ with client.batch as batch:
   batch.add_data_object(first_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
   # Add object with a custom vector
   batch.add_data_object(second_object_props, 'Author', "36ddd591-2dee-4e7e-a3cc-eb86d30a4304", vector=[0.1, 0.2, 0.3])
-{% endcapture %}
+```
 
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -128,9 +134,12 @@ client.batch
           console.error(err)
       });
 */
-{% endcapture %}
+```
 
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -181,11 +190,12 @@ func main() {
   }
   fmt.Printf("%v", result)
 }
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="java" label="Java">
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+```java
 package technology.semi.weaviate;
 
 import java.util.ArrayList;
@@ -251,9 +261,12 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ curl \
 -X POST \
 -H "Content-Type: application/json" \
@@ -279,6 +292,7 @@ $ curl \
   }]
 }' \
 http://localhost:8080/v1/batch/objects
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='batch-objects' %}
+</TabItem>
+</Tabs>

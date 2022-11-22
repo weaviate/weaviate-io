@@ -1,5 +1,7 @@
-<!-- SET PYTHON TAB CONTENT -->
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 
 import weaviate
 import json
@@ -30,12 +32,12 @@ schema = client.schema.get()
 
 # print the schema
 print(json.dumps(schema, indent=4))
+```
 
+</TabItem>
+<TabItem value="js" label="JavaScript">
 
-{% endcapture %}
-
-<!-- SET JAVASCRIPT TAB CONTENT -->
-{% capture javascript %}
+```js
 
 const weaviate = require("weaviate-client");
 
@@ -86,11 +88,12 @@ client
   .catch(err => {
     console.error(err)
   });
-{% endcapture %}
+```
 
-<!-- SET GO TAB CONTENT -->
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
 
+```go
 package main
 
 import (
@@ -138,11 +141,12 @@ func main() {
     // print the schema
     fmt.Printf("%v", schema)
 }
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="java" label="Java">
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+```java
 
 package technology.semi.weaviate;
 
@@ -192,11 +196,12 @@ public class App {
     
   }
 }
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="curl" label="Curl">
 
-<!-- SET CURL TAB CONTENT -->
-{% capture curl %}
+```bash
 $ curl \
 -X POST \
 -H "Content-Type: application/json" \
@@ -216,8 +221,7 @@ $ curl \
 https://some-endpoint.semi.network/v1/schema
     
 curl https://some-endpoint.semi.network/v1/schema
+```
 
-
-{% endcapture %}
-
-{% include molecule-restful-block-request.html block_id='getting-started-schema-create-2' %}
+</TabItem>
+</Tabs>

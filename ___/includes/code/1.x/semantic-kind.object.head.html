@@ -1,13 +1,20 @@
-{% capture python %} 
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python 
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
 exists = client.data_object.exists("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "MyClass")
 print(exists) 
-{% endcapture %} 
+```
 
-{% capture javascript %}
+</TabItem> 
+
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -26,9 +33,12 @@ client.data
   .catch(err =>
     console.error(err)
   );
-{% endcapture %}
+```
 
-{% capture go %} 
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go 
 package main
 
 import (
@@ -55,9 +65,12 @@ func main() {
   }
   fmt.Printf("%v", exists)
 }
-{% endcapture %}
+```
 
-{% capture java %} 
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java 
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;
@@ -81,10 +94,16 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %} 
+```
 
-{% capture curl %} 
+</TabItem> 
+
+<TabItem value="curl" label="Curl">
+
+```bash 
 $ curl -I http://localhost:8080/v1/objects/MyClass/f3e20a86-0b44-4558-a336-bd137d866387 
-{% endcapture %} 
+```
 
-{% include molecule-restful-block-request.html block_id='semantic-kind-object-head' %}
+</TabItem> 
+
+</Tabs>

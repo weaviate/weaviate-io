@@ -1,13 +1,19 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
 all_objects = client.data_object.get(class_name="MyClass")
 print(all_objects)
-{% endcapture %}
+```
 
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -27,9 +33,12 @@ client
     .catch(err => {
         console.error(err)
     });
-{% endcapture %}
+```
 
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -56,10 +65,12 @@ func main() {
     }
     fmt.Printf("%v", data)
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import java.util.List;
@@ -85,10 +96,14 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ curl http://localhost:8080/v1/objects?limit=2&include=classification&class=MyClass
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='semantic-kind-get' %}
+</TabItem>
+</Tabs>

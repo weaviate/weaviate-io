@@ -1,4 +1,7 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -67,9 +70,12 @@ class_obj = {
 }
 
 client.schema.create_class(class_obj)
-{% endcapture %}
+```
 
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -151,9 +157,12 @@ client
   .catch(err => {
     console.error(err)
   });
-{% endcapture %}
+```
 
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -208,10 +217,12 @@ func main() {
     panic(err)
   }
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import java.util.ArrayList;
@@ -295,9 +306,12 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ curl \
 -X POST \
 -H "Content-Type: application/json" \
@@ -364,6 +378,7 @@ $ curl \
     }
 }' \
 http://localhost:8080/v1/schema
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='schema-thing-create-elaborate' %}
+</TabItem>
+</Tabs>

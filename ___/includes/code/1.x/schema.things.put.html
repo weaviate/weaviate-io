@@ -1,4 +1,7 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -25,9 +28,12 @@ class_obj = {
 }
 
 client.schema.update_config("Article", class_obj)
-{% endcapture %}
+```
 
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ curl \
     -X PUT \
     -H "Content-Type: application/json" \
@@ -52,7 +58,7 @@ $ curl \
         ]
     }' \
     http://localhost:8080/v1/schema/Article
-{% endcapture %}
+```
 
-
-{% include molecule-python-restful-block-request.html block_id='schema-thing-put' %}
+</TabItem>
+</Tabs>

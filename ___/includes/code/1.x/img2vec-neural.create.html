@@ -1,4 +1,7 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -14,9 +17,12 @@ result = (
 )
 
 print(result)
-{% endcapture %}
+```
 
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -39,9 +45,12 @@ client.data
       .catch(err => {
           console.error(err)
       });
-{% endcapture %}
+```
 
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -73,10 +82,12 @@ func main() {
   }
   fmt.Printf("%v", created)
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import java.util.HashMap;
@@ -108,9 +119,12 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ curl \
     -X POST \
     -H "Content-Type: application/json" \
@@ -123,6 +137,7 @@ $ curl \
     }
   }' \
     http://localhost:8080/v1/objects
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='img2vec-keras-create' %}
+</TabItem>
+</Tabs>

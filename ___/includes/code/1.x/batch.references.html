@@ -1,4 +1,7 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -42,9 +45,12 @@ with client.batch as batch:
       to_object_uuid="b72912b9-e5d7-304e-a654-66dc63c55b32",
       to_object_class_name="Article",
     )
-{% endcapture %}
+```
 
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -125,9 +131,12 @@ client.batch
           console.error(err)
       });
 */
-{% endcapture %}
+```
 
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -174,11 +183,12 @@ func main() {
   }
   fmt.Printf("%v", result)
 }
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="java" label="Java">
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+```java
 package technology.semi.weaviate;
 
 import java.util.ArrayList;
@@ -233,9 +243,12 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 # Note that for this query to work with Weaviate versions older than v1.14 you
 # need to omit the class name in the "to" beacon and specify it as
 # weaviate://localhost/<id>. The long-form beacon used in "from" is unchanged.
@@ -253,6 +266,7 @@ $ curl \
     "to": "weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32"
   }]' \
 http://localhost:8080/v1/batch/references
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='batching-references' %}
+</TabItem>
+</Tabs>

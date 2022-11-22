@@ -1,5 +1,7 @@
-<!-- SET GRAPHQL TAB CONTENT -->
-{% capture graphql %}
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
 {
   Get {
     Article(nearText:{
@@ -20,10 +22,12 @@
     }
   }
 }
-{% endcapture %}
+```
 
-<!-- SET PYTHON TAB CONTENT -->
-{% capture python %}
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -40,11 +44,12 @@ result = (
 )
 
 print(result)
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
 
-<!-- SET JAVASCRIPT TAB CONTENT -->
-{% capture javascript %}
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -66,10 +71,12 @@ client.graphql
       .catch(err => {
         console.error(err)
       });
-{% endcapture %}
+```
 
-<!-- SET GO TAB CONTENT -->
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -118,10 +125,12 @@ func main() {
   }
   fmt.Printf("%v", result)
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;
@@ -172,10 +181,12 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-<!-- SET CURL TAB CONTENT -->
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ echo '{ 
   "query": "{
     Get {
@@ -202,7 +213,7 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
-{% endcapture %}
+```
 
-<!-- SET BLOCK_ID TO A UNIQUE ID, OFTEN THIS IS = TO THE FILENAME WHERE . == - -->
-{% include molecule-graphql-block-request.html block_id='spellcheck-module' %}
+</TabItem>
+</Tabs>

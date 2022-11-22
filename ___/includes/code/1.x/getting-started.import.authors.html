@@ -1,5 +1,7 @@
-<!-- SET PYTHON TAB CONTENT -->
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 
 # Batch import all Authors
 for author in data['authors']:
@@ -17,11 +19,12 @@ for author in data['authors']:
 
 # Flush the remaining buffer to make sure all objects are imported
 client.batch.flush()
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
 
-<!-- SET JAVASCRIPT TAB CONTENT -->
-{% capture javascript %}
+```js
 
 async function importAuthors() {
   // Get the data from the data.json file
@@ -67,12 +70,12 @@ async function importAuthors() {
 }
 
 importAuthors();
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="go" label="Go">
 
-<!-- SET GO TAB CONTENT -->
-{% capture go %}
-
+```go
 func importAuthors(ctx context.Context, client *weaviate.Client) error {
 	data, err := parseFile()
 	if err != nil {
@@ -109,10 +112,12 @@ func importAuthors(ctx context.Context, client *weaviate.Client) error {
 	return nil
 }
   
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 
 public void importAuthors() throws FileNotFoundException {
   Data data = parseFile();
@@ -142,11 +147,12 @@ public void importAuthors() throws FileNotFoundException {
   }
   Arrays.stream(result.getResult()).forEach(System.out::println);
 }
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="curl" label="Curl">
 
-<!-- SET CURL TAB CONTENT -->
-{% capture curl %}
+```bash
 $ curl \
 -X POST \
 -H "Content-Type: application/json" \
@@ -180,6 +186,7 @@ $ curl \
   }]
 }' \
 https://some-endpoint.semi.network/v1/batch/objects
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='getting-started-import-authors' %}
+</TabItem>
+</Tabs>

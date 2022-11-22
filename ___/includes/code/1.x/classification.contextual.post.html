@@ -1,4 +1,7 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -23,9 +26,12 @@ client.classification.schedule()\
             .with_source_where_filter(source_where)\   # optional
             .with_target_where_filter(target_where)\   # optional
             .do()
-{% endcapture %}
+```
 
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -64,9 +70,12 @@ client.classifications
       .catch(err => {
           console.error(err)
       });
-{% endcapture %}
+```
 
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -109,10 +118,12 @@ func main() {
   }
   fmt.Printf("%v", classification)
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;
@@ -156,10 +167,12 @@ public class App {
         System.out.println(result.getResult());
     }
 }
-{% endcapture %}
+```
 
+</TabItem>
+<TabItem value="curl" label="Curl">
 
-{% capture curl %}
+```bash
 $ curl \
     -X POST \
     -H "Content-Type: application/json" \
@@ -178,6 +191,7 @@ $ curl \
         }
     }' \
     http://localhost:8080/v1/classifications
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='classification-contextual-post' %}
+</TabItem>
+</Tabs>

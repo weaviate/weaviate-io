@@ -1,13 +1,19 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client('http://localhost:8080')
 
 nodes_status = client.cluster.get_nodes_status()
 print(nodes_status)
-{% endcapture %}
+```
 
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -20,9 +26,12 @@ client.cluster
   .do()
   .then(console.log)
   .catch(console.error);
-{% endcapture %}
+```
 
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -48,10 +57,12 @@ func main() {
   }
   fmt.Printf("%v", nodesStatus)
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;
@@ -75,10 +86,14 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ curl http://localhost:8080/v1/nodes
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='nodes' %}
+</TabItem>
+</Tabs>

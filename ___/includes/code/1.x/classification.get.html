@@ -1,4 +1,7 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -6,10 +9,12 @@ client = weaviate.Client("http://localhost:8080")
 classification_info = client.classification.get("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c")
 
 print(classification_info)
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
 
-{% capture javascript %}
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -27,9 +32,12 @@ client.classifications
       .catch(err => {
           console.error(err)
       });
-{% endcapture %}
+```
 
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -55,10 +63,12 @@ func main() {
   }
   fmt.Printf("%v", classification)
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;
@@ -82,10 +92,14 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ curl http://localhost:8080/v1/classifications/ee722219-b8ec-4db1-8f8d-5150bb1a9e0c
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='classification-get' %}
+</TabItem>
+</Tabs>

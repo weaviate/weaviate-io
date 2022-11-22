@@ -1,5 +1,7 @@
-<!-- SET GRAPHQL TAB CONTENT -->
-{% capture graphql %}
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
 {
   Aggregate {
     Article (groupBy:["isAccessible"]) {
@@ -16,10 +18,12 @@
     }
   }
 }
-{% endcapture %}
+```
 
-<!-- SET PYTHON TAB CONTENT -->
-{% capture python %}
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -31,10 +35,12 @@ result = client.query.aggregate("Article") \
     .do()
 
 print(result)
-{% endcapture %}
+```
 
-<!-- SET JAVASCRIPT TAB CONTENT -->
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 // this query currently gives an inconsistent result from a plain graphql query, see https://github.com/semi-technologies/weaviate-javascript-client/issues/8
 
 const weaviate = require("weaviate-client");
@@ -56,10 +62,12 @@ client.graphql
       .catch(err => {
         console.error(err)
       });
-{% endcapture %}
+```
 
-<!-- SET GO TAB CONTENT -->
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -104,10 +112,12 @@ func main() {
   }
   fmt.Printf("%v", result)
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;
@@ -149,10 +159,12 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-<!-- SET CURL TAB CONTENT -->
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ echo '{ 
   "query": "{
     Aggregate {
@@ -175,7 +187,7 @@ $ echo '{
   -H 'Content-Type: application/json' \
   -d @- \
   http://localhost:8080/v1/graphql
-{% endcapture %}
+```
 
-<!-- SET BLOCK_ID TO A UNIQUE ID, OFTEN THIS IS = TO THE FILENAME WHERE . == - -->
-{% include molecule-graphql-block-request.html block_id='graphql-aggregate-groupby' %}
+</TabItem>
+</Tabs>

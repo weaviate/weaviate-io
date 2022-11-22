@@ -1,5 +1,7 @@
-<!-- SET PYTHON TAB CONTENT -->
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 
 import weaviate
 import json
@@ -8,11 +10,12 @@ client = weaviate.Client("https://some-endpoint.semi.network/")
 
 all_objects = client.data_object.get()
 print(json.dumps(all_objects))
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
 
-<!-- SET JAVASCRIPT TAB CONTENT -->
-{% capture javascript %}
+```js
 
 const weaviate = require("weaviate-client");
 
@@ -31,12 +34,12 @@ client
     .catch(err => {
         console.error(err)
     });
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="go" label="Go">
 
-<!-- SET GO TAB CONTENT -->
-{% capture go %}
-
+```go
 package main
 
 import (
@@ -62,10 +65,12 @@ func GetSchema() {
     fmt.Printf("%v", data)
 
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import java.util.List;
@@ -90,13 +95,14 @@ public class App {
     System.out.println(result.getResult());
   }
 }
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="curl" label="Curl">
 
-<!-- SET CURL TAB CONTENT -->
-{% capture curl %}
+```bash
 $ curl https://some-endpoint.semi.network/v1/objects
+```
 
-{% endcapture %}
-
-{% include molecule-restful-block-request.html block_id='getting-started-import-get' %}
+</TabItem>
+</Tabs>

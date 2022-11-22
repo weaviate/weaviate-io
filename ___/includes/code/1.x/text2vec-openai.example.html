@@ -1,5 +1,7 @@
-<!-- SET PYTHON TAB CONTENT -->
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 from weaviate import Client
 import time
 
@@ -31,10 +33,12 @@ def configure_batch(client: Client, batch_size: int, batch_target_rate: int):
         timeout_retries=5,
         callback=callback,
     )
-{% endcapture %}
+```
 
-<!-- SET GO TAB CONTENT -->
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -89,8 +93,9 @@ func main() {
 		<-t.C
 	}
 }
-{% endcapture %}
+```
 
+</TabItem>
 <div class="accordion" id="collapse-{{ include.block_id }}">
     <div class="accordion-item">
        <h2 class="accordion-header" id="panel-{{ include.block_id }}-2">
@@ -100,8 +105,7 @@ func main() {
        </h2>
        <div id="collapse-{{ include.block_id }}-2" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#collapse-{{ include.block_id }}">
           <div class="accordion-body">
-             {% include molecule-code.html content=python language="python" %}
-          </div>
+             </Tabs>          </div>
        </div>
     </div>
     <div class="accordion-item">
@@ -112,8 +116,7 @@ func main() {
        </h2>
        <div id="collapse-{{ include.block_id }}-4" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#collapse-{{ include.block_id }}">
           <div class="accordion-body">
-             {% include molecule-code.html content=go language="go" %}
-          </div>
+             </Tabs>          </div>
        </div>
     </div>
  </div>

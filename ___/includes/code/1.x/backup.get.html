@@ -1,11 +1,14 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
 
+```python
 # to be done
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
 
-
-{% capture javascript %}
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -18,10 +21,12 @@ client.backup.getter()
   .do()
   .then(console.log)
   .catch(console.error)
-{% endcapture %}
+```
 
+</TabItem>
+<TabItem value="go" label="Go">
 
-{% capture go %}
+```go
 package main
 
 import (
@@ -48,10 +53,12 @@ func main() {
   }
   fmt.Printf("%v", result)
 }
-{% endcapture %}
+```
 
+</TabItem>
+<TabItem value="java" label="Java">
 
-{% capture java %}
+```java
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;
@@ -76,12 +83,14 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
+</TabItem>
+<TabItem value="curl" label="Curl">
 
-{% capture curl %}
+```bash
 $ curl http://localhost:8080/v1/backups/filesystem
-{% endcapture %}
+```
 
-
-{% include molecule-restful-block-request.html block_id='backups-get' %}
+</TabItem>
+</Tabs>

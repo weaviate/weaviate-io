@@ -1,4 +1,7 @@
-{% capture curl %}
+<Tabs groupId="languages">
+<TabItem value="curl" label="Curl">
+
+```bash
 $ curl \
 -X DELETE \
 -H "Content-Type: application/json" \
@@ -15,9 +18,12 @@ $ curl \
   "dryRun": false
 }' \
 http://localhost:8080/v1/batch/objects
-{% endcapture %}
+```
 
-{% capture python %}
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client('http://localhost:8080')
@@ -35,9 +41,12 @@ result = client.batch.delete_objects(
 )
 
 print(result)
-{% endcapture %}
+```
 
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -58,9 +67,12 @@ client.batch
 	.do()
 	.then(console.log)
 	.catch(console.error);
-{% endcapture %}
+```
 
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -96,10 +108,12 @@ func main() {
 
 	fmt.Printf("%v", result)
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;
@@ -135,6 +149,7 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='batch-delete-objects' %}
+</TabItem>
+</Tabs>

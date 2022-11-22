@@ -1,5 +1,7 @@
-<!-- SET PYTHON TAB CONTENT -->
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 
 import weaviate
 import json
@@ -10,11 +12,12 @@ client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compos
 
 schema = client.schema.get()
 print(json.dumps(schema))
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
 
-<!-- SET JAVASCRIPT TAB CONTENT -->
-{% capture javascript %}
+```js
 
 const weaviate = require("weaviate-client");
 
@@ -42,12 +45,12 @@ client
   .catch(err => {
     console.error(err)
   });
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="go" label="Go">
 
-<!-- SET GO TAB CONTENT -->
-{% capture go %}
-
+```go
 package main
 
 import (
@@ -79,10 +82,12 @@ func GetSchema() {
     }
     fmt.Printf("%v", schema)
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;
@@ -113,16 +118,18 @@ public class App {
     System.out.println(result.getResult());
   }
 }
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="curl" label="Curl">
 
-<!-- SET CURL TAB CONTENT -->
-{% capture curl %}
+```bash
 $ curl https://some-endpoint.semi.network/v1/schema
 
 # or
 
 $ curl http://localhost:8080/v1/schema
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='getting-started-schema-connect' %}
+</TabItem>
+</Tabs>

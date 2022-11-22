@@ -1,13 +1,19 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
 concept_info = client.contextionary.get_concept_vector("fashionMagazine")
 print(concept_info)
-{% endcapture %}
+```
 
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -25,9 +31,12 @@ client.c11y
       .catch(err => {
           console.error(err)
       });
-{% endcapture %}
+```
 
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -55,10 +64,12 @@ func main() {
 
   fmt.Printf("%v", concept)
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;
@@ -80,10 +91,14 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ curl http://localhost:8080/v1/modules/text2vec-contextionary/concepts/fashionMagazine
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='contextionary-get' %}
+</TabItem>
+</Tabs>

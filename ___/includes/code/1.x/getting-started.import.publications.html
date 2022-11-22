@@ -1,5 +1,7 @@
-<!-- SET PYTHON TAB CONTENT -->
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 
 import weaviate
 
@@ -31,11 +33,12 @@ for publication in data['publications']:
 
 # Flush the remaining buffer to make sure all objects are imported
 client.batch.flush()
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
 
-<!-- SET JAVASCRIPT TAB CONTENT -->
-{% capture javascript %}
+```js
 
 const weaviate = require("weaviate-client");
 
@@ -101,12 +104,12 @@ async function importPublications() {
 }
 
 importPublications();
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="go" label="Go">
 
-<!-- SET GO TAB CONTENT -->
-{% capture go %}
-
+```go
 package main
 
 import (
@@ -205,11 +208,12 @@ type Publication struct {
 	Name   string    `json:"name"`
 	Vector []float32 `json:"vector"`
 }
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="java" label="Java">
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+```java
 package example;
 
 import com.google.gson.Gson;
@@ -293,11 +297,12 @@ public class App {
     public Float[] vector;
   }
 }
+```
 
-{% endcapture %}
+</TabItem>
+<TabItem value="curl" label="Curl">
 
-<!-- SET CURL TAB CONTENT -->
-{% capture curl %}
+```bash
 $ curl \
 -X POST \
 -H "Content-Type: application/json" \
@@ -331,6 +336,7 @@ $ curl \
   }]
 }' \
 https://some-endpoint.semi.network/v1/batch/objects
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='getting-started-import-publications' %}
+</TabItem>
+</Tabs>

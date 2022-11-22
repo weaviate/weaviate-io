@@ -1,4 +1,7 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -12,9 +15,12 @@ reference_property = {
 }
 
 client.schema.property.create("Publication", reference_property)
-{% endcapture %}
+```
 
-{% capture javascript %}
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
 const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
@@ -42,10 +48,12 @@ client.schema
   .catch(err => {
     console.error(err)
   });
-{% endcapture %}
+```
 
-<!-- SET GO TAB CONTENT -->
-{% capture go %}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
 package main
 
 import (
@@ -76,10 +84,12 @@ func main() {
     panic(err)
   }
 }
-{% endcapture %}
+```
 
-<!-- SET JAVA TAB CONTENT -->
-{% capture java %}
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
 package technology.semi.weaviate;
 
 import java.util.Arrays;
@@ -111,9 +121,12 @@ public class App {
     System.out.println(result.getResult());
   }
 }
-{% endcapture %}
+```
 
-{% capture curl %}
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
 $ curl \
     -X POST \
     -H "Content-Type: application/json" \
@@ -125,6 +138,7 @@ $ curl \
       "name": "hasArticles"
     }' \
     http://localhost:8080/v1/schema/Publication/properties
-{% endcapture %}
+```
 
-{% include molecule-restful-block-request.html block_id='howto-schema-property-add' %}
+</TabItem>
+</Tabs>

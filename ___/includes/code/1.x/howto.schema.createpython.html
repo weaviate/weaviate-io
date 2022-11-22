@@ -1,4 +1,7 @@
-{% capture python %}
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -79,6 +82,7 @@ schema = {
 }
 
 client.schema.create(schema)
-{% endcapture %}
+```
 
-{% include molecule-python-block-request.html block_id='howto-schema-createpython' %}
+</TabItem>
+</Tabs>
