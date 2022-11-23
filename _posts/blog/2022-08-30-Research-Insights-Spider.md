@@ -18,7 +18,7 @@ redirect_from: /blog/2022/08/Research-Insights-Spider.html
 
 There is a lot of excitement around Deep Learning systems with new ML models being trained every day. However, they have been limited by the need for large labeled datasets, which leads us on a search for other solutions that could help us avoid that limitation.
 
-We found interesting ideas in the [Learning to Retrieve Passages without Supervision](https://arxiv.org/pdf/2112.07708.pdf){:target="_blank"} paper by Ori Ram, Gal Shachaf, Omer Levy, Jonathan Berant and Amir Globerson. Where the authors explore
+We found interesting ideas in the [Learning to Retrieve Passages without Supervision](https://arxiv.org/pdf/2112.07708.pdf){:target="_blank"} paper by Ori Ram, Gal Shachaf, Omer Levy, Jonathan Berant and Amir Globerson. The authors explore
 Self-Supervised Learning – a class of learning algorithms that can bootstrap loss functions – as an alternative route to training new models **without** the need for human labeling!
 
 Self-Supervised Learning has led to massive advances in generative modeling and representation learning. In this article, we will explain **Span-based Unsupervised Dense Retriever (Spider)**, a recent breakthrough for Self-Supervised representation learning applied to text retrieval in search.
@@ -26,7 +26,7 @@ Self-Supervised Learning has led to massive advances in generative modeling and 
 ### Results
 The results Spider achieves are extremely exciting! The headline is that Spider’s Zero-Shot Generalization rivals the performance of the Supervised baseline on Supervised evaluation. This means that we take the labeled dataset, divide it into train-test splits, train a Supervised model on this train split, and then evaluate both models on the held-out test split. Although Spider has not been trained on this distribution (Zero-Shot Generalization), it achieves a similar performance to the model which has!
 
-The authors further probe this Zero-Shot Generalization across several Open-Domain Question Answering datasets to illustrate how much better these Self-Supervised algorithms are than their Supervised predecessors. Further, the authors show how we can target Spider’s performance to a particular data distribution with Transfer Learning. The new algorithms prove to be much more sample efficient, requiring only 128 labeled examples!
+The authors further probe this Zero-Shot Generalization across several Open-Domain Question Answering datasets to illustrate how much better these Self-Supervised algorithms are than their Supervised predecessors. Further, the authors show how we can target Spider’s performance to a particular data distribution with Transfer Learning. The new algorithms prove to be much more sample-efficient, requiring only 128 labeled examples!
 
 ## Information Retrieval with Deep Learning
 
@@ -47,10 +47,6 @@ The image below illustrates the concept of Contrastive Learning. We want to alig
 
 The problem with Contrastive Learning is that the construction of positive and negative samples typically requires expensive and time-consuming manual labeling. Self-Supervised Learning, on the other hand, aims to minimize this cost and offers a clear breakthrough in the performance of these techniques.
 
-## What’s New - Span-based Unsupervised Dense Retriever (SPIDER)
-
-Spider offers a way to automatically generate **Anchor**, **Positive** and **Negative** training data with **Recurring Span Retrieval**. One of the key elements of Spider is to identify the longest Recurring Spans that appear in two (or more) different places within the same Document. Then use that to later construct positive and negative training data.
-
 Some quick terms before diving in:
 * Anchor - A query point that the model takes as input to compare with the Positive and Negative.
 * Positive - The data point we want the model to predict is semantically similar to the Anchor.
@@ -59,6 +55,10 @@ Some quick terms before diving in:
 * Passage - 100 word chunks extracted from a Document.
 * Span - A snippet of words such as “Deep Learning” or “biological brain of most living organisms”.
 * Recurring Span - A piece of text (ignoring punctuation, etc) that appears in more than one Passage. 
+
+## What’s New - Span-based Unsupervised Dense Retriever (SPIDER)
+
+Spider offers a way to automatically generate **Anchor**, **Positive** and **Negative** training data with **Recurring Span Retrieval**. One of the key elements of Spider is to identify the longest Recurring Spans that appear in two (or more) different places within the same Document. Then use that to later construct positive and negative training data.
 
 ### Exercise – Spider implementation
 
@@ -110,7 +110,7 @@ This has an auto-labeling benefit since the negative pair is likely to be semant
 
 Thus far, we have presented 2 key innovations in Spider – **Recurring Span** positive selection and **Document-Passage** decomposition to leverage the inherent structure in a Document to source anchor, positive, and negative data tuples for Contrastive Learning. The third key innovation we will explore is **Query Transformation**.
 
-Once positive pairs are sampled based on Recurring Spans, a **Query Transformation** is either applied to the anchor or not with 50% probability. If not applied, the anchor remains as they were found in the text. Alternatively if the query transformation is applied, the overlapping n-gram is deleted from the anchor passage. The anchor is further processed via adjacent window sampling of random length between 5 and 30 neighboring tokens. This is done to make the anchor better represent the queries we expect to see with search systems, which generally have shorter length than the passages they aim to retrieve.
+Once positive pairs are sampled based on Recurring Spans, a **Query Transformation** is either applied to the anchor or not, with 50% probability. If not applied, the anchor remains as it was found in the text. Alternatively if the query transformation is applied, the overlapping n-gram is deleted from the anchor passage. The anchor is further processed via adjacent window sampling of random length between 5 and 30 neighboring tokens. This is done to make the anchor better represent the queries we expect to see with search systems, which generally have shorter length than the passages they aim to retrieve.
 
 The authors experimentally ablate the effectiveness of applying this query transformation, the impact of sampling a negative as well as a positive (i.e. using positives from other documents as negatives for the current query point), as well as the impact of batch size and training time on performance.
 
@@ -123,7 +123,7 @@ The image below demonstrates two examples with the matching Recurring Spans **�
 
 The authors experimentally present the effectiveness of Spider with the use of ODQA (Open-Domain Question Answering) datasets. ODQA datasets consist of labeled (question, answer, context) tuples. For example (“What is the atomic number of oxygen?”, “8”, “Oxygen is the chemical element with the symbol O and atomic number 8.”). Retrieval models are evaluated based on whether they can retrieve this context given the question as input and a large collection of contexts represented as vectors. This is reported with the top-k retrieval accuracy, the percentage of questions for which the answer span is found in the top-k passages most similar to the query. 
 
-The Spider retrieval models are 110 million parameter BERT-base transformers, using an uncased WordPiece tokenizer. The vector representations of passages are extracted by indexing the [CLS] token, a common indexing technique describing extraction from the leftmost vector in BERT’s output matrix. Spider is trained on a Wikipedia dump from Dec. 20th, 2018 with passages of 100 words as retrieval units, totalling 21 million passages after preprocessing. Spider is trained for 200,000 steps using a batch size of 1024. This takes 2 days implemented with 8 80GB A100 GPUs. The authors additionally explore fine-tuning Spider with Supervised Learning using 8 Quadro RTX 8000 GPUs.
+The Spider retrieval models are 110 million parameter BERT-base transformers, using an uncased WordPiece tokenizer. The vector representations of passages are extracted by indexing the [CLS] token, a common indexing technique describing extraction from the leftmost vector in BERT’s output matrix. Spider is trained on a Wikipedia dump from Dec. 20th, 2018 with passages of 100 words as retrieval units, totalling 21 million passages after preprocessing. Spider is trained for 200,000 steps using a batch size of 1024. This takes 2 days on 8 80GB A100 GPUs. The authors additionally explore fine-tuning Spider with Supervised Learning using 8 Quadro RTX 8000 GPUs.
 
 ### Spider + BM25 is on par with Supervised DPR when evaluated on the Supervised DPR test set!
 
@@ -139,7 +139,7 @@ The exact numbers behind the visualization shown above and evaluations with Natu
 
 ### Zero-Shot Generalization
 
-The results above look at DPR models which have been trained on the dataset they are tested on, i.e. the train-test sets are independent and identically distributed splits of the same data distribution. Another interesting measurement of these models is the **Zero-Shot Generalization** ability. How well these models can perform on data distributions they were not trained on.
+The results above look at DPR models which have been trained on the dataset they are tested on, i.e. the train-test sets are independent and identically distributed splits of the same data distribution. Another interesting measurement of these models is the **Zero-Shot Generalization** ability - how well these models can perform on data distributions they were not trained on.
 
 Shown below, the Spider models have a much better **Zero-Shot Generalization** than the Supervised DPR models. The generalization of Supervised Learning is very limited to the training data distribution. In contrast, Self-Supervised Learning techniques such as Spider are more robust to esoteric details of questions such as the style or length. This is of course in addition to the general content such as biomedical text versus legal text.
 
@@ -147,9 +147,9 @@ Shown below, the Spider models have a much better **Zero-Shot Generalization** t
 
 ### Supervised Fine-Tuning of Spider
 
-Perhaps more practically is to use Spider in tandem with Supervised Learning. Again, the general procedure for labeling datasets like this is to (1) show a labeler some context, like a passage and then (2) have the labeler derive a question, answer pair from the context. The training dataset is then to align questions with the originally presented passage.
+Perhaps more practically is to use Spider in tandem with Supervised Learning. Again, the general procedure for labeling datasets like this is to (1) show a labeler some context, like a passage and then (2) have the labeler derive a question/answer pair from the context. The training dataset is then to align questions with the originally presented passage.
 
-An interesting question with this is: How many questions do we need to label? Spider further provides a benefit here, greatly reducing the number of examples needed for strong Transfer Learning performance. As described by the Ram et al., “Spider fine-tuned on 128 examples is able to outperform all other baselines when they are trained on 1024 examples”. The image below presents the results of Supervised Fine-tuning with 128 examples, 1024 examples, and the full dataset.
+An interesting question with this approach is: How many questions do we need to label? Spider further provides a benefit here, greatly reducing the number of examples needed for strong Transfer Learning performance. As described by the Ram et al., “Spider fine-tuned on 128 examples is able to outperform all other baselines when they are trained on 1024 examples”. The image below presents the results of Supervised Fine-tuning with 128 examples, 1024 examples, and the full dataset.
 
 ![Fine-tuning comparison - data](/img/blog/self-supervised-retrieval/fine-tuning-comparison-data.jpg)
 
