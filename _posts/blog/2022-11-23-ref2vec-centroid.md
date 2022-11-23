@@ -56,9 +56,9 @@ With Ref2Vec, you can use Weaviate to provide Recommendation with “user-as-que
       nearObject: {
         id: "8abc5-4d5..." # id for the User object with vector defined by ref2vec-centroid
       }
-    ) {
-    product_name
-    price
+    ){
+      product_name
+      price
     }
   }
 }
@@ -86,9 +86,9 @@ To be clear, Weaviate already offers a solution to represent long documents with
         valueString: "Barack Obama"
       }
    ){
-   content
-   order
-   title
+      content
+      order
+      title
    }
 }
 ```
@@ -109,6 +109,6 @@ Ref2Vec-Centroid goes some way to harness the joint power of vector search **com
 Speaking of which, we have another blog post coming soon on the development directions of Ref2Vec for the future. We will discuss topics such as **collaborative filtering**, **multiple centroids**, **graph neural networks**, and more on **re-ranking** with Ref2Vec. Stay tuned!
                                                                
 ## Stay Connected
-Thank you so much for reading, if you would like to talk to us more about Ref2Vec, including telling us about your use case, or contributing ideas to the development of Ref2Vec, please connect with us on [Slack]((https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}) or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}!
+Thank you so much for reading, if you would like to talk to us more about Ref2Vec, including telling us about your use case, or contributing ideas to the development of Ref2Vec, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}!
 
 Weaviate is open-source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don’t forget to give us a ⭐️ while you are there.
