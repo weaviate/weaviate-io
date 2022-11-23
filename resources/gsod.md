@@ -115,7 +115,7 @@ Technical writers interested in working on this project should send an email to 
 
 ## **Additional information**
 
-Weaviate is selected to participate as mentoring organization in [Google Summer of Code 2022](https://g.co/gsoc), see our available projects [here](https://weaviate.io/resources/gsoc.html).
+Weaviate is selected to participate as mentoring organization in [Google Summer of Code 2022](https://g.co/gsoc), see our available projects <a href="/resources/gsoc.html" data-proofer-ignore>here</a>
 Join our community [slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to say hello, get to know the community or ask questions.
 
 </div>
