@@ -1,20 +1,21 @@
 ---
 layout: post
 title: What is Ref2Vec and why you need it for your recommendation system 
-description: " "
+description: "This blog post presents Ref2Vec, a new Weaviate module to use Cross-References for Recommendation!"
 published: true
 author: Connor Shorten
 author-img: /img/people/icon/connor.jpg
-card-img: 
-hero-img: 
-og: 
-date: 2022-11-22
+card-img: /img/blog/hero/Weaviate-Ref2Vec.png
+hero-img: /img/blog/hero/Weaviate-Ref2Vec.png
+og: /img/blog/hero/Weaviate-Ref2Vec.png
+date: 2022-11-23
 toc: true
 ---
 
 Weaviate 1.16 introduced the [Ref2Vec](https://weaviate.io/developers/weaviate/current/retriever-vectorizer-modules/ref2vec-centroid.html) module. In this article, we give you an overview of what Ref2Vec is and some examples in which it can add value such as recommendations or representing long objects.
 
-So what, exactly, is **Ref2Vec**? The name Ref2Vec is short for reference-to-vector, and it offers the ability to vectorize a data object with its cross-references to other objects. The Ref2Vec module currently holds the name ref2vec-**centroid** because it uses the average, or centroid vector, of the cross-referenced vectors to represent the **referencing** object. The benefit of this approach is that the referencing object can be characterized from its actions and relationships as well as refined over time. 
+## What is Ref2Vec?
+The name Ref2Vec is short for reference-to-vector, and it offers the ability to vectorize a data object with its cross-references to other objects. The Ref2Vec module currently holds the name ref2vec-**centroid** because it uses the average, or centroid vector, of the cross-referenced vectors to represent the **referencing** object. The benefit of this approach is that the referencing object can be characterized from its actions and relationships as well as refined over time. 
 
 In one example, we could use Ref2Vec in a Weaviate database containing **User** and **Product** classes of objects to produce recommendations. Here, the Product class may include various types of vectorized items, such as shoes, or clothing, and a User could be vectorized by its relationships to Product instances. So a User who has liked 3 shoe Product instances will be represented as the average vector of the 3 shoe Product vectors, whereas another User might be represented by an average vector of whatever Product instances that they liked. This can be used for recommendation, for instance, by treating the averaged vector of the User as a search query in Product objects. 
 
@@ -24,16 +25,16 @@ The following image depicts how Ref2Vec aggregates the representations of 3 Prod
 
 Such a representation of the User, by an aggregation of their cross-references, allows Weaviate to conveniently and immediately learn from each User’s preferences and actions to provide improved and up-to-date characterizations. Ref2Vec can in other words capture each User’s interests and tendencies across multiple axes, such as product categories or even fashion styles! And by doing so, the resulting recommendations can more closely match the User’s product and style preferences. 
 
-We envisage Ref2Vec to have great potential in multiple application areas. Let’s take a look at a few of them in more detail, starting by expanding on their use in recommendations.
+We envision Ref2Vec to have great potential in multiple application areas. Let’s take a look at a few of them in more detail, starting with recommendation systems.
 
 ## Recommendation in Weaviate 
-Many of you might primarily know Weaviate as a vector database and a search engine, but Weaviate can also power high-quality, lightning-fast recommendations. This is because Recommendation is a very similar task to Search from the perspective of a vector database. Both tasks leverage the ANN index of vector representations to search for a suitable object. The key difference is that in Search, relevance is typically contained entirely within the query. In Recommendation, relevance is additionally dependent on the user, making the query a subjective, user-dependent task rather than an objective task. So if a User searches for “adidas  shoes for the summer”, not only does Weaviate need to find these particular kinds of shoes, but it also needs to rank them based on relevance to the particular user’s interests!
+Many of you might primarily know Weaviate as a vector database and search engine, but Weaviate can also power high-quality, lightning-fast recommendations. This is because Recommendation is a very similar task to Search from the perspective of a vector database. Both tasks leverage the ANN index of vector representations to search for a suitable object. The key difference is that in Search, relevance is typically contained entirely within the query. In Recommendation, relevance is additionally dependent on the user, making the query a subjective, user-dependent task rather than an objective task. So if a User searches for “adidas  shoes for the summer”, not only does Weaviate need to find these particular kinds of shoes, but it also needs to rank them based on relevance to the particular user’s interests!
 
 With Ref2Vec, this task is made easier by representing a user’s interests by drawing a graph of cross-references from the user to objects the user has engaged with. This gives Weaviate unique points of reference for each user that can be used to rank the search results.
 
 In Weaviate, Classes represent data objects such as Users, Products, or Brands. The vector for an instance of a Class, such as a Product is obtained from a Machine Learning model’s inference of (typically) an image or text description of the Product. Additionally, Weaviate’s cross-references enable relations between Classes, such as Users that “liked” a Product. For example, User, Product, and Brand objects may each have a vector representation, symbolic properties like name or price, and relations as shown below.
 
-ADD IMAGE
+![Cross-reference](/img/blog/ref2vec/Weaviate-Ref2Vec_1.png)
 
 Ref2Vec gives Weaviate another way to vectorise a class, such as the User class, based on their relationships to other classes. This allows Weaviate to quickly create up-to-date representations of users based on their relationships such as recent interactions. If a user clicks on 3 shoe images on an e-commerce store, it is a safe bet that they want to see more shoes. Ref2Vec captures this intuition by calculating vectors that aggregate each User’s interaction with another class.
 
@@ -46,7 +47,7 @@ Your browser does not support the video tag.
 
 This animation shows how selecting multiple backpacks (such as two school-style book bags) can help personalize the user’s recommendations (so showing more backpacks in a similar style rather than the duffle bags). We also see here how selecting multiple digital LED screen watches moves results away from analog watches. In other words, the User vector is being updated in real-time here to take into account their preferences and actions, which helps to produce more relevant results at speed. Another benefit of Ref2Vec is that this calculation is not compute-heavy, leading to low overhead.
 
-With Ref2Vec, you can use Weaviate to provide Recommendation with “user-as-query”. This is a very common, powerful way to build Home Feed style features in apps. This can be done by sending queries like this to Weaviate:
+With Ref2Vec, you can use Weaviate to provide Recommendation with “user-as-query”. This is a very common and powerful way to build Home Feed style features in apps. This can be done by sending queries like this to Weaviate:
 
 ```graphql
 {
@@ -101,13 +102,13 @@ We are very excited about the potential of Ref2Vec, and how it leverages existin
 
 Although Weaviate puts Machine Learning data representations first, **this doesn’t mean we discard symbolic data and many features of previous systems**. Rather, we are actively searching for how symbolic data can improve neural functionality and vice versa.
 
-Weaviate is a database that supports data structures like inverted index structures of categorical properties. (Weaviate can integrate symbolic properties such as “colour” in the HNSW vector search algorithm to enable more efficient and guided search)[https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c]. This is called **pre-filtering** to describe applying the symbolic filter prior / during the search rather than simply after the nearest neighbors have been returned in **post-filtering**. Weaviate has clear applications of symbolic **properties** in vector search, but we have another symbolic data type that we hadn’t yet leveraged in vector search – **Relational Structure**.
+Weaviate is a database that supports data structures like inverted index structures of categorical properties. [Weaviate can integrate symbolic properties such as “colour” in the HNSW vector search algorithm to enable more efficient and guided search](https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c). This is called **pre-filtering** to describe applying the symbolic filter prior / during the search rather than simply after the nearest neighbors have been returned in **post-filtering**. Weaviate has clear applications of symbolic **properties** in vector search, but we have another symbolic data type that we hadn’t yet leveraged in vector search – **Relational Structure**.
 
 Ref2Vec-Centroid goes some way to harness the joint power of vector search **combined with** relational structure, by making it easier to derive object vectors from relationships. As you have seen above, we think Ref2Vec can add value for use cases such as recommendations, re-ranking, overcoming the cold start problem and representing long objects. We are also excited to see what you build with Ref2Vec, and excited to build on this module with its future iterations. 
 
 Speaking of which, we have another blog post coming soon on the development directions of Ref2Vec for the future. We will discuss topics such as **collaborative filtering**, **multiple centroids**, **graph neural networks**, and more on **re-ranking** with Ref2Vec. Stay tuned!
                                                                
 ## Stay Connected
-Thank you so much for reading, if you would like to talk to us more about Ref2Vec, including telling us about your use case, or contributing ideas to the development of Ref2Vec, please connect with us on [Slack]((https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}) or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}.!
+Thank you so much for reading, if you would like to talk to us more about Ref2Vec, including telling us about your use case, or contributing ideas to the development of Ref2Vec, please connect with us on [Slack]((https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"}) or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}!
 
 Weaviate is open-source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don’t forget to give us a ⭐️ while you are there.
