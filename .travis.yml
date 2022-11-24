@@ -1,9 +1,9 @@
 language: node_js
 node_js:
   - 18
-branches:
-  only:
-    - main
+# branches:
+#   only:
+#     - main
 cache:
   yarn: true
 script:
@@ -13,3 +13,5 @@ script:
   - yarn install
   - yarn build
   # - GIT_USER="${GH_NAME}" yarn deploy
+Branch "docusaurus-travis" not included per configuration.
+ 
