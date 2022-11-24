@@ -13,5 +13,3 @@ script:
   - yarn install
   - yarn build
   # - GIT_USER="${GH_NAME}" yarn deploy
-Branch "docusaurus-travis" not included per configuration.
- 
