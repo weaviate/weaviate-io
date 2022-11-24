@@ -1,18 +1,19 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Retrievers & Vectorizers
-nav-parent: Modules
 title: text2vec-openai
-description: Use any OpenAI model inside Weaviate
-tags: ['text2vec-openai']
 sidebar_position: 1
-open-graph-type: article
-toc: true
-enabled-on-wcs: true
-redirect_from:
-    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-openai.html
-    - /developers/weaviate/current/modules/text2vec-openai.html
+
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Retrievers & Vectorizers
+# nav-parent: Modules
+# description: Use any OpenAI model inside Weaviate
+# tags: ['text2vec-openai']
+# open-graph-type: article
+# toc: true
+# enabled-on-wcs: true
+# redirect_from:
+#     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-openai.html
+#     - /developers/weaviate/current/modules/text2vec-openai.html
 ---
 
 # Introduction

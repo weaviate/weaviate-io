@@ -25,7 +25,7 @@ If you are new, start with the Introduction (this page), followed by the [Quicks
 ### Guides
 Guides help you to **do** something with Weaviate. 
 
-Start with our [Essential guides](./guides-essential/index.md), and then move onto [Advanced configuration guides](./guides-config/index.md) to learn about configuring Weaviate for production, and [Further topics](./guides-further/index.md) to look at specific uses. The [Client libraries guides](./guides-client-libraries/index.md) will help you set up and use our Python, JavaScript, Java and Go client libraries.
+Start with our [Essential guides](./guides-essential/index.md), and then move onto [Advanced configuration guides](./guides-config/index.md) to learn about configuring Weaviate for production, and [Further topics](./guides-further/index.md) to look at specific uses. The [Client libraries guides](./guides-installation/guides-client-libraries/index.md) will help you set up and use our Python, JavaScript, Java and Go client libraries.
 
 ### Concepts
 If you want to **learn** more about Weaviate and vector space related topics, this is the place to go. Think of this section as something you can read through to learn more about these topics. 

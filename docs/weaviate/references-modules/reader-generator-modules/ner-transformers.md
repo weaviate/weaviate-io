@@ -1,16 +1,17 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Readers & Generators
-nav-parent: Modules
 title: Named Entity Recognition
-description: Named Entity Recognition module in Weaviate
-tags: ['ner-transformers', 'transformers', 'token classification']
 sidebar_position: 2
-open-graph-type: article
-toc: true
-redirect_from:
-    - /developers/weaviate/current/modules/ner-transformers.html
+
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Readers & Generators
+# nav-parent: Modules
+# description: Named Entity Recognition module in Weaviate
+# tags: ['ner-transformers', 'transformers', 'token classification']
+# open-graph-type: article
+# toc: true
+# redirect_from:
+#     - /developers/weaviate/current/modules/ner-transformers.html
 ---
 
 # In short

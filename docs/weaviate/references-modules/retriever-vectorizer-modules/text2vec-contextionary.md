@@ -1,17 +1,18 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Retrievers & Vectorizers
-nav-parent: Modules
 title: text2vec-contextionary
-description: Use the GloVe and Fasttext based Weaviate module
-tags: ['text2vec-contextionary', 'contextionary']
 sidebar_position: 4
-open-graph-type: article
-toc: true
-redirect_from:
-    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-contextionary.html
-    - /developers/weaviate/current/modules/text2vec-contextionary.html
+
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Retrievers & Vectorizers
+# nav-parent: Modules
+# description: Use the GloVe and Fasttext based Weaviate module
+# tags: ['text2vec-contextionary', 'contextionary']
+# open-graph-type: article
+# toc: true
+# redirect_from:
+#     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-contextionary.html
+#     - /developers/weaviate/current/modules/text2vec-contextionary.html
 ---
 
 # Introduction

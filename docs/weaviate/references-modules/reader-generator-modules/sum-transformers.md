@@ -1,16 +1,16 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Readers & Generators
-nav-parent: Modules
 title: Summarization
-description: Summarization module in Weaviate
-tags: ['transformers', 'text summary']
 sidebar_position: 3
-open-graph-type: article
-toc: true
----
 
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Readers & Generators
+# nav-parent: Modules
+# description: Summarization module in Weaviate
+# tags: ['transformers', 'text summary']
+# open-graph-type: article
+# toc: true
+---
 # In short
 * The Summarization (SUM) module is a Weaviate module that summarizes whole paragraps into a short text.
 * The module depends on a SUM Transformers model that should be running with Weaviate. There are pre-built models available, but you can also attach another HuggingFace Transformer or custom SUM model.
@@ -23,11 +23,11 @@ The Summarization module is a Weaviate module that is used to summarize Weaviate
 
 **For example**, it allows us to run a query on our data in Weaviate, which can take a text like this:
 
-<p style="padding: 0 20"><em>"The tower is 324 metres (1,063 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become the tallest man-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. It was the first structure to reach a height of 300 metres. Due to the addition of a broadcasting aerial at the top of the tower in 1957, it is now taller than the Chrysler Building by 5.2 metres (17 ft). Excluding transmitters, the Eiffel Tower is the second tallest free-standing structure in France after the Millau Viaduct."</em></p>
+> <em>"The tower is 324 metres (1,063 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become the tallest man-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. It was the first structure to reach a height of 300 metres. Due to the addition of a broadcasting aerial at the top of the tower in 1957, it is now taller than the Chrysler Building by 5.2 metres (17 ft). Excluding transmitters, the Eiffel Tower is the second tallest free-standing structure in France after the Millau Viaduct."</em>
 
 and transform it to a short sentence like this:
 
-<p style="padding: 0 20"><em>"The Eiffel Tower is a landmark in Paris, France."</em></p>
+> <em>"The Eiffel Tower is a landmark in Paris, France."</em>
 
 > Note, for maximum performance of your queries, transformer-based models should run with GPUs.
 > 
@@ -169,7 +169,7 @@ You can now push your image to your favorite registry or reference it locally in
 
 The code for the application in this repo works well with models that take in a text input like:
 
-<p style="padding 20 0"><em>But, similar to finding a bathing suit that fits in all the right places, discovering a new pair of perfectly cut and comfortable jeans can be thrilling. The Gap jeans are as classic as they come and they give me that figure-hugging fit without cutting off my circulation. At the moment, there are TikTok videos circulating about these jeans, making me one member of an ever-growing fan club. While good jeans are priceless, these bonafide confidence boosters are also now on sale for $63. Trust me, there’s no time like the present to break up with those all day, every day sweatpants and slip on some hero denim.</em></p>
+> <em>But, similar to finding a bathing suit that fits in all the right places, discovering a new pair of perfectly cut and comfortable jeans can be thrilling. The Gap jeans are as classic as they come and they give me that figure-hugging fit without cutting off my circulation. At the moment, there are TikTok videos circulating about these jeans, making me one member of an ever-growing fan club. While good jeans are priceless, these bonafide confidence boosters are also now on sale for $63. Trust me, there’s no time like the present to break up with those all day, every day sweatpants and slip on some hero denim.</em>
 
 then summarize it and return information in JSON format like this:
 

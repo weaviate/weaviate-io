@@ -1,15 +1,16 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Retrievers & Vectorizers
-nav-parent: Modules
 title: text2vec-huggingface
-description: Use any Huggingface model inside Weaviate through the Inference API
-tags: ['text2vec-huggingface']
 sidebar_position: 2
-open-graph-type: article
-toc: true
-enabled-on-wcs: true
+
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Retrievers & Vectorizers
+# nav-parent: Modules
+# description: Use any Huggingface model inside Weaviate through the Inference API
+# tags: ['text2vec-huggingface']
+# open-graph-type: article
+# toc: true
+# enabled-on-wcs: true
 ---
 
 # Introduction
