@@ -17,12 +17,13 @@ image: ./img/hero.png
 # toc: true
 # redirect_from: /blog/2022/09/Why-is-Vector-Search-so-fast.html
 ---
+![Why is Vector Search so fast?](./img/hero.png)
 
 ## Why is this so incredibly fast?
 
 Whenever I talk about vector search, I like to demonstrate it with an example of a semantic search. To add the wow factor, I like to run my queries on a Wikipedia dataset, which is populated with over 28 million paragraphs sourced from Wikipedia.
 
-For example, I can ask: “What is the tallest building in Berlin?”, and the Vector Search engine (in the case of my demo – [Weaviate](/developers/weaviate/current/)) responds with “Fernsehturm Berlin”.<br/>
+For example, I can ask: "What is the tallest building in Berlin?", and the Vector Search engine (in the case of my demo – [Weaviate](/developers/weaviate/current/)) responds with "Fernsehturm Berlin".<br/>
 You can try it for yourself by following this [link](https://link.semi.technology/3QYy9xX), which is already pre-populated with the above question. Press the play button, to see the magic happen.
 
 <!-- truncate -->
@@ -51,7 +52,7 @@ In a nutshell, vector embeddings are an array of numbers, which can be used as c
 There are many different distance metrics, like [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) and [Euclidean distance (L2 distance)](https://en.wikipedia.org/wiki/Euclidean_distance).
 
 ### The search part
-In a similar fashion, whenever we run a query (like: “What is the tallest building in Berlin?”), a vector search engine can also convert it to a “query” vector. The task of a vector search engine is to identify and retrieve a list of vectors that are closest to the given vector of your query, using a distance metric and a search algorithm. 
+In a similar fashion, whenever we run a query (like: "What is the tallest building in Berlin?"), a vector search engine can also convert it to a "query" vector. The task of a vector search engine is to identify and retrieve a list of vectors that are closest to the given vector of your query, using a distance metric and a search algorithm. 
 
 This is a bit like a game of boules – where the small marker (jack) is the location of our query vector, and the balls (boules) are our data vectors – and we need to find the boules that are nearest to the marker.
 

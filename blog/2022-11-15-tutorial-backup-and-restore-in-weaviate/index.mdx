@@ -14,6 +14,8 @@ image: ./img/hero.png
 # og: /img/blog/hero/tutorial-backup-restore.png
 # toc: false
 ---
+![Tutorial - Backup and Restore in Weaviate](./img/hero.png)
+
 Maintaining data integrity is one of the key goals for database users. So it should come as no surprise that backing up the data is an important part of database best practices.
 
 Although it has always been possible to back up Weaviate data, doing so used to require many manual and inelegant steps. So, we have introduced a [backup feature](/developers/weaviate/current/configuration/backups.html) in Weaviate `v1.15` that streamlines the backup process, whether it be to a **local file system** or to a **cloud storage provider**.
@@ -62,10 +64,12 @@ Now let’s dive into it to see the backup functionality in action!
 ### Utility scripts
 To begin with, both Weaviate instances **W1** and **W2** should be empty. In order to get straight to the point of this tutorial, we've prepared a set of scripts (located in the `scripts` folder) that will help you prepare your Weaviate instances and test them out.
 
------
+---
+![hero](./img/hero.png)--
 **Note**: The tutorial text refers to shell scripts (e.g. `0_query_instances.sh`), but we also provide code examples in other languages including **Python** and **JavaScript**. These files are located in `scripts` subdirectory and we encourage you to try them out yourself using your favorite client. 
 
------
+---
+![hero](./img/hero.png)--
 
 If you run the `0_query_instances` script, you should see that neither instances contain a schema.
 
@@ -107,10 +111,12 @@ curl \
     }' \
 http://localhost:8080/v1/backups/filesystem
 ```
------
+---
+![hero](./img/hero.png)--
 **Note**: The `backup_id` must be unique. The ID value is used to create a subdirectory in the backup location, and attempting to reuse an existing ID will cause Weaviate to throw an error. Delete the existing directory if one already exists.
 
------
+---
+![hero](./img/hero.png)--
 
 Now try running `3_backup` yourself to back up data from **W1**.
 

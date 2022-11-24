@@ -15,6 +15,7 @@ image: ./img/hero.png
 # og: /img/blog/hero/Image-Search-Application-with-Weaviate.png
 # toc: true
 ---
+![How to build an Image Search Application with Weaviate](./img/hero.png)
 Recently, I was working with my colleague Marcin (an engineer from Weaviate core) on a really cool demo project. The idea was to build an image-search application for dogs, which allows a user to provide a picture of a dog, and the app would respond with the most similar breed. And if a user provides a picture of their partner (I might've tested this on my boyfriend 😄), it returns the breed most similar to them.
 
 Once we had the demo up and running, I thought this was a perfect opportunity to share it. This blog post is the foundation for you to build another application around image recognition or product search.
@@ -75,7 +76,7 @@ You should see something like this, and we are ready to go!
 
 The dataset we’re using contains ten dogs, each containing the following properties: breed, image, weight, and filepath. The schema defines a structure into which we will store data in our Weaviate database, where each object type is referred to as a `class`. 
 
-This includes the class name, which in our case is “Dog” and the properties, such as `breed`, `image`, and `filepath`. In this case, we also need to add in the vectorizer definition, which is the `img2vec-neural` module, so that Weaviate knows to use that specific vectorizer. 
+This includes the class name, which in our case is "Dog" and the properties, such as `breed`, `image`, and `filepath`. In this case, we also need to add in the vectorizer definition, which is the `img2vec-neural` module, so that Weaviate knows to use that specific vectorizer. 
 
 We will tell Weaviate that breed and filepath values are strings, weight is stored as an integer, and images are stored as a `blob` dataType. Putting it all together, the schema definition should look like the following;
 

@@ -18,13 +18,13 @@ image: ./img/hero.jpg
 # isDBResearch: true
 # redirect_from: /blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html
 ---
+![GOMEMLIMIT Gopher](./img/intro.jpg)
 
 ## Intro
-Running out of memory is never fun, but it’s incredibly frustrating when you’ve already taken some precautions and calculated your exact memory needs. “My application requires 4GB of memory. How is it possible I ran out of memory on my 6GB machine!?”. As it turns out, this was a real possibility in a garbage collected (“GC”)  language like Golang. The emphasis is on the word “was” because Go 1.19 changes everything: The new `GOMEMLIMIT` feature can help you both increase GC-related performance as well as avoid GC-related out-of-memory (“OOM”) situations.
+Running out of memory is never fun, but it’s incredibly frustrating when you’ve already taken some precautions and calculated your exact memory needs. "My application requires 4GB of memory. How is it possible I ran out of memory on my 6GB machine!?". As it turns out, this was a real possibility in a garbage collected ("GC")  language like Golang. The emphasis is on the word "was" because Go 1.19 changes everything: The new `GOMEMLIMIT` feature can help you both increase GC-related performance as well as avoid GC-related out-of-memory ("OOM") situations.
 
 <!-- truncate -->
 
-![GOMEMLIMIT Gopher](./img/intro.jpg)
 
 In this article, I will invite you on a journey. We will cover:
 * How memory allocations work in Go.
@@ -53,7 +53,7 @@ func SumSquares(a, b float64) float64 {
 }
 ```
 
-Admittedly, this function is a bit more verbose than it would have to be. That is on purpose to show a lot of variables that can live on the stack. There are four variables (a, b, aSquared, and bSquared). None of them “escape” outside of this function block. As a result, the Go runtime can allocate them on the stack. In other words, these allocations are cheap. The garbage collector will never know about them.
+Admittedly, this function is a bit more verbose than it would have to be. That is on purpose to show a lot of variables that can live on the stack. There are four variables (a, b, aSquared, and bSquared). None of them "escape" outside of this function block. As a result, the Go runtime can allocate them on the stack. In other words, these allocations are cheap. The garbage collector will never know about them.
 
 Now, let’s look at something that escapes onto the heap. An example application would be a cache. A cache is long-lived and needs to stick around – even after a specific function that interacts with the cache has returned. For example:
 
@@ -72,7 +72,7 @@ The previous examples have shown two distinct cases: Short-lived allocations whi
 
 
 ## Why would you run OOM – even when there is enough memory available?
-In the previous sections, we outlined that most applications have short-lived and long-lived memory. Long-lived memory is something you can estimate upfront or control at runtime. For example, if you wanted to extend the simple cache example above to a full-blown cache application, you would most likely implement some sort of a limit. Either the cache would stop accepting new values when it’s full or start dropping old ones. You could make sure that the cache never exceeds 4GB in size. Then you should be safe on your 6GB machine, right? The answer is maybe. But “maybe” is not enough when the risk is of running out of memory.
+In the previous sections, we outlined that most applications have short-lived and long-lived memory. Long-lived memory is something you can estimate upfront or control at runtime. For example, if you wanted to extend the simple cache example above to a full-blown cache application, you would most likely implement some sort of a limit. Either the cache would stop accepting new values when it’s full or start dropping old ones. You could make sure that the cache never exceeds 4GB in size. Then you should be safe on your 6GB machine, right? The answer is maybe. But "maybe" is not enough when the risk is of running out of memory.
 
 To understand why it is possible to run OOM in this situation, we need to look at when the Garbage collector runs. Let’s first think of an example where it never runs. We know that we have 4GB of live memory, and - simply from using the application - we add a few short-lived heap allocations here and there. We do not expect them to stick around long-term, but since there is no GC cycle running at the moment, they will never be freed, either. Eventually, we will run OOM when the intentional and unintentional live heap exceeds 6GB:
 
@@ -100,7 +100,7 @@ But this scenario only looks at a single snapshot in time. We have pretended tha
 ### Be less aggressive when there is a lot of memory, be very aggressive when there is little.
 What we want is a situation where the GC is not very aggressive (i.e., it runs rarely) when a lot of memory is still available, yet at the same time, the GC should become very aggressive when memory is scarce. In the past, this was only possible with a workaround. The so-called GC ballast method is a technique that the engineers at Twitch popularized. At the application startup, you would allocate a ballast, for example, a byte array that would take up a vast amount of memory. Since the heap is now significant, you can make GOGC quite aggressive. To stick with our numbers from above: If you allocate a 4GB ballast and set GOGC=25, the GC will not run until 5GB of memory is allocated.
 
-You might be wondering if this exercise defeats the purpose? Yes, this will defer the first GC cycle, but don’t we have 4GB of useless memory allocations on the heap now? The answer is “not really” because the ballast would only occupy virtual memory. This concept is explained well in the article from Twitch.
+You might be wondering if this exercise defeats the purpose? Yes, this will defer the first GC cycle, but don’t we have 4GB of useless memory allocations on the heap now? The answer is "not really" because the ballast would only occupy virtual memory. This concept is explained well in the article from Twitch.
 
 ## GOMEMLIMIT – no more need for a workaround
 While I love the ingenuity of using virtual memory as ballast, it is still a workaround – one that you should never need in the first place. And with Go 1.19, we finally have a better solution. GOMEMLIMIT allows specifying a soft memory cap. It does not replace GOGC but works in conjunction with it. You can set GOGC for a scenario in which memory is always available. And at the same time, you can trust that GOMEMLIMIT automatically makes the GC more aggressive when memory is scarce. In other words, GOMEMLIMIT is precisely the missing piece that we outlined before. 
@@ -108,7 +108,7 @@ While I love the ingenuity of using virtual memory as ballast, it is still a wor
 If the live heap is low (e.g., 100MB), we can delay the next GC cycle until the heap has doubled (200MB). But if the heap has grown close to our limit (e.g., 4GB), the GC runs more often to prevent us from ever running OOM.
 
 ### Why a soft limit? What is the difference between a soft and a hard limit?
-The Go authors explicitly label GOMEMLIMIT a “soft” limit. That means that the Go runtime does not guarantee that the memory usage will exceed the limit. Instead, it uses it as a target. The goal is to fail fast in an impossible-to-solve situation: Imagine we set the limit to a value just a few kilobytes larger than the live heap. The GC would have to run constantly. We would be in a situation where the regular and GC execution would compete for the same resources. The application would stall. Since there is no way out – other than running with more memory – the Go runtime prefers an OOM situation. All the usable memory has been used up, and nothing can be freed anymore. That is a failure scenario, and fast failure is preferred. That makes the limit a soft limit. Crossing it - and thus invoking an OOM kill from the kernel – is still an option, but only when the live heap is used up entirely, and there is nothing else that the runtime can do. 
+The Go authors explicitly label GOMEMLIMIT a "soft" limit. That means that the Go runtime does not guarantee that the memory usage will exceed the limit. Instead, it uses it as a target. The goal is to fail fast in an impossible-to-solve situation: Imagine we set the limit to a value just a few kilobytes larger than the live heap. The GC would have to run constantly. We would be in a situation where the regular and GC execution would compete for the same resources. The application would stall. Since there is no way out – other than running with more memory – the Go runtime prefers an OOM situation. All the usable memory has been used up, and nothing can be freed anymore. That is a failure scenario, and fast failure is preferred. That makes the limit a soft limit. Crossing it - and thus invoking an OOM kill from the kernel – is still an option, but only when the live heap is used up entirely, and there is nothing else that the runtime can do. 
 
 ## Adding GOMEMLIMIT to Weaviate – before & after
 [Weaviate](/developers/weaviate/current/) is a vector search engine that we are building. As a database provider, we care both about OOM safety as well as about performance. Using default settings, Weaviate will create an in-memory index for efficient vector-based retrieval. In other words, the more the user imports, the more the heap will grow. That makes it quite unpredictable to know what live heap we will end up with eventually. In other words, Weaviate – like any other memory-intensive Go application – is a perfect candidate to benefit from GOMEMLIMT. It also comes out of the box with [Prometheus-compatible monitoring](/developers/weaviate/current/more-resources/monitoring.html), so it should be easy to visualize the heap usage.
@@ -166,7 +166,7 @@ So, what does the heap chart look like that we get from the monitoring?
 
 ![Just before the OOM kill](./img/just-before-oom-kill.jpg)
 
-This is typically the point where everyone says, *“I couldn’t possibly have been OOM-killed. Look at the heap graph; we never exceeded 2.5GiB”*. And they’d be both right and wrong at the same time.
+This is typically the point where everyone says, *"I couldn’t possibly have been OOM-killed. Look at the heap graph; we never exceeded 2.5GiB"*. And they’d be both right and wrong at the same time.
 
 Indeed, the long-lived heap never exceeded the 3GiB hard limit. But what is hidden by the monitoring’s sampling rate becomes visible through the GC logs. The following is the last line it was able to log before the kernel sent the kill signal:
 
@@ -248,7 +248,7 @@ Again, this log output backs up our claims from above:
 
 ## Conclusion: GOMEMLIMIT is a game-changer!
 We have covered quite a few points in this article, so let me summarize the key takeaways:
-* Memory is either allocated on the stack (cheap) or the heap (expensive). Long-lived memory must live on the heap. Sometimes temporary memory “escapes” onto the heap.
+* Memory is either allocated on the stack (cheap) or the heap (expensive). Long-lived memory must live on the heap. Sometimes temporary memory "escapes" onto the heap.
 * Before Go 1.19, the Go runtime could only set relative GC targets. That would make it very hard to use the available memory efficiently.
 * With our experiments, we were able to prove that we could get our application to crash on a 3GiB machine when it barely used more than 1500MiB. We could only complete about 60% of our import scenario.
 * After introducing `GOMEMLIMIT=2750MiB`, our application no longer crashed and could efficiently use the available memory. The import succeeded.

@@ -17,6 +17,7 @@ image: ./img/hero.png
 # toc: true
 # redirect_from: /blog/2021/01/The-history-of-Weaviate.html
 ---
+![The History of Weaviate](./img/hero.png)
 
 ## Intro
 In this article, I want to share the history of Weaviate, how the concept was born, and where we are heading towards in the near future.
@@ -52,31 +53,31 @@ This made me wonder, what if we wouldn’t have to agree on this any more? What 
 The validation of the concept was chunked up into three main sections that were validated one by one.
 
 1. Can one get more context around a word by moving through the hyperspace? If so;
-1. Can one keep semantic meaning by calculating a centroid of a group of words (e.g., “thanks for the sushi last week”)? If so;
+1. Can one keep semantic meaning by calculating a centroid of a group of words (e.g., "thanks for the sushi last week")? If so;
 1. Can this be done fast without retraining the ML model?
 
-Finding more context around a word has to do with a concept called disambiguation. Take for example the word “apple”. In the hyperspace, if you look for other words in the neighborhood, you will find words related to apple the fruit (e.g., other fruits, juices, etcetera) but also Apple the company (iPhone, Macintosh, and other concepts related to the company).
+Finding more context around a word has to do with a concept called disambiguation. Take for example the word "apple". In the hyperspace, if you look for other words in the neighborhood, you will find words related to apple the fruit (e.g., other fruits, juices, etcetera) but also Apple the company (iPhone, Macintosh, and other concepts related to the company).
 
-To validate if we could disambiguate the word “apple” the following simple step was taken. What if we looked for all the words that are in the neighborhood of the space in between “apple” and “fruit”? Turns out the results are way better! We can disambiguate by moving through the hyperspace while using individual words as beacons to navigate.
+To validate if we could disambiguate the word "apple" the following simple step was taken. What if we looked for all the words that are in the neighborhood of the space in between "apple" and "fruit"? Turns out the results are way better! We can disambiguate by moving through the hyperspace while using individual words as beacons to navigate.
 
 ![Vector Space](./img/vector-space.jpeg)
 
-In the next step, the goal was to validate if we could keep semantic meaning when storing a data object in the hyperspace by calculating the centroid using the individual words as beacons. We did that as follows, the title of this Vogue article: “Louis Vuitton’s New Capsule with League of Legends Brings French High Fashion to Online Gaming — and Vice Versa”.
+In the next step, the goal was to validate if we could keep semantic meaning when storing a data object in the hyperspace by calculating the centroid using the individual words as beacons. We did that as follows, the title of this Vogue article: "Louis Vuitton’s New Capsule with League of Legends Brings French High Fashion to Online Gaming — and Vice Versa".
 
-If we look up the vector positions for the individual words (i.e., Louis, Vuitton, new, capsule, etcetera). And place a new beacon in the center of the space of those vector positions, can we find the article by searching for “haute couture”? This turns out to work as well! Of course, through time, the centroid calculation algorithm in Weaviate has become way more sophisticated, but the overall concept is still the same.
+If we look up the vector positions for the individual words (i.e., Louis, Vuitton, new, capsule, etcetera). And place a new beacon in the center of the space of those vector positions, can we find the article by searching for "haute couture"? This turns out to work as well! Of course, through time, the centroid calculation algorithm in Weaviate has become way more sophisticated, but the overall concept is still the same.
 
 > By validating the above two assumptions, we knew that we could almost instantly store data objects in a semantic space rather than a more traditional row-column structure or graph. Allowing us to index data based on its meaning.
 
 Although we had validated the assumptions of the semantic concepts, it was not enough to create an actual semantic search engine, Weaviate also needed a data model to represent these results.
 
 ## Things Rather Than Strings
-In September 2017 I wrote a [blog post](https://medium.com/bob-van-luijt/semantic-internet-of-things-42811e1ca7a7) about the overlap between the internet of things and the semantic web. IoT focusses on physical objects (i.e., “things”) and the semantic web focuses on the mapping of data objects that represent something (a product, transaction, car, person, etcetera) which on the highest level of abstraction, are also “things”.
+In September 2017 I wrote a [blog post](https://medium.com/bob-van-luijt/semantic-internet-of-things-42811e1ca7a7) about the overlap between the internet of things and the semantic web. IoT focusses on physical objects (i.e., "things") and the semantic web focuses on the mapping of data objects that represent something (a product, transaction, car, person, etcetera) which on the highest level of abstraction, are also "things".
 
 I wrote this article because, in January 2016, I was invited as part of the Google Developer Expert program in San Francisco to visit the [Ubiquity Conference](https://web.archive.org/web/20190412204056/https://ubiquity.withgoogle.com/). A conference where, back then, Google’s Weave and Brillo were introduced to the public.
 
-Weave was the cloud application built around Brillo, but it piqued my interest because it focussed on “things”, how you defined them, and actions that you could execute around them. The very first iteration of Weaviate focussed on exactly this: “Could Weave be used to define other things than IoT devices like transactions, or cars, or any other things?” In 2017 Google deprecated Weave and renamed Brillo to Android Things but the concept for Weaviate stayed.
+Weave was the cloud application built around Brillo, but it piqued my interest because it focussed on "things", how you defined them, and actions that you could execute around them. The very first iteration of Weaviate focussed on exactly this: "Could Weave be used to define other things than IoT devices like transactions, or cars, or any other things?" In 2017 Google deprecated Weave and renamed Brillo to Android Things but the concept for Weaviate stayed.
 
-From the get-go, I knew that the “things” in Weaviate should be connected to each other in graph format because I wanted to be able to represent the relationships between the data objects rather than flat, row-based information as simple and straightforward as possible.
+From the get-go, I knew that the "things" in Weaviate should be connected to each other in graph format because I wanted to be able to represent the relationships between the data objects rather than flat, row-based information as simple and straightforward as possible.
 
 > This search led to the RDF structure that is used on schema.org which functioned as an inspiration on how to represent Weaviate’s data objects.
 

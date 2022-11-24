@@ -16,7 +16,7 @@ image: ./img/hero.png
 # toc: true
 # redirect_from: /blog/2021/01/GraphQL-API-design.html
 ---
-
+![How Weaviate’s GraphQL API was designed](./img/hero.png)
 
 Choosing a good API, its design and development, is a crucial but time-consuming process, especially if you want to develop one in an ongoing software development project.
 
@@ -92,7 +92,7 @@ Which may return:
 }
 ```
 
-Here’s how this query is structured. “Get” is a high level schema item that we defined. “Get” is a verb that we use when we want to retrieve something. What comes next is defined by the data schema of the user. This supermarket use case is storing “Products”, with at least the properties “name”, and “inStock”. The user might also store properties like “barcode” and “expirationDate”, but chose not to retrieve those in this request. The goal of this query is to Get all the Products where the Stock is less than 100. See how the query is formed?
+Here’s how this query is structured. "Get" is a high level schema item that we defined. "Get" is a verb that we use when we want to retrieve something. What comes next is defined by the data schema of the user. This supermarket use case is storing "Products", with at least the properties "name", and "inStock". The user might also store properties like "barcode" and "expirationDate", but chose not to retrieve those in this request. The goal of this query is to Get all the Products where the Stock is less than 100. See how the query is formed?
 
 The following query shows the automatic contextualization of concepts in Weaviate. Let’s say we are only interested in the fruit items that are low in stock, but we never explicitly stored the supermarket products by category like ‘fruits’, ‘dairy’ and ‘household’. We can then make the following query, where we want to Get all the Products where the Stock is less than 100, which are related to the text concept "fruits". Now, only the Banana and Pineapple will be returned because these items are most related to fruits. If we are looking for more results, then Baguette will be shown earlier in the list than Toilet paper, because it is semantically (and in a real supermarket) closer to fruits.)
 

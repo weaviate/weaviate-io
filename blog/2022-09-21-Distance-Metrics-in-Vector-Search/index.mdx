@@ -17,6 +17,8 @@ image: ./img/hero.png
 # toc: true
 # redirect_from: /blog/2022/09/Distance-Metrics-in-Vector-Search.html
 ---
+![What are Distance Metrics in Vector Search?](./img/hero.png)
+
 Vector Search engines – like [Weaviate](/developers/weaviate/current/) – use **Machine Learning models** to analyze data and **calculate vector embeddings**. The vector embeddings are **stored together with the data** in a database, and later are used to query the data.
 
 In a nutshell, a vector embedding is an array of numbers, that is used to describe an object. For example, strawberries could have a vector `[3, 0, 1]` – more likely the array would be a lot longer than that.<br/>
@@ -154,7 +156,7 @@ As seen above, blueberries are a better pairing than broccoli. This was done by 
 ### Hamming distance and Binary Passage Retrieval 
 Binary Passage Retrieval (BPR) translates vectors into a binary sequence. For example, if you have text data that has been converted into a vector ("Hi there" -> [0.2618, 0.1175, 0.38, …]), it can then be translated to a string of binary numbers (0 or 1). Although it is condensing the information in the vector, this technique can keep the semantic structure despite representing it as 0 or 1.
 
-To compute the Hamming distance between two strings, you compare the position of each bit in the sequence. This is done with an XOR bit operation. XOR stands for “exclusive or”, meaning if the bits in the sequence do not match, then the output is 1. Keep in mind that the strings need to be of equal length to perform the comparison. Below is an example of comparing two binary sequences.
+To compute the Hamming distance between two strings, you compare the position of each bit in the sequence. This is done with an XOR bit operation. XOR stands for "exclusive or", meaning if the bits in the sequence do not match, then the output is 1. Keep in mind that the strings need to be of equal length to perform the comparison. Below is an example of comparing two binary sequences.
 
 ![XOR Operation](./img/hamming-xor.png){:width="40%"}
 
@@ -175,7 +177,7 @@ In total, Weaviate users can choose between five various distance metrics to sup
 ### Optimizations
 Even with ANN-indexes, which reduce the number of distance calculations necessary, a vector search engine still spends a large portion of its compute time calculating vector distances. As a result, it is very important that the engine can do this not just correctly, but also efficiently.
 
-The distance metrics in Weaviate have been optimized to be highly efficient using “Single Instruction, Multiple Data” (“SIMD”) instruction sets. Using these instructions, a CPU can do multiple calculations in a single CPU cycle. To achieve this, we had to write some of our distance metrics in [pure Assembly code](https://github.com/semi-technologies/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s). [Here is an overview](/developers/weaviate/current/vector-index-plugins/distances.html#distance-implementations-and-optimizations) of the current state of optimizations; including which distance metrics have SIMD optimizations for which architecture.
+The distance metrics in Weaviate have been optimized to be highly efficient using "Single Instruction, Multiple Data" ("SIMD") instruction sets. Using these instructions, a CPU can do multiple calculations in a single CPU cycle. To achieve this, we had to write some of our distance metrics in [pure Assembly code](https://github.com/semi-technologies/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s). [Here is an overview](/developers/weaviate/current/vector-index-plugins/distances.html#distance-implementations-and-optimizations) of the current state of optimizations; including which distance metrics have SIMD optimizations for which architecture.
 
 ### Open source contributions
 Weaviate is open-source and values feedback and input from the community. A community member contributed to the Weaviate project by adding two new metrics to the 1.15 release. How cool is that! If this is something you're interested in, [here](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw/distancer) is the repository with the implementation of the current metrics. 
