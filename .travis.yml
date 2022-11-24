@@ -18,7 +18,7 @@ script:
   ##
   - |
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
-      npm install netlify-cli -g
+      yarn global add netlify-cli
       bash _build_scripts/publish-to-netlify.sh
     fi
   # bash _build_scripts/slack-netlify-message.sh
