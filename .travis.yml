@@ -12,4 +12,14 @@ script:
   # - echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
   - yarn install
   - yarn build
+  - 
   # - GIT_USER="${GH_NAME}" yarn deploy
+  # Netlify
+  ##
+  - |
+    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
+      bash _build_scripts/publish-to-netlify.sh
+    fi
+  # bash _build_scripts/slack-netlify-message.sh
+  ##
+  # End Netlify
