@@ -16,9 +16,9 @@ script:
   # - GIT_USER="${GH_NAME}" yarn deploy
   # Netlify
   ##
-  - yarn install netlify-cli -g
   - |
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
+      yarn global add netlify-cli
       bash _build_scripts/publish-to-netlify.sh
     fi
   # bash _build_scripts/slack-netlify-message.sh
