@@ -21,16 +21,16 @@ Welcome to the Weaviate documentation. Here you will find what Weaviate is all a
 
 We want help you get started quickly with Weaviate, and before helping you choose your own path. 
 
-If you are new, start with the Introduction (this page), followed by the [Quickstart tutorials](./getting-started/index.md) and the [Installation & Configuration Guide](./guides-installation/index.md). Then, the remaining content is organised as follows:
+If you are new, start with the Introduction (this page), followed by the [Quickstart tutorials](./getting-started/index.md) and the [Installation & Configuration Guide](./installation/index.md). Then, the remaining content is organised as follows:
 ### Guides
 Guides help you to **do** something with Weaviate. 
 
-Start with our [Essential guides](./guides-essential/index.md), and then move onto [Advanced configuration guides](./guides-config/index.md) to learn about configuring Weaviate for production, and [Further topics](./guides-further/index.md) to look at specific uses. The [Client libraries guides](./guides-client-libraries/index.md) will help you set up and use our Python, JavaScript, Java and Go client libraries.
+Start with our [Essential guides](./guides/index.md), and then move onto [Advanced configuration guides](./configuration/index.md) to learn about configuring Weaviate for production, and [Further topics](./guides-further/index.md) to look at specific uses. The [Client libraries guides](./installation/client-libraries/index.md) will help you set up and use our Python, JavaScript, Java and Go client libraries.
 
 ### Concepts
 If you want to **learn** more about Weaviate and vector space related topics, this is the place to go. Think of this section as something you can read through to learn more about these topics. 
 
-The [Core concepts](./concepts-core/index.md) is an overview of all things Weaviate - its key components, and how they fit together. If you want to dig deeper into Weaviate, the [Architecture](./concepts-architecture/index.md) section is for you, and the [Vector space](./concepts-vectorization/index.md) section will teach you about all things vector-related for Weaviate, like getting into details of vector indexing and vectorizer algorithms. 
+The [Core concepts](./core-knowledge/index.md) is an overview of all things Weaviate - its key components, and how they fit together. If you want to dig deeper into Weaviate, the [Architecture](./architecture/index.md) section is for you, and the [Vector space](./vectorization/index.md) section will teach you about all things vector-related for Weaviate, like getting into details of vector indexing and vectorizer algorithms. 
 
 ### References
 The references sections are just that - technical references. They aim to capture how 
