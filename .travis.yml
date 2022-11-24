@@ -6,21 +6,19 @@ node_js:
 #     - main
 cache:
   yarn: true
-# install:
-#   - yarn install
+install:
+  - yarn install
 script:
-  # - yarn build
-  # Netlify - for Branch builds
+  - yarn build
+  # Netlify
   ##
-      # bash _build_scripts/publish-to-netlify.sh
   - |
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
-      # yarn global add netlify-cli
-      bash _build_scripts/slack-find-author.sh
-      echo $(git log -1 $TRAVIS_COMMIT --pretty="%aN")
-      echo $AUTHOR_NAME
-      # bash _build_scripts/slack-netlify-message.sh
+      yarn global add netlify-cli
+      bash _build_scripts/publish-to-netlify.sh
+
+      source _build_scripts/slack-find-author.sh
+      bash _build_scripts/slack-netlify-message.sh
     fi
-  # bash _build_scripts/slack-netlify-message.sh
   ##
   # End Netlify
