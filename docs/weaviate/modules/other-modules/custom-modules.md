@@ -1,17 +1,18 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Other Modules
-nav-parent: Modules
 title: Custom modules
-description: How to create custom Weaviate modules
-tags: ['Custom Modules']
 sidebar_position: 9
-open-graph-type: article
-toc: true
-redirect_from:
-   - /developers/weaviate/v1.1.0/modules/custom-modules.html
-   - /developers/weaviate/current/modules/custom-modules.html
+
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Other Modules
+# nav-parent: Modules
+# description: How to create custom Weaviate modules
+# tags: ['Custom Modules']
+# open-graph-type: article
+# toc: true
+# redirect_from:
+#    - /developers/weaviate/v1.1.0/modules/custom-modules.html
+#    - /developers/weaviate/current/modules/custom-modules.html
 ---
 
 # Introduction

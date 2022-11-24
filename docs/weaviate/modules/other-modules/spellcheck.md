@@ -1,17 +1,18 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Other Modules
-nav-parent: Modules
 title: spellcheck
-description: Weaviate spellcheck module
-tags: ['spellcheck']
 sidebar_position: 1
-open-graph-type: article
-toc: true
-redirect_from:
-    - /developers/weaviate/v1.11.0/other-modules/spellcheck.html
-    - /developers/weaviate/current/modules/spellcheck.html
+
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Other Modules
+# nav-parent: Modules
+# description: Weaviate spellcheck module
+# tags: ['spellcheck']
+# open-graph-type: article
+# toc: true
+# redirect_from:
+#     - /developers/weaviate/v1.11.0/other-modules/spellcheck.html
+#     - /developers/weaviate/current/modules/spellcheck.html
 ---
 
 # In short

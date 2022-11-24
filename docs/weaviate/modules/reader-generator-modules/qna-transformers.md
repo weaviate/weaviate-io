@@ -1,17 +1,18 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Readers & Generators
-nav-parent: Modules
 title: Question Answering
-description: Weaviate Q&A Transformers module
-tags: ['qna-transformers', 'transformers']
 sidebar_position: 1
-open-graph-type: article
-toc: true
-redirect_from:
-    - /developers/weaviate/v1.11.0/reader-generator-modules/qna-transformers.html
-    - /developers/weaviate/current/modules/qna-transformers.html
+
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Readers & Generators
+# nav-parent: Modules
+# description: Weaviate Q&A Transformers module
+# tags: ['qna-transformers', 'transformers']
+# open-graph-type: article
+# toc: true
+# redirect_from:
+#     - /developers/weaviate/v1.11.0/reader-generator-modules/qna-transformers.html
+#     - /developers/weaviate/current/modules/qna-transformers.html
 ---
 
 # In short

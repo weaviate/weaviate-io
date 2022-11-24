@@ -1,17 +1,18 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Retrievers & Vectorizers
-nav-parent: Modules
 title: img2vec-neural
-description: Use Resnet models in Weaviate
-tags: ['img2vec-neural']
 sidebar_position: 5
-open-graph-type: article
-toc: true
-redirect_from:
-    - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/img2vec-neural.html
-    - /developers/weaviate/current/modules/img2vec-neural.html
+
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Retrievers & Vectorizers
+# nav-parent: Modules
+# description: Use Resnet models in Weaviate
+# tags: ['img2vec-neural']
+# open-graph-type: article
+# toc: true
+# redirect_from:
+#     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/img2vec-neural.html
+#     - /developers/weaviate/current/modules/img2vec-neural.html
 ---
 
 # Introduction

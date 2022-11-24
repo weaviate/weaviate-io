@@ -1,14 +1,24 @@
 language: node_js
 node_js:
-  - 18
-branches:
-  only:
-    - main
+  - 16
+# branches:
+#   only:
+#     - main
 cache:
   yarn: true
-script:
-  - git config --global user.name "${GH_NAME}"
-  - git config --global user.email "${GH_EMAIL}"
-  - echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
+install:
   - yarn install
-  # - GIT_USER="${GH_NAME}" yarn deploy
+script:
+  - yarn build
+  # Netlify
+  ##
+  - |
+    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
+      yarn global add netlify-cli
+      bash _build_scripts/publish-to-netlify.sh
+
+      source _build_scripts/slack-find-author.sh
+      bash _build_scripts/slack-netlify-message.sh
+    fi
+  ##
+  # End Netlify
