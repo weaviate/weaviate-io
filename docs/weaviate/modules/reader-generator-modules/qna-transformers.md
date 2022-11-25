@@ -12,17 +12,17 @@ sidebar_position: 1
 # toc: true
 # redirect_from:
 #     - /developers/weaviate/v1.11.0/reader-generator-modules/qna-transformers.html
-#     - /developers/weaviate/current/modules/qna-transformers.html
+#     - /developers/weaviate/modules/qna-transformers.html
 ---
+## In short
 
-# In short
 * The Question and Answer (Q&A) module is a Weaviate module for answer extraction from data.
 * The module depends on a text vectorization module that should be running with Weaviate.
 * The module adds an `ask {}` parameter to the GraphQL `Get {}` queries
 * The module returns a max. of 1 answer in the GraphQL `_additional {}` field. 
 * The answer with the highest `certainty` (confidence level) will be returned.
 
-# Introduction
+## Introduction
 
 The Question and Answer (Q&A) module is a Weaviate module for answer extraction from data. It uses BERT-related models for finding and extracting answers. This module can be used in GraphQL `Get{...}` queries, as a search operator. The `qna-transformers` module tries to find an answer in the data objects of the specified class. If an answer is found within the given `certainty` range, it will be returned in the GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the optionally set `certainty`. The answer with the highest `certainty` (confidence level) will be returned.
 
@@ -30,7 +30,7 @@ There are currently five different Question Answering modules available (taken f
 
 Starting with `v1.10.0`, the answer score can be used as a reranking factor for the search results. 
 
-# How to enable (module configuration)
+## How to enable (module configuration)
 
 ### Docker-compose
 
@@ -90,7 +90,7 @@ Variable explanations:
 
 _Note: at the moment, text vectorization modules cannot be combined in a single setup. This means that you can either enable the `text2vec-contextionary`, the `text2vec-transformers` or no text vectorization module._
 
-# How to use (GraphQL)
+## How to use (GraphQL)
 
 ### GraphQL Ask search
 
@@ -109,12 +109,13 @@ Notes:
 
 ### Example query
 
-{% include code/1.x/qna-transformers.ask.html %}
+<!-- {% include code/1.x/qna-transformers.ask.html %} -->
+import CodeQnaTransformer from '/code-samples/qna-transformers.ask.mdx';
 
+<CodeQnaTransformer />
+
+<!-- TODO: figure out how to include the demo from molecule-gql-demo.html -->
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++ask%3A+%7B%0D%0A++++++++question%3A+%22Who+is+the+king+of+the+Netherlands%3F%22%2C%0D%0A++++++++properties%3A+%5B%22summary%22%5D%0D%0A++++++%7D%2C+%0D%0A++++++limit%3A1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++certainty%0D%0A++++++++++property%0D%0A++++++++++result%0D%0A++++++++++startPosition%0D%0A++++++++++endPosition%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
-
-
-
 
 ### GraphQL response
 
@@ -155,11 +156,11 @@ Note: `startPosition`, `endPosition` and `property` in the response are not guar
 }
 ```
 
-# Custom Q&A Transformer module
+## Custom Q&A Transformer module
 
-You can use the same approach as for `text2vec-transformers`, see [here](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-transformers.html#option-3-custom-build-with-a-private-or-local-model), i.e. either pick one of the pre-built containers or build your own container from your own model using the `semitechnologies/qna-transformers:custom` base image. Make sure that your model is compatible with Huggingfaces' `transformers.AutoModelForQuestionAnswering`.
+You can use the same approach as for `text2vec-transformers`, see [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers#option-3-custom-build-with-a-private-or-local-model), i.e. either pick one of the pre-built containers or build your own container from your own model using the `semitechnologies/qna-transformers:custom` base image. Make sure that your model is compatible with Huggingfaces' `transformers.AutoModelForQuestionAnswering`.
 
-# How it works (under the hood)
+## How it works (under the hood)
 
 Under the hood, the model uses a two-step approach. First it performs a semantic search with `k=1` to find the document (e.g. a Sentence, Paragraph, Article, etc.) which is most likely to contain the answer. This step has no certainty threshold and as long as at least one document is present, it will be fetched and selected as the one most likely containing the answer. In a second step, a BERT-style answer extraction is performed on all `text` and `string` properties of the document. There are now three possible outcomes: 
 1.  No answer was found because the question can not be answered, 
@@ -168,10 +169,10 @@ Under the hood, the model uses a two-step approach. First it performs a semantic
 
 The module performs a semantic search under the hood, so a `text2vec-...` module is required. It does not need to be transformers-based and you can also combine it with `text2vec-contextionary`. However, we expect that you will receive the best results by combining it with a well-fitting transformers model by using the appropriate configured `text2vec-transformers` module.
 
-## Automatic sliding window for long documents
+### Automatic sliding window for long documents
 
 If a text value in a data object is longer than 512 tokens, the Q&A Transformer module automatically splits the text into smaller texts. The module uses a sliding window, i.e. overlapping pieces of text, to avoid a scenario that an answer cannot be found if it lies on a boundary. If an answer lies on the boundary, the Q&A module returns the result (answer) with the highest score (as the sliding mechanism could lead to duplicates).
 
-# More resources
+## More resources
 
 {% include docs-support-links.html %}

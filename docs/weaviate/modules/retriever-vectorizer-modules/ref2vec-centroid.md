@@ -11,20 +11,19 @@ sidebar_position: 7
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/current/modules/ref2vec-centroid.html
+#     - /developers/weaviate/modules/ref2vec-centroid.html
 ---
-
-# Introduction
+## Introduction
 
 The `ref2Vec-centroid` module is used to calculate object vectors based on the centroid of referenced vectors. The idea is that this centroid vector would be calculated from the vectors of an object's references, enabling associations between clusters of objects. This is useful in applications such as making suggestions based on the aggregation of a user's actions or preferences.
 
-# How to enable
+## How to enable
 
-## Weaviate Cloud Service
+### Weaviate Cloud Service
 
 The `ref2vec-centroid` module is not currently available on the WCS.
 
-## Weaviate open source
+### Weaviate open source
 
 Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. Ref2Vec-centroid can be added like this:
 
@@ -53,9 +52,9 @@ services:html
 ...
 ```
 
-# How to configure
+## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](../getting-started/schema.html) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/developers/weaviate/getting-started/schema) first.
 
 For example, here is an `Article` class which is configured to use ref2vec-centroid. Doing so requires only a class-level `moduleConfig`, containing two fields:
 
@@ -125,13 +124,13 @@ Although this example uses text2vec-contextionary to generate vectors for the `P
 }
 ```
 
-# How to use
+## How to use
 
 Now that the `Article` class is properly configured to use the ref2vec-centroid module, we can begin to create some objects. If there are not yet any `Paragraph` objects to reference, or if we simply don't want to reference a `Paragraph` object yet, any newly created `Article` object will have its vector set to `nil`. 
 
 Once we are ready to reference one or more existing `Paragraph` objects (with non-nil vectors), our `Article` object will automatically be assigned a centroid vector, calculated using the vectors from all the `Paragraph` objects which are referenced by our `Article` object.
 
-## Updating the centroid
+### Updating the centroid
 
 An object whose class is configured to use ref2vec-centroid will have its vector calculated (or recalculated) as a result of these events:
 - Creating the object with references already assigned as properties 
@@ -144,11 +143,11 @@ An object whose class is configured to use ref2vec-centroid will have its vector
   - Object `PUT`: update all of the object's properties, removing all references
   - Reference `DELETE`: delete an existing reference from the object's list of references
 
-## Making queries
+### Making queries
 
-This module can be used with the existing [nearVector](/developers/weaviate/current/graphql-references/vector-search-parameters.html#nearvector) and [`nearObject`](/developers/weaviate/current/graphql-references/vector-search-parameters.html#nearobject) filters. It does not add any additional GraphQL extensions like `nearText`.
+This module can be used with the existing [nearVector](/developers/weaviate/references/graphql/vector-search-parameters#nearvector) and [`nearObject`](/developers/weaviate/references/graphql/vector-search-parameters#nearobject) filters. It does not add any additional GraphQL extensions like `nearText`.
 
-# Additional information
+## Additional information
 
 ⚠️ It is important to note that updating a _referenced_ object will not automatically trigger an udpate to the _referencing_ object's vector. ⚠️
 

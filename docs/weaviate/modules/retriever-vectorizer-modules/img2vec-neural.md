@@ -12,13 +12,13 @@ sidebar_position: 5
 # toc: true
 # redirect_from:
 #     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/img2vec-neural.html
-#     - /developers/weaviate/current/modules/img2vec-neural.html
+#     - /developers/weaviate/modules/img2vec-neural.html
 ---
+## Introduction
 
-# Introduction
 This module vectorizes images using neural networks. Pre-trained modules can be used. `resnet50` is the first model that is supported, other models will be released soon. [`resnet50`](https://arxiv.org/abs/1512.03385) is a residual convolutional neural network with 25.5 million parameters trained on more than a million images from the [ImageNet database](https://www.image-net.org/). As the name suggests, it has a total of 50 layers: 48 convolution layers, 1 MaxPool layer and 1 Average Pool layer.
 
-# Available img2vec-neural models
+## Available img2vec-neural models
 
 There are two different inference models you can choose from. Depending on your machine (`arm64` or other) and whether you prefer to use multi-threading to extract feature vectors or not, you can choose between `keras` and `pytorch`. There are no other differences between the two models.
 - `resnet50` (`keras`): 
@@ -30,11 +30,11 @@ There are two different inference models you can choose from. Depending on your 
   - Supports `CUDA`
   - Does not support multi-threaded inference
 
-# How to enable in Weaviate
+## How to enable in Weaviate
 
-Note: you can also use the [Weaviate configuration tool](../installation/docker-compose.html#configurator).
+Note: you can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose#configurator).
 
-## Docker-compose file
+### Docker-compose file
 You can find an example Docker-compose file below, which will spin up Weaviate with the image vectorization module. This example spins up a Weaviate with only one vectorization module, the  `img2vec-neural` module of `pytorch` with the `resnet50` model.
 
 ```yaml
@@ -67,9 +67,10 @@ services:
 
 You can substitute `semitechnologies/img2vec-pytorch:resnet50` with `semitechnologies/img2vec-keras:resnet50` in case you want to use the `keras` module.
 
-You can combine the image vectorization module with a text vectorization module. In the following example, we use both the [`text2vec-contextionary`](./text2vec-contextionary.html) module as well as the `img2vec-neural` module. We set `text2vec-contextionary` to default vectorizer module, which means we need to specify in a data schema when we want a class to be vectorized as with the `img2vec-neural` module instead of the `text2vec-contextionary` module.
+You can combine the image vectorization module with a text vectorization module. In the following example, we use both the [`text2vec-contextionary`](./text2vec-contextionary) module as well as the `img2vec-neural` module. We set `text2vec-contextionary` to default vectorizer module, which means we need to specify in a data schema when we want a class to be vectorized as with the `img2vec-neural` module instead of the `text2vec-contextionary` module.
 
-<!-- ```yaml
+<!-- TODO: do we need this for anythig?
+```yaml
 ---
   version: '3.4'
   services:
@@ -107,19 +108,20 @@ You can combine the image vectorization module with a text vectorization module.
     i2v-neural:
       image: semitechnologies/img2vec-pytorch:resnet50
 ...
-``` -->
+```
+-->
 
-## Other methods
+
+### Other methods
 If you prefer not to use Docker-compose (but instead for example Kubernetes in a production setup), make you can use the `img2vec-neural` module after taking the following steps:
 1. Enable the `img2vec-neural` module. Make sure you set the `ENABLE_MODULES=img2vec-neural` environment variable. This can be combined with a text vectorization module: `ENABLE_MODULES: 'text2vec-contextionary,img2vec-neural'`. Additionally, you can make one of the modules the default vectorizer, so you don’t have to specify it on each schema class: `DEFAULT_VECTORIZER_MODULE=text2vec-contextionary`
 2. Run the `img2vec-neural` module, for example using `docker run -itp "8000:8080" semitechnologies/img2vec-neural:resnet50-61dcbf8`. 
 3. Tell Weaviate where to find the inference module. Set the Weaviate environment variable `IMAGE_INFERENCE_API`to where your inference container is running, for example `IMAGE_INFERENCE_API="http://localhost:8000"`
-4. You can now use Weaviate normally and all vectorization of images during import and search time will be done with the selected image vectorization model (given that the [schema is configured]() correctly).
+4. You can now use Weaviate normally and all vectorization of images during import and search time will be done with the selected image vectorization model (given that the schema is configured correctly).
 
+## Schema configuration
 
-# Schema configuration
-
-You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](../schema/schema-configuration.html). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector. 
+You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](/developers/weaviate/references/schema-configuration). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector. 
 
 When adding a class with vectorizer type `img2vec-neural`, the configuration must contain information about which field holds the image. The dataType of the `imageFields` should be [`blob`](../schema/datatypes.html#datatype-blob). This can be achieved with the following config in a class object:
 
@@ -181,12 +183,14 @@ A full example of a class using the `img2vec-neural` module is shown below. This
 }
 ```
 
-_Note:_ Other properties, for example the name of the image that is given in another field, will not be taken into consideration. This means that you can only find the image with semantic search by [another image](#nearimage-search), [data object](../graphql-references/filters.html#nearobject-filter), or [raw vector](../graphql-references/filters.html#nearvector-filter). Semantic search of images by text field (using `nearText`) is not possible, because this requires a `text2vec` vectorization module. Multiple modules cannot be combined at class level yet (might become possible in the future, since `image-text-combined transformers` exists). We recommend to use one of the following workarounds:
+:::note
+Other properties, for example the name of the image that is given in another field, will not be taken into consideration. This means that you can only find the image with semantic search by [another image](#nearimage-search), [data object](/developers/weaviate/references/graphql/filters#nearobject-filter), or [raw vector](/developers/weaviate/references/graphql/filters#nearvector-filter). Semantic search of images by text field (using `nearText`) is not possible, because this requires a `text2vec` vectorization module. Multiple modules cannot be combined at class level yet (might become possible in the future, since `image-text-combined transformers` exists). We recommend to use one of the following workarounds:
 1. Best practice for multi-module search: create an image class and a text class in which you refer to each other by cross-reference. This way you can always hop along the reference and search either by “text labels” (using a `text2vec-....` module) or by image (using a `img2vec-...` module).
 2. If you don't want to create multiple classes, you are limited to using a `where` filter to find images by other search terms than an `image`, `data object`, or `vector`. A `where` filter does not use semantic features of a module.
+:::
 
 
-# Adding image data objects
+## Adding image data objects
 
 When adding data, make sure that the specified fields are filled with valid image data (e.g. jpg, png, etc.), encoded as `base64` (string) value in the property that has a `blob` dataType. The blob type itself (see below) requires that all blobs are base64 encoded. To obtain the base64-encoded value of an image, you can run the following command - or use the helper methods in the Weaviate clients - to do so:
 
@@ -196,22 +200,30 @@ cat my_image.png | base64
 
 You can then import data with `blob` dataType in to Weaviate as follows:
 
-{% include code/1.x/img2vec-neural.create.html %}
+<!-- {% include code/1.x/img2vec-neural.create.html %} -->
+import CodeImg2Vec from '/code-samples/img2vec-neural.create.mdx';
 
+<CodeImg2Vec />
 
-# Additional GraphQL API parameters
+## Additional GraphQL API parameters
 
-## nearImage search
+### nearImage search
 
 At search time you can use the "standard" vector-search operators, such as `nearVector` and `nearObject`. But in addition, you can also vectorize a new image at search time and search by using the image's vector. To do so, you can use the nearImage search operator like so:
 
-{% include code/1.x/img2vec-neural.nearimage.html %}
+<!-- {% include code/1.x/img2vec-neural.nearimage.html %} -->
+import CodeNearImage from '/code-samples/img2vec-neural.nearimage.mdx';
+
+<CodeNearImage />
 
 Alternatively, you can use a helper function in the Python, Java or Go client (not with the JavaScript client). With an encoder function, you can input your image as `png` file, and the helper function encodes this to a `base64` encoded value.
 
-{% include code/1.x/img2vec-neural.nearimage.encode.html %}
+<!-- {% include code/1.x/img2vec-neural.nearimage.encode.html %} -->
+import CodeNearImageEncode from '/code-samples/img2vec-neural.nearimage.encode.mdx';
+
+<CodeNearImageEncode />
 
 
-# More resources
+## More resources
 
 {% include docs-support-links.html %}

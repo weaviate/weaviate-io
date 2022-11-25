@@ -12,20 +12,20 @@ sidebar_position: 1
 # toc: true
 # redirect_from:
 #     - /developers/weaviate/v1.11.0/other-modules/spellcheck.html
-#     - /developers/weaviate/current/modules/spellcheck.html
+#     - /developers/weaviate/modules/spellcheck.html
 ---
+## In short
 
-# In short
 * The SpellCheck module is a Weaviate module for spell checking of raw text in GraphQL queries.
 * The module depends on a Python spellchecking service.
 * The module adds an `spellCheck {}` filter to the GraphQL `nearText {}` search arguments.
 * The module returns the spelling check result in the GraphQL `_additional { spellCheck {} }` field. 
 
-# Introduction
+## Introduction
 
 The SpellCheck module is a Weaviate module for checking spelling in raw texts in GraphQL query inputs. Using [the Python spellchecker](https://pypi.org/project/pyspellchecker/) as service, the module analyzes text, gives a suggestion and can force an auto-correction. 
 
-# How to enable (module configuration)
+## How to enable (module configuration)
 
 ### Docker-compose
 
@@ -74,7 +74,7 @@ services:
 Variable explanations:
 * `SPELLCHECK_INFERENCE_API`: where the spellcheck module is running
 
-# How to use (GraphQL)
+## How to use (GraphQL)
 
 Use the new spellchecker module to verify user-provided search queries (in existing `nearText` (given that a `text2vec` module is used) or `ask` (if the `qna-transformers` module is enabled) functions) are spelled correctly and even suggest alternative, correct spellings. Spell-checking happens at query time.
 
@@ -84,7 +84,10 @@ There are two ways to use this module:
 
 ### Example query
 
-{% include code/1.x/spellcheck-module.html %}
+<!-- {% include code/1.x/spellcheck-module.html %} -->
+import CodeSpellcheck from '/code-samples/spellcheck-module.mdx';
+
+<CodeSpellcheck />
 
 ### GraphQL response
 
@@ -158,6 +161,6 @@ The result is contained in a new GraphQL `_additional` property called `spellChe
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28nearText%3A%7B%0D%0A++++++concepts%3A+%5B%22houssing+prices%22%5D%2C%0D%0A++++++autocorrect%3A+true%0D%0A++++%7D%29+%7B%0D%0A++++++title%0D%0A++++++_additional%7B%0D%0A++++++++spellCheck%7B%0D%0A++++++++++changes%7B%0D%0A++++++++++++corrected%0D%0A++++++++++++original%0D%0A++++++++++%7D%0D%0A++++++++++didYouMean%0D%0A++++++++++location%0D%0A++++++++++originalText%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
-# More resources
+## More resources
 
 {% include docs-support-links.html %}
