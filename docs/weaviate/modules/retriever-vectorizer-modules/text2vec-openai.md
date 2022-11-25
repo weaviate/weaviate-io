@@ -141,7 +141,8 @@ If you run into rate limits, you can also decide to throttle the import in your 
 E.g., in Python and Java using the Weaviate client.
 
 <!-- {% include code/1.x/text2vec-openai.example.html %} -->
-import CodeOpenAIExample from '/code-samples/text2vec-openai.example.mdx';
+<!-- TODO - this causes Docusaurus to throw an exception - have commented out for now -->
+<!-- import CodeOpenAIExample from '/code-samples/text2vec-openai.example.mdx'; -->
 
 <CodeOpenAIExample />
 
