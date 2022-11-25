@@ -33,9 +33,7 @@ Alternatively, if you prefer to install and deploy Weaviate yourself, then you c
 
 Working with Docker is great if you are building an application around Weaviate and want to run Weaviate on your local machine or in the cloud. If you have Docker already installed, you could have it all up and running in seconds (minutes if you use a  prepackaged transformers module).
 
-We even have a handy [step-by-step configurator](../installation/docker-compose.html#configurator), which lets you pick your configuration, and as a result you will receive a command to spin up your docker setup.
-
-You can find the installation instructions for Docker [here](../installation/docker-compose.html#configurator).
+We even have a handy [step-by-step configurator](../installation/docker-compose.md#configurator), which lets you pick your configuration, and as a result you will receive a command to spin up your docker setup.
 
 ### Kubernetes
 
@@ -43,7 +41,7 @@ Generally, we recommend using Kubernetes to deploy Weaviate for any long-running
 
 For local development or personal evaluation, using Docker Compose will most likely be sufficient.
 
-Using Weaviate with Kubernetes is out of scope for this tutorial. You can find more info on Kubernetes [here](/developers/weaviate/current/installation/kubernetes.html).
+Using Weaviate with Kubernetes is out of scope for this tutorial. You can find more info on Kubernetes [here](../installation/kubernetes.md).
 
 ### Self-deployment instructions 
 
@@ -60,7 +58,7 @@ If you feel comfortable making a few changes to the code examples in the tutoria
     docker-compose up -d
     ```
 
-Then you can continue with the tutorial and skip to the [Schema](/developers/weaviate/current/getting-started/schema.html) page.
+Then you can continue with the tutorial and skip to the [Schema](./schema.md) page.
 
 ## WCS hands-on
 
@@ -77,6 +75,7 @@ In order to access WCS, navigate to the [Weaviate Cloud Console](https://console
 #### No account, no problem
 If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs) link and create an account.
 
+<!-- TODO - the style is not applied here. Generally Docusaurus seems to ignore these trailing braces like style or target: _blank -->
 ![Register link](./img/register.jpg){:style="max-width: 400px"}
 
 ### Create a Weaviate Cluster
@@ -100,12 +99,14 @@ This will start the process to create a new cluster. The status indicator on the
 To test the connection, click on the `Cluster Id` link, which will open a new page in your browser and display all the available endpoints.
 ![Weaviate Cluster](./img/weaviate-cluster.jpg)
 
-> 💡 Note: For every endpoint, there is a `documentationHref` link, which points us to relevant documentation pages.
+:::info
+For every endpoint, there is a `documentationHref` link, which points us to relevant documentation pages.
+:::
 
 Now, we are ready to start working with Weaviate. 🎉
 
 
-<!-- 
+
 ## Running Weaviate yourself
 
 When running Weaviate yourself in production, you want to make sure you select the right hardware to run it on.  The benchmark pages in the documentation are helpful for this (more about this in this guide) too, take the following things into account when choosing the right hardware:
@@ -121,7 +122,9 @@ When running Weaviate yourself in production, you want to make sure you select t
 
 ## Kubernetes
 
-> 💡 If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
+:::info
+If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
+:::
 
 For this one, you need to understand how Kubernetes works; these are just two handy things to know.
 
@@ -160,13 +163,13 @@ Let's just cut straight to the chase; running modules with ML models yourself (i
 
 You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on a machine with a GPU ([this Github Gist](https://gist.github.com/bobvanluijt/af6fe0fa392ca8f93e1fdc96fc1c86d8) contains an installation script to install Docker Compose with GPU support on a Debian machine)
 
-## Recapitulation
+## Recap
 
 * There is a configurator you can use to configure your Weaviate instance.
 * You can run Weaviate with Docker, Kubernetes, or with the Weaviate Cloud Service.
-* Running Weaviate Modules with an encepsulated ML-model on CPUs is slow. -->
+* Running Weaviate Modules with an encepsulated ML-model on CPUs is slow.
 
-## Recapitulation
+## Recap
 
 * You can run Weaviate with Weaviate Cloud Service, Docker or Kubernetes.
 * Weaviate Cloud Service is a managed Weaviate SaaS - great for development and production.
@@ -174,14 +177,15 @@ You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on 
 * Kubernetes is great for long-running Weaviate deployments
 * You have a working instance of Weaviate in WCS.
 
-## Next Steps
+<!-- ## Next Steps
 
-Next, [learn about the Weaviate Schema](./schema.html).
+Next, [learn about the Weaviate Schema](./schema.md).
 
 Alternatively, you can:
-* [Skip to Querying in Weaviate](./query.html)
-* [Go back to the basics](../core-knowledge/basics.html)
+* [Skip to Querying in Weaviate](./query.md)
+* [Go back to the basics](../core-knowledge/basics.md) -->
 
+<!-- TODO - Consider replacing "# More Resources" with "## More.." site-wide -->
 # More Resources
 
 {% include docs-support-links.html %}

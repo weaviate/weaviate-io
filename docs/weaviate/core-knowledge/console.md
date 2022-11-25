@@ -57,7 +57,7 @@ GraphiQL is a graphical interface that allows you to manually write GraphQL quer
 The console might ask to downgrade to HTTP. This is done to avoid [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors.
 :::
 
-## Recapitulation
+## Recap
 
 * You can use the Weaviate Console to connect to any Weaviate instance.
 * You can use the Weaviate Console to connect to the Weaviate Cloud Service to create managed Weaviate instances.

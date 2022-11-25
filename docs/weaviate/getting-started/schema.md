@@ -20,7 +20,7 @@ At this point, you should have Weaviate running either:
 <!-- TODO: Find a way to reference customFields.weaviateVersion from docusaurus.config.js -->
 <!-- And use it in place of {{ site.weaviate_version }} -->
 * in a sandbox on the [Weaviate Cloud Service](https://console.semi.technology)
-    * if not, refer to the [Installation](./installation.html) lesson for instructions
+    * if not, refer to the [Installation](./installation.md) lesson for instructions
 * or locally with Docker
     1. Download [this docker-compose.yml file](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}).
     1. Run `$ docker-compose up`
@@ -84,7 +84,7 @@ print(json.dumps(schema))
 
 Let's create your first class!
 
-We'll take the example of the **Author** from the [basics](../core-knowledge/basics.html#data-objects-in-weaviate)  guide.
+We'll take the example of the **Author** from the [basics](../core-knowledge/basics.md#data-objects-in-weaviate)  guide.
 
 Our **Authors** have the following properties:
 * `name`: type `string`
@@ -720,24 +720,24 @@ Note this part (this is just a chunk of the response):
 }
 ```
 
-> 💡 You can set cross-references in all directions and later (as we will see [while querying](./query.html)) filter on them. Please, be aware that Weaviate is **not** a graph database ([remember](../core-knowledge/basics.html#what-is-weaviate)?). This means that dealing with -for example- many-to-many relationships or things like shortest path algorithms is not in our wheelhouse.
+> 💡 You can set cross-references in all directions and later (as we will see [while querying](./query.md)) filter on them. Please, be aware that Weaviate is **not** a graph database ([remember](../core-knowledge/basics.md#what-is-weaviate)?). This means that dealing with -for example- many-to-many relationships or things like shortest path algorithms is not in our wheelhouse.
 
 ## Other schema operations
 
-All schema operations are available in the [API documentation for the schema endpoint](../restful-api-references/schema.html). The documentation also includes examples in different client languages.
+All schema operations are available in the [API documentation for the schema endpoint](../references/rest/schema.md). The documentation also includes examples in different client languages.
 
-## Recapitulation
+## Recap
 
 * Weaviate has a schema where you will define how your data objects will be indexed.
 * Weaviate's schema is class property based.
 * The schema is highly configurable but comes with pre-defined settings.
 * There is an auto schema function, but for optimal usage, it's better to manually create a schema
 
-## What would you like to learn next?
+<!-- ## What would you like to learn next?
 
-* [Learn how to import data](./import.html)
-* [Learn how to query data based on a schema](query.html)
-* [Take me one step back to the basics](../core-knowledge/basics.html)
+* [Learn how to import data](./import.md)
+* [Learn how to query data based on a schema](query.md)
+* [Take me one step back to the basics](../core-knowledge/basics.md) -->
 
 # More Resources
 

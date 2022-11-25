@@ -15,7 +15,7 @@ sidebar_position: 0
 ---
 
 This section provides an overview of available options for running Weaviate, and basic information about the Weaviate client libraries.
-# Running Weaviate
+## Options for running Weaviate
 
 ​Weaviate versions on the Weaviate Cloud Service (WCS) and Weaviate open source are identical, with the only difference that the WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/semi-technologies/weaviate/blob/master/LICENSE).
 
@@ -27,7 +27,7 @@ You have three options to run Weaviate, all come with their own installation gui
 
 > 💡 When self-hosting, we recommend starting with the Docker Compose configurator and set up to get a feel for how Weaviate operates. You can later adopt this knowledge when you are creating your Helm charts.
 
-## Run an unreleased version
+### Run an unreleased version
 
 You can run Weaviate with `docker-compose`, building your own container off the [`master`](https://github.com/semi-technologies/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
 
