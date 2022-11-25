@@ -12,16 +12,15 @@ sidebar_position: 6
 # toc: true
 # redirect_from:
 #     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/multi2vec-clip.html
-#     - /developers/weaviate/current/modules/multi2vec-clip.html
+#     - /developers/weaviate/modules/multi2vec-clip.html
 ---
-
-# Introduction
+## Introduction
 
 The `multi2vec-clip` module allows you to use a pre-trained Sentence-BERT CLIP model as a Weaviate vectorization module. To use CLIP with Weaviate, the `multi2vec-clip` module needs to be enabled. The models typically bring separate inference containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled serves, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.
 
 To choose your specific model, you simply need to select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile.
 
-# How to use
+## How to use
 
 You have three options to select your desired model:
 
@@ -32,7 +31,7 @@ You have three options to select your desired model:
 ## Option 1: Use a pre-built transformer model container
 
 ### Example docker-compose file
-Note: you can also use the [Weaviate configuration tool](../installation/docker-compose.html#configurator).
+Note: you can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose#configurator).
 
 You can find an example Docker-compose file below, which will spin up Weaviate with the multi2vec-clip module. In this example we have selected the `sentence-transformers/clip-ViT-B-32-multilingual` which works great for vectorizing images and text in the same vector space. It even supports multiple languages. See below for how to select an alternative model.
 
@@ -72,14 +71,14 @@ slower than on CPUs. Enable CUDA if you have a GPU available (`ENABLE_CUDA=1`).
 
 ### Alternative: configure your custom setup
 
-*Note: The following steps are only required if you want to manually add the module to an existing setup. If you are starting from scratch, a much more convenient option is to use our [configuration and customization tool](../installation/docker-compose.html#configurator).*
+*Note: The following steps are only required if you want to manually add the module to an existing setup. If you are starting from scratch, a much more convenient option is to use our [configuration and customization tool](/developers/weaviate/installation/docker-compose#configurator).*
 
 #### Step 1: Enable the `multi2vec-clip` module
 Make sure you set the `ENABLE_MODULES=multi2vec-clip` environment variable. Additionally, make this module the default vectorizer, so you don't have to specify it on each schema class: `DEFAULT_VECTORIZER_MODULE=multi2vec-clip`
 
 #### Step 2: Run your favorite model
 
-Choose [any of our pre-built CLIP models](../installation/docker-compose.html#configurator) (for building your own model container, see below) and spin it up with your setup. Use a CUDA-enabled machine for optimal performance.
+Choose [any of our pre-built CLIP models](/developers/weaviate/installation/docker-compose#configurator) (for building your own model container, see below) and spin it up with your setup. Use a CUDA-enabled machine for optimal performance.
 
 #### Step 3: Tell Weaviate where to find the inference 
 
@@ -161,7 +160,7 @@ Then you can send REST requests to it directly, e.g. `curl
 localhost:9090/vectorize -d '{"texts": ["foo bar"], "images":[]}'` and it will
 print the created vector(s) directly. 
 
-# Schema Configuration for CLIP-vectorized Classes
+## Schema Configuration for CLIP-vectorized Classes
 
 The following is a valid payload for a class that vectorizes both images and
 text fields using the `multi2vec-clip` module as a `vectorizer`:
@@ -217,7 +216,7 @@ You can then import data objects for the class as usual. Fill the `text` or
 `string` fields with text and/or fill the `blob` fields with a base64-encoded
 image.
 
-## Limitations
+### Limitations
   -  As of `v1.9.0`, the module requires explicit creation of a class. If you
      rely on auto-schema to create the class for you, it will be missing the
      required configuration about which fields should be vectorized. This will
@@ -225,9 +224,9 @@ image.
      schema config that was incorrectly created by Auto-schema and fix it
      yourself.
 
-# Additional GraphQL API parameters
+## Additional GraphQL API parameters
 
-## nearText
+### nearText
 
 The `multi2vec-clip` vectorizer module adds two search operators for `Get {}`
 and `Explore {}` GraphQL functions: `nearText: {}` and `nearImage: {}`. These
@@ -235,28 +234,37 @@ operators can be used for semantically searching both text and images in your
 dataset. 
 
 Note: In the same query, you cannot use multiple `'near'` filters, or a `'near'`
-filter along with an [`'ask'`](../reader-generator-modules/qna-transformers.html)
+filter along with an [`'ask'`](../reader-generator-modules/qna-transformers)
 filter!
 
-### Example GraphQL Get(nearText{}) operator
+#### Example GraphQL Get(`nearText{}`) operator
 
-{% include code/1.x/graphql.filters.nearText.html %}
+<!-- {% include code/1.x/graphql.filters.nearText.html %} -->
+import CodeNearText from '/code-samples/graphql.filters.nearText.mdx';
+
+<CodeNearText />
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Publication%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveAwayFrom%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++++force%3A+0.45%0D%0A++++++++%7D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++name%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
 
-### Example GraphQL Get(nearImage{}) operator
-{% include code/1.x/img2vec-neural.nearimage.html %}
+#### Example GraphQL Get(`nearImage{}`) operator
+<!-- {% include code/1.x/img2vec-neural.nearimage.html %} -->
+import CodeNearImage from '/code-samples/img2vec-neural.nearimage.mdx';
+
+<CodeNearImage />
 
 Alternatively, you can use a helper function in the Python, Java or Go client (not with the JavaScript client). With an encoder function, you can input your image as `png` file, and the helper function encodes this to a `base64` encoded value.
 
-{% include code/1.x/img2vec-neural.nearimage.encode.html %}
+<!-- {% include code/1.x/img2vec-neural.nearimage.encode.html %} -->
+import CodeNearImageEncode from '/code-samples/img2vec-neural.nearimage.encode.mdx';
+
+<CodeNearImageEncode />
 
 ### Distance
 
 You can set a maximum allowed `distance`, which will be used to determine which
 data results to return. The interpretation of the value of the distance field
-depends on the [distance metric used](../vector-index-plugins/distances.html).
+depends on the [distance metric used](/developers/weaviate/references/distances).
 
 If the distance metric is `cosine` you can also use `certainty` instead of
 `distance`. Certainty normalizes the distance in a range of 0..1, where 0
@@ -300,6 +308,6 @@ Moving can be done based on `concepts` and/or `objects`.
 }
 ```
 
-# More resources
+## More resources
 
 {% include docs-support-links.html %}

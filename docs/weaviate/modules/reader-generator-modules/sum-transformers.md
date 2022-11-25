@@ -11,13 +11,14 @@ sidebar_position: 3
 # open-graph-type: article
 # toc: true
 ---
-# In short
+## In short
+
 * The Summarization (SUM) module is a Weaviate module that summarizes whole paragraps into a short text.
 * The module depends on a SUM Transformers model that should be running with Weaviate. There are pre-built models available, but you can also attach another HuggingFace Transformer or custom SUM model.
 * The module adds a `summary {}` filter to the GraphQL `_additional {}` field.
 * The module returns the results in the GraphQL `_additional { summary {} }` field. 
 
-# Introduction
+## Introduction
 
 The Summarization module is a Weaviate module that is used to summarize Weaviate text objects at query time.
 
@@ -33,14 +34,14 @@ and transform it to a short sentence like this:
 > 
 > CPUs can be used, however, this will significantly slow down your queries. 
 
-## Available modules
+### Available modules
 
 Here is the current list of available SUM modules - sourced from [Huggingface](https://huggingface.co/):
 * [`bart-large-cnn`](https://huggingface.co/facebook/bart-large-cnn)
 <!-- TODO: include when/if the build completes -->
 <!-- * [`pegasus-xsum`](https://huggingface.co/google/pegasus-xsum) -->
 
-# How to enable (module configuration)
+## How to enable (module configuration)
 
 ### Docker-compose
 
@@ -89,7 +90,7 @@ services:
 Variable explanations:
 * `SUM_INFERENCE_API`: where the summarization module is running
 
-# How to use (GraphQL)
+## How to use (GraphQL)
 
 To make use of the modules capabilities, simply extend your query with the following new `_additional` property:
 
@@ -102,8 +103,10 @@ This module adds a search filter to the GraphQL `_additional` field in queries: 
 | `properties` 	| list of strings 	| yes 	| `["description"]` 	| The properties of the queries Class which contains text (`text` or `string` Datatype). You must provide at least one property	|
 
 ### Example query
-<!-- TODO: (Marcin) review the below code -->
-{% include code/1.x/sum-transformers-module.html %}
+<!-- {% include code/1.x/sum-transformers-module.html %} -->
+import CodeSumTransformer from '/code-samples/sum-transformers-module.mdx';
+
+<CodeSumTransformer />
 
 <!-- TODO: Update the live working example 
   We need to add the Summarizer to the cloud instance
@@ -143,7 +146,7 @@ The answer is contained in a new GraphQL `_additional` property called `summary`
 }
 ```
 
-# Use another Summarization module from HuggingFace
+## Use another Summarization module from HuggingFace
 
 You can build a Docker image which supports any summarization model from the [Huggingface model hub](https://huggingface.co/models?pipeline_tag=summarization) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`google/pegasus-pubmed` model](https://huggingface.co/google/pegasus-pubmed). 
 
@@ -165,7 +168,7 @@ docker build -f my-model.Dockerfile -t google-pegasus-pubmed .
 You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `google-pegasus-pubmed`.
 
 
-# How it works (under the hood)
+## How it works (under the hood)
 
 The code for the application in this repo works well with models that take in a text input like:
 
@@ -183,6 +186,6 @@ then summarize it and return information in JSON format like this:
 
 The Weaviate SUM Module then takes this output and processes this to GraphQL output.
 
-# More resources
+## More resources
 
 {% include docs-support-links.html %}

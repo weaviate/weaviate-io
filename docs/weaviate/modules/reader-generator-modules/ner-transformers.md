@@ -11,22 +11,22 @@ sidebar_position: 2
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/current/modules/ner-transformers.html
+#     - /developers/weaviate/modules/ner-transformers.html
 ---
+## In short
 
-# In short
 * The Named Entity Recognition (NER) module is a Weaviate module for token classification.
 * The module depends on a NER Transformers model that should be running with Weaviate. There are pre-built models available, but you can also attach another HuggingFace Transformer or custom NER model.
 * The module adds a `tokens {}` filter to the GraphQL `_additional {}` field.
 * The module returns data objects as usual, with recognized tokens in the GraphQL `_additional { tokens {} }` field. 
 
-# Introduction
+## Introduction
 
 Named Entity Recognition (NER) module is a Weaviate module to extract entities from your existing Weaviate (text) objects on the fly. Entity Extraction happens at query time. Note that for maximum performance, transformer-based models should run with GPUs. CPUs can be used, but the throughput will be lower.
 
 There are currently three different NER modules available (taken from [Huggingface](https://huggingface.co/)): [`dbmdz-bert-large-cased-finetuned-conll03-english`](https://huggingface.co/dbmdz/bert-large-cased-finetuned-conll03-english), [`dslim-bert-base-NER`](https://huggingface.co/dslim/bert-base-NER), [`davlan-bert-base-multilingual-cased-ner-hrl`](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl?text=%D8%A5%D8%B3%D9%85%D9%8A+%D8%B3%D8%A7%D9%85%D9%8A+%D9%88%D8%A3%D8%B3%D9%83%D9%86+%D9%81%D9%8A+%D8%A7%D9%84%D9%82%D8%AF%D8%B3+%D9%81%D9%8A+%D9%81%D9%84%D8%B3%D8%B7%D9%8A%D9%86.).
 
-# How to enable (module configuration)
+## How to enable (module configuration)
 
 ### Docker-compose
 
@@ -75,7 +75,7 @@ services:
 Variable explanations:
 * `NER_INFERENCE_API`: where the qna module is running
 
-# How to use (GraphQL)
+## How to use (GraphQL)
 
 To make use of the modules capabilities, simply extend your query with the following new `_additional` property:
 
@@ -91,7 +91,10 @@ This module adds a search filter to the GraphQL `_additional` field in queries: 
 
 ### Example query
 
-{% include code/1.x/ner-transformers-module.html %}
+<!-- {% include code/1.x/ner-transformers-module.html %} -->
+import CodeNerTransformer from '/code-samples/ner-transformers-module.mdx';
+
+<CodeNerTransformer />
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++limit%3A+1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional%7B%0D%0A++++++++tokens%28%0D%0A++++++++++properties%3A+%5B%22title%22%5D%2C%0D%0A++++++++++limit%3A+10%2C%0D%0A++++++++++certainty%3A+0.7%0D%0A++++++++%29+%7B%0D%0A++++++++++certainty%0D%0A++++++++++endPosition%0D%0A++++++++++entity%0D%0A++++++++++property%0D%0A++++++++++startPosition%0D%0A++++++++++word%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
@@ -143,7 +146,7 @@ The answer is contained in a new GraphQL `_additional` property called `tokens`,
 }
 ```
 
-# Use another NER Transformer module from HuggingFace
+## Use another NER Transformer module from HuggingFace
 
 You can build a Docker image which supports any model from the [Huggingface model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`Davlan/bert-base-multilingual-cased-ner-hrl` model](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl). 
 
@@ -165,7 +168,7 @@ docker build -f my-model.Dockerfile -t davlan-bert-base-multilingual-cased-ner-h
 You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `davlan-bert-base-multilingual-cased-ner-hrl`.
 
 
-# How it works (under the hood)
+## How it works (under the hood)
 
 The code for the application in this repo works well with models that take in a text input like `My name is Sarah and I live in London` and return information in JSON format like this:
 
@@ -190,6 +193,6 @@ The code for the application in this repo works well with models that take in a 
 
 The Weaviate NER Module then takes this output and processes this to GraphQL output.
 
-# More resources
+## More resources
 
 {% include docs-support-links.html %}
