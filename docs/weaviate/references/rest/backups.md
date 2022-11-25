@@ -14,21 +14,21 @@ sidebar_position: 14
 # toc: true
 # redirect_from:
 #     - /documentation/weaviate/current/add-data/batching.html
-#     - /documentation/weaviate/current/restful-api-references/batch.html
+#     - /documentation/weaviate/references/rest/batch.html
 #     - /documentation/weaviate/current/add-data/add_and_modify.html
 #     - /documentation/weaviate/current/tutorials/how-to-import-data.html
-#     - /developers/weaviate/current/tutorials/how-to-import-data.html
+#     - /docs/weaviate/tutorials/how-to-import-data.html
 ---
 
 # Introduction
 
-See the [Backups page](../configuration/backups.html) for a general introduction, configuration, and tech backround of Backups.
+See the [Backups page](/docs/weaviate/configuration/backups.md) for a general introduction, configuration, and tech backround of Backups.
 
 # API
 
 ## Create Backup
 
-Once the modules are enabled and the [configuration](../configuration/backups.html#configuration) is provided, you can start a
+Once the modules are enabled and the [configuration](/docs/weaviate/configuration/backups.md#configuration) is provided, you can start a
 backup on any running instance with a single HTTP request.
 
 ### Method and URL
@@ -59,7 +59,7 @@ The request takes a json object with the following properties:
 
 {% include code/1.x/backup.create.html %}
 
-While you are waiting for a backup to complete, [Weaviate stays fully usable](../configuration/backups.html#read--write-requests-while-a-backup-is-running).
+While you are waiting for a backup to complete, [Weaviate stays fully usable](/docs/weaviate/configuration/backups.md#read--write-requests-while-a-backup-is-running).
 
 
 ### Asynchronous Status Checking
@@ -151,4 +151,4 @@ restore is complete. If the status is `FAILED`, an additional error is provided.
 
 # Learn more about Backups
 
-Discover more about [Backups Configuration](../configuration/backups.html#configuration), inlcuding Backups to [S3](../configuration/backups.html#s3-aws-or-s3-compatible) or [GCS](../configuration/backups.html#gcs-google-cloud-storage), [Technical Considerations of Backups](../configuration/backups.html#technical-considerations), as well as [additional use cases](../configuration/backups.html#other-use-cases).
+Discover more about [Backups Configuration](/docs/weaviate/configuration/backups.md#configuration), inlcuding Backups to [S3](/docs/weaviate/configuration/backups.md#s3-aws-or-s3-compatible) or [GCS](/docs/weaviate/configuration/backups.md#gcs-google-cloud-storage), [Technical Considerations of Backups](/docs/weaviate/configuration/backups.md#technical-considerations), as well as [additional use cases](/docs/weaviate/configuration/backups.md#other-use-cases).

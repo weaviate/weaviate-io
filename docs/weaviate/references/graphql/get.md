@@ -70,7 +70,7 @@ The above query will result in something like the following:
 
 # Additional properties
 
-For every Get{} request you can get additional information about the returned data object(s) by using additional properties. You can recognize these properties because they are in the object `_additional{}`. Additional properties can help you interpret query results and can for example be used for projection and visualization of the retrieved data. An overview of all additional properties and how to use them is documented [here](additional-properties.html).
+For every Get{} request you can get additional information about the returned data object(s) by using additional properties. You can recognize these properties because they are in the object `_additional{}`. Additional properties can help you interpret query results and can for example be used for projection and visualization of the retrieved data. An overview of all additional properties and how to use them is documented [here](./additional-properties.md).
 
 # Vector Search Operators
 
@@ -78,14 +78,14 @@ To combine `Get { }` with a vector search argument, here is an overview of the s
 
 | Argument | Description | Required Modules (at least one of) | Learn More |
 | --- | --- | --- | --- |
-| `nearObject` | Find the nearest neighbors of an object referenced by its id | *none - works out of the box* | [Learn more](../graphql-references/filters.html#nearobject-vector-search-argument) |
-| `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](../graphql-references/filters.html#nearvector-vector-search-argument) |
-| `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface` | [Transformers](../retriever-vectorizer-modules/text2vec-transformers.html#how-to-use), [Contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html#how-to-use), [OpenAI](../retriever-vectorizer-modules/text2vec-openai.html#how-to-use), [CLIP](../retriever-vectorizer-modules/multi2vec-clip.html#how-to-use), [Huggingface](../retriever-vectorizer-modules/text2vec-huggingface.html#how-to-use) |
-| `nearImage` | Vectorize an image and perform a vector search based on it | `multi2vec-clip`, `img2vec-neural` | [CLIP](../retriever-vectorizer-modules/multi2vec-clip.html#neartext), [Img2Vec](../retriever-vectorizer-modules/img2vec-neural.html#nearimage-search) |
+| `nearObject` | Find the nearest neighbors of an object referenced by its id | *none - works out of the box* | [Learn more](./filters.md#nearobject-vector-search-argument) |
+| `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](./filters.md#nearvector-vector-search-argument) |
+| `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface` | [Transformers](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#how-to-use), [Contextionary](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#how-to-use), [OpenAI](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md#how-to-use), [CLIP](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#how-to-use), [Huggingface](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md#how-to-use) |
+| `nearImage` | Vectorize an image and perform a vector search based on it | `multi2vec-clip`, `img2vec-neural` | [CLIP](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#neartext), [Img2Vec](/docs/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) |
 
 # Filters
 
-`Get{}` functions can be extended with search filters (both semantic filters as traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.html).
+`Get{}` functions can be extended with search filters (both semantic filters as traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.md).
 
 ## Sorting
 
@@ -95,8 +95,10 @@ You can sort results by any primitive property, typically a `text`, `string`,
 `number`, or `int` property. When a query has a natural order (e.g. because of a
 `near<Media>` vector search), adding a sort operator will override the order.
 
-See [filters – sorting](./filters.html#sorting) for more information.
+See [filters – sorting](./filters.md#sorting) for more information.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

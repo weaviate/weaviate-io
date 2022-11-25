@@ -15,7 +15,6 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/configuration/
 #     - /documentation/weaviate/current/setup/health_check.html
 ---
-
 ## Overview 
 
 Weaviate's default configurations are aimed at getting our users up and running quickly. Having said that, many aspects of Weaviate can be customized and configured to suit each user's needs. 

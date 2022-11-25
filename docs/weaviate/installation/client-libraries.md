@@ -12,7 +12,7 @@ sidebar_position: 4
 # open-graph-type: article
 # toc: false
 # redirect_from:
-#     - /developers/weaviate/v1.1.0/client-libraries/index.html
+#     - /docs/weaviate/v1.1.0/client-libraries/index.html
 #     - /documentation/weaviate/current/client-libraries/index.html
 #     - /documentation/weaviate/current/client-libraries/
 ---
@@ -20,7 +20,7 @@ sidebar_position: 4
 ## Overview
 To interact with Weaviate's APIs from Python, JavaScript, Java or Go codes, you can use client libraries. With these clients you can perform *all* RESTful and GraphQL requests. This means you can use any endpoint, and perform all GraphQL queries directly from your Python, JS, Java or Go scripts!
 
-How to use these clients for RESTful API requests and GraphQL queries, code snippets are included in the code blocks on the dedicated [Restful API](..../references/rest/index.md) and [GraphQL](..../references/graphql/index.md) reference pages. The methods of the clients are designed to reflect the API functions 1-1, but are designed (structured and named) in the way native to the language.
+How to use these clients for RESTful API requests and GraphQL queries, code snippets are included in the code blocks on the dedicated [Restful API](../references/rest/index.md) and [GraphQL](../references/graphql/index.md) reference pages. The methods of the clients are designed to reflect the API functions 1-1, but are designed (structured and named) in the way native to the language.
 
 Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages ([Python](../references/client-libraries/python.md), [JavaScript](../references/client-libraries/javascript.md), [Java](../references/client-libraries/java.md) and [Go](../references/client-libraries/go.md). An overview of features of the clients: 
 

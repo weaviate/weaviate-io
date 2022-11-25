@@ -28,7 +28,7 @@ for running Weaviate with larger datasets.
 
 ## Up to 32x memory reduction
 
-[<img src="/img/binary-passage-retrieval-vector-vs-binary-hash@2x.png" width="800" alt="Weaviate binary passage retrieval" />](/img/binary-passage-retrieval-vector-vs-binary-hash@3x.png "Reduce Memory requirements by a factor of 32 when using binary hashing")
+![Weaviate binary passage retrieval](./img/binary-passage-retrieval-vector-vs-binary-hash@3x.png "Reduce Memory requirements by a factor of 32 when using binary hashing")
 
 The above example shows a reduction factor of 32x which is based on the
 original resource paper. Instead of searching on the full vectors, we search on
@@ -48,7 +48,7 @@ For example, take the two vectors `[0.13, 0.97]` and `[0.87, 0.02]`. Since all
 dimensions are positive the hashes would be identical. However, the cosine
 distance between both vectors is non-zero.
 
-[<img src="/img/bpr-two-step-query-binary-rerank-vector@2x.png" width="800" alt="BPR two step binary reranker in Weaviate" />](/img/bpr-two-step-query-binary-rerank-vector@3x.png "Efficiently retrieve candidates using hashing, then re-rank using original vectors")
+![BPR two step binary reranker in Weaviate](./img/bpr-two-step-query-binary-rerank-vector@3x.png "Efficiently retrieve candidates using hashing, then re-rank using original vectors")
 
 To overcome this potential accuracy loss with BPR, the original paper suggests
 a two-step ranking process. The hashes are used to produce suitable candidates.
@@ -170,6 +170,8 @@ Make sure to [join our
 Slack-channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
 for regular updates.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

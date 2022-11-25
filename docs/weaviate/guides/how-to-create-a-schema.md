@@ -18,25 +18,25 @@ sidebar_position: 1
 
 # Introduction
 
-When you start with an empty Weaviate, you need to define a schema to explain what kind of data you will add (or you can use the [auto-schema feature](../schema/schema-configuration.html#auto-schema), available from Weaviate version v1.5.0). Because Weaviate is a search graph, the linguistic element plays an important role. When creating concepts, Weaviate will validate if it can understand the schema concepts you want to add based on the vectorizer module. You might notice that a lot of definitions are related to the everyday language we use. And this is the first best practice to bear in mind. When defining the schema, you should do this in the form like you would explain it to another person, not like tables and columns you would add to a traditional data solution.
+When you start with an empty Weaviate, you need to define a schema to explain what kind of data you will add (or you can use the [auto-schema feature](/docs/weaviate/references/schema-configuration.md#auto-schema), available from Weaviate version v1.5.0). Because Weaviate is a search graph, the linguistic element plays an important role. When creating concepts, Weaviate will validate if it can understand the schema concepts you want to add based on the vectorizer module. You might notice that a lot of definitions are related to the everyday language we use. And this is the first best practice to bear in mind. When defining the schema, you should do this in the form like you would explain it to another person, not like tables and columns you would add to a traditional data solution.
 For a more elaborate example check this blog post: - [Link to schema article](https://hackernoon.com/what-is-weaviate-and-how-to-create-data-schemas-in-it-7hy3460)
 
 #  Basics
 
 - A schema consists of classes and properties, which define concepts.
 - Words in the schema (names of classes and properties) must be part of the `text2vec-contextionary`.
-- The schema can be modified through the [RESTful API](../restful-api-references/schema.html). Python, JavaScript and Go clients are available.
+- The schema can be modified through the [RESTful API](../references/rest/schema.md). Python, JavaScript and Go clients are available.
 - A class or property in Weaviate becomes immutable, but can always be extended.
-- Learn about Concepts, Classes, Properties and dataTypes in the [API reference guide](../schema/index.html).
+- Learn about Concepts, Classes, Properties and dataTypes in the [API reference guide](/docs/weaviate/references/index.md).
 
 # Prerequisites
 
 **1. Connect to a Weaviate instance running with the text2vec-contextionary module.**\\
-If you haven't set up a Weaviate instance yet, check the [Installation guide](../getting-started/installation.html). Make sure you use the the `text2vec-contextionary` as vectorization module. In this guide we assume your instance is running at `http://localhost:8080`.
+If you haven't set up a Weaviate instance yet, check the [Installation guide](/docs/weaviate/getting-started/installation.md). Make sure you use the the `text2vec-contextionary` as vectorization module. In this guide we assume your instance is running at `http://localhost:8080`.
 
 # Creating your first schema (with the Python client)
 
-Let's say you want to create a schema for a [news publications](../more-resources/example-datasets.html) dataset. This dataset consists of random news **articles** from **publications** like Financial Times, New York Times, CNN, Wired, etcetera. You also want to capture the **authors**, and some metadata about these objects like publication dates.
+Let's say you want to create a schema for a [news publications](../more-resources/example-datasets.md) dataset. This dataset consists of random news **articles** from **publications** like Financial Times, New York Times, CNN, Wired, etcetera. You also want to capture the **authors**, and some metadata about these objects like publication dates.
 
 Follow these steps to create and upload the schema.
 
@@ -53,7 +53,7 @@ Schemas are defined in JSON format. An empty schema to start with:
 
 Let's say there are three classes you want to capture from this dataset in Weaviate: `Publication`, `Article` and `Author`. Notice that these words are *singular* (which is best practice, each data object is *one* of these classes).
 
-Classes always start with a capital letter. Properties always begin with a small letter. When you want to concatenate words into one class name or one property name, you can do that with camelCasing the words. Read more about schema classes, properties and data types [here](../schema/schema-configuration.html#data-objects-and-structure).
+Classes always start with a capital letter. Properties always begin with a small letter. When you want to concatenate words into one class name or one property name, you can do that with camelCasing the words. Read more about schema classes, properties and data types [here](/docs/weaviate/references/schema-configuration.md#data-objects-and-structure).
 
 Let's define the class `Publication` with the properties `name`, `hasArticles` and `headquartersGeoLocation` in JSON format. `name` will be the name of the `Publication`, in string format. `hasArticles` will be a reference to Article objects. We need to define the class `Articles` in the same schema to make sure the reference is possible. `headquartersGeoLocation` will be of the special dataType `geoCoordinates`.
 
@@ -273,9 +273,11 @@ Currently, only with the Python client it is possible to upload a whole schema a
 
 # Next steps
 
-- Go to the [next "How-to" guide](./how-to-import-data.html) to learn how to import data.
-- Check out the [RESTful API reference](../restful-api-references/schema.html) for an overview of all schema API operations.
+- Go to the [next "How-to" guide](./how-to-import-data.md) to learn how to import data.
+- Check out the [RESTful API reference](../references/rest/schema.md) for an overview of all schema API operations.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

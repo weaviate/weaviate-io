@@ -12,7 +12,7 @@ sidebar_position: 4
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.4.1/graphql-references/filters.html
+#     - /docs/weaviate/v1.4.1/graphql-references/filters.html
 #     - /documentation/weaviate/current/query-data/filters.html
 #     - /documentation/weaviate/current/graphql-references/filters.html
 ---
@@ -96,11 +96,11 @@ the path selector for `name` will be `["inPublication", "Publication", "name"]`
 ### Filter behavior of multi-word queries in `Equal` operator
 The behavior for the `Equal` operator on multi-word string and text properties in `where` filters is as follows. Multi-word queries are broken up into single word segments. An object must contain all segments. How words are broken up depends on the datatype. For `string` properties only spaces defined word boundaries. For `text` properties all non-alphanumeric properties are considered word boundaries. E.g. for `text`: `my email is alice@example.com` is split into `["my", "email", "is", "alice" "example", "com"]`, whereas the same query string on a `string` property would be broken into `["my", "email", "is", "alice@example.com"]`.
 
-Starting with `v1.12.0` you can [configure tokenization of `string` types](../schema/schema-configuration.html#property-tokenization) to take the whole field into account instead of individual words.
+Starting with `v1.12.0` you can [configure tokenization of `string` types](/docs/weaviate/references/schema-configuration.md#property-tokenization) to take the whole field into account instead of individual words.
 
 ### Stopwords in `text`/`string` filter values
 
-Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](../schema/schema-configuration.html#invertedindexconfig--stopwords-stopword-lists). 
+Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). 
 
 ## Single operand
 
@@ -156,7 +156,7 @@ You can filter object by their unique id or uuid, where you give the `id` as `va
 
 Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
 
-*Note: filtering by timestamp requires the target class to be configured to index  timestamps. See [here](../schema/schema-configuration.html#invertedindexconfig--indextimestamps) for details* 
+*Note: filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--indextimestamps) for details* 
 
 {% include code/1.x/graphql.filters.where.timestamps.html %}
 
@@ -199,7 +199,7 @@ The length of properties is calculated differently depending on the type:
 ```
 Supported operators are `(not) equal` and `greater/less than (equal)` and values need to be 0 or larger.
 
-*Note: filtering by property length requires the target class to be configured to index the length. See [here](../schema/schema-configuration.html#invertedindexconfig--indexpropertylength) for details* 
+*Note: filtering by property length requires the target class to be configured to index the length. See [here](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--indexpropertylength) for details* 
 
 
 ## Multiple operands
@@ -320,7 +320,7 @@ Using the `IsNull` operator allows you to do filter for objects where given prop
 }
 ```
 
-*Note: filtering by null-state requires the target class to be configured to index this. See [here](../schema/schema-configuration.html#invertedindexconfig--indexnullstate) for details* 
+*Note: filtering by null-state requires the target class to be configured to index this. See [here](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--indexnullstate) for details* 
 
 # Sorting
 
@@ -448,6 +448,8 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 - Due to the increasing cost of each page outlined above, there is a limit to how many objects can be retrieved using pagination. By default setting the sum of `offset` and `limit` to higher than 10,000 objects, will lead to an error. If you must retrieve more than 10,000 objects, you can increase this limit by setting the environment variable `QUERY_MAXIMUM_RESULTS=<desired-value>`. Warning: Setting this to arbitrarily high values can make the memory consumption of a single query explode and single queries can slow down the entire cluster. We recommend setting this value to the lowest possible value that does not interfere with your users' expectations.
 - The pagination setup is not stateful. If the database state has changed between retrieving two pages there is no guarantee that your pages cover all results. If no writes happened, then pagination can be used to retrieve all possible within the maximum limit. This means asking for a single page of 10,000 objects will lead to the same results overall as asking for 100 pages of 100 results. 
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

@@ -11,7 +11,7 @@ sidebar_position: 11
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.1.0/configuration/enterprise-usage-collector.html
+#     - /docs/weaviate/v1.1.0/configuration/enterprise-usage-collector.html
 ---
 
 # Introduction
@@ -60,7 +60,7 @@ services:
 
 ## Using the Docker configurator
 
-You can also use the Docker compose [configurator](../getting-started/installation.html#docker-compose). Make sure to select `Enabled` for the Enterprise Usage Collector option.
+You can also use the Docker compose [configurator](/docs/weaviate/getting-started/installation.md#docker-compose). Make sure to select `Enabled` for the Enterprise Usage Collector option.
 
 ## Collector proxy on Kubernetes using Helm
 
@@ -85,6 +85,8 @@ Deploy the helm chart and make sure to use the proxy service for your requests.
 
 
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

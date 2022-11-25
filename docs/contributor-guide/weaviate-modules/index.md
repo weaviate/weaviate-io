@@ -14,8 +14,8 @@ sidebar_position: 0
 # redirect_from:
 ---
 
-- [Overview and High-Level Architecture](./overview.html)
-- [Code-Level Architecture](./architecture.html)
-- [How to build a custom module](./how-to-build-a-new-module.html)
+- [Overview and High-Level Architecture](./overview.md)
+- [Code-Level Architecture](./architecture.md)
+- [How to build a custom module](./how-to-build-a-new-module.md)
 
 <!-- TODO: add redirect from /contributor-guide/weaviate-module-system to /contributor-guide/weaviate-modules -->

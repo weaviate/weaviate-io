@@ -12,7 +12,7 @@ sidebar_position: 3
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/client-libraries/java.html
+#     - /docs/weaviate/v1.11.0/client-libraries/java.html
 ---
 
 # Installation and setup
@@ -76,13 +76,13 @@ public class App {
 
 # References
 
-All [RESTful endpoints](../restful-api-references/index.html) and [GraphQL functions](../graphql-references/index.html) references covered by the Java client, and explained on those reference pages in the code blocks.
+All [RESTful endpoints](../rest/index.md) and [GraphQL functions](../graphql/index.md) references covered by the Java client, and explained on those reference pages in the code blocks.
 
 # Design
 
 ## Builder pattern
 
-The Java client functions are designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../restful-api-references/index.html) and the [GraphQL reference pages](../graphql-references/index.html).
+The Java client functions are designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../rest/index.md) and the [GraphQL reference pages](../graphql/index.md).
 
 The code snippet above shows a simple query similar to `RESTful GET /v1/meta`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by using the `.metaGetter()` on `.misc()`. The query will be sent with the `.run()` function, this object is thus required for every function you want to build and execute. 
 
@@ -320,6 +320,8 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 
 Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-java-client/releases) for updates on the latest `Java client` changes.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

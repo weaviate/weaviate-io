@@ -39,7 +39,8 @@ Broadly, we categorize them into one of:
 Vectorization modules, like the [`text2vec-contextionary`](../modules/retriever-vectorizer-modules/text2vec-contextionary.md), [`text2vec-transformers`](../modules/retriever-vectorizer-modules/text2vec-transformers.md), [`text2vec-openai`](../modules/retriever-vectorizer-modules/text2vec-openai.md), [`multi2vec-clip`](../modules/retriever-vectorizer-modules/multi2vec-clip.md), and [`img2vec-neural`](../modules/retriever-vectorizer-modules/img2vec-neural.md), transform data into vectors. These modules are also called "Dense Retriever" modules. Retrievers function as a filter to quickly find a relevant set of data to the query.
 
 #### Dense retrievers vs. sparse retrievers
-Sparse vector retrievers for the task of finding relevant data (by calculating the similarity of two pieces of data) in a database are for example TF-IDF or BM25. These retrievers are not trainable; instead they rely on word frequency in documents. This type of retrievers are not possible as Weaviate modules, because the implementation sits deep in the core of Weaviate (BM25 will be released soon!). 
+Sparse vector retrievers for the task of finding relevant data (by calculating the similarity of two pieces of data) in a database are for example TF-IDF or BM25. These retrievers are not trainable; instead they rely on word frequency in documents. This type of retrievers are not possible as Weaviate modules, because the implementation sits deep in the core of Weaviate (BM25 will be released soon!).
+
 Dense vector retrievers are a relatively new approach to data retrieval, which usually outperforms traditional sparse retrieval methods because they take semantics into account and they are trainable. Dense vector retrievers can be chosen as Weaviate modules. Depending on the type of data you want to store and search (text, images, etc), and depending on the use case domain (science, healthcare, common daily language, etc), you can choose and attach a dense retriever (vectorization) module that best fits your use case.
 
 ### Modules with additional functionalities (*Reader* or *Generator* modules)
@@ -62,6 +63,8 @@ Weaviate can also be used without any modules, as pure vector native database an
 
 It is possible for anyone to create a custom module for use with Weaviate. Click [here](../modules/other-modules/custom-modules.md) to see how you can create and use your own modules.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

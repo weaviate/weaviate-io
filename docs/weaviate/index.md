@@ -40,6 +40,11 @@ Then, the remaining content is divided into these sections:
 | Goal | How to **do** something | **Learn** about topics | Find **itemized** information |
 | Entry point | [Essential guides](./guides/index.md) | [Core concepts](./core-knowledge/index.md) | [References](./references/index.md) |
 
+| | Guides | Concepts | References |
+| ----- | ----- | ----- | ----- |
+| Goal | How to **do** something | **Learn** about topics | Find **itemized** information |
+| Entry point | [Essential guides](./guides/index.md) | [Core concepts](./core-knowledge/index.md) | [References](./references/index.md) |
+
 We suggest you also read through the [essential](./guides/index.md), [search](./search/index.md) and [core concepts](./core-knowledge/index.md) before starting to use Weaviate with your own data. We think they will put you at a good starting point, whereupon you can choose your own direction.
 
 Now, let's get started by talking about what Weaviate is.
@@ -62,16 +67,16 @@ Now, let's get started by talking about what Weaviate is.
 1. **Software Engineers** - Who use Weaviate as an ML-first database for their applications.
     * Out-of-the-box modules for NLP / semantic search, automatic classification, and image similarity search.
     * Easy to integrate with the current architecture, with full CRUD support like other OSS databases.
-    * Cloud-native, distributed, runs well on Kubernetes, and scales with one’s workloads.
+    * Cloud-native, distributed, runs well on Kubernetes, and scales with one's workloads.
 
 2. **Data Engineers** - Who use Weaviate as a vector database that is built up from the ground with ANN at its core and with the same UX they love from Lucene-based search engines.
     * Weaviate has a modular setup that allows you to use your ML models inside Weaviate. Due to its flexibility, you can also use out-of-the-box ML models (e.g., SBERT, ResNet, fasttext, etc.).
-    * Weaviate takes care of the scalability so that you don’t have to.
+    * Weaviate takes care of the scalability so that you don't have to.
     * Deploy and maintain ML models in production reliably and efficiently.
 
 3. **Data Scientists** - Who use Weaviate for a seamless handover of their Machine Learning models to MLOps.
     * Deploy and maintain your ML models in production reliably and efficiently.
-    * Weaviate’s modular design allows you to package any custom-trained model you want easily.
+    * Weaviate's modular design allows you to package any custom-trained model you want easily.
     * Smooth and accelerated handover of your Machine Learning models to engineers.
 
 ## Features
@@ -88,7 +93,7 @@ Use State-of-the-Art AI model inference (e.g., Transformers) for accessing data 
  Weaviate allows for efficient, combined vector and scalar searches. For example, “articles related to the COVID-19 pandemic published within the past 7 days.” Weaviate stores both objects and vectors and ensures the retrieval of both is always efficient. There is no need for a third-party object storage. 
 
 * **Real-time and persistent**<br />
-Weaviate lets you search through your data even if it’s currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.
+Weaviate lets you search through your data even if it's currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.
 
 * **Horizontal Scalability**<br />
   Scale Weaviate for your exact needs, e.g., maximum ingestion, largest possible dataset size, maximum queries per second, etc.
@@ -108,7 +113,7 @@ Within Weaviate, all individual data objects are based on a class property struc
 
 You can add data to Weaviate through the [RESTful API](./references/rest/index.md) end-points and retrieve data through the [GraphQL interface](./references/graphql/index.md). 
 
-Weaviate's [vector indexing mechanism is modular](./vectorization/), and the current available plugin is the [Hierarchical Navigable Small World (HNSW) multilayered graph](./vectorization/hnsw.md).
+Weaviate's [vector indexing mechanism is modular](./vectorization/index.md), and the current available plugin is the [Hierarchical Navigable Small World (HNSW) multilayered graph](./vectorization/hnsw.md).
 
 ## What are Weaviate modules?
 
@@ -151,4 +156,6 @@ Want to get started or want to learn more? These resources might help you furthe
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

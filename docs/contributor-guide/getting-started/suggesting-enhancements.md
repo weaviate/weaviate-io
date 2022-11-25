@@ -10,7 +10,6 @@ sidebar_position: 2
 # og-img: documentation.jpg
 # toc: true
 ---
-
 We love to hear your ideas.
 
 Here are some guidelines for suggesting enhancements. They are designed to make it easier for the maintainers and the community to understand your proposal, which will make it more likely to be adopted.
@@ -31,4 +30,4 @@ Suggestions are tracked as GitHub issues, such as these in [Weaviate core]](http
 
 You are welcome to implement your own suggestion and submit it! If you have any questions, feel free to reach out to us and the wider community on [Slack](https://weaviate.slack.com/).
 
-For this, you will need a local development setup. Please follow the instructions in the [Weaviate development setup](../weaviate-core/setup.html) documentation.
+For this, you will need a local development setup. Please follow the instructions in the [Weaviate development setup](../weaviate-core/setup.md) documentation.

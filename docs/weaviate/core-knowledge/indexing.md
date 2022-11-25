@@ -22,14 +22,14 @@ Some things to bear in mind:
 
 * Especially for large datasets, configuring the indices is important because the more you index, the more storage is needed.
 * A rule of thumb -- if you don't query over a specific field or vector space, don't index it.
-* One of Weaviate's unique features is how the indices are regulated (learn more about this [here](../architecture/prefiltering.html)).  
+* One of Weaviate's unique features is how the indices are regulated (learn more about this [here](../architecture/prefiltering.md)).  
 
 ### Configure the ANN index
 
-As you've learned in the [basics section](./basics.html#what-is-weaviate), one of Weaviate's core strengths is combining the ANN index with an inverted index. What's important to know, is that the "A" in ANN (i.e., the "approximate") comes with a trade-off. That is, the index is _approximate_ and, therefore _not_ always 100% accurate. This is what the experts mean when they talk about the "recall of the algorithm."
+As you've learned in the [basics section](./basics.md#what-is-weaviate), one of Weaviate's core strengths is combining the ANN index with an inverted index. What's important to know, is that the "A" in ANN (i.e., the "approximate") comes with a trade-off. That is, the index is _approximate_ and, therefore _not_ always 100% accurate. This is what the experts mean when they talk about the "recall of the algorithm."
 
 :::tip
-There are different ANN algorhythms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>. Only those algorhythms which support [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) can be used in Weaviate (we want that sweet database UX) and Weaviate's ANN system is [completely plug-and-playable](../architecture/index.html#weaviates-architecture-from-above) so that we can always add other algorhythms in the future.
+There are different ANN algorhythms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>. Only those algorhythms which support [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) can be used in Weaviate (we want that sweet database UX) and Weaviate's ANN system is [completely plug-and-playable](../architecture/index.md#weaviates-architecture-from-above) so that we can always add other algorhythms in the future.
 :::
 
 <!-- TODO: Not sure if we need this here -->
@@ -69,13 +69,13 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
 }
 ```
 
-We have a dedicated section containing all the [vector index settings](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters), but there are a few we would like to highlight in this getting-started guide.
+We have a dedicated section containing all the [vector index settings](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters), but there are a few we would like to highlight in this getting-started guide.
 
 * `vectorIndexType` is the ANN algorithm you want to use. By default, Weaviate selects `hnsw` -- the Hierarchical Navigable Small World (HNSW) algorithm.
 * `ef` is HNSW specific, and is used to find the right vectors stored in the index. The higher you set it the more accurate the recall but the slower the search becomes (more about picking the right index strategy below). By default Weaviate sets the value to `-1` which means: "Let Weaviate pick the right ef value for me."
 * `efConstruction` is HNSW specific, you can't change it after creating the class (i.e., it is immutable) but it mitigates the above-mentioned `ef` settings. The tradeoff here is on importing. So a high `efConstruction` means that you can lower your `ef` settings but that importing will be slower.
 * `vectorCacheMaxObjects` is the Weaviate cache. By default it is set to 2,000,000. We would recommend setting this to a number _greater_ than your total object amount.
-* `distance` is the type of distance calculation in vector space, for most machine learning models cosine similatiry, is the distance metric that we need, but Weaviate does [support other distance metrics as well](../vector-index-plugins/distances.html).
+* `distance` is the type of distance calculation in vector space, for most machine learning models cosine similatiry, is the distance metric that we need, but Weaviate does [support other distance metrics as well](/docs/weaviate/references/distances.md).
 
 Now you might be wondering: "What settings do I need for my use case?"
 
@@ -101,7 +101,7 @@ If you're looking for a starting point for values, we would advise an `efConstru
 :::
 
 :::note
-The [ANN benchmark page](../benchmarks/ann.html) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are. 
+The [ANN benchmark page](/docs/weaviate/more-resources/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are. 
 :::
 
 ### Configure the inverted index
@@ -128,10 +128,10 @@ The inverted index is by default _on_. You can simply turn it of like this:
 A rule of thumb to follow when determining if you turn it on or off is this: _if you don't need it to query, turn it off._
 
 :::note
-We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](../schema/datatypes.html#datatype-string-vs-text).
+We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](/docs/weaviate/references/datatypes.md#datatype-string-vs-text).
 :::
 
-You can also enable an inverted index to search [based on timestamps](../schema/schema-configuration.html#invertedindexconfig--indextimestamps).
+You can also enable an inverted index to search [based on timestamps](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--indextimestamps).
 
 ```js
 {
@@ -203,7 +203,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
 
 ## Module configuration
 
-As you've learned in the [basics getting started guide](./basics.html#modules), you can use Weaviate with or without modules. To use Weaviate _with_ modules, you must configure them in the schema.
+As you've learned in the [basics getting started guide](./basics.md#modules), you can use Weaviate with or without modules. To use Weaviate _with_ modules, you must configure them in the schema.
 
 An example configuration:
 
@@ -219,7 +219,7 @@ An example configuration:
 }
 ```
 
-When using vectorizers, you need to set vectorization on the class and property level. In the case you use text vectorizers, the way the vectorizers work is explained [here](../retriever-vectorizer-modules/text2vec-contextionary.html#regulate-semantic-indexing).
+When using vectorizers, you need to set vectorization on the class and property level. In the case you use text vectorizers, the way the vectorizers work is explained [here](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#regulate-semantic-indexing).
 
 ```js
 {
@@ -256,10 +256,12 @@ Because Weaviate's vectorizer module configuration is set on class and property 
 
 ## What would you like to learn next?
 
-* [Learn how to import data](../getting-started/import.html)
-* [Learn how to query data based on a schema](../getting-started/query.html)
-* [Take me one step back to the basics](./basics.html)
+* [Learn how to import data](../getting-started/import.md)
+* [Learn how to query data based on a schema](../getting-started/query.md)
+* [Take me one step back to the basics](./basics.md)
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

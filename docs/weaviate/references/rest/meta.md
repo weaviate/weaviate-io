@@ -12,7 +12,7 @@ sidebar_position: 16
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /documentation/weaviate/current/restful-api-references/meta.html
+#     - /documentation/weaviate/references/rest/meta.html
 ---
 
 # Usage
@@ -48,6 +48,8 @@ returns:
 }
 ```
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

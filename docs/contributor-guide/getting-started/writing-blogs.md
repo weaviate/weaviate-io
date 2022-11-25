@@ -32,13 +32,14 @@ We ask of your article to:
 
 ## Develop a demo app
 
-You could also contribute by creating a demo application that uses Weaviate under the hood. It can be a web app, mobile app or demos showing certain [integrations](/product.html).
+<!-- TODO: When use cases are ready, add a link on top of integrations -->
+You could also contribute by creating a demo application that uses Weaviate under the hood. It can be a web app, mobile app or demos showing certain [integrations](/docs/weaviate/more-resources/example-use-cases.md).
 
 We ask for the app to:
 
 * Be unique
 * Include a descriptive README.md file if possible
-* Disclose the Weaviate [module(s)](/developers/weaviate/current/modules/index.html) used
+* Disclose the Weaviate [module(s)](/docs/weaviate/modules/index.md) used
 
 ## Create a PR when ready
 
@@ -46,10 +47,9 @@ When you are ready to share your work, create a pull request in [Awesome Weaviat
 
 ## Resources
 
-* [Tutorials by Weaviate](/developers/weaviate/current/tutorials/index.html)
-* [Example Datasets](/developers/weaviate/current/tutorials/example-datasets.html)
-* [Podcasts by Weaviate](/podcast.html)
-* [Our resource page](/resources.html)
+* [Guides by Weaviate](/docs/weaviate/guides/index.md)
+* [Example Datasets](/docs/weaviate/more-resources/example-datasets.md)
+* [Podcasts by Weaviate](/podcasts)
 * [Developer Style Guide (FreeCodeCamp)](https://www.freecodecamp.org/news/developer-news-style-guide/)
 
 If you need any help, reach out to us on our [Slack](https://weaviate.slack.com/).

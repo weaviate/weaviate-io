@@ -12,7 +12,7 @@ sidebar_position: 2
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.2.1/client-libraries/javascript.html
+#     - /docs/weaviate/v1.2.1/client-libraries/javascript.html
 #     - /documentation/weaviate/current/client-libs/javascript.html
 ---
 
@@ -60,13 +60,13 @@ const client = weaviate.client({
 
 # References
 
-All [RESTful endpoints](../restful-api-references/index.html) and [GraphQL functions](../graphql-references/index.html) references covered by the JS client, and explained on those reference pages in the code blocks.
+All [RESTful endpoints](../rest/index.md) and [GraphQL functions](../graphql/index.md) references covered by the JS client, and explained on those reference pages in the code blocks.
 
 # Design
 
 ## Builder pattern
 
-The JavaScript client is designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../restful-api-references/index.html) and the [GraphQL reference pages](../graphql-references/index.html).
+The JavaScript client is designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../rest/index.md) and the [GraphQL reference pages](../graphql/index.md).
 
 The code snippet above shows a simple query similar to `RESTful GET /v1/schema`. The client is initiated with requiring the package and connecting to the running instance. Then, a query is constructed with getting the `.schema` with `.getter()`. The query will be sent with the `.do()` function, this object is thus required for every function you want to build and execute. 
 
@@ -79,6 +79,8 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/schema`.
 
 Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-javascript-client/releases) for updates on the latest `JavaScript client` changes.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

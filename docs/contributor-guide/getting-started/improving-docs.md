@@ -1,5 +1,5 @@
 ---
-title: Improving Documentation 
+title: Improving Documentation
 sidebar_position: 4
 
 # layout: layout-documentation
@@ -10,6 +10,7 @@ sidebar_position: 4
 # og-img: documentation.jpg
 # toc: true
 ---
+<!-- TODO: this whole page needs refactoring as it refers to Jekyll style docs -->
 ## Introduction
 
 Maintaining consistent, accurate and readable documentation is way to improve the user experience for everybody, including experienced users. 

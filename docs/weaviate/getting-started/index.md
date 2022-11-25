@@ -11,7 +11,7 @@ sidebar_position: 0
 # redirect_from:
 #     - /documentation/weaviate/current/getting-started/index.html
 #     - /documentation/weaviate/current/getting-started/
-#     - /developers/weaviate/current/getting-started/quick-start.html
+#     - /docs/weaviate/getting-started/quick-start.html
 ---
 
 Welcome to the Weaviate **Getting Started** guide.
@@ -32,7 +32,7 @@ You should follow the lessons in the order provided.
 
 | Topic | Description |
 | --- | --- |
-| [Installation](./installation.html) | Install Weaviate |
-| [Schema](./schema.html) | Learn how a Weaviate schema works |
-| [Import](./import.html) | Learn how to efficiently import into Weaviate |
-| [Query](./query.html) | Learn how to query Weaviate using GraphQL and the RESTful API |
+| [Installation](./installation.md) | Install Weaviate |
+| [Schema](./schema.md) | Learn how a Weaviate schema works |
+| [Import](./import.md) | Learn how to efficiently import into Weaviate |
+| [Query](./query.md) | Learn how to query Weaviate using GraphQL and the RESTful API |

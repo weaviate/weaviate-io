@@ -11,7 +11,7 @@ sidebar_position: 8
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.7.2/more-resources/migration-guide.html
+#     - /docs/weaviate/v1.7.2/more-resources/migration-guide.html
 ---
 
 # Changlog for version v1.9.0
@@ -20,7 +20,7 @@ sidebar_position: 8
 
 * *New Features*
   * ### First Multi-modal module: CLIP Module (#1756, #1766)
-    This release [introduces the `multi2vec-clip` module](../modules/multi2vec-clip.html), a module that allows for multi-modal vectorization within a single vector space. A class can have `image` or `text` fields or both. Similarly, the module provides both a `nearText` and a `nearImage` search and allows for various search combinations, such as text-search on image-only content and various other combinations.
+    This release [introduces the `multi2vec-clip` module](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md), a module that allows for multi-modal vectorization within a single vector space. A class can have `image` or `text` fields or both. Similarly, the module provides both a `nearText` and a `nearImage` search and allows for various search combinations, such as text-search on image-only content and various other combinations.
 
     #### How to use
 
@@ -322,7 +322,7 @@ Check [this github page](https://github.com/semi-technologies/weaviate/releases/
 
 * No breaking changes
 * New Features:
-  * Image Module [`img2vec-neural`](../modules/img2vec-neural.html)
+  * Image Module [`img2vec-neural`](/docs/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md)
   * Add Hardware acceleration for `amd64` CPUs (Intel, AMD)
   * Support `arm64` technology for entire Weaviate stack
   * Set `ef` at search time
@@ -341,7 +341,7 @@ Check [this github page](https://github.com/semi-technologies/weaviate/releases/
 # Changelog for version 1.3.0
 
 * No breaking changes
-* New feature: [Question Answering (Q&A) Module](../modules/qna-transformers.html)
+* New feature: [Question Answering (Q&A) Module](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md)
 * New feature: New Meta Information for all transformer-based modules
   
 Check [this github page](https://github.com/semi-technologies/weaviate/releases/tag/v1.3.0) for all the changes. 
@@ -349,7 +349,7 @@ Check [this github page](https://github.com/semi-technologies/weaviate/releases/
 # Changelog for version 1.2.0
 
 * No breaking changes
-* New feature: Introduction of the [Transformer Module](../modules/qna-transformers.html)
+* New feature: Introduction of the [Transformer Module](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md)
 
 Check [this github page](https://github.com/semi-technologies/weaviate/releases/tag/v1.2.0) for all the changes. 
 
@@ -367,7 +367,7 @@ Weaviate version 1.0.0 was released on 12 January 2021, and consists of the majo
 
 Weaviate release 1.0.0 from 0.23.2 comes with a significant amount of breaking changes in the data schema, API and clients. Here is an overview of all (breaking) changes. 
 
-For client library specific changes, take a look at the change logs of the specific client ([Go](../client-libraries/go.html#v20x), [Python](../client-libraries/python.html#20x), [JavaScript](../client-libraries/javascript.html#v200) and the [CLI](../client-libraries/cli.html#200)).
+For client library specific changes, take a look at the change logs of the specific client ([Go](/docs/weaviate/references/client-libraries/go.md#v20x), [Python](/docs/weaviate/references/client-libraries/python.md#20x), [JavaScript](/docs/weaviate/references/client-libraries/javascript.md#v200) and the [CLI](/docs/weaviate/references/client-libraries/cli.md#200)).
 
 Moreover, a new version of the Console is released. Visit the Console documentation for more information. 
 
@@ -627,8 +627,8 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
     * The `vectorizer` indicates which module (if any) are responsible for vectorization.
     * The `moduleConfig` allows configuration per module (by name).
       * See [here](#text2vec-contextionary) for Contextionary specific property configuration. 
-    * The `vectorIndexType` allows the choosing the vector index (defaults to [HNSW](../vector-index-plugins/hnsw.html))
-    * The `vectorIndexConfig` is an arbitrary object passed to the index for config (defaults can be found [here](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters) )
+    * The `vectorIndexType` allows the choosing the vector index (defaults to [HNSW](/docs/weaviate/vectorization/hnsw.md))
+    * The `vectorIndexConfig` is an arbitrary object passed to the index for config (defaults can be found [here](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters) )
 
     All changes are in this example:
 
@@ -905,6 +905,8 @@ The default vectorizer module can be specified in a new environment variable so 
 Official release notes can be found on [Github](https://github.com/semi-technologies/weaviate/releases/tag/0.23.0). 
 
 
-# More resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

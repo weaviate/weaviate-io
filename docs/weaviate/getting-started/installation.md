@@ -10,7 +10,7 @@ sidebar_position: 1
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.7.2/getting-started/installation.html
+#     - /docs/weaviate/v1.7.2/getting-started/installation.html
 ---
 
 There are three ways you can run Weaviate, and they are -we believe- pretty straightforward.
@@ -21,7 +21,7 @@ There are three ways you can run Weaviate, and they are -we believe- pretty stra
 
 ## Weaviate Cloud Service
 
-The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use the _Weaviate Cloud Service_ (aka, the WCS). The WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate. Currently, the service is in private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.semi.technology/), you can create a free sandbox to play around with.
+The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use the _Weaviate Cloud Service_ (aka, the WCS). The WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate. Currently, the service is in private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.semi.technology), you can create a free sandbox to play around with.
 
 If you are itching to get started with WCS, just skip to the [WCS hands-on section](#wcs-hands-on).
 
@@ -41,11 +41,11 @@ Generally, we recommend using Kubernetes to deploy Weaviate for any long-running
 
 For local development or personal evaluation, using Docker Compose will most likely be sufficient.
 
-Using Weaviate with Kubernetes is out of scope for this tutorial. You can find more info on Kubernetes [here](../installation/kubernetes.md).
+Using Weaviate with Kubernetes is out of scope for this tutorial. You can find more info on Kubernetes [here](/docs/weaviate/installation/kubernetes.md).
 
 ### Self-deployment instructions 
 
-The installation and configuration with Docker and Kubernetes is out of scope for this tutorial, as all code examples include references to a WCS instance. To learn about deploying Weaviate locally, follow the [installation documentation](/developers/weaviate/current/installation/) page.
+The installation and configuration with Docker and Kubernetes is out of scope for this tutorial, as all code examples include references to a WCS instance. To learn about deploying Weaviate locally, follow the [installation documentation](/docs/weaviate/installation/index.md) page.
 
 If you feel comfortable making a few changes to the code examples in the tutorial and you prefer to run Weaviate locally, you can set up Weaviate with Docker in two steps:
 
@@ -70,7 +70,7 @@ To create a new Weaviate instance on the Weaviate Cloud Service, we need to foll
 
 ### Sign in to WCS
 
-In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.semi.technology/) and "Sign in with the Weaviate Cloud Service", where you will be able to create and manage your Weaviate Clusters.
+In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.semi.technology) and "Sign in with the Weaviate Cloud Service", where you will be able to create and manage your Weaviate Clusters.
 
 #### No account, no problem
 If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs) link and create an account.
@@ -105,8 +105,6 @@ For every endpoint, there is a `documentationHref` link, which points us to rele
 
 Now, we are ready to start working with Weaviate. 🎉
 
-
-
 ## Running Weaviate yourself
 
 When running Weaviate yourself in production, you want to make sure you select the right hardware to run it on.  The benchmark pages in the documentation are helpful for this (more about this in this guide) too, take the following things into account when choosing the right hardware:
@@ -117,8 +115,8 @@ When running Weaviate yourself in production, you want to make sure you select t
         0. [`gp3` on Amazon Web Services](https://aws.amazon.com/about-aws/whats-new/2020/12/introducing-new-amazon-ebs-general-purpose-volumes-gp3/)
         0. [`premium-rwo` for Google Cloud Platform](https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/gce-pd-csi-driver#create_a_storageclass)
         0. [`Premium SSD` for Microsoft Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssds)
-1. **Memory** – make sure there is enough available to store the indices. To calculate to amount of memory needed for your vectors. Follow [this](../architecture/resources.html#an-example-calculation) calculation. You can learn more about memory usage in Weaviate [here](../architecture/resources.html#the-role-of-memory).
-1. **CPUs** – adding more CPUs increases import speed or query time. Setting up [monitoring](../configuration/monitoring.html) for your Weaviate instance will help you determine if you need more or fewer CPUs in your setup.
+1. **Memory** – make sure there is enough available to store the indices. To calculate to amount of memory needed for your vectors. Follow [this](/docs/weaviate/architecture/resources.md#an-example-calculation) calculation. You can learn more about memory usage in Weaviate [here](/docs/weaviate/architecture/resources.md#the-role-of-memory).
+1. **CPUs** – adding more CPUs increases import speed or query time. Setting up [monitoring](/docs/weaviate/configuration/monitoring.md) for your Weaviate instance will help you determine if you need more or fewer CPUs in your setup.
 
 ## Kubernetes
 
@@ -186,6 +184,8 @@ Alternatively, you can:
 * [Go back to the basics](../core-knowledge/basics.md) -->
 
 <!-- TODO - Consider replacing "# More Resources" with "## More.." site-wide -->
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

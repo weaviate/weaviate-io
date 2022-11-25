@@ -12,8 +12,8 @@ sidebar_position: 1
 # toc: true
 # enabled-on-wcs: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-openai.html
-#     - /developers/weaviate/modules/text2vec-openai.html
+#     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-openai.html
+#     - /docs/weaviate/modules/text2vec-openai.html
 ---
 ## Introduction
 
@@ -54,12 +54,12 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-* Note: you can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose#configurator) to create a Weaviate setup with this module.
+* Note: you can also use the [Weaviate configuration tool](/docs/weaviate/installation/docker-compose.md#configurator) to create a Weaviate setup with this module.
 * Note: Starting with `v1.11.0` the `OPENAI_APIKEY` variable is now optional and you can instead provide the key at insert/query time as an HTTP header.
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/developers/weaviate/getting-started/schema) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/docs/weaviate/getting-started/schema.md) first.
 
 The following schema configuration uses the `babbage` model. 
 
@@ -99,12 +99,11 @@ The following schema configuration uses the `babbage` model.
 ## How to use
 
 * When sending a request to Weaviate, you can set the API key on query time: `X-OpenAI-Api-Key: <openai-api-key>`.
-* New GraphQL vector search parameters made available by this module can be found [here](/developers/weaviate/references/graphql/vector-search-parameters#neartext).
+* New GraphQL vector search parameters made available by this module can be found [here](/docs/weaviate/references/graphql/vector-search-parameters.md#neartext).
 
 ### Example
 
-<!-- {% include code/1.x/graphql.filters.nearText.openai.html %} -->
-import CodeNearText from '/code-samples/graphql.filters.nearText.openai.mdx';
+import CodeNearText from '/_includes/code/graphql.filters.nearText.openai.mdx';
 
 <CodeNearText />
 
@@ -114,7 +113,7 @@ import CodeNearText from '/code-samples/graphql.filters.nearText.openai.mdx';
 
 ### Available models
 
-OpenAI has multiple models available with different trade-offs. All the models offered by OpenAI can be used within Weaviate. Note that the more dimensions a model produces, the larger your data footprint will be. To estimate the total size of your dataset use [this](/developers/weaviate/architecture/resources#an-example-calculation) calculation.
+OpenAI has multiple models available with different trade-offs. All the models offered by OpenAI can be used within Weaviate. Note that the more dimensions a model produces, the larger your data footprint will be. To estimate the total size of your dataset use [this](/docs/weaviate/architecture/resources.md#an-example-calculation) calculation.
 
 * For document embeddings you can choose one of the following models:
   * [ada](https://beta.openai.com/docs/engines/ada)
@@ -140,9 +139,7 @@ If you run into rate limits, you can also decide to throttle the import in your 
 
 E.g., in Python and Java using the Weaviate client.
 
-<!-- {% include code/1.x/text2vec-openai.example.html %} -->
-<!-- TODO - this causes Docusaurus to throw an exception - have commented out for now -->
-<!-- import CodeOpenAIExample from '/code-samples/text2vec-openai.example.mdx'; -->
+import CodeOpenAIExample from '/_includes/code/text2vec-openai.example.mdx';
 
 <CodeOpenAIExample />
 
@@ -156,4 +153,6 @@ The current rate limit will be displayed in the error message like:
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

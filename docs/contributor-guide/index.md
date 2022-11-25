@@ -33,13 +33,13 @@ If you're using Weaviate or if you like the project, please <a href="https://git
 
 ## Contributor Guide Structure
 
-We recommend reading through the [Contributors' getting started guide](./getting-started/index.html) first. That includes suggestions on different ways to contribute, as well as how you can make those contributions.
+We recommend reading through the [Contributors' getting started guide](./getting-started/index.md) first. That includes suggestions on different ways to contribute, as well as how you can make those contributions.
 
 This guide also includes the following sections on specific areas. You can think of these as more technical, reference guides on each area for contributors.
-- [Weaviate Core](./weaviate-core/index.html)
-- [Weaviate Modules](./weaviate-module-system/index.html)
-- [Contextionary](./contextionary/index.html)
-- [Weaviate Clients](./weaviate-clients/index.html)
+- [Weaviate Core](./weaviate-core/index.md)
+- [Weaviate Modules](./weaviate-modules/index.md)
+- [Contextionary](./contextionary/index.md)
+- [Weaviate Clients](./weaviate-clients/index.md)
 
 ## Join the Weaviate Community
 

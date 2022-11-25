@@ -17,15 +17,17 @@ A data schema is the first thing you can define, before you can start adding dat
 Additionally, per the data class, you can define the vector index type, the vectorizer module and, optionally, other modules. Specific settings to modules and the vector index type can also be set per class and per property. 
 
 Learn more about 
-1. [Configuration](./schema-configuration.html) of the classes and properties in the schema.
-2. [Data types](./datatypes.html) of property values.
-3. [Schema endpoint](../restful-api-references/schema.html).
-4. [Auto-schema](./schema-configuration.html#auto-schema), for more information about settings for the auto generated schema.
-   
+1. [Configuration](./schema-configuration.md) of the classes and properties in the schema.
+2. [Data types](./datatypes.md) of property values.
+3. [Schema endpoint](../references/rest/schema.md).
+4. [Auto-schema](./schema-configuration.md#auto-schema), for more information about settings for the auto generated schema.
+
 A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 
-> 💡 Check out the [schema getting started guide](/developers/weaviate/current/getting-started/schema.html) to learn how to work with the Weaviate schema in under 10 minutes.
+> 💡 Check out the [schema getting started guide](/docs/weaviate/getting-started/schema.md) to learn how to work with the Weaviate schema in under 10 minutes.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

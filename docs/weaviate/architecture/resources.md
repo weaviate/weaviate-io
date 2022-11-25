@@ -186,7 +186,7 @@ Generally we recommend that:
 If you notice that your import performance drops drastically after the 2M
 objects (per class) mark, you are most likely running into the default 2M limit
 of the vector cache. You can [adjust the limit on existing
-classes](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters)
+classes](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters)
 without having to recreate the class or reimport.
 
 # The role of GPUs in Weaviate
@@ -202,6 +202,8 @@ running Weaviate Core on low-cost CPU-only hardware.
 Weaviate is optimized to work with Solid-State Disks (SSDs). However, spinning
 hard-disks can be used with some performance penalties.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

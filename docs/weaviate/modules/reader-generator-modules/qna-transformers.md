@@ -11,8 +11,8 @@ sidebar_position: 1
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/reader-generator-modules/qna-transformers.html
-#     - /developers/weaviate/modules/qna-transformers.html
+#     - /docs/weaviate/v1.11.0/reader-generator-modules/qna-transformers.html
+#     - /docs/weaviate/modules/qna-transformers.html
 ---
 ## In short
 
@@ -109,8 +109,7 @@ Notes:
 
 ### Example query
 
-<!-- {% include code/1.x/qna-transformers.ask.html %} -->
-import CodeQnaTransformer from '/code-samples/qna-transformers.ask.mdx';
+import CodeQnaTransformer from '/_includes/code/qna-transformers.ask.mdx';
 
 <CodeQnaTransformer />
 
@@ -158,7 +157,7 @@ Note: `startPosition`, `endPosition` and `property` in the response are not guar
 
 ## Custom Q&A Transformer module
 
-You can use the same approach as for `text2vec-transformers`, see [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers#option-3-custom-build-with-a-private-or-local-model), i.e. either pick one of the pre-built containers or build your own container from your own model using the `semitechnologies/qna-transformers:custom` base image. Make sure that your model is compatible with Huggingfaces' `transformers.AutoModelForQuestionAnswering`.
+You can use the same approach as for `text2vec-transformers`, see [here](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#option-3-custom-build-with-a-private-or-local-model), i.e. either pick one of the pre-built containers or build your own container from your own model using the `semitechnologies/qna-transformers:custom` base image. Make sure that your model is compatible with Huggingfaces' `transformers.AutoModelForQuestionAnswering`.
 
 ## How it works (under the hood)
 
@@ -175,4 +174,6 @@ If a text value in a data object is longer than 512 tokens, the Q&A Transformer 
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

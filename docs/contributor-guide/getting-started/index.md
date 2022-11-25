@@ -24,10 +24,10 @@ This means that is a wide set of opportunities for you to learn about and contri
 
 These are just some of the ways that you could apply your skills to the project:
 
-* [Suggesting Enhancements](./suggesting-enhancements.html)
-* [Reporting Bugs](./reporting-bugs.html)
-* [Improving Documentation](./improving-docs.html)
-* [Creating content/apps](./writing-blogs.html)
+* [Suggesting Enhancements](./suggesting-enhancements.md)
+* [Reporting Bugs](./reporting-bugs.md)
+* [Improving Documentation](./improving-docs.md)
+* [Creating content/apps](./writing-blogs.md)
 
 ## Where can I contribute to?
 
@@ -46,11 +46,11 @@ You can also contribute by working on existing issues at any of Weaviate's repos
 
 ## Background reading
 
-Navigating a new project can be difficult, and it takes time to become acquainted with the codebase. If you haven't yet, we suggest going through the [Weaviate getting started guide](/developers/weaviate/current/getting-started/quick-start.html).
+Navigating a new project can be difficult, and it takes time to become acquainted with the codebase. If you haven't yet, we suggest going through the [Weaviate getting started guide](/docs/weaviate/getting-started/index.md).
 
 Here are additional resources that will help you familiarize with Weaviate and its applications:
 
-* [Weaviate Blog](/blog.html) – a series of blog around Weaviate and the overall vector search space.
+* [Weaviate Blog](/blog) – a series of blog around Weaviate and the overall vector search space.
 * [Weaviate Newsletter](http://weaviate-newsletter.semi.technology/) – bi-weekly newsletter with updates on the latest and greatest announcements.
 * [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) – a list of curated examples and tutorials on how to use Weaviate.
 * [Weaviate Examples](https://github.com/semi-technologies/weaviate-examples) – a repository of various example projects created by the community. Each example shows a different Weaviate use case. You can add your own examples too!
@@ -58,6 +58,6 @@ Here are additional resources that will help you familiarize with Weaviate and i
 
 ## Learn about git / GitHub
 
-Like many other open-source projects, the Weaviate community uses the git/GitHub ecosystem for collaborative development. If you are not familiar with git and GitHub basics, we have a guide on [how to contribute to Weaviate with git and GitHub](./git-and-github.html).
+Like many other open-source projects, the Weaviate community uses the git/GitHub ecosystem for collaborative development. If you are not familiar with git and GitHub basics, we have a guide on [how to contribute to Weaviate with git and GitHub](./git-and-github.md).
 
 Regardless of your choice, we are very excited to have you be a part of our community. Welcome 🙂.

@@ -43,7 +43,7 @@ etc.). Additionally, at query time, the query string should also be vectorized
 in the same way.
 
 From a tech level this module therefore has to provide some capabilities. See
-[Architecture](./architecture.html) for details of what capabilities are and
+[Architecture](./architecture.md) for details of what capabilities are and
 how a module can provide such a capability. The capabilities we need are:
 
 - **Vectorizer** The module must be able to turn the text of an object to a
@@ -98,8 +98,8 @@ Modules can be "vectorizers" (defines how the numbers in the vectors are chosen 
   - Other modules: `<functionality>-<name>-<optional>`.
   - A module name must be url-safe, meaning it must not contain any characters which would require url-encoding.
   - A module name is not case-sensitive. `text2vec-bert` would be the same module as `text2vec-BERT`.
-- Module information is accessible through the [`v1/modules/<module-name>/<module-specific-endpoint>` RESTful endpoint](../../../weaviate/current/restful-api-references/modules.html).
-- General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](../../../weaviate/current/restful-api-references/meta.html).
-- Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](../../../weaviate/current/graphql-references/additional-properties.html).
-- A module can add [filters](../../../weaviate/current/graphql-references/filters.html) in GraphQL queries.
-- Which vectorizer and other modules are applied to which data classes is configured in the [schema](../../../weaviate/current/schema/schema-configuration.html#vectorizer).
+- Module information is accessible through the [`v1/modules/<module-name>/<module-specific-endpoint>` RESTful endpoint](/docs/weaviate/references/rest/modules.md).
+- General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](/docs/weaviate/references/rest/meta.md).
+- Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](/docs/weaviate/references/graphql/additional-properties.md).
+- A module can add [filters](/docs/weaviate/references/graphql/filters.md) in GraphQL queries.
+- Which vectorizer and other modules are applied to which data classes is configured in the [schema](/docs/weaviate/references/schema-configuration.md#vectorizer).

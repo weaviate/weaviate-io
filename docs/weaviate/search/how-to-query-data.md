@@ -18,23 +18,22 @@ sidebar_position: 1
 # Introduction
 
 - Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/). 
-- You can query a Weaviate after you've created a [schema](./how-to-create-a-schema.html) and [populated it](./how-to-import-data.html) with data.
+- You can query a Weaviate after you've created a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) and [populated it](/docs/weaviate/guides/how-to-import-data.md) with data.
 
 # Prerequisites
 
  1. **Connect to a Weaviate instance.**\\
- If you haven't set up a Weaviate instance yet, check the [Getting started guide](../getting-started/installation.html). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](../getting-started/installation.html) as vectorization module.
+ If you haven't set up a Weaviate instance yet, check the [Getting started guide](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
  2. **Upload a schema**. \\
- Learn how to create and upload a schema [here](./how-to-create-a-schema.html). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
+ Learn how to create and upload a schema [here](/docs/weaviate/guides/how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
  3. **Add data**. \\
- Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](./how-to-import-data.html). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
-
+ Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/guides/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
 
 # How to get data
 
 **1. Define a query.**
 
-   The easiest GraphQL queries to get data from Weaviate are [`Get{}`](../graphql-references/get.html) queries. Let's say we want to retrieve all the articles (there title, authors, url and wordCount) that are published by "Wired", the GraphQL query will look as follows:
+   The easiest GraphQL queries to get data from Weaviate are [`Get{}`](../references/graphql/get.md) queries. Let's say we want to retrieve all the articles (there title, authors, url and wordCount) that are published by "Wired", the GraphQL query will look as follows:
 
    ```graphql
     {
@@ -59,7 +58,7 @@ sidebar_position: 1
 
 **2. Send the query**
 
-   There are multiple ways to connect to Weaviate's (GraphQL) API to query data. Raw GraphQL queries can be directly posted in the GraphiQL interface in the Console, but can also be sent via curl, the [Python](../client-libraries/python.html) or [JavaScript](../client-libraries/javascript.html) client.
+   There are multiple ways to connect to Weaviate's (GraphQL) API to query data. Raw GraphQL queries can be directly posted in the GraphiQL interface in the Console, but can also be sent via curl, the [Python](/docs/weaviate/references/client-libraries/python.md) or [JavaScript](/docs/weaviate/references/client-libraries/javascript.md) client.
 
    {% include code/1.x/howto.query.data.html %}
 
@@ -213,9 +212,11 @@ sidebar_position: 1
 
 # Next steps
 
-- Make more advanced queries, for example to explore data with semantic search, in the [next tutorial](./how-to-perform-a-semantic-search.html).
-- View other GraphQL methods in the [GraphQL documentation](../graphql-references/index.html).
+- Make more advanced queries, for example to explore data with semantic search, in the [next tutorial](./how-to-perform-a-semantic-search.md).
+- View other GraphQL methods in the [GraphQL documentation](../references/graphql/index.md).
 
-# More resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

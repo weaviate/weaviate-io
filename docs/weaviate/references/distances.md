@@ -17,8 +17,8 @@ sidebar_position: 23
 # Available Distance Metrics
 
 If not specified explicitly, the default distance metric in Weaviate is
-`cosine`. It can be [set in the vectorIndexConfig](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters) field as part of the
-schema ([Example to add new schema class](../restful-api-references/schema.html#create-a-class)) to any of the following types:
+`cosine`. It can be [set in the vectorIndexConfig](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters) field as part of the
+schema ([Example to add new schema class](../references/rest/schema.md#create-a-class)) to any of the following types:
 
 | Name | Description | Definition | Range |
 | --- | --- | --- | --- |
@@ -36,7 +36,7 @@ to Weaviate, please let us know. We are happy to receive your contribution.
 
 ## Distance Implementations and Optimizations
 
-On a typical Weaviate use case the largest portion of CPU time is spent calculating vector distances. Even with an approximate nearest neighbor index - which leads to far fewer calculations - the efficiency of distance calculations has a major impact on [overall performance](../benchmarks/ann.html).
+On a typical Weaviate use case the largest portion of CPU time is spent calculating vector distances. Even with an approximate nearest neighbor index - which leads to far fewer calculations - the efficiency of distance calculations has a major impact on [overall performance](/docs/weaviate/more-resources/benchmarks/ann.md).
 
 You can use the following overview to find the best possible combination of distance metric and CPU architecture / instruction set.
 
@@ -74,4 +74,4 @@ metrics, scores may be unbounded. As a result the preferred way is to use
 For backward compatibility, `certainty` can still be used when the distance is
 `cosine`. If any other distance is selected `certainty` cannot be used.
 
-See also [distance and certainty _additional{} properties](../graphql-references/additional-properties.html).
+See also [distance and certainty _additional{} properties](../references/graphql/additional-properties.md).

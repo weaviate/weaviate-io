@@ -14,14 +14,13 @@ sidebar_position: 5
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.8.0/configuration/backups-and-persistence.html
-#     - /developers/weaviate/v1.9.0/configuration/backups-and-persistence.html
+#     - /docs/weaviate/v1.8.0/configuration/backups-and-persistence.html
+#     - /docs/weaviate/v1.9.0/configuration/backups-and-persistence.html
 ---
 
 # Introduction
 
-Weaviate's Backup feature is designed to feel very easy to use and work natively with
-cloud technology. Most notably, it allows:
+Weaviate's Backup feature is designed to feel very easy to use and work natively with cloud technology. Most notably, it allows:
 
 * Seamless integration with widely-used cloud blob storage, such as AWS S3 or GCS
 * Backup and Restore between different storage providers
@@ -34,18 +33,16 @@ _Note: The backup functionality was introduced in Weaviate `v1.15`, but for sing
 
 # Configuration
 
-In order to perform backups, a backup provider module must be activated.
-Multiple backup providers can be active at the same time. Currently `backup-s3`, `backup-gcs`, and `backup-filesystem` modules are available for S3, GCS or filesystem backups.
-Built on Weaviate's [module system](/developers/weaviate/current/configuration/modules.html), additional providers can be added in the
-future.
+In order to perform backups, a backup provider module must be activated. Multiple backup providers can be active at the same time. Currently `backup-s3`, `backup-gcs`, and `backup-filesystem` modules are available for S3, GCS or filesystem backups.
+
+Built on Weaviate's [module system](/docs/weaviate/configuration/modules.md), additional providers can be added in the future.
 
 All service-discovery and authentication-related configuration is set using
 environment variables.
 
 ## S3 (AWS or S3-compatible)
 
-Use the `backup-s3` module to enable backing up to and restoring from any
-S3-compatible blob storage. This includes AWS S3, and MinIO.
+Use the `backup-s3` module to enable backing up to and restoring from any S3-compatible blob storage. This includes AWS S3, and MinIO.
 
 To enable the module set the following environment variable:
 
@@ -61,8 +58,7 @@ ENABLE_MODULES=backup-s3,text2vec-transformers
 ```
 
 ### S3 Configuration (vendor-agnostic)
-In addition to activating the module, you need to provide configuration. This
-configuration applies to any S3-compatible backend.
+In addition to activating the module, you need to provide configuration. This configuration applies to any S3-compatible backend.
 
 | Environment variable | Required | Description |
 | --- | --- | --- |
@@ -73,9 +69,7 @@ configuration applies to any S3-compatible backend.
 
 ### S3 Configuration (AWS-specific)
 
-In addition to the vendor-agnostic configuration from above, you can set
-AWS-specific configuration for authentication. You can choose between
-access-key or ARN-based authentication:
+In addition to the vendor-agnostic configuration from above, you can set AWS-specific configuration for authentication. You can choose between access-key or ARN-based authentication:
 
 ### Option 1: With IAM and ARN roles
 
@@ -92,8 +86,7 @@ The backup module will first try to authenticate itself using AWS IAM. If the au
 
 ## GCS (Google Cloud Storage)
 
-Use the `backup-gcs` module to enable backing up to and restoring from any
-Google Cloud Storage.
+Use the `backup-gcs` module to enable backing up to and restoring from any Google Cloud Storage.
 
 To enable the module set the following environment variable:
 
@@ -136,9 +129,7 @@ This makes it easy to use the same module in different setups. For example, you 
 >
 > The filesystem provider is not intended for production use, as its availability is directly tied to the node on which it operates.
 
-Instead of backing up to a remote backend, you can also back up to the local
-filesystem. This may be helpful during development, for example to be able to
-quickly exchange setups, or to save a state from accidental future changes.
+Instead of backing up to a remote backend, you can also back up to the local filesystem. This may be helpful during development, for example to be able to quickly exchange setups, or to save a state from accidental future changes.
 
 To allow backups to the local filesystem, enable the `backup-filesystem` module like so:
 
@@ -160,19 +151,13 @@ In addition to activating the module, you need to provide configuration:
 
 ## Other Backup Backends
 
-Weaviate uses its [module system](/developers/weaviate/current/configuration/modules.html) 
-to decouple the backup orchestration from the remote backup storage backends. 
-It is easy to add new providers and use them with the existing backup API. 
-If you are missing your desired backup module, you can open a feature request 
-or contribute it yourself. For either option, join our Slack community to have 
-a quick chat with us on how to get started.
+Weaviate uses its [module system](/docs/weaviate/configuration/modules.md) to decouple the backup orchestration from the remote backup storage backends. It is easy to add new providers and use them with the existing backup API. If you are missing your desired backup module, you can open a feature request or contribute it yourself. For either option, join our Slack community to have  a quick chat with us on how to get started.
 
 # API
 
 ## Create Backup
 
-Once the modules are enabled and the configuration is provided, you can start a
-backup on any running instance with a single HTTP request.
+Once the modules are enabled and the configuration is provided, you can start a backup on any running instance with a single HTTP request.
 
 ### Method and URL
 
@@ -198,12 +183,15 @@ The request takes a json object with the following properties:
 | `include` | list of strings | no | An optional list of class names to be included in the backup. If not set, all classes are included. |
 | `exclude` | list of strings | no | An optional list of class names to be excluded from the backup. If not set, no classes are excluded. |
 
-*Note: You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.*
+:::note
+You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.
+:::
 
-{% include code/1.x/backup.create.html %}
+import CodeBackupCreate from '/_includes/code/backup.create.mdx';
+
+<CodeBackupCreate />
 
 While you are waiting for a backup to complete, [Weaviate stays fully usable](#read--write-requests-while-a-backup-is-running).
-
 
 ### Asynchronous Status Checking
 
@@ -224,17 +212,14 @@ GET /v1/backups/{backend}/{backup_id}
 | `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
-The response contains a `"status"` field. If the status is `SUCCESS`, the
-backup is complete. If the status is `FAILED`, an additional error is provided.
+The response contains a `"status"` field. If the status is `SUCCESS`, the backup is complete. If the status is `FAILED`, an additional error is provided.
 
-{% include code/1.x/backup.status.create.html %}
+import CodeBackupStatusCreate from '/_includes/code/backup.status.create.mdx';
+
+<CodeBackupStatusCreate />
 
 ## Restore Backup
-
-You can restore any backup to any machine as long as the name and number of nodes
-between source and target are identical. The backup does not need to be created
-on the same instance. Once a backup backend is configured, you can restore a
-backup with a single HTTP request.
+You can restore any backup to any machine as long as the name and number of nodes between source and target are identical. The backup does not need to be created on the same instance. Once a backup backend is configured, you can restore a backup with a single HTTP request.
 
 Note that a restore fails if any of the classes already exist on this instance.
 
@@ -254,7 +239,6 @@ POST /v1/backups/{backend}/{backup_id}/restore
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
 #### Request Body
-
 The request takes a json object with the following properties:
 
 | name | type | required | description |
@@ -266,7 +250,9 @@ The request takes a json object with the following properties:
 
 *Note 2: `include` and `exclude` are relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
 
-{% include code/1.x/backup.restore.html %}
+import CodeBackupRestore from '/_includes/code/backup.restore.mdx';
+
+<CodeBackupRestore />
 
 ### Asynchronous Status Checking
 
@@ -287,94 +273,53 @@ GET /v1/backups/{backend}/{backup_id}/restore
 | `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the requests to create and restore the backup. |
 
-The response contains a `"status"` field. If the status is `SUCCESS`, the
-restore is complete. If the status is `FAILED`, an additional error is provided.
+The response contains a `"status"` field. If the status is `SUCCESS`, the restore is complete. If the status is `FAILED`, an additional error is provided.
 
-{% include code/1.x/backup.status.restore.html %}
+import CodeBackupStatusRestore from '/_includes/code/backup.status.restore.mdx';
+
+<CodeBackupStatusRestore />
 
 # Technical Considerations
 
 ## Read &amp; Write requests while a backup is running
 
-The backup process is designed to be minimally invasive to a running setup.
-Even on very large setups, where terabytes of data need to be copied, Weaviate
-stays fully usable during backup. It even accepts write requests while a backup process is
-running. This sections explains how backups work under the hood and why
-Weaviate can safely accept writes while a backup is copied.
+The backup process is designed to be minimally invasive to a running setup. Even on very large setups, where terabytes of data need to be copied, Weaviate stays fully usable during backup. It even accepts write requests while a backup process is running. This sections explains how backups work under the hood and why Weaviate can safely accept writes while a backup is copied.
 
-Weaviate uses a custom [LSM
-Store](../architecture/storage.html#object-and-inverted-index-store) for it's
-object store and inverted index. LSM stores are a hybrid of immutable disk
-segments and an in-memory structure called a memtable that accepts all writes
-(including updates and deletes). Most of the time, files on disk are
-immutable, there are only three situations where files are changed:
+Weaviate uses a custom [LSM Store](../architecture/storage.md#object-and-inverted-index-store) for it's object store and inverted index. LSM stores are a hybrid of immutable disk segments and an in-memory structure called a memtable that accepts all writes (including updates and deletes). Most of the time, files on disk are immutable, there are only three situations where files are changed:
 
-1. Anytime a memtable is flushed. This creates a new segment. Existing segments
-   are not changed.
-2. Any write into the memtable is also written into a Write-Ahead-Log (WAL).
-   The WAL is only needed for disaster-recovery. Once a segment has been
-   orderly flushed, the WAL can be discarded.
-3. There is an async background process called Compaction that optimizes
-   existing segments. It can merge two small segments into a single larger segment
-   and remove redundant data as part of the process.
+1. Anytime a memtable is flushed. This creates a new segment. Existing segments are not changed.
+2. Any write into the memtable is also written into a Write-Ahead-Log (WAL). The WAL is only needed for disaster-recovery. Once a segment has been orderly flushed, the WAL can be discarded.
+3. There is an async background process called Compaction that optimizes existing segments. It can merge two small segments into a single larger segment and remove redundant data as part of the process.
 
-Weaviate's Backup implementation makes use of the above properties in the
-following ways:
+Weaviate's Backup implementation makes use of the above properties in the following ways:
 
-1. Weaviate first flushes all active memtables to disk. This process takes in
-   the 10s or 100s of milliseconds. Any pending write requests simply waits for
-   a new memtable to be created without any failing requests or substantial
-   delays.
-2. Now that the memtables are flushed, there is a guarantee: All data that
-   should be part of the backup is present in the existing disk segments. Any
-   data that will be imported after the backup request ends up in new disk
-   segments. The backup references a list of immutable files.
-3. To prevent a compaction process from changing the files on disk while they
-   are being copied, compactions are temporarily paused until all files have
-   been copied. They are automatically resumed right after.
+1. Weaviate first flushes all active memtables to disk. This process takes in the 10s or 100s of milliseconds. Any pending write requests simply waits for a new memtable to be created without any failing requests or substantial delays.
+2. Now that the memtables are flushed, there is a guarantee: All data that should be part of the backup is present in the existing disk segments. Any data that will be imported after the backup request ends up in new disk segments. The backup references a list of immutable files.
+3. To prevent a compaction process from changing the files on disk while they are being copied, compactions are temporarily paused until all files have been copied. They are automatically resumed right after.
 
 This way the backup process can guarantee that the files that are transferred to the remote backend are immutable (and thus safe to copy) even with new writes coming in. Even if it takes minutes or hours to backup a very large setup, Weaviate stays fully usable without any user impact while the backup process is running.
 
-It is not just safe - but even recommended - to create backups on live production
-instances while they are serving user requests.
+It is not just safe - but even recommended - to create backups on live production instances while they are serving user requests.
 
 ## Async nature of the Backup API
 
-The backup API is built in a way that no long-running network requests are
-required. The request to create a new backup returns immediately. It does some
-basic validation, then returns to the user. The backup is now in status
-`STARTED`. To get the status of a running backup you can poll the [status
-endpoint](#asynchronous-status-checking). This makes the backup itself
-resilient to network or client failures.
+The backup API is built in a way that no long-running network requests are required. The request to create a new backup returns immediately. It does some basic validation, then returns to the user. The backup is now in status `STARTED`. To get the status of a running backup you can poll the [status endpoint](#asynchronous-status-checking). This makes the backup itself resilient to network or client failures.
 
-If you would like your application to wait for the background backup process to complete,
-you can use the "wait for completion" feature that is present in all language
-clients. The clients will poll the status endpoint in the background and block
-until the status is either `SUCCESS` or `FAILED`. This makes it easy to write
-simple synchronous backup scripts, even with the async nature of the API.
+If you would like your application to wait for the background backup process to complete, you can use the "wait for completion" feature that is present in all language clients. The clients will poll the status endpoint in the background and block until the status is either `SUCCESS` or `FAILED`. This makes it easy to write simple synchronous backup scripts, even with the async nature of the API.
 
 # Limitations & Outlook
-
-In Weaviate v1.15, backups were limited to single-node setups. Weaviate v1.16 introduces support for multi-node setups. Currently, an unexpected node restart during a backup or restore operation leads to a failed operation. In the future, backups will become resilient to this problem. You can read the technical proposal
-and track the progress on the feature [here](https://github.com/semi-technologies/weaviate/issues/2153).
+In Weaviate `v1.15`, backups were limited to single-node setups. Weaviate `v1.16` introduces support for multi-node setups. Currently, an unexpected node restart during a backup or restore operation leads to a failed operation. In the future, backups will become resilient to this problem. You can read the technical proposal and track the progress on the feature [here](https://github.com/semi-technologies/weaviate/issues/2153).
 
 # Other Use cases
 
 ## Migrating to another environment
 
-The flexibility around backup providers opens up new use cases. Besides using
-the backup & restore feature for disaster recovery, you can also use it for
-duplicating environments or migrating between clusters. 
+The flexibility around backup providers opens up new use cases. Besides using the backup & restore feature for disaster recovery, you can also use it for duplicating environments or migrating between clusters. 
 
-For example, consider the following situation: You would like to do a load test
-on production data. If you would do the load test in production it might affect
-users. An easy way to get meaningful results without affecting uses it to
-duplicate your entire environment. Once the new production-like "loadtest"
-environment is up, create a backup from your production environment and
-restore it into your "loadtest" environment. This even works if the production
-environment is running on a completely different cloud provider than the new
-environment.
+For example, consider the following situation: You would like to do a load test on production data. If you would do the load test in production it might affect users. An easy way to get meaningful results without affecting uses it to duplicate your entire environment. Once the new production-like "loadtest" environment is up, create a backup from your production environment and restore it into your "loadtest" environment. This even works if the production environment is running on a completely different cloud provider than the new environment.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

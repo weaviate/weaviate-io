@@ -179,14 +179,14 @@ Then we can use the `UUID` from the above object, to attach it to the `Author` l
 
 ## Weaviate Schema
 
-Classes and properties are defined in the schema. While creating your use case, you will also spend some time tweaking the configuration inside the schema. As you're probably guessing, we have a separate getting started guide for [working with a schema](../getting-started/schema.html).
+Classes and properties are defined in the schema. While creating your use case, you will also spend some time tweaking the configuration inside the schema. As you're probably guessing, we have a separate getting started guide for [working with a schema](/docs/weaviate/getting-started/schema.md).
 
 For now, what's important to know is this:
 
 1. Classes and properties (as explained above) are defined in the schema.
 1. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
 1. You can link classes (even if they use different embeddings) by setting cross-references.
-1. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema [getting started guide](../getting-started/schema.html)).
+1. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema [getting started guide](/docs/weaviate/getting-started/schema.md)).
 
 ## Where do the vectors come from?
 
@@ -195,13 +195,13 @@ The short answer is: from machine learning models.
 As a user, you have two ways of generating them:
 
 * You render your vector from any model you have (we don't care  where they come from, we'll just index them for you 👍)
-* You use a Weaviate module with a prepackaged `text2vec` integration (we call them "vectorizers", you can learn more about them [here](../modules/)).
-    * [text2vec-transformers](../retriever-vectorizer-modules/text2vec-transformers.html)
-    * [text2vec-openai](../retriever-vectorizer-modules/text2vec-openai.html)
-    * [text2vec-huggingface](../retriever-vectorizer-modules/text2vec-huggingface.html)
-    * [text2vec-contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html) (custom FastText based vectorizer)
-    * [img2vec-neural](../retriever-vectorizer-modules/img2vec-neural.html)
-    * [multi2vec-clip](../retriever-vectorizer-modules/multi2vec-clip.html)
+* You use a Weaviate module with a prepackaged `text2vec` integration (we call them "vectorizers", you can learn more about them [here](/docs/weaviate/modules/index.md)).
+    * [text2vec-transformers](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md)
+    * [text2vec-openai](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md)
+    * [text2vec-huggingface](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md)
+    * [text2vec-contextionary](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) (custom FastText based vectorizer)
+    * [img2vec-neural](/docs/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md)
+    * [multi2vec-clip](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
 
 We will go deeper into the guide for adding data and the guide for modules. But for whatever vector use case you have, we've got you covered.
 
@@ -218,20 +218,20 @@ Weaviate distinguishes three types of modules: retrievers & vectorizers, readers
 3. *other modules* are -often- non-ML, for example, the spell-check module.
 
 :::tip
-It's even possible to [create your own modules](../other-modules/custom-modules.html)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing your module) can be written in any language.
+It's even possible to [create your own modules](/docs/weaviate/modules/other-modules/custom-modules.md)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing your module) can be written in any language.
 :::
 
 ## Weaviate Console
 
-The Weaviate console is part of the Weaviate Cloud Service and allows you to connect to any Weaviate instance and query it. You can follow [this](./console.html) getting started guide to learn more.
+The Weaviate console is part of the Weaviate Cloud Service and allows you to connect to any Weaviate instance and query it. You can follow [this](./console) getting started guide to learn more.
 
 ## Benchmarks
 
-The [benchmark page](../benchmarks/) might be helpful when setting up your Weaviate instance. As a rule of thumb, when you choose a similar dataset to your use case, you should get similar results with similar settings. If the results diverge too much _negatively_ you probably made a mistake in hardware choices or in your Weaviate configuration. If the results are way more _positive_, [reach out to us immediately 😉]({{ site.slack_signup_url }})
+The [benchmark page](/docs/weaviate/more-resources/benchmarks/index.md) might be helpful when setting up your Weaviate instance. As a rule of thumb, when you choose a similar dataset to your use case, you should get similar results with similar settings. If the results diverge too much _negatively_ you probably made a mistake in hardware choices or in your Weaviate configuration. If the results are way more _positive_, [reach out to us immediately 😉]({{ site.slack_signup_url }})
 
 ## Monitoring
 
-Weaviate can expose Prometheus-compatible metrics for [monitoring](../configuration/monitoring.html). We highly recommend setting this up, simply because it allows you to optimize your setup.
+Weaviate can expose Prometheus-compatible metrics for [monitoring](../configuration/monitoring.md). We highly recommend setting this up, simply because it allows you to optimize your setup.
 
 ## Recap
 
@@ -246,16 +246,18 @@ Weaviate can expose Prometheus-compatible metrics for [monitoring](../configurat
 * You define classes and properties in the schema.
 * We can query using the GraphQL-interface or -in some cases- the RESTful API.
 * Vectors come from machine learning models that you inference yourself or through a Weaviate module.
-* You can use Weaviate modules, but you don’t _have_ to use them.
+* You can use Weaviate modules, but you don't _have_ to use them.
 * The benchmark page helps you to learn how far you can optimize for your use case.
 * Monitoring helps you to monitor your setup and discover potential bottlenecks.
 
 ## What would you like to learn next?
 
-* [I want to know how to install Weaviate](../getting-started/installation.html)
-* [I want to learn how I can query the data](../getting-started/query.html)
-* [I want to learn how to work with the Weaviate schema](../getting-started/schema.html)
+* [I want to know how to install Weaviate](/docs/weaviate/getting-started/installation.md)
+* [I want to learn how I can query the data](../getting-started/query.md)
+* [I want to learn how to work with the Weaviate schema](/docs/weaviate/getting-started/schema.md)
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

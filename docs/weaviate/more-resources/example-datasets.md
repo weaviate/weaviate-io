@@ -12,20 +12,20 @@ sidebar_position: 5
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/tutorials/example-datasets.html
-#     - /developers/weaviate/v1.14.1/more-resources/example-datasets.html
+#     - /docs/weaviate/v1.11.0/tutorials/example-datasets.html
+#     - /docs/weaviate/v1.14.1/more-resources/example-datasets.html
 #     - /documentation/weaviate/current/datasets/newspublications.html
 #     - /documentation/weaviate/current/getting-started/example-datasets.html
-#     - /developers/weaviate/current/getting-started/example-datasets.html
+#     - /docs/weaviate/getting-started/example-datasets.html
 ---
 
 # Multi-Modal Text/Image search using CLIP
 
 This example application spins up a Weaviate instance using the
-[multi2vec-clip](/developers/weaviate/current/modules/multi2vec-clip.html)
+[multi2vec-clip](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
 module, imports a few sample images (you can add your own images, too!) and
 provides a very simple search frontend in [React](https://reactjs.org/) using
-the [Weaviate JS Client](/developers/weaviate/current/client-libraries/javascript.html)
+the [Weaviate JS Client](/docs/weaviate/references/client-libraries/javascript.md)
 
 [Get started here](https://github.com/semi-technologies/weaviate-examples/blob/main/clip-multi-modal-text-image-search/README.md)
 
@@ -45,7 +45,7 @@ We have imported the complete Wikidata PBG model into a Weaviate to search throu
 
 This dataset contains +/- 1000 random news articles from; Financial Times, New York Times, Guardian, Wallstreet Journal, CNN, Fox News, The Economist, New Yorker, Wired, Vogue, Game Informer.
 
-It includes a [schema](../tutorials/how-to-create-a-schema.html) with classes for `Article`, `Publication`, `Category` and `Author`. 
+It includes a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) with classes for `Article`, `Publication`, `Category` and `Author`. 
 
 ### Run with Docker Compose
 
@@ -68,7 +68,7 @@ $ docker-compose up
 Weaviate will be available and preloaded with the News Articles demo dataset on:
 
 - `http://localhost:8080/`
-- [Via the Console](https://console.semi.technology/): connect to `https://demo.dataset.playground.semi.technology`.
+- [Via the Console](https://console.semi.technology): connect to `https://demo.dataset.playground.semi.technology`.
 
 ### Run manually
 
@@ -107,6 +107,8 @@ $ docker run -it --network=$WEAVIATE_NETWORK -e weaviate_host=$WEAVIATE_ORIGIN -
 ```
 {% endraw %}
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

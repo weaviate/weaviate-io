@@ -11,7 +11,7 @@ sidebar_position: 2
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/modules/ner-transformers.html
+#     - /docs/weaviate/modules/ner-transformers.html
 ---
 ## In short
 
@@ -91,8 +91,7 @@ This module adds a search filter to the GraphQL `_additional` field in queries: 
 
 ### Example query
 
-<!-- {% include code/1.x/ner-transformers-module.html %} -->
-import CodeNerTransformer from '/code-samples/ner-transformers-module.mdx';
+import CodeNerTransformer from '/_includes/code/ner-transformers-module.mdx';
 
 <CodeNerTransformer />
 
@@ -195,4 +194,6 @@ The Weaviate NER Module then takes this output and processes this to GraphQL out
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

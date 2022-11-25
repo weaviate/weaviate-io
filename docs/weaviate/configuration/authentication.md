@@ -13,7 +13,7 @@ sidebar_position: 8
 # toc: true
 # redirect_from:
 #     - /documentation/weaviate/current/setup/authenticate.html
-#     - /documentation/weaviate/current/configuration/authentication.html
+#     - /documentation/weaviate/current/configuration/authentication.md
 ---
 
 # Philosophy
@@ -150,6 +150,8 @@ When you've received a Bearer, you can authenticate in the following manner wher
 $ curl http://localhost:8080/v1/objects -H "Authorization: Bearer {Bearer}"
 ```
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

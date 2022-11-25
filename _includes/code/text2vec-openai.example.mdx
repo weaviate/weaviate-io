@@ -8,7 +8,6 @@ import TabItem from '@theme/TabItem';
 from weaviate import Client
 import time
 
-
 def configure_batch(client: Client, batch_size: int, batch_target_rate: int):
     """
     Configure the weaviate client's batch so it creates objects at `batch_target_rate`.
@@ -99,27 +98,4 @@ func main() {
 ```
 
 </TabItem>
-<div class="accordion" id="collapse-{{ include.block_id }}">
-    <div class="accordion-item">
-       <h2 class="accordion-header" id="panel-{{ include.block_id }}-2">
-          <button class="accordion-button collapsed" type="button" data-language="python" data-bs-toggle="collapse" data-bs-target="#collapse-{{ include.block_id }}-2" aria-expanded="false">
-          Python
-          </button>
-       </h2>
-       <div id="collapse-{{ include.block_id }}-2" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#collapse-{{ include.block_id }}">
-          <div class="accordion-body">
-             </Tabs>          </div>
-       </div>
-    </div>
-    <div class="accordion-item">
-       <h2 class="accordion-header" id="panel-{{ include.block_id }}-4">
-          <button class="accordion-button collapsed" type="button" data-language="go" data-bs-toggle="collapse" data-bs-target="#collapse-{{ include.block_id }}-4" aria-expanded="false">
-          Go
-          </button>
-       </h2>
-       <div id="collapse-{{ include.block_id }}-4" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#collapse-{{ include.block_id }}">
-          <div class="accordion-body">
-             </Tabs>          </div>
-       </div>
-    </div>
- </div>
+</Tabs>

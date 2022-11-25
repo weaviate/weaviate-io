@@ -10,8 +10,8 @@ sidebar_position: 3
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#   - /developers/weaviate/v1.8.0/tutorials/how-to-import-data.html
-#   - /developers/weaviate/v1.14.1/getting-started/import.html
+#   - /docs/weaviate/v1.8.0/tutorials/how-to-import-data.html
+#   - /docs/weaviate/v1.14.1/getting-started/import.html
 ---
 
 Although importing itself is pretty straightforward, creating an optimized import strategy needs a bit of planning on your end. Hence, before we start with this guide, there are a few things to keep in mind.
@@ -33,10 +33,6 @@ First of all, some rules of thumb.
 
 Assuming that you've read the [schema getting started guide](./schema.md), you import data based on the classes and properties defined in the schema.
 
-<!-- > 💡 The big difference between creating a single object in Weaviate and batch imports is that instead of sending a single JSON object, batch sends an array of JSON objects. -->
-
-<!-- As you've seen in the [basics getting started guide](./basics.html#data-objects-in-weaviate), Weaviate data objects are class-property-based JSON objects. -->
-
 For the purpose of this tutorial, we've prepared a **data.json** file, which contains a few Authors and Publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json), and add it to your project.
 
 Now, to import the data we need to follow these steps:
@@ -53,15 +49,13 @@ Now, to import the data we need to follow these steps:
 
 Here is the full code you need to import the **Publications** (note, the **importAuthors** example is shorter).
 
-<!-- {% include code/1.x/getting-started.import.publications.html %} -->
-import CodeImportPubs from '/code-samples/getting-started.import.publications.mdx';
+import CodeImportPubs from '/_includes/code/getting-started.import.publications.mdx';
 
 <CodeImportPubs/>
 
 And here is the code to import **Authors**.
 
-<!-- {% include code/1.x/getting-started.import.authors.html %} -->
-import CodeImportAuthors from '/code-samples/getting-started.import.authors.mdx';
+import CodeImportAuthors from '/_includes/code/getting-started.import.authors.mdx';
 
 <CodeImportAuthors/>
 
@@ -73,8 +67,7 @@ https://some-endpoint.semi.network/v1/objects
 
 Or you can read the objects in your project, like this:
 
-<!-- {% include code/1.x/getting-started.import.get.html %} -->
-import CodeImportGet from '/code-samples/getting-started.import.get.mdx';
+import CodeImportGet from '/_includes/code/getting-started.import.get.mdx';
 
 <CodeImportGet/>
 
@@ -92,6 +85,8 @@ Importing into Weaviate needs some planning on your side. In almost all cases, y
 - [Bring me back to working with the schema](./schema.md)
 - [Show me how modules work](./modules.md) -->
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

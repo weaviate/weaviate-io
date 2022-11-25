@@ -12,20 +12,20 @@ sidebar_position: 9
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.14.1/more-resources/example-datasets.html
+#     - /docs/weaviate/v1.14.1/more-resources/example-datasets.html
 #     - /documentation/weaviate/current/datasets/newspublications.html
 #     - /documentation/weaviate/current/getting-started/example-datasets.html
-#     - /developers/weaviate/current/getting-started/example-datasets.html
-#     - /developers/weaviate/current/more-resources/example-datasets.html
+#     - /docs/weaviate/getting-started/example-datasets.html
+#     - /docs/weaviate/more-resources/example-datasets.html
 ---
-
+<!-- TODO: review and merge if possible with => more-resources/example-datasets -->
 There are a few example datasets available.
 
 # News publications
 
 This dataset contains +/- 1000 random news articles from; Financial Times, New York Times, Guardian, Wallstreet Journal, CNN, Fox News, The Economist, New Yorker, Wired, Vogue, Game Informer.
 
-It includes a [schema](../tutorials/how-to-create-a-schema.html) with classes for `Article`, `Publication`, `Category` and `Author`. 
+It includes a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) with classes for `Article`, `Publication`, `Category` and `Author`. 
 
 ### Run with Docker Compose
 
@@ -52,7 +52,7 @@ $ docker-compose up
 Weaviate will be available and preloaded with the News Articles demo dataset on:
 
 - `http://localhost:8080/`
-- [Via the Console](https://console.semi.technology/): connect to `https://demo.dataset.playground.semi.technology`.
+- [Via the Console](https://console.semi.technology): connect to `https://demo.dataset.playground.semi.technology`.
 
 #### Text2vec-transformers (without GPU)
 
@@ -73,7 +73,7 @@ $ docker-compose up
 Weaviate will be available and preloaded with the News Articles demo dataset on:
 
 - `http://localhost:8080/`
-- [Via the Console](https://console.semi.technology/): connect to `https://demo.dataset.playground.semi.technology`.
+- [Via the Console](https://console.semi.technology): connect to `https://demo.dataset.playground.semi.technology`.
 
 #### Text2vec-transformers (with GPU enabled)
 
@@ -94,7 +94,7 @@ $ docker-compose up
 Weaviate will be available and preloaded with the News Articles demo dataset on:
 
 - `http://localhost:8080/`
-- [Via the Console](https://console.semi.technology/): connect to `https://demo.dataset.playground.semi.technology`.
+- [Via the Console](https://console.semi.technology): connect to `https://demo.dataset.playground.semi.technology`.
 
 ### Run manually
 
@@ -135,6 +135,8 @@ $ docker run -it --network=$WEAVIATE_NETWORK -e weaviate_host=$WEAVIATE_ORIGIN -
 
 
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

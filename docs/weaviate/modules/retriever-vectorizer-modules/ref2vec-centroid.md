@@ -11,7 +11,7 @@ sidebar_position: 7
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/modules/ref2vec-centroid.html
+#     - /docs/weaviate/modules/ref2vec-centroid.html
 ---
 ## Introduction
 
@@ -54,7 +54,7 @@ services:html
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/developers/weaviate/getting-started/schema) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/docs/weaviate/getting-started/schema.md) first.
 
 For example, here is an `Article` class which is configured to use ref2vec-centroid. Doing so requires only a class-level `moduleConfig`, containing two fields:
 
@@ -145,7 +145,7 @@ An object whose class is configured to use ref2vec-centroid will have its vector
 
 ### Making queries
 
-This module can be used with the existing [nearVector](/developers/weaviate/references/graphql/vector-search-parameters#nearvector) and [`nearObject`](/developers/weaviate/references/graphql/vector-search-parameters#nearobject) filters. It does not add any additional GraphQL extensions like `nearText`.
+This module can be used with the existing [nearVector](/docs/weaviate/references/graphql/vector-search-parameters.md#nearvector) and [`nearObject`](/docs/weaviate/references/graphql/vector-search-parameters.md#nearobject) filters. It does not add any additional GraphQL extensions like `nearText`.
 
 ## Additional information
 

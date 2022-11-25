@@ -12,12 +12,12 @@ sidebar_position: 13
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.1.0/restful-api-references/batch.html
+#     - /docs/weaviate/v1.1.0/restful-api-references/batch.html
 #     - /documentation/weaviate/current/add-data/batching.html
-#     - /documentation/weaviate/current/restful-api-references/batch.html
+#     - /documentation/weaviate/references/rest/batch.html
 #     - /documentation/weaviate/current/add-data/add_and_modify.html
 #     - /documentation/weaviate/current/tutorials/how-to-import-data.html
-#     - /developers/weaviate/current/tutorials/how-to-import-data.html
+#     - /docs/weaviate/tutorials/how-to-import-data.html
 ---
 
 # Batch data objects
@@ -33,7 +33,7 @@ A few points to bear in mind:
 1. If you use a vectorizer that improves with GPU support, make sure to enable it if possible, it will drastically improve import.
 1. Avoid duplicate vectors for multiple data objects.
 1. Handle your errors, if you ignore them, it might lead to significant delays on import.
-1. If import slows down after 2M objects, consider setting the [`vectorCacheMaxObjects`](/developers/weaviate/current/vector-index-plugins/hnsw.html) in your schema. Also, see [this example](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/blob/d4711f2bdc75afd503ff70092c3c5303f9dd1b3b/step-2/import.py#L58-L59).
+1. If import slows down after 2M objects, consider setting the [`vectorCacheMaxObjects`](/docs/weaviate/vectorization/hnsw.md) in your schema. Also, see [this example](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/blob/d4711f2bdc75afd503ff70092c3c5303f9dd1b3b/step-2/import.py#L58-L59).
 1. There are ways to improve your setup when using vectorizers. Like in the Wikipedia demo dataset. We will keep publishing about this, sign up for our [Slack channel]({{ site.slack_signup_url }}) to keep up to date.
 
 ### Method and URL
@@ -48,7 +48,7 @@ The body requires the following field:
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `objects` | list of data objects | yes | a list of data objects, which correspond to the data [object body](./objects.html#parameters-1) |
+| `objects` | list of data objects | yes | a list of data objects, which correspond to the data [object body](./objects.md#parameters-1) |
 
 ### Example request
 
@@ -61,7 +61,7 @@ Specific documentation for the Python client
 ### Additional documentation
 
 * Additional documentation can be found on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.batch.html)
-* Additional documentation on different types of batching and tip &amp; tricks can be found [here](../client-libraries/python.html)
+* Additional documentation on different types of batching and tip &amp; tricks can be found [here](/docs/weaviate/references/client-libraries/python.md)
 
 # Batch references
 
@@ -103,7 +103,7 @@ For detailed information and instructions of batching in Python, click [here](ht
 
 # Batch Delete By Query
 
-You can use the `/v1/batch/objects` endpoint with the HTTP Verb `DELETE` to delete all objects that match a particular expression. To determine if an object is a match [a where-Filter is used](../graphql-references/filters.html#where-filter). The request body takes a single filter, but will delete all objects matched. It returns the number of matched objects as well as any potential errors. Note that there is a limit to how many objects can be deleted using this filter at once which is explained below.
+You can use the `/v1/batch/objects` endpoint with the HTTP Verb `DELETE` to delete all objects that match a particular expression. To determine if an object is a match [a where-Filter is used](../graphql/filters.md#where-filter). The request body takes a single filter, but will delete all objects matched. It returns the number of matched objects as well as any potential errors. Note that there is a limit to how many objects can be deleted using this filter at once which is explained below.
 
 ## Maximum number of deletes per query
 
@@ -187,7 +187,6 @@ Possible values for `output`
 
 {% include code/1.x/batch.delete.objects.html %}
 
-
 # Error handling
 
 When sending a batch request to your Weaviate instance, it could be the case that an error occurs. This can be caused by several reasons, for example that the connection to Weaviate is lost or that there is a mistake in a single data object that you are trying to add.
@@ -234,6 +233,8 @@ with client.batch(batch_size=100, callback=check_batch_result) as batch:
 This can also be applied to adding references in batch. Note that sending batches, especially references, skips some validation on object and reference level. Adding this validation on single data objects like above makes it less likely for errors to pass without discovering. 
 
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

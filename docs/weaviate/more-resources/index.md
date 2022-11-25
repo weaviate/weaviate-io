@@ -10,20 +10,22 @@ sidebar_position: 0
 open-graph-type: article
 toc: false
 redirect_from:
-    - /documentation/weaviate/current/restful-api-references/index.html
-    - /documentation/weaviate/current/restful-api-references/
+    - /documentation/weaviate/references/rest/index.html
+    - /documentation/weaviate/references/rest/
 ---
 
 # More information
 
-- [FAQ](faq.html)
-- [Glossary](glossary.html)
-- [Example datasets](example-datasets.html)
-- [Example use cases](example-use-cases.html)
-- [Index types and performance](performance.html)
-- [Migration Guide](migration-guide.html)
-- [Deprecation messages](deprecation-messages.html)
+- [FAQ](./faq.md)
+- [Glossary](./glossary.md)
+- [Example datasets](./example-datasets.md)
+- [Example use cases](./example-use-cases.md)
+- [Index types and performance](./performance.md)
+- [Migration Guide](./migration-guide.md)
+<!-- - [Deprecation messages](./_deprecation-messages.md) -->
 
 # (Even) more Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

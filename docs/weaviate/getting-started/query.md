@@ -58,7 +58,7 @@ Weaviate's GraphQL-API has three root functions:
 }
 ```
 
-> 💡 A more detailed explanation of Weaviate's GraphQL design is available [here](../graphql-references/#query-structure).
+> 💡 A more detailed explanation of Weaviate's GraphQL design is available [here](../references/graphql/index.md#query-structure).
 
 ## Get{}
 
@@ -263,7 +263,7 @@ You can also do the​ equivalent but based on the UUID of any object in the sam
 The `where` filter takes three operands of its own:
 
 1. `path` is the graph path in your schema.
-2. `operator` is set to define what you want to do with the value inside the path (e.g., `Equal` or `GreaterThan`, etc. See the list [here](../references/graphql/filters.html#filter-structure)).
+2. `operator` is set to define what you want to do with the value inside the path (e.g., `Equal` or `GreaterThan`, etc. See the list [here](../references/graphql/filters.md#filter-structure)).
 3. `value*` is set based on the type of the property defined in `path`. So, if the property in `path` is an `int`, this becomes `valueInt`, if it's a `string` it becomes `valueString`. The value itself is whatever you want to filter on.
 
 ​The examples below are a bit more explanatory.
@@ -405,7 +405,7 @@ We call Weaviate "vector first". This means that when combining vector search wi
 
 :::
 
-If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`](todo-fix-link) vectorizer module and the [Q&A generator](todo-fix-link) module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.
+If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) vectorizer module and the [Q&A generator](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md) module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.
 
 Let's explore the additional filters for the modules which are part of this dataset.
 
@@ -661,6 +661,8 @@ Weaviate's GraphQL-API is used to query your datasets. The structure of the data
 - [Get me back to the schema guide](./schema.md)
 - [Get me back to the import guide](./import.md) -->
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

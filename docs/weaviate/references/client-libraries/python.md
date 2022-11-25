@@ -74,7 +74,7 @@ There is a variety of neural search frameworks that use Weaviate under the hood 
 
 # References documentation
 
-On this Weaviate documentation website, you will find how to use the Python client for all [RESTful endpoints](../restful-api-references/index.html) and [GraphQL functions](../graphql-references/index.html). For each reference, a code block is included with an example of how to use the function with the Python (and other) clients. The Python client, however, has additional functionalities, which are covered in the full client documentation on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/). Some of these additional functions are highlighted here below.
+On this Weaviate documentation website, you will find how to use the Python client for all [RESTful endpoints](../rest/index.md) and [GraphQL functions](../graphql/index.md). For each reference, a code block is included with an example of how to use the function with the Python (and other) clients. The Python client, however, has additional functionalities, which are covered in the full client documentation on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/). Some of these additional functions are highlighted here below.
 
 ### Example: client.schema.create(schema)
 Instead of adding classes one by one using the RESTful `v1/schema` endpoint, you can upload a full schema in JSON format at once using the Python client. Use the function `client.schema.create(schema)` as follows:
@@ -676,6 +676,8 @@ Note that you need to use the `.do()` method to execute the query.
 
 Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-python-client/releases) for updates on the latest `Python client` changes.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

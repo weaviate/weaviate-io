@@ -11,8 +11,8 @@ sidebar_position: 6
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/multi2vec-clip.html
-#     - /developers/weaviate/modules/multi2vec-clip.html
+#     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/multi2vec-clip.html
+#     - /docs/weaviate/modules/multi2vec-clip.html
 ---
 ## Introduction
 
@@ -31,7 +31,7 @@ You have three options to select your desired model:
 ## Option 1: Use a pre-built transformer model container
 
 ### Example docker-compose file
-Note: you can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose#configurator).
+Note: you can also use the [Weaviate configuration tool](/docs/weaviate/installation/docker-compose.md#configurator).
 
 You can find an example Docker-compose file below, which will spin up Weaviate with the multi2vec-clip module. In this example we have selected the `sentence-transformers/clip-ViT-B-32-multilingual` which works great for vectorizing images and text in the same vector space. It even supports multiple languages. See below for how to select an alternative model.
 
@@ -71,14 +71,14 @@ slower than on CPUs. Enable CUDA if you have a GPU available (`ENABLE_CUDA=1`).
 
 ### Alternative: configure your custom setup
 
-*Note: The following steps are only required if you want to manually add the module to an existing setup. If you are starting from scratch, a much more convenient option is to use our [configuration and customization tool](/developers/weaviate/installation/docker-compose#configurator).*
+*Note: The following steps are only required if you want to manually add the module to an existing setup. If you are starting from scratch, a much more convenient option is to use our [configuration and customization tool](/docs/weaviate/installation/docker-compose.md#configurator).*
 
 #### Step 1: Enable the `multi2vec-clip` module
 Make sure you set the `ENABLE_MODULES=multi2vec-clip` environment variable. Additionally, make this module the default vectorizer, so you don't have to specify it on each schema class: `DEFAULT_VECTORIZER_MODULE=multi2vec-clip`
 
 #### Step 2: Run your favorite model
 
-Choose [any of our pre-built CLIP models](/developers/weaviate/installation/docker-compose#configurator) (for building your own model container, see below) and spin it up with your setup. Use a CUDA-enabled machine for optimal performance.
+Choose [any of our pre-built CLIP models](/docs/weaviate/installation/docker-compose.md#configurator) (for building your own model container, see below) and spin it up with your setup. Use a CUDA-enabled machine for optimal performance.
 
 #### Step 3: Tell Weaviate where to find the inference 
 
@@ -239,8 +239,7 @@ filter!
 
 #### Example GraphQL Get(`nearText{}`) operator
 
-<!-- {% include code/1.x/graphql.filters.nearText.html %} -->
-import CodeNearText from '/code-samples/graphql.filters.nearText.mdx';
+import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
 <CodeNearText />
 
@@ -248,15 +247,14 @@ import CodeNearText from '/code-samples/graphql.filters.nearText.mdx';
 
 
 #### Example GraphQL Get(`nearImage{}`) operator
-<!-- {% include code/1.x/img2vec-neural.nearimage.html %} -->
-import CodeNearImage from '/code-samples/img2vec-neural.nearimage.mdx';
+
+import CodeNearImage from '/_includes/code/img2vec-neural.nearimage.mdx';
 
 <CodeNearImage />
 
 Alternatively, you can use a helper function in the Python, Java or Go client (not with the JavaScript client). With an encoder function, you can input your image as `png` file, and the helper function encodes this to a `base64` encoded value.
 
-<!-- {% include code/1.x/img2vec-neural.nearimage.encode.html %} -->
-import CodeNearImageEncode from '/code-samples/img2vec-neural.nearimage.encode.mdx';
+import CodeNearImageEncode from '/_includes/code/img2vec-neural.nearimage.encode.mdx';
 
 <CodeNearImageEncode />
 
@@ -264,7 +262,7 @@ import CodeNearImageEncode from '/code-samples/img2vec-neural.nearimage.encode.m
 
 You can set a maximum allowed `distance`, which will be used to determine which
 data results to return. The interpretation of the value of the distance field
-depends on the [distance metric used](/developers/weaviate/references/distances).
+depends on the [distance metric used](/docs/weaviate/references/distances.md).
 
 If the distance metric is `cosine` you can also use `certainty` instead of
 `distance`. Certainty normalizes the distance in a range of 0..1, where 0
@@ -310,4 +308,6 @@ Moving can be done based on `concepts` and/or `objects`.
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

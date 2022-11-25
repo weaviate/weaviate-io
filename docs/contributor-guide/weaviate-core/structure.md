@@ -96,7 +96,8 @@ The following guidelines help us write clean and maintainable code:
   not be 100% obvious. It's better to have a few 100-line comments, than to
   have 100s of 1-line comments which don't add any value.
 
-
 ## More Resources
 
-{% include docs-support-links.html %}
+import ContributorGuideMoreResources from '/_includes/more-resources-contributor-guide.md';
+
+<ContributorGuideMoreResources />
