@@ -76,7 +76,7 @@ Currently Weaviate supports:
 - [Java](../client-libraries/java.html)
 - Do you want to contribute one? Please let us know on our [Slack]({{ site.slack_signup_url }})
 
-## Recapitulation
+## Recap
 
 Weaviate clients are an easy way to connect with your Weaviate instance or cluster through a language of choice. Some users prefer to use a client and others prefer to connect directly with the APIs directly. Both are possible.
 

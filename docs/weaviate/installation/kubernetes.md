@@ -11,8 +11,9 @@ sidebar_position: 3
 # toc: true
 ---
 
-# Requirements
+## Requirements
 
+<!-- TODO: Check if it might be preferable to say ^1.14 (or >=1.14) required -->
 * A Kuberentes Cluster with a recent version (e.g. between 1.14 and 1.19)
 * The cluster needs to be able to provision `PersistentVolumes` through
   `PersistentVolumeClaims`. No special file systems are required. Any default
@@ -95,7 +96,7 @@ $ helm upgrade \
 The above assumes that you have permissions to create a new namespace. If you
 have only namespace-level permissions, you can skip creating a new
 namespace and adjust the namespace argument on `helm upgrade` according to the
-name of your pre-configured namespage.
+name of your pre-configured namespace.
 
 ## Updating the installation after the initial deployment
 

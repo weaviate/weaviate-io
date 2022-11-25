@@ -11,20 +11,21 @@ sidebar_position: 2
 # toc: true
 ---
 
-# Configurator
+## Configurator
 
 You can use the configuration tool below to customize your Weaviate setup for
 your desired runtime.
 
+<!-- TODO - Embed Docker config generator here -->
 {% include docs-config-gen.html %}
 
-# Configuration
+## How to customize
 
 > 💡 If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079).
 
 To start Weaviate with docker-compose, you need a docker-compose configuration file. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional [environment variables](#environment-variables) can be set in this file, which regulate your Weaviate setup, authentication and authorization, module settings, and data storage settings.
 
-## Persistent Volume
+## Persistent volume
 
 It's recommended to set a persistent volume to avoid data loss and improve reading and writing speeds.
 
@@ -114,7 +115,7 @@ $ docker-compose up -d && docker-compose logs -f weaviate
 
 Alternatively you can run docker-compose entirely detached with `docker-compose up -d` _and_ then poll `{bindaddress}:{port}/v1/meta` until you receive a status `200 OK`.
 
-# Environment variables
+## Environment variables
 
 An overview of environment variables in the docker-compose file:
 

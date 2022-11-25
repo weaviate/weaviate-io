@@ -5,7 +5,7 @@ sidebar_position: 0
 
 This section is all about learning how to find the relevant information using Weaviate.
 
-If you haven't yet, we strongly recommend that you go through the [Quickstart tutorials](../getting-started/index.md) and the [Essential guides](../guides/index.md) first.
+If you haven't yet, we strongly recommend that you go through the [Getting started guides](../getting-started/index.md) and the [Essential guides](../guides/index.md) first.
 
 In this section, we show you how to use different types of search options offered by Weaviate. By the time you are finished with the section, you will understand the key differences between each types and how to use each one. We cover these types of searches:
 

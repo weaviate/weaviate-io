@@ -1,7 +1,6 @@
 ---
 title: Introduction
 sidebar_position: 0
-
 # layout: layout-documentation
 # bodyclass: ["page--guides", " "]
 # solution: weaviate
@@ -31,7 +30,7 @@ We want help you get started quickly with Weaviate, then help you to use it to s
 
 If you are new, read:
 1. Introduction (this page),
-2. [Quickstart tutorials](./getting-started/index.md), and
+2. [Getting started guides](./getting-started/index.md), and
 3. [Installation & Configuration Guide](./installation/index.md). 
 
 Then, the remaining content is divided into these sections:
@@ -107,13 +106,13 @@ Weaviate lets you search through your data even if it’s currently being import
 
 Within Weaviate, all individual data objects are based on a class property structure where a vector represents each data object. You can connect data objects (like in a traditional graph) and search for data objects in the vector space.
 
-You can add data to Weaviate through the [RESTful API](./references/rest/index.md) [re](./references/rest/index.md) end-points and retrieve data through the [GraphQL interface](./graphql-references/).
+You can add data to Weaviate through the [RESTful API](./references/rest/index.md) end-points and retrieve data through the [GraphQL interface](./references/graphql/index.md). 
 
-Weaviate's [vector indexing mechanism is modular](./vector-index-plugins/), and the current available plugin is the [Hierarchical Navigable Small World (HNSW) multilayered graph](./vector-index-plugins/hnsw.html).
+Weaviate's [vector indexing mechanism is modular](./vectorization/), and the current available plugin is the [Hierarchical Navigable Small World (HNSW) multilayered graph](./vectorization/hnsw.md).
 
 ## What are Weaviate modules?
 
-Weaviate modules are used to extend Weaviate's capabilities and are optional. There are Weaviate modules that automatically vectorize your content (i.e., `*2vec`) or extend Weaviate's capabilities (often related to the type of vectors you have.) You can also create your own modules. Click [here](./modules) to get started with them.
+Weaviate modules are used to extend Weaviate's capabilities and are optional. There are Weaviate modules that automatically vectorize your content (i.e., `*2vec`) or extend Weaviate's capabilities (often related to the type of vectors you have.) You can also create your own modules. Click [here](./core-knowledge/modules.md) to learn more about them.
 
 ## What is a vector search engine?
 
@@ -141,15 +140,14 @@ There are four main situations when you should consider using Weaviate.
 
 People use Weaviate for cases such as semantic search, image search, similarity search, anomaly detection, power recommendation engines, e-commerce search, data classification in ERP systems, automated data harmonization, cybersecurity threat analysis, and many, many more cases.
 
-## Get started
+## Next Steps
 
 Want to get started or want to learn more? These resources might help you further:
 
-- Get started:
-    - [Weaviate getting started guides overview](./getting-started/)
-    - [Installation](./getting-started/installation.html)
-- Learn more:
-    - [Weaviate resources page](/resources.html)
+- Try out Weaviate:
+    - [Getting started guide](./getting-started/index.md)
+- Learn about Weaviate:
+    - [Concepts: Core](./core-knowledge/index.md)
 
 ## More resources
 

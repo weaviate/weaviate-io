@@ -5,7 +5,7 @@ sidebar_position: 0
 
 These **essential** guides are designed to empower you so that you can start to customize and use Weaviate based on *your* particular needs. 
 
-If you haven't yet, we strongly recommend that you go through the [Quickstart tutorials](../getting-started/index.md) first.
+If you haven't yet, we strongly recommend that you go through the [Getting started guides](../getting-started/index.md) first.
 
 The **essential** guides include the following sections, where you will learn how to:
 

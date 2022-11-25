@@ -18,7 +18,7 @@ Although importing itself is pretty straightforward, creating an optimized impor
 
 1. When importing, you want to make sure that you max out all the CPUs available. It's more often than not the case that the import script is the bottleneck.
     0. Tip, use `htop` when importing to see if all CPUs are maxed out.
-    0. Learn more about how to plan your setup [here](./installation.html#running-weaviate-yourself).
+    0. Learn more about how to plan your setup [here](./installation.md#running-weaviate-yourself).
 1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
 1. For Kubernetes, fewer large machines are faster than more small machines, simply because of network latency.
 
@@ -31,7 +31,7 @@ First of all, some rules of thumb.
 * Process error messages.
 * Some clients (especially Python) have some built-in logic to efficiently regulate batch importing.
 
-Assuming that you've read the [schema getting started guide](./schema.html), you import data based on the classes and properties defined in the schema.
+Assuming that you've read the [schema getting started guide](./schema.md), you import data based on the classes and properties defined in the schema.
 
 <!-- > 💡 The big difference between creating a single object in Weaviate and batch imports is that instead of sending a single JSON object, batch sends an array of JSON objects. -->
 
@@ -53,11 +53,17 @@ Now, to import the data we need to follow these steps:
 
 Here is the full code you need to import the **Publications** (note, the **importAuthors** example is shorter).
 
-{% include code/1.x/getting-started.import.publications.html %}
+<!-- {% include code/1.x/getting-started.import.publications.html %} -->
+import CodeImportPubs from '/code-samples/getting-started.import.publications.mdx';
+
+<CodeImportPubs/>
 
 And here is the code to import **Authors**.
 
-{% include code/1.x/getting-started.import.authors.html %}
+<!-- {% include code/1.x/getting-started.import.authors.html %} -->
+import CodeImportAuthors from '/code-samples/getting-started.import.authors.mdx';
+
+<CodeImportAuthors/>
 
 You can quickly check the imported object by opening – `weaviate-endpoint/v1/objects` in a browser, like this:
 
@@ -67,21 +73,24 @@ https://some-endpoint.semi.network/v1/objects
 
 Or you can read the objects in your project, like this:
 
-{% include code/1.x/getting-started.import.get.html %}
+<!-- {% include code/1.x/getting-started.import.get.html %} -->
+import CodeImportGet from '/code-samples/getting-started.import.get.mdx';
+
+<CodeImportGet/>
 
 ## Other object operations
 
-All other CRUD object operations are available in the [objects RESTful API documentation](../restful-api-references/objects.html) and the [batch RESTful API documentation](../restful-api-references/batch.html).
+All other CRUD object operations are available in the [objects RESTful API documentation](../references/rest/objects.md) and the [batch RESTful API documentation](../references/rest/batch.md).
 
-## Recapitulation
+## Recap
 
-Importing into Weaviate needs some planning on your side. In almost all cases, you want to use the [batch endpoint](../restful-api-references/batch.html) to create data objects. More often than not, the bottleneck sits in the import script and not in Weaviate. Try to optimize for maxing out all CPUs to get the fastest import speeds.
+Importing into Weaviate needs some planning on your side. In almost all cases, you want to use the [batch endpoint](../references/rest/batch.md) to create data objects. More often than not, the bottleneck sits in the import script and not in Weaviate. Try to optimize for maxing out all CPUs to get the fastest import speeds.
 
-## What would you like to learn next?
+<!-- ## What would you like to learn next?
 
-- [Learn how to query with the GraphQL-API](./query.html)
-- [Bring me back to working with the schema](./schema.html)
-- [Show me how modules work](./modules.html)
+- [Learn how to query with the GraphQL-API](./query.md)
+- [Bring me back to working with the schema](./schema.md)
+- [Show me how modules work](./modules.md) -->
 
 # More Resources
 

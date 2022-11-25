@@ -233,7 +233,7 @@ The [benchmark page](../benchmarks/) might be helpful when setting up your Weavi
 
 Weaviate can expose Prometheus-compatible metrics for [monitoring](../configuration/monitoring.html). We highly recommend setting this up, simply because it allows you to optimize your setup.
 
-## Recapitulation
+## Recap
 
 * Inside Weaviate, you can store _data objects_ which can be represented by a machine learning vector.
 * Weaviate represents data objects as JSON documents.

@@ -15,7 +15,7 @@ Weaviate modules can be added to your instance and are mostly used to vectorize 
 
 ## Retrievers & Vectorizers
 
-Retrievers & Vectorizers are mostly used to vectorize data, which goes both for vectorizing the data objects and the queries. For example, if you use the `text2vec` modules, the GraphQL filter [`nearText`](../retriever-vectorizer-modules/text2vec-transformers.html#neartext) becomes available. It will automatically vectorize your query and match it against the vectors stored in the index.
+Retrievers & Vectorizers are mostly used to vectorize data, which goes both for vectorizing the data objects and the queries. For example, if you use the `text2vec` modules, the GraphQL filter [`nearText`](../modules/retriever-vectorizer-modules/text2vec-transformers.md#neartext) becomes available. It will automatically vectorize your query and match it against the vectors stored in the index.
 
 You can set up the vectorization per class as follows:
 
@@ -293,7 +293,7 @@ Like retrievers & vectorizers, the modules can extend the GraphQL-API. The quest
 
 You can try this query in real time [here](https://link.semi.technology/3dPI0rV).
 
-## Recapitulation
+## Recap
 
 Modules are add-ons to Weaviate, they can take care of vectorization ([retrievers & vectorizers](#retrievers--vectorizers)) or extend the core with new functionality ([readers & generators](#readers--generators)). You don't have to use them, but you can.
 

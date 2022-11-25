@@ -1,7 +1,6 @@
 ---
-title: Getting started with Weaviate guide overview
+title: Getting started Guide
 sidebar_position: 0
-
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Getting started
