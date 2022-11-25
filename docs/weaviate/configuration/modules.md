@@ -18,7 +18,11 @@ sidebar_position: 4
 
 Weaviate adopts a modularized architecture, which affords it a great deal of flexibility. Modules to be used must be specified in the relevant configuration file, by setting appropriate [environment variables](../installation/docker-compose.md#environment-variables).
 
-## How to enable modules
+A few of the necessary variables are explained below.
+
+## Environment variables
+
+### Enable modules
 
 Provide the list of modules to be ued to the `ENABLE_MODULES` variable. For example, the below will enable the `text2vec-contextionary` module. 
 
@@ -51,12 +55,15 @@ services:
 
 If a default vectorizer module is not set, you will need to specify for each class the vectorization module to be used (or use your own vectors).
 
-### Multiple vectorizer modules
-
 :::caution Multiple vectorization modules
 At the moment, text vectorization modules can be combined in a single setup, but this will disable `Explore{}`. You can't use multiple models of the same module yet, this will be part of a future release (i.e. you can’t run `all-mpnet-base` and `t5` (both transformers models) in the same setup yet.
 :::
 
+### Module-specific variables
+
+Many of the available modules must be configured by setting additional environment variables. For example, the `backup-s3` module requires the backup S3 bucket to be set via `BACKUP_S3_BUCKET` , and the `text2vec-contextionary` module requires the inference API location via `TRANSFORMERS_INFERENCE_API`.
+
+These variables and associated instructions are available in the [Modules](../modules/index.md) section, or in the relevant page within the current [Configuration](./index.md) section of the documentation.
 
 ## Custom modules
 
