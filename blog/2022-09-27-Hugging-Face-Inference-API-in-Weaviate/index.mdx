@@ -15,7 +15,7 @@ image: ./img/hero.png
 # og: /img/blog/hero/hugging-face-inference-api-in-Weaviate-card.png
 # date: 2022-09-27
 # toc: true
-# redirect_from: /blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html
+# redirect_from: /blog/Hugging-Face-Inference-API-in-Weaviate.html
 ---
 ![Support for Hugging Face Inference API in Weaviate](./img/hero.png)
 
@@ -43,7 +43,7 @@ Starting from Weaviate `v1.15`, Weaviate includes a Hugging Face module, which p
 The Hugging Face module, allows you to use the [Hugging Face Inference service](https://huggingface.co/inference-api#pricing) with sentence similarity models, to vectorize and query your data, straight from Weaviate. No need to run the Inference API yourself.
 
 > You can choose between `text2vec-huggingface` (Hugging Face) and `text2vec-openai` (OpenAI) modules to delegate your model inference tasks.<br/>
-> Both modules are enabled by default in the [Weaviate Cloud Service](/pricing.html).
+> Both modules are enabled by default in the [Weaviate Cloud Service](/pricing).
 
 ## Overview
 ![Overview](./img/hugging-face-module-overview.png)
@@ -68,7 +68,7 @@ Weaviate manages the whole process for you. From the perspective of writing your
 For example, when you import data into Weaviate, Weaviate will automatically extract the relevant text fields, send them Hugging Face to vectorize, and store the data with the new vectors in the database.
 
 ### Ready to use with a minimum of fuss
-Every new Weaviate instance created with the [Weaviate Cloud Service](/pricing.html) has the Hugging Face module enabled out of the box. You don't need to update any configs or anything, it is there ready and waiting.
+Every new Weaviate instance created with the [Weaviate Cloud Service](/pricing) has the Hugging Face module enabled out of the box. You don't need to update any configs or anything, it is there ready and waiting.
 
 On the other hand, to use the Hugging Face module in Weaviate open source (`v1.15` or newer), you only need to set `text2vec-huggingface` as the default vectorizer. Like this:
 
@@ -78,8 +78,11 @@ ENABLE_MODULES: text2vec-huggingface
 ```
 
 ## How to get started
-*Note, this article is not meant as a hands-on tutorial.
-For more detailed instructions please check the [documentation](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html).*
+
+:::note
+This article is not meant as a hands-on tutorial.
+For more detailed instructions please check the [documentation](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface).
+:::
 
 The overall process to use a Hugging Face module with Weaviate is fairly straightforward.
 
@@ -158,16 +161,16 @@ result = (
 ```
 
 ## Summary
-> Now you can use [Hugging Face](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html) or [OpenAI](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-openai.html) modules in Weaviate to delegate model inference out.
+> Now you can use [Hugging Face](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface) or [OpenAI](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai) modules in Weaviate to delegate model inference out.
 
 Just pick the model, provide your API key and start working with your data.
 
 Weaviate optimizes the communication process with the Inference API for you, so that you can focus on the challenges and requirements of your applications. No need to run the Inference API yourself.
 
 ## What next
-Check out the [text2vec-huggingface](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html) documentation to learn more about the new module.
+Check out the [text2vec-huggingface](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface) documentation to learn more about the new module.
 
-If you are new to Weaviate, check out the [getting started guide](/developers/weaviate/current/getting-started/index.html).
+If you are new to Weaviate, check out the [getting started guide](/developers/weaviate/getting-started).
 
 Let us know if you found this article interesting or useful. We are always happy to receive constructive feedback. 😀
 

@@ -26,13 +26,13 @@ This blog post will guide you to build a full-stack web application in **Python*
 
 You are probably already aware that Weaviate can power 🚀 fast vector searches with documents. What you might not be aware of is that it can also power vectorization and searching through other data types, whether it be audio, images, or others. 
 
-This blog post assumes you are familiar with vector search, as well as with spinning up an instance of Weaviate using Docker. If not, that’s okay - these guides will help you! 
-* [Learn about Weaviate](https://weaviate.io/developers/weaviate/current/core-knowledge/basics.html)
-* [Weaviate Installation](https://weaviate.io/developers/weaviate/current/getting-started/installation.html)
+This blog post assumes you are familiar with vector search, as well as with spinning up an instance of Weaviate using Docker. If not, that's okay - these guides will help you! 
+* [Learn about Weaviate](/developers/weaviate/core-knowledge/basics)
+* [Weaviate Installation](/developers/weaviate/installation)
 * [Docker Installation](https://docs.docker.com/engine/install/)
 
 
-[Check out this article](https://weaviate.io/blog/2022/09/Why-is-Vector-Search-so-fast.html) to learn more about why vector search engines are so fast and how they work.
+[Check out this article](/blog/Why-is-Vector-Search-so-fast) to learn more about why vector search engines are so fast and how they work.
 
 We will provide code snippets in this post, but you can check out the full code base in the [Github repository](https://github.com/semi-technologies/weaviate-examples) under the `nearest-neighbor-dog-search` directory. We encourage you to follow along with us by cloning the repository!
 
@@ -52,7 +52,7 @@ For a use case like ours, where we would like to identify similar types of dogs,
 The `img2vec-neural` module in Weaviate is designed to solve this exact problem! The module vectorizes each image to something that represents its contents, so that we can search images based on their semantic similarity. In other words, we can use `img2vec-neural` to query our database to see how similar the dogs are based on the image. 
 
 ### Img2vec-neural Module 
-[Weaviate’s img2vec-neural module](https://weaviate.io/developers/weaviate/current/retriever-vectorizer-modules/img2vec-neural.html) is a flexible vectorizer that enables conversion of images to meaningful vectors. `ResNet-50` is the first model that is supported on Weaviate. `ResNet-50` is a Convolutional Neural Network (CNN) that was trained on the ImageNet database. The model was trained on more than 10 million images and 20,000 classes.  
+[Weaviate's img2vec-neural module](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural) is a flexible vectorizer that enables conversion of images to meaningful vectors. `ResNet-50` is the first model that is supported on Weaviate. `ResNet-50` is a Convolutional Neural Network (CNN) that was trained on the ImageNet database. The model was trained on more than 10 million images and 20,000 classes.  
 
 ## Weaviate Database
 ### Setup
@@ -74,7 +74,7 @@ You should see something like this, and we are ready to go!
 
 ### Schema Configuration
 
-The dataset we’re using contains ten dogs, each containing the following properties: breed, image, weight, and filepath. The schema defines a structure into which we will store data in our Weaviate database, where each object type is referred to as a `class`. 
+The dataset we're using contains ten dogs, each containing the following properties: breed, image, weight, and filepath. The schema defines a structure into which we will store data in our Weaviate database, where each object type is referred to as a `class`. 
 
 This includes the class name, which in our case is "Dog" and the properties, such as `breed`, `image`, and `filepath`. In this case, we also need to add in the vectorizer definition, which is the `img2vec-neural` module, so that Weaviate knows to use that specific vectorizer. 
 
@@ -116,7 +116,7 @@ schema = {
    ]
 }
 ```
-Once you’ve defined the schema, it is then added to Weaviate. 
+Once you've defined the schema, it is then added to Weaviate. 
 ```
 client.schema.create(schema)
 ```
@@ -141,7 +141,7 @@ Note, the base64 images are stored in the `base64_images` folder.
 ### Upload the Data Objects
 Now that we have defined the schema and converted the images to base64 values, we can upload the data objects to Weaviate.  
 
-When uploading your data objects to Weaviate, you want to import your data in batches. The import speed is faster than uploading the objects one by one. Let’s configure the batch process to upload in batches of 100, just in case we add more images. 
+When uploading your data objects to Weaviate, you want to import your data in batches. The import speed is faster than uploading the objects one by one. Let's configure the batch process to upload in batches of 100, just in case we add more images. 
 
 ```
 def set_up_batch():
@@ -202,7 +202,7 @@ python upload-data-objects.py
 
 And just like that, you have populated your Weaviate database with pictures of cute dogs and the vector representations of them! 
 
-Here is a recap of what we’ve done so far:
+Here is a recap of what we've done so far:
 1. Defined the Weaviate schema 
 2. Converted the images to base64 values 
 3. Uploaded the data objects to Weaviate 
@@ -221,7 +221,7 @@ app.config["UPLOAD_FOLDER"] = "/temp_images"
 client = weaviate.Client("http://localhost:8080")
 ```
 
-We will use the `nearImage` operator in Weaviate, so that it will search for images closest to the users’ upload image. To do this we will construct the `weaviate_img_search` function to get the relevant results. The response from our search query will include the closest objects in the Dog class. From the response, the function will output the dog image with the breed name and filepath. Note that the query is also formulated so that the response is limited to two results. 
+We will use the `nearImage` operator in Weaviate, so that it will search for images closest to the users' upload image. To do this we will construct the `weaviate_img_search` function to get the relevant results. The response from our search query will include the closest objects in the Dog class. From the response, the function will output the dog image with the breed name and filepath. Note that the query is also formulated so that the response is limited to two results. 
 
 ```
 def weaviate_img_search(img_str):
@@ -235,9 +235,10 @@ def weaviate_img_search(img_str):
  
    return weaviate_results["data"]["Get"]["Dog"]
 ```
-How cool is that? We can find visually similar dogs in just a simple query to Weaviate. We could even scale this to millions of images running in milliseconds with [Weaviate's ANN index](https://weaviate.io/developers/weaviate/current/vector-index-plugins/index.html). 
 
-Once we’ve created the app, we need to define the pages that will be on the website. The homepage will have the ten images of the dogs in our dataset. If you add images, it will also populate on the homepage!
+How cool is that? We can find visually similar dogs in just a simple query to Weaviate. We could even scale this to millions of images running in milliseconds with [Weaviate's ANN index](/developers/weaviate/vectorization). 
+
+Once we've created the app, we need to define the pages that will be on the website. The homepage will have the ten images of the dogs in our dataset. If you add images, it will also populate on the homepage!
 
 The `/process_image` page will show the uploaded image along with the results from Weaviate. Once we have the image stored and converted to base64, we will send it to the `weaviate_img_search` function to return the results and re-render the page.  
 
@@ -301,7 +302,7 @@ Let's test a query to see which dog looks most similar to a Goldendoodle puppy. 
 
 ![Results](./img/results.jpg){:width="70%"}
 
-And just like that, you’ve built a complete app! Users can load an image of their favorite dog and see the nearest neighbor breed in the database!
+And just like that, you've built a complete app! Users can load an image of their favorite dog and see the nearest neighbor breed in the database!
 
 ## Summary 
 In this demo, we reviewed how to:
@@ -313,9 +314,9 @@ And while this example uses a small dataset, Weaviate can power image searches l
 
 Thanks for reading, and see you soon. You can also check out the other great [Weaviate demos](https://github.com/semi-technologies/weaviate-examples) on Github!  
 
-## What’s Next
-Check out the [Getting Started with Weaviate](https://weaviate.io/developers/weaviate/current/getting-started/index.html) and begin building amazing apps with Weaviate.
+## What's Next
+Check out the [Getting Started with Weaviate](/developers/weaviate/getting-started) and begin building amazing apps with Weaviate.
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
-Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don’t forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don't forget to give us a ⭐️ while you are there.

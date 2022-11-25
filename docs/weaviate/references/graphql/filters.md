@@ -120,7 +120,7 @@ For example, this filter selects articles from the class Article with a wordcoun
     "Get": {
       "Article": [
         {
-          "title": "Opinion | John Lennon Told Them ‘Girls Don’t Play Guitar.’ He Was So Wrong."
+          "title": "Opinion | John Lennon Told Them ‘Girls Don't Play Guitar.' He Was So Wrong."
         },
       ]
   },
@@ -382,7 +382,7 @@ An example of a stand-alone `limit` filter:
           "title": "The War Vet, the Dating Site, and the Phone Call From Hell"
         },
         {
-          "title": "Opinion | John Lennon Told Them ‘Girls Don’t Play Guitar.’ He Was So Wrong."
+          "title": "Opinion | John Lennon Told Them ‘Girls Don't Play Guitar.' He Was So Wrong."
         },
         {
           "title": "The press pressed - Brazilian prosecutors go after Glenn Greenwald, an American journalist"
@@ -420,10 +420,10 @@ An example of a stand-alone `limit` filter:
     "Get": {
       "Article": [
         {
-          "title": "Hong Kong tries its best to spoil China’s big anniversary"
+          "title": "Hong Kong tries its best to spoil China's big anniversary"
         },
         {
-          "title": "‘People don’t want any of them’: Peru election sees unpredictable contest"
+          "title": "‘People don't want any of them': Peru election sees unpredictable contest"
         },
         {
           "title": "Brazil: homes of Bolsonaro associates raided in sweeping anti-corruption operation"

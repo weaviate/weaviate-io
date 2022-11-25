@@ -38,7 +38,7 @@ squarepants 0.27442 -0.25977 -0.17438 0.18573 0.6309 0.77326 -0.50925 -1.8926
 -0.30444 1.3929 0.088861
 ```
 
-If you are new to the world of word embeddings, a metaphor to understand them is in the form of a supermarket. The supermarket itself is a space in which products are stored based on the category they are in. Inside, you can find an apple by moving your shopping cart to the right coordinates in the fruit section and when you look around you, you’ll find similar products like oranges, limes, bananas, etcetera, and you also know that a cucumber will be closer by than washing powder.
+If you are new to the world of word embeddings, a metaphor to understand them is in the form of a supermarket. The supermarket itself is a space in which products are stored based on the category they are in. Inside, you can find an apple by moving your shopping cart to the right coordinates in the fruit section and when you look around you, you'll find similar products like oranges, limes, bananas, etcetera, and you also know that a cucumber will be closer by than washing powder.
 
 
 This is the same way a word embedding is structured. All the coordinates combined represent a multidimensional hyperspace (often around 300 dimensions) and words that have a similar meaning are more closely related to each other, like similar products in the store.
@@ -48,7 +48,7 @@ Being able to represent words in a space gives you a superpower, because it allo
 ## How to semantically store data objects
 While working on software projects in my day-to-day life, I noticed that one of the most recurring challenges presented itself in naming and searching. How would we call certain objects and how could we find data that was structured in different ways? I fell in love with the semantic web but the challenge I saw there, was the need to have people agree on naming conventions and standards.
 
-This made me wonder, what if we wouldn’t have to agree on this any more? What if we could just store data and have the machine figure out the concept that your data represents?
+This made me wonder, what if we wouldn't have to agree on this any more? What if we could just store data and have the machine figure out the concept that your data represents?
 
 The validation of the concept was chunked up into three main sections that were validated one by one.
 
@@ -62,7 +62,7 @@ To validate if we could disambiguate the word "apple" the following simple step 
 
 ![Vector Space](./img/vector-space.jpeg)
 
-In the next step, the goal was to validate if we could keep semantic meaning when storing a data object in the hyperspace by calculating the centroid using the individual words as beacons. We did that as follows, the title of this Vogue article: "Louis Vuitton’s New Capsule with League of Legends Brings French High Fashion to Online Gaming — and Vice Versa".
+In the next step, the goal was to validate if we could keep semantic meaning when storing a data object in the hyperspace by calculating the centroid using the individual words as beacons. We did that as follows, the title of this Vogue article: "Louis Vuitton's New Capsule with League of Legends Brings French High Fashion to Online Gaming — and Vice Versa".
 
 If we look up the vector positions for the individual words (i.e., Louis, Vuitton, new, capsule, etcetera). And place a new beacon in the center of the space of those vector positions, can we find the article by searching for "haute couture"? This turns out to work as well! Of course, through time, the centroid calculation algorithm in Weaviate has become way more sophisticated, but the overall concept is still the same.
 
@@ -73,13 +73,13 @@ Although we had validated the assumptions of the semantic concepts, it was not e
 ## Things Rather Than Strings
 In September 2017 I wrote a [blog post](https://medium.com/bob-van-luijt/semantic-internet-of-things-42811e1ca7a7) about the overlap between the internet of things and the semantic web. IoT focusses on physical objects (i.e., "things") and the semantic web focuses on the mapping of data objects that represent something (a product, transaction, car, person, etcetera) which on the highest level of abstraction, are also "things".
 
-I wrote this article because, in January 2016, I was invited as part of the Google Developer Expert program in San Francisco to visit the [Ubiquity Conference](https://web.archive.org/web/20190412204056/https://ubiquity.withgoogle.com/). A conference where, back then, Google’s Weave and Brillo were introduced to the public.
+I wrote this article because, in January 2016, I was invited as part of the Google Developer Expert program in San Francisco to visit the [Ubiquity Conference](https://web.archive.org/web/20190412204056/https://ubiquity.withgoogle.com/). A conference where, back then, Google's Weave and Brillo were introduced to the public.
 
 Weave was the cloud application built around Brillo, but it piqued my interest because it focussed on "things", how you defined them, and actions that you could execute around them. The very first iteration of Weaviate focussed on exactly this: "Could Weave be used to define other things than IoT devices like transactions, or cars, or any other things?" In 2017 Google deprecated Weave and renamed Brillo to Android Things but the concept for Weaviate stayed.
 
 From the get-go, I knew that the "things" in Weaviate should be connected to each other in graph format because I wanted to be able to represent the relationships between the data objects rather than flat, row-based information as simple and straightforward as possible.
 
-> This search led to the RDF structure that is used on schema.org which functioned as an inspiration on how to represent Weaviate’s data objects.
+> This search led to the RDF structure that is used on schema.org which functioned as an inspiration on how to represent Weaviate's data objects.
 
 Weaviate is not perse RDF or schema.org based but definitely inspired by it. One of the most important upsides of this approach was that we could use GraphQL (the graph query language which was entering the software stage through Facebook open-sourcing it) to represent the data inside Weaviate.
 
@@ -90,7 +90,7 @@ By the end of 2018, I entered a startup accelerator in The Netherlands with Weav
 
 When the team started, Weaviate was more a traditional graph where the semantic (NLP) element was a feature rather than the core architecture. But when we started to learn how powerful the out of the box semantic search was and the role that embeddings play in day-to-day software development (i.e., a lot of machine-learning models create embeddings as output) the team decided that we wanted to double down on the NLP part and vector storage, creating a unique open-source project which could be used as a semantic search engine, the Weaviate Search Graph was born.
 
-<!-- Today, people from the SeMI team are working on API design, core implementation, [tools and libraries](/developers/weaviate/current/client-libraries/index.html), and many other things related to Weaviate. -->
+<!-- Today, people from the SeMI team are working on API design, core implementation, [tools and libraries](/developers/weaviate/references/client-libraries), and many other things related to Weaviate. -->
 
 ## How people use it today
 One of the coolest things about an open-source community and users of the software is to see how people use it and what trends you one can see emerge around implementations. The core features of Weaviate are the semantic search element and the semantic classification which are used in a variety of ways and industries.
@@ -106,7 +106,7 @@ Weaviate will stay fully open source for the community to use. The SeMI Team is 
 Want to learn more about the background of Vector Search and how the ecosystem is developing? [Listen to Sam Ramji from DataStax interviewing Bob van Luijt about Vector Search and the AI stack.](https://www.datastax.com/resources/podcast/vector-search-ai-stack-more-bob-van-luijt). 
 
 ## What next
-Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html) and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/getting-started) and begin building amazing apps with Weaviate.
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 

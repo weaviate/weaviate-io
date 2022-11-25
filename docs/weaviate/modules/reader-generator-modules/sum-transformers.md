@@ -172,7 +172,7 @@ You can now push your image to your favorite registry or reference it locally in
 
 The code for the application in this repo works well with models that take in a text input like:
 
-> <em>But, similar to finding a bathing suit that fits in all the right places, discovering a new pair of perfectly cut and comfortable jeans can be thrilling. The Gap jeans are as classic as they come and they give me that figure-hugging fit without cutting off my circulation. At the moment, there are TikTok videos circulating about these jeans, making me one member of an ever-growing fan club. While good jeans are priceless, these bonafide confidence boosters are also now on sale for $63. Trust me, there’s no time like the present to break up with those all day, every day sweatpants and slip on some hero denim.</em>
+> <em>But, similar to finding a bathing suit that fits in all the right places, discovering a new pair of perfectly cut and comfortable jeans can be thrilling. The Gap jeans are as classic as they come and they give me that figure-hugging fit without cutting off my circulation. At the moment, there are TikTok videos circulating about these jeans, making me one member of an ever-growing fan club. While good jeans are priceless, these bonafide confidence boosters are also now on sale for $63. Trust me, there's no time like the present to break up with those all day, every day sweatpants and slip on some hero denim.</em>
 
 then summarize it and return information in JSON format like this:
 

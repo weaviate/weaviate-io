@@ -99,7 +99,7 @@ Because you are not touching the Go Weaviate interface code, you don't have the 
 _Note that Weaviate APIs are not guaranteed to be stable. Even on a non-breaking Weaviate release, 'internal' APIS could always change._
 
 To use a new inference model (part 2) with an existing Weaviate interface (part 1), you could reuse all the Go-code from the existing module and simply point it to a different inference container. As an example, here's how to use a custom inference module using the `text2vec-transformers` Go-code:
-1. In a valid `docker-compose.yml` that’s configured to use transformers (e.g. for example configure one via the [configuration configurator](/developers/weaviate/installation/docker-compose#configurator)), you will find an env var like this: `TRANSFORMERS_INFERENCE_API: 'http://t2v-transformers:8080'`, you can point that to any app you like. You should keep the variable name `TRANSFORMERS_INFERENCE_API`. 
+1. In a valid `docker-compose.yml` that's configured to use transformers (e.g. for example configure one via the [configuration configurator](/developers/weaviate/installation/docker-compose#configurator)), you will find an env var like this: `TRANSFORMERS_INFERENCE_API: 'http://t2v-transformers:8080'`, you can point that to any app you like. You should keep the variable name `TRANSFORMERS_INFERENCE_API`. 
 2. Build a small HTTP API wrapper around your model, it should at the minimum have the endpoints listed below (which is in this example entirely specific to the `text2vec-transformers` module and fully in its control):
    1. `GET /.well-known/live` -> respond `204` when the app is alive
    2. `GET /.well-known/ready` -> respond `204` when the app is ready to serve traffic

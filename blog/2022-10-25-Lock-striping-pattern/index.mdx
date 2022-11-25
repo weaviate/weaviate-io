@@ -27,16 +27,16 @@ Are you curious about, the challenge that we faced, which solutions we considere
 ## Background
 Databases must be able to import data quickly and reliably while maintaining data integrity and reducing time overhead. Weaviate is no exception to this! Given that our users populate Weaviate with hundreds of millions of data objects (if not more), we appreciate that import performance is of the highest ... *import-ance* (sorry) 🥁.
 
-Weaviate offers and strongly recommends the [batch import feature](/developers/weaviate/current/getting-started/import.html#importing) for adding data objects in bulk. To further speed up the import process, you can use parallelization, which lets you run multiple batches concurrently. Each object in these batches is then checked for duplicates and assigned a unique internal DocID used by Weaviate to access objects.
+Weaviate offers and strongly recommends the [batch import feature](/developers/weaviate/getting-started/import#importing) for adding data objects in bulk. To further speed up the import process, you can use parallelization, which lets you run multiple batches concurrently. Each object in these batches is then checked for duplicates and assigned a unique internal DocID used by Weaviate to access objects.
 
 We uncovered that there could be a race condition in this process. Sometimes when multiple batches contained identical objects with the same UUID, they could be added more than once to Weaviate, each time with different DocIDs. This, in turn, could cause issues within Weaviate.
 
-Luckily, we’ve addressed this issue without sacrificing performance (yay!🥳). Here's our journey that got us to the current solution.
+Luckily, we've addressed this issue without sacrificing performance (yay!🥳). Here's our journey that got us to the current solution.
 
 ## Our initial solutions
 In the initial solution, we added a lock (sync.Mutex in Go), so that now only a single goroutine can hold the lock, check for duplicate UUIDs, and assign DocIDs. This lock makes sure that the race does not occur anymore, but as an unintended side-effect the import time increased by ~20% due to lock-congestion.
 
-Upon further consideration, our team concluded that while using a single lock is effective, it’s also overkill. Almost all objects are unique and it is not a problem to process those concurrently. We found that what we really needed was just a lock for each unique UUID. Cleverly, this approach would ensure that only one object per UUID is handled at each point in time, so that Weaviate cannot add multiple instances of objects with the same UUID. Meanwhile, it would still allow full parallelization of import processes to maximize performance.
+Upon further consideration, our team concluded that while using a single lock is effective, it's also overkill. Almost all objects are unique and it is not a problem to process those concurrently. We found that what we really needed was just a lock for each unique UUID. Cleverly, this approach would ensure that only one object per UUID is handled at each point in time, so that Weaviate cannot add multiple instances of objects with the same UUID. Meanwhile, it would still allow full parallelization of import processes to maximize performance.
 
 ![Single-lock solution](./img/single-lock-solution.png)
 
@@ -54,9 +54,9 @@ The **lock striping** pattern was introduced in Weaviate `v1.15.4`. So if you ar
 
 Thank you for reading, and see you next time!
 
-## What’s Next
-Check out the [Getting Started with Weaviate](https://weaviate.io/developers/weaviate/current/getting-started/index.html) and begin building amazing apps with Weaviate.
+## What's Next
+Check out the [Getting Started with Weaviate](/developers/weaviate/getting-started) and begin building amazing apps with Weaviate.
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
-Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don’t forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don't forget to give us a ⭐️ while you are there.

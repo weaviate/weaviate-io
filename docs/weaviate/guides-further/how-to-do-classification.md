@@ -22,7 +22,7 @@ sidebar_position: 5
 You can use Weaviate to automatically classify data, that is, you can ask Weaviate to automatically make references between concepts. Since Weaviate stores data objects based on semantics in a vector position, a variety of automated classification tasks can be performed in near-realtime. Weaviate offers two different types of classification:
 
 1. **Contextual classification**. Provided by the `text2vec-contextionary` module, thus can only be used when this module is active in your Weaviate instance. Uses the context of data points to make new references. There is no training data needed, and this type of classification is the right pick if you have a strong semantic relation in your data. See [here](../retriever-vectorizer-modules/text2vec-contextionary.html) for more information. 
-2. **kNN classification**. To assign property values and references of data objects based on how similar objects are labeled that Weaviate finds. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn’t a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful. See more [here](../restful-api-references/classification.html#knn-classification).
+2. **kNN classification**. To assign property values and references of data objects based on how similar objects are labeled that Weaviate finds. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful. See more [here](../restful-api-references/classification.html#knn-classification).
 
 In this how-to guide, you will learn how to classify with Contextual and kNN classification.
 
@@ -124,7 +124,7 @@ If we later want to know to which `Category` a specific `Article` refers to, we 
                 }
             }
         ],
-        "summary": "A New Mexico state senator was reportedly convicted on misdemeanor aggravated drunken driving and reckless driving charges Tuesday -- nearly six months after he rear-ended a driver stopped at a red light in the state. Third, the consequences,” Mark Probasco, a special prosecutor with the state attorney general’s office said, according to The Journal. — Mark Probasco, special prosecutor with New Mexico state attorney general’s officeMartinez originally told officers he had only “a beer or two,” but later admitted he had multiple glasses of wine. The officer who arrested Martinez said the senator was slurring his speech and had alcohol on his breath. CLICK HERE TO GET THE FOX NEWS APPA former Republican state senator in New Mexico was defeated last year after she was convicted for DUI in 2018, The Journal reported.",
+        "summary": "A New Mexico state senator was reportedly convicted on misdemeanor aggravated drunken driving and reckless driving charges Tuesday -- nearly six months after he rear-ended a driver stopped at a red light in the state. Third, the consequences,” Mark Probasco, a special prosecutor with the state attorney general's office said, according to The Journal. — Mark Probasco, special prosecutor with New Mexico state attorney general's officeMartinez originally told officers he had only “a beer or two,” but later admitted he had multiple glasses of wine. The officer who arrested Martinez said the senator was slurring his speech and had alcohol on his breath. CLICK HERE TO GET THE FOX NEWS APPA former Republican state senator in New Mexico was defeated last year after she was convicted for DUI in 2018, The Journal reported.",
         "title": "New Mexico Democrat's DUI conviction could cost him panel chairmanship, state party leaders warn",
         "url": "https://www.foxnews.com/politics/new-mexico-democratic-state-senator-convicted-of-dui-reckless-driving-in-june-crash",
         "wordCount": 377
@@ -200,7 +200,7 @@ Results in:
       "Article": [
         {
           "uuid": "00327619-fdfa-37cd-a003-5d2e66ae2fec",
-          "summary": "While businesses are looking to create their own changemaker strategies, charities and non-governmental organisations (NGOs) are carrying on with their day jobs. Consider the wide-reaching activities of Action Against Hunger, an NGO committed to saving children’s lives across almost 50 countries. “Critical to this mission is creating change,” says Matthew White, director of fundraising and communications. “We take an unwanted item, in the form of a bike, and use it to achieve social change. “We try to find and attract the people who want to make a difference,” says White of Action Against Hunger.",
+          "summary": "While businesses are looking to create their own changemaker strategies, charities and non-governmental organisations (NGOs) are carrying on with their day jobs. Consider the wide-reaching activities of Action Against Hunger, an NGO committed to saving children's lives across almost 50 countries. “Critical to this mission is creating change,” says Matthew White, director of fundraising and communications. “We take an unwanted item, in the form of a bike, and use it to achieve social change. “We try to find and attract the people who want to make a difference,” says White of Action Against Hunger.",
           "title": "From chefs to cyclists: how inspiring charities make a change",
           "wordCount": 908,
           "hasPopularity": [{
@@ -210,7 +210,7 @@ Results in:
         },
         {
           "uuid": "373d28fb-1898-313a-893b-5bc77ba061f6",
-          "summary": "I love E3 because it’s a great event showcasing what’s ahead for gaming. The Legend of Heroes: Trails of Cold Steel III (PS4)Release: September 24I’ve expressed my admiration for this series more than a few times, because it captures a classic-but-also-not-dated feel. At E3, I was able to see how Cold Steel III is shaping up by going hands-on with the beginning section of the game. If you choose to go in blind, Cold Steel III will feature a guide to catch you up on the previous games. Klei came out at E3 with a new trailer and post detailing the changes and why development is taking longer than expected.",
+          "summary": "I love E3 because it's a great event showcasing what's ahead for gaming. The Legend of Heroes: Trails of Cold Steel III (PS4)Release: September 24I've expressed my admiration for this series more than a few times, because it captures a classic-but-also-not-dated feel. At E3, I was able to see how Cold Steel III is shaping up by going hands-on with the beginning section of the game. If you choose to go in blind, Cold Steel III will feature a guide to catch you up on the previous games. Klei came out at E3 with a new trailer and post detailing the changes and why development is taking longer than expected.",
           "title": "Five RPGs You May Have Overlooked From E3",
           "wordCount": 361,
           "hasPopularity": [{

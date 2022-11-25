@@ -32,7 +32,7 @@ sidebar_position: 15
 # Start a classification
 
 Weaviate's classification features allows you to classify data objects by predicting cross-references based on the semantic meaning of the data objects. Weaviate Core (without any modules) provides one type of classification: 
-- **[kNN classification](#knn-classification)**: Uses the k-nearest neighbors algorithm and requiring training data to predict cross-references. Weaviate finds similar objects and checks how they were labeled in the past. Especially when there isn’t a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful.
+- **[kNN classification](#knn-classification)**: Uses the k-nearest neighbors algorithm and requiring training data to predict cross-references. Weaviate finds similar objects and checks how they were labeled in the past. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful.
 
 The vectorizer module `text2vec-contextionary` provides a second type of classification. Information about this classification type can be found [here](../retriever-vectorizer-modules/text2vec-contextionary.html).
 - **[Contextual classification](../retriever-vectorizer-modules/text2vec-contextionary.html)**: Predicts cross-references based on the context, without training data. If you don't have any training data and want to classify how similar a source item is to a potential target item, contextual classification is the right pick. Especially when there is a strong semantic relation in your data (e.g., `The Landmark Eiffel Tower` and `The City Paris`).
@@ -138,7 +138,7 @@ After the classification is completed, the concerning reference properties data 
 
 # KNN classification
 
-With [*k*-nearest neighbor](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) classification, Weaviate finds similar objects and checks how they were labeled in the past. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn’t a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful.
+With [*k*-nearest neighbor](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) classification, Weaviate finds similar objects and checks how they were labeled in the past. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful.
 
 ### Example use cases
 

@@ -174,7 +174,7 @@ That's it! You can now push your image to your favorite registry or reference
 it locally in your Weaviate `docker-compose.yaml` using the Docker tag
 `my-model-inference`.
 
-To debug and test if your inference container is working correctly, you can send queries to the vectorizer module’s inference container directly, so you can see exactly what vectors it would produce for which input. To do so, you need to expose the inference container in your docker-compose by adding:
+To debug and test if your inference container is working correctly, you can send queries to the vectorizer module's inference container directly, so you can see exactly what vectors it would produce for which input. To do so, you need to expose the inference container in your docker-compose by adding:
 
 ```yaml
 ports:
