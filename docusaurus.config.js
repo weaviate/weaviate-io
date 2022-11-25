@@ -11,6 +11,7 @@ const config = {
   // url: 'https://weaviate-docusaurus.netlify.app',
   url: 'https://weaviate.io',
   baseUrl: '/',
+  trailingSlash: false,
   // onBrokenLinks: 'throw',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
