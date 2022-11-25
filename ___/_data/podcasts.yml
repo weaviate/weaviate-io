@@ -88,7 +88,7 @@
   cover_image: '/img/podcasts/podcast-17.png'
   is_use_case: false
 - title: >
-    Weaviate’s ANN Benchmarks
+    Weaviate's ANN Benchmarks
   description: > 
     Join Etienne Dilocker and Connor Shorten to learn about the latest benchmark report for Weaviate.
   youtube: kG3ji89AFyQ
