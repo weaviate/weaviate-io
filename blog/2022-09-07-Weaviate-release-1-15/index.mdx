@@ -15,7 +15,7 @@ image: ./img/hero.png
 # og: /img/blog/hero/weaviate-1-15-card.png
 # date: 2022-09-07
 # toc: false
-# redirect_from: /blog/2022/09/Weaviate-release-1-15.html
+# redirect_from: /blog/Weaviate-release-1-15.html
 ---
 ![Weaviate 1.15 release](./img/hero.png)
 
@@ -40,7 +40,7 @@ Read below to learn more about each of these points in more detail.
 
 ### Patch 1.15.1 note
 We have published a patch release v1.15.1.<br/>
-To learn more check the [Weaviate 1.15.1 patch release](/blog/2022/09/Weaviate-release-1-15-1.html) blog.
+To learn more check the [Weaviate 1.15.1 patch release](/blog/Weaviate-release-1-15-1) blog.
 
 ### Community effort
 ![New Contributors](./img/new-contributors.jpg)
@@ -79,11 +79,11 @@ Cloud-native backups in Weaviate are handled with the addition of the new **back
 * `backup-gcs` – for GCS
 * `backup-fs` – for local filesystem
 
-Without getting into too many details (see the [docs for more precise instructions](/developers/weaviate/current/configuration/backups.html)), each module requires a different set of settings.
+Without getting into too many details (see the [docs for more precise instructions](/developers/weaviate/configuration/backups)), each module requires a different set of settings.
 
 For S3 and GCS, you need your cloud bucket name, authentication details and some extra details like a project name or the cloud region.
 
-> For S3 authentication you can use access keys or IAM with role ARN’s.
+> For S3 authentication you can use access keys or IAM with role ARN's.
 >
 > For GCS you can use a Google Application Credentials json file.
 
@@ -143,7 +143,7 @@ Here is one interesting thing that you might not have noticed. You can use this 
 ### Class backups
 You can also create backups for specific classes or select which classes you want to restore. Just add one of the following properties to the `POST payload`:
 * `include` – an array class names we want to backup or restore
-* `exclude` – an array class names we don’t want to backup or restore
+* `exclude` – an array class names we don't want to backup or restore
 
 For example, you can create a backup that includes Cats, Dogs and Meerkats.
 
@@ -171,7 +171,7 @@ So, if one day you find yourself with an environment that is not set up for what
 
 ### Follow up
 Are you ready to set up backups for your environment?
-Head to the [documentation](/developers/weaviate/current/configuration/backups.html) for a more in-depth overview and instructions.
+Head to the [documentation](/developers/weaviate/configuration/backups) for a more in-depth overview and instructions.
 
 ## Reduced memory usage
 
@@ -208,7 +208,7 @@ To fix that, we switched to static allocations, and Weaviate instructs the Go ru
 Weaviate is built from the ground up in Go, which allows for building very performant and memory-safe applications. Go is a garbage-collected language.
 
 > *A quick refresher:*<br/>
-> In a garbage-collected language, such as Go, C#, or Java, the programmer doesn’t have to deallocate objects manually after using them. Instead, a GC cycle runs periodically to collect memory no longer needed and ensure it can be assigned again.
+> In a garbage-collected language, such as Go, C#, or Java, the programmer doesn't have to deallocate objects manually after using them. Instead, a GC cycle runs periodically to collect memory no longer needed and ensure it can be assigned again.
 
 ### The problem
 
@@ -226,7 +226,7 @@ At the beginning of August, the Go team released `Go 1.19`, which introduced `GO
 
 With GOMEMLIMIT we can provide a soft memory cap, which tells Go how much memory we expect the application to need. This makes the GC more relaxed when RAM is plentiful and more aggressive when memory is scarce.
 
-To learn more about memory management, GC and GOMEMLIMIT, check out [this article](/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html), which explains it all in more depth.
+To learn more about memory management, GC and GOMEMLIMIT, check out [this article](/blog/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications), which explains it all in more depth.
 
 ### Announcement
 
@@ -238,7 +238,7 @@ Now, you can set your **soft memory cap** by setting the `GOMEMLIMIT` environmen
 GOMEMLIMIT=120GiB
 ```
 
-For more information, see the [Docker Compose environment variables](/developers/weaviate/current/installation/docker-compose.html#environment-variables) in the docs.
+For more information, see the [Docker Compose environment variables](/developers/weaviate/installation/docker-compose#environment-variables) in the docs.
 
 ## Faster imports for ordered data
 
@@ -275,16 +275,16 @@ With a full import test, we saw a **3x performance improvement** 🚀.
 
 ![More efficient filtered aggregations](./img/filtered-aggregation.png)
 
-Recently we’ve been working with a customer who was running multiple filtered aggregations on a large dataset. Unfortunately, the queries were slow, resulting in Out Of Memory kills in some cases. This was not good enough for what we expected of Weaviate. 
+Recently we've been working with a customer who was running multiple filtered aggregations on a large dataset. Unfortunately, the queries were slow, resulting in Out Of Memory kills in some cases. This was not good enough for what we expected of Weaviate. 
 
 ### Investigation
 
-To investigate the issue, we’ve set up a database with 1M objects and a profiler to watch memory consumption.
+To investigate the issue, we've set up a database with 1M objects and a profiler to watch memory consumption.
 
 We used that setup to run ten parallel filtered aggregations. Upon reviewing the memory consumption, we noted that some of the filtered aggregations were taking up to **200GB** of RAM (note, this was not the total allocated memory on the heap, as a big part of it was waiting to be collected by GC).
 
 ### The issue
-Fast forward, we identified two key issues. First, the Go library that we used for reading binary data (`binary.read`) isn’t optimized for how we use it in Weaviate, as it makes many temporary memory allocations. Second, for every object in the aggregation, we would allocate new memory on the heap, process the read, and release the memory.
+Fast forward, we identified two key issues. First, the Go library that we used for reading binary data (`binary.read`) isn't optimized for how we use it in Weaviate, as it makes many temporary memory allocations. Second, for every object in the aggregation, we would allocate new memory on the heap, process the read, and release the memory.
 
 <!-- TODO: add a picture with cakes -->
 This is a bit like, if we want to eat a cake, we need to put it on a plate, eat the cake and then put the plate in the sink to wash. Now, if we want to eat a million cakes, we will be either very busy washing dishes or have a million plates in the sink (or even run out of plates).<br/>
@@ -302,7 +302,7 @@ To solve the problem, we implemented two solutions:
 
 In the world of cakes, we optimized our eating technique to consume more cakes, and we only need one plate to eat all the cakes.
 
-On top of that, we’ve introduced other minor optimizations. So if you are curious about that, drop us a message on Slack, and we can chat some more.
+On top of that, we've introduced other minor optimizations. So if you are curious about that, drop us a message on Slack, and we can chat some more.
 
 ### Results
 
@@ -311,7 +311,7 @@ As a result, the filtered aggregations are to **10-20x faster** and require less
 When we rerun the original test (with ten parallel aggregations), we saw the memory consumption drop to 30GB (vs 200GB). 
 
 <!-- TODO: add a quote from Juraj
-But don’t take our word for it, this was from a test run by one of our community members…
+But don't take our word for it, this was from a test run by one of our community members…
  -->
 
 ## New distance metrics
@@ -320,7 +320,7 @@ But don’t take our word for it, this was from a test run by one of our communi
 
 Thanks to the community contributions from [Aakash Thatte](https://github.com/sky-2002), Weaviate `v1.15` adds two new distance metrics: **Hamming** distance and **Manhattan** distance. In total, you can now choose between five various distance metrics to support your datasets.
 
-Check out the [metrics documentation page](/developers/weaviate/current/vector-index-plugins/distances.html#distance-implementations-and-optimizations) for a complete overview of all available metrics in Weaviate.
+Check out the [metrics documentation page](/developers/weaviate/references/distances#distance-implementations-and-optimizations) for a complete overview of all available metrics in Weaviate.
 
 ### Hamming distance
 The Hamming distance is a metric for comparing two numerical vectors. <br/>
@@ -419,7 +419,7 @@ Which would return the following result:
 }
 ```
 
-Head to the [Summarization Module docs page](/developers/weaviate/current/reader-generator-modules/sum-transformers.html) to learn more.
+Head to the [Summarization Module docs page](/developers/weaviate/modules/reader-generator-modules/sum-transformers) to learn more.
 
 ### Hugging Face Module
 The Hugging Face module (`text2vec-huggingface`) opens up doors to over 600 [Hugging Face sentence similarity models](https://huggingface.co/models?pipeline_tag=sentence-similarity), ready to be used in Weaviate as a vectorization module.
@@ -433,7 +433,7 @@ You need a `Hugging Face API Token` to use the Hugging Face module. You can [req
 *Note. Hugging Face Inference uses [a pay-per-use pricing model](https://huggingface.co/inference-api#pricing).<br />
 Make sure to study it well before you run a big job.*
 
-To learn more, head to the [HuggingFace Module docs page](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-huggingface.html).
+To learn more, head to the [HuggingFace Module docs page](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface).
 
 ## Other improvements and bug fixes
 

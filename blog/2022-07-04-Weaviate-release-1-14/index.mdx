@@ -93,7 +93,7 @@ Note that the performance improvements should be noticeable for imports of over 
 Before, the HNSW index would grow in constant intervals of 25,000 objects. This was fine for datasets under 25 million objects. But once the database got to around 25 million objects, adding new objects would be significantly slower. Then from 50–100m, the import process would slow down to a walking pace.
 
 #### Solution
-To address this problem, we changed how the HNSW index grows. We implemented a relative growth pattern, where the HNSW index size increases by either 25% or 25’000 objects (whichever is bigger).
+To address this problem, we changed how the HNSW index grows. We implemented a relative growth pattern, where the HNSW index size increases by either 25% or 25'000 objects (whichever is bigger).
 
 ![HNSW index growth chart](./img/hnsw-index-growth.jpg)
 
@@ -160,7 +160,7 @@ Here is an [example project](https://github.com/semi-technologies/weaviate-examp
 Just spin everything up, run a few queries and navigate to the Grafana instance in the browser to see the dashboard.
 
 ### Learn more
-To learn more, see the [documentation](/developers/weaviate/current/more-resources/monitoring.html).
+To learn more, see the [documentation](/developers/weaviate/configuration/monitoring).
 
 ## Support for non-cosine distances
 ![Support for non-cosine distances](./img/non-cosine-distances.png)
@@ -184,7 +184,7 @@ The distance values provided are raw numbers, which allow you to interpret the r
 For example, you can normalize and convert **distance values** to **certainty values** that fit the machine learning model you use and the kind of results you expect.
 
 ### Learn more
-For more info, check out [the documentation](/developers/weaviate/current/vector-index-plugins/distances.html).
+For more info, check out [the documentation](/developers/weaviate/references/distances).
 
 ### Contribute
 Adding other distances is surprisingly easy, which could be a great way to contribute to the Weaviate project.
@@ -200,9 +200,9 @@ The REST API CRUD operations now require you to use both an **object ID** and th
 This ensures that the operations are performed on the correct objects.
 
 ### Background
-One of Weaviate's features is full CRUD support. CRUD operations enable the mutability of data objects and their vectors, which is a key difference between a vector database and an ANN library. In Weaviate, every data object has an ID (UUID). This ID is stored with the data object in a key-value store. IDs don’t have to be globally unique, because in Weaviate [classes](/developers/weaviate/current/schema/schema-configuration.html#class-object) act as namespaces. While each class has a different [HNSW index](/developers/weaviate/current/vector-index-plugins/hnsw.html), including the store around it, which is isolated on disk.
+One of Weaviate's features is full CRUD support. CRUD operations enable the mutability of data objects and their vectors, which is a key difference between a vector database and an ANN library. In Weaviate, every data object has an ID (UUID). This ID is stored with the data object in a key-value store. IDs don't have to be globally unique, because in Weaviate [classes](/developers/weaviate/references/schema-configuration#class-object) act as namespaces. While each class has a different [HNSW index](/developers/weaviate/vectorization/hnsw), including the store around it, which is isolated on disk.
 
-There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{id}](/developers/weaviate/current/restful-api-references/objects.html) REST endpoints.
+There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{id}](/developers/weaviate/references/rest/objects) REST endpoints.
 If you wanted to retrieve, modify or delete a data object by its ID, you would just need to specify the ID, without specifying the class name. So if the same ID exists for objects in multiple classes (which is fine because of the namespaces per class), Weaviate would not know which object to address and would address all objects with that ID instead. I.e. if you tried to delete an object by ID, this would result in the deletion of all objects with that ID.
 
 ### Endpoint changes
@@ -235,25 +235,25 @@ There are also updates in the language clients, where you now should provide a c
 
 ## Stronger together
 Of course, making Weaviate more reliable would be a lot harder without the great community around Weaviate.
-<br/>As it is often the case: *"You can’t fix issues you didn’t know you have"*.
+<br/>As it is often the case: *"You can't fix issues you didn't know you have"*.
 
-<!-- ![You can’t fix issues you didn’t know you have](./img/you-cant-fix.jpg) -->
+<!-- ![You can't fix issues you didn't know you have](./img/you-cant-fix.jpg) -->
 
 ### Thank you
-Thanks to many active members on Weaviate’s Community Slack and through GitHub issues, we were able to identify, prioritize and fix many more issues than if we had to do it alone.
+Thanks to many active members on Weaviate's Community Slack and through GitHub issues, we were able to identify, prioritize and fix many more issues than if we had to do it alone.
 
 > Together, we made Weaviate v1.14 <br/>the most stable release yet.
 
 ### Help us
-If at any point during your journey with Weaviate, you discover any bugs or you have feedback to share, please don’t hesitate to reach out to us via:
-* [Weaviate’s Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) – you can join anytime
+If at any point during your journey with Weaviate, you discover any bugs or you have feedback to share, please don't hesitate to reach out to us via:
+* [Weaviate's Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) – you can join anytime
 * [GitHub issues for Weaviate Core](https://github.com/semi-technologies/weaviate/issues/new)
-* [GitHub issues for Weaviate’s documentation](https://github.com/semi-technologies/weaviate-io/issues/new/choose)
+* [GitHub issues for Weaviate's documentation](https://github.com/semi-technologies/weaviate-io/issues/new/choose)
 
 We have a little favour to ask. Often reproducing the issue takes a lot more time than it takes to fix it. When you report a new issue, please include steps on how to reproduce the issue, together with some info about your environment. That will help us tremendously to identify the root cause and fix it.
 
 ### Guide
-Here is a little guide on [how to write great bug reports](/developers/weaviate/current/tutorials/write-great-bug-reports.html).
+Here is a little guide on [how to write great bug reports](/developers/weaviate/more-resources/write-great-bug-reports).
 
 ## Enjoy
 We hope you enjoy the most reliable and observable Weaviate release yet!

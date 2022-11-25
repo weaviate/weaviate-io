@@ -147,7 +147,7 @@ it locally in your Weaviate `docker-compose.yaml` using the Docker tag
 `my-models-inference`.
 
 To debug if your inference container is working correctly, you can send queries
-to the vectorizer module’s inference container directly, so you can see exactly
+to the vectorizer module's inference container directly, so you can see exactly
 what vectors it would produce for which input. To do so, you need to expose the
 inference container. in your Docker-compose add something like
 ```yaml

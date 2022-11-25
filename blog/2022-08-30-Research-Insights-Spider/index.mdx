@@ -15,7 +15,7 @@ image: ./img/hero.jpg
 # toc: true
 # isMLResearch: true
 # isDBResearch: false
-# redirect_from: /blog/2022/08/Research-Insights-Spider.html
+# redirect_from: /blog/Research-Insights-Spider.html
 ---
 ![Research Insights – Learning to Retrieve Passages without Supervision](./img/hero.jpg)
 
@@ -31,9 +31,9 @@ Self-Supervised Learning – a class of learning algorithms that can bootstrap l
 Self-Supervised Learning has led to massive advances in generative modeling and representation learning. In this article, we will explain **Span-based Unsupervised Dense Retriever (Spider)**, a recent breakthrough for Self-Supervised representation learning applied to text retrieval in search.
 
 ### Results
-The results Spider achieves are extremely exciting! The headline is that Spider’s Zero-Shot Generalization rivals the performance of the Supervised baseline on Supervised evaluation. This means that we take the labeled dataset, divide it into train-test splits, train a Supervised model on this train split, and then evaluate both models on the held-out test split. Although Spider has not been trained on this distribution (Zero-Shot Generalization), it achieves a similar performance to the model which has!
+The results Spider achieves are extremely exciting! The headline is that Spider's Zero-Shot Generalization rivals the performance of the Supervised baseline on Supervised evaluation. This means that we take the labeled dataset, divide it into train-test splits, train a Supervised model on this train split, and then evaluate both models on the held-out test split. Although Spider has not been trained on this distribution (Zero-Shot Generalization), it achieves a similar performance to the model which has!
 
-The authors further probe this Zero-Shot Generalization across several Open-Domain Question Answering datasets to illustrate how much better these Self-Supervised algorithms are than their Supervised predecessors. Further, the authors show how we can target Spider’s performance to a particular data distribution with Transfer Learning. The new algorithms prove to be much more sample efficient, requiring only 128 labeled examples!
+The authors further probe this Zero-Shot Generalization across several Open-Domain Question Answering datasets to illustrate how much better these Self-Supervised algorithms are than their Supervised predecessors. Further, the authors show how we can target Spider's performance to a particular data distribution with Transfer Learning. The new algorithms prove to be much more sample efficient, requiring only 128 labeled examples!
 
 ## Information Retrieval with Deep Learning
 
@@ -43,9 +43,9 @@ In order to answer queries based on data from Wikipedia, we take every sentence,
 * a dataset (such as paragraphs from Wikipedia),
 * and an optimization task.
 
-Here we can use Contrastive Learning, which is a strong optimization task. Contrastive Learning uses a combination of positive (semantically similar – we want these to match) and negative (semantically dissimilar – we don’t want these to match) samples from a given anchor/query point.  
+Here we can use Contrastive Learning, which is a strong optimization task. Contrastive Learning uses a combination of positive (semantically similar – we want these to match) and negative (semantically dissimilar – we don't want these to match) samples from a given anchor/query point.  
 
-The image below illustrates the concept of Contrastive Learning. We want to align representations of Meerkat images by contrasting them with sampled negatives. If we choose negatives that are too easy (like comparing Meerkats with a New York City photograph), the model won’t learn a whole lot about semantics. However, if we choose a better negative (like a Golden Retriever), the model has to capture more semantics about the visual features of Meerkats.
+The image below illustrates the concept of Contrastive Learning. We want to align representations of Meerkat images by contrasting them with sampled negatives. If we choose negatives that are too easy (like comparing Meerkats with a New York City photograph), the model won't learn a whole lot about semantics. However, if we choose a better negative (like a Golden Retriever), the model has to capture more semantics about the visual features of Meerkats.
 
 <!-- TODO: update the image from Svitlana -->
 
@@ -54,7 +54,7 @@ The image below illustrates the concept of Contrastive Learning. We want to alig
 
 The problem with Contrastive Learning is that the construction of positive and negative samples typically requires expensive and time-consuming manual labeling. Self-Supervised Learning, on the other hand, aims to minimize this cost and offers a clear breakthrough in the performance of these techniques.
 
-## What’s New - Span-based Unsupervised Dense Retriever (SPIDER)
+## What's New - Span-based Unsupervised Dense Retriever (SPIDER)
 
 Spider offers a way to automatically generate **Anchor**, **Positive** and **Negative** training data with **Recurring Span Retrieval**. One of the key elements of Spider is to identify the longest Recurring Spans that appear in two (or more) different places within the same Document. Then use that to later construct positive and negative training data.
 
@@ -69,7 +69,7 @@ Some quick terms before diving in:
 
 ### Exercise – Spider implementation
 
-As an exercise, I’ve prepared a [Google Colab notebook](https://colab.research.google.com/github/CShorten/Small-Weaviate-Examples/blob/main/Recurring-Spans.ipynb), where I implemented a basic version of the Spider Algorithm. The idea is to identify the longest Recurring Spans in the "Deep learning" Wikipedia article.
+As an exercise, I've prepared a [Google Colab notebook](https://colab.research.google.com/github/CShorten/Small-Weaviate-Examples/blob/main/Recurring-Spans.ipynb), where I implemented a basic version of the Spider Algorithm. The idea is to identify the longest Recurring Spans in the "Deep learning" Wikipedia article.
 
 ### Exercise – pseudocode
 In case you are curious on how my implementation works.
@@ -98,7 +98,7 @@ With that we can construct an Anchor, Positive & Negative samples, like this:
 
 * **Anchor** = "Research has explored use of deep learning to predict the biomolecular targets, off-targets, **and toxic effects of environmental chemicals in nutrients, household products and drugs**."
 
-* **Positive** = "In 2014, Hochreiter’s group used deep learning to detect off-target **and toxic effects of environmental chemicals in nutrients, household products and drugs** and won the "Tox21 Data Challenge" of NIH, FDA, and NCATS."
+* **Positive** = "In 2014, Hochreiter's group used deep learning to detect off-target **and toxic effects of environmental chemicals in nutrients, household products and drugs** and won the "Tox21 Data Challenge" of NIH, FDA, and NCATS."
 
 * **Negative** = "Advances in hardware have driven renewed interest in deep learning. In 2009, Nvidia was involved in what was called the "big bang" of deep learning, "as deep-learning neural networks were trained with Nvidia graphics processing units (GPUs)."
 
@@ -130,7 +130,7 @@ The image below demonstrates two examples with the matching Recurring Spans **"t
 
 The authors experimentally present the effectiveness of Spider with the use of ODQA (Open-Domain Question Answering) datasets. ODQA datasets consist of labeled (question, answer, context) tuples. For example ("What is the atomic number of oxygen?", "8", "Oxygen is the chemical element with the symbol O and atomic number 8."). Retrieval models are evaluated based on whether they can retrieve this context given the question as input and a large collection of contexts represented as vectors. This is reported with the top-k retrieval accuracy, the percentage of questions for which the answer span is found in the top-k passages most similar to the query. 
 
-The Spider retrieval models are 110 million parameter BERT-base transformers, using an uncased WordPiece tokenizer. The vector representations of passages are extracted by indexing the [CLS] token, a common indexing technique describing extraction from the leftmost vector in BERT’s output matrix. Spider is trained on a Wikipedia dump from Dec. 20th, 2018 with passages of 100 words as retrieval units, totalling 21 million passages after preprocessing. Spider is trained for 200,000 steps using a batch size of 1024. This takes 2 days implemented with 8 80GB A100 GPUs. The authors additionally explore fine-tuning Spider with Supervised Learning using 8 Quadro RTX 8000 GPUs.
+The Spider retrieval models are 110 million parameter BERT-base transformers, using an uncased WordPiece tokenizer. The vector representations of passages are extracted by indexing the [CLS] token, a common indexing technique describing extraction from the leftmost vector in BERT's output matrix. Spider is trained on a Wikipedia dump from Dec. 20th, 2018 with passages of 100 words as retrieval units, totalling 21 million passages after preprocessing. Spider is trained for 200,000 steps using a batch size of 1024. This takes 2 days implemented with 8 80GB A100 GPUs. The authors additionally explore fine-tuning Spider with Supervised Learning using 8 Quadro RTX 8000 GPUs.
 
 ### Spider + BM25 is on par with Supervised DPR when evaluated on the Supervised DPR test set!
 
