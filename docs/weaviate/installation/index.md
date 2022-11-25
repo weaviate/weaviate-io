@@ -1,5 +1,5 @@
 ---
-title: Installation Overview
+title: Installation & Configuration overview
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -14,6 +14,7 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/getting-started/installation.html
 ---
 
+This section provides an overview of available options for running Weaviate, and basic information about the Weaviate client libraries.
 # Running Weaviate
 
 ​Weaviate versions on the Weaviate Cloud Service (WCS) and Weaviate open source are identical, with the only difference that the WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/semi-technologies/weaviate/blob/master/LICENSE).

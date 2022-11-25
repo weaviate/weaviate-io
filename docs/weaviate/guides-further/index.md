@@ -1,5 +1,5 @@
 ---
-title: How-To Guides
+title: Guides - further topics
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -18,7 +18,11 @@ sidebar_position: 0
 #     - /developers/weaviate/current/how-tos/
 ---
 
-These how-to guides are designed to answer a question on how to perform a specific task using Weaviate. 
+These guides are designed to be consumed after becoming familiar with [how to use](../guides/index.md) Weaviate, and to [configure](../configuration/index.md) Weaviate to your needs.
+
+As such, these *further* guides are a little more specific, much as recipes tend to be in cooking, whereas the earlier sections can be thought as general guides on cooking.
+
+You can read them in any order, and depending on your needs or interests, you may decide to skip them altogether. 
 
 <!-- 1. [How to create a schema.](./how-to-create-a-schema.html)
 2. [How to import data.](./how-to-import-data.html)

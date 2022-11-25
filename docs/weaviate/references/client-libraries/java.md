@@ -1,16 +1,18 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Client libraries
 title: Java
-intro: A Java client library for Weaviate.
-description: Java client library for Weaviate
-tags: ['java', 'client library']
 sidebar_position: 3
-open-graph-type: article
-toc: true
-redirect_from:
-    - /developers/weaviate/v1.11.0/client-libraries/java.html
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Client libraries
+# title: Java
+# intro: A Java client library for Weaviate.
+# description: Java client library for Weaviate
+# tags: ['java', 'client library']
+# sidebar_position: 3
+# open-graph-type: article
+# toc: true
+# redirect_from:
+#     - /developers/weaviate/v1.11.0/client-libraries/java.html
 ---
 
 # Installation and setup

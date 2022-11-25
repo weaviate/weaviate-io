@@ -3,4 +3,16 @@ title: Search guides
 sidebar_position: 0
 ---
 
-A bunch of guides on how to perform various types of searches.
+This section is all about learning how to find the relevant information using Weaviate.
+
+If you haven't yet, we strongly recommend that you go through the [Quickstart tutorials](../getting-started/index.md) and the [Essential guides](../guides/index.md) first.
+
+In this section, we show you how to use different types of search options offered by Weaviate. By the time you are finished with the section, you will understand the key differences between each types and how to use each one. We cover these types of searches:
+
+- [Scalar](./how-to-query-data.md): A "traditional" search, driven by query pattern matching. 
+- [Vector/Semantic](./how-to-perform-a-semantic-search.md): Based on the concept of "similarity" of information; comparing objects in their AI-encoded "*vector space*".  
+- [Hybrid](./hybrid-search.md): Combines scalar and vector search principles.
+- [BM25](./bm25.md): A word "weight" based search algorithm, suitable for long documents.
+
+Once you are finished with this section, we suggest moving on to the [Advanced configuration](../configuration/index.md) section. There, you will see a range of important Weaviate configuration options like [modules](../configuration/modules.md) and [authentication](../configuration/authentication.md) that you can use to shape it to suit your needs, and others like [backups](../configuration/backups.md), [Enterprise Usage Collector](../configuration/enterprise-usage-collector.md) or [monitoring](../configuration/monitoring.md) to help you get to a production-ready state.
+

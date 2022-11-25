@@ -1,23 +1,26 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Client libraries
 title: Python
-intro: Weaviate has a native Python client to interact with Weaviate and its data. This page shows how to get started. Code examples are included in all example code blocks of the API (RESTful and GraphQL) on this website. The Python client has additional functionalities (for example schema operations), which are covered in the full client documentation on <a href="https://weaviate-python-client.readthedocs.io/#">weaviate-python-client.readthedocs.io</a>.
-description: Python client library for Weaviate
-tags: ['python', 'client library']
 sidebar_position: 1
-open-graph-type: article
-toc: true
-redirect_from:
-    - /documentation/weaviate/current/client-libs/python.html
-    - /documentation/weaviate/current/client-libraries/python.html
-    - /documentation/weaviate/current/client-libraries/javascript.html
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Client libraries
+# title: Python
+# intro: Weaviate has a native Python client to interact with Weaviate and its data. This page shows how to get started. Code examples are included in all example code blocks of the API (RESTful and GraphQL) on this website. The Python client has additional functionalities (for example schema operations), which are covered in the full client documentation on <a href="https://weaviate-python-client.readthedocs.io/#">weaviate-python-client.readthedocs.io</a>.
+# description: Python client library for Weaviate
+# tags: ['python', 'client library']
+# sidebar_position: 1
+# open-graph-type: article
+# toc: true
+# redirect_from:
+#     - /documentation/weaviate/current/client-libs/python.html
+#     - /documentation/weaviate/current/client-libraries/python.html
+#     - /documentation/weaviate/current/client-libraries/javascript.html
 ---
 
 # Installation and setup
 
-The Python library is available on [Pypi.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher. The current Python client version is {{ site.python_client_version }}.
+The Python library is available on [Pypi.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher. The current Python client version is 3.9.0.
+<!-- TODO - Replace Python client version with variable {{ site.python_client_version }} -->
 
 ```bash
 $ pip install weaviate-client

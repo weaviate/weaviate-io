@@ -1,17 +1,19 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Client libraries
 title: JavaScript
-intro: A JavaScript client library for Weaviate.
-description: JavaScript client library for Weaviate
-tags: ['JavaScript', 'client library']
 sidebar_position: 2
-open-graph-type: article
-toc: true
-redirect_from:
-    - /developers/weaviate/v1.2.1/client-libraries/javascript.html
-    - /documentation/weaviate/current/client-libs/javascript.html
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Client libraries
+# title: JavaScript
+# intro: A JavaScript client library for Weaviate.
+# description: JavaScript client library for Weaviate
+# tags: ['JavaScript', 'client library']
+# sidebar_position: 2
+# open-graph-type: article
+# toc: true
+# redirect_from:
+#     - /developers/weaviate/v1.2.1/client-libraries/javascript.html
+#     - /documentation/weaviate/current/client-libs/javascript.html
 ---
 
 # Installation and setup
