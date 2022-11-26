@@ -49,7 +49,9 @@ Next, you need to tell Weaviate what you want to have vectorized. Only the paylo
 }
 ```
 
-> 💡 The reason you can index class names and property names is that they sometimes give semantic context. For example, a class _Product_ could have the property _name_. If you vectorize everything you get a vector for _Product_ with the _name_ _some product_. This only goes for `text2vec` modules.
+:::note
+The reason you can index class names and property names is that they sometimes give semantic context. For example, a class _Product_ could have the property _name_. If you vectorize everything you get a vector for _Product_ with the _name_ _some product_. This only goes for `text2vec` modules.
+:::
 
 If you don't want to vectorize a property at all, you can simply skip it.
 

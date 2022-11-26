@@ -1,6 +1,6 @@
 ---
 title: Persistence
-sidebar_position: 10
+sidebar_position: 6
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration
@@ -15,13 +15,13 @@ sidebar_position: 10
 #     - /developers/weaviate/current/configuration/backups-and-persistence.html
 ---
 
-## Introduction
+## Overview
 
-Because Weaviate is run using Docker or Kubernetes, you can create a backup of your data by mounting a volume to store the data outside of the containers. When restarting a Weaviate instance, the data from the mounted volume is used to restore the dataset.
+When running Weaviate with Docker or Kubernetes, you can persist its data by mounting a volume to store the data outside of the containers. Doing so will cause the Weaviate instance to also load the data from the mounted volume when it is restarted.
+
+Note that Weaviate now offers native backup modules starting with `v1.15` for single-node instances, and `v1.16` for multi-node instances. For older versions of Weaviate, persisting data as described here will allow you to back up Weaviate.
 
 ## Docker Compose
-
-Creating backups is divided into two sections. First, we want to make the setup persistent. Second, we can create backups by copying the folder outside the container that contains the Weaviate DB.
 
 ### Persistence
 
@@ -87,7 +87,7 @@ See [Backups](./backups.html).
 
 ## Kubernetes
 
-For Kubernetes setup, the only thing to bear in mind is that Weaviate needs a `PersistentVolumes` through `PersistentVolumeClaims` ([more info](../getting-started/installation.html#requirements)) but the Helm chart is already configured to store the data on an external volume.
+For Kubernetes setup, the only thing to bear in mind is that Weaviate needs a `PersistentVolumes` through `PersistentVolumeClaims` ([more info](../getting-started/installation.md#requirements)) but the Helm chart is already configured to store the data on an external volume.
 
 ## Disk Pressure Warnings and Limits
 
@@ -100,7 +100,7 @@ Starting with `v1.12.0` there are two levels of disk usage notifications and act
 
 If a shard was marked `READONLY` due to disk pressure and you want to mark the
 shard as ready again (either because you have made more space available or
-changed the thresholds) you can use the [Shards API](../restful-api-references/schema.html#inspect-the-shards-of-a-class) to do so.
+changed the thresholds) you can use the [Shards API](../references/rest/schema.md#inspect-the-shards-of-a-class) to do so.
 
 # More Resources
 

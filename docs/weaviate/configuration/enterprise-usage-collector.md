@@ -1,6 +1,6 @@
 ---
 title: Enterprise Usage Collector
-sidebar_position: 11
+sidebar_position: 7
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration
@@ -14,7 +14,7 @@ sidebar_position: 11
 #     - /developers/weaviate/v1.1.0/configuration/enterprise-usage-collector.html
 ---
 
-# Introduction
+## Introduction
 
 When using Weaviate Enterprise, a proxy service is placed in between the user (or load balancer) and Weaviate. The service measures how Weaviate is used without sending through any sensitive information (e.g., function, durations, payload sizes). Below you can find an outline on how to add the proxy service to your setup.
 
@@ -58,9 +58,9 @@ services:
     # rest of the docker-compose.yml
 ```
 
-## Using the Docker configurator
+## Using the Docker Compose configurator
 
-You can also use the Docker compose [configurator](../getting-started/installation.html#docker-compose). Make sure to select `Enabled` for the Enterprise Usage Collector option.
+You can also use the Docker Compose [configurator](../getting-started/installation.html#docker-compose). Make sure to select `Enabled` for the Enterprise Usage Collector option.
 
 ## Collector proxy on Kubernetes using Helm
 
@@ -82,8 +82,6 @@ collector_proxy:
 ```
 
 Deploy the helm chart and make sure to use the proxy service for your requests. 
-
-
 
 # More Resources
 

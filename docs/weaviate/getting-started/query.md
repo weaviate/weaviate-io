@@ -58,7 +58,9 @@ Weaviate's GraphQL-API has three root functions:
 }
 ```
 
-> 💡 A more detailed explanation of Weaviate's GraphQL design is available [here](../graphql-references/#query-structure).
+:::note
+A more detailed explanation of Weaviate's GraphQL design is available [here](../references/graphql/index.md#query-structure).
+:::
 
 ## Get{}
 
@@ -263,7 +265,7 @@ You can also do the​ equivalent but based on the UUID of any object in the sam
 The `where` filter takes three operands of its own:
 
 1. `path` is the graph path in your schema.
-2. `operator` is set to define what you want to do with the value inside the path (e.g., `Equal` or `GreaterThan`, etc. See the list [here](../references/graphql/filters.html#filter-structure)).
+2. `operator` is set to define what you want to do with the value inside the path (e.g., `Equal` or `GreaterThan`, etc. See the list [here](../references/graphql/filters.md#filter-structure)).
 3. `value*` is set based on the type of the property defined in `path`. So, if the property in `path` is an `int`, this becomes `valueInt`, if it's a `string` it becomes `valueString`. The value itself is whatever you want to filter on.
 
 ​The examples below are a bit more explanatory.
@@ -399,10 +401,8 @@ And yes, you can combine vector search with where filters.
 
 [Try out ⬆️](https://link.semi.technology/3QgJPfo)
 
-:::info Vector first
-
+:::note Vector first
 We call Weaviate "vector first". This means that when combining vector search with a where filter, the where-filter will create an allowed-list that skips entries that are not allowed in the ANN index.
-
 :::
 
 If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`](todo-fix-link) vectorizer module and the [Q&A generator](todo-fix-link) module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.
