@@ -12,7 +12,7 @@ sidebar_position: 4
 # open-graph-type: article
 # toc: false
 # redirect_from:
-#     - /developers/weaviate/v1.1.0/client-libraries/index.html
+#     - /docs/weaviate/v1.1.0/client-libraries/index.html
 #     - /documentation/weaviate/current/client-libraries/index.html
 #     - /documentation/weaviate/current/client-libraries/
 ---

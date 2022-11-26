@@ -12,10 +12,10 @@ sidebar_position: 15
 # open-graph-type: article
 # toc: false
 # redirect_from:
-#     - /developers/weaviate/v1.1.0/restful-api-references/classification.html
+#     - /docs/weaviate/v1.1.0/restful-api-references/classification.html
 #     - /documentation/weaviate/current/classification/contextual-classification.html
 #     - /documentation/weaviate/current/classification/knn-classification.html
-#     - /documentation/weaviate/current/restful-api-references/classification.html
+#     - /documentation/weaviate/references/rest/classification.html
 ---
 
 # Index
@@ -26,7 +26,7 @@ sidebar_position: 15
 - [KNN classification](#knn-classification)
   - [Endpoint and parameters](#endpoint-and-parameters)
 - [Zero-Shot Classification](#zero-shot-classification)
-- [Contextual Classification](../retriever-vectorizer-modules/text2vec-contextionary.html)
+- [Contextual Classification](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md)
 - [More Resources](#more-resources)
 
 # Start a classification
@@ -34,8 +34,8 @@ sidebar_position: 15
 Weaviate's classification features allows you to classify data objects by predicting cross-references based on the semantic meaning of the data objects. Weaviate Core (without any modules) provides one type of classification: 
 - **[kNN classification](#knn-classification)**: Uses the k-nearest neighbors algorithm and requiring training data to predict cross-references. Weaviate finds similar objects and checks how they were labeled in the past. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful.
 
-The vectorizer module `text2vec-contextionary` provides a second type of classification. Information about this classification type can be found [here](../retriever-vectorizer-modules/text2vec-contextionary.html).
-- **[Contextual classification](../retriever-vectorizer-modules/text2vec-contextionary.html)**: Predicts cross-references based on the context, without training data. If you don't have any training data and want to classify how similar a source item is to a potential target item, contextual classification is the right pick. Especially when there is a strong semantic relation in your data (e.g., `The Landmark Eiffel Tower` and `The City Paris`).
+The vectorizer module `text2vec-contextionary` provides a second type of classification. Information about this classification type can be found [here](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md).
+- **[Contextual classification](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md)**: Predicts cross-references based on the context, without training data. If you don't have any training data and want to classify how similar a source item is to a potential target item, contextual classification is the right pick. Especially when there is a strong semantic relation in your data (e.g., `The Landmark Eiffel Tower` and `The City Paris`).
 
 A classification can be started using the RESTful API, via the `v1/classification` endpoint with a `POST` request. This triggers the start of the classification, after which it will run in the background. This can also be achieved using one of the client libraries. Use the [`GET` method](#get-status-results-and-metadata) to see the status of the classification:
 
@@ -134,7 +134,7 @@ returns:
 ``` 
 
 ## Evaluation of single data object results
-After the classification is completed, the concerning reference properties data objects in the Weaviate instance are updated according to the classification. These data objects will be represented similarly to other data objects. The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](./objects.html#response-fields) or with the [GraphQL `_additional {classification}` field](../graphql-references/additional-properties.html#classification).
+After the classification is completed, the concerning reference properties data objects in the Weaviate instance are updated according to the classification. These data objects will be represented similarly to other data objects. The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](./objects.md#response-fields) or with the [GraphQL `_additional {classification}` field](../graphql/additional-properties.md#classification).
 
 # KNN classification
 
@@ -167,9 +167,9 @@ A classification can be started via the `v1/classifications` endpoint, which can
 - `settings {k: 3}`. The number of neighbors to base the classification on. 
 - Parameters to add limitations (based on e.g. background business knowledge).
   - `filters: {}` with the following possible properties:
-    - `sourceWhere: {}`. Parameter to determine which data objects to classify (i.e. you can use this if you want to leave out some data objects to classify them later based on background knowledge). It accepts a [`where` filter body](../graphql-references/filters.html#where-filter).
-    - `targetWhere: {}`. Parameter to limit possible targets (i.e. when it you want to make sure no data objects will be classified as such). It accepts a [`where` filter body](../graphql-references/filters.html#where-filter).
-    - `trainingSetWhere: {}`. Parameter to limit possible data objects in the training set. It accepts a [`where` filter body](../graphql-references/filters.html#where-filter).
+    - `sourceWhere: {}`. Parameter to determine which data objects to classify (i.e. you can use this if you want to leave out some data objects to classify them later based on background knowledge). It accepts a [`where` filter body](../graphql/filters.md#where-filter).
+    - `targetWhere: {}`. Parameter to limit possible targets (i.e. when it you want to make sure no data objects will be classified as such). It accepts a [`where` filter body](../graphql/filters.md#where-filter).
+    - `trainingSetWhere: {}`. Parameter to limit possible data objects in the training set. It accepts a [`where` filter body](../graphql/filters.md#where-filter).
 
 ### Start a kNN classification
 A classification can be started through one of the clients, or with a direct `curl` request to the RESTful API.
@@ -203,13 +203,13 @@ A classification is started, and will run in the background. The following respo
 ```
 
 ### Evaluation of single data object results
-After the classification is completed, the concerning reference properties data objects in the Weaviate instance are updated according to the classification. These data objects will be represented similarly to other data objects. The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](./objects.html#response-fields) or with the [GraphQL `_additional {classification}` field](../graphql-references/additional-properties.html#classification).
+After the classification is completed, the concerning reference properties data objects in the Weaviate instance are updated according to the classification. These data objects will be represented similarly to other data objects. The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](./objects.md#response-fields) or with the [GraphQL `_additional {classification}` field](../graphql/additional-properties.md#classification).
 
 # Zero-Shot Classification
 
 Zero-shot classification is an unsupervised classification method, meaning you don't need any training data. Zero-shot allows you to classify data which wasn't seen before to build the classifier. This type of classification is perfect if you want to label data objects with classes, but you don't have or don't want to use training data. It picks the label objects that have the lowest distance to the source objects. The link is made using cross-references, similar to existing classifications in Weaviate.
 
-Weaviate's zero-shot classification measures how similar (how close) a data item is to a potential target item (a class or label). More specifically, Weaviate uses `vector search and similarity` algorithms to classify data objects with other data objects. Internally, Weaviate performs a `nearVector` search (which you can also [perform manually with GraphQL](../graphql-references/filters.html#nearvector-filter)), and takes the closes result out of a given set of options (data objects) to classify. 
+Weaviate's zero-shot classification measures how similar (how close) a data item is to a potential target item (a class or label). More specifically, Weaviate uses `vector search and similarity` algorithms to classify data objects with other data objects. Internally, Weaviate performs a `nearVector` search (which you can also [perform manually with GraphQL](../graphql/filters.md#nearvector-filter)), and takes the closes result out of a given set of options (data objects) to classify. 
 
 Zero-shot classification works with all (text/image/..) vectorizers (or no vectorizer, as long as you have vectors stored in Weaviate). 
 
@@ -225,9 +225,9 @@ A classification can be started via the `v1/classifications` endpoint, which can
 **Optional, with default values**:
 - Parameters to add limitations (based on e.g. background business knowledge).
   - `filters: {}` with the following possible properties:
-    - `sourceWhere: {}`. Parameter to determine which data objects to classify (i.e. you can use this if you want to leave out some data objects to classify them later based on background knowledge). It accepts a [`where` filter body](../graphql-references/filters.html#where-filter).
-    - `targetWhere: {}`. Parameter to limit possible targets (i.e. when it you want to make sure no data objects will be classified as such). It accepts a [`where` filter body](../graphql-references/filters.html#where-filter).
-    - `trainingSetWhere: {}`. Parameter to limit possible data objects in the training set. It accepts a [`where` filter body](../graphql-references/filters.html#where-filter).
+    - `sourceWhere: {}`. Parameter to determine which data objects to classify (i.e. you can use this if you want to leave out some data objects to classify them later based on background knowledge). It accepts a [`where` filter body](../graphql/filters.md#where-filter).
+    - `targetWhere: {}`. Parameter to limit possible targets (i.e. when it you want to make sure no data objects will be classified as such). It accepts a [`where` filter body](../graphql/filters.md#where-filter).
+    - `trainingSetWhere: {}`. Parameter to limit possible data objects in the training set. It accepts a [`where` filter body](../graphql/filters.md#where-filter).
 
 
 ### Start a zeroshot classification
@@ -255,8 +255,10 @@ A classification is started, and will run in the background. The following respo
 ```
 
 ### Evaluation of single data object results
-After the classification is completed, the concerning reference properties data objects in the Weaviate instance are updated according to the classification. These data objects will be represented similarly to other data objects. The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](../restful-api-references/objects.html) or with the [GraphQL `_additional {classification}` field](../graphql-references/additional-properties.html#classification).
+After the classification is completed, the concerning reference properties data objects in the Weaviate instance are updated according to the classification. These data objects will be represented similarly to other data objects. The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](../rest/objects.md) or with the [GraphQL `_additional {classification}` field](../graphql/additional-properties.md#classification).
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

@@ -128,4 +128,6 @@ adhere to the following steps:
 
 ## More Resources
 
-{% include docs-support-links.html %}
+import ContributorGuideMoreResources from '/_includes/more-resources-contributor-guide.md';
+
+<ContributorGuideMoreResources />

@@ -11,12 +11,12 @@ sidebar_position: 4
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-contextionary.html
-#     - /developers/weaviate/modules/text2vec-contextionary.html
+#     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-contextionary.html
+#     - /docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md
 ---
 ## Introduction
 
-The module `text2vec-contextionary`, herein also referred to as the 'Contextionary', is Weaviate's own language vectorizer. It gives context to the language used in your dataset (there are Contextionary versions available for multiple languages). `text2vec-contextionary` is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe. The most recent `text2vec-contextionary` is trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data. We aim to make the Contextionary available for use cases in any domain, regardless if they are business-related, academic or other. But you can also [create your own vectorizer](../other-modules/custom-modules) if desired.
+The module `text2vec-contextionary`, herein also referred to as the 'Contextionary', is Weaviate's own language vectorizer. It gives context to the language used in your dataset (there are Contextionary versions available for multiple languages). `text2vec-contextionary` is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe. The most recent `text2vec-contextionary` is trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data. We aim to make the Contextionary available for use cases in any domain, regardless if they are business-related, academic or other. But you can also [create your own vectorizer](/docs/weaviate/modules/other-modules/custom-modules.md) if desired.
 
 The `text2vec-contextionary` places data into a 300-dimensional space. Each datapoint will thus have a vector of 300 numbers. This vector is computed from the pre-trained Contextionary (you never have to do any training yourself), that contains the contextual representation that allows Weaviate to store data based on its contextual meaning. An empty Weaviate with the preloaded `text2vec-contextionary` module, could be envisioned like this (in a simplified 3D visualization):
 
@@ -99,7 +99,7 @@ Variable explanations:
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/developers/weaviate/getting-started/schema) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/docs/weaviate/getting-started/schema.md) first.
 
 For example
 
@@ -137,12 +137,11 @@ For example
 
 ## How to use
 
-* New GraphQL vector search parameters made available by this module can be found [here](/developers/weaviate/references/graphql/vector-search-parameters#neartext).
+* New GraphQL vector search parameters made available by this module can be found [here](/docs/weaviate/references/graphql/vector-search-parameters.md#neartext).
 
 ### Example
 
-<!-- {% include code/1.x/graphql.filters.nearText.html %} -->
-import CodeNearText from '/code-samples/graphql.filters.nearText.mdx';
+import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
 <CodeNearText />
 
@@ -185,8 +184,7 @@ $ curl http://localhost:8080/v1/modules/text2vec-contextionary/concepts/magazine
 
 or (note the camelCased compound concept)
 
-<!-- {% include code/1.x/contextionary.get.html %} -->
-import CodeContextionary from '/code-samples/contextionary.get.mdx';
+import CodeContextionary from '/_includes/code/contextionary.get.mdx';
 
 <CodeContextionary />
 
@@ -254,8 +252,7 @@ The same fields as the input parameters will be in the response body if the exte
 
 Let's add the concept `"weaviate"` to the Contextionary. 
 
-<!-- {% include code/1.x/contextionary.extensions.html %} -->
-import CodeContextionaryExtensions from '/code-samples/contextionary.extensions.mdx';
+import CodeContextionaryExtensions from '/_includes/code/contextionary.extensions.mdx';
 
 <CodeContextionaryExtensions />
 
@@ -393,4 +390,6 @@ To combat this noise, a neighbor filtering feature was introduced in the context
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

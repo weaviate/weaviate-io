@@ -13,7 +13,7 @@ sidebar_position: 5
 # toc: true
 # redirect_from:
 #     - /documentation/weaviate/current/setup/authorize.html
-#     - /documentation/weaviate/current/configuration/authorization.html
+#     - /documentation/weaviate/current/configuration/authorization.md
 ---
 
 ## Overview
@@ -63,6 +63,8 @@ More fine-grained Role-Based Access Control (RBAC) coming soon. As of now the
 only possible distinction is between Admins (CRUD), Read-Only Users and
 entirely unauthorized users.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

@@ -12,8 +12,8 @@ sidebar_position: 10
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /documentation/weaviate/current/restful-api-references/index.html
-#     - /documentation/weaviate/current/restful-api-references/
+#     - /documentation/weaviate/references/rest/index.html
+#     - /documentation/weaviate/references/rest/
 ---
 
 # RESTful API
@@ -28,11 +28,11 @@ The Open API specs for the current Weaviate version number can be found [here](h
 
 All references have their individual subpages, click on one of the references below for more information.
 
-- [/v1/schema](schema.html)
-- [/v1/objects](objects.html)
-- [/v1/batch](batch.html)
-- [/v1/backups](backups.html)
-- [/v1/classification](classification.html)
-- [/v1/meta](meta.html)
-- [/v1/.well-known](well-known.html)
-- [/v1/modules](modules.html)
+- [/v1/schema](./schema.md)
+- [/v1/objects](./objects.md)
+- [/v1/batch](./batch.md)
+- [/v1/backups](./backups.md)
+- [/v1/classification](./classification.md)
+- [/v1/meta](./meta.md)
+- [/v1/.well-known](./well-known.md)
+- [/v1/modules](./modules.md)

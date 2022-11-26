@@ -9,7 +9,7 @@ sidebar_position: 6
 open-graph-type: article
 toc: true
 redirect_from:
-    - /developers/weaviate/v1.14.1/architecture/
+    - /docs/weaviate/v1.14.1/architecture/
 ---
 
 # Introduction
@@ -24,10 +24,7 @@ This page contains information on how Weaviate's APIs are designed, and how you 
 
 User Experience (UX) is one of our most valuable principles. Weaviate should be easy to understand, intuitive to use and valuable, desirable and usable to the community. The interaction with Weaviate is naturally very important for its UX. Weaviate's APIs are designed from the perspective of user needs, keeping the software features in mind. We do user research, user testing and prototyping to make sure all features resonate with our users. User requirements are continuously gathered during collaborative discussions. We match user needs with the functions of Weaviate. When there is a strong need from the user or application perspective, we may extend Weaviate's functions and APIs. When there is a new Weaviate function, this will naturally be accessible via (new) API functions.
 
-<!-- The UX of Weaviate's APIs is designed following the [UX Honeycomb](https://semanticstudios.com/user_experience_design/) usability rules, defined by [Peter Morville](https://semanticstudios.com/about/).  -->
 The UX of Weaviate's APIs is designed following the UX Honeycomb usability rules, defined by Peter Morville.
-
-<!-- ![<img src="/img/api-ux.png" width="250"/>](/img/api-ux.png "Weaviate's API is designed following the UX Honeycomb") -->
 
 ## RESTful API and GraphQL API
 
@@ -100,7 +97,7 @@ There are currently three main functions in a GraphQL request: "Get{}", "Explore
 }
 ```
 
-* **Query filters (search arguments) dependent on database setup**. You can add filters on class level to filter objects. Scalar (`where` filters) can be combined with vector (`near<...>`) filters. Depending on your Weaviate setup (which modules you have connected), additional filters may be used. A filter can look like (using the [`qna-transformers` module](../reader-generator-modules/qna-transformers.html)):
+* **Query filters (search arguments) dependent on database setup**. You can add filters on class level to filter objects. Scalar (`where` filters) can be combined with vector (`near<...>`) filters. Depending on your Weaviate setup (which modules you have connected), additional filters may be used. A filter can look like (using the [`qna-transformers` module](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md)):
 
 ```graphql
 {
@@ -131,21 +128,17 @@ There are currently three main functions in a GraphQL request: "Get{}", "Explore
 
 # Weaviate Console
 
-The [Weaviate Console](https://console.semi.technology/) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.
+The [Weaviate Console](https://console.semi.technology) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.
 
 <!-- ![<img src="/img/console-capture.png" width="250"/>](/img/console-capture.png "GraphQL Query Module in Weaviate Console") -->
 
 # Weaviate Clients and CLI
 
-Weaviate has several client libraries: in [Go](../client-libraries/go.html), [Java](../client-libraries/java.html), [Python](../client-libraries/python.html) and [JavaScript](../client-libraries/javascript.html). The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. The APIs are intuitive to use, so it is easy to integrate Weaviate into your existing data landscape. 
+Weaviate has several client libraries: in [Go](/docs/weaviate/references/client-libraries/go.md), [Java](/docs/weaviate/references/client-libraries/java.md), [Python](/docs/weaviate/references/client-libraries/python.md) and [JavaScript](/docs/weaviate/references/client-libraries/javascript.md). The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. The APIs are intuitive to use, so it is easy to integrate Weaviate into your existing data landscape. 
 
-Weaviate also has a [Command Line Interface](../client-libraries/cli.html), enabling basic management from the command line to your Weaviate instances.
+Weaviate also has a [Command Line Interface](/docs/weaviate/references/client-libraries/cli.md), enabling basic management from the command line to your Weaviate instances.
 
-# More Resources
+## More Resources
+import DocsMoreResources from '/_includes/more-resources-docs.md';
 
-{% include docs-support-links.html %}
-
-
-
-
-
+<DocsMoreResources />

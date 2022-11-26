@@ -11,8 +11,8 @@ sidebar_position: 22
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.3.0/data-schema/datatypes.html
-#     - /developers/weaviate/current/data-schema/datatypes.html
+#     - /docs/weaviate/v1.3.0/data-schema/datatypes.html
+#     - /docs/weaviate/data-schema/datatypes.html
 ---
 
 # Introduction
@@ -169,6 +169,8 @@ In the above example, our objects can be linked to:
 * **2** Articles and **5** Blogs
 * etc
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

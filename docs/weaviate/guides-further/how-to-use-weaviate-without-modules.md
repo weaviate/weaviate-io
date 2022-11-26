@@ -70,16 +70,15 @@ Add this to Weaviate using one of the clients or with a curl command:
 
 {% include code/1.x/howto.customvectors.schemacreate.html %}
 
-
 # Step 3 - Import data to Weaviate
 
-For this example, we're uploading one data object to our Weaviate instance. If you want to add more objects at once, check how ["batching"](../restful-api-references/batch.html) works.
+For this example, we're uploading one data object to our Weaviate instance. If you want to add more objects at once, check how ["batching"](../references/rest/batch.md) works.
 
 We need to define the vector with the data object, because we don't have a vectorization module in Weaviate that does this for us now. Add the complete vector as follows when uploading a data object:
 
 {% include code/1.x/howto.customvectors.adddata.html %}
 
-Check the [API reference](../restful-api-references/objects.html#create-a-data-object-with-custom-vectors) for more information around creating objects.
+Check the [API reference](../references/rest/objects.md#create-a-data-object-with-custom-vectors) for more information around creating objects.
 
 # Step 4 - Query and search through data
 
@@ -89,7 +88,8 @@ Searching for and by vectors can be done with GraphQL. You can use an `explore` 
 
 {% include code/1.x/howto.customvectors.nearvector.html %}
 
+## More Resources
 
-# More Resources
+import DocsMoreResources from '/_includes/more-resources-docs.md';
 
-{% include docs-support-links.html %}
+<DocsMoreResources />

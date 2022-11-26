@@ -19,16 +19,16 @@ sidebar_position: 0
 
 # Contributor guidelines 
 
-There are currently four clients developed for Weaviate's APIs: 
-* [Python](../../../weaviate/current/client-libraries/python.html)
-* [Go](../../../weaviate/current/client-libraries/go.html) 
-* [JavaScript](../../../weaviate/current/client-libraries/javascript.html) 
-* [Java](../../../weaviate/current/client-libraries/java.html) 
+There are currently four clients developed for Weaviate's APIs:
+* [Python](/docs/weaviate/references/client-libraries/python.md)
+* [Go](/docs/weaviate/references/client-libraries/go.md)
+* [JavaScript](/docs/weaviate/references/client-libraries/javascript.md)
+* [Java](/docs/weaviate/references/client-libraries/java.md)
 
 These clients, and all future clients are and will be developed according to the following guidelines:
 
-1. Every client *must* reflect all features of the [RESTful API one-to-one](../../../weaviate/current/restful-api-references/).
-2. Every client *must* reflect all functions of [GraphQL API](../../../weaviate/current/graphql-references/) (1-1 where possible).
+1. Every client *must* reflect all features of the [RESTful API one-to-one](/docs/weaviate/references/rest/index.md).
+2. Every client *must* reflect all functions of [GraphQL API](/docs/weaviate/references/graphql/index.md) (1-1 where possible).
 3. Clients *can* have client-specific, extra or unique features:
    1. These features on top of the 1-1 RESTful and GraphQL functionalities must be defined through a user story, which will also be reflected in the documentation.
    2. These features can be solved in a client's native way (follow the current design of the client for consistency)
@@ -59,14 +59,14 @@ the respective language.
 
 Test coverage is very important for clients to make it possible to easily test
 the client against various Waeviate versions. As a client is an integration
-point to Weaviate, the [Test pyramid](../weaviate-core/tests.html#test-pyramid)
+point to Weaviate, the [Test pyramid](../weaviate-core/tests.md#test-pyramid)
 willl look upside down.
 
 Contrary to Weaviate Core it is most important that [Journey
-Tests](../weaviate-core/tests.html#journey-tests) are present, which verify all
+Tests](../weaviate-core/tests.md#journey-tests) are present, which verify all
 actual integration points with a real Weaviate instance. Feel free to add
 additional Integration, Component or [Unit
-Tests](../weaviate-core/tests.html#unit-tests) as they make sense, e.g. for
+Tests](../weaviate-core/tests.md#unit-tests) as they make sense, e.g. for
 edge cases or language-speficic sources of error. As a rule of thumb, a
 dynamically typed language will probably require more unit-level testing than a
 statically typed one. Note, however, that we can only use Journey tests
@@ -93,8 +93,8 @@ Then you can take a look at an existing client which matches your language the
 closest and get inspried. 
 
 For example, if you plan to implement a client in C#, it might make sense to look at the 
-[Java](../../../weaviate/current/client-libraries/java.html) and
-[Go](../../../weaviate/current/client-libraries/go.html) clients.
+[Java](/docs/weaviate/references/client-libraries/java.md) and
+[Go](/docs/weaviate/references/client-libraries/go.md) clients.
 
 Then we recommend to start porting one of the existing test suites and start
 implementing the client methods until all tests are passed. If you use the same

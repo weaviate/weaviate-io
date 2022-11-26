@@ -11,7 +11,7 @@ sidebar_position: 0
 # toc: false
 #     - /documentation/weaviate/current/getting-started/index.html
 #     - /documentation/weaviate/current/getting-started/
-#     - /developers/weaviate/current/getting-started/quick-start.html
+#     - /docs/weaviate/getting-started/quick-start.html
 ---
 
 Welcome to the Weaviate **Core Knowledge** guides.
@@ -32,7 +32,7 @@ In the guide, we make a few basic assumptions (you are somewhat familiar with da
 
 | Topic | Description |
 | --- | --- |
-| [Basics](./basics.html) | Learn the basics of Weaviate |
-| [Console](./console.html) |Working with the Weaviate console |
-| [Indexing](./indexing.html) | Learn about the indexing configuration in Weaviate |
-| [Clients](./clients.html) | Working with the Weaviate clients |
+| [Basics](./basics.md) | Learn the basics of Weaviate |
+| [Console](./console.md) |Working with the Weaviate console |
+| [Indexing](./indexing.md) | Learn about the indexing configuration in Weaviate |
+| [Clients](./clients.md) | Working with the Weaviate clients |

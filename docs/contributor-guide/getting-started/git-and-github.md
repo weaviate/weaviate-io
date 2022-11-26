@@ -145,7 +145,7 @@ git checkout -b feature/newPage
 
 **Note:** 
 * `checkout` will switch to the newly created branch.
-* `-b` will create a new branch if the branch doesn’t already exist
+* `-b` will create a new branch if the branch doesn't already exist
 
 This will create a new branch and move to it. Now, start hacking away and making any modifications you want.
 
@@ -188,7 +188,7 @@ Here are some general guidelines about how to submit a Pull Request:
 
 * Do not commit changes to files that are irrelevant to your feature or bug fix
 
-* Write a good commit message. Check out [commit guidelines](./commit-guidelines.html)
+* Write a good commit message. Check out [commit guidelines](./commit-guidelines.md)
 
 **Adding the files and committing:**
 
@@ -212,7 +212,7 @@ To systematically ignore certain files or directories, you can create a [.gitign
 
 You can run `git status` as many times as necessary to check what has been staged. You can also [unstage files](https://docs.gitlab.com/ee/topics/git/unstage.html) as necessary.
 
-* If everything is good to go, proceed with committing your changes. Try to add a concise and informative commit message - your future self and others will thank you for it. Read more about [commit guidelines here](./commit-guidelines.html).
+* If everything is good to go, proceed with committing your changes. Try to add a concise and informative commit message - your future self and others will thank you for it. Read more about [commit guidelines here](./commit-guidelines.md).
 
 ```shell
 git commit -m "your commit message"

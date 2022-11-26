@@ -12,7 +12,7 @@ sidebar_position: 2
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/tutorials/how-to-perform-a-semantic-search.html
+#     - /docs/weaviate/v1.11.0/tutorials/how-to-perform-a-semantic-search.html
 #     - /documentation/weaviate/current/tutorials/how-to-perform-a-semantic-search.html
 ---
 
@@ -21,18 +21,18 @@ TO BE MERGED INTO "Data query" above
 # Introduction
 
 - Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/). 
-- You can query a Weaviate after you've created a [schema](./how-to-create-a-schema.html) and [populated it](./how-to-import-data.html) with data.
-- You can perform simple [`Get{}`](../graphql-references/get.html) queries to easily retrieve data, learn how [here](./how-to-query-data.html).
+- You can query a Weaviate after you've created a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) and [populated it](/docs/weaviate/guides/how-to-import-data.md) with data.
+- You can perform simple [`Get{}`](../references/graphql/get.md) queries to easily retrieve data, learn how [here](./how-to-query-data.md).
 - To narrow down search results from a `Get{}` query based on semantics, use the `nearText` filter in the `Get{}` query. Read how in [this tutorial](#neartext-filter).
-- To search and find for data objects in a fuzzy manner, you can use the GraphQL `Explore{}` function, read how in [this tutorial](#explore-graphql-function), and on the [reference page](../graphql-references/explore.html).
+- To search and find for data objects in a fuzzy manner, you can use the GraphQL `Explore{}` function, read how in [this tutorial](#explore-graphql-function), and on the [reference page](../references/graphql/explore.md).
 
 # Prerequisites
  1. **Connect to a Weaviate instance.**\\
- If you haven't set up a Weaviate instance yet, check the [Getting started guide](../getting-started/installation.html). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](../getting-started/installation.html) as vectorization module.
+ If you haven't set up a Weaviate instance yet, check the [Getting started guide](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
  2. **Upload a schema**. \\
- Learn how to create and upload a schema [here](./how-to-create-a-schema.html). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
+ Learn how to create and upload a schema [here](/docs/weaviate/guides/how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
  3. **Add data**. \\
- Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](./how-to-import-data.html). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
+ Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/guides/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
 
 # nearText filter
 If you want to perform semantic search on data objects in a known class, you can use the `nearText` filter in a `Get{}` query. Let's say we want to find `Publication`s that are related to "fashion", we can do the following query:
@@ -120,9 +120,11 @@ $ curl -s http://localhost:8080/v1/objects/65010df4-da64-333d-b1ce-55c3fc9174ab
 
 # Next steps
 
-- Look for more ways to query your dataset in Weaviate with GraphQL queries, semantic search and other filters in the [GraphQL references guide](../graphql-references/index.html).
+- Look for more ways to query your dataset in Weaviate with GraphQL queries, semantic search and other filters in the [GraphQL references guide](../references/graphql/index.md).
 - Stay tuned for new tutorials, for example on interpretation of the semantic search results or how to set up a classification model!
 
-# More resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

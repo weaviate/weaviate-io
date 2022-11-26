@@ -13,7 +13,7 @@ sidebar_position: 4
 # toc: true
 # redirect_from:
 #     - /documentation/weaviate/current/setup/authenticate.html
-#     - /documentation/weaviate/current/configuration/authentication.html
+#     - /documentation/weaviate/current/configuration/authentication.md
 ---
 
 ## Overview
@@ -246,7 +246,8 @@ $ curl http://localhost:8080/v1/objects -H "Authorization: Bearer {Bearer}"
 ```
 
 If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.html#authentication), [Javascript](../client-libraries/javascript.html#authentication), [Java](../client-libraries/java.html#authentication) or [Go](../client-libraries/go.html#authentication) to find instructions on how to attach a token with that client.
+## More Resources
 
-# More Resources
+import DocsMoreResources from '/_includes/more-resources-docs.md';
 
-{% include docs-support-links.html %}
+<DocsMoreResources />

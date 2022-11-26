@@ -14,14 +14,14 @@ sidebar_position: 1
 
 ​Using the Weaviate Cloud Service (WCS) may be the easiest way to run Weaviate. You simply create a cluster and the WCS manages it for you.
 
-The Weaviate Cloud Service can be accessed via the [console](https://console.semi.technology/) and is the SaaS version of Weaviate.
+The Weaviate Cloud Service can be accessed via the [console](https://console.semi.technology) and is the SaaS version of Weaviate.
 
 * You can learn more about the console in [this guide](../core-knowledge/console.md).
 * You can create free-tier sandboxes and [sign up](https://console.semi.technology) for the private beta of our production SaaS.
 
 ## Sign in
 
-1. Visit [https://console.semi.technology/](https://console.semi.technology/)
+1. Visit [https://console.semi.technology/](https://console.semi.technology)
 2. Click _Sign in with the Weaviate Cloud Service_ or [create an account](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs).
 3. After signing in you will be able to create a Weaviate cluster.
 
@@ -121,6 +121,8 @@ The result should show something like:
 }
 ```
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

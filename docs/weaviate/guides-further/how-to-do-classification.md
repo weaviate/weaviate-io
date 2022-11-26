@@ -12,8 +12,8 @@ sidebar_position: 5
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.3.0/tutorials/how-to-do-classification.html
-#     - /developers/weaviate/v1.4.1/tutorials/how-to-do-classification.html
+#     - /docs/weaviate/v1.3.0/tutorials/how-to-do-classification.html
+#     - /docs/weaviate/v1.4.1/tutorials/how-to-do-classification.html
 #     - /documentation/weaviate/current/tutorials/how-to-do-classification.html
 ---
 
@@ -21,8 +21,8 @@ sidebar_position: 5
 
 You can use Weaviate to automatically classify data, that is, you can ask Weaviate to automatically make references between concepts. Since Weaviate stores data objects based on semantics in a vector position, a variety of automated classification tasks can be performed in near-realtime. Weaviate offers two different types of classification:
 
-1. **Contextual classification**. Provided by the `text2vec-contextionary` module, thus can only be used when this module is active in your Weaviate instance. Uses the context of data points to make new references. There is no training data needed, and this type of classification is the right pick if you have a strong semantic relation in your data. See [here](../retriever-vectorizer-modules/text2vec-contextionary.html) for more information. 
-2. **kNN classification**. To assign property values and references of data objects based on how similar objects are labeled that Weaviate finds. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful. See more [here](../restful-api-references/classification.html#knn-classification).
+1. **Contextual classification**. Provided by the `text2vec-contextionary` module, thus can only be used when this module is active in your Weaviate instance. Uses the context of data points to make new references. There is no training data needed, and this type of classification is the right pick if you have a strong semantic relation in your data. See [here](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) for more information. 
+2. **kNN classification**. To assign property values and references of data objects based on how similar objects are labeled that Weaviate finds. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful. See more [here](../references/rest/classification.md#knn-classification).
 
 In this how-to guide, you will learn how to classify with Contextual and kNN classification.
 
@@ -30,15 +30,15 @@ In this how-to guide, you will learn how to classify with Contextual and kNN cla
 
 **1. Connect to a Weaviate instance**
 
-If you haven't set up a Weaviate instance yet, check the [Getting started guide](../getting-started/installation.html). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](../getting-started/installation.html) as vectorization module.
+If you haven't set up a Weaviate instance yet, check the [Getting started guide](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
 
 **2. Upload a schema**
 
-Learn how to create and upload a schema [here](./how-to-create-a-schema.html). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author` and `Category`.
+Learn how to create and upload a schema [here](/docs/weaviate/guides/how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author` and `Category`.
 
 **3. Add data**
 
-Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](./how-to-import-data.html). In this tutorial we assume there are data objects of `Publication`s, `Article`s, `Author`s and `Category` present.
+Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/guides/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s, `Author`s and `Category` present.
 
 # Contextual classification
 
@@ -136,7 +136,7 @@ If we later want to know to which `Category` a specific `Article` refers to, we 
 
 # kNN classification
 
-Imagine you have a property for the popularity of the `Article` by the audience, and you would like to predict the popularity for new articles based on known properties. You can use kNN classification, use the popularity of previous articles and predict the popularity of new articles. First, make sure you have a class `Popularity` with the property `level` in the schema (you need to [add this](../restful-api-references/schema.html#create-a-class) if you use the demo schema). Let's say the `hasPopularity` of an `Article` can be `low`, `medium` or `high`. So the schema should look like this (note: this property is not included in the example schema, so make sure to add this property before doing this classification, see how [here](../restful-api-references/schema.html#add-a-property)). The schema should look like this:
+Imagine you have a property for the popularity of the `Article` by the audience, and you would like to predict the popularity for new articles based on known properties. You can use kNN classification, use the popularity of previous articles and predict the popularity of new articles. First, make sure you have a class `Popularity` with the property `level` in the schema (you need to [add this](../references/rest/schema.md#create-a-class) if you use the demo schema). Let's say the `hasPopularity` of an `Article` can be `low`, `medium` or `high`. So the schema should look like this (note: this property is not included in the example schema, so make sure to add this property before doing this classification, see how [here](../references/rest/schema.md#add-a-property)). The schema should look like this:
 
 ```json
 {
@@ -349,6 +349,8 @@ There is no one optimal value for kNN. The optimal value is different for every 
 - k is usually chosen not too high. This depends also on the amount of classes. A good start is taking k between 3 and 7 (3 <= k <=7).
 - Check the distanceWinning and distanceLosing values of individual classified data objects. If distanceWinning is way larger than distanceLosing, then the k could be set too high. k can be optimized just like every other hyper parameter in other ML-algorithms just by plotting the overall validation error against k.
 
-# More resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

@@ -9,7 +9,7 @@ sidebar_position: 2
 open-graph-type: article
 toc: true
 redirect_from:
-    - /developers/weaviate/current/architecture/roadmap.html
+    - /docs/weaviate/architecture/roadmap.html
 ---
 
 <!-- style for roadmap table -->
@@ -157,9 +157,11 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
   You can download the complete roadmap (as an image) here too
 </a> -->
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
 
 
 

@@ -12,9 +12,9 @@ sidebar_position: 3
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.9.0/more-resources/faq.html
+#     - /docs/weaviate/v1.9.0/more-resources/faq.html
 #     - /documentation/weaviate/current/more-resources/faq.html
-#     - /developers/weaviate/more-resources/faq.html
+#     - /docs/weaviate/more-resources/faq.html
 ---
 
 <!-- IMPORTANT                                     -->
@@ -27,11 +27,11 @@ A: Our goal is three-folded. Firstly, we want to make it as easy as possible for
 
 ## Q: Do you offer Weaviate as a managed service?
 
-A: Yes, it is called the [Weaviate Console](https://console.semi.technology/).
+A: Yes, it is called the [Weaviate Console](https://console.semi.technology).
 
 ## Q: How to configure the size of your instance?
 
-A: You can find this in the [architecture section](../architecture/resources.html#an-example-calculation) of the docs.
+A: You can find this in the [architecture section](/docs/weaviate/architecture/resources.md#an-example-calculation) of the docs.
 
 ## Q: Does Weaviate use Hnswlib?
 
@@ -47,15 +47,15 @@ Custom HNSW implementation in Weaviate references:
 More information:
 
 - [Weaviate, an ANN Database with CRUD support – DB-Engines.com](https://db-engines.com/en/blog_post/87) ⬅️ best resource on the topic
-- [Weaviate's HNSW implementation in the docs)[/developers/weaviate/current/vector-index-plugins/hnsw.html)
+- [Weaviate's HNSW implementation in the docs)[/docs/weaviate/vectorization/hnsw.md)
 
-_Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here)[/developers/weaviate/current/vector-index-plugins/)_
+_Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here)[/docs/weaviate/vector-index-plugins/)_
 
 ## Q: Are all ANN algorithms potential candidates to become an indexation plugin in Weaviate?
 
 A: No
 
-Some algorithms (e.g., Annoy or ScaNN) are entirely immutable once built, they can neither be changed nor built up incrementally. Instead, they require you to have all of your vectors present, then you build the algorithm once. After a build, you can only query them, but cannot add more elements or change existing elements. Thus, they aren’t capable of the CRUD operations we want to support in Weaviate.
+Some algorithms (e.g., Annoy or ScaNN) are entirely immutable once built, they can neither be changed nor built up incrementally. Instead, they require you to have all of your vectors present, then you build the algorithm once. After a build, you can only query them, but cannot add more elements or change existing elements. Thus, they aren't capable of the CRUD operations we want to support in Weaviate.
 
 ## Q: Does Weaviate use pre- or post-filtering ANN index search?
 
@@ -64,10 +64,10 @@ See "How does Weaviate's vector and scalar filtering work" for more details.
 
 ## Q: How does Weaviate's vector and scalar filtering work?
 
-A: It’s a 2-step process:
+A: It's a 2-step process:
 
 1. The inverted index (which is [built at import time](#q-does-weaviate-use-hnswlib)) queries to produce an allowed list of the specified document ids. Then the ANN index is queried with this allow list (the list being one of the reasons for our custom implementation).
-2. If we encounter a document id which would be a close match, but isn’t on the allow list the id is treated as a candidate (i.e. we add it to our list of links to evaluate), but is never added to the result set. Since we only add allowed IDs to the set, we don’t exit early, i.e. before the top `k` elements are reached.
+2. If we encounter a document id which would be a close match, but isn't on the allow list the id is treated as a candidate (i.e. we add it to our list of links to evaluate), but is never added to the result set. Since we only add allowed IDs to the set, we don't exit early, i.e. before the top `k` elements are reached.
 
 For more information on the technical implementations, see [this video](https://www.youtube.com/watch?v=6hdEJdHWXRE).
 
@@ -79,7 +79,7 @@ Weaviate has no notion of transactions, operations always affect exactly a singl
 
 ## Q: Can I train my own text2vec-contextionary vectorizer module?
 
-A: Not yet (but soon), you can currently use the [available contextionaries](../getting-started/installation.html) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](http://weaviate-newsletter.semi.technology/) or [Slack channel]({{ site.slack_signup_url }}) to keep updated about the release of custom contextionary training
+A: Not yet (but soon), you can currently use the [available contextionaries](/docs/weaviate/getting-started/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](http://weaviate-newsletter.semi.technology/) or [Slack channel]({{ site.slack_signup_url }}) to keep updated about the release of custom contextionary training
 
 <!-- ## Q: Why is the contextionary created using GloVe?
 
@@ -103,7 +103,7 @@ A: Because you are probably one of the first that needs one! Ping us [here on Gi
 
 ## Q: How to deal with custom terminology?
 
-A: Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here)[/developers/weaviate/current/retriever-vectorizer-modules/text2vec-contextionary.html#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
+A: Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here)[/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
 
 ## Q: How can you index data near-realtime without losing semantic meaning?
 
@@ -115,7 +115,7 @@ A: How can Weaviate interpret that you mean a company, as in business, and not a
 
 ## Q: Can I connect my own module?
 
-[Yes!](../other-modules/custom-modules.html)
+[Yes!](/docs/weaviate/modules/other-modules/custom-modules.md)
 
 ## Q: What is the difference between Weaviate and for example Elasticsearch?
 
@@ -123,7 +123,7 @@ A: Other database systems like Elasticsearch rely on inverted indices, which mak
 
 ## Q: How can slow queries be optimized?
 
-A: Queries containing deeply nested references that need to be filtered or resolved can take some time. Read on optimization strategies [here](./performance.html#costs-of-queries-and-operations).
+A: Queries containing deeply nested references that need to be filtered or resolved can take some time. Read on optimization strategies [here](./performance.md#costs-of-queries-and-operations).
 
 ## Q: Data import takes long / is slow (slower than before v1.0.0), what is causing this and what can I do?
 
@@ -143,7 +143,7 @@ A: Sure (also, feel free to [issue a pull request](https://github.com/semi-techn
 
 ## Q: Does Weaviate require NFS volumes on Kubernetes?
 
-A: By default, no NFS volumes are active. In a production setting, we recommend turning etcd disaster recovery on which requires an NFS volume. However, [the helm docs](../getting-started/installation.html) contain instructions on how to deploy an nfs-provisioner. For more details, see also this [stack overflow answer](https://stackoverflow.com/a/60505796/5322199).
+A: By default, no NFS volumes are active. In a production setting, we recommend turning etcd disaster recovery on which requires an NFS volume. However, [the helm docs](/docs/weaviate/getting-started/installation.md) contain instructions on how to deploy an nfs-provisioner. For more details, see also this [stack overflow answer](https://stackoverflow.com/a/60505796/5322199).
 
 ## Q: When scalar and vector search are combined, will the scalar filter happen before or after the nearest neighbor (vector) search?
 
@@ -176,9 +176,9 @@ Now the other extreme, a very restrictive list, i.e few IDs on the list, actuall
 
 ## Q: Are there any 'best practices' or guidelines to consider when designing a schema? E.g. if I was looking to perform a semantic search over a the content of a Book would I look to have Chapter and Paragraph represented in the schema etc, would this be preferred over including the entire content of the novel in a single property?
 
-A: As a rule of thumb, the smaller the units, the more accurate the search will be. Two objects of e.g. a sentence would most likely contain more information in their vector embedding than a common vector (which is essentially just the mean of sentences). At the same time more objects leads to a higher import time and (since each vector also makes up some data) more space. (E.g. when using transformers, a single vector is 768xfloat32 = 3KB. This can easily make a difference if you have millions, etc.) of vectors. As a rule of thumb, the more vectors you have the more memory you’re going to need.
+A: As a rule of thumb, the smaller the units, the more accurate the search will be. Two objects of e.g. a sentence would most likely contain more information in their vector embedding than a common vector (which is essentially just the mean of sentences). At the same time more objects leads to a higher import time and (since each vector also makes up some data) more space. (E.g. when using transformers, a single vector is 768xfloat32 = 3KB. This can easily make a difference if you have millions, etc.) of vectors. As a rule of thumb, the more vectors you have the more memory you're going to need.
 
-So, basically, it’s a set of tradeoffs. Personally we’ve had great success with using paragraphs as individual units, as there’s little benefit in going even more granular, but it’s still much more precise than whole chapters, etc.
+So, basically, it's a set of tradeoffs. Personally we've had great success with using paragraphs as individual units, as there's little benefit in going even more granular, but it's still much more precise than whole chapters, etc.
 
 You can use cross-references to link e.g. chapters to paragraphs. Note that resolving a cross-references takes a slight performance penalty. Essentially resolving A1->B1 is the same cost as looking up both A1 and B1 indvidually. This cost however, will probably only matter at really large scale.
 
@@ -186,12 +186,12 @@ You can use cross-references to link e.g. chapters to paragraphs. Note that reso
 
 A: In short: for convenience you can add relations to your data schema, because you need less code and queries to get data. But resolving references in queries takes some of the performance.
 
-1. If your ultimate goal is performance, references probably don’t add any value, as resolving them adds a cost.
+1. If your ultimate goal is performance, references probably don't add any value, as resolving them adds a cost.
 2. If your goal is represent complex relationships between your data items, they can help a lot. You can resolve references in a single query, so if you have classes with multiple links, it could definitely be helpful to resolve some of those connections in a single query. On the other hand, if you have a single (bi-directional) reference in your data, you could also just denormalize the links (e.g. with an ID field) and resolve them during search. 
 
 ## Q: Is it possible to create one-to-many relationships in the schema?
 
-A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example)[/developers/weaviate/current/tutorials/how-to-create-a-schema.html#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
+A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example)[/docs/weaviate/guides/how-to-create-a-schema.md#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
 
 ## Q: What is the different between `text` and `string` and `valueText` and `valueString`?
 
@@ -199,7 +199,7 @@ A: In general `value<Text|String>` should always match the data type in your sch
 
 ## Q: If I run a cluster (multiple instances) of Weaviate, do all the instances have to share a filesystem(PERSISTENCE_DATA_PATH)?
 
-A: Horizontal Scalability is currently under development with an ETA for end of Q3 in 2021. Once it’s in it will not share filesystems, but each node will be truly independent with their own filesystem. The partitioning and replication strategies are modelled after Cassandra and Elasticsearch (Cassandra with regards to the virtual nodes in a ring, ES with regards to shards, because we need explicit shards for searching, whereas cassandra would only support direct access by (primary and partitioning) key. Until then Weaviate is currently confined to a single node. If you were to try to run two processes trying to access the same classes, I think it would fail, as each process would try to obtain a lock on the same files.
+A: Horizontal Scalability is currently under development with an ETA for end of Q3 in 2021. Once it's in it will not share filesystems, but each node will be truly independent with their own filesystem. The partitioning and replication strategies are modelled after Cassandra and Elasticsearch (Cassandra with regards to the virtual nodes in a ring, ES with regards to shards, because we need explicit shards for searching, whereas cassandra would only support direct access by (primary and partitioning) key. Until then Weaviate is currently confined to a single node. If you were to try to run two processes trying to access the same classes, I think it would fail, as each process would try to obtain a lock on the same files.
 
 We have recently implemented a LSM tree based approached to storage in Weaviate v1.5: Object and Index storage is no longer done using a B+Tree approach (bolb/bbolt), but uses a custom LSM tree approach. This speeds up imports by over 100% depending on the use case.
 
@@ -213,12 +213,11 @@ A: You can create multiple classes in the Weaviate schema, where one class will 
 
 ## Q: Are there restrictions on UUID formatting? Do I have to adhere to any standards? 
 
-A: The UUID must be presented as a string matching the [Canonical Textual representation](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format). If you don’t specify a UUID, Weaviate will generate a `v4` i.e. a random UUID. If you generate them yourself you could either use random ones or deterministically determine them based on some fields that you have. For this you’ll need to use [`v3` or `v5`](https://en.wikipedia.org/wiki/Universally_unique_identifier#Versions_3_and_5_(namespace_name-based)). There are plenty of python packages available to do this.
+A: The UUID must be presented as a string matching the [Canonical Textual representation](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format). If you don't specify a UUID, Weaviate will generate a `v4` i.e. a random UUID. If you generate them yourself you could either use random ones or deterministically determine them based on some fields that you have. For this you'll need to use [`v3` or `v5`](https://en.wikipedia.org/wiki/Universally_unique_identifier#Versions_3_and_5_(namespace_name-based)). There are plenty of python packages available to do this.
 
 ## Q: What is the best way to iterate through objects? Can I do paginated API calls? 
 
-A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's)[/developers/weaviate/current/graphql-references/filters.html#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
-
+A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's)[/docs/weaviate/references/graphql/filters.md#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
 
 ## Q: What happens when the weaviate docker container restarts? Is my data in the weaviate database lost?
 
@@ -234,9 +233,9 @@ A: Yes, a UUID will be created if not specified.
 ## Q: What is best practice for updating data?
 
 A: Here are top 3 best practices for updating data:
-1. Use the [batch API](../restful-api-references/batch.html)
+1. Use the [batch API](../references/rest/batch.md)
 2. Start with a small-ish batch size e.g. 100 per batch. Adjust up if it is very fast, adjust down if you run into timeouts
-3. If you have unidirectional relationships (e.g. `Foo -> Bar`.) it's easiest to first import all `Bar` objects, then import all `Foo` objects with the refs already set. If you have more complex relationships, you can also import the objects without references, then use the [`/v1/batch/references API`](../restful-api-references/batch.html) to set links between classes in arbitrary directions.
+3. If you have unidirectional relationships (e.g. `Foo -> Bar`.) it's easiest to first import all `Bar` objects, then import all `Foo` objects with the refs already set. If you have more complex relationships, you can also import the objects without references, then use the [`/v1/batch/references API`](../references/rest/batch.md) to set links between classes in arbitrary directions.
 
 ## Q: How can I run the latest master branch with docker-compose?
 
@@ -283,44 +282,17 @@ A: To obtain the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_simila
 
 ## Q: My Weaviate setup is using more memory than what I think is reasonable. How can I debug this?
 
-A: First of all, make sure your import runs with the latest version of Weaviate,
-since `v1.12.0`/`v1.12.1` fixed an issue where [too much data was written to
-disk](https://github.com/semi-technologies/weaviate/issues/1868) which then
-lead to unreasonable memory consumption after restarts. If this did not fix the
-issue yet, please see this post on [how to profile the memory usage of a
-Weaviate setup](https://stackoverflow.com/a/71793178/5322199). 
+A: First of all, make sure your import runs with the latest version of Weaviate, since `v1.12.0`/`v1.12.1` fixed an issue where [too much data was written to disk](https://github.com/semi-technologies/weaviate/issues/1868) which then lead to unreasonable memory consumption after restarts. If this did not fix the issue yet, please see this post on [how to profile the memory usage of a Weaviate setup](https://stackoverflow.com/a/71793178/5322199). 
 
 ## Q: The quality of my search results change depending on the specified limit. Why? How can I fix this?
 
-Weaviate makes use of ANN indices to serve vector searches. An ANN index is an
-approximate nearest neighbor index. The "approximate" part refers to an explicit
-recall-query-speed tradeoff. This trade-off is
-presented in detail in the [ANN benchmarks
-section](../benchmarks/ann.html#results). For example, a 98% recall for a given
-set of HNSW parameters means that 2% of results will not match the true
-nearest neighbors. What build parameters lead to what recall depends on the
-dataset used. The benchmark pages shows 4 different example datasets. Based on
-the characteristic of each dataset you can pick the one closest to your
-production load and draw conclusions about the expected recall for the
-respective build and query-time parameters.
+Weaviate makes use of ANN indices to serve vector searches. An ANN index is an approximate nearest neighbor index. The "approximate" part refers to an explicit recall-query-speed tradeoff. This trade-off is presented in detail in the [ANN benchmarks section](/docs/weaviate/more-resources/benchmarks/ann.md#results). For example, a 98% recall for a given set of HNSW parameters means that 2% of results will not match the true nearest neighbors. What build parameters lead to what recall depends on the dataset used. The benchmark pages shows 4 different example datasets. Based on the characteristic of each dataset you can pick the one closest to your production load and draw conclusions about the expected recall for the respective build and query-time parameters.
 
-Generally if you need a higher recall than the default parameters provide you
-with, you can use stronger parameters. This can either be done at build time
-(`efConstruction`, `maxConnections`) or at query time (`ef`). Roughly speaking,
-a higher `ef` value at query time means a more thorough search. It will have a
-slightly higher latency, but also lead to a slightly better recall.
+Generally if you need a higher recall than the default parameters provide you with, you can use stronger parameters. This can either be done at build time (`efConstruction`, `maxConnections`) or at query time (`ef`). Roughly speaking, a higher `ef` value at query time means a more thorough search. It will have a slightly higher latency, but also lead to a slightly better recall.
 
-By changing the specified limit, you are implicitly changing the `ef`
-parameter. This is because the default `ef` value is set to `-1`, indicating
-that Weaviate should pick the paremeter based on the limit. The dynamic `ef`
-value is controlled using the configuration fields `dynamicEfMin` which acts as
-a lower boundary, `dynamicEfMax` which acts as an upper boundary and
-`dynamicEfFactor` which is the factor to derive the target `ef` based on the
-limit within the lower and upper boundary.
+By changing the specified limit, you are implicitly changing the `ef` parameter. This is because the default `ef` value is set to `-1`, indicating that Weaviate should pick the paremeter based on the limit. The dynamic `ef` value is controlled using the configuration fields `dynamicEfMin` which acts as a lower boundary, `dynamicEfMax` which acts as an upper boundary and `dynamicEfFactor` which is the factor to derive the target `ef` based on the limit within the lower and upper boundary.
 
-Example: Using the default parameters `ef=-1`, `dynamicEfMin=100`,
-`dynamicEfMax=500`, `dynamicEfFactor=8`, you will end up with the following ef
-values based on the limit:
+Example: Using the default parameters `ef=-1`, `dynamicEfMin=100`, `dynamicEfMax=500`, `dynamicEfFactor=8`, you will end up with the following `ef` values based on the limit:
 
 * `limit=1`, dynamically calculated: `ef=1*8=8`. This value is below the lower boundary, so `ef` is set to `100`.
 * `limit=20`, dynamically calculated: `ef=20*8=160`. This value is within the boundaries, so `ef` is `160`.
@@ -329,10 +301,7 @@ values based on the limit:
 If you need a higher search quality for a given limit you can consider the following options:
 
 1. Instead of using a dynamic `ef` value, use a fixed one that provides the desired recall.
-1. If your search quality varies a lot depending on the query-time `ef` values,
-   you should also consider choosing stronger build parameters. The [ANN
-   benchmarks section](../benchmarks/ann.html#results) present a combination of
-   many different parameter combination for various datasets.
+1. If your search quality varies a lot depending on the query-time `ef` values, you should also consider choosing stronger build parameters. The [ANN benchmarks section](/docs/weaviate/more-resources/benchmarks/ann.md#results) present a combination of many different parameter combination for various datasets.
 
 ## More questions? 
 

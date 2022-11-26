@@ -51,11 +51,11 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-* Note: you can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose#configurator) to create a Weaviate setup with this module.
+* Note: you can also use the [Weaviate configuration tool](/docs/weaviate/installation/docker-compose.md#configurator) to create a Weaviate setup with this module.
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/developers/weaviate/getting-started/schema) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/docs/weaviate/getting-started/schema.md) first.
 
 The following schema configuration uses the `all-MiniLM-L6-v2` model. 
 
@@ -99,12 +99,11 @@ The following schema configuration uses the `all-MiniLM-L6-v2` model.
 ## How to use
 
 * When sending a request to Weaviate, you can set the API key on query time: `X-Huggingface-Api-Key: <huggingface-api-key>`.
-* New GraphQL vector search parameters made available by this module can be found [here](/developers/weaviate/references/graphql/vector-search-parameters#neartext).
+* New GraphQL vector search parameters made available by this module can be found [here](/docs/weaviate/references/graphql/vector-search-parameters.md#neartext).
 
 ### Example
 
-<!-- {% include code/1.x/graphql.filters.nearText.huggingface.html %} -->
-import CodeNearText from '/code-samples/graphql.filters.nearText.huggingface.mdx';
+import CodeNearText from '/_includes/code/graphql.filters.nearText.huggingface.mdx';
 
 <CodeNearText />
 
@@ -132,4 +131,6 @@ The `text2vec-huggingface` module also supports [HuggingFace Inference Endpoints
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

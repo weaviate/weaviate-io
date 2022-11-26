@@ -2,7 +2,6 @@
 title: References - Modules
 sidebar_position: 0
 ---
-
 # Overview
 
 This section outlines references in relation to modules.
@@ -15,11 +14,11 @@ Modules can be "vectorizers" (defines how the numbers in the vectors are chosen 
   - Other modules: `<functionality>-<name>-<optional>`, for example `qna-transformers`. 
   - A module name must be url-safe, meaning it must not contain any characters which would require url-encoding.
   - A module name is not case-sensitive. `text2vec-bert` would be the same module as `text2vec-BERT`.
-- Module information is accessible through the [`v1/modules/<module-name>/<module-specific-endpoint>` RESTful endpoint](../restful-api-references/modules.html).
-- General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](../restful-api-references/meta.html).
-- Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](../graphql-references/additional-properties.html).
-- A module can add [filters](../graphql-references/filters.html) in GraphQL queries.
-- Which vectorizer and other modules are applied to which data classes is configured in the [schema](../schema/schema-configuration.html#vectorizer).
+- Module information is accessible through the [`v1/modules/<module-name>/<module-specific-endpoint>` RESTful endpoint](../references/rest/modules.md).
+- General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](../references/rest/meta.md).
+- Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](../references/graphql/additional-properties.md).
+- A module can add [filters](../references/graphql/filters.md) in GraphQL queries.
+- Which vectorizer and other modules are applied to which data classes is configured in the [schema](../references/schema-configuration.md#vectorizer).
 
 ## Default vectorizer module
 
@@ -47,8 +46,8 @@ This type of provider is ideal for production environments. This is because stor
 Additionally, multi-node Weaviate clusters _require_ the use of an external provider. Storing a multi-node backup on internally on a single node presents several issues, like significantly reducing the durability and availability of the backup, and is not supported.
 
 As of Weaviate `v1.16`, the supported external backup providers are:
-- [S3](/developers/weaviate/current/configuration/backups.html#s3-aws-or-s3-compatible)
-- [GCS](/developers/weaviate/current/configuration/backups.html#gcs-google-cloud-storage)
+- [S3](/docs/weaviate/configuration/backups.md#s3-aws-or-s3-compatible)
+- [GCS](/docs/weaviate/configuration/backups.md#gcs-google-cloud-storage)
 
 Thanks to the extensibility of the module system, new providers can be readily added. If you are interested in an external provider other than the ones listed above, feel free to reach out via our [community Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), or open an issue on [GitHub](https://github.com/semi-technologies/weaviate).
 
@@ -56,4 +55,4 @@ Thanks to the extensibility of the module system, new providers can be readily a
 
 Internal providers coordinate the storage and retrieval of backed-up Weaviate data within a Weaviate instance. This type of provider is intended for developmental or experimental use, and is not recommended for production. Internal Providers are not compatible for multi-node backups, which require the use of an external provider.
 
-As of Weaviate `v1.16`, the only supported internal backup provider is the [filesystem](/developers/weaviate/current/configuration/backups.html#filesystem) provider.
+As of Weaviate `v1.16`, the only supported internal backup provider is the [filesystem](/docs/weaviate/configuration/backups.md#filesystem) provider.

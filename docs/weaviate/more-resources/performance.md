@@ -13,24 +13,24 @@ sidebar_position: 7
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/more-resources/performance.html
+#     - /docs/weaviate/v1.11.0/more-resources/performance.html
 ---
 
 # Index types
 Weaviate uses two types of data indexing. Next to the vector indexes that are created and powers the semantic search capability, there is also the [inverted index](https://en.wikipedia.org/wiki/Inverted_index).
 
 ## Inverted index
-The inverted index is essentially what powers all the [GraphQL `where` filters](../graphql-references/filters.html#where-filter), where vectors or semantics are needed to find results. With inverted indexes, contents or data object properties such as words and numbers are mapped to its location in the database. This is the opposite of the more traditional forward index, which maps from documents to its content.
+The inverted index is essentially what powers all the [GraphQL `where` filters](../references/graphql/filters.md#where-filter), where vectors or semantics are needed to find results. With inverted indexes, contents or data object properties such as words and numbers are mapped to its location in the database. This is the opposite of the more traditional forward index, which maps from documents to its content.
 
 Inverted indices are used often in document retrieval systems and search engines, because it allows fast full-text search and fast key-based search instead of brute-force. This fast data retrieval comes with the only cost of slight increase of processing time when a new data object is added, since the data object will indexed and stored in an inverted way, rather than only storing the index of the data object. In the database (Weaviate), there is a big lookup table which contains all the inverted indices. If you want to retrieve objects with a specific property or content, then the database starts looking for only one row with this property which points to the relevant data objects (the row contains pointers to the data object IDs). This makes data object retrieval with these kind of queries very fast. Even if there are more than a billion entries, if you only care about the entries that contain the specific words or properties you're looking for, only one row will be read with the document pointers. 
 
 The inverted index currently does not do any weighing (e.g. tf-idf) for sorting, since the vector index is used for these features like sorting. The inverted index is thus, at the moment, rather a binary operation: including or excluding data objects from the query result list, which results in an 'allow list'. 
 
 ## Vector index
-Everything that has a vector, thus every data object in Weaviate, is also indexed in the vector index. The vector index type is [pluggable](../vector-index-plugins/index.html). Currently, we only provide the vector index type [HNSW](https://arxiv.org/abs/1603.09320). 
+Everything that has a vector, thus every data object in Weaviate, is also indexed in the vector index. The vector index type is [pluggable](/docs/weaviate/vectorization/index.md). Currently, we only provide the vector index type [HNSW](https://arxiv.org/abs/1603.09320). 
 
 ### HNSW 
-[HNSW](https://arxiv.org/abs/1603.09320) is the first vector index type [supported by Weaviate](../vector-index-plugins/hnsw.html). Typically for HNSW is that this index type is super fast at query time, but more costly when it comes to building (adding data with vectors). This means that the process of adding data objects might take longer than you expect or to what you are used to (with other database systems for example). Other database systems, like Elasticsearch, do not make use of vector indexing, but only rely on inverted index. By adding vectorization of data with HNSW, semantic and context-based search is enables, with very high performance on query time. 
+[HNSW](https://arxiv.org/abs/1603.09320) is the first vector index type [supported by Weaviate](/docs/weaviate/vectorization/hnsw.md). Typically for HNSW is that this index type is super fast at query time, but more costly when it comes to building (adding data with vectors). This means that the process of adding data objects might take longer than you expect or to what you are used to (with other database systems for example). Other database systems, like Elasticsearch, do not make use of vector indexing, but only rely on inverted index. By adding vectorization of data with HNSW, semantic and context-based search is enables, with very high performance on query time. 
 
 ### Other vector index types
 The vector index type used Weaviate is pluggable. This means that other types than HNSW can be used for vectorization and querying. If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type, stay tuned for updates!
@@ -57,6 +57,8 @@ If you have a nested reference filter, Weaviate starts by resolving the deepest 
 A tip is to avoid deeply nested filters in the queries. Additionally, try to make your queries as restrictive as possible, because a ten-level deep query would for example not be so expensive if all levels return only a single ID. In that case only ten one ID searches need to be performed, which is a lot of searches in one query, but each search is very cheap. 
 
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

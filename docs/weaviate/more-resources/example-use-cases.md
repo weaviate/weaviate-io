@@ -14,7 +14,7 @@ sidebar_position: 6
 # toc: true
 # redirect_from:
 #     - /documentation/weaviate/current/getting-started/use-cases.html
-#     - /developers/weaviate/current/getting-started/use-cases.html
+#     - /docs/weaviate/getting-started/use-cases.html
 ---
 
 Most use cases of Weaviate benefit from the following two core concepts: 
@@ -48,6 +48,8 @@ Most use cases of Weaviate benefit from the following two core concepts:
 **Solution with Weaviate**: Weaviate helps in the automation of free text analysis and automatically classify which mitigation should be taken. This can be done based on existing frameworks or custom build mitigations.
 
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

@@ -12,11 +12,11 @@ sidebar_position: 18
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /documentation/weaviate/current/restful-api-references/well-known.html
+#     - /documentation/weaviate/references/rest/well-known.html
 ---
 
 # OpenID Configuration
-The RESTful API discovery gives information if [OpenID Connect (OIDC)](../configuration/authentication.html#openid-connect-oidc) authentication is enabled. The endpoint redirects to the token issued if one is configured.
+The RESTful API discovery gives information if [OpenID Connect (OIDC)](/docs/weaviate/configuration/authentication.md#openid-connect-oidc) authentication is enabled. The endpoint redirects to the token issued if one is configured.
 
 ## Usage
 
@@ -88,6 +88,8 @@ If the following command:
 
 returns nothing (a 200 response), you know the application is able to respond to HTTP requests.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

@@ -14,7 +14,7 @@ toc: true
 
 You can find the following performance benchmarks:
 
-1. [ANN (unfiltered vector search) latencies and throughput](ann.html)
+1. [ANN (unfiltered vector search) latencies and throughput](./ann.md)
 2. Filtered ANN (benchmark coming soon)
 2. Scalar filters / Inverted Index (benchmark coming soon)
 3. Large-scale ANN (coming soon)

@@ -28,12 +28,11 @@ At this point, you should have Weaviate running either:
 
 ## Client Libraries
 
-You can communicate with Weaviate from your code by using one of the available [client libraries](../client-libraries/) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/).
+You can communicate with Weaviate from your code by using one of the available [client libraries](/docs/weaviate/references/client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/docs/weaviate/references/rest/index.md).
 
 The first order of business, is to add the client library to your project.
 
-<!-- import CodeInstallClient from '/code-samples/getting.started.schema.install.client.mdx'; -->
-import CodeInstallClient from '/code-samples/getting.started.schema.install.client.mdx';
+import CodeInstallClient from '/_includes/code/getting.started.schema.install.client.mdx';
 
 <CodeInstallClient />
 
@@ -47,8 +46,7 @@ To do this we need the `host` endpoint to your instance.
 
 Run the below code in your project.
 
-<!-- {% include code/1.x/getting-started.schema.connect.html %} -->
-import CodeSchemaConnect from '/code-samples/getting.started.schema.connect.mdx';
+import CodeSchemaConnect from '/_includes/code/getting.started.schema.connect.mdx';
 
 <CodeSchemaConnect />
 
@@ -96,8 +94,7 @@ Our **Authors** have the following properties:
 
 Run the below code in you application, which will define the schema for the **Author** class.
 
-<!-- {% include code/1.x/getting-started.schema.create.1.html %} -->
-import CodeSchemaCreate1 from '/code-samples/getting.started.schema.create.1.mdx';
+import CodeSchemaCreate1 from '/_includes/code/getting.started.schema.create.1.mdx';
 
 <CodeSchemaCreate1 />
 
@@ -190,7 +187,7 @@ The result should look something like this:
 }
 ```
 
- Wow! What, that’s a lot more than we’ve added?
+ Wow! What, that's a lot more than we've added?
 
 Correct, that's Weaviate adding some default config for you. You can change, improve, tweak, and update this, but that's for a later expert guide. 
 
@@ -201,8 +198,7 @@ Our **Publication** will contain one property:
 
 Run the below code in your application.
 
-<!-- {% include code/1.x/getting-started.schema.create.2.html %} -->
-import CodeSchemaCreate2 from '/code-samples/getting.started.schema.create.2.mdx';
+import CodeSchemaCreate2 from '/_includes/code/getting.started.schema.create.2.mdx';
 
 <CodeSchemaCreate2 />
 
@@ -360,8 +356,7 @@ Now, that we have these two classes, we can use a **cross-reference** to indicat
 
 Run the below code in your application to update the `Author` class with the `writesFor` cross-reference to `Publication`.
 
-<!-- {% include code/1.x/getting-started.schema.crossreference.1.html %} -->
-import CodeSchemaCrossref1 from '/code-samples/getting.started.schema.crossreference.1.mdx';
+import CodeSchemaCrossref1 from '/_includes/code/getting.started.schema.crossreference.1.mdx';
 
 <CodeSchemaCrossref1 />
 
@@ -533,8 +528,7 @@ Note this part (this is just a chunk of the response):
 
 We can also set it the other way around, a `Publication`, `has`, `Authors`. To achieve this, we want to update the `Publication` class to contain the `has` cross-reference to `Author`.
 
-<!-- {% include code/1.x/getting-started.schema.crossreference.2.html %} -->
-import CodeSchemaCrossref2 from '/code-samples/getting.started.schema.crossreference.2.mdx';
+import CodeSchemaCrossref2 from '/_includes/code/getting.started.schema.crossreference.2.mdx';
 
 <CodeSchemaCrossref2 />
 
@@ -742,6 +736,8 @@ All schema operations are available in the [API documentation for the schema end
 * [Learn how to query data based on a schema](query.md)
 * [Take me one step back to the basics](../core-knowledge/basics.md) -->
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

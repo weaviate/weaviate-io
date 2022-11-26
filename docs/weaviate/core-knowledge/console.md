@@ -65,14 +65,16 @@ The console might ask to downgrade to HTTP. This is done to avoid [CORS](https:/
 
 ## What would you like to learn next?
 
-* [Let me query Weaviate!](../getting-started/query.html)
-* [Learn how to add a schema](../getting-started/schema.html)
-* [Learn how to import data](../getting-started/import.html)
+* [Let me query Weaviate!](../getting-started/query.md)
+* [Learn how to add a schema](/docs/weaviate/getting-started/schema.md)
+* [Learn how to import data](../getting-started/import.md)
 
 ## Legend
 
 * [GraphiQL](https://github.com/graphql/graphiql)
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

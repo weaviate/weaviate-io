@@ -12,7 +12,7 @@ sidebar_position: 7
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.9.0/tutorials/quick-start-with-the-text2vec-contextionary-module.html
+#     - /docs/weaviate/v1.9.0/tutorials/quick-start-with-the-text2vec-contextionary-module.html
 ---
 
 # **Run Weaviate with a demo dataset**
@@ -36,11 +36,11 @@ $ docker-compose up
 Weaviate will be available and preloaded with the news article demo dataset on:
 
 - `http://localhost:8080/v1`
-- [Via the Console](https://console.semi.technology/).
+- [Via the Console](https://console.semi.technology).
 
 # **Query via the Weaviate console**
 
-You can query your local machine via the [Weaviate console](https://console.semi.technology/). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` (you will get redirected to the "http" version of the client).
+You can query your local machine via the [Weaviate console](https://console.semi.technology). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` (you will get redirected to the "http" version of the client).
 
 # **Validate via the RESTful API**
 
@@ -703,7 +703,7 @@ The output will look something like this:
 
 # Query the dataset with GraphQL
 
-When querying Weaviate, you will always be using the GraphQL API. Weaviate has a publicly available graphical user interface (GUI) called [the Console](https://console.semi.technology/), which you can use to query.
+When querying Weaviate, you will always be using the GraphQL API. Weaviate has a publicly available graphical user interface (GUI) called [the Console](https://console.semi.technology), which you can use to query.
 
 ### Accessing the Console
 
@@ -960,11 +960,13 @@ $ curl -k http://localhost:8080/v1/classifications/{CLASSIFICATION ID} | jq .
 
 # What's next
 In this tutorial you learned about how to quickly set up a Weaviate with a demo dataset, use semantic search and classification. Next, check out the following:
-- Check out how to [spin up a Weaviate](../getting-started/installation.html) with your own [schema](../tutorials/how-to-create-a-schema.html) and [data](../tutorials/how-to-import-data.html).
-- Learn more about [authentication](../configuration/authentication.html) and [authorization](../configuration/authorization.html).
-- Install one of the [client libraries](../client-libraries/index.html) for smooth interaction with the Weaviate APIs.
-- Consult the [RESTful API references](../restful-api-references/index.html) and the [GraphQL references](../graphql-references/index.html) to learn about all interaction possibilities with Weaviate. 
+- Check out how to [spin up a Weaviate](/docs/weaviate/getting-started/installation.md) with your own [schema](/docs/weaviate/guides/how-to-create-a-schema.md) and [data](/docs/weaviate/guides/how-to-import-data.md).
+- Learn more about [authentication](/docs/weaviate/configuration/authentication.md) and [authorization](/docs/weaviate/configuration/authorization.md).
+- Install one of the [client libraries](/docs/weaviate/references/client-libraries/index.md) for smooth interaction with the Weaviate APIs.
+- Consult the [RESTful API references](/docs/weaviate/references/rest/index.md) and the [GraphQL references](../references/graphql/index.md) to learn about all interaction possibilities with Weaviate. 
 
-# More resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

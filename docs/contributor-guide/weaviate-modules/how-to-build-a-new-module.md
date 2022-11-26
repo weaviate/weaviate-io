@@ -13,7 +13,6 @@ sidebar_position: 3
 # og-img: documentation.jpg
 # toc: true
 ---
-
 # Module creation in a nutshell
 
 If you have your own vectorizer, machine learning or other model that you want to use with Weaviate, you can build your own Weaviate Module. 
@@ -31,24 +30,24 @@ To use a custom ML model with Weaviate, you have two options:
 * A: Replace parts of an existing module, where you only replace the inference service (part 2). You don't have to touch Weaviate Core here. This is a good option for fast prototyping and proofs of concepts. In this case, you simply replace the inference model (part 2), but keep the interface with Weaviate in Go. This is a quick way to integrate completely different model types. 
 * B: Build a complete new module and replace all existing (blue) module parts (both 1 and 2). You can configure custom behavior like extending the GraphQL API, as long as the module can hook into the 'red' Module System API. Keep in mind that you'll need to write some module code in Go to achieve this. 
 
-On this page, you'll find how to create a complete new module (option B), so building part 1 and 2. If you only want to replace part 2 (so making use of an existing Weaviate module's API design), you can find instructions [here](../../../weaviate/current/other-modules/custom-modules.html#a-replace-parts-of-an-existing-module).
+On this page, you'll find how to create a complete new module (option B), so building part 1 and 2. If you only want to replace part 2 (so making use of an existing Weaviate module's API design), you can find instructions [here](/docs/weaviate/modules/other-modules/custom-modules.md#a-replace-parts-of-an-existing-module).
 
 ![Weaviate module APIs overview](/img/contributor-guide/weaviate-modules/weaviate-module-apis.svg "Weaviate module APIs overview")
 
 # Prerequisites
 
-This requires some programming in Golang, since you'll need to build the module for Weaviate, which is written in Go. You don't need to be a very experienced Go programmer, but you'll need some basic understanding of how this statically typed language works. You can view and copy code from other modules to your own project, which is explained later. You'll build a custom module ([part 1 of this image](./architecture.html#visualization)), as well as a custom inference service ([part 2](./architecture.html#visualization)). It is recommended to understand the module architecture of Weaviate which you can read [here](./overview.html) (overview) and [here](./architecture.html) (architecture), before you start building your own module. 
+This requires some programming in Golang, since you'll need to build the module for Weaviate, which is written in Go. You don't need to be a very experienced Go programmer, but you'll need some basic understanding of how this statically typed language works. You can view and copy code from other modules to your own project, which is explained later. You'll build a custom module ([part 1 of this image](./architecture.md#visualization)), as well as a custom inference service ([part 2](./architecture.md#visualization)). It is recommended to understand the module architecture of Weaviate which you can read [here](./overview.md) (overview) and [here](./architecture.md) (architecture), before you start building your own module. 
 
-If you want to make a pull request to Weaviate with your custom module, make sure to adhere to the [code structure](../weaviate-core/structure.html).
+If you want to make a pull request to Weaviate with your custom module, make sure to adhere to the [code structure](../weaviate-core/structure.md).
 
 # How to get started
 
 ## Design the internal Weaviate Module (part 1)
 
 Before you start programming, make sure you have a good design and idea how your module should look like:
-1. The name of the module should follow the [naming convention](./overview.html#module-characteristics). For a vectorizer: `<media>2vec-<name>-<optional>` and other modules: `<functionality>-<name>-<optional>`.
-2. Optional GraphQL [`_additional` property fields](../../../weaviate/current/graphql-references/additional-properties.html). Here you can return any new field with data that you would like. Make sure the field name doesn't clash with existing field names, like `id`, `certainty`, `classification` and `featureProjection`, and `_additional` fields of other modules that you activate in the same startup configuration. New `_additional` fields can also have subfields.
-3. Optional GraphQL [filters](../../../weaviate/current/graphql-references/filters.html). You can make a new GraphQL filter on different levels. If your filter is a 'class-level influencer' which influence which results will be returned, you can introduce them on the `Class` level. Examples are `near<Foo>`, `limit` or `ask`. If your module would only enhance existing results, you should scope the filter to the new `_additional` property. An example is `featureProjection`. 
+1. The name of the module should follow the [naming convention](./overview.md#module-characteristics). For a vectorizer: `<media>2vec-<name>-<optional>` and other modules: `<functionality>-<name>-<optional>`.
+2. Optional GraphQL [`_additional` property fields](/docs/weaviate/references/graphql/additional-properties.md). Here you can return any new field with data that you would like. Make sure the field name doesn't clash with existing field names, like `id`, `certainty`, `classification` and `featureProjection`, and `_additional` fields of other modules that you activate in the same startup configuration. New `_additional` fields can also have subfields.
+3. Optional GraphQL [filters](/docs/weaviate/references/graphql/filters.md). You can make a new GraphQL filter on different levels. If your filter is a 'class-level influencer' which influence which results will be returned, you can introduce them on the `Class` level. Examples are `near<Foo>`, `limit` or `ask`. If your module would only enhance existing results, you should scope the filter to the new `_additional` property. An example is `featureProjection`. 
 4. Think about what you or another user should be able to configure to use this Weaviate Module. Configuration can be passed in the Weaviate configuration (e.g. in the [docker-compose.yml file](https://github.com/semi-technologies/weaviate-examples/blob/4edd6ee767d0e80bca1dd8d982db2378992ddb67/weaviate-contextionary-newspublications/docker-compose.yaml#L24-L29)).
 
 ## Design the inference model (part 2)
@@ -70,7 +69,7 @@ These guidelines follow the example of the [QnA module](https://github.com/semi-
 
 ## 1. First files
 
-1. In the `/modules` folder, make a new folder with the name of your module. Make sure to adhere to the [naming convention](./overview.html#module-characteristics).
+1. In the `/modules` folder, make a new folder with the name of your module. Make sure to adhere to the [naming convention](./overview.md#module-characteristics).
 2. Add a file `config.go` ([example](https://github.com/semi-technologies/weaviate/blob/master/modules/qna-transformers/config.go)). This file describes some configuration of the module to Weaviate. You can copy/paste most of the example file, make sure to adapt the functions' receiver names. 
 2. Add a file `module.go` ([example](https://github.com/semi-technologies/weaviate/blob/master/modules/qna-transformers/module.go)). This file describes the module as a whole and its capabilities. You will, again, be able to copy most of an example file to your project. Make sure to define which `modulecapabilities` (from [here](https://github.com/semi-technologies/weaviate/tree/master/entities/modulecapabilities)) you want to use (this will be explained later). 
 
@@ -86,7 +85,7 @@ If you want to add GraphQL query and results field with your module, you can add
     2. `<fieldname>.go` (e.g. [`answer.go`](https://github.com/semi-technologies/weaviate/blob/master/modules/qna-transformers/additional/answer/answer.go)). `AdditionalPropertyFn` will be called when the GraphQL `_additional {<new_field>} ` field is called. Best is to refer to a new function, which is the next file to create.
     3. `<fieldname>_result.go` (e.g. [`answer_result.go`](https://github.com/semi-technologies/weaviate/blob/master/modules/qna-transformers/additional/answer/answer_result.go)). Here's the function that goes from argument values (in `params`) and a list of returned data objects (in `in`), to results in your new `_additional { newField {} }`, via a call to the inference container. It should return a struct defined in `/ent/<foo>_result.go`. For example in [`/ent/vectorization_result.go`](https://github.com/semi-technologies/weaviate/blob/master/modules/qna-transformers/ent/vectorization_result.go), we see a struct `AnswerResult`.
     It is recommended to first return some hard-coded values, to validate this is working correctly without calling the inference API. 
-5. Finally, let's look at `provider.go`. In here the connection between the new `_additional {}` field and Weaviate is defined. With this module, you want to add information to the `_additional {}` field with a new field. We need to define this here, to let the GraphQL fields appear when the module is selected in the Weaviate setup. Methods to return a GraphQL result should follow Weaviate's module API. Those methods are written in [`/entities/modulecapabilities`](https://github.com/semi-technologies/weaviate/tree/master/entities/modulecapabilities). See [here](./architecture.html#module-capabilities-additionalgo) for a detailed explanation of what you can find in [`additional.go`](https://github.com/semi-technologies/weaviate/blob/master/entities/modulecapabilities/additional.go).
+5. Finally, let's look at `provider.go`. In here the connection between the new `_additional {}` field and Weaviate is defined. With this module, you want to add information to the `_additional {}` field with a new field. We need to define this here, to let the GraphQL fields appear when the module is selected in the Weaviate setup. Methods to return a GraphQL result should follow Weaviate's module API. Those methods are written in [`/entities/modulecapabilities`](https://github.com/semi-technologies/weaviate/tree/master/entities/modulecapabilities). See [here](./architecture.md#module-capabilities-additionalgo) for a detailed explanation of what you can find in [`additional.go`](https://github.com/semi-technologies/weaviate/blob/master/entities/modulecapabilities/additional.go).
 
 It is recommended to [test](#running-and-testing-weaviate-during-development) what you built until now with hardcoded data (so without making a call to an inference API yet). You can replace this later with actual calls. 
 
@@ -94,7 +93,7 @@ Make sure to also write tests for the GraphQL field and for the result (e.g. [th
 
 ## 3. Add GraphQL filter (other than in `_additional`)
 
-If you choose to add a filter outside the `_additional` GraphQL field, you need to take a slight different approach then the adding the filter arguments as explained in the previous step. That is because you can't include the filter arguments in the `/additional` GraphQL field. For example, the QnA module has the filter `ask` on class level (click [here](../../../weaviate/current/reader-generator-modules/qna-transformers.html#graphql-ask-search) for an example). This argument was created in a new folder inside the new module folder in Weaviate ([example](https://github.com/semi-technologies/weaviate/tree/master/modules/qna-transformers/ask)). To achieve this, make sure to follow these steps:
+If you choose to add a filter outside the `_additional` GraphQL field, you need to take a slight different approach then the adding the filter arguments as explained in the previous step. That is because you can't include the filter arguments in the `/additional` GraphQL field. For example, the QnA module has the filter `ask` on class level (click [here](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md#graphql-ask-search) for an example). This argument was created in a new folder inside the new module folder in Weaviate ([example](https://github.com/semi-technologies/weaviate/tree/master/modules/qna-transformers/ask)). To achieve this, make sure to follow these steps:
 1. Create a new folder inside your new module folder with the name of the filter (e.g. [`/ask`](https://github.com/semi-technologies/weaviate/tree/master/modules/qna-transformers/ask)). In this folder:
 2. Define the GraphQL filter arguments in `graphql_argument.go` ([example](https://github.com/semi-technologies/weaviate/blob/master/modules/qna-transformers/ask/graphql_argument.go), and also write a test for this.
 3. Define the parameters in `params.go` ([example](https://github.com/semi-technologies/weaviate/blob/master/modules/qna-transformers/ask/param.go)).
@@ -156,4 +155,4 @@ $ tools/dev/run_dev_server.sh --<LOCAL-CONFIG-NAME>
 You can now load in any sample or test dataset. If you only make changes in the `/modules/<new-module>` folder afterwards, you only need to re-run `tools/dev/run_dev_server.sh --<LOCAL-CONFIG-NAME>` to apply the changes. The data will be kept, so no need to re-import.
 
 #### Passing tests
-Finally, and before you make a PR, your Weaviate with your complete module implementation should pass all tests (all existing tests and tests added by you). How to run tests, [check this page](../weaviate-core/tests.html#run-the-whole-pipeline).
+Finally, and before you make a PR, your Weaviate with your complete module implementation should pass all tests (all existing tests and tests added by you). How to run tests, [check this page](../weaviate-core/tests.md#run-the-whole-pipeline).

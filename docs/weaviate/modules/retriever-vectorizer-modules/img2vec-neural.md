@@ -11,8 +11,8 @@ sidebar_position: 5
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/img2vec-neural.html
-#     - /developers/weaviate/modules/img2vec-neural.html
+#     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/img2vec-neural.html
+#     - /docs/weaviate/modules/img2vec-neural.html
 ---
 ## Introduction
 
@@ -32,7 +32,7 @@ There are two different inference models you can choose from. Depending on your 
 
 ## How to enable in Weaviate
 
-Note: you can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose#configurator).
+Note: you can also use the [Weaviate configuration tool](/docs/weaviate/installation/docker-compose.md#configurator).
 
 ### Docker-compose file
 You can find an example Docker-compose file below, which will spin up Weaviate with the image vectorization module. This example spins up a Weaviate with only one vectorization module, the  `img2vec-neural` module of `pytorch` with the `resnet50` model.
@@ -121,9 +121,9 @@ If you prefer not to use Docker-compose (but instead for example Kubernetes in a
 
 ## Schema configuration
 
-You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](/developers/weaviate/references/schema-configuration). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector. 
+You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](/docs/weaviate/references/schema-configuration.md). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector. 
 
-When adding a class with vectorizer type `img2vec-neural`, the configuration must contain information about which field holds the image. The dataType of the `imageFields` should be [`blob`](../schema/datatypes.html#datatype-blob). This can be achieved with the following config in a class object:
+When adding a class with vectorizer type `img2vec-neural`, the configuration must contain information about which field holds the image. The dataType of the `imageFields` should be [`blob`](/docs/weaviate/references/datatypes.md#datatype-blob). This can be achieved with the following config in a class object:
 
 ```json
   "moduleConfig": {
@@ -184,11 +184,10 @@ A full example of a class using the `img2vec-neural` module is shown below. This
 ```
 
 :::note
-Other properties, for example the name of the image that is given in another field, will not be taken into consideration. This means that you can only find the image with semantic search by [another image](#nearimage-search), [data object](/developers/weaviate/references/graphql/filters#nearobject-filter), or [raw vector](/developers/weaviate/references/graphql/filters#nearvector-filter). Semantic search of images by text field (using `nearText`) is not possible, because this requires a `text2vec` vectorization module. Multiple modules cannot be combined at class level yet (might become possible in the future, since `image-text-combined transformers` exists). We recommend to use one of the following workarounds:
+Other properties, for example the name of the image that is given in another field, will not be taken into consideration. This means that you can only find the image with semantic search by [another image](#nearimage-search), [data object](/docs/weaviate/references/graphql/filters.md#nearobject-filter), or [raw vector](/docs/weaviate/references/graphql/filters.md#nearvector-filter). Semantic search of images by text field (using `nearText`) is not possible, because this requires a `text2vec` vectorization module. Multiple modules cannot be combined at class level yet (might become possible in the future, since `image-text-combined transformers` exists). We recommend to use one of the following workarounds:
 1. Best practice for multi-module search: create an image class and a text class in which you refer to each other by cross-reference. This way you can always hop along the reference and search either by “text labels” (using a `text2vec-....` module) or by image (using a `img2vec-...` module).
 2. If you don't want to create multiple classes, you are limited to using a `where` filter to find images by other search terms than an `image`, `data object`, or `vector`. A `where` filter does not use semantic features of a module.
 :::
-
 
 ## Adding image data objects
 
@@ -200,8 +199,7 @@ cat my_image.png | base64
 
 You can then import data with `blob` dataType in to Weaviate as follows:
 
-<!-- {% include code/1.x/img2vec-neural.create.html %} -->
-import CodeImg2Vec from '/code-samples/img2vec-neural.create.mdx';
+import CodeImg2Vec from '/_includes/code/img2vec-neural.create.mdx';
 
 <CodeImg2Vec />
 
@@ -211,19 +209,19 @@ import CodeImg2Vec from '/code-samples/img2vec-neural.create.mdx';
 
 At search time you can use the "standard" vector-search operators, such as `nearVector` and `nearObject`. But in addition, you can also vectorize a new image at search time and search by using the image's vector. To do so, you can use the nearImage search operator like so:
 
-<!-- {% include code/1.x/img2vec-neural.nearimage.html %} -->
-import CodeNearImage from '/code-samples/img2vec-neural.nearimage.mdx';
+import CodeNearImage from '/_includes/code/img2vec-neural.nearimage.mdx';
 
 <CodeNearImage />
 
 Alternatively, you can use a helper function in the Python, Java or Go client (not with the JavaScript client). With an encoder function, you can input your image as `png` file, and the helper function encodes this to a `base64` encoded value.
 
-<!-- {% include code/1.x/img2vec-neural.nearimage.encode.html %} -->
-import CodeNearImageEncode from '/code-samples/img2vec-neural.nearimage.encode.mdx';
+import CodeNearImageEncode from '/_includes/code/img2vec-neural.nearimage.encode.mdx';
 
 <CodeNearImageEncode />
 
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

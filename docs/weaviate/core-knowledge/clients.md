@@ -14,7 +14,7 @@ sidebar_position: 4
 There are two ways how you can interact with Weaviate:
 
 1. By using the GraphQL or RESTful API directly.
-2. By using one of the available [client libraries](../client-libraries/).
+2. By using one of the available [client libraries](../installation/client-libraries.md).
 
 ## Client examples in the documentation
 
@@ -22,7 +22,9 @@ Weaviate examples in the documentation are always shown in a handy accordion men
 
 The following example shows you how to get the Weaviate schema using different clients.
 
-{% include code/1.x/schema.dump.html %}
+import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
+
+<CodeSchemaDump />
 
 ## Native vs GraphQL queries
 
@@ -66,14 +68,14 @@ print(result)
 
 ## Installation
 
-Clients have their [own installation pages](../client-libraries/) per language.
+Clients have their [own installation pages](/docs/weaviate/references/client-libraries/index.md) per language.
 
 Currently Weaviate supports:
 
-- [Python](../client-libraries/python.html)
-- [Javascript](../client-libraries/javascript.html)
-- [Go](../client-libraries/go.html)
-- [Java](../client-libraries/java.html)
+- [Python](/docs/weaviate/references/client-libraries/python.md)
+- [Javascript](/docs/weaviate/references/client-libraries/javascript.md)
+- [Go](/docs/weaviate/references/client-libraries/go.md)
+- [Java](/docs/weaviate/references/client-libraries/java.md)
 - Do you want to contribute one? Please let us know on our [Slack]({{ site.slack_signup_url }})
 
 ## Recap
@@ -82,10 +84,12 @@ Weaviate clients are an easy way to connect with your Weaviate instance or clust
 
 ## What would you like to learn next?
 
-- [Show me how to query](../getting-started/query.html)
-- [Show me how the schema works](../getting-started/schema.html)
-- [One more time the basics](./basics.html)
+- [Show me how to query](../getting-started/query.md)
+- [Show me how the schema works](/docs/weaviate/getting-started/schema.md)
+- [One more time the basics](./basics.md)
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

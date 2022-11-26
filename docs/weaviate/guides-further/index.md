@@ -13,19 +13,19 @@ sidebar_position: 0
 # toc: false
 # redirect_from:
 #     - /documentation/weaviate/current/how-tos/index.html
-#     - /developers/weaviate/current/how-tos/index.html
+#     - /docs/weaviate/how-tos/index.html
 #     - /documentation/weaviate/current/how-tos/
-#     - /developers/weaviate/current/how-tos/
+#     - /docs/weaviate/how-tos/
 ---
 
-These guides are designed to be consumed after becoming familiar with [how to use](../guides/index.md) Weaviate, and to [configure](../configuration/index.md) Weaviate to your needs.
+These guides are designed to be consumed after becoming familiar with [how to use](../guides/index.md) Weaviate, and to [configure](/docs/weaviate/configuration/index.md) Weaviate to your needs.
 
 As such, these *further* guides are a little more specific, much as recipes tend to be in cooking, whereas the earlier sections can be thought as general guides on cooking.
 
 You can read them in any order, and depending on your needs or interests, you may decide to skip them altogether. 
 
-<!-- 1. [How to create a schema.](./how-to-create-a-schema.html)
-2. [How to import data.](./how-to-import-data.html)
-3. [How to query data.](./how-to-query-data.html)
-4. [How to perform a semantic search.](./how-to-perform-a-semantic-search.html)
-5. [How to do classification.](./how-to-do-classification.html) -->
+<!-- 1. [How to create a schema.](/docs/weaviate/guides/how-to-create-a-schema.md)
+2. [How to import data.](/docs/weaviate/guides/how-to-import-data.md)
+3. [How to query data.](/docs/weaviate/search/how-to-query-data.md)
+4. [How to perform a semantic search.](/docs/weaviate/search/how-to-perform-a-semantic-search.md)
+5. [How to do classification.](./how-to-do-classification.md)  -->

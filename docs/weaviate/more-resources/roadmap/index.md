@@ -12,10 +12,12 @@ sidebar_position: 0
 # toc: false
 ---
 
-There are two roadmaps, the [feature roadmap](./feature-roadmap.html), and the [architectural roadmap](./architectural-roadmap.html).
+There are two roadmaps, the [feature roadmap](./feature-roadmap.md), and the [architectural roadmap](./architectural-roadmap.md).
 
-Feel free to engage with us about the roadmap on [Weaviate's Github](/developers/weaviate/current/) or on [Slack]({{ site.slack_signup_url }}).
+Feel free to engage with us about the roadmap on [Weaviate's Github](https://github.com/semi-technologies/weaviate) or on [Slack]({{ site.slack_signup_url }}).
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

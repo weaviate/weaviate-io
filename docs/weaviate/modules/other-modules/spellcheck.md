@@ -11,8 +11,8 @@ sidebar_position: 1
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/other-modules/spellcheck.html
-#     - /developers/weaviate/modules/spellcheck.html
+#     - /docs/weaviate/v1.11.0/other-modules/spellcheck.html
+#     - /docs/weaviate/modules/spellcheck.html
 ---
 ## In short
 
@@ -84,8 +84,7 @@ There are two ways to use this module:
 
 ### Example query
 
-<!-- {% include code/1.x/spellcheck-module.html %} -->
-import CodeSpellcheck from '/code-samples/spellcheck-module.mdx';
+import CodeSpellcheck from '/_includes/code/spellcheck-module.mdx';
 
 <CodeSpellcheck />
 
@@ -163,4 +162,6 @@ The result is contained in a new GraphQL `_additional` property called `spellChe
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

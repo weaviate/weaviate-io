@@ -13,12 +13,12 @@ sidebar_position: 6
 # toc: true
 # redirect_from:
 #     - /documentation/weaviate/current/graphql-references/underscore-properties.html
-#     - /developers/weaviate/current/graphql-references/underscore-properties.html
+#     - /docs/weaviate/graphql-references/underscore-properties.html
 ---
 
 # Introduction
 
-GraphQL additional properties can be used on data objects in Get{} Queries to get additional information about the returned data objects. Which additional properties are available depends on the modules that are attached to Weaviate. The fields `id`, `certainty`, `featureProjection` and `classification` are available from Weaviate Core. On nested GraphQL fields (references to other data classes), only the `id` can be returned. Explanation on specific additional properties can be found on the module pages, see for example [`text2vec-contextionary`](../modules/text2vec-contextionary.html#additional-graphql-api-properties).
+GraphQL additional properties can be used on data objects in Get{} Queries to get additional information about the returned data objects. Which additional properties are available depends on the modules that are attached to Weaviate. The fields `id`, `certainty`, `featureProjection` and `classification` are available from Weaviate Core. On nested GraphQL fields (references to other data classes), only the `id` can be returned. Explanation on specific additional properties can be found on the module pages, see for example [`text2vec-contextionary`](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#additional-graphql-api-properties).
 
 # Example
 
@@ -122,7 +122,7 @@ the distance between the query vector and each result. The distance is the raw
 distance metric that was used as part of the vector search. For example, if the
 distance metric is `cosine`, distance will return a number between 0 and 2. See
 the full overview of [distance metrics and the expected distance
-ranges](../vector-index-plugins/distances.html).
+ranges](/docs/weaviate/references/distances.md).
 
 A distance would be typical in any place that you retrieve objects using a
 vector, for example `Get {}` with `nearObject`, `nearVector`, or `near<Media>`.
@@ -134,7 +134,7 @@ another, than a higher value. Depending on the distance metric used, this can
 also mean that distances would return negative values. For example, if dot
 product distance is used, a distance of `-50` would indicate more similarity
 between a vector pair than `20`. See [the distances
-page](../vector-index-plugins/distances.html) for details and exact
+page](/docs/weaviate/references/distances.md) for details and exact
 definitions.
 
 *Note that the distance field was introduced in `v1.14.0`.*
@@ -159,7 +159,7 @@ result in certainties between 0 and 1, with 1 indicating identical vectors, and
 
 ## Classification
 
-When a data-object has been [subjected to classification](../restful-api-references/classification.html), you can get additional information about how the object was classified by running the following command:
+When a data-object has been [subjected to classification](../rest/classification.md), you can get additional information about how the object was classified by running the following command:
 
 {% include code/1.x/graphql.underscoreproperties.classification.html %}
 
@@ -195,6 +195,8 @@ The above result can be plotted as follows (where the result in red is the first
 * Currently only root elements (not resolved cross-references) are taken into consideration for the featureProjection.
 * Due to the relatively high cost of the underlying algorithm, we recommend to limit requests including a `featureProjection` in high-load situations where response time matters. Avoid parallel requests including a `featureProjection`, so that some threads stay available to serve other, time-critical requests.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

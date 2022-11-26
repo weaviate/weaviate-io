@@ -103,8 +103,7 @@ This module adds a search filter to the GraphQL `_additional` field in queries: 
 | `properties` 	| list of strings 	| yes 	| `["description"]` 	| The properties of the queries Class which contains text (`text` or `string` Datatype). You must provide at least one property	|
 
 ### Example query
-<!-- {% include code/1.x/sum-transformers-module.html %} -->
-import CodeSumTransformer from '/code-samples/sum-transformers-module.mdx';
+import CodeSumTransformer from '/_includes/code/sum-transformers-module.mdx';
 
 <CodeSumTransformer />
 
@@ -188,4 +187,6 @@ The Weaviate SUM Module then takes this output and processes this to GraphQL out
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

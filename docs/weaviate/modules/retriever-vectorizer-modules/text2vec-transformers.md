@@ -11,9 +11,9 @@ sidebar_position: 3
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.5.2/modules/text2vec-transformers.html
-#     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-transformers.html
-#     - /developers/weaviate/modules/text2vec-transformers.html
+#     - /docs/weaviate/v1.5.2/modules/text2vec-transformers
+#     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-transformers
+#     - /docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md
 ---
 ## Introduction
 
@@ -40,7 +40,7 @@ You have three options to select your desired model:
 ### Option 1: Use a pre-built transformer model container
 
 #### Example Docker-compose file
-Note: you can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose#configurator).
+Note: you can also use the [Weaviate configuration tool](/docs/weaviate/installation/docker-compose.md#configurator).
 
 You can find an example Docker-compose file below, which will spin up Weaviate with the transformers module. In this example, we have selected the `sentence-transformers/msmarco-distilroberta-base-v2` which works great for [asymmetric semantic search](https://sbert.net/examples/applications/semantic-search/README.html#symmetric-vs-asymmetric-semantic-search). See below for how to select an alternative model.
 
@@ -187,7 +187,7 @@ Then you can send REST requests to it directly, e.g. `curl localhost:9090/vector
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/developers/weaviate/getting-started/schema) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](/docs/weaviate/getting-started/schema.md) first.
 
 For example:
 
@@ -226,12 +226,11 @@ For example:
 
 ## How to use
 
-* New GraphQL vector search parameters made available by this module can be found [here](/developers/weaviate/references/graphql/vector-search-parameters#neartext).
+* New GraphQL vector search parameters made available by this module can be found [here](/docs/weaviate/references/graphql/vector-search-parameters.md#neartext).
 
 ### Example
 
-<!-- {% include code/1.x/graphql.filters.nearText.html %} -->
-import CodeNearText from '/code-samples/graphql.filters.nearText.mdx';
+import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
 <CodeNearText />
 
@@ -247,4 +246,6 @@ In addition you can use a class-level module config to select the pooling strate
 
 ## More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

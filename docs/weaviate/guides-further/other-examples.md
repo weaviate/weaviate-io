@@ -23,6 +23,8 @@ You can find more examples with Weaviate [here](https://github.com/semi-technolo
 | [Unmask Superheroes in 5 steps using the Weaviate NLP module and the Python client](https://github.com/semi-technologies/weaviate-examples/tree/main/unmask-superheroes) | Python | Super simple 5 step guide to get started with the Weaviate NLP modules. This is a basic introduction to semantic search with Weaviate and the Python client.|
 | [Information Retrieval with BERT (Weaviate without vectorizer module)](https://github.com/semi-technologies/weaviate-examples/tree/main/bert-information-retrieval) | Python (Jupyter Notebook) | In this example we are going to use Weaviate without vectorization module, and use it as pure vector database to use a BERT transformer to vectorize text documents, then retrieve the closest ones through Weaviate's Search | 
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

@@ -405,7 +405,7 @@ And yes, you can combine vector search with where filters.
 We call Weaviate "vector first". This means that when combining vector search with a where filter, the where-filter will create an allowed-list that skips entries that are not allowed in the ANN index.
 :::
 
-If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`](todo-fix-link) vectorizer module and the [Q&A generator](todo-fix-link) module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.
+If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) vectorizer module and the [Q&A generator](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md) module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.
 
 Let's explore the additional filters for the modules which are part of this dataset.
 
@@ -661,6 +661,8 @@ Weaviate's GraphQL-API is used to query your datasets. The structure of the data
 - [Get me back to the schema guide](./schema.md)
 - [Get me back to the import guide](./import.md) -->
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

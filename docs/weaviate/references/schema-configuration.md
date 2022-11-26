@@ -11,8 +11,8 @@ sidebar_position: 21
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.4.1/data-schema/schema-configuration.html
-#     - /developers/weaviate/v1.11.0/data-schema/schema-configuration.html
+#     - /docs/weaviate/v1.4.1/data-schema/schema-configuration.html
+#     - /docs/weaviate/v1.11.0/data-schema/schema-configuration.html
 ---
 
 # Introduction
@@ -23,10 +23,10 @@ Additionally, per the data class, you can define the vector index type, the vect
 
 A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 
-You can upload schema classes to Weaviate via the RESTful endpoint `/v1/schema`. Learn more [here](../restful-api-references/schema.html).
+You can upload schema classes to Weaviate via the RESTful endpoint `/v1/schema`. Learn more [here](../references/rest/schema.md).
 
 :::note
-Check out the [schema getting started guide](../getting-started/schema.md) to learn how to work with the Weaviate schema.
+Check out the [schema getting started guide](/docs/weaviate/getting-started/schema.md) to learn how to work with the Weaviate schema in under 10 minutes.
 :::
 
 # Data objects and structure
@@ -66,7 +66,7 @@ current (as of `v1.10.0+`) class name validation regex is
 
 ## Properties
 
-Every class has properties. Properties define what kind of data values you will add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](./datatypes.html). Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name. 
+Every class has properties. Properties define what kind of data values you will add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](./datatypes.md). Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name. 
 
 # Class object
 
@@ -119,27 +119,25 @@ An example of a complete class object including properties:
 
 ### vectorizer
 
-The vectorizer (`"vectorizer": "..."`) can be specified per class in the schema object. Check the [modules page](../modules/index.html) for available vectorizer modules.
+The vectorizer (`"vectorizer": "..."`) can be specified per class in the schema object. Check the [modules page](/docs/weaviate/modules/index.md) for available vectorizer modules.
 
 In case you don't want to use a vectorization module to calculate vectors from data objects, and want to enter the vectors per data object yourself when adding data objects, make sure to set `"vectorizer": "none"`.
 
 __Regulate semantic indexing__
 
-With the [`text2vec-contextionary`](../modules/text2vec-contextionary.html) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/developers/weaviate/current/schema/schema-configuration.html#regulate-semantic-indexing) how this works.
+With the [`text2vec-contextionary`](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing) how this works.
 
 ### vectorIndexType
 
-The vectorIndexType defaults to [`hnsw`](../vector-index-plugins/hnsw.html) since this is the only available vector indexing algorithm implemented at the moment.
+The vectorIndexType defaults to [`hnsw`](/docs/weaviate/vectorization/hnsw.md) since this is the only available vector indexing algorithm implemented at the moment.
 
 ### vectorIndexConfig
 
-Check the [`hsnw` page](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters) for `hsnw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
+Check the [`hsnw` page](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters) for `hsnw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
 
 ### shardingConfig (introduced in v1.8.0)
 
-The `"shardingConfig"` controls how a class should be [sharded and distributed
-across multiple nodes](../architecture/cluster.html). All values are optional and
-default to the following settings:
+The `"shardingConfig"` controls how a class should be [sharded and distributed across multiple nodes](/docs/weaviate/architecture/cluster.md). All values are optional and default to the following settings:
 
 ```json
   "shardingConfig": {
@@ -398,6 +396,8 @@ In addition, we need to catch types we do not support at all:
 
 Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every class unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

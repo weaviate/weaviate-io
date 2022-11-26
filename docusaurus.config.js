@@ -73,6 +73,7 @@ const config = {
           src: 'img/site/logo.svg',
         },
         items: [
+          { to: '/pricing', label: 'Pricing', position: 'right',   },
           {
             type: 'dropdown',
             label: 'Content',
@@ -99,11 +100,15 @@ const config = {
                 type: 'doc',
                 docId: 'contributor-guide/index',
               },
+              {
+                href: 'https://github.com/semi-technologies/weaviate-io',
+                label: 'GitHub',
+              },
             ]
           },
           {
-            href: 'https://github.com/semi-technologies/weaviate-io',
-            label: 'GitHub',
+            href: 'https://console.semi.technology/',
+            label: 'Weaviate Cloud Service',
             position: 'right',
           },
         ],

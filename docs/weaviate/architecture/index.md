@@ -17,42 +17,45 @@ toc: false
 The above gives a 30,000 feet view of Weaviate's architecture. On these pages
 you can learn more about the individual sections:
 
-* **[Learn about Storage inside a shard](storage.html)**
+* **[Learn about Storage inside a shard](./storage.md)**
   * How Weaviate stores data
   * How Weaviate makes writes durable
   * How an inverted index, a vector index and an object store interact with each other
 
-* **[Ways to scale Weaviate horizontally](cluster.html)**
+* **[Ways to scale Weaviate horizontally](./cluster.md)**
   * Different motivations to scale
   * Sharding vs. Replication
   * Configuring a cluster
   * Consistency
 
-* **[How to plan resources](resources.html)**
+* **[How to plan resources](./resources.md)**
   * The roles of CPU, Memory and GPUs
   * How to size a cluster correctly
   * Speeding up specific processes
   * Preventing bottlenecks
 
-* **[The module system](../modules)**
+<!-- TODO: We probably need to move modules/index.md to the root of the modules -->
+* **[The module system](/docs/weaviate/modules/index.md)**
   * How Weaviate can be extended through modules
   * The various roles of modules (vectorizers, etc.)
   * Creating your own modules or adapting existing modules to your needs
 
-* **[Filtered Vector Search](prefiltering.html)**
+* **[Filtered Vector Search](./prefiltering.md)**
   * Combine vector search with filters
   * Learn how combining an HNSW with an inverted index leads to high-recall, high-speed filtered queries
 
 
-* **[User-facing interfaces](interface.html)**
+* **[User-facing interfaces](./interface.md)**
   * Design philosophy behind user-facing APIs
   * Role of the REST and GraphQL APIs
 
-* **[Roadmap](roadmap.html)**
+* **[Roadmap](/docs/weaviate/more-resources/roadmap/index.md)**
   * Learn about features currently under development
   * What will Weaviate be like in the future from an architectural perspective?
 
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

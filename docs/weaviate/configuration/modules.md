@@ -11,7 +11,7 @@ sidebar_position: 1
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#     - /developers/weaviate/v1.11.0/configuration/modules.html
+#     - /docs/weaviate/v1.11.0/configuration/modules.html
 ---
 
 ## Introduction
@@ -19,8 +19,6 @@ sidebar_position: 1
 Weaviate is modularized, which provides it and its users a great deal of flexibility. This also requires users to specify the desired optional Weaviate modules to be used the relevant configuration file, by setting appropriate [environment variables](../installation/docker-compose.md#environment-variables).
 
 Some of the key environment variables in relation to module use are explained below.
-
-## Environment variables
 
 ### Enable modules
 
@@ -66,9 +64,10 @@ Many of the available modules must be configured by setting additional environme
 These variables and associated instructions are available in the [Modules](../modules/index.md) section, or in the relevant page within the current [Configuration](./index.md) section of the documentation.
 
 ## Custom modules
-
 See [here](../modules/other-modules/custom-modules.md) how you can create and use your own modules.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

@@ -29,15 +29,15 @@ B​uilt in search parameters are available in all Weaviate instances and don't 
 
 This filter allows you to find data objects in the vicinity of an input vector. It's supported by the `Get{}` function.
 
-* Note: this argument is different from the [GraphQL `Explore{}` function](explore.html) )
-* Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](../modules/qna-transformers.html) filter
+* Note: this argument is different from the [GraphQL `Explore{}` function](./explore.md) )
+* Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md) filter
 
 ### Variables
 
 | Variables | Mandatory | Type | Description |
 | --- | --- | --- | --- |
 | `vector` | yes | `[float]` | This variable takes a vector embedding in the form of an array of floats. The array should have the same length as the vectors in this class. |
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](../vector-index-plugins/distances.html). |
+| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/docs/weaviate/references/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
 
 ### Example
@@ -58,7 +58,7 @@ non-cosine distance metrics.
 
 This filter allows you to find data objects in the vicinity of other data objects by UUID. It's supported by the `Get{}` function.
 
-* Note: You cannot use multiple `near<Media>` arguments, or a `near<Media>` argument along with an [`ask`](../modules/qna-transformers.html) argument.
+* Note: You cannot use multiple `near<Media>` arguments, or a `near<Media>` argument along with an [`ask`](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md) argument.
 * Note: You can specify an object's `id` or `beacon` in the argument, along with a desired `certainty`.
 * Note that the first result will always be the object in the filter itself.
 * Near object search can also be combined with `text2vec` modules.
@@ -69,7 +69,7 @@ This filter allows you to find data objects in the vicinity of other data object
 | --- | --- | --- | --- |
 | `id` | yes | `UUID` | Data object identifier in the uuid format. |
 | `beacon` | yes | `url` | Data object identifier in the beacon URL format. E.g., `weaviate://<hostname>/<kind>/id`. |
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](../vector-index-plugins/distances.html). |
+| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/docs/weaviate/references/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
 
 ### Example
@@ -148,7 +148,7 @@ Module specific search parameters are made available in certain Weaviate modules
 
 ## NearText
 
-Enabled by the modules: [text2vec-openai](../retriever-vectorizer-modules/text2vec-openai.html), [text2vec-transformers](../retriever-vectorizer-modules/text2vec-transformers.html), [text2vec-contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html).
+Enabled by the modules: [text2vec-openai](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md), [text2vec-transformers](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md), [text2vec-contextionary](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md).
 
 This filter allows you to find data objects in the vicinity of the vector representation of a single or multiple concepts. It's supported by the `Get{}` function.
 
@@ -168,7 +168,7 @@ This filter allows you to find data objects in the vicinity of the vector repres
 | `moveAwayFrom{concepts}`| no | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
 | `moveAwayFrom{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space | 
 | `moveAwayFrom{force}`| no | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible | 
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](../vector-index-plugins/distances.html). |
+| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/docs/weaviate/references/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
 
 ### Example I
@@ -230,7 +230,7 @@ Example: showing a semantic path without edges.
 
 ## Ask
 
-Enabled by the module: [Question Answering](../reader-generator-modules/qna-transformers.html).
+Enabled by the module: [Question Answering](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md).
 
 This filter allows you to return answers to questions by running the results through a Q&A model.
 
@@ -253,6 +253,8 @@ This filter allows you to return answers to questions by running the results thr
 
 The `_additional{}` property is extended with the answer and a certainty of the answer.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

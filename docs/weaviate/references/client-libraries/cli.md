@@ -5,7 +5,7 @@ sidebar_position: 5
 # solution: weaviate
 # sub-menu: Client libraries
 # title: Weaviate CLI
-# intro: The Command Line Interface of Weaviate. This CLI tool is a text-based interface used to interact with a Weaviate instance by typing direct commands. This should not be confused with the <a href="./python.html">Weaviate Python client</a>, with which you can perform all RESTful and GraphQL requests, and has additional functionalities.
+# intro: The Command Line Interface of Weaviate. This CLI tool is a text-based interface used to interact with a Weaviate instance by typing direct commands. This should not be confused with the <a href="./python.md">Weaviate Python client</a>, with which you can perform all RESTful and GraphQL requests, and has additional functionalities.
 # description: The Command Line Interface of Weaviate
 # tags: ['cli']
 # sidebar_position: 5
@@ -108,7 +108,7 @@ Adding a schema can be done via:
 $ weaviate schema import my_schema.json
 ```
 
-Where `my_schema.json` contains the schema as described [here](../tutorials/how-to-create-a-schema.html).
+Where `my_schema.json` contains the schema as described [here](/docs/weaviate/guides/how-to-create-a-schema.md).
 
 To overwrite your schema you can use the `--force` flag, this will clear the index and replace your schema:
 
@@ -179,6 +179,8 @@ $ weaviate data delete
 
 Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-cli/releases) for updates on the latest `CLI` changes.
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

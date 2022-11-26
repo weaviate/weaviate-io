@@ -26,9 +26,9 @@ You have three options to run Weaviate, all come with their own installation gui
 Both Docker Compose and Kubernetes setups use a yaml file for customizing Weaviate instances, typically called `docker-compose.yml` or `values.yml` respectively. These files will be referred to throughout the documentation as 'configuration yaml files'.
 :::
 
-* [Weaviate Cluster Service](./weaviate-cloud-service.html) – advised for users who want to use a managed Weaviate service.
-* [Docker Compose](./docker-compose.html) – advised for those who want to develop on Weaviate.
-* [Kubernetes](./kubernetes.html) – advised for production setups.
+* [Weaviate Cluster Service](./weaviate-cloud-service.md) – advised for users who want to use a managed Weaviate service.
+* [Docker Compose](./docker-compose.md) – advised for those who want to develop on Weaviate.
+* [Kubernetes](./kubernetes.md) – advised for production setups.
 
 :::note
 When self-hosting, we recommend starting with the Docker Compose configurator and set up to get a feel for how Weaviate operates. You can later adopt this knowledge when you are creating your Helm charts.
@@ -73,6 +73,8 @@ services:
 
 After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`. 
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

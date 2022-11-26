@@ -13,8 +13,8 @@ sidebar_position: 8
 # open-graph-type: article
 # toc: true
 # redirect_from:
-#   - /developers/weaviate/v1.14.1/configuration/monitoring.html
-#   - /developers/weaviate/current/more-resources/monitoring.html
+#   - /docs/weaviate/v1.14.1/configuration/monitoring.html
+#   - /docs/weaviate/more-resources/monitoring.html
 ---
 
 ## Overview 
@@ -120,6 +120,8 @@ your uses perfectly:
 | [Startup](https://github.com/semi-technologies/weaviate/blob/master/tools/dev/grafana/dashboards/startup.json) | Visualize the startup process, including recovery operations | ![Startup](./img/weaviate-sample-dashboard-startup.png "Vector Index") |
 | [Usage](https://github.com/semi-technologies/weaviate/blob/master/tools/dev/grafana/dashboards/usage.json) | Obtain usage metrics, such as number of objects imported, etc.| ![Usage](./img/weaviate-sample-dashboard-usage.png "Usage") |
 
-# More Resources
+## More Resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

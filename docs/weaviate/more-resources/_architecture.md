@@ -14,7 +14,7 @@ redirect_from:
 
 ...
 
-# More resources - bullet points, not ready for publishing (!)
+## More Resources - bullet points, not ready for publishing (!)
 
 The following are some bullet points, that need to be converted to proper text.
 I tried to be quite detailed, if there are details in there that should not be
@@ -182,4 +182,6 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
 * as of 0.22.16 each index has a single shard. Support for a custom number of
   shards will be added before `1.0.0`
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
