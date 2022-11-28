@@ -1,6 +1,6 @@
 ---
-title: Semantic search with Wikipedia
-sidebar_position: 2
+title: Larger dataset example (Wikipedia)
+sidebar_position: 99
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Tutorials

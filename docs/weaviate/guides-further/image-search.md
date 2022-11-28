@@ -1,4 +1,4 @@
 ---
-title: (NEW) How to vectorize images
+title: (NEW) Image search with Weaviate
 sidebar_position: 5
 ---

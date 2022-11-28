@@ -51,12 +51,58 @@ It includes a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) with cla
 
 If you want to run this dataset locally, you can run it in one go with Docker Compose.
 
-The Docker Compose files below contain both Weaviate and the dataset.
+You can run this demo dataset with any `text2vec` module. Examples:
+
+#### Text2vec-contextionary
+
+The Docker Compose file contains both Weaviate with the `text2vec-contextionary` module and the dataset.
+
+Download the Docker Compose file
+
+```bash
+$ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-contextionary-newspublications/docker-compose.yaml
+```
+
+Run Docker (optional: run with `-d` to run Docker in the background)
+
+```bash
+$ docker-compose up
+```
+
+Weaviate will be available and preloaded with the News Articles demo dataset on:
+
+- `http://localhost:8080/`
+- [Via the Console](https://console.semi.technology): connect to `https://demo.dataset.playground.semi.technology`.
+
+#### Text2vec-transformers (without GPU)
+
+The Docker Compose file contains both Weaviate with the `text2vec-contextionary` module, `NER` module, `Q&A` module and `spellcheck` module, and the dataset.
 
 Download the Docker Compose file
 
 ```bash
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose.yaml
+```
+
+Run Docker (optional: run with `-d` to run Docker in the background)
+
+```bash
+$ docker-compose up
+```
+
+Weaviate will be available and preloaded with the News Articles demo dataset on:
+
+- `http://localhost:8080/`
+- [Via the Console](https://console.semi.technology): connect to `https://demo.dataset.playground.semi.technology`.
+
+#### Text2vec-transformers (with GPU enabled)
+
+The Docker Compose file contains both Weaviate with the `text2vec-contextionary` module, `NER` module, `Q&A` module and `spellcheck` module, and the dataset. GPU should be available on your machine when running this configuration.
+
+Download the Docker Compose file
+
+```bash
+$ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-gpu.yaml
 ```
 
 Run Docker (optional: run with `-d` to run Docker in the background)

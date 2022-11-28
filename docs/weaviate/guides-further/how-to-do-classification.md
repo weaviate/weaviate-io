@@ -17,6 +17,7 @@ sidebar_position: 5
 #     - /documentation/weaviate/current/tutorials/how-to-do-classification.html
 ---
 
+<!-- TODO: Difficult to understand; JPH to revise/refactor -->
 # Introduction
 
 You can use Weaviate to automatically classify data, that is, you can ask Weaviate to automatically make references between concepts. Since Weaviate stores data objects based on semantics in a vector position, a variety of automated classification tasks can be performed in near-realtime. Weaviate offers two different types of classification:
