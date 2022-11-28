@@ -1,6 +1,6 @@
 ---
 title: Modules
-sidebar_position: 4
+sidebar_position: 1
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration
@@ -16,13 +16,13 @@ sidebar_position: 4
 
 ## Introduction
 
-Weaviate adopts a modularized architecture, which affords it a great deal of flexibility. Modules to be used must be specified in the relevant configuration file, by setting appropriate [environment variables](../installation/docker-compose.md#environment-variables).
+Weaviate is modularized, which provides it and its users a great deal of flexibility. This also requires users to specify the desired optional Weaviate modules to be used the relevant configuration file, by setting appropriate [environment variables](../installation/docker-compose.md#environment-variables).
 
-A few of the necessary variables are explained below.
+Some of the key environment variables in relation to module use are explained below.
 
 ### Enable modules
 
-Provide the list of modules to be ued to the `ENABLE_MODULES` variable. For example, the below will enable the `text2vec-contextionary` module. 
+Provide the list of modules to be used to the `ENABLE_MODULES` variable. For example, the below will enable the `text2vec-contextionary` module. 
 
 ```yaml
 services:
@@ -31,7 +31,7 @@ services:
       ENABLE_MODULES: 'text2vec-contextionary'
 ```
 
-If multiple modules are to be used, each of them should be separate by a comma as below.
+If multiple modules are to be used, each of them should be separate by a comma as shown below.
 
 ```yaml
 services:

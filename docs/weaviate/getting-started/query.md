@@ -58,7 +58,9 @@ Weaviate's GraphQL-API has three root functions:
 }
 ```
 
-> 💡 A more detailed explanation of Weaviate's GraphQL design is available [here](../references/graphql/index.md#query-structure).
+:::note
+A more detailed explanation of Weaviate's GraphQL design is available [here](../references/graphql/index.md#query-structure).
+:::
 
 ## Get{}
 
@@ -399,10 +401,8 @@ And yes, you can combine vector search with where filters.
 
 [Try out ⬆️](https://link.semi.technology/3QgJPfo)
 
-:::info Vector first
-
+:::note Vector first
 We call Weaviate "vector first". This means that when combining vector search with a where filter, the where-filter will create an allowed-list that skips entries that are not allowed in the ANN index.
-
 :::
 
 If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) vectorizer module and the [Q&A generator](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md) module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.

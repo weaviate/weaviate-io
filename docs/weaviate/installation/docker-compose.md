@@ -21,7 +21,7 @@ your desired runtime.
 
 ## How to customize
 
-:::info
+:::note
 If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079).
 :::
 

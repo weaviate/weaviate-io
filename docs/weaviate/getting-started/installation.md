@@ -99,7 +99,7 @@ This will start the process to create a new cluster. The status indicator on the
 To test the connection, click on the `Cluster Id` link, which will open a new page in your browser and display all the available endpoints.
 ![Weaviate Cluster](./img/weaviate-cluster.jpg)
 
-:::info
+:::note
 For every endpoint, there is a `documentationHref` link, which points us to relevant documentation pages.
 :::
 
@@ -120,7 +120,7 @@ When running Weaviate yourself in production, you want to make sure you select t
 
 ## Kubernetes
 
-:::info
+:::note
 If you're new to Weaviate but familiar with Kubernetes. It might be an idea to use the [Docker-compose configurator](../installation/#customize-your-weaviate-setup) _first_ to see how Weaviate is structured.
 :::
 

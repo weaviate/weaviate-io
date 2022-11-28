@@ -1,6 +1,6 @@
 ---
 title: Backups
-sidebar_position: 5
+sidebar_position: 2
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration
@@ -18,7 +18,7 @@ sidebar_position: 5
 #     - /docs/weaviate/v1.9.0/configuration/backups-and-persistence.html
 ---
 
-# Introduction
+## Introduction
 
 Weaviate's Backup feature is designed to feel very easy to use and work natively with cloud technology. Most notably, it allows:
 
@@ -29,9 +29,11 @@ Weaviate's Backup feature is designed to feel very easy to use and work natively
 * Zero downtime & minimal impact for your users when backups are running
 * Easy Migration to new environments
 
-_Note: The backup functionality was introduced in Weaviate `v1.15`, but for single-node instances only. Support for multi-node backups was introduced in `v1.16`_
+:::note
+_The backup functionality was introduced in Weaviate `v1.15`, but for single-node instances only. Support for multi-node backups was introduced in `v1.16`_
+:::
 
-# Configuration
+## Configuration
 
 In order to perform backups, a backup provider module must be activated. Multiple backup providers can be active at the same time. Currently `backup-s3`, `backup-gcs`, and `backup-filesystem` modules are available for S3, GCS or filesystem backups.
 
@@ -40,7 +42,7 @@ Built on Weaviate's [module system](/docs/weaviate/configuration/modules.md), ad
 All service-discovery and authentication-related configuration is set using
 environment variables.
 
-## S3 (AWS or S3-compatible)
+### S3 (AWS or S3-compatible)
 
 Use the `backup-s3` module to enable backing up to and restoring from any S3-compatible blob storage. This includes AWS S3, and MinIO.
 
@@ -57,7 +59,7 @@ Modules are comma-separated, for example to combine the module with the
 ENABLE_MODULES=backup-s3,text2vec-transformers
 ```
 
-### S3 Configuration (vendor-agnostic)
+#### S3 Configuration (vendor-agnostic)
 In addition to activating the module, you need to provide configuration. This configuration applies to any S3-compatible backend.
 
 | Environment variable | Required | Description |
@@ -67,15 +69,15 @@ In addition to activating the module, you need to provide configuration. This co
 | `BACKUP_S3_ENDPOINT` | no | The S3 endpoint to be used. Optional, defaults to `"s3.amazonaws.com"`. |
 | `BACKUP_S3_USE_SSL` | no | Whether the connection should be secured with SSL/TLS. Optional, defaults to `"true"`. |
 
-### S3 Configuration (AWS-specific)
+#### S3 Configuration (AWS-specific)
 
 In addition to the vendor-agnostic configuration from above, you can set AWS-specific configuration for authentication. You can choose between access-key or ARN-based authentication:
 
-### Option 1: With IAM and ARN roles
+#### Option 1: With IAM and ARN roles
 
 The backup module will first try to authenticate itself using AWS IAM. If the authentication fails then it will try to authenticate with `Option 2`.
 
-### Option 2: With access key and secret access key
+#### Option 2: With access key and secret access key
 
 | Environment variable | Description |
 | --- | --- |
@@ -84,7 +86,7 @@ The backup module will first try to authenticate itself using AWS IAM. If the au
 | `AWS_REGION` | The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
 
-## GCS (Google Cloud Storage)
+### GCS (Google Cloud Storage)
 
 Use the `backup-gcs` module to enable backing up to and restoring from any Google Cloud Storage.
 
@@ -107,7 +109,7 @@ In addition to activating the module, you need to provide configuration:
 | `BACKUP_GCS_BUCKET` | yes | The name of the GCS bucket for all backups. |
 | `BACKUP_GCS_PATH` | no | The root path inside your bucket that all your backups will be copied into and retrieved from. Optional, defaults to `""` which means that the backups will be stored in the bucket root instead of a sub-folder. |
 
-### Google Application Default Credentials
+#### Google Application Default Credentials
 
 The `backup-gcs` module follows the Google [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials) best-practices. This means that credentials can be discovered through the environment, through a local Google Cloud CLI setup, or through an attached service account.
 
@@ -121,13 +123,13 @@ This makes it easy to use the same module in different setups. For example, you 
 | `GCP_PROJECT` | `my-gcp-project` | Optional. If you use a service account with `GOOGLE_APPLICATION_CREDENTIALS` the service account will already contain a Google project. You can use this variable to explicitly set a project if you are using user credentials which may have access to more than one project. |
 
 
-## Filesystem
+### Filesystem
 
-> ### ⚠️ Caution ⚠️
->
-> `backup-filesystem` is only compatible with single-node backups. Use `backup-gcs` or `backup-s3` if support for multi-node backups is needed.
->
-> The filesystem provider is not intended for production use, as its availability is directly tied to the node on which it operates.
+:::caution `backup-filesystem` - limitations
+`backup-filesystem` is only compatible with single-node backups. Use `backup-gcs` or `backup-s3` if support for multi-node backups is needed.
+
+The filesystem provider is not intended for production use, as its availability is directly tied to the node on which it operates.
+:::
 
 Instead of backing up to a remote backend, you can also back up to the local filesystem. This may be helpful during development, for example to be able to quickly exchange setups, or to save a state from accidental future changes.
 
@@ -149,31 +151,31 @@ In addition to activating the module, you need to provide configuration:
 | --- | --- | --- |
 | `BACKUP_FILESYSTEM_PATH` | yes | The root path that all your backups will be copied into and retrieved from |
 
-## Other Backup Backends
+### Other Backup Backends
 
 Weaviate uses its [module system](/docs/weaviate/configuration/modules.md) to decouple the backup orchestration from the remote backup storage backends. It is easy to add new providers and use them with the existing backup API. If you are missing your desired backup module, you can open a feature request or contribute it yourself. For either option, join our Slack community to have  a quick chat with us on how to get started.
 
-# API
+## API
 
-## Create Backup
+### Create Backup
 
 Once the modules are enabled and the configuration is provided, you can start a backup on any running instance with a single HTTP request.
 
-### Method and URL
+#### Method and URL
 
 ```js
 POST /v1/backups/{backend}
 ```
 
-### Parameters
+#### Parameters
 
-#### URL Parameters
+##### URL Parameters
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
 | `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 
-#### Request Body
+##### Request Body
 
 The request takes a json object with the following properties:
 
@@ -218,27 +220,27 @@ import CodeBackupStatusCreate from '/_includes/code/backup.status.create.mdx';
 
 <CodeBackupStatusCreate />
 
-## Restore Backup
+### Restore Backup
 You can restore any backup to any machine as long as the name and number of nodes between source and target are identical. The backup does not need to be created on the same instance. Once a backup backend is configured, you can restore a backup with a single HTTP request.
 
 Note that a restore fails if any of the classes already exist on this instance.
 
-### Method and URL
+#### Method and URL
 
 ```js
 POST /v1/backups/{backend}/{backup_id}/restore
 ```
 
-### Parameters
+#### Parameters
 
-#### URL Parameters
+##### URL Parameters
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
 | `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
-#### Request Body
+##### Request Body
 The request takes a json object with the following properties:
 
 | name | type | required | description |
@@ -279,9 +281,11 @@ import CodeBackupStatusRestore from '/_includes/code/backup.status.restore.mdx';
 
 <CodeBackupStatusRestore />
 
-# Technical Considerations
+<CodeBackupRestore/>
 
-## Read &amp; Write requests while a backup is running
+## Technical Considerations
+
+### Read &amp; Write requests while a backup is running
 
 The backup process is designed to be minimally invasive to a running setup. Even on very large setups, where terabytes of data need to be copied, Weaviate stays fully usable during backup. It even accepts write requests while a backup process is running. This sections explains how backups work under the hood and why Weaviate can safely accept writes while a backup is copied.
 
@@ -301,18 +305,18 @@ This way the backup process can guarantee that the files that are transferred to
 
 It is not just safe - but even recommended - to create backups on live production instances while they are serving user requests.
 
-## Async nature of the Backup API
+### Async nature of the Backup API
 
 The backup API is built in a way that no long-running network requests are required. The request to create a new backup returns immediately. It does some basic validation, then returns to the user. The backup is now in status `STARTED`. To get the status of a running backup you can poll the [status endpoint](#asynchronous-status-checking). This makes the backup itself resilient to network or client failures.
 
 If you would like your application to wait for the background backup process to complete, you can use the "wait for completion" feature that is present in all language clients. The clients will poll the status endpoint in the background and block until the status is either `SUCCESS` or `FAILED`. This makes it easy to write simple synchronous backup scripts, even with the async nature of the API.
 
-# Limitations & Outlook
+## Limitations & Outlook
 In Weaviate `v1.15`, backups were limited to single-node setups. Weaviate `v1.16` introduces support for multi-node setups. Currently, an unexpected node restart during a backup or restore operation leads to a failed operation. In the future, backups will become resilient to this problem. You can read the technical proposal and track the progress on the feature [here](https://github.com/semi-technologies/weaviate/issues/2153).
 
-# Other Use cases
+## Other Use cases
 
-## Migrating to another environment
+### Migrating to another environment
 
 The flexibility around backup providers opens up new use cases. Besides using the backup & restore feature for disaster recovery, you can also use it for duplicating environments or migrating between clusters. 
 

@@ -1,6 +1,6 @@
 ---
 title: Persistence
-sidebar_position: 10
+sidebar_position: 6
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration
@@ -15,13 +15,13 @@ sidebar_position: 10
 #     - /docs/weaviate/configuration/backups-and-persistence.html
 ---
 
-## Introduction
+## Overview
 
-Because Weaviate is run using Docker or Kubernetes, you can create a backup of your data by mounting a volume to store the data outside of the containers. When restarting a Weaviate instance, the data from the mounted volume is used to restore the dataset.
+When running Weaviate with Docker or Kubernetes, you can persist its data by mounting a volume to store the data outside of the containers. Doing so will cause the Weaviate instance to also load the data from the mounted volume when it is restarted.
+
+Note that Weaviate now offers native backup modules starting with `v1.15` for single-node instances, and `v1.16` for multi-node instances. For older versions of Weaviate, persisting data as described here will allow you to back up Weaviate.
 
 ## Docker Compose
-
-Creating backups is divided into two sections. First, we want to make the setup persistent. Second, we can create backups by copying the folder outside the container that contains the Weaviate DB.
 
 ### Persistence
 

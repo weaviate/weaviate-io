@@ -19,9 +19,7 @@ Welcome to the Weaviate documentation. Here, you can learn about **key concepts*
 We are very happy to have you here, and can't wait to see what you build with it. 
 
 :::note
-
 Like what you see? Consider giving us a [⭐ on Github](https://github.com/semi-technologies/weaviate/stargazers).
-
 :::
 
 ## How to use this site

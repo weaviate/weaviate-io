@@ -58,6 +58,7 @@ The result should look like this:
 
 This means you're connected to an empty Weaviate.
 
+<!-- TODO: Discuss when to use info vs note - personally I am unsure (JP) -->
 :::info Default endpoint for this tutorial
 From now on, all examples will provide the code using the WCS endpoint: `"some-endpoint.semi.network/"`<br/>Replace the value to match your host endpoint.
 :::
@@ -714,7 +715,9 @@ Note this part (this is just a chunk of the response):
 }
 ```
 
-> 💡 You can set cross-references in all directions and later (as we will see [while querying](./query.md)) filter on them. Please, be aware that Weaviate is **not** a graph database ([remember](../core-knowledge/basics.md#what-is-weaviate)?). This means that dealing with -for example- many-to-many relationships or things like shortest path algorithms is not in our wheelhouse.
+:::note
+You can set cross-references in all directions and later (as we will see [while querying](./query.md)) filter on them. Please, be aware that Weaviate is **not** a graph database ([remember](../core-knowledge/basics.md#what-is-weaviate)?). This means that dealing with -for example- many-to-many relationships or things like shortest path algorithms is not in our wheelhouse.
+:::
 
 ## Other schema operations
 
