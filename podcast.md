@@ -20,8 +20,12 @@ regenerate: true
                 </p>
                 <!-- Buttons -->
                 <div class="text-center text-md-start">
-                    <a href="https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0" class="btn btn-primary-soft lift" target="_blank">
-                        Subscribe to the Youtube channel <i class="fe fe-youtube d-none d-md-inline ms-3"></i>
+                    <a href="https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0" class="btn btn-primary-soft lift m-2" target="_blank">
+                        Subscribe to the Youtube channel <i class="fe fe-youtube d-none d-md-inline ms-2 align-middle"></i>
+                    </a>
+                       <a href="
+                       https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7" class="btn btn-secondary-soft lift m-2" target="_blank">
+                        Open in Spotify <i class="fab fa-spotify d-none d-md-inline ms-2 align-middle"></i>
                     </a>
                 </div>
             </div>
