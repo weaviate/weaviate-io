@@ -69,18 +69,31 @@ const config = {
       navbar: {
         title: '',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Weaviate',
           src: 'img/site/logo.svg',
         },
         items: [
-          { to: '/pricing', label: 'Pricing', position: 'right',   },
+          {
+            label: 'Pricing',
+            to: '/pricing',
+            position: 'right',},
           {
             type: 'dropdown',
             label: 'Content',
             position: 'right',
             items: [
-              { to: '/blog', label: 'Blog' },
-              // { to: '/podcast', label: 'Podcast' },
+              {
+                label: 'Blog',
+                to: '/blog',
+              },
+              {
+                label: 'Podcast',
+                to: '/podcast',
+              },
+              {
+                label: 'Newsletter',
+                href: 'http://weaviate-newsletter.semi.technology/',
+              },
             ]
           },
           {
@@ -90,19 +103,27 @@ const config = {
             items: [
               {
                 label: 'Docs',
+                docId: 'weaviate/index',
                 sidebarid: 'docsSidebar',
                 type: 'doc',
-                docId: 'weaviate/index',
               },
               {
                 label: 'Contributor Guide',
+                docId: 'contributor-guide/index',
                 sidebarid: 'contributorSidebar',
                 type: 'doc',
-                docId: 'contributor-guide/index',
               },
               {
-                href: 'https://github.com/semi-technologies/weaviate-io',
+                label: 'Weaviate Cloud Service',
+                href: 'https://console.semi.technology/',
+              },
+              {
                 label: 'GitHub',
+                href: 'https://github.com/semi-technologies/weaviate-io',
+              },
+              {
+                label: 'Slack',
+                href: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw',
               },
             ]
           },

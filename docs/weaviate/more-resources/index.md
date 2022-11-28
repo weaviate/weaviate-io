@@ -22,7 +22,7 @@ redirect_from:
 - [Example use cases](./example-use-cases.md)
 - [Index types and performance](./performance.md)
 - [Migration Guide](./migration-guide.md)
-<!-- - [Deprecation messages](./_deprecation-messages.md) -->
+<!-- - [Deprecation messages]---(./_deprecation-messages.md) -->
 
 # (Even) more Resources
 
