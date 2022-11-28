@@ -6,3 +6,8 @@ _site/
 .jekyll-metadata
 .ruby-version
 img/og/og-documentation
+
+# docusaurus-related files left over from another branch
+.docusaurus/
+node_modules/
+yarn.lock
