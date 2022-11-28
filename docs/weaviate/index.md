@@ -38,12 +38,7 @@ Then, the remaining content is divided into these sections:
 | Goal | How to **do** something | **Learn** about topics | Find **itemized** information |
 | Entry point | [Essential guides](./guides/index.md) | [Core concepts](./core-knowledge/index.md) | [References](./references/index.md) |
 
-| | Guides | Concepts | References |
-| ----- | ----- | ----- | ----- |
-| Goal | How to **do** something | **Learn** about topics | Find **itemized** information |
-| Entry point | [Essential guides](./guides/index.md) | [Core concepts](./core-knowledge/index.md) | [References](./references/index.md) |
-
-We suggest you also read through the [essential](./guides/index.md), [search](./search/index.md) and [core concepts](./core-knowledge/index.md) before starting to use Weaviate with your own data. We think they will put you at a good starting point, whereupon you can choose your own direction.
+We suggest you also read through the [essential](./guides/index.md), [search](./search/index.md) and [core concepts](./core-knowledge/index.md) before starting to use Weaviate with your own data. We think they will put you at a good starting point, from which you can choose your own direction.
 
 Now, let's get started by talking about what Weaviate is.
 

@@ -16,6 +16,7 @@ There are two ways how you can interact with Weaviate:
 1. By using the GraphQL or RESTful API directly.
 2. By using one of the available [client libraries](../installation/client-libraries.md).
 
+<!-- TODO - I think this whole page should be merged into installation/client-libraries, or move to Guides: Essential (JPH). This is not really about any theory or concepts, it's more about how to use a client library -->
 ## Client examples in the documentation
 
 Weaviate examples in the documentation are always shown in a handy accordion menu.

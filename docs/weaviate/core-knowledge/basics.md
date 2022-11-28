@@ -17,7 +17,7 @@ If you have this question, fret not, because you've already learned something in
 
 ## What will you learn?
 
-This guide is all about the basics. No getting your hands dirty yet, no fancy Kubernetes set-ups, no mixing vector search with BM25, or multi-model configurations. Just the core concepts so that you know what we talk about while continuing your Weaviate journey through the getting started guides.
+This section is all about the basics. No getting your hands dirty yet, no fancy Kubernetes set-ups, no mixing vector search with BM25, or multi-model configurations. Just the core concepts so that we are on the same page while continuing your Weaviate journey.
 
 ## What is Weaviate?
 
@@ -173,8 +173,8 @@ Then we can use the `UUID` from the above object, to attach it to the `Author` l
 }
 ```
 
-:::tip
-`Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. The difference between the two will become apparent while going through the getting started guide.
+:::tip `Hrefs` vs `beacons`
+`Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. We will discuss the difference further as we go forward.
 :::
 
 ## Weaviate Schema
@@ -203,7 +203,7 @@ As a user, you have two ways of generating them:
     * [img2vec-neural](/docs/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md)
     * [multi2vec-clip](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
 
-We will go deeper into the guide for adding data and the guide for modules. But for whatever vector use case you have, we've got you covered.
+We will go deeper into this topic in other documents, such as in [concepts: modules](./modules.md). But for whatever vector use case you have, we've got you covered.
 
 ## Modules
 
@@ -223,11 +223,12 @@ It's even possible to [create your own modules](/docs/weaviate/modules/other-mod
 
 ## Weaviate Console
 
-The Weaviate console is part of the Weaviate Cloud Service and allows you to connect to any Weaviate instance and query it. You can follow [this](./console) getting started guide to learn more.
+The Weaviate console is part of the Weaviate Cloud Service and allows you to connect to any Weaviate instance and query it. You can read [this](./console) page to learn more.
 
 ## Benchmarks
 
 The [benchmark page](/docs/weaviate/more-resources/benchmarks/index.md) might be helpful when setting up your Weaviate instance. As a rule of thumb, when you choose a similar dataset to your use case, you should get similar results with similar settings. If the results diverge too much _negatively_ you probably made a mistake in hardware choices or in your Weaviate configuration. If the results are way more _positive_, [reach out to us immediately 😉]({{ site.slack_signup_url }})
+<!-- TODO: Fix the slack signup url -->
 
 ## Monitoring
 

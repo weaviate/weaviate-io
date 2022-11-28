@@ -1,5 +1,5 @@
 ---
-title: Core knowledge about the Weaviate vector search engine
+title: Core Concepts for Weaviate
 sidebar_position: 0
 
 # layout: layout-documentation
@@ -14,25 +14,23 @@ sidebar_position: 0
 #     - /docs/weaviate/getting-started/quick-start.html
 ---
 
-Welcome to the Weaviate **Core Knowledge** guides.
+Welcome to the Weaviate **Concepts: Core**. 
 
-Here, on this page, we're not going to take too much of your time; it's just an overview of the guides.
+The purpose of these documents is to equip you with the core knowledge required to understand and use Weaviate. These pages are designed for you to read through, including on your phone.
 
-The purpose of these guides is to equip you with the core knowledge required to understand and use Weaviate.
+We aim to provide you with an overview of what Weaviate is and what its core components are, as well as a little bit of how they work. By the time you are done reading these pages, you should have some familiarity with Weaviate and its components. You may then wish to move onto our in-depth explanations about Weaviate's [architecture](../architecture/index.md) or those relating to [vector space](../vectorization/index.md).
 
-All guides take about 5 minutes and you can jump back and forth between them.
-
-Have fun working with Weaviate, and please do let us know on our Slack when you have questions or if you have a cool use case to share!
+These "Concepts" sections are largely theoretical, and you can treat them as background reading. If you are looking to get started using Weaviate, we recommend checking out the [getting started guide](../getting-started/index.md), and the [references] section provides specifics of various aspects, such as endpoints, client libraries, schema or modules. 
 
 ## Before you start 
 
-In the guide, we make a few basic assumptions (you are somewhat familiar with databases, know what vector embeddings are, and can read essential JSON and GraphQL).
+Here, we make a few basic assumptions (you are somewhat familiar with databases, know what vector embeddings are, and can read basic JSON and GraphQL).
 
-## Weaviate Getting Started Guides
+## Weaviate Concepts
 
 | Topic | Description |
 | --- | --- |
 | [Basics](./basics.md) | Learn the basics of Weaviate |
-| [Console](./console.md) |Working with the Weaviate console |
+| [Console](./console.md) | Working with the Weaviate console |
 | [Indexing](./indexing.md) | Learn about the indexing configuration in Weaviate |
 | [Clients](./clients.md) | Working with the Weaviate clients |

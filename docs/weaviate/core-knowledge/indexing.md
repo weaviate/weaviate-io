@@ -16,7 +16,7 @@ sidebar_position: 3
 In Weaviate, you configure indices per class. Weaviate supports two types of indices.
 
 1. An **approximate nearest neighbor index (ANN)** - the ANN index is used to serve all vector-search queries.
-1. An **inverted index** - the inverted index allows for filtering by properties, as well as serve BM25 queries
+1. An **inverted index** - the inverted index allows for filtering by properties, as well as serve BM25 queries.
 
 Some things to bear in mind:
 
@@ -29,7 +29,7 @@ Some things to bear in mind:
 As you've learned in the [basics section](./basics.md#what-is-weaviate), one of Weaviate's core strengths is combining the ANN index with an inverted index. What's important to know, is that the "A" in ANN (i.e., the "approximate") comes with a trade-off. That is, the index is _approximate_ and, therefore _not_ always 100% accurate. This is what the experts mean when they talk about the "recall of the algorithm."
 
 :::tip
-There are different ANN algorhythms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>. Only those algorhythms which support [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) can be used in Weaviate (we want that sweet database UX) and Weaviate's ANN system is [completely plug-and-playable](../architecture/index.md#weaviates-architecture-from-above) so that we can always add other algorhythms in the future.
+There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>. Only those algorithms which support [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) can be used in Weaviate (we want that sweet database UX) and Weaviate's ANN system is [completely plug-and-playable](../architecture/index.md#weaviates-architecture-from-above) so that we can always add other algorithms in the future.
 :::
 
 <!-- TODO: Not sure if we need this here -->
@@ -69,7 +69,7 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
 }
 ```
 
-We have a dedicated section containing all the [vector index settings](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters), but there are a few we would like to highlight in this getting-started guide.
+We have a dedicated section containing all the [vector index settings](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters), but there are a few we would like to highlight in this section.
 
 * `vectorIndexType` is the ANN algorithm you want to use. By default, Weaviate selects `hnsw` -- the Hierarchical Navigable Small World (HNSW) algorithm.
 * `ef` is HNSW specific, and is used to find the right vectors stored in the index. The higher you set it the more accurate the recall but the slower the search becomes (more about picking the right index strategy below). By default Weaviate sets the value to `-1` which means: "Let Weaviate pick the right ef value for me."
@@ -203,7 +203,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
 
 ## Module configuration
 
-As you've learned in the [basics getting started guide](./basics.md#modules), you can use Weaviate with or without modules. To use Weaviate _with_ modules, you must configure them in the schema.
+As you've learned in the [basics section](./basics.md#modules), you can use Weaviate with or without modules. To use Weaviate _with_ modules, you must configure them in the schema.
 
 An example configuration:
 
