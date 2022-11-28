@@ -14,7 +14,7 @@ redirect_from:
     - /documentation/weaviate/current/setup/health_check.html
 ---
 
-When setting up a Weaviate instance, by default, it will by default:
+When setting up a Weaviate instance, by default, it will be:
 - With the [vector index type](./vector-index-type.html) `hnsw`. This will be configurable soon.
 - Without any form of authentication and authorization. Check the pages about [authentication](./authentication.html) and [authorization](./authorization.html) how to enable this.
 
