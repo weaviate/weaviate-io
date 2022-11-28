@@ -20,9 +20,9 @@ sidebar_position: 0
 
 These guides are designed to be consumed after becoming familiar with [how to use](../guides/index.md) Weaviate, and to [configure](/docs/weaviate/configuration/index.md) Weaviate to your needs.
 
-As such, these *further* guides are a little more specific, much as recipes tend to be in cooking, whereas the earlier sections can be thought as general guides on cooking.
+As such, these *further* guides dive a little deeper to show you how to achieve specific goals and tasks. You can think of them as the equivalent of *recipes* in cooking, in contrast to something like a the [Getting started guide](../getting-started/index.md) which is most similar to a *cooking class*.
 
-You can read them in any order, and depending on your needs or interests, you may decide to skip them altogether. 
+Each of these guides are self-contained. So you can read them in any order.
 
 <!-- 1. [How to create a schema.](/docs/weaviate/guides/how-to-create-a-schema.md)
 2. [How to import data.](/docs/weaviate/guides/how-to-import-data.md)
