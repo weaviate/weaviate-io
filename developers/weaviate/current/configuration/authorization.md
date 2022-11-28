@@ -14,13 +14,16 @@ redirect_from:
     - /documentation/weaviate/current/configuration/authorization.html
 ---
 
+# Overview
+
+The authorization plugin allows Weaviate to provide differentiated access to users based on their [authentication](./authentication.html) status. Along with allowing or disallowing anonymous access, Weaviate can differentiate between a user who is in the admin list, or on the read-only list.
+
 # Admin List
 
-Admin List relies on the configured `Authentication Schema` to correctly identify
+The admin list relies on the configured `Authentication Schema` to correctly identify
 the user. On each request, a check against a pre-configured admin list is done.
 If the user is contained in this list, they get all permissions. If they aren't,
-they get none. It's not possible to assign only some rights to a specific user
-with the Admin List plugin.
+they get none. It is not currently possible to assign only some rights to a specific user.
 
 # Read-Only list
 
@@ -29,11 +32,11 @@ Those users have permissions on all `get` and `list` operations, but no other
 permissions.
 
 If a subject is present on both the admin and read-only list, Weaviate will
-error on startup due to the invalid configuration.
+throw an error on startup due to the invalid configuration.
 
 # Usage
 
-Configure the admin plugin in the Docker Compose configuration yaml like so:
+Configure the admin plugin in the configuration yaml like so:
 
 ```yaml
 services:

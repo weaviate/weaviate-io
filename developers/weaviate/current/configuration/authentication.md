@@ -18,20 +18,20 @@ redirect_from:
 
 We built Weaviate to be as easy to use as possible while catering to different cases such as for trying it out locally, or in production in an enterprise environment.
 
-Weaviate's authentication capabilities reflect this by allowing for both anonymous uses as well as authenticated uses through OpenID Connect (OIDC). Thus, different authentication schemes can be selected and even combined, from which different [authorization](./authorization.html) options can be specified for different sets of users. This allows scenarios such as _"Anonymous users can read some resources, but not all. Authenticated users can read all resources. Only a special subset of admin users can write or delete resources."_
+Weaviate's authentication capabilities reflect this by allowing for both anonymous users as well as authenticated users through OpenID Connect (OIDC). Thus, different authentication schemes can be selected and even combined, from which different [authorization](./authorization.html) options can be specified for different sets of users. 
 
 ## Anonymous Access
 By default, Weaviate is configured to accept requests without any
 authentication headers or parameters. Users sending such requests will be
 authenticated as `user: anonymous`.
 
-You can use the authorization module to specify which
+You can use the authorization plugin to specify which
 permissions to apply to anonymous users. When anonymous access is disabled altogether,
 any request without an allowed authentication scheme will return `401
 Unauthorized`.
 
 ### Configuration
-Anonymous access can be enabled or disabled in the Docker Compose yaml using the environment variable shown below:
+Anonymous access can be enabled or disabled in the configuration yaml using the environment variable shown below:
 
 ```yaml
 services:
@@ -69,7 +69,7 @@ correct, all contents of the token are trusted, which authenticates the user bas
 
 ### Configuration
 
-To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the Docker Compose yaml for Weaviate. Additionally, the **OIDC token issuer** must be configured as appropriate. Configuring the OIDC token issuer is outside the scope of this document.
+To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate. Additionally, the **OIDC token issuer** must be configured as appropriate. Configuring the OIDC token issuer is outside the scope of this document.
 
 > As of November 2022, we are aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff){:target="_blank"} may be useful.
 
@@ -106,7 +106,7 @@ services:
       AUTHENTICATION_OIDC_CLIENT_ID: 'my-weaviate-client'
 
       # username_claim (required) tells weaviate which claim to use for extracting
-      # the username. The username will be passed to the authorization module.      
+      # the username. The username will be passed to the authorization plugin.      
       AUTHENTICATION_OIDC_USERNAME_CLAIM: 'email'
 
       # skip_client_id_check (optional, defaults to false) skips the client_id
