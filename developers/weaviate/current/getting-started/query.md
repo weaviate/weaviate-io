@@ -63,7 +63,7 @@ Weaviate's GraphQL-API has three root functions:
 
 In the basics getting started guide, you've learned [how Weaviate uses a class-property structure](../core-knowledge/basics.html#data-objects-in-weaviate) and in the schema getting started guide you've learned [how you can define the class-property structure](./schema.html#create-your-first-class).
 
-Our demo dataset has two classes: `Article` and `Paragraph`. The `Article` class has the properties: `title` of the data type `string`, `hasParagraphs` of the data type `Paragraph`, and `linksToArticles` of the data type `Article`. The `Paragraph` class has the properties: `title` of the data type `string`, `content` of the data type `text`, `order` of the data type `int`, and `inArticle` of the data type `Article`. You can also inspect the schem of the demo dataset in JSON format [here](http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080/v1/schema).
+Our demo dataset has two classes: `Article` and `Paragraph`. The `Article` class has the properties: `title` of the data type `string`, `hasParagraphs` of the data type `Paragraph`, and `linksToArticles` of the data type `Article`. The `Paragraph` class has the properties: `title` of the data type `string`, `content` of the data type `text`, `order` of the data type `int`, and `inArticle` of the data type `Article`. You can also inspect the schema of the demo dataset in JSON format [here](http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080/v1/schema).
 
 If we now want to `Get{}` all (well, "all", in this case, "all" means limited to the default limit, more about this later) `Paragraph`s without cross-references we can run the following query:
 
@@ -611,7 +611,7 @@ You can also use the filters to query for specific vectors! Simply like this:
 
 Did you see `certainty`? This is the distance from the vector to the data objects. You can also calculate the cosine similarity if you like based on the certainty, more about this [here](../more-resources/faq.html#q-how-do-i-get-the-cosine-similarity-from-weaviates-certainty).
 
-You can also do the​ equivalent but based on the UUID of any object in the same vector space (the same, because we match based on vector length. But if you use the same model to vectorize in different classes you can also mix them).​
+You can also do the equivalent but based on the UUID of any object in the same vector space (the same, because we match based on vector length. But if you use the same model to vectorize in different classes you can also mix them).
 
 ```graphql
 {
@@ -634,7 +634,7 @@ You can also do the​ equivalent but based on the UUID of any object in the sam
 
 [Try out ⬆️](https://link.semi.technology/3BIQkU2)
 
-​Traditional inverted index filtering is also possible. In Weaviate we call this the `where` filter.
+Traditional inverted index filtering is also possible. In Weaviate we call this the `where` filter.
 
 The `where` filter takes three operands of its own:
 
@@ -642,9 +642,9 @@ The `where` filter takes three operands of its own:
 2. `operator` is set to define what you want to do with the value inside the path (e.g., `Equal` or `GreaterThan`, etc. See the list [here](../graphql-references/filters.html#filter-structure)).
 3. `value*` is set based on the type of the property defined in `path`. So, if the property in `path` is an `int`, this becomes `valueInt`, if it's a `string` it becomes `valueString`. The value itself is whatever you want to filter on.
 
-​The examples below are a bit more explanatory.
+The examples below are a bit more explanatory.
 
-​Let's filter for "Italian cuisine" in the `title` of the `Paragraph`.
+Let's filter for "Italian cuisine" in the `title` of the `Paragraph`.
 
 ```graphql
 {
@@ -743,7 +743,7 @@ The path is an array, so this means you can also set the filter specifically for
 
 [Try out ⬆️](https://link.semi.technology/3Qi0PBT)
 
-And yes, you can combine vector search with where filters.
+And yes, you can combine vector search with `where` filters.
 
 ```graphql
 {
@@ -779,7 +779,7 @@ And yes, you can combine vector search with where filters.
 💡 We call Weaviate "vector first". This means that when combining vector search with a where filter, the where-filter will create an allowed-list that skips entries that are not allowed in the ANN index.
 </div>
 
-If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`]() vectorizer module and the [Q&A generator]() module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.
+If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`](../retriever-vectorizer-modules/text2vec-transformers.html) vectorizer module and the [Q&A](../reader-generator-modules/qna-transformers.html) module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.
 
 Let's explore the additional filters for the modules which are part of this dataset.
 
@@ -810,7 +810,7 @@ First, there is the additional `nearText` filter exposed by the `text2vec-transf
 
 [Try out ⬆️](https://link.semi.technology/3bwXO1F)
 
-Second, we can use the `ask` arguments exposed by the Q&A module, note how there are also additional `_additional` properties.
+Second, we can use the `ask` argument exposed by the Q&A module. Note how there are also additional `_additional` properties.
 
 ```graphql
 {
@@ -873,7 +873,7 @@ And last but not least, we can combine all of them together!
 
 [Try out ⬆️](https://link.semi.technology/3PWDqX1)
 
-Talking about filters, wanna see something cool? Weaviate has many more functions out-of-the-box like feature projection to visualize your results, like this example on a 3D surface.
+Talking about filters, wanna see something cool? Weaviate has many more functions out-of-the-box, like feature projection to visualize your results, for example on a 3D surface.
 
 ```graphql
 {
@@ -904,19 +904,19 @@ Talking about filters, wanna see something cool? Weaviate has many more function
 
 [Try out ⬆️](https://link.semi.technology/3vDh8Bk)
 
-Last but not least, all the standard filters are documented in the [filters section](../graphql-references/filters.html) of the GraphQL references documentation or in the documentation of the individual modules.
+Last but not least, all the standard filters are documented in the [filters section](../graphql-references/filters.html) of the GraphQL reference documentation, or in the documentation of the individual modules.
 
 ## Aggregate{}
 
-​The `Aggregate{}` can be used to show aggregated data. For example, how many objects do I have of the `Paragraph` class?
+The `Aggregate{}` function can be used to show aggregated data. For example, how many objects do I have of the `Paragraph` class?
 
-​There are three core concepts to keep in mind for the `Aggregate` function.
+There are three core concepts to keep in mind for the `Aggregate` function:
 
 1. Doing something on a class level is done in the `meta` property.
 2. Doing something on a property level is done inside the property.
 3. Different property types (e.g., `string`, `int`, etc) support different aggregate functions.
 
-​The examples below are a bit more explanatory.
+The examples below are a bit more explanatory.
 
 Let's start with counting the number of data objects in the `Paragraph` class:
 
@@ -987,11 +987,11 @@ You can find detailed documentation on the `Aggregate{}` function [here](../grap
 
 ## Explore{}
 
-The `Explore{}` function can be used if you want to search through the complete vector space but if you don't know the class that you're targeting. Bear in mind, if you know the class, you know the properties, the types, etc.
+The `Explore{}` function can be used if you want to search through the complete vector space but you don't know the class that you're targeting. Bear in mind, if you know the class, you know the properties, the types, etc.
 
 In short, the `Explore{}` function lets you explore the vector space.
 
-Important to know: in almost any situation, need to do two queries when using the `Explore{}` function and you must set a `nearObject` or `nearVector` search parameter.
+Important to know: in almost any situation, you'll need to make two queries when using the `Explore{}` function and you must set a `nearObject` or `nearVector` search parameter.
 
 1. Target candidates based on your vector search or similarity search.
 2. Collect these candidates.
@@ -1016,9 +1016,9 @@ Important to know: in almost any situation, need to do two queries when using th
 
 The `Explore{}` function works very straightforwardly and only returns four properties.
 
-1. `beacon` contains the URL _and_ the id. It's a "beacon in the vector space" how you can target a data object.
+1. `beacon` contains the URL _and_ the id. It's a "beacon in the vector space" - how you can target a data object.
 2. `className` contains the name of the class that this data object has.
-3. `certainty` is the order from the query to the dataobject.
+3. `certainty` is the order from the query to the data object.
 4. `distance` is the distance between the query and the data object.
 
 <div class="alert alert-secondary alert-getting-started" markdown="1">
