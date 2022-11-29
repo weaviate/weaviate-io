@@ -10,11 +10,11 @@ open-graph-type: article
 toc: true
 ---
 
-We have come a long way in a short time. So far, we have spun up a Weaviate database and then added a schema before populating the database with objects. 
+We have come a long way in a short time. So far, we have spun up an instance of Weaviate and then added a schema before populating it with objects. 
 
-Now, let's take a look at how to put the Weaviate database to work by performing queries. 
+Now, let's take a look at how to put Weaviate to work by performing queries. 
 
-By the end of this section, you will have performed vector and scalar searches separately as well as in combination to retrieve individual objects or aggregations. 
+By the end of this section, you will have performed vector and scalar searches separately as well as in combination to retrieve individual objects and aggregations. 
 
 ## Prerequisites 
 
@@ -28,13 +28,13 @@ If you have not done this, go back to [set up your Weaviate instance and client 
 
 ## Vector search
 
-A Weaviate database can be queried using one or a combination of a semantic (i.e. vector) search and a lexical (i.e. scalar) search.
+Weaviate can be queried using one or a combination of a semantic (i.e. vector) search and a lexical (i.e. scalar) search.
 
 First, we will start by making queries to Weaviate to retrieve **Publication** objects that we imported earlier.
 
-> Note: Weaviate's queries are built using GraphQL. If this is new to you, don't worry. We will take it step-by-step and build up from the basics. Also, in many cases the GraphQL syntax is abstracted by the client.
+> 💡 Note: Weaviate's queries are built using GraphQL. If this is new to you, don't worry. We will take it step-by-step and build up from the basics. Also, in many cases the GraphQL syntax is abstracted by the client.
 
-The function to use in retrieving objects from your Weaviate database is `Get`. If this looks familiar, that's because you have already used it! 
+The function to use in retrieving objects from Weaviate is `Get`. If this looks familiar, that's because you have already used it! 
 
 You should have performed a `Get` query at the end of the last section to confirm that the data import was successful. Here is the same code as a reminder:
 
@@ -281,7 +281,7 @@ See you soon!
 
 ## What next?
 
-- [Introduction to modules](../configuration/modules.html)
+- [Introduction to modules](./modules.html)
 - [Installation options](../installation/index.html)
 - [Roadmap](../roadmap/index.html)
 - [Learn more about Weaviate](../core-knowledge/index.html)

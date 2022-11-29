@@ -18,7 +18,7 @@ Here, you will be creating a new Weaviate instance for use throughout the gettin
 
 The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use _Weaviate Cloud Service_ (WCS). WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate.   
 
-WCS offers a free sandbox for you to play around with, so let's use that for this guide. 
+WCS offers a free sandbox for you to play around with, so let's use that for this guide. If you would prefer a local instance, we recommend getting started with Docker. We include [a separate section below](#running-weaviate-with-docker) to help you follow along.
 
 ### Sign in to WCS
 
@@ -52,13 +52,11 @@ Click on the `Cluster Id` link, which will open a new page in your browser and d
 
 If you see this JSON response, *congratulations!* you have successfully started up an instance of Weaviate. 🎉
 
-## Client Libraries
+## Client libraries
 
 You can communicate with Weaviate from your code by using one of the available [client libraries](../client-libraries/) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/).
 
 Add the client library to your project as follows:
-
-<!-- TODO: update it accordion -->
 
 * For `Python` add the `weaviate-client` to your system libraries with `pip`:
   ```bash
@@ -149,6 +147,29 @@ You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on 
 * You can run Weaviate with Docker, Kubernetes, or with the Weaviate Cloud Service.
 * Running Weaviate Modules with an encepsulated ML-model on CPUs is slow. -->
 
+## (Optional) Running Weaviate with Docker
+
+Working with Docker is great if you are building an application around Weaviate and want to run Weaviate on your local machine or in the cloud. If you have Docker already installed, you could have it all up and running in seconds (minutes if you use a  prepackaged transformers module).
+
+To set up Weaviate with Docker, follow these two steps:
+
+0. Get `docker-compose.yml` configuration file by calling:
+    ```js
+    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
+    ```
+0. Spin up docker
+    ```js
+    docker-compose up -d
+    ```
+
+Then you can continue with the tutorial.
+
+If you are running Weaviate with Docker, keep in mind that the address for Weaviate will change from the WCS address to `http://localhost:8080`.
+
+## More on deployment options
+
+To learn more about the other self-deployment options, check out the documentation for installation with [Docker](https://weaviate.io/developers/weaviate/current/installation/docker-compose.html) or [Kubernetes](https://weaviate.io/developers/weaviate/current/installation/kubernetes.html). 
+
 ## Recap
 
 * Weaviate Cloud Service (WCS) is a managed Weaviate SaaS.
@@ -160,11 +181,5 @@ You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on 
 [Add a schema](./schema.html).
 
 # More Resources
-
-## Other ways to run Weaviate
-
-We use WCS here to help you get started as quickly as possible. But you can also use one of self-deployment options with [Docker](https://weaviate.io/developers/weaviate/current/getting-started/installation.html#docker) or [Kubernetes](https://weaviate.io/developers/weaviate/current/getting-started/installation.html#kubernetes). 
-
-[Read more](../installation/index.html) about different ways to run Weaviate, and installation options.
 
 {% include docs-support-links.html %}

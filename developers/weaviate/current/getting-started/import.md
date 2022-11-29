@@ -13,7 +13,7 @@ redirect_from:
   - /developers/weaviate/v1.14.1/getting-started/import.html
 ---
 
-In this section, we will show you how to import data objects into your Weaviate database.
+In this section, we will show you how to import data objects into your instance of Weaviate.
 
 ## Prerequisites 
 
@@ -26,7 +26,7 @@ If you have not done this, go back to [set up your Weaviate instance and client 
 
 ## Import data
 
-The data to be imported needs to match the classes and properties defined in the Weaviate database schema. So in our case, we will import data according to the properties of the **Publication** class defined in the previous section.
+The data to be imported needs to match the classes and properties defined in the Weaviate schema. So in our case, we will import data according to the properties of the **Publication** class defined in the previous section.
 
 Weaviate allows data objects to be created as a single object or in batches. For importing data, we **strongly suggest that you use batch imports**. Accordingly, this guide is written for batch import methods.
 
@@ -89,62 +89,7 @@ The result should look something like this:
       properties: [Object],
       vectorWeights: null
     },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: '7abf5426-5048-31ce-9c0a-822c58b19b47',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: '7e9b9ffe-e645-302d-9d94-517670623b35',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: '8e14bddf-cd2e-3f5b-8fd5-6e34ee13999e',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: '9f0c7463-8633-30ff-99e9-fd84349018f5',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: 'ac884d35-ccb4-3937-81f8-8474a4d7a549',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: 'b7285ce8-a172-3053-b74d-7200a96bce26',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: 'c9a0e53b-93fe-38df-a6ea-4c8ff4501783',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
+    ...
     {
       class: 'Publication',
       creationTimeUnix: 1665494303066,
@@ -174,11 +119,11 @@ The result should look something like this:
 }
 ```
 
-If you see something like the result above - congratulations! You have built a fully functioning Weaviate database and populated it with data 🚀🎉. 
+If you see something like the result above - congratulations! You have a fully functioning instance of Weaviate with data 🚀🎉. 
 
 Now you are ready to start asking some big questions to Weaviate.
 
-> For importing large datasets, creating an optimized import strategy will make a big difference in import time. So please read our tips below on [data import best practices](#data-import---best-practices) if this is the case for you.
+> 💡 Note: For importing large datasets, creating an optimized import strategy will make a big difference in import time. So please read our tips below on [data import best practices](#data-import---best-practices) if this is the case for you.
 
 ## Recap
 
@@ -194,7 +139,7 @@ Now you are ready to start asking some big questions to Weaviate.
 
 ## Data import - best practices
 
-Although importing itself is pretty straightforward, creating an optimized import strategy needs a bit of planning. Here are a few things to keep in mind.
+Although importing itself can be done in a few steps, creating an optimized import strategy needs a bit of planning. Here are a few things to keep in mind.
 
 0. When importing, you want to make sure that you max out all the CPUs available. It's more often than not the case that the import script is the bottleneck.
     0. Use `htop` when importing to see if all CPUs are maxed out.

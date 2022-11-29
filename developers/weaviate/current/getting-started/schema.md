@@ -10,7 +10,7 @@ open-graph-type: article
 toc: true
 ---
 
-Now we are ready start to work on our Weaviate database.
+Now we are ready start to work on our instance of Weaviate.
 
 For this guide, let's build a database containing news publications. Before populating our database with data objects, we must first tell the database about the structure of the information to be saved. 
 
@@ -32,7 +32,7 @@ First, let's make sure that you can connect to your Weaviate instance.
 
 To do this we need to point the `host` endpoint to *your* instance. Just replace `some-endpoint` in the code example below with the `cluster-id` you created in the previous step.
 
-> Note: From now on, all examples will provide the code using the WCS endpoint:<br/> `"some-endpoint.semi.network/"`<br/>Replace the value to match your host endpoint.
+> Note: From now on, all examples will provide the code using the WCS endpoint:<br/> `"some-endpoint.semi.network/"`<br/>Replace the value to match your host endpoint, or `http://localhost:8080` if you are running it on Docker.
 
 Run the below code in your project.
 
@@ -141,7 +141,7 @@ Wow! That's a lot more settings than what we specified!
 
 What's happened is that Weaviate has added some default configurations for you. You can change these these options if you wish, but there is no need to for this guide.
 
-Great! Your database is set up with a schema and ready to go. Next, we will show you how you can add **Publication** data to your Weaviate database.
+Great! Your database is set up with a schema and ready to go. Next, we will show you how you can add **Publication** data into Weaviate.
 
 ## Recap
 
@@ -163,6 +163,6 @@ Although auto schema works well for some instances, we generally advise manually
 
 ## Other schema operations
 
-All schema operations are available in the [API documentation for the schema endpoint](../restful-api-references/schema.html){:target="_blank"}. The documentation also includes examples in different client languages.
+All schema operations are available in the [API documentation for the schema endpoint](../restful-api-references/schema.html). The documentation also includes examples in different client languages.
 
 {% include docs-support-links.html %}
