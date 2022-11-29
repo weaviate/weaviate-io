@@ -1,71 +1,32 @@
 ---
 title: Concepts - Vectors
 sidebar_position: 2
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Vector Index (ANN) Plugins
-# title: Vector Index (ANN) Plugins
-# intro: With Weaviate, data is stored in a vector-first manner. A well performing ANN algorithm is used for indexing data with vectors, namely HNSW. Since Weaviate's vector indexing is pluggable, other (ANN) methods could be used, instead of HNSW. Stay tuned for updates on the software.
-# description: Vector Index (ANN) Plugins. With Weaviate, data is stored in a vector-first manner. A well performing ANN algorithm is used for indexing data with vectors, namely HNSW. Since Weaviate's vector indexing is pluggable, other (ANN) methods could be used, instead of HNSW. Stay tuned for updates on the software.
-# tags: ['Vector Index Plugins']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/vector-index-plugins/index.html
-#     - /documentation/weaviate/current/vector-index-plugins/
 ---
 
-# Introduction
-
-Weaviate's vector-first storage system takes care of all storage operations with a pluggable vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices). 
+## Introduction
+You would have seen us describe Weaviate as a "vector-first" search engine and database. In this section, we will talk a little more about what that means. We will discuss what vectors are, how vectors are indexed in Weaviate, and even a little bit about how to choose the right vectorizer for your needs.
 
 ## What is a vector? 
-A [vector](https://en.wikipedia.org/wiki/Euclidean_vector) is a long list of numbers. Data objects can be stored by choosing the numbers in this vector particular to this data object. 
+A [vector](https://en.wikipedia.org/wiki/Euclidean_vector) is a collection of numbers, such as [1, 0] or [0.513, 0.155, 0.983, 0.001, 0.932]. It can be of any length - as short as one, or contain thousands of numbers. 
 
-## Why index data as vectors?
-Now, a long list of numbers does not carry any meaning by itself. But if the numbers in this list are chosen to indicate the [semantic similarity](https://en.wikipedia.org/wiki/Semantic_similarity) between the data objects represented by other vectors, then the new vector contains information about the data object's meaning and relation to other data. 
+Amazingly, these numbers can be used to effectively represent data objects. A very simple example of this can be found in representation of colors. Any color can be represented as a composition of red, green, or blue (R, G, B) values. So a `red` color can be represented by (1, 0, 0), or (255, 0, 0) in an 8-bit number system.
 
-To make this concept more tangible, think of vectors as coordinates in a *n*-dimensional space. For example, we can represent *words* in a 2-dimensional space. If you use an algorithm that learned the relations of words or co-occurrence statistics between words from a corpus (like [GloVe](https://github.com/stanfordnlp/GloVe)), then single words can be given the coordinates (vectors) according to their similarity to other words. These algorithms are powered by Machine Learning and Natural Language Processing concepts. In the picture below, you see how this concept looks (simplified). The words `Apple` and `Banana` are close to each other. The distance between those words, given by the distance between the vectors, is small. But these two fruits are further away from the words `Newspaper` and `Magazine`. 
+## How does Weaviate use Vectors?
+Modern machine learning algorithms extrapolate this idea to represent concepts, or meaning, of data objects such as pieces of text, images, or sound. Running a sentence through one of Weaviate's `text2vec` modules will produce a (long) vector, for example comprising 384 numbers (sometimes called "dimensions"). While this vector may seem meaningless to a human, it captures some meaning, or semantics, of the source sentence.
 
-<!-- ![2D Vectors visualization](/img/guides/vectors-2d.svg "2D Vectors visualization"){:height="60%" width="60%"} -->
+And because a vector is just a set of numbers, a vector can be compared to other vectors to derive some measure of similarity. This similarity then represents similarity of meaning according to the model used.
 
-Another way to think of this is how products are placed in a supermarket. You'd expect to find `Apples` close to `Bananas`, because they are both fruit. But when you are searching for a `Magazine`, you would move away from the `Apples` and `Bananas`, more towards the aisle with, for example, `Newspapers`. This is how the semantics of concepts can be stored in Weaviate as well, depending on the module you're using to calculate the numbers in the vectors. Not only words or text can be indexed as vectors, but also images, video, DNA sequences, etc. Read more about which model to use [here](/docs/weaviate/modules/index.md).
+These are the core principles that allows vector searching to be effective. Weaviate stores each data object as a vector particular to this data object, and as such, it can recall related data objects that are related in meaning.
 
-<!-- ![Supermarket map visualization](/img/guides/supermarket.svg "Supermarket map visualization"){:height="75%" width="75%"} -->
+## More on vectors & Weaviate
+To convert data objects into vectors, Weaviate uses vectorizers, which are available as modules. And then Weaviate builds a vector index which stores the vector data in a form that allows for fast retrieval at high recall. Currently, Weaviate supports the HNSW algorithm for vector indexing. 
 
-# How to choose the right vector index plugin
-The first vector-storage plugin Weaviate supports is [HNSW](./hnsw.md), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when it comes to the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type, stay tuned for updates!
-
-# Configuration of vector index type
-The index type can be specified per data class. Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](/docs/weaviate/references/schema-configuration.md). 
-
-Example of a class [vector index configuration in your data schema](/docs/weaviate/references/schema-configuration.md): 
-```json
-{
-  "class": "Article",
-  "description": "string",
-  "properties": [ 
-    {
-      "name": "title",
-      "description": "string",
-      "dataType": ["string"]
-    }
-  ],
-  "vectorIndexType": " ... ",
-  "vectorIndexConfig": { ... }
-}
-```
-
-Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/docs/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/docs/weaviate/references/schema-configuration.md).
-
-# Can Weaviate support multiple vector index (ANN) plugins?
-
-* The short answer: _yes_
-* The longer answer: currently, we have a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of HNSW to have [full CRUD-support](https://db-engines.com/en/blog_post/87) in Weaviate. In principle, if an ANN algorithm allows for full CRUD support, Weaviate can support it. If you have ideas, suggestions, or plans (e.g., for a research project) for another ANN plugin besides HNSW, please let us know in our [Slack channel]({{ site.slack_signup_url }}) or by emailing us at [hello@semi.technology](mailto:hello@semi.technology).
+You can read more about these concepts below.
+- [Vector index plugins](./vector-index-plugins.md)
+- [HNSW algorithm](./hnsw.md)
+- [Comparison of vectorizers](./vectorizer-comparisons.md) 
 
 ## More Resources
-
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
