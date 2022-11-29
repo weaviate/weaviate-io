@@ -19,7 +19,7 @@ sidebar_position: 5
 #     - /docs/weaviate/getting-started/example-datasets.html
 ---
 
-# Multi-Modal Text/Image search using CLIP
+## Multi-Modal Text/Image search using CLIP
 
 This example application spins up a Weaviate instance using the
 [multi2vec-clip](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
@@ -29,19 +29,19 @@ the [Weaviate JS Client](/docs/weaviate/references/client-libraries/javascript.m
 
 [Get started here](https://github.com/semi-technologies/weaviate-examples/blob/main/clip-multi-modal-text-image-search/README.md)
 
-# Semantic Search through Wikipedia
+## Semantic Search through Wikipedia
 
 We imported the complete English language Wikipedia article dataset into a single Weaviate instance to conduct semantic search queries through the Wikipedia articles, besides this, we've made all the graph relations between the articles too. We have made the import scripts, pre-processed articles, and backup available so that you can run the complete setup yourself.
 
 [Get started here](https://github.com/semi-technologies/semantic-search-through-Wikipedia-with-Weaviate)
 
-# Meta AI Research - Biggraph on Wikidata
+## Meta AI Research - Biggraph on Wikidata
 
 We have imported the complete Wikidata PBG model into a Weaviate to search through the entire dataset in < 50 milliseconds (excluding internet latency). The demo GraphQL queries contain both pure vector search and scalar and vector searched mixed queries.
 
 [Get started here](https://github.com/semi-technologies/biggraph-wikidata-search-with-weaviate)
 
-# News publications
+## News publications
 
 This dataset contains +/- 1000 random news articles from; Financial Times, New York Times, Guardian, Wallstreet Journal, CNN, Fox News, The Economist, New Yorker, Wired, Vogue, Game Informer.
 
