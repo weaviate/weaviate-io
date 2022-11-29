@@ -1,13 +1,15 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Architecture
 title: Filtered Vector Search
-description: Weaviate allows for efficiently combining vector and scalar search
-tags: ['architecture', 'filtered vector search', 'pre-filtering']
-sidebar_position: 4
-open-graph-type: article
-toc: true
+sidebar_position: 3
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Architecture
+# title: Filtered Vector Search
+# description: Weaviate allows for efficiently combining vector and scalar search
+# tags: ['architecture', 'filtered vector search', 'pre-filtering']
+# sidebar_position: 4
+# open-graph-type: article
+# toc: true
 ---
 
 ## Introduction
@@ -43,7 +45,7 @@ Thanks to Weaviate's custom HNSW implementation, which persists in following all
 
 The graphic below shows filters of varying levels of restrictiveness. From left (100% of dataset matched) to right (1% of dataset matched) the filters become more restrictive without negatively affecting recall on `k=10`, `k=15` and `k=20` vector searches with filters.
 
-<!-- ![Recall for filtered vector search](/img/recall-of-filtered-vector-search.png "Recall of filtered vector search in Weaviate") -->
+![Recall for filtered vector search](./img/recall-of-filtered-vector-search.png "Recall of filtered vector search in Weaviate")
 
 ## Flat-Search Cutoff
 
@@ -51,11 +53,11 @@ Version `v1.8.0` introduces the ability to automatically switch to a flat (brute
 
 The following graphic shows filters with varying restrictiveness. From left (0%) to right (100%), the filters become more restrictive. The **cut-off is configured at ~15% of the dataset** size.  This means the right side of the dotted line uses a brute-force search.
 
-<!-- ![Prefiltering with flat search cutoff](/img/prefiltering-response-times-with-filter-cutoff.png "Prefiltering with flat search cutoff") -->
+![Prefiltering with flat search cutoff](./img/prefiltering-response-times-with-filter-cutoff.png "Prefiltering with flat search cutoff")
 
 As a comparison, with pure HNSW - without the cutoff - the same filters would look like the following:
 
-<!-- ![Prefiltering with pure HNSW](/img/prefiltering-pure-hnsw-without-cutoff.png "Prefiltering without cutoff, i.e. pure HNSW") -->
+![Prefiltering with pure HNSW](./img/prefiltering-pure-hnsw-without-cutoff.png "Prefiltering without cutoff, i.e. pure HNSW")
 
 The cutoff value can be configured as [part of the `vectorIndexConfig` settings in the schema](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters) for each class separately.
 
@@ -104,7 +106,7 @@ The following was run single-threaded (i.e. you can add more CPU threads to incr
 
 Please note that each search uses a completely unique (random) search vector, meaning that only the filter portion is cached, but not the vector search portion, i.e. on `count=100`, 100 unique query vectors were used with the same filter.
 
-<!-- [![Performance of filtered vector search with caching](/img/filtered-vector-search-with-caches-performance.png "Performance of filtered vector searches with 1M 384d objects")](/img/filtered-vector-search-with-caches-performance.png) -->
+[![Performance of filtered vector search with caching](./img/filtered-vector-search-with-caches-performance.png "Performance of filtered vector searches with 1M 384d objects")](./img/filtered-vector-search-with-caches-performance.png)
 
 :::note
 Wildcard filters show considerably worse performance than exact match filters. This is because - even with caching - multiple rows need to be read from disk to make sure that no stale entries are served when using wildcards. See also "Automatic Cache Invalidation" below.
@@ -113,3 +115,9 @@ Wildcard filters show considerably worse performance than exact match filters. T
 ## Automatic Cache Invalidation
 
 The cache is built in a way that it cannot ever serve a stale entry. Any write to the inverted index updates a hash for the specific row. This hash is used as part of the key in the cache. This means that if the underlying inverted index is changed, the new query would first read the updated hash and then run into a cache miss (as opposed to ever serving a stale entry). The cache has a fixed size and entries for stale hashes - which cannot be accessed anymore - are overwritten when it runs full.
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
