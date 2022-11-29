@@ -18,18 +18,7 @@ sidebar_position: 15
 #     - /documentation/weaviate/references/rest/classification.html
 ---
 
-# Index
-- [Start a classification](#start-a-classification)
-  - [Clients and async classification](#clients-and-async-classification)
-- [Get status, results and metadata](#get-status-results-and-metadata)
-  - [Evaluation of single data object results](#evaluation-of-single-data-object-results)
-- [KNN classification](#knn-classification)
-  - [Endpoint and parameters](#endpoint-and-parameters)
-- [Zero-Shot Classification](#zero-shot-classification)
-- [Contextual Classification](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md)
-- [More Resources](#more-resources)
-
-# Start a classification
+## Start a classification
 
 Weaviate's classification features allows you to classify data objects by predicting cross-references based on the semantic meaning of the data objects. Weaviate Core (without any modules) provides one type of classification: 
 - **[kNN classification](#knn-classification)**: Uses the k-nearest neighbors algorithm and requiring training data to predict cross-references. Weaviate finds similar objects and checks how they were labeled in the past. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful.
@@ -39,7 +28,10 @@ The vectorizer module `text2vec-contextionary` provides a second type of classif
 
 A classification can be started using the RESTful API, via the `v1/classification` endpoint with a `POST` request. This triggers the start of the classification, after which it will run in the background. This can also be achieved using one of the client libraries. Use the [`GET` method](#get-status-results-and-metadata) to see the status of the classification:
 
-{% include code/1.x/classification.post.html %}
+<!-- {% include code/1.x/classification.post.html %} -->
+import ClassificationPost from '/_includes/code/classification.post.mdx';
+
+<ClassificationPost/>
 
 Which will return [information](#response) about the started classification, including the classification `id`.
 
@@ -51,7 +43,7 @@ Some classification jobs can take some time to complete. With the Weaviate clien
     - `JavaScript`: add `.withWaitForCompletion()` to the builder pattern.
   - Don't wait for the classification to be finished and return directly. You can check if the classification is completed using the classification meta endpoint with the id of the classification (which can be found in the return body of the classification start). The field `status` in the return body will either be `running` or `completed`. See [here](#get-status-results-and-metadata) how to query this information. 
 
-# Get status, results and metadata
+## Get status, results and metadata
 
 The `GET` endpoint returns the status, results and metadata of a previously created classification:
 
@@ -105,7 +97,10 @@ The following fields additionally when the classification was based on kNN:
 A `knn` classification according to [the example](#start-a-knn-classification)
 The following command:
 
-{% include code/1.x/classification.get.html %}
+<!-- {% include code/1.x/classification.get.html %} -->
+import ClassificationGet from '/_includes/code/classification.get.mdx';
+
+<ClassificationGet/>
 
 returns:
 
@@ -133,10 +128,10 @@ returns:
 }
 ``` 
 
-## Evaluation of single data object results
+### Evaluation of single data object results
 After the classification is completed, the concerning reference properties data objects in the Weaviate instance are updated according to the classification. These data objects will be represented similarly to other data objects. The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](./objects.md#response-fields) or with the [GraphQL `_additional {classification}` field](../graphql/additional-properties.md#classification).
 
-# KNN classification
+## KNN classification
 
 With [*k*-nearest neighbor](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) classification, Weaviate finds similar objects and checks how they were labeled in the past. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful.
 
@@ -153,7 +148,7 @@ Imagine you have a property for the popularity of the `Article` by the audience,
 - A schema with at least two classes and a cross-reference between both classes.
 - Some training data, which are data objects in the class with a reference (you want to predict for other objects) to another class already made.
 
-## Endpoint and parameters
+### Endpoint and parameters
 
 A classification can be started via the `v1/classifications` endpoint, which can also be accessed via the client libraries. The following fields must (required) or can (optional) be specified along with the `POST` request:
 
@@ -174,7 +169,10 @@ A classification can be started via the `v1/classifications` endpoint, which can
 ### Start a kNN classification
 A classification can be started through one of the clients, or with a direct `curl` request to the RESTful API.
 
-{% include code/1.x/classification.knn.post.html %}
+<!-- {% include code/1.x/classification.knn.post.html %} -->
+import ClassificationKNNPost from '/_includes/code/classification.knn.post.mdx';
+
+<ClassificationKNNPost/>
 
 A classification is started, and will run in the background. The following response is given after starting the classification, and the status can be fetched via the [`v1/classifications/{id}`](#get-status-results-and-metadata) endpoint.
 
@@ -205,7 +203,7 @@ A classification is started, and will run in the background. The following respo
 ### Evaluation of single data object results
 After the classification is completed, the concerning reference properties data objects in the Weaviate instance are updated according to the classification. These data objects will be represented similarly to other data objects. The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](./objects.md#response-fields) or with the [GraphQL `_additional {classification}` field](../graphql/additional-properties.md#classification).
 
-# Zero-Shot Classification
+## Zero-Shot Classification
 
 Zero-shot classification is an unsupervised classification method, meaning you don't need any training data. Zero-shot allows you to classify data which wasn't seen before to build the classifier. This type of classification is perfect if you want to label data objects with classes, but you don't have or don't want to use training data. It picks the label objects that have the lowest distance to the source objects. The link is made using cross-references, similar to existing classifications in Weaviate.
 
@@ -213,7 +211,7 @@ Weaviate's zero-shot classification measures how similar (how close) a data item
 
 Zero-shot classification works with all (text/image/..) vectorizers (or no vectorizer, as long as you have vectors stored in Weaviate). 
 
-## Endpoint and parameters
+### Endpoint and parameters
 
 A classification can be started via the `v1/classifications` endpoint, which can also be accessed via the client libraries. The following fields must (required) or can (optional) be specified along with the `POST` request:
 
@@ -234,7 +232,10 @@ A classification can be started via the `v1/classifications` endpoint, which can
 
 A classification can be started through one of the clients, or with a direct `curl` request to the RESTful API.
 
-{% include code/1.x/classification.zeroshot.post.html %}
+<!-- {% include code/1.x/classification.zeroshot.post.html %} -->
+import ClassificationZeroshotPost from '/_includes/code/classification.zeroshot.post.mdx';
+
+<ClassificationZeroshotPost/>
 
 A classification is started, and will run in the background. The following response is given after starting the classification, and the status can be fetched via the `v1/classifications/{id}` endpoint.
 

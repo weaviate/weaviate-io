@@ -18,11 +18,11 @@ sidebar_position: 12
 #     - /docs/weaviate/restful-api-references/semantic-kind.html
 ---
 
-# List all data objects
+## List all data objects
 
 Lists all data objects in reverse order of creation. The data will be returned as an array of objects
 
-### Method and URL
+#### Method and URL
 
 Without any restrictions (across classes, default limit):
 
@@ -36,7 +36,7 @@ With optional query params:
 GET /v1/objects?class={className}&limit={limit}&include={include}
 ```
 
-## Parameters
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
@@ -44,11 +44,11 @@ GET /v1/objects?class={className}&limit={limit}&include={include}
 | `include` | URL Query Parameter (optional) | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
 | `class` | URL Query Parameter (optional) | string | List objects by class using the class name. |
 
-## Response fields
+#### Response fields
 
 The response of a `GET` query of a data object will give you information about all objects [(or a single object)](#get-a-data-object). Next to general information about the data objects, like schema information and property values, meta information will be shown depending on the `include` fields or `additional properties` of your request.
 
-### Response format
+#### Response format
 
 ```js
 {
@@ -58,7 +58,7 @@ The response of a `GET` query of a data object will give you information about a
 
 ```
 
-### Object fields
+#### Object fields
 
 | field name | datatype | required `include` or `additional` field |  description |
 | ---- | ---- | ---- | ---- |
@@ -83,7 +83,7 @@ The response of a `GET` query of a data object will give you information about a
 | `classification` > `scope` | list of strings |  `classification` | the initial fields to classify |
 | `featureProjection` > `vector` | list of floats |  `featureProjection` | the 2D or 3D vector coordinates of the feature projection |
 
-## Status codes and error cases
+#### Status codes and error cases
 
 | Cause | Description | Result |
 | --- | --- | --- |
@@ -94,11 +94,14 @@ The response of a `GET` query of a data object will give you information about a
 | Authorization | Not allowed to view resource | `403 Forbidden` | 
 | Server-Side error | Correct user input, but request failed for another reason | `500 Internal Server Error` - contains detailed error message |
 
-### Example request
+#### Example request
 
-{% include code/1.x/semantic-kind.get.html %}
+<!-- {% include code/1.x/semantic-kind.get.html %} -->
+import SemanticKindGet from '/_includes/code/semantic-kind.get.mdx';
 
-# Create a data object
+<SemanticKindGet/>
+
+## Create a data object
 
 Create a new data object. The provided meta-data and schema values are validated.
 
@@ -114,7 +117,7 @@ If you have a whole dataset that you plan on importing with Weaviate sending mul
 1. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint. 
 1. Go to the [`/v1/batch`](./batch.md) endpoint.
 
-### Method and URL
+#### Method and URL
 
 ```js
 POST /v1/objects
@@ -122,7 +125,7 @@ POST /v1/objects
 
 *Note: The className is not specified through the URL, as it is part of the request body.*
 
-### Parameters
+#### Parameters
 
 The body of the data object for a new object takes the following fields:
 
@@ -133,32 +136,41 @@ The body of the data object for a new object takes the following fields:
 | `properties` > `{property_name}` | dataType | yes | the property and its value according to the set dataType |
 | `id` | v4 UUID | no | the given id of the data object |
 
-### Example request
+#### Example request
 
-{% include code/1.x/semantic-kind.create.html %}
+<!-- {% include code/1.x/semantic-kind.create.html %} -->
+import SemanticKindCreate from '/_includes/code/semantic-kind.create.mdx';
 
-## Create an object with geoCoordinates
+<SemanticKindCreate/>
+
+### Create an object with geoCoordinates
 
 If you want to fill the value of a `geoCoordinates` property, you need to specify the `latitude` and `longitude` as decimal degrees in floats:
 
-{% include code/1.x/semantic-kind.create.geocoordinates.html %}
+<!-- {% include code/1.x/semantic-kind.create.geocoordinates.html %} -->
+import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geocoordinates.mdx';
 
-## Create a data object with custom vectors
+<SemanticKindCreateCoords/>
+
+### Create a data object with custom vectors
 
 When you don't want to use a vectorizer to calculate a vector for your data object, and want to enter the vector yourself, you can this this as follows. 
 
 1. First, make sure that the `"vectorizer"` is set to `"none"` in the right class in the [data schema](/docs/weaviate/references/schema-configuration.md#vectorizer) (`"vectorizer": "none"`). This is important so Weaviate knows not to do rely on any of it's modules to do model inference. *Note: If you are running without any modules and have therefore already configured the default vectorizer to be `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), you can omit this step.*
 2. Then, attach the vector in a special `"vector"` field. An example of this looks like: 
 
-{% include code/1.x/semantic-kind.create.vector.html %}
+<!-- {% include code/1.x/semantic-kind.create.vector.html %} -->
+import SemanticKindCreateVector from '/_includes/code/semantic-kind.create.vector.mdx';
+
+<SemanticKindCreateVector/>
 
 Learn [here](../graphql/filters.md#nearvector-filter) how you can search through custom vectors. 
 
-# Get a data object
+## Get a data object
 
 Collect an individual data object.
 
-### Method and URL
+#### Method and URL
 
 Available since `v1.14` and preferred way:
 ```bash
@@ -170,9 +182,13 @@ Available for backward compatibility and deprecated:
 GET /v1/objects/{id}
 ```
 
-{% include rest-objects-crud-classname-note.html %}
+<!-- {% include rest-objects-crud-classname-note.html %} -->
+<!-- TODO - file missing - check original location as original URL follows different pattern -->
+<!-- import RestObjectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
 
-### Parameters
+<RestObjectsCRUDClassnameNote/> -->
+
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
@@ -180,13 +196,16 @@ GET /v1/objects/{id}
 | `{id}` | URL Query param | uuid | The uuid of the data object to retrieve. |
 | `include` | URL Query param| string | Include additional information, such as classification info. Allowed values include: `classification`, `vector` |
 
-### Example request
+#### Example request
 
 See [here](#response-fields) the explanation of the response fields.
 
-{% include code/1.x/semantic-kind.object.get.html %}
+<!-- {% include code/1.x/semantic-kind.object.get.html %} -->
+import SemanticKindObjectGet from '/_includes/code/semantic-kind.object.get.mdx';
 
-# Check if a data object exists without retrieving it
+<SemanticKindObjectGet/>
+
+## Check if a data object exists without retrieving it
 
 This endpoint can be used to check if a data object exists without retrieving
 it. Internally it skips reading the object from disk (other than checking if
@@ -195,7 +214,7 @@ Additionally the resulting HTTP request has no body, the existence of an object
 is indicated solely by the status code (`204` when the object exists, `404`
 when it doesn't).
 
-### Method and URL
+#### Method and URL
 
 Available since `v1.14` and preferred way:
 ```bash
@@ -207,24 +226,31 @@ Available for backward compatibility and deprecated:
 HEAD /v1/objects/{id}
 ```
 
-{% include rest-objects-crud-classname-note.html %}
+<!-- {% include rest-objects-crud-classname-note.html %} -->
+<!-- TODO - file missing - check original location as original URL follows different pattern -->
+<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
 
-### Parameters
+<RestObejectsCRUDClassnameNote/> -->
+
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
 | `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to retrieve. |
 
-### Example request
+#### Example request
 
-{% include code/1.x/semantic-kind.object.head.html %}
+<!-- {% include code/1.x/semantic-kind.object.head.html %} -->
+import SemanticKindObjectHead from '/_includes/code/semantic-kind.object.head.mdx';
 
-# Update a data object
+<SemanticKindObjectHead/>
+
+## Update a data object
 
 Update an individual data object based on its uuid.
 
-### Method and URL
+#### Method and URL
 
 In the RESTful API, both `PUT` and `PATCH` methods are accepted. `PUT` replaces all property values of the data object, while `PATCH` only overwrites the given properties.
 
@@ -240,9 +266,13 @@ PUT /v1/objects/{id}
 PATCH /v1/objects/{id}
 ```
 
-{% include rest-objects-crud-classname-note.html %}
+<!-- {% include rest-objects-crud-classname-note.html %} -->
+<!-- TODO - file missing - check original location as original URL follows different pattern -->
+<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
 
-### Parameters
+<RestObejectsCRUDClassnameNote/> -->
+
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
@@ -257,17 +287,20 @@ The body of the data object for a replacing (some) properties of a object takes 
 | `properties` | array | yes | an object with the property values of the new data object |
 | `properties` > `{property_name}` | dataType | yes | the property and its value according to the set dataType |
 
-### Example request
+#### Example request
 
-{% include code/1.x/semantic-kind.object.update.html %}
+<!-- {% include code/1.x/semantic-kind.object.update.html %} -->
+import SemanticKindObjectUpdate from '/_includes/code/semantic-kind.object.update.mdx';
+
+<SemanticKindObjectUpdate/>
 
 If the update was successful, no content will be returned.
 
-# Delete a data object
+## Delete a data object
 
 Delete an individual data object from Weaviate. 
 
-### Method and URL
+#### Method and URL
 
 Available since `v1.14` and preferred way:
 ```js
@@ -279,26 +312,33 @@ Available for backward compatibility and deprecated:
 DELETE /v1/objects/{id}
 ```
 
-{% include rest-objects-crud-classname-note.html %}
+<!-- {% include rest-objects-crud-classname-note.html %} -->
+<!-- TODO - file missing - check original location as original URL follows different pattern -->
+<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
 
-### Parameters
+<RestObejectsCRUDClassnameNote/> -->
+
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
 | `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL | uuid | The uuid of the data object to delete. |
 
-### Example request
+#### Example request
 
-{% include code/1.x/semantic-kind.object.delete.html %}
+<!-- {% include code/1.x/semantic-kind.object.delete.html %} -->
+import SemanticKindObjectDelete from '/_includes/code/semantic-kind.object.delete.mdx';
+
+<SemanticKindObjectDelete/>
 
 If the deletion was successful, no content will be returned.
 
-# Validate a data object
+## Validate a data object
 
 You can validate a data object's schema and meta data. 
 
-### Method and URL
+#### Method and URL
 
 ```js
 POST /v1/objects/validate
@@ -307,7 +347,7 @@ POST /v1/objects/validate
 *Note: As with creating an object, the className is not specified through the
 URL, as it is part of the request body.*
 
-### Parameters
+#### Parameters
 
 The body of the data object for a new data object is an object taking the following field:
 
@@ -318,17 +358,20 @@ The body of the data object for a new data object is an object taking the follow
 | `properties` > `{property_name}` | dataType | yes | the property and its value according to the set dataType |
 | `id` | v4 uuid | no<sup>*</sup> | The id of the data object. <sup>*</sup>An ID is required by the clients. |
 
-### Example request
+#### Example request
 
-{% include code/1.x/semantic-kind.validate.html %}
+<!-- {% include code/1.x/semantic-kind.validate.html %} -->
+import SemanticKindValidate from '/_includes/code/semantic-kind.validate.mdx';
+
+<SemanticKindValidate/>
 
 If the schema of the object is valid, this request should return `True`/`true` in case of the clients and nothing with a plain RESTful request. 
 
-# Cross-references
+## Cross-references
 
-## Add a cross reference
+### Add a cross reference
 
-### Method and URL
+#### Method and URL
 
 Available since `v1.14` and preferred way:
 ```js
@@ -340,9 +383,13 @@ Available for backward compatibility and deprecated:
 POST /v1/objects/{id}/references/{property_name}
 ```
 
-{% include rest-objects-crud-classname-note.html %}
+<!-- {% include rest-objects-crud-classname-note.html %} -->
+<!-- TODO - file missing - check original location as original URL follows different pattern -->
+<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
 
-### Parameters
+<RestObejectsCRUDClassnameNote/> -->
+
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
@@ -366,7 +413,7 @@ format and specify it as weaviate://localhost/&lt;id&gt;. This is, however,
 considered deprecated and will be removed with a future release, as duplicate
 IDs across classes could mean that this beacon is not uniquely identifiable.*
 
-### Example request
+#### Example request
 
 {% include code/1.x/semantic-kind.object.reference.add.html %}
 
@@ -376,7 +423,7 @@ If the addition was successful, no content will be returned.
 
 A `PUT` request updates *all* references of a property of a data object.
 
-### Method and URL
+#### Method and URL
 
 Available since `v1.14` and preferred way:
 ```js
@@ -388,9 +435,13 @@ Available for backward compatibility and deprecated:
 PUT /v1/objects/{id}/references/{property_name}
 ```
 
-{% include rest-objects-crud-classname-note.html %}
+<!-- {% include rest-objects-crud-classname-note.html %} -->
+<!-- TODO - file missing - check original location as original URL follows different pattern -->
+<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
 
-### Parameters
+<RestObejectsCRUDClassnameNote/> -->
+
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
@@ -414,18 +465,21 @@ format and specify it as weaviate://localhost/&lt;id&gt;. This is, however,
 considered deprecated and will be removed with a future release, as duplicate
 IDs across classes could mean that this beacon is not uniquely identifiable.*
 
-### Example request
+#### Example request
 
-{% include code/1.x/semantic-kind.object.reference.update.html %}
+<!-- {% include code/1.x/semantic-kind.object.reference.update.html %} -->
+import SemanticKindObjectReferenceUpdate from '/_includes/code/semantic-kind.object.reference.update.mdx';
+
+<SemanticKindObjectReferenceUpdate/>
 
 If the addition was successful, no content will be returned.
 
 
-## Delete a cross reference
+### Delete a cross reference
 
 Delete the single reference that is given in the body from the list of references that this property of a data object has.
 
-### Method and URL
+#### Method and URL
 
 Available since `v1.14` and preferred way:
 ```js
@@ -437,9 +491,13 @@ Available for backward compatibility and deprecated:
 DELETE /v1/objects/{id}/references/{property_name}
 ```
 
-{% include rest-objects-crud-classname-note.html %}
+<!-- {% include rest-objects-crud-classname-note.html %} -->
+<!-- TODO - file missing - check original location as original URL follows different pattern -->
+<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
 
-### Parameters
+<RestObejectsCRUDClassnameNote/> -->
+
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
@@ -465,8 +523,11 @@ has to match the beacon to be deleted exactly. In other words, if a beacon is
 present using the old format (without class id) you also need to specify it the
 same way.*
 
-### Example request
+#### Example request
 
-{% include code/1.x/semantic-kind.object.reference.delete.html %}
+<!-- {% include code/1.x/semantic-kind.object.reference.delete.html %} -->
+import SemanticKindObjectReferenceDelete from '/_includes/code/semantic-kind.object.reference.delete.mdx';
+
+<SemanticKindObjectReferenceDelete/>
 
 If the addition was successful, no content will be returned.

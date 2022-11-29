@@ -20,13 +20,13 @@ sidebar_position: 14
 #     - /docs/weaviate/tutorials/how-to-import-data.html
 ---
 
-# Introduction
+## Introduction
 
-See the [Backups page](/docs/weaviate/configuration/backups.md) for a general introduction, configuration, and tech backround of Backups.
+See the [Backups page](/docs/weaviate/configuration/backups.md) for a general introduction, configuration, and tech background of Backups.
 
-# API
+## API
 
-## Create Backup
+### Create Backup
 
 Once the modules are enabled and the [configuration](/docs/weaviate/configuration/backups.md#configuration) is provided, you can start a
 backup on any running instance with a single HTTP request.
@@ -37,15 +37,15 @@ backup on any running instance with a single HTTP request.
 POST /v1/backups/{backend}
 ```
 
-### Parameters
+#### Parameters
 
-#### URL Parameters
+##### URL Parameters
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
 | `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
 
-#### Request Body
+##### Request Body
 
 The request takes a json object with the following properties:
 
@@ -62,7 +62,7 @@ The request takes a json object with the following properties:
 While you are waiting for a backup to complete, [Weaviate stays fully usable](/docs/weaviate/configuration/backups.md#read--write-requests-while-a-backup-is-running).
 
 
-### Asynchronous Status Checking
+#### Asynchronous Status Checking
 
 All client implentations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
 
@@ -72,7 +72,7 @@ If you set the "wait for completion" option to false, you can also check the sta
 GET /v1/backups/{backend}/{backup_id}
 ```
 
-#### Parameters
+##### Parameters
 
 ##### URL Parameters
 
@@ -86,7 +86,7 @@ backup is complete. If the status is `FAILED`, an additional error is provided.
 
 {% include code/1.x/backup.status.create.html %}
 
-## Restore Backup
+### Restore Backup
 
 You can restore any backup to any machine as long as the number of nodes
 between source and target are identical. The backup does not need to be created
@@ -95,22 +95,22 @@ backup with a single HTTP request.
 
 Note that a restore fails if any of the classes already exist on this instance.
 
-### Method and URL
+#### Method and URL
 
 ```js
 POST /v1/backups/{backend}/{backup_id}/restore
 ```
 
-### Parameters
+#### Parameters
 
-#### URL Parameters
+##### URL Parameters
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
 | `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
-#### Request Body
+##### Request Body
 
 The request takes a json object with the following properties:
 
@@ -125,7 +125,7 @@ The request takes a json object with the following properties:
 
 {% include code/1.x/backup.restore.html %}
 
-### Asynchronous Status Checking
+#### Asynchronous Status Checking
 
 All client implentations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
 

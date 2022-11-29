@@ -15,7 +15,7 @@ sidebar_position: 22
 #     - /docs/weaviate/data-schema/datatypes.html
 ---
 
-# Introduction
+## Introduction
 
 When creating a property, Weaviate needs to know what type of data you will give it. Weaviate accepts the following types:
 
@@ -40,11 +40,11 @@ When creating a property, Weaviate needs to know what type of data you will give
 
 (*) Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/semi-technologies/weaviate/issues/1563). As current workaround is to use a `string` instead.
 
-# DataType: string vs. text
+## DataType: string vs. text
 
 There are two datatypes dedicated to saving textual information: string and text. `string` values are indexed as one token, whereas `text` values are indexed after applying tokenization. `“jane.doe@foobar.com”` as string would be indexed as `“jane.doe@foobar.com”` and also only match that in a GraphQL where filter, whereas as text it would be indexed as `['jane', 'doe', 'foobar', 'com']` and also match the individual words.
 
-# DataType: date
+## DataType: date
 
 Weaviate requires an [RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date that includes the time and the offset.
 
@@ -56,7 +56,7 @@ For example:
 
 In case you want to add a list of dates as one Weaviate data value, you can use above formatting in an array, for example like: `["1985-04-12T23:20:50.52Z", "1937-01-01T12:00:27.87+00:20"]`
 
-# DataType: geoCoordinates
+## DataType: geoCoordinates
 
 Weaviate allows you to store geo coordinates related to a thing or action. When querying Weaviate, you can use this type to find items in a radius around this area. A geo coordinate value is a float, and is processed as [decimal degree](https://en.wikipedia.org/wiki/Decimal_degrees) according to the [ISO standard](https://www.iso.org/standard/39242.html#:~:text=For%20computer%20data%20interchange%20of,minutes%2C%20seconds%20and%20decimal%20seconds).
 
@@ -73,7 +73,7 @@ An example of how geo coordinates are used in a data object:
 }
 ```
 
-# DataType: phoneNumber
+## DataType: phoneNumber
 
 There is a special, primitive data type `phoneNumber`. When a phone number is added to this field, the input will be normalized and validated, unlike the single fields as `number` and `string`. The data field is an object, as opposed to a flat type similar to `geoCoordinates`. The object has multiple fields:
 
@@ -97,7 +97,7 @@ There are two fields that accept input. `input` must always be set, while `defau
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
 
-# DataType: blob
+## DataType: blob
 
 The datatype blob accepts any binary data. The data should be `base64` encoded, and passed as a `string`. Characteristics:
 * Weaviate doesn't make assumptions about the type of data that is encoded. A module (e.g. `img2vec`) can investigate file headers as it wishes, but Weaviate itself does not do this. 
@@ -143,7 +143,7 @@ $ curl \
     http://localhost:8080/v1/objects
 ```
 
-# DataType: cross reference
+## DataType: cross reference
 
 The `cross-reference` type is the graph element of Weaviate, you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list of are names of classes that exist elsewhere in the schema. For example:
 
@@ -160,7 +160,7 @@ The `cross-reference` type is the graph element of Weaviate, you can create a li
 }
 ```
 
-## Number of linked instances
+### Number of linked instances
 The `cross-reference` type objects are `arrays` by default. This allows you to link to any number `(0..n)` of instances of a given class.
 
 In the above example, our objects can be linked to:

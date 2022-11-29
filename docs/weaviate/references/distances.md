@@ -14,7 +14,7 @@ sidebar_position: 23
 #     - /documentation/weaviate/current/vector-index-plugins/hsnw.html
 ---
 
-# Available Distance Metrics
+## Available Distance Metrics
 
 If not specified explicitly, the default distance metric in Weaviate is
 `cosine`. It can be [set in the vectorIndexConfig](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters) field as part of the
@@ -34,7 +34,7 @@ to Weaviate, please let us know. We are happy to receive your contribution.
 
 <small>&#185; - Dot Product on its own is a similarity metric, not a distance metric. As a result, Weaviate returns the negative dot product to stick with the intuition that a smaller value of a distance indicates a more similar result and a higher distance value indicates a less similar result.</small>
 
-## Distance Implementations and Optimizations
+### Distance Implementations and Optimizations
 
 On a typical Weaviate use case the largest portion of CPU time is spent calculating vector distances. Even with an approximate nearest neighbor index - which leads to far fewer calculations - the efficiency of distance calculations has a major impact on [overall performance](/docs/weaviate/more-resources/benchmarks/ann.md).
 
@@ -51,7 +51,7 @@ You can use the following overview to find the best possible combination of dist
 
 If you like dealing with Assembly programming, SIMD, and vector instruction sets we would love to receive your contribution for one of the combinations that have not yet received an SIMD-specific optimization.
 
-## Distance Fields in the APIs
+### Distance Fields in the APIs
 
 The `distance` is exposed in the APIs in two ways:
 

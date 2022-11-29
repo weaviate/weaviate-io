@@ -15,10 +15,10 @@ sidebar_position: 18
 #     - /documentation/weaviate/references/rest/well-known.html
 ---
 
-# OpenID Configuration
+## OpenID Configuration
 The RESTful API discovery gives information if [OpenID Connect (OIDC)](/docs/weaviate/configuration/authentication.md#openid-connect-oidc) authentication is enabled. The endpoint redirects to the token issued if one is configured.
 
-## Usage
+#### Usage
 
 The discovery endpoint accepts a `GET` request:
 
@@ -32,10 +32,13 @@ And it returns the following fields:
 
 If no OIDC provider is present, a `404` code will be returned.
   
-## Example
+#### Example
 The following command:
 
-{% include code/1.x/wellknown.openid-configuration.html %}
+<!-- {% include code/1.x/wellknown.openid-configuration.html %} -->
+import WellknownOpenIDConfig from '/_includes/code/wellknown.openid-configuration.mdx';
+
+<WellknownOpenIDConfig/>
 
 returns:
 
@@ -46,11 +49,11 @@ returns:
 }
 ```
 
-# Liveness
+## Liveness
 
 Live determines whether the application is alive. It can be used for Kubernetes liveness probe.
 
-## Usage
+#### Usage
 
 The discovery endpoint accepts a `GET` request:
 
@@ -60,14 +63,17 @@ GET /v1/.well-known/live
 
 And it returns 200 if the application is able to respond to HTTP requests.
   
-## Example
+#### Example
 If the following command:
 
-{% include code/1.x/wellknown.live.html %}
+<!-- {% include code/1.x/wellknown.live.html %} -->
+import WellKnownLive from '/_includes/code/wellknown.live.mdx';
+
+<WellKnownLive/>
 
 returns nothing (a 200 response), you know the application is able to respond to HTTP requests.
 
-# Readiness
+## Readiness
 
 Live determines whether the application is ready to receive traffic. It can be used for Kubernetes readiness probe.
 
@@ -81,10 +87,13 @@ GET /v1/.well-known/ready
 
 And it returns 200 if the application is able to respond to HTTP requests, and 503 if the application is currently not able to serve traffic. If other horizontal replicas of Weaviate are available and they are capable of receiving traffic, all traffic should be redirected there instead.
   
-## Example
+#### Example
 If the following command:
 
-{% include code/1.x/wellknown.ready.html %}
+<!-- {% include code/1.x/wellknown.ready.html %} -->
+import WellknownReady from '/_includes/code/wellknown.ready.mdx';
+
+<WellknownReady/>
 
 returns nothing (a 200 response), you know the application is able to respond to HTTP requests.
 

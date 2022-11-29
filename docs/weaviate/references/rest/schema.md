@@ -18,16 +18,16 @@ sidebar_position: 11
 
 NOTE: From v1.5.0 onwards creating a schema is now optional, learn more about [Auto Schema here](/docs/weaviate/references/schema-configuration.md#auto-schema).
 
-# Get the schema
+## Get the schema
 Dumps the current Weaviate schema. The result contains an array of objects.
 
-### Method and URL
+#### Method and URL
 
 ```js
 GET /v1/schema
 ```
 
-### Example request
+#### Example request
 
 import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
 
@@ -232,19 +232,19 @@ import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
 }
 ```
 
-# Create a class
+## Create a class
 
 Create a new data object class in the schema.
 
 NOTE: From v1.5.0 onwards creating a schema is now optional, learn more about [Auto Schema here](/docs/weaviate/references/schema-configuration.md#auto-schema).
 
-### Method and URL
+#### Method and URL
 
 ```js
 POST /v1/schema
 ```
 
-### Parameters
+#### Parameters
 
 Learn more about the schema configuration [here](/docs/weaviate/references/schema-configuration.md).
 
@@ -267,7 +267,7 @@ Learn more about the schema configuration [here](/docs/weaviate/references/schem
 | `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). |
 | `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--indextimestamps). |
 
-### Example request for creating a class
+#### Example request for creating a class
 
 import CodeSchemaCreate from '/_includes/code/schema.things.create.mdx';
 
@@ -280,45 +280,45 @@ import CodeSchemaCreateElaborate from '/_includes/code/schema.things.create.elab
 <CodeSchemaCreateElaborate />
 
 
-# Get a single class from the schema
+## Get a single class from the schema
 
 Retrieves the configuration of a single class in the schema. 
 
-### Method and URL
+#### Method and URL
 
 ```js
 GET /v1/schema/{className}
 ```
 
-### Example request
+#### Example request
 
 import CodeSchemaGetClass from '/_includes/code/schema.get.class.mdx';
 
 <CodeSchemaGetClass />
 
-# Delete a class
+## Delete a class
 
 Remove a class (and all data in the instances) from the schema.
 
-### Method and URL
+#### Method and URL
 
 ```js
 DELETE v1/schema/{class_name}
 ```
 
-### Parameters
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
 | `{class_name}` | URL | string | The name of the class |
 
-### Example request for deleting a class
+#### Example request for deleting a class
 
 import CodeSchemaDelete from '/_includes/code/schema.things.delete.mdx';
 
 <CodeSchemaDelete />
 
-# Update a class
+## Update a class
 
 Update settings of an existing schema class. 
 
@@ -326,13 +326,13 @@ Use this endpoint to alter an existing class in the schema. Note that not all se
 
 You should attach a body to this PUT request with the **entire** new configuration of the class. 
 
-### Method and URL
+#### Method and URL
 
 ```js
 PUT v1/schema/{class_name}
 ```
 
-### Parameters
+#### Parameters
 
 Parameter in the PUT request:
 
@@ -362,21 +362,21 @@ Parameter in the PUT body:
 | `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--indextimestamps). |
 
 
-### Example request for updating a class
+#### Example request for updating a class
 
 import CodeSchemaUpdate from '/_includes/code/schema.things.put.mdx';
 
 <CodeSchemaUpdate />
 
-# Add a property
+## Add a property
 
-### Method and URL
+#### Method and URL
 
 ```js
 POST v1/schema/{class_name}/properties
 ```
 
-### Parameters
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
@@ -387,19 +387,19 @@ POST v1/schema/{class_name}/properties
 | `name` | body | string | The name of the property, multiple words should be concatenated in camelCase like `nameOfAuthor`. |
 | `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing). |
 
-### Example request for adding a property
+#### Example request for adding a property
 
 import CodeSchemaAddProperties from '/_includes/code/schema.things.properties.add.mdx';
 
 <CodeSchemaAddProperties />
 
-# Inspect the shards of a class
+## Inspect the shards of a class
 
 As described in [Architecture > Storage](/docs/weaviate/architecture/storage.md#logical-storage-units-indices-shards-stores), creation of a class leads to creating an index which manages all the disk storage and vector indexing. An index itself can be comprised of multiple shards. If a class index is used on multiple nodes of a multi-node Weaviate cluster there must be at least one shard per node.
 
 You can view a list of all shards for a particular class:
 
-### Method and URL
+#### Method and URL
 
 *Note: This API was added in `v1.12.0`*
 
@@ -407,23 +407,23 @@ You can view a list of all shards for a particular class:
 GET v1/schema/{class_name}/shards
 ```
 
-### Parameters
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
 | `{class_name}` | URL | string | The name of the class |
 
-### Example request viewing shards of a class
+#### Example request viewing shards of a class
 
 import CodeSchemaShardsGet from '/_includes/code/schema.shards.get.mdx';
 
 <CodeSchemaShardsGet />
 
-# Update shard status
+## Update shard status
 
 A shard may have been marked as read-only, for example because the disk was full. You can manually set a shard to `READY` again using the following API. There is also a convenience function in each client to set the status of all shards of a class. 
 
-### Method and URL
+#### Method and URL
 
 :::note
 This API was added in `v1.12.0`
@@ -433,7 +433,7 @@ This API was added in `v1.12.0`
 PUT v1/schema/{class_name}/shards/{shard_name}
 ```
 
-### Parameters
+#### Parameters
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
@@ -441,7 +441,7 @@ PUT v1/schema/{class_name}/shards/{shard_name}
 | `{shard_name}` | URL | string | The name/id of the shard |
 | `status` | body | string | The status to update the shard to. One of `READONLY`, `READY` |
 
-### Example requests to update the status of a shard
+#### Example requests to update the status of a shard
 
 import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 

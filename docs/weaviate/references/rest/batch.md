@@ -20,7 +20,7 @@ sidebar_position: 13
 #     - /docs/weaviate/tutorials/how-to-import-data.html
 ---
 
-# Batch data objects
+## Batch data objects
 
 For sending data objects to Weaviate in bulk.
 
@@ -52,7 +52,10 @@ The body requires the following field:
 
 ### Example request
 
-{% include code/1.x/batch.objects.html %}
+<!-- {% include code/1.x/batch.objects.html %} -->
+import BatchObjects from '/_includes/code/batch.objects.mdx';
+
+<BatchObjects/>
 
 ## Batching objects with the Python Client
 
@@ -63,7 +66,7 @@ Specific documentation for the Python client
 * Additional documentation can be found on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.batch.html)
 * Additional documentation on different types of batching and tip &amp; tricks can be found [here](/docs/weaviate/references/client-libraries/python.md)
 
-# Batch references
+## Batch references
 
 For batching cross-references between data objects in bulk.
 
@@ -97,29 +100,33 @@ property name.*
 
 ### Example request
 
-{% include code/1.x/batch.references.html %}
+<!-- {% include code/1.x/batch.references.html %} -->
+import BatchReferences from '/_includes/code/batch.references.mdx';
+
+<BatchReferences/>
+
 
 For detailed information and instructions of batching in Python, click [here](https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch).
 
-# Batch Delete By Query
+## Batch Delete By Query
 
 You can use the `/v1/batch/objects` endpoint with the HTTP Verb `DELETE` to delete all objects that match a particular expression. To determine if an object is a match [a where-Filter is used](../graphql/filters.md#where-filter). The request body takes a single filter, but will delete all objects matched. It returns the number of matched objects as well as any potential errors. Note that there is a limit to how many objects can be deleted using this filter at once which is explained below.
 
-## Maximum number of deletes per query
+### Maximum number of deletes per query
 
 There is an upper limit to how many objects can be deleted using a single query. This protects against unexpected memory surges and very-long running requests which would be prone to client-side timeouts or network interruptions. If a filter matches many objects, only the first `n` elements are deleted. You can configure the amount `n` by setting `QUERY_MAXIMUM_RESULTS` in Weaviate's config. The default value is 10,000. Objects are deleted in the same order that they would be returned using the same filter in a a Get-Query. To delete more objects than the limit, run the same query multiple times, until no objects are matched anymore.
 
-## Dry-Run before Deletion
+### Dry-Run before Deletion
 
 You can use the dry-run option to see which objects would be deleted using your specified filter without deleting any objects yet. Depending on the verbosity set, you will either receive the total count of affected objects or a list of the affected IDs.
 
-## Method and URL
+### Method and URL
 
 ```js
 DELETE /v1/batch/objects
 ```
 
-## Parameters
+### Parameters
 
 The body requires the following field:
 
@@ -129,7 +136,7 @@ The body requires the following field:
 | `output` | string | no | optional, controls the verbosity of the output, see possible values below. Defaults to `"minimal"` |
 | `dryRun` | bool | no | optional, if true, objects will not be deleted yet, but merely listed. Defaults to `false` |
 
-### A request body in detail
+#### A request body in detail
 
 ```yaml
 {
@@ -150,7 +157,7 @@ Possible values for `output`
 | `verbose` | The result lists all affected objects with their ID and deletion status, including both successful and unsuccessful deletes |
 
 
-### A response body in detail
+#### A response body in detail
 
 ```yaml
 {
@@ -183,11 +190,14 @@ Possible values for `output`
 ```
 
 
-## Example request
+### Example request
 
-{% include code/1.x/batch.delete.objects.html %}
+<!-- {% include code/1.x/batch.delete.objects.html %} -->
+import BatchDeleteObjects from '/_includes/code/batch.delete.objects.mdx';
 
-# Error handling
+<BatchDeleteObjects/>
+
+### Error handling
 
 When sending a batch request to your Weaviate instance, it could be the case that an error occurs. This can be caused by several reasons, for example that the connection to Weaviate is lost or that there is a mistake in a single data object that you are trying to add.
 

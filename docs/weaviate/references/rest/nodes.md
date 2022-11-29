@@ -15,7 +15,7 @@ sidebar_position: 17
 #     - /documentation/weaviate/references/rest/nodes.html
 ---
 
-# Usage
+## Usage
 
 The nodes endpoint accepts a `GET` request:
 
@@ -36,10 +36,13 @@ And it returns a `nodes` field containing array of nodes with following fields:
     - `class`: Name of the objects' class stored on the shard.
     - `objectCount`: Number of objects on the shard.
   
-# Example
+## Example
 The following command:
 
-{% include code/1.x/nodes.html %}
+<!-- {% include code/1.x/nodes.html %} -->
+import Nodes from '/_includes/code/nodes.mdx';
+
+<Nodes/>
 
 returns:
 

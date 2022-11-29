@@ -15,7 +15,7 @@ sidebar_position: 16
 #     - /documentation/weaviate/references/rest/meta.html
 ---
 
-# Usage
+## Usage
 
 The meta endpoint accepts a `GET` request:
 
@@ -28,10 +28,13 @@ And it returns the following fields:
 - `version`: The version of Weaviate.
 - `modules`: Module specific info.
   
-# Example
+## Example
 The following command:
 
-{% include code/1.x/meta.html %}
+<!-- {% include code/1.x/meta.html %} -->
+import Meta from '/_includes/code/Meta.mdx';
+
+<Meta/>
 
 returns:
 

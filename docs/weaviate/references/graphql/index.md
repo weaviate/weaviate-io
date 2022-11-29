@@ -16,11 +16,11 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/graphql-references/
 ---
 
-# GraphQL 
+## GraphQL 
 
 Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a query language built on using graph data structures. It is an efficient method of data retrieval and mutation, since it mitigates the common over-fetching and under-fetching problems of other query languages. You can query a Weaviate after you've created a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) and [populated it](/docs/weaviate/guides/how-to-import-data.md) with data. The GraphQL interface inside the [Weaviate Console](https://console.semi.technology) GUI enables easy querying.
 
-# All references
+## All references
 
 All references have their individual subpages, click on one of the references below for more information.
 
@@ -98,7 +98,7 @@ GraphQL queries follows a defined structure, defined to interact with your data 
 
 - To obtain meta information about a data object (for example for interpretation or visualization purposes), use an [**additional property**](./additional-properties.md). 
 
-# Limitations
+## Limitations
 
 GraphQL _integer_ data currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/semi-technologies/weaviate/issues/1563). As current workaround is to use a `string` instead.
 

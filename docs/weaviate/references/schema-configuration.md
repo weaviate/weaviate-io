@@ -15,7 +15,7 @@ sidebar_position: 21
 #     - /docs/weaviate/v1.11.0/data-schema/schema-configuration.html
 ---
 
-# Introduction
+## Introduction
 
 A data schema is the first thing you'll need to define before you can start adding data. A data schema specifies what data classes your Weaviate will have, and what properties data objects consist of. Per the data class property, you will define what data type its value can adopt. If you want to make graph links between data objects, you'll also define that in the data type of class properties.
 
@@ -29,11 +29,11 @@ You can upload schema classes to Weaviate via the RESTful endpoint `/v1/schema`.
 Check out the [schema getting started guide](/docs/weaviate/getting-started/schema.md) to learn how to work with the Weaviate schema in under 10 minutes.
 :::
 
-# Data objects and structure
+## Data objects and structure
 
 Data objects in Weaviate always belongs to a Class, and has one or more Properties.
 
-## Auto-schema
+### Auto-schema
 
 If you don't create a schema manually before adding data, a schema will be generated automatically (available from Weaviate version v1.5.0). This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
 
@@ -45,7 +45,7 @@ It has the following characteristics:
 * When a previously unseen class is imported, the class is created alongside all the properties.
 * Also Weaviate automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`. 
 
-## Class
+### Class
 
 A class describes a data object in the form of a noun (e.g., *Person*,
 *Product*, *Timezone*, etcetera) or a verb (e.g., *Move*, *Buy*, *Eat*,
@@ -64,11 +64,11 @@ After the first letter, classes may use any GraphQL-compatible characters. The
 current (as of `v1.10.0+`) class name validation regex is
 `/^[A-Z][_0-9A-Za-z]*$/`.
 
-## Properties
+### Properties
 
 Every class has properties. Properties define what kind of data values you will add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](./datatypes.md). Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name. 
 
-# Class object
+## Class object
 
 An example of a complete class object including properties:
 
@@ -273,7 +273,7 @@ To perform queries which are filtered by the length of a property, the target cl
 **Notes**
 - Using these features requires more resources, as the additional inverted indices must be created/maintained for the lifetime of the Class
 
-# Property object
+## Property object
 
 Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name. 
 
