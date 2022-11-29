@@ -16,15 +16,15 @@ redirect_from:
 
 Welcome to the Weaviate **Getting Started** guide.
 
-The Getting Started is designed to quickly teach you how to use Weaviate, from spinning up an instance to performing queries. Each section should just take a few minutes of your time.
+The Getting Started is designed to quickly teach you how to use Weaviate, from spinning up an instance to performing queries.
 
 In this guide, we will show you how to:
 - Spin up an instance of Weaviate
-- Set up a database schema, including cross-references
+- Set up a database schema
 - Import data to populate the database, and
 - Perform queries to retrieve relevant data 
 
-By the end of the guide, you will end up with a basic, but fully functioning vector database. You will also have performed vector searches to retrieve information from that database.
+By the end of the guide, you will end up with a simple, but fully functioning vector database. You will also have performed vector searches to retrieve information from that database.
 
 Have fun working with Weaviate, and please do let us know when you have questions or if you have a cool use case to share!
 
