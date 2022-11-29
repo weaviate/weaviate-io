@@ -1,5 +1,5 @@
 ---
-title: GraphQL - Vector search parameter
+title: GraphQL - Vector search parameters
 sidebar_position: 5
 # layout: layout-documentation
 # solution: weaviate
