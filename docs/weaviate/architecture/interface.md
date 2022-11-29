@@ -1,32 +1,34 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Architecture
 title: Interface
-description: Interface
-tags: ['architecture', 'interface', 'API design']
 sidebar_position: 6
-open-graph-type: article
-toc: true
-redirect_from:
-    - /docs/weaviate/v1.14.1/architecture/
+# layout: layout-documentation
+# solution: weaviate
+# sub-menu: Architecture
+# title: Interface
+# description: Interface
+# tags: ['architecture', 'interface', 'API design']
+# sidebar_position: 6
+# open-graph-type: article
+# toc: true
+# redirect_from:
+#     - /docs/weaviate/v1.14.1/architecture/
 ---
 
-# Introduction
+## Introduction
 
-Weaviate is a vector database that you can manage and use through it's APIs. Weaviate has a RESTful API and a GraphQL API. The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. Additionally, the APIs are intuitive, so it is easy to integrate into your existing data landscape. 
+You can manage and use Weaviate through its APIs. Weaviate has a RESTful API and a GraphQL API. The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. Additionally, the APIs are intuitive, so it is easy to integrate into your existing data landscape.
 
 This page contains information on how Weaviate's APIs are designed, and how you can use Weaviate Console to search through your Weaviate instance with GraphQL.
 
-# API Design
+## API Design
 
-## Design: UX & Weaviate Features
+### Design: UX & Weaviate Features
 
 User Experience (UX) is one of our most valuable principles. Weaviate should be easy to understand, intuitive to use and valuable, desirable and usable to the community. The interaction with Weaviate is naturally very important for its UX. Weaviate's APIs are designed from the perspective of user needs, keeping the software features in mind. We do user research, user testing and prototyping to make sure all features resonate with our users. User requirements are continuously gathered during collaborative discussions. We match user needs with the functions of Weaviate. When there is a strong need from the user or application perspective, we may extend Weaviate's functions and APIs. When there is a new Weaviate function, this will naturally be accessible via (new) API functions.
 
 The UX of Weaviate's APIs is designed following the UX Honeycomb usability rules, defined by Peter Morville.
 
-## RESTful API and GraphQL API
+### RESTful API and GraphQL API
 
 Weaviate has both a RESTful API and a GraphQL API. Currently, there is no feature parity between both APIs (this will be implemented later, there is an [issue](https://github.com/semi-technologies/weaviate/issues/1540) on Github). The RESTful APIs are mostly used for DB management and CRUD operations. The GraphQL API is mostly used to access data objects in Weaviate, whether it's a simple lookup or a combination of scalar and vector search. The APIs support the following user needs, roughly speaking:
 
@@ -42,6 +44,7 @@ Weaviate has both a RESTful API and a GraphQL API. Currently, there is no featur
 
 ### Why GraphQL?
 We have chosen to use a GraphQL API, for multiple reasons:
+
 * **Data structure**. 
   * Data in Weaviate follows a class-property structure. Data objects can be queried by their class and properties with GraphQL. 
   * It is possible to link data in Weaviate with cross-references. A Graph query language like GraphQL is very useful here.
@@ -130,7 +133,7 @@ There are currently three main functions in a GraphQL request: "Get{}", "Explore
 
 The [Weaviate Console](https://console.semi.technology) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.
 
-<!-- ![<img src="/img/console-capture.png" width="250"/>](/img/console-capture.png "GraphQL Query Module in Weaviate Console") -->
+![<img src="/img/console-capture.png" width="250"/>](./img/console-capture.png "GraphQL Query Module in Weaviate Console")
 
 # Weaviate Clients and CLI
 
