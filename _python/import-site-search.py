@@ -232,7 +232,11 @@ if __name__ == "__main__":
         auth_client_secret=weaviate.AuthClientPassword(WEAVIATE_LOGIN, WEAVIATE_PASS)
     )
 
-    create_weaviate_schema(client)
+    try:
+        create_weaviate_schema(client)
+    except:
+        print("Can't reach VM for Weaviate, continue without updating search")
+        exit(0)
 
     c = 0
 
