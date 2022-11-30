@@ -108,11 +108,11 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
 
 ## Available models
 
-Weaviate defaults to the `large` variant of Cohere's `multilingual-2210-alpha` model.
+Weaviate defaults to Cohere's `large` embedding model unless specified otherwise.
 
-> Currently available models are small, medium and large. If unspecified, Weaviate will default to using the `large` model. Small models are faster, while larger models will perform better. Custom models can also be supplied with their full ID [source](https://docs.cohere.ai/reference/embed).
+> Currently, `small`, `medium` and `large` models are available. Smaller models are faster, while larger models will perform better. Custom models can also be supplied with their full ID [source](https://docs.cohere.ai/reference/embed).
 
-You can set a class to use a `small` model by specifying the schema like so:
+For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-cohere` using the `small` model.
 
 ```json
 {
@@ -127,7 +127,7 @@ You can set a class to use a `small` model by specifying the schema like so:
         }
 ```
 
-## Truncating
+## Truncation
 
 If the input text contains too many tokens and is not truncated, the API will throw an error. The Cohere API can be set to automatically truncate your input text.
 
@@ -136,9 +136,9 @@ You can set the truncation option with the `truncate` parameter.
 > The available values for `truncate` are NONE, LEFT or RIGHT. It specifies how the API will handle inputs longer than the maximum token length. Passing LEFT will discard the left of the input and RIGHT will discard the right side of the input, in both cases until the remaining input is exactly the maximum input token length for the model. Defaults to NONE, which will return an error if the input exceeds the maximum input token length. [source](https://docs.cohere.ai/reference/embed)
 
 * The _upside_ of truncating is that a batch import always succeeds.
-* The _downside_ of truncating is that a large text might only get partially vectorized.
+* The _downside_ of truncating is that a large text will be partially vectorized without the user being made aware of the truncation.
 
-You can set a class to truncate extra text by discarding the left of the input (i.e. set `truncate` to `LEFT`) by specifying the schema like so:
+For example, you can set a class to discard the left of the input (i.e. set `truncate` to `LEFT`) when truncating by specifying the schema like so:
 
 ```json
 {
