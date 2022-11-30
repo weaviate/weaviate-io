@@ -63,7 +63,7 @@ services:
 
 ​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](../getting-started/schema.html) first.
 
-The following schema configuration uses the `babbage` model. 
+The following schema configuration tells Weaviate to vectorize the `Document` class with `text2vec-openai`, using the `babbage` model.
 
 ```json
 {
@@ -100,7 +100,7 @@ The following schema configuration uses the `babbage` model.
 
 # How to use
 
-* If the OpenAI API key is not set in the module, you can set the API key on query time by adding the following to the HTTP header: `X-OpenAI-Api-Key: <openai-api-key>`.
+* If the OpenAI API key is not set in the `text2vec-​openai` module, you can set the API key on query time by adding the following to the HTTP header: `X-OpenAI-Api-Key: <openai-api-key>`.
 * Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](../graphql-references/vector-search-parameters.html#neartext).
 
 ## Example

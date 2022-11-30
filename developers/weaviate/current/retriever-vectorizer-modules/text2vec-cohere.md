@@ -58,6 +58,8 @@ services:
 
 ​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](../getting-started/schema.html) first.
 
+The following schema configuration tells Weaviate to vectorize the `Document` class with `text2vec-cohere`, using the `large` model and without input truncation by the Cohere API.
+
 ```json
 {
   "classes": [
@@ -93,7 +95,7 @@ services:
 
 # How to use
 
-* If the Cohere API key is not set in the module, you can set the API key on query time by adding the following to the HTTP header: `X-Cohere-Api-Key: <cohere-api-key>`.
+* If the Cohere API key is not set in the `text2vec-cohere` module, you can set the API key on query time by adding the following to the HTTP header: `X-Cohere-Api-Key: <cohere-api-key>`.
 * Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](../graphql-references/vector-search-parameters.html#neartext).
 
 ## Example
@@ -106,11 +108,11 @@ services:
 
 ## Available models
 
-Weaviate defaults to the `multilingual-2210-alpha` model of the type "large".
+Weaviate defaults to the `large` variant of Cohere's `multilingual-2210-alpha` model.
 
-> Currently available models are small, medium and large. If unspecified, Weaviate will default to using the `large` model. Small models are faster, while larger models will perform better. Custom models can also be supplied with their full ID [source](https://docs.cohere.ai/reference/embed)
+> Currently available models are small, medium and large. If unspecified, Weaviate will default to using the `large` model. Small models are faster, while larger models will perform better. Custom models can also be supplied with their full ID [source](https://docs.cohere.ai/reference/embed).
 
-Example of setting a `small` model in the Weaviate schema:
+You can set a class to use a `small` model by specifying the schema like so:
 
 ```json
 {
@@ -136,7 +138,7 @@ You can set the truncation option with the `truncate` parameter.
 * The _upside_ of truncating is that a batch import always succeeds.
 * The _downside_ of truncating is that a large text might only get partially vectorized.
 
-Example of setting a truncation to `LEFT`.
+You can set a class to truncate extra text by discarding the left of the input (i.e. set `truncate` to `LEFT`) by specifying the schema like so:
 
 ```json
 {
@@ -159,7 +161,7 @@ Because you will be getting embeddings based on your own API key, you will be de
 
 If you run into rate limits, you can also decide to throttle the import in your application.
 
-E.g., in Python and Java using the Weaviate client.
+E.g., in Python and Go using the Weaviate client.
 
 {% include code/1.x/text2vec-cohere.example.html %}
 
