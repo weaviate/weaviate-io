@@ -57,7 +57,11 @@ Databases can store both the data objects and vectors. Since both are stored, yo
 ### CRUD Support
 Vector databases solve a few limitations that vector libraries have. One example is being able to add, remove, or update entries in your index after it has been created. This is especially useful when working with data that is continuously changing. 
 ### Real-time Search 
-Unlike vector libraries, databases allow you to perform queries during the import process. As you’re uploading millions of objects, you can perform a query to gather useful information.
+Unlike vector libraries, databases allow you to query and modify your data during the import process. 
+
+As you upload millions of objects, the imported data remains fully accessible and operational, so you don't need to wait for the import to complete to start working on what is already in.
+
+Note your queries won't return any objects that are not imported yet, as you can't query what you don't have. 🤔
 
 ### Weaviate
 [Weaviate](/developers/weaviate/current/){:target="_blank"} is an open-source vector search engine that has the full functionality of a database. If you’re new to Weaviate, take a look at the [Getting Started guide](/developers/weaviate/current/getting-started/index.html){:target="_blank"}. 🙂
@@ -71,7 +75,7 @@ Vector databases are great to use for your application if your data is constantl
 
 Weaviate also has a bunch of example use cases on [GitHub](https://github.com/semi-technologies/weaviate-examples){:target="_blank"}. Find your favorite example, give it a star, and try to recreate it yourself!
 
-## Comparison of Features
+## Feature Comparison - Library versus Database 
 The table below summarizes the differences between vector libraries and databases. This is by no means an exhaustive list of features, and not every library or database has the same features. 
 
 |**Feature**|**Vector Library**|**Vector Database** (Weaviate as an example)|
@@ -97,8 +101,6 @@ The table below summarizes the differences between vector libraries and database
 
 ## Resources 
 If you’re interested in learning more about vector databases and vector libraries, check out the resources below:
-
-* See how [Weaviate implemented red-black trees](/blog/2022/09/Weaviate-release-1-15.html#faster-imports-for-ordered-data){:target="_blank"} in the v1.15 release. 
 
 * Listen to this [podcast](https://www.youtube.com/watch?v=5o1YTp1IL5o){:target="_blank"} with Meta AI Scientist [Matthijs Douze](https://www.linkedin.com/in/matthijs-douze-750980177/){:target="_blank"} and Abdel Rodriguez, Etienne Dilocker, and Connor Shorten from Weaviate! They talk about Facebook Faiss, product quantization for ANN search, and more. 
                                                          
