@@ -22,7 +22,7 @@ At this point, you should have Weaviate running either:
 * in a sandbox on the [Weaviate Cloud Service](https://console.semi.technology)
     * if not, refer to the [Installation](./installation.md) lesson for instructions
 * or locally with Docker
-    1. Download [this docker-compose.yml file](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}).
+    1. Download [this docker-compose.yml file](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}).
     1. Run `$ docker-compose up`
     1. Make sure that you always run `$ docker-compose down` after a shutdown(!)
 
