@@ -2,13 +2,13 @@
 {% capture graphql %}
 {
   Get {
-    Article(nearText:{
+    Article(nearText: {
       concepts: ["houssing prices"]
     }) {
       title
-      _additional{
-        spellCheck{
-          changes{
+      _additional {
+        spellCheck {
+          changes {
             corrected
             original
           }
@@ -176,16 +176,16 @@ public class App {
 
 <!-- SET CURL TAB CONTENT -->
 {% capture curl %}
-$ echo '{ 
+$ echo '{
   "query": "{
     Get {
-      Article(nearText:{
+      Article(nearText: {
         concepts: ["houssing prices"]
       }) {
         title
-        _additional{
-          spellCheck{
-            changes{
+        _additional {
+          spellCheck {
+            changes {
               corrected
               original
             }
