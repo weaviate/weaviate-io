@@ -16,7 +16,7 @@ enabled-on-wcs: true
 
 The `text2vec-cohere` module allows you to use the [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using Cohere's models.
 
-* Note: this module uses a third-party API.
+* Note: this module uses a third-party API and may incur costs.
 * Note: make sure to check the Cohere [pricing page](https://cohere.ai/pricing) before vectorizing large amounts of data.
 * Note: Weaviate automatically parallelizes requests to the Cohere-API when using the batch endpoint, see the previous note.
 
@@ -33,6 +33,7 @@ This module is enabled by default on the WCS
 You can find an example Docker-compose file below, which will spin up Weaviate with the Cohere module.
 
 ```yaml
+---
 version: '3.4'
 services:
   weaviate:
@@ -48,6 +49,7 @@ services:
       ENABLE_MODULES: text2vec-cohere
       COHERE_APIKEY: sk-foobar # request a key on cohere.ai, setting this parameter is optional, you can also provide the API key on runtime
       CLUSTER_HOSTNAME: 'node1'
+...
 ```
 
 * Note: you can also use the [Weaviate configuration tool](../installation/docker-compose.html#configurator) to create a Weaviate setup with this module.
@@ -56,9 +58,7 @@ services:
 
 ​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](../getting-started/schema.html) first.
 
-The following schema configuration uses the `babbage` model. 
-
-```js
+```json
 {
   "classes": [
     {
@@ -93,8 +93,8 @@ The following schema configuration uses the `babbage` model.
 
 # How to use
 
-* When sending a request to Weaviate, you can set the API key on query time: `X-Cohere-Api-Key: <cohere-api-key>`.
-* New GraphQL vector search parameters made available by this module can be found [here](../graphql-references/vector-search-parameters.html#neartext).
+* If the Cohere API key is not set in the module, you can set the API key on query time by adding the following to the HTTP header: `X-Cohere-Api-Key: <cohere-api-key>`.
+* Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](../graphql-references/vector-search-parameters.html#neartext).
 
 ## Example
 
@@ -108,9 +108,9 @@ The following schema configuration uses the `babbage` model.
 
 Weaviate defaults to the `multilingual-2210-alpha` model of the type "large".
 
-> The size of model to generate with, currently available models are small, medium, large, defaults to large. Small models are faster, while larger models will perform better. Custom models can also be supplied with their full ID [source](https://docs.cohere.ai/reference/embed)
+> Currently available models are small, medium and large. If unspecified, Weaviate will default to using the `large` model. Small models are faster, while larger models will perform better. Custom models can also be supplied with their full ID [source](https://docs.cohere.ai/reference/embed)
 
-Example of setting a small model in the Weaviate schema:
+Example of setting a `small` model in the Weaviate schema:
 
 ```json
 {
@@ -127,14 +127,16 @@ Example of setting a small model in the Weaviate schema:
 
 ## Truncating
 
-The Cohere API can automatically truncate your content. If you don't truncate, the API will throw an error if your text contains too many tokens.
+If the input text contains too many tokens and is not truncated, the API will throw an error. The Cohere API can be set to automatically truncate your input text.
 
-> Accepts NONE, LEFT or RIGHT. Specifies how the API will handle inputs longer than the maximum token length. Passing LEFT will discard the left of the input and RIGHT will discard the right side of the input, in both cases until the remaining input is exactly the maximum input token length for the model. Defaults to NONE, which will return an error if the input exceeds the maximum input token length. [source](https://docs.cohere.ai/reference/embed)
+You can set the truncation option with the `truncate` parameter.
+
+> The available values for `truncate` are NONE, LEFT or RIGHT. It specifies how the API will handle inputs longer than the maximum token length. Passing LEFT will discard the left of the input and RIGHT will discard the right side of the input, in both cases until the remaining input is exactly the maximum input token length for the model. Defaults to NONE, which will return an error if the input exceeds the maximum input token length. [source](https://docs.cohere.ai/reference/embed)
 
 * The _upside_ of truncating is that a batch import always succeeds.
 * The _downside_ of truncating is that a large text might only get partially vectorized.
 
-Example of setting a trancation to `LEFT`.
+Example of setting a truncation to `LEFT`.
 
 ```json
 {
