@@ -3,6 +3,10 @@
  * and scoped locally.
  */
 
+[data-theme="dark"] .heroBanner {
+  background-color: yellow;
+}
+
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
