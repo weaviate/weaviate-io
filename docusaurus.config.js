@@ -13,7 +13,7 @@ const config = {
     baseUrl: '/',
     trailingSlash: false,
     // onBrokenLinks: 'throw',
-    onBrokenLinks: 'warn',
+    onBrokenLinks: 'ignore',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
 
