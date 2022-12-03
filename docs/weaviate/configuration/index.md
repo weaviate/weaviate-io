@@ -15,12 +15,18 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/configuration/
 #     - /documentation/weaviate/current/setup/health_check.html
 ---
+
+<!-- TODO: Remove explanatory header once layout review complete -->
+:::caution NOTE:
+This section is from Configuration in Weaviate Docs Classic.
+:::
+
 ## Overview
 
-You would have seen in the earlier [Installation section](../installation/index.md) for Docker Compose or Kubernetes that Weaviate's settings can be changed by modifying the relevant configuration file.
+When running Weaviate through [Docker Compose](../installation/docker-compose.md) or [Kubernetes](../installation/kubernetes.md), you can change Weaviate's configurations by modifying the relevant configuration file.
 
-Weaviate's default configurations are designed to get our new users up and running quickly to try out vector search. But the configuration options will allow many to customize Weaviate to suit their specific needs, or to get it to a production-ready state.
+You can modify these options to configure Weaviate to suit your specific needs, such as to change the [vectorizer module](./modules.md), enable [backups](./backups.md) or control access through [authentication](./authentication.md) and [authorization](./authorization.md).
 
-This section is a collection of guides to delve further into the details on how to configure various settings and customize Weaviate to suit your needs.
+Use the documents in this section to see what options are available, and to learn how to configure various settings in Weaviate.
 
 You do not need to read this section linearly. But we do recommend that you browse through this section so that you are aware of the available main customization options, including features that will help you to take it into production.

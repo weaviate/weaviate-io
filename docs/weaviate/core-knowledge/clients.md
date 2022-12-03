@@ -77,7 +77,7 @@ Currently Weaviate supports:
 - [Javascript](/docs/weaviate/client-libraries/javascript.md)
 - [Go](/docs/weaviate/client-libraries/go.md)
 - [Java](/docs/weaviate/client-libraries/java.md)
-- Do you want to contribute one? Please let us know on our [Slack]({{ site.slack_signup_url }})
+- Do you want to contribute one? Please let us know on our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
 
 ## Recap
 

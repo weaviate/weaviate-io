@@ -12,6 +12,16 @@ sidebar_position: 0
 # toc: false
 ---
 
+<!-- TODO: Refine layout for presentation -->
+:::caution Note:
+The "References" comes from:
+- GraphQL in Weaviate Docs Classic.
+- RESTful API in Weaviate Docs Classic.
+- Schema:Index + Schema:Configuration in Weaviate Docs Classic.
+- Schema:Data types in Weaviate Docs Classic.
+- Vector index plugins:Distance metrics in Weaviate Docs Classic.
+:::
+
 ## References - GraphQL
 - [Get{}](./graphql/get.md)
 - [Aggregate{}](./graphql/aggregate.md)

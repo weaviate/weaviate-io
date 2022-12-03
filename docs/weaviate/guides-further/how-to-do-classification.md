@@ -22,8 +22,7 @@ sidebar_position: 9
 Learn how to perform classification tasks with Weaviate
 
 <!-- TODO: Finish this page! -->
-:::caution
-This page is under construction.
+:::caution Under construction.
 Migrated from "how-to-do-classification" tutorial from Weaviate Docs Classic
 :::
 

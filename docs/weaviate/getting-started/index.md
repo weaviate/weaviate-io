@@ -14,6 +14,13 @@ sidebar_position: 0
 #     - /docs/weaviate/getting-started/quick-start.html
 ---
 
+<!-- TODO: Remove explanatory header once layout review complete -->
+:::caution NOTE:
+This section is from Getting Started in Weaviate Docs Classic.
+:::
+
+## Overview
+
 Welcome to the Weaviate **Quickstart tutorial**.
 
 Here, on this page, we're not going to take too much of your time; it's just an overview of the guides.

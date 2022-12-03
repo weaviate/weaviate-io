@@ -1,5 +1,5 @@
 ---
-title: (NEW) Vectorizer selection
+title: (NEW) Select the right vectorizer
 sidebar_position: 1
 ---
 
@@ -14,8 +14,7 @@ On the other hand, if you are looking for some heuristics or approximate tips on
 Moreover, we will discuss these in the context of Weaviate modules, so that you are able to hit the ground running with the right Weaviate module that will provide you with access to the right vectorizer.
 
 <!-- TODO: Finish this page! -->
-:::caution
-This page is under construction.
+:::caution This page is under construction.
 :::
 
 ## Prerequisites

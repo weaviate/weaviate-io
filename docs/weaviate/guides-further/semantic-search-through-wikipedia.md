@@ -18,8 +18,7 @@ sidebar_position: 99
 Learn how to to another semantic search with Wikipedia
 
 <!-- TODO: Finish this page! -->
-:::caution
-This page is under construction.
+:::caution Under construction.
 Migrated from "semantic-search-through-wikipedia" tutorial from Weaviate Docs Classic
 :::
 

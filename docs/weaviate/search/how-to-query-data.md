@@ -20,8 +20,7 @@ sidebar_position: 1
 Learn how to perform searches using Weaviate
 
 <!-- TODO: Finish this page! -->
-:::caution
-This page is under construction.
+:::caution Under construction.
 Migrated from "How to query data" tutorial from Weaviate Docs Classic
 :::
 

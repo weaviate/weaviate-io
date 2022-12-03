@@ -2,6 +2,11 @@
 title: References - Modules
 sidebar_position: 0
 ---
+
+<!-- TODO: Finish this page! -->
+:::caution Note:
+The "References:Modules" section comes from Modules in Weaviate Docs Classic.
+:::
 ## Overview
 
 This section contains **references** in relation to modules. We also have other sections which describe:
@@ -11,7 +16,6 @@ This section contains **references** in relation to modules. We also have other 
 
 ## General
 
-<!-- TODO - add vectorizer comparisons to help users choose. Could be a new file for retrievers & vectorizers section -->
 Modules can be "vectorizers" (defines how the numbers in the vectors are chosen from the data) or other modules providing additional functions like question answering, custom classification, etc. Modules have the following characteristics:
 - Naming convention: 
   - Vectorizer (Retriever module): `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `image2vec-RESNET` or `text2vec-transformers`.

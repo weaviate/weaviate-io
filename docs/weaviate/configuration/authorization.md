@@ -18,7 +18,6 @@ sidebar_position: 5
 
 ## Overview
 
-<!-- TODO: Confirm whether authorization/authentication work is done by a module, or a plugin - impacts how modules are described (e.g. are there any "standard" modules, and does it make things like vectorizers "optional" modules) -->
 The authorization plugin allows Weaviate to provide differentiated access to users based on their [authentication](./authentication.md) status. Along with allowing or disallowing anonymous access, Weaviate can differentiate between a user who is in the admin list, or on the read-only list.
 
 ## Admin list

@@ -1,5 +1,5 @@
 ---
-title: (TBC) Schema definition
+title: (TBC) Define a schema
 sidebar_position: 2
 # layout: layout-documentation
 # solution: weaviate
@@ -21,8 +21,7 @@ sidebar_position: 2
 Learn how to create a schema in Weaviate
 
 <!-- TODO: Finish this page! -->
-:::caution
-This page is under construction.
+:::caution Under construction.
 Migrated from "How to create a schema" tutorial from Weaviate Docs Classic
 :::
 

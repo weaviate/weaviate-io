@@ -24,13 +24,13 @@ The Docker Compose files below contain both Weaviate and the dataset.
 Download the Docker Compose file (note, the Dockerfile has GPUs - i.e., CUDA - disabled, this impacts import and query time significantly. If you have a GPU available ([that is reachable with Docker](https://docs.docker.com/compose/gpu-support/)) simply set `ENABLE_CUDA` to `1` in the [dockerfile](https://github.com/semi-technologies/weaviate-examples/blob/main/weaviate-transformers-newspublications/docker-compose-withgpu.yaml#L27)
 
 ```bash
-$ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-simple.yml
+curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-simple.yml
 ```
 
 Run Docker (optional: run with `-d` to run Docker in the background)
 
 ```bash
-$ docker-compose up
+docker-compose up
 ```
 
 Weaviate will be available and preloaded with the news article demo dataset on:
@@ -56,7 +56,7 @@ First, we want to check if Weaviate is running correctly by inspecting the `/v1/
 _Note: make sure to replace `localhost:8080` with the location of your Weaviate if you have your Weaviate running on a different endpoint or location._
 
 ```bash
-$ curl -s http://localhost:8080/v1/meta
+curl -s http://localhost:8080/v1/meta
 ```
 
 The output will look something like this:
@@ -79,7 +79,7 @@ This validates that your Weaviate is running correctly.
 Next, we want to check if the news publication schema was added correctly, you can do this by inspecting the `/v1/schema` endpoint.
 
 ```bash
-$ curl -s http://localhost:8080/v1/schema
+curl -s http://localhost:8080/v1/schema
 ```
 
 The output will look something like this:
@@ -361,7 +361,7 @@ You should be able to identify four classes: `Publication`, `Author`, `Article` 
 Lastly, we will validate if all data was added correctly, we will do this via the `/v1/objects` endpoint.
 
 ```bash
-$ curl -s http://localhost:8080/v1/objects
+curl -s http://localhost:8080/v1/objects
 ```
 
 The output will look something like this:
@@ -920,7 +920,7 @@ Here we can use Weaviate's auto-classification function to let Weaviate decide w
 To do this, we will use the RESTful API.
 
 ```bash
-$ curl http://localhost:8080/v1/classifications -X POST -H 'Content-type: application/json' -d \
+curl http://localhost:8080/v1/classifications -X POST -H 'Content-type: application/json' -d \
 '{
     "class": "Article",
     "type": "text2vec-contextionary-contextual",
@@ -955,7 +955,7 @@ When Weaviate is done with the classification, you can rerun the previous query 
 By using the RESTful API, you can even get statistics related to the classification. You can find the `{CLASSIFICATION ID}` in the returned body of the query that started the classification.
 
 ```bash
-$ curl -k http://localhost:8080/v1/classifications/{CLASSIFICATION ID} | jq .
+curl -k http://localhost:8080/v1/classifications/{CLASSIFICATION ID} | jq .
 ```
 
 # What's next

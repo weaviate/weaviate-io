@@ -79,7 +79,7 @@ Weaviate has no notion of transactions, operations always affect exactly a singl
 
 ## Q: Can I train my own text2vec-contextionary vectorizer module?
 
-A: Not yet (but soon), you can currently use the [available contextionaries](/docs/weaviate/getting-started/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](http://weaviate-newsletter.semi.technology/) or [Slack channel]({{ site.slack_signup_url }}) to keep updated about the release of custom contextionary training
+A: Not yet (but soon), you can currently use the [available contextionaries](/docs/weaviate/getting-started/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](http://weaviate-newsletter.semi.technology/) or [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep updated about the release of custom contextionary training
 
 <!-- ## Q: Why is the contextionary created using GloVe?
 
@@ -310,4 +310,4 @@ Look at the:
 1. [Knowledge base of old issues](https://github.com/semi-technologies/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
 1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
 1. For issues: [Github](https://github.com/semi-technologies/weaviate/issues). Or,
-1. Ask your question in the Slack channel: [Slack]({{ site.slack_signup_url }}).
+1. Ask your question in the Slack channel: [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).

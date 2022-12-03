@@ -1,5 +1,5 @@
 ---
-title: (TBC) Data import
+title: (TBC) Import data
 sidebar_position: 3
 # layout: layout-documentation
 # solution: weaviate
@@ -21,8 +21,7 @@ sidebar_position: 3
 Learn how to import data into Weaviate
 
 <!-- TODO: Finish this page! -->
-:::caution
-This page is under construction.
+:::caution Under construction.
 Migrated from "How to import data" tutorial from Weaviate Docs Classic
 :::
 

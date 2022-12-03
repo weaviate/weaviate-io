@@ -14,31 +14,34 @@ sidebar_position: 0
 # toc: true
 ---
 
-Welcome to the documentation site for Weaviate! 
+<!-- TODO: Should we add a sitemap? -->
+Welcome to the documentation site for Weaviate, an open source vector search engine. 
 
-We love and appreciate our community, and we try to do our best to support them. We wrote this guide to help anyone who is building (or thinking about building) something with Weaviate.
+This site is for **anyone** who is building, or thinking about building, something with Weaviate. Our goal is to get you to that end state faster, whether it be an evaluation report, a proof of concept, or a production database.
 
-## Site organization
-
-The majority of the content is categorized into one of three categories, each category being structured with a particular goal in mind:
+To this end, the majority of the content is categorized into one of **three categories**, each category being structured with a particular focus in mind:
 
 | | Tutorials | Concepts | References |
 | ----- | ----- | ----- | ----- |
-| Goal | How to **do** something | **Learn** about topics | Find **itemized** information |
+| Focus | How to **do** something | **Learn** about topics | Find **itemized** information |
 | Entry point | [Essential tutorials](./guides/index.md) | [Core concepts](./core-knowledge/index.md) | [References](./references/index.md) |
 
 Commonly requested resources such as [benchmarks](./benchmarks/index.md) and [roadmap](./roadmap/index.md) have their own sections, and others such as the [FAQ](./more-resources/faq.md), [glossary](./more-resources/glossary.md) and more can be found in the [More Resources](./more-resources/index.md) section.
 
-### How to get started
+### For new users:
 
-If you are new, we recommend starting with these sections:
+If you are new to Weaviate, we recommend starting with these sections:
 1. Introduction (this page),
 2. [Quickstart tutorial](./getting-started/index.md), and
 3. [Installation & Configuration](./installation/index.md)
 
 Then, we suggest you also read through the [essential tutorials](./guides/index.md), [search tutorials](./search/index.md) and [core concepts](./core-knowledge/index.md) before starting to use Weaviate for your own project.
 
-We are excited to have you here, and look forward to seeing what we can build together with Weaviate.
+:::info Help us to help you!
+We appreciate that we have a diverse community with different experiences and backgrounds. So if you find that the documentation does not quite suit **your** needs, we would love to hear from you.
+
+We have an active community on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) - we can help you with your specific problem, and help make the documentation better.
+:::
 
 :::note
 Like what you see? Consider giving us a [⭐ on Github](https://github.com/semi-technologies/weaviate/stargazers).

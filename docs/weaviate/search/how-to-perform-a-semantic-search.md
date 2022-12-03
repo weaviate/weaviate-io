@@ -22,8 +22,7 @@ sidebar_position: 2
 Learn how to perform vector searches using Weaviate
 
 <!-- TODO: Finish this page! -->
-:::caution
-This page is under construction.
+:::caution Under construction.
 Migrated from "How to perform a semantic search" tutorial from Weaviate Docs Classic
 :::
 

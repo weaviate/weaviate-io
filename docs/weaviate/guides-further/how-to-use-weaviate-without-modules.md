@@ -13,13 +13,8 @@ sidebar_position: 1
 # toc: true
 ---
 
-## Overview
-
-Learn how to bring your vectors into Weaviate
-
 <!-- TODO: Finish this page! -->
-:::caution
-This page is under construction.
+:::caution Under construction.
 Migrated from "How to use weaviate without modules" tutorial from Weaviate Docs Classic
 :::
 
@@ -35,8 +30,8 @@ Whatever the reason, you will see on this page just how you can do that - to bri
 
 ### Prerequisites
 
-<!-- TODO: To SW: What do you think about something like this to define prerequisites @ different levels? -->
-import BasicPrereqs from '/_includes/basic-prerequisites.md';
+<!-- To SW: What do you think about something like this to define prerequisites @ different levels? -->
+import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 <BasicPrereqs />
 

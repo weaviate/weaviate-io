@@ -237,8 +237,7 @@ The Weaviate console is part of the Weaviate Cloud Service and allows you to con
 
 ## Benchmarks
 
-The [benchmark page](/docs/weaviate/benchmarks/index.md) might be helpful when setting up your Weaviate instance. As a rule of thumb, when you choose a similar dataset to your use case, you should get similar results with similar settings. If the results diverge too much _negatively_ you probably made a mistake in hardware choices or in your Weaviate configuration. If the results are way more _positive_, [reach out to us immediately 😉]({{ site.slack_signup_url }})
-<!-- TODO: Fix the slack signup url -->
+The [benchmark page](/docs/weaviate/benchmarks/index.md) might be helpful when setting up your Weaviate instance. As a rule of thumb, when you choose a similar dataset to your use case, you should get similar results with similar settings. If the results diverge too much _negatively_ you probably made a mistake in hardware choices or in your Weaviate configuration. If the results are way more _positive_, [reach out to us immediately 😉](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
 
 ## Monitoring
 

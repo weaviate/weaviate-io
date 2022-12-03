@@ -14,7 +14,16 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/getting-started/installation.html
 ---
 
-This section provides an overview of available options for running Weaviate, and basic information about the Weaviate client libraries.
+<!-- TODO: Remove explanatory header once layout review complete -->
+:::caution NOTE:
+This section is from Installation in Weaviate Docs Classic.
+:::
+
+## Overview
+
+This section provides an overview of available options for running Weaviate, and instructions for installation and configuration for each option. 
+
+After reading this section, take a look the [advanced configuration](../configuration/index.md) as well for detailed configuration options.
 
 ## Options for running Weaviate
 

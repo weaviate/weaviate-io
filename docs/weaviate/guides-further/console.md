@@ -15,9 +15,8 @@ sidebar_position: 2
 
 Learn how to use the Weaviate console
 
-<!-- TODO: Finish this page! -->
-:::caution
-This page is under construction.
+<!-- TODO: Remove explanatory header once layout review complete -->
+:::caution Under construction.
 Migrated from "Console" core-knowledge from Weaviate Docs Classic
 :::
 

@@ -20,6 +20,7 @@ sidebar_position: 2
 
 The JavaScript client library package can be easily installed using [npm](https://www.npmjs.com/).
 
+<!-- Replace $ .. examples to remove the prompt ($) as it gets copied too along with the actual command -->
 ```bash
 $ npm install weaviate-client
 ```
