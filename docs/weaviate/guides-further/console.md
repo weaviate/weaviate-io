@@ -1,5 +1,5 @@
 ---
-title: Console
+title: (TBC) Use the Weaviate Console
 sidebar_position: 2
 
 # layout: layout-documentation
@@ -10,6 +10,16 @@ sidebar_position: 2
 # open-graph-type: article
 # toc: true
 ---
+
+## Overview
+
+Learn how to use the Weaviate console
+
+<!-- TODO: Finish this page! -->
+:::caution
+This page is under construction.
+Migrated from "Console" core-knowledge from Weaviate Docs Classic
+:::
 
 The Weaviate Console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Service (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 

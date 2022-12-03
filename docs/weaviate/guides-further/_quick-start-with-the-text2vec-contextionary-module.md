@@ -962,7 +962,7 @@ $ curl -k http://localhost:8080/v1/classifications/{CLASSIFICATION ID} | jq .
 In this tutorial you learned about how to quickly set up a Weaviate with a demo dataset, use semantic search and classification. Next, check out the following:
 - Check out how to [spin up a Weaviate](/docs/weaviate/getting-started/installation.md) with your own [schema](/docs/weaviate/guides/how-to-create-a-schema.md) and [data](/docs/weaviate/guides/how-to-import-data.md).
 - Learn more about [authentication](/docs/weaviate/configuration/authentication.md) and [authorization](/docs/weaviate/configuration/authorization.md).
-- Install one of the [client libraries](/docs/weaviate/references/client-libraries/index.md) for smooth interaction with the Weaviate APIs.
+- Install one of the [client libraries](/docs/weaviate/client-libraries/index.md) for smooth interaction with the Weaviate APIs.
 - Consult the [RESTful API references](/docs/weaviate/references/rest/index.md) and the [GraphQL references](../references/graphql/index.md) to learn about all interaction possibilities with Weaviate. 
 
 ## More Resources

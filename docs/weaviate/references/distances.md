@@ -36,7 +36,7 @@ to Weaviate, please let us know. We are happy to receive your contribution.
 
 ### Distance Implementations and Optimizations
 
-On a typical Weaviate use case the largest portion of CPU time is spent calculating vector distances. Even with an approximate nearest neighbor index - which leads to far fewer calculations - the efficiency of distance calculations has a major impact on [overall performance](/docs/weaviate/more-resources/benchmarks/ann.md).
+On a typical Weaviate use case the largest portion of CPU time is spent calculating vector distances. Even with an approximate nearest neighbor index - which leads to far fewer calculations - the efficiency of distance calculations has a major impact on [overall performance](/docs/weaviate/benchmarks/ann.md).
 
 You can use the following overview to find the best possible combination of distance metric and CPU architecture / instruction set.
 

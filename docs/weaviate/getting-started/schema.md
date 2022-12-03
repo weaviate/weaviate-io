@@ -28,7 +28,7 @@ At this point, you should have Weaviate running either:
 
 ## Client Libraries
 
-You can communicate with Weaviate from your code by using one of the available [client libraries](/docs/weaviate/references/client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/docs/weaviate/references/rest/index.md).
+You can communicate with Weaviate from your code by using one of the available [client libraries](/docs/weaviate/client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/docs/weaviate/references/rest/index.md).
 
 The first order of business, is to add the client library to your project.
 

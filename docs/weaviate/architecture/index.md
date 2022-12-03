@@ -1,5 +1,5 @@
 ---
-title: Architecture
+title: Concepts - Architecture
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -57,7 +57,7 @@ You can learn more about the individual components in this figure by following t
   * Design philosophy behind user-facing APIs
   * Role of the REST and GraphQL APIs
 
-### [Roadmap](/docs/weaviate/more-resources/roadmap/index.md)
+### [Roadmap](/docs/weaviate/roadmap/index.md)
   * Learn about features currently under development
   * What will Weaviate be like in the future from an architectural perspective?
 

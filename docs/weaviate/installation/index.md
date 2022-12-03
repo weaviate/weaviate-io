@@ -1,5 +1,5 @@
 ---
-title: Installation & Configuration overview
+title: Installation & Configuration Overview
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate

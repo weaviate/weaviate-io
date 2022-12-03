@@ -1,5 +1,5 @@
 ---
-title: Guides - further topics
+title: Tutorials - Further Topics
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -19,11 +19,11 @@ sidebar_position: 0
 ---
 
 <!-- TODO - all the child pages generally outdated. Need work to clean up / update / create -->
-These guides are designed to be consumed after becoming familiar with [how to use](../guides/index.md) Weaviate, and to [configure](/docs/weaviate/configuration/index.md) Weaviate to your needs.
+These tutorials are designed to be consumed after becoming familiar with [how to use](../guides/index.md) Weaviate, and to [configure](/docs/weaviate/configuration/index.md) Weaviate to your needs.
 
-As such, these *further* guides dive a little deeper to show you how to achieve specific goals and tasks. You can think of them as the equivalent of *recipes* in cooking, in contrast to something like a the [Getting started guide](../getting-started/index.md) which is most similar to a *cooking class*.
+As such, these *further* tutorials dive a little deeper to show you how to achieve specific goals and tasks. You can think of them as the equivalent of *recipes* in cooking, in contrast to something like a the [quickstart tutorial](../getting-started/index.md) which is most similar to a *cooking class*.
 
-Each of these guides are self-contained. So you can read them in any order.
+Each of these tutorials are self-contained. So you can read them in any order.
 
 <!-- 1. [How to create a schema.](/docs/weaviate/guides/how-to-create-a-schema.md)
 2. [How to import data.](/docs/weaviate/guides/how-to-import-data.md)

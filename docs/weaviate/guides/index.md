@@ -1,13 +1,13 @@
 ---
-title: Essential guides
+title: Essential tutorials
 sidebar_position: 0
 ---
 
-These **essential** guides are designed to empower you so that you can start to customize and use Weaviate based on *your* particular needs. 
+These **essential** tutorials are designed to empower you so that you can start to customize and use Weaviate based on *your* particular needs.
 
-If you haven't yet, we strongly recommend that you go through the [Getting started guides](../getting-started/index.md) first.
+If you haven't yet, we strongly recommend that you go through the [quickstart tutorial](../getting-started/index.md) first.
 
-The **essential** guides include the following sections, where you will learn how to:
+The **essential** tutorials include the following sections, where you will learn how to:
 
 - [Schema](./how-to-create-a-schema.md): Create a schema automatically with Weaviate, or start to explore schema customization options. 
 - [Import](./how-to-import-data.md): Use batch imports for large datasets, including what options are available to maximize the import speed. 
@@ -16,4 +16,4 @@ The **essential** guides include the following sections, where you will learn ho
 
 By the time you are done with these, you will have seen the main considerations in organizing and importing your data into Weaviate. You will also have seen how you can perform CRUD operations with Weaviate and learnt rules of thumb for selecting a vectorizer. 
 
-Once you are finished with this section, we suggest moving on to our [Search guides](../search/index.md). There we guide you through the powerful yet flexible options Weaviate provides for searching through your data. 
+Once you are finished with this section, we suggest moving on to our [Search tutorials](../search/index.md). There we guide you through the powerful yet flexible options Weaviate provides for searching through your data. 

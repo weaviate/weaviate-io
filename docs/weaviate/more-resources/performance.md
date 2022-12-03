@@ -1,5 +1,5 @@
 ---
-title: (MAYBE MOVE) Index types and performance
+title: Index types and performance
 sidebar_position: 7
 # layout: layout-documentation
 # bodyclass: ["page--guides", " "]
@@ -16,6 +16,7 @@ sidebar_position: 7
 #     - /docs/weaviate/v1.11.0/more-resources/performance.html
 ---
 
+<!-- TODO: Unclear whether this page should be incorporated into another page, e.g. something to do with indexing, resource planning or architecture. -->
 ## Index types
 Weaviate uses two types of data indexing. Next to the vector indexes that are created and powers the semantic search capability, there is also the [inverted index](https://en.wikipedia.org/wiki/Inverted_index).
 
@@ -27,7 +28,7 @@ Inverted indices are used often in document retrieval systems and search engines
 The inverted index currently does not do any weighing (e.g. tf-idf) for sorting, since the vector index is used for these features like sorting. The inverted index is thus, at the moment, rather a binary operation: including or excluding data objects from the query result list, which results in an 'allow list'. 
 
 ### Vector index
-Everything that has a vector, thus every data object in Weaviate, is also indexed in the vector index. The vector index type is [pluggable](/docs/weaviate/vectorization/index.md). Currently, we only provide the vector index type [HNSW](https://arxiv.org/abs/1603.09320). 
+Everything that has a vector, thus every data object in Weaviate, is also indexed in the vector index. Although Weaviate currently supports [HNSW](https://arxiv.org/abs/1603.09320) vector indexes, it is built to be [configurable](/docs/weaviate/core-knowledge/vector-index-plugins.md), with more vector index types on the way. 
 
 #### HNSW 
 [HNSW](https://arxiv.org/abs/1603.09320) is the first vector index type [supported by Weaviate](/docs/weaviate/vectorization/hnsw.md). Typically for HNSW is that this index type is super fast at query time, but more costly when it comes to building (adding data with vectors). This means that the process of adding data objects might take longer than you expect or to what you are used to (with other database systems for example). Other database systems, like Elasticsearch, do not make use of vector indexing, but only rely on inverted index. By adding vectorization of data with HNSW, semantic and context-based search is enables, with very high performance on query time. 

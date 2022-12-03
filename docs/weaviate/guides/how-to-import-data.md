@@ -1,6 +1,6 @@
 ---
-title: Data import
-sidebar_position: 2
+title: (TBC) Data import
+sidebar_position: 3
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Tutorials
@@ -15,6 +15,17 @@ sidebar_position: 2
 #     - /documentation/weaviate/current/add-data/add_and_modify.html
 #     - /documentation/weaviate/current/tutorials/how-to-import-data.html
 ---
+
+## Overview
+
+Learn how to import data into Weaviate
+
+<!-- TODO: Finish this page! -->
+:::caution
+This page is under construction.
+Migrated from "How to import data" tutorial from Weaviate Docs Classic
+:::
+
 
 # Introduction 
 
@@ -33,7 +44,7 @@ Data is added through the RESTful API. Python and JavaScript clients are availab
 # Prerequisites
 
  1. **Connect to a Weaviate instance.**\\
- If you haven't set up a Weaviate instance yet, check the [Getting started guide](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with the `text2vec-contextionary` as vectorization module.
+ If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with the `text2vec-contextionary` as vectorization module.
  2. **Upload a schema**. \\
  Learn how to create and upload a schema [here](./how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
 

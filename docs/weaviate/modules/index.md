@@ -4,13 +4,14 @@ sidebar_position: 0
 ---
 ## Overview
 
-This section is a module-related **reference guide**. Instead, if you want to:
+This section contains **references** in relation to modules. We also have other sections which describe:
 
-- See how to **configure** Weaviate to use particular modules, [read this section](../configuration/modules.md).
-- Read more about **concepts** related to modules in general, [read this section](../core-knowledge/modules.md)
+- [How to **configure**](../configuration/modules.md) Weaviate to use particular modules.
+- [**Concepts** related to modules](../core-knowledge/modules.md) in general
 
 ## General
 
+<!-- TODO - add vectorizer comparisons to help users choose. Could be a new file for retrievers & vectorizers section -->
 Modules can be "vectorizers" (defines how the numbers in the vectors are chosen from the data) or other modules providing additional functions like question answering, custom classification, etc. Modules have the following characteristics:
 - Naming convention: 
   - Vectorizer (Retriever module): `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `image2vec-RESNET` or `text2vec-transformers`.

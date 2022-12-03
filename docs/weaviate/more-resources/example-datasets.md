@@ -25,7 +25,7 @@ This example application spins up a Weaviate instance using the
 [multi2vec-clip](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
 module, imports a few sample images (you can add your own images, too!) and
 provides a very simple search frontend in [React](https://reactjs.org/) using
-the [Weaviate JS Client](/docs/weaviate/references/client-libraries/javascript.md)
+the [Weaviate JS Client](/docs/weaviate/client-libraries/javascript.md)
 
 [Get started here](https://github.com/semi-technologies/weaviate-examples/blob/main/clip-multi-modal-text-image-search/README.md)
 

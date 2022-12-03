@@ -101,7 +101,7 @@ If you're looking for a starting point for values, we would advise an `efConstru
 :::
 
 :::note
-The [ANN benchmark page](/docs/weaviate/more-resources/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are. 
+The [ANN benchmark page](/docs/weaviate/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are. 
 :::
 
 ### Configure the inverted index

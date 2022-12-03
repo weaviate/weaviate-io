@@ -1,5 +1,5 @@
 ---
-title: Getting started Guide
+title: Quickstart Tutorial
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -14,11 +14,11 @@ sidebar_position: 0
 #     - /docs/weaviate/getting-started/quick-start.html
 ---
 
-Welcome to the Weaviate **Getting Started** guide.
+Welcome to the Weaviate **Quickstart tutorial**.
 
 Here, on this page, we're not going to take too much of your time; it's just an overview of the guides.
 
-The purpose of the Getting Started is to teach you how to use Weaviate in an application.
+The purpose of the quickstart tutorial is to teach you how to use Weaviate in an application.
 
 Have fun working with Weaviate, and please do let us know on our Slack when you have questions or if you have a cool use case to share!
 

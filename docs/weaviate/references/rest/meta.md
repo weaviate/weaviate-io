@@ -32,7 +32,7 @@ And it returns the following fields:
 The following command:
 
 <!-- {% include code/1.x/meta.html %} -->
-import Meta from '/_includes/code/Meta.mdx';
+import Meta from '/_includes/code/meta.mdx';
 
 <Meta/>
 

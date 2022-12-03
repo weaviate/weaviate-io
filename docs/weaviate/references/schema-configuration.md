@@ -17,16 +17,17 @@ sidebar_position: 21
 
 ## Introduction
 
-A data schema is the first thing you'll need to define before you can start adding data. A data schema specifies what data classes your Weaviate will have, and what properties data objects consist of. Per the data class property, you will define what data type its value can adopt. If you want to make graph links between data objects, you'll also define that in the data type of class properties.
+The schema is where you define for Weaviate:
+- Classes
+- Properties within each Class
+- Data types for Properties
+- Graph links between Classes
+- Vectorizer module (for each Class or Property)
 
-Additionally, per the data class, you can define the vector index type, the vectorizer module and, optionally, other modules. Specific settings to modules and the vector index type can also be set per class and per property. 
-
-A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
-
-You can upload schema classes to Weaviate via the RESTful endpoint `/v1/schema`. Learn more [here](../references/rest/schema.md).
+The RESTful endpoint `/v1/schema` can be used for schema-related operations. Learn more [here](../references/rest/schema.md).
 
 :::note
-Check out the [schema getting started guide](/docs/weaviate/getting-started/schema.md) to learn how to work with the Weaviate schema in under 10 minutes.
+Check out the [schema section of the quickstart tutorial](/docs/weaviate/getting-started/schema.md) to get started with an example.
 :::
 
 ## Data objects and structure

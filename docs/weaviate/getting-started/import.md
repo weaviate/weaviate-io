@@ -31,7 +31,7 @@ First of all, some rules of thumb.
 * Process error messages.
 * Some clients (especially Python) have some built-in logic to efficiently regulate batch importing.
 
-Assuming that you've read the [schema getting started guide](./schema.md), you import data based on the classes and properties defined in the schema.
+Assuming that you've read the [schema quickstart tutorial](./schema.md), you import data based on the classes and properties defined in the schema.
 
 For the purpose of this tutorial, we've prepared a **data.json** file, which contains a few Authors and Publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json), and add it to your project.
 

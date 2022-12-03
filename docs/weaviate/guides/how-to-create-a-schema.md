@@ -1,6 +1,6 @@
 ---
-title: Schema
-sidebar_position: 1
+title: (TBC) Schema definition
+sidebar_position: 2
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Tutorials
@@ -16,14 +16,24 @@ sidebar_position: 1
 #     - /documentation/weaviate/current/tutorials/how-to-create-a-schema.html
 ---
 
-# Introduction
+## Overview
+
+Learn how to create a schema in Weaviate
+
+<!-- TODO: Finish this page! -->
+:::caution
+This page is under construction.
+Migrated from "How to create a schema" tutorial from Weaviate Docs Classic
+:::
+
+## Introduction
 
 When you start with an empty Weaviate, you need to define a schema to explain what kind of data you will add (or you can use the [auto-schema feature](/docs/weaviate/references/schema-configuration.md#auto-schema), available from Weaviate version v1.5.0). 
 
 Because Weaviate is a search graph, the linguistic element plays an important role. When creating concepts, Weaviate will validate if it can understand the schema concepts you want to add based on the vectorizer module. You might notice that a lot of definitions are related to the everyday language we use. And this is the first best practice to bear in mind. When defining the schema, you should do this in the form like you would explain it to another person, not like tables and columns you would add to a traditional data solution.
 For a more elaborate example check this blog post: - [Link to schema article](https://hackernoon.com/what-is-weaviate-and-how-to-create-data-schemas-in-it-7hy3460)
 
-#  Basics
+## Basics
 
 - A schema consists of classes and properties, which define concepts.
 - Words in the schema (names of classes and properties) must be part of the `text2vec-contextionary`.
@@ -31,7 +41,7 @@ For a more elaborate example check this blog post: - [Link to schema article](ht
 - A class or property in Weaviate becomes immutable, but can always be extended.
 - Learn about Concepts, Classes, Properties and dataTypes in the [API reference guide](/docs/weaviate/references/index.md).
 
-# Prerequisites
+## Prerequisites
 
 **1. Connect to a Weaviate instance running with the text2vec-contextionary module.**\\
 If you haven't set up a Weaviate instance yet, check the [Installation guide](/docs/weaviate/getting-started/installation.md). Make sure you use the the `text2vec-contextionary` as vectorization module. In this guide we assume your instance is running at `http://localhost:8080`.
@@ -251,7 +261,7 @@ Now, add this list of classes to the schema, which will look like this:
 
 {% include code/1.x/howto.schema.createpython.html %}  
 
-# Creating your first schema (RESTful API, Python or JavaScript)
+## Creating your first schema (RESTful API, Python or JavaScript)
 
 Currently, only with the Python client it is possible to upload a whole schema at once. If you are not using Python, you need to upload classes to Weaviate one by one. The schema from the previous example can be uploaded in the following steps:
 
@@ -273,7 +283,7 @@ Currently, only with the Python client it is possible to upload a whole schema a
 
    Repeat this action with a property `wroteArticles` and `writesFor` of `Author` referring to `Articles` and `Publication` respectively.
 
-# Next steps
+## Next steps
 
 - Go to the [next "How-to" guide](./how-to-import-data.md) to learn how to import data.
 - Check out the [RESTful API reference](../references/rest/schema.md) for an overview of all schema API operations.

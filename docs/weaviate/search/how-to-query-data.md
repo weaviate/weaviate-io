@@ -1,5 +1,5 @@
 ---
-title: Scalar Search
+title: (TBC) Search Basics
 sidebar_position: 1
 # layout: layout-documentation
 # solution: weaviate
@@ -15,21 +15,29 @@ sidebar_position: 1
 #     - /documentation/weaviate/current/tutorials/how-to-query-data.html
 ---
 
-# Introduction
+## Overview
+
+Learn how to perform searches using Weaviate
+
+<!-- TODO: Finish this page! -->
+:::caution
+This page is under construction.
+Migrated from "How to query data" tutorial from Weaviate Docs Classic
+:::
 
 - Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/). 
 - You can query a Weaviate after you've created a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) and [populated it](/docs/weaviate/guides/how-to-import-data.md) with data.
 
-# Prerequisites
+## Prerequisites
 
  1. **Connect to a Weaviate instance.**\\
- If you haven't set up a Weaviate instance yet, check the [Getting started guide](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
+ If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
  2. **Upload a schema**. \\
  Learn how to create and upload a schema [here](/docs/weaviate/guides/how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
  3. **Add data**. \\
  Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/guides/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
 
-# How to get data
+## How to get data
 
 **1. Define a query.**
 
@@ -58,7 +66,7 @@ sidebar_position: 1
 
 **2. Send the query**
 
-   There are multiple ways to connect to Weaviate's (GraphQL) API to query data. Raw GraphQL queries can be directly posted in the GraphiQL interface in the Console, but can also be sent via curl, the [Python](/docs/weaviate/references/client-libraries/python.md) or [JavaScript](/docs/weaviate/references/client-libraries/javascript.md) client.
+   There are multiple ways to connect to Weaviate's (GraphQL) API to query data. Raw GraphQL queries can be directly posted in the GraphiQL interface in the Console, but can also be sent via curl, the [Python](/docs/weaviate/client-libraries/python.md) or [JavaScript](/docs/weaviate/client-libraries/javascript.md) client.
 
    {% include code/1.x/howto.query.data.html %}
 
@@ -210,7 +218,7 @@ sidebar_position: 1
    }
    ```
 
-# Next steps
+## Next steps
 
 - Make more advanced queries, for example to explore data with semantic search, in the [next tutorial](./how-to-perform-a-semantic-search.md).
 - View other GraphQL methods in the [GraphQL documentation](../references/graphql/index.md).

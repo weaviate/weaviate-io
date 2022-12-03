@@ -1,5 +1,5 @@
 ---
-title: Bring your own vectors
+title: (TBC) Bring your own vectors
 sidebar_position: 1
 # layout: layout-documentation
 # solution: weaviate
@@ -12,6 +12,16 @@ sidebar_position: 1
 # open-graph-type: article
 # toc: true
 ---
+
+## Overview
+
+Learn how to bring your vectors into Weaviate
+
+<!-- TODO: Finish this page! -->
+:::caution
+This page is under construction.
+Migrated from "How to use weaviate without modules" tutorial from Weaviate Docs Classic
+:::
 
 ## Overview
 While we provide many different [modules](../modules/index.md) for vectorization, Weaviate can still be used without any such module. Instead, you can manually add a vector for each data entry and still take advantage of Weaviate's vector database and search capabilities. 

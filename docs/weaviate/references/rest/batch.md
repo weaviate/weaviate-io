@@ -64,7 +64,7 @@ Specific documentation for the Python client
 ### Additional documentation
 
 * Additional documentation can be found on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.batch.html)
-* Additional documentation on different types of batching and tip &amp; tricks can be found [here](/docs/weaviate/references/client-libraries/python.md)
+* Additional documentation on different types of batching and tip &amp; tricks can be found [here](/docs/weaviate/client-libraries/python.md)
 
 ## Batch references
 
