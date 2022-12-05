@@ -1,5 +1,5 @@
 ---
-title: Vector/Semantic Search
+title: (TBC) Vector/Semantic Search
 sidebar_position: 2
 # layout: layout-documentation
 # solution: weaviate
@@ -16,9 +16,17 @@ sidebar_position: 2
 #     - /documentation/weaviate/current/tutorials/how-to-perform-a-semantic-search.html
 ---
 
-TO BE MERGED INTO "Data query" above
+## Overview
+<!-- TODO: Consider merging the whole doc into "Query basics" (prev. how-to-query-data) -->
 
-# Introduction
+Learn how to perform vector searches using Weaviate
+
+<!-- TODO: Finish this page! -->
+:::caution Under construction.
+Migrated from "How to perform a semantic search" tutorial from Weaviate Docs Classic
+:::
+
+## Introduction
 
 - Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/). 
 - You can query a Weaviate after you've created a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) and [populated it](/docs/weaviate/guides/how-to-import-data.md) with data.
@@ -26,7 +34,7 @@ TO BE MERGED INTO "Data query" above
 - To narrow down search results from a `Get{}` query based on semantics, use the `nearText` filter in the `Get{}` query. Read how in [this tutorial](#neartext-filter).
 - To search and find for data objects in a fuzzy manner, you can use the GraphQL `Explore{}` function, read how in [this tutorial](#explore-graphql-function), and on the [reference page](../references/graphql/explore.md).
 
-# Prerequisites
+## Prerequisites
  1. **Connect to a Weaviate instance.**\\
  If you haven't set up a Weaviate instance yet, check the [Getting started guide](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
  2. **Upload a schema**. \\
@@ -34,7 +42,7 @@ TO BE MERGED INTO "Data query" above
  3. **Add data**. \\
  Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/guides/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
 
-# nearText filter
+## nearText filter
 If you want to perform semantic search on data objects in a known class, you can use the `nearText` filter in a `Get{}` query. Let's say we want to find `Publication`s that are related to "fashion", we can do the following query:
 
 {% include code/1.x/howto.semanticsearch.filter.html %}
@@ -60,7 +68,7 @@ This will result in something like the following. Vogue was selected as only res
 }
 ```
 
-# Explore GraphQL function
+## Explore GraphQL function
 If you are not sure what classes you want to query, or want to perform a fuzzy search through your whole dataset, then you can use the `Explore{}` function instead of the `Get{}` function. In the `Explore{}` function you don't specify which classes you perform the semantic search on, so the semantic search will be performed on all the data objects. Since this search is fuzzy, the only fields you can return are the `beacon`, `certainty`, `className`; you cannot request property values of the data objects, since the property value names depend on the data object, defined in the schema. 
 
 Let's search for data object about fashion again, but now we are not only interested in `Publication` data objects, but in all data objects that have something to do with "fashion". 
@@ -118,7 +126,7 @@ So querying all property values of the first result can be done as follows:
 $ curl -s http://localhost:8080/v1/objects/65010df4-da64-333d-b1ce-55c3fc9174ab
 ```
 
-# Next steps
+## Next steps
 
 - Look for more ways to query your dataset in Weaviate with GraphQL queries, semantic search and other filters in the [GraphQL references guide](../references/graphql/index.md).
 - Stay tuned for new tutorials, for example on interpretation of the semantic search results or how to set up a classification model!

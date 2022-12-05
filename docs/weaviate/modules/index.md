@@ -2,12 +2,17 @@
 title: References - Modules
 sidebar_position: 0
 ---
+
+<!-- TODO: Finish this page! -->
+:::caution Note:
+The "References:Modules" section comes from Modules in Weaviate Docs Classic.
+:::
 ## Overview
 
-This section is a module-related **reference guide**. Instead, if you want to:
+This section contains **references** in relation to modules. We also have other sections which describe:
 
-- See how to **configure** Weaviate to use particular modules, [read this section](../configuration/modules.md).
-- Read more about **concepts** related to modules in general, [read this section](../core-knowledge/modules.md)
+- [How to **configure**](../configuration/modules.md) Weaviate to use particular modules.
+- [**Concepts** related to modules](../core-knowledge/modules.md) in general
 
 ## General
 

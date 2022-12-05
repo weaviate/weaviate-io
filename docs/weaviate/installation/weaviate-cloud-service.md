@@ -32,10 +32,10 @@ The Weaviate Cloud Service can be accessed via the [console](https://console.sem
 3. Choose your Weaviate version (we recommend always using the latest ​version)
 4. Create a stand-alone Weaviate
 5. Choose if you want to use authentication.
-    1. [Authentication for Python](../references/client-libraries/python.md#authentication)
-    2. [Authentication for Javascript](../references/client-libraries/javascript.md#authentication)
-    3. [Authentication for Java](../references/client-libraries/java.md#authentication)
-    4. [Authentication for Go](../references/client-libraries/go.md#authentication)
+    1. [Authentication for Python](../client-libraries/python.md#authentication)
+    2. [Authentication for Javascript](../client-libraries/javascript.md#authentication)
+    3. [Authentication for Java](../client-libraries/java.md#authentication)
+    4. [Authentication for Go](../client-libraries/go.md#authentication)
 6. Create your sandbox
 
 :::caution

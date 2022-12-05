@@ -137,9 +137,9 @@ The [Weaviate Console](https://console.semi.technology) is a dashboard to manage
 
 # Weaviate Clients and CLI
 
-Weaviate has several client libraries: in [Go](/docs/weaviate/references/client-libraries/go.md), [Java](/docs/weaviate/references/client-libraries/java.md), [Python](/docs/weaviate/references/client-libraries/python.md) and [JavaScript](/docs/weaviate/references/client-libraries/javascript.md). The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. The APIs are intuitive to use, so it is easy to integrate Weaviate into your existing data landscape. 
+Weaviate has several client libraries: in [Go](/docs/weaviate/client-libraries/go.md), [Java](/docs/weaviate/client-libraries/java.md), [Python](/docs/weaviate/client-libraries/python.md) and [JavaScript](/docs/weaviate/client-libraries/javascript.md). The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. The APIs are intuitive to use, so it is easy to integrate Weaviate into your existing data landscape. 
 
-Weaviate also has a [Command Line Interface](/docs/weaviate/references/client-libraries/cli.md), enabling basic management from the command line to your Weaviate instances.
+Weaviate also has a [Command Line Interface](/docs/weaviate/client-libraries/cli.md), enabling basic management from the command line to your Weaviate instances.
 
 ## More Resources
 import DocsMoreResources from '/_includes/more-resources-docs.md';

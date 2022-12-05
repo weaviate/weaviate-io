@@ -102,8 +102,8 @@ The imports were performed using Weaviate's python clients. The concurrent
 (multi-threaded) queries were measured using Go. Each language may have a
 slightly different performance, and you may experience different results if you
 send your queries using another language. For the maximum throughput, we
-recommend using the [Go](/docs/weaviate/references/client-libraries/go.md) or
-[Java](/docs/weaviate/references/client-libraries/java.md) clients.
+recommend using the [Go](/docs/weaviate/client-libraries/go.md) or
+[Java](/docs/weaviate/client-libraries/java.md) clients.
 
 The complete import and test scripts are available [here](https://github.com/semi-technologies/weaviate-benchmarking).
 
@@ -275,7 +275,7 @@ rough estimation of how the throughput would vary on smaller or larger
 machines. If you do not need the stated throughput, you can run with fewer CPU
 cores. If you need more throughput, you can run with more CPU cores.
 
-Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks.​ ​Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be ​[​available in Weaviate soon​](/docs/weaviate/more-resources/roadmap/index.md)​.
+Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks.​ ​Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be ​[​available in Weaviate soon​](/docs/weaviate/roadmap/index.md)​.
 
 ## What are ef, efConstruction, and maxConnections?
 

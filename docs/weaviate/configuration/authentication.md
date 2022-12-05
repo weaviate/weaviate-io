@@ -16,6 +16,7 @@ sidebar_position: 4
 #     - /documentation/weaviate/current/configuration/authentication.md
 ---
 
+<!-- TODO: Merge updates from the latest Authentication doc changes here -->
 ## Overview
 
 We built Weaviate to be as easy to use as possible while catering to different cases such as for trying it out locally, or in production in an enterprise environment.

@@ -36,7 +36,7 @@ Instead of sharding across multiple nodes, you can replicate (the same data) acr
 **Solution: Replicate your classes across multiple nodes in a cluster**
 
 :::note
-The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/docs/weaviate/more-resources/roadmap/index.md)
+The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/docs/weaviate/roadmap/index.md)
 :::
 
 ### Motivation 3: High Availability
@@ -48,7 +48,7 @@ To run a highly available setup, classes must be replicated among multiple nodes
 **Solution: Replicate your classes across multiple nodes in a cluster**
 
 :::note
-The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/docs/weaviate/more-resources/roadmap/architectural-roadmap.md)
+The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/docs/weaviate/roadmap/architectural-roadmap.md)
 :::
 
 ## Sharding vs Replication
@@ -59,7 +59,7 @@ All of the scenarios below assume that - as sharding or replication is increased
 :::
 
 :::note
-The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/docs/weaviate/more-resources/roadmap/index.md)*
+The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/docs/weaviate/roadmap/index.md)*
 :::
 
 ### Advantages when increasing sharding
@@ -86,7 +86,7 @@ Weaviate uses a virtual shard system to assign objects to shards. This makes it 
 Example - assume the following scenario: A class is comprised of 4 shards and taking 60 minutes to import all data. When changing the sharding count to 5, each shard will roughly transfer 20% of its data to the new shard. This is equivalent to an import of 20% of the dataset, so the expected time for this process would be ~12 minutes.
 
 :::note
-The groundwork to be able to re-shard has been laid by using Weaviate's Virtual shard system. Re-sharding however is not yet implemented and not currently prioritized. See Weaviate's [Architectural Roadmap](/docs/weaviate/more-resources/roadmap/index.md).
+The groundwork to be able to re-shard has been laid by using Weaviate's Virtual shard system. Re-sharding however is not yet implemented and not currently prioritized. See Weaviate's [Architectural Roadmap](/docs/weaviate/roadmap/index.md).
 :::
 
 ## Node Discovery
@@ -105,8 +105,8 @@ Such node-affinity labels and/or rules may be added in future releases.
 
 * Changes to the schema are strongly consistent across nodes, whereas changes to data aim to be eventually consistent.
 * As of `v1.8.0`, the process of broadcasting schema changes across the cluster uses a form of two-phase transaction that as of now cannot tolerate node failures during the lifetime of the transaction.
-* As of `v1.8.0`, replication is currently under development. ([See Roadmap](/docs/weaviate/more-resources/roadmap/index.md)).
-* As of `v1.8.0`, dynamically scaling a cluster is not fully supported yet. New nodes can be added to an existing cluster, however it does not affect the ownership of shards. Existing nodes can not yet be removed if data is present, as shards are not yet being moved to other nodes prior to a removal of a node. ([See Roadmap](/docs/weaviate/more-resources/roadmap/index.md)).
+* As of `v1.8.0`, replication is currently under development. ([See Roadmap](/docs/weaviate/roadmap/index.md)).
+* As of `v1.8.0`, dynamically scaling a cluster is not fully supported yet. New nodes can be added to an existing cluster, however it does not affect the ownership of shards. Existing nodes can not yet be removed if data is present, as shards are not yet being moved to other nodes prior to a removal of a node. ([See Roadmap](/docs/weaviate/roadmap/index.md)).
 
 
 ## More Resources

@@ -1,5 +1,5 @@
 ---
-title: Bring your own vectors
+title: (TBC) Bring your own vectors
 sidebar_position: 1
 # layout: layout-documentation
 # solution: weaviate
@@ -13,6 +13,11 @@ sidebar_position: 1
 # toc: true
 ---
 
+<!-- TODO: Finish this page! -->
+:::caution Under construction.
+Migrated from "How to use weaviate without modules" tutorial from Weaviate Docs Classic
+:::
+
 ## Overview
 While we provide many different [modules](../modules/index.md) for vectorization, Weaviate can still be used without any such module. Instead, you can manually add a vector for each data entry and still take advantage of Weaviate's vector database and search capabilities. 
 
@@ -25,8 +30,8 @@ Whatever the reason, you will see on this page just how you can do that - to bri
 
 ### Prerequisites
 
-<!-- TODO: To SW: What do you think about something like this to define prerequisites @ different levels? -->
-import BasicPrereqs from '/_includes/basic-prerequisites.md';
+<!-- To SW: What do you think about something like this to define prerequisites @ different levels? -->
+import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 <BasicPrereqs />
 
@@ -35,7 +40,7 @@ import BasicPrereqs from '/_includes/basic-prerequisites.md';
 ### Download the Docker Compose configuration file. 
 <!-- TODO: {{site.weaviate_version needs to be replaced}} -->
 ```bash
-curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
+curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
 ```
 
 This will download the `docker-compose.yml` file. If you inspect its contents with your favorite text editor, you should see the below lines amongst others:

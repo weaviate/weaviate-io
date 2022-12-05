@@ -14,7 +14,7 @@ sidebar_position: 0
 
 There are two roadmaps, the [feature roadmap](./feature-roadmap.md), and the [architectural roadmap](./architectural-roadmap.md).
 
-Feel free to engage with us about the roadmap on [Weaviate's Github](https://github.com/semi-technologies/weaviate) or on [Slack]({{ site.slack_signup_url }}).
+Feel free to engage with us about the roadmap on [Weaviate's Github](https://github.com/semi-technologies/weaviate) or on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
 
 ## More Resources
 

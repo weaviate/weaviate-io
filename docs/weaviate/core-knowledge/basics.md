@@ -189,14 +189,14 @@ Designing and adding a data schema does not need to be done manually. In the abs
 A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 :::
 
-As you're probably guessing, we have a separate getting started guide for [working with a schema](/docs/weaviate/getting-started/schema.md).
+As you're probably guessing, we have a separate quickstart tutorial for [working with a schema](/docs/weaviate/getting-started/schema.md).
 
 For now, what's important to know is this:
 
 1. Classes and properties (as explained above) are defined in the schema.
 1. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
 1. You can link classes (even if they use different embeddings) by setting cross-references.
-1. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema [getting started guide](/docs/weaviate/getting-started/schema.md)).
+1. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema [quickstart tutorial](/docs/weaviate/getting-started/schema.md)).
 
 ## Where do the vectors come from?
 
@@ -237,8 +237,7 @@ The Weaviate console is part of the Weaviate Cloud Service and allows you to con
 
 ## Benchmarks
 
-The [benchmark page](/docs/weaviate/more-resources/benchmarks/index.md) might be helpful when setting up your Weaviate instance. As a rule of thumb, when you choose a similar dataset to your use case, you should get similar results with similar settings. If the results diverge too much _negatively_ you probably made a mistake in hardware choices or in your Weaviate configuration. If the results are way more _positive_, [reach out to us immediately 😉]({{ site.slack_signup_url }})
-<!-- TODO: Fix the slack signup url -->
+The [benchmark page](/docs/weaviate/benchmarks/index.md) might be helpful when setting up your Weaviate instance. As a rule of thumb, when you choose a similar dataset to your use case, you should get similar results with similar settings. If the results diverge too much _negatively_ you probably made a mistake in hardware choices or in your Weaviate configuration. If the results are way more _positive_, [reach out to us immediately 😉](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
 
 ## Monitoring
 

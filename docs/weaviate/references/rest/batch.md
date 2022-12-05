@@ -34,7 +34,7 @@ A few points to bear in mind:
 1. Avoid duplicate vectors for multiple data objects.
 1. Handle your errors, if you ignore them, it might lead to significant delays on import.
 1. If import slows down after 2M objects, consider setting the [`vectorCacheMaxObjects`](/docs/weaviate/vectorization/hnsw.md) in your schema. Also, see [this example](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/blob/d4711f2bdc75afd503ff70092c3c5303f9dd1b3b/step-2/import.py#L58-L59).
-1. There are ways to improve your setup when using vectorizers. Like in the Wikipedia demo dataset. We will keep publishing about this, sign up for our [Slack channel]({{ site.slack_signup_url }}) to keep up to date.
+1. There are ways to improve your setup when using vectorizers. Like in the Wikipedia demo dataset. We will keep publishing about this, sign up for our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep up to date.
 
 ### Method and URL
 
@@ -64,7 +64,7 @@ Specific documentation for the Python client
 ### Additional documentation
 
 * Additional documentation can be found on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.batch.html)
-* Additional documentation on different types of batching and tip &amp; tricks can be found [here](/docs/weaviate/references/client-libraries/python.md)
+* Additional documentation on different types of batching and tip &amp; tricks can be found [here](/docs/weaviate/client-libraries/python.md)
 
 ## Batch references
 

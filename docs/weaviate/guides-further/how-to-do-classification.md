@@ -1,6 +1,6 @@
 ---
-title: Classification with Weaviate
-sidebar_position: 5
+title: (TBC) Classification with Weaviate
+sidebar_position: 9
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Tutorials
@@ -17,6 +17,15 @@ sidebar_position: 5
 #     - /documentation/weaviate/current/tutorials/how-to-do-classification.html
 ---
 
+## Overview
+
+Learn how to perform classification tasks with Weaviate
+
+<!-- TODO: Finish this page! -->
+:::caution Under construction.
+Migrated from "how-to-do-classification" tutorial from Weaviate Docs Classic
+:::
+
 <!-- TODO: Difficult to understand; JPH to revise/refactor -->
 # Introduction
 
@@ -31,7 +40,7 @@ In this how-to guide, you will learn how to classify with Contextual and kNN cla
 
 **1. Connect to a Weaviate instance**
 
-If you haven't set up a Weaviate instance yet, check the [Getting started guide](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
+If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
 
 **2. Upload a schema**
 

@@ -1,5 +1,5 @@
 ---
-title: Architecture
+title: Concepts - Architecture
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -12,13 +12,18 @@ sidebar_position: 0
 # toc: false
 ---
 
-## Introduction
+<!-- TODO: Remove explanatory header once layout review complete -->
+:::caution NOTE:
+The "Concepts: Architecture" sections comes from Architecture in Weaviate Docs Classic
+:::
 
-This section includes explanations of of Weaviate's architecture. If you are curious about how Weaviate works under the hood, or how it is designed to scale, you are at the right place. 
+## Overview
+
+This section includes explanations of of Weaviate's architecture. If you are curious about how Weaviate works under the hood, or how it is designed to scale, you are at the right place.
 
 This section does not need to be read linearly. We do recommend that you read the [core concepts](../core-knowledge/index.md) section first if you have not already.
 
-## Introduction
+## Weaviate Architecture
 
 The figure below gives a 30,000 feet view of Weaviate's architecture. 
 
@@ -43,7 +48,6 @@ You can learn more about the individual components in this figure by following t
   * Speeding up specific processes
   * Preventing bottlenecks
 
-<!-- TODO: We probably need to move modules/index.md to the root of the modules -->
 ### [The module system](/docs/weaviate/modules/index.md)
   * How Weaviate can be extended through modules
   * The various roles of modules (vectorizers, etc.)
@@ -57,7 +61,7 @@ You can learn more about the individual components in this figure by following t
   * Design philosophy behind user-facing APIs
   * Role of the REST and GraphQL APIs
 
-### [Roadmap](/docs/weaviate/more-resources/roadmap/index.md)
+### [Roadmap](/docs/weaviate/roadmap/index.md)
   * Learn about features currently under development
   * What will Weaviate be like in the future from an architectural perspective?
 

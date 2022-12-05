@@ -14,9 +14,9 @@ sidebar_position: 4
 There are two ways how you can interact with Weaviate:
 
 1. By using the GraphQL or RESTful API directly.
-2. By using one of the available [client libraries](../installation/client-libraries.md).
+2. By using one of the available [client libraries](../client-libraries/index.md).
 
-<!-- TODO - I think this whole page should be merged into installation/client-libraries, or move to Guides: Essential (JPH). This is not really about any theory or concepts, it's more about how to use a client library -->
+<!-- TODO - I think this whole page should be merged into client-libraries, or move to Guides: Essential (JPH). This is not really about any theory or concepts, it's more about how to use a client library -->
 ## Client examples in the documentation
 
 Weaviate examples in the documentation are always shown in a handy accordion menu.
@@ -69,15 +69,15 @@ print(result)
 
 ## Installation
 
-Clients have their [own installation pages](/docs/weaviate/references/client-libraries/index.md) per language.
+Clients have their [own installation pages](/docs/weaviate/client-libraries/index.md) per language.
 
 Currently Weaviate supports:
 
-- [Python](/docs/weaviate/references/client-libraries/python.md)
-- [Javascript](/docs/weaviate/references/client-libraries/javascript.md)
-- [Go](/docs/weaviate/references/client-libraries/go.md)
-- [Java](/docs/weaviate/references/client-libraries/java.md)
-- Do you want to contribute one? Please let us know on our [Slack]({{ site.slack_signup_url }})
+- [Python](/docs/weaviate/client-libraries/python.md)
+- [Javascript](/docs/weaviate/client-libraries/javascript.md)
+- [Go](/docs/weaviate/client-libraries/go.md)
+- [Java](/docs/weaviate/client-libraries/java.md)
+- Do you want to contribute one? Please let us know on our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
 
 ## Recap
 

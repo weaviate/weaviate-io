@@ -1,19 +1,30 @@
 ---
-title: Essential guides
+title: Essential tutorials
 sidebar_position: 0
 ---
 
-These **essential** guides are designed to empower you so that you can start to customize and use Weaviate based on *your* particular needs. 
+<!-- TODO: Remove explanatory header once layout review complete -->
+:::caution UNDER CONSTRUCTION
+The various "Tutorials" sections are made up of documents from Tutorials in Weaviate Docs Classic, plus a some new documents.
+:::
 
-If you haven't yet, we strongly recommend that you go through the [Getting started guides](../getting-started/index.md) first.
+## Overview
 
-The **essential** guides include the following sections, where you will learn how to:
+These **essential** tutorials are designed to empower you so that you can start to use Weaviate based on *your* particular needs.
 
-- [Schema](./how-to-create-a-schema.md): Create a schema automatically with Weaviate, or start to explore schema customization options. 
-- [Import](./how-to-import-data.md): Use batch imports for large datasets, including what options are available to maximize the import speed. 
-- [CRUD operations](./how-to-do-crud.md): Perform CRUD operations with Weaviate. 
-- [Vectorizer selection](./how-to-select-the-right-vectorizer.md): Identify the right vectorizer based on your data type (text, image, etc.) and application goals (text clustering, Q&A, text to image comparison, image comparison).
+By the time you are done, you will have seen a number of examples and considerations in organizing and importing your data into Weaviate. You will have learnt everything from rules of thumb for selecting a vectorizer, all the way through to how to perform CRUD operations with Weaviate.
 
-By the time you are done with these, you will have seen the main considerations in organizing and importing your data into Weaviate. You will also have seen how you can perform CRUD operations with Weaviate and learnt rules of thumb for selecting a vectorizer. 
+import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
-Once you are finished with this section, we suggest moving on to our [Search guides](../search/index.md). There we guide you through the powerful yet flexible options Weaviate provides for searching through your data. 
+<BasicPrereqs />
+
+Here, you can learn how to:
+
+- [Select the right vectorizer](./how-to-select-the-right-vectorizer.md): Identify the right vectorizer based on your data type (text, image, etc.) and application goals (text clustering, Q&A, text to image comparison, image comparison).
+- [Define a schema](./how-to-create-a-schema.md): Define a schema automatically with Weaviate, and start to explore schema customization options.
+- [Import data](./how-to-import-data.md): Use batch imports for large datasets, including what options are available to maximize the import speed.
+- [Perform CRUD operations](./how-to-do-crud.md): Perform CRUD operations with Weaviate.
+
+Once you are finished with this section, we suggest moving on to our [Search tutorials](../search/index.md). There we guide you through the powerful yet flexible options Weaviate provides for searching through your data. 
+
+Each of these tutorials are self-contained. So you can read them in any order.

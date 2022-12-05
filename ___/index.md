@@ -21,7 +21,7 @@ layout: default
                 <a href="/developers/weaviate/current/" class="btn btn-primary lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
                         Weaviate Documentation <i class="fe fe-code d-none d-md-inline ms-3 mr-1"></i>
                     </a>
-                    <a href="{{ site.slack_signup_url }}" class="btn btn-primary-soft lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
+                    <a href="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw" class="btn btn-primary-soft lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
                         Slack <i class="fe fe-slack d-none d-md-inline ms-3 mr-1"></i>
                     </a>
                     <a href="https://github.com/semi-technologies/weaviate" class="btn btn-primary-soft lift mr-3 mt-3" target="_blank" style="margin-right: 0.25rem;">
@@ -77,7 +77,7 @@ layout: default
                 <h1 class="text-center" style="font-size:4rem;font-weight:bolder;color:#FFF" id="data-slack">...</h1>
                 <!-- Heading -->
                 <h2 class="text-center" style="color:#FFF;">
-                    <a href="{{ site.slack_signup_url }}" target="_blank">Slack users</a>
+                    <a href="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw" target="_blank">Slack users</a>
                 </h2>
             </div>
         </div> <!-- / .row -->

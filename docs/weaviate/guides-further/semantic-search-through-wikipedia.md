@@ -1,5 +1,5 @@
 ---
-title: Larger dataset example (Wikipedia)
+title: (TBC) Larger dataset example (Wikipedia)
 sidebar_position: 99
 # layout: layout-documentation
 # solution: weaviate
@@ -12,6 +12,15 @@ sidebar_position: 99
 # open-graph-type: article
 # toc: true
 ---
+
+## Overview
+
+Learn how to to another semantic search with Wikipedia
+
+<!-- TODO: Finish this page! -->
+:::caution Under construction.
+Migrated from "semantic-search-through-wikipedia" tutorial from Weaviate Docs Classic
+:::
 
 In this tutorial, we imported the complete English language Wikipedia article dataset into a single Weaviate instance to conduct semantic search queries through the Wikipedia articles, besides this, we've made all the graph relations between the articles too. We have made the import scripts, pre-processed articles, and backup available so that you can run the complete setup yourself. 
 
