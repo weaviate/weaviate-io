@@ -11,14 +11,12 @@ open-graph-type: article
 toc: true
 redirect_from:
 
-- /developers/weaviate/v1.11.0/reader-generator-modules/qna-openai.html
-- /developers/weaviate/current/modules/qna-openai.html
-
 ---
 
 # In short
 
-* The Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI endpoint.
+* The Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI
+  completions endpoint.
 * The module depends on a text vectorization module that should be running with Weaviate.
 * The module adds an `ask {}` parameter to the GraphQL `Get {}` queries
 * The module returns a max. of 1 answer in the GraphQL `_additional {}` field.
@@ -32,6 +30,10 @@ GraphQL `Get{...}` queries, as a search operator. The `qna-openai` module tries 
 the specified class. If an answer is found within the given `certainty` range, it will be returned in the
 GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the
 optionally set `certainty`. The answer with the highest `certainty` (confidence level) will be returned.
+
+# How to enable
+
+Request an OpenAI API-key via [their website](https://openai.com/api/).
 
 # How to enable (module configuration)
 
@@ -64,28 +66,66 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-transformers'
-      ENABLE_MODULES: 'text2vec-transformers,qna-openai'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
+      ENABLE_MODULES: 'text2vec-openai,qna-openai'
+      OPENAI_APIKEY: sk-foobar # request a key on openai.com, setting this parameter is optional, you can also provide the API key on runtime
       CLUSTER_HOSTNAME: 'node1'
-  t2v-transformers:
-    image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilbert-base-v2
-    environment:
-      ENABLE_CUDA: '1'
-      NVIDIA_VISIBLE_DEVICES: all
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - capabilities: [ gpu ]
-...
 ```
 
 Variable explanations:
 
 * `ENABLE_CUDA`: if set to 1 it uses GPU (if available on the host machine)
+* Note: Starting with `v1.11.0` the `OPENAI_APIKEY` variable is now optional and you can instead provide the key at
+  insert/query time as an HTTP header.
 
 _Note: at the moment, text vectorization modules cannot be combined in a single setup. This means that you can either
 enable the `text2vec-contextionary`, the `text2vec-transformers` or no text vectorization module._
+
+# How to configure
+
+​In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new
+to Weaviate schemas, you might want to check out
+the [getting started guide on the Weaviate schema](../getting-started/schema.html) first.
+
+The following schema configuration uses the `ada` model.
+
+```json
+{
+  "classes": [
+    {
+      "class": "Document",
+      "description": "A class called document",
+      "vectorizer": "text2vec-openai",
+      "moduleConfig": {
+        "qna-openai": {
+          "model": "text-ada-001",
+          "maxTokens": 16,
+          "temperature": 0.0,
+          "topP": 1,
+          "frequencyPenalty": 0.0,
+          "presencePenalty": 0.0,
+        }
+      },
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "description": "Content that will be vectorized",
+          "name": "content"
+        }
+      ]
+    }
+  ]
+}
+```
+
+wantModel:            "text-ada-001",
+wantMaxTokens:        16,
+wantTemperature:      0.0,
+wantTopP:             1,
+wantFrequencyPenalty: 0.0,
+wantPresencePenalty:  0.0,
 
 # How to use (GraphQL)
 
@@ -142,7 +182,6 @@ calculation of the position and determining the property fails.
 
 ```json
 {
-
 }
 ```
 
@@ -151,8 +190,8 @@ calculation of the position and determining the property fails.
 Under the hood, the model uses a two-step approach. First it performs a semantic search with `k=1` to find the
 document (e.g. a Sentence, Paragraph, Article, etc.) which is most likely to contain the answer. This step has no
 certainty threshold and as long as at least one document is present, it will be fetched and selected as the one most
-likely containing the answer. In a second step, an external call is made to the OpenAI Completions endpoint. Weaviate 
-uses the most relevant documents to establish a prompt for which OpenAI extracts the answer. There are now three 
+likely containing the answer. In a second step, an external call is made to the OpenAI Completions endpoint. Weaviate
+uses the most relevant documents to establish a prompt for which OpenAI extracts the answer. There are now three
 possible outcomes:
 
 1. No answer was found because the question can not be answered,
@@ -164,6 +203,20 @@ The module performs a semantic search under the hood, so a `text2vec-...` module
 transformers-based and you can also combine it with `text2vec-contextionary`. However, we expect that you will receive
 the best results by combining it with a well-fitting transformers model by using the appropriate
 configured `text2vec-transformers` module.
+
+# Additional information
+
+## Available models
+
+OpenAI has multiple models available for the extraction of answers from a given context.
+
+* For document embeddings you can choose one of the following models:
+  * [ada](https://beta.openai.com/docs/engines/ada)
+  * [babbage](https://beta.openai.com/docs/engines/babbage)
+  * [curie](https://beta.openai.com/docs/engines/curie)
+  * [davinci](https://beta.openai.com/docs/engines/davinci)
+
+These models can be configured
 
 # More resources
 
