@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The Sphere Dataset in Weaviate
-description: "Learn how to import the Sphere dataset into Weaviate."
+description: "Learn how to import and query the Sphere dataset in Weaviate!"
 published: true
 author: Zain Hasan
 author-img: /img/people/zain.jpg
