@@ -86,7 +86,7 @@ The table below summarizes the differences between vector libraries and database
 | Performance optimized for | In-memory similarity search| Full functionality, including: vector search, object retrieval from persistent storage, optional inverted index filtering, etc. |
 | Durability, crash recovery | No | Yes |
 | Persistence | Only at explicit snapshot | Immediate (after each insert, update or delete) |
-| Sharding (i.e. distribute datasets among more than one machine, automatically merge/aggregate results at query time across machines) | No (there are some 3rd-party projects that wrap sharding around existing libraries) | Yes |
+| Sharding (i.e. distribute a dataset among more than one machine, automatically merge/aggregate results at query time across machines) | No (there are some 3rd-party projects that wrap sharding around existing libraries) | Yes |
 | Replication | No | Yes (from v1.17) |
 | Automated backups (i.e. to and from cloud storage) | No | Yes |
 | Deployment ecosystem (Docker, K8s, Helm, SaaS) | No (you have to build it yourself) |Yes |
