@@ -3,10 +3,10 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Readers & Generators
 nav-parent: Modules
-title: Question Answering
+title: OpenAI - Question Answering
 description: Weaviate OpenAi Q&A Transformers module
 tags: ['qna-openai', 'transformers', 'openai']
-menu-order: 1
+menu-order: 1.5
 open-graph-type: article
 toc: true
 redirect_from:
