@@ -24,7 +24,7 @@ So, both vector databases and vector libraries allow you to efficiently search t
 Vector libraries store vector embeddings in in-memory indexes, in order to perform similarity searches. Most vector libraries share the following characteristics:
 1. they store vectors only,
 2. index data is immutable,
-3. querying during import is limited
+3. querying during import is impossible
 
 ### Store Vectors Only
 Vector libraries only store vector embeddings and not the associated objects they were generated from. 
@@ -35,7 +35,7 @@ This is limiting since the actual information is stored in the object and not th
 ### Immutable Data
 Indexes produced by vector libraries are immutable. This means that once you have imported your data and built the index, you cannot make any modifications (no new inserts, deletes or changes). To make any changes to your index, you will need to rebuild it from scratch. 
 
-### Query during Import Limitation 
+### No Querying During Import
 Most vector libraries cannot be queried while importing your data. It is required to import all of your data objects first. Then the index is built after the objects have been imported. This can be a concern for applications that require importing millions or even billions of objects. 
 
 ### Examples of Vector Libraries
