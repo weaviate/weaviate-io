@@ -103,7 +103,7 @@ The following schema configuration uses the `ada` model.
           "temperature": 0.0,
           "topP": 1,
           "frequencyPenalty": 0.0,
-          "presencePenalty": 0.0,
+          "presencePenalty": 0.0
         }
       },
       "properties": [
@@ -190,7 +190,8 @@ calculation of the position and determining the property fails.
 Under the hood, the model uses a two-step approach. First it performs a semantic search with `k=1` to find the
 document (e.g. a Sentence, Paragraph, Article, etc.) which is most likely to contain the answer. This step has no
 certainty threshold and as long as at least one document is present, it will be fetched and selected as the one most
-likely containing the answer. In a second step, an external call is made to the OpenAI Completions endpoint. Weaviate
+likely containing the answer. In a second step, Weaviate creates the required prompt as an input to an external call
+made to the OpenAI Completions endpoint. Weaviate
 uses the most relevant documents to establish a prompt for which OpenAI extracts the answer. There are now three
 possible outcomes:
 
