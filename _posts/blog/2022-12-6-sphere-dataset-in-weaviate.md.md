@@ -42,7 +42,7 @@ Get it? ... It’s a Sphere 🥁ba dum tsss🥁 I’ll show myself out…
 There are two ways to import the Sphere dataset into Weaviate. You can use the Python client (less than 75 lines of code) or the Weaviate Spark connector. 
 
 ### Importing Sphere with Python
-The setup is quite straightforward, all you need is the [Weaviate Client](https://weaviate.io/developers/weaviate/current/client-libraries/index.html). We provide an example that uses the Python Client and the dpr-question_encoder-single-nq-base model (i.e., the module that is used to vectorize objects in Sphere).
+The setup is quite straightforward, all you need is the [Weaviate Client](/developers/weaviate/current/client-libraries/index.html){:target="_blank"}. We provide an example that uses the Python Client and the dpr-question_encoder-single-nq-base model (i.e., the module that is used to vectorize objects in Sphere).
 
 We have prepared files ranging from 100K data points all the way up to the entire Sphere dataset, which consists of 899 million lines. You can download them from here:
 * [100k lines](https://storage.googleapis.com/sphere-demo/sphere.100k.jsonl.tar.gz)
@@ -95,7 +95,7 @@ client.schema.create_class({
 # Import the data, Weaviate will use the auto-schema function to
 # create the other properties and other default settings.
 start = time.time()
-c=0
+c = 0
 with open(SPHERE_DATASET) as jsonl_file:
     with client.batch as batch:
         for jsonl in jsonl_file:
@@ -110,7 +110,7 @@ with open(SPHERE_DATASET) as jsonl_file:
                 json_parsed['id'],
                 vector=json_parsed['vector']
             )
-            c+=1
+            c += 1
             if (c % (BATCH_SIZE * 10)) == 0:
                 print('Imported', c)
 
@@ -122,9 +122,9 @@ print('Done in', end - start)
 ### Importing Sphere with Spark
 If you want to start training large language models for knowledge-intensive tasks on Sphere, then you might want to leverage big data frameworks. This is where Apache Spark enters the picture!
 
-To process Sphere with Spark, you can use [PySpark](https://spark.apache.org/docs/latest/api/python/) and [Weaviate’s Python Client](https://weaviate.io/developers/weaviate/current/client-libraries/python.html). The setup is slightly more difficult than simply importing the dataset with python; however, once you do have it setup, it is lightning fast! ⚡ 
+To process Sphere with Spark, you can use [PySpark](https://spark.apache.org/docs/latest/api/python/){:target="_blank"} and [Weaviate’s Python Client](/developers/weaviate/current/client-libraries/python.html){:target="_blank"}. The setup is slightly more difficult than simply importing the dataset with python; however, once you do have it setup, it is lightning fast! ⚡ 
 
-You can see the step-by-step instructions detailed [here](https://github.com/semi-technologies/weaviate-examples/blob/sphere-spark/loading-sphere-with-spark/spark-sphere-demo.ipynb) in this notebook. The notebook demonstrates how to get Sphere into a Spark dataframe, import it into Weaviate, and conduct queries. Once you have Sphere imported into your Spark instance you can leverage Spark functionality to start training powerful models. In this particular example we are using the [Weaviate Spark connector](https://github.com/semi-technologies/weaviate-spark-connector) making it easy to load data from Spark to Weaviate.
+You can see the step-by-step instructions detailed [here](https://github.com/semi-technologies/weaviate-examples/blob/sphere-spark/loading-sphere-with-spark/spark-sphere-demo.ipynb){:target="_blank"} in this notebook. The notebook demonstrates how to get Sphere into a Spark dataframe, import it into Weaviate, and conduct queries. Once you have Sphere imported into your Spark instance you can leverage Spark functionality to start training powerful models. In this particular example we are using the [Weaviate Spark connector](https://github.com/semi-technologies/weaviate-spark-connector){:target="_blank"} making it easy to load data from Spark to Weaviate.
 
 We have also prepared two Parquet files one with 1M data points and another with the entire Sphere dataset, which consists of 899 million lines. You can download them into a dataframe as follows:
 
