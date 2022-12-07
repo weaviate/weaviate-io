@@ -4,17 +4,15 @@
   Get {
     Article(
       ask: {
-        question: "Who is the king of the Netherlands?",
-        properties: ["summary"],
-        rerank: false # supported from v1.10.0 on
-      }, 
+        question: "Who is Stanley Kubrick?",
+        properties: ["summary"]
+      },
       limit: 1
     ) {
       title
       _additional {
         answer {
           hasAnswer
-          certainty
           property
           result
           startPosition
@@ -33,13 +31,13 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 ask = {
-  "question": "Who is the king of the Netherlands?",
+  "question": "Who is Stanley Kubrick?",
   "properties": ["summary"]
 }
 
 result = (
   client.query
-  .get("Article", ["title", "_additional {answer {hasAnswer certainty property result startPosition endPosition} }"])
+  .get("Article", ["title", "_additional {answer {hasAnswer property result startPosition endPosition} }"])
   .with_ask(ask)
   .with_limit(1)
   .do()
@@ -62,10 +60,10 @@ client.graphql
       .get()
       .withClassName('Article')
       .withAsk({
-        question: "Who is the king of the Netherlands?",
+        question: "Who is Stanley Kubrick?",
         properties: ["summary"],
       })
-      .withFields('title _additional { answer { hasAnswer certainty property result startPosition endPosition } }')
+      .withFields('title _additional { answer { hasAnswer property result startPosition endPosition } }')
       .withLimit(1)
       .do()
       .then(res => {
@@ -101,7 +99,6 @@ func main() {
     {Name: "_additional", Fields: []graphql.Field{
       {Name: "answer", Fields: []graphql.Field{
         {Name: "hasAnswer"},
-        {Name: "certainty"},
         {Name: "property"},
         {Name: "result"},
         {Name: "startPosition"},
@@ -110,7 +107,7 @@ func main() {
     }},
   }
   ask := client.GraphQL().AskArgBuilder().
-    WithQuestion("Who is the king of the Netherlands?").
+    WithQuestion("Who is Stanley Kubrick?").
     WithProperties([]string{"summary"})
   ctx := context.Background()
 
@@ -152,7 +149,6 @@ public class App {
           .name("answer")
           .fields(new Field[]{
             Field.builder().name("hasAnswer").build(),
-            Field.builder().name("certainty").build(),
             Field.builder().name("property").build(),
             Field.builder().name("result").build(),
             Field.builder().name("startPosition").build(),
@@ -161,7 +157,7 @@ public class App {
       }).build();
 
     AskArgument ask = AskArgument.builder()
-      .question("Who is the king of the Netherlands?")
+      .question("Who is Stanley Kubrick?")
       .properties(new String[]{ "summary" })
       .build();
 
@@ -183,21 +179,20 @@ public class App {
 
 <!-- SET CURL TAB CONTENT -->
 {% capture curl %}
-$ echo '{ 
+$ echo '{
   "query": "{
     Get {
       Article(
         ask: {
-          question: \"Who is the king of the Netherlands?\",
+          question: \"Who is Stanley Kubrick?\",
           properties: [\"summary\"]
-        }, 
+        },
         limit: 1
       ) {
         title
         _additional {
           answer {
             hasAnswer
-            certainty
             property
             result
             startPosition
@@ -216,4 +211,4 @@ $ echo '{
 {% endcapture %}
 
 <!-- SET BLOCK_ID TO A UNIQUE ID, OFTEN THIS IS = TO THE FILENAME WHERE . == - -->
-{% include molecule-graphql-block-request.html block_id='qna-transformers-ask' %}
+{% include molecule-graphql-block-request.html block_id='qna-openai.ask' %}

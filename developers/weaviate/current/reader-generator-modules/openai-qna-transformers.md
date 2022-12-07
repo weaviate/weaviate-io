@@ -15,7 +15,7 @@ redirect_from:
 
 # In short
 
-* The Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI
+* The OpenAI Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI
   completions endpoint.
 * The module depends on a text vectorization module that should be running with Weaviate.
 * The module adds an `ask {}` parameter to the GraphQL `Get {}` queries
@@ -57,7 +57,7 @@ services:
       - --scheme
       - http
     image:
-      semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
+      semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" } }
     ports:
       - 8080:8080
     restart: on-failure:0
@@ -119,13 +119,7 @@ The following schema configuration uses the `ada` model.
   ]
 }
 ```
-
-wantModel:            "text-ada-001",
-wantMaxTokens:        16,
-wantTemperature:      0.0,
-wantTopP:             1,
-wantFrequencyPenalty: 0.0,
-wantPresencePenalty:  0.0,
+For information on how to use the individual parameters you [can check here](https://beta.openai.com/docs/api-reference/completions)
 
 # How to use (GraphQL)
 
@@ -137,14 +131,8 @@ following arguments:
 | Field | Data Type | Required | Example value | Description |
 |- |- |- |- |- |
 | `question`  | string | yes | `"What is the name of the Dutch king?"`  | The question to be answered. |
-| `certainty`  | float | no | `0.75` | Desired minimal certainty or confidence of answer to the question. The higher the
-value, the stricter the search becomes. The lower the value, the fuzzier the search becomes. If no certainty is set, any
-answer that could be extracted will be returned|
 | `properties`  | list of strings | no | `["summary"]`  | The properties of the queries Class which contains text. If no
 properties are set, all are considered. |
-| `rerank`  | bool | no | `true`  | If enabled, the qna module will rerank the result based on the answer score. For
-example, if the 3rd result - as determined by the previous (semantic) search contained the most likely answer, result 3
-will be pushed to position 1, etc. *Not supported prior to v1.10.0* |
 
 Notes:
 
@@ -168,7 +156,6 @@ The answer is contained in a new GraphQL `_additional` property called `answer`.
 
 * `hasAnswer` (`boolean`): could an answer be found?
 * `result` (nullable `string`): An answer if one could be found. `null` if `hasAnswer==false`
-* `certainty` (nullable `float`): The certainty of the answer returned. `null` if `hasAnswer==false`
 * `property` (nullable `string`): The property which contains the answer. `null` if `hasAnswer==false`
 * `startPosition` (`int`): The character offset where the answer starts. `0` if `hasAnswer==false`
 * `endPosition` (`int`): The character offset where the answer ends `0` if `hasAnswer==false`
@@ -182,6 +169,20 @@ calculation of the position and determining the property fails.
 
 ```json
 {
+  "data": {
+    "Get": {
+      "Document": [
+        {
+          "_additional": {
+            "answer": {
+              "hasAnswer": true,
+              "result": " Stanley Kubrick is an American filmmaker who is best known for his films, including \"A Clockwork Orange,\" \"Eyes Wide Shut,\" and \"The Shining.\""
+            }
+          }
+        }
+      ]
+    }
+  }
 }
 ```
 
@@ -191,9 +192,8 @@ Under the hood, the model uses a two-step approach. First it performs a semantic
 document (e.g. a Sentence, Paragraph, Article, etc.) which is most likely to contain the answer. This step has no
 certainty threshold and as long as at least one document is present, it will be fetched and selected as the one most
 likely containing the answer. In a second step, Weaviate creates the required prompt as an input to an external call
-made to the OpenAI Completions endpoint. Weaviate
-uses the most relevant documents to establish a prompt for which OpenAI extracts the answer. There are now three
-possible outcomes:
+made to the OpenAI Completions endpoint. Weaviate uses the most relevant documents to establish a prompt for which
+OpenAI extracts the answer. There are three possible outcomes:
 
 1. No answer was found because the question can not be answered,
 2. An answer was found, but did not meet the user-specified minimum certainty, so it was discarded (typically the case
