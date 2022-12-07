@@ -132,6 +132,8 @@ The OIDC standard allows for many different methods *(flows)* of obtaining a tok
 
 While it is outside the scope of our documentation to cover every OIDC authentication flow, some possible options are to:
 - Use the `client credentials flow` for machine-to-machine authorization. (Note that this will authorize an app, rather than a particular user.)
+  - As of December 2022, we have validated it with Okta and Azure as identity provider; however GCP does not support client credentials grant flow.
+  - Weaviate's Python client directly supports this method.
 - Use the `resource owner password flow` for trusted applications. 
   - You can use Weaviate Cloud Services / WCS (`https://auth.wcs.api.semi.technology/`) as the token issuer using the `resource owner password flow`.
   - Weaviate's Python client directly supports this method.
@@ -140,8 +142,6 @@ While it is outside the scope of our documentation to cover every OIDC authentic
 We outline the steps below for both methods of obtaining a token.
 
 ### Client credentials grant
-
-Note: At the time of writing (December 2022), GCP does not support client credentials grant flow.
 
 1. Send a GET request to `[WEAVIATE_URL]/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`)
 2. Parse the `clientId` and `href` from `wv_oidc_config`
