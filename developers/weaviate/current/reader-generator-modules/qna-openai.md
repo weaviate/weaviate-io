@@ -16,15 +16,16 @@ redirect_from:
 
 # In short
 
-* The OpenAI Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI completions endpoint.
+* The OpenAI Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI [completions endpoint](https://beta.openai.com/docs/api-reference/completions).
 * The module depends on a text vectorization module that should be running with Weaviate.
 * The module adds an `ask {}` parameter to the GraphQL `Get {}` queries
 * The module returns a max. of 1 answer in the GraphQL `_additional {}` field.
 * The answer with the highest `certainty` (confidence level) will be returned.
+* Added in Weaviate `v1.16.6`
 
 # Introduction
 
-The Question and Answer (Q&A) OpenAI module is a Weaviate module for answer extraction from data. It uses the [completion endpoint](https://beta.openai.com/docs/api-reference/completions), created by OpenAI, to try and extract an answer from the most relevant docs. This module can be used in GraphQL `Get{...}` queries, as a search operator. The `qna-openai` module tries to find an answer in the data objects of the specified class. If an answer is found within the given `certainty` range, it will be returned in the GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the optionally set `certainty`. The answer with the highest `certainty` (confidence level) will be returned.
+The Question and Answer (Q&A) OpenAI module is a Weaviate module for answer extraction from data. It uses the [completions endpoint](https://beta.openai.com/docs/api-reference/completions), created by OpenAI, to try and extract an answer from the most relevant docs. This module can be used in GraphQL `Get{...}` queries, as a search operator. The `qna-openai` module tries to find an answer in the data objects of the specified class. If an answer is found within the given `certainty` range, it will be returned in the GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the optionally set `certainty`. The answer with the highest `certainty` (confidence level) will be returned.
 
 # How to enable
 
@@ -84,7 +85,7 @@ The following schema configuration uses the `ada` model.
       "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "qna-openai": {
-          "model": "text-ada-001",
+          "model": "text-davinci-002",
           "maxTokens": 16,
           "temperature": 0.0,
           "topP": 1,
