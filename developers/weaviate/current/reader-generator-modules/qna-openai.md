@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Readers & Generators
 nav-parent: Modules
-title: OpenAI - Question Answering
+title: Question Answering - OpenAI
 description: Weaviate OpenAi Q&A Transformers module
 tags: ['qna-openai', 'transformers', 'openai']
 menu-order: 1.5

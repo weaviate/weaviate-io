@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: Readers & Generators
 nav-parent: Modules
-title: Question Answering
+title: Question Answering - transfomers
 description: Weaviate Q&A Transformers module
 tags: ['qna-transformers', 'transformers']
 menu-order: 1
