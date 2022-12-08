@@ -8,6 +8,7 @@ description: Weaviate OpenAi Q&A Transformers module
 tags: ['qna-openai', 'transformers', 'openai']
 menu-order: 1.5
 open-graph-type: article
+enabled-on-wcs: true
 toc: true
 redirect_from:
 
@@ -24,8 +25,8 @@ redirect_from:
 
 # Introduction
 
-The Question and Answer (Q&A) OpenAI module is a Weaviate module for answer extraction from data. It uses the completion
-endpoint, created by OpenAI, to try and extract an answer from the most relevant docs. This module can be used in
+The Question and Answer (Q&A) OpenAI module is a Weaviate module for answer extraction from data. It uses the [completion
+endpoint](https://beta.openai.com/docs/api-reference/completions), created by OpenAI, to try and extract an answer from the most relevant docs. This module can be used in
 GraphQL `Get{...}` queries, as a search operator. The `qna-openai` module tries to find an answer in the data objects of
 the specified class. If an answer is found within the given `certainty` range, it will be returned in the
 GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the
@@ -39,10 +40,9 @@ Request an OpenAI API-key via [their website](https://openai.com/api/).
 
 ### Docker-compose
 
-The Q&A module can be added as a service to the Docker-compose file. You must have a text vectorizer
-like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using
-the `qna-openai` module (`bert-large-uncased-whole-word-masking-finetuned-squad (uncased)`) in combination with
-the `text2vec-transformers`is as follows:
+* The Q&A module can be added as a service to the Docker-compose file.
+* You must have a text vectorizer running.
+* An example Docker-compose file for using the `qna-openai` module in combination with the `text2vec-openai`is as follows:
 
 ```yaml
 ---
@@ -57,12 +57,11 @@ services:
       - --scheme
       - http
     image:
-      semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" } }
+      semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
     ports:
       - 8080:8080
     restart: on-failure:0
     environment:
-      TRANSFORMERS_INFERENCE_API: 'http://t2v-transformers:8080'
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
@@ -74,12 +73,8 @@ services:
 
 Variable explanations:
 
-* `ENABLE_CUDA`: if set to 1 it uses GPU (if available on the host machine)
 * Note: Starting with `v1.11.0` the `OPENAI_APIKEY` variable is now optional and you can instead provide the key at
   insert/query time as an HTTP header.
-
-_Note: at the moment, text vectorization modules cannot be combined in a single setup. This means that you can either
-enable the `text2vec-contextionary`, the `text2vec-transformers` or no text vectorization module._
 
 # How to configure
 
@@ -119,6 +114,7 @@ The following schema configuration uses the `ada` model.
   ]
 }
 ```
+
 For information on how to use the individual parameters you [can check here](https://beta.openai.com/docs/api-reference/completions)
 
 # How to use (GraphQL)
@@ -143,7 +139,7 @@ Notes:
 
 ### Example query
 
-{% include code/1.x/qna-openai.ask.html %}
+{% include code/1.x/qna-openai-ask.html %}
 
 {% include molecule-gql-demo.html
 encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++ask%3A+%7B%0D%0A++++++++question%3A+%22Who+is+the+king+of+the+Netherlands%3F%22%2C%0D%0A++++++++properties%3A+%5B%22summary%22%5D%0D%0A++++++%7D%2C+%0D%0A++++++limit%3A1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_
