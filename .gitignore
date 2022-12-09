@@ -21,3 +21,10 @@ yarn-error.log*
 yarn.lock
 
 .python-version
+# Old docs
+.bundle
+_site
+.jekyll-metadata
+.jekyll-cache
+.ruby-version
+img/og/og-documentation
