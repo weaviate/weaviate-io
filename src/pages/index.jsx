@@ -3,7 +3,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageHeader from '@site/src/components/HomepageHeader';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import HomepageWhatYouCanDo from '@site/src/components/HomePageWhatYouCanDo';
+import HomepageWhatYouCanDo from '@site/src/components/HomepageWhatYouCanDo';
 import HomepageLearn from '@site/src/components/HomepageLearn';
 
 export default function Home() {
