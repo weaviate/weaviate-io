@@ -188,6 +188,11 @@ const config = {
                 ],
                 copyright: `Copyright © ${new Date().getFullYear()} Weaviate, Inc. Built with Docusaurus.`,
             },
+            colorMode: {
+                defaultMode: 'dark',
+                disableSwitch: false,
+                respectPrefersColorScheme: false,
+            },
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
