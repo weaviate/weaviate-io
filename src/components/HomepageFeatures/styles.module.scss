@@ -1,11 +1,37 @@
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+.header {
+  text-align: center;
+  p {
+    font-size: 1.2rem;
+  }
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.features {
+  padding-top: 4rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
+
+  .box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .icon {
+      background-image: url('./../../../static/img/site/icon.svg');
+      width: 100%;
+      height: 6rem;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .title {
+      padding-top: 1rem;
+      text-align: center;
+    }
+    .subTitle {
+      font-size: 0.75rem;
+      text-align: center;
+    }
+  }
 }

@@ -6,8 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'Weaviate Docs',
-    tagline: 'Vector Search Engine',
+    title: 'Weaviate - Just add Data',
+    tagline:
+        'Weaviate empowers developers to deliver, Scalable search-powered apps painlessly',
     // url: 'https://weaviate-docusaurus.netlify.app',
     url: 'https://weaviate.io',
     baseUrl: '/',
@@ -72,7 +73,7 @@ const config = {
                 title: '',
                 logo: {
                     alt: 'Weaviate',
-                    src: 'img/site/logo.svg',
+                    src: 'img/site/weaviate-logo.png',
                 },
                 items: [
                     {

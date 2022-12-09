@@ -6,6 +6,8 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  --ifm-h2-font-size: 2rem;
+  --ifm-navbar-height: 6rem;
   --ifm-color-primary: #fa0171;
   --ifm-color-primary-dark: #e10166;
   --ifm-color-primary-darker: #d40160;
@@ -18,7 +20,10 @@
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme="dark"] {
+[data-theme='dark'] {
+  --ifm-heading-color: #ffffff;
+  --ifm-link-color: #00b800;
+  --ifm-font-color-base: #c8c8c8;
   --ifm-hero-background-color: #12bf38;
   --ifm-color-primary: #fc3988;
   --ifm-color-primary-dark: #fc1b76;
@@ -31,6 +36,42 @@
 }
 
 /* Styling one class specially in dark mode */
-[data-theme="dark"] .hero__title {
-  color: plum;
+
+[data-theme='dark'] {
+  #__docusaurus {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      46deg,
+      rgba(0, 0, 0, 1) 4%,
+      rgba(17, 11, 62, 1) 50%,
+      rgba(25, 16, 92, 1) 96%
+    );
+  }
+  .container {
+    padding: 3rem;
+  }
+  .hero__logo {
+    width: 100%;
+    background-position-x: center;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../static/img/site/weaviate-logo-main.png');
+  }
+  .hero__subtitle {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .hero__title {
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .navbar {
+    background-color: transparent;
+  }
+  .navbar__logo {
+    height: 4rem;
+  }
 }
