@@ -200,9 +200,6 @@ Every time you add new or modify existing objects, Weaviate will obtain new vect
 
 The best thing is, from the query or data modifications point of view, you don’t need to do anything about the Weaviate ⇔ Cohere coordination.
 
-## Getting Started with Cohere in Weaviate
-Note, this article is not meant as a hands-on tutorial. For more detailed instructions, please check the documentation for the text2vec-cohere module.
-
 ## What next
 Check out the [text2vec-cohere](/developers/weaviate/current/retriever-vectorizer-modules/text2vec-cohere.html) to learn more about the new module.
 
