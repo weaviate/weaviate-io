@@ -1,0 +1,14 @@
+.box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .left {
+    display: flex;
+    flex: 1;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+}

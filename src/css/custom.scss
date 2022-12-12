@@ -21,6 +21,8 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
+  --ifm-footer-link-color: #ffffff;
+  --ifm-footer-background-color: #000000;
   --ifm-heading-color: #ffffff;
   --ifm-link-color: #00b800;
   --ifm-font-color-base: #c8c8c8;
@@ -41,7 +43,7 @@
   #__docusaurus {
     background: rgb(0, 0, 0);
     background: linear-gradient(
-      46deg,
+      90deg,
       rgba(0, 0, 0, 1) 4%,
       rgba(17, 11, 62, 1) 50%,
       rgba(25, 16, 92, 1) 96%
@@ -73,5 +75,18 @@
   }
   .navbar__logo {
     height: 4rem;
+  }
+  .footer--dark {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 4%,
+      rgba(17, 11, 62, 1) 50%,
+      rgba(25, 16, 92, 1) 96%
+    );
+
+    .container {
+      border-top: 0.5px solid #01b0db;
+    }
   }
 }

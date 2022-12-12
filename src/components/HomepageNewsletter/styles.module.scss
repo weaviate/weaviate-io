@@ -1,0 +1,45 @@
+.box {
+  display: flex;
+  flex-direction: row;
+  background-image: url('../../../static/img/site/subscribe.png');
+  width: 100%;
+  min-height: 136px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  .left {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .right {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .form {
+      width: 100%;
+      input {
+        width: 80%;
+        background-color: #000000;
+        color: #ffffff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 2rem;
+        appearance: none;
+        outline: none;
+      }
+      button {
+        background-color: #38d611;
+        color: #ffffff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 2rem;
+        margin-left: -50px;
+      }
+    }
+  }
+}

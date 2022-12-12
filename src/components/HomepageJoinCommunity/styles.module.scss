@@ -1,0 +1,47 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.rightSide {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.socialBox {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+
+  .slack {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../../static/img/site/slack.svg');
+  }
+  .text {
+    padding-top: 10px;
+  }
+
+  .github {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../../static/img/site/git.svg');
+  }
+  .twitter {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../../static/img/site/twitter.svg');
+  }
+}

@@ -7,20 +7,22 @@ export default function HomepageHeader() {
     <header>
       <div className="container">
         <p className="hero__logo" />
-        <h1 className="hero__title">Weaviate - Just add Data</h1>
+        <h1 className="hero__title">
+          Weaviate <br /> beyond search
+        </h1>
         <p className="hero__subtitle">
-          Weaviate empowers developers to deliver Scalable <br />
-          search-powered apps painlessly
+          Weaviate empowers developers to deliver <br /> scalable search-powered
+          apps painlessly
         </p>
         <div className={styles.buttons}>
           <Link className="link" to="/developers/weaviate">
-            Documentation
+            Documentation {'>'}
           </Link>
           <Link className="link" to="/developers/weaviate/installation">
-            Installation
+            Installation {'>'}
           </Link>
           <Link className="link" to="/developers/weaviate">
-            Demo
+            Demo {'>'}
           </Link>
         </div>
       </div>

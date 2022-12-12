@@ -1,0 +1,19 @@
+.logo {
+  width: 100%;
+  background-position-x: center;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../../../static/img/site/weaviate-logo-main.png');
+}
+
+.title {
+  text-align: center;
+}
+
+.links {
+  text-align: center;
+  .blue {
+    color: #01b0db;
+  }
+}
