@@ -74,7 +74,7 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
       },
       "moduleConfig": {
         "text2vec-cohere": {
-          "model": "multilingual-22-12", // <== defaults to large if not set
+          "model": "multilingual-22-12", // <== defaults to multilingual-22-12 if not set
           "truncate": "RIGHT" // <== defaults to RIGHT if not set
         }
       },
