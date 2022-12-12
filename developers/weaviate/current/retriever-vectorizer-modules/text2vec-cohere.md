@@ -113,9 +113,9 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
 
 ## Available models
 
-Weaviate defaults to Cohere's `multilingual-22-11` embedding model unless specified otherwise.
+Weaviate defaults to Cohere's `multilingual-22-12` embedding model unless specified otherwise.
 
-For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-cohere` using the `multilingual-22-11` model.
+For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-cohere` using the `multilingual-22-12` model.
 
 ```json
 {
@@ -129,7 +129,7 @@ For example, the following schema configuration will set Weaviate to vectorize t
       },
       "moduleConfig": {
         "text2vec-cohere": {
-          "model": "multilingual-22-11"
+          "model": "multilingual-22-12"
         }
 ```
 
