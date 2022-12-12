@@ -14,21 +14,22 @@ sidebar_position: 0
 # toc: true
 ---
 
-<!-- TODO: Should we add a sitemap? -->
+## Welcome!
+
 Welcome to the documentation site for Weaviate, an open source vector search engine. 
 
 This site is for **anyone** who is building, or thinking about building, something with Weaviate. Our goal is to get you to that end state faster, whether it be an evaluation report, a proof of concept, or a production database.
 
 To this end, the majority of the content is categorized into one of **three categories**, each category being structured with a particular focus in mind:
 
-| | Tutorials | Concepts | References |
+| | 👷 Tutorials | 💡 Concepts | 📚 References |
 | ----- | ----- | ----- | ----- |
 | Focus | How to **do** something | **Learn** about topics | Find **itemized** information |
 | Entry point | [Essential tutorials](./guides/index.md) | [Core concepts](./core-knowledge/index.md) | [References](./references/index.md) |
 
 Commonly requested resources such as [benchmarks](./benchmarks/index.md) and [roadmap](./roadmap/index.md) have their own sections, and others such as the [FAQ](./more-resources/faq.md), [glossary](./more-resources/glossary.md) and more can be found in the [More Resources](./more-resources/index.md) section.
 
-### For new users:
+### For new users
 
 If you are new to Weaviate, we recommend starting with these sections:
 1. Introduction (this page),
@@ -46,6 +47,14 @@ We have an active community on [Slack](https://join.slack.com/t/weaviate/shared_
 :::note
 Like what you see? Consider giving us a [⭐ on Github](https://github.com/semi-technologies/weaviate/stargazers).
 :::
+
+### Code examples
+
+Where possible, we show code examples in multiple programming languages using our [client libraries](./client-libraries/index.md). The following example shows you how to get the Weaviate schema using different clients.
+
+import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
+
+<CodeSchemaDump />
 
 ## About this page
 
@@ -114,7 +123,7 @@ Within Weaviate, all individual data objects are based on a class property struc
 
 You can add data to Weaviate through the [RESTful API](./references/rest/index.md) end-points and retrieve data through the [GraphQL interface](./references/graphql/index.md). 
 
-Weaviate's [vector indexing mechanism is modular](./core-knowledge/vector-index-plugins.md), and the current available plugin is the [Hierarchical Navigable Small World (HNSW) multilayered graph](./vectorization/hnsw.md).
+Weaviate's [vector indexing mechanism is modular](./core-knowledge/vector-index-plugins.md), and the current available plugin is the Hierarchical Navigable Small World (HNSW) multilayered graph.
 
 ## What are Weaviate modules?
 

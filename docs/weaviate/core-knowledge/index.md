@@ -17,7 +17,9 @@ sidebar_position: 0
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution NOTE:
 The "Concepts: Core" sections come from
-- Core Knowledge in Weaviate Docs Classic, minus "Console", which is now in Tutorials: Further Topics.
+- Core Knowledge in Weaviate Docs Classic, minus:
+  - "Console", which is now in Tutorials: Further Topics.
+  - "Clients", which has been added to Client-libraries/index
 - Modules, from Modules:Index + some of the theory in Configuration:Modules in Weaviate Docs Classic
 - Vector indexing, from Vector Index (ANN) Plugins:Index in Weaviate Docs Classic
 :::
@@ -43,4 +45,3 @@ Here, we make a few basic assumptions (you are somewhat familiar with databases,
 | [Basics](./basics.md) | Learn the basics of Weaviate |
 | [Console](./console.md) | Working with the Weaviate console |
 | [Indexing](./indexing.md) | Learn about the indexing configuration in Weaviate |
-| [Clients](./clients.md) | Working with the Weaviate clients |
