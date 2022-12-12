@@ -14,7 +14,7 @@ sidebar_position: 0
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution NOTE:
-The "Concepts: Architecture" sections comes from Architecture in Weaviate Docs Classic
+The "Concepts: Advanced" sections comes from Architecture in Weaviate Docs Classic
 :::
 
 ## Overview

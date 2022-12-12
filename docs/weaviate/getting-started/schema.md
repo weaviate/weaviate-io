@@ -83,7 +83,7 @@ print(json.dumps(schema))
 
 Let's create your first class!
 
-We'll take the example of the **Author** from the [basics](../core-knowledge/basics.md#data-objects-in-weaviate)  guide.
+We'll take the example of the **Author** from the [basics](../core-knowledge/data.md#data-objects-in-weaviate)  guide.
 
 Our **Authors** have the following properties:
 * `name`: type `string`
@@ -716,7 +716,7 @@ Note this part (this is just a chunk of the response):
 ```
 
 :::note
-You can set cross-references in all directions and later (as we will see [while querying](./query.md)) filter on them. Please, be aware that Weaviate is **not** a graph database ([remember](../core-knowledge/basics.md#what-is-weaviate)?). This means that dealing with -for example- many-to-many relationships or things like shortest path algorithms is not in our wheelhouse.
+You can set cross-references in all directions and later (as we will see [while querying](./query.md)) filter on them. Please, be aware that Weaviate is **not** a graph database. This means that dealing with -for example- many-to-many relationships or things like shortest path algorithms is not in our wheelhouse.
 :::
 
 ## Other schema operations
@@ -729,12 +729,6 @@ All schema operations are available in the [API documentation for the schema end
 * Weaviate's schema is class property based.
 * The schema is highly configurable but comes with pre-defined settings.
 * There is an auto schema function, but for optimal usage, it's better to manually create a schema
-
-<!-- ## What would you like to learn next?
-
-* [Learn how to import data](./import.md)
-* [Learn how to query data based on a schema](query.md)
-* [Take me one step back to the basics](../core-knowledge/basics.md) -->
 
 ## More Resources
 

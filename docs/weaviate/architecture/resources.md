@@ -101,7 +101,7 @@ Generally we recommend that:
 
 ### Imports slowed down after crossing ~2M objects - what can I do?
 
-If you notice that your import performance drops drastically after the 2M objects (per class) mark, you are most likely running into the default 2M limit of the vector cache. You can [adjust the limit on existing classes](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters) without having to recreate the class or reimport.
+If you notice that your import performance drops drastically after the 2M objects (per class) mark, you are most likely running into the default 2M limit of the vector cache. You can [adjust the limit on existing classes](/docs/weaviate/configuration/vector-index-type.md#how-to-configure-hnsw) without having to recreate the class or reimport.
 
 ## The role of GPUs in Weaviate
 

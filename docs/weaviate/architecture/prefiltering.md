@@ -59,7 +59,7 @@ As a comparison, with pure HNSW - without the cutoff - the same filters would lo
 
 ![Prefiltering with pure HNSW](./img/prefiltering-pure-hnsw-without-cutoff.png "Prefiltering without cutoff, i.e. pure HNSW")
 
-The cutoff value can be configured as [part of the `vectorIndexConfig` settings in the schema](/docs/weaviate/vectorization/hnsw.md#how-to-use-hnsw-and-parameters) for each class separately.
+The cutoff value can be configured as [part of the `vectorIndexConfig` settings in the schema](/docs/weaviate/configuration/vector-index-type.md#how-to-configure-hnsw) for each class separately.
 
 ## Cachable Filters
 

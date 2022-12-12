@@ -64,7 +64,7 @@ A more detailed explanation of Weaviate's GraphQL design is available [here](../
 
 ## Get{}
 
-In the basics getting started guide, you've learned [how Weaviate uses a class-property structure](../core-knowledge/basics.md#data-objects-in-weaviate) and in the schema getting started guide you've learned [how you can define the class-property structure](./schema.md#create-your-first-class).
+In the basics getting started guide, you've learned [how Weaviate uses a class-property structure](../core-knowledge/data.md#data-objects-in-weaviate) and in the schema getting started guide you've learned [how you can define the class-property structure](./schema.md#create-your-first-class).
 
 Our demo dataset has two classes: `Article` and `Paragraph`. The `Article` class has the properties: `title` of the data type `string`, `hasParagraphs` of the data type `Paragraph`, and `linksToArticles` of the data type `Article`. The `Paragraph` class has the properties: `title` of the data type `string`, `content` of the data type `text`, `order` of the data type `int`, and `inArticle` of the data type `Article`. You can also inspect the schem of the demo dataset in JSON format [here](http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080/v1/schema).
 

@@ -16,7 +16,7 @@ sidebar_position: 0
 
 ## Welcome!
 
-Welcome to the documentation site for Weaviate, an open source vector search engine. 
+Welcome to the documentation site for Weaviate, an open source vector search engine.
 
 This site is for **anyone** who is building, or thinking about building, something with Weaviate. Our goal is to get you to that end state faster, whether it be an evaluation report, a proof of concept, or a production database.
 
@@ -62,10 +62,12 @@ This page is an introduction to Weaviate. We present a very high-level overview 
 
 ## What is Weaviate?
 
+Weaviate is an open source vector search engine that stores both objects and vectors. This allows for combining vector search with structured filtering.
+
 **Weaviate in a nutshell**: 
 
 * Weaviate is an open source vector search engine.
-* Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](./core-knowledge/vector-index-plugins.md).
+* Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](./architecture/vector-index-plugins.md).
 * Weaviate can be used stand-alone (aka _bring your vectors_) or with a variety of [modules](./modules/index.md) that can do the vectorization for you and extend the core capabilities.
 * Weaviate has a [GraphQL-API](./references/graphql/index.md) to access your data easily.
 * ​Weaviate ia fast (check our [open source benchmarks](./benchmarks/index.md)).
@@ -123,7 +125,7 @@ Within Weaviate, all individual data objects are based on a class property struc
 
 You can add data to Weaviate through the [RESTful API](./references/rest/index.md) end-points and retrieve data through the [GraphQL interface](./references/graphql/index.md). 
 
-Weaviate's [vector indexing mechanism is modular](./core-knowledge/vector-index-plugins.md), and the current available plugin is the Hierarchical Navigable Small World (HNSW) multilayered graph.
+Weaviate's [vector indexing mechanism is modular](./architecture/vector-index-plugins.md), and the current available plugin is the Hierarchical Navigable Small World (HNSW) multilayered graph.
 
 ## What are Weaviate modules?
 
@@ -162,7 +164,7 @@ Want to get started or want to learn more? These resources might help you furthe
 - Try out Weaviate:
     - [Quickstart tutorial](./getting-started/index.md)
 - Learn about Weaviate:
-    - [Concepts: Core](./core-knowledge/index.md)
+    - [Concepts](./core-knowledge/index.md)
 
 ## More resources
 

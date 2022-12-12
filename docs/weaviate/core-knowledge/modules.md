@@ -15,18 +15,18 @@ sidebar_position: 5
 
 ## Introduction
 
-Weaviate adopts a modularized structure, where for examples functionalities such as vectorization or backups are carried out by optional modules. 
+Weaviate adopts a modularized structure, where for examples functionalities such as vectorization or backups are carried out by *optional* modules.
 
 The core of Weaviate, without any modules attached, is a pure vector-native database and search engine. 
 [![Weaviate modules introduction](./img/weaviate-module-diagram.svg "Weaviate Module Diagram")](./img/weaviate-module-diagram.svg)
 
-Data is stored in Weaviate as the combination of an object and its vector, and these vectors are searchable by the provided [vector index algorithm](./vector-index-plugins.md). Without any vectorizer modules attached, Weaviate does not know how to *vectorize* an object, i.e. *how* to calculate the vectors given an object. 
+Data is stored in Weaviate as the combination of an object and its vector, and these vectors are searchable by the provided [vector index algorithm](../architecture/vector-index-plugins.md). Without any vectorizer modules attached, Weaviate does not know how to *vectorize* an object, i.e. *how* to calculate the vectors given an object. 
 
 Depending on the type of data you want to store and search (text, images, etc.), and depending on the use case (like search, question answering, etc., depending on language, classification, ML model, training set, etc.), you can choose and attach a vectorizer module that best fits your use case. Or, you can "bring your own" vectors to Weaviate. 
 
 ## Available module types
 
-<!-- TODO: Reminder to fix Jinja-type variables {{ site.xxx }} -->
+<!-- TODO: Reminder to fix site variables {{ site.xxx }} -->
 This graphic shows the available modules of the latest Weaviate version ({{site.weaviate_version}}). 
 
 Broadly, we categorize them into one of:
@@ -38,7 +38,7 @@ Broadly, we categorize them into one of:
 
 ### Vectorization modules (*Dense Retriever* modules)
 
-Vectorization modules, like the [`text2vec-contextionary`](../modules/retriever-vectorizer-modules/text2vec-contextionary.md), [`text2vec-transformers`](../modules/retriever-vectorizer-modules/text2vec-transformers.md), [`text2vec-openai`](../modules/retriever-vectorizer-modules/text2vec-openai.md), [`multi2vec-clip`](../modules/retriever-vectorizer-modules/multi2vec-clip.md), and [`img2vec-neural`](../modules/retriever-vectorizer-modules/img2vec-neural.md), transform data into vectors. These modules are also called "Dense Retriever" modules. Retrievers function as a filter to quickly find a relevant set of data to the query.
+Vectorization modules, like the `text2vec-*`, `multi2vec-*` or `img2vec-*` modules, transform data into vectors. These modules are also called "Dense Retriever" modules. Retrievers function as a filter to quickly find a relevant set of data to the query.
 
 #### Dense retrievers vs. sparse retrievers
 Sparse vector retrievers for the task of finding relevant data (by calculating the similarity of two pieces of data) in a database are for example TF-IDF or BM25. These retrievers are not trainable; instead they rely on word frequency in documents. This type of retrievers are not possible as Weaviate modules, because the implementation sits deep in the core of Weaviate (BM25 will be released soon!).

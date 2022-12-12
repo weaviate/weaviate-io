@@ -23,7 +23,6 @@ To convert data objects into vectors, Weaviate uses vectorizers, which are avail
 
 You can read more about these concepts below.
 - [Vector index plugins](./vector-index-plugins.md)
-- [HNSW algorithm](./hnsw.md)
 - [Comparison of vectorizers](./vectorizer-comparisons.md) 
 
 ## More Resources

@@ -176,14 +176,6 @@ You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on 
 * Kubernetes is great for long-running Weaviate deployments
 * You have a working instance of Weaviate in WCS.
 
-<!-- ## Next Steps
-
-Next, [learn about the Weaviate Schema](./schema.md).
-
-Alternatively, you can:
-* [Skip to Querying in Weaviate](./query.md)
-* [Go back to the basics](../core-knowledge/basics.md) -->
-
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
