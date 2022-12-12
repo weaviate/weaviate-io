@@ -128,12 +128,14 @@ $ curl [WEAVIATE URL]/v1/.well-known/openid-configuration
 
 OIDC authentication requires obtaining a valid token from the token issuer so that it can be sent in the header of any request to Weaviate. This applies to both REST and GraphQL requests.
 
-The OIDC standard allows for many different methods *(flows)* of obtaining a token. The appropriate method can vary depending on your situation, including configurations at the token issuer, and your requirements.
+The OIDC standard allows for many different methods *(flows)* of obtaining tokens. The appropriate method can vary depending on your situation, including configurations at the token issuer, and your requirements.
+
 
 While it is outside the scope of our documentation to cover every OIDC authentication flow, some possible options are to:
 - Use the `client credentials flow` for machine-to-machine authorization. (Note that this will authorize an app, rather than a particular user.)
   - As of December 2022, we have validated it with Okta and Azure as identity provider; however GCP does not support client credentials grant flow.
   - Weaviate's Python client directly supports this method.
+  - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to aquire a new access token on expiration of the old one.
 - Use the `resource owner password flow` for trusted applications. 
   - You can use Weaviate Cloud Services / WCS (`https://auth.wcs.api.semi.technology/`) as the token issuer using the `resource owner password flow`.
   - Weaviate's Python client directly supports this method.

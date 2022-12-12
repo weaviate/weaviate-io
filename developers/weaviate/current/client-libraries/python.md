@@ -53,9 +53,9 @@ Without a refresh token, there is no possibility to acquire a new `access token`
 import weaviate
 
 resource_owner_config = weaviate.AuthClientPassword(
-  "user", 
-  "pass", 
-  "scope1 scope2" # optional, depends on the configuration of your identity provider
+  username = "user", 
+  password = "pass", 
+  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider
   )
 
 # Initiate the client with the auth config
@@ -74,8 +74,8 @@ Most providers do not include a refresh token in their response and the `client 
 import weaviate
 
 client_credentials_config = weaviate.AuthClientCredentials(
-  "client_secret", 
-  "scope1 scope2" # optional, depends on the configuration of your identity provider
+  client_secret = "client_secret", 
+  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider
   )
 
 # Initiate the client with the auth config
