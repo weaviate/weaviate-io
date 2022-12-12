@@ -92,7 +92,8 @@ For example, the following schema configuration will set Weaviate to vectorize t
           },
           "name": "content"
         }
-      ]
+      ],
+      "vectorizer": "text2vec-openai"
     }
   ]
 }

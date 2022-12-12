@@ -226,13 +226,17 @@ if __name__ == "__main__":
         print('This paths don\'t exist')
         exit(1)
 
-    client = weaviate.Client(
-        url=WEAVIATE_HOST,
-        timeout_config=600,
-        auth_client_secret=weaviate.AuthClientPassword(WEAVIATE_LOGIN, WEAVIATE_PASS)
-    )
+    try:
+        client = weaviate.Client(
+            url=WEAVIATE_HOST,
+            timeout_config=600,
+            auth_client_secret=weaviate.AuthClientPassword(WEAVIATE_LOGIN, WEAVIATE_PASS)
+        )
 
-    create_weaviate_schema(client)
+        create_weaviate_schema(client)
+    except:
+        print("Can't reach VM for Weaviate, continue without updating search")
+        exit(0)
 
     c = 0
 
