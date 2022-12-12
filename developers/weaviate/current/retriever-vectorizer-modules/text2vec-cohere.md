@@ -67,10 +67,13 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
       "class": "Document",
       "description": "A class called document",
       "vectorizer": "text2vec-cohere",
+      "vectorIndexConfig": {
+        "distance": "dot" // <== Cohere models use dot product instead of the Weaviate default cosine
+      },
       "moduleConfig": {
         "text2vec-cohere": {
           "model": "large", // <== defaults to large if not set
-          "truncate": "NONE" // <== defaults to NONE if not set
+          "truncate": "NONE" // <== defaults to RIGHT if not set
         }
       },
       "properties": [
@@ -108,11 +111,9 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
 
 ## Available models
 
-Weaviate defaults to Cohere's `large` embedding model unless specified otherwise.
+Weaviate defaults to Cohere's `multilingual-22-11` embedding model unless specified otherwise.
 
-> Currently, `small`, `medium` and `large` models are available. Smaller models are faster, while larger models will perform better. Custom models can also be supplied with their full ID [source](https://docs.cohere.ai/reference/embed).
-
-For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-cohere` using the `small` model.
+For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-cohere` using the `multilingual-22-11` model.
 
 ```json
 {
@@ -121,9 +122,12 @@ For example, the following schema configuration will set Weaviate to vectorize t
       "class": "Document",
       "description": "A class called document",
       "vectorizer": "text2vec-cohere",
+      "vectorIndexConfig": {
+        "distance": "dot"
+      },
       "moduleConfig": {
         "text2vec-cohere": {
-          "model": "small"
+          "model": "multilingual-22-11"
         }
 ```
 
@@ -133,7 +137,7 @@ If the input text contains too many tokens and is not truncated, the API will th
 
 You can set the truncation option with the `truncate` parameter.
 
-> The available values for `truncate` are NONE, LEFT or RIGHT. It specifies how the API will handle inputs longer than the maximum token length. Passing LEFT will discard the left of the input and RIGHT will discard the right side of the input, in both cases until the remaining input is exactly the maximum input token length for the model. Defaults to NONE, which will return an error if the input exceeds the maximum input token length. [source](https://docs.cohere.ai/reference/embed)
+> The available values for `truncate` are NONE, LEFT or RIGHT. It specifies how the API will handle inputs longer than the maximum token length. Passing LEFT will discard the left of the input and RIGHT will discard the right side of the input, in both cases until the remaining input is exactly the maximum input token length for the model. Defaults to RIGHT, which will return an error if the input exceeds the maximum input token length. [source](https://docs.cohere.ai/reference/embed)
 
 * The _upside_ of truncating is that a batch import always succeeds.
 * The _downside_ of truncating is that a large text will be partially vectorized without the user being made aware of the truncation.
@@ -147,6 +151,9 @@ For example, you can set a class to discard the left of the input (i.e. set `tru
       "class": "Document",
       "description": "A class called document",
       "vectorizer": "text2vec-cohere",
+      "vectorIndexConfig": {
+        "distance": "dot"
+      },
       "moduleConfig": {
         "text2vec-cohere": {
           "truncate": "LEFT"
