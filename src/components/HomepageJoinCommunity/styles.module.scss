@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 .rightSide {
   display: flex;
@@ -9,6 +12,19 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  @media screen and (max-width: 400px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.leftSide {
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .socialBox {
   display: flex;

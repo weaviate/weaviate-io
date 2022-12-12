@@ -7,6 +7,9 @@
 /* You can override the default Infima variables here. */
 :root {
   --ifm-h2-font-size: 2rem;
+  @media screen and (max-width: 768px) {
+    --ifm-h2-font-size: 1.5rem;
+  }
   --ifm-navbar-height: 6rem;
   --ifm-color-primary: #fa0171;
   --ifm-color-primary-dark: #e10166;
@@ -51,6 +54,9 @@
   }
   .container {
     padding: 3rem;
+    @media screen and (max-width: 768px) {
+      padding: 2rem;
+    }
   }
   .hero__logo {
     width: 100%;
@@ -59,15 +65,25 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../../static/img/site/weaviate-logo-main.png');
+
+    @media screen and (max-width: 768px) {
+      height: 150px;
+    }
   }
   .hero__subtitle {
     font-size: 1.2rem;
     text-align: center;
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 
   .hero__title {
     color: #ffffff;
     text-align: center;
+    @media screen and (max-width: 768px) {
+      font-size: 2rem;
+    }
   }
 
   .navbar {

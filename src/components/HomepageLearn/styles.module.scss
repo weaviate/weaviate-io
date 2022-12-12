@@ -3,6 +3,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 30px;
+  @media screen and (max-width: 680px) {
+    flex-direction: column;
+    gap: 20px;
+  }
   .left,
   .middle,
   .right {
@@ -11,11 +15,13 @@
   .left {
     background-image: url('../../../static/img/site/card-1.png');
     border-radius: 25px;
-    min-height: 379px;
+    min-height: 380px;
     width: 100%;
-    // max-width: 300px;
     background-size: cover;
     background-repeat: no-repeat;
+    @media screen and (max-width: 680px) {
+      min-height: 150px;
+    }
     .title {
       padding: 50px;
     }
@@ -26,13 +32,19 @@
     justify-content: space-between;
     min-height: 380px;
     width: 100%;
-    //  max-width: 300px;
+    @media screen and (max-width: 680px) {
+      min-height: 150px;
+      gap: 20px;
+    }
     .smallUp {
       border-radius: 25px;
       background-image: url('../../../static/img/site/card-2.png');
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 180px;
+      @media screen and (max-width: 680px) {
+        min-height: 150px;
+      }
       .title {
         padding: 20px;
       }
@@ -43,6 +55,9 @@
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 180px;
+      @media screen and (max-width: 680px) {
+        min-height: 150px;
+      }
       .title {
         padding: 20px;
       }
@@ -55,7 +70,10 @@
     justify-content: space-between;
     min-height: 380px;
     width: 100%;
-    // max-width: 300px;
+    @media screen and (max-width: 680px) {
+      min-height: 150px;
+      gap: 20px;
+    }
 
     .smallUp {
       border-radius: 25px;
@@ -63,6 +81,9 @@
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 180px;
+      @media screen and (max-width: 680px) {
+        min-height: 150px;
+      }
       .title {
         padding: 20px;
       }
@@ -73,6 +94,9 @@
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 180px;
+      @media screen and (max-width: 680px) {
+        min-height: 150px;
+      }
       .title {
         padding: 20px;
       }

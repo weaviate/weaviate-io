@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 580px) {
+    flex-direction: column-reverse;
+  }
   .left {
     display: flex;
     flex: 1;

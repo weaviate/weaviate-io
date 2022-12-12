@@ -18,6 +18,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
+
+  @media screen and (max-width: 680px) {
+    flex-direction: column-reverse;
+  }
 }
 
 .code {
@@ -26,4 +30,7 @@
   height: 375px;
   width: 100%;
   background-repeat: no-repeat;
+  @media screen and (max-width: 680px) {
+    flex: none;
+  }
 }

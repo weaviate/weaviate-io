@@ -5,7 +5,14 @@
   width: 100%;
   min-height: 136px;
   background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
+  @media screen and (max-width: 680px) {
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 25px;
+    min-height: 180px;
+  }
   .left {
     display: flex;
     flex: 1;
@@ -20,8 +27,18 @@
     justify-content: center;
     align-items: center;
 
+    @media screen and (max-width: 590px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
     .form {
       width: 100%;
+      @media screen and (max-width: 590px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       input {
         width: 80%;
         background-color: #000000;
