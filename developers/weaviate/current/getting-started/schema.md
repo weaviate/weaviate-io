@@ -139,7 +139,7 @@ The result should look something like this:
 
 Wow! That's a lot more settings than what we specified!
 
-What's happened is that Weaviate has added some default configurations for you. You can change these these options if you wish, but there is no need to for this guide.
+What's happened is that Weaviate has added some default configurations for you. You can change these options if you wish, but there is no need to for this guide.
 
 Great! Your database is set up with a schema and ready to go. Next, we will show you how you can add **Publication** data into Weaviate.
 
