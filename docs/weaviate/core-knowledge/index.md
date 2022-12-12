@@ -21,7 +21,7 @@ The "Concepts: Core" sections come from
   - "Console", which is now in Tutorials: Further Topics.
   - "Clients", which has been added to Client-libraries/index
 - Modules, from Modules:Index + some of the theory in Configuration:Modules in Weaviate Docs Classic
-- Vector indexing, from Vector Index (ANN) Plugins:Index in Weaviate Docs Classic
+- Vector indexing, from Vector Index (ANN) Plugins:Index + HNSW in Weaviate Docs Classic
 :::
 
 ## Overview
