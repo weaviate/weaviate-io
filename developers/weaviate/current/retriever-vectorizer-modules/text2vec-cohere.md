@@ -58,7 +58,7 @@ services:
 
 ​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](../getting-started/schema.html) first.
 
-The following schema configuration tells Weaviate to vectorize the `Document` class with `text2vec-cohere`, using the `large` model and without input truncation by the Cohere API.
+The following schema configuration tells Weaviate to vectorize the `Document` class with `text2vec-cohere`, using the `multilingual-22-12` model and without input truncation by the Cohere API.
 
 ```json
 {
@@ -72,7 +72,7 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
       },
       "moduleConfig": {
         "text2vec-cohere": {
-          "model": "large", // <== defaults to large if not set
+          "model": "multilingual-22-12", // <== defaults to large if not set
           "truncate": "RIGHT" // <== defaults to RIGHT if not set
         }
       },
@@ -135,11 +135,7 @@ For example, the following schema configuration will set Weaviate to vectorize t
 
 If the input text contains too many tokens and is not truncated, the API will throw an error. The Cohere API can be set to automatically truncate your input text.
 
-You can set the truncation option with the `truncate` parameter.
-
-> The available values for `truncate` are NONE, LEFT or RIGHT. It specifies how the API will handle inputs longer than the maximum token length. Passing LEFT will discard the left of the input and RIGHT will discard the right side of the input, in both cases until the remaining input is exactly the maximum input token length for the model. Defaults to RIGHT, which will return an error if the input exceeds the maximum input token length. [source](https://docs.cohere.ai/reference/embed)
-
-> In almost all of the cases you should leave the default `truncate` to `RIGHT` (this is the default)
+You can set the truncation option with the `truncate` parameter to `RIGHT` or `NONE`. Passing RIGHT will discard the right side of the input, the remaining input is exactly the maximum input token length for the model. [source](https://docs.cohere.ai/reference/embed)
 
 * The _upside_ of truncating is that a batch import always succeeds.
 * The _downside_ of truncating (i.e., `NONE`) is that a large text will be partially vectorized without the user being made aware of the truncation.
