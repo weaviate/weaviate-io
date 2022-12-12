@@ -73,7 +73,7 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
       "moduleConfig": {
         "text2vec-cohere": {
           "model": "large", // <== defaults to large if not set
-          "truncate": "NONE" // <== defaults to RIGHT if not set
+          "truncate": "RIGHT" // <== defaults to RIGHT if not set
         }
       },
       "properties": [
@@ -139,26 +139,10 @@ You can set the truncation option with the `truncate` parameter.
 
 > The available values for `truncate` are NONE, LEFT or RIGHT. It specifies how the API will handle inputs longer than the maximum token length. Passing LEFT will discard the left of the input and RIGHT will discard the right side of the input, in both cases until the remaining input is exactly the maximum input token length for the model. Defaults to RIGHT, which will return an error if the input exceeds the maximum input token length. [source](https://docs.cohere.ai/reference/embed)
 
+> In almost all of the cases you should leave the default `truncate` to `RIGHT` (this is the default)
+
 * The _upside_ of truncating is that a batch import always succeeds.
-* The _downside_ of truncating is that a large text will be partially vectorized without the user being made aware of the truncation.
-
-For example, you can set a class to discard the left of the input (i.e. set `truncate` to `LEFT`) when truncating by specifying the schema like so:
-
-```json
-{
-  "classes": [
-    {
-      "class": "Document",
-      "description": "A class called document",
-      "vectorizer": "text2vec-cohere",
-      "vectorIndexConfig": {
-        "distance": "dot"
-      },
-      "moduleConfig": {
-        "text2vec-cohere": {
-          "truncate": "LEFT"
-        }
-```
+* The _downside_ of truncating (i.e., `NONE`) is that a large text will be partially vectorized without the user being made aware of the truncation.
 
 ## Cohere Rate Limits
 
