@@ -1,6 +1,6 @@
 ---
 title: Persistence
-sidebar_position: 6
+sidebar_position: 16
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration

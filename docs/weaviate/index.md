@@ -25,7 +25,7 @@ To this end, the majority of the content is categorized into one of **three cate
 | | 👷 Tutorials | 💡 Concepts | 📚 References |
 | ----- | ----- | ----- | ----- |
 | Focus | How to **do** something | **Learn** about topics | Find **itemized** information |
-| Entry point | [Essential tutorials](./guides/index.md) | [Core concepts](./core-knowledge/index.md) | [References](./references/index.md) |
+| Entry point | [Essential tutorials](./guides/index.md) | [Essential concepts](./core-knowledge/index.md) | [References](./references/index.md) |
 
 Commonly requested resources such as [benchmarks](./benchmarks/index.md) and [roadmap](./roadmap/index.md) have their own sections, and others such as the [FAQ](./more-resources/faq.md), [glossary](./more-resources/glossary.md) and more can be found in the [More Resources](./more-resources/index.md) section.
 
@@ -36,7 +36,7 @@ If you are new to Weaviate, we recommend starting with these sections:
 2. [Quickstart tutorial](./getting-started/index.md), and
 3. [Installation & Configuration](./installation/index.md)
 
-Then, we suggest you also read through the [essential tutorials](./guides/index.md), [search tutorials](./search/index.md) and [core concepts](./core-knowledge/index.md) before starting to use Weaviate for your own project.
+Then, we suggest you also read through the [essential tutorials](./guides/index.md), [search tutorials](./search/index.md) and [essential concepts](./core-knowledge/index.md) before starting to use Weaviate for your own project.
 
 :::info Help us to help you!
 We appreciate that we have a diverse community with different experiences and backgrounds. So if you find that the documentation does not quite suit **your** needs, we would love to hear from you.

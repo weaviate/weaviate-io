@@ -1,6 +1,6 @@
 ---
 title: Authorization
-sidebar_position: 4
+sidebar_position: 14
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration

@@ -1,6 +1,6 @@
 ---
 title: Monitoring
-sidebar_position: 8
+sidebar_position: 18
 # layout: layout-documentation
 # bodyclass: ["page--guides", " "]
 # solution: weaviate

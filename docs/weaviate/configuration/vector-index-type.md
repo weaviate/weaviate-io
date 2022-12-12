@@ -1,6 +1,6 @@
 ---
 title: Vector Index
-sidebar_position: 3
+sidebar_position: 13
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration

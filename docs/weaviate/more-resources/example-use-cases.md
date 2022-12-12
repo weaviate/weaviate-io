@@ -18,6 +18,7 @@ sidebar_position: 6
 ---
 
 Most use cases of Weaviate benefit from the following two core concepts: 
+
 1. **Semantic search.**\
   [80% of data is unstructured](https://www.forbes.com/sites/forbestechcouncil/2019/01/29/the-80-blind-spot-are-you-ignoring-unstructured-organizational-data/) and the largest search engine in the world has only indexed [0.004%](https://www.seeker.com/how-much-of-the-internet-is-hidden-1792697912.html) of all data available. With Weaviate and its Contextionary, semantic search in unstructured data becomes possible. Various use cases benefit from unlocking this potential of unstructured data by semantic search, see [Document search and analysis](#document-search-and-analysis) and [Product search for E-commerce](#product-search-for-e-commerce).
 2. **Automatic classification.**\
