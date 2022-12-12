@@ -71,7 +71,13 @@
   }
 
   .navbar {
-    background-color: transparent;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 4%,
+      rgba(17, 11, 62, 1) 50%,
+      rgba(25, 16, 92, 1) 96%
+    );
   }
   .navbar__logo {
     height: 4rem;
