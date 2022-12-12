@@ -23,7 +23,7 @@ This section is from Installation in Weaviate Docs Classic.
 
 This section provides an overview of available options for running Weaviate, and instructions for installation and configuration for each option. 
 
-After reading this section, take a look the [advanced configuration](../configuration/index.md) as well for detailed configuration options.
+You can find detailed configuration options in [references: configuration](../configuration/index.md).
 
 ## Options for running Weaviate
 

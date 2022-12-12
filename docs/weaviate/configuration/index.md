@@ -1,5 +1,5 @@
 ---
-title: Advanced Configuration
+title: References - Configuration
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -18,7 +18,10 @@ sidebar_position: 0
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution NOTE:
-This section is from Configuration in Weaviate Docs Classic.
+This section is from Configuration in Weaviate Docs Classic. Additionally:
+- Schema:Index + Schema:Configuration in Weaviate Docs Classic.
+- Data types in Weaviate Docs Classic.
+- Vector index plugins:Distance metrics in Weaviate Docs Classic.
 :::
 
 ## Overview

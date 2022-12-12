@@ -20,8 +20,8 @@ The "Concepts" sections come from
 - Core Knowledge in Weaviate Docs Classic, minus:
   - "Console", which is now in Tutorials: Further Topics.
   - "Clients", which has been added to Client-libraries/index
+- "Data objects" is most of "Basics"
 - Modules, from Modules:Index + some of the theory in Configuration:Modules in Weaviate Docs Classic
-- Vector indexing, from Vector Index (ANN) Plugins:Index + HNSW in Weaviate Docs Classic
 :::
 
 ## Overview

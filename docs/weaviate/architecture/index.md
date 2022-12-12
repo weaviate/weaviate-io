@@ -1,5 +1,5 @@
 ---
-title: Concepts - Architecture
+title: Concepts - Advanced
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -14,7 +14,8 @@ sidebar_position: 0
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution NOTE:
-The "Concepts: Advanced" sections comes from Architecture in Weaviate Docs Classic
+The "Concepts: Advanced" sections comes from Architecture in Weaviate Docs Classic. Plus:
+- Vector indexing, from Vector Index (ANN) Plugins:Index + HNSW in Weaviate Docs Classic
 :::
 
 ## Overview

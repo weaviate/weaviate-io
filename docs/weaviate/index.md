@@ -14,11 +14,11 @@ sidebar_position: 0
 # toc: true
 ---
 
-## Welcome!
+## Overview
 
-Welcome to the documentation site for Weaviate, an open source vector search engine.
+Welcome to the documentation section for Weaviate, an open source vector search engine.
 
-This site is for **anyone** who is building, or thinking about building, something with Weaviate. Our goal is to get you to that end state faster, whether it be an evaluation report, a proof of concept, or a production database.
+The Weaviate docs are for **anyone** who is building, or thinking about building, something with Weaviate. Our goal is to get you to that end state faster, whether it be an evaluation report, a proof of concept, or a production database.
 
 To this end, the majority of the content is categorized into one of **three categories**, each category being structured with a particular focus in mind:
 
