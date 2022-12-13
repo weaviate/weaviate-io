@@ -1,6 +1,6 @@
 ---
-title: (TBC) Use the Weaviate Console
-sidebar_position: 2
+title: How to use the Weaviate console
+sidebar_position: 9
 
 # layout: layout-documentation
 # solution: weaviate

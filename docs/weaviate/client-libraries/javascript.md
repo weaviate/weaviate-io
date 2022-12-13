@@ -61,13 +61,13 @@ const client = weaviate.client({
 
 # References
 
-All [RESTful endpoints](./references/rest/index.md) and [GraphQL functions](./references/graphql/index.md) references covered by the JS client, and explained on those reference pages in the code blocks.
+All [RESTful endpoints](../references/rest/index.md) and [GraphQL functions](../references/graphql/index.md) references covered by the JS client, and explained on those reference pages in the code blocks.
 
 # Design
 
 ## Builder pattern
 
-The JavaScript client is designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](./references/rest/index.md) and the [GraphQL reference pages](./references/graphql/index.md).
+The JavaScript client is designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../references/rest/index.md) and the [GraphQL reference pages](../references/graphql/index.md).
 
 The code snippet above shows a simple query similar to `RESTful GET /v1/schema`. The client is initiated with requiring the package and connecting to the running instance. Then, a query is constructed with getting the `.schema` with `.getter()`. The query will be sent with the `.do()` function, this object is thus required for every function you want to build and execute. 
 

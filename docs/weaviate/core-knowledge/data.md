@@ -171,7 +171,9 @@ Then we can use the `UUID` from the above object, to attach it to the `Author` l
 
 Weaviate requires a data schema to be built before adding data.
 
-Classes and properties are defined in the schema. The schema is what specifies data types of each class property, possible graph links between data objects, and vectorizer module to be used for each class.
+import SchemaDef from '/_includes/definition-schema.md';
+
+<SchemaDef/>
 
 Designing and adding a data schema does not need to be done manually. In the absence of a data schema specification, Weaviate will generate a schema automatically from the provided data.
 

@@ -67,14 +67,14 @@ The response of a `GET` query of a data object will give you information about a
 | `id` | uuid | none | the uuid of the data object |
 | `lastUpdateTimeUnix` | unix timestamp | none | the time stamp when the data object was last updated |
 | `properties` > `{property_name}` | dataType | none | the name and value of an individual property |
-| `properties` > `{cref_property_name}` > `classification` > `closestLosingDistance` | float | `classification` | The lowest distance of a neighbor in the losing group. Optional. If `k` equals the size of the winning group, there is no losing group. See for more info [here](/docs/weaviate/guides-further/how-to-do-classification.md).|
-| `properties` > `{cref_property_name}` > `classification` > `closestOverallDistance` | float | `classification` | The lowest distance of any neighbor, regardless of whether they were in the winning or losing. See for more info [here](/docs/weaviate/guides-further/how-to-do-classification.md).|
-| `properties` > `{cref_property_name}` > `classification` > `closestWinningDistance` | float | `classification` | Closest distance of a neighbor from the winning group. See for more info [here](/docs/weaviate/guides-further/how-to-do-classification.md).|
-| `properties` > `{cref_property_name}` > `classification` > `losingCount` | integer | `classification` | Size of the losing group, can be 0 if the winning group size equals `k`. See for more info [here](/docs/weaviate/guides-further/how-to-do-classification.md).|
-| `properties` > `{cref_property_name}` > `classification` > `meanLosingDistance` | float | `classification` | The mean distance of the losing group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. See for more info [here](/docs/weaviate/guides-further/how-to-do-classification.md).|
-| `properties` > `{cref_property_name}` > `classification` > `meanWinningDistance` | float | `classification` | The mean distance of the winning group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. See for more info [here](/docs/weaviate/guides-further/how-to-do-classification.md).|
-| `properties` > `{cref_property_name}` > `classification` > `overallCount` | integer | `classification` | Overall neighbors checked as part of the classification. In most cases this will equal `k`, but could be lower than `k` - for example if not enough data was present. See for more info [here](/docs/weaviate/guides-further/how-to-do-classification.md).|
-| `properties` > `{cref_property_name}` > `classification` > `winningCount` | integer | `classification` | Size of the winning group, a number between 1 and `k`. See for more info [here](/docs/weaviate/guides-further/how-to-do-classification.md).
+| `properties` > `{cref_property_name}` > `classification` > `closestLosingDistance` | float | `classification` | The lowest distance of a neighbor in the losing group. Optional. If `k` equals the size of the winning group, there is no losing group. |
+| `properties` > `{cref_property_name}` > `classification` > `closestOverallDistance` | float | `classification` | The lowest distance of any neighbor, regardless of whether they were in the winning or losing. |
+| `properties` > `{cref_property_name}` > `classification` > `closestWinningDistance` | float | `classification` | Closest distance of a neighbor from the winning group. |
+| `properties` > `{cref_property_name}` > `classification` > `losingCount` | integer | `classification` | Size of the losing group, can be 0 if the winning group size equals `k`. |
+| `properties` > `{cref_property_name}` > `classification` > `meanLosingDistance` | float | `classification` | The mean distance of the losing group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
+| `properties` > `{cref_property_name}` > `classification` > `meanWinningDistance` | float | `classification` | The mean distance of the winning group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
+| `properties` > `{cref_property_name}` > `classification` > `overallCount` | integer | `classification` | Overall neighbors checked as part of the classification. In most cases this will equal `k`, but could be lower than `k` - for example if not enough data was present. |
+| `properties` > `{cref_property_name}` > `classification` > `winningCount` | integer | `classification` | Size of the winning group, a number between 1 and `k`. 
 | `vector` | list of floats | `vector` | the long vector of the location of the object in the 300 dimensional space | 
 | `classification` > `basedOn` | string |  `classification` | the property name where the classification was based on |
 | `classification` > `classifiedFields` | string |  `classification` | the classified property |
@@ -156,7 +156,7 @@ import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geoco
 
 When you don't want to use a vectorizer to calculate a vector for your data object, and want to enter the vector yourself, you can this this as follows. 
 
-1. First, make sure that the `"vectorizer"` is set to `"none"` in the right class in the [data schema](/docs/weaviate/references/schema-configuration.md#vectorizer) (`"vectorizer": "none"`). This is important so Weaviate knows not to do rely on any of it's modules to do model inference. *Note: If you are running without any modules and have therefore already configured the default vectorizer to be `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), you can omit this step.*
+1. First, make sure that the `"vectorizer"` is set to `"none"` in the right class in the [data schema](/docs/weaviate/configuration/schema-configuration.md#vectorizer) (`"vectorizer": "none"`). This is important so Weaviate knows not to do rely on any of it's modules to do model inference. *Note: If you are running without any modules and have therefore already configured the default vectorizer to be `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), you can omit this step.*
 2. Then, attach the vector in a special `"vector"` field. An example of this looks like: 
 
 <!-- {% include code/1.x/semantic-kind.create.vector.html %} -->

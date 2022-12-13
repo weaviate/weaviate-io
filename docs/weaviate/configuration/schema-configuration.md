@@ -126,7 +126,7 @@ In case you don't want to use a vectorization module to calculate vectors from d
 
 __Regulate semantic indexing__
 
-With the [`text2vec-contextionary`](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing) how this works.
+With the [`text2vec-contextionary`](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/docs/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing) how this works.
 
 ### vectorIndexType
 

@@ -105,10 +105,10 @@ The inverted index is by default _on_. You can simply turn it of like this:
 A rule of thumb to follow when determining if you turn it on or off is this: _if you don't need it to query, turn it off._
 
 :::note
-We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](/docs/weaviate/references/datatypes.md#datatype-string-vs-text).
+We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](/docs/weaviate/configuration/datatypes.md#datatype-string-vs-text).
 :::
 
-You can also enable an inverted index to search [based on timestamps](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--indextimestamps).
+You can also enable an inverted index to search [based on timestamps](/docs/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps).
 
 ```js
 {

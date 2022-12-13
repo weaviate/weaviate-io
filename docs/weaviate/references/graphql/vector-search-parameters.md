@@ -40,7 +40,7 @@ This filter allows you to find data objects in the vicinity of an input vector. 
 | Variables | Mandatory | Type | Description |
 | --- | --- | --- | --- |
 | `vector` | yes | `[float]` | This variable takes a vector embedding in the form of an array of floats. The array should have the same length as the vectors in this class. |
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/docs/weaviate/references/distances.md). |
+| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/docs/weaviate/configuration/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
 
 #### Example
@@ -75,7 +75,7 @@ This filter allows you to find data objects in the vicinity of other data object
 | --- | --- | --- | --- |
 | `id` | yes | `UUID` | Data object identifier in the uuid format. |
 | `beacon` | yes | `url` | Data object identifier in the beacon URL format. E.g., `weaviate://<hostname>/<kind>/id`. |
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/docs/weaviate/references/distances.md). |
+| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/docs/weaviate/configuration/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
 
 #### Example
@@ -180,7 +180,7 @@ This filter allows you to find data objects in the vicinity of the vector repres
 | `moveAwayFrom{concepts}`| no | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
 | `moveAwayFrom{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space | 
 | `moveAwayFrom{force}`| no | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible | 
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/docs/weaviate/references/distances.md). |
+| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/docs/weaviate/configuration/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
 
 #### Example I

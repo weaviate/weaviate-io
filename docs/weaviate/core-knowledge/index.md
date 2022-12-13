@@ -32,7 +32,7 @@ This section aims to explain key aspects that will help you get the most out of 
 
 By the time you are done reading these pages, you should have some familiarity with Weaviate and its components. You may then wish to move onto [advanced concepts](../architecture/index.md), which will cover aspects related to resource requirements, performance, and scalability.
 
-These "Concepts" sections are largely theoretical, and you can treat them as background reading. If you are after something more practical, the [quickstart tutorial](../getting-started/index.md) will help you. Then, the [references](../references/index.md) section provides descriptions of various aspects, such as endpoints, client libraries, schema or modules.
+These "Concepts" sections are largely theoretical, and you can treat them as background reading. If you are after something more practical, the [quickstart tutorial](developers/weaviate/getting-started) will help you. Then, the [references](../references/index.md) section provides descriptions of various aspects, such as endpoints, client libraries, schema or modules.
 
 ## More resources
 

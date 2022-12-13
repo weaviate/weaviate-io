@@ -1,5 +1,5 @@
 ---
-title: (TBC) Import data
+title: How to import data
 sidebar_position: 3
 # layout: layout-documentation
 # solution: weaviate
@@ -18,7 +18,9 @@ sidebar_position: 3
 
 ## Overview
 
-Learn how to import data into Weaviate
+In this tutorial, you will learn how to import data into Weaviate using the batch import method. 
+
+By the end of this tutorial, you should have a good idea of the steps involved in importing data, and when to use the batch import method.
 
 <!-- TODO: Finish this page! -->
 :::caution Under construction.
@@ -28,7 +30,7 @@ Migrated from "How to import data" tutorial from Weaviate Docs Classic
 
 # Introduction 
 
-Data is added through the RESTful API. Python and JavaScript clients are available. The syntax of a data object is as follows:
+Data is added through the RESTful API. The syntax of a data object is as follows:
 
 ```json
 {
@@ -42,10 +44,12 @@ Data is added through the RESTful API. Python and JavaScript clients are availab
 
 # Prerequisites
 
- 1. **Connect to a Weaviate instance.**\\
- If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with the `text2vec-contextionary` as vectorization module.
- 2. **Upload a schema**. \\
- Learn how to create and upload a schema [here](./how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
+We recommend reading the [Quickstart tutorial](../getting-started/index.md) first before tackling this tutorial.
+
+1. **Connect to a Weaviate instance.**
+For the tutorial, you will need a Weaviate instance running with the `text2vec-contextionary` module. We assume your instance is running at `http://localhost:8080`.
+2. **Upload a schema**.
+Learn how to create and upload a schema [here](./how-to-create-a-schema.md). In this guide we assume you have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
 
 # Add a data object
 

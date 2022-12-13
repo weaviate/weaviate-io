@@ -262,7 +262,7 @@ import CodeNearImageEncode from '/_includes/code/img2vec-neural.nearimage.encode
 
 You can set a maximum allowed `distance`, which will be used to determine which
 data results to return. The interpretation of the value of the distance field
-depends on the [distance metric used](/docs/weaviate/references/distances.md).
+depends on the [distance metric used](/docs/weaviate/configuration/distances.md).
 
 If the distance metric is `cosine` you can also use `certainty` instead of
 `distance`. Certainty normalizes the distance in a range of 0..1, where 0
