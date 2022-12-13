@@ -71,7 +71,7 @@ correct, all contents of the token are trusted, which authenticates the user bas
 
 To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate. Additionally, the **OIDC token issuer** must be configured as appropriate. Configuring the OIDC token issuer is outside the scope of this document.
 
-> As of November 2022, we are aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff){:target="_blank"} may be useful.
+> As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff){:target="_blank"} may be useful.
 
 The OIDC-related Docker Compose environment variables are shown below. Please see the inline-yaml comments for details around the respective fields:
 
@@ -132,29 +132,24 @@ The OIDC standard allows for many different methods *(flows)* of obtaining token
 
 
 While it is outside the scope of our documentation to cover every OIDC authentication flow, some possible options are to:
-- Use the `client credentials flow` for machine-to-machine authorization. (Note that this will authorize an app, rather than a particular user.)
-  - As of December 2022, we have validated it with Okta and Azure as identity provider; however GCP does not support client credentials grant flow.
+- Use `client credentials flow` for machine-to-machine authorization. (Note that this will authorize an app, rather than a particular user.)
+  - Validated using Okta and Azure as identity providers; GCP does not support client credentials grant flow (as of December 2022).
   - Weaviate's Python client directly supports this method.
-  - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to aquire a new access token on expiration of the old one.
-- Use the `resource owner password flow` for trusted applications. 
+  - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
+- Use `resource owner password flow` for trusted applications. 
   - You can use Weaviate Cloud Services / WCS (`https://auth.wcs.api.semi.technology/`) as the token issuer using the `resource owner password flow`.
   - Weaviate's Python client directly supports this method.
-- Or use the `hybrid flow` if Microsoft Azure AD is your token issuer or if you would like to prevent exposing passwords.
+- Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
-We outline the steps below for both methods of obtaining a token.
+### OIDC support for Weaviate clients
 
-### Client credentials grant
+The latest versions (from mid-December 2022 and onwards) of Python, JavaScript, Go and Java Weaviate clients support OIDC authentication. If Weaviate is set up to use the `client credentials grant` flow as or `resource owner password flow`, the respective Weaviate client can instantiate a connection to Weaviate that incorporates the authentication flow.
 
-1. Send a GET request to `[WEAVIATE_URL]/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`)
-2. Parse the `clientId` and `href` from `wv_oidc_config`
-3. Send a GET request to `href` to fetch the token issuer's OIDC configuration (`token_oidc_config`)
-4. Check that the `token_endpoint_auth_methods_supported` response includes a `client_secret_<specific_method>`. We will base the remaining instruction based on `client_secret_post` being enabled.
-5. Send a POST request to the `token_endpoint` of `token_oidc_config` with the body: 
-  - `{"grant_type": "client_credentials", "client_id": client_id, "client_secret": [CLIENT_SECRET], "scope": [SCOPE]}`. 
-  - Where `[CLIENT_SECRET]` is replaced with the actual client secret, and `[SCOPE]` is replaced with the appropraite value for the provider.
-    - For Okta, the `[SCOPE]` value should be the one set in the `authorization server` configuration.
-    - For Azure AD, the `[SCOPE]` value should be `[CLIENT_ID]/.default` where `[CLIENT_ID]` is replaced with the actual client id value.
-6. Parse the response (`token_resp`), and look for `access_token` in `token_resp`. This is your Bearer token.
+Please refer to the [client libraries documentation](../client-libraries/index.md) for each client for code examples.
+
+### Manually obtaining & passing tokens
+
+For cases or workflows where you may wish to manually obtain a token, we outline below the steps to do so, for the resource owner password flow and hybrid flow.
 
 ### Resource owner password flow
 
@@ -169,7 +164,7 @@ We outline the steps below for both methods of obtaining a token.
   - Where `[USERNAME]` and `[PASSWORD]` are replaced with the actual values for each.
 6. Parse the response (`token_resp`), and look for `access_token` in `token_resp`. This is your Bearer token.
 
-### Hybrid flow
+#### Hybrid flow
 
 1. Send a GET request to `[WEAVIATE_URL]/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`)
 2. Parse the `clientId` and `href` from `wv_oidc_config`
@@ -179,12 +174,6 @@ We outline the steps below for both methods of obtaining a token.
 - the `redirect_url` must have been [pre-registered](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest){:target="_blank"} with your token issuer. 
 5. Go to the `auth_url` in your browser, and log in if prompted. If successful, the token issuer will redirect the browser to the `redirect_url`, with additional parameters that include an `id_token` parameter. 
 6. Parse the `id_token` parameter value. This is your Bearer token.
-
-### OIDC support for Weaviate clients
-
-The latest versions (from mid-December 2022 and onwards) of Python, JavaScript, Go and Java Weaviate clients support OIDC authentication. If Weaviate is set up to use the `client credentials grant` flow as or `resource owner password flow`, the respective Weaviate client can instantiate a connection to Weaviate that incorporates the authentication flow.
-
-Please refer to the relevant documentation for each client for code examples.
 
 ### Code example
 
@@ -255,7 +244,7 @@ print("Set as bearer token in the clients to access Weaviate.")
 
 ### Token lifetime
 
-The token has a configurable expiry time that is set by the token issuer. We suggest establishing a workflow to periodically obtain a new token before expiry. 
+The token has a configurable expiry time that is set by the token issuer. We suggest establishing a workflow to periodically obtain a new token before expiry. The Weaviate client
 
 ## Add a Bearer to a Request
 
