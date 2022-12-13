@@ -130,7 +130,7 @@ Over the Christmas break, I will take some time to build a larger app to more th
 If you have interesting data project ideas, give me a shout on [Weaviate community Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or via [Twitter @sebawita](https://twitter.com/sebawita).
 
 ### Project in github
-You can find the test project on [GitHub][https://github.com/weaviate-tutorials/cohere-multilingual-test]. Follow the readme instructions on how to set it up for yourself.
+You can find the test project on [GitHub](https://github.com/weaviate-tutorials/cohere-multilingual-test). Follow the readme instructions on how to set it up for yourself.
 
 Probably the most interesting part is the [query code](https://github.com/weaviate-tutorials/cohere-multilingual-test/blob/main/_query_base.py), which is made of 3 parts:
 
