@@ -28,11 +28,11 @@ The "Concepts" sections come from
 
 Welcome to the Weaviate **Concepts**.
 
-This section focusses on the core **knowledge** required to understand and use Weaviate. That includes an overview of what Weaviate is and what its core components are, as well as a little bit of how they work. 
+This section aims to explain key aspects that will help you get the most out of Weaviate.
 
-By the time you are done reading these pages, you should have some familiarity with Weaviate and its components. You may then wish to move onto our in-depth explanations about Weaviate's [architecture](../architecture/index.md).
+By the time you are done reading these pages, you should have some familiarity with Weaviate and its components. You may then wish to move onto [advanced concepts](../architecture/index.md), which will cover aspects related to resource requirements, performance, and scalability.
 
-These "Concepts" sections are largely theoretical, and you can treat them as background reading. If you are after something more practical, the [quickstart tutorial](../getting-started/index.md) will help you. Then, the [references](../references/index.md) section provides specifics of various aspects, such as endpoints, client libraries, schema or modules.
+These "Concepts" sections are largely theoretical, and you can treat them as background reading. If you are after something more practical, the [quickstart tutorial](../getting-started/index.md) will help you. Then, the [references](../references/index.md) section provides descriptions of various aspects, such as endpoints, client libraries, schema or modules.
 
 ## More resources
 

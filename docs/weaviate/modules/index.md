@@ -9,10 +9,13 @@ The "References:Modules" section comes from Modules in Weaviate Docs Classic.
 :::
 ## Overview
 
-This section contains **references** in relation to modules. We also have other sections which describe:
+This section describes Weaviate's individual modules, including their capabilities and how to use them. 
 
-- [How to **configure**](../configuration/modules.md) Weaviate to use particular modules.
-- [**Concepts** related to modules](../core-knowledge/modules.md) in general
+- The Retrievers & Vectorizaters modules such as `text2vec-*` or `img2vec-*` convert data objects to vectors. 
+- The Readers & Generators modules process data after retrieving the data from Weaviate, such as to answer questions or summarize text.
+- The other modules include everything else, such as a spellcheck module.
+
+Alternatively, we have a page on [how to **configure** Weaviate to use particular modules](../configuration/modules.md), and one on [**concepts** related to modules](../core-knowledge/modules.md) in general.
 
 ## General
 
@@ -26,7 +29,7 @@ Modules can be "vectorizers" (defines how the numbers in the vectors are chosen 
 - General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](../references/rest/meta.md).
 - Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](../references/graphql/additional-properties.md).
 - A module can add [filters](../references/graphql/filters.md) in GraphQL queries.
-- Which vectorizer and other modules are applied to which data classes is configured in the [schema](../references/schema-configuration.md#vectorizer).
+- Which vectorizer and other modules are applied to which data classes is configured in the [schema](../configuration/schema-configuration.md#vectorizer).
 
 ## Default vectorizer module
 

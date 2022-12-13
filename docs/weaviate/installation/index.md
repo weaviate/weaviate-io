@@ -21,9 +21,9 @@ This section is from Installation in Weaviate Docs Classic.
 
 ## Overview
 
-This section provides an overview of available options for running Weaviate, and instructions for installation and configuration for each option. 
+This section is designed to inform you of available options for running Weaviate instances. It also includes instructions for each option on how to install and configure instances of Weaviate. 
 
-You can find detailed configuration options in [references: configuration](../configuration/index.md).
+If you are looking for a comprehensive set of configuration options, you can find them in [references: configuration](../configuration/index.md).
 
 ## Options for running Weaviate
 
