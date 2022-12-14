@@ -33,7 +33,7 @@ A: Yes, it is called the [Weaviate Console](https://console.semi.technology/).
 
 ## Q: How can I configure the size of my instance?
 
-A: You can find this in the [architecture section](../architecture/resources#an-example-calculation) of the docs.
+A: You can find this in the [architecture section](../architecture/resources.html#an-example-calculation) of the docs.
 
 ## Q: Does Weaviate use Hnswlib?
 
@@ -109,7 +109,7 @@ A: Because you're probably among the first who asked for one! Ping us [on Github
 
 ## Q: How can I deal with custom terminology?
 
-A: Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. The Contextionary has an endpoint that allows [extending it](../retriever-vectorizer-modules/text2vec-contextionary#extending-the-contextionary) via transfer learning.
+A: Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. The Contextionary has an endpoint that allows [extending it](../retriever-vectorizer-modules/text2vec-contextionary.html#extending-the-contextionary) via transfer learning.
 
 ## Q: How can you index data near-realtime without losing semantic meaning?
 
@@ -121,15 +121,15 @@ A: How can Weaviate interpret that you mean a company, as in business, and not a
 
 ## Q: Can I connect my own module?
 
-[Yes!](../other-modules/custom-modules)
+[Yes!](../other-modules/custom-modules.html)
 
 ## Q: What is the difference between Weaviate and databases like Elasticsearch?
 
-A: Other database systems like Elasticsearch rely on inverted indices, which makes search super fast. Weaviate also uses inverted indices to store data and values. But additionally, Weaviate is also a vector-native search database, which means that data is stored along with [vector embeddings](../core-knowledge/basics), which enables semantic search. This combination of data storage is unique, and enables fast, filtered and semantic search from end-to-end.
+A: Other database systems like Elasticsearch rely on inverted indices, which makes search super fast. Weaviate also uses inverted indices to store data and values. But additionally, Weaviate is also a vector-native search database, which means that data is stored along with [vector embeddings](../core-knowledge/basics.html), which enables semantic search. This combination of data storage is unique, and enables fast, filtered and semantic search from end-to-end.
 
 ## Q: How can slow queries be optimized?
 
-A: Queries containing deeply nested references that need to be filtered or resolved can take some time. Learn more about [query optimization strategies](./performance#costs-of-queries-and-operations).
+A: Queries containing deeply nested references that need to be filtered or resolved can take some time. Learn more about [query optimization strategies](./performance.html#costs-of-queries-and-operations).
 
 ## Q: Data import takes long / is slow (slower than before v1.0.0), what is causing this and what can I do?
 
@@ -149,7 +149,7 @@ A: Sure, you can [add those requests here](https://github.com/semi-technologies/
 
 ## Q: Does Weaviate require NFS volumes on Kubernetes?
 
-A: By default, no NFS volumes are active. In a production setting, we recommend turning etcd disaster recovery on, which requires an NFS volume. However, [the helm docs](../getting-started/installation) contain instructions on how to deploy an nfs-provisioner. For more details, see also this [Stack Overflow answer](https://stackoverflow.com/a/60505796/5322199).
+A: By default, no NFS volumes are active. In a production setting, we recommend turning etcd disaster recovery on, which requires an NFS volume. However, [the helm docs](../getting-started/installation.html) contain instructions on how to deploy an nfs-provisioner. For more details, see also this [Stack Overflow answer](https://stackoverflow.com/a/60505796/5322199).
 
 ## Q: What is more important for query speed: more CPU power, or more RAM?
 
@@ -193,7 +193,7 @@ In short: for convenience, you can add relations to your data schema, because yo
 
 ## Q: Is it possible to create one-to-many relationships in the schema?
 
-A: Yes, it is possible to refer to one or more objects (Class -> one or more Classes) through cross-references. [This example](../tutorials/how-to-create-a-schema#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` property has references to the `Article` class. Referring to lists or arrays of primitives will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
+A: Yes, it is possible to refer to one or more objects (Class -> one or more Classes) through cross-references. [This example](../tutorials/how-to-create-a-schema.html#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` property has references to the `Article` class. Referring to lists or arrays of primitives will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
 
 ## Q: What is the difference between `text` and `string` and `valueText` and `valueString`?
 
@@ -219,8 +219,7 @@ A: The UUID must be presented as a string matching the [Canonical Textual repres
 
 ## Q: What is the best way to iterate through objects? Can I do paginated API calls? 
 
-A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. Learn [how to use these parameters](../graphql-references/filters#limit-argument), including tips on performance and limitations.
-
+A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. Learn [how to use these parameters](../graphql-references/filters.html#limit-argument), including tips on performance and limitations.
 
 ## Q: What happens when the weaviate docker container restarts? Is my data in the weaviate database lost?
 
@@ -298,7 +297,7 @@ Weaviate makes use of ANN indices to serve vector searches. An ANN index is an
 approximate nearest neighbor index. The "approximate" part refers to an explicit
 recall-query-speed tradeoff. This trade-off is
 presented in detail in the [ANN benchmarks
-section](../benchmarks/ann#results). For example, a 98% recall for a given
+section](../benchmarks/ann.html#results). For example, a 98% recall for a given
 set of HNSW parameters means that 2% of results will not match the true
 nearest neighbors. What build parameters lead to what recall depends on the
 dataset used. The benchmark pages shows 4 different example datasets. Based on
@@ -335,7 +334,7 @@ If you need a higher search quality for a given limit you can consider the follo
 0. Instead of using a dynamic `ef` value, use a fixed one that provides the desired recall.
 0. If your search quality varies a lot depending on the query-time `ef` values,
    you should also consider choosing stronger build parameters. The [ANN
-   benchmarks section](../benchmarks/ann#results) present a combination of
+   benchmarks section](../benchmarks/ann.html#results) present a combination of
    many different parameter combination for various datasets.
 
 ## More questions? 
