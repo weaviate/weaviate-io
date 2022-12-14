@@ -158,26 +158,26 @@ upgrading.
 * No breaking changes
 * New features
   * ### Array Datatypes (#1611)
-  Starting with this releases, primitive object properties are no longer limited to individual properties, but can also include lists of primitives. Array types can be stored, filtered and aggregated in the same way as other primitives.
+    Starting with this release, primitive object properties are no longer limited to individual properties, but can also include lists of primitives. Array types can be stored, filtered and aggregated in the same way as other primitives.
 
     Auto-schema will automatically recognize lists of `string`/`text` and `number`/`int`. You can also explicitly specify lists in the schema by using the following data types `string[]`, `text[]`, `int[]`, `number[]`. A type that is assigned to be an array, must always stay an array, even if it only contains a single element. 
 
-  * ### New Module: `text-spellcheck` - Check and auto-correct misspelled search terms (#1606)
+  * ### New Module: `text-spellcheck` - Check and autocorrect misspelled search terms (#1606)
     Use the new spellchecker module to verify user-provided search queries (in existing `nearText` or `ask` functions) are spelled correctly and even suggest alternative, correct spellings. Spell-checking happens at query time. 
 
     There are two ways to use this module:
-    1. It provides a new additional prop which can be used to check (but not alter) the provided queries:
+    1. It provides a new additional property which can be used to check (but not alter) the provided queries:
     The following query:
     ```graphql
     {
       Get {
-        Post(nearText:{
+        Post(nearText: {
           concepts: "missspelled text"
         }) {
           content
-          _additional{
-            spellCheck{
-              changes{
+          _additional {
+            spellCheck {
+              changes {
                 corrected
                 original
               }
@@ -191,7 +191,7 @@ upgrading.
     }
     ```
     
-    will produce results, similar to the following:
+    will produce results similar to the following:
     
     ```
       "_additional": {
@@ -212,12 +212,12 @@ upgrading.
       "content": "..."
     },
     ```
-    2. It extends existing `text2vec-modules` with a `autoCorrect` flag, which can be used to correct the query if incorrect in the background.
+    2. It extends existing `text2vec-*` modules with an `autoCorrect` flag, which can be used to automatically correct the query if misspelled.
 
   * ### New Module `ner-transformers` - Extract entities from Weaviate using transformers (#1632)
-    Use transformer-based models to extract entities from your existing Weaviate objects on the fly. Entity Extraction happens at query time. Note that for maximum performance, transformer-based models should run with GPUs. CPUs can be used, but the throughput will be lower.
+    Use transformer-based models to extract entities from your existing Weaviate objects on the fly. Entity extraction happens at query time. Note that for maximum performance, transformer-based models should run with GPUs. CPUs can be used, but the throughput will be lower.
 
-    To make use of the modules capabilities, simply extend your query with the following new `_additional` property:
+    To make use of the module's capabilities, simply extend your query with the following new `_additional` property:
 
     ```graphql
     {
