@@ -19,7 +19,7 @@ sidebar_position: 1
 
 The `text2vec-​openai` module allows you to use the [OpenAI embeddings](https://beta.openai.com/docs/guides/embeddings) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using OpenAI's Ada, Babbage, Curie, or Davinci models.
 
-* Note: this module uses a third-party API.
+* Note: this module uses a third-party API and may incur costs.
 * Note: make sure to check the OpenAI [pricing page](https://openai.com/api/pricing/) before vectorizing large amounts of data.
 * Note: Weaviate automatically parallelizes requests to the OpenAI-API when using the batch endpoint, see the previous note.
 * Note: [Check-out the demo dataset](https://github.com/semi-technologies/DEMO-text2vec-openai).
@@ -37,6 +37,7 @@ This module is enabled by default on the WCS
 You can find an example Docker-compose file below, which will spin up Weaviate with the OpenAI module.
 
 ```yaml
+---
 version: '3.4'
 services:
   weaviate:
@@ -52,6 +53,7 @@ services:
       ENABLE_MODULES: text2vec-openai
       OPENAI_APIKEY: sk-foobar # request a key on openai.com, setting this parameter is optional, you can also provide the API key on runtime
       CLUSTER_HOSTNAME: 'node1'
+...
 ```
 
 * Note: you can also use the [Weaviate configuration tool](/docs/weaviate/installation/docker-compose.md#configurator) to create a Weaviate setup with this module.
@@ -61,7 +63,7 @@ services:
 
 ​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/docs/weaviate/getting-started/schema.md) first.
 
-The following schema configuration uses the `babbage` model. 
+For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-openai` using the `babbage` model.
 
 ```json
 {
@@ -90,7 +92,8 @@ The following schema configuration uses the `babbage` model.
           },
           "name": "content"
         }
-      ]
+      ],
+      "vectorizer": "text2vec-openai"
     }
   ]
 }
@@ -98,8 +101,8 @@ The following schema configuration uses the `babbage` model.
 
 ## How to use
 
-* When sending a request to Weaviate, you can set the API key on query time: `X-OpenAI-Api-Key: <openai-api-key>`.
-* New GraphQL vector search parameters made available by this module can be found [here](/docs/weaviate/references/graphql/vector-search-parameters.md#neartext).
+* If the OpenAI API key is not set in the `text2vec-​openai` module, you can set the API key on query time by adding the following to the HTTP header: `X-OpenAI-Api-Key: <openai-api-key>`.
+* Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](../graphql-references/vector-search-parameters.html#neartext).
 
 ### Example
 

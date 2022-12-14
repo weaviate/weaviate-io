@@ -1,6 +1,6 @@
 ---
 title: Summarization
-sidebar_position: 3
+sidebar_position: 8
 
 # layout: layout-documentation
 # solution: weaviate

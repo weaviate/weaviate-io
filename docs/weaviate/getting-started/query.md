@@ -66,7 +66,7 @@ A more detailed explanation of Weaviate's GraphQL design is available [here](../
 
 In the basics getting started guide, you've learned [how Weaviate uses a class-property structure](../core-knowledge/data.md#data-objects-in-weaviate) and in the schema getting started guide you've learned [how you can define the class-property structure](./schema.md#create-your-first-class).
 
-Our demo dataset has two classes: `Article` and `Paragraph`. The `Article` class has the properties: `title` of the data type `string`, `hasParagraphs` of the data type `Paragraph`, and `linksToArticles` of the data type `Article`. The `Paragraph` class has the properties: `title` of the data type `string`, `content` of the data type `text`, `order` of the data type `int`, and `inArticle` of the data type `Article`. You can also inspect the schem of the demo dataset in JSON format [here](http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080/v1/schema).
+Our demo dataset has two classes: `Article` and `Paragraph`. The `Article` class has the properties: `title` of the data type `string`, `hasParagraphs` of the data type `Paragraph`, and `linksToArticles` of the data type `Article`. The `Paragraph` class has the properties: `title` of the data type `string`, `content` of the data type `text`, `order` of the data type `int`, and `inArticle` of the data type `Article`. You can also inspect the schema of the demo dataset in JSON format [here](http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080/v1/schema).
 
 If we now want to `Get{}` all (well, "all", in this case, "all" means limited to the default limit, more about this later) `Paragraph`s without cross-references we can run the following query:
 
@@ -237,7 +237,7 @@ You can also use the filters to query for specific vectors! Simply like this:
 
 Did you see `certainty`? This is the distance from the vector to the data objects. You can also calculate the cosine similarity if you like based on the certainty, more about this [here](../more-resources/faq.md#q-how-do-i-get-the-cosine-similarity-from-weaviates-certainty).
 
-You can also do the​ equivalent but based on the UUID of any object in the same vector space (the same, because we match based on vector length. But if you use the same model to vectorize in different classes you can also mix them).​
+You can also do the equivalent but based on the UUID of any object in the same vector space (the same, because we match based on vector length. But if you use the same model to vectorize in different classes you can also mix them).
 
 ```graphql
 {
@@ -260,17 +260,17 @@ You can also do the​ equivalent but based on the UUID of any object in the sam
 
 [Try out ⬆️](https://link.semi.technology/3BIQkU2)
 
-​Traditional inverted index filtering is also possible. In Weaviate we call this the `where` filter.
+Traditional inverted index filtering is also possible. In Weaviate we call this the `where` filter.
 
 The `where` filter takes three operands of its own:
 
 1. `path` is the graph path in your schema.
-2. `operator` is set to define what you want to do with the value inside the path (e.g., `Equal` or `GreaterThan`, etc. See the list [here](../references/graphql/filters.md#filter-structure)).
+2. `operator` is set to define what you want to do with the value inside the path (e.g., `Equal` or `GreaterThan`, etc. See the list [here](../graphql-references/filters.html#filter-structure)).
 3. `value*` is set based on the type of the property defined in `path`. So, if the property in `path` is an `int`, this becomes `valueInt`, if it's a `string` it becomes `valueString`. The value itself is whatever you want to filter on.
 
-​The examples below are a bit more explanatory.
+The examples below are a bit more explanatory.
 
-​Let's filter for "Italian cuisine" in the `title` of the `Paragraph`.
+Let's filter for "Italian cuisine" in the `title` of the `Paragraph`.
 
 ```graphql
 {
@@ -401,11 +401,11 @@ And yes, you can combine vector search with where filters.
 
 [Try out ⬆️](https://link.semi.technology/3QgJPfo)
 
-:::note Vector first
-We call Weaviate "vector first". This means that when combining vector search with a where filter, the where-filter will create an allowed-list that skips entries that are not allowed in the ANN index.
-:::
+<div class="alert alert-secondary alert-getting-started" markdown="1">
+💡 We call Weaviate "vector first". This means that when combining vector search with a where filter, the where-filter will create an allowed-list that skips entries that are not allowed in the ANN index.
+</div>
 
-If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) vectorizer module and the [Q&A generator](/docs/weaviate/modules/reader-generator-modules/qna-transformers.md) module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.
+If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`](../modules/retriever-vectorizer-modules/text2vec-transformers.md) vectorizer module and the [Q&A generator](../modules/reader-generator-modules/qna-transformers.md) module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.
 
 Let's explore the additional filters for the modules which are part of this dataset.
 
@@ -530,7 +530,7 @@ Talking about filters, wanna see something cool? Weaviate has many more function
 
 [Try out ⬆️](https://link.semi.technology/3vDh8Bk)
 
-Last but not least, all the standard filters are documented in the [filters section](../references/graphql/filters.md) of the GraphQL references documentation or in the documentation of the individual modules.
+Last but not least, all the standard filters are documented in the [filters section](../graphql-references/filters.html) of the GraphQL references documentation or in the documentation of the individual modules.
 
 ## Aggregate{}
 
@@ -609,7 +609,7 @@ The `order` property in the `Paragraph` class is a nice example of how you can u
 
 [Try out ⬆️](https://link.semi.technology/3QnXRfj)
 
-You can find detailed documentation on the `Aggregate{}` function [here](../references/graphql/aggregate.md).
+You can find detailed documentation on the `Aggregate{}` function [here](../graphql-references/aggregate.html).
 
 ## Explore{}
 
@@ -647,6 +647,7 @@ The `Explore{}` function works very straightforwardly and only returns four prop
 3. `certainty` is the order from the query to the dataobject.
 4. `distance` is the distance between the query and the data object.
 
+<!-- TODO: Replace these with :::alert or similar -->
 <div class="alert alert-secondary alert-getting-started" markdown="1">
 💡 Data objects without vectors and data objects with different vector lengths than the input vector length or ID are skipped.
 </div>
