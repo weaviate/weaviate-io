@@ -60,7 +60,7 @@ Last, we want to make graph relations, in the dataset from step one we will dist
 ![Paragraph cross-references](./img/cross-references.png)
 *Paragraph cross-references*
 
-The complete schema we import using the [Python client](/developers/weaviate/references/client-libraries/python) can be found [here](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/blob/main/step-2/import.py#L19-L120).
+The complete schema we import using the [Python client](/developers/weaviate/client-libraries/python) can be found [here](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/blob/main/step-2/import.py#L19-L120).
 
 ## Step 2.2 — Import the Data
 Because we are going to vectorize a lot of data. We will be using the same machine as mentioned in the opening but with 4 instead of 1 GPU.
@@ -85,7 +85,7 @@ We will also set the location of the volume outside Weaviate, in this case the d
 You can find the complete docker-compose file we've used here.
 
 ## Query the Data
-The current Weaviate setup has two modules enabled: semantic search and Q&A. The modules can be used for different types of queries. The query language used is GraphQL and can be used with a wide variety of [client libraries](/developers/weaviate/references/client-libraries) in different programming languages.
+The current Weaviate setup has two modules enabled: semantic search and Q&A. The modules can be used for different types of queries. The query language used is GraphQL and can be used with a wide variety of [client libraries](/developers/weaviate/client-libraries) in different programming languages.
 
 ### Example 1 — natural language questions
 In this example, we pose a natural language question, and we will assume that the first result contains the answer (hence the limit is set to 1). The result based on the latest dataset contains a certainty (i.e., the distance from the query to the answer in the vector space) of ≈ 0.68. In your end application, you can set limits to the certainty to determine if you want to present the results to the end-user, in the latest paragraph of this article (Implementation Strategies — Bringing Semantic Search to Production) you'll find more info about this.

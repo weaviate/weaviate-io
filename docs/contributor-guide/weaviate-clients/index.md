@@ -20,10 +20,10 @@ sidebar_position: 0
 # Contributor guidelines 
 
 There are currently four clients developed for Weaviate's APIs:
-* [Python](/docs/weaviate/references/client-libraries/python.md)
-* [Go](/docs/weaviate/references/client-libraries/go.md)
-* [JavaScript](/docs/weaviate/references/client-libraries/javascript.md)
-* [Java](/docs/weaviate/references/client-libraries/java.md)
+* [Python](/docs/weaviate/client-libraries/python.md)
+* [Go](/docs/weaviate/client-libraries/go.md)
+* [JavaScript](/docs/weaviate/client-libraries/javascript.md)
+* [Java](/docs/weaviate/client-libraries/java.md)
 
 These clients, and all future clients are and will be developed according to the following guidelines:
 
@@ -93,8 +93,8 @@ Then you can take a look at an existing client which matches your language the
 closest and get inspried. 
 
 For example, if you plan to implement a client in C#, it might make sense to look at the 
-[Java](/docs/weaviate/references/client-libraries/java.md) and
-[Go](/docs/weaviate/references/client-libraries/go.md) clients.
+[Java](/docs/weaviate/client-libraries/java.md) and
+[Go](/docs/weaviate/client-libraries/go.md) clients.
 
 Then we recommend to start porting one of the existing test suites and start
 implementing the client methods until all tests are passed. If you use the same

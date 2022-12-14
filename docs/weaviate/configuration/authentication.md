@@ -1,6 +1,6 @@
 ---
 title: Authorization
-sidebar_position: 4
+sidebar_position: 14
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration
@@ -246,7 +246,7 @@ For example, you can use a CURL command as shown below:
 $ curl http://localhost:8080/v1/objects -H "Authorization: Bearer {Bearer}"
 ```
 
-If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.html#authentication), [Javascript](../client-libraries/javascript.html#authentication), [Java](../client-libraries/java.html#authentication) or [Go](../client-libraries/go.html#authentication) to find instructions on how to attach a token with that client.
+If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#authentication), [Javascript](../client-libraries/javascript.md#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

@@ -32,12 +32,12 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 ![Supermarket map visualization](./img/supermarket.svg "Supermarket map visualization"){:height="75%" width="75%"}
 
 ## How to choose the right vector index plugin
-The first vector-storage plugin Weaviate supports is [HNSW](./hnsw.md), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when it comes to the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type, stay tuned for updates!
+The first vector-storage plugin Weaviate supports is [HNSW](./vector-index-plugins.md#hnsw), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when it comes to the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type, stay tuned for updates!
 
 ## Configuration of vector index type
-The index type can be specified per data class. Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](/docs/weaviate/references/schema-configuration.md). 
+The index type can be specified per data class. Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](/docs/weaviate/configuration/schema-configuration.md). 
 
-Example of a class [vector index configuration in your data schema](/docs/weaviate/references/schema-configuration.md): 
+Example of a class [vector index configuration in your data schema](/docs/weaviate/configuration/schema-configuration.md): 
 ```json
 {
   "class": "Article",
@@ -54,7 +54,7 @@ Example of a class [vector index configuration in your data schema](/docs/weavia
 }
 ```
 
-Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/docs/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/docs/weaviate/references/schema-configuration.md).
+Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/docs/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/docs/weaviate/configuration/schema-configuration.md).
 
 ## Can Weaviate support multiple vector index (ANN) plugins?
 
@@ -70,13 +70,13 @@ HNSW stands for Hierarchical Navigable Small World, a multilayered graph. Every 
 
 If there were no hierarchical layers in this approach, only the deepest layer (0) would be present and significantly more datapoints would have needed to be explored from the search query, since all data objects are present there. In higher layers, with less datapoints, fewer hops between datapoints need to be made, over larger distances. HNSW is a very fast and memory efficient approach of similarity search, because only the highest layer (top layer) is kept in cache instead of all the datapoints in the lowest layer. Only the datapoints that are closest to the search query are loaded once they are requested by a higher layer, which means that only a small amount of memory needs to be reserved.
 
-The picture shows how a HNSW algorithm is used to go from a search query vector (blue) on the top layer to the closes search result (green) in the lowest layer. Only three data hops are made (indicated by blue solid arrows), whereas more data objects would have need to be search through when this layering was not present (the closest datapoint of *all* datapoints in each layer needs to be found). 
+The picture shows how a HNSW algorithm is used to go from a search query vector (blue) on the top layer to the closes search result (green) in the lowest layer. Only three data hops are made (indicated by blue solid arrows), whereas more data objects would have need to be search through when this layering was not present (the closest datapoint of *all* datapoints in each layer needs to be found).h
 
 ![HNSW layers](./img/hnsw-layers.svg "HNSW layers"){:height="50%" width="50%"}
 
 ### Distance metrics
 
-All [distance metrics supported in Weaviate](/docs/weaviate/references/distances.md) are also supported with the HNSW index type.
+All [distance metrics supported in Weaviate](/docs/weaviate/configuration/distances.md) are also supported with the HNSW index type.
 
 ## More Resources
 

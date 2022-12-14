@@ -121,7 +121,7 @@ lower the coverage.
 
 There are various ways to interact with the Weaviate API. You can send HTTP
 requests directly or you could use a client, such as the [python
-client](/docs/weaviate/references/client-libraries/python.md) to interact with
+client](/docs/weaviate/client-libraries/python.md) to interact with
 Weaviate. In the weaviate core repository we have chosen not to use any of our
 own clients. This has the goal to minimize dependencies and allow independent
 development by different teams.

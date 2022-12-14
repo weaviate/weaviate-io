@@ -1,5 +1,5 @@
 ---
-title: (TBC) Define a schema
+title: How to define a schema
 sidebar_position: 2
 # layout: layout-documentation
 # solution: weaviate
@@ -18,21 +18,11 @@ sidebar_position: 2
 
 ## Overview
 
-Learn how to create a schema in Weaviate
+This tutorial is designed to show you an example of how to create a schema in Weaviate. 
 
-<!-- TODO: Finish this page! -->
-:::caution Under construction.
-Migrated from "How to create a schema" tutorial from Weaviate Docs Classic
-:::
+By the end of this tutorial, you should have a good idea of how to create a schema. You will begin to see why it is important, and where to find the relevant information required for schema definition.
 
-## Introduction
-
-When you start with an empty Weaviate, you need to define a schema to explain what kind of data you will add (or you can use the [auto-schema feature](/docs/weaviate/references/schema-configuration.md#auto-schema), available from Weaviate version v1.5.0). 
-
-Because Weaviate is a search graph, the linguistic element plays an important role. When creating concepts, Weaviate will validate if it can understand the schema concepts you want to add based on the vectorizer module. You might notice that a lot of definitions are related to the everyday language we use. And this is the first best practice to bear in mind. When defining the schema, you should do this in the form like you would explain it to another person, not like tables and columns you would add to a traditional data solution.
-For a more elaborate example check this blog post: - [Link to schema article](https://hackernoon.com/what-is-weaviate-and-how-to-create-data-schemas-in-it-7hy3460)
-
-## Basics
+### Key points
 
 - A schema consists of classes and properties, which define concepts.
 - Words in the schema (names of classes and properties) must be part of the `text2vec-contextionary`.
@@ -42,10 +32,21 @@ For a more elaborate example check this blog post: - [Link to schema article](ht
 
 ## Prerequisites
 
-**1. Connect to a Weaviate instance running with the text2vec-contextionary module.**\\
-If you haven't set up a Weaviate instance yet, check the [Installation guide](/docs/weaviate/getting-started/installation.md). Make sure you use the the `text2vec-contextionary` as vectorization module. In this guide we assume your instance is running at `http://localhost:8080`.
+We recommend reading the [Quickstart tutorial](../getting-started/index.md) first before tackling this tutorial.
 
-# Creating your first schema (with the Python client)
+For the tutorial, you will need a Weaviate instance running with the `text2vec-contextionary` module. We assume your instance is running at `http://localhost:8080`.
+
+## What is a schema?
+
+import SchemaDef from '/_includes/definition-schema.md';
+
+<SchemaDef/>
+
+If you begin to import data without having defined a schema, it will trigger the [auto-schema feature](/docs/weaviate/configuration/schema-configuration.md#auto-schema) and Weaviate will create a schema for you.
+
+While this may be suitable in some circumstances, in many cases you may wish to explicitly define a schema. Manually defining the schema will help you ensure that the schema is suited for your specific data and needs.
+
+## Creating your first schema (with the Python client)
 
 Let's say you want to create a schema for a [news publications](../more-resources/example-datasets.md) dataset. This dataset consists of random news **articles** from **publications** like Financial Times, New York Times, CNN, Wired, etcetera. You also want to capture the **authors**, and some metadata about these objects like publication dates.
 
@@ -54,6 +55,7 @@ Follow these steps to create and upload the schema.
 **1. Start with an empty schema in JSON format.**
 
 Schemas are defined in JSON format. An empty schema to start with:
+
 ```json
 {
   "classes": []
@@ -64,7 +66,7 @@ Schemas are defined in JSON format. An empty schema to start with:
 
 Let's say there are three classes you want to capture from this dataset in Weaviate: `Publication`, `Article` and `Author`. Notice that these words are *singular* (which is best practice, each data object is *one* of these classes).
 
-Classes always start with a capital letter. Properties always begin with a small letter. When you want to concatenate words into one class name or one property name, you can do that with camelCasing the words. Read more about schema classes, properties and data types [here](/docs/weaviate/references/schema-configuration.md#data-objects-and-structure).
+Classes always start with a capital letter. Properties always begin with a small letter. When you want to concatenate words into one class name or one property name, you can do that with camelCasing the words. Read more about schema classes, properties and data types [here](/docs/weaviate/configuration/schema-configuration.md#data-objects-and-structure).
 
 Let's define the class `Publication` with the properties `name`, `hasArticles` and `headquartersGeoLocation` in JSON format. `name` will be the name of the `Publication`, in string format. `hasArticles` will be a reference to Article objects. We need to define the class `Articles` in the same schema to make sure the reference is possible. `headquartersGeoLocation` will be of the special dataType `geoCoordinates`.
 
@@ -284,8 +286,9 @@ Currently, only with the Python client it is possible to upload a whole schema a
 
 ## Next steps
 
-- Go to the [next "How-to" guide](./how-to-import-data.md) to learn how to import data.
+<!-- - Go to the [next "How-to" guide]  (./how-to-import-data.md) to learn how to import data. -->
 - Check out the [RESTful API reference](../references/rest/schema.md) for an overview of all schema API operations.
+- Read this article on [Weaviate and schema creation](https://hackernoon.com/what-is-weaviate-and-how-to-create-data-schemas-in-it-7hy3460)
 
 ## More Resources
 

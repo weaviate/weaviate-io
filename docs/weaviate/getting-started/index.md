@@ -23,11 +23,17 @@ This section is from Getting Started in Weaviate Docs Classic.
 
 Welcome to the Weaviate **Quickstart tutorial**.
 
-Here, on this page, we're not going to take too much of your time; it's just an overview of the guides.
+This tutorial is designed to quickly teach you how to use Weaviate, from spinning up an instance to performing queries.
 
-The purpose of the quickstart tutorial is to teach you how to use Weaviate in an application.
+In this guide, we will show you how to:
+- Spin up an instance of Weaviate
+- Set up a database schema
+- Import data to populate the database, and
+- Perform queries to retrieve relevant data 
 
-Have fun working with Weaviate, and please do let us know on our Slack when you have questions or if you have a cool use case to share!
+By the end of the guide, you will end up with a simple, but fully functioning vector database. You will also have performed vector searches to retrieve information from that database.
+
+Have fun working with Weaviate, and please do let us know when you have questions or if you have a cool use case to share!
 
 ## Before you start 
 

@@ -22,6 +22,7 @@ Weaviate has a basic RESTful API which will be used to offer CRUD support on all
 
 ### Open API specs
 
+<!-- TODO - check that this renders correctly. Currently (13/12) this does not mark "here" as a part of the link  -->
 The Open API specs for the current Weaviate version number can be found [here](https://app.swaggerhub.com/apis/semi-technologies/weaviate/{{ site.weaviate_version }}).
 
 ## All references

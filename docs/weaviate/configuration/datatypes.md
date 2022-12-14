@@ -1,6 +1,6 @@
 ---
-title: Schema data types
-sidebar_position: 22
+title: Data types
+sidebar_position: 2
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Schema

@@ -1,5 +1,5 @@
 ---
-title: Basics
+title: Data objects
 sidebar_position: 1
 # layout: layout-documentation
 # solution: weaviate
@@ -11,23 +11,11 @@ sidebar_position: 1
 # toc: true
 ---
 
-Based on the fact that you're here, you probably like machine learning and databases as much as we do. You might even have a use case requiring semantic search, image similarity search, recommendations, classification, etc. But you have one big question: how do I scale this to production, and what database, what search engine can I use that helps me with this?
+## Overview
 
-If you have this question, fret not, because you've already learned something in the 10 seconds it took you to read this paragraph: _Weaviate is here to help!_ 
+This document lays out how Weaviate deals with data objects, including how they are stores, represented, and linked to each other.
 
-## What will you learn?
-
-This section is all about the basics. No getting your hands dirty yet, no fancy Kubernetes set-ups, no mixing vector search with BM25, or multi-model configurations. Just the core concepts so that we are on the same page while continuing your Weaviate journey.
-
-## What is Weaviate?
-
-Weaviate is a database of the type search engine, and it's specifically built to work with vector representations produced by machine learning models. Hence, Weaviate is a vector search engine (but we will still like you if you call it a vector database).
-
-:::tip
-When working with a database, you want [full CRUD support](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Not all approximate nearest neighbor algorithms support this, and not all incumbent databases (/search engines) are optimized for this type of indexing. These reasons are -among others- the most important to why Weaviate exists. You can also learn more about this by reading [this blog post](https://db-engines.com/en/blog_post/87).
-:::
-
-## Data objects in Weaviate
+## Data object nomenclature
 
 Weaviate stores _data objects_ (represented as JSON-documents) in _class-based collections_, where each object can be represented by a machine learning _vector_ (i.e., an embedding).
 
@@ -70,6 +58,8 @@ As mentioned earlier, we can also attach `vector` representations to our data ob
     ]
 }
 ```
+
+You can generate vectors yourself outside of Weaviate, or use one of Weaviate's vectorizer [modules](./modules.md). 
 
 ### Class Collections
 
@@ -181,7 +171,9 @@ Then we can use the `UUID` from the above object, to attach it to the `Author` l
 
 Weaviate requires a data schema to be built before adding data.
 
-Classes and properties are defined in the schema. The schema is what specifies data types of each class property, possible graph links between data objects, and vectorizer module to be used for each class.
+import SchemaDef from '/_includes/definition-schema.md';
+
+<SchemaDef/>
 
 Designing and adding a data schema does not need to be done manually. In the absence of a data schema specification, Weaviate will generate a schema automatically from the provided data.
 
@@ -198,51 +190,6 @@ For now, what's important to know is this:
 1. You can link classes (even if they use different embeddings) by setting cross-references.
 1. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the schema [quickstart tutorial](/docs/weaviate/getting-started/schema.md)).
 
-## Where do the vectors come from?
-
-The short answer is: from machine learning models.
-
-As a user, you have two ways of generating them:
-
-* You render your vector from any model you have (we don't care  where they come from, we'll just index them for you 👍)
-* You use a Weaviate module with a prepackaged `text2vec` integration (we call them "vectorizers", you can learn more about them [here](/docs/weaviate/modules/index.md)).
-    * [text2vec-transformers](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md)
-    * [text2vec-openai](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md)
-    * [text2vec-huggingface](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md)
-    * [text2vec-contextionary](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) (custom FastText based vectorizer)
-    * [img2vec-neural](/docs/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md)
-    * [multi2vec-clip](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
-
-We will go deeper into this topic in other documents, such as in [concepts: modules](./modules.md). But for whatever vector use case you have, we've got you covered.
-
-## Modules
-
-If you bring your own vectors to Weaviate, running Weaviate stand-alone is all you need. But in certain cases, you might want to use one of the prepackaged modules. For example, if you use OpenAI embeddings, you might want to use the OpenAI module, which automatically integrates with their embeddings-API. Or, if you have a use case where you want to use Sentence Transformers, you can use the Hugging Face Transformers module.
-
-What's important to remember is that you _can_ use Weaviate modules, but you don't _have_ to use them.
-
-Weaviate distinguishes three types of modules: retrievers & vectorizers, readers & generators, and other modules.
-
-1. *retrievers & vectorizers* are used to vectorize data objects and queries.
-2. *readers & generators* are used for reranking or processing the results.
-3. *other modules* are -often- non-ML, for example, the spell-check module.
-
-:::tip
-It's even possible to [create your own modules](/docs/weaviate/modules/other-modules/custom-modules.md)! It takes a bit of knowledge about Go to integrate the module, but the module container (i.e., the container containing your module) can be written in any language.
-:::
-
-## Weaviate Console
-
-The Weaviate console is part of the Weaviate Cloud Service and allows you to connect to any Weaviate instance and query it. You can read [this](./console) page to learn more.
-
-## Benchmarks
-
-The [benchmark page](/docs/weaviate/benchmarks/index.md) might be helpful when setting up your Weaviate instance. As a rule of thumb, when you choose a similar dataset to your use case, you should get similar results with similar settings. If the results diverge too much _negatively_ you probably made a mistake in hardware choices or in your Weaviate configuration. If the results are way more _positive_, [reach out to us immediately 😉](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
-
-## Monitoring
-
-Weaviate can expose Prometheus-compatible metrics for [monitoring](../configuration/monitoring.md). We highly recommend setting this up, simply because it allows you to optimize your setup.
-
 ## Recap
 
 * Inside Weaviate, you can store _data objects_ which can be represented by a machine learning vector.
@@ -252,19 +199,9 @@ Weaviate can expose Prometheus-compatible metrics for [monitoring](../configurat
 * You will define classes and properties in a schema.
 * Different classes can represent different vector spaces.
 * The schema has a class-property data structure.
-* You can configure Weaviate in the schema.
 * You define classes and properties in the schema.
 * We can query using the GraphQL-interface or -in some cases- the RESTful API.
 * Vectors come from machine learning models that you inference yourself or through a Weaviate module.
-* You can use Weaviate modules, but you don't _have_ to use them.
-* The benchmark page helps you to learn how far you can optimize for your use case.
-* Monitoring helps you to monitor your setup and discover potential bottlenecks.
-
-## What would you like to learn next?
-
-* [I want to know how to install Weaviate](/docs/weaviate/getting-started/installation.md)
-* [I want to learn how I can query the data](../getting-started/query.md)
-* [I want to learn how to work with the Weaviate schema](/docs/weaviate/getting-started/schema.md)
 
 ## More Resources
 

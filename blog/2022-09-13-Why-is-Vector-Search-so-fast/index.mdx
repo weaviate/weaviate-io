@@ -80,7 +80,7 @@ Instead of comparing vectors one by one, vector search engines use [Approximate 
 ANN algorithms may not return the true k nearest vectors, but they are very efficient. ANN algorithms maintain good performance (sublinear time, e.g. (poly)logarithmic complexity, see Figure 2) on very large-scale datasets.
 
 *Note that most vector search engines allow you to configure how your ANN algorithm should behave. This lets you find the right balance between the **recall tradeoff** (the fraction of results that are the true top-k nearest neighbors), **latency**, **throughput** (queries per second) and **import time**.*<br/>
-*For a great example, check [Weaviate benchmarks](/developers/weaviate/more-resources/benchmarks/ann#sift1m-1m-128d-vectors-l2-distance), to see how three parameters – [efConstruction, maxConnections and ef](/developers/weaviate/more-resources/benchmarks/ann#what-is-being-measured) - affect recall, latency, throughput and import times.*
+*For a great example, check [Weaviate benchmarks](/developers/weaviate/benchmarks/ann#sift1m-1m-128d-vectors-l2-distance), to see how three parameters – [efConstruction, maxConnections and ef](/developers/weaviate/benchmarks/ann#what-is-being-measured) - affect recall, latency, throughput and import times.*
 
 ### Examples of ANN algorithms
 Examples of ANN methods are:
@@ -98,12 +98,12 @@ Which algorithm works best depends on your project. Performance can be measured 
 So, ANN is not some magic method that will always find the true k nearest neighbors in a dataset, it can find a pretty good approximation of the true k neighbors. But it can do this in a fraction of the time! 
 
 ## HNSW in Weaviate
-[Weaviate](/developers/weaviate/) is a great example of a vector search engine that uses ANN algorithms to offer ultra-fast queries. The first ANN algorithm introduced to Weaviate is a custom implementation of [Hierarchical Navigable Small World graphs (HNSW)](/developers/weaviate/vectorization/hnsw).
+[Weaviate](/developers/weaviate/) is a great example of a vector search engine that uses ANN algorithms to offer ultra-fast queries. The first ANN algorithm introduced to Weaviate is a custom implementation of [Hierarchical Navigable Small World graphs (HNSW)](/developers/weaviate/architecture/vector-index-plugins#hnsw).
 
 ![HNSW](./img/ann-hnsw.png){:width="50%"}<br/>
 *[Figure 4 - Proximity graph-based ANN search]*
 
-Check out [Weaviate ANN benchmarks](/developers/weaviate/more-resources/benchmarks/ann) to see how HNSW performed on realistic large-scale datasets. You can use it to compare the tradeoffs between recall, QPS, latency, and import time.<br/>
+Check out [Weaviate ANN benchmarks](/developers/weaviate/benchmarks/ann) to see how HNSW performed on realistic large-scale datasets. You can use it to compare the tradeoffs between recall, QPS, latency, and import time.<br/>
 You will find it interesting to see, that Weaviate can maintain very high recall rates (>95%), whilst keeping high throughput and low latency (both in milliseconds). That is exactly what you need for fast, but reliable vector search!
 
 ## Summary

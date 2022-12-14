@@ -14,28 +14,36 @@ sidebar_position: 0
 # toc: true
 ---
 
-<!-- TODO: Should we add a sitemap? -->
-Welcome to the documentation site for Weaviate, an open source vector search engine. 
+## Overview
 
-This site is for **anyone** who is building, or thinking about building, something with Weaviate. Our goal is to get you to that end state faster, whether it be an evaluation report, a proof of concept, or a production database.
+Welcome to the documentation for **Weaviate**, an open source vector search engine.
+
+We write our docs with the aim of helping **anyone** who is building, or thinking about building, something with Weaviate. Whether your goal is to write an evaluation report, put together a proof of concept, or build a production database, we want to help you get there faster.
 
 To this end, the majority of the content is categorized into one of **three categories**, each category being structured with a particular focus in mind:
 
-| | Tutorials | Concepts | References |
+| | 💡 Concepts | 📚 References | 👷 Tutorials |
 | ----- | ----- | ----- | ----- |
-| Focus | How to **do** something | **Learn** about topics | Find **itemized** information |
-| Entry point | [Essential tutorials](./guides/index.md) | [Core concepts](./core-knowledge/index.md) | [References](./references/index.md) |
+| Focus | **Learn** about topics | Find **itemized** information | How to **do** something |
 
 Commonly requested resources such as [benchmarks](./benchmarks/index.md) and [roadmap](./roadmap/index.md) have their own sections, and others such as the [FAQ](./more-resources/faq.md), [glossary](./more-resources/glossary.md) and more can be found in the [More Resources](./more-resources/index.md) section.
 
-### For new users:
+### For new users
 
 If you are new to Weaviate, we recommend starting with these sections:
 1. Introduction (this page),
 2. [Quickstart tutorial](./getting-started/index.md), and
 3. [Installation & Configuration](./installation/index.md)
 
-Then, we suggest you also read through the [essential tutorials](./guides/index.md), [search tutorials](./search/index.md) and [core concepts](./core-knowledge/index.md) before starting to use Weaviate for your own project.
+Then, we suggest you also read through the [essential tutorials](./guides/index.md) and [essential concepts](./core-knowledge/index.md) before starting to use Weaviate for your own project.
+
+### For experienced users
+
+For those who are experienced Weaviate users, we expect that the `📚 References` sections would be the most useful.
+
+### Tutorials
+
+Please bear with us as we build a library of tutorials and learning material. In the meantime, if you have a particular topic that you would like to see covered, please reach out to us.
 
 :::info Help us to help you!
 We appreciate that we have a diverse community with different experiences and backgrounds. So if you find that the documentation does not quite suit **your** needs, we would love to hear from you.
@@ -47,16 +55,26 @@ We have an active community on [Slack](https://join.slack.com/t/weaviate/shared_
 Like what you see? Consider giving us a [⭐ on Github](https://github.com/semi-technologies/weaviate/stargazers).
 :::
 
+### Code examples
+
+Where possible, we show code examples in multiple programming languages using our [client libraries](./client-libraries/index.md). The following example shows you how to get the Weaviate schema using different clients.
+
+import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
+
+<CodeSchemaDump />
+
 ## About this page
 
 This page is an introduction to Weaviate. We present a very high-level overview of Weaviate here, so that you have some context before moving on to any other sections.
 
 ## What is Weaviate?
 
+Weaviate is an open source vector search engine that stores both objects and vectors. This allows for combining vector search with structured filtering.
+
 **Weaviate in a nutshell**: 
 
 * Weaviate is an open source vector search engine.
-* Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](./core-knowledge/vector-index-plugins.md).
+* Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](./architecture/vector-index-plugins.md).
 * Weaviate can be used stand-alone (aka _bring your vectors_) or with a variety of [modules](./modules/index.md) that can do the vectorization for you and extend the core capabilities.
 * Weaviate has a [GraphQL-API](./references/graphql/index.md) to access your data easily.
 * ​Weaviate ia fast (check our [open source benchmarks](./benchmarks/index.md)).
@@ -114,7 +132,7 @@ Within Weaviate, all individual data objects are based on a class property struc
 
 You can add data to Weaviate through the [RESTful API](./references/rest/index.md) end-points and retrieve data through the [GraphQL interface](./references/graphql/index.md). 
 
-Weaviate's [vector indexing mechanism is modular](./core-knowledge/vector-index-plugins.md), and the current available plugin is the [Hierarchical Navigable Small World (HNSW) multilayered graph](./vectorization/hnsw.md).
+Weaviate's [vector indexing mechanism is modular](./architecture/vector-index-plugins.md), and the current available plugin is the Hierarchical Navigable Small World (HNSW) multilayered graph.
 
 ## What are Weaviate modules?
 
@@ -153,7 +171,7 @@ Want to get started or want to learn more? These resources might help you furthe
 - Try out Weaviate:
     - [Quickstart tutorial](./getting-started/index.md)
 - Learn about Weaviate:
-    - [Concepts: Core](./core-knowledge/index.md)
+    - [Concepts](./core-knowledge/index.md)
 
 ## More resources
 

@@ -1,5 +1,5 @@
 ---
-title: Concepts - Architecture
+title: Concepts - Advanced
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -14,14 +14,15 @@ sidebar_position: 0
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution NOTE:
-The "Concepts: Architecture" sections comes from Architecture in Weaviate Docs Classic
+The "Concepts: Advanced" sections comes from Architecture in Weaviate Docs Classic. Plus:
+- Vector indexing, from Vector Index (ANN) Plugins:Index + HNSW in Weaviate Docs Classic
 :::
 
 ## Overview
 
 This section includes explanations of of Weaviate's architecture. If you are curious about how Weaviate works under the hood, or how it is designed to scale, you are at the right place.
 
-This section does not need to be read linearly. We do recommend that you read the [core concepts](../core-knowledge/index.md) section first if you have not already.
+This section does not need to be read linearly. We do recommend that you read the [essential concepts](../core-knowledge/index.md) section first if you have not already.
 
 ## Weaviate Architecture
 

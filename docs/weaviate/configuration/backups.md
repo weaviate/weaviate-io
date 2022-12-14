@@ -1,6 +1,6 @@
 ---
 title: Backups
-sidebar_position: 2
+sidebar_position: 12
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration

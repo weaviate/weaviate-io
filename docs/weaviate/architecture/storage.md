@@ -32,7 +32,7 @@ Each shard houses three main components:
 
 * An object store, essentially a key-value store
 * An [inverted index](https://en.wikipedia.org/wiki/Inverted_index)
-* A vector index store (pluggable, currently a [custom implementation of HNSW](/docs/weaviate/vectorization/hnsw.md))
+* A vector index store (pluggable, currently a [custom implementation of HNSW](/docs/weaviate/architecture/vector-index-plugins.md#hnsw))
 
 :::caution Important
 Weaviate doesn't rely on any third-party databases. The three components of a shard are all housed within Weaviate. This means that there are no runtime dependencies to other services and all components will scale equally with Weaviate.

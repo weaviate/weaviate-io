@@ -17,12 +17,13 @@ sidebar_position: 0
 The "References" comes from:
 - GraphQL in Weaviate Docs Classic.
 - RESTful API in Weaviate Docs Classic.
-- Schema:Index + Schema:Configuration in Weaviate Docs Classic.
-- Schema:Data types in Weaviate Docs Classic.
-- Vector index plugins:Distance metrics in Weaviate Docs Classic.
 :::
 
-## References - GraphQL
+## Overview
+
+This section describes GraphQL commands and RestAPI endpoints which you can use to communicate with Weaviate. The available sub-sections are as follows:
+
+### References - GraphQL
 - [Get{}](./graphql/get.md)
 - [Aggregate{}](./graphql/aggregate.md)
 - [Explore{}](./graphql/explore.md)
@@ -30,7 +31,7 @@ The "References" comes from:
 - [Vector search parameters](./graphql/vector-search-parameters.md)
 - [Additional properties](./graphql/additional-properties.md)
 
-## References - RESTful API
+### References - RESTful API
 - [Overview](./rest/index.md)
 - [/v1/schema](./rest/schema.md)
 - [/v1/objects](./rest/objects.md)
@@ -42,18 +43,6 @@ The "References" comes from:
 - [/v1/.well-known](./rest/well-known.md)
 - [/v1/modules](./rest/modules.md)
 
-## References - Client libraries
-- [Python](./client-libraries/python.md)
-- [Javascript](./client-libraries/javascript.md)
-- [Java](./client-libraries/java.md)
-- [Go](./client-libraries/go.md)
-- [Weaviate CLI](./client-libraries/cli.md)
-
-## References - Schema
-- [Configuration](./schema-configuration.md) of the classes and properties in the schema.
-- [Data types](./datatypes.md) of property values.
-- [Schema endpoint](../references/rest/schema.md).
-- [Auto-schema](./schema-configuration.md#auto-schema), for more information about settings for the auto generated schema.
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

@@ -1,6 +1,6 @@
 ---
 title: Modules
-sidebar_position: 1
+sidebar_position: 11
 # layout: layout-documentation
 # solution: weaviate
 # sub-menu: Configuration

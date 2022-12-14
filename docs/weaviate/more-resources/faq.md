@@ -47,7 +47,7 @@ Custom HNSW implementation in Weaviate references:
 More information:
 
 - [Weaviate, an ANN Database with CRUD support – DB-Engines.com](https://db-engines.com/en/blog_post/87) ⬅️ best resource on the topic
-- [Weaviate's HNSW implementation in the docs)[/docs/weaviate/vectorization/hnsw.md)
+- [Weaviate's HNSW implementation in the docs)[/docs/weaviate/architecture/vector-index-plugins.md#hnsw)
 
 _Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here)[/docs/weaviate/vector-index-plugins/)_
 

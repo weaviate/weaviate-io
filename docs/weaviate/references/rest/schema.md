@@ -16,7 +16,7 @@ sidebar_position: 11
 #     - /documentation/weaviate/references/rest/schema.md
 ---
 
-NOTE: From v1.5.0 onwards creating a schema is now optional, learn more about [Auto Schema here](/docs/weaviate/references/schema-configuration.md#auto-schema).
+NOTE: From v1.5.0 onwards creating a schema is now optional, learn more about [Auto Schema here](/docs/weaviate/configuration/schema-configuration.md#auto-schema).
 
 ## Get the schema
 Dumps the current Weaviate schema. The result contains an array of objects.
@@ -236,7 +236,7 @@ import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
 
 Create a new data object class in the schema.
 
-NOTE: From v1.5.0 onwards creating a schema is now optional, learn more about [Auto Schema here](/docs/weaviate/references/schema-configuration.md#auto-schema).
+NOTE: From v1.5.0 onwards creating a schema is now optional, learn more about [Auto Schema here](/docs/weaviate/configuration/schema-configuration.md#auto-schema).
 
 #### Method and URL
 
@@ -246,7 +246,7 @@ POST /v1/schema
 
 #### Parameters
 
-Learn more about the schema configuration [here](/docs/weaviate/references/schema-configuration.md).
+Learn more about the schema configuration [here](/docs/weaviate/configuration/schema-configuration.md).
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
@@ -255,17 +255,17 @@ Learn more about the schema configuration [here](/docs/weaviate/references/schem
 | `vectorIndexType` | body | string | defaults to hnsw, can be omitted in schema definition since this is the only available type for now |
 | `vectorIndexConfig` | body | object | vector index type specific settings |
 | `vectorizer` | body | string | vectorizer to use for data objects added to this class, default can be set in Weaviate's environment variables |
-| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | include the class name in vector calculation (default true). Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing). |
+| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | include the class name in vector calculation (default true). Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing). |
 | `properties` | body | array | An array of property objects |
-| `properties` > `dataType` | body | array | Click [here](/docs/weaviate/references/datatypes.md) for a list of available data types. |
+| `properties` > `dataType` | body | array | Click [here](/docs/weaviate/configuration/datatypes.md) for a list of available data types. |
 | `properties` > `description` | body | string | Description of the property |
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | if true, the whole property will NOT be included in vectorization. default is false, meaning that the object will be NOT be skipped |
-| `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | whether name of the property is used in the calculation for the vector position of data objects. default is true. Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing). |
+| `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | whether name of the property is used in the calculation for the vector position of data objects. default is true. Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing). |
 | `properties` > `name` | body | string | The name of the property, multiple words should be concatenated in camelCase like `nameOfAuthor`. |
-| `properties` > `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing). |
-| `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. See [more details here](/docs/weaviate/references/schema-configuration.md#property-tokenization).|
-| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). |
-| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--indextimestamps). |
+| `properties` > `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing). |
+| `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. See [more details here](/docs/weaviate/configuration/schema-configuration.md#property-tokenization).|
+| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](/docs/weaviate/configuration/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). |
+| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](/docs/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps). |
 
 #### Example request for creating a class
 
@@ -349,17 +349,17 @@ Parameter in the PUT body:
 | `vectorIndexType` | body | string | defaults to hnsw, can be omitted in schema definition since this is the only available type for now |
 | `vectorIndexConfig` | body | object | vector index type specific settings |
 | `vectorizer` | body | string | vectorizer to use for data objects added to this class, default can be set in Weaviate's environment variables |
-| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | include the class name in vector calculation (default true). Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing). |
+| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | include the class name in vector calculation (default true). Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing). |
 | `properties` | body | array | An array of property objects |
-| `properties` > `dataType` | body | array | Click [here](/docs/weaviate/references/datatypes.md) for a list of available data types. |
+| `properties` > `dataType` | body | array | Click [here](/docs/weaviate/configuration/datatypes.md) for a list of available data types. |
 | `properties` > `description` | body | string | Description of the property |
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | if true, the whole property will NOT be included in vectorization. default is false, meaning that the object will be NOT be skipped |
-| `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | whether name of the property is used in the calculation for the vector position of data objects. default is true. Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing). |
+| `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | whether name of the property is used in the calculation for the vector position of data objects. default is true. Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing). |
 | `properties` > `name` | body | string | The name of the property, multiple words should be concatenated in camelCase like `nameOfAuthor`. |
-| `properties` > `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing). |
-| `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. See [more details here](/docs/weaviate/references/schema-configuration.md#property-tokenization).|
-| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). |
-| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](/docs/weaviate/references/schema-configuration.md#invertedindexconfig--indextimestamps). |
+| `properties` > `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing). |
+| `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. See [more details here](/docs/weaviate/configuration/schema-configuration.md#property-tokenization).|
+| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](/docs/weaviate/configuration/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). |
+| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](/docs/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps). |
 
 
 #### Example request for updating a class
@@ -380,12 +380,12 @@ POST v1/schema/{class_name}/properties
 
 | name | location | type | description |
 | ---- | ---- | ----------- |
-| `dataType` | body | array | Click [here](/docs/weaviate/references/datatypes.md) for a list of available data types. |
+| `dataType` | body | array | Click [here](/docs/weaviate/configuration/datatypes.md) for a list of available data types. |
 | `description` | body | string | Description of the property |
 | `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | if true, the whole property will NOT be included in vectorization. default is false, meaning that the object will be NOT be skipped |
-| `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | whether name of the property is used in the calculation for the vector position of data objects. default is true. Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing). |
+| `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | whether name of the property is used in the calculation for the vector position of data objects. default is true. Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing). |
 | `name` | body | string | The name of the property, multiple words should be concatenated in camelCase like `nameOfAuthor`. |
-| `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/references/schema-configuration.md#regulate-semantic-indexing). |
+| `indexInverted` | body | boolean | Should the the data stored in this property be indexed? Learn more about how to regulate indexing in Weaviate [here](/docs/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing). |
 
 #### Example request for adding a property
 
