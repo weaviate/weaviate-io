@@ -41,7 +41,7 @@ The models that compute **dense vector embeddings for data** (which later can be
 
 ## Cross-Encoder models
 
-Bi-Encoders models are not the only possible way of scoring pairs of data on similarity. A different strategy is using *Cross-Encoders*. Cross-Encoder models do not produce vector embeddings for data, but use a classification mechanism for data pairs instead. The input of the model always consists of a **data pair**, for example two sentences, and outputs a value between 0 and 1 indicating the similarity between these two sentences (Figure 3). So, individual sentences cannot be passed to a Cross-Encoder model, it always needs a **pair** of “items”. In terms of search, you need to use the Cross-Encoder with **each** data item and the search query, to calculate the similarity between the query and data object.
+Bi-Encoder models are not the only possible way of scoring pairs of data on similarity. A different strategy is using *Cross-Encoders*. Cross-Encoder models do not produce vector embeddings for data, but use a classification mechanism for data pairs instead. The input of the model always consists of a **data pair**, for example two sentences, and outputs a value between 0 and 1 indicating the similarity between these two sentences (Figure 3). So, individual sentences cannot be passed to a Cross-Encoder model, it always needs a **pair** of “items”. In terms of search, you need to use the Cross-Encoder with **each** data item and the search query, to calculate the similarity between the query and data object.
 
 ![Cross-Encoder](/img/blog/cross-encoders/cross-encoder.png)
 
@@ -72,7 +72,7 @@ Pretrained Sentence Transformers Cross-Encoder models are [available on HuggingF
 
 ## Conclusion
 
-We can combine the fast Bi-Encoders and accurate Cross-Encoders in a search pipeline to improve search experience. With a vector search engine like [Weaviate](/){:target="_blank"}, you can store and retrieve vectors and data efficiently using Bi-Encoder models to encode data and queries. A search pipeline can then continue with a Cross-Encoder model which reranks a list of retrieved search result candidates. 
+We can combine the fast Bi-Encoders and accurate Cross-Encoders in a search pipeline to improve the search experience. With a vector search engine like [Weaviate](/){:target="_blank"}, you can store and retrieve vectors and data efficiently using Bi-Encoder models to encode data and queries. A search pipeline can then continue with a Cross-Encoder model which reranks a list of retrieved search result candidates. 
 
 This blog post was inspired by [Nils Reimer’s work on Bi-Encoders and Cross-Encoders](https://www.sbert.net/examples/applications/cross-encoder/README.html){:target="_blank"}.
 
