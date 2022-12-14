@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Vamana vs HNSW - Exploring ANN algorithms Part 1
+title: Vamana vs. HNSW - Exploring ANN algorithms Part 1
 description: "Vector search on disks: How does Vamana compare to HNSW?"
 published: true
 author: Abdel Rodriguez 
@@ -35,7 +35,7 @@ In this article, we will cover the need for disk-based solutions, explore Vamana
 ## Need for approximation
 In order for a vector database to efficiently search through a vast number of vectors, the database needs to be smart about it. A brute-force approach would calculate the distance between the query vector and every data vector in the queried collection, but this is computationally very expensive. For a database with millions of objects and thousands of high-dimensional vectors, this would take far too long.
 
-[Weaviate](/developers/weaviate/current/), an open-source vector search engine written in Go, can serve thousands of queries per second. Running Weaviate on Sift1M (a 128-dimensional representation of objects) lets you serve queries in single-digit milliseconds. But how is this possible?
+[Weaviate](/developers/weaviate/current/), an open-source vector search engine written in Go, can serve thousands of queries per second. Running Weaviate on [Sift1M](https://www.tensorflow.org/datasets/catalog/sift1m) (a 128-dimensional representation of objects) lets you serve queries in single-digit milliseconds. But how is this possible?
 
 ![SIFT1M Benchmark example](/img/blog/ann-algorithms-vamana-vs-hnsw/SIFT1M-benchmark.png)
 *See the [benchmark](/developers/weaviate/current/benchmarks/ann.html) page for more stats.*
@@ -58,7 +58,7 @@ We believe there is a need for other index types besides the battle-tested HNSW 
 
 At [SeMI Technologies](https://www.semi.technology){:target="_blank"}, we pride ourselves on our research acumen and on providing state-of-the-art solutions. So we took time to explore these solutions to identify and evaluate the right building blocks for Weaviate’s future.  Here we share some of our findings from this research.
 
-## On HNSW vs Vamana comparison
+## On the HNSW vs. Vamana comparison
 As the first step to disk-based vector indexing, we decided to explore Vamana – the algorithm behind the DiskANN solution. Here are some key differences between Vamana and HNSW:
 
 ### Vamana indexing - in short:
@@ -71,7 +71,7 @@ As the first step to disk-based vector indexing, we decided to explore Vamana �
 * In this graph, the top layers contain only long-range edges. 
 * The deeper the search traverses through the hierarchy, the shorter the distance between vectors captured in the edges.
 
-Put simply, Vamana can build a flat graph, in contrast to HNSW, which uses a hierarchical representation. And a flat graph may suffer less performance degradation from being stored on disk than a hierarchical representation might. The reason is that since the outgoing connections from each node are known, it is possible to store the information in such a way that we can calculate the exact position on the file to read when retrieving information on the neighbors of a given node. This makes the information retrieval process very efficient, and thus lower speed imposed by disk storage becomes less of a problem. 
+Put simply, Vamana can build a flat graph, in contrast to HNSW, which uses a hierarchical representation. And a flat graph may suffer less performance degradation from being stored on disk than a hierarchical representation might. The reason is that since the outgoing connections from each node are known, it is possible to store the information in such a way that we can calculate the exact position on the file to read when retrieving information on the neighbors of a given node. This makes the information retrieval process very efficient, and thus the lower speed imposed by disk storage becomes less of a problem. 
 
 The main advantage of the hierarchical representation used in HNSW is that the traversal of the graph is accelerated. This is solved in the Vamana implementation by hosting long-range connections with a similar function. 
 
@@ -94,16 +94,16 @@ HNSW, on the other hand, implements the same idea a bit differently. Instead of 
 ## Performance comparison
 So, how do they perform? Let’s take a look in terms of speed as well as recall.
 
-The chart below illustrates a comparison of the C++ Vamana [reference code](https://github.com/microsoft/DiskANN){:target="_blank"} provided by Microsoft and our [HNSW implementation](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw){:target="_blank"} when using Sift1M. Following Microsoft’s experiments, we have used sift-query.fvecs (100,000 vectors sample) for building the index and sift-query.fvecs (1,000 vectors sample) for querying. We are retrieving 10 **(fig. 1)** and 100 **(fig. 2)** objects per query. The chart shows the recall vs latency on the same Google Cloud setup Microsoft used. In both cases, you might notice that both Vamana and HNSW implementations are performing similarly.
+The chart below illustrates a comparison of the C++ Vamana [reference code](https://github.com/microsoft/DiskANN){:target="_blank"} provided by Microsoft and our [HNSW implementation](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw){:target="_blank"} when using Sift1M. Following Microsoft’s experiments, we have used sift-query.fvecs (100,000 vectors sample) for building the index and sift-query.fvecs (1,000 vectors sample) for querying. We are retrieving 10 **(fig. 1)** and 100 **(fig. 2)** objects per query. The chart shows the recall vs. latency on the same Google Cloud setup Microsoft used. In both cases, you might notice that both Vamana and HNSW implementations are performing similarly.
 
 *Keep in mind that – while Vamana is the algorithm that powers DiskANN – at this stage, we are comparing both solutions in memory.*
 
-![Recall vs Latency when retrieving the ten approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-1.png)
-*Fig. 1: Recall vs Latency when retrieving the ten approximate nearest neighbors.*
+![Recall vs. Latency when retrieving the ten approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-1.png)
+*Fig. 1: Recall vs. Latency when retrieving the ten approximate nearest neighbors.*
 
 
-![Recall vs Latency when retrieving the hundred approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-2.png)
-*Fig. 2: Recall vs Latency when retrieving the hundred approximate nearest neighbors.*
+![Recall vs. Latency when retrieving the hundred approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-2.png)
+*Fig. 2: Recall vs. Latency when retrieving the hundred approximate nearest neighbors.*
 
 ## Vamana implementation details
 We have also included a development implementation of the Vamana indexing algorithm in Weaviate. For the algorithm to perform well, such an implementation needs careful attention to the optimization of the code. The original algorithm from Microsoft rests upon the greedy search and the robust prune methods, which are described in the [DiskANN paper](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf){:target="_blank"} as follows:
@@ -132,11 +132,11 @@ We evaluated different data structures and achieved the best performance by:
 * Making insertions use binary search.
 * Making the copy function from Go to move full memory sections.
 
-![Recall vs Latency when retrieving the ten approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-3.png)
-*Fig. 3: Recall vs Latency when retrieving the ten approximate nearest neighbors.*
+![Recall vs. Latency when retrieving the ten approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-3.png)
+*Fig. 3: Recall vs. Latency when retrieving the ten approximate nearest neighbors.*
 
-![Recall vs Latency when retrieving the hundred approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-4.png)
-*Fig. 4: Recall vs Latency when retrieving the hundred approximate nearest neighbors.*
+![Recall vs. Latency when retrieving the hundred approximate nearest neighbors](/img/blog/ann-algorithms-vamana-vs-hnsw/fig-4.png)
+*Fig. 4: Recall vs. Latency when retrieving the hundred approximate nearest neighbors.*
 
 ## So, when do SSDs come into play? 
 But wait, is this the end of it? Was moving to disk, not the final goal? We are still on memory, are we not? 
@@ -157,7 +157,7 @@ There are still some challenges to overcome and questions to answer. For example
 * How can we guarantee the excellent database UX – so valuable to many Weaviate users – while reaping the benefits of a disk-based solution?
 
 Stay tuned as we explore these challenges and questions. We will share our insights as we go. 😀 <br/>
-Keep in touch and check [our blogs](/blog.html) from time to time.
+Keep in touch and check [our blog](/blog.html) from time to time.
 
 ## What's next
 Check out the [Getting Started with Weaviate](/developers/weaviate/current/getting-started/index.html){:target="_blank"} and begin building amazing apps with Weaviate.
