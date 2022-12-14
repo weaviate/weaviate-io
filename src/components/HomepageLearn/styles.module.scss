@@ -1,0 +1,105 @@
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  @media screen and (max-width: 680px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .left,
+  .middle,
+  .right {
+    flex: 1;
+  }
+  .left {
+    background-image: url('../../../static/img/site/card-1.png');
+    border-radius: 25px;
+    min-height: 380px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @media screen and (max-width: 680px) {
+      min-height: 150px;
+    }
+    .title {
+      padding: 50px;
+    }
+  }
+  .middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 380px;
+    width: 100%;
+    @media screen and (max-width: 680px) {
+      min-height: 150px;
+      gap: 20px;
+    }
+    .smallUp {
+      border-radius: 25px;
+      background-image: url('../../../static/img/site/card-2.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      min-height: 180px;
+      @media screen and (max-width: 680px) {
+        min-height: 150px;
+      }
+      .title {
+        padding: 20px;
+      }
+    }
+    .smallDown {
+      border-radius: 25px;
+      background-image: url('../../../static/img/site/card-4.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      min-height: 180px;
+      @media screen and (max-width: 680px) {
+        min-height: 150px;
+      }
+      .title {
+        padding: 20px;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 380px;
+    width: 100%;
+    @media screen and (max-width: 680px) {
+      min-height: 150px;
+      gap: 20px;
+    }
+
+    .smallUp {
+      border-radius: 25px;
+      background-image: url('../../../static/img/site/card-3.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      min-height: 180px;
+      @media screen and (max-width: 680px) {
+        min-height: 150px;
+      }
+      .title {
+        padding: 20px;
+      }
+    }
+    .smallDown {
+      border-radius: 25px;
+      background-image: url('../../../static/img/site/card-4.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      min-height: 180px;
+      @media screen and (max-width: 680px) {
+        min-height: 150px;
+      }
+      .title {
+        padding: 20px;
+      }
+    }
+  }
+}

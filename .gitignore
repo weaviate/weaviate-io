@@ -20,6 +20,7 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 
+.python-version
 # Old docs
 .bundle
 _site

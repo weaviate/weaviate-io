@@ -1,0 +1,36 @@
+.header {
+  margin-bottom: 40px;
+}
+.info {
+  flex: 1;
+  h3,
+  p {
+    margin-left: 15px;
+  }
+}
+
+.leftBorder {
+  border-left: 6px solid rgb(0, 184, 0);
+}
+
+.module {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @media screen and (max-width: 680px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.code {
+  background-image: url('../../../static/img/site/code.svg');
+  flex: 1;
+  height: 375px;
+  width: 100%;
+  background-repeat: no-repeat;
+  @media screen and (max-width: 680px) {
+    flex: none;
+  }
+}
