@@ -21,7 +21,7 @@ a role.
 
 Note that Weaviate has an option to limit the amount of vectors held in memory
 to prevent unexpected Out-of-Memory ("OOM") situations. This limit is entirely
-configurable and by default is set to `math.MaxInt64` (i.e., `9223372036854775807`)
+configurable and by default is set to one trillion (i.e. `1e12`)
 objects per class.
 
 # The role of CPUs 
@@ -162,7 +162,7 @@ requirements:
 For optimal search and import performance, all previously imported vectors need
 to be held in memory. However, Weaviate also allows for limiting the number of
 vectors in memory. By default, when creating a new class, this limit is set to
-`math.MaxInt64` (i.e., `9223372036854775807`) objects. A disk lookup for a vector
+one trillion (i.e. `1e12`) objects. A disk lookup for a vector
 is orders of magnitudes slower than memory lookup, so the cache should be used sparingly.
 
 Generally we recommend that:
