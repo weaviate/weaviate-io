@@ -52,7 +52,7 @@ If you feel comfortable making a few changes to the code examples in the tutoria
 
 0. Get `docker-compose.yml` configuration file by calling:
     ```js
-    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
+    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
     ```
 0. Sping up docker
     ```js
