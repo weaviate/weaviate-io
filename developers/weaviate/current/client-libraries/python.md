@@ -49,7 +49,7 @@ This flow authenticates users using their *username* and *password* and should o
 
 Not every provider automatically includes a `refresh token` and an appropriate *scope* might be required that depends on your identity provider. The client uses *offline_access* as default scope which works with some providers.
 
-Without a refresh token, there is no possibility to acquire a new `access token` and the client becomes unauthenticated after expiration until a new access token is provided.
+Without a refresh token, there is no possibility to acquire a new `access token` and the client becomes unauthenticated after expiration.
 
 ```python
 import weaviate
