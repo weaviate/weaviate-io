@@ -45,7 +45,11 @@ Migrated from "How to perform a semantic search" tutorial from Weaviate Docs Cla
 ## nearText filter
 If you want to perform semantic search on data objects in a known class, you can use the `nearText` filter in a `Get{}` query. Let's say we want to find `Publication`s that are related to "fashion", we can do the following query:
 
-{% include code/1.x/howto.semanticsearch.filter.html %}
+<!-- {% include code/1.x/howto.semanticsearch.filter.html %} -->
+
+import HowtoSemanticSearchFilter from '/_includes/code/howto.semanticsearch.filter.mdx';
+
+<HowtoSemanticSearchFilter/>
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Publication%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveAwayFrom%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++++force%3A+0.45%0D%0A++++++++%7D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
@@ -73,7 +77,11 @@ If you are not sure what classes you want to query, or want to perform a fuzzy s
 
 Let's search for data object about fashion again, but now we are not only interested in `Publication` data objects, but in all data objects that have something to do with "fashion". 
 
-{% include code/1.x/howto.semanticsearch.function.html %}
+<!-- {% include code/1.x/howto.semanticsearch.function.html %} -->
+
+import HowtoSemanticSearchFunction from '/_includes/code/howto.semanticsearch.function.mdx';
+
+<HowtoSemanticSearchFunction/>
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Explore+%28%0D%0A++++nearText%3A+%7B%0D%0A++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++certainty%3A+0.7%2C%0D%0A++++++moveTo%3A+%7B%0D%0A++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++force%3A+0.45%0D%0A++++++%7D%2C%0D%0A++++++moveAwayFrom%3A+%7B%0D%0A++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++force%3A+0.85%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%29+%7B%0D%0A++++beacon%0D%0A++++certainty%0D%0A++++className%0D%0A++%7D%0D%0A%7D' %}
 

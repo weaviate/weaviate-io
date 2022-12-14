@@ -89,7 +89,9 @@ The module provides a new GraphQL `_additional` property which can be used to ch
 
 #### Example query
 
-{% include code/1.x/spellcheck-module.html %}
+import SpellCheckModule from '/_includes/code/spellcheck-module.mdx';
+
+<SpellCheckModule/>
 
 #### GraphQL response
 

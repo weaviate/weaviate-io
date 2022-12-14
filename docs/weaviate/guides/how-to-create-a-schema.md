@@ -260,7 +260,11 @@ Now, add this list of classes to the schema, which will look like this:
 
 **3. Upload the schema to Weaviate with the Python client.**
 
-{% include code/1.x/howto.schema.createpython.html %}  
+<!-- {% include code/1.x/howto.schema.createpython.html %} -->
+
+import HowtoSchemaCreatePython from '/_includes/code/howto.schema.createpython.mdx';
+
+<HowtoSchemaCreatePython/>
 
 ## Creating your first schema (RESTful API, Python or JavaScript)
 
@@ -272,7 +276,9 @@ Currently, only with the Python client it is possible to upload a whole schema a
 
    Add a class `Publication` without the property `hasArticles`, and add this to a running Weaviate instance as follows:
 
-   {% include code/1.x/howto.schema.create.html %}
+import HowtoSchemaCreate from '/_includes/code/howto.schema.create.mdx';
+
+<HowtoSchemaCreate/>
 
    Perform a similar request with the `Article` and `Author` class.
 
@@ -280,7 +286,9 @@ Currently, only with the Python client it is possible to upload a whole schema a
 
    There are three classes in your Weaviate schema now, but we did not link them to each other with cross references yet. Let's add the reference between `Publication` and `Articles` in the property `hasArticles` like this:
 
-   {% include code/1.x/howto.schema.property.add.html %}
+import HowtoSchemaPropertyAdd from '/_includes/code/howto.schema.property.add.mdx';
+
+<HowtoSchemaPropertyAdd/>
 
    Repeat this action with a property `wroteArticles` and `writesFor` of `Author` referring to `Articles` and `Publication` respectively.
 

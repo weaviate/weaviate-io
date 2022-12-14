@@ -67,7 +67,11 @@ Migrated from "How to query data" tutorial from Weaviate Docs Classic
 
    There are multiple ways to connect to Weaviate's (GraphQL) API to query data. Raw GraphQL queries can be directly posted in the GraphiQL interface in the Console, but can also be sent via curl, the [Python](/docs/weaviate/client-libraries/python.md) or [JavaScript](/docs/weaviate/client-libraries/javascript.md) client.
 
-   {% include code/1.x/howto.query.data.html %}
+<!-- {% include code/1.x/howto.query.data.html %} -->
+
+import HowtoQueryData from '/_includes/code/howto.query.data.mdx';
+
+<HowtoQueryData/>
 
    {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article++%28where%3A+%7B%0D%0A++++++operator%3AEqual%2C%0D%0A++++++valueString%3A%22Wired%22%2C%0D%0A++++++path%3A+%5B%22inPublication%22%2C+%22Publication%22%2C+%22name%22%5D%0D%0A++++%7D%29%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++++hasAuthors%7B%0D%0A++++++++...+on+Author+%7B%0D%0A++++++++++name%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
