@@ -77,7 +77,7 @@ Although this example uses text2vec-contextionary to generate vectors for the `P
       "description": "A class representing a published article",
       "moduleConfig": {
         "ref2vec-centroid": {
-          "referenceProperties": "hasParagraphs",
+          "referenceProperties": ["hasParagraphs"],
           "method": "mean"
         }
       },
