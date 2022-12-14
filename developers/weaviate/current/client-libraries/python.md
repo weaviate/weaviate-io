@@ -35,7 +35,7 @@ client.schema.get() # get the full schema as example
 
 ## Authentication
 
-Please see the [authentication](../configuration/authentication.md) for broader information in relation to authentication with Weaviate.
+Please see the [authentication](../configuration/authentication.html) for broader information in relation to authentication with Weaviate.
 
 The Python client supports multiple OIDC authentication flows to use with Weaviate. 
 

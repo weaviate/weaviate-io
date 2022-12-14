@@ -145,7 +145,7 @@ While it is outside the scope of our documentation to cover every OIDC authentic
 
 The latest versions (from mid-December 2022 and onwards) of Python, JavaScript, Go and Java Weaviate clients support OIDC authentication. If Weaviate is set up to use the `client credentials grant` flow as or `resource owner password flow`, the respective Weaviate client can instantiate a connection to Weaviate that incorporates the authentication flow.
 
-Please refer to the [client libraries documentation](../client-libraries/index.md) for each client for code examples.
+Please refer to the [client libraries documentation](../client-libraries/index.html) for each client for code examples.
 
 ### Manually obtaining & passing tokens
 
