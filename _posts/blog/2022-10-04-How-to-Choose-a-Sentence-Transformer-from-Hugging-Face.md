@@ -15,12 +15,12 @@ isDBResearch: false
 redirect_from: /blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face.html
 ---
 
-[Weaviate](/developers/weaviate/current/){:target="_blank"} has recently unveiled a new module which allows users to easily [integrate models from Hugging Face](/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html){:target="_blank"} to vectorize their data and incoming queries. [Over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads){:target="_blank"} (at the time of writing this) that can be easily plugged into Weaviate. 
+[Weaviate](/developers/weaviate/current/){:target="_blank"} has recently unveiled a new module which allows users to easily [integrate models from Hugging Face](/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html){:target="_blank"} to vectorize their data and incoming queries. At the time of this writing, there are [over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads){:target="_blank"} that can be easily plugged into Weaviate. 
 
 You may ask: **Why are there so many models and how do they differ?**<br/>
 And more importantly: **How to choose a Sentence Transformer for Semantic Search?**
 
-There are too many models to summarize in one flowchart. So instead, we will describe factors on how to differentiate these models and give you tools to **choose the perfect model for your use case**.
+There are too many models to summarize in one flowchart. So instead, we will describe factors that differentiate these models and give you tools to **choose the perfect model for your use case**.
 
 ![Weaviate Sentence Transformers](/img/blog/choosing-sentence-transformer-huggingface/huggingface-sentence-transformers.png){:width="70%"}
 
@@ -56,7 +56,7 @@ While [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-t
 
 To put it as bluntly as possible, what makes `dangvantuan/sentence-camembert-large` better at French sentence embeddings than `sentence-transformers/all-MiniLM-L6-v2` is that… it was trained on **French** sentences! There are many examples like this, models trained on **biomedical text**, **legal documents**, or **Spanish** are generally going to perform better when tested on that domain compared to models that haven’t been explicitly trained for the domain.
 
-Note that these tags are a part of Hugging Face’s **model cards**, an impressive effort to continue advancing the organization of Machine Learning models. At the time of this writing, model cards still rely on **manual tagging**. It may be the case that the developer uploading the model hasn’t filled out these details. If you are new to Hugging Face, please consider annotating your uploaded models this way, an example of how to do this is shown below:
+Note that these tags are a part of Hugging Face’s **model cards**, an impressive effort to continue advancing the organization of Machine Learning models. At the time of this writing, model cards still rely on **manual tagging**. It may be the case that the developer uploading the model hasn’t filled out these details. If you are new to Hugging Face, please consider annotating your uploaded models by [adding a model card](https://huggingface.co/docs/hub/model-cards) - YAML sections in the `README.md`, like this:
 
 ![How to populate a Hugging Face model card](/img/blog/choosing-sentence-transformer-huggingface/how-to-populate-model-card-min.png){:width="50%"}
 
@@ -85,26 +85,26 @@ Two excellent benchmarks that collect Supervised Learning tasks to evaluate Sent
 ![BEIR Benchmark](/img/blog/choosing-sentence-transformer-huggingface/BEIR-min.png)
 
 ### Real human query-based datasets
-**[MS MARCO](https://arxiv.org/abs/1611.09268){:target="_blank"}** is another influential dataset containing real human queries on Microsoft bing’s search engine paired with passages that the human user clicked on in hope of answering their query. As another example, **[Quora Question Pairs](https://arxiv.org/abs/1907.01041){:target="_blank"}** contains human labels of whether or not two questions are asking the same thing. The Sentence Transformer documentation presents 5 main categories of training data - Semantic Textual Similarity (STS):  Natural Language Inference (NLI), Paraphrase Data, Quora Duplicate Questions (QQP), and MS MARCO.
+**[MS MARCO](https://arxiv.org/abs/1611.09268){:target="_blank"}** is another influential dataset containing real human queries on Microsoft Bing’s search engine paired with passages that the human user clicked on in hope of answering their query. As another example, **[Quora Question Pairs](https://arxiv.org/abs/1907.01041){:target="_blank"}** contains human labels of whether or not two questions are asking the same thing. The Sentence Transformer documentation presents 5 main categories of training data: Semantic Textual Similarity (STS), Natural Language Inference (NLI), Paraphrase Data, Quora Duplicate Questions (QQP), and MS MARCO.
 
 These datasets can be simplified into 2 categories: (1) **Exact Semantic Match** and (2) **Relational Inference**. I believe the adoption of these categories can simplify the organization of text datasets used in embedding optimization.
 
 **Exact Semantic Match** is designed to encapsulate datasets like STS and Quora Question Pairs, as well as the miscellaneous Mono- and Multilingual Paraphrase datasets. 
 
-**Relational Inference** is intended to capture Natural Language Inference, Fact Verification, Question Answering datasets, click logs like MS MARCO, and the massive pool of weakly supervised datasets extracted from web scraping, such as Reddit conversations and stack exchange discussions.
+**Relational Inference** is intended to capture Natural Language Inference, Fact Verification, Question Answering datasets, click logs like MS MARCO, and the massive pool of weakly supervised datasets extracted from web scraping, such as Reddit conversations and Stack Exchange discussions.
 
-I believe the core difference between **Exact Semantic Match** and **Relational Inference** is whether the task requires some level of intermediate relational processing. For example, in the Natural Language Inference task, it isn’t enough to say “Bowen likes Ice Cream” is equivalent to “I saw Bowen eating Ice Cream.” The model must learn an intermediate function of entailment. These intermediate functions must be learned for Natural Language Inference, Fact Verification, Question Answering, and so on more so than tasks like aligning English to French translations or detecting Question paraphrases.
+I believe the core difference between **Exact Semantic Match** and **Relational Inference** is whether the task requires some level of intermediate relational processing. For example, in the Natural Language Inference task, it isn’t enough to say “Bowen likes Ice Cream” is equivalent to “I saw Bowen eating Ice Cream”. The model must learn an intermediate function of entailment. These intermediate functions must be learned for Natural Language Inference, Fact Verification, Question Answering, and so on more so than tasks like aligning English to French translations or detecting Question paraphrases.
 
 ### Question Answering vs Fact Verification
-These two high-level categories are a good starting place for taxonomizing these datasets. However, there are still noticeable differences within each category. For example, what makes **Question Answering** different from **Fact Verification** for evaluating the quality of a Sentence Transformer? Quite simply, questions have a unique style compared to facts. So while the retrieval task is similar in returning the most suitable answers or evidence, the slight difference in question versus stated fact will have an impact on performance. We advise readers to look for these subtle differences when choosing a Sentence Transformer for your use case.
+These two high-level categories are a good starting place for taxonomizing these datasets. However, there are still noticeable differences within each category. For example, what makes **Question Answering** different from **Fact Verification** for evaluating the quality of a Sentence Transformer? Quite simply, questions have a unique style compared to facts. So while the retrieval task is similar in returning the most suitable answers or evidence, the slight difference in question versus stated fact will have an impact on performance. We advise readers to look for these subtle differences when choosing a Sentence Transformer for their use case.
 
 ### Task contruction
-Another important idea in **Task** construction – that leads nicely to the next topic of **Scale** – is to discuss Supervised and Self-Supervised Learning. Supervised Learning requires humans to annotate the data, whereas Self-Supervised does not. Self-Supervised lets us take advantage of internet-scale data. However, unlike the autoregressive GPT style algorithm, embedding learning hasn’t converged to a single task within Self-Supervised data.
+Another important idea in **Task** construction – that leads nicely to the next topic of **Scale** – is to discuss Supervised and Self-Supervised Learning. Supervised Learning requires humans to annotate the data, whereas Self-Supervised does not. Self-Supervised lets us take advantage of Internet-scale data. However, unlike the autoregressive GPT style algorithm, embedding learning hasn’t converged to a single task within Self-Supervised data.
 
-The most common Self-Supervised **Task** heuristic is to use neighboring passages as positive pairs. This works pretty well since most neighboring passages tend to be semantically related. As shown in the 1B training pairs examples, there are many natural cases of this on the internet as well – such as Reddit post-comment pairs or Stack Exchange question-answer pairs.
+The most common Self-Supervised **Task** heuristic is to use neighboring passages as positive pairs. This works pretty well since most neighboring passages tend to be semantically related. As shown in the 1B training pairs example below, there are many natural cases of this on the Internet as well – such as Reddit post-comment pairs or Stack Exchange question-answer pairs.
 
 ### Task recap
-So generally when choosing a Sentence Transformer for your use case, we want to find the best alignment between **Domain** and **Task** with one of the many pre-trained models. Another key element to understand when looking at the datasets used in training is the **Scale**. Deep Learning models generally benefit from larger-scale datasets, but this may come at the cost of noisy labeling – especially when the model size is not scaled up with the dataset.
+So generally when choosing a Sentence Transformer for your use case, you want to find the best alignment between **Domain** and **Task** with one of the many pre-trained models. Another key element to understand when looking at the datasets used in training is the **Scale**. Deep Learning models generally benefit from larger-scale datasets, but this may come at the cost of noisy labeling – especially when the model size is not scaled up with the dataset.
 
 ## Scale
 In Deep Learning, **scale** typically refers to larger models, but here we are using a scale to describe the size of the dataset. But of course, these factors are entangled with one another. At the time of this writing, we generally would need to scale up the model size to take advantage of a larger dataset. Thus, if we are constrained by budget – a high-quality dataset becomes much more important.
@@ -114,16 +114,14 @@ Something I found very interesting while researching the **Scale** of embedding 
 ### The appeal of Weakly-Suppervised or Self-Supervised learning techniques
 The list of datasets from the 1B training pairs challenge illustrates the appeal of Weakly Supervised or Self-Supervised Learning techniques. To contrast, Natural Questions is one of the larger Supervised datasets for the Question Answering Task. Natural Questions (NQ) requires humans to derive questions given a Wikipedia context as input. As a result of this slow process, the dataset contains 100,231 question-context-answer tuples… Which is quite impressive, but much smaller than the ~730 million pairs extracted from Reddit without human intervention.
 
-The list of datasets from the 1B training pairs challenge illustrates the appeal of Weakly Supervised or Self-Supervised Learning techniques. To contrast, Natural Questions is one of the larger Supervised datasets for the Question Answering **Task**. Natural Questions (NQ) requires humans to derive questions given a Wikipedia context as input. As a result of this slow process, the dataset contains 100,231 question-context-answer tuples… Which is quite impressive, but much smaller than the ~730 million pairs extracted from Reddit without human intervention.
-
 ### Scale vs model fit
 Large-scale and **expensive** models can achieve remarkable abilities with datasets like 730 million Reddit conversations. However, if we are constrained to the average ~22 million parameters in Sentence Transformers, and are using **Weaviate** for a general question-answering app, the 100,000 examples in Natural Questions will produce a better model than Reddit conversations **for that particular use case**.
 
 ### Scale recap
-So with respect to **Scale**, we generally want as much data as possible. But if we are getting the data from noisy sources like internet conversation threads, it’s probably not worth the cost of scaling it up.
+So with respect to **Scale**, we generally want as much data as possible. But if we are getting the data from noisy sources like Internet conversation threads, it’s probably not worth the cost of scaling it up.
 
 ## Modality
-Modality is one of the most exciting emerging trends in Deep Learning that would be a shame to leave out of this discussion. Models such as DALL-E, which generates unbelievable generated images from text prompts, or CLIP, that searches through massive scales of images with natural language interfaces have captured our imagination about the future of Deep Learning. Readers may be happy to know that [the Sentence Transformer library has support for CLIP models](https://huggingface.co/sentence-transformers/clip-ViT-B-32){:target="_blank"}. 
+Modality is one of the most exciting emerging trends in Deep Learning that would be a shame to leave out of this discussion. Models such as DALL-E, which generates unbelievable images from text prompts, or CLIP, that searches through massive scales of images with natural language interfaces, have captured our imagination about the future of Deep Learning. Readers may be happy to know that [the Sentence Transformer library has support for CLIP models](https://huggingface.co/sentence-transformers/clip-ViT-B-32){:target="_blank"}. 
 
 Deep Learning research has mainly been focused on Text, Image, and Image-Text modality combinations, but this space is **quickly emerging** with successes in Video, Audio, Proteins, Chemicals, and many more. I am particularly captivated by Text-Code multimodal spaces and the opportunities of this modality combination plugged into the features of Weaviate’s Vector Search Engine.
 
