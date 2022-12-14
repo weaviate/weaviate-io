@@ -57,7 +57,7 @@ Currently the only index type is HNSW, so all data objects will be indexed using
     between the lower and upper boundary. It will be capped on either end,
     otherwise. *Not available prior to `v1.10.0`. Defaults to `8`. This setting
     has no effect if `ef` has a value other than `-1`.*
-  - `"vectorCacheMaxObjects"`: For optimal search and import performance all previously imported vectors need to be held in memory. However, Weaviate also allows for limiting the number of vectors in memory. By default, when creating a new class, this limit is set to `math.MaxInt64` (i.e., `9223372036854775807`) objects. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the cache should be used sparingly. This field is mutable after initially creating the class.
+  - `"vectorCacheMaxObjects"`: For optimal search and import performance all previously imported vectors need to be held in memory. However, Weaviate also allows for limiting the number of vectors in memory. By default, when creating a new class, this limit is set to one trillion (1e12) objects. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the cache should be used sparingly. This field is mutable after initially creating the class.
   Generally we recommend that:
     - During imports set the limit so that all vectors can be held in memory. Each
       import requires multiple searches so import performance will drop drastically
