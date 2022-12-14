@@ -11,3 +11,4 @@ img/og/og-documentation
 .docusaurus/
 node_modules/
 yarn.lock
+build
