@@ -22,7 +22,9 @@ script:
       source _build_scripts/slack-netlify-message.sh
 
       yarn global add linkinator
-      linkinator $NETLIFY_URL --recurse --skip 'weaviate.io|github.com/*.,' --timeout 5000 --verbosity error
+      # linkinator $NETLIFY_URL --recurse --skip 'weaviate.io|github.com/*.,|arxiv.org/abs|jsonlines.org/' --timeout 5000 --verbosity error
+      source _build_scripts/verify-links.sh
     fi
   ##
   # End Netlify
+  - echo "I guess I will continue now..."
