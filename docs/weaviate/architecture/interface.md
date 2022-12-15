@@ -129,13 +129,13 @@ There are currently three main functions in a GraphQL request: "Get{}", "Explore
 2. **Explorative & fuzzy search: `Explore {}`**: to search in a fuzzy way, when you don't know the data schema and class names.
 3. **Data analysis (meta data): `Aggregate {}`**: to search for meta data, and do data analysis of data aggregations. 
 
-# Weaviate Console
+## Weaviate Console
 
 The [Weaviate Console](https://console.semi.technology) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.
 
-![<img src="/img/console-capture.png" width="250"/>](./img/console-capture.png "GraphQL Query Module in Weaviate Console")
+![GraphQL Query Module in Weaviate Console](./img/console-capture.png)
 
-# Weaviate Clients and CLI
+## Weaviate Clients and CLI
 
 Weaviate has several client libraries: in [Go](/docs/weaviate/client-libraries/go.md), [Java](/docs/weaviate/client-libraries/java.md), [Python](/docs/weaviate/client-libraries/python.md) and [JavaScript](/docs/weaviate/client-libraries/javascript.md). The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. The APIs are intuitive to use, so it is easy to integrate Weaviate into your existing data landscape. 
 

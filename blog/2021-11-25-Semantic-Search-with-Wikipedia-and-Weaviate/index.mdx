@@ -47,17 +47,62 @@ Within Weaviate we will be using a schema that determines how we want to query t
 
 First, because our use case is semantic search over Wikipedia, we will be dividing the dataset into paragraphs and use Weaviate's graph schema to link them back to the articles. Therefore we need two classes; *Article* and *Paragraph*.
 
-![Weaviate class structure](./img/class-schema.png)
+```graphql
+{
+  classed: [
+    {
+      class: "Article",
+      description: "A wikipedia article with a title",
+      properties: {...},
+      vectorIndexType: "hnsw",
+      vectorizer: "none"
+    },
+    {
+      class: "Paragraph",
+      description: "A wiki paragraph",
+      properties: {...},
+      vectorIndexType: "hnsw",
+      vectorizer: "text2vec-transformers"
+    },
+  ]
+}
+```
+
 *Weaviate class structure*
 
 Next, we want to make sure that the content of the paragraphs gets vectorized properly, the vector representations that the SentenceBERT transformers will generate are used for all our semantic search queries.
 
-![A single data type that gets vectorized](./img/property-definition.png)
+```graphql
+{
+  name: "content",
+  datatype: [
+    "text"
+  ],
+  description: "The content of the paragraph",
+  invertedIndex: false,
+  moduleConfig: {
+    text2vec-transformers: {
+      skip: false,
+      vectorizePropertyName: false
+    }
+  }
+}
+```
+
 *A single data type that gets vectorized*
 
 Last, we want to make graph relations, in the dataset from step one we will distill all the graph relations between articles that we can reference like this:
 
-![Paragraph cross-references](./img/cross-references.png)
+```graphql
+{
+  name: "hasParagraphs"
+  dataType: [
+    "Paragraph"
+  ],
+  description: "List of paragraphs this article has",
+  invertedIndex: true
+}
+```
 *Paragraph cross-references*
 
 The complete schema we import using the [Python client](/developers/weaviate/client-libraries/python) can be found [here](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/blob/main/step-2/import.py#L19-L120).
@@ -74,12 +119,26 @@ Most critically, we are going to set an external volume in the Docker Compose fi
 
 In the environment variables, we set a CLUSTER_HOSTNAME, an arbitrary name you can set to identify a cluster.
 
-![Docker environment setup](./img/docker-configuration.png)
+```yaml
+environment:
+  TRANSFORMERS_INFERENCE_API: 'http:loadbalancer:8080'
+  QUERY_DEFAULTS_LIMIT: 25
+  AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+  PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+  DEFAULT_VECTORIZER_MODULE: 'text2vec-transformers'
+  ENABLE_MODULES: 'text2vec-transformers'
+  CLUSTER_HOSTNAME: '63e2f234026d'
+```
+
 *Docker environment setup*
 
 We will also set the location of the volume outside Weaviate, in this case the data will be stored in the /var/weaviate folder
 
-![Volumes for backup](./img/backup-configuration.png)
+```yaml
+volumes:
+  - /var/weaviate:/var/lib/weaviate
+```
+
 *Volumes for backup*
 
 You can find the complete docker-compose file we've used here.
