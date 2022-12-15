@@ -48,7 +48,7 @@ To run a highly available setup, classes must be replicated among multiple nodes
 **Solution: Replicate your classes across multiple nodes in a cluster**
 
 :::note
-The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/docs/weaviate/roadmap/architectural-roadmap.md)
+The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/docs/weaviate/roadmap/index.md)
 :::
 
 ## Sharding vs Replication
