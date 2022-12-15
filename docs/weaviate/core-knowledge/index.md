@@ -15,13 +15,10 @@ sidebar_position: 0
 ---
 
 <!-- TODO: Remove explanatory header once layout review complete -->
-:::caution NOTE:
-The "Concepts" sections come from
-- Core Knowledge in Weaviate Docs Classic, minus:
-  - "Console", which is now in Tutorials: Further Topics.
-  - "Clients", which has been added to Client-libraries/index
-- "Data objects" is most of "Basics"
-- Modules, from Modules:Index + some of the theory in Configuration:Modules in Weaviate Docs Classic
+:::caution Migrated From:
+- `Core knowledge`
+  - `Data objects` from `Core knowledge/Basics`
+  - `Modules`: Combines theoretical explanations from `Configuration/Modules` + `Modules/Index`
 :::
 
 ## Overview

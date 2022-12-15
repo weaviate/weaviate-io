@@ -18,6 +18,7 @@ If not specified explicitly, the default distance metric in Weaviate is
 `cosine`. It can be [set in the vectorIndexConfig](/docs/weaviate/configuration/vector-index-type.md#how-to-configure-hnsw) field as part of the
 schema ([Example to add new schema class](../references/rest/schema.md#create-a-class)) to any of the following types:
 
+<!-- TODO: Consider removing {:.text-nowrap} -->
 | Name | Description | Definition | Range |
 | --- | --- | --- | --- |
 | `cosine`{:.text-nowrap} | Cosine (angular) distance between two vectors. For a more efficient calculation, when chosing `cosine` all vectors are normalized to length 1 at import/read time and dot product is used for the actual calculation. A distance of 0 represents identical vectors, a distance of 2 represents opposing vectors. | `1 - cosine_sim(a,b)`{:.text-nowrap} | `0 <= d <= 2`{:.text-nowrap} |

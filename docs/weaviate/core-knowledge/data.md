@@ -1,5 +1,5 @@
 ---
-title: Data objects
+title: Data structure
 sidebar_position: 1
 # layout: layout-documentation
 # solution: weaviate
@@ -10,6 +10,12 @@ sidebar_position: 1
 # open-graph-type: article
 # toc: true
 ---
+:::caution Migrated From:
+- `Core knowledge/Basics`
+  - Refactored to contain subject matter to data structure in Weaviate
+  - Introductory "What is Weaviate" sections removed as duplicated by `Introduction`
+  - `Console`, `Benchmarks` and `Monitoring` paragraphs removed
+:::
 
 ## Overview
 

@@ -15,8 +15,9 @@ sidebar_position: 0
 ---
 
 <!-- TODO: Remove explanatory header once layout review complete -->
-:::caution NOTE:
-This section is from Getting Started in Weaviate Docs Classic.
+:::caution Migrated From:
+- `Getting Started`
+- Added `Weaviate console` from `Core knowledge/Console`
 :::
 
 ## Overview

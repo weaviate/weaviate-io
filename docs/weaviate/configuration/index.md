@@ -17,11 +17,13 @@ sidebar_position: 0
 ---
 
 <!-- TODO: Remove explanatory header once layout review complete -->
-:::caution NOTE:
-This section is from Configuration in Weaviate Docs Classic. Additionally:
-- Schema:Index + Schema:Configuration in Weaviate Docs Classic.
-- Data types in Weaviate Docs Classic.
-- Vector index plugins:Distance metrics in Weaviate Docs Classic.
+:::caution Migrated From:
+- `Configuration`
+- `Schema` is from `Schema/Schema configuration`
+- `Data types` is from `Schema/Data types`
+- `Distance metrics` from `Vector index plugins/Distance metrics`
+- `Modules` is mostly new - the previous `Configuration/Modules` content has been migrated to `References:Modules/index`
+- `Vector index` adds text re: configuration options from `Vector index plugins/HNSW`
 :::
 
 ## Overview

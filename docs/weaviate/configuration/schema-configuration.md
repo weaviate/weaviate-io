@@ -117,7 +117,7 @@ An example of a complete class object including properties:
 }
 ```
 
-### vectorizer
+#### vectorizer
 
 The vectorizer (`"vectorizer": "..."`) can be specified per class in the schema object. Check the [modules page](/docs/weaviate/modules/index.md) for available vectorizer modules.
 
@@ -127,15 +127,15 @@ __Regulate semantic indexing__
 
 With the [`text2vec-contextionary`](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/docs/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing) how this works.
 
-### vectorIndexType
+#### vectorIndexType
 
 The vectorIndexType defaults to [`hnsw`](/docs/weaviate/architecture/vector-index-plugins.md#hnsw) since this is the only available vector indexing algorithm implemented at the moment.
 
-### vectorIndexConfig
+#### vectorIndexConfig
 
 Check the [`hnsw` page](/docs/weaviate/configuration/vector-index-type.md#how-to-configure-hnsw) for `hnsw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
 
-### shardingConfig (introduced in v1.8.0)
+#### shardingConfig (introduced in v1.8.0)
 
 The `"shardingConfig"` controls how a class should be [sharded and distributed across multiple nodes](/docs/weaviate/architecture/cluster.md). All values are optional and default to the following settings:
 
@@ -193,7 +193,7 @@ The meaning of the individual fields in detail:
   target (virtual - and therefore physical) shard. `"murmur3"` creates a 64bit
   hash making hash collisions very unlikely.
 
-### invertedIndexConfig > stopwords (Stopword lists)
+#### invertedIndexConfig > stopwords (Stopword lists)
 
 *Note: This feature was introduced in `v1.12.0`.*
 
@@ -233,7 +233,7 @@ This configuration allows stopwords to be configured by class. If not set, these
 - If none is the selected preset, then the class' stopwords will consist entirely of the additions list.
 - If the same item is included in both additions and removals, then an error is returned
 
-### invertedIndexConfig > indexTimestamps
+#### invertedIndexConfig > indexTimestamps
 
 *Note: This feature was introduced in `v1.13.0`.*
 
@@ -245,7 +245,7 @@ To perform queries which are filtered by timestamps, the target class must first
   }
 ```
 
-### invertedIndexConfig > indexNullState
+#### invertedIndexConfig > indexNullState
 
 *Note: This feature was introduced in `v1.16.0`.*
 
@@ -257,7 +257,7 @@ To perform queries which are filtered by being null or not null, the target clas
   }
 ```
 
-### invertedIndexConfig > indexPropertyLength
+#### invertedIndexConfig > indexPropertyLength
 
 *Note: This feature was introduced in `v1.16.0`.*
 
@@ -297,7 +297,7 @@ An example of a complete property object:
 }
 ```
 
-## Concatenate classes and properties
+### Concatenate classes and properties
 
 Sometimes you might want to use multiple words to set as a class or property
 definition. For example, the year a person is born in, you might want to define
@@ -328,7 +328,7 @@ Author
   writesFor
 ```
 
-## Property Tokenization
+### Property Tokenization
 
 *Note: This feature was introduced in `v1.12.0`.*
 
@@ -351,7 +351,7 @@ would not return the object mentioned above, but only the exact string `"hello
 If no values are provided, properties of type `text` and `string` default to
 `"word"` level tokenization for backward-compatibility.
 
-# Regulate semantic indexing
+## Regulate semantic indexing
 
 * Only for `text2vec` module
 
@@ -378,7 +378,7 @@ over for their monday
 
 By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can regulate the indexing.
 
-### Datatypes
+#### Datatypes
 
 Weaviate needs to guess the datatypes based on the objects it sees, for this you can set some preferences. e.g.
 
@@ -392,7 +392,7 @@ In addition, we need to catch types we do not support at all:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what the class of the resolved beacon is, since it needs the ClassName to be able to alter the schema.
 
-### Default distance metric
+#### Default distance metric
 
 Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every class unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
 

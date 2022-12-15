@@ -10,6 +10,10 @@ sidebar_position: 3
 # open-graph-type: article
 # toc: true
 ---
+:::caution Migrated From:
+- `Core knowledge/Indexing`
+  - ANN configuration options & tips consolidated in `References:Configuration/ANN Index`, along with `Vector Index Plugins/HNSW`
+:::
 
 ## Intro to index settings
 

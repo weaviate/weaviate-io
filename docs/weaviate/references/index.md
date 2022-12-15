@@ -13,10 +13,9 @@ sidebar_position: 0
 ---
 
 <!-- TODO: Refine layout for presentation -->
-:::caution Note:
-The "References" comes from:
-- GraphQL in Weaviate Docs Classic.
-- RESTful API in Weaviate Docs Classic.
+:::caution Migrated From:
+- `GraphQL`
+- `RESTful API`
 :::
 
 ## Overview
