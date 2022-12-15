@@ -57,7 +57,10 @@ The request takes a json object with the following properties:
 
 *Note: You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.*
 
-{% include code/1.x/backup.create.html %}
+<!-- {% include code/1.x/backup.create.html %} -->
+import BackupCreate from '/_includes/code/backup.create.mdx';
+
+<BackupCreate/>
 
 While you are waiting for a backup to complete, [Weaviate stays fully usable](/docs/weaviate/configuration/backups.md#read--write-requests-while-a-backup-is-running).
 
@@ -84,7 +87,10 @@ GET /v1/backups/{backend}/{backup_id}
 The response contains a `"status"` field. If the status is `SUCCESS`, the
 backup is complete. If the status is `FAILED`, an additional error is provided.
 
-{% include code/1.x/backup.status.create.html %}
+<!-- {% include code/1.x/backup.status.create.html %} -->
+import BackupStatusCreate from '/_includes/code/backup.status.create.mdx';
+
+<BackupStatusCreate/>
 
 ### Restore Backup
 
@@ -123,7 +129,10 @@ The request takes a json object with the following properties:
 
 *Note 2: `include` and `exclude` is relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
 
-{% include code/1.x/backup.restore.html %}
+<!-- {% include code/1.x/backup.restore.html %} -->
+import BackupRestore from '/_includes/code/backup.restore.mdx';
+
+<BackupRestore/>
 
 #### Asynchronous Status Checking
 
@@ -147,7 +156,10 @@ GET /v1/backups/{backend}/{backup_id}/restore
 The response contains a `"status"` field. If the status is `SUCCESS`, the
 restore is complete. If the status is `FAILED`, an additional error is provided.
 
-{% include code/1.x/backup.status.restore.html %}
+<!-- {% include code/1.x/backup.status.restore.html %} -->
+import BackupStatusRestore from '/_includes/code/backup.status.restore.mdx';
+
+<BackupStatusRestore/>
 
 # Learn more about Backups
 

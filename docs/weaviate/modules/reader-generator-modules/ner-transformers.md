@@ -1,6 +1,6 @@
 ---
 title: Named Entity Recognition
-sidebar_position: 2
+sidebar_position: 5
 
 # layout: layout-documentation
 # solution: weaviate

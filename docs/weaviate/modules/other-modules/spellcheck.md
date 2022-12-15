@@ -1,5 +1,5 @@
 ---
-title: spellcheck
+title: Spell Check
 sidebar_position: 1
 
 # layout: layout-documentation
@@ -16,20 +16,20 @@ sidebar_position: 1
 ---
 ## In short
 
-* The SpellCheck module is a Weaviate module for spell checking of raw text in GraphQL queries.
-* The module depends on a Python spellchecking service.
-* The module adds an `spellCheck {}` filter to the GraphQL `nearText {}` search arguments.
-* The module returns the spelling check result in the GraphQL `_additional { spellCheck {} }` field. 
+* The Spell Check module is a Weaviate module for spell checking of raw text in GraphQL queries.
+* The module depends on a Python spellchecking library.
+* The module adds a `spellCheck {}` filter to the GraphQL `nearText {}` search arguments.
+* The module returns the spelling check result in the GraphQL `_additional { spellCheck {} }` field.
 
 ## Introduction
 
-The SpellCheck module is a Weaviate module for checking spelling in raw texts in GraphQL query inputs. Using [the Python spellchecker](https://pypi.org/project/pyspellchecker/) as service, the module analyzes text, gives a suggestion and can force an auto-correction. 
+The Spell Check module is a Weaviate module for checking spelling in raw texts in GraphQL query inputs. Using the [Python spellchecker](https://pypi.org/project/pyspellchecker/) library, the module analyzes text, gives a suggestion and can force an autocorrection.
 
 ## How to enable (module configuration)
 
 ### Docker-compose
 
-The Q&A module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `spellcheck` module with the `text2vec-contextionary` is here:
+The Spell Check module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `text-spellcheck` module with the `text2vec-contextionary` is here:
 
 ```yaml
 ---
@@ -76,29 +76,34 @@ Variable explanations:
 
 ## How to use (GraphQL)
 
-Use the new spellchecker module to verify user-provided search queries (in existing `nearText` (given that a `text2vec` module is used) or `ask` (if the `qna-transformers` module is enabled) functions) are spelled correctly and even suggest alternative, correct spellings. Spell-checking happens at query time.
+Use the spellchecker module to verify at query time that user-provided search queries are spelled correctly and even suggest alternative, correct spellings. Filters that accept query text include:
 
-There are two ways to use this module:
+* [`nearText`](../graphql-references/vector-search-parameters.html#neartext), if a `text2vec-*` module is used
+* `ask`, if the [`qna-transformers`](../reader-generator-modules/qna-transformers.html) module is enabled
 
-1. It provides a new GraphQL `_additional` property which can be used to check (but not alter) the provided queries, see query below.
+There are two ways to use this module: spell checking, and autocorrection.
 
-### Example query
+### Spell checking
 
-import CodeSpellcheck from '/_includes/code/spellcheck-module.mdx';
+The module provides a new GraphQL `_additional` property which can be used to check (but not alter) the provided queries.
 
-<CodeSpellcheck />
+#### Example query
 
-### GraphQL response
+import SpellCheckModule from '/_includes/code/spellcheck-module.mdx';
+
+<SpellCheckModule/>
+
+#### GraphQL response
 
 The result is contained in a new GraphQL `_additional` property called `spellCheck`. It contains the following fields:
 * `changes`: a list with the following fields:
-    * `corrected` (`string`): the corrected spelling if a correction is found
-    * `original` (`string`): the original spelled word in the query
+  * `corrected` (`string`): the corrected spelling if a correction is found
+  * `original` (`string`): the original word in the query
 * `didYouMean`: the corrected full text in the query
 * `originalText`: the original full text in the query
 * `location`: the location of the misspelled string in the query
 
-### Example response
+#### Example response
 
 ```json
 {
@@ -130,21 +135,23 @@ The result is contained in a new GraphQL `_additional` property called `spellChe
 }
 ```
 
-2. It extends existing `text2vec-modules` with a `autoCorrect` flag, which can be used to correct the query if incorrect in the background:
+### Autocorrect
 
-### Example query
+The module extends existing `text2vec-*` modules with an `autoCorrect` flag, which can be used to automatically correct the query if it was misspelled:
+
+#### Example query
 
 ```graphql
 {
   Get {
-    Article(nearText:{
+    Article(nearText: {
       concepts: ["houssing prices"],
       autocorrect: true
     }) {
       title
-      _additional{
-        spellCheck{
-          changes{
+      _additional {
+        spellCheck {
+          changes {
             corrected
             original
           }

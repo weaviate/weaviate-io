@@ -111,7 +111,10 @@ You can create operator filters by setting the `where` key. You always need to i
 
 For example, this filter selects articles from the class Article with a wordcount higher than 1000.
 
-{% include code/1.x/graphql.filters.where.simple.html %}
+<!-- {% include code/1.x/graphql.filters.where.simple.html %} -->
+import GraphQLFiltersWhereSimple from '/_includes/code/graphql.filters.where.simple.mdx';
+
+<GraphQLFiltersWhereSimple/>
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28where%3A+%7B%0D%0A++++++++path%3A+%5B%22wordCount%22%5D%2C++++%23+Path+to+the+property+that+should+be+used%0D%0A++++++++operator%3A+GreaterThan%2C++%23+operator%0D%0A++++++++valueInt%3A+1000++++++++++%23+value+%28which+is+always+%3D+to+the+type+of+the+path+property%29%0D%0A++++++%7D%29+%7B%0D%0A++++++title%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
@@ -270,7 +273,7 @@ You can also search for the value of the property of a beacon.
 
 For example, these filters select based on the class Article but who have `inPublication` set to New Yorker.
 
-{% include code/1.x/graphql.filters.where.beacon.html %}
+<!-- {% include code/1.x/graphql.filters.where.beacon.html %} -->
 import GraphQLFiltersWhereBeacon from '/_includes/code/graphql.filters.where.beacon.mdx';
 
 <GraphQLFiltersWhereBeacon/>

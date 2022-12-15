@@ -16,7 +16,7 @@ sidebar_position: 4
 
 When using Weaviate for medium to large-scale cases, it is recommended to plan your resources accordingly. Typically, small use cases (less than 1M objects) do not require resource planning. For use cases larger than that, you should be aware of the roles of CPU and memory which are the primary resources used by Weaviate. Depending on the (optional) modules used, GPUs may also play a role.
 
-Note that Weaviate has an option to limit the amount of vectors held in memory to prevent unexpected Out-of-Memory ("OOM") situations. This limit is entirely configurable and by default is set to 2M objects per class. If your import performance drops drastically after reaching 2M objects, see section [Vector Cache](#vector-cache) below.
+Note that Weaviate has an option to limit the amount of vectors held in memory to prevent unexpected Out-of-Memory ("OOM") situations. This limit is entirely configurable and by default is set to one trillion (i.e. `1e12`) objects per class.
 
 ## The role of CPUs 
 
@@ -93,15 +93,12 @@ If memory usage (or expected memory usage) is higher than your resources permit,
 
 ## Vector Cache
 
-For optimal search and import performance, all previously imported vectors need to be held in memory. However, Weaviate also allows for limiting the number of vectors in memory. By default, when creating a new class, this limit is set to 2M objects. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the cache should be used sparingly.
+For optimal search and import performance, all previously imported vectors need to be held in memory. However, Weaviate also allows for limiting the number of vectors in memory. By default, when creating a new class, this limit is set to one trillion (i.e. `1e12`) objects. A disk lookup for a vector
+is orders of magnitudes slower than memory lookup, so the cache should be used sparingly.
 
 Generally we recommend that:
 - During imports, set the limit so that all vectors can be held in memory. Each import requires multiple searches so import performance will drop drastically as not all vectors can be held in the cache.
 - When only or mostly querying (as opposed to bulk importing), you can experiment with vector cache limits which are lower than your total dataset size. Vectors which aren't currently in cache will be added to the cache if there is still room. If the cache runs full, it is dropped entirely and all future vectors need to be read from disk the first time. Subsequent queries will be taken from the cache, until it runs full again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, but a large percentage of users only query a specific subset of vectors. In this case, you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
-
-### Imports slowed down after crossing ~2M objects - what can I do?
-
-If you notice that your import performance drops drastically after the 2M objects (per class) mark, you are most likely running into the default 2M limit of the vector cache. You can [adjust the limit on existing classes](/docs/weaviate/configuration/vector-index-type.md#how-to-configure-hnsw) without having to recreate the class or reimport.
 
 ## The role of GPUs in Weaviate
 

@@ -24,7 +24,7 @@ To this end, the majority of the content is categorized into one of **three cate
 
 | | 💡 Concepts | 📚 References | 👷 Tutorials |
 | ----- | ----- | ----- | ----- |
-| Focus | **Learn** about topics | Find **itemized** information | How to **do** something |
+| Focus | **Explanations** of topics | Find **itemized** information | How to **do** something |
 
 Commonly requested resources such as [benchmarks](./benchmarks/index.md) and [roadmap](./roadmap/index.md) have their own sections, and others such as the [FAQ](./more-resources/faq.md), [glossary](./more-resources/glossary.md) and more can be found in the [More Resources](./more-resources/index.md) section.
 

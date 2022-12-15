@@ -415,7 +415,10 @@ IDs across classes could mean that this beacon is not uniquely identifiable.*
 
 #### Example request
 
-{% include code/1.x/semantic-kind.object.reference.add.html %}
+<!-- {% include code/1.x/semantic-kind.object.reference.add.html %} -->
+import SemanticKindObjectReferenceAdd from '/_includes/code/semantic-kind.object.reference.add.mdx';
+
+<SemanticKindObjectReferenceAdd/>
 
 If the addition was successful, no content will be returned.
 

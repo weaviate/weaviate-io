@@ -1,5 +1,21 @@
 [
   {
+    "title": "Product Quantization and Faiss",
+    "description": "Matthijs Douze tells the story of his research in Product Quantization, also featuring Abdel Rodriguez and Etienne Dilocker!",
+    "youtube": "5o1YTp1IL5o",
+    "date": "2022-12-01",
+    "cover_image": "/img/podcasts/podcast-29.png",
+    "is_use_case": false
+  },
+  {
+    "title": "BERTopic",
+    "description": "Marten Grootendorst explains how BERTopic can create interpretable clusters in vector spaces!",
+    "youtube": "IwXOaHanfUU",
+    "date": "2022-11-23",
+    "cover_image": "/img/podcasts/podcast-28.png",
+    "is_use_case": false
+  },  
+  {
     "title": "Neural Magic in Weaviate",
     "description": "Michael Goin explains how Neural Magic uses Sparsity to achieve faster and cheaper Deep Learning inference on CPUs!",
     "youtube": "leGgjIQkVYo",
