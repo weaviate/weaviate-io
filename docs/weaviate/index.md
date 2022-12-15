@@ -109,7 +109,7 @@ Weaviate makes it easy to use state-of-the-art AI models while providing the sca
 Use State-of-the-Art AI model inference (e.g., Transformers) for accessing data (text, images, etc.) at search-and-query time to let Weaviate manage the process of vectorizing data for you - or provide your own vectors.
 
 * **Combine vector and scalar search**<br />
- Weaviate allows for efficient, combined vector and scalar searches. For example, “articles related to the COVID-19 pandemic published within the past 7 days.” Weaviate stores both objects and vectors and ensures the retrieval of both is always efficient. There is no need for a third-party object storage. 
+ Weaviate allows for efficient, combined vector and scalar searches. For example, "articles related to the COVID-19 pandemic published within the past 7 days." Weaviate stores both objects and vectors and ensures the retrieval of both is always efficient. There is no need for a third-party object storage. 
 
 * **Real-time and persistent**<br />
 Weaviate lets you search through your data even if it's currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.

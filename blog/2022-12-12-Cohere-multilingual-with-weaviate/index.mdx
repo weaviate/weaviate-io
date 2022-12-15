@@ -30,7 +30,7 @@ Cohere trains their own LLMs for text generation and understanding and serves th
 ## Cohere + Weaviate
 Now, you can combine Cohere’s LLMs with a vector search engine like Weaviate to get the best of both worlds. More specifically, you can run complex NLP queries at a large scale of millions (and even billions) of text objects and get results back in a blink of an eye.
 
-> If you don’t consider a “blink of an eye” as a scientific metric (note: it isn’t!), you can check Weaviate’s [benchmarks](/developers/weaviate/benchmarks/ann#results) on some standard datasets.
+> If you don’t consider a "blink of an eye" as a scientific metric (note: it isn’t!), you can check Weaviate’s [benchmarks](/developers/weaviate/benchmarks/ann#results) on some standard datasets.
 
 But until now, getting outputs from Cohere into Weaviate required a few extra steps. This included sending requests to Cohere to vectorize text objects, retrieving the output vectors, and then importing it  into Weaviate along with the matching objects.
 
@@ -64,13 +64,13 @@ Then, I took 15 minutes to create a small [Python project](https://github.com/we
 1. and import a small (handcrafted) dataset.
 
 ### Query for musical instruments
-Once my setup was ready, I was able to run queries like “What musical instruments do we have?” in Polish
+Once my setup was ready, I was able to run queries like "What musical instruments do we have?" in Polish
 
 ```bash
 python query.py "jakie mamy instrumenty muzyczne?"
 ```
 
-Or a shorter query in Hungarian – “musical instruments?”
+Or a shorter query in Hungarian – "musical instruments?"
 
 ```bash
 python query.py "zenei hangszerek?"
@@ -100,7 +100,7 @@ Both queries returned the following objects. Note the guitar content is in Itali
 ```
 
 ### Query for small animals
-Next, I tried to query for “small animals” in Japanese.
+Next, I tried to query for "small animals" in Japanese.
 
 ```bash
 python query.py "小動物"
