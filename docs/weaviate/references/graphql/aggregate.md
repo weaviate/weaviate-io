@@ -262,7 +262,6 @@ import GraphQLAggNearText from '/_includes/code/graphql.aggregate.nearText.mdx';
 
 <MoleculeGQLDemo query='%7B%0A++Aggregate+%7B%0A++++Article%28nearText%3A%7B%0A++++++concepts%3A+%5B%22apple+iphone%22%5D%0A++++++certainty%3A+0.7%0A++++%7D%2C+%0A++++objectLimit%3A+200%29+%7B%0A++++++meta+%7B%0A++++++++count%0A++++++%7D%0A++++++inPublication+%7B%0A++++++++pointingTo%0A++++++++type%0A++++++%7D%0A++++++wordCount+%7B%0A++++++++count%0A++++++++maximum%0A++++++++mean%0A++++++++median%0A++++++++minimum%0A++++++++mode%0A++++++++sum%0A++++++++type%0A++++++%7D%0A++++%7D%0A++%7D%0A%7D'/>
 
-<!-- TODO - needs to be replaced -->
 <!-- {% include molecule-gql-demo.html encoded_query='%7B%0A++Aggregate+%7B%0A++++Article%28nearText%3A%7B%0A++++++concepts%3A+%5B%22apple+iphone%22%5D%0A++++++certainty%3A+0.7%0A++++%7D%2C+%0A++++objectLimit%3A+200%29+%7B%0A++++++meta+%7B%0A++++++++count%0A++++++%7D%0A++++++inPublication+%7B%0A++++++++pointingTo%0A++++++++type%0A++++++%7D%0A++++++wordCount+%7B%0A++++++++count%0A++++++++maximum%0A++++++++mean%0A++++++++median%0A++++++++minimum%0A++++++++mode%0A++++++++sum%0A++++++++type%0A++++++%7D%0A++++%7D%0A++%7D%0A%7D' %} -->
 
 ## More Resources
