@@ -31,7 +31,6 @@ And it returns the following fields:
 ## Example
 The following command:
 
-<!-- {% include code/1.x/meta.html %} -->
 import Meta from '/_includes/code/meta.mdx';
 
 <Meta/>

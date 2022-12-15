@@ -62,7 +62,9 @@ Make sure you have at least two categories present in your dataset, and that the
 
 A classification can be started through one of the clients, or with a direct curl request to the RESTful API.
 
-{% include code/1.x/classification.contextual.post.html %}
+import ClassificationContextualPost from '/_includes/code/classification.contextual.post.mdx';
+
+<ClassificationContextualPost/>
 
 A classification is started, and will run in the background. The following response is given after starting the classification, and the status can be fetched via the `v1/classifications/{id}` endpoint.
 
@@ -259,7 +261,9 @@ Results in:
 
 A classification can be started through one of the clients, or with a direct `curl` request to the RESTful API.
 
-{% include code/1.x/classification.knn.post.articles.html %}
+import ClassificationKnnPostArticles from '/_includes/code/classification.knn.post.articles.mdx';
+
+<ClassificationKnnPostArticles/>
 
 A classification is started, and will run in the background. The following response is given after starting the classification, and the status can be fetched via the `v1/classifications/{id}` endpoint.
 

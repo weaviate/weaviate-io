@@ -96,7 +96,6 @@ The response of a `GET` query of a data object will give you information about a
 
 #### Example request
 
-<!-- {% include code/1.x/semantic-kind.get.html %} -->
 import SemanticKindGet from '/_includes/code/semantic-kind.get.mdx';
 
 <SemanticKindGet/>
@@ -138,7 +137,6 @@ The body of the data object for a new object takes the following fields:
 
 #### Example request
 
-<!-- {% include code/1.x/semantic-kind.create.html %} -->
 import SemanticKindCreate from '/_includes/code/semantic-kind.create.mdx';
 
 <SemanticKindCreate/>
@@ -147,7 +145,6 @@ import SemanticKindCreate from '/_includes/code/semantic-kind.create.mdx';
 
 If you want to fill the value of a `geoCoordinates` property, you need to specify the `latitude` and `longitude` as decimal degrees in floats:
 
-<!-- {% include code/1.x/semantic-kind.create.geocoordinates.html %} -->
 import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geocoordinates.mdx';
 
 <SemanticKindCreateCoords/>
@@ -159,7 +156,6 @@ When you don't want to use a vectorizer to calculate a vector for your data obje
 1. First, make sure that the `"vectorizer"` is set to `"none"` in the right class in the [data schema](/docs/weaviate/configuration/schema-configuration.md#vectorizer) (`"vectorizer": "none"`). This is important so Weaviate knows not to do rely on any of it's modules to do model inference. *Note: If you are running without any modules and have therefore already configured the default vectorizer to be `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), you can omit this step.*
 2. Then, attach the vector in a special `"vector"` field. An example of this looks like: 
 
-<!-- {% include code/1.x/semantic-kind.create.vector.html %} -->
 import SemanticKindCreateVector from '/_includes/code/semantic-kind.create.vector.mdx';
 
 <SemanticKindCreateVector/>
@@ -182,11 +178,9 @@ Available for backward compatibility and deprecated:
 GET /v1/objects/{id}
 ```
 
-<!-- {% include rest-objects-crud-classname-note.html %} -->
-<!-- TODO - file missing - check original location as original URL follows different pattern -->
-<!-- import RestObjectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
+import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
 
-<RestObjectsCRUDClassnameNote/> -->
+<RestObjectsCRUDClassnameNote/>
 
 #### Parameters
 
@@ -200,7 +194,6 @@ GET /v1/objects/{id}
 
 See [here](#response-fields) the explanation of the response fields.
 
-<!-- {% include code/1.x/semantic-kind.object.get.html %} -->
 import SemanticKindObjectGet from '/_includes/code/semantic-kind.object.get.mdx';
 
 <SemanticKindObjectGet/>
@@ -226,11 +219,7 @@ Available for backward compatibility and deprecated:
 HEAD /v1/objects/{id}
 ```
 
-<!-- {% include rest-objects-crud-classname-note.html %} -->
-<!-- TODO - file missing - check original location as original URL follows different pattern -->
-<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
-
-<RestObejectsCRUDClassnameNote/> -->
+<RestObjectsCRUDClassnameNote/>
 
 #### Parameters
 
@@ -241,7 +230,6 @@ HEAD /v1/objects/{id}
 
 #### Example request
 
-<!-- {% include code/1.x/semantic-kind.object.head.html %} -->
 import SemanticKindObjectHead from '/_includes/code/semantic-kind.object.head.mdx';
 
 <SemanticKindObjectHead/>
@@ -266,11 +254,7 @@ PUT /v1/objects/{id}
 PATCH /v1/objects/{id}
 ```
 
-<!-- {% include rest-objects-crud-classname-note.html %} -->
-<!-- TODO - file missing - check original location as original URL follows different pattern -->
-<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
-
-<RestObejectsCRUDClassnameNote/> -->
+<RestObjectsCRUDClassnameNote/>
 
 #### Parameters
 
@@ -289,7 +273,6 @@ The body of the data object for a replacing (some) properties of a object takes 
 
 #### Example request
 
-<!-- {% include code/1.x/semantic-kind.object.update.html %} -->
 import SemanticKindObjectUpdate from '/_includes/code/semantic-kind.object.update.mdx';
 
 <SemanticKindObjectUpdate/>
@@ -312,11 +295,7 @@ Available for backward compatibility and deprecated:
 DELETE /v1/objects/{id}
 ```
 
-<!-- {% include rest-objects-crud-classname-note.html %} -->
-<!-- TODO - file missing - check original location as original URL follows different pattern -->
-<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
-
-<RestObejectsCRUDClassnameNote/> -->
+<RestObjectsCRUDClassnameNote/>
 
 #### Parameters
 
@@ -327,7 +306,6 @@ DELETE /v1/objects/{id}
 
 #### Example request
 
-<!-- {% include code/1.x/semantic-kind.object.delete.html %} -->
 import SemanticKindObjectDelete from '/_includes/code/semantic-kind.object.delete.mdx';
 
 <SemanticKindObjectDelete/>
@@ -360,7 +338,6 @@ The body of the data object for a new data object is an object taking the follow
 
 #### Example request
 
-<!-- {% include code/1.x/semantic-kind.validate.html %} -->
 import SemanticKindValidate from '/_includes/code/semantic-kind.validate.mdx';
 
 <SemanticKindValidate/>
@@ -383,11 +360,7 @@ Available for backward compatibility and deprecated:
 POST /v1/objects/{id}/references/{property_name}
 ```
 
-<!-- {% include rest-objects-crud-classname-note.html %} -->
-<!-- TODO - file missing - check original location as original URL follows different pattern -->
-<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
-
-<RestObejectsCRUDClassnameNote/> -->
+<RestObjectsCRUDClassnameNote/>
 
 #### Parameters
 
@@ -415,7 +388,6 @@ IDs across classes could mean that this beacon is not uniquely identifiable.*
 
 #### Example request
 
-<!-- {% include code/1.x/semantic-kind.object.reference.add.html %} -->
 import SemanticKindObjectReferenceAdd from '/_includes/code/semantic-kind.object.reference.add.mdx';
 
 <SemanticKindObjectReferenceAdd/>
@@ -438,11 +410,7 @@ Available for backward compatibility and deprecated:
 PUT /v1/objects/{id}/references/{property_name}
 ```
 
-<!-- {% include rest-objects-crud-classname-note.html %} -->
-<!-- TODO - file missing - check original location as original URL follows different pattern -->
-<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
-
-<RestObejectsCRUDClassnameNote/> -->
+<RestObjectsCRUDClassnameNote/>
 
 #### Parameters
 
@@ -470,7 +438,6 @@ IDs across classes could mean that this beacon is not uniquely identifiable.*
 
 #### Example request
 
-<!-- {% include code/1.x/semantic-kind.object.reference.update.html %} -->
 import SemanticKindObjectReferenceUpdate from '/_includes/code/semantic-kind.object.reference.update.mdx';
 
 <SemanticKindObjectReferenceUpdate/>
@@ -494,11 +461,7 @@ Available for backward compatibility and deprecated:
 DELETE /v1/objects/{id}/references/{property_name}
 ```
 
-<!-- {% include rest-objects-crud-classname-note.html %} -->
-<!-- TODO - file missing - check original location as original URL follows different pattern -->
-<!-- import RestObejectsCRUDClassnameNote from '/_includes/code/rest-objects-crud-classname-note.mdx';
-
-<RestObejectsCRUDClassnameNote/> -->
+<RestObjectsCRUDClassnameNote/>
 
 #### Parameters
 
@@ -528,7 +491,6 @@ same way.*
 
 #### Example request
 
-<!-- {% include code/1.x/semantic-kind.object.reference.delete.html %} -->
 import SemanticKindObjectReferenceDelete from '/_includes/code/semantic-kind.object.reference.delete.mdx';
 
 <SemanticKindObjectReferenceDelete/>

@@ -19,7 +19,6 @@ sidebar_position: 1
 
 A `Get{}` function is always based on the schema. For example, if you've created a schema with a class `Articles` which has the properties `name`, `url` and `wordCount`, you can query it as follows:
 
-<!-- {% include code/1.x/graphql.get.simple.html %} -->
 import GraphQLGetSimple from '/_includes/code/graphql.get.simple.mdx';
 
 <GraphQLGetSimple/>
@@ -46,7 +45,6 @@ The above query will result in something like the following:
 
 If you've set a beacon reference in the schema, you can query it as follows:
 
-<!-- {% include code/1.x/graphql.get.beacon.html %} -->
 import GraphQLGetBeacon from '/_includes/code/graphql.get.beacon.mdx';
 
 <GraphQLGetBeacon/>

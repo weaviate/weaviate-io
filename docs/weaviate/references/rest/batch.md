@@ -52,7 +52,6 @@ The body requires the following field:
 
 ### Example request
 
-<!-- {% include code/1.x/batch.objects.html %} -->
 import BatchObjects from '/_includes/code/batch.objects.mdx';
 
 <BatchObjects/>
@@ -100,7 +99,6 @@ property name.*
 
 ### Example request
 
-<!-- {% include code/1.x/batch.references.html %} -->
 import BatchReferences from '/_includes/code/batch.references.mdx';
 
 <BatchReferences/>
@@ -192,7 +190,6 @@ Possible values for `output`
 
 ### Example request
 
-<!-- {% include code/1.x/batch.delete.objects.html %} -->
 import BatchDeleteObjects from '/_includes/code/batch.delete.objects.mdx';
 
 <BatchDeleteObjects/>

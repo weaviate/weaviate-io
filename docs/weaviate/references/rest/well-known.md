@@ -35,7 +35,6 @@ If no OIDC provider is present, a `404` code will be returned.
 #### Example
 The following command:
 
-<!-- {% include code/1.x/wellknown.openid-configuration.html %} -->
 import WellknownOpenIDConfig from '/_includes/code/wellknown.openid-configuration.mdx';
 
 <WellknownOpenIDConfig/>
@@ -66,7 +65,6 @@ And it returns 200 if the application is able to respond to HTTP requests.
 #### Example
 If the following command:
 
-<!-- {% include code/1.x/wellknown.live.html %} -->
 import WellKnownLive from '/_includes/code/wellknown.live.mdx';
 
 <WellKnownLive/>
@@ -90,7 +88,6 @@ And it returns 200 if the application is able to respond to HTTP requests, and 5
 #### Example
 If the following command:
 
-<!-- {% include code/1.x/wellknown.ready.html %} -->
 import WellknownReady from '/_includes/code/wellknown.ready.mdx';
 
 <WellknownReady/>

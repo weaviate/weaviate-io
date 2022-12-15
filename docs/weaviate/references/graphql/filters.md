@@ -23,7 +23,6 @@ Filters are added to GraphQL queries on the class level.
 
 For example:
 
-<!-- {% include code/1.x/graphql.filters.example.html %} -->
 import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 <GraphQLFiltersExample/>
@@ -111,7 +110,6 @@ You can create operator filters by setting the `where` key. You always need to i
 
 For example, this filter selects articles from the class Article with a wordcount higher than 1000.
 
-<!-- {% include code/1.x/graphql.filters.where.simple.html %} -->
 import GraphQLFiltersWhereSimple from '/_includes/code/graphql.filters.where.simple.mdx';
 
 <GraphQLFiltersWhereSimple/>
@@ -138,7 +136,6 @@ import GraphQLFiltersWhereSimple from '/_includes/code/graphql.filters.where.sim
 
 You can filter object by their unique id or uuid, where you give the `id` as `valueString`.
 
-<!-- {% include code/1.x/graphql.filters.where.id.html %} -->
 import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx';
 
 <GraphQLFiltersWhereId/>
@@ -167,7 +164,6 @@ Filtering can be performed with internal timestamps as well, such as `creationTi
 
 *Note: filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/docs/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps) for details* 
 
-<!-- {% include code/1.x/graphql.filters.where.timestamps.html %} -->
 import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where.timestamps.mdx';
 
 <GraphQLFiltersWhereTimestamps/>
@@ -220,7 +216,6 @@ You can set multiple operands by providing an array.
 
 For example, these filters select based on the class Article with a wordCount higher than 1000 and who are published before January 1st 2020. Note that you can filter a date and time just similar to numbers, with the `valueDate` given as `string`. Note that the `valueDate` should be formatted according to standard [RFC3339](https://tools.ietf.org/html/rfc3339).
 
-<!-- {% include code/1.x/graphql.filters.where.operands.html %} -->
 import GraphQLFiltersWhereOperands from '/_includes/code/graphql.filters.where.operands.mdx';
 
 <GraphQLFiltersWhereOperands/>
@@ -237,7 +232,6 @@ Using the `Like` operator allows you to do string searches based on partial matc
   - `car*` matches `car`, `care`, `carpet`, etc
   - `*car*` matches `car`, `healthcare`, etc.
 
-<!-- {% include code/1.x/graphql.filters.where.like.html %} -->
 import GraphQLFiltersWhereLike from '/_includes/code/graphql.filters.where.operands.mdx';
 
 <GraphQLFiltersWhereLike/>
@@ -273,7 +267,6 @@ You can also search for the value of the property of a beacon.
 
 For example, these filters select based on the class Article but who have `inPublication` set to New Yorker.
 
-<!-- {% include code/1.x/graphql.filters.where.beacon.html %} -->
 import GraphQLFiltersWhereBeacon from '/_includes/code/graphql.filters.where.beacon.mdx';
 
 <GraphQLFiltersWhereBeacon/>
@@ -284,7 +277,6 @@ import GraphQLFiltersWhereBeacon from '/_includes/code/graphql.filters.where.bea
 
 Above example shows how filter by reference can solve straightforward questions like "Find all articles that are published by New Yorker". But questions like "Find all articles that are written by authors that wrote at least two articles", cannot be answered by the above query structure. It is however possible to filter by reference count. To do so, simply provide one of the existing compare operators (`Equal`, `LessThan`, `LessThanEqual`, `GreaterThan`, `GreaterThanEqual`) and use it directly on the reference element. For example:
 
-<!-- {% include code/1.x/graphql.filters.where.beacon.count.html %} -->
 import GraphQLFiltersWhereBeaconCount from '/_includes/code/graphql.filters.where.beacon.count.mdx';
 
 <GraphQLFiltersWhereBeaconCount/>
@@ -297,7 +289,6 @@ A special case of the `Where` filter is with geoCoordinates. This filter is only
 
 For example, this curious returns all in a radius of 2KM around a specific geo-location:
 
-<!-- {% include code/1.x/graphql.filters.where.geocoordinates.html %} -->
 import GraphQLFiltersWhereGeocoords from '/_includes/code/graphql.filters.where.geocoordinates.mdx';
 
 <GraphQLFiltersWhereGeocoords/>
@@ -382,7 +373,6 @@ Examples:
 
 ## Sorting API
 
-<!-- {% include code/1.x/graphql.get.sorting.html %} -->
 import GraphQLGetSorting from '/_includes/code/graphql.get.sorting.mdx';
 
 <GraphQLGetSorting/>
@@ -397,7 +387,6 @@ A `limit` argument limits the number of results.
 
 An example of a stand-alone `limit` filter:
 
-<!-- {% include code/1.x/graphql.filters.limit.html %} -->
 import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
 <GraphQLFiltersLimit/>
@@ -441,7 +430,6 @@ The offset parameter works in conjunction with the existing limit parameter. For
 
 An example of a stand-alone `limit` filter:
 
-<!-- {% include code/1.x/graphql.filters.offset.html %} -->
 import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
 
 <GraphQLFiltersOffset/>

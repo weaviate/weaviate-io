@@ -19,7 +19,6 @@ Vector search parameters are added to GraphQL queries on the class level.
 
 For example:
 
-<!-- {% include code/1.x/graphql.filters.example.html %} -->
 import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 <GraphQLFiltersExample/>
@@ -45,7 +44,6 @@ This filter allows you to find data objects in the vicinity of an input vector. 
 
 #### Example
 
-<!-- {% include code/1.x/graphql.filters.nearVector.html %} -->
 import GraphQLFiltersNearVector from '/_includes/code/graphql.filters.nearVector.mdx';
 
 <GraphQLFiltersNearVector/>
@@ -80,7 +78,6 @@ This filter allows you to find data objects in the vicinity of other data object
 
 #### Example
 
-<!-- {% include code/1.x/graphql.filters.nearObject.html %} -->
 import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject.mdx';
 
 <GraphQLFiltersNearObject/>
@@ -100,7 +97,6 @@ You can use a group operator to combine similar concepts (aka _entity merging_).
 
 ### Example
 
-<!-- {% include code/1.x/graphql.filters.group.html %} -->
 import GraphQLFiltersGroup from '/_includes/code/graphql.filters.group.mdx';
 
 <GraphQLFiltersGroup/>
@@ -187,7 +183,6 @@ This filter allows you to find data objects in the vicinity of the vector repres
 
 This example shows a basic overview of using the nearText filter.
 
-<!-- {% include code/1.x/graphql.filters.nearText.html %} -->
 import GraphQLFiltersNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
 <GraphQLFiltersNearText/>
@@ -198,7 +193,6 @@ import GraphQLFiltersNearText from '/_includes/code/graphql.filters.nearText.mdx
 
 You can also bias results toward other data objects' vector representations. For example, in this dataset, we have an ambiguous query on our news article dataset, which we bias towards an article called: ["Tohoku: A Japan destination for all seasons."](https://link.semi.technology/3Czhg9p)
 
-<!-- {% include code/1.x/graphql.filters.nearText.2obj.html %} -->
 import GraphQLFiltersNearText2Obj from '/_includes/code/graphql.filters.nearText.2obj.mdx';
 
 <GraphQLFiltersNearText2Obj/>
@@ -244,7 +238,6 @@ _Note: Building a semantic path is only possible if a [`nearText: {}` filter](#n
 
 Example: showing a semantic path without edges.
 
-<!-- {% include code/1.x/graphql.underscoreproperties.semanticpath.html %} -->
 import GraphQLUnderscoreSemanticpath from '/_includes/code/graphql.underscoreproperties.semanticpath.mdx';
 
 <GraphQLUnderscoreSemanticpath/>
@@ -266,7 +259,6 @@ This filter allows you to return answers to questions by running the results thr
 
 #### Example
 
-<!-- {% include code/1.x/qna-transformers.ask.html %} -->
 import QNATransformersAsk from '/_includes/code/qna-transformers.ask.mdx';
 
 <QNATransformersAsk/>

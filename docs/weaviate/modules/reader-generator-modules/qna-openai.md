@@ -197,4 +197,7 @@ These models can be configured
 
 # More resources
 
-{% include docs-support-links.html %}
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
+

@@ -108,7 +108,6 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
 
 ### Example
 
-<!-- {% include code/1.x/graphql.filters.nearText.cohere.html %} -->
 import GraphQLFiltersNearNextCohere from '/_includes/code/graphql.filters.nearText.cohere.mdx';
 
 <GraphQLFiltersNearNextCohere/>
@@ -159,7 +158,6 @@ If you run into rate limits, you can also decide to throttle the import in your 
 
 E.g., in Python and Go using the Weaviate client.
 
-<!-- {% include code/1.x/text2vec-cohere.example.html %} -->
 import Text2VecCohereExample from '/_includes/code/text2vec-cohere.example.mdx';
 
 <Text2VecCohereExample/>

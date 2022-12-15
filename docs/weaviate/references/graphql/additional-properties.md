@@ -24,7 +24,6 @@ GraphQL additional properties can be used on data objects in Get{} Queries to ge
 
 An example query getting the [UUID](#id) and the [distance](#distance).
 
-<!-- {% include code/1.x/graphql.underscoreproperties.distance.html %} -->
 import GraphQLUnderscoreDistance from '/_includes/code/graphql.underscoreproperties.distance.mdx';
 
 <GraphQLUnderscoreDistance/>
@@ -164,7 +163,6 @@ result in certainties between 0 and 1, with 1 indicating identical vectors, and
 
 When a data-object has been [subjected to classification](../rest/classification.md), you can get additional information about how the object was classified by running the following command:
 
-<!-- {% include code/1.x/graphql.underscoreproperties.classification.html %} -->
 import GraphQLUnderscoreClassification from '/_includes/code/graphql.underscoreproperties.classification.mdx';
 
 <GraphQLUnderscoreClassification/>
@@ -187,7 +185,6 @@ To tweak the feature projection optional parameters (currently GraphQL-only) can
 
 An example with default settings:
 
-<!-- {% include code/1.x/graphql.underscoreproperties.featureprojection.html %} -->
 import GraphQLUnderscoreFeature from '/_includes/code/graphql.underscoreproperties.featureprojection.mdx';
 
 <GraphQLUnderscoreFeature/>

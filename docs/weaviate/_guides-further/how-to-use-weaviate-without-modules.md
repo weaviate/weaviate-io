@@ -102,7 +102,6 @@ So, you can define a schema as above, or skip this step altogether. If you are d
 
 Add this to Weaviate using one of the clients or with a curl command:
 
-<!-- {% include code/1.x/howto.customvectors.schemacreate.html %} -->
 import CustomVectorsSchemaCreate from '/_includes/code/howto.customvectors.schemacreate.mdx';
 
 <CustomVectorsSchemaCreate/>
@@ -116,7 +115,6 @@ Now we are ready to import data into Weaviate.
 The process to import data is almost the same as in other examples. The main difference is that each object will have a `vector` property where the object's vector is to be provided. Run one of the below code snippets in your favorite client:
 
 <!-- TODO - Rewrite this code example to use batch imports -->
-<!-- {% include code/1.x/howto.customvectors.adddata.html %} -->
 import HowToAddData from '/_includes/code/howto.customvectors.adddata.mdx';
 
 <HowToAddData/>
@@ -134,7 +132,6 @@ Searching for and by vectors can be done with GraphQL as it does in other cases.
 
 Let's try out one such example here:
 
-<!-- {% include code/1.x/howto.customvectors.nearvector.html %} -->
 import HowToNearVector from '/_includes/code/howto.customvectors.nearvector.mdx';
 
 <HowToNearVector/>

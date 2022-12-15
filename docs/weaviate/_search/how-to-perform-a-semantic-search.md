@@ -45,8 +45,6 @@ Migrated from "How to perform a semantic search" tutorial from Weaviate Docs Cla
 ## nearText filter
 If you want to perform semantic search on data objects in a known class, you can use the `nearText` filter in a `Get{}` query. Let's say we want to find `Publication`s that are related to "fashion", we can do the following query:
 
-<!-- {% include code/1.x/howto.semanticsearch.filter.html %} -->
-
 import HowtoSemanticSearchFilter from '/_includes/code/howto.semanticsearch.filter.mdx';
 
 <HowtoSemanticSearchFilter/>
@@ -76,8 +74,6 @@ This will result in something like the following. Vogue was selected as only res
 If you are not sure what classes you want to query, or want to perform a fuzzy search through your whole dataset, then you can use the `Explore{}` function instead of the `Get{}` function. In the `Explore{}` function you don't specify which classes you perform the semantic search on, so the semantic search will be performed on all the data objects. Since this search is fuzzy, the only fields you can return are the `beacon`, `certainty`, `className`; you cannot request property values of the data objects, since the property value names depend on the data object, defined in the schema. 
 
 Let's search for data object about fashion again, but now we are not only interested in `Publication` data objects, but in all data objects that have something to do with "fashion". 
-
-<!-- {% include code/1.x/howto.semanticsearch.function.html %} -->
 
 import HowtoSemanticSearchFunction from '/_includes/code/howto.semanticsearch.function.mdx';
 

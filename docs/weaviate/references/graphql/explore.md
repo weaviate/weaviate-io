@@ -50,7 +50,6 @@ The `Explore{}` function is always defined based on the following principle:
 
 An example query:
 
-<!-- {% include code/1.x/graphql.explore.vector.html %} -->
 import GraphQLExploreVec from '/_includes/code/graphql.explore.vector.mdx';
 
 <GraphQLExploreVec/>

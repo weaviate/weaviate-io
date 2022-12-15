@@ -76,7 +76,6 @@ This example shows how to aggregate over the entire database. [Below](#aggregati
 
 An example query to obtain meta information about the data in the class `Article` can be queried as follows. Note that the data is not grouped yet, the meta information is about all the data objects found with the class `Article`.
 
-<!-- {% include code/1.x/graphql.aggregate.simple.html %} -->
 import GraphQLAggregateSimple from '/_includes/code/graphql.aggregate.simple.mdx';
 
 <GraphQLAggregateSimple/>
@@ -146,7 +145,6 @@ The `groupBy{}` argument is structured as follows for the `Get{}` function:
 
 In the following example, the articles are grouped by the property `isAccessible`, where one group contains accessible articles, and the second group contains articles of which the `isAccessible` property is set to False.
 
-<!-- {% include code/1.x/graphql.aggregate.groupby.html %} -->
 import GraphQLAggGroupby from '/_includes/code/graphql.aggregate.groupby.mdx';
 
 <GraphQLAggGroupby/>
@@ -230,7 +228,6 @@ Any `near<Media>` will work.
 
 #### nearObject
 
-<!-- {% include code/1.x/graphql.aggregate.nearObject.html %} -->
 import GraphQLAggNearObject from '/_includes/code/graphql.aggregate.nearObject.mdx';
 
 <GraphQLAggNearObject/>
@@ -240,7 +237,6 @@ import GraphQLAggNearObject from '/_includes/code/graphql.aggregate.nearObject.m
 
 #### nearVector
 
-<!-- {% include code/1.x/graphql.aggregate.nearVector.html %} -->
 import GraphQLAggNearVector from '/_includes/code/graphql.aggregate.nearVector.mdx';
 
 <GraphQLAggNearVector/>
@@ -254,7 +250,6 @@ import GraphQLAggNearVector from '/_includes/code/graphql.aggregate.nearVector.m
 For `nearText` to be available, a `text2vec-*` module must be installed with Weaviate.
 :::
 
-<!-- {% include code/1.x/graphql.aggregate.nearText.html %} -->
 import GraphQLAggNearText from '/_includes/code/graphql.aggregate.nearText.mdx';
 
 <GraphQLAggNearText/>

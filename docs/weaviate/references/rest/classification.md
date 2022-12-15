@@ -28,7 +28,6 @@ The vectorizer module `text2vec-contextionary` provides a second type of classif
 
 A classification can be started using the RESTful API, via the `v1/classification` endpoint with a `POST` request. This triggers the start of the classification, after which it will run in the background. This can also be achieved using one of the client libraries. Use the [`GET` method](#get-status-results-and-metadata) to see the status of the classification:
 
-<!-- {% include code/1.x/classification.post.html %} -->
 import ClassificationPost from '/_includes/code/classification.post.mdx';
 
 <ClassificationPost/>
@@ -97,7 +96,6 @@ The following fields additionally when the classification was based on kNN:
 A `knn` classification according to [the example](#start-a-knn-classification)
 The following command:
 
-<!-- {% include code/1.x/classification.get.html %} -->
 import ClassificationGet from '/_includes/code/classification.get.mdx';
 
 <ClassificationGet/>
@@ -169,7 +167,6 @@ A classification can be started via the `v1/classifications` endpoint, which can
 ### Start a kNN classification
 A classification can be started through one of the clients, or with a direct `curl` request to the RESTful API.
 
-<!-- {% include code/1.x/classification.knn.post.html %} -->
 import ClassificationKNNPost from '/_includes/code/classification.knn.post.mdx';
 
 <ClassificationKNNPost/>
@@ -232,7 +229,6 @@ A classification can be started via the `v1/classifications` endpoint, which can
 
 A classification can be started through one of the clients, or with a direct `curl` request to the RESTful API.
 
-<!-- {% include code/1.x/classification.zeroshot.post.html %} -->
 import ClassificationZeroshotPost from '/_includes/code/classification.zeroshot.post.mdx';
 
 <ClassificationZeroshotPost/>

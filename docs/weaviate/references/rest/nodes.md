@@ -39,7 +39,6 @@ And it returns a `nodes` field containing array of nodes with following fields:
 ## Example
 The following command:
 
-<!-- {% include code/1.x/nodes.html %} -->
 import Nodes from '/_includes/code/nodes.mdx';
 
 <Nodes/>
