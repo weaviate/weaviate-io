@@ -1,5 +1,5 @@
 ---
-title: Authorization
+title: Authentication
 sidebar_position: 14
 # layout: layout-documentation
 # solution: weaviate
@@ -50,7 +50,7 @@ Send REST requests to Weaviate without any additional authentication headers or 
 
 # OpenID Connect (OIDC)
 
-With [OpenID Connect](https://openid.net/connect/){:target="_blank"} (based on OAuth2), an
+With [OpenID Connect](https://openid.net/connect/) (based on OAuth2), an
 external identity provider and token issuer ('token issuer' hereafter) is responsible for managing users.
 
 When Weaviate receives a token (JSON Web Token or JWT), it verifies
@@ -62,8 +62,8 @@ correct, all contents of the token are trusted, which authenticates the user bas
 - Any "OpenID Connect" compatible token issuer implementing OpenID Connect
   Discovery can be
   used with Weaviate. Popular open-source solutions include Java-based
-  [Keycloak](https://www.keycloak.org/){:target="_blank"} and Golang-based
-  [dex](https://github.com/dexidp/dex){:target="_blank"}.
+  [Keycloak](https://www.keycloak.org/) and Golang-based
+  [dex](https://github.com/dexidp/dex).
 
 - By default, Weaviate will validate that the token includes a specified client
   id in the audience claim. If your token issuer does not support this feature,
@@ -73,7 +73,7 @@ correct, all contents of the token are trusted, which authenticates the user bas
 
 To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate. Additionally, the **OIDC token issuer** must be configured as appropriate. Configuring the OIDC token issuer is outside the scope of this document.
 
-> As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff){:target="_blank"} may be useful.
+> As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff) may be useful.
 
 The OIDC-related Docker Compose environment variables are shown below. Please see the inline-yaml comments for details around the respective fields:
 
@@ -173,7 +173,7 @@ For cases or workflows where you may wish to manually obtain a token, we outline
 3. Send a GET request to `href` to fetch the token issuer's OIDC configuration (`token_oidc_config`)
 4. Construct a URL (`auth_url`) with the following parameters, based on `authorization_endpoint` from `token_oidc_config`. This will look like the following:
 - `{authorization_endpoint}`?client_id=`{clientId}`&response_type=code%20id_token&response_mode=fragment&redirect_url=`{redirect_url}`&scope=openid&nonce=abcd
-- the `redirect_url` must have been [pre-registered](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest){:target="_blank"} with your token issuer. 
+- the `redirect_url` must have been [pre-registered](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) with your token issuer. 
 5. Go to the `auth_url` in your browser, and log in if prompted. If successful, the token issuer will redirect the browser to the `redirect_url`, with additional parameters that include an `id_token` parameter. 
 6. Parse the `id_token` parameter value. This is your Bearer token.
 

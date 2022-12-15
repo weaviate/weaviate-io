@@ -13,7 +13,7 @@ open-graph-type: article
 toc: true
 ---
 
-{% include benchmarks/ann-chart-init.html %}
+<!-- {% include benchmarks/ann-chart-init.html %} -->
 
 # About this benchmark
 
