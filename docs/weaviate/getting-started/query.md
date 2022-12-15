@@ -22,7 +22,7 @@ But before we start, some basics:
 * Weaviate also has a RESTful API but it is used for other operations.
 * You can also use the clients to query Weaviate natively in your language of choice. The clients will automatically determine which API to use for the request.
   * Weaviate provides [client libraries](../client-libraries/index.md) for convenience.
-* The [Weaviate Console](../guides/console.md) contains an auto-complete feature to help you write queries.
+* The [Weaviate Console](../getting-started/console.md) contains an auto-complete feature to help you write queries.
 
 Let's get started!
 
