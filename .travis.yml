@@ -28,4 +28,4 @@ script:
     fi
   ##
   # End Netlify
-    - echo "It is all done"
+  - echo "It is all done"
