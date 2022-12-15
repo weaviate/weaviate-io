@@ -1,5 +1,5 @@
 ---
-title: Installation & Configuration Overview
+title: Installation
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -15,8 +15,8 @@ sidebar_position: 0
 ---
 
 <!-- TODO: Remove explanatory header once layout review complete -->
-:::caution NOTE:
-This section is from Installation in Weaviate Docs Classic.
+:::caution Migrated From:
+- `Installation`
 :::
 
 ## Overview

@@ -4,8 +4,9 @@ sidebar_position: 0
 ---
 
 <!-- TODO: Remove explanatory header once layout review complete -->
-:::caution UNDER CONSTRUCTION
-The various "Tutorials" sections will be made up of documents from Tutorials in Weaviate Docs Classic, plus a some new documents.
+:::caution Migrated From:
+- `Tutorials`
+- Some hidden; more `Tutorials` sections to be added in the future
 :::
 
 ## Overview

@@ -12,7 +12,11 @@ sidebar_position: 5
 # open-graph-type: article
 # toc: true
 ---
-
+:::caution Migrated From:
+- Combines theoretical explanations from `Configuration/Modules` + `Modules/Index`. e.g.:
+  - `Introduction` is from `Configuration/Modules`
+  - `Vectorization modules (Dense Retriever modules)` is from `Modules/Index`
+:::
 ## Introduction
 
 Weaviate adopts a modularized structure, where for examples functionalities such as vectorization or backups are carried out by *optional* modules.

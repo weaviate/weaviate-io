@@ -18,9 +18,9 @@ sidebar_position: 0
 ---
 
 ## Overview
-:::caution NOTE:
-This page incorporates information from
-- Client libraries + Core Knowledge/Clients in Weaviate Docs Classic.
+:::caution Migrated From:
+- `Client libraries`
+- `Index` adds info from `Core Knowledge/Clients`
 :::
 
 You can interact with Weaviate by using the GraphQL or RESTful API directly, or with one of the available client libraries.

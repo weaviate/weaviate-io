@@ -4,18 +4,23 @@ sidebar_position: 0
 ---
 
 <!-- TODO: Finish this page! -->
-:::caution Note:
-The "References:Modules" section comes from Modules in Weaviate Docs Classic.
+:::caution Migrated From:
+- `Modules`
+- High-level configuration options are now in `Configuration/Modules`
+- Some theoretical elements are now in `Concepts:Essential/Modules`
 :::
+
 ## Overview
+
+:::info Not what you are after?
+We also have pages on [how to **configure** Weaviate to use particular modules](../configuration/modules.md), and on [**concepts** related to modules](../core-knowledge/modules.md) in general.
+:::
 
 This section describes Weaviate's individual modules, including their capabilities and how to use them. 
 
 - The Retrievers & Vectorizaters modules such as `text2vec-*` or `img2vec-*` convert data objects to vectors. 
 - The Readers & Generators modules process data after retrieving the data from Weaviate, such as to answer questions or summarize text.
 - The other modules include everything else, such as a spellcheck module.
-
-Alternatively, we have a page on [how to **configure** Weaviate to use particular modules](../configuration/modules.md), and one on [**concepts** related to modules](../core-knowledge/modules.md) in general.
 
 ## General
 
