@@ -1,0 +1,65 @@
+<!-- SET GRAPHQL TAB CONTENT -->
+{% capture graphql %}
+{
+  Get{
+    Publication(
+      hybrid: {
+        query: "Why is Weaviate so awesome?",
+        alpha: 0.5, # alpha set to 0.5 weighs dense and sparse vectors evenly
+        vector: [ ] # optional
+      }
+    ){
+      name
+      _additional {score}
+    }
+  }
+}
+{% endcapture %}
+
+<!-- SET PYTHON TAB CONTENT -->
+{% capture python %}
+
+{% endcapture %}
+
+<!-- SET JAVASCRIPT TAB CONTENT -->
+{% capture javascript %}
+client.graphql
+  .get()
+  .withClassName('Publication')
+  .withFields('name _additional{score}')
+  .withHybrid({
+      query: "why is Weaviate so awesome?",  // required
+      vector: []  // optional. Not needed if weaviate handles the vectorization. If you provide your own embeddings, put the vector query here.
+      alpha: 0.7, // optional, defaults to 0.75. alpha=1 -> pure vector, alpha=0 -> pure bm25
+     }
+  })
+  .do()
+  .then(console.log)
+  .catch(console.error);
+{% endcapture %}
+
+<!-- SET GO TAB CONTENT -->
+{% capture go %}
+hybrid := &HybridArgumentBuilder{}
+	hybrid.WithQuery("query").WithVector(1, 2, 3).WithAlpha(0.6)
+	
+
+	query := builder.WithClassName("Pizza").WithHybrid(hybrid).build()
+{% endcapture %}
+
+<!-- SET JAVA TAB CONTENT -->
+{% capture java %}
+
+{% endcapture %}
+
+<!-- SET CURL TAB CONTENT -->
+{% capture curl %}
+
+
+
+{% endcapture %}
+
+<!-- TODO: update link to query  -->
+<!-- SET BLOCK_ID TO A UNIQUE ID, OFTEN THIS IS = TO THE FILENAME WHERE . == - -->
+
+{% include molecule-graphql-block-request.html block_id='graphql-filters-nearobject' %}

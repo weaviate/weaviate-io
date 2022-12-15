@@ -76,6 +76,27 @@ This filter allows you to find data objects in the vicinity of other data object
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Article%28%0D%0A++++++nearObject%3A+%7B%0D%0A++++++++beacon%3A+%22weaviate%3A%2F%2Flocalhost%2Fe5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf%22%2C+%0D%0A++++++++certainty%3A+0.7%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
+## Hybrid
+This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
+
+| Variables | Mandatory | Description |
+| --- | --- | --- | --- |
+| `hybrid` | yes | need to specify that you want to use hybrid search |
+| `query` | yes | search query |
+| `alpha` | yes | weighting for each search algorithm |
+| `vector` | no | optional to supply your own vectors |
+| `score` | no | ranked score that is assigned to each document 
+
+* Note: `alpha` can be any number from 0 to 1 
+  * If `alpha` = 0, it is using a pure **sparse** search method 
+  * If `alpha` = 1, it is using a pure **vector** search method
+  * If `alpha` = 0.5, it is weighing the sparse and vector method evenly
+
+### Example
+{% include code/1.x/graphql.filters.hybrid.html %}
+
+{% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28%0D%0A++++++group%3A%7B%0D%0A++++++++type%3A+merge%2C%0D%0A++++++++force%3A0.05%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
+
 ## Group
 
 You can use a group operator to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
