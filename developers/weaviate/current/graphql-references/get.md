@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: GraphQL references
 title: Get{}
-intro: The Get{} function is Weaviate's bread and butter. It is the most direct way to access data. Especially if combined with filters, you can easily browse your Weaviate.
+intro: The Get{} function is Weaviate's bread and butter. It is the easiest and most direct way to access data, especially if combined with filters.
 description: GraphQL Get{} function
 tags: ['graphql', 'get{}']
 menu-order: 1
@@ -15,7 +15,7 @@ redirect_from:
 
 # Get{} syntax and query structure
 
-A `Get{}` function is always based on the schema. For example, if you've created a schema with a class `Articles` which has the properties `name`, `url` and `wordCount`, you can query it as follows:
+A `Get{}` function is always based on the schema. For example, if you've created a schema with a class `Articles` which has the properties `title`, `url` and `wordCount`, you can query it as follows:
 
 {% include code/1.x/graphql.get.simple.html %}
 
@@ -76,14 +76,14 @@ To combine `Get { }` with a vector search argument, here is an overview of the s
 
 | Argument | Description | Required Modules (at least one of) | Learn More |
 | --- | --- | --- | --- |
-| `nearObject` | Find the nearest neighbors of an object referenced by its id | *none - works out of the box* | [Learn more](../graphql-references/filters.html#nearobject-vector-search-argument) |
-| `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](../graphql-references/filters.html#nearvector-vector-search-argument) |
-| `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface` | [Transformers](../retriever-vectorizer-modules/text2vec-transformers.html#how-to-use), [Contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html#how-to-use), [OpenAI](../retriever-vectorizer-modules/text2vec-openai.html#how-to-use), [CLIP](../retriever-vectorizer-modules/multi2vec-clip.html#how-to-use), [Huggingface](../retriever-vectorizer-modules/text2vec-huggingface.html#how-to-use) |
+| `nearObject` | Find the nearest neighbors of an object referenced by its id | *none - works out of the box* | [Learn more](vector-search-parameters.html#nearobject) |
+| `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](vector-search-parameters.html#nearvector) |
+| `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface` | [Transformers](../retriever-vectorizer-modules/text2vec-transformers.html#how-to-use), [Contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html#how-to-use), [OpenAI](../retriever-vectorizer-modules/text2vec-openai.html#how-to-use), [CLIP](../retriever-vectorizer-modules/multi2vec-clip.html#how-to-use), [Huggingface](../retriever-vectorizer-modules/text2vec-huggingface.html#how-to-use), [Cohere](../retriever-vectorizer-modules/text2vec-cohere.html#how-to-use) |
 | `nearImage` | Vectorize an image and perform a vector search based on it | `multi2vec-clip`, `img2vec-neural` | [CLIP](../retriever-vectorizer-modules/multi2vec-clip.html#neartext), [Img2Vec](../retriever-vectorizer-modules/img2vec-neural.html#nearimage-search) |
 
 # Filters
 
-`Get{}` functions can be extended with search filters (both semantic filters as traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.html).
+`Get{}` functions can be extended with search filters (both semantic filters and traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.html).
 
 ## Sorting
 
