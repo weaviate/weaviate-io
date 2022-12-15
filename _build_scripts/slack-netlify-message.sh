@@ -2,9 +2,10 @@
 set -e
 
 # Prepare the message and send it to Slack
-NETLIFY_LOC=$(grep -r 'Website Draft URL:' netlify.out)
-NETLIFY_LOC_STRP=$(echo ${NETLIFY_LOC:29})
-MESSAGE="{ \"text\": \"Hey $AUTHOR_NAME - your :docusaurus: *weaviate website* build (\`$TRAVIS_BRANCH\`) is ready on Netlify: $NETLIFY_LOC_STRP \" }"
+# NETLIFY_LOC=$(grep -r 'Website Draft URL:' netlify.out)
+# NETLIFY_LOC_STRP=$(echo ${NETLIFY_LOC:29})
+# MESSAGE="{ \"text\": \"Hey $AUTHOR_NAME - your :docusaurus: *weaviate website* build (\`$TRAVIS_BRANCH\`) is ready on Netlify: $NETLIFY_LOC_STRP \" }"
+MESSAGE="{ \"text\": \"Hey $AUTHOR_NAME - your :docusaurus: *weaviate website* build (\`$TRAVIS_BRANCH\`) is ready on Netlify: $NETLIFY_URL \" }"
 
 echo $MESSAGE > payload_netlify.json
 
