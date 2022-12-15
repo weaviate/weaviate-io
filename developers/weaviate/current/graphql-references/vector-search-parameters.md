@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: GraphQL references
 title: Vector search parameters
-intro: ​Vector search parameters allow you to conduct specific vector search operations. Some are built into Weaviate directly, and others are enabled through Weaviate modules.
+intro: Vector search parameters allow you to conduct specific vector search operations. Some are built into Weaviate directly, and others are enabled through Weaviate modules.
 description: GraphQL search parameters
 tags: ['graphql', 'vector search parameters']
 menu-order: 5
@@ -21,13 +21,13 @@ For example:
 
 # Built-in parameters
 
-B​uilt in search parameters are available in all Weaviate instances and don't require any modules.​
+Built-in search parameters are available in all Weaviate instances and don't require any modules.
 
-## NearVector
+## nearVector
 
-This filter allows you to find data objects in the vicinity of an input vector. It's supported by the `Get{}` function.
+This parameter allows you to find data objects in the vicinity of an input vector. It's supported by the `Get{}` function.
 
-* Note: this argument is different from the [GraphQL `Explore{}` function](explore.html) )
+* Note: this argument is different from the [GraphQL `Explore{}` function](explore.html)
 * Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](../modules/qna-transformers.html) filter
 
 ### Variables
@@ -52,9 +52,9 @@ reprents a perfect opposite (cosine distance of 2) and 1 represents vectors
 with an identical angle (cosine distance of 0). Certainty is not available on
 non-cosine distance metrics.
 
-## NearObject
+## nearObject
 
-This filter allows you to find data objects in the vicinity of other data objects by UUID. It's supported by the `Get{}` function.
+This parameter allows you to find data objects in the vicinity of other data objects by UUID. It's supported by the `Get{}` function.
 
 * Note: You cannot use multiple `near<Media>` arguments, or a `near<Media>` argument along with an [`ask`](../modules/qna-transformers.html) argument.
 * Note: You can specify an object's `id` or `beacon` in the argument, along with a desired `certainty`.
@@ -140,13 +140,13 @@ This results in the following. Note that publications `International New York Ti
 }
 ```
 
-# Module specific parameters
+# Module-specific parameters
 
-Module specific search parameters are made available in certain Weaviate modules.​
+Module-specific search parameters are made available in certain Weaviate modules.
 
-## NearText
+## nearText
 
-Enabled by the modules: [text2vec-openai](../retriever-vectorizer-modules/text2vec-openai.html), [text2vec-transformers](../retriever-vectorizer-modules/text2vec-transformers.html), [text2vec-contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html).
+Enabled by the modules: [Transformers](../retriever-vectorizer-modules/text2vec-transformers.html#how-to-use), [Contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html#how-to-use), [OpenAI](../retriever-vectorizer-modules/text2vec-openai.html#how-to-use), [CLIP](../retriever-vectorizer-modules/multi2vec-clip.html#how-to-use), [Huggingface](../retriever-vectorizer-modules/text2vec-huggingface.html#how-to-use), [Cohere](../retriever-vectorizer-modules/text2vec-cohere.html#how-to-use)
 
 This filter allows you to find data objects in the vicinity of the vector representation of a single or multiple concepts. It's supported by the `Get{}` function.
 
@@ -191,13 +191,13 @@ You can also bias results toward other data objects' vector representations. For
 
 If the distance metric is `cosine` you can also use `certainty` instead of
 `distance`. Certainty normalizes the distance in a range of 0..1, where 0
-reprents a perfect opposite (cosine distance of 2) and 1 represents vectors
+represents a perfect opposite (cosine distance of 2) and 1 represents vectors
 with an identical angle (cosine distance of 0). Certainty is not available on
 non-cosine distance metrics.
 
 #### Concept parsing
 
-Strings written in the concepts array are your fuzzy search terms. An array of concepts is required to set in the Explore query, and all words in this array should be present in the Contextionary.
+Strings in the `concepts` array are your fuzzy search terms. An array of concepts is required to set in the Explore query, and all words in this array should be present in the Contextionary.
 
 There are three ways to define the concepts array argument in the filter.
 
@@ -205,7 +205,7 @@ There are three ways to define the concepts array argument in the filter.
 - `["New", "York", "Times"]` = all concepts have a similar weight.
 - `["New York", "Times"]` = a combination of the two above.
 
-A practical example would be: `concepts: ["beatles", "John Lennon"]`
+A practical example would be: `concepts: ["beatles", "John Lennon"]`.
 
 #### Semantic Path
 
