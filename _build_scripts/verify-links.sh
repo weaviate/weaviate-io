@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-linkinator $NETLIFY_URL \
---recurse \
---skip 'weaviate.io|github.com/*.,|arxiv.org/|jsonlines.org/' \
---timeout 10000 \
---verbosity error
+URL_IGNORES="weaviate.io|github.com/*.,|arxiv.org/|jsonlines.org/"
+
+linkinator $NETLIFY_URL --recurse --skip $URL_IGNORES --timeout 10000 --verbosity error
