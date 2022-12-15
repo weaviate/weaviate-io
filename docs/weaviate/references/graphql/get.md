@@ -17,7 +17,7 @@ sidebar_position: 1
 
 ## Get{} syntax and query structure
 
-A `Get{}` function is always based on the schema. For example, if you've created a schema with a class `Articles` which has the properties `name`, `url` and `wordCount`, you can query it as follows:
+A `Get{}` function is always based on the schema. For example, if you've created a schema with a class `Articles` which has the properties `title`, `url` and `wordCount`, you can query it as follows:
 
 import GraphQLGetSimple from '/_includes/code/graphql.get.simple.mdx';
 
@@ -88,9 +88,9 @@ To combine `Get { }` with a vector search argument, here is an overview of the s
 
 | Argument | Description | Required Modules (at least one of) | Learn More |
 | --- | --- | --- | --- |
-| `nearObject` | Find the nearest neighbors of an object referenced by its id | *none - works out of the box* | [Learn more](./filters.md#nearobject-vector-search-argument) |
-| `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](./filters.md#nearvector-vector-search-argument) |
-| `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface` | [Transformers](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#how-to-use), [Contextionary](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#how-to-use), [OpenAI](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md#how-to-use), [CLIP](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#how-to-use), [Huggingface](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md#how-to-use) |
+| `nearObject` | Find the nearest neighbors of an object referenced by its id | *none - works out of the box* | [Learn more](./vector-search-parameters.md#nearobject) |
+| `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](./vector-search-parameters.md#nearvector) |
+| `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface`, `text2vec-cohere` | [Transformers](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#how-to-use), [Contextionary](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#how-to-use), [OpenAI](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md#how-to-use), [CLIP](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#how-to-use), [Huggingface](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md#how-to-use), [Cohere](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere.md#how-to-use) |
 | `nearImage` | Vectorize an image and perform a vector search based on it | `multi2vec-clip`, `img2vec-neural` | [CLIP](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#neartext), [Img2Vec](/docs/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) |
 
 ## Filters
