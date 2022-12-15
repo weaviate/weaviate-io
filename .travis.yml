@@ -10,15 +10,25 @@ install:
   - yarn install
 script:
   - yarn build
+  ##
   # Netlify
-  ##
   - |
-    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
-      yarn global add netlify-cli
-      bash _build_scripts/publish-to-netlify.sh
+    yarn global add netlify-cli
+    source _build_scripts/publish-to-netlify.sh
 
+    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
       source _build_scripts/slack-find-author.sh
-      bash _build_scripts/slack-netlify-message.sh
+      source _build_scripts/slack-netlify-message.sh
     fi
-  ##
   # End Netlify
+  ##
+
+  ##
+  # Link Validation
+  - |
+    yarn global add linkinator
+    source _build_scripts/verify-links.sh
+  # End Link Validation
+  ##
+  
+  - echo "It is all done"

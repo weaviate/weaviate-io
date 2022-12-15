@@ -70,7 +70,7 @@ scripts](https://github.com/semi-technologies/weaviate-benchmarking), so you can
 
 ### Hardware
 
-<img class="image" src="/img/weaviate_benchmark_setup.png" alt="Setup with Weaviate and benchmark machine" />
+![Setup with Weaviate and benchmark machine](/img/docs/weaviate_benchmark_setup.png)
 
 For the purpose of this benchmark we've used two GCP instances within the same VPC:
 

@@ -5,7 +5,7 @@ sidebar_position: 4
 # solution: weaviate
 # sub-menu: GraphQL references
 # title: Filters
-# intro:  Filters allow you to find specific data objects based on operators such as GreaterThan, LessThanEqual, Like, etc. You can mix filters with <a href="./vector-search-parameters.html">vector search parameters</a> too. Also, you can use filters to sort or limit the number of returned objects.
+# intro:  Filters allow you to find specific data objects based on operators such as GreaterThan, LessThanEqual, Like, etc. You can mix filters with vector search parameters too. Also, you can use filters to sort or limit the number of returned objects.
 # description: GraphQL filters
 # tags: ['graphql', 'filters']
 # sidebar_position: 4

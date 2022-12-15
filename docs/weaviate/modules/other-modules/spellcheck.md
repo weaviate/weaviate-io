@@ -78,8 +78,8 @@ Variable explanations:
 
 Use the spellchecker module to verify at query time that user-provided search queries are spelled correctly and even suggest alternative, correct spellings. Filters that accept query text include:
 
-* [`nearText`](../graphql-references/vector-search-parameters.html#neartext), if a `text2vec-*` module is used
-* `ask`, if the [`qna-transformers`](../reader-generator-modules/qna-transformers.html) module is enabled
+* [`nearText`](/docs/weaviate/references/graphql/vector-search-parameters.md#neartext), if a `text2vec-*` module is used
+* `ask`, if the [`qna-transformers`](../reader-generator-modules/qna-transformers.md) module is enabled
 
 There are two ways to use this module: spell checking, and autocorrection.
 
