@@ -47,8 +47,9 @@ const config = {
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     editUrl:
-                        'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-
+                        'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/',
+                        // TODO: Update to 'main' for release
+                        // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
                     path: 'docs', // folder name – where the docs are
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
                 },
@@ -57,7 +58,9 @@ const config = {
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     editUrl:
-                        'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+                        'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/'
+                        // TODO: Update to 'main' for release
+                        // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
                 },
                 theme: {
                     customCss: [require.resolve('./src/css/custom.scss')],
