@@ -167,7 +167,11 @@ import GraphQLUnderscoreClassification from '/_includes/code/graphql.underscorep
 
 <GraphQLUnderscoreClassification/>
 
-{% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++classification+%7B%0D%0A++++++++++basedOn%0D%0A++++++++++classifiedFields%0D%0A++++++++++completed%0D%0A++++++++++id%0D%0A++++++++++scope%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
+import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
+
+<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++classification+%7B%0D%0A++++++++++basedOn%0D%0A++++++++++classifiedFields%0D%0A++++++++++completed%0D%0A++++++++++id%0D%0A++++++++++scope%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
+
+<!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++classification+%7B%0D%0A++++++++++basedOn%0D%0A++++++++++classifiedFields%0D%0A++++++++++completed%0D%0A++++++++++id%0D%0A++++++++++scope%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
 
 ### Feature Projection
 
@@ -189,8 +193,9 @@ import GraphQLUnderscoreFeature from '/_includes/code/graphql.underscoreproperti
 
 <GraphQLUnderscoreFeature/>
 
-<!-- TODO - replace this (and other molecule-gql-demo) -->
-{% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A%7B+%0D%0A++++++++concepts%3A%5B%22music%22%5D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22beatles%22%5D%2C%0D%0A++++++++++force%3A+0.5%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++featureProjection%28dimensions%3A+2%29+%7B%0D%0A++++++++++vector%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
+<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A%7B+%0D%0A++++++++concepts%3A%5B%22music%22%5D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22beatles%22%5D%2C%0D%0A++++++++++force%3A+0.5%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++featureProjection%28dimensions%3A+2%29+%7B%0D%0A++++++++++vector%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
+
+<!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A%7B+%0D%0A++++++++concepts%3A%5B%22music%22%5D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22beatles%22%5D%2C%0D%0A++++++++++force%3A+0.5%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++featureProjection%28dimensions%3A+2%29+%7B%0D%0A++++++++++vector%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
 
 The above result can be plotted as follows (where the result in red is the first result):
 
