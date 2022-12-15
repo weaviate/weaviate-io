@@ -265,7 +265,7 @@ Traditional inverted index filtering is also possible. In Weaviate we call this 
 The `where` filter takes three operands of its own:
 
 1. `path` is the graph path in your schema.
-2. `operator` is set to define what you want to do with the value inside the path (e.g., `Equal` or `GreaterThan`, etc. See the list [here](../graphql-references/filters.html#filter-structure)).
+2. `operator` is set to define what you want to do with the value inside the path (e.g., `Equal` or `GreaterThan`, etc. See the list [here](/docs/weaviate/references/graphql/filters.md#filter-structure)).
 3. `value*` is set based on the type of the property defined in `path`. So, if the property in `path` is an `int`, this becomes `valueInt`, if it's a `string` it becomes `valueString`. The value itself is whatever you want to filter on.
 
 The examples below are a bit more explanatory.
@@ -530,7 +530,7 @@ Talking about filters, wanna see something cool? Weaviate has many more function
 
 [Try out ⬆️](https://link.semi.technology/3vDh8Bk)
 
-Last but not least, all the standard filters are documented in the [filters section](../graphql-references/filters.html) of the GraphQL references documentation or in the documentation of the individual modules.
+Last but not least, all the standard filters are documented in the [filters section](/docs/weaviate/references/graphql/filters.md) of the GraphQL references documentation or in the documentation of the individual modules.
 
 ## Aggregate{}
 
@@ -609,7 +609,7 @@ The `order` property in the `Paragraph` class is a nice example of how you can u
 
 [Try out ⬆️](https://link.semi.technology/3QnXRfj)
 
-You can find detailed documentation on the `Aggregate{}` function [here](../graphql-references/aggregate.html).
+You can find detailed documentation on the `Aggregate{}` function [here](/docs/weaviate/references/graphql/aggregate.md).
 
 ## Explore{}
 
