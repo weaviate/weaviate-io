@@ -13,14 +13,14 @@ open-graph-type: article
 toc: true
 ---
 
-<!-- {% include benchmarks/ann-chart-init.html %} -->
-
 # About this benchmark
 
 This benchmark is designed to measure and illustrate Weaviate's ANN performance for a range of real-life use cases.
 
-💡 this is not a comparative benchmark that runs Weaviate against competing
+:::note
+This is not a comparative benchmark that runs Weaviate against competing
 solutions.
+:::
 
 To make the most of this benchmark, you can look at it from different perspectives:
 
@@ -109,8 +109,7 @@ The complete import and test scripts are available [here](https://github.com/sem
 
 # Results
 
-<div class="alert alert-dark" role="alert">
-   <h3 class="alert-heading">A guide for picking the right dataset</h3>
+:::info A guide for picking the right dataset
    The following results section contains multiple datasets. To get the most of
    this benchmark, pick the dataset that is closest to the use case that
    reflects your data in production based on the following criteria:
@@ -134,7 +133,7 @@ The complete import and test scripts are available [here](https://github.com/sem
      this dataset if you run very high-dimensional loads.</li>
 
    </ul>
-</div>
+:::
 
 For each dataset, there is a highlighted configuration. The highlighted
 configuration is an opinionated pick about a good recall/latency/throughput
@@ -146,65 +145,100 @@ you can find alternative configurations.
 
 ### Highlighted Configuration
 
-{% include benchmarks/ann-sift-128-highlighted.html %}
+<!-- TODO: Add formatting to table if desired -->
+| **1.0M** | **128** | **l2** | **128** | **32** | **64** |
+| --- | --- | --- | --- | --- |
+| Dataset Size | Dimensions | Distance Metric | efConstruction | maxConnections | ef |
+
+| **98.83%** | **8905** | **3.31ms** | **4.49ms** |
+| --- | --- | --- | --- |
+| Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
 
 ### All Results
 
 #### QPS vs Recall
 
-{% include benchmarks/ann-sift-chart.html %}
+![SIFT1M Benchmark results](./img/benchmark_sift_128.png)
 
-{% include benchmarks/ann-sift-128.html %}
+import AnnSift128 from '/_includes/ann-sift-128.mdx';
 
-{% include benchmarks/ann-read-results-table.html %}
+<AnnSift128/>
+
+import AnnReadResultsTable from '/_includes/ann-read-results-table.mdx';
+
+<AnnReadResultsTable/>
 
 ## Glove-25 (1.2M 25d vectors, cosine distance)
 
 ### Highlighted Configuration
 
-{% include benchmarks/ann-glove-25-highlighted.html %}
+| **1.28M** | **35** | **cosine** | **64** | **16** | **64** |
+| --- | --- | --- | --- | --- |
+| Dataset Size | Dimensions | Distance Metric | efConstruction | maxConnections | ef |
+
+| **95.56%** | **15003** | **1.93ms** | **2.94ms** |
+| --- | --- | --- | --- |
+| Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
 
 ### All Results
 
 #### QPS vs Recall
 
-{% include benchmarks/ann-glove-chart.html %}
+![Glove25 Benchmark results](./img/benchmark_glove_25.png)
 
-{% include benchmarks/ann-glove-25.html %}
+import AnnGlove25 from '/_includes/ann-glove-25.mdx';
 
-{% include benchmarks/ann-read-results-table.html %}
+<AnnGlove25/>
+
+<AnnReadResultsTable/>
 
 ## Deep Image 96 (9.99M 96d vectors, cosine distance)
 
 ### Highlighted Configuration
 
-{% include benchmarks/ann-deep-96-highlighted.html %}
+| **9.99M** | **96** | **cosine** | **128** | **32** | **64** |
+| --- | --- | --- | --- | --- |
+| Dataset Size | Dimensions | Distance Metric | efConstruction | maxConnections | ef |
+
+| **96.43%** | **6112** | **4.7ms** | **15.87ms** |
+| --- | --- | --- | --- |
+| Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
 
 ### All Results
 
 #### QPS vs Recall
 
-{% include benchmarks/ann-deep-chart.html %}
+![Deep Image 96 Benchmark results](./img/benchmark_deepimage_96.png)
 
-{% include benchmarks/ann-deep-96.html %}
+import AnnDeep96 from '/_includes/ann-deep-96.mdx';
 
-{% include benchmarks/ann-read-results-table.html %}
+<AnnDeep96/>
+
+<AnnReadResultsTable/>
 
 ## GIST 960 (1.0M 960d vectors, cosine distance)
 
 ### Highlighted Configuration
 
-{% include benchmarks/ann-gist-960-highlighted.html %}
+| **1.00M** | **960** | **cosine** | **512** | **32** | **128** |
+| --- | --- | --- | --- | --- |
+| Dataset Size | Dimensions | Distance Metric | efConstruction | maxConnections | ef |
+
+| **94.14%** | **1935** | **15.05ms** | **19.86ms** |
+| --- | --- | --- | --- |
+| Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
 
 ### All Results
 
 #### QPS vs Recall
 
-{% include benchmarks/ann-gist-chart.html %}
+![GIST 960 Benchmark results](./img/benchmark_gist_960.png)
 
-{% include benchmarks/ann-gist-960.html %}
+import AnnGist960 from '/_includes/ann-gist-960.mdx';
 
-{% include benchmarks/ann-read-results-table.html %}
+<AnnGist960/>
+
+<AnnReadResultsTable/>
 
 # Learn more & FAQ
 
