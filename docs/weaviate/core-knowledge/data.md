@@ -11,6 +11,7 @@ sidebar_position: 1
 # toc: true
 ---
 <badges/>
+
 :::caution Migrated From:
 - `Core knowledge/Basics`
   - Refactored to contain subject matter to data structure in Weaviate

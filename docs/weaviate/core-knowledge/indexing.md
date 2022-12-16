@@ -11,6 +11,7 @@ sidebar_position: 3
 # toc: true
 ---
 <badges/>
+
 :::caution Migrated From:
 - `Core knowledge/Indexing`
   - ANN configuration options & tips consolidated in `References:Configuration/ANN Index`, along with `Vector Index Plugins/HNSW`
