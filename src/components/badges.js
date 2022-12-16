@@ -1,6 +1,24 @@
 import React from 'react';
 
 export default function Badges() {
+
+    var totalpullsDiv = document.getElementById('totalpulls');
+    if(totalpullsDiv){
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+          if (req.readyState === 4) {
+            if (totalpullsDiv) {
+                totalpullsDiv.src =
+                'https://img.shields.io/badge/downloads-' +
+                req.responseText +
+                '-yellow?style=flat-square';
+            }
+          }
+        };
+        req.open('GET', 'https://europe-west1-semi-production.cloudfunctions.net/docker-hub-pulls');
+        req.send(null);
+    }
+
     return (
       <span>
         <p align="center">
@@ -14,19 +32,16 @@ export default function Badges() {
                 <img src="https://img.shields.io/badge/github-issues-informational?style=flat-square" alt="Weaviate issues on Github badge"/></a>
                 &nbsp;
             {/* TODO - re-introduce below badges once site variables added */}
-            {/* <a href="https://github.com/semi-technologies/weaviate/releases/tag/{{ site.weaviate_version }}">
-                <img src="https://img.shields.io/badge/version-{{ site.weaviate_version }}-brightgreen?style=flat-square" alt="Weaviate {{ site.weaviate_version }} version badge"/>
+            <a href="https://github.com/semi-technologies/weaviate/">
+                <img src="https://img.shields.io/github/v/release/semi-technologies/weaviate?style=flat-square" alt="Weaviate version badge"/>
             </a>
-
-            <a href="https://app.swaggerhub.com/apis/semi-technologies/weaviate/{{ site.weaviate_version }}">
+            {/* <a href="https://app.swaggerhub.com/apis/semi-technologies/weaviate/{{ site.weaviate_version }}">
                 <img src="https://img.shields.io/badge/open--api--specs-{{ site.weaviate_version }}-brightgreen?style=flat-square" alt="Weaviate {{ site.weaviate_version }} version badge"/>
             </a>                 */}
-            <a href="https://github.com/semi-technologies/weaviate/actions/workflows/pull_requests.yaml">
-                <img src="https://github.com/semi-technologies/weaviate/actions/workflows/pull_requests.yaml/badge.svg" alt="Build Status"/></a>
             <br/>                            
 
-            <a href="https://hub.docker.com/r/semitechnologies/weaviate">
-                <img src="https://img.shields.io/docker/pulls/semitechnologies/weaviate.svg?style=flat-square&logo=docker" alt="Docker pulls"/></a>
+            {/* Set total pulls to Weaviate + modules as Bob suggested */}
+            <img id="totalpulls" src="https://img.shields.io/badge/downloads-loading...-yellow?style=flat-square" alt="Weaviate total Docker pulls badge"></img>
                 &nbsp;
             <a href="https://goreportcard.com/report/github.com/semi-technologies/weaviate">
                 <img src="https://goreportcard.com/badge/github.com/semi-technologies/weaviate?style=flat-square" alt="Go Report Card"/></a>
