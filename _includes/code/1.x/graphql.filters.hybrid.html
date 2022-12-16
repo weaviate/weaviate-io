@@ -1,14 +1,14 @@
 <!-- SET GRAPHQL TAB CONTENT -->
 {% capture graphql %}
 {
-  Get {
+  Get{
     Publication(
       hybrid: {
-        query: "Why is Weaviate so awesome?"
-        alpha: 0.5   # alpha set to 0.5 weighs dense and sparse vectors evenly
-        vector: [ ]  # optional
+        query: "Why is Weaviate so awesome?",
+        alpha: 0.5, # alpha set to 0.5 weighs dense and sparse vectors evenly
+        vector: [ ] # optional
       }
-    ) {
+    ){
       name
       _additional {score}
     }
@@ -29,8 +29,8 @@ client.graphql
   .withFields('name _additional{score}')
   .withHybrid({
       query: "why is Weaviate so awesome?",  // required
-      alpha: 0.7, // optional, defaults to 0.75. alpha=1 -> pure vector, alpha=0 -> pure BM25
-      vector: []  // optional. Not needed if Weaviate handles the vectorization. If you provide your own embeddings, put the vector query here.
+      vector: []  // optional. Not needed if weaviate handles the vectorization. If you provide your own embeddings, put the vector query here.
+      alpha: 0.7, // optional, defaults to 0.75. alpha=1 -> pure vector, alpha=0 -> pure bm25
      }
   })
   .do()
@@ -42,7 +42,7 @@ client.graphql
 {% capture go %}
 hybrid := &HybridArgumentBuilder{}
 	hybrid.WithQuery("query").WithVector(1, 2, 3).WithAlpha(0.6)
-
+	
 
 	query := builder.WithClassName("Pizza").WithHybrid(hybrid).build()
 {% endcapture %}
