@@ -25,7 +25,7 @@ Here, you can learn how to:
 <!-- - [Select the right vectorizer]  (./_select-vectorizer.md): Identify the right vectorizer based on your data type (text, image, etc.) and application goals (text clustering, Q&A, text to image comparison, image comparison). -->
 - [Define a schema](./how-to-create-a-schema.md): Define a schema automatically with Weaviate, and start to explore schema customization options.
 <!-- - [Import data]  (./_how-to-import-data.md): Use batch imports for large datasets, including what options are available to maximize the import speed. -->
-- [How to use the Weaviate console](./console.md): Use the Weaviate console to conveniently perform queries.
+- [How to use the Weaviate console](../getting-started/console.md): Use the Weaviate console to conveniently perform queries.
 <!-- - [Perform CRUD operations]  (./_crud.md): Perform CRUD operations with Weaviate. -->
 
 <!-- Once you are finished with this section, we suggest moving on to our [Search tutorials]  (../_search/index.md). There we guide you through the powerful yet flexible options Weaviate provides for searching through your data.  -->

@@ -2,23 +2,6 @@ import React from 'react';
 
 export default function Badges() {
 
-    var totalpullsDiv = document.getElementById('totalpulls');
-    if(totalpullsDiv){
-        var req = new XMLHttpRequest();
-        req.onreadystatechange = function() {
-          if (req.readyState === 4) {
-            if (totalpullsDiv) {
-                totalpullsDiv.src =
-                'https://img.shields.io/badge/downloads-' +
-                req.responseText +
-                '-yellow?style=flat-square';
-            }
-          }
-        };
-        req.open('GET', 'https://europe-west1-semi-production.cloudfunctions.net/docker-hub-pulls');
-        req.send(null);
-    }
-
     return (
       <span>
         <p align="center">
