@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: GraphQL references
 title: Vector search parameters
-intro: ​Vector search parameters allow you to conduct specific vector search operations. Some are built into Weaviate directly, and others are enabled through Weaviate modules.
+intro: Vector search parameters allow you to conduct specific vector search operations. Some are built into Weaviate directly, and others are enabled through Weaviate modules.
 description: GraphQL search parameters
 tags: ['graphql', 'vector search parameters']
 menu-order: 5
@@ -21,13 +21,13 @@ For example:
 
 # Built-in parameters
 
-B​uilt in search parameters are available in all Weaviate instances and don't require any modules.​
+Built in search parameters are available in all Weaviate instances and don't require any modules.
 
-## NearVector
+## nearVector
 
 This filter allows you to find data objects in the vicinity of an input vector. It's supported by the `Get{}` function.
 
-* Note: this argument is different from the [GraphQL `Explore{}` function](explore.html) )
+* Note: this argument is different from the [GraphQL `Explore{}` function](explore.html)
 * Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](../modules/qna-transformers.html) filter
 
 ### Variables
@@ -48,18 +48,18 @@ This filter allows you to find data objects in the vicinity of an input vector. 
 
 If the distance metric is `cosine` you can also use `certainty` instead of
 `distance`. Certainty normalizes the distance in a range of 0..1, where 0
-reprents a perfect opposite (cosine distance of 2) and 1 represents vectors
+represents a perfect opposite (cosine distance of 2) and 1 represents vectors
 with an identical angle (cosine distance of 0). Certainty is not available on
 non-cosine distance metrics.
 
-## NearObject
+## nearObject
 
 This filter allows you to find data objects in the vicinity of other data objects by UUID. It's supported by the `Get{}` function.
 
 * Note: You cannot use multiple `near<Media>` arguments, or a `near<Media>` argument along with an [`ask`](../modules/qna-transformers.html) argument.
 * Note: You can specify an object's `id` or `beacon` in the argument, along with a desired `certainty`.
 * Note that the first result will always be the object in the filter itself.
-* Near object search can also be combined with `text2vec` modules.
+* `nearObject` search can also be combined with `text2vec` modules.
 
 ### Variables
 
@@ -76,8 +76,8 @@ This filter allows you to find data objects in the vicinity of other data object
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Article%28%0D%0A++++++nearObject%3A+%7B%0D%0A++++++++beacon%3A+%22weaviate%3A%2F%2Flocalhost%2Fe5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf%22%2C+%0D%0A++++++++certainty%3A+0.7%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
-## Hybrid
-This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
+## hybrid
+This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.
 
 | Variables | Mandatory | Description |
 | --- | --- | --- | --- |
@@ -85,10 +85,10 @@ This filter allows you to combine dense and sparse vectors to get the best of bo
 | `query` | yes | search query |
 | `alpha` | no (default is set to 0.75) | weighting for each search algorithm |
 | `vector` | no | optional to supply your own vector |
-| `score` | no | ranked score that is assigned to each document 
+| `score` | no | ranked score that is assigned to each document | 
 
-* Note: `alpha` can be any number from 0 to 1 
-  * If `alpha` = 0, it is using a pure **sparse** search method 
+* Note: `alpha` can be any number from 0 to 1
+  * If `alpha` = 0, it is using a pure **sparse** search method
   * If `alpha` = 1, it is using a pure **vector** search method
   * If `alpha` = 0.5, it is weighing the sparse and vector method evenly
 
@@ -96,6 +96,94 @@ This filter allows you to combine dense and sparse vectors to get the best of bo
 {% include code/1.x/graphql.filters.hybrid.html %}
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28%0D%0A++++++group%3A%7B%0D%0A++++++++type%3A+merge%2C%0D%0A++++++++force%3A0.05%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
+
+## bm25
+The `bm25` operator performs a keyword (sparse vector) search, and uses the [BM25F ranking function](https://www.researchgate.net/publication/308991534_A_Tutorial_on_the_BM25F_Model) <!-- TODO: change ink to Laura's short when published --> to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
+
+The search is case-insensitive, and case matching does not confer a score advantage. Stop words are removed, while stemming or synonyms are not supported, since vector search is far better suited for that use case.
+
+### Schema configuration
+The settings are optional (the defaults work well for most corpora), but if necessary, they can be configured in the schema per class, and can optionally be overridden per property:
+
+```json
+{
+  "class": "string",
+  // TODO validate: `can be used next to "vectorIndexType". bm25f is the first to support`
+  "sparseIndexType": "bm25f",
+  // Configuration of the sparse index
+  "sparseIndexConfig": {
+    "bm25f": {
+      "b": 0.75,
+      "k1": 1.2
+    }
+  },
+  "properties": [
+    {
+      "name": "string",
+      "description": "string",
+      "dataType": [
+        "string"
+      ],
+      // Overwrites the class-level config settings
+      "sparseIndexConfig": {
+        "bm25f": {
+          "b": 0.75,
+          "k1": 1.2
+        }
+      },
+      "indexInverted": true
+    }
+  ]
+}
+```
+
+### Variables
+The `bm25` operator supports two variables:
+* `query` (mandatory) - the keyword search query
+* `properties` (optional) - array of properties (fields) to search in, defaulting to all properties in the class. Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "description"]`.
+
+### Example query
+
+{% include code/1.x/graphql.operators.bm25.html %}
+
+### GraphQL response
+
+The `_additional` object in the GraphQL result exposes the score and an explanation of it:
+
+```json
+{
+  "_additional": {
+    "score": "5.3201",
+    "explainScore": "",  // TODO why empty?
+    "distance": null,  // always null
+    "certainty": null  // always null
+  }
+}
+```
+
+### Example response
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "_additional": {
+            "certainty": null,
+            "distance": null,
+            "explainScore": "",
+            "score": "3.4985464"
+          },
+          "title": "Tim Dowling: is the dog’s friendship with the fox sweet – or a bad omen?"
+        }
+      ]
+    }
+  },
+  "errors": null
+}
+```
+
 
 ## Group
 
@@ -105,7 +193,7 @@ You can use a group operator to combine similar concepts (aka _entity merging_).
 
 | Variables | Mandatory | Type | Description |
 | --- | --- | --- | --- |
-| `type` | yes | `string` | ​You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
+| `type` | yes | `string` | You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
 | `force` | yes | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
 
 ### Example
@@ -163,9 +251,9 @@ This results in the following. Note that publications `International New York Ti
 
 # Module specific parameters
 
-Module specific search parameters are made available in certain Weaviate modules.​
+Module specific search parameters are made available in certain Weaviate modules.
 
-## NearText
+## nearText
 
 Enabled by the modules: [text2vec-openai](../retriever-vectorizer-modules/text2vec-openai.html), [text2vec-transformers](../retriever-vectorizer-modules/text2vec-transformers.html), [text2vec-contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html).
 
@@ -192,7 +280,7 @@ This filter allows you to find data objects in the vicinity of the vector repres
 
 ### Example I
 
-This example shows a basic overview of using the nearText filter.
+This example shows a basic overview of using the `nearText` filter.
 
 {% include code/1.x/graphql.filters.nearText.html %}
 
@@ -232,7 +320,7 @@ A practical example would be: `concepts: ["beatles", "John Lennon"]`
 
 * Only available in `txt2vec-contextionary` module
 
-The semantic path returns an array of concepts from the query to the data object. This allows you to see which steps Weaviate took and how the query and data object are interpreted. 
+The semantic path returns an array of concepts from the query to the data object. This allows you to see which steps Weaviate took and how the query and data object are interpreted.
 
 | Property | Description |
 | `concept` | the concept that is found in this step. |
