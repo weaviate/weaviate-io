@@ -1,14 +1,14 @@
 <!-- SET GRAPHQL TAB CONTENT -->
 {% capture graphql %}
 {
-  Get{
-    Publication(
+  Get {
+    Publication (
       hybrid: {
         query: "Why is Weaviate so awesome?",
-        alpha: 0.5, # alpha set to 0.5 weighs dense and sparse vectors evenly
-        vector: [ ] # optional
-      }
-    ){
+        alpha: 0.5, 
+        vector: [ ]
+      })
+     {
       name
       _additional {score}
     }
@@ -28,9 +28,9 @@ client.graphql
   .withClassName('Publication')
   .withFields('name _additional{score}')
   .withHybrid({
-      query: "why is Weaviate so awesome?",  // required
-      vector: []  // optional. Not needed if weaviate handles the vectorization. If you provide your own embeddings, put the vector query here.
-      alpha: 0.7, // optional, defaults to 0.75. alpha=1 -> pure vector, alpha=0 -> pure bm25
+      query: "why is Weaviate so awesome?", 
+      vector: [ ],  
+      alpha: 0.5,
      }
   })
   .do()
@@ -41,8 +41,7 @@ client.graphql
 <!-- SET GO TAB CONTENT -->
 {% capture go %}
 hybrid := &HybridArgumentBuilder{}
-	hybrid.WithQuery("query").WithVector(1, 2, 3).WithAlpha(0.6)
-	
+	hybrid.WithQuery("query").WithVector(1, 2, 3).WithAlpha(0.5)
 
 	query := builder.WithClassName("Pizza").WithHybrid(hybrid).build()
 {% endcapture %}
@@ -54,8 +53,28 @@ hybrid := &HybridArgumentBuilder{}
 
 <!-- SET CURL TAB CONTENT -->
 {% capture curl %}
-
-
+$ echo '{ 
+  "query": "{
+    {
+      Get {
+        Publication(
+          hybrid: {
+            query: "Why is Weaviate so awesome?",
+            alpha: 0.5,
+            vector: [ ]
+          })
+        {
+          name
+          _additional {score}
+        }
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    http://localhost:8080/v1/graphql
 
 {% endcapture %}
 

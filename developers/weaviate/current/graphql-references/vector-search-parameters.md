@@ -83,8 +83,8 @@ This filter allows you to combine dense and sparse vectors to get the best of bo
 | --- | --- | --- | --- |
 | `hybrid` | yes | need to specify that you want to use hybrid search |
 | `query` | yes | search query |
-| `alpha` | yes | weighting for each search algorithm |
-| `vector` | no | optional to supply your own vectors |
+| `alpha` | no (default is set to 0.75) | weighting for each search algorithm |
+| `vector` | no | optional to supply your own vector |
 | `score` | no | ranked score that is assigned to each document 
 
 * Note: `alpha` can be any number from 0 to 1 
