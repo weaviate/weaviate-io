@@ -80,21 +80,6 @@ const config = {
                 items: [
                     {
                         type: 'dropdown',
-                        label: 'Weaviate Client Service',
-                        position: 'right',
-                        items: [
-                            {
-                                label: 'Pricing',
-                                to: '/pricing',
-                            },
-                            {
-                                label: 'Try Now',
-                                href: 'https://console.semi.technology/',
-                            },
-                        ]
-                    },
-                    {
-                        type: 'dropdown',
                         label: 'Content',
                         position: 'right',
                         items: [
@@ -142,6 +127,21 @@ const config = {
                                 href: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw',
                             },
                         ],
+                    },
+                    {
+                        type: 'dropdown',
+                        label: 'Weaviate Client Service',
+                        position: 'right',
+                        items: [
+                            {
+                                label: 'Pricing',
+                                to: '/pricing',
+                            },
+                            {
+                                label: 'Try Now',
+                                href: 'https://console.semi.technology/',
+                            },
+                        ]
                     },
                 ],
             },
