@@ -7,18 +7,18 @@ export default function Badges() {
             <a href="https://github.com/semi-technologies/weaviate">
                 <img src="https://img.shields.io/github/license/semi-technologies/weaviate?style=flat-square" alt="LICENSE"/></a>
                 &nbsp;
-            <a href="https://stackoverflow.com/tags/weaviate/" class="href-no-border">
+            <a href="https://stackoverflow.com/tags/weaviate/">
                 <img src="https://img.shields.io/badge/stackoverflow-%23weaviate-informational?style=flat-square" alt="Weaviate on Stackoverflow badge"/></a>
-                &nbsp;                
-            <a href="https://github.com/semi-technologies/weaviate/issues" class="href-no-border">
+                &nbsp;
+            <a href="https://github.com/semi-technologies/weaviate/issues">
                 <img src="https://img.shields.io/badge/github-issues-informational?style=flat-square" alt="Weaviate issues on Github badge"/></a>
                 &nbsp;
             {/* TODO - re-introduce below badges once site variables added */}
-            {/* <a href="https://github.com/semi-technologies/weaviate/releases/tag/{{ site.weaviate_version }}" class="href-no-border">
+            {/* <a href="https://github.com/semi-technologies/weaviate/releases/tag/{{ site.weaviate_version }}">
                 <img src="https://img.shields.io/badge/version-{{ site.weaviate_version }}-brightgreen?style=flat-square" alt="Weaviate {{ site.weaviate_version }} version badge"/>
             </a>
 
-            <a href="https://app.swaggerhub.com/apis/semi-technologies/weaviate/{{ site.weaviate_version }}" class="href-no-border">
+            <a href="https://app.swaggerhub.com/apis/semi-technologies/weaviate/{{ site.weaviate_version }}">
                 <img src="https://img.shields.io/badge/open--api--specs-{{ site.weaviate_version }}-brightgreen?style=flat-square" alt="Weaviate {{ site.weaviate_version }} version badge"/>
             </a>                 */}
             <a href="https://github.com/semi-technologies/weaviate/actions/workflows/pull_requests.yaml">
