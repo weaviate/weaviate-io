@@ -21,7 +21,7 @@ Read more about how Replication is designed and built in Weaviate on the [Replic
 
 Replication is enabled per data class in the [data schema](). This means you can set different replication factors per class in your dataset. To enable replication on a class (this is disabled by default), the replication factor has to be set. In a class in the schema, this looks like the following. `"replication": {“factor”: 3”}` can be specified per class in the schema object.
 
-> 💡 This is an experimental feature as of v1.17 and will become more stable in the future.
+> 💡 This is an **experimental feature** as of v1.17 and will become more stable in the future.
 
 ```json
 {

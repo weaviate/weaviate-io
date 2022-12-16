@@ -103,8 +103,7 @@ Read more about how replication works in Weaviate in [Philosophy](./philosophy.h
 
 ## How do I enable replication in Weaviate?
 
-TO DO
-
+Read the [Replication Usage page here](../configuration/replication.html). You can enable replication on class-level in the data schema of your Weaviate instance. During querying, you can specify the consistency level.
 
 ## Roadmap
 
