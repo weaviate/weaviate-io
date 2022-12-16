@@ -92,10 +92,15 @@ This filter allows you to combine dense and sparse vectors to get the best of bo
   * If `alpha` = 1, it is using a pure **vector** search method
   * If `alpha` = 0.5, it is weighing the sparse and vector method evenly
 
-### Example
+### Example 
 {% include code/1.x/graphql.filters.hybrid.html %}
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28%0D%0A++++++group%3A%7B%0D%0A++++++++type%3A+merge%2C%0D%0A++++++++force%3A0.05%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
+ 
+### Example with vector parameter
+If you're providing your own embeddings, you can add the vector query to the `vector` parameter. If Weaviate is handling the vectorization, then you can ignore the `vector` parameter and use the example code snippets above.
+
+{% include code/1.x/graphql.filters.hybrid.vector.html %}
 
 ## Group
 

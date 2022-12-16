@@ -5,7 +5,8 @@
     Article (
       hybrid: {
         query: "Fisherman that catches salmon"
-        alpha: 0.5
+        alpha: 0.5 
+        vector: [1, 2, 3] # optional. Not needed if Weaviate handles the vectorization. If you provide your own embeddings, put the vector query here.
       })
      {
       title
@@ -29,6 +30,7 @@ client.graphql
   .withFields('title summary _additional{score}')
   .withHybrid({
       query: "Fisherman that catches salmon", 
+      vector: [1, 2, 3], // optional. Not needed if Weaviate handles the vectorization. If you provide your own embeddings, put the vector query here.  
       alpha: 0.5,
      }
   })
@@ -40,7 +42,7 @@ client.graphql
 <!-- SET GO TAB CONTENT -->
 {% capture go %}
 hybrid := &HybridArgumentBuilder{}
-	hybrid.WithQuery("query").WithAlpha(0.5)
+	hybrid.WithQuery("query").WithVector(1, 2, 3).WithAlpha(0.5)
 
 	query := builder.WithClassName("Pizza").WithHybrid(hybrid).build()
 {% endcapture %}
@@ -60,6 +62,7 @@ $ echo '{
           hybrid: {
             query: "Fisherman that catches salmon"
             alpha: 0.5
+            vector: [1, 2, 3] # Optional. Not needed if Weaviate handles the vectorization. If you provide your own embeddings, put the vector query here.  
           })
         {
           title
@@ -77,6 +80,7 @@ $ echo '{
 
 {% endcapture %}
 
+
 <!-- SET BLOCK_ID TO A UNIQUE ID, OFTEN THIS IS = TO THE FILENAME WHERE . == - -->
 
-{% include molecule-graphql-block-request.html block_id='graphql-filters-hybrid' %}
+{% include molecule-graphql-block-request.html block_id='graphql-filters-hybrid.vector' %}
