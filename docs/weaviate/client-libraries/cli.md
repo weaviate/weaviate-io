@@ -32,7 +32,7 @@ To check if the cli is installed correctly, run:
 $ weaviate version
 ```
 
-which should return {{ site.weaviate_cli_version }}.
+which should return ||site.weaviate_cli_version||.
 
 # Functions
 

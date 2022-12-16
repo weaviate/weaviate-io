@@ -50,7 +50,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     restart: on-failure:0

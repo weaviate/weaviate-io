@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const remarkReplace = require('./src/remark/remark-replace');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -22,11 +23,6 @@ const config = {
     // If you aren't using GitHub pages, you don't need these.
     organizationName: 'semi-technologies', // Usually your GitHub org/user name.
     projectName: 'weaviate-io', // Usually your repo name.
-
-    customFields: {
-        weaviateVersion: '1.16.4',
-    },
-
     plugins: ['docusaurus-plugin-sass'],
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -52,6 +48,9 @@ const config = {
                         // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
                     path: 'docs', // folder name – where the docs are
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
+                    remarkPlugins: [
+                        remarkReplace
+                    ]
                 },
                 blog: {
                     showReadingTime: true,

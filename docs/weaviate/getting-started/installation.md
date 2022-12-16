@@ -50,10 +50,9 @@ The installation and configuration with Docker and Kubernetes is out of scope fo
 
 If you feel comfortable making a few changes to the code examples in the tutorial and you prefer to run Weaviate locally, you can set up Weaviate with Docker in two steps:
 
-<!-- Replace {{ site.weaviate_version }} -->
 1. Get `docker-compose.yml` configuration file by calling:
     ```js
-    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
+    curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version=v||site.weaviate_version||"
     ```
 1. Sping up docker
     ```js

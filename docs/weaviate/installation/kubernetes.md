@@ -18,7 +18,7 @@ sidebar_position: 3
 * The cluster needs to be able to provision `PersistentVolumes` through
   `PersistentVolumeClaims`. No special file systems are required. Any default
   file system capable of `ReadWriteOnce` access mode is sufficient.
-* Helm (only v3 is compatible from Helm version `"v{{ site.helm_version }}"`)
+* Helm (only v3 is compatible from Helm version `"v||site.helm_version||"`)
 
 # Weaviate Helm chart
 
@@ -40,7 +40,7 @@ Get the Helm chart and `values.yml` configuration file.
 
 ```bash
 # Set the Weaviate chart version
-export CHART_VERSION="v{{ site.helm_version }}"
+export CHART_VERSION="v||site.helm_version||"
 # Download the Weaviate Helm chart
 wget https://github.com/semi-technologies/weaviate-helm/releases/download/$CHART_VERSION/weaviate.tgz
 # Download an example values.yml (with the default configuration)
@@ -81,7 +81,7 @@ You can deploy the helm charts as follows:
 $ kubectl create namespace weaviate
 
 # set the desired Weaviate version
-export WEAVIATE_VERSION="{{ site.weaviate_version | remove_first: "v" }}"
+export WEAVIATE_VERSION="||site.weaviate_version||"
 
 # Deploy
 $ helm upgrade \

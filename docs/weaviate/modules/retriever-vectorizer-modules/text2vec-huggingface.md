@@ -39,7 +39,7 @@ Here is an example Docker-compose file, which will spin up Weaviate with the Hug
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - "8080:8080"

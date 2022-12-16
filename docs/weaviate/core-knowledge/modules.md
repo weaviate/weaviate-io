@@ -33,8 +33,7 @@ Depending on the type of data you want to store and search (text, images, etc.),
 
 ## Available module types
 
-<!-- TODO: Reminder to fix site variables {{ site.xxx }} -->
-This graphic shows the available modules of the latest Weaviate version ({{site.weaviate_version}}). 
+This graphic shows the available modules of the latest Weaviate version (v||site.weaviate_version||). 
 
 Broadly, we categorize them into one of:
 - Vectorization modules,

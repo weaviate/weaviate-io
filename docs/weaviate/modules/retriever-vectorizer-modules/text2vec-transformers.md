@@ -50,7 +50,7 @@ You can find an example Docker-compose file below, which will spin up Weaviate w
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:{{ site.weaviate_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - "8080:8080"

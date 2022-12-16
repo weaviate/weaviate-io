@@ -20,8 +20,7 @@ sidebar_position: 1
 
 # Installation and setup
 
-The Python library is available on [Pypi.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher. The current Python client version is 3.9.0.
-<!-- TODO - Replace Python client version with variable {{ site.python_client_version }} -->
+The Python library is available on [Pypi.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher. The current Python client version is ||site.python_client_version||.
 
 ```bash
 $ pip install weaviate-client
