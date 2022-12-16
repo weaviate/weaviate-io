@@ -11,6 +11,8 @@ sidebar_position: 2
 # open-graph-type: article
 # toc: true
 ---
+<badges/>
+
 ## Introduction
 
 Weaviate is a persistent and fault-tolerant database. This page gives you an overview of how objects and vectors are stored within Weaviate and how an inverted index is created at import time.

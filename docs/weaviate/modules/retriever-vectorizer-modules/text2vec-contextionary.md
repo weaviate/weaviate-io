@@ -14,6 +14,8 @@ sidebar_position: 4
 #     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-contextionary.html
 #     - /docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md
 ---
+<badges/>
+
 ## Introduction
 
 The module `text2vec-contextionary`, herein also referred to as the 'Contextionary', is Weaviate's own language vectorizer. It gives context to the language used in your dataset (there are Contextionary versions available for multiple languages). `text2vec-contextionary` is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe. The most recent `text2vec-contextionary` is trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data. We aim to make the Contextionary available for use cases in any domain, regardless if they are business-related, academic or other. But you can also [create your own vectorizer](/docs/weaviate/modules/other-modules/custom-modules.md) if desired.

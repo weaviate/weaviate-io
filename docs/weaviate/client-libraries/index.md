@@ -16,6 +16,7 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/client-libraries/index.html
 #     - /documentation/weaviate/current/client-libraries/
 ---
+<badges/>
 
 ## Overview
 :::caution Migrated From:

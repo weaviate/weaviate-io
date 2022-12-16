@@ -16,6 +16,7 @@ sidebar_position: 3
 #     - /documentation/weaviate/current/more-resources/faq.html
 #     - /docs/weaviate/more-resources/faq.html
 ---
+<badges/>
 
 <!-- IMPORTANT                                     -->
 <!-- WHEN ADDING ANSWERS TO THIS OVERVIEW          -->

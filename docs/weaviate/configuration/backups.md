@@ -17,6 +17,7 @@ sidebar_position: 12
 #     - /docs/weaviate/v1.8.0/configuration/backups-and-persistence.html
 #     - /docs/weaviate/v1.9.0/configuration/backups-and-persistence.html
 ---
+<badges/>
 
 ## Introduction
 

@@ -15,6 +15,8 @@ sidebar_position: 1
 #     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-openai.html
 #     - /docs/weaviate/modules/text2vec-openai.html
 ---
+<badges/>
+
 ## Introduction
 
 The `text2vec-​openai` module allows you to use the [OpenAI embeddings](https://beta.openai.com/docs/guides/embeddings) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using OpenAI's Ada, Babbage, Curie, or Davinci models.

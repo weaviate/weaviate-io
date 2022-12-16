@@ -13,6 +13,8 @@ sidebar_position: 5
 # redirect_from:
 #     - /docs/weaviate/modules/ner-transformers.html
 ---
+<badges/>
+
 ## In short
 
 * The Named Entity Recognition (NER) module is a Weaviate module for token classification.

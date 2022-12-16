@@ -2,6 +2,7 @@
 title: Retrievers & Vectorizers
 sidebar_position: 0
 ---
+<badges/>
 
 ## Overview
 

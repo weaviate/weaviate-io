@@ -15,6 +15,7 @@ sidebar_position: 7
 # redirect_from:
 #     - /docs/weaviate/v1.11.0/more-resources/performance.html
 ---
+<badges/>
 
 <!-- TODO: Unclear whether this page should be incorporated into another page, e.g. something to do with indexing, resource planning or architecture. -->
 ## Index types

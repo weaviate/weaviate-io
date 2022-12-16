@@ -13,6 +13,7 @@ sidebar_position: 8
 # redirect_from:
 #     - /docs/weaviate/v1.7.2/more-resources/migration-guide.html
 ---
+<badges/>
 
 # Changlog for version v1.9.0
 

@@ -13,6 +13,7 @@ sidebar_position: 3
 #   - /docs/weaviate/v1.8.0/tutorials/how-to-import-data.html
 #   - /docs/weaviate/v1.14.1/getting-started/import.html
 ---
+<badges/>
 
 Although importing itself is pretty straightforward, creating an optimized import strategy needs a bit of planning on your end. Hence, before we start with this guide, there are a few things to keep in mind.
 

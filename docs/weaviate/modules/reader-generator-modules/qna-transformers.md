@@ -14,6 +14,8 @@ sidebar_position: 1
 #     - /docs/weaviate/v1.11.0/reader-generator-modules/qna-transformers.html
 #     - /docs/weaviate/modules/qna-transformers.html
 ---
+<badges/>
+
 ## In short
 
 * The Question and Answer (Q&A) module is a Weaviate module for answer extraction from data.

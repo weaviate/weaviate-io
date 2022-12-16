@@ -10,6 +10,7 @@ sidebar_position: 9
 open-graph-type: article
 toc: true
 ---
+<badges/>
 
 You can find more examples with Weaviate [here](https://github.com/semi-technologies/weaviate-examples).
 

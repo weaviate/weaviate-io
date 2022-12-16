@@ -13,6 +13,8 @@ sidebar_position: 13
 # redirect_from:
 #     - /docs/weaviate/v1.11.0/configuration/vector-index-type.html
 ---
+<badges/>
+
 :::caution Migrated From:
 - Adds text re: configuration options from `Vector index plugins/HNSW`
 :::

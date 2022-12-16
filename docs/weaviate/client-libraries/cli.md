@@ -14,6 +14,7 @@ sidebar_position: 5
 # redirect_from:
 #     - /documentation/weaviate/current/client-libs/weaviate-cli.html
 ---
+<badges/>
 
 # Installation
 

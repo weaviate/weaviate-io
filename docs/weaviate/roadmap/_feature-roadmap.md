@@ -9,6 +9,7 @@ sidebar_position: 1
 open-graph-type: article
 toc: true
 ---
+<badges/>
 
 The following is an overview of features planned for Weaviate. By clicking the link, you can upvote the feature or engage in a discussion about it. You can also join our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to discuss the roadmap in more detail.
 

@@ -11,6 +11,7 @@ toc: true
 redirect_from:
     - /docs/weaviate/architecture/roadmap.html
 ---
+<badges/>
 
 <!-- style for roadmap table -->
 <!-- <style>

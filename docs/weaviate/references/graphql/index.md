@@ -15,6 +15,7 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/graphql-references/index.html
 #     - /documentation/weaviate/current/graphql-references/
 ---
+<badges/>
 
 ## GraphQL 
 

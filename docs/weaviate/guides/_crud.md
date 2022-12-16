@@ -2,6 +2,7 @@
 title: (NEW) Perform CRUD operations
 sidebar_position: 5
 ---
+<badges/>
 
 ## Overview
 

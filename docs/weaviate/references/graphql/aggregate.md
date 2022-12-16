@@ -16,6 +16,7 @@ sidebar_position: 2
 #     - /documentation/weaviate/current/query-data/aggregate.html
 #     - /documentation/weaviate/current/graphql-references/aggregate.html
 ---
+<badges/>
 
 ## Aggregate{} syntax and query structure
 

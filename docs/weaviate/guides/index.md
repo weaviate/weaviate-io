@@ -2,6 +2,7 @@
 title: Essential tutorials
 sidebar_position: 0
 ---
+<badges/>
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution Migrated From:

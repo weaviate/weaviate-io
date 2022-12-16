@@ -15,6 +15,7 @@ sidebar_position: 3
 #     - /documentation/weaviate/current/vector-index-plugins/index.html
 #     - /documentation/weaviate/current/vector-index-plugins/
 ---
+<badges/>
 :::caution Migrated From:
 - From `Vector Index (ANN) Plugins:Index` + `HNSW`
   - Note: Configuration options from `HNSW` are now in `References: Configuration/Vector index#How to configure HNSW`

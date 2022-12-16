@@ -10,6 +10,7 @@ sidebar_position: 2
 # open-graph-type: article
 # toc: true
 ---
+<badges/>
 You've made it to the schema getting started guide! The schema is the place where you will not only set data types, cross-references, and more, but you'll be tweaking index settings (ANN, reverse index, BM25).
 
 This will also be a guide to getting your hands dirty! Oh, and this guide is a bit longer 😉

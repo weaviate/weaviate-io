@@ -2,6 +2,7 @@
 title: References - Modules
 sidebar_position: 0
 ---
+<badges/>
 
 <!-- TODO: Finish this page! -->
 :::caution Migrated From:

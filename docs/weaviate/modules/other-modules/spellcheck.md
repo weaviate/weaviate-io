@@ -14,6 +14,8 @@ sidebar_position: 1
 #     - /docs/weaviate/v1.11.0/other-modules/spellcheck.html
 #     - /docs/weaviate/modules/spellcheck.html
 ---
+<badges/>
+
 ## In short
 
 * The Spell Check module is a Weaviate module for spell checking of raw text in GraphQL queries.

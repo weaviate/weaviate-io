@@ -15,6 +15,7 @@ sidebar_position: 6
 #     - /documentation/weaviate/current/graphql-references/underscore-properties.html
 #     - /docs/weaviate/graphql-references/underscore-properties.html
 ---
+<badges/>
 
 ## Introduction
 

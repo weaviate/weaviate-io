@@ -13,6 +13,7 @@ sidebar_position: 6
 # redirect_from:
 #     - /docs/weaviate/v1.14.1/architecture/
 ---
+<badges/>
 
 ## Introduction
 

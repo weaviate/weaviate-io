@@ -14,6 +14,7 @@ sidebar_position: 4
 # redirect_from:
 #     - /documentation/weaviate/current/more-resources/glossary.html
 ---
+<badges/>
 
 | Term | Description |
 | --- | --- |

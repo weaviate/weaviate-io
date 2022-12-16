@@ -14,6 +14,7 @@ sidebar_position: 2
 #     - /docs/weaviate/v1.3.0/data-schema/datatypes.html
 #     - /docs/weaviate/data-schema/datatypes.html
 ---
+<badges/>
 
 ## Introduction
 

@@ -15,6 +15,7 @@ sidebar_position: 0
 #     - /documentation/weaviate/references/rest/index.html
 #     - /documentation/weaviate/references/rest/
 ---
+<badges/>
 
 ## RESTful API
 

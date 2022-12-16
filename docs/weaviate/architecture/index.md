@@ -11,6 +11,7 @@ sidebar_position: 0
 # open-graph-type: article
 # toc: false
 ---
+<badges/>
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution Migrated From:

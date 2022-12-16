@@ -15,6 +15,7 @@ sidebar_position: 11
 #     - /docs/weaviate/v1.11.0/data-weaviate/schema-configuration.md
 #     - /documentation/weaviate/references/rest/schema.md
 ---
+<badges/>
 
 NOTE: From v1.5.0 onwards creating a schema is now optional, learn more about [Auto Schema here](/docs/weaviate/configuration/schema-configuration.md#auto-schema).
 

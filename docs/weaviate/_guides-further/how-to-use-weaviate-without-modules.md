@@ -12,6 +12,7 @@ sidebar_position: 1
 # open-graph-type: article
 # toc: true
 ---
+<badges/>
 
 <!-- TODO: Finish this page! -->
 :::caution Under construction.

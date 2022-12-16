@@ -11,3 +11,4 @@ sidebar_position: 6
 open-graph-type: article
 toc: true
 ---
+<badges/>

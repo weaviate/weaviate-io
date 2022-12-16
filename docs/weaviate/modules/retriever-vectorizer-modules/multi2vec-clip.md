@@ -14,6 +14,8 @@ sidebar_position: 6
 #     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/multi2vec-clip.html
 #     - /docs/weaviate/modules/multi2vec-clip.html
 ---
+<badges/>
+
 ## Introduction
 
 The `multi2vec-clip` module allows you to use a pre-trained Sentence-BERT CLIP model as a Weaviate vectorization module. To use CLIP with Weaviate, the `multi2vec-clip` module needs to be enabled. The models typically bring separate inference containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled serves, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.

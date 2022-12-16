@@ -14,6 +14,7 @@ sidebar_position: 1
 #     - /docs/weaviate/v1.4.1/data-schema/schema-configuration.html
 #     - /docs/weaviate/v1.11.0/data-schema/schema-configuration.html
 ---
+<badges/>
 
 ## Introduction
 

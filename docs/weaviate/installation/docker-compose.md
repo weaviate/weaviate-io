@@ -10,6 +10,7 @@ sidebar_position: 2
 # open-graph-type: article
 # toc: true
 ---
+<badges/>
 
 ## Configurator
 

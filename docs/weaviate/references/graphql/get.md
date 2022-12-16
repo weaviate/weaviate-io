@@ -14,6 +14,7 @@ sidebar_position: 1
 # redirect_from:
 #     - /documentation/weaviate/current/graphql-references/get.html
 ---
+<badges/>
 
 ## Get{} syntax and query structure
 

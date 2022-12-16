@@ -13,6 +13,7 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/get-started/install.html
 #     - /documentation/weaviate/current/getting-started/installation.html
 ---
+<badges/>
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution Migrated From:

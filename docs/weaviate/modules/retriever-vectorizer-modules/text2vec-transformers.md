@@ -15,6 +15,8 @@ sidebar_position: 3
 #     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-transformers
 #     - /docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md
 ---
+<badges/>
+
 ## Introduction
 
 The `text2vec-transformers` module allows you to use a pre-trained language transformer model as a Weaviate vectorization module. Transformer models differ from the Contextionary as they allow you to plug in a pretrained NLP module specific to your use case. This means models like `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. can be used out-of-the box with Weaviate.

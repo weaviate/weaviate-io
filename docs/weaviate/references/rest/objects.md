@@ -17,6 +17,7 @@ sidebar_position: 12
 #     - /documentation/weaviate/references/rest/semantic-kind.html
 #     - /docs/weaviate/restful-api-references/semantic-kind.html
 ---
+<badges/>
 
 ## List all data objects
 

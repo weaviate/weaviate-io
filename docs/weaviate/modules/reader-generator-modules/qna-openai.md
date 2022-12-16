@@ -15,6 +15,7 @@ sidebar_position: 2
 # toc: true
 # redirect_from:
 ---
+<badges/>
 
 ## In short
 

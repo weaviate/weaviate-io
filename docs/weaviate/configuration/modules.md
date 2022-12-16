@@ -13,6 +13,8 @@ sidebar_position: 11
 # redirect_from:
 #     - /docs/weaviate/v1.11.0/configuration/modules.html
 ---
+<badges/>
+
 :::caution Migrated From:
 - Mostly newly written
 - Previous `Configuration/Modules` content has been migrated to `References:Modules/index`

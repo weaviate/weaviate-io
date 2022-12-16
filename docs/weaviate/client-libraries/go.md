@@ -16,6 +16,7 @@ sidebar_position: 4
 #     - /documentation/weaviate/current/client-libs/go.html
 #     - /documentation/weaviate/current/client-libraries/go.html
 ---
+<badges/>
 
 # Installation and setup
 To get the latest stable version of the Go client library, run the following:

@@ -19,6 +19,7 @@ sidebar_position: 14
 #     - /documentation/weaviate/current/tutorials/how-to-import-data.html
 #     - /docs/weaviate/tutorials/how-to-import-data.html
 ---
+<badges/>
 
 ## Introduction
 

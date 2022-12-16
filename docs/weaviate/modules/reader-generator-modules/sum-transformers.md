@@ -11,6 +11,8 @@ sidebar_position: 8
 # open-graph-type: article
 # toc: true
 ---
+<badges/>
+
 ## In short
 
 * The Summarization (SUM) module is a Weaviate module that summarizes whole paragraps into a short text.

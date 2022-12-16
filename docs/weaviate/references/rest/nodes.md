@@ -14,6 +14,7 @@ sidebar_position: 17
 # redirect_from:
 #     - /documentation/weaviate/references/rest/nodes.html
 ---
+<badges/>
 
 ## Usage
 

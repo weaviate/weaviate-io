@@ -14,6 +14,8 @@ sidebar_position: 9
 #    - /docs/weaviate/v1.1.0/modules/custom-modules.html
 #    - /docs/weaviate/modules/custom-modules.html
 ---
+<badges/>
+
 ## Introduction
 
 Besides using one of the out-of-the-box vectorization models, you can also attach your own machine learning model to Weaviate. This way, you can use Weaviate to scale your ML and NLP models, since Weaviate takes care of efficient data storage and retrieval. A custom vectorizer module is, for example, a model that you trained on your own training data, that is able to transform data (e.g. text or image data) to embeddings. 

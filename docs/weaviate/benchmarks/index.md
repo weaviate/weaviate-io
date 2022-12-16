@@ -1,16 +1,19 @@
 ---
-layout: layout-documentation
-bodyclass: ["page--guides", " "]
-solution: weaviate
-sub-menu: Benchmarks
 title: Benchmarks
-intro: 
-description: Overview of benchmarks for the Weaviate vector search engine
-tags: ['Weaviate', 'performance', 'benchmarks', 'ann benchmarks']
 sidebar_position: 0
-open-graph-type: article
-toc: true
+# layout: layout-documentation
+# bodyclass: ["page--guides", " "]
+# solution: weaviate
+# sub-menu: Benchmarks
+# title: Benchmarks
+# intro: 
+# description: Overview of benchmarks for the Weaviate vector search engine
+# tags: ['Weaviate', 'performance', 'benchmarks', 'ann benchmarks']
+# sidebar_position: 0
+# open-graph-type: article
+# toc: true
 ---
+<badges/>
 
 You can find the following performance benchmarks:
 

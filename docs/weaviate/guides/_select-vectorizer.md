@@ -2,6 +2,7 @@
 title: (PLACEHOLDER) Select the right vectorizer
 sidebar_position: 1
 ---
+<badges/>
 
 ## Overview
 

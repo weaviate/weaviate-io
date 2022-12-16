@@ -10,6 +10,7 @@ sidebar_position: 4
 # open-graph-type: article
 # toc: true
 ---
+<badges/>
 
 Finally! It's time to start and query Weaviate!
 

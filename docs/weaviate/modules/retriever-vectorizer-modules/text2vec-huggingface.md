@@ -12,6 +12,8 @@ sidebar_position: 2
 # toc: true
 # enabled-on-wcs: true
 ---
+<badges/>
+
 ## Introduction
 
 The `text2vec-huggingface` module allows you to use [Hugging Face models](https://huggingface.co/models) directly in Weaviate as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using the chosen module.

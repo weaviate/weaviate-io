@@ -11,6 +11,7 @@ sidebar_position: 3
 # open-graph-type: article
 # toc: true
 ---
+<badges/>
 
 ## Introduction
 

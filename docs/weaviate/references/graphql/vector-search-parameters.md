@@ -12,6 +12,7 @@ sidebar_position: 5
 # open-graph-type: article
 # toc: true
 ---
+<badges/>
 
 ## Setting search parameters
 

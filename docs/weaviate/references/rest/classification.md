@@ -17,6 +17,7 @@ sidebar_position: 15
 #     - /documentation/weaviate/current/classification/knn-classification.html
 #     - /documentation/weaviate/references/rest/classification.html
 ---
+<badges/>
 
 ## Start a classification
 

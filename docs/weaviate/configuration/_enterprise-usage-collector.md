@@ -13,6 +13,7 @@ sidebar_position: 7
 # redirect_from:
 #     - /docs/weaviate/v1.1.0/configuration/enterprise-usage-collector.html
 ---
+<badges/>
 
 <!-- Hidden for now as no longer used; to be removed in the future. -->
 ## Introduction

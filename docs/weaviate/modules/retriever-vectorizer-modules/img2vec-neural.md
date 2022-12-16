@@ -14,6 +14,8 @@ sidebar_position: 5
 #     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/img2vec-neural.html
 #     - /docs/weaviate/modules/img2vec-neural.html
 ---
+<badges/>
+
 ## Introduction
 
 This module vectorizes images using neural networks. Pre-trained modules can be used. `resnet50` is the first model that is supported, other models will be released soon. [`resnet50`](https://arxiv.org/abs/1512.03385) is a residual convolutional neural network with 25.5 million parameters trained on more than a million images from the [ImageNet database](https://www.image-net.org/). As the name suggests, it has a total of 50 layers: 48 convolution layers, 1 MaxPool layer and 1 Average Pool layer.

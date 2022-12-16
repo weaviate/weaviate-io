@@ -19,6 +19,7 @@ sidebar_position: 13
 #     - /documentation/weaviate/current/tutorials/how-to-import-data.html
 #     - /docs/weaviate/tutorials/how-to-import-data.html
 ---
+<badges/>
 
 ## Batch data objects
 

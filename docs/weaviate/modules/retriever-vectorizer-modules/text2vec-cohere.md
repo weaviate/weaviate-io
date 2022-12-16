@@ -14,6 +14,7 @@ sidebar_position: 1
 # toc: true
 # enabled-on-wcs: true
 ---
+<badges/>
 
 ## Introduction
 
