@@ -17,8 +17,11 @@ sidebar_position: 2
 You can use the configuration tool below to customize your Weaviate setup for
 your desired runtime.
 
-<!-- TODO - Embed Docker config generator here -->
-{% include docs-config-gen.html %}
+<!-- {% include docs-config-gen.html %} -->
+
+import DocsConfigGen from '/_includes/docs-config-gen.mdx';
+
+<DocsConfigGen />
 
 ## How to customize
 
