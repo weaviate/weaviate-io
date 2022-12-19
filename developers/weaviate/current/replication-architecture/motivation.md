@@ -17,7 +17,9 @@ High availability of a database means that the database is designed to operate c
 
 Since Weaviate has a strongly consistent schema, all nodes are needed for a schema operation. When one or more nodes are down, schema operations are temporarily not possible.
 
-Examples of applications where High Availability is desired are emergency services are enterprise IT systems, social media and website search. Nowadays, users are used to highly available applications, so they expect no or very little downtime. For e.g. website search, service (read queries) should not be interrupted if a node goes down. In that case, if writing is temporarily unavailable, it is acceptable and at worst case the site search will be stale, but still available for read requests.
+Examples of applications where High Availability is desired are emergency services are enterprise IT systems, social media and website search. Nowadays, users are used to highly available applications, so they expect little to no downtime. For e.g. website search, service (read queries) should not be interrupted if a node goes down. In that case, if writing is temporarily unavailable, it is acceptable and in the worst case scenario the site search will be stale, but still available for read requests.
+
+![High Availability](/img/docs/replication/replication-high-availability.png "High Availability")
 
 High Availability can be illustrated by the following configuration examples:
 1. Write ALL, Read ONE - There is no High Availability during writing because ALL nodes need to respond to write requests. There is High Availability on read requests, all nodes can go down except one while reading and the read operations are still available.
@@ -29,6 +31,8 @@ High Availability can be illustrated by the following configuration examples:
 When you have many read requests on your Weaviate instance, for example because you're building an application for many users, the database setup should be able to support high throughput. Throughput is measured in Queries Per Second (QPS). Adding extra server nodes to your database setup means that the throughput scales with it. The more server nodes, the more users (read operations) the system will be able to handle. Thus, replicating your Weaviate instance increases throughput. 
 
 When reading is set to a low consistency level (e.g. ONE), then scaling the replication factor (i.e. how many database server nodes) increases the throughput linearly. For example, when the read consistency level is ONE, if one node can reach 10.000 QPS, then a setup with 3 replica nodes can receive 30.000 QPS.
+
+![Increased Throughput](/img/docs/replication/replication-increased-throughput.png "Increased Throughput")
 
 
 ## Zero Downtime Upgrades

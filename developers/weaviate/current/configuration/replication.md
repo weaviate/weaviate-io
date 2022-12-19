@@ -19,9 +19,8 @@ Read more about how Replication is designed and built in Weaviate on the [Replic
 
 ## How to configure: Schema
 
-Replication is enabled per data class in the [data schema](). This means you can set different replication factors per class in your dataset. To enable replication on a class (this is disabled by default), the replication factor has to be set. In a class in the schema, this looks like the following. `"replication": {“factor”: 3”}` can be specified per class in the schema object.
+Replication is enabled per data class in the [data schema](). This means you can set different replication factors per class in your dataset. To enable replication on a class (this is disabled by default), the replication factor has to be set. In a class in the schema, this looks like the following. `"replicationConfig": {“factor”: 3”}` can be specified per class in the schema object.
 
-> 💡 This is an **experimental feature** as of v1.17 and will become more stable in the future.
 
 ```json
 {
@@ -34,11 +33,15 @@ Replication is enabled per data class in the [data schema](). This means you can
       ],
     }
   ],
-  "replication": {
+  "replicationConfig": {
     "factor": 3     // Integer, default is 1. Replication Factor is the amount of copies of this class that will be stored.
   }
 }
 ```
+
+When you set this replication factor in the data schema before you add data, you will have 3 replicas of the data stored. Weaviate can also handle changing this setting after you imported the data. Then the data is copied to the new replica nodes (if there are enough nodes), but note that this is experimental and will be more stable in the future.
+
+> 💡 Changing the replication factor after adding data is an **experimental feature** as of v1.17 and will become more stable in the future.
 
 The data schema has a write consistency level of `ALL`, which means when you upload or update a schema, this will be sent to `ALL` nodes (via a coordinator node). The coordinator node waits for a successful acknowledgement from `ALL` nodes before sending a success message back to the client. This ensures a high consistent schema in your distributed Weaviate setup.
 

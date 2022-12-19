@@ -63,6 +63,9 @@ class_obj = {
         "removals": ["a", "the"]
       },
       "indexTimestamps": True
+    },
+    "replicationConfig": {
+      "factor": 3
     }
 }
 
@@ -137,6 +140,9 @@ var classObj = {
         "removals": ["a", "the"]
       },
       "indexTimestamps": true
+    },
+    "replicationConfig": {
+      "factor": 3
     }
 }
 
@@ -200,6 +206,9 @@ func main() {
         Removals:  []string{"a", "the"},
       },
       IndexTimestamps: true,
+    },
+    ReplicationConfig: map[string]interface{}{
+      "factor": int32(3),
     },
   }
 
@@ -265,6 +274,10 @@ public class App {
       .virtualPerPhysical(128)
       .build();
 
+    ReplicationConfig replicationConfig = ReplicationConfig.builder()
+      .factor(3)
+      .build();
+
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Article")
       .description("A written text, for example a news article or blog post")
@@ -273,6 +286,7 @@ public class App {
       .invertedIndexConfig(invertedIndexConfig)
       .shardingConfig(shardingConfig)
       .vectorIndexConfig(vectorIndexConfig)
+      .replicationConfig(replicationConfig)
       .properties(new ArrayList() { {
         add(Property.builder()
           .dataType(new ArrayList(){ { add(DataType.STRING); } })
@@ -361,6 +375,9 @@ $ curl \
         "removals": ["a", "the"]
       },
       "indexTimestamps": true
+    },
+    "replicationConfig": {
+      "factor": 3
     }
 }' \
 http://localhost:8080/v1/schema

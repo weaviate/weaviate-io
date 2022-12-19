@@ -109,7 +109,7 @@ An example of a complete class object including properties:
   "shardingConfig": {
     ...                                     // Optional, controls behavior of class in a multi-node setting, see section below
   },
-  "replication": {
+  "replicationConfig": {
     "factor": 3                             // Optional, integer, default is 1. Replication Factor is the amount of copies of this class that will be stored. Setting, see section below
   }
 }
@@ -275,17 +275,19 @@ The meaning of the individual fields in detail:
 
 ### Replication (introduced in v1.17.0)
 
-[Replication](../replication-architecture/index.html) is enabled per data class in the data schema. This means you can set different replication factors per class in your dataset. To enable replication on a class (this is disabled by default), the replication factor has to be set. In a class in the schema, this looks like the following. `"replication": {“factor”: 3”}` can be specified per class in the schema object.
-
-> 💡 This is an experimental feature as of v1.17 and will become more stable in the future.
+[Replication](../replication-architecture/index.html) is enabled per data class in the data schema. This means you can set different replication factors per class in your dataset. To enable replication on a class (this is disabled by default), the replication factor has to be set. In a class in the schema, this looks like the following. `"replicationConfig": {“factor”: 3”}` can be specified per class in the schema object.
 
 ```json
 {
-  "replication": {
+  "replicationConfig": {
     "factor": 3     // Integer, default is 1. Replication Factor is the amount of copies of this class that will be stored.
   }
 }
 ```
+
+When you set this replication factor in the data schema before you add data, you will have 3 replicas of the data stored. Weaviate can also handle changing this setting after you imported the data. Then the data is copied to the new replica nodes (if there are enough nodes), but note that this is experimental and will be more stable in the future.
+
+> 💡 Changing the replication factor after adding data is an **experimental feature** as of v1.17 and will become more stable in the future.
 
 
 # Property object

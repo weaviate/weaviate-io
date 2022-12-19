@@ -43,6 +43,9 @@ Data objects in Weaviate have **eventual consistency**, which means that all nod
 
 Eventual consistency is chosen over strong consistency, to ensure high availability. Nevertheless, write and read consistency are tunable, so you have some influence on the tradeoff between availability and consistency. 
 
+*The GIF below is an example of how a write or a read is performed with Weaviate with a replication factor of 3 and 8 nodes. The blue node acts as coordinator node. The consistency level is set to QUORUM, so the coordinator node only waits for two out of three responses before sending the result back to the client.*
+![Write consistency QUORUM](/img/docs/replication/replication-quorum-animation.gif "Write consistency QUORUM"){:width="50%"}<br/>
+
 ### Tunable Write Consistency
 
 Adding or changing data objects are **write** operations.  
@@ -53,6 +56,11 @@ The main reason for introducing configurable write consistency in v1.18 is becau
 * **ONE** - a write must receive an acknowledgement from at least one replica node. This is the fastest (most available), but least consistent option. 
 * **QUORUM** - a write must receive an acknowledgement from at least QUORUM replica nodes. QUORUM is calculated by _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
 * **ALL** - a write must receive an acknowledgement from all replica nodes. This is the most consistent, but 'slowest' (least available) option.
+
+![Write consistency ONE](/img/docs/replication/replication-rf3-c-ONE.png "Write consistency ONE")
+![Write consistency QUORUM](/img/docs/replication/replication-rf3-c-QUORUM.png "Read consistency QUORUM")
+![Write consistency ALL](/img/docs/replication/replication-rf3-c-ALL.png "Write consistency ALL")
+
 
 ### Tunable Read Consistency
 
@@ -68,18 +76,17 @@ Possible Read Consistency levels are:
 Examples:
 * **ONE** \
   In a single datacenter with a replication factor of 3 and a read consistency level of ONE, the coordinator node will wait for a response from one replica node.
-
-TO DO - ILLUSTRATION
+  ![Read consistency ONE](/img/docs/replication/replication-rf3-c-ONE.png "Read consistency ONE")
 
 * **QUORUM** \
   In a single datacenter with a replication factor of 3 and a read consistency level of QUORUM, the coordinator node will wait for n / 2 + 1 = 3 / 2 + 1 = 2 replicas nodes to return a response.
+  ![Read consistency QUORUM](/img/docs/replication/replication-rf3-c-QUORUM.png "Read consistency QUORUM")
 
-TO DO - ILLUSTRATION
 
 * **ALL** \
   In a single datacenter with a replication factor of 3 and a read consistency level of level of ALL, the coordinator node will wait for all 3 replicas nodes to return a response.
+  ![Read consistency ALL](/img/docs/replication/replication-rf3-c-ALL.png "Read consistency ALL")
 
-TO DO - ILLUSTRATION
 
 
 ## Repairs
