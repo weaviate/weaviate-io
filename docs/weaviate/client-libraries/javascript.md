@@ -15,7 +15,9 @@ sidebar_position: 2
 #     - /docs/weaviate/v1.2.1/client-libraries/javascript.html
 #     - /documentation/weaviate/current/client-libs/javascript.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 # Installation and setup
 

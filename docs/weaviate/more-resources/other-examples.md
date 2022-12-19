@@ -10,7 +10,9 @@ sidebar_position: 9
 open-graph-type: article
 toc: true
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 You can find more examples with Weaviate [here](https://github.com/semi-technologies/weaviate-examples).
 

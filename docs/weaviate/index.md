@@ -13,7 +13,10 @@ sidebar_position: 0
 # open-graph-type: article
 # toc: true
 ---
-<badges/>
+
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 :::caution 👋 Weaviators
 - We have added these information boxes to explain where pages have migrated from.

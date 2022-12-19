@@ -15,7 +15,9 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/configuration/
 #     - /documentation/weaviate/current/setup/health_check.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution Migrated From:

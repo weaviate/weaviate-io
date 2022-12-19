@@ -13,7 +13,9 @@
 #     - /docs/weaviate/v1.14.1/more-resources/deprecation-messages.html
 #     - /documentation/weaviate/current/more-resources/deprecation-messages.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 The list below contains deprecation messages:
 <!-- 

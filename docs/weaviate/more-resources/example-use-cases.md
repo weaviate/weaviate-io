@@ -16,7 +16,9 @@ sidebar_position: 6
 #     - /documentation/weaviate/current/getting-started/use-cases.html
 #     - /docs/weaviate/getting-started/use-cases.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 Most use cases of Weaviate benefit from the following two core concepts: 
 

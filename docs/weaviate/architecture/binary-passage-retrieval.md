@@ -12,7 +12,9 @@ sidebar_position: 5
 # intro: Vastly reduce your memory requirements by using Binary Passage Retrieval (Learning-to-hash) with Weaviate.
 # toc: true
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Overview
 

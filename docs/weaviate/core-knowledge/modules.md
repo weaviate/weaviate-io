@@ -12,7 +12,9 @@ sidebar_position: 5
 # open-graph-type: article
 # toc: true
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 :::caution Migrated From:
 - Combines theoretical explanations from `Configuration/Modules` + `Modules/Index`. e.g.:

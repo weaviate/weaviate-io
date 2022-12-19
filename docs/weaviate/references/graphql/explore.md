@@ -15,7 +15,9 @@ sidebar_position: 3
 #     - /documentation/weaviate/current/query-data/explore.html
 #     - /documentation/weaviate/current/graphql-references/explore.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Explore{} query structure and syntax
 

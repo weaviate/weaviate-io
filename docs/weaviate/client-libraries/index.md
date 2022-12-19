@@ -16,7 +16,9 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/client-libraries/index.html
 #     - /documentation/weaviate/current/client-libraries/
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Overview
 :::caution Migrated From:

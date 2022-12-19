@@ -14,7 +14,9 @@ sidebar_position: 16
 #     - /docs/weaviate/v1.11.0/configuration/persistence.html
 #     - /docs/weaviate/configuration/backups-and-persistence.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Overview
 

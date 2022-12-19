@@ -14,7 +14,9 @@ sidebar_position: 18
 # redirect_from:
 #     - /documentation/weaviate/references/rest/well-known.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## OpenID Configuration
 The RESTful API discovery gives information if [OpenID Connect (OIDC)](/docs/weaviate/configuration/authentication.md#openid-connect-oidc) authentication is enabled. The endpoint redirects to the token issued if one is configured.

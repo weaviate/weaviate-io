@@ -13,7 +13,9 @@ sidebar_position: 5
 # redirect_from:
 #     - /docs/weaviate/modules/ner-transformers.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## In short
 

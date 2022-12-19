@@ -15,7 +15,9 @@ sidebar_position: 3
 #     - /documentation/weaviate/current/add-data/add_and_modify.html
 #     - /documentation/weaviate/current/tutorials/how-to-import-data.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Overview
 

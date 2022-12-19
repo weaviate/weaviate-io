@@ -15,7 +15,9 @@ sidebar_position: 1
 #     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-openai.html
 #     - /docs/weaviate/modules/text2vec-openai.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Introduction
 

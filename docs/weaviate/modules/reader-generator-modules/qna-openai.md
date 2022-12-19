@@ -15,7 +15,9 @@ sidebar_position: 2
 # toc: true
 # redirect_from:
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## In short
 

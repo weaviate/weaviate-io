@@ -15,7 +15,9 @@ sidebar_position: 0
 #     - /documentation/weaviate/references/rest/index.html
 #     - /documentation/weaviate/references/rest/
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## More information
 

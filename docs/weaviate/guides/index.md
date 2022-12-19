@@ -2,7 +2,9 @@
 title: Essential tutorials
 sidebar_position: 0
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution Migrated From:

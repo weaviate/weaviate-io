@@ -15,7 +15,9 @@ sidebar_position: 3
 #     - /documentation/weaviate/current/vector-index-plugins/index.html
 #     - /documentation/weaviate/current/vector-index-plugins/
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 :::caution Migrated From:
 - From `Vector Index (ANN) Plugins:Index` + `HNSW`

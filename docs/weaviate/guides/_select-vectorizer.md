@@ -2,7 +2,9 @@
 title: (PLACEHOLDER) Select the right vectorizer
 sidebar_position: 1
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Overview
 

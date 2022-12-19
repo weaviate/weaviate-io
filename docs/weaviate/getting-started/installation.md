@@ -12,7 +12,9 @@ sidebar_position: 1
 # redirect_from:
 #     - /docs/weaviate/v1.7.2/getting-started/installation.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 There are three ways you can run Weaviate, and they are -we believe- pretty straightforward.
 

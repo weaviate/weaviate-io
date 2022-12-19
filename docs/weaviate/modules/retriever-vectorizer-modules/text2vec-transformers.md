@@ -15,7 +15,9 @@ sidebar_position: 3
 #     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-transformers
 #     - /docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Introduction
 

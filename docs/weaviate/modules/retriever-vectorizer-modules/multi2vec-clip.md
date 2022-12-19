@@ -14,7 +14,9 @@ sidebar_position: 6
 #     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/multi2vec-clip.html
 #     - /docs/weaviate/modules/multi2vec-clip.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Introduction
 

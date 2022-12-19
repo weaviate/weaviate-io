@@ -11,7 +11,9 @@ sidebar_position: 0
 # open-graph-type: article
 # toc: false
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 <!-- TODO: Refine layout for presentation -->
 :::caution Migrated From:

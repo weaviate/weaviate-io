@@ -2,7 +2,9 @@
 title: Readers & Generators
 sidebar_position: 0
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Overview
 

@@ -15,7 +15,9 @@ sidebar_position: 2
 #     - /documentation/weaviate/current/add-data/define_schema.html
 #     - /documentation/weaviate/current/tutorials/how-to-create-a-schema.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Overview
 

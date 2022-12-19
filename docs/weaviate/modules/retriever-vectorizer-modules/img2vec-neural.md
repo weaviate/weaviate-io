@@ -14,7 +14,9 @@ sidebar_position: 5
 #     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/img2vec-neural.html
 #     - /docs/weaviate/modules/img2vec-neural.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Introduction
 

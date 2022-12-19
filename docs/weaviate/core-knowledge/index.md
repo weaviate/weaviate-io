@@ -13,7 +13,9 @@ sidebar_position: 0
 #     - /documentation/weaviate/current/getting-started/
 #     - /docs/weaviate/getting-started/quick-start.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 :::caution Migrated From:

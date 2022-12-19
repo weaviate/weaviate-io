@@ -10,7 +10,9 @@ sidebar_position: 9
 # open-graph-type: article
 # toc: true
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 Weaviate modules can be added to your instance and are mostly used to vectorize data or process results (e.g., question answering). The structure of the module name (`x2vec`) informs you of what the module does. E.g., `text2vec` generates text embeddings, `img2vec` image embeddings, etc.
 

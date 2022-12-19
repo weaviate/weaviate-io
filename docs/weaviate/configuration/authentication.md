@@ -15,7 +15,9 @@ sidebar_position: 14
 #     - /documentation/weaviate/current/setup/authenticate.html
 #     - /documentation/weaviate/current/configuration/authentication.md
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 # Overview
 

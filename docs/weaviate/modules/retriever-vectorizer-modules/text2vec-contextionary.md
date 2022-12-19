@@ -14,7 +14,9 @@ sidebar_position: 4
 #     - /docs/weaviate/v1.11.0/retriever-vectorizer-modules/text2vec-contextionary.html
 #     - /docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Introduction
 

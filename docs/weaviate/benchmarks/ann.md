@@ -14,7 +14,9 @@ sidebar_position: 1
 # open-graph-type: article
 # toc: true
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 # About this benchmark
 

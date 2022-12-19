@@ -14,7 +14,9 @@ sidebar_position: 1
 #     - /docs/weaviate/v1.11.0/reader-generator-modules/qna-transformers.html
 #     - /docs/weaviate/modules/qna-transformers.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## In short
 

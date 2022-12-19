@@ -13,7 +13,9 @@ sidebar_position: 7
 # redirect_from:
 #     - /docs/weaviate/modules/ref2vec-centroid.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Introduction
 

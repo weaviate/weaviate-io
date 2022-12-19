@@ -14,7 +14,9 @@ sidebar_position: 9
 #    - /docs/weaviate/v1.1.0/modules/custom-modules.html
 #    - /docs/weaviate/modules/custom-modules.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Introduction
 

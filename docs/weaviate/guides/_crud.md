@@ -2,7 +2,9 @@
 title: (NEW) Perform CRUD operations
 sidebar_position: 5
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Overview
 

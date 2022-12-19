@@ -2,7 +2,9 @@
 title: References - Modules
 sidebar_position: 0
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 <!-- TODO: Finish this page! -->
 :::caution Migrated From:

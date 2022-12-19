@@ -16,7 +16,9 @@ sidebar_position: 4
 #     - /documentation/weaviate/current/query-data/filters.html
 #     - /documentation/weaviate/current/graphql-references/filters.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Setting filters
 

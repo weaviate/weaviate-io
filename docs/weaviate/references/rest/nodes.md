@@ -14,7 +14,9 @@ sidebar_position: 17
 # redirect_from:
 #     - /documentation/weaviate/references/rest/nodes.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Usage
 

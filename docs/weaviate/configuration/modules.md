@@ -13,7 +13,9 @@ sidebar_position: 11
 # redirect_from:
 #     - /docs/weaviate/v1.11.0/configuration/modules.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 :::caution Migrated From:
 - Mostly newly written

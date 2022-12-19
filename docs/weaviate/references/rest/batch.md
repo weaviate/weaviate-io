@@ -19,7 +19,9 @@ sidebar_position: 13
 #     - /documentation/weaviate/current/tutorials/how-to-import-data.html
 #     - /docs/weaviate/tutorials/how-to-import-data.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Batch data objects
 

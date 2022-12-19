@@ -12,7 +12,9 @@ sidebar_position: 2
 # toc: true
 # enabled-on-wcs: true
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Introduction
 

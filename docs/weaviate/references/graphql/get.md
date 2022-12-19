@@ -14,7 +14,9 @@ sidebar_position: 1
 # redirect_from:
 #     - /documentation/weaviate/current/graphql-references/get.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Get{} syntax and query structure
 

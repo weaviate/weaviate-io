@@ -11,7 +11,9 @@ sidebar_position: 3
 # open-graph-type: article
 # toc: true
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Available Distance Metrics
 

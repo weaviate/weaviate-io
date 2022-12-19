@@ -18,7 +18,9 @@ sidebar_position: 5
 #     - /documentation/weaviate/current/getting-started/example-datasets.html
 #     - /docs/weaviate/getting-started/example-datasets.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Multi-Modal Text/Image search using CLIP
 

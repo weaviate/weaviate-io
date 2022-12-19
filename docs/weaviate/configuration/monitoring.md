@@ -16,7 +16,9 @@ sidebar_position: 18
 #   - /docs/weaviate/v1.14.1/configuration/monitoring.html
 #   - /docs/weaviate/more-resources/monitoring.html
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 ## Overview 
 

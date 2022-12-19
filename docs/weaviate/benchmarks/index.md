@@ -13,7 +13,9 @@ sidebar_position: 0
 # open-graph-type: article
 # toc: true
 ---
-<badges/>
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
 
 You can find the following performance benchmarks:
 
