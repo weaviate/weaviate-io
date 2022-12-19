@@ -9,14 +9,20 @@ export default function PodcastCard() {
         {podcasts.map((podcast) => {
           if (!podcast) return null;
           return (
-            <div key={podcast.date} className={styles.box}>
-              <div className={styles.left}>image</div>
+            <a
+              key={podcast.date}
+              className={styles.box}
+              href={`https://www.youtube.com/watch?v=${podcast.youtube}`}
+            >
+              <div className={styles.left}>
+                <img src={podcast.cover_image} alt="" />
+              </div>
               <div className={styles.right}>
-                <h6>{podcast.title}</h6>
+                <h3>{podcast.title}</h3>
                 <p>{podcast.description}</p>
                 <div>{podcast.date}</div>
               </div>
-            </div>
+            </a>
           );
         })}
       </div>
