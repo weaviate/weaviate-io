@@ -9,10 +9,9 @@
   }
 }
 .box {
-  border: 1px solid rgb(195, 195, 195);
   border-radius: 1rem;
   display: flex;
-  min-width: 40%;
+  max-width: 49%;
   text-decoration: none;
   color: #c8c8c8;
 
@@ -21,8 +20,11 @@
     color: #fff;
   }
 
-  @media screen and (max-width: 790px) {
-    width: 100%;
+  @media screen and (max-width: 1095px) {
+    max-width: 100%;
+  }
+  @media screen and (max-width: 668px) {
+    flex-direction: column;
   }
 }
 
@@ -31,9 +33,14 @@
   display: flex;
   flex: 1;
   img {
-    width: 100%;
+    width: 296px;
+    height: 160px;
+    border-radius: 8%;
     object-fit: contain;
-    border-radius: 1rem;
+    @media screen and (max-width: 1095px) {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 
