@@ -130,7 +130,7 @@ const config = {
                     },
                     {
                         type: 'dropdown',
-                        label: 'Weaviate Client Service',
+                        label: 'Weaviate Cloud Service',
                         position: 'right',
                         items: [
                             {
