@@ -48,7 +48,7 @@ This filter allows you to find data objects in the vicinity of an input vector. 
 
 If the distance metric is `cosine` you can also use `certainty` instead of
 `distance`. Certainty normalizes the distance in a range of 0..1, where 0
-reprents a perfect opposite (cosine distance of 2) and 1 represents vectors
+represents a perfect opposite (cosine distance of 2) and 1 represents vectors
 with an identical angle (cosine distance of 0). Certainty is not available on
 non-cosine distance metrics.
 
@@ -102,9 +102,8 @@ If you're providing your own embeddings, you can add the vector query to the `ve
 
 {% include code/1.x/graphql.filters.hybrid.vector.html %}
 
-
 ## bm25
-The `bm25` operator performs a keyword (sparse vector) search, and uses the [BM25F ranking function](/blog/) <!-- TODO: link to the blog post --> to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
+The `bm25` operator performs a keyword (sparse vector) search, and uses the [BM25F ranking function](/blog/2022/12/weaviate-release-1-17) to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
 
 The search is case-insensitive, and case matching does not confer a score advantage. Stop words are removed. [Stemming is not supported yet](https://github.com/semi-technologies/weaviate/issues/2439).
 
