@@ -103,7 +103,7 @@ If you're providing your own embeddings, you can add the vector query to the `ve
 {% include code/1.x/graphql.filters.hybrid.vector.html %}
 
 ## bm25
-The `bm25` operator performs a keyword (sparse vector) search, and uses the [BM25F ranking function](/blog/2022/12/weaviate-release-1-17) to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
+The `bm25` operator performs a keyword (sparse vector) search, and uses the BM25F ranking function to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
 
 The search is case-insensitive, and case matching does not confer a score advantage. Stop words are removed. [Stemming is not supported yet](https://github.com/semi-technologies/weaviate/issues/2439).
 
@@ -148,7 +148,7 @@ The `bm25` operator supports two variables:
 
 ### Example query
 
-{% include code/1.x/graphql.operators.bm25.html %}
+{% include code/1.x/graphql.filters.bm25.html %}
 
 {% include molecule-gql-demo.html encoded_query='%0A%20%20Get%20{%0A%20%20%20%20Article(%0A%20%20%20%20%20%20bm25:%20{%0A%20%20%20%20%20%20%20%20query:%20%5B%22fox%22%5D,%0A%20%20%20%20%20%20%20%20properties:%20%5B%22title%22%5D%0A%20%20%20%20%20%20}%0A%20%20%20%20)%20{%0A%20%20%20%20%20%20title%0A%20%20%20%20%20%20_additional%20{%0A%20%20%20%20%20%20%20%20score%0A%20%20%20%20%20%20}%0A%20%20%20%20}%0A%20%20}%0A' %}
 
