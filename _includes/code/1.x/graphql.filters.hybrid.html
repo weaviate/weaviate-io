@@ -19,22 +19,18 @@
 <!-- SET PYTHON TAB CONTENT -->
 {% capture python %}
 
+result = (
+    client.query
+    .get("Article", ["title", "summary"])
+    .with_hybrid("Fisherman that catches salmon", alpha=0.5)
+    .do()
+  )
+
 {% endcapture %}
 
 <!-- SET JAVASCRIPT TAB CONTENT -->
 {% capture javascript %}
-client.graphql
-  .get()
-  .withClassName('Article')
-  .withFields('title summary _additional{score}')
-  .withHybrid({
-      query: "Fisherman that catches salmon", 
-      alpha: 0.5,
-     }
-  })
-  .do()
-  .then(console.log)
-  .catch(console.error);
+
 {% endcapture %}
 
 <!-- SET GO TAB CONTENT -->
@@ -49,9 +45,9 @@ hybrid := &HybridArgumentBuilder{}
 {% capture java %}
 HybridArgument hybrid = client.graphQL().arguments().HybridArgBuilder()
   .query("Fisherman that catches salmon")
-  .alpha(0.8f)
+  .alpha(0.5f)
   .build();
-Field name = Field.builder().name("description").build();
+Field name = Field.builder().name("title" "summary").build();
 Field _additional = Field.builder()
   .name("_additional")
   .fields(new Field[]{Field.builder().name("id").build()})
