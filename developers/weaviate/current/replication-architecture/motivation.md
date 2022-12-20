@@ -56,7 +56,7 @@ With replication (e.g. replication factor of 3), upgrades to the Weaviate versio
 4. node 3 being replaced, nodes 1,2 can serve traffic
 
 
-![Zero downtime upgrades](/img/docs/replication/replication-upgrade.png "Zero downtime upgrades"){:style="max-width: 75%}
+![Zero downtime upgrades](/img/docs/replication/replication-upgrade.png "Zero downtime upgrades"){:style="max-width: 75%"}
 
 
 ## Regional Proximity
@@ -65,7 +65,7 @@ When users are located in different regional areas (e.g. Iceland and Australia a
 1. Option 1 - Put the cluster in the middle (e.g. India). \
    All users will have relatively high latency, since data needs to travel between Iceland and India, and Australia and India.
 
-   ![Cluster in the geographical middle](/img/docs/replication/replication-regional-proximity-1.png "Cluster in the geographical middle"){:style="max-width: 75%}
+   ![Cluster in the geographical middle](/img/docs/replication/replication-regional-proximity-1.png "Cluster in the geographical middle"){:style="max-width: 75%"}
 
 
 2. Option 2 - Put the cluster close to one user group (e.g. Iceland) \
@@ -75,7 +75,7 @@ When users are located in different regional areas (e.g. Iceland and Australia a
 3. Option 3 - Multi-DC replication with server clusters in both Iceland and Australia. \
    Users from both Iceland and Australia now both experience low latency, because each user groups are served from local clusters. 
 
-   ![Replication multi-dc](/img/docs/replication/replication-regional-proximity-3.png "Replication multi-dc"){:style="max-width: 75%}
+   ![Replication multi-dc](/img/docs/replication/replication-regional-proximity-3.png "Replication multi-dc"){:style="max-width: 75%"}
 
 Multi-DC replication also comes with the additional benefit that data is redundant on more physical locations, which means that in the rare case of an entire datacenter going down, data can still be served from another location.
 
