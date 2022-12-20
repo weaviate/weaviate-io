@@ -63,7 +63,7 @@ To learn more, visit the documentation pages for [Replication Architecture](/dev
 
 Hybrid search is a search engine technology that **combines** the best features of both keyword-based search algorithms with vector search techniques. In hybrid search, sparse and dense vectors are used to represent the meaning and context of search queries and documents. Sparse embeddings are generated from models like [BM25](https://en.wikipedia.org/wiki/Okapi_BM25){:target="_blank"} and [SPLADE](https://arxiv.org/abs/2107.05720){:target="_blank"}. Dense embeddings are generated from machine learning models like [GloVe](https://text2vec.org/glove.html){:target="_blank"} and [Transformers](https://huggingface.co/docs/transformers/index){:target="_blank"}.
 
-Using both sparse and dense search methods combines the power of keyword matching with contextual semantics. For example, in the query “How to catch an Alaskan Pollock?”, the semantic meaning of “catch” is revealed to be related to fishing from the context; this is where dense vectors thrive. Sparse methods on their own would not be able to associate ‘catch’ with fishing any differently from catching a baseball or a cold. On the other hand, sparse methods can capture specific entities such as “Alaskan Pollock.” This query illustrates an example where hybrid search combines the best of both sparse and dense vectors.
+Using both sparse and dense search methods combines the power of keyword matching with contextual semantics. For example, in the query "How to catch an Alaskan Pollock?", the semantic meaning of "catch" is revealed to be related to fishing from the context; this is where dense vectors thrive. Sparse methods on their own would not be able to associate "catch" with fishing any differently from catching a baseball or a cold. On the other hand, sparse methods can capture specific entities such as "Alaskan Pollock." This query illustrates an example where hybrid search combines the best of both sparse and dense vectors.
 
 ### Hybrid Search Query
 Here is an example of how to run a hybrid search query in GraphQL:
@@ -84,8 +84,8 @@ Here is an example of how to run a hybrid search query in GraphQL:
 ```
 Similar to how you use `nearText`, `hybrid` is passed as an argument to a Weaviate class object. `hybrid` has two parameters: `query` and `alpha`. `query` is fairly straightforward, whereas `alpha` is a new idea. `alpha` describes the weighting between dense and sparse search methods. An alpha closer to 0 weighs sparse search more than dense, and an alpha closer to 1 weighs dense search more than sparse. Additionally, if alpha is set to 0, it only uses sparse search, and if alpha equals 1, then it uses dense search only.
 
-### What’s next in Hybrid
-Work on hybrid search is not over! We will continue to make improvements and introduce new features in the future. For example, there is already something in the [backlog](https://github.com/semi-technologies/weaviate/issues/2393){:target="_blank"} to add where filters to hybrid search (give it a thumbs up while you’re there). 🙂 
+### What's next in Hybrid
+Work on hybrid search is not over! We will continue to make improvements and introduce new features in the future. For example, there is already something in the [backlog](https://github.com/semi-technologies/weaviate/issues/2393){:target="_blank"} to add where filters to hybrid search (give it a thumbs up while you're there). 🙂 
 
 ### Learn More
 The hybrid operator is available through GraphQL, REST and all Weaviate client languages. Check out the [documentation](/developers/weaviate/current/graphql-references/vector-search-parameters.html#hybrid){:target="_blank"} for more information and learn how to write the query in the other client programming languages.
@@ -93,17 +93,18 @@ The hybrid operator is available through GraphQL, REST and all Weaviate client l
 ## BM25
 ![BM25](/img/blog/weaviate-1.17/bm25.png)
 
-BM25 (“Best Match #25” - it took quite a few iterations to arrive at the current state of the art 😉) is a [family of ranking functions](https://link.springer.com/referenceworkentry/10.1007/978-0-387-39940-9_921){:target="_blank"} that is widely used in information retrieval to score and rank documents based on their relevance to a given search query.
+BM25 ("Best Match #25" - it took quite a few iterations to arrive at the current state of the art 😉) is a [family of ranking functions](https://link.springer.com/referenceworkentry/10.1007/978-0-387-39940-9_921){:target="_blank"} that is widely used in information retrieval to score and rank documents based on their relevance to a given search query.
 
 ### bm25 operator
-In Weaviate v1.17, we introduce a search operator called `bm25`, which performs a case-insensitive keyword search, then ranks the results using the BM25F ranking function - **B**est **M**atch **25** with Extension to Multiple Weighted **F**ields, a variant of BM25 that considers documents as having multiple fields (title, can take into account different weights for different properties (fields) of the document, in order to produce more accurate results.
+In Weaviate v1.17, we introduce a search operator called [`bm25`](/developers/weaviate/current/graphql-references/vector-search-parameters.html#bm25){:target="_blank"}, which performs a case-insensitive keyword search, then ranks the results using the BM25F ranking function - **B**est **M**atch **25** with Extension to Multiple Weighted **F**ields, a variant of BM25 that considers documents as having multiple fields (title, can take into account different weights for different properties (fields) of the document, in order to produce more accurate results.
+
 ### Core concept
 The basic idea behind BM25 is to score a document based on the number of times a particular term appears in the document, as well as the overall length of the document - one occurrence in a tweet is much more significant than one occurrence in a book. Essentially, this is done using a combination of term frequency (TF - the more times the term appears, the higher the score) and inverse document frequency (IDF - if a term occurs rarely in the documents in the corpus, then whenever it does occur, that occurrence is probably significant). 
 
-[TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is in fact the name of a ranking function [upon which BM25 builds](https://kmwllc.com/index.php/2020/03/20/understanding-tf-idf-and-bm-25/){:target="_blank"}. The idea has been refined to codify numerous information retrieval intuitions such as, if a term appears three times in a document and six times in another, that doesn’t automatically mean the second document is twice as relevant.
+[TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is in fact the name of a ranking function [upon which BM25 builds](https://kmwllc.com/index.php/2020/03/20/understanding-tf-idf-and-bm-25/){:target="_blank"}. The idea has been refined to codify numerous information retrieval intuitions such as, if a term appears three times in a document and six times in another, that doesn't automatically mean the second document is twice as relevant.
 
 ### When to use BM25
-BM25 is best used when an exact match for the query keywords is desired (and the order of the words in the query is not important) and in out-of-domain searches (when the model is not specifically trained on the corpus of documents). If stemming or semantic similarity are desired, Weaviate’s vector search will be better suited.
+BM25 is best used when an exact match for the query keywords is desired (and the order of the words in the query is not important) and in out-of-domain searches (when the model is not specifically trained on the corpus of documents). If stemming or semantic similarity are desired, Weaviate's [vector search](/developers/weaviate/current/graphql-references/vector-search-parameters.html#hybrid){:target="_blank"} will be better suited.
 
 ### BM25 Query Example
 The `bm25` operator takes one mandatory parameter, a string `query`, and an optional `properties` parameter - an array of property names, each of which being optionally weighted by a factor placed after a `^` character.
@@ -135,20 +136,20 @@ The `bm25` operator is available through GraphQL, REST and all Weaviate client l
 ## Faster Startup and Imports
 ![Faster Startup and Imports](/img/blog/weaviate-1.17/faster-startup.png)
 
-With Weaviate `v1.17` come faster startup times as a result of persisting computations on disk that were previously being computed everytime at startup. For example the startup time with the Wikipedia dataset has improved from ~5 mins to now ~1min. To dig a little deeper, as a part of the initialization of the LSM store segment we build a bloom filter for the segment, the runtime for which is proportional to the segment size, and we also calculate the “count net additions” (CNAs). Both of these operations which were previously computed everytime in-memory during the initialization phase are now persisted on-disk after the first startup allowing for faster subsequent startup times. For more details around this fix please read more [here](https://github.com/semi-technologies/weaviate/pull/2385){:target="_blank"}. It’s important to note that this change is fully backward compatible, however after upgrading to `v1.17` during the first startup the files cannot be read from disk because they don’t yet exist. After the first startup they will be persisted on-disk and you should notice speedier subsequent startups.
+With Weaviate `v1.17` come faster startup times as a result of persisting computations on disk that were previously being computed everytime at startup. For example the startup time with the Wikipedia dataset has improved from ~5 mins to now ~1min. To dig a little deeper, as a part of the initialization of the LSM store segment we build a bloom filter for the segment, the runtime for which is proportional to the segment size, and we also calculate the "count net additions" (CNAs). Both of these operations which were previously computed everytime in-memory during the initialization phase are now persisted on-disk after the first startup allowing for faster subsequent startup times. For more details around this fix please read more [here](https://github.com/semi-technologies/weaviate/pull/2385){:target="_blank"}. It's important to note that this change is fully backward compatible, however after upgrading to `v1.17` during the first startup the files cannot be read from disk because they don't yet exist. After the first startup they will be persisted on-disk and you should notice speedier subsequent startups.
 
 ### Adjust Memtable Size Dynamically
 Another contributor to the faster startup times in `v1.17` is that now the size of the memtable (the in-memory portion of the LSM store) is adjusted dynamically. Previously the memtable was fixed at 10MB and on large clusters with parallel imports this 10MB was inadequate and would act as a bottleneck since it would fill up so quickly that it would constantly need to be flushed. Now, with this change, the memtable starts off at 10MB but can be increased in size everytime the last flush duration is less than a specific threshold which allows it to dynamically adjust its capacity over time. You can read more about this change [here](https://github.com/semi-technologies/weaviate/pull/2425){:target="_blank"}.
 
 ### Improve Batch Import Latency
-We also introduced a series of fixes as a result of which you’ll see fewer latency spikes when importing large datasets. The main problem here was that when importing large datasets over time compactions would take longer and longer which ended up blocking the import. Due to this, previously some batches could block for minutes on very large imports. You can read all about the fixes in detail [here](https://github.com/semi-technologies/weaviate/pull/2421){:target="_blank"}.
+We also introduced a series of fixes as a result of which you'll see fewer latency spikes when importing large datasets. The main problem here was that when importing large datasets over time compactions would take longer and longer which ended up blocking the import. Due to this, previously some batches could block for minutes on very large imports. You can read all about the fixes in detail [here](https://github.com/semi-technologies/weaviate/pull/2421){:target="_blank"}.
 
 In summary, the main benefits you should see as a result of all the changes above in `v1.17` are faster startup times with speedier imports and less latency spikes.
 
 ## Other Improvements and Bug Fixes
 ![Other Improvements and Bug Fixes](/img/blog/weaviate-1.17/other-improvements.png)
 
-There haven’t been any new fixes that are exclusive to `v1.17`. However, there have been six patch releases between `v1.16` and `v1.17`, below we highlight the fixes contained in those patches:
+There haven't been any new fixes that are exclusive to `v1.17`. However, there have been six patch releases between `v1.16` and `v1.17`, below we highlight the fixes contained in those patches:
 
 * Fix filters with len() in path in [#2340](https://github.com/semi-technologies/weaviate/pull/2340){:target="_blank"}
 * Fix concurrent Write / Read Performance Regression (introduced in v1.16.0) in [#2352](https://github.com/semi-technologies/weaviate/pull/2352){:target="_blank"}
@@ -174,4 +175,4 @@ For a more detailed breakdown of the fixes please see the release notes:
 ## Stay Connected
 Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}. 
 
-Weaviate is open-source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don’t forget to give us a ⭐️ while you are there.
+Weaviate is open-source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
