@@ -80,7 +80,8 @@ To combine `Get { }` with a vector search argument, here is an overview of the s
 | `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](../graphql-references/filters.html#nearvector-vector-search-argument) |
 | `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface` | [Transformers](../retriever-vectorizer-modules/text2vec-transformers.html#how-to-use), [Contextionary](../retriever-vectorizer-modules/text2vec-contextionary.html#how-to-use), [OpenAI](../retriever-vectorizer-modules/text2vec-openai.html#how-to-use), [CLIP](../retriever-vectorizer-modules/multi2vec-clip.html#how-to-use), [Huggingface](../retriever-vectorizer-modules/text2vec-huggingface.html#how-to-use) |
 | `nearImage` | Vectorize an image and perform a vector search based on it | `multi2vec-clip`, `img2vec-neural` | [CLIP](../retriever-vectorizer-modules/multi2vec-clip.html#neartext), [Img2Vec](../retriever-vectorizer-modules/img2vec-neural.html#nearimage-search) |
-| `hybrid` | Combine dense and sparse vectors to deliver best of both search methods |   *none - works out of the box* | [Learn more](../graphql-references/vector-search-parameters.html#hybrid) | 
+| `hybrid` | Combine dense and sparse vectors to deliver best of both search methods |   *none - works out of the box* | [Learn more](../graphql-references/vector-search-parameters.html#hybrid) |
+| `bm25`   | Keyword search with BM25F ranking  | *none - works out of the box* | [Learn more](../graphql-references/vector-search-parameters.html#bm25) |
 
 # Filters
 
