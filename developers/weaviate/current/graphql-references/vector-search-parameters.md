@@ -77,7 +77,7 @@ This filter allows you to find data objects in the vicinity of other data object
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Article%28%0D%0A++++++nearObject%3A+%7B%0D%0A++++++++beacon%3A+%22weaviate%3A%2F%2Flocalhost%2Fe5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf%22%2C+%0D%0A++++++++certainty%3A+0.7%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
 
 ## hybrid
-This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.
+This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
 
 | Variables | Mandatory | Description |
 | --- | --- | --- | --- |
@@ -85,17 +85,22 @@ This filter allows you to combine dense and sparse vectors to get the best of bo
 | `query` | yes | search query |
 | `alpha` | no (default is set to 0.75) | weighting for each search algorithm |
 | `vector` | no | optional to supply your own vector |
-| `score` | no | ranked score that is assigned to each document | 
+| `score` | no | ranked score that is assigned to each document 
 
-* Note: `alpha` can be any number from 0 to 1
-  * If `alpha` = 0, it is using a pure **sparse** search method
+* Note: `alpha` can be any number from 0 to 1 
+  * If `alpha` = 0, it is using a pure **sparse** search method 
   * If `alpha` = 1, it is using a pure **vector** search method
   * If `alpha` = 0.5, it is weighing the sparse and vector method evenly
 
-### Example
+### Example 
 {% include code/1.x/graphql.filters.hybrid.html %}
 
 {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28%0D%0A++++++group%3A%7B%0D%0A++++++++type%3A+merge%2C%0D%0A++++++++force%3A0.05%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %}
+ 
+### Example with vector parameter
+If you're providing your own embeddings, you can add the vector query to the `vector` parameter. If Weaviate is handling the vectorization, then you can ignore the `vector` parameter and use the example code snippets above.
+
+{% include code/1.x/graphql.filters.hybrid.vector.html %}
 
 ## bm25
 The `bm25` operator performs a keyword (sparse vector) search, and uses the [BM25F ranking function](https://www.researchgate.net/publication/308991534_A_Tutorial_on_the_BM25F_Model) <!-- TODO: change ink to Laura's short when published --> to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
@@ -183,7 +188,6 @@ The `_additional` object in the GraphQL result exposes the score and an explanat
   "errors": null
 }
 ```
-
 
 ## Group
 
