@@ -39,6 +39,10 @@ Replication is enabled per data class in the [data schema](). This means you can
 }
 ```
 
+Here's an example for all the clients:
+
+{% include code/1.x/schema.things.create.replication.html %}
+
 When you set this replication factor in the data schema before you add data, you will have 3 replicas of the data stored. Weaviate can also handle changing this setting after you imported the data. Then the data is copied to the new replica nodes (if there are enough nodes), but note that this is experimental and will be more stable in the future.
 
 > 💡 Changing the replication factor after adding data is an **experimental feature** as of v1.17 and will become more stable in the future.

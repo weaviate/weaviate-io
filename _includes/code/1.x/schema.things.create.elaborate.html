@@ -207,9 +207,9 @@ func main() {
       },
       IndexTimestamps: true,
     },
-    ReplicationConfig: map[string]interface{}{
-      "factor": int32(3),
-    },
+    ReplicationConfig: &models.ReplicationConfig{
+      Factor: 3,
+    }
   }
 
   err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
@@ -234,6 +234,7 @@ import technology.semi.weaviate.client.v1.misc.model.VectorIndexConfig;
 import technology.semi.weaviate.client.v1.schema.model.DataType;
 import technology.semi.weaviate.client.v1.schema.model.Property;
 import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+import technology.semi.weaviate.client.v1.misc.model.ReplicationConfig;
 
 public class App {
   public static void main(String[] args) {
