@@ -20,7 +20,7 @@ In Weaviate, a coordination pattern is used to relay a client’s read and write
 
 The following illustration shows a leaderless replication design in Weaviate. There is one coordination node, which leads traffic from the client to the correct replicas. There is nothing special about this node, it was chosen to be the coordinator because this node received the request from the load balancer. A future request for the same data may be coordinated by a different node.
 
-![Replication Architecture](/img/docs/replication/replication-main-quorum.png "Replication Architecture")
+![Replication Architecture](/img/docs/replication/replication-main-quorum.png "Replication Architecture"){:style="max-width: 75%; display: block; margin: 0 auto"}
 
 The main advantage of a leaderless replication design is improved fault-tolerance. Without a leader that handles all requests, a leaderless design offers better availability. In a single-leader design, all writes need to be processed by this leader. If this node cannot be reached or goes down, no writes can be processed. With a leaderless design, all nodes can receive write operations, so there is no risk of one master node failing.
 
@@ -33,7 +33,7 @@ The replication factor (RF or n) determines how many copies of data are stored i
 
 A replication factor of 3 is commonly used, since this provides a right balance between performance and fault tolerance. An odd number of nodes is generally preferred, as it makes it easier to resolve conflicts. In a 3-node setup, a quorum can be reached with 2 nodes. Therefore the fault tolerance is 1 node. In a 2-node setup, on the other hand, no node failures can be tolerated while still reaching consensus across nodes. In a 4-node setup, respectively, 3 nodes would be required to reach a consensus. Thus, a 3-node setup has a better fault-tolerance to cost ratio than either a 2-node or 4-node setup.
 
-![Replication Factor](/img/docs/replication/replication-factor.png "Replication Factor")
+![Replication Factor](/img/docs/replication/replication-factor.png "Replication Factor"){:style="max-width: 75%; display: block; margin: 0 auto"}
 
 
 # Write operations 
@@ -48,11 +48,11 @@ On a write operation, the client’s request will be sent to any node in the clu
 
 As an example, consider a cluster size of 3 with replication factor of 3. So, all nodes in the distributed setup contain a copy of the data. When the client sends new data, this will be replicated to all three nodes.
 
-![Replication Factor 3 with cluster size 3](/img/docs/replication/replication-rf3-size3.png "Replication Factor 3 with cluster size 3")
+![Replication Factor 3 with cluster size 3](/img/docs/replication/replication-rf3-size3.png "Replication Factor 3 with cluster size 3"){:style="max-width: 75%; display: block; margin: 0 auto"}
 
 With a cluster size of 8 and a replication factor of 3, a write operation will not be sent to all 8 nodes, but only to those three containing the replicas. The coordinating node will lead which nodes the data will be written to. Which nodes store which classes (shards) are determined by the setup of Weaviate, which is known by each node and thus each coordinator node. Where something is replicated is deterministic, so all nodes know on which shard which data will land. 
 
-![Replication Factor 3 with cluster size 8](/img/docs/replication/replication-rf3-size8.png "Replication Factor 3 with cluster size 8")
+![Replication Factor 3 with cluster size 8](/img/docs/replication/replication-rf3-size8.png "Replication Factor 3 with cluster size 8"){:style="max-width: 75%; display: block; margin: 0 auto"}
 
 
 ## Read operations

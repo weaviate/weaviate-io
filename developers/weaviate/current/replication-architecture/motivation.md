@@ -19,7 +19,7 @@ Since Weaviate has a strongly consistent schema, all nodes are needed for a sche
 
 Examples of applications where High Availability is desired are emergency services are enterprise IT systems, social media and website search. Nowadays, users are used to highly available applications, so they expect little to no downtime. For e.g. website search, service (read queries) should not be interrupted if a node goes down. In that case, if writing is temporarily unavailable, it is acceptable and in the worst case scenario the site search will be stale, but still available for read requests.
 
-![High Availability](/img/docs/replication/replication-high-availability.png "High Availability")
+![High Availability](/img/docs/replication/replication-high-availability.png "High Availability"){:style="max-width: 75%; display: block; margin: 0 auto"}
 
 High Availability can be illustrated by the following configuration examples:
 1. Write ALL, Read ONE - There is no High Availability during writing because ALL nodes need to respond to write requests. There is High Availability on read requests, all nodes can go down except one while reading and the read operations are still available.
@@ -32,7 +32,7 @@ When you have many read requests on your Weaviate instance, for example because 
 
 When reading is set to a low consistency level (e.g. ONE), then scaling the replication factor (i.e. how many database server nodes) increases the throughput linearly. For example, when the read consistency level is ONE, if one node can reach 10.000 QPS, then a setup with 3 replica nodes can receive 30.000 QPS.
 
-![Increased Throughput](/img/docs/replication/replication-increased-throughput.png "Increased Throughput")
+![Increased Throughput](/img/docs/replication/replication-increased-throughput.png "Increased Throughput"){:style="max-width: 75%; display: block; margin: 0 auto"}
 
 
 ## Zero Downtime Upgrades
@@ -56,17 +56,26 @@ With replication (e.g. replication factor of 3), upgrades to the Weaviate versio
 4. node 3 being replaced, nodes 1,2 can serve traffic
 
 
+![Zero downtime upgrades](/img/docs/replication/replication-upgrade.png "Zero downtime upgrades"){:style="max-width: 75%}
+
+
 ## Regional Proximity
 
-When users are located in different regional areas (e.g. Iceland and Australia as extreme examples), you cannot ensure low latency for all users due to the physical distance of the database server and the users. You can only place the database server at one geographical location, so the question arises where you put the server:
+When users are located in different regional areas (e.g. Iceland and Australia as extreme examples), you cannot ensure low latency for all users due to the physical distance between the database server and the users. You can only place the database server at one geographical location, so the question arises where you put the server:
 1. Option 1 - Put the cluster in the middle (e.g. India). \
    All users will have relatively high latency, since data needs to travel between Iceland and India, and Australia and India.
+
+   ![Cluster in the geographical middle](/img/docs/replication/replication-regional-proximity-1.png "Cluster in the geographical middle"){:style="max-width: 75%}
+
+
 2. Option 2 - Put the cluster close to one user group (e.g. Iceland) \
    Users from Iceland have very low latency while users from Australia experience relatively high latency since data needs to travel a long distance.
 
-Another option arises when you have the option to replicate your data cluster to two different geographical locations. This is called Multi-Datacenter (Multi-DC) replication.
-1. Option 3 - Multi-DC replication with server clusters in both Iceland and Australia. \
+   Another option arises when you have the option to replicate your data cluster to two different geographical locations. This is called Multi-Datacenter (Multi-DC) replication.
+3. Option 3 - Multi-DC replication with server clusters in both Iceland and Australia. \
    Users from both Iceland and Australia now both experience low latency, because each user groups are served from local clusters. 
+
+   ![Replication multi-dc](/img/docs/replication/replication-regional-proximity-3.png "Replication multi-dc"){:style="max-width: 75%}
 
 Multi-DC replication also comes with the additional benefit that data is redundant on more physical locations, which means that in the rare case of an entire datacenter going down, data can still be served from another location.
 
