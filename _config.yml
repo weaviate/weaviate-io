@@ -115,6 +115,9 @@ docs:
       - name: Architecture
         folder: architecture
         header: false
+      - name: Replication Architecture
+        folder: replication-architecture
+        header: false
       - name: Vector Index (ANN) Plugins
         folder: vector-index-plugins
         header: false
