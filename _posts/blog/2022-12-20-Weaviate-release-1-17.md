@@ -53,7 +53,9 @@ With `v1.17`, the foundations of replication are built into Weaviate. In `v1.18`
 
 | Weaviate version | Expected release | Feature
 | --- | --- | --- |
-|`v1.17` | Live | 1. Leaderless Replication 1. Tunable Read Consistency for Get-by-ID requests |
+| `v1.17` | Live | * Leaderless Replication<br />* Tunable Read Consistency for Get-by-ID requests |
+| `v1.18` | Feb 2023 | * Tunable Write Consistency<br />* Tunable Read Consistency for all requests<br />* Repairs – Read-Repairs or Background/Async Repairs |
+| TBD | TBD | * Multi-Datacenter replication (upvote it [here](https://github.com/semi-technologies/weaviate/issues/2436)) |
 
 ### Learn More
 To learn more, visit the documentation pages for [Replication Architecture](/developers/weaviate/current/replication-architecture){:target="_blank"} and/or [Usage](/developers/weaviate/current/configuration/replication.html){:target="_blank"}, where all concepts are explained in detail, supported by illustrations! 
@@ -95,10 +97,10 @@ The hybrid operator is available through GraphQL, REST and all Weaviate client l
 
 BM25 ("Best Match #25" - it took quite a few iterations to arrive at the current state of the art 😉) is a [family of ranking functions](https://link.springer.com/referenceworkentry/10.1007/978-0-387-39940-9_921){:target="_blank"} that is widely used in information retrieval to score and rank documents based on their relevance to a given search query.
 
-### bm25 operator
+### BM25 Operator
 In Weaviate v1.17, we introduce a search operator called [`bm25`](/developers/weaviate/current/graphql-references/vector-search-parameters.html#bm25){:target="_blank"}, which performs a case-insensitive keyword search, then ranks the results using the BM25F ranking function - **B**est **M**atch **25** with Extension to Multiple Weighted **F**ields, a variant of BM25 that considers documents as having multiple fields (title, can take into account different weights for different properties (fields) of the document, in order to produce more accurate results.
 
-### Core concept
+### Core Concept
 The basic idea behind BM25 is to score a document based on the number of times a particular term appears in the document, as well as the overall length of the document - one occurrence in a tweet is much more significant than one occurrence in a book. Essentially, this is done using a combination of term frequency (TF - the more times the term appears, the higher the score) and inverse document frequency (IDF - if a term occurs rarely in the documents in the corpus, then whenever it does occur, that occurrence is probably significant). 
 
 [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is in fact the name of a ranking function [upon which BM25 builds](https://kmwllc.com/index.php/2020/03/20/understanding-tf-idf-and-bm-25/){:target="_blank"}. The idea has been refined to codify numerous information retrieval intuitions such as, if a term appears three times in a document and six times in another, that doesn't automatically mean the second document is twice as relevant.
