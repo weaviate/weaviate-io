@@ -108,6 +108,9 @@ An example of a complete class object including properties:
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of class in a multi-node setting, see section below
+  },
+  "replicationConfig": {
+    "factor": 3                             // Optional, integer, default is 1. Replication Factor is the amount of copies of this class that will be stored. Setting, see section below
   }
 }
 ```
@@ -129,66 +132,6 @@ The vectorIndexType defaults to [`hnsw`](../vector-index-plugins/hnsw.html) sinc
 ### vectorIndexConfig
 
 Check the [`hnsw` page](../vector-index-plugins/hnsw.html#how-to-use-hnsw-and-parameters) for `hnsw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
-
-### shardingConfig (introduced in v1.8.0)
-
-The `"shardingConfig"` controls how a class should be [sharded and distributed
-across multiple nodes](../architecture/cluster.html). All values are optional and
-default to the following settings:
-
-```json
-  "shardingConfig": {
-    "virtualPerPhysical": 128,
-    "desiredCount": 1,             # defaults to the amount of Weaviate nodes in the cluster
-    "actualCount": 1,
-    "desiredVirtualCount": 128,
-    "actualVirtualCount": 128,
-    "key": "_id",
-    "strategy": "hash",
-    "function": "murmur3"
-  }
-```
-
-The meaning of the individual fields in detail:
-
-* `"desiredCount"`: *integer, immutable, optional*, defaults to the number of nodes in the
-  cluster. This value controls how many shards should be created for this class
-  index. The typical setting is that a class should be distributed across all
-  the nodes in the cluster, but you can explicitly set this value to a lower
-  value. As of `v1.8.0` resharding is not supported yet and therefore this
-  value cannot be changed after initializing a class. If the `"desiredCount"`
-  is larger than the amount of physical nodes in the cluster, then some nodes
-  will one more than a single shard.
-
-* `"actualCount"`: *integer, read-only*. Typically matches desired count, unless there was
-  a problem initiating the shards at creation time.
-
-* `"virtualPerPhysical"`: *integer, immutable, optional*, defaults to `128`.
-  Weaviate uses virtual shards. This will help in reducing the amount of data
-  moved when resharding is introduced in later versions.
-
-* `"desiredVirtualCount"`: *integer, readonly*. Matches `desiredCount *
-  virtualPerPhysical`
-
-* `"actualVirtualCount"`: *integer, readonly*. Like `actualCount`, but for
-  virtual shards, instead of physical.
-
-* `"strategy"`: *string, optional, immutable*. As of `v1.8.0` only supports `"hash"`. This
-  value controls how Weaviate should decide which (virtual - and therefore
-  physical) shard a new object belongs to. The hash is performed on the field
-  specified in `"key"`.
-
-* `"key"`: *string, optional, immutable*. As of `v1.8.0` only supports `"_id"`.
-  This value controls the partitioning key that is used for the hashing function
-  to determine the target shard. As of now, only the internal id-field
-  (containing the object's UUID) can be used to determine the target shard.
-  Custom keys may be supported at a later point.
-
-* `"function"`: *string, optional, immutable*. As of `v1.8.0` only `"murmur3"` is
-  supported as a hashing function. It describes the hashing function used on
-  the `"key"` property to determine the hash which in turn determines the
-  target (virtual - and therefore physical) shard. `"murmur3"` creates a 64bit
-  hash making hash collisions very unlikely.
 
 ### invertedIndexConfig > stopwords (Stopword lists)
 
@@ -269,6 +212,83 @@ To perform queries which are filtered by the length of a property, the target cl
 
 **Notes**
 - Using these features requires more resources, as the additional inverted indices must be created/maintained for the lifetime of the Class
+
+### shardingConfig (introduced in v1.8.0)
+
+The `"shardingConfig"` controls how a class should be [sharded and distributed
+across multiple nodes](../architecture/cluster.html). All values are optional and
+default to the following settings:
+
+```json
+  "shardingConfig": {
+    "virtualPerPhysical": 128,
+    "desiredCount": 1,             # defaults to the amount of Weaviate nodes in the cluster
+    "actualCount": 1,
+    "desiredVirtualCount": 128,
+    "actualVirtualCount": 128,
+    "key": "_id",
+    "strategy": "hash",
+    "function": "murmur3"
+  }
+```
+
+The meaning of the individual fields in detail:
+
+* `"desiredCount"`: *integer, immutable, optional*, defaults to the number of nodes in the
+  cluster. This value controls how many shards should be created for this class
+  index. The typical setting is that a class should be distributed across all
+  the nodes in the cluster, but you can explicitly set this value to a lower
+  value. As of `v1.8.0` resharding is not supported yet and therefore this
+  value cannot be changed after initializing a class. If the `"desiredCount"`
+  is larger than the amount of physical nodes in the cluster, then some nodes
+  will one more than a single shard.
+
+* `"actualCount"`: *integer, read-only*. Typically matches desired count, unless there was
+  a problem initiating the shards at creation time.
+
+* `"virtualPerPhysical"`: *integer, immutable, optional*, defaults to `128`.
+  Weaviate uses virtual shards. This will help in reducing the amount of data
+  moved when resharding is introduced in later versions.
+
+* `"desiredVirtualCount"`: *integer, readonly*. Matches `desiredCount *
+  virtualPerPhysical`
+
+* `"actualVirtualCount"`: *integer, readonly*. Like `actualCount`, but for
+  virtual shards, instead of physical.
+
+* `"strategy"`: *string, optional, immutable*. As of `v1.8.0` only supports `"hash"`. This
+  value controls how Weaviate should decide which (virtual - and therefore
+  physical) shard a new object belongs to. The hash is performed on the field
+  specified in `"key"`.
+
+* `"key"`: *string, optional, immutable*. As of `v1.8.0` only supports `"_id"`.
+  This value controls the partitioning key that is used for the hashing function
+  to determine the target shard. As of now, only the internal id-field
+  (containing the object's UUID) can be used to determine the target shard.
+  Custom keys may be supported at a later point.
+
+* `"function"`: *string, optional, immutable*. As of `v1.8.0` only `"murmur3"` is
+  supported as a hashing function. It describes the hashing function used on
+  the `"key"` property to determine the hash which in turn determines the
+  target (virtual - and therefore physical) shard. `"murmur3"` creates a 64bit
+  hash making hash collisions very unlikely.
+
+### Replication (introduced in v1.17.0)
+
+[Replication](../replication-architecture/index.html) is enabled per data class in the data schema. This means you can set different replication factors per class in your dataset. To enable replication on a class (this is disabled by default), the replication factor has to be set. In a class in the schema, this looks like the following. `"replicationConfig": {“factor”: 3”}` can be specified per class in the schema object.
+
+```json
+{
+  "replicationConfig": {
+    "factor": 3     // Integer, default is 1. Replication Factor is the amount of copies of this class that will be stored.
+  }
+}
+```
+
+When you set this replication factor in the data schema before you add data, you will have 3 replicas of the data stored. Weaviate can also handle changing this setting after you imported the data. Then the data is copied to the new replica nodes (if there are enough nodes), but note that this is experimental and will be more stable in the future.
+
+> 💡 Changing the replication factor after adding data is an **experimental feature** as of v1.17 and will become more stable in the future.
+
 
 # Property object
 

@@ -63,6 +63,9 @@ class_obj = {
         "removals": ["a", "the"]
       },
       "indexTimestamps": True
+    },
+    "replicationConfig": {
+      "factor": 3
     }
 }
 
@@ -137,6 +140,9 @@ var classObj = {
         "removals": ["a", "the"]
       },
       "indexTimestamps": true
+    },
+    "replicationConfig": {
+      "factor": 3
     }
 }
 
@@ -201,6 +207,9 @@ func main() {
       },
       IndexTimestamps: true,
     },
+    ReplicationConfig: &models.ReplicationConfig{
+      Factor: 3,
+    }
   }
 
   err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
@@ -225,6 +234,7 @@ import technology.semi.weaviate.client.v1.misc.model.VectorIndexConfig;
 import technology.semi.weaviate.client.v1.schema.model.DataType;
 import technology.semi.weaviate.client.v1.schema.model.Property;
 import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+import technology.semi.weaviate.client.v1.misc.model.ReplicationConfig;
 
 public class App {
   public static void main(String[] args) {
@@ -265,6 +275,10 @@ public class App {
       .virtualPerPhysical(128)
       .build();
 
+    ReplicationConfig replicationConfig = ReplicationConfig.builder()
+      .factor(3)
+      .build();
+
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Article")
       .description("A written text, for example a news article or blog post")
@@ -273,6 +287,7 @@ public class App {
       .invertedIndexConfig(invertedIndexConfig)
       .shardingConfig(shardingConfig)
       .vectorIndexConfig(vectorIndexConfig)
+      .replicationConfig(replicationConfig)
       .properties(new ArrayList() { {
         add(Property.builder()
           .dataType(new ArrayList(){ { add(DataType.STRING); } })
@@ -361,6 +376,9 @@ $ curl \
         "removals": ["a", "the"]
       },
       "indexTimestamps": true
+    },
+    "replicationConfig": {
+      "factor": 3
     }
 }' \
 http://localhost:8080/v1/schema

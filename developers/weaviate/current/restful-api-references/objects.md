@@ -176,13 +176,17 @@ GET /v1/objects/{id}
 | ---- | ---- | ----------- |
 | `{className}` |  URL Path | string | The name of the class that the object belongs to. |
 | `{id}` | URL Query param | uuid | The uuid of the data object to retrieve. |
-| `include` | URL Query param| string | Include additional information, such as classification info. Allowed values include: `classification`, `vector` |
+| `include` | URL Query param| string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `consistency_level` |
 
 ### Example request
 
 See [here](#response-fields) the explanation of the response fields.
 
 {% include code/1.x/semantic-kind.object.get.html %}
+
+### Example request for retrieving a data object with consistency_level=QUORUM
+
+{% include code/1.x/replication-get-object-by-id.html %}
 
 # Check if a data object exists without retrieving it
 
