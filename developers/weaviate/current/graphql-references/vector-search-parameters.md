@@ -95,7 +95,7 @@ This filter allows you to combine dense and sparse vectors to get the best of bo
 ### Example 
 {% include code/1.x/graphql.filters.hybrid.html %}
 
-{% include molecule-gql-demo.html encoded_query='%0A%20%20Get%20{%0A%20%20%20%20Article%20(%0A%20%20%20%20%20%20hybrid:%20{%0A%20%20%20%20%20%20%20%20query:%20%22Fisherman%20that%20catches%20salmon%22%0A%20%20%20%20%20%20%20%20alpha:%200.5%0A%20%20%20%20%20%20})%0A%20%20%20%20%20{%0A%20%20%20%20%20%20title%0A%20%20%20%20%20%20summary%0A%20%20%20%20%20%20_additional%20{score}%0A%20%20%20%20}%0A%20%20}%0A' %}
+{% include molecule-gql-demo.html encoded_query='%7B%0A+  +Get+{%0A++++Article+(%0A++++++hybrid:+{%0A++++++++query:+%22Fisherman+that+catches+salmon%22%0A++++++++alpha:+0.5%0A++++++})%0A+++++{%0A++++++title%0A++++++summary%0A++++++_additional+{score}%0A++++}%0A++}%0A%7D' %}
  
 ### Example with vector parameter
 If you're providing your own embeddings, you can add the vector query to the `vector` parameter. If Weaviate is handling the vectorization, then you can ignore the `vector` parameter and use the example code snippets above.
@@ -150,7 +150,7 @@ The `bm25` operator supports two variables:
 
 {% include code/1.x/graphql.filters.bm25.html %}
 
-{% include molecule-gql-demo.html encoded_query='%0A%20%20Get%20{%0A%20%20%20%20Article(%0A%20%20%20%20%20%20bm25:%20{%0A%20%20%20%20%20%20%20%20query:%20%5B%22fox%22%5D,%0A%20%20%20%20%20%20%20%20properties:%20%5B%22title%22%5D%0A%20%20%20%20%20%20}%0A%20%20%20%20)%20{%0A%20%20%20%20%20%20title%0A%20%20%20%20%20%20_additional%20{%0A%20%20%20%20%20%20%20%20score%0A%20%20%20%20%20%20}%0A%20%20%20%20}%0A%20%20}%0A' %}
+{% include molecule-gql-demo.html encoded_query='%7B%0A++Get+{%0A++++Article(%0A++++++bm25:+{%0A++++++++query:+%22fox%22,%0A++++++++properties:+%5B%22title%22%5D%0A++++++}%0A++++)+{%0A++++++title%0A++++++_additional+{%0A++++++++score%0A++++++}%0A++++}%0A++}%0A%7D' %}
 
 ### GraphQL response
 
