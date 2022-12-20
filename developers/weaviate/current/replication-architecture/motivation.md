@@ -56,7 +56,7 @@ With replication (e.g. replication factor of 3), upgrades to the Weaviate versio
 4. node 3 being replaced, nodes 1,2 can serve traffic
 
 
-![Zero downtime upgrades](/img/docs/replication/replication-upgrade.png "Zero downtime upgrades"){:style="max-width: 75%"}
+![Zero downtime upgrades](/img/docs/replication/replication-zero-downtime.gif "Zero downtime upgrades"){:style="max-width: 75%"}
 
 
 ## Regional Proximity
