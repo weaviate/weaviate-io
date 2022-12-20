@@ -3,7 +3,7 @@ layout: layout-documentation
 solution: weaviate
 sub-menu: GraphQL references
 title: Vector search parameters
-intro: ​Vector search parameters allow you to conduct specific vector search operations. Some are built into Weaviate directly, and others are enabled through Weaviate modules.
+intro: Vector search parameters allow you to conduct specific vector search operations. Some are built into Weaviate directly, and others are enabled through Weaviate modules.
 description: GraphQL search parameters
 tags: ['graphql', 'vector search parameters']
 menu-order: 5
@@ -188,8 +188,7 @@ The `_additional` object in the GraphQL result exposes the score and an explanat
 }
 ```
 
-
-## Group
+## group
 
 You can use a group operator to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
 
