@@ -30,7 +30,18 @@ result = (
 
 <!-- SET JAVASCRIPT TAB CONTENT -->
 {% capture javascript %}
-
+client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title summary _additional{score}')
+  .withHybrid({
+      query: "Fisherman that catches salmon"
+      alpha: 0.5, // optional, defaults to 0.75
+     }
+  })
+  .do()
+  .then(console.log)
+  .catch(console.error);
 {% endcapture %}
 
 <!-- SET GO TAB CONTENT -->
