@@ -154,7 +154,7 @@ The `bm25` operator supports two variables:
 
 ### GraphQL response
 
-The `_additional` object in the GraphQL result exposes the score and an explanation of it:
+The `_additional` object in the GraphQL result exposes the score:
 
 ```json
 {
