@@ -141,16 +141,29 @@ If you want to fill the value of a `geoCoordinates` property, you need to specif
 
 {% include code/1.x/semantic-kind.create.geocoordinates.html %}
 
-## Create a data object with custom vectors
+## Create a data object with a custom vector
 
-When you don't want to use a vectorizer to calculate a vector for your data object, and want to enter the vector yourself, you can this this as follows. 
+When creating a data object, you can configure Weaviate to generate a vector with a vectorizer module, or you can provide the vector yourself. We sometimes refer to this as a "custom" vector. 
 
-1. First, make sure that the `"vectorizer"` in the right class in the [data schema](../schema/schema-configuration.html#vectorizer) is either set to
-- `"none"` (`"vectorizer": "none"`), if you are running without any modules and have therefore already configured the default vectorizer to be `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), you can omit this step.
-- the same vectorizer with identical settings that you use to generate the vector that is entered.
-*Note: There is NO validation of this vector besides checking the vector length.* 
+You can provide a custom vector during object creation for either when:
+- you are not using a vectorizer for that class, or
+- you are using a vectorizer, but you wish to bypass it during the object creation stage.
 
-2. Then, attach the vector in a special `"vector"` field. An example of this looks like: 
+You can create a data object with a custom vector as follows:
+
+1. Set the `"vectorizer"` in the relevant class in the [data schema](../schema/schema-configuration.html#vectorizer). 
+
+    - If you are not using a vectorizer at all, configure the class accordingly. To do this, you can:
+        - set the default vectorizer module to `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), or
+        - set the `"vectorizer"` for the class to `"none"` (`"vectorizer": "none"`) (*note: the class `vectorizer` setting will override the `DEFAULT_VECTORIZER_MODULE` parameter*).
+    - If you wish to bypass the vectorizer for object creation:
+        - set the vectorizer to the same vectorizer with identical settings used to generate the custom vector
+
+    > *Note: There is NO validation of this vector besides checking the vector length.* 
+
+2. Then, attach the vector in a special `"vector"` field during object creation. For example, if adding a single object, you can:
+
+    > *Note: You can set custom vectors for batch imports as well as single object creation.*
 
 {% include code/1.x/semantic-kind.create.vector.html %}
 
