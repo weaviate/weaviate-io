@@ -24,7 +24,8 @@ Since Weaviate has a strongly consistent schema, all nodes are needed for a sche
 
 Examples of applications where High Availability is desired are emergency services are enterprise IT systems, social media and website search. Nowadays, users are used to highly available applications, so they expect little to no downtime. For e.g. website search, service (read queries) should not be interrupted if a node goes down. In that case, if writing is temporarily unavailable, it is acceptable and in the worst case scenario the site search will be stale, but still available for read requests.
 
-![High Availability](./img/replication-high-availability.png "High Availability"){:style="max-width: 75%; display: block; margin: 0 auto"}
+<p align="center"><img src="/img/docs/replication-architecture/replication-high-availability.png" alt="High Availability" width="75%"/></p>
+
 
 High Availability can be illustrated by the following configuration examples:
 1. Write ALL, Read ONE - There is no High Availability during writing because ALL nodes need to respond to write requests. There is High Availability on read requests, all nodes can go down except one while reading and the read operations are still available.
@@ -37,7 +38,7 @@ When you have many read requests on your Weaviate instance, for example because 
 
 When reading is set to a low consistency level (e.g. ONE), then scaling the replication factor (i.e. how many database server nodes) increases the throughput linearly. For example, when the read consistency level is ONE, if one node can reach 10.000 QPS, then a setup with 3 replica nodes can receive 30.000 QPS.
 
-![Increased Throughput](./img/replication-increased-throughput.png "Increased Throughput"){:style="max-width: 75%; display: block; margin: 0 auto"}
+<p align="center"><img src="/img/docs/replication-architecture/replication-increased-throughput.png" alt="Increased Throughput" width="75%"/></p>
 
 
 ## Zero Downtime Upgrades
@@ -60,8 +61,7 @@ With replication (e.g. replication factor of 3), upgrades to the Weaviate versio
 3. node 2 being replaced, nodes 1,3 can serve traffic
 4. node 3 being replaced, nodes 1,2 can serve traffic
 
-
-![Zero downtime upgrades](./img/replication-zero-downtime.gif "Zero downtime upgrades"){:style="max-width: 75%"}
+<p align="center"><img src="/img/docs/replication-architecture/replication-zero-downtime.gif" alt="Zero downtime upgrades" width="75%"/></p>
 
 
 ## Regional Proximity
@@ -70,8 +70,7 @@ When users are located in different regional areas (e.g. Iceland and Australia a
 1. Option 1 - Put the cluster in the middle (e.g. India). \
    All users will have relatively high latency, since data needs to travel between Iceland and India, and Australia and India.
 
-   ![Cluster in the geographical middle](./img/replication-regional-proximity-1.png "Cluster in the geographical middle"){:style="max-width: 75%"}
-
+    <p align="center"><img src="/img/docs/replication-architecture/replication-regional-proximity-1.png" alt="Cluster in the geographical middle" width="75%"/></p>
 
 2. Option 2 - Put the cluster close to one user group (e.g. Iceland) \
    Users from Iceland have very low latency while users from Australia experience relatively high latency since data needs to travel a long distance.
@@ -80,7 +79,7 @@ When users are located in different regional areas (e.g. Iceland and Australia a
 3. Option 3 - Multi-DC replication with server clusters in both Iceland and Australia. \
    Users from both Iceland and Australia now both experience low latency, because each user groups are served from local clusters. 
 
-   ![Replication multi-dc](./img/replication-regional-proximity-3.png "Replication multi-dc"){:style="max-width: 75%"}
+    <p align="center"><img src="/img/docs/replication-architecture/replication-regional-proximity-3.png" alt="Replication multi-dc" width="75%"/></p>
 
 Multi-DC replication also comes with the additional benefit that data is redundant on more physical locations, which means that in the rare case of an entire datacenter going down, data can still be served from another location.
 

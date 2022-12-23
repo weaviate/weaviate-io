@@ -22,7 +22,7 @@ Multi-DC replication also comes with the additional benefit that data is redunda
 
 For now, you can work under the assumption that all replica nodes are in the same datacenter. The advantage of this is that network requests between nodes are cheap and fast. The downside is that if the entire datacenter fails, there is no redundancy. This will be solved with Multi-DC, [when implemented](https://github.com/semi-technologies/weaviate/issues/2436)! 
 
-![Replication multi-dc](./img/replication-regional-proximity-3.png "Replication multi-dc"){:style="max-width: 75%}
+<p align="center"><img src="/img/docs/replication-architecture/replication-regional-proximity-3.png" alt="Replication multi-dc" width="75%"/></p>
 
 
 ## More Resources

@@ -58,7 +58,7 @@ In this Replication Architecture series, you will find information about:
 * **[Multi-DataCenter](./replication-architecture/multi-dc.html)**
   * Regional Proximity
 
-![Write consistency QUORUM](./img/replication-rf3-c-QUORUM.png "Read consistency QUORUM"){:style="max-width: 75%; display: block; margin: 0 auto"}
+<p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-QUORUM.png" alt="Read consistency QUORUM" width="75%"/></p>
 
 ## What is replication?
 
@@ -71,7 +71,7 @@ The primary goal of introducing replication is to improve reliability. [Eric Bre
 * **Availability (A)** - Every request receives a non-error response all the time, without the guarantee that it contains the most recent write. 
 * **Partition tolerance (P)** - The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes.
 
-![CAP Theorem](./img/repliction-cap.png "CAP Theorem"){:style="max-width: 60%; display: block; margin: 0 auto"}
+<p align="center"><img src="/img/docs/replication-architecture/repliction-cap.png" alt="CAP Theorem" width="60%"/></p>
 
 Ideally you want a database, like Weaviate, to have the highest reliability as possible, but this is limited by the tradeoff between consistency, availability and partition tolerance. Only two out of three concepts can be guaranteed. Since we're talking about distributed systems in which network partitions are present, only two options are left for designing the system: **consistency (C)** or **availability (A)**. When you prioritize **consistency** over availability, the database will return an error or timeout when it cannot be guaranteed that the data is up to date due to network partitioning. When prioritizing **availability** over consistency, the database will always process the query and try to return the most recent version of data even if it cannot guarantee it is up to date due to network partitioning. 
 
@@ -98,8 +98,9 @@ Replication is not the same as sharding. [Sharding (horizontal scaling) was intr
 
 * **Replication** copies the data to different server nodes. For Weaviate, this helps data availability and provides redundancy in case a single node fails. Query throughput can be improved with replication. 
 * **Sharding** handles horizontal scaling across servers by dividing the data and sending the pieces of data (shards) to multiple replica sets. The data is thus divided, and all shards together form the entire set of data. You can use sharding with Weaviate to run larger datasets and speed up imports. 
-  
-![Replication vs Sharding](./img/replication-replication-vs-sharding.png "Replication vs Sharding"){:style="max-width: 60%; display: block; margin: 0 auto"}
+
+<p align="center"><img src="/img/docs/replication-architecture/replication-replication-vs-sharding.png" alt="Replication vs Sharding" width="60%"/></p>
+
 
 Replication and sharding can be combined in a setup, to improve throughput and availability as well as import speed and support for large datasets. For example, you can have 3 replicas of the database and shards set to 3, which means you have 9 shards in total, where each server node holds 3 different shards. 
 
