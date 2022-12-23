@@ -1,0 +1,133 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+from weaviate.data.replication import ConsistencyLevel
+
+client = weaviate.Client("http://localhost:8080")
+
+data_object = client.data_object.get_by_id(uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303", class_name="MyClass", consistency_level=ConsistencyLevel.QUORUM)
+
+# The parameter "consistency_level" can be one of ConsistencyLevel.ALL, ConsistencyLevel.QUORUM, or ConsistencyLevel.ONE. Determines how many replicas must acknowledge a request before it is considered successful.
+
+print(data_object)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client
+    .data
+    .getterById()
+    .withClassName('MyClass')
+    .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+    .withConsistencyLevel(weaviate.replication.ConsistencyLevel.QUORUM)
+    .do()
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.error(err)
+    });
+
+// The parameter "withConsistencyLevel" can be one of weaviate.replication.ConsistencyLevel.ALL, weaviate.replication.ConsistencyLevel.QUORUM, or weaviate.replication.ConsistencyLevel.ONE. Determines how many replicas must acknowledge a request before it is considered successful.
+    
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+
+    "github.com/semi-technologies/weaviate-go-client/v4/weaviate/data/replication"
+    "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+)
+
+func main() {
+    cfg := weaviate.Config{
+        Host:   "localhost:8080",
+        Scheme: "http",
+    }
+    client := weaviate.New(cfg)
+
+    data, err := client.Data().ObjectsGetter().
+        WithClassName("MyClass").
+        WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
+        WithConsistencyLevel(replication.ConsistencyLevel.QUORUM).
+        Do(context.Background())
+
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("%v", data)
+}
+
+// The parameter "WithConsistencyLevel" can be one of weaviate.replication.ConsistencyLevel.ALL, weaviate.replication.ConsistencyLevel.QUORUM, or weaviate.replication.ConsistencyLevel.ONE. Determines how many replicas must acknowledge a request before it is considered successful.
+
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package technology.semi.weaviate;
+
+import java.util.List;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.data.model.WeaviateObject;
+import technology.semi.weaviate.client.v1.data.replication.model.ConsistencyLevel;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Result<List<WeaviateObject>> result = client.data().objectsGetter()
+      .withClassName("MyClass")
+      .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+      .withConsistencyLevel(ConsistencyLevel.QUORUM)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+
+// The parameter "withConsistencyLevel" can be one of ConsistencyLevel.ALL, ConsistencyLevel.QUORUM, or ConsistencyLevel.ONE. Determines how many replicas must acknowledge a request before it is considered successful.
+
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+$ curl http://localhost:8080/v1/objects/MyClass/36ddd591-2dee-4e7e-a3cc-eb86d30a4303?consistency_level=QUORUM
+
+# The parameter "consistency_level" can be one of ALL, QUORUM, or ONE. Determines how many replicas must acknowledge a request before it is considered successful.
+# curl /v1/objects/{className}/{id}?consistency_level=ALL
+```
+
+</TabItem>
+</Tabs>

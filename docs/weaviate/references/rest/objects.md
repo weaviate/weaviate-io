@@ -201,6 +201,12 @@ import SemanticKindObjectGet from '/_includes/code/semantic-kind.object.get.mdx'
 
 <SemanticKindObjectGet/>
 
+### Example request for retrieving a data object with consistency_level=QUORUM
+
+import SemanticKindObjectGetReplication from '/_includes/code/replication.get.object.by.id.mdx';
+
+<SemanticKindObjectGetReplication/>
+
 ## Check if a data object exists without retrieving it
 
 This endpoint can be used to check if a data object exists without retrieving

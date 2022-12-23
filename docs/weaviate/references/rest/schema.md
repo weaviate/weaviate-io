@@ -269,6 +269,7 @@ Learn more about the schema configuration [here](/docs/weaviate/configuration/sc
 | `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. See [more details here](/docs/weaviate/configuration/schema-configuration.md#property-tokenization).|
 | `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](/docs/weaviate/configuration/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). |
 | `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](/docs/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps). |
+| `replicationConfig` > `factor` | body | int | The replication factor, aka the number of copies in a replicated Weaviate setup |
 
 #### Example request for creating a class
 
