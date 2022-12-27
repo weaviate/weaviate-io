@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Weaviate 1.17 release
-description: "Learn, what is new in Weaviate 1.17."
+description: "Learn what is new in Weaviate 1.17."
 published: true
 author: Erika Cardenas
 author-img: /img/people/icon/erika.jpg
