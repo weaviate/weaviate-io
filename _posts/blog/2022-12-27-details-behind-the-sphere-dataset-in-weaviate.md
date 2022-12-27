@@ -8,7 +8,7 @@ author-img: /img/people/zain.jpg
 card-img: /img/blog/hero/details-sphere-dataset.png
 hero-img: /img/blog/hero/details-sphere-dataset.png
 og: /img/blog/hero/details-sphere-dataset.png
-date: 2022-12-26
+date: 2022-12-27
 toc: true
 ---
 
@@ -48,7 +48,7 @@ To import the dataset into Weaviate, we used the [Spark Connector](https://githu
 
 We used a single 64 GiB Google Cloud Platform(GCP) n2 instance to run Spark. The steps below can be followed to import data from the Sphere dataset. You can get access to the full import code used over [here](https://github.com/semi-technologies/weaviate-examples/blob/sphere-spark/loading-sphere-with-spark/spark-sphere-demo.ipynb). 
 
-> If you are following along, make sure to modify the code to import only as much of the Sphere dataset as you dare, as it might potentially become a very expensive exercise!. 
+> If you are following along, make sure to modify the code to import only as much of the Sphere dataset as you dare, as it might potentially become a very expensive exercise! 
 
 First, using the `pyspark` library, you can instantiate a connection, called a `SparkSession`: 
 
@@ -107,7 +107,7 @@ When this is done, your instance of Weaviate should have finished ingesting the 
 
 With the setup above our main goal was to look at system performance while importing 1B objects but we are working on another, further scalable solution using technologies such as [Vamana](https://github.com/microsoft/DiskANN), and HNSW+PQ. Vamana will allow for disk based Approximate Nearest Neighbours(ANN) search and with HNSW+PQ we are using HNSW to build and search a graph over product quantized (PQ) encoded, compressed vectors. Both of these developments should help with memory usage at scale - if you’d like to dig deeper have a read [here](https://weaviate.io/blog/2022/10/ANN-algorithms-Vamana-vs-HNSW.html). More to come on this as we get into the new year, this is just a sneak peek at what our engineering team is cooking up for all of you!
 
-## Import Stats
+## Import Performance Metrics
 ![Magnifying Glass](/img/blog/details-sphere-dataset/magnifying-glass.png)
 
 In this section let’s take a look at a few stats related to the Sphere import run. This will give you an idea of the Weaviate cluster’s performance over the course of this massive import process. 
