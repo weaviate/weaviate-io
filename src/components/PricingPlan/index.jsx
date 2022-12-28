@@ -1,4 +1,5 @@
 import React from 'react';
+import PricingSandBox from '../PricingSandBox';
 import styles from './styles.module.scss';
 
 export default function PricingPlan() {
@@ -12,6 +13,7 @@ export default function PricingPlan() {
           production, simply pick a plan that best suits your needs.
         </p>
       </div>
+      <PricingSandBox />
     </div>
   );
 }

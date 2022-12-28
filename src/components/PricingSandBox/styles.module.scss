@@ -1,0 +1,24 @@
+.color {
+  color: var(--ifm-link-color);
+}
+
+.sandbox {
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  .features {
+    padding: 1rem;
+    flex: 2;
+    flex-direction: column;
+    li {
+      list-style: none;
+    }
+  }
+  .title {
+    padding: 1rem;
+    flex: 1;
+  }
+}
