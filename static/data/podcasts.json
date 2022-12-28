@@ -1,5 +1,13 @@
 [
   {
+    "title": "The Future of Search",
+    "description": "Bob van Luijt, Chris Dossman, and Marco Bianco react to the implications of ChatGPT on the future of search technology!",
+    "youtube": "s9aVAgk-6Ww",
+    "date": "2022-12-14",
+    "cover_image": "/img/podcasts/podcast-30.png",
+    "is_use_case": false
+  },
+  {
     "title": "Product Quantization and Faiss",
     "description": "Matthijs Douze tells the story of his research in Product Quantization, also featuring Abdel Rodriguez and Etienne Dilocker!",
     "youtube": "5o1YTp1IL5o",
