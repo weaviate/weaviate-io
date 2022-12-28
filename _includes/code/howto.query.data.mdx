@@ -43,7 +43,7 @@ query_result = (
   client.query
   .get('Article', ['title', 'url', 'hasAuthors{... on Author {name}}'])
   .with_where(where_filter)
-  .do
+  .do()
 )
 print(query_result)
 ```
