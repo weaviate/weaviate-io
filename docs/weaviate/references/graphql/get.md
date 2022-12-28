@@ -95,6 +95,8 @@ To combine `Get { }` with a vector search argument, here is an overview of the s
 | `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](./vector-search-parameters.md#nearvector) |
 | `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface`, `text2vec-cohere` | [Transformers](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#how-to-use), [Contextionary](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#how-to-use), [OpenAI](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md#how-to-use), [CLIP](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#how-to-use), [Huggingface](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md#how-to-use), [Cohere](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere.md#how-to-use) |
 | `nearImage` | Vectorize an image and perform a vector search based on it | `multi2vec-clip`, `img2vec-neural` | [CLIP](/docs/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#neartext), [Img2Vec](/docs/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) |
+| `hybrid` | Combine dense and sparse vectors to deliver best of both search methods |   *none - works out of the box* | [Learn more](../graphql/vector-search-parameters.html#hybrid) |
+| `bm25`   | Keyword search with BM25F ranking  | *none - works out of the box* | [Learn more](../graphql/vector-search-parameters.html#bm25) |
 
 ## Filters
 
