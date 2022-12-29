@@ -15,6 +15,10 @@
   gap: 15px;
   align-items: center;
   margin-bottom: 20px;
+
+  @media screen and (max-width: 668px) {
+    flex-direction: column;
+  }
 }
 
 .rangeslider {
@@ -22,6 +26,11 @@
   position: relative;
   background: #d5d5d5;
   touch-action: none;
+
+  @media screen and (max-width: 668px) {
+    display: flex;
+    width: 100%;
+  }
 }
 
 .rangeslider,
@@ -108,8 +117,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-
-.label {
-  font-size: 1.2rem;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    gap: 30px;
+  }
 }
