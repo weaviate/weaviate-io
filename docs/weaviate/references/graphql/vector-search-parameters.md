@@ -5,7 +5,7 @@ sidebar_position: 5
 # solution: weaviate
 # sub-menu: GraphQL references
 # title: Vector search parameters
-# intro: ​Vector search parameters allow you to conduct specific vector search operations. Some are built into Weaviate directly, and others are enabled through Weaviate modules.
+# intro: Vector search parameters allow you to conduct specific vector search operations. Some are built into Weaviate directly, and others are enabled through Weaviate modules.
 # description: GraphQL search parameters
 # tags: ['graphql', 'vector search parameters']
 # sidebar_position: 5
@@ -28,7 +28,7 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 ## Built-in parameters
 
-B​uilt-in search parameters are available in all Weaviate instances and don't require any modules.​
+Built-in search parameters are available in all Weaviate instances and don't require any modules.​
 
 ### nearVector
 
@@ -96,18 +96,29 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 ## hybrid
 This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
 
-| Variables | Mandatory | Description |
+| Variables | Mandatory | Type | Description |
 | --- | --- | --- | --- |
-| `hybrid` | yes | need to specify that you want to use hybrid search |
-| `query` | yes | search query |
-| `alpha` | no (default is set to 0.75) | weighting for each search algorithm |
-| `vector` | no | optional to supply your own vector |
-| `score` | no | ranked score that is assigned to each document |
+| `query` | yes | string | search query |
+| `alpha` | no | float | search moethod weighting between 0 (pure sparse) and 1 (pure dense vector); default 0.75 |
+| `vector` | no | [float] | optional to supply your own vector |
 
-* Note: `alpha` can be any number from 0 to 1 
-  * If `alpha` = 0, it is using a pure **sparse** search method 
-  * If `alpha` = 1, it is using a pure **vector** search method
-  * If `alpha` = 0.5, it is weighing the sparse and vector method evenly
+Note: `alpha` can be any number from 0 to 1 
+* If `alpha` = 0, it is using a pure **sparse** search method 
+* If `alpha` = 1, it is using a pure **vector** search method
+* If `alpha` = 0.5, it is weighting the sparse and vector method evenly
+
+### Response
+
+The `_additional` object in the GraphQL result exposes the ranked score that is assigned to each document:
+
+```json
+{
+  "_additional": {
+    "score": "0.016129032"
+  }
+}
+```
+
 
 ### Example 
 
