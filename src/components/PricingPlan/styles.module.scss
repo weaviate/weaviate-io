@@ -1,3 +1,14 @@
 .header {
   text-align: center;
 }
+
+.plan {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+  }
+}

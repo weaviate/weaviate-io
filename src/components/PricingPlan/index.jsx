@@ -1,5 +1,8 @@
 import React from 'react';
+import PricingBusinessCritical from '../PricingBusinessCritical';
+import PricingEnterprise from '../PricingEnterprise';
 import PricingSandBox from '../PricingSandBox';
+import PricingStandard from '../PricingStandard';
 import styles from './styles.module.scss';
 
 export default function PricingPlan() {
@@ -14,6 +17,11 @@ export default function PricingPlan() {
         </p>
       </div>
       <PricingSandBox />
+      <div className={styles.plan}>
+        <PricingStandard />
+        <PricingEnterprise />
+        <PricingBusinessCritical />
+      </div>
     </div>
   );
 }
