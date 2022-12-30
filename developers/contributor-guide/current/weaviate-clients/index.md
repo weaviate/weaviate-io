@@ -57,7 +57,7 @@ the respective language.
 # Testing
 
 Test coverage is very important for clients to make it possible to easily test
-the client against various Waeviate versions. As a client is an integration
+the client against various Weaviate versions. As a client is an integration
 point to Weaviate, the [Test pyramid](../weaviate-core/tests.html#test-pyramid)
 willl look upside down.
 
