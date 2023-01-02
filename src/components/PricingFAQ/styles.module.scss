@@ -1,0 +1,15 @@
+.boxGrid {
+  --auto-grid-min-size: 22rem;
+
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--auto-grid-min-size), 1fr)
+  );
+  grid-gap: 1rem;
+}
+
+.box {
+  padding: 1rem;
+  text-align: center;
+}
