@@ -26,8 +26,10 @@ export default function PricingCalculator() {
       const url = `https://us-central1-semi-production.cloudfunctions.net/pricing-calculator?embeddingSize=${embeddingSize}&amountOfDataObjs=${amountOfDataObjs}&queriesPerMonth=${queriesPerMonth}&slaTier=${slaTier}&highAvailability=${
         isSwitchOn ? 'true' : 'false'
       }`;
-      const response = await fetch(url).then((response) => response.json());
-      setPrice(response);
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log(data);
+      setPrice(data);
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
@@ -146,8 +148,17 @@ export default function PricingCalculator() {
             <Switch value={isSwitchOn} onChange={switchOnChange} />
           </div>
           <div className="price">
-            <span>Your estimated price</span>
-            <h2>$ {price.priceStr} /mo</h2>
+            {price.error === false && (
+              <div>
+                <span>Your estimated price</span>{' '}
+                <h2>$ {price.priceStr} /mo</h2>
+              </div>
+            )}
+            {price.error === true && (
+              <a href="mailto:hello@semi.technology" className="salesBtn">
+                Contact Us
+              </a>
+            )}
           </div>
         </div>
       </div>
