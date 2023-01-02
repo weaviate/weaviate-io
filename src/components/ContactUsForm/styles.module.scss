@@ -1,0 +1,30 @@
+.form {
+  padding: 2rem;
+  box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
+
+  .intro {
+    h2 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+  .formWrapper {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .input {
+    appearance: none;
+    display: flex;
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #01b0db;
+    background-color: transparent;
+    border-radius: 12px;
+  }
+}

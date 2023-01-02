@@ -4,6 +4,7 @@ import PricingHeader from '../components/PricingHeader';
 import PricingCalculator from '../components/PricingCalculator';
 import PricingPlan from '../components/PricingPlan';
 import PricingFAQ from '../components/PricingFAQ';
+import ContactUsForm from '../components/ContactUsForm';
 
 export default function PricingPage() {
   return (
@@ -12,6 +13,7 @@ export default function PricingPage() {
       <PricingCalculator />
       <PricingPlan />
       <PricingFAQ />
+      <ContactUsForm />
     </Layout>
   );
 }

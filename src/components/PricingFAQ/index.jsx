@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import faq from './faq.json';
-// import DOMPurify from 'isomorphic-dompurify';
 
 export default function PricingFAQ() {
   return (
