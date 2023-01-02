@@ -28,9 +28,9 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 ## Built-in parameters
 
-B​uilt in search parameters are available in all Weaviate instances and don't require any modules.​
+B​uilt-in search parameters are available in all Weaviate instances and don't require any modules.​
 
-### NearVector
+### nearVector
 
 This filter allows you to find data objects in the vicinity of an input vector. It's supported by the `Get{}` function.
 
@@ -61,11 +61,11 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 If the distance metric is `cosine` you can also use `certainty` instead of
 `distance`. Certainty normalizes the distance in a range of 0..1, where 0
-reprents a perfect opposite (cosine distance of 2) and 1 represents vectors
+represents a perfect opposite (cosine distance of 2) and 1 represents vectors
 with an identical angle (cosine distance of 0). Certainty is not available on
 non-cosine distance metrics.
 
-### NearObject
+### nearObject
 
 This filter allows you to find data objects in the vicinity of other data objects by UUID. It's supported by the `Get{}` function.
 
@@ -93,7 +93,128 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 
 <!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Article%28%0D%0A++++++nearObject%3A+%7B%0D%0A++++++++beacon%3A+%22weaviate%3A%2F%2Flocalhost%2Fe5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf%22%2C+%0D%0A++++++++certainty%3A+0.7%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
 
-### Group
+## hybrid
+This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
+
+| Variables | Mandatory | Description |
+| --- | --- | --- | --- |
+| `hybrid` | yes | need to specify that you want to use hybrid search |
+| `query` | yes | search query |
+| `alpha` | no (default is set to 0.75) | weighting for each search algorithm |
+| `vector` | no | optional to supply your own vector |
+| `score` | no | ranked score that is assigned to each document |
+
+* Note: `alpha` can be any number from 0 to 1 
+  * If `alpha` = 0, it is using a pure **sparse** search method 
+  * If `alpha` = 1, it is using a pure **vector** search method
+  * If `alpha` = 0.5, it is weighing the sparse and vector method evenly
+
+### Example 
+
+import GraphQLFiltersHybrid from '/_includes/code/graphql.filters.hybrid.mdx';
+
+<GraphQLFiltersHybrid/>
+
+<MoleculeGQLDemo query='%7B%0A+  +Get+{%0A++++Article+(%0A++++++hybrid:+{%0A++++++++query:+%22Fisherman+that+catches+salmon%22%0A++++++++alpha:+0.5%0A++++++})%0A+++++{%0A++++++title%0A++++++summary%0A++++++_additional+{score}%0A++++}%0A++}%0A%7D'/>
+
+
+### Example with vector parameter
+If you're providing your own embeddings, you can add the vector query to the `vector` parameter. If Weaviate is handling the vectorization, then you can ignore the `vector` parameter and use the example code snippets above.
+
+import GraphQLFiltersHybridVector from '/_includes/code/graphql.filters.hybrid.vector.mdx';
+
+<GraphQLFiltersHybridVector/>
+
+## bm25
+The `bm25` operator performs a keyword (sparse vector) search, and uses the BM25F ranking function to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
+
+The search is case-insensitive, and case matching does not confer a score advantage. Stop words are removed. [Stemming is not supported yet](https://github.com/semi-technologies/weaviate/issues/2439).
+
+### Schema configuration
+The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases. If necessary, they can be configured in the schema per class, and can optionally be overridden per property:
+
+```json
+{
+  "class": "string",
+  "sparseIndexType": "bm25f",
+  // Configuration of the sparse index
+  "sparseIndexConfig": {
+    "bm25f": {
+      "b": 0.75,
+      "k1": 1.2
+    }
+  },
+  "properties": [
+    {
+      "name": "string",
+      "description": "string",
+      "dataType": [
+        "string"
+      ],
+      // Property-level settings override the class-level settings
+      "sparseIndexConfig": {
+        "bm25f": {
+          "b": 0.75,
+          "k1": 1.2
+        }
+      },
+      "indexInverted": true
+    }
+  ]
+}
+```
+
+### Variables
+The `bm25` operator supports two variables:
+* `query` (mandatory) - the keyword search query
+* `properties` (optional) - array of properties (fields) to search in, defaulting to all properties in the class. Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "description"]`.
+
+### Example query
+
+import GraphQLFiltersBM25 from '/_includes/code/graphql.filters.bm25.mdx';
+
+<GraphQLFiltersBM25/>
+
+<MoleculeGQLDemo query='%7B%0A++Get+{%0A++++Article(%0A++++++bm25:+{%0A++++++++query:+%22fox%22,%0A++++++++properties:+%5B%22title%22%5D%0A++++++}%0A++++)+{%0A++++++title%0A++++++_additional+{%0A++++++++score%0A++++++}%0A++++}%0A++}%0A%7D'/>
+
+### GraphQL response
+
+The `_additional` object in the GraphQL result exposes the score:
+
+```json
+{
+  "_additional": {
+    "score": "5.3201",
+    "distance": null,  // always null
+    "certainty": null  // always null
+  }
+}
+```
+
+### Example response
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "_additional": {
+            "certainty": null,
+            "distance": null,
+            "score": "3.4985464"
+          },
+          "title": "Tim Dowling: is the dog’s friendship with the fox sweet – or a bad omen?"
+        }
+      ]
+    }
+  },
+  "errors": null
+}
+```
+
+
+### group
 
 You can use a group operator to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
 
@@ -101,7 +222,7 @@ You can use a group operator to combine similar concepts (aka _entity merging_).
 
 | Variables | Mandatory | Type | Description |
 | --- | --- | --- | --- |
-| `type` | yes | `string` | ​You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
+| `type` | yes | `string` | You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
 | `force` | yes | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
 
 ### Example
@@ -163,7 +284,7 @@ This results in the following. Note that publications `International New York Ti
 
 Module specific search parameters are made available in certain Weaviate modules.​
 
-### NearText
+### nearText
 
 Enabled by the modules: [text2vec-openai](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md), [text2vec-transformers](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md), [text2vec-contextionary](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md).
 
@@ -190,7 +311,7 @@ This filter allows you to find data objects in the vicinity of the vector repres
 
 #### Example I
 
-This example shows a basic overview of using the nearText filter.
+This example shows a basic overview of using the `nearText` filter.
 
 import GraphQLFiltersNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
@@ -218,7 +339,7 @@ import GraphQLFiltersNearText2Obj from '/_includes/code/graphql.filters.nearText
 
 If the distance metric is `cosine` you can also use `certainty` instead of
 `distance`. Certainty normalizes the distance in a range of 0..1, where 0
-reprents a perfect opposite (cosine distance of 2) and 1 represents vectors
+represents a perfect opposite (cosine distance of 2) and 1 represents vectors
 with an identical angle (cosine distance of 0). Certainty is not available on
 non-cosine distance metrics.
 

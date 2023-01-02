@@ -1,0 +1,121 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article (
+      hybrid: {
+        query: "Fisherman that catches salmon"
+        alpha: 0.5
+      })
+     {
+      title
+      summary
+      _additional {score}
+    }
+  }
+}
+
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+
+result = (
+    client.query
+    .get("Article", ["title", "summary"])
+    .with_hybrid("Fisherman that catches salmon", alpha=0.5)
+    .do()
+  )
+
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+
+client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title summary _additional{score}')
+  .withHybrid({
+      query: "Fisherman that catches salmon"
+      alpha: 0.5, // optional, defaults to 0.75
+     }
+  })
+  .do()
+  .then(console.log)
+  .catch(console.error);
+
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+hybrid := &HybridArgumentBuilder{}
+	hybrid.WithQuery("Fisherman that catches salmon").WithAlpha(0.5)
+
+	query := builder.WithClassName("Article").WithHybrid(hybrid).build()
+
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+HybridArgument hybrid = client.graphQL().arguments().HybridArgBuilder()
+  .query("Fisherman that catches salmon")
+  .alpha(0.5f)
+  .build();
+Field name = Field.builder().name("title" "summary").build();
+Field _additional = Field.builder()
+  .name("_additional")
+  .fields(new Field[]{Field.builder().name("id").build()})
+  .build();
+// when
+testGenerics.createTestSchemaAndData(client);
+Result<GraphQLResponse> result = client.graphQL().get().withClassName("Article")
+  .withHybrid(hybrid)
+  .withFields(name, _additional).run();
+
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+$ echo '{ 
+  "query": "{
+    {
+      Get {
+        Article(
+          hybrid: {
+            query: "Fisherman that catches salmon"
+            alpha: 0.5
+          })
+        {
+          title
+          summary
+          _additional {score}
+        }
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    http://localhost:8080/v1/graphql
+
+```
+
+</TabItem>
+</Tabs>

@@ -21,7 +21,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-The `text2vec-​openai` module allows you to use the [OpenAI embeddings](https://beta.openai.com/docs/guides/embeddings) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using OpenAI's Ada, Babbage, Curie, or Davinci models.
+The `text2vec-​openai` module allows you to use the [OpenAI embeddings](https://beta.openai.com/docs/guides/embeddings) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using OpenAI's `text-embedding-ada-002` model (legacy Ada, Babbage, Curie, or Davinci models are also supported).
 
 * Note: this module uses a third-party API and may incur costs.
 * Note: make sure to check the OpenAI [pricing page](https://openai.com/api/pricing/) before vectorizing large amounts of data.
@@ -78,7 +78,8 @@ For example, the following schema configuration will set Weaviate to vectorize t
       "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "text2vec-openai": {
-          "model": "babbage",
+          "model": "ada",
+          "modelVersion": "002",
           "type": "text"
         }
       },
@@ -126,6 +127,28 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 OpenAI has multiple models available with different trade-offs. All the models offered by OpenAI can be used within Weaviate. Note that the more dimensions a model produces, the larger your data footprint will be. To estimate the total size of your dataset use [this](/docs/weaviate/architecture/resources.md#an-example-calculation) calculation.
 
+The default model is: `text-embedding-ada-002` but you can also specify it in your schema. An example as part of a class definition:
+
+```json
+{
+  "classes": [
+    {
+      "class": "Document",
+      "vectorizer": "text2vec-openai",
+      "moduleConfig": {
+        "text2vec-openai": {
+          "model": "ada",
+          "modelVersion": "002",
+          "type": "text"
+        }
+      }
+    }
+  ]
+}
+```
+
+### Legacy models
+
 * For document embeddings you can choose one of the following models:
   * [ada](https://beta.openai.com/docs/engines/ada)
   * [babbage](https://beta.openai.com/docs/engines/babbage)
@@ -138,7 +161,28 @@ OpenAI has multiple models available with different trade-offs. All the models o
 In the `moduleConfig` inside a class, you need to set two values:
 
 1. `model` – one of the models mentioned above. E.g., `babbage`.
-2. `type` – `text` or `code`.
+2. `modelVersion` – one of the model version as mentioned above. E.g., `babbage`.
+3. `type` – `text` or `code`.
+
+Example (as part of a class definition):
+
+```json
+{
+  "classes": [
+    {
+      "class": "Document",
+      "vectorizer": "text2vec-openai",
+      "moduleConfig": {
+        "text2vec-openai": {
+          "model": "babbage",
+          "modelVersion": "001",
+          "type": "text"
+        }
+      }
+    }
+  ]
+}
+```
 
 ### OpenAI Rate Limits
 
