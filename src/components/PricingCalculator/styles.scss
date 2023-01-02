@@ -97,6 +97,11 @@
 
 .value {
   input {
+    appearance: none;
+    padding: 1rem;
+    border: 1px solid #01b0db;
+    background-color: transparent;
+    border-radius: 12px;
     padding: 0.8125rem 1.25rem;
   }
 }
@@ -108,9 +113,6 @@
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
-  h4 {
-    margin-bottom: 0;
-  }
 }
 .priceBox {
   display: flex;
@@ -120,5 +122,10 @@
   @media screen and (max-width: 500px) {
     flex-direction: column;
     gap: 30px;
+  }
+  .price {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }

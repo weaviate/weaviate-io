@@ -2,29 +2,28 @@ import React from 'react';
 import './styles.scss';
 import { useState, useEffect } from 'react';
 import { RadioButton } from '../RadioButton';
+import ToggleSwitch from '../ToggleSwitch';
 import Slider from 'react-rangeslider';
-// import 'react-rangeslider/lib/index.css';
-import Switch from 'react-js-switch';
 
 export default function PricingCalculator() {
   const [embeddingSize, setEmbeddingSize] = useState(100);
   const [amountOfDataObjs, setAmountOfDataObjs] = useState(0);
   const [queriesPerMonth, setQueriesPerMonth] = useState(0);
   const [slaTier, setSlaTier] = useState('standard');
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [highAvailability, setHighAvailability] = useState(false);
   const [price, setPrice] = useState({});
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
       console.log(
-        isSwitchOn,
+        highAvailability,
         slaTier,
         embeddingSize,
         amountOfDataObjs,
         queriesPerMonth
       );
       const url = `https://us-central1-semi-production.cloudfunctions.net/pricing-calculator?embeddingSize=${embeddingSize}&amountOfDataObjs=${amountOfDataObjs}&queriesPerMonth=${queriesPerMonth}&slaTier=${slaTier}&highAvailability=${
-        isSwitchOn ? 'true' : 'false'
+        highAvailability ? 'true' : 'false'
       }`;
       const response = await fetch(url);
       const data = await response.json();
@@ -33,10 +32,16 @@ export default function PricingCalculator() {
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [isSwitchOn, slaTier, embeddingSize, amountOfDataObjs, queriesPerMonth]);
+  }, [
+    highAvailability,
+    slaTier,
+    embeddingSize,
+    amountOfDataObjs,
+    queriesPerMonth,
+  ]);
 
-  const switchOnChange = () => {
-    setIsSwitchOn(!isSwitchOn);
+  const onHighAvailabilityChange = (checked) => {
+    setHighAvailability(checked);
   };
 
   return (
@@ -144,15 +149,19 @@ export default function PricingCalculator() {
         </div>
         <div className="priceBox">
           <div className="highAva">
-            <h4>High Availibility</h4>
-            <Switch value={isSwitchOn} onChange={switchOnChange} />
+            <label htmlFor="highAvailability">High Availability</label>{' '}
+            <ToggleSwitch
+              id="highAvailability"
+              checked={highAvailability}
+              onChange={onHighAvailabilityChange}
+            />
           </div>
           <div className="price">
             {price.error === false && (
-              <div>
+              <>
                 <span>Your estimated price</span>{' '}
                 <h2>$ {price.priceStr} /mo</h2>
-              </div>
+              </>
             )}
             {price.error === true && (
               <a href="mailto:hello@semi.technology" className="salesBtn">
