@@ -39,6 +39,22 @@ export default function ContactUsForm() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+        <div className={styles.selectWrapper}>
+          <label for="foundHow">Choose:</label>
+
+          <select name="foundHow" id="foundHow" className={styles.select}>
+            <option value="conferenceTalk">Conference Talk</option>
+            <option value="blogPost">Blog post</option>
+            <option value="searchEngine">
+              Search engine (e.g., Google or DuckDuckGo)
+            </option>
+            <option value="githubList">Github List</option>
+            <option value="reddit">Reddit</option>
+            <option value="twitter">Twitter</option>
+            <option value="friend">A friend</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
       </form>
     </div>
   );

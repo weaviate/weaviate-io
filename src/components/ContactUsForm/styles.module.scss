@@ -27,4 +27,19 @@
     background-color: transparent;
     border-radius: 12px;
   }
+  .selectWrapper {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    .select {
+      appearance: none;
+      margin-top: 1rem;
+      display: flex;
+      flex: 1;
+      padding: 1rem;
+      border: 1px solid #01b0db;
+      background-color: transparent;
+      border-radius: 12px;
+    }
+  }
 }
