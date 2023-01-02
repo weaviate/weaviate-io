@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import faq from './faq.json';
-import DOMPurify from 'isomorphic-dompurify';
+// import DOMPurify from 'isomorphic-dompurify';
 
 export default function PricingFAQ() {
   return (
@@ -12,17 +12,17 @@ export default function PricingFAQ() {
             <div key={item.question} className={styles.box}>
               <h3
                 dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(item.question),
+                  __html: item.question,
                 }}
               ></h3>
               <p
                 dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(item.answer),
+                  __html: item.answer,
                 }}
               ></p>
               <p
                 dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(item?.code),
+                  __html: item?.code,
                 }}
               ></p>
             </div>
