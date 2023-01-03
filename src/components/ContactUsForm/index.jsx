@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styles from './styles.module.scss';
 
 export default function ContactUsForm() {
+  const [thx, setThx] = useState(false);
   const [name, setName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const options = [
@@ -23,9 +24,22 @@ export default function ContactUsForm() {
     setSelected(event.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(selected, name, emailAddress);
+    let email = emailAddress.toLowerCase();
+    setThx(!thx);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open(
+      'GET',
+      'https://us-central1-semi-production.cloudfunctions.net/sign-up-for-private-beta?email=' +
+        email +
+        '&name=' +
+        name +
+        '&foundHow=' +
+        selected
+    );
+    xmlHttp.send(null);
+    return xmlHttp.status;
   };
 
   return (
@@ -56,7 +70,7 @@ export default function ContactUsForm() {
           <input
             autoComplete="off"
             className={styles.input}
-            type="text"
+            type="email"
             name="email"
             required={true}
             placeholder="Email"
@@ -80,9 +94,14 @@ export default function ContactUsForm() {
           </select>
         </div>
         <div className={styles.actionBtn}>
-          <button className={styles.button} type="submit">
-            Sign Up for the Private Beta
-          </button>
+          {thx === false && (
+            <button className={styles.button} type="submit">
+              Sign Up for the Private Beta
+            </button>
+          )}
+          {thx === true && (
+            <p>Thank you! You've received a confirmation email 🙏</p>
+          )}
         </div>
       </form>
     </div>

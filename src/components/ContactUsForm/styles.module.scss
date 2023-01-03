@@ -45,7 +45,9 @@
   .actionBtn {
     display: flex;
     margin-top: 3rem;
+    justify-content: center;
     .button {
+      cursor: pointer;
       display: flex;
       flex: 1;
       justify-content: center;

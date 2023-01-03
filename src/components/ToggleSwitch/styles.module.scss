@@ -1,3 +1,13 @@
+[data-theme='dark'] {
+  .toggleSwitch {
+    &Inner {
+      &:before {
+        background-color: #00b800;
+      }
+    }
+  }
+}
+
 .toggleSwitch {
   position: relative;
   margin-right: 10px;
@@ -46,7 +56,7 @@
     &:before {
       content: attr(data-yes);
       text-transform: uppercase;
-      background-color: #00b800;
+      background-color: #ff007d;
       padding-left: 10px;
       color: #fff;
     }
