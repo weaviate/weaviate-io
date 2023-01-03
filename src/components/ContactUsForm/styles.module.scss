@@ -1,7 +1,7 @@
 .form {
   padding: 2rem;
-  box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
-
+  box-shadow: 0px 0px 30px 10px rgb(233, 233, 233);
+  border-radius: 12px;
   .intro {
     h2 {
       text-align: center;
@@ -23,7 +23,7 @@
     display: flex;
     flex: 1;
     padding: 1rem;
-    border: 1px solid #01b0db;
+    border: 1px solid #ff007d;
     background-color: transparent;
     border-radius: 12px;
   }
@@ -37,9 +37,39 @@
       display: flex;
       flex: 1;
       padding: 1rem;
-      border: 1px solid #01b0db;
+      border: 1px solid #ff007d;
       background-color: transparent;
       border-radius: 12px;
+    }
+  }
+  .actionBtn {
+    display: flex;
+    margin-top: 3rem;
+    .button {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      background-color: #ff007d;
+      color: #fff;
+      border: none;
+      padding: 1rem;
+      border-radius: 12px;
+    }
+  }
+}
+[data-theme='dark'] {
+  .form {
+    box-shadow: 0px 0px 30px 10px rgb(0, 0, 0);
+    .input {
+      border: 1px solid #01b0db;
+    }
+    .select {
+      border: 1px solid #01b0db;
+    }
+  }
+  .actionBtn {
+    .button {
+      background-color: #00b800;
     }
   }
 }

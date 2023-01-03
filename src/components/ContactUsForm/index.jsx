@@ -4,10 +4,33 @@ import styles from './styles.module.scss';
 
 export default function ContactUsForm() {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const options = [
+    { value: 'conferenceTalk', text: 'Conference Talk' },
+    { value: 'blogPost', text: 'Blog post' },
+    {
+      value: 'searchEngine',
+      text: 'Search engine (e.g., Google or DuckDuckGo)',
+    },
+    { value: 'githubList', text: 'Github List' },
+    { value: 'reddit', text: 'Reddit' },
+    { value: 'twitter', text: 'Twitter' },
+    { value: 'friend', text: 'A friend' },
+    { value: 'other', text: 'Other' },
+  ];
+  const [selected, setSelected] = useState(options[0].value);
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(selected, name, emailAddress);
+  };
+
   return (
     <div className="container">
-      <form className={styles.form}>
+      <form className={styles.form} id="contact-sales" onSubmit={handleSubmit}>
         <div className={styles.intro}>
           <h2>Register for Private Beta</h2>
           <p>
@@ -26,6 +49,7 @@ export default function ContactUsForm() {
             type="text"
             name="name"
             placeholder="Name"
+            required={true}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -34,26 +58,31 @@ export default function ContactUsForm() {
             className={styles.input}
             type="text"
             name="email"
+            required={true}
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={emailAddress}
+            onChange={(e) => setEmailAddress(e.target.value)}
           />
         </div>
         <div className={styles.selectWrapper}>
-          <label for="foundHow">Choose:</label>
+          <label htmlFor="foundHow">Choose:</label>
 
-          <select name="foundHow" id="foundHow" className={styles.select}>
-            <option value="conferenceTalk">Conference Talk</option>
-            <option value="blogPost">Blog post</option>
-            <option value="searchEngine">
-              Search engine (e.g., Google or DuckDuckGo)
-            </option>
-            <option value="githubList">Github List</option>
-            <option value="reddit">Reddit</option>
-            <option value="twitter">Twitter</option>
-            <option value="friend">A friend</option>
-            <option value="other">Other</option>
+          <select
+            value={selected}
+            onChange={handleChange}
+            className={styles.select}
+          >
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.text}
+              </option>
+            ))}
           </select>
+        </div>
+        <div className={styles.actionBtn}>
+          <button className={styles.button} type="submit">
+            Sign Up for the Private Beta
+          </button>
         </div>
       </form>
     </div>

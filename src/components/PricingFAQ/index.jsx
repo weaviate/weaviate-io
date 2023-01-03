@@ -5,6 +5,10 @@ import faq from './faq.json';
 export default function PricingFAQ() {
   return (
     <div className="container">
+      <div className={styles.intro}>
+        <h2>Frequently asked questions</h2>
+        <p>Let us help answer the most common questions you might have.</p>
+      </div>
       <div className={styles.boxGrid}>
         {faq.map((item) => {
           return (
