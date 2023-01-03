@@ -41,6 +41,8 @@ Dense vectors represent information stored in a database; this includes text, im
 
 Vector search engines, like [Weaviate](/developers/weaviate/current/), store these embeddings and calculate the distance between the two vectors. [Distance metrics](/blog/2022/09/Distance-Metrics-in-Vector-Search.html) show how similar or dissimilar two vector embeddings are. The search query is converted to a vector, similar to the data vectors, and the distance value determines how close the vectors are. 
 
+![Hybrid Search](/img/blog/hybrid-search-in-detail/hybrid-search.png)
+
 ## Hybrid Search Explained
 Hybrid search merges dense and sparse vectors together to deliver the best of both search methods. Generally speaking, dense vectors excel at understanding the context of the query, whereas sparse vectors excel at keyword matches. Consider the query, “How to catch an Alaskan Pollock”. The dense vector representation is able to disambiguate “catch” as meaning fishing rather than baseball or sickness. The sparse vector search will match the phrase “Alaskan Pollock” only. This example query shows where hybrid search combines the best of both sparse and dense vectors.
 
@@ -73,7 +75,24 @@ There are five parameters needed to run the hybrid search query (some are option
 * `vector` (optional): optional to supply your own vector 
 * `score`(optional): additional information on how much the sparse and dense method contributed to the result
 
-With just a few lines of code, you can start using hybrid search. You can run a test query in the [Weaviate console](https://link.semi.technology/3IhrVbB) using GraphQL. The query is, “Fisherman that catches salmon”, similar to the example above. When we set the alpha to 0.5 it is equally weighing the dense and sparse vector results. 
+With just a few lines of code, you can start using hybrid search. You can run a test query in the [Weaviate console](https://link.semi.technology/3IhrVbB) using GraphQL. The query is, “Fisherman that catches salmon” (similar to the example above). When we set the alpha to 0.5 it is equally weighing the dense and sparse vector results. 
+
+```
+{
+    Get {
+    Article (
+      hybrid: {
+        query: "Fisherman that catches salmon"
+        alpha: 0.5
+      })
+     {
+      title
+      summary
+      _additional {score}
+    }
+  }
+}
+```
 
 Check out the [documentation](/developers/weaviate/current/graphql-references/vector-search-parameters.html#hybrid) for more information on hybrid search! 
 
