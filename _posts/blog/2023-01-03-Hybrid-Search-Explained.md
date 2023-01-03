@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Hybrid Search in Detail 
-description: "Learn about the new hybrid search feature that was introduced in Weaviate 1.17."
+title: Hybrid Search Explained
+description: "Learn about the new hybrid search feature introduced in Weaviate 1.17."
 published: true
 author: Erika Cardenas 
 author-img: /img/people/erika.jpg
-card-img: /img/blog/hybrid-search-in-detail/hybrid-search.png
-hero-img: /img/blog/hybrid-search-in-detail/hybrid-search.png
-og: /img/blog/hybrid-search-in-detail/hybrid-search.png
+card-img: /img/blog/hybrid-search-explained/hybrid-search.png
+hero-img: /img/blog/hybrid-search-explained/hybrid-search.png
+og: /img/blog/hybrid-search-explained/hybrid-search.png
 date: 2023-01-03
 toc: true
 ---
@@ -27,7 +27,7 @@ If you’re interested to learn about how dense vector indexes are built and opt
 BM25 builds on the keyword scoring method [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) (Term-Frequency Inverse-Document Frequency) by taking the [Binary Independence Model](https://en.wikipedia.org/wiki/Binary_Independence_Model) from the IDF calculation and adding a normalization penalty that weighs a document’s length relative to the average length of all the documents in the database. 
 
 The image below presents the scoring calculation of BM25:
-![BM25 calculation](/img/blog/hybrid-search-in-detail/BM25-calculation.png)
+![BM25 calculation](/img/blog/hybrid-search-explained/BM25-calculation.png)
 <div align="center">Source: Wikipedia page on Okapi BM25</div>
 
 
@@ -41,7 +41,7 @@ Dense vectors represent information stored in a database; this includes text, im
 
 Vector search engines, like [Weaviate](/developers/weaviate/current/), store these embeddings and calculate the distance between the two vectors. [Distance metrics](/blog/2022/09/Distance-Metrics-in-Vector-Search.html) show how similar or dissimilar two vector embeddings are. The search query is converted to a vector, similar to the data vectors, and the distance value determines how close the vectors are. 
 
-![Hybrid Search](/img/blog/hybrid-search-in-detail/hybrid-search.png)
+![Hybrid Search](/img/blog/hybrid-search-explained/hybrid-search.png)
 
 ## Hybrid Search Explained
 Hybrid search merges dense and sparse vectors together to deliver the best of both search methods. Generally speaking, dense vectors excel at understanding the context of the query, whereas sparse vectors excel at keyword matches. Consider the query, “How to catch an Alaskan Pollock”. The dense vector representation is able to disambiguate “catch” as meaning fishing rather than baseball or sickness. The sparse vector search will match the phrase “Alaskan Pollock” only. This example query shows where hybrid search combines the best of both sparse and dense vectors.
@@ -50,7 +50,7 @@ Hybrid search merges dense and sparse vectors together to deliver the best of bo
 
 While researching hybrid search, we needed a way to combine the results of BM25 and dense vector search into a single ranked list. We came across a paper from Benham and Culpepper exploring rank fusion techniques. This paper analyzed seven strategies for combining the ranked results of two lists into a single ranking. We decided to start with the RRF score. The RRF score is calculated by taking the sum of the reciprocal rankings that is given from each list. By putting the rank of the document in the denominator, it penalizes the documents that are ranked lower in the list. 
 
-![RRF Calculation](/img/blog/hybrid-search-in-detail/RRF-calculation.png){:width="50%"}
+![RRF Calculation](/img/blog/hybrid-search-explained/RRF-calculation.png){:width="50%"}
 <div align="center"> Source: Benham and Culpepper 2017 </div>
 
 Let’s look at an example of this. We have three documents labeled `A`, `B`, and `C` and have run a BM25 and Dense search. In this example, we have set the constant *k* to 0. 
