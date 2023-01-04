@@ -67,7 +67,7 @@
 }
 
 .rangeslider .rangeslider__handle {
-  background: #ff007d;
+  background: #01b0db;
   cursor: pointer;
   display: inline-block;
   position: absolute;
@@ -103,6 +103,9 @@
     background-color: transparent;
     border-radius: 12px;
     padding: 0.8125rem 1.25rem;
+    &:focus-visible {
+      outline: none;
+    }
   }
 }
 

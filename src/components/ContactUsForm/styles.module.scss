@@ -26,9 +26,12 @@
     display: flex;
     flex: 1;
     padding: 1rem;
-    border: 1px solid #ff007d;
+    border: 1px solid #01b0db;
     background-color: transparent;
     border-radius: 12px;
+    &:focus-visible {
+      outline: none;
+    }
   }
   .selectWrapper {
     margin-top: 2rem;
@@ -40,9 +43,12 @@
       display: flex;
       flex: 1;
       padding: 1rem;
-      border: 1px solid #ff007d;
+      border: 1px solid #01b0db;
       background-color: transparent;
       border-radius: 12px;
+      &:focus-visible {
+        outline: none;
+      }
     }
   }
   .actionBtn {
@@ -54,7 +60,7 @@
       display: flex;
       flex: 1;
       justify-content: center;
-      background-color: #ff007d;
+      background-color: #01b0db;
       color: #fff;
       border: none;
       padding: 1rem;

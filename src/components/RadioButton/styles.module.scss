@@ -14,7 +14,7 @@
     color: #fff;
     width: 1.5rem;
     height: 1.5rem;
-    border: 0.15em solid #ff007d;
+    border: 0.15em solid #01b0db;
     border-radius: 50%;
     transform: translateY(-0.075em);
 
@@ -28,7 +28,7 @@
       border-radius: 50%;
       transform: scale(0);
       transition: 120ms transform ease-in-out;
-      box-shadow: inset 1em 1em #ff007d;
+      box-shadow: inset 1em 1em #01b0db;
     }
   }
   input[type='radio']:checked::before {
