@@ -5,3 +5,11 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+[data-theme='light'] {
+  .links {
+    a {
+      color: #01b0db;
+    }
+  }
+}
