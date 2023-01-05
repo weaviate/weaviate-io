@@ -48,7 +48,7 @@ We have imported the complete Wikidata PBG model into a Weaviate to search throu
 
 This dataset contains +/- 1000 random news articles from; Financial Times, New York Times, Guardian, Wallstreet Journal, CNN, Fox News, The Economist, New Yorker, Wired, Vogue, Game Informer.
 
-It includes a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) with classes for `Article`, `Publication`, `Category` and `Author`. 
+It includes a [schema](/docs/weaviate/tutorials/how-to-create-a-schema.md) with classes for `Article`, `Publication`, `Category` and `Author`. 
 
 ### Run with Docker Compose
 

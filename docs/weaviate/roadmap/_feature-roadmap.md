@@ -15,7 +15,7 @@ import Badges from '/_includes/badges.mdx';
 
 The following is an overview of features planned for Weaviate. By clicking the link, you can upvote the feature or engage in a discussion about it. You can also join our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to discuss the roadmap in more detail.
 
-* The current version of Weaviate is **v||site.weaviate_version||**. You can check the version you're currently running at the [meta](/docs/weaviate/references/rest/meta.md) endpoint.
+* The current version of Weaviate is **v||site.weaviate_version||**. You can check the version you're currently running at the [meta](/docs/weaviate/api/rest/meta.md) endpoint.
 * Upvote an issue by clicking the 👍 emoji on the Github issue page
 
 <!-- ADDS PLANNED VERSIONS -->

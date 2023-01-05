@@ -29,18 +29,18 @@ Migrated from "How to perform a semantic search" tutorial from Weaviate Docs Cla
 ## Introduction
 
 - Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/). 
-- You can query a Weaviate after you've created a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) and [populated it](/docs/weaviate/guides/how-to-import-data.md) with data.
-- You can perform simple [`Get{}`](../references/graphql/get.md) queries to easily retrieve data, learn how [here](./how-to-query-data.md).
+- You can query a Weaviate after you've created a [schema](/docs/weaviate/tutorials/how-to-create-a-schema.md) and [populated it](/docs/weaviate/tutorials/how-to-import-data.md) with data.
+- You can perform simple [`Get{}`](../api/graphql/get.md) queries to easily retrieve data, learn how [here](./how-to-query-data.md).
 - To narrow down search results from a `Get{}` query based on semantics, use the `nearText` filter in the `Get{}` query. Read how in [this tutorial](#neartext-filter).
-- To search and find for data objects in a fuzzy manner, you can use the GraphQL `Explore{}` function, read how in [this tutorial](#explore-graphql-function), and on the [reference page](../references/graphql/explore.md).
+- To search and find for data objects in a fuzzy manner, you can use the GraphQL `Explore{}` function, read how in [this tutorial](#explore-graphql-function), and on the [reference page](../api/graphql/explore.md).
 
 ## Prerequisites
  1. **Connect to a Weaviate instance.**\\
- If you haven't set up a Weaviate instance yet, check the [Getting started guide](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
+ If you haven't set up a Weaviate instance yet, check the [Getting started guide](/docs/weaviate/quickstart/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/quickstart/installation.md) as vectorization module.
  2. **Upload a schema**. \\
- Learn how to create and upload a schema [here](/docs/weaviate/guides/how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
+ Learn how to create and upload a schema [here](/docs/weaviate/tutorials/how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
  3. **Add data**. \\
- Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/guides/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
+ Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/tutorials/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
 
 ## nearText filter
 If you want to perform semantic search on data objects in a known class, you can use the `nearText` filter in a `Get{}` query. Let's say we want to find `Publication`s that are related to "fashion", we can do the following query:
@@ -138,7 +138,7 @@ $ curl -s http://localhost:8080/v1/objects/65010df4-da64-333d-b1ce-55c3fc9174ab
 
 ## Next steps
 
-- Look for more ways to query your dataset in Weaviate with GraphQL queries, semantic search and other filters in the [GraphQL references guide](../references/graphql/index.md).
+- Look for more ways to query your dataset in Weaviate with GraphQL queries, semantic search and other filters in the [GraphQL references guide](../api/graphql/index.md).
 - Stay tuned for new tutorials, for example on interpretation of the semantic search results or how to set up a classification model!
 
 ## More Resources

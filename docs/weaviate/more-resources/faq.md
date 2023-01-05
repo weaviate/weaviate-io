@@ -34,7 +34,7 @@ A: Yes, it is called the [Weaviate Console](https://console.semi.technology).
 
 ## Q: How to configure the size of your instance?
 
-A: You can find this in the [architecture section](/docs/weaviate/architecture/resources.md#an-example-calculation) of the docs.
+A: You can find this in the [architecture section](/docs/weaviate/concepts/resources.md#an-example-calculation) of the docs.
 
 ## Q: Does Weaviate use Hnswlib?
 
@@ -50,7 +50,7 @@ Custom HNSW implementation in Weaviate references:
 More information:
 
 - [Weaviate, an ANN Database with CRUD support – DB-Engines.com](https://db-engines.com/en/blog_post/87) ⬅️ best resource on the topic
-- [Weaviate's HNSW implementation in the docs)[/docs/weaviate/architecture/vector-index-plugins.md#hnsw)
+- [Weaviate's HNSW implementation in the docs)[/docs/weaviate/concepts/vector-index-plugins.md#hnsw)
 
 _Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here)[/docs/weaviate/vector-index-plugins/)_
 
@@ -82,7 +82,7 @@ Weaviate has no notion of transactions, operations always affect exactly a singl
 
 ## Q: Can I train my own text2vec-contextionary vectorizer module?
 
-A: Not yet (but soon), you can currently use the [available contextionaries](/docs/weaviate/getting-started/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](http://weaviate-newsletter.semi.technology/) or [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep updated about the release of custom contextionary training
+A: Not yet (but soon), you can currently use the [available contextionaries](/docs/weaviate/quickstart/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](http://weaviate-newsletter.semi.technology/) or [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep updated about the release of custom contextionary training
 
 <!-- ## Q: Why is the contextionary created using GloVe?
 
@@ -146,7 +146,7 @@ A: Sure (also, feel free to [issue a pull request](https://github.com/semi-techn
 
 ## Q: Does Weaviate require NFS volumes on Kubernetes?
 
-A: By default, no NFS volumes are active. In a production setting, we recommend turning etcd disaster recovery on which requires an NFS volume. However, [the helm docs](/docs/weaviate/getting-started/installation.md) contain instructions on how to deploy an nfs-provisioner. For more details, see also this [stack overflow answer](https://stackoverflow.com/a/60505796/5322199).
+A: By default, no NFS volumes are active. In a production setting, we recommend turning etcd disaster recovery on which requires an NFS volume. However, [the helm docs](/docs/weaviate/quickstart/installation.md) contain instructions on how to deploy an nfs-provisioner. For more details, see also this [stack overflow answer](https://stackoverflow.com/a/60505796/5322199).
 
 ## Q: When scalar and vector search are combined, will the scalar filter happen before or after the nearest neighbor (vector) search?
 
@@ -194,7 +194,7 @@ A: In short: for convenience you can add relations to your data schema, because 
 
 ## Q: Is it possible to create one-to-many relationships in the schema?
 
-A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example)[/docs/weaviate/guides/how-to-create-a-schema.md#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
+A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example)[/docs/weaviate/tutorials/how-to-create-a-schema.md#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
 
 ## Q: What is the different between `text` and `string` and `valueText` and `valueString`?
 
@@ -220,7 +220,7 @@ A: The UUID must be presented as a string matching the [Canonical Textual repres
 
 ## Q: What is the best way to iterate through objects? Can I do paginated API calls? 
 
-A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's)[/docs/weaviate/references/graphql/filters.md#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
+A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's)[/docs/weaviate/api/graphql/filters.md#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
 
 ## Q: What happens when the weaviate docker container restarts? Is my data in the weaviate database lost?
 
@@ -236,9 +236,9 @@ A: Yes, a UUID will be created if not specified.
 ## Q: What is best practice for updating data?
 
 A: Here are top 3 best practices for updating data:
-1. Use the [batch API](../references/rest/batch.md)
+1. Use the [batch API](../api/rest/batch.md)
 2. Start with a small-ish batch size e.g. 100 per batch. Adjust up if it is very fast, adjust down if you run into timeouts
-3. If you have unidirectional relationships (e.g. `Foo -> Bar`.) it's easiest to first import all `Bar` objects, then import all `Foo` objects with the refs already set. If you have more complex relationships, you can also import the objects without references, then use the [`/v1/batch/references API`](../references/rest/batch.md) to set links between classes in arbitrary directions.
+3. If you have unidirectional relationships (e.g. `Foo -> Bar`.) it's easiest to first import all `Bar` objects, then import all `Foo` objects with the refs already set. If you have more complex relationships, you can also import the objects without references, then use the [`/v1/batch/references API`](../api/rest/batch.md) to set links between classes in arbitrary directions.
 
 ## Q: How can I run the latest master branch with docker-compose?
 

@@ -32,7 +32,7 @@ Migrated from "how-to-do-classification" tutorial from Weaviate Docs Classic
 You can use Weaviate to automatically classify data, that is, you can ask Weaviate to automatically make references between concepts. Since Weaviate stores data objects based on semantics in a vector position, a variety of automated classification tasks can be performed in near-realtime. Weaviate offers two different types of classification:
 
 1. **Contextual classification**. Provided by the `text2vec-contextionary` module, thus can only be used when this module is active in your Weaviate instance. Uses the context of data points to make new references. There is no training data needed, and this type of classification is the right pick if you have a strong semantic relation in your data. See [here](/docs/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) for more information. 
-2. **kNN classification**. To assign property values and references of data objects based on how similar objects are labeled that Weaviate finds. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful. See more [here](../references/rest/classification.md#knn-classification).
+2. **kNN classification**. To assign property values and references of data objects based on how similar objects are labeled that Weaviate finds. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful. See more [here](../api/rest/classification.md#knn-classification).
 
 In this how-to guide, you will learn how to classify with Contextual and kNN classification.
 
@@ -40,15 +40,15 @@ In this how-to guide, you will learn how to classify with Contextual and kNN cla
 
 **1. Connect to a Weaviate instance**
 
-If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
+If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/docs/weaviate/quickstart/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/quickstart/installation.md) as vectorization module.
 
 **2. Upload a schema**
 
-Learn how to create and upload a schema [here](/docs/weaviate/guides/how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author` and `Category`.
+Learn how to create and upload a schema [here](/docs/weaviate/tutorials/how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author` and `Category`.
 
 **3. Add data**
 
-Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/guides/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s, `Author`s and `Category` present.
+Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/tutorials/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s, `Author`s and `Category` present.
 
 # Contextual classification
 
@@ -148,7 +148,7 @@ If we later want to know to which `Category` a specific `Article` refers to, we 
 
 # kNN classification
 
-Imagine you have a property for the popularity of the `Article` by the audience, and you would like to predict the popularity for new articles based on known properties. You can use kNN classification, use the popularity of previous articles and predict the popularity of new articles. First, make sure you have a class `Popularity` with the property `level` in the schema (you need to [add this](../references/rest/schema.md#create-a-class) if you use the demo schema). Let's say the `hasPopularity` of an `Article` can be `low`, `medium` or `high`. So the schema should look like this (note: this property is not included in the example schema, so make sure to add this property before doing this classification, see how [here](../references/rest/schema.md#add-a-property)). The schema should look like this:
+Imagine you have a property for the popularity of the `Article` by the audience, and you would like to predict the popularity for new articles based on known properties. You can use kNN classification, use the popularity of previous articles and predict the popularity of new articles. First, make sure you have a class `Popularity` with the property `level` in the schema (you need to [add this](../api/rest/schema.md#create-a-class) if you use the demo schema). Let's say the `hasPopularity` of an `Article` can be `low`, `medium` or `high`. So the schema should look like this (note: this property is not included in the example schema, so make sure to add this property before doing this classification, see how [here](../api/rest/schema.md#add-a-property)). The schema should look like this:
 
 ```json
 {

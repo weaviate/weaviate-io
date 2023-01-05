@@ -349,7 +349,7 @@ hints to look at:
 
 * Are you using more than 2 million vectors? If yes, make sure to set the
   [vector cache large
-  enough](/docs/weaviate/architecture/resources.md#imports-slowed-down-after-crossing-2m-objects---what-can-i-do)
+  enough](/docs/weaviate/concepts/resources.md#imports-slowed-down-after-crossing-2m-objects---what-can-i-do)
   for maximum performance.
 
 ## Where can I find the scripts to run this benchmark myself?

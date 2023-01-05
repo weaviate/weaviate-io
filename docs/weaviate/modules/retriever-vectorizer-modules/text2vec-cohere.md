@@ -62,7 +62,7 @@ services:
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](../../getting-started/schema.md) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](../../quickstart/schema.md) first.
 
 The following schema configuration tells Weaviate to vectorize the `Document` class with `text2vec-cohere`, using the `multilingual-22-12` model and without input truncation by the Cohere API.
 
@@ -107,7 +107,7 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
 ## How to use
 
 * If the Cohere API key is not set in the `text2vec-cohere` module, you can set the API key on query time by adding the following to the HTTP header: `X-Cohere-Api-Key: <cohere-api-key>`.
-* Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](../../references/graphql/vector-search-parameters.md#neartext).
+* Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](../../api/graphql/vector-search-parameters.md#neartext).
 
 ### Example
 

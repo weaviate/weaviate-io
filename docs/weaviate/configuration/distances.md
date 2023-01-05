@@ -19,7 +19,7 @@ import Badges from '/_includes/badges.mdx';
 
 If not specified explicitly, the default distance metric in Weaviate is
 `cosine`. It can be [set in the vectorIndexConfig](/docs/weaviate/configuration/vector-index-type.md#how-to-configure-hnsw) field as part of the
-schema ([Example to add new schema class](../references/rest/schema.md#create-a-class)) to any of the following types:
+schema ([Example to add new schema class](../api/rest/schema.md#create-a-class)) to any of the following types:
 
 <!-- TODO: Consider removing {:.text-nowrap} -->
 | Name | Description | Definition | Range |
@@ -74,4 +74,4 @@ metrics, scores may be unbounded. As a result the preferred way is to use
 For backward compatibility, `certainty` can still be used when the distance is
 `cosine`. If any other distance is selected `certainty` cannot be used.
 
-See also [distance and certainty _additional{} properties](../references/graphql/additional-properties.md).
+See also [distance and certainty _additional{} properties](../api/graphql/additional-properties.md).

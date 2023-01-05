@@ -24,17 +24,17 @@ The module `text2vec-contextionary`, herein also referred to as the 'Contextiona
 
 The `text2vec-contextionary` places data into a 300-dimensional space. Each datapoint will thus have a vector of 300 numbers. This vector is computed from the pre-trained Contextionary (you never have to do any training yourself), that contains the contextual representation that allows Weaviate to store data based on its contextual meaning. An empty Weaviate with the preloaded `text2vec-contextionary` module, could be envisioned like this (in a simplified 3D visualization):
 
-<!-- ![3D Vectors visualization](/img/guides/vectors-3d.svg "3D Vectors visualization"){:style="width:40%;height:40%"} -->
+![3D Vectors visualization](./img/vectors-3d.svg "3D Vectors visualization")
 
 When you add data, `text2vec-contextionary` calculates the position in the vector space that represents the real-world entity.
 
 The process from a data object to a vector position is calculated based on the centroid of the words weighted by the occurrences of the individual words in the original training text-corpus (e.g., the word `"has"` is seen as less important than the word `"apples"`).
 
-<!-- ![data to vector with contextionary](/img/guides/data2vec-c11y.svg "data to vector with contextionary"){:style="width:40%;height:40%"} -->
+![data to vector with contextionary](./img/data2vec-c11y.svg "data to vector with contextionary")
 
 When a new class object is created, it will be added to a Weaviate.
 
-<!-- ![3D Vectors visualization with new data object](/img/guides/vectors-3d-dataobject.svg "3D Vectors visualization with new data object"){:style="width:40%;height:40%"} -->
+![3D Vectors visualization with new data object](./img/vectors-3d-dataobject.svg "3D Vectors visualization with new data object")
 
 ### Available modules and languages
 
@@ -103,7 +103,7 @@ Variable explanations:
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/docs/weaviate/getting-started/schema.md) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/docs/weaviate/quickstart/schema.md) first.
 
 For example
 
@@ -141,7 +141,7 @@ For example
 
 ## How to use
 
-* New GraphQL vector search parameters made available by this module can be found [here](/docs/weaviate/references/graphql/vector-search-parameters.md#neartext).
+* New GraphQL vector search parameters made available by this module can be found [here](/docs/weaviate/api/graphql/vector-search-parameters.md#neartext).
 
 ### Example
 

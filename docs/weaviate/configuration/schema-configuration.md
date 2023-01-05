@@ -27,10 +27,10 @@ The schema is where you define for Weaviate:
 - Graph links between Classes
 - Vectorizer module (for each Class or Property)
 
-The RESTful endpoint `/v1/schema` can be used for schema-related operations. Learn more [here](../references/rest/schema.md).
+The RESTful endpoint `/v1/schema` can be used for schema-related operations. Learn more [here](../api/rest/schema.md).
 
 :::note
-Check out the [schema section of the quickstart tutorial](/docs/weaviate/getting-started/schema.md) to get started with an example.
+Check out the [schema section of the quickstart tutorial](/docs/weaviate/quickstart/schema.md) to get started with an example.
 :::
 
 ## Data objects and structure
@@ -132,7 +132,7 @@ With the [`text2vec-contextionary`](/docs/weaviate/modules/retriever-vectorizer-
 
 #### vectorIndexType
 
-The vectorIndexType defaults to [`hnsw`](/docs/weaviate/architecture/vector-index-plugins.md#hnsw) since this is the only available vector indexing algorithm implemented at the moment.
+The vectorIndexType defaults to [`hnsw`](/docs/weaviate/concepts/vector-index-plugins.md#hnsw) since this is the only available vector indexing algorithm implemented at the moment.
 
 #### vectorIndexConfig
 
@@ -140,7 +140,7 @@ Check the [`hnsw` page](/docs/weaviate/configuration/vector-index-type.md#how-to
 
 #### shardingConfig (introduced in v1.8.0)
 
-The `"shardingConfig"` controls how a class should be [sharded and distributed across multiple nodes](/docs/weaviate/architecture/cluster.md). All values are optional and default to the following settings:
+The `"shardingConfig"` controls how a class should be [sharded and distributed across multiple nodes](/docs/weaviate/concepts/cluster.md). All values are optional and default to the following settings:
 
 ```json
   "shardingConfig": {

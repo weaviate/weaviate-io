@@ -25,22 +25,22 @@ Migrated from "How to query data" tutorial from Weaviate Docs Classic
 :::
 
 - Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/). 
-- You can query a Weaviate after you've created a [schema](/docs/weaviate/guides/how-to-create-a-schema.md) and [populated it](/docs/weaviate/guides/how-to-import-data.md) with data.
+- You can query a Weaviate after you've created a [schema](/docs/weaviate/tutorials/how-to-create-a-schema.md) and [populated it](/docs/weaviate/tutorials/how-to-import-data.md) with data.
 
 ## Prerequisites
 
  1. **Connect to a Weaviate instance.**\\
- If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/docs/weaviate/getting-started/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/getting-started/installation.md) as vectorization module.
+ If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/docs/weaviate/quickstart/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/docs/weaviate/quickstart/installation.md) as vectorization module.
  2. **Upload a schema**. \\
- Learn how to create and upload a schema [here](/docs/weaviate/guides/how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
+ Learn how to create and upload a schema [here](/docs/weaviate/tutorials/how-to-create-a-schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
  3. **Add data**. \\
- Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/guides/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
+ Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/docs/weaviate/tutorials/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
 
 ## How to get data
 
 **1. Define a query.**
 
-   The easiest GraphQL queries to get data from Weaviate are [`Get{}`](../references/graphql/get.md) queries. Let's say we want to retrieve all the articles (there title, authors, url and wordCount) that are published by "Wired", the GraphQL query will look as follows:
+   The easiest GraphQL queries to get data from Weaviate are [`Get{}`](../api/graphql/get.md) queries. Let's say we want to retrieve all the articles (there title, authors, url and wordCount) that are published by "Wired", the GraphQL query will look as follows:
 
    ```graphql
     {
@@ -226,7 +226,7 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 ## Next steps
 
 - Make more advanced queries, for example to explore data with semantic search, in the [next tutorial](./how-to-perform-a-semantic-search.md).
-- View other GraphQL methods in the [GraphQL documentation](../references/graphql/index.md).
+- View other GraphQL methods in the [GraphQL documentation](../api/graphql/index.md).
 
 ## More Resources
 

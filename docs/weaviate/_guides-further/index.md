@@ -26,7 +26,7 @@ The various "Tutorials" sections are made up of documents from Tutorials in Weav
 ## Overview 
 
 <!-- TODO - all the child pages generally outdated. Need work to clean up / update / create -->
-These **further** tutorials are somewhat narrower in scope, to show you how to achieve specific goals and tasks. Think of these as specific recipes, unlike [essential tutorials](../guides/index.md) which are more like cooking lessons. 
+These **further** tutorials are somewhat narrower in scope, to show you how to achieve specific goals and tasks. Think of these as specific recipes, unlike [essential tutorials](../tutorials/index.md) which are more like cooking lessons. 
 
 Whether you read these tutorials will be mostly dependent on whether you would like to make the specific dish - that is, whether the topic of the tutorial is relevant to you. It can also be a great way to see what Weaviate is capable of.
 

@@ -41,10 +41,10 @@ Commonly requested resources such as [benchmarks](./benchmarks/index.md) and [ro
 
 If you are new to Weaviate, we recommend starting with these sections:
 1. Introduction (this page),
-2. [Quickstart tutorial](./getting-started/index.md), and
+2. [Quickstart tutorial](./quickstart/index.md), and
 3. [Installation & Configuration](./installation/index.md)
 
-Then, we suggest you also read through the [essential tutorials](./guides/index.md) and [essential concepts](./core-knowledge/index.md) before starting to use Weaviate for your own project.
+Then, we suggest you also read through the [essential tutorials](./tutorials/index.md) and [essential concepts](./concepts/index.md) before starting to use Weaviate for your own project.
 
 ### For experienced users
 
@@ -83,9 +83,9 @@ Weaviate is an open source vector search engine that stores both objects and vec
 **Weaviate in a nutshell**: 
 
 * Weaviate is an open source vector search engine.
-* Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](./architecture/vector-index-plugins.md).
+* Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](./concepts/vector-index-plugins.md).
 * Weaviate can be used stand-alone (aka _bring your vectors_) or with a variety of [modules](./modules/index.md) that can do the vectorization for you and extend the core capabilities.
-* Weaviate has a [GraphQL-API](./references/graphql/index.md) to access your data easily.
+* Weaviate has a [GraphQL-API](./api/graphql/index.md) to access your data easily.
 * ​Weaviate ia fast (check our [open source benchmarks](./benchmarks/index.md)).
 
 **Weaviate in detail**: Weaviate is a low-latency vector search engine with out-of-the-box support for different media types (text, images, etc.). It offers Semantic Search, Question-Answer Extraction, Classification, Customizable Models (PyTorch/TensorFlow/Keras), etc. Built from scratch in Go, Weaviate stores both objects and vectors, allowing for combining vector search with structured filtering and the fault tolerance of a cloud-native database. It is all accessible through GraphQL, REST, and various client-side programming languages.
@@ -139,13 +139,13 @@ Weaviate lets you search through your data even if it's currently being imported
 
 Within Weaviate, all individual data objects are based on a class property structure where a vector represents each data object. You can connect data objects (like in a traditional graph) and search for data objects in the vector space.
 
-You can add data to Weaviate through the [RESTful API](./references/rest/index.md) end-points and retrieve data through the [GraphQL interface](./references/graphql/index.md). 
+You can add data to Weaviate through the [RESTful API](./api/rest/index.md) end-points and retrieve data through the [GraphQL interface](./api/graphql/index.md). 
 
-Weaviate's [vector indexing mechanism is modular](./architecture/vector-index-plugins.md), and the current available plugin is the Hierarchical Navigable Small World (HNSW) multilayered graph.
+Weaviate's [vector indexing mechanism is modular](./concepts/vector-index-plugins.md), and the current available plugin is the Hierarchical Navigable Small World (HNSW) multilayered graph.
 
 ## What are Weaviate modules?
 
-Weaviate modules are used to extend Weaviate's capabilities and are optional. There are Weaviate modules that automatically vectorize your content (i.e., `*2vec`) or extend Weaviate's capabilities (often related to the type of vectors you have.) You can also create your own modules. Click [here](./core-knowledge/modules.md) to learn more about them.
+Weaviate modules are used to extend Weaviate's capabilities and are optional. There are Weaviate modules that automatically vectorize your content (i.e., `*2vec`) or extend Weaviate's capabilities (often related to the type of vectors you have.) You can also create your own modules. Click [here](./concepts/modules.md) to learn more about them.
 
 ## What is a vector search engine?
 
@@ -178,9 +178,9 @@ People use Weaviate for cases such as semantic search, image search, similarity 
 Want to get started or want to learn more? These resources might help you further:
 
 - Try out Weaviate:
-    - [Quickstart tutorial](./getting-started/index.md)
+    - [Quickstart tutorial](./quickstart/index.md)
 - Learn about Weaviate:
-    - [Concepts](./core-knowledge/index.md)
+    - [Concepts](./concepts/index.md)
 
 ## More resources
 

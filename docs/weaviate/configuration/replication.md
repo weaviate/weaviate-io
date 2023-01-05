@@ -23,10 +23,10 @@ import Badges from '/_includes/badges.mdx';
 Weaviate instances can be replicated to increase availability, read throughput and enable zero downtime upgrades. On this page, you will learn how to set replication for your Weaviate instance.
 
 :::caution Note:
-From v1.17, you can set the Replication Factor per class in the schema. Consistency levels are tunable in queries, which will be available from v1.18 (except for [read consistency for objects by ID](../architecture/replication-architecture/consistency.html#tunable-read-consistency), which is tunable from v1.17). 
+From v1.17, you can set the Replication Factor per class in the schema. Consistency levels are tunable in queries, which will be available from v1.18 (except for [read consistency for objects by ID](../concepts/replication-architecture/consistency.md#tunable-read-consistency), which is tunable from v1.17). 
 :::
 
-Read more about how Replication is designed and built in Weaviate on the [Replication Architecture](../architecture/replication-architecture/index.html) pages.
+Read more about how Replication is designed and built in Weaviate on the [Replication Architecture](../concepts/replication-architecture/index.md) pages.
 
 ## How to configure: Schema
 
@@ -67,7 +67,7 @@ The data schema has a write consistency level of `ALL`, which means when you upl
 
 ## How to use: Queries
 
-When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available consistency levels are ONE, QUORUM (n/2+1) and ALL. Read more about consistency level [here](../architecture/replication-architecture/consistency.html).
+When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available consistency levels are ONE, QUORUM (n/2+1) and ALL. Read more about consistency level [here](../concepts/replication-architecture/consistency.md).
 
 The `consistency_level` can be specified at query time. 
 

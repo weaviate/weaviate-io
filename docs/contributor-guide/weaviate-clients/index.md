@@ -27,8 +27,8 @@ There are currently four clients developed for Weaviate's APIs:
 
 These clients, and all future clients are and will be developed according to the following guidelines:
 
-1. Every client *must* reflect all features of the [RESTful API one-to-one](/docs/weaviate/references/rest/index.md).
-2. Every client *must* reflect all functions of [GraphQL API](/docs/weaviate/references/graphql/index.md) (1-1 where possible).
+1. Every client *must* reflect all features of the [RESTful API one-to-one](/docs/weaviate/api/rest/index.md).
+2. Every client *must* reflect all functions of [GraphQL API](/docs/weaviate/api/graphql/index.md) (1-1 where possible).
 3. Clients *can* have client-specific, extra or unique features:
    1. These features on top of the 1-1 RESTful and GraphQL functionalities must be defined through a user story, which will also be reflected in the documentation.
    2. These features can be solved in a client's native way (follow the current design of the client for consistency)

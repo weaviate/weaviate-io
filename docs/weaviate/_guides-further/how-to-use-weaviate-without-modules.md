@@ -125,13 +125,13 @@ import HowToAddData from '/_includes/code/howto.customvectors.adddata.mdx';
 <!-- TODO - Should write a standard snippet about querying data objects (w/ vectors in results) -->
 Your instance of Weaviate should now include those data objects, including our own vectors which we assigned above.
 
-Check the [API reference](../references/rest/objects.md#create-a-data-object-with-custom-vectors) for more information around creating objects.
+Check the [API reference](../api/rest/objects.md#create-a-data-object-with-custom-vectors) for more information around creating objects.
 
 ## Query and search through data
 
 Importantly, Weaviate still remains capable of performing vector searches even without vectorizer modules. 
 
-Searching for and by vectors can be done with GraphQL as it does in other cases. For instance, you can perform a vector search with Weaviate by entering a vector to search for using the [`nearVector` filter](../references/graphql/vector-search-parameters.md#nearVector). 
+Searching for and by vectors can be done with GraphQL as it does in other cases. For instance, you can perform a vector search with Weaviate by entering a vector to search for using the [`nearVector` filter](../api/graphql/vector-search-parameters.md#nearVector). 
 
 Let's try out one such example here:
 

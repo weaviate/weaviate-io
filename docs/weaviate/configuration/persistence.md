@@ -90,7 +90,7 @@ See [Backups](./backups).
 
 ## Kubernetes
 
-For Kubernetes setup, the only thing to bear in mind is that Weaviate needs a `PersistentVolumes` through `PersistentVolumeClaims` ([more info](/docs/weaviate/getting-started/installation.md#requirements)) but the Helm chart is already configured to store the data on an external volume.
+For Kubernetes setup, the only thing to bear in mind is that Weaviate needs a `PersistentVolumes` through `PersistentVolumeClaims` ([more info](/docs/weaviate/quickstart/installation.md#requirements)) but the Helm chart is already configured to store the data on an external volume.
 
 ## Disk Pressure Warnings and Limits
 
@@ -103,7 +103,7 @@ Starting with `v1.12.0` there are two levels of disk usage notifications and act
 
 If a shard was marked `READONLY` due to disk pressure and you want to mark the
 shard as ready again (either because you have made more space available or
-changed the thresholds) you can use the [Shards API](../references/rest/schema.md#inspect-the-shards-of-a-class) to do so.
+changed the thresholds) you can use the [Shards API](../api/rest/schema.md#inspect-the-shards-of-a-class) to do so.
 
 ## More Resources
 

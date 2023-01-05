@@ -47,7 +47,7 @@ When you are ready to share your work, create a pull request in [Awesome Weaviat
 
 ## Resources
 
-* [Guides by Weaviate](/docs/weaviate/guides/index.md)
+* [Tutorials by Weaviate](/docs/weaviate/tutorials/index.md)
 * [Example Datasets](/docs/weaviate/more-resources/example-datasets.md)
 * [Podcasts by Weaviate](/podcast)
 * [Developer Style Guide (FreeCodeCamp)](https://www.freecodecamp.org/news/developer-news-style-guide/)

@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: layout-documentation
 solution: weaviate
 sub-menu: Roadmap
@@ -10,7 +10,7 @@ open-graph-type: article
 toc: true
 redirect_from:
     - /docs/weaviate/architecture/roadmap.html
----
+--- -->
 import Badges from '/_includes/badges.mdx';
 
 <Badges/>

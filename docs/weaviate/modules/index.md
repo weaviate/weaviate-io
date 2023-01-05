@@ -16,7 +16,7 @@ import Badges from '/_includes/badges.mdx';
 ## Overview
 
 :::info Not what you are after?
-We also have pages on [how to **configure** Weaviate to use particular modules](../configuration/modules.md), and on [**concepts** related to modules](../core-knowledge/modules.md) in general.
+We also have pages on [how to **configure** Weaviate to use particular modules](../configuration/modules.md), and on [**concepts** related to modules](../concepts/modules.md) in general.
 :::
 
 This section describes Weaviate's individual modules, including their capabilities and how to use them. 
@@ -33,10 +33,10 @@ Modules can be "vectorizers" (defines how the numbers in the vectors are chosen 
   - Other modules: `<functionality>-<name>-<optional>`, for example `qna-transformers`. 
   - A module name must be url-safe, meaning it must not contain any characters which would require url-encoding.
   - A module name is not case-sensitive. `text2vec-bert` would be the same module as `text2vec-BERT`.
-- Module information is accessible through the [`v1/modules/<module-name>/<module-specific-endpoint>` RESTful endpoint](../references/rest/modules.md).
-- General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](../references/rest/meta.md).
-- Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](../references/graphql/additional-properties.md).
-- A module can add [filters](../references/graphql/filters.md) in GraphQL queries.
+- Module information is accessible through the [`v1/modules/<module-name>/<module-specific-endpoint>` RESTful endpoint](../api/rest/modules.md).
+- General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](../api/rest/meta.md).
+- Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](../api/graphql/additional-properties.md).
+- A module can add [filters](../api/graphql/filters.md) in GraphQL queries.
 - Which vectorizer and other modules are applied to which data classes is configured in the [schema](../configuration/schema-configuration.md#vectorizer).
 
 ## Default vectorizer module

@@ -15,7 +15,7 @@ URL_IGNORES: ${URL_IGNORES}|${DOCUSAURUS_IGNORES}
 linkinator $NETLIFY_URL \
 --recurse \
 --skip "${URL_IGNORES}|${DOCUSAURUS_IGNORES}" \
---timeout 10000 \
+--timeout 5000 \
 --verbosity error \
 --url-rewrite-search "https://weaviate.io" \
 --url-rewrite-replace "${NETLIFY_URL}"

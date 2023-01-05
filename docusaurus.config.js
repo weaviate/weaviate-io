@@ -4,6 +4,8 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
+const siteRedirects = require('./site.redirects');
+
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -23,7 +25,13 @@ const config = {
     // If you aren't using GitHub pages, you don't need these.
     organizationName: 'semi-technologies', // Usually your GitHub org/user name.
     projectName: 'weaviate-io', // Usually your repo name.
-    plugins: ['docusaurus-plugin-sass'],
+    plugins: [
+        'docusaurus-plugin-sass',
+        [
+            '@docusaurus/plugin-client-redirects',
+            siteRedirects
+        ]
+    ],
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want

@@ -65,7 +65,7 @@ services:
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/docs/weaviate/getting-started/schema.md) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/docs/weaviate/quickstart/schema.md) first.
 
 For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-openai` using the `babbage` model.
 
@@ -107,7 +107,7 @@ For example, the following schema configuration will set Weaviate to vectorize t
 ## How to use
 
 * If the OpenAI API key is not set in the `text2vec-​openai` module, you can set the API key on query time by adding the following to the HTTP header: `X-OpenAI-Api-Key: <openai-api-key>`.
-* Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](/docs/weaviate/references/graphql/vector-search-parameters.md#neartext).
+* Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](/docs/weaviate/api/graphql/vector-search-parameters.md#neartext).
 
 ### Example
 
@@ -125,7 +125,29 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 ### Available models
 
-OpenAI has multiple models available with different trade-offs. All the models offered by OpenAI can be used within Weaviate. Note that the more dimensions a model produces, the larger your data footprint will be. To estimate the total size of your dataset use [this](/docs/weaviate/architecture/resources.md#an-example-calculation) calculation.
+OpenAI has multiple models available with different trade-offs. All the models offered by OpenAI can be used within Weaviate. Note that the more dimensions a model produces, the larger your data footprint will be. To estimate the total size of your dataset use [this](/docs/weaviate/concepts/resources.md#an-example-calculation) calculation.
+
+The default model is: `text-embedding-ada-002` but you can also specify it in your schema. An example as part of a class definition:
+
+```json
+{
+  "classes": [
+    {
+      "class": "Document",
+      "vectorizer": "text2vec-openai",
+      "moduleConfig": {
+        "text2vec-openai": {
+          "model": "ada",
+          "modelVersion": "002",
+          "type": "text"
+        }
+      }
+    }
+  ]
+}
+```
+
+### Legacy models
 
 The default model is: `text-embedding-ada-002` but you can also specify it in your schema. An example as part of a class definition:
 

@@ -191,7 +191,7 @@ Then you can send REST requests to it directly, e.g. `curl localhost:9090/vector
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/docs/weaviate/getting-started/schema.md) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/docs/weaviate/quickstart/schema.md) first.
 
 For example:
 
@@ -230,7 +230,7 @@ For example:
 
 ## How to use
 
-* New GraphQL vector search parameters made available by this module can be found [here](/docs/weaviate/references/graphql/vector-search-parameters.md#neartext).
+* New GraphQL vector search parameters made available by this module can be found [here](/docs/weaviate/api/graphql/vector-search-parameters.md#neartext).
 
 ### Example
 

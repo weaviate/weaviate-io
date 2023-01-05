@@ -292,7 +292,7 @@ import CodeBackupStatusRestore from '/_includes/code/backup.status.restore.mdx';
 
 The backup process is designed to be minimally invasive to a running setup. Even on very large setups, where terabytes of data need to be copied, Weaviate stays fully usable during backup. It even accepts write requests while a backup process is running. This sections explains how backups work under the hood and why Weaviate can safely accept writes while a backup is copied.
 
-Weaviate uses a custom [LSM Store](../architecture/storage.md#object-and-inverted-index-store) for it's object store and inverted index. LSM stores are a hybrid of immutable disk segments and an in-memory structure called a memtable that accepts all writes (including updates and deletes). Most of the time, files on disk are immutable, there are only three situations where files are changed:
+Weaviate uses a custom [LSM Store](../concepts/storage.md#object-and-inverted-index-store) for it's object store and inverted index. LSM stores are a hybrid of immutable disk segments and an in-memory structure called a memtable that accepts all writes (including updates and deletes). Most of the time, files on disk are immutable, there are only three situations where files are changed:
 
 1. Anytime a memtable is flushed. This creates a new segment. Existing segments are not changed.
 2. Any write into the memtable is also written into a Write-Ahead-Log (WAL). The WAL is only needed for disaster-recovery. Once a segment has been orderly flushed, the WAL can be discarded.
