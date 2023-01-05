@@ -1,3 +1,31 @@
+[data-theme='light'] {
+  .cards {
+    .left {
+      background-image: url('../../../static/img/site/card-1-light.png');
+    }
+    .middle {
+      .smallUp {
+        background-image: url('../../../static/img/site/card-2-light.png');
+      }
+      .smallDown {
+        background-image: url('../../../static/img/site/card-3-light.png');
+      }
+    }
+    .right {
+      .smallUp {
+        background-image: url('../../../static/img/site/card-4-light.png');
+      }
+      .smallDown {
+        background-image: url('../../../static/img/site/card-5-light.png');
+      }
+    }
+  }
+
+  .title {
+    padding: 50px;
+    color: #fff;
+  }
+}
 .cards {
   display: flex;
   flex-direction: row;
@@ -24,6 +52,7 @@
     }
     .title {
       padding: 50px;
+      color: #fff;
     }
   }
   .middle {
@@ -90,7 +119,7 @@
     }
     .smallDown {
       border-radius: 25px;
-      background-image: url('../../../static/img/site/card-4.png');
+      background-image: url('../../../static/img/site/card-5.png');
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 180px;

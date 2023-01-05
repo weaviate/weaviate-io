@@ -85,7 +85,8 @@
     width: 98%;
     transition: background 0.256s ease-out, border-color 0.256s ease-out,
       border-radius 0.256s ease-out, color 0.256s ease-out,
-      opacity 0.256s ease-out, outline 0.256s ease-out, transform 0.256s ease-out;
+      opacity 0.256s ease-out, outline 0.256s ease-out,
+      transform 0.256s ease-out;
     border: 3px solid transparent;
     border-top-left-radius: 1.5em;
     border-top-right-radius: 1.5em;
@@ -103,7 +104,8 @@
   .__multilineContainer .__opened {
     transition: background 0.128s ease-out, border-color 0.128s ease-out,
       border-radius 0.128s ease-out, color 0.128s ease-out,
-      opacity 0.128s ease-out, outline 0.128s ease-out, transform 0.128s ease-out;
+      opacity 0.128s ease-out, outline 0.128s ease-out,
+      transform 0.128s ease-out;
     border-radius: 1.5em;
     border-bottom-left-radius: 0;
     outline: none;
@@ -121,7 +123,7 @@
   }
   .__multilineContainer .__multilineOptions .__disabledOption {
     cursor: default;
-  }  
+  }
   .__multilineContainer
     .__multilineOptions
     .__multilineOption
@@ -144,7 +146,8 @@
     width: 98%;
     transition: background 0.256s ease-out, border-color 0.256s ease-out,
       border-radius 0.256s ease-out, color 0.256s ease-out,
-      opacity 0.256s ease-out, outline 0.256s ease-out, transform 0.256s ease-out;
+      opacity 0.256s ease-out, outline 0.256s ease-out,
+      transform 0.256s ease-out;
     border: 3px solid transparent;
     border-top-left-radius: 1.5em;
     border-top-right-radius: 1.5em;
@@ -156,7 +159,8 @@
   .__simpleTextInput:focus {
     transition: background 0.128s ease-out, border-color 0.128s ease-out,
       border-radius 0.128s ease-out, color 0.128s ease-out,
-      opacity 0.128s ease-out, outline 0.128s ease-out, transform 0.128s ease-out;
+      opacity 0.128s ease-out, outline 0.128s ease-out,
+      transform 0.128s ease-out;
     border-radius: 1.5em;
     border-bottom-left-radius: 0;
     outline: none;
@@ -164,7 +168,8 @@
   .__simpleButton {
     transition: background 0.256s ease-out, border-color 0.256s ease-out,
       border-radius 0.256s ease-out, color 0.256s ease-out,
-      opacity 0.256s ease-out, outline 0.256s ease-out, transform 0.256s ease-out;
+      opacity 0.256s ease-out, outline 0.256s ease-out,
+      transform 0.256s ease-out;
     border: 0 !important;
     border-radius: 0.5em 0.5em 0.5em 0;
     font-family: Alegreya Sans, sans-serif;
@@ -175,7 +180,8 @@
   .__simpleButton:hover {
     transition: background 0.128s ease-out, border-color 0.128s ease-out,
       border-radius 0.128s ease-out, color 0.128s ease-out,
-      opacity 0.128s ease-out, outline 0.128s ease-out, transform 0.128s ease-out;
+      opacity 0.128s ease-out, outline 0.128s ease-out,
+      transform 0.128s ease-out;
     border-radius: 0.5em 0 0.5em 0.5em;
     outline-width: 0;
   }
@@ -221,7 +227,7 @@
   }
   .__previousStepContainer .__previousStepHelper:hover {
     text-decoration: underline;
-  }  
+  }
 }
 
 .theme-doc-sidebar-menu {
@@ -245,6 +251,105 @@
   --ifm-color-primary-lightest: #fd94bf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+[data-theme='light'] {
+  --ifm-heading-color: #2d3197;
+  --ifm-font-color-base: #7072aa;
+  --ifm-link-color: #2d3197;
+  --ifm-navbar-link-color: #2d3197;
+
+  svg {
+    path {
+      fill: #2d3197;
+    }
+  }
+  .footer__copyright {
+    color: #7072aa;
+  }
+  .footer__title {
+    color: #7072aa;
+  }
+  .footer__link-item {
+    color: #7072aa;
+  }
+}
+
+/* Styling for both modes  */
+.hero__logo {
+  width: 100%;
+  background-position-x: center;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../../static/img/site/weaviate-logo-main.png');
+
+  @media screen and (max-width: 768px) {
+    height: 150px;
+  }
+}
+
+.hero__subtitle {
+  font-size: 1.2rem;
+  text-align: center;
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.hero__title {
+  text-align: center;
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.container {
+  padding: 3rem;
+  @media screen and (max-width: 768px) {
+    padding: 2rem;
+  }
+}
+
+/* light mode */
+
+#__docusaurus {
+  background: rgb(249, 201, 222);
+  background: linear-gradient(
+    45deg,
+    rgba(249, 201, 222, 1) 0%,
+    rgba(252, 222, 213, 1) 21%,
+    rgba(255, 247, 202, 1) 50%,
+    rgba(225, 237, 194, 1) 64%,
+    rgba(187, 216, 231, 1) 100%
+  );
+}
+
+.navbar {
+  background: transparent;
+  box-shadow: none;
+}
+
+.navbar--fixed-top {
+  position: relative;
+}
+
+.footer {
+  background: transparent;
+  .container {
+    border-top: 0.5px solid #00b800;
+  }
+}
+
+.navbar__logo {
+  img {
+    display: none;
+  }
+  width: 200px;
+  height: 4rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 4rem;
+  background-image: url('../../static/img/site/weaviate-logo.png');
+}
 
 /* Styling one class specially in dark mode */
 
@@ -258,51 +363,17 @@
       rgba(25, 16, 92, 1) 96%
     );
   }
-  .container {
-    padding: 3rem;
-    @media screen and (max-width: 768px) {
-      padding: 2rem;
+
+  .navbar__logo {
+    img {
+      display: none;
     }
-  }
-  .hero__logo {
-    width: 100%;
-    background-position-x: center;
-    height: 200px;
+    width: 200px;
+    height: 4rem;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../static/img/site/weaviate-logo-main.png');
-
-    @media screen and (max-width: 768px) {
-      height: 150px;
-    }
-  }
-  .hero__subtitle {
-    font-size: 1.2rem;
-    text-align: center;
-    @media screen and (max-width: 768px) {
-      font-size: 1rem;
-    }
-  }
-
-  .hero__title {
-    color: #ffffff;
-    text-align: center;
-    @media screen and (max-width: 768px) {
-      font-size: 2rem;
-    }
-  }
-
-  .navbar {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 1) 4%,
-      rgba(17, 11, 62, 1) 50%,
-      rgba(25, 16, 92, 1) 96%
-    );
-  }
-  .navbar__logo {
     height: 4rem;
+    background-image: url('../../static/img/site/weaviate-logo.png');
   }
   .footer--dark {
     background: rgb(0, 0, 0);
@@ -320,20 +391,20 @@
 
   // Weaviate configurator properties
   .__ConfigurationOption .__accordion {
-    background-color: rgba(200, 200, 200, 0.05);    
+    background-color: rgba(200, 200, 200, 0.05);
     border: 1px solid rgba(125, 125, 125, 0.5);
     color: #fff;
   }
   .__ConfigurationOption .__accordion .__accordionSummary {
-    background-color: rgba(50, 50, 50, 0.05);    
+    background-color: rgba(50, 50, 50, 0.05);
     border-bottom: 1px solid rgba(125, 125, 125, 0.5);
     color: #fff;
-  }  
+  }
   .__multilineContainer .__multilineSelect {
     background: rgb(15, 0, 50);
     border-bottom-color: #fa0171;
     color: #fff;
-  }  
+  }
   .__multilineContainer .__opened {
     border: 3px solid #d611b5;
   }
@@ -343,7 +414,7 @@
   }
   .__multilineContainer .__multilineOptions .__multilineOption {
     border-bottom: 1px solid rgb(15, 0, 50);
-  }  
+  }
   .__multilineContainer .__multilineOptions .__multilineOption:hover {
     background: rgb(15, 0, 50);
   }
@@ -352,12 +423,12 @@
   }
   .__multilineContainer .__multilineOptions .__disabledOption:hover {
     background: rgb(15, 0, 50);
-  }  
+  }
   .__simpleTextInput {
     background: rgb(15, 0, 50);
     border-bottom-color: #fa0171;
     color: rgb(15, 0, 50);
-  }  
+  }
   .__simpleTextInput:focus {
     border: 3px solid rgb(15, 0, 50);
   }
@@ -369,11 +440,11 @@
     background: #fa0171;
     border-bottom: 2px solid #636363;
     color: rgb(15, 0, 50);
-  }  
+  }
   .__instructions .__code .__codeBlock {
     border: 1px solid #313131;
     background: rgb(15, 0, 50);
-  }  
+  }
 }
 
 [data-theme='light'] {
@@ -384,12 +455,12 @@
   .__ConfigurationOption .__accordion .__accordionSummary {
     background-color: rgba(0, 0, 0, 0.03);
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-  }  
+  }
   .__multilineContainer .__multilineSelect {
     background: #fff;
     border-bottom-color: #fa0171;
     color: #00152b;
-  }  
+  }
   .__multilineContainer .__opened {
     border: 3px solid #38d611;
   }
@@ -399,7 +470,7 @@
   }
   .__multilineContainer .__multilineOptions .__multilineOption {
     border-bottom: 1px solid #eaeaea;
-  }  
+  }
   .__multilineContainer .__multilineOptions .__multilineOption:hover {
     background: #eaeaea;
   }
@@ -408,12 +479,12 @@
   }
   .__multilineContainer .__multilineOptions .__disabledOption:hover {
     background: #fff;
-  }  
+  }
   .__simpleTextInput {
     background: #fff;
     border-bottom-color: #fa0171;
     color: #00152b;
-  }  
+  }
   .__simpleTextInput:focus {
     border: 3px solid #38d611;
   }
@@ -425,9 +496,9 @@
     background: #fa0171;
     border-bottom: 2px solid #fa0171;
     color: #fff;
-  }  
+  }
   .__instructions .__code .__codeBlock {
     border: 1px solid #d1d1d1;
     background: #f7f7f7;
-  }  
-}  
+  }
+}

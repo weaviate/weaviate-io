@@ -13,7 +13,15 @@
 
 .links {
   text-align: center;
-  .blue {
+  .color {
     color: #01b0db;
+  }
+}
+
+[data-theme='light'] {
+  .links {
+    .color {
+      color: --ifm-link-color;
+    }
   }
 }

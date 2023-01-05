@@ -13,7 +13,7 @@ export default function HomepageReady() {
         </p>
         <p>
           or request access to the{' '}
-          <Link className={styles.blue} to="#">
+          <Link className={styles.color} to="#">
             Weaviate Cloud Services {'>'}{' '}
           </Link>
         </p>

@@ -16,7 +16,7 @@ const config = {
     trailingSlash: false,
     // onBrokenLinks: 'throw',
     onBrokenLinks: 'ignore',
-    onBrokenMarkdownLinks: 'warn',
+    onBrokenMarkdownLinks: 'ignore',
     favicon: 'img/favicon.ico',
 
     // GitHub pages deployment config.
@@ -44,22 +44,20 @@ const config = {
                     // Remove this to remove the "edit this page" links.
                     editUrl:
                         'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/',
-                        // TODO: Update to 'main' for release
-                        // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
+                    // TODO: Update to 'main' for release
+                    // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
                     path: 'docs', // folder name – where the docs are
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
-                    remarkPlugins: [
-                        remarkReplace
-                    ]
+                    remarkPlugins: [remarkReplace],
                 },
                 blog: {
                     showReadingTime: true,
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     editUrl:
-                        'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/'
-                        // TODO: Update to 'main' for release
-                        // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
+                        'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/',
+                    // TODO: Update to 'main' for release
+                    // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
                 },
                 theme: {
                     customCss: [require.resolve('./src/css/custom.scss')],
@@ -141,7 +139,7 @@ const config = {
                                 label: 'Try Now',
                                 href: 'https://console.semi.technology/',
                             },
-                        ]
+                        ],
                     },
                 ],
             },

@@ -1,3 +1,4 @@
 module.exports = {
-  presets: [require.resolve('@docusaurus/core/lib/babel/preset')],
+    plugins: ['macros'],
+    presets: [require.resolve('@docusaurus/core/lib/babel/preset')],
 };
