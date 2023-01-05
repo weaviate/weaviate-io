@@ -339,16 +339,17 @@
   }
 }
 
-.navbar__logo {
-  img {
-    display: none;
+[data-theme='light'] {
+  .navbar__logo {
+    img {
+      display: none;
+    }
+    width: 200px;
+    height: 4rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../static/img/site/w-logo-small.png');
   }
-  width: 200px;
-  height: 4rem;
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 4rem;
-  background-image: url('../../static/img/site/weaviate-logo.png');
 }
 
 /* Styling one class specially in dark mode */
@@ -369,10 +370,9 @@
       display: none;
     }
     width: 200px;
-    height: 4rem;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 4rem;
+    height: 5rem;
     background-image: url('../../static/img/site/weaviate-logo.png');
   }
   .footer--dark {
