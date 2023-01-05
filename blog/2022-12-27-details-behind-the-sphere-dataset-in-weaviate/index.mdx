@@ -7,7 +7,7 @@ tags: []
 image: ./img/hero.png
 ---
 
-Earlier in December, we wrote [a blog post](sphere-dataset-in-weaviate.html) about importing the Sphere dataset into Weaviate. In that post, we talked about what the Sphere dataset is, announced the release of the Sphere dataset files for Weaviate, and shared how you can use Weaviate to search through large datasets like Sphere. More specifically, we provided a short guide on how you could import Sphere into Weaviate using Python as well as Spark, before finishing with example queries on the entire Sphere dataset. If you haven’t checked that out we recommend you have a quick look!
+Earlier in December, we wrote [a blog post](/blog/sphere-dataset-in-weaviate) about importing the Sphere dataset into Weaviate. In that post, we talked about what the Sphere dataset is, announced the release of the Sphere dataset files for Weaviate, and shared how you can use Weaviate to search through large datasets like Sphere. More specifically, we provided a short guide on how you could import Sphere into Weaviate using Python as well as Spark, before finishing with example queries on the entire Sphere dataset. If you haven’t checked that out we recommend you have a quick look!
 
 In this post, we will pull back the curtains and go behind the scenes to show you how we got all of that data into Weaviate. You will see all the gory details of what it took to get all ~1 billion (898 million) article snippet objects from Sphere and their vector representations into Weaviate. We’ll also dive into the hardware and software setup that was used along with the performance metrics behind the import process.
 
@@ -35,7 +35,7 @@ To set up our cluster we provisioned 6 Node GKE’s (Google Kubernetes Engine) l
 
 #### Weaviate
 
-We deployed 6 instances of Weaviate (one on each GKE node with automatic sharding per node for a total of 6 shards) where we gave Weaviate the entirety of the resources available on the machine. Additionally, each Weaviate instance had 1800 GiB of disk memory and the `text2vec-huggingface` vectorizer module enabled. We didn’t need to perform any vectorization of the dataset because the Sphere dataset comes with pre-computed vectors, the vectorizer module was meant to vectorize queries only. The Weaviate version used was built from v1.16.0 with a preview of the Hybrid Search functionality. You can see an example of the hybrid search in action in our [previous post](sphere-dataset-in-weaviate.html) and [last week with v1.17](Weaviate-release-1-17.html) we officially released this Hybrid Search functionality for you to try as well!
+We deployed 6 instances of Weaviate (one on each GKE node with automatic sharding per node for a total of 6 shards) where we gave Weaviate the entirety of the resources available on the machine. Additionally, each Weaviate instance had 1800 GiB of disk memory and the `text2vec-huggingface` vectorizer module enabled. We didn’t need to perform any vectorization of the dataset because the Sphere dataset comes with pre-computed vectors, the vectorizer module was meant to vectorize queries only. The Weaviate version used was built from v1.16.0 with a preview of the Hybrid Search functionality. You can see an example of the hybrid search in action in our [previous post](/blog/sphere-dataset-in-weaviate) and [last week with v1.17](/blog/Weaviate-release-1-17) we officially released this Hybrid Search functionality for you to try as well!
 
 #### Using the Spark Connector
 
@@ -98,7 +98,7 @@ df.withColumnRenamed("id",
 
 When this is done, your instance of Weaviate should have finished ingesting the specified data from Spark and be ready to go. The entire import took approximately 48 hours for us, but your mileage may vary of course, depending on your setup and how much of the Sphere data you are importing.
 
-With the setup above our main goal was to look at system performance while importing 1B objects but we are working on another, further scalable solution using technologies such as [Vamana](https://github.com/microsoft/DiskANN), and HNSW+PQ. Vamana will allow for disk based Approximate Nearest Neighbours(ANN) search and with HNSW+PQ we are using HNSW to build and search a graph over product quantized (PQ) encoded, compressed vectors. Both of these developments should help with memory usage at scale - if you’d like to dig deeper have a read [here](ANN-algorithms-Vamana-vs-HNSW.html). More to come on this as we get into the new year, this is just a sneak peek at what our engineering team is cooking up for all of you!
+With the setup above our main goal was to look at system performance while importing 1B objects but we are working on another, further scalable solution using technologies such as [Vamana](https://github.com/microsoft/DiskANN), and HNSW+PQ. Vamana will allow for disk based Approximate Nearest Neighbours(ANN) search and with HNSW+PQ we are using HNSW to build and search a graph over product quantized (PQ) encoded, compressed vectors. Both of these developments should help with memory usage at scale - if you’d like to dig deeper have a read [here](/blog/ANN-algorithms-Vamana-vs-HNSW). More to come on this as we get into the new year, this is just a sneak peek at what our engineering team is cooking up for all of you!
 
 ## Import Performance Metrics
 ![Magnifying Glass](./img/magnifying-glass.png)

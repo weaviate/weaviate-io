@@ -25,7 +25,7 @@ The architecture that guides the principles for Weaviate’s replication systems
 * Weaviate is sometimes used alongside strongly consistent, transactional databases if transactional data exists in a use case. In cases where Weaviate is used as the primary database, data is typically not transactional.
 * Weaviate’s users have a lot of experience working with cloud-native technologies, including NoSQL databases, and know how an application needs to be structured to deal with eventually consistent systems correctly.
 
-Based on the above usage patterns, and keeping the [CAP theorem](./index.html#cap-theorem) trade-offs in mind, Weaviate’s replication architecture **prefers availability over consistency**. Nevertheless, individual requests might have stricter consistency requirements than others. For those cases, Weaviate offers both [tunable read and write consistency](./consistency.html).
+Based on the above usage patterns, and keeping the [CAP theorem](./index.md#cap-theorem) trade-offs in mind, Weaviate’s replication architecture **prefers availability over consistency**. Nevertheless, individual requests might have stricter consistency requirements than others. For those cases, Weaviate offers both [tunable read and write consistency](./consistency.html).
 
 
 ## Reasons for a leaderless architecture
@@ -36,7 +36,7 @@ Weaviate’s replication architecture is inspired by other modern, internet-scal
 
 As with many of Weaviate features, Replication is rolled out in multiple phases. This does not mean that the first release with replication is to be considered incomplete. But instead it means that Replication is an umbrella term that accompanies many features that work together to achieve the various goals of replication. The most significant of those are contained in the first release (v1.17), but some may only follow in subsequent releases, such as v1.18 and v1.19. 
 
-The motivation behind this phased roll-out is two-fold; First, not everyone has the same requirements, and the feature set included in the first release is sufficient for many use cases. You can use the [Replication Roadmap](./index.html#roadmap) section to make an informed decision. Secondly, your feedback and learning about your needs are extremely valuable to guide the future releases of features. By releasing early and often, we can reduce the time to get valuable feedback.
+The motivation behind this phased roll-out is two-fold; First, not everyone has the same requirements, and the feature set included in the first release is sufficient for many use cases. You can use the [Replication Roadmap](./index.md#roadmap) section to make an informed decision. Secondly, your feedback and learning about your needs are extremely valuable to guide the future releases of features. By releasing early and often, we can reduce the time to get valuable feedback.
 
 
 ## More Resources
