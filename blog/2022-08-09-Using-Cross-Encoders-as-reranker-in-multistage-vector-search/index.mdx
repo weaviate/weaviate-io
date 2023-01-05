@@ -37,7 +37,7 @@ Vector search engines like [Weaviate](/developers/weaviate/) use Bi-Encoder mach
 
 The models that compute **dense vector embeddings for data** (which later can be used for **search queries**) are so-called *Bi-Encoder models*. Data vectors and query vectors can be compared by computing the similarity (for example cosine similarity) between vectors. All data items in the database can be represented by a vector embedding using a Bi-Encoder model.
 
-> Note. Vector search engines **compute** dense vector embeddings **during import**. Calculating vectors up-front coupled with [ANN algorithms](/developers/weaviate/architecture/vector-index-plugins) (for faster retrieval) makes working with Bi-Encoder highly efficient.
+> Note. Vector search engines **compute** dense vector embeddings **during import**. Calculating vectors up-front coupled with [ANN algorithms](/developers/weaviate/concepts/vector-index-plugins) (for faster retrieval) makes working with Bi-Encoder highly efficient.
 
 ![Vector Search Engine](./img/vector-database.png)
 

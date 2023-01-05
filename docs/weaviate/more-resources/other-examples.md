@@ -18,7 +18,7 @@ You can find more examples with Weaviate [here](https://github.com/semi-technolo
 
 |Title|Language|Description|
 |---|---|---|
-| [Google Colab notebook: Getting started with the Python Client](https://github.com/semi-technologies/weaviate-examples/tree/main/quickstart-with-python-client-colab) | python (Google Colab) | Google Colab notebook to learn to get started with the Python client. Contains plenty of example code. |
+| [Google Colab notebook: Getting started with the Python Client](https://github.com/semi-technologies/weaviate-examples/tree/main/getting-started-with-python-client-colab) | python (Google Colab) | Google Colab notebook to learn to get started with the Python client. Contains plenty of example code. |
 | [Demo dataset News Publications with Contextionary](https://github.com/semi-technologies/weaviate-examples/tree/main/weaviate-contextionary-newspublications) | yaml | Docker-compose configuration file of Weaviate with a News Publications demo dataset. |
 | [Demo dataset News Publications with Transformers, NER, Spellcheck and Q&A](https://github.com/semi-technologies/weaviate-examples/tree/main/weaviate-transformers-newspublications) | yaml | Docker-compose configuration file of Weaviate with a News Publications demo dataset. The vectorization is done by a text2vec-transformers module, and the spellcheck, Q&A and Named Entity Recognition module are connected. |
 | [Weaviate simple schema](https://github.com/semi-technologies/weaviate-examples/tree/main/schema-wines) | Python | Easy example of a schema and how to upload it to Weaviate with the Python client |

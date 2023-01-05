@@ -160,7 +160,7 @@ To compute the Hamming distance between two strings, you compare the position of
 
 ![XOR Operation](./img/hamming-xor.png){:width="40%"}
 
-There are three positions where the numbers are different (highlighted above). Therefore, the Hamming distance is equal to 3. [Norouzi et al.](https://papers.nips.cc/paper/2012/hash/59b90e1005a220e2ebc542eb9d950b1e-Abstract.html) stated that binary sequences are storage efficient and allow storing massive datasets in memory. There is a great page in the [Weaviate documentation](/developers/weaviate/architecture/binary-passage-retrieval) that explains this in more detail.
+There are three positions where the numbers are different (highlighted above). Therefore, the Hamming distance is equal to 3. [Norouzi et al.](https://papers.nips.cc/paper/2012/hash/59b90e1005a220e2ebc542eb9d950b1e-Abstract.html) stated that binary sequences are storage efficient and allow storing massive datasets in memory. There is a great page in the [Weaviate documentation](/developers/weaviate/concepts/binary-passage-retrieval) that explains this in more detail.
 
 ## How to Choose a Distance Metric 
 As a rule of thumb, it is best to use the distance metric that matches the model that you're using. For example, if you're using a [Siamese Neural Network](https://en.wikipedia.org/wiki/Siamese_neural_network) (SNN) the contrastive loss function incorporates the euclidean distance. Similarly, when fine-tuning your sentence transformer you define the loss function. The [CosineSimilarityLoss](https://www.sbert.net/docs/package_reference/losses.html#cosinesimilarityloss) takes two embeddings and computes the similarity based on the cosine similarity.
