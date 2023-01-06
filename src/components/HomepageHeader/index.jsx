@@ -15,13 +15,13 @@ export default function HomepageHeader() {
           apps painlessly
         </p>
         <div className={styles.buttons}>
-          <Link className="link" to="/developers/docs">
+          <Link className="link" to="/docs/weaviate">
             Documentation {'>'}
           </Link>
-          <Link className="link" to="/developers/docs/installation">
+          <Link className="link" to="/docs/weaviate/installation">
             Installation {'>'}
           </Link>
-          <Link className="link" to="/developers/docs">
+          <Link className="link" to="/docs/weaviate">
             Demo {'>'}
           </Link>
         </div>

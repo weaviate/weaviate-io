@@ -47,8 +47,8 @@ const config = {
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    path: 'developers', // folder name – where the docs are
-                    routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
+                    path: 'docs', // folder name – where the docs are
+                    routeBasePath: 'docs', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
                     
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
@@ -110,7 +110,7 @@ const config = {
                         items: [
                             {
                                 label: 'Docs',
-                                docId: 'docs/index',
+                                docId: 'weaviate/index',
                                 sidebarid: 'docsSidebar',
                                 type: 'doc',
                             },
@@ -160,7 +160,7 @@ const config = {
                     //   items: [
                     //     {
                     //       label: 'Tutorial',
-                    //       to: '/developers/weaviate/getting-started',
+                    //       to: '/docs/weaviate/getting-started',
                     //     },
                     //   ],
                     // },
