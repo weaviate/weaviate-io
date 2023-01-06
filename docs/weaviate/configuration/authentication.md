@@ -249,7 +249,7 @@ print("Set as bearer token in the clients to access Weaviate.")
 
 ### Token lifetime
 
-The token has a configurable expiry time that is set by the token issuer. We suggest establishing a workflow to periodically obtain a new token before expiry. The Weaviate client
+The token has a configurable expiry time that is set by the token issuer. We suggest establishing a workflow to periodically obtain a new token before expiry. 
 
 ## Add a Bearer to a Request
 
