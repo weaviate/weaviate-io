@@ -94,7 +94,7 @@ Weaviate is a database, and users want to reliably receive answers to their requ
 
 
 ## Replication vs Sharding
-Replication is not the same as sharding. [Sharding (horizontal scaling) was introduced to Weaviate in v1.8](../architecture/cluster.html).
+Replication is not the same as sharding. [Sharding (horizontal scaling) was introduced to Weaviate in v1.8](../cluster.md).
 
 * **Replication** copies the data to different server nodes. For Weaviate, this helps data availability and provides redundancy in case a single node fails. Query throughput can be improved with replication. 
 * **Sharding** handles horizontal scaling across servers by dividing the data and sending the pieces of data (shards) to multiple replica sets. The data is thus divided, and all shards together form the entire set of data. You can use sharding with Weaviate to run larger datasets and speed up imports. 
