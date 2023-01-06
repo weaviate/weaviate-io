@@ -1,5 +1,21 @@
 [
   {
+    "title": "You.com and Spark",
+    "description": "Sam Bean, Zain Hasan, and John Trengrove discuss You.com and the Weaviate Spark Connector for big data imports!",
+    "youtube": "pP8CZbDkUKU",
+    "date": "2022-01-04",
+    "cover_image": "/img/podcasts/podcast-32.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate 1.17",
+    "description": "Etienne Dilocker and Parker Duckworth explain Replication, Hybrid Search, and other fixes in Weaviate 1.17. This podcast also includes a discussion of Ref2Vec!",
+    "youtube": "nSCUk5pHXlo",
+    "date": "2022-12-21",
+    "cover_image": "/img/podcasts/podcast-31.png",
+    "is_use_case": false
+  },
+  {
     "title": "The Future of Search",
     "description": "Bob van Luijt, Chris Dossman, and Marco Bianco react to the implications of ChatGPT on the future of search technology!",
     "youtube": "s9aVAgk-6Ww",
