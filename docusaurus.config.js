@@ -17,8 +17,9 @@ const config = {
     baseUrl: '/',
     trailingSlash: false,
     // onBrokenLinks: 'throw',
-    onBrokenLinks: 'ignore',
-    onBrokenMarkdownLinks: 'ignore',
+    // onBrokenMarkdownLinks: 'ignore',
+    onBrokenLinks: 'warn',
+    onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
 
     // GitHub pages deployment config.
@@ -48,14 +49,15 @@ const config = {
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
+                    path: 'developers', // folder name – where the docs are
+                    routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
+                    
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     editUrl:
                         'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/',
                     // TODO: Update to 'main' for release
                     // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
-                    path: 'docs', // folder name – where the docs are
-                    routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
                     remarkPlugins: [remarkReplace],
                 },
                 blog: {
@@ -110,7 +112,7 @@ const config = {
                         items: [
                             {
                                 label: 'Docs',
-                                docId: 'weaviate/index',
+                                docId: 'docs/index',
                                 sidebarid: 'docsSidebar',
                                 type: 'doc',
                             },

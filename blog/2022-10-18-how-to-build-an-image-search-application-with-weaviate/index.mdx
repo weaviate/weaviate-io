@@ -27,8 +27,8 @@ This blog post will guide you to build a full-stack web application in **Python*
 You are probably already aware that Weaviate can power 🚀 fast vector searches with documents. What you might not be aware of is that it can also power vectorization and searching through other data types, whether it be audio, images, or others. 
 
 This blog post assumes you are familiar with vector search, as well as with spinning up an instance of Weaviate using Docker. If not, that's okay - these guides will help you! 
-* [Learn about Weaviate](/developers/weaviate/concepts)
-* [Weaviate Installation](/developers/weaviate/installation)
+* [Learn about Weaviate](/developers/docs/concepts)
+* [Weaviate Installation](/developers/docs/installation)
 * [Docker Installation](https://docs.docker.com/engine/install/)
 
 
@@ -52,7 +52,7 @@ For a use case like ours, where we would like to identify similar types of dogs,
 The `img2vec-neural` module in Weaviate is designed to solve this exact problem! The module vectorizes each image to something that represents its contents, so that we can search images based on their semantic similarity. In other words, we can use `img2vec-neural` to query our database to see how similar the dogs are based on the image. 
 
 ### Img2vec-neural Module 
-[Weaviate's img2vec-neural module](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural) is a flexible vectorizer that enables conversion of images to meaningful vectors. `ResNet-50` is the first model that is supported on Weaviate. `ResNet-50` is a Convolutional Neural Network (CNN) that was trained on the ImageNet database. The model was trained on more than 10 million images and 20,000 classes.  
+[Weaviate's img2vec-neural module](/developers/docs/modules/retriever-vectorizer-modules/img2vec-neural) is a flexible vectorizer that enables conversion of images to meaningful vectors. `ResNet-50` is the first model that is supported on Weaviate. `ResNet-50` is a Convolutional Neural Network (CNN) that was trained on the ImageNet database. The model was trained on more than 10 million images and 20,000 classes.  
 
 ## Weaviate Database
 ### Setup
@@ -236,7 +236,7 @@ def weaviate_img_search(img_str):
    return weaviate_results["data"]["Get"]["Dog"]
 ```
 
-How cool is that? We can find visually similar dogs in just a simple query to Weaviate. We could even scale this to millions of images running in milliseconds with [Weaviate's ANN index](/developers/weaviate/concepts/vector-index-plugins). 
+How cool is that? We can find visually similar dogs in just a simple query to Weaviate. We could even scale this to millions of images running in milliseconds with [Weaviate's ANN index](/developers/docs/concepts/vector-index-plugins). 
 
 Once we've created the app, we need to define the pages that will be on the website. The homepage will have the ten images of the dogs in our dataset. If you add images, it will also populate on the homepage!
 
@@ -315,7 +315,7 @@ And while this example uses a small dataset, Weaviate can power image searches l
 Thanks for reading, and see you soon. You can also check out the other great [Weaviate demos](https://github.com/semi-technologies/weaviate-examples) on Github!  
 
 ## What's Next
-Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/docs/quickstart) and begin building amazing apps with Weaviate.
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
