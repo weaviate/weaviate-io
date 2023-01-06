@@ -97,7 +97,7 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
 
 | Variables | Mandatory | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | `hybrid` | yes | need to specify that you want to use hybrid search |
 | `query` | yes | search query |
 | `alpha` | no (default is set to 0.75) | weighting for each search algorithm |
