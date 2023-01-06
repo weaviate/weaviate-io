@@ -41,9 +41,9 @@ Replication in Weaviate is modeled after how users typically use Weaviate. Most 
 
 It is often tolerable if data is temporarily out of sync, as long as consistency is reached eventually. Keeping the [CAP Theorem](/developers/docs/concepts/replication-architecture/#cap-theorem) trade-offs in mind, Weaviate's replication architecture **prefers availability over consistency**.
 
-Nevertheless, both read and write consistency will become [fully tunable](/developers/docs/concepts/replication-architecture/consistency.html) from `v1.18` (read consistency is partly tunable from `v1.17`).
+Nevertheless, both read and write consistency will become [fully tunable](/developers/docs/concepts/replication-architecture/consistency) from `v1.18` (read consistency is partly tunable from `v1.17`).
 
-Weaviate has a [leaderless replication design](/developers/docs/concepts/replication-architecture/cluster-architecture.html), so there is no distinction between primary and secondary nodes, thereby removing all single points of failures.
+Weaviate has a [leaderless replication design](/developers/docs/concepts/replication-architecture/cluster-architecture), so there is no distinction between primary and secondary nodes, thereby removing all single points of failures.
 
 ### Roadmap
 With `v1.17`, the foundations of replication are built into Weaviate. In `v1.18` and later releases, more features will be added:

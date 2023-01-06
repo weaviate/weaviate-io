@@ -16,8 +16,6 @@ const config = {
     url: 'https://weaviate.io',
     baseUrl: '/',
     trailingSlash: false,
-    // onBrokenLinks: 'throw',
-    // onBrokenMarkdownLinks: 'ignore',
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',

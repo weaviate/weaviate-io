@@ -15,7 +15,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-Weaviate's v1.17 release introduces replication. Using Weaviate in a cluster with multiple server nodes, Weaviate can now automatically replicate data across nodes in the background. This enables a variety of [Use cases](./replication-architecture/motivation.html). For example, if a node goes down, another node can shoulder the load without loss of availability or data. Database replication improves reliability, scalability, and/or performance. The user can control trade-offs between consistency and availability through [tunable consistency](./replication-architecture/consistency.html). Weaviate has a leaderless replication design, so there is no distinction between primary and secondary nodes thereby removing all single points of failures.
+Weaviate's v1.17 release introduces replication. Using Weaviate in a cluster with multiple server nodes, Weaviate can now automatically replicate data across nodes in the background. This enables a variety of [Use cases](./motivation.md). For example, if a node goes down, another node can shoulder the load without loss of availability or data. Database replication improves reliability, scalability, and/or performance. The user can control trade-offs between consistency and availability through [tunable consistency](./consistency.md). Weaviate has a leaderless replication design, so there is no distinction between primary and secondary nodes thereby removing all single points of failures.
 
 In this Replication Architecture series, you will find information about:
 
@@ -28,7 +28,7 @@ In this Replication Architecture series, you will find information about:
   * Roadmap
 
 
-* **[Use Cases](./replication-architecture/motivation.html)**
+* **[Use Cases](./motivation.md)**
   * Motivation
   * High Availability
   * Increased (Read) Throughput
@@ -36,26 +36,26 @@ In this Replication Architecture series, you will find information about:
   * Regional Proximity
 
 
-* **[Philosophy](./replication-architecture/philosophy.html)**
+* **[Philosophy](./philosophy.md)**
   * Typical Weaviate use cases
   * Reasons for a leaderless architecture
   * Gradual rollout
   * Large-scale testing
 
 
-* **[Cluster Architecture](./replication-architecture/cluster-architecture.html)**
+* **[Cluster Architecture](./cluster-architecture.md)**
   * Leaderless design
   * Replication Factor
   * Write and Read operations
 
 
-* **[Consistency](./replication-architecture/consistency.html)**
+* **[Consistency](./consistency.md)**
   * Schema
   * Data objects
   * Repairs
 
 
-* **[Multi-DataCenter](./replication-architecture/multi-dc.html)**
+* **[Multi-DataCenter](./multi-dc.md)**
   * Regional Proximity
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-QUORUM.png" alt="Read consistency QUORUM" width="75%"/></p>
@@ -76,12 +76,12 @@ The primary goal of introducing replication is to improve reliability. [Eric Bre
 Ideally you want a database, like Weaviate, to have the highest reliability as possible, but this is limited by the tradeoff between consistency, availability and partition tolerance. Only two out of three concepts can be guaranteed. Since we're talking about distributed systems in which network partitions are present, only two options are left for designing the system: **consistency (C)** or **availability (A)**. When you prioritize **consistency** over availability, the database will return an error or timeout when it cannot be guaranteed that the data is up to date due to network partitioning. When prioritizing **availability** over consistency, the database will always process the query and try to return the most recent version of data even if it cannot guarantee it is up to date due to network partitioning. 
 
 C over A is preferred when the database contains critical data, such as transactional bank account data. For transactional data, you want the data to always be consistent (otherwise your bank balance is not guaranteed to be correct if you make transactions while some nodes (e.g. atms) are down). 
-When a database involves less critical data, A over C can be preferred. An example can be a messaging service, where you can tolerate showing some old data but the application should be highly available and handle large amounts of writes with minimal latency. Weaviate follows this latter design, since Weaviate typically deals with less critical data and  is used for approximate search as a secondary database in use cases with more critical data. More about this design decision in [Philosophy](./replication-architecture/philosophy.html).
+When a database involves less critical data, A over C can be preferred. An example can be a messaging service, where you can tolerate showing some old data but the application should be highly available and handle large amounts of writes with minimal latency. Weaviate follows this latter design, since Weaviate typically deals with less critical data and  is used for approximate search as a secondary database in use cases with more critical data. More about this design decision in [Philosophy](./philosophy.md).
 
 
 ## Why replication for Weaviate?
 
-Weaviate is a database, and users want to reliably receive answers to their requests made to the database. As discussed above, database reliability consists of various parts. Use cases in which replication for Weaviate is desired are the following. For detailed information about those use cases, visit the [Replication Use Cases (Motivation) page](./replication-architecture/motivation.html).
+Weaviate is a database, and users want to reliably receive answers to their requests made to the database. As discussed above, database reliability consists of various parts. Use cases in which replication for Weaviate is desired are the following. For detailed information about those use cases, visit the [Replication Use Cases (Motivation) page](./motivation.md).
 
 1. **High availability (redundancy)** \
   With a distributed (replicated) database structure, service will not be interrupted if one server node goes down. Read queries can still be available, the users' queries will be (unnoticeably) redirected to an available node. 
@@ -114,12 +114,12 @@ The number of nodes that need to acknowledge the read or write (from v1.18) oper
 
 The number of replicas doesn't have to match the number of nodes (cluster size). It is possible to split data in Weaviate based on Classes. Note that this is [different from Sharding](#replication-vs-sharding). 
 
-Read more about how replication works in Weaviate in [Philosophy](./replication-architecture/philosophy.html), [Cluster Architecture](./replication-architecture/cluster-architecture.html) and [Consistency](./replication-architecture/consistency.html).
+Read more about how replication works in Weaviate in [Philosophy](./philosophy.md), [Cluster Architecture](./cluster-architecture.md) and [Consistency](./consistency.md).
 
 
 ## How do I enable replication in Weaviate?
 
-Read the [Replication Usage page here](../configuration/replication.html). You can enable replication on class-level in the data schema of your Weaviate instance. During querying, you can specify the consistency level.
+Read the [Replication Usage page here](/developers/docs/configuration/replication.md). You can enable replication on class-level in the data schema of your Weaviate instance. During querying, you can specify the consistency level.
 
 ## Roadmap
 

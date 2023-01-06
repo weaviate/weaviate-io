@@ -43,12 +43,12 @@ A replication factor of 3 is commonly used, since this provides a right balance 
 
 # Write operations 
 
-On a write operation, the client’s request will be sent to any node in the cluster. The first node which receives the request is assigned as the coordinator. The coordinator node sends the request to a number of predefined replicas and returns the result to the client. So, any node in the cluster can be a coordinator node. A client will only have direct contact with this coordinator node. Before sending the result back to the client, the coordinator node waits for a number of write acknowledgements from different nodes depending on the configuration. How many acknowledgements Weaviate waits for, depends on the consistency configuration, see [this page](./consistency.html).
+On a write operation, the client’s request will be sent to any node in the cluster. The first node which receives the request is assigned as the coordinator. The coordinator node sends the request to a number of predefined replicas and returns the result to the client. So, any node in the cluster can be a coordinator node. A client will only have direct contact with this coordinator node. Before sending the result back to the client, the coordinator node waits for a number of write acknowledgements from different nodes depending on the configuration. How many acknowledgements Weaviate waits for, depends on the consistency configuration, see [this page](./consistency.md).
 
 **Steps**
 1. The client sends data to any node, which will be assigned as the coordinator node
 2. The coordinator node sends the data to more than one replica node in the cluster
-3. The coordinator node waits for acknowledgement from x nodes. *x is configurable (from v1.18, by default ALL nodes) (explained in [Consistency](./consistency.html))*.
+3. The coordinator node waits for acknowledgement from x nodes. *x is configurable (from v1.18, by default ALL nodes) (explained in [Consistency](./consistency.md))*.
 4. When x ACKs are received by the coordinator node, the write is successful.
 
 As an example, consider a cluster size of 3 with replication factor of 3. So, all nodes in the distributed setup contain a copy of the data. When the client sends new data, this will be replicated to all three nodes.
@@ -66,7 +66,7 @@ Read operations are also coordinated by a coordinator node, which directs a quer
 **Steps**
 1. The client sends a query to Weaviate, any node in the cluster that receives the request first will act as the coordinator node
 2. The coordinator node sends the query to more than one replica node in the cluster
-3. The coordinator waits for a response from x nodes. *x is configurable (ALL, QUORUM or ONE, available from v1.18, Get-Object-By-ID type requests have tunable consistency from v1.17) (explained in [Consistency](./consistency.html)).*
+3. The coordinator waits for a response from x nodes. *x is configurable (ALL, QUORUM or ONE, available from v1.18, Get-Object-By-ID type requests have tunable consistency from v1.17) (explained in [Consistency](./consistency.md)).*
 4. The coordinator node resolves conflicting data using some metadata (e.g. timestamp, id, version number)
 5. The coordinator returns the latest data to the client
 
