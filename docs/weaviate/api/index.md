@@ -15,11 +15,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-<!-- TODO: Refine layout for presentation -->
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - `GraphQL`
 - `RESTful API`
-:::
+::: -->
 
 ## Overview
 

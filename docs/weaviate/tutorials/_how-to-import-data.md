@@ -25,10 +25,9 @@ In this tutorial, you will learn how to import data into Weaviate using the batc
 
 By the end of this tutorial, you should have a good idea of the steps involved in importing data, and when to use the batch import method.
 
-<!-- TODO: Finish this page! -->
-:::caution Under construction.
+<!-- :::caution Under construction.
 Migrated from "How to import data" tutorial from Weaviate Docs Classic
-:::
+::: -->
 
 
 # Introduction 

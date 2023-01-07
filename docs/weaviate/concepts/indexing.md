@@ -14,10 +14,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - `Core knowledge/Indexing`
   - ANN configuration options & tips consolidated in `References:Configuration/ANN Index`, along with `Vector Index Plugins/HNSW`
-:::
+::: -->
 
 ## Intro to index settings
 

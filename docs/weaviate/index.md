@@ -18,10 +18,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::caution 👋 Weaviators
-- We have added these information boxes to explain where pages have migrated from.
-- This pages comes from `Introduction` page, but with an added `Overview` explaining the naming convention.
-:::
+<!-- - This pages comes from `Introduction` page, but with an added `Overview` explaining the naming convention. -->
 
 ## Overview
 

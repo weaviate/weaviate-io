@@ -17,11 +17,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-<!-- TODO: Remove explanatory header once layout review complete -->
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - `Getting Started`
 - Added `Weaviate console` from `Core knowledge/Console`
-:::
+::: -->
 
 ## Overview
 

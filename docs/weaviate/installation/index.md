@@ -17,11 +17,6 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-<!-- TODO: Remove explanatory header once layout review complete -->
-:::caution Migrated From:
-- `Installation`
-:::
-
 ## Overview
 
 This section is designed to inform you of available options for running Weaviate instances. It also includes instructions for each option on how to install and configure instances of Weaviate. 

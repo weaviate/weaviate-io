@@ -8,5 +8,5 @@ sidebar_position: 5
 Learn how to perform image searches using Weaviate
 
 <!-- TODO: Finish this page! -->
-:::caution This page is under construction.
-:::
+<!-- :::caution This page is under construction.
+::: -->

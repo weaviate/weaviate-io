@@ -16,11 +16,11 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 <!-- TODO: Remove explanatory header once layout review complete -->
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - `Architecture`
 - `Vector indexing` from `Vector Index (ANN) Plugins:Index` + `HNSW`
   - Note: Configuration options from `HNSW` are now in `References: Configuration/Vector index#How to configure HNSW`
-:::
+::: -->
 ## Overview
 
 This section includes explanations of more advanced concepts, including Weaviate's architecture and in-depth discussions of vector indexing. If you are curious about how Weaviate works under the hood, or how it is designed to scale, you are at the right place.

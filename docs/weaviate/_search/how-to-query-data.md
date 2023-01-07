@@ -19,10 +19,9 @@ sidebar_position: 1
 
 Learn how to perform searches using Weaviate
 
-<!-- TODO: Finish this page! -->
-:::caution Under construction.
+<!-- :::caution Under construction.
 Migrated from "How to query data" tutorial from Weaviate Docs Classic
-:::
+::: -->
 
 - Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/). 
 - You can query a Weaviate after you've created a [schema](/docs/weaviate/tutorials/how-to-create-a-schema.md) and [populated it](/docs/weaviate/tutorials/how-to-import-data.md) with data.

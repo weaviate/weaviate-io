@@ -17,9 +17,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - Adds text re: configuration options from `Vector index plugins/HNSW`
-:::
+::: -->
 
 ## Introduction
 

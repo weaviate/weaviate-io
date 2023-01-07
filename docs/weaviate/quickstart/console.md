@@ -18,10 +18,9 @@ import Badges from '/_includes/badges.mdx';
 
 Learn how to use the Weaviate console
 
-<!-- TODO: Remove explanatory header once layout review complete -->
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - `Core knowledge/Console`
-:::
+::: -->
 
 The Weaviate Console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Service (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 

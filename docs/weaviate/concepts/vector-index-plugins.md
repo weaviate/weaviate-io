@@ -19,10 +19,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - From `Vector Index (ANN) Plugins:Index` + `HNSW`
   - Note: Configuration options from `HNSW` are now in `References: Configuration/Vector index#How to configure HNSW`
-:::
+::: -->
 
 ## Introduction
 

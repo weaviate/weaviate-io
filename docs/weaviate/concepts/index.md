@@ -17,15 +17,14 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-<!-- TODO: Remove explanatory header once layout review complete -->
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - `Core knowledge`
   - `Data objects` from `Core knowledge/Basics`
   - `Modules`: Combines theoretical explanations from `Configuration/Modules` + `Modules/Index`
 - `Architecture`
 - `Vector indexing` from `Vector Index (ANN) Plugins:Index` + `HNSW`
   - Note: Configuration options from `HNSW` are now in `References: Configuration/Vector index#How to configure HNSW`
-:::
+::: -->
 
 ## Overview
 

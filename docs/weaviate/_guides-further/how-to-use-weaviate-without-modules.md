@@ -17,9 +17,9 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 <!-- TODO: Finish this page! -->
-:::caution Under construction.
+<!-- :::caution Under construction.
 Migrated from "How to use weaviate without modules" tutorial from Weaviate Docs Classic
-:::
+::: -->
 
 ## Overview
 While we provide many different [modules](../modules/index.md) for vectorization, Weaviate can still be used without any such module. Instead, you can manually add a vector for each data entry and still take advantage of Weaviate's vector database and search capabilities. 

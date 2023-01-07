@@ -6,12 +6,11 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-<!-- TODO: Finish this page! -->
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - `Modules`
 - High-level configuration options are now in `Configuration/Modules`
 - Some theoretical elements are now in `Concepts:Essential/Modules`
-:::
+::: -->
 
 ## Overview
 

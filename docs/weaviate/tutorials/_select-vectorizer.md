@@ -8,9 +8,8 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-<!-- TODO: Finish this page! -->
-:::caution This page is under construction.
-:::
+<!-- :::caution This page is under construction.
+::: -->
 
 This tutorial will help Weaviate users select a suitable vectorizer module for their data, available resources and use case.
 

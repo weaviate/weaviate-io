@@ -17,10 +17,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - Mostly newly written
 - Previous `Configuration/Modules` content has been migrated to `References:Modules/index`
-:::
+::: -->
 
 ## Introduction
 

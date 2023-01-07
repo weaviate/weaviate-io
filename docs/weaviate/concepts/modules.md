@@ -16,11 +16,11 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - Combines theoretical explanations from `Configuration/Modules` + `Modules/Index`. e.g.:
   - `Introduction` is from `Configuration/Modules`
   - `Vectorization modules (Dense Retriever modules)` is from `Modules/Index`
-:::
+::: -->
 
 ## Introduction
 

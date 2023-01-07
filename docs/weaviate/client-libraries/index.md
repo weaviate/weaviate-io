@@ -21,10 +21,10 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 ## Overview
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - `Client libraries`
 - `Index` adds info from `Core Knowledge/Clients`
-:::
+::: -->
 
 You can interact with Weaviate by using the GraphQL or RESTful API directly, or with one of the available client libraries.
 

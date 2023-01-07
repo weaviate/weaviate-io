@@ -14,12 +14,12 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::caution Migrated From:
+<!-- :::caution Migrated From:
 - `Core knowledge/Basics`
   - Refactored to contain subject matter to data structure in Weaviate
   - Introductory "What is Weaviate" sections removed as duplicated by `Introduction`
   - `Console`, `Benchmarks` and `Monitoring` paragraphs removed
-:::
+::: -->
 
 ## Overview
 
