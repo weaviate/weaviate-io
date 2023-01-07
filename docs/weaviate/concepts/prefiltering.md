@@ -15,6 +15,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info Not what you are looking for?
+We also have pages on [how to use the GraphQL API to retrieve data from Weaviate](../api/graphql/index.md).
+:::
+
 ## Introduction
 
 Weaviate provides powerful filtered vector search capabilities, meaning that you can eliminate candidates in your "fuzzy" vector search based on individual properties. Thanks to Weaviate's efficient pre-filtering mechanism, you can keep the recall high - even when filters are very restrictive. Additionally, the process is efficient and has minimal overhead compared to an unfiltered vector search.
@@ -62,7 +66,7 @@ As a comparison, with pure HNSW - without the cutoff - the same filters would lo
 
 ![Prefiltering with pure HNSW](./img/prefiltering-pure-hnsw-without-cutoff.png "Prefiltering without cutoff, i.e. pure HNSW")
 
-The cutoff value can be configured as [part of the `vectorIndexConfig` settings in the schema](/docs/weaviate/configuration/vector-index-type.md#how-to-configure-hnsw) for each class separately.
+The cutoff value can be configured as [part of the `vectorIndexConfig` settings in the schema](/docs/weaviate/configuration/indexes.md#how-to-configure-hnsw) for each class separately.
 
 ## Cachable Filters
 

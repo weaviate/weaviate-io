@@ -1,5 +1,5 @@
 ---
-title: Vector Index
+title: Indexes
 sidebar_position: 13
 # layout: layout-documentation
 # solution: weaviate
@@ -21,12 +21,12 @@ import Badges from '/_includes/badges.mdx';
 - Adds text re: configuration options from `Vector index plugins/HNSW`
 ::: -->
 
-## Introduction
+## Vector index
 
-Weaviate's vector-first storage system takes care of all storage operations with a pluggable vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices). 
+Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices). 
 
-## Weaviate's vector index plugin
-The first vector-storage plugin Weaviate supports is [HNSW](/docs/weaviate/concepts/vector-index-plugins.md#hnsw), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when in the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type. Stay tuned for updates!
+## Weaviate's vector index
+The first vector index Weaviate supports is [HNSW](/docs/weaviate/concepts/vector-index.md#hnsw), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when in the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type. Stay tuned for updates!
 
 ### How to configure HNSW
 Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](/docs/weaviate/configuration/schema-configuration.md). 
@@ -98,6 +98,106 @@ If you're looking for a starting point for values, we would advise an `efConstru
 
 
 Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/docs/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/docs/weaviate/configuration/schema-configuration.md).
+
+## Inverted index
+
+### Configure the inverted index
+
+In contrast to the ANN index, there are very few configurable parameters for an inverted index. It's on or it's off and indexes on a property level.
+
+The inverted index is by default _on_. You can simply turn it of like this:
+
+```js
+{
+    "class": "Author",
+    "properties": [ // <== note that the inverted index is set per property
+        {
+            "indexInverted": false, // <== turn it off by setting `indexInverted` to false
+            "dataType": [
+                "string"
+            ],
+            "name": "name"
+        }
+    ]
+}
+```
+
+A rule of thumb to follow when determining if you turn it on or off is this: _if you don't need it to query, turn it off._
+
+:::note
+We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](/docs/weaviate/configuration/datatypes.md#datatype-string-vs-text).
+:::
+
+You can also enable an inverted index to search [based on timestamps](/docs/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps).
+
+```js
+{
+    "class": "Author",
+    "invertedIndexConfig": {
+        "indexTimestamps": true // <== false by default
+    },
+    "properties": []
+}
+```
+
+### Classes without indices
+
+If you don't want to set an index at all, neither ANN nor inverted, this is possible too.
+
+If we don't want to index the `Authors` we can simply skip all indices (vector _and_ inverted) like this:
+
+```js
+{
+    "class": "Author",
+    "description": "A description of this class, in this case, it's about authors",
+    "vectorIndexConfig": {
+        "skip": true // <== disable vector index
+    },
+    "properties": [
+        {
+            "indexInverted": false, // <== disable inverted index for this property
+            "dataType": [
+                "string"
+            ],
+            "description": "The name of the Author",
+            "name": "name"
+        },
+        {
+            "indexInverted": false, // <== disable inverted index for this property
+            "dataType": [
+                "int"
+            ],
+            "description": "The age of the Author",
+            "name": "age"
+        },
+        {
+            "indexInverted": false, // <== disable inverted index for this property
+            "dataType": [
+                "date"
+            ],
+            "description": "The date of birth of the Author",
+            "name": "born"
+        },
+        {
+            "indexInverted": false, // <== disable inverted index for this property
+            "dataType": [
+                "boolean"
+            ],
+            "description": "A boolean value if the Author won a nobel prize",
+            "name": "wonNobelPrize"
+        },
+        {
+            "indexInverted": false, // <== disable inverted index for this property
+            "dataType": [
+                "text"
+            ],
+            "description": "A description of the author",
+            "name": "description"
+        }
+    ]
+}
+```
+
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

@@ -18,7 +18,7 @@ import Badges from '/_includes/badges.mdx';
 ## Available Distance Metrics
 
 If not specified explicitly, the default distance metric in Weaviate is
-`cosine`. It can be [set in the vectorIndexConfig](/docs/weaviate/configuration/vector-index-type.md#how-to-configure-hnsw) field as part of the
+`cosine`. It can be [set in the vectorIndexConfig](/docs/weaviate/configuration/indexes.md#how-to-configure-hnsw) field as part of the
 schema ([Example to add new schema class](../api/rest/schema.md#create-a-class)) to any of the following types:
 
 <!-- TODO: Consider removing {:.text-nowrap} -->

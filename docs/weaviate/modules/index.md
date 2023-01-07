@@ -14,7 +14,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-:::info Not what you are after?
+:::info Not what you are looking for?
 We also have pages on [how to **configure** Weaviate to use particular modules](../configuration/modules.md), and on [**concepts** related to modules](../concepts/modules.md) in general.
 :::
 

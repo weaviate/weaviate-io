@@ -30,13 +30,13 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-You can change Weaviate's configurations to suit your specific needs. 
+This section shows you how to configure Weaviate to suit your specific needs. 
 
-For example, you can:
+For example, you can read about how to:
 
 - Extend Weaviate's functionality by adding [modules](./modules.md), including vectorizers
 - Configure how Weaviate stores and indexes data through its the [schema](./schema-configuration.md), [data type](./datatypes.md) and [distance metric](./distances.md)
-- Manage performance vs. cost tradeoffs by its [vector index properties](./vector-index-type.md)
+- Manage performance vs. cost tradeoffs by its [vector index properties](./indexes.md)
 - [Back up](./backups.md) your Weaviate instance
 - Control access through [authentication](./authentication.md) and [authorization](./authorization.md)
 - [Monitor](./monitoring.md) your Weaviate instance

@@ -24,9 +24,17 @@ import Badges from '/_includes/badges.mdx';
   - Note: Configuration options from `HNSW` are now in `References: Configuration/Vector index#How to configure HNSW`
 ::: -->
 
+## Overview
+
+This page explains what vector indices are, and what purpose they serve in Weaviate.
+
+:::info Not what you are looking for?
+We also have pages on [how to **configure vector indexes** in Weaviate](../configuration/vector-index-type.md), and on [how to **regulate semantic indexing**](../configuration/schema-configuration.md#regulate-semantic-indexing).
+:::
+
 ## Introduction
 
-Weaviate's vector-first storage system takes care of all storage operations with a pluggable vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices). 
+Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices). 
 
 ## Why index data as vectors?
 Now, a long list of numbers does not carry any meaning by itself. But if the numbers in this list are chosen to indicate the [semantic similarity](https://en.wikipedia.org/wiki/Semantic_similarity) between the data objects represented by other vectors, then the new vector contains information about the data object's meaning and relation to other data. 
@@ -39,8 +47,8 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 
 ![Supermarket map visualization](./img/supermarket.svg "Supermarket map visualization"){:height="75%" width="75%"}
 
-## How to choose the right vector index plugin
-The first vector-storage plugin Weaviate supports is [HNSW](./vector-index-plugins.md#hnsw), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when it comes to the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type. Stay tuned for updates!
+## How to choose the right vector index type
+The first vector-storage type Weaviate supports is [HNSW](./vector-index.md#hnsw), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when it comes to the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type. Stay tuned for updates!
 
 ## Configuration of vector index type
 The index type can be specified per data class. Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](/docs/weaviate/configuration/schema-configuration.md). 
@@ -64,10 +72,10 @@ Example of a class [vector index configuration in your data schema](/docs/weavia
 
 Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/docs/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/docs/weaviate/configuration/schema-configuration.md).
 
-## Can Weaviate support multiple vector index (ANN) plugins?
+## Can Weaviate support multiple vector index (ANN) types?
 
 * The short answer: _yes_
-* The longer answer: currently, we have a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of HNSW to have [full CRUD-support](https://db-engines.com/en/blog_post/87) in Weaviate. In principle, if an ANN algorithm allows for full CRUD support, Weaviate can support it. If you have ideas, suggestions, or plans (e.g., for a research project) for another ANN plugin besides HNSW, please let us know in our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
+* The longer answer: currently, we have a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of HNSW to have [full CRUD-support](https://db-engines.com/en/blog_post/87) in Weaviate. In principle, if an ANN algorithm allows for full CRUD support, Weaviate can support it. If you have ideas, suggestions, or plans (e.g., for a research project) for another ANN index type besides HNSW, please let us know in our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
 
 
 ## HNSW

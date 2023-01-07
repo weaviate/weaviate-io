@@ -22,6 +22,14 @@ import Badges from '/_includes/badges.mdx';
   - `Vectorization modules (Dense Retriever modules)` is from `Modules/Index`
 ::: -->
 
+## Overview
+
+This page explains what modules are, and what purpose they serve in Weaviate.
+
+:::info Not what you are looking for?
+We also have pages on [how to **configure** Weaviate to use particular modules](../configuration/modules.md), and on [**references** related to modules](../modules/index.md) in general.
+:::
+
 ## Introduction
 
 Weaviate adopts a modularized structure, where for examples functionalities such as vectorization or backups are carried out by *optional* modules.
@@ -29,7 +37,7 @@ Weaviate adopts a modularized structure, where for examples functionalities such
 The core of Weaviate, without any modules attached, is a pure vector-native database and search engine. 
 [![Weaviate modules introduction](./img/weaviate-module-diagram.svg "Weaviate Module Diagram")](./img/weaviate-module-diagram.svg)
 
-Data is stored in Weaviate as the combination of an object and its vector, and these vectors are searchable by the provided [vector index algorithm](../concepts/vector-index-plugins.md). Without any vectorizer modules attached, Weaviate does not know how to *vectorize* an object, i.e. *how* to calculate the vectors given an object. 
+Data is stored in Weaviate as the combination of an object and its vector, and these vectors are searchable by the provided [vector index algorithm](../concepts/vector-index.md). Without any vectorizer modules attached, Weaviate does not know how to *vectorize* an object, i.e. *how* to calculate the vectors given an object. 
 
 Depending on the type of data you want to store and search (text, images, etc.), and depending on the use case (like search, question answering, etc., depending on language, classification, ML model, training set, etc.), you can choose and attach a vectorizer module that best fits your use case. Or, you can "bring your own" vectors to Weaviate. 
 

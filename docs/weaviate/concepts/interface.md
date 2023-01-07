@@ -17,6 +17,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info Not what you are looking for?
+We also have pages on [how to use the GraphQL API](../api/graphql/index.md) and [how to use the RESTful API](../api/rest/index.md).
+:::
+
 ## Introduction
 
 You can manage and use Weaviate through its APIs. Weaviate has a RESTful API and a GraphQL API. The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. Additionally, the APIs are intuitive, so it is easy to integrate into your existing data landscape.

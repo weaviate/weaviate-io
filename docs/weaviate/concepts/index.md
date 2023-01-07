@@ -48,7 +48,7 @@ An overview of Weaviate's module system, including what can be done with modules
 
 Read how data is indexed within Weaviate using inverted and ANN indices, and about configurable settings.
 
-### [Vector indexing](./vector-index-plugins.md)
+### [Vector indexing](./vector-index.md)
 
 Read more about Weaviate's vector indexing architecture, such as the HNSW algorithm, distance metrics, and configurable settings.
 

@@ -19,9 +19,11 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-This section is designed to inform you of available options for running Weaviate instances. It also includes instructions for each option on how to install and configure instances of Weaviate. 
+This section shows you available options for running Weaviate, and how to install and configure Weaviate with each option. 
 
+:::info Not what you're looking for?
 If you are looking for a comprehensive set of configuration options, you can find them in [references: configuration](../configuration/index.md).
+:::
 
 ## Options for running Weaviate
 

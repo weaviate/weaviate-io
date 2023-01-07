@@ -22,7 +22,7 @@ These are the core principles that allows vector searching to be effective. Weav
 To convert data objects into vectors, Weaviate uses vectorizers, which are available as modules. And then Weaviate builds a vector index which stores the vector data in a form that allows for fast retrieval at high recall. Currently, Weaviate supports the HNSW algorithm for vector indexing. 
 
 You can read more about these concepts below.
-- [Vector index plugins](./vector-index-plugins.md)
+- [Vector index](./vector-index.md)
 - [Comparison of vectorizers](./vectorizer-comparisons.md) 
 
 ## More Resources

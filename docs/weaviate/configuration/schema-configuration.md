@@ -132,11 +132,11 @@ With the [`text2vec-contextionary`](/docs/weaviate/modules/retriever-vectorizer-
 
 #### vectorIndexType
 
-The vectorIndexType defaults to [`hnsw`](/docs/weaviate/concepts/vector-index-plugins.md#hnsw) since this is the only available vector indexing algorithm implemented at the moment.
+The vectorIndexType defaults to [`hnsw`](/docs/weaviate/concepts/vector-index.md#hnsw) since this is the only available vector indexing algorithm implemented at the moment.
 
 #### vectorIndexConfig
 
-Check the [`hnsw` page](/docs/weaviate/configuration/vector-index-type.md#how-to-configure-hnsw) for `hnsw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
+Check the [`hnsw` page](/docs/weaviate/configuration/indexes.md#how-to-configure-hnsw) for `hnsw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
 
 #### shardingConfig (introduced in v1.8.0)
 

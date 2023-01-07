@@ -1,5 +1,5 @@
 ---
-title: References
+title: References - API
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate
@@ -22,7 +22,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-This section describes GraphQL commands and RestAPI endpoints which you can use to communicate with Weaviate. The available sub-sections are as follows:
+This section includes references for the RESTful and GraphQL APIs. The RESTful API end-points can be used to add data and the GraphQL interface to retrieve data.
 
 ### References - GraphQL
 - [Get{}](./graphql/get.md)

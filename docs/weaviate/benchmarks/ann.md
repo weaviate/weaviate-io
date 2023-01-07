@@ -319,7 +319,7 @@ Please note that there is a point of diminishing returns with adding more CPUs b
 ## What are ef, efConstruction, and maxConnections?
 
 These parameters refer to the [HNSW build and query
-parameters](/docs/weaviate/configuration/vector-index-type.md#how-to-configure-hnsw).
+parameters](/docs/weaviate/configuration/indexes.md#how-to-configure-hnsw).
 They represent a trade-off between recall, latency & throughput, index size, and
 memory consumption. This trade-off is highlighted in the benchmark results.
 

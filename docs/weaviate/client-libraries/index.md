@@ -1,5 +1,5 @@
 ---
-title: Client Libraries
+title: References - Client Libraries
 sidebar_position: 0
 # layout: layout-documentation
 # solution: weaviate

@@ -77,7 +77,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/tutorials/write-great-bug-reports.html'
         },
         {
-            to: '/developers/weaviate/concepts/vector-index-plugins',
+            to: '/developers/weaviate/concepts/vector-index',
             from: '/developers/weaviate/current/vector-index-plugins'
         },
         {
@@ -85,7 +85,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/vector-index-plugins/distances.html'
         },
         {
-            to: '/developers/weaviate/concepts/vector-index-plugins',
+            to: '/developers/weaviate/concepts/vector-index',
             from: '/developers/weaviate/current/vector-index-plugins/hnsw.html'
         },
         {

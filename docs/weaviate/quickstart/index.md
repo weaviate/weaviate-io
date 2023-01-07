@@ -26,7 +26,7 @@ import Badges from '/_includes/badges.mdx';
 
 Welcome to the Weaviate **Quickstart tutorial**.
 
-This tutorial is designed to quickly teach you how to use Weaviate, from spinning up an instance to performing queries.
+This tutorial teaches you how to use Weaviate, from spinning up an instance to performing queries.
 
 In this guide, we will show you how to:
 - Spin up an instance of Weaviate
@@ -34,21 +34,21 @@ In this guide, we will show you how to:
 - Import data to populate the database, and
 - Perform queries to retrieve relevant data 
 
-By the end of the guide, you will end up with a simple, but fully functioning vector database. You will also have performed vector searches to retrieve information from that database.
+You can also read briefly about [modules](./modules.md), and the [console](./console.md).
 
 Have fun working with Weaviate, and please do let us know when you have questions or if you have a cool use case to share!
 
 ## Before you start 
 
-In the guide, we make a few basic assumptions (you are somewhat familiar with databases, know what vector embeddings are, and can read essential JSON and GraphQL).
+In the tutorial, we make a few basic assumptions (you are somewhat familiar with databases, know what vector embeddings are, and can read essential JSON and GraphQL).
 
-## Weaviate Getting Started lessons
-
-You should follow the lessons in the order provided.
+We suggest you read the pages in order, like so:
 
 | Topic | Description |
 | --- | --- |
 | [Installation](./installation.md) | Install Weaviate |
-| [Schema](./schema.md) | Learn how a Weaviate schema works |
-| [Import](./import.md) | Learn how to efficiently import into Weaviate |
-| [Query](./query.md) | Learn how to query Weaviate using GraphQL and the RESTful API |
+| [Schema](./schema.md) | Build a schema|
+| [Import](./import.md) | Import data |
+| [Query](./query.md) | Run queries using GraphQL and the RESTful API |
+| (Optional) [Modules](./modules.md) | Overview of modules |
+| (Optional) [Console](./console.md) | Overview of the console |
