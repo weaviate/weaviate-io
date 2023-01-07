@@ -29,7 +29,7 @@ import Badges from '/_includes/badges.mdx';
 This page explains what vector indices are, and what purpose they serve in Weaviate.
 
 :::info Not what you are looking for?
-We also have pages on [how to **configure vector indexes** in Weaviate](../configuration/vector-index-type.md), and on [how to **regulate semantic indexing**](../configuration/schema-configuration.md#regulate-semantic-indexing).
+We also have pages on [how to **configure vector indexes** in Weaviate](../configuration/indexes.md), and on [how to **regulate semantic indexing**](../configuration/schema-configuration.md#regulate-semantic-indexing).
 :::
 
 ## Introduction
