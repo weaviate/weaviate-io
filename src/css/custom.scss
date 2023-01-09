@@ -324,12 +324,13 @@
 }
 
 .navbar {
-  background: transparent;
-  box-shadow: none;
-}
-
-.navbar--fixed-top {
-  position: relative;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 4%,
+    rgba(17, 11, 62, 1) 50%,
+    rgba(25, 16, 92, 1) 96%
+  );
 }
 
 .footer {
@@ -340,6 +341,15 @@
 }
 
 [data-theme='light'] {
+  .navbar {
+    background: rgb(225, 237, 194);
+    background: linear-gradient(
+      45deg,
+      rgba(225, 237, 194, 1) 0%,
+      rgba(187, 216, 231, 1) 100%
+    );
+    box-shadow: none;
+  }
   .navbar__logo {
     img {
       display: none;
