@@ -23,5 +23,6 @@ Unless specified otherwise, the default behavior is to:
 
 - Only vectorize properties that use `string` or `text` data types 
 - Sort properties in alphabetical (a-z) order before concatenating values
-- Prepend the class name to the value, and
-- Convert the string to lowercase
+- Prepend the class name to the value
+- Join properties with spaces, and
+- Convert the produced string to lowercase
