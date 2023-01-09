@@ -33,11 +33,11 @@ In this article, you will learn about these two machine learning models, and why
 
 ## Bi-Encoder models
 
-Vector search engines like [Weaviate](/developers/docs/) use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector search engine can then perform a similarity search to retrieve the vectors closest to the query embedding. 
+Vector search engines like [Weaviate](/developers/weaviate/) use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector search engine can then perform a similarity search to retrieve the vectors closest to the query embedding. 
 
 The models that compute **dense vector embeddings for data** (which later can be used for **search queries**) are so-called *Bi-Encoder models*. Data vectors and query vectors can be compared by computing the similarity (for example cosine similarity) between vectors. All data items in the database can be represented by a vector embedding using a Bi-Encoder model.
 
-> Note. Vector search engines **compute** dense vector embeddings **during import**. Calculating vectors up-front coupled with [ANN algorithms](/developers/docs/concepts/vector-index-plugins) (for faster retrieval) makes working with Bi-Encoder highly efficient.
+> Note. Vector search engines **compute** dense vector embeddings **during import**. Calculating vectors up-front coupled with [ANN algorithms](/developers/weaviate/concepts/vector-index-plugins) (for faster retrieval) makes working with Bi-Encoder highly efficient.
 
 ![Vector Search Engine](./img/vector-database.png)
 
@@ -86,7 +86,7 @@ This blog post was inspired by [Nils Reimer's work on Bi-Encoders and Cross-Enco
 
 
 ## What next
-Check out the [Getting Started with Weaviate](/developers/docs/quickstart) and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 

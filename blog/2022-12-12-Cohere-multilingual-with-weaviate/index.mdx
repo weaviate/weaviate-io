@@ -30,14 +30,14 @@ Cohere trains their own LLMs for text generation and understanding and serves th
 ## Cohere + Weaviate
 Now, you can combine Cohere’s LLMs with a vector search engine like Weaviate to get the best of both worlds. More specifically, you can run complex NLP queries at a large scale of millions (and even billions) of text objects and get results back in a blink of an eye.
 
-> If you don’t consider a "blink of an eye" as a scientific metric (note: it isn’t!), you can check Weaviate’s [benchmarks](/developers/docs/benchmarks/ann#results) on some standard datasets.
+> If you don’t consider a "blink of an eye" as a scientific metric (note: it isn’t!), you can check Weaviate’s [benchmarks](/developers/weaviate/benchmarks/ann#results) on some standard datasets.
 
 But until now, getting outputs from Cohere into Weaviate required a few extra steps. This included sending requests to Cohere to vectorize text objects, retrieving the output vectors, and then importing it  into Weaviate along with the matching objects.
 
 ### Text2vec-cohere
-Over the last few weeks, we’ve partnered with Cohere to create a new Weaviate module – [text2vec-cohere](/developers/docs/modules/retriever-vectorizer-modules/text2vec-cohere) – it allows you to use Cohere’s LLMs to run complex NLP queries straight from Weaviate.
+Over the last few weeks, we’ve partnered with Cohere to create a new Weaviate module – [text2vec-cohere](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere) – it allows you to use Cohere’s LLMs to run complex NLP queries straight from Weaviate.
 
-You can learn all about [text2vec-cohere from the docs](/developers/docs/modules/retriever-vectorizer-modules/text2vec-cohere).
+You can learn all about [text2vec-cohere from the docs](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere).
 
 And there is a **lot** that you can do with Cohere, including some very new, exciting developments. **drumroll** 🥁
 
@@ -211,9 +211,9 @@ Every time you add new or modify existing objects, Weaviate will obtain new vect
 The best thing is, from the query or data modifications point of view, you don’t need to do anything about the Weaviate ⇔ Cohere coordination.
 
 ## What next
-Check out the [text2vec-cohere](/developers/docs/modules/retriever-vectorizer-modules/text2vec-cohere) to learn more about the new module.
+Check out the [text2vec-cohere](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere) to learn more about the new module.
 
-If you are new to Weaviate, check out the [getting started guide](/developers/docs/quickstart).
+If you are new to Weaviate, check out the [getting started guide](/developers/weaviate/quickstart).
 
 Let us know if you found this article interesting or useful. We are always happy to receive constructive feedback. 😀
 

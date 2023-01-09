@@ -110,7 +110,7 @@ const config = {
                         items: [
                             {
                                 label: 'Docs',
-                                docId: 'docs/index',
+                                docId: 'weaviate/index',
                                 sidebarid: 'docsSidebar',
                                 type: 'doc',
                             },

@@ -20,15 +20,15 @@ sidebar_position: 0
 # Contributor guidelines 
 
 There are currently four clients developed for Weaviate's APIs:
-* [Python](/developers/docs/client-libraries/python.md)
-* [Go](/developers/docs/client-libraries/go.md)
-* [JavaScript](/developers/docs/client-libraries/javascript.md)
-* [Java](/developers/docs/client-libraries/java.md)
+* [Python](/developers/weaviate/client-libraries/python.md)
+* [Go](/developers/weaviate/client-libraries/go.md)
+* [JavaScript](/developers/weaviate/client-libraries/javascript.md)
+* [Java](/developers/weaviate/client-libraries/java.md)
 
 These clients, and all future clients are and will be developed according to the following guidelines:
 
-1. Every client *must* reflect all features of the [RESTful API one-to-one](/developers/docs/api/rest/index.md).
-2. Every client *must* reflect all functions of [GraphQL API](/developers/docs/api/graphql/index.md) (1-1 where possible).
+1. Every client *must* reflect all features of the [RESTful API one-to-one](/developers/weaviate/api/rest/index.md).
+2. Every client *must* reflect all functions of [GraphQL API](/developers/weaviate/api/graphql/index.md) (1-1 where possible).
 3. Clients *can* have client-specific, extra or unique features:
    1. These features on top of the 1-1 RESTful and GraphQL functionalities must be defined through a user story, which will also be reflected in the documentation.
    2. These features can be solved in a client's native way (follow the current design of the client for consistency)
@@ -93,8 +93,8 @@ Then you can take a look at an existing client which matches your language the
 closest and get inspried. 
 
 For example, if you plan to implement a client in C#, it might make sense to look at the 
-[Java](/developers/docs/client-libraries/java.md) and
-[Go](/developers/docs/client-libraries/go.md) clients.
+[Java](/developers/weaviate/client-libraries/java.md) and
+[Go](/developers/weaviate/client-libraries/go.md) clients.
 
 Then we recommend to start porting one of the existing test suites and start
 implementing the client methods until all tests are passed. If you use the same

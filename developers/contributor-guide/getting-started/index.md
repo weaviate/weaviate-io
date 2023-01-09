@@ -46,7 +46,7 @@ You can also contribute by working on existing issues at any of Weaviate's repos
 
 ## Background reading
 
-Navigating a new project can be difficult, and it takes time to become acquainted with the codebase. If you haven't yet, we suggest going through the [Weaviate getting started guide](/developers/docs/quickstart/index.md).
+Navigating a new project can be difficult, and it takes time to become acquainted with the codebase. If you haven't yet, we suggest going through the [Weaviate getting started guide](/developers/weaviate/quickstart/index.md).
 
 Here are additional resources that will help you familiarize with Weaviate and its applications:
 

@@ -19,7 +19,7 @@ image: ./img/hero.png
 ---
 ![What are Distance Metrics in Vector Search?](./img/hero.png)
 
-Vector Search engines – like [Weaviate](/developers/docs/) – use **Machine Learning models** to analyze data and **calculate vector embeddings**. The vector embeddings are **stored together with the data** in a database, and later are used to query the data.
+Vector Search engines – like [Weaviate](/developers/weaviate/) – use **Machine Learning models** to analyze data and **calculate vector embeddings**. The vector embeddings are **stored together with the data** in a database, and later are used to query the data.
 
 In a nutshell, a vector embedding is an array of numbers, that is used to describe an object. For example, strawberries could have a vector `[3, 0, 1]` – more likely the array would be a lot longer than that.<br/>
 *Note*, the meaning of each value in the array, depends on what Machine Learning model we use to generate them.
@@ -160,7 +160,7 @@ To compute the Hamming distance between two strings, you compare the position of
 
 ![XOR Operation](./img/hamming-xor.png){:width="40%"}
 
-There are three positions where the numbers are different (highlighted above). Therefore, the Hamming distance is equal to 3. [Norouzi et al.](https://papers.nips.cc/paper/2012/hash/59b90e1005a220e2ebc542eb9d950b1e-Abstract.html) stated that binary sequences are storage efficient and allow storing massive datasets in memory. There is a great page in the [Weaviate documentation](/developers/docs/concepts/binary-passage-retrieval) that explains this in more detail.
+There are three positions where the numbers are different (highlighted above). Therefore, the Hamming distance is equal to 3. [Norouzi et al.](https://papers.nips.cc/paper/2012/hash/59b90e1005a220e2ebc542eb9d950b1e-Abstract.html) stated that binary sequences are storage efficient and allow storing massive datasets in memory. There is a great page in the [Weaviate documentation](/developers/weaviate/concepts/binary-passage-retrieval) that explains this in more detail.
 
 ## How to Choose a Distance Metric 
 As a rule of thumb, it is best to use the distance metric that matches the model that you're using. For example, if you're using a [Siamese Neural Network](https://en.wikipedia.org/wiki/Siamese_neural_network) (SNN) the contrastive loss function incorporates the euclidean distance. Similarly, when fine-tuning your sentence transformer you define the loss function. The [CosineSimilarityLoss](https://www.sbert.net/docs/package_reference/losses.html#cosinesimilarityloss) takes two embeddings and computes the similarity based on the cosine similarity.
@@ -172,18 +172,18 @@ To summarize, there is no ‘one size fits all' distance metric. It depends on y
 
 ## Implementation in Weaviate 
 
-In total, Weaviate users can choose between five various distance metrics to support their dataset. [Here](/developers/docs/configuration/distances#distance-implementations-and-optimizations) you can find each metric in detail. Weaviate makes it easy to choose a metric depending on your application. With one edit to your schema, you can use any of the metrics implemented on Weaviate (`cosine`, `dot`, `l2-squared`, `hamming`, and `manhattan`), or you have the flexibility to create your own!
+In total, Weaviate users can choose between five various distance metrics to support their dataset. [Here](/developers/weaviate/configuration/distances#distance-implementations-and-optimizations) you can find each metric in detail. Weaviate makes it easy to choose a metric depending on your application. With one edit to your schema, you can use any of the metrics implemented on Weaviate (`cosine`, `dot`, `l2-squared`, `hamming`, and `manhattan`), or you have the flexibility to create your own!
 
 ### Optimizations
 Even with ANN-indexes, which reduce the number of distance calculations necessary, a vector search engine still spends a large portion of its compute time calculating vector distances. As a result, it is very important that the engine can do this not just correctly, but also efficiently.
 
-The distance metrics in Weaviate have been optimized to be highly efficient using "Single Instruction, Multiple Data" ("SIMD") instruction sets. Using these instructions, a CPU can do multiple calculations in a single CPU cycle. To achieve this, we had to write some of our distance metrics in [pure Assembly code](https://github.com/semi-technologies/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s). [Here is an overview](/developers/docs/configuration/distances#distance-implementations-and-optimizations) of the current state of optimizations; including which distance metrics have SIMD optimizations for which architecture.
+The distance metrics in Weaviate have been optimized to be highly efficient using "Single Instruction, Multiple Data" ("SIMD") instruction sets. Using these instructions, a CPU can do multiple calculations in a single CPU cycle. To achieve this, we had to write some of our distance metrics in [pure Assembly code](https://github.com/semi-technologies/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s). [Here is an overview](/developers/weaviate/configuration/distances#distance-implementations-and-optimizations) of the current state of optimizations; including which distance metrics have SIMD optimizations for which architecture.
 
 ### Open source contributions
 Weaviate is open-source and values feedback and input from the community. A community member contributed to the Weaviate project by adding two new metrics to the 1.15 release. How cool is that! If this is something you're interested in, [here](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw/distancer) is the repository with the implementation of the current metrics. 
 
 ## What's next
-Check out the [Getting Started with Weaviate](/developers/docs/quickstart) and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
