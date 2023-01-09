@@ -17,8 +17,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::info Not what you are looking for?
-We also have pages on [how to use the GraphQL API](../api/graphql/index.md) and [how to use the RESTful API](../api/rest/index.md).
+:::info Related pages
+- [References: GraphQL API](../api/graphql/index.md)
+- [References: RESTful API](../api/rest/index.md).
+- [References: Client Libraries](../client-libraries/index.md).
 :::
 
 ## Introduction

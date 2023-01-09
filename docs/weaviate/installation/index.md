@@ -17,13 +17,14 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info Related pages
+- [Quickstart tutorial: Installation](../quickstart/installation.md)
+- [References: Configuration](../configuration/index.md)
+:::
+
 ## Overview
 
 This section shows you available options for running Weaviate, and how to install and configure Weaviate with each option. 
-
-:::info Not what you're looking for?
-If you are looking for a comprehensive set of configuration options, you can find them in [references: configuration](../configuration/index.md).
-:::
 
 ## Options for running Weaviate
 

@@ -15,8 +15,8 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::info Not what you are looking for?
-We also have pages on [how to use the GraphQL API to retrieve data from Weaviate](../api/graphql/index.md).
+:::info Related pages
+- [References: GraphQL API](../api/graphql/index.md)
 :::
 
 ## Introduction

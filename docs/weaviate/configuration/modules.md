@@ -22,6 +22,12 @@ import Badges from '/_includes/badges.mdx';
 - Previous `Configuration/Modules` content has been migrated to `References:Modules/index`
 ::: -->
 
+:::info Related pages
+- [Concepts: Modules](../concepts/modules.md)
+- [References: Modules](../modules/index.md)
+- [References: REST API: Modules](../api/rest/modules.md)
+:::
+
 ## Introduction
 
 Weaviate is modularized, which provides it and its users a great deal of flexibility. This also requires users to specify the desired optional Weaviate modules to be used the relevant configuration file, by setting appropriate [environment variables](../installation/docker-compose.md#environment-variables).

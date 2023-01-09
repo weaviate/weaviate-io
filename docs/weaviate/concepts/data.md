@@ -21,6 +21,10 @@ import Badges from '/_includes/badges.mdx';
   - `Console`, `Benchmarks` and `Monitoring` paragraphs removed
 ::: -->
 
+:::info Related pages
+- [Configuration: Schema](../configuration/schema-configuration.md)
+:::
+
 ## Overview
 
 This document lays out how Weaviate deals with data objects, including how they are stores, represented, and linked to each other.

@@ -18,6 +18,12 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info Related pages
+- [Quickstart Tutorial: Schema](../quickstart/schema.md)
+- [References: REST API: Schema](../api/rest/schema.md)
+- [Concepts: Data Structure](../concepts/data.md)
+:::
+
 ## Introduction
 
 The schema is where you define for Weaviate:
@@ -28,10 +34,6 @@ The schema is where you define for Weaviate:
 - Vectorizer module (for each Class or Property)
 
 The RESTful endpoint `/v1/schema` can be used for schema-related operations. Learn more [here](../api/rest/schema.md).
-
-:::note
-Check out the [schema section of the quickstart tutorial](/docs/weaviate/quickstart/schema.md) to get started with an example.
-:::
 
 ## Data objects and structure
 

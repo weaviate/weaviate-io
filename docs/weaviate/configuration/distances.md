@@ -15,6 +15,12 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info Related pages
+- [Configuration: Schema](./schema-configuration.md)
+- [References: REST API: Schema](../api/rest/schema.md)
+- [Concepts: Data Structure](../concepts/data.md)
+:::
+
 ## Available Distance Metrics
 
 If not specified explicitly, the default distance metric in Weaviate is

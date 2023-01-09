@@ -21,6 +21,11 @@ import Badges from '/_includes/badges.mdx';
 - Adds text re: configuration options from `Vector index plugins/HNSW`
 ::: -->
 
+:::info Related pages
+- [Concepts: Indexing](../concepts/indexing.md)
+- [Concepts: Vector Indexing](../concepts/vector-index.md)
+:::
+
 ## Vector index
 
 Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices). 

@@ -19,6 +19,11 @@ import Badges from '/_includes/badges.mdx';
   - ANN configuration options & tips consolidated in `References:Configuration/ANN Index`, along with `Vector Index Plugins/HNSW`
 ::: -->
 
+:::info Related pages
+- [Concepts: Vector Indexing](./vector-index.md)
+- [Configuration: Indexes](../configuration/indexes.md)
+:::
+
 ## Introduction
 
 Weaviate supports two types of indices.

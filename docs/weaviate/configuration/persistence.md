@@ -18,6 +18,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info Related pages
+- [Configuration: Backups](./backups.md)
+:::
+
 ## Overview
 
 When running Weaviate with Docker or Kubernetes, you can persist its data by mounting a volume to store the data outside of the containers. Doing so will cause the Weaviate instance to also load the data from the mounted volume when it is restarted.

@@ -21,6 +21,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info Related pages
+- [References: REST API: Backups](../api/rest/backups.md)
+:::
+
 ## Introduction
 
 Weaviate's Backup feature is designed to feel very easy to use and work natively with cloud technology. Most notably, it allows:

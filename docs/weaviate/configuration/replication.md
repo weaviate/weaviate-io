@@ -20,6 +20,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info Related pages
+- [Concepts: Replication Architecture](../concepts/replication-architecture/)
+:::
+
 Weaviate instances can be replicated to increase availability, read throughput and enable zero downtime upgrades. On this page, you will learn how to set replication for your Weaviate instance.
 
 :::caution Note:

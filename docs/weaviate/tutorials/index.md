@@ -7,12 +7,12 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 :::note
-- We are currently updating our tutorials to bring them in line with the numerous changes made to Weaviate. You will see more tutorials here soon!
+We are currently updating our tutorials. You will see more tutorials here soon.
 :::
 
 ## Overview
 
-Tutorials are designed to empower you so that you can start to use Weaviate based on *your* particular needs.
+Tutorials aim to empower you to use Weaviate based on *your* particular needs.
 
 <!-- By the time you are done, you will have seen a number of examples and considerations in organizing and importing your data into Weaviate. You will have learnt everything from rules of thumb for selecting a vectorizer, all the way through to how to perform CRUD operations with Weaviate. -->
 

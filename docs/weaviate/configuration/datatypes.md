@@ -18,6 +18,12 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info Related pages
+- [Configuration: Schema](./schema-configuration.md)
+- [References: REST API: Schema](../api/rest/schema.md)
+- [Concepts: Data Structure](../concepts/data.md)
+:::
+
 ## Introduction
 
 When creating a property, Weaviate needs to know what type of data you will give it. Weaviate accepts the following types:

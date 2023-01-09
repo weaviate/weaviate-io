@@ -20,6 +20,10 @@ import Badges from '/_includes/badges.mdx';
 - `RESTful API`
 ::: -->
 
+:::info Related pages
+- [Concepts: Interface](../concepts/interface.md)
+:::
+
 ## Overview
 
 This section includes references for the RESTful and GraphQL APIs. The RESTful API end-points can be used to add data and the GraphQL interface to retrieve data.
