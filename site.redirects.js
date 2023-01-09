@@ -273,10 +273,6 @@ const siteRedirects = {
         if (existingPath.includes('/weaviate/concepts')) {
             return [
                 existingPath.replace('/weaviate/concepts', '/weaviate/current/core-knowledge'),
-            ]
-        }
-        if (existingPath.includes('/weaviate/architecture')) {
-            return [
                 existingPath.replace('/weaviate/concepts', '/weaviate/current/architecture'),
             ]
         }
