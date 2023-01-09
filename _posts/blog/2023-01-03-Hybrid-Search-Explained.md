@@ -5,9 +5,9 @@ description: "Learn about the new hybrid search feature introduced in Weaviate 1
 published: true
 author: Erika Cardenas 
 author-img: /img/people/erika.jpg
-card-img: /img/blog/hybrid-search-explained/hybrid-search.png
-hero-img: /img/blog/hybrid-search-explained/hybrid-search.png
-og: /img/blog/hybrid-search-explained/hybrid-search.png
+card-img: /img/blog/hero/hybrid-search-explained.png
+hero-img: /img/blog/hero/hybrid-search-explained.png
+og: /img/blog/hero/hybrid-search-explained.png
 date: 2023-01-03
 toc: true
 ---
