@@ -27,7 +27,7 @@ Are you curious about, the challenge that we faced, which solutions we considere
 ## Background
 Databases must be able to import data quickly and reliably while maintaining data integrity and reducing time overhead. Weaviate is no exception to this! Given that our users populate Weaviate with hundreds of millions of data objects (if not more), we appreciate that import performance is of the highest ... *import-ance* (sorry) 🥁.
 
-Weaviate offers and strongly recommends the [batch import feature](/docs/weaviate/quickstart/import#importing) for adding data objects in bulk. To further speed up the import process, you can use parallelization, which lets you run multiple batches concurrently. Each object in these batches is then checked for duplicates and assigned a unique internal DocID used by Weaviate to access objects.
+Weaviate offers and strongly recommends the [batch import feature](/developers/weaviate/quickstart/import#importing) for adding data objects in bulk. To further speed up the import process, you can use parallelization, which lets you run multiple batches concurrently. Each object in these batches is then checked for duplicates and assigned a unique internal DocID used by Weaviate to access objects.
 
 We uncovered that there could be a race condition in this process. Sometimes when multiple batches contained identical objects with the same UUID, they could be added more than once to Weaviate, each time with different DocIDs. This, in turn, could cause issues within Weaviate.
 
@@ -55,7 +55,7 @@ The **lock striping** pattern was introduced in Weaviate `v1.15.4`. So if you ar
 Thank you for reading, and see you next time!
 
 ## What's Next
-Check out the [Getting Started with Weaviate](/docs/weaviate/quickstart) and begin building amazing apps with Weaviate.
+Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 

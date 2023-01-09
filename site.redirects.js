@@ -1,7 +1,7 @@
 const siteRedirects = {
     redirects: [
         {
-            to: '/docs/weaviate/roadmap',
+            to: '/developers/weaviate/roadmap',
             from: [
                 // '/developers/weaviate/current/roadmap', // handled by createRedirects
                 '/developers/weaviate/current/roadmap/architectural-roadmap.html',
@@ -9,87 +9,87 @@ const siteRedirects = {
             ]
         },              
         {
-            to: '/docs/weaviate/concepts/data',
+            to: '/developers/weaviate/concepts/data',
             from: '/developers/weaviate/current/core-knowledge/basics.html'
         },
         {
-            to: '/docs/weaviate/client-libraries',
+            to: '/developers/weaviate/client-libraries',
             from: '/developers/weaviate/current/core-knowledge/clients.html'
         },
         {
-            to: '/docs/weaviate/quickstart/console',
+            to: '/developers/weaviate/quickstart/console',
             from: '/developers/weaviate/current/core-knowledge/console.html'
         },
         {
-            to: '/docs/weaviate/configuration/schema-configuration',
+            to: '/developers/weaviate/configuration/schema-configuration',
             from: '/developers/weaviate/current/schema'
         },
         {
-            to: '/docs/weaviate/configuration/datatypes',
+            to: '/developers/weaviate/configuration/datatypes',
             from: '/developers/weaviate/current/schema/datatypes.html'
         },
         {
-            to: '/docs/weaviate/configuration/schema-configuration',
+            to: '/developers/weaviate/configuration/schema-configuration',
             from: '/developers/weaviate/current/schema/schema-configuration.html'
         },
         // {
-        //     to: '/docs/weaviate/tutorials/',
+        //     to: '/developers/weaviate/tutorials/',
         //     from: '/developers/weaviate/current/tutorials'
         // },
         {
-            to: '/docs/weaviate/more-resources/example-datasets',
+            to: '/developers/weaviate/more-resources/example-datasets',
             from: '/developers/weaviate/current/tutorials/example-datasets.html'
         },
         {
-            to: '/docs/weaviate/tutorials/how-to-create-a-schema',
+            to: '/developers/weaviate/tutorials/how-to-create-a-schema',
             from: '/developers/weaviate/current/tutorials/how-to-create-a-schema.html'
         },
         {
-            to: '/docs/weaviate/tutorials',
+            to: '/developers/weaviate/tutorials',
             from: '/developers/weaviate/current/tutorials/how-to-do-classification.html'
         },
         {
-            to: '/docs/weaviate/tutorials',
+            to: '/developers/weaviate/tutorials',
             from: '/developers/weaviate/current/tutorials/how-to-perform-a-semantic-search.html'
         },
         {
-            to: '/docs/weaviate/tutorials',
+            to: '/developers/weaviate/tutorials',
             from: '/developers/weaviate/current/tutorials/how-to-query-data.html'
         },
         {
-            to: '/docs/weaviate/tutorials',
+            to: '/developers/weaviate/tutorials',
             from: '/developers/weaviate/current/tutorials/how-to-use-weaviate-without-modules.html'
         },
         {
-            to: '/docs/weaviate/tutorials',
+            to: '/developers/weaviate/tutorials',
             from: '/developers/weaviate/current/tutorials/other-examples.html'
         },
         {
-            to: '/docs/weaviate/tutorials',
+            to: '/developers/weaviate/tutorials',
             from: '/developers/weaviate/current/tutorials/quick-start-with-the-text2vec-contextionary-module.html'
         },
         {
-            to: '/docs/weaviate/tutorials',
+            to: '/developers/weaviate/tutorials',
             from: '/developers/weaviate/current/tutorials/semantic-search-through-wikipedia.html'
         },
         {
-            to: '/docs/weaviate/more-resources/write-great-bug-reports',
+            to: '/developers/weaviate/more-resources/write-great-bug-reports',
             from: '/developers/weaviate/current/tutorials/write-great-bug-reports.html'
         },
         {
-            to: '/docs/weaviate/concepts/vector-index-plugins',
+            to: '/developers/weaviate/concepts/vector-index-plugins',
             from: '/developers/weaviate/current/vector-index-plugins'
         },
         {
-            to: '/docs/weaviate/configuration/distances',
+            to: '/developers/weaviate/configuration/distances',
             from: '/developers/weaviate/current/vector-index-plugins/distances.html'
         },
         {
-            to: '/docs/weaviate/concepts/vector-index-plugins',
+            to: '/developers/weaviate/concepts/vector-index-plugins',
             from: '/developers/weaviate/current/vector-index-plugins/hnsw.html'
         },
         {
-            to: '/docs/weaviate/',
+            to: '/developers/weaviate/',
             from: '/developers/weaviate/current/more-resources/deprecation-messages.html'
         },
     ],
@@ -113,67 +113,67 @@ const siteRedirects = {
         }
         if (existingPath.includes('/api/graphql')) {
             return [
-                existingPath.replace('/docs/weaviate/api/graphql', '/developers/weaviate/current/graphql-references'),
+                existingPath.replace('/developers/weaviate/api/graphql', '/developers/weaviate/current/graphql-references'),
             ]
         }
         if (existingPath.includes('/modules/retriever-vectorizer-modules')) {
             return [
-                existingPath.replace('/docs/weaviate/modules/retriever-vectorizer-modules', '/developers/weaviate/current/retriever-vectorizer-modules'),
+                existingPath.replace('/developers/weaviate/modules/retriever-vectorizer-modules', '/developers/weaviate/current/retriever-vectorizer-modules'),
             ]
         }
         if (existingPath.includes('/modules/reader-generator-modules')) {
             return [
-                existingPath.replace('/docs/weaviate/modules/reader-generator-modules', '/developers/weaviate/current/reader-generator-modules'),
+                existingPath.replace('/developers/weaviate/modules/reader-generator-modules', '/developers/weaviate/current/reader-generator-modules'),
             ]
         }
         if (existingPath.includes('/modules/other-modules')) {
             return [
-                existingPath.replace('/docs/weaviate/modules/other-modules', '/developers/weaviate/current/other-modules'),
+                existingPath.replace('/developers/weaviate/modules/other-modules', '/developers/weaviate/current/other-modules'),
             ]
         }
         if (existingPath.includes('/api/rest')) {
             return [
-                existingPath.replace('/docs/weaviate/api/rest', '/developers/weaviate/current/restful-api-references'),
+                existingPath.replace('/developers/weaviate/api/rest', '/developers/weaviate/current/restful-api-references'),
             ]
         }
         
         if (existingPath.includes('/core-knowledge')) {
             return [
-                existingPath.replace('/docs/weaviate/concepts', '/developers/weaviate/current/core-knowledge'),
+                existingPath.replace('/developers/weaviate/concepts', '/developers/weaviate/current/core-knowledge'),
             ]
         }        
         if (existingPath.includes('/concepts')) {
             return [
-                existingPath.replace('/docs/weaviate/concepts', '/developers/weaviate/current/architecture'),
+                existingPath.replace('/developers/weaviate/concepts', '/developers/weaviate/current/architecture'),
             ]
         }
         if (existingPath.includes('/quickstart')) {
             return [
-                existingPath.replace('/docs/weaviate/quickstart', '/developers/weaviate/current/getting-started'),
+                existingPath.replace('/developers/weaviate/quickstart', '/developers/weaviate/current/getting-started'),
             ]
         }
 
-        if (existingPath.includes('/docs/weaviate')) {
+        if (existingPath.includes('/developers/weaviate')) {
             return [
-                existingPath.replace('/docs/weaviate', '/developers/weaviate/current'),
+                existingPath.replace('/developers/weaviate', '/developers/weaviate/current'),
             ]
         }
 
         if (existingPath.includes('/contributor-guide/weaviate-modules')) {
             return [
-                existingPath.replace('/docs/contributor-guide/weaviate-modules', '/developers/contributor-guide/current/weaviate-module-system'),
+                existingPath.replace('/developers/contributor-guide/weaviate-modules', '/developers/contributor-guide/current/weaviate-module-system'),
             ]
         }
         if (existingPath.includes('/contributor-guide')) {
             return [
-                existingPath.replace('/docs/contributor-guide', '/developers/contributor-guide/current'),
+                existingPath.replace('/developers/contributor-guide', '/developers/contributor-guide/current'),
             ]
         }
 
 
         // if (existingPath.includes('/tutorials')) {
         //     return [
-        //         existingPath.replace('/docs/weaviate/tutorials', '/developers/weaviate/current/tutorials'),
+        //         existingPath.replace('/developers/weaviate/tutorials', '/developers/weaviate/current/tutorials'),
         //     ]
         // }            
 
