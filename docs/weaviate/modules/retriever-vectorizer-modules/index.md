@@ -13,7 +13,7 @@ This section includes reference guides for retriever & vectorizer modules. As th
 - `text2vec` converts text data
 - `img2vec` converts image data
 - `multi2vec` converts image or text data (into the same embedding space)
-- `ref2vec` converts reference data to a vector
+- `ref2vec` converts cross-reference data (from within Weaviate)
 
 ### Vectorization with `text2vec-*` modules
 
