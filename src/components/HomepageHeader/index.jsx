@@ -8,11 +8,11 @@ export default function HomepageHeader() {
       <div className="container">
         <p className="hero__logo" />
         <h1 className="hero__title">
-          Weaviate <br /> beyond search
+          Weaviate <br /> Beyond search
         </h1>
         <p className="hero__subtitle">
-          Weaviate empowers developers to deliver <br /> scalable search-powered
-          apps painlessly
+          Weaviate empowers developers to deliver <br /> Scalable machine
+          learning-powered apps
         </p>
         <div className={styles.buttons}>
           <Link className="link" to="/developers/weaviate">

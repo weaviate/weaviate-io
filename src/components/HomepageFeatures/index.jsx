@@ -6,34 +6,34 @@ export default function HomePage() {
     <div className="container">
       <div className={styles.header}>
         <h2>
-          Weaviate is an open source <br />
-          vector search engine
+          Weaviate is an Open Source <br />
+          Vector Search engine
         </h2>
         <p>It works out-of-the box and is eaisly configurable</p>
       </div>
       <div className={styles.features}>
         <div className={styles.box}>
-          <p className={styles.icon}></p>
-          <h4 className={styles.title}>Save time</h4>
+          <p className={styles.icon1}></p>
+          <h4 className={styles.title}>Get started instantly</h4>
           <p className={styles.subTitle}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis
-            perspiciatis possimus quibusdam magni omnis nihil amet
+            with our Cloud Service, Kubernetes or Docker, Sensible defaults and
+            easy configuration.
           </p>
         </div>
         <div className={styles.box}>
-          <p className={styles.icon}></p>
-          <h4 className={styles.title}>Boost your apps</h4>
+          <p className={styles.icon2}></p>
+          <h4 className={styles.title}>Leverange advanced feauters</h4>
           <p className={styles.subTitle}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis
-            perspiciatis possimus quibusdam magni omnis nihil amet
+            like vector and hybrid search, recommendations and summarization. No
+            AI expertise required.
           </p>
         </div>
         <div className={styles.box}>
-          <p className={styles.icon}></p>
-          <h4 className={styles.title}>Enjoy the journey</h4>
+          <p className={styles.icon3}></p>
+          <h4 className={styles.title}>DevEx is our focus</h4>
           <p className={styles.subTitle}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis
-            perspiciatis possimus quibusdam magni omnis nihil amet
+            Get all the help and support you need, join a friendly community and
+            have your say.
           </p>
         </div>
       </div>

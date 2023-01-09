@@ -1,3 +1,16 @@
+[data-theme='light'] {
+  .socialBox {
+    .slack {
+      background-image: url('../../../static/img/site/slack.png');
+    }
+    .github {
+      background-image: url('../../../static/img/site/git.png');
+    }
+    .twitter {
+      background-image: url('../../../static/img/site/twitter.png');
+    }
+  }
+}
 .wrapper {
   display: flex;
   flex-direction: row;
@@ -38,10 +51,12 @@
     height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../../static/img/site/slack.svg');
+    background-image: url('../../../static/img/site/slack_1.png');
   }
   .text {
     padding-top: 10px;
+    text-align: center;
+    color: #c8c8c8;
   }
 
   .github {
@@ -50,7 +65,7 @@
     height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../../static/img/site/git.svg');
+    background-image: url('../../../static/img/site/git_1.png');
   }
   .twitter {
     display: flex;
@@ -58,6 +73,6 @@
     height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../../static/img/site/twitter.svg');
+    background-image: url('../../../static/img/site/twitter_1.png');
   }
 }

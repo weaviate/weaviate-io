@@ -341,6 +341,11 @@
 }
 
 [data-theme='light'] {
+  .hero__logo {
+    background-image: url('../../static/img/site/weaviate-logo-light.png');
+    height: 100px;
+    margin-top: 80px;
+  }
   .navbar {
     background: rgb(225, 237, 194);
     background: linear-gradient(

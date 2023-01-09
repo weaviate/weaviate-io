@@ -9,11 +9,14 @@ export default function HomepageReady() {
       <h2 className={styles.title}>Ready to get started?</h2>
       <div className={styles.links}>
         <p>
-          Install <Link to="#">Weaviate open source {'>'} </Link>
+          Install{' '}
+          <Link to="/developers/weaviate/current/getting-started/installation.html">
+            Weaviate open source {'>'}{' '}
+          </Link>
         </p>
         <p>
           or request access to the{' '}
-          <Link className={styles.color} to="#">
+          <Link className={styles.color} to="https://console.semi.technology/">
             Weaviate Cloud Services {'>'}{' '}
           </Link>
         </p>

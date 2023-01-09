@@ -1,3 +1,9 @@
+[data-theme='light'] {
+  .logo {
+    background-image: url('../../../static/img/site/weaviate-logo-light.png');
+    height: 100px;
+  }
+}
 .logo {
   width: 100%;
   background-position-x: center;

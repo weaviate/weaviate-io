@@ -27,6 +27,7 @@
   }
 }
 .cards {
+  padding-top: 2rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -130,5 +131,22 @@
         padding: 20px;
       }
     }
+  }
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+  a {
+    color: #fff;
+  }
+}
+
+.linksSmall {
+  display: flex;
+  padding-left: 20px;
+  a {
+    color: #fff;
   }
 }

@@ -6,7 +6,16 @@ export default function GomepageIntegrations() {
     <div className="container">
       <div className={styles.box}>
         <div className={styles.left}>
-          <p>TO DO: logos here!</p>
+          <div className={styles.inside}>
+            <span className={styles.logoAI} />
+            <span className={styles.logoH} />
+            <span className={styles.logoJ} />
+          </div>
+          <div className={styles.inside}>
+            <span className={styles.logoD} />
+            <span className={styles.logoCo} />
+            <span className={styles.logoW} />
+          </div>
         </div>
         <div className={styles.right}>
           <h2>Integrations</h2>

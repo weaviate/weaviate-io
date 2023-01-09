@@ -1,62 +1,32 @@
+[data-theme='light'] {
+  .box {
+    background-image: url('../../../static/img/site/subscribeLight.png');
+  }
+}
 .box {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url('../../../static/img/site/subscribe.png');
   width: 100%;
-  min-height: 136px;
+  height: 150px;
+  padding: 50px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  @media screen and (max-width: 680px) {
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 25px;
-    min-height: 180px;
+  border-radius: 2rem;
+  @media screen and (max-width: 678px) {
+    padding: 20px;
   }
-  .left {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  @media screen and (max-width: 400px) {
+    padding: 10px;
   }
-  .right {
+  .iframe {
+    width: 100%;
     display: flex;
-    flex: 1;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-
-    @media screen and (max-width: 590px) {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-
-    .form {
-      width: 100%;
-      @media screen and (max-width: 590px) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      input {
-        width: 80%;
-        background-color: #000000;
-        color: #ffffff;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 2rem;
-        appearance: none;
-        outline: none;
-      }
-      button {
-        background-color: #38d611;
-        color: #ffffff;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 2rem;
-        margin-left: -50px;
-      }
-    }
+    align-items: flex-start;
+    height: 50px;
   }
 }

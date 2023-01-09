@@ -1,3 +1,4 @@
+import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
 
@@ -13,27 +14,59 @@ export default function HomepageLearn() {
       </div>
       <div className={styles.cards}>
         <div className={styles.left}>
-          <h3 className={styles.title}>
-            Neural Magic
-            <br /> in Weaviate
-          </h3>
+          <Link to="https://weaviate.io/podcast.html">
+            <h3 className={styles.title}>
+              Podcast:
+              <br /> Neural Magic in Weaviate
+            </h3>
+          </Link>
+          <div className={styles.links}>
+            <Link to="https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0">
+              Watch on YouTube {'>'}{' '}
+            </Link>
+            <Link to="https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7">
+              Listen on Spotify {'>'}{' '}
+            </Link>
+          </div>
         </div>
         <div className={styles.middle}>
           <div className={styles.smallUp}>
-            <h3 className={styles.title}>Vector Library vs Vector Database</h3>
+            <h3 className={styles.title}>
+              Vector Library versus Vector Database
+            </h3>
+            <div className={styles.linksSmall}>
+              <Link to="https://weaviate.io/blog/2022/12/vector-library-vs-vector-database.html">
+                Read the blog {'>'}{' '}
+              </Link>
+            </div>
           </div>
           <div className={styles.smallDown}>
             <h3 className={styles.title}>
               Weaviate + Jina AI for image search
             </h3>
+            <div className={styles.linksSmall}>
+              <Link to="https://www.youtube.com/watch?v=rBKvoIGihnY">
+                Watch the tutorial {'>'}{' '}
+              </Link>
+            </div>
           </div>
         </div>
         <div className={styles.right}>
           <div className={styles.smallUp}>
             <h3 className={styles.title}>Backup and Restore in Weaviate</h3>
+            <div className={styles.linksSmall}>
+              <Link to="https://weaviate.io/blog/2022/11/tutorial-backup-and-restore-in-weaviate.html">
+                Read the tutorial {'>'}{' '}
+              </Link>
+            </div>
           </div>
           <div className={styles.smallDown}>
-            <h3 className={styles.title}> What is vector search?</h3>
+            <h3 className={styles.title}>Why is Vector Search so fast?</h3>
+            <div className={styles.linksSmall}>
+              <Link to="https://weaviate.io/blog/2022/09/Why-is-Vector-Search-so-fast.html">
+                Read the blog {'>'}{' '}
+              </Link>
+            </div>
           </div>
         </div>
       </div>
