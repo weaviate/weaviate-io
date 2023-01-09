@@ -52,7 +52,8 @@ client.batch.flush()
 ```
 
 This should add a series of `Question` objects with text properties like this:
-```
+
+```text
 {'question': 'In 1963, live on "The Art Linkletter Show", this company served its billionth burger',
  'answer': "McDonald's"}
 ```
@@ -232,7 +233,7 @@ And as a result, a `nearVector` search with the previously-matching Cohere API v
 
 To get this back down to zero, we must revise the text generation pipeline to match the schema. Once we’ve done that, which looks like this:
 
-```
+```python
 str_in = ''
 for k in sorted(input_props.keys()):
     v = input_props[k]
