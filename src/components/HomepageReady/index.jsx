@@ -10,7 +10,7 @@ export default function HomepageReady() {
       <div className={styles.links}>
         <p>
           Install{' '}
-          <Link to="/developers/weaviate/current/getting-started/installation.html">
+          <Link to="/developers/weaviate/quickstart/installation">
             Weaviate open source {'>'}{' '}
           </Link>
         </p>

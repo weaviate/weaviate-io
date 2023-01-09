@@ -1,46 +1,35 @@
 ---
 title: Weaviate 1.15 release
-slug: Weaviate-release-1-15
+slug: weaviate-1-15-release
 authors: [connor, erika, laura, sebastian] 
 date: 2022-09-07
 tags: []
 image: ./img/hero.png
-
 # description: "Learn, what is new in Weaviate 1.15. Cloud-native backups, memory optimizations, faster filtered aggregations and ordered imports, new distance metrics and Weaviate modules."
-# published: true
-# author: Sebastian Witalec
-# author-img: /img/people/icon/sebastian.jpg
-# card-img: /img/blog/hero/weaviate-1-15-card.png
-# hero-img: /img/blog/hero/weaviate-1-15-card.png
-# og: /img/blog/hero/weaviate-1-15-card.png
-# date: 2022-09-07
-# toc: false
-# redirect_from: /blog/Weaviate-release-1-15.html
 ---
 ![Weaviate 1.15 release](./img/hero.png)
 
 We are happy to announce the release of Weaviate 1.15, which is packed with great features, significant performance improvements, new distance metrics and modules, and many smaller improvements and fixes.
 
-<!-- truncate -->
-
 ## The brief
 
 If you like your content brief and to the point, here is the TL;DR of this release:
-1. [☁️Cloud-native backups](#cloud-native-backups) – allows you to configure your environment to create backups – of selected classes or the whole database – straight into AWS S3, GCS or local filesystem
+1. [☁️Cloud-native backups](#cloud-native-backups) - allows you to configure your environment to create backups - of selected classes or the whole database - straight into AWS S3, GCS or local filesystem
 1. [Reduced memory usage](#reduced-memory-usage) - we found new ways to optimize memory usage, reducing RAM usage by 10-30%.
-1. [Better control over Garbage Collector](#better-control-over-garbage-collector) – with the introduction of GOMEMLIMIT we gained more control over the garbage collector, which significantly reduced the chances of OOM kills for your Weaviate setups. 
-1. [Faster imports for ordered data](#faster-imports-for-ordered-data) – by extending the Binary Search Tree structure with a self-balancing Red-black tree, we were able to speed up imports from O(n) to O(log n)
-1. [More efficient filtered aggregations](#more-efficient-filtered-aggregations) – thanks to optimization to a library reading binary data, filtered aggregations are now 10-20 faster and require a lot less memory.
-<!-- (TODO: add the claim by Juraj) -->
-1. [Two new distance metrics](#new-distance-metrics) – with the addition of Hamming and Manhattan distance metrics, you can choose the metric (or a combination of) to best suit your data and use case.
-1. [Two new Weaviate modules](#new-weaviate-modules) – with the Summarization module, you can summarize any text on the fly, while with the HuggingFace module, you can use compatible transformers from the HuggingFace
-1. [Other improvements and bug fixes](#other-improvements-and-bug-fixes) – it goes without saying that with every Weaviate release, we strive to make Weaviate more stable – through bug fixes – and more efficient – through many optimizations.
+1. [Better control over Garbage Collector](#better-control-over-garbage-collector) - with the introduction of GOMEMLIMIT we gained more control over the garbage collector, which significantly reduced the chances of OOM kills for your Weaviate setups. 
+1. [Faster imports for ordered data](#faster-imports-for-ordered-data) - by extending the Binary Search Tree structure with a self-balancing Red-black tree, we were able to speed up imports from O(n) to O(log n)
+1. [More efficient filtered aggregations](#more-efficient-filtered-aggregations) - thanks to optimization to a library reading binary data, filtered aggregations are now 10-20 faster and require a lot less memory.
+1. [Two new distance metrics](#new-distance-metrics) - with the addition of Hamming and Manhattan distance metrics, you can choose the metric (or a combination of) to best suit your data and use case.
+1. [Two new Weaviate modules](#new-weaviate-modules) - with the Summarization module, you can summarize any text on the fly, while with the HuggingFace module, you can use compatible transformers from the HuggingFace
+1. [Other improvements and bug fixes](#other-improvements-and-bug-fixes) - it goes without saying that with every Weaviate release, we strive to make Weaviate more stable - through bug fixes - and more efficient - through many optimizations.
+
+<!-- truncate -->
 
 Read below to learn more about each of these points in more detail.
 
 ### Patch 1.15.1 note
 We have published a patch release v1.15.1.<br/>
-To learn more check the [Weaviate 1.15.1 patch release](/blog/Weaviate-release-1-15-1) blog.
+To learn more check the [Weaviate 1.15.1 patch release](/blog/weaviate-1-15-1-release) blog.
 
 ### Community effort
 ![New Contributors](./img/new-contributors.jpg)
@@ -75,9 +64,9 @@ The database backups include data objects, plus their vectors and indexes. This 
 ### Backup modules
 Cloud-native backups in Weaviate are handled with the addition of the new **backup modules**:
 
-* `backup-s3` – for S3
-* `backup-gcs` – for GCS
-* `backup-fs` – for local filesystem
+* `backup-s3` - for S3
+* `backup-gcs` - for GCS
+* `backup-fs` - for local filesystem
 
 Without getting into too many details (see the [docs for more precise instructions](/developers/weaviate/configuration/backups)), each module requires a different set of settings.
 
@@ -89,7 +78,7 @@ For S3 and GCS, you need your cloud bucket name, authentication details and some
 
 Alternatively, you can configure backups with the **local filesystem**. All you need here is to provide the path to the backup folder.
 
-> Note, you can have multiple storage configurations – one for each S3, GCS and the local filesystem.
+> Note, you can have multiple storage configurations - one for each S3, GCS and the local filesystem.
 
 ### Creating backups - API
 Once you have the backup module up and running, you can create backups with a single `POST` command:
@@ -142,8 +131,8 @@ Here is one interesting thing that you might not have noticed. You can use this 
 
 ### Class backups
 You can also create backups for specific classes or select which classes you want to restore. Just add one of the following properties to the `POST payload`:
-* `include` – an array class names we want to backup or restore
-* `exclude` – an array class names we don't want to backup or restore
+* `include` - an array class names we want to backup or restore
+* `exclude` - an array class names we don't want to backup or restore
 
 For example, you can create a backup that includes Cats, Dogs and Meerkats.
 
@@ -216,7 +205,7 @@ Working with a garbage collector is very safe, and the resource cost of running 
 
 Now, increasing each of those comes with a price:
 * Increasing the frequency of GC cycles will use more CPU, which we could make better use of elsewhere.
-* Increasing RAM costs money – and for memory demanding setups, that can be a big 💰sum.
+* Increasing RAM costs money - and for memory demanding setups, that can be a big 💰sum.
 
 And if we get that balance wrong, we might end up with an Out Of Memory crash.
 
@@ -268,8 +257,8 @@ First, we saw that the RB-Tree is a factor of 20 faster than the binary tree whe
 
 With a full import test, we saw a **3x performance improvement** 🚀.
 
-* Weaviate `1.14.1` – import time **~38 minutes**
-* Weaviate `1.15.0` – import time **~13 minutes** 🔥
+* Weaviate `1.14.1` - import time **~38 minutes**
+* Weaviate `1.15.0` - import time **~13 minutes** 🔥
 
 ## More efficient filtered aggregations
 
@@ -291,9 +280,9 @@ This is a bit like, if we want to eat a cake, we need to put it on a plate, eat 
 I am sure you would rather spend more time eating cakes than dealing with plates.
 
 This is bad for three reasons:
-* Grabbing a new plate for each cake and then washing it takes time – **higher CPU use** with many GC cycles.
+* Grabbing a new plate for each cake and then washing it takes time - **higher CPU use** with many GC cycles.
 * We would pile up many plates between each wash - **high memory consumption** between each GC cycle.
-* We might run out of clean plates – **OOM crash** if we **run out of RAM**.
+* We might run out of clean plates - **OOM crash** if we **run out of RAM**.
 
 ### The solution
 To solve the problem, we implemented two solutions:
@@ -331,7 +320,7 @@ For example, the Hamming distance for the below vectors is **2**, which is the c
 * B `[1, 2, 3, 9, 5]`
 
 ### Manhattan distance
-The Manhattan distance (also known as L1 norm and Taxicab Distance) – calculates the distance between a pair of vectors, as if simulating a route for a Manhattan taxi driver driving from point A to point B – who is navigating the **streets of Manhattan** with the grid layout and one-way streets. For each difference in the compared vectors, the taxi driver needs to make a turn, thus making the ride this much longer.
+The Manhattan distance (also known as L1 norm and Taxicab Distance) - calculates the distance between a pair of vectors, as if simulating a route for a Manhattan taxi driver driving from point A to point B - who is navigating the **streets of Manhattan** with the grid layout and one-way streets. For each difference in the compared vectors, the taxi driver needs to make a turn, thus making the ride this much longer.
 
 ![Manhattan taxi driver](./img/manhatten-distance-cars.png)
 

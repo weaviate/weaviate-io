@@ -7,22 +7,15 @@ tags: []
 image: ./img/hero.png
 # canonical-url: https://db-engines.com/en/blog_post/87
 # canonical-name: DB Engines
-
 # description: "How the vector search engine Weaviate overcomes the limitations of popular Approximate Nearest Neighbor (ANN) libraries."
-# published: true
-# author: Etienne Dilocker
-# author-img: /img/people/icon/etienne.jpg
-# card-img: /img/blog/hero/crud-support–in-weaviate-card.png
-# toc: true
-# redirect_from: /blog/2021/02/CRUD-support-in-Weaviate.html
 ---
 ![Weaviate, an ANN Database with CRUD support](./img/hero.png)
 
 With the rising popularity of machine learning models, the demand for vector similarity search solutions has also increased dramatically. Machine learning models typically output vectors and common search queries involve finding the closest set of related vectors. For example, for a text-based vector search the search query "landmarks in Paris" would be encoded to a vector, it is then the job of the search engine to find the documents with the vector closest to this query. This might be a document with the title "Eiffel Tower" whose vector matched the search vector most closely.
 
-Such a vector similarity comparison is computationally trivial if there are very few, say less than 10,000 objects to be searched through. That is not a very realistic situation, however. The amount of unstructured data that companies and users need to search through is massive. The number of objects is often in the high millions or even billions of data points. A primitive brute-force comparison can no longer return results in an acceptable time frame.
-
 <!-- truncate -->
+
+Such a vector similarity comparison is computationally trivial if there are very few, say less than 10,000 objects to be searched through. That is not a very realistic situation, however. The amount of unstructured data that companies and users need to search through is massive. The number of objects is often in the high millions or even billions of data points. A primitive brute-force comparison can no longer return results in an acceptable time frame.
 
 This led to the rise of Approximate Nearest Neighbor (ANN) models. You might have heard of Spotify's Annoy, Facebook's faiss, or Google's ScaNN. What they all have in common is that they make a conscious trade-off between accuracy (precision, recall) and retrieval speed. This has enabled users to retrieve the 5, 10, or 100 closest vectors within a few milliseconds — even out of a billion objects.
 
