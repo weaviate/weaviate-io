@@ -5,10 +5,10 @@ description: "Learn the magic behind Weaviate's text2vec module"
 published: true
 author: JP Hwang 
 author-img: /img/people/icon/JP.png
-card-img: /img/blog/hybrid-search-explained/hybrid-search.png
-hero-img: /img/blog/hybrid-search-explained/hybrid-search.png
-og: /img/blog/hybrid-search-explained/hybrid-search.png
-date: 2023-01-09
+card-img: /img/blog/hero/pulling-back-the-curtains-text2vec.png
+hero-img: /img/blog/hero/pulling-back-the-curtains-text2vec.png
+og: /img/blog/hero/pulling-back-the-curtains-text2vec.png
+date: 2023-01-10
 toc: true
 ---
 You probably know that Weaviate converts a text corpus into a set of vectors - each object is given a vector that captures its ‘meaning’. But you might not know exactly how it does that, or how to adjust that behavior. Here, we will we pull back the curtains to examine those questions, by revealing some of the mechanics behind `text2vec`’s magic. 
@@ -78,6 +78,8 @@ This all makes intuitive sense - the entry related to the largest fast food chai
 But wait, how was that vector derived? 
 
 This is the ‘magic’ part. So let’s look behind the curtain, and see if we can reproduce the magic. More specifically, let’s try to reproduce Weaviate’s output vector for each object by using an external API. 
+
+![pulling back the curtains](/img/blog/pulling-back-the-curtains-on-text2vec/pulling-back-the-curtains-text2vec.png)
 
 ### Matching Weaviate’s vectorization
 
