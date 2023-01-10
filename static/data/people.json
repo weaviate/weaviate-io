@@ -1,0 +1,208 @@
+[
+	{
+		"name": "Abdel Rodriquez",
+		"title": "Vector Index Researcher",
+		"photo": "abdel.jpg",
+		"linkedin": "abdel-rodriguez-36533b53",
+		"github": "abdelr"
+	},
+	{
+		"name": "Andrzej Liszka",
+		"title": "Core Engineer ",
+		"photo": "andrzej.png",
+		"linkedin": "andrzej-liszka-897ab8234",
+		"github": "aliszka"
+	},
+	{
+		"name": "Bob van Luijt",
+		"title": "Co-founder and CEO",
+		"photo": "bob.png",
+		"linkedin": "bobvanluijt",
+		"twitter": "bobvanluijt",
+		"github": "bobvanluijt"
+	},
+	{
+		"name": "Byron Voorbach",
+		"title": "Head of Customer Success",
+		"photo": "byron.png",
+		"linkedin": "byronvoorbach",
+		"twitter": "byronvoorbach",
+		"github": "byronvoorbach"
+	},
+	{
+		"name": "Charles Harr",
+		"title": "Software Engineer",
+		"photo": "charles.png",
+		"linkedin": "ceharr",
+		"github": "harrlight00"
+	},
+	{
+		"name": "Connor Shorten",
+		"title": "Research Scientist",
+		"photo": "connor.png",
+		"linkedin": "connor-shorten-34923a178/",
+		"twitter": "cshorten30",
+		"github": "CShorten"
+	},
+	{
+		"name": "Dan Dascalescu",
+		"title": "Developer Advocate",
+		"photo": "dan.png",
+		"linkedin": "dandv",
+		"github": "dandv"
+	},
+	{
+		"name": "Dirk Kulawiak",
+		"title": "Core Engineer ",
+		"photo": "dirk.png",
+		"linkedin": "dirk-kulawiak",
+		"github": "dirkkul"
+	},
+	{
+		"name": "Eric Caleb",
+		"title": "Senior Software Engineer",
+		"photo": "eric.png",
+		"linkedin": "iamcaleberic",
+		"twitter": "iamcaleberic",
+		"github": ""
+	},
+	{
+		"name": "Erika Cardenas",
+		"title": "Developer Advocate",
+		"photo": "erika.png",
+		"linkedin": "erikacardenas300",
+		"twitter": "ecardenas300",
+		"github": "erika-cardenas"
+	},
+	{
+		"name": "Etienne Dilocker",
+		"title": "Co-founder and CTO",
+		"photo": "etienne.png",
+		"linkedin": "etienne-dilocker-60727b175",
+		"twitter": "etiennedi",
+		"github": "etiennedi"
+	},
+	{
+		"name": "Femke Plantinga",
+		"title": "Developer Marketing Manager",
+		"photo": "femke.png",
+		"linkedin": "femke-plantinga-a60b9a172",
+		"twitter": "femke_plantinga"
+	},
+	{
+		"name": "JP Hwang",
+		"title": "Technical Curriculum Developer",
+		"photo": "jp.png",
+		"linkedin": "jphwang",
+		"twitter": "_jphwang",
+		"github": "databyjp"
+	},
+	{
+		"name": "Jeremy Price",
+		"title": "Core Engineer",
+		"photo": "jeremy.png",
+		"github": "donomii"
+	},
+	{
+		"name": "Jessie de Groot",
+		"title": "Head of People & Culture",
+		"photo": "jessie.png",
+		"linkedin": "jessiedegroot/",
+		"twitter": "jessie_groot"
+	},
+	{
+		"name": "John Trengrove",
+		"title": "Solution Engineer",
+		"photo": "johntrengrove.png",
+		"linkedin": "trengrj",
+		"twitter": "trengrj",
+		"github": "trengrj"
+	},
+	{
+		"name": "Ken Macinnis",
+		"title": "Solution Engineer",
+		"photo": "ken.png",
+		"linkedin": "kmacinnis",
+		"twitter": "",
+		"github": ""
+	},
+	{
+		"name": "Laura Ham",
+		"title": "ML Product Researcher ",
+		"photo": "laura.png",
+		"linkedin": "laura-ham/",
+		"twitter": "laura_hamham",
+		"github": "laura-ham"
+	},
+	{
+		"name": "Marcin Antas",
+		"title": "Core Engineer ",
+		"photo": "marcin.png",
+		"linkedin": "antasmarcin",
+		"twitter": "antas_marcin",
+		"github": "antas-marcin"
+	},
+	{
+		"name": "Parker Duckworth",
+		"title": "Core Engineer",
+		"photo": "parker.png",
+		"linkedin": "parkerduckworth",
+		"github": "parkerduckworth"
+	},
+	{
+		"name": "Peter Schramm",
+		"title": "Tech Lead",
+		"photo": "peter.png",
+		"linkedin": "peter-schramm-cologne",
+		"github": "Glockenbeat"
+	},
+	{
+		"name": "Redouan 'Red' El Rhazouani",
+		"title": "Core Engineer",
+		"photo": "redo.png",
+		"linkedin": "redouan-el-rhazouani-295082111",
+		"github": "redouan-rhazouani"
+	},
+	{
+		"name": "Sebastian Witalec",
+		"title": "Head of Developer Relations",
+		"photo": "sebastian.png",
+		"linkedin": "sebawita",
+		"twitter": "sebawita",
+		"github": "sebawita"
+	},
+	{
+		"name": "Sila Uygun",
+		"title": "Account Manager",
+		"photo": "sila.png",
+		"linkedin": "silauygun",
+		"twitter": "silauygun"
+	},
+	{
+		"name": "Stefan Bogdan",
+		"title": "Solution Engineer ",
+		"photo": "stefan.png",
+		"linkedin": "stefan-bogdan",
+		"github": "StefanBogdan"
+	},
+	{
+		"name": "Svitlana Smolianova",
+		"title": "Head of Design",
+		"photo": "svitlana.png",
+		"linkedin": "svitlana-sm",
+		"twitter": "switlana_c"
+	},
+	{
+		"name": "Weronika Krajcarz",
+		"title": "Frontend Engineer",
+		"photo": "wera.png",
+		"linkedin": "wera-kr",
+		"github": "Weroiko"
+	},
+	{
+		"name": "Zain Hasan",
+		"title": "Senior Developer Advocate",
+		"photo": "zain.png",
+		"linkedin": "zainhas"
+	}
+]

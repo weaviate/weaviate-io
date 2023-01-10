@@ -86,6 +86,29 @@ const config = {
                 items: [
                     {
                         type: 'dropdown',
+                        label: 'Company',
+                        position: 'right',
+                        items: [
+                            {
+                                label: 'About us',
+                                to: '/company/about-us',
+                            },
+                            {
+                                label: 'Careers',
+                                to: '/company/careers',
+                            },
+                            {
+                                label: 'Investors',
+                                to: '/company/investors',
+                            },
+                            {
+                                label: 'Contact us',
+                                href: 'mailto:hello@semi.technology'
+                            }
+                        ]
+                    },
+                    {
+                        type: 'dropdown',
                         label: 'Content',
                         position: 'right',
                         items: [
