@@ -5,6 +5,17 @@
  */
 
 /* You can override the default Infima variables here. */
+
+@font-face {
+  font-family: 'FredokaOneRegular';
+  src: url('../../static/fonts/FredokaOne-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'NiramitRegular';
+  src: url('../../static/fonts/Niramit-Regular.ttf');
+}
+
 :root {
   --ifm-h2-font-size: 2rem;
   @media screen and (max-width: 768px) {
@@ -19,8 +30,21 @@
   --ifm-color-primary-lighter: #fe2385;
   --ifm-color-primary-lightest: #fe489a;
   --ifm-code-font-size: 95%;
+  --ifm-heading-font-family: 'FredokaOneRegular';
+  --ifm-font-family-base: 'NiramitRegular';
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--ifm-heading-color);
+    font-family: var(--ifm-heading-font-family);
+    font-weight: var(--ifm-heading-font-weight);
+    line-height: var(--ifm-heading-line-height);
+    margin: var(--ifm-heading-margin-top) 0 var(--ifm-heading-margin-bottom) 0;
+  }
   // Weaviate configurator styling
   .configuratin-generator-app {
     text-align: center;
