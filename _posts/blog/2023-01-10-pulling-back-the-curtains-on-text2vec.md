@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pulling back the curtains on text2vec
-description: "Learn the magic behind Weaviate's text2vec module"
+description: "Learn the magic behind Weaviate's text2vec module."
 published: true
 author: JP Hwang 
 author-img: /img/people/icon/JP.png
