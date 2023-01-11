@@ -18,11 +18,22 @@
   border-radius: 2rem;
   @media screen and (max-width: 678px) {
     padding: 20px;
+    flex-direction: column;
+    gap: 10px;
   }
   @media screen and (max-width: 400px) {
     padding: 10px;
   }
+  .text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    @media screen and (max-width: 678px) {
+      align-items: center;
+    }
+  }
   .iframe {
+    flex: 2;
     width: 100%;
     display: flex;
     justify-content: center;
