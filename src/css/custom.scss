@@ -336,14 +336,12 @@
 /* light mode */
 
 #__docusaurus {
-  background: rgb(249, 201, 222);
+  background: rgb(208, 228, 236);
   background: linear-gradient(
     45deg,
-    rgba(249, 201, 222, 1) 0%,
-    rgba(252, 222, 213, 1) 21%,
-    rgba(255, 247, 202, 1) 50%,
-    rgba(225, 237, 194, 1) 64%,
-    rgba(187, 216, 231, 1) 100%
+    rgba(208, 228, 236, 1) 0%,
+    rgba(224, 238, 211, 1) 47%,
+    rgba(207, 228, 237, 1) 100%
   );
 }
 
@@ -371,11 +369,12 @@
     margin-top: 80px;
   }
   .navbar {
-    background: rgb(225, 237, 194);
+    background: rgb(208, 228, 236);
     background: linear-gradient(
-      45deg,
-      rgba(225, 237, 194, 1) 0%,
-      rgba(187, 216, 231, 1) 100%
+      90deg,
+      rgba(208, 228, 236, 1) 0%,
+      rgba(224, 238, 211, 1) 0%,
+      rgba(207, 228, 237, 1) 100%
     );
     box-shadow: none;
   }

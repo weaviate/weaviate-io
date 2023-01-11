@@ -15,19 +15,11 @@ export default function PricingCalculator() {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
-      console.log(
-        highAvailability,
-        slaTier,
-        embeddingSize,
-        amountOfDataObjs,
-        queriesPerMonth
-      );
       const url = `https://us-central1-semi-production.cloudfunctions.net/pricing-calculator?embeddingSize=${embeddingSize}&amountOfDataObjs=${amountOfDataObjs}&queriesPerMonth=${queriesPerMonth}&slaTier=${slaTier}&highAvailability=${
         highAvailability ? 'true' : 'false'
       }`;
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
       setPrice(data);
     }, 500);
 
