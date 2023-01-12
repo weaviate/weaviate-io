@@ -13,7 +13,7 @@ script:
   ##
   # Netlify
   - |
-    yarn global add netlify-cli@12.6.0
+    yarn global add netlify-cli
     source _build_scripts/publish-to-netlify.sh
 
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
