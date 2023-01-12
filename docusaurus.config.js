@@ -29,7 +29,35 @@ const config = {
         [
             '@docusaurus/plugin-client-redirects',
             siteRedirects
-        ]
+        ],
+
+        // Playbook configuration
+        [
+            '@docusaurus/plugin-content-blog',
+            {
+                blogTitle: 'Weaviate Playbook',
+                blogDescription: 'Learn How we run Weaviate as a Company',
+                blogSidebarCount: 'ALL',
+                blogSidebarTitle: 'Weaviate Playbook',
+
+                showReadingTime: true,
+                postsPerPage: 10,
+              /**
+               * Required for any multi-instance plugin
+               */
+              id: 'playbook-blog',
+              /**
+               * URL route for the blog section of your site.
+               * *DO NOT* include a trailing slash.
+               */
+              routeBasePath: '/company/playbook',
+              /**
+               * Path to data on filesystem relative to site dir.
+               */
+              path: 'playbook',
+              authorsMapPath: '../authors.yml'
+            },
+          ],
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -60,8 +88,7 @@ const config = {
                 },
                 blog: {
                     showReadingTime: true,
-                    // Please change this to your repo.
-                    // Remove this to remove the "edit this page" links.
+                    authorsMapPath: '../authors.yml',
                     editUrl:
                         'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/',
                     // TODO: Update to 'main' for release
@@ -94,6 +121,10 @@ const config = {
                                 to: '/company/about-us',
                             },
                             {
+                                label: 'Playbook',
+                                to: '/company/playbook',
+                            },
+                            {
                                 label: 'Careers',
                                 to: '/company/careers',
                             },
@@ -103,7 +134,7 @@ const config = {
                             },
                             {
                                 label: 'Contact us',
-                                href: 'mailto:hello@semi.technology'
+                                href: 'mailto:hello@weaviate.io'
                             }
                         ]
                     },

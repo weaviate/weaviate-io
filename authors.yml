@@ -5,9 +5,14 @@ abdel:
   image_url: /img/people/icon/abdel.jpg
 bob:
   name: Bob van Luijt
-  title: CEO 
+  title: CEO
   url: https://github.com/bobvanluijt
   image_url: /img/people/icon/bob.jpg
+byron:
+  name: Byron Voorbach
+  title: Head of Customer Success 
+  url: https://github.com/byronvoorbach
+  image_url: /img/people/icon/byron.png
 connor:
   name: Connor Shorten
   title: Developer Advocate / Researcher 
@@ -33,6 +38,11 @@ etienne:
   title: CTO
   url: https://github.com/etiennedi
   image_url: /img/people/icon/etienne.jpg
+jessie:
+  name: Jessie de Groot
+  title: Head of People and Culture
+  url: https://linkedin.com/in/jessiedegroot/
+  image_url: /img/people/icon/jessie.png
 jp:
   name: Joon-Pil (JP) Hwang
   title: Technical Curriculum Developer
@@ -53,6 +63,11 @@ stefan:
   title: Customer Solutions
   url: https://github.com/StefanBogdan
   image_url: /img/people/icon/stefan.jpg
+svitlana:
+  name: Svitlana Smolianova
+  title: Head of Design
+  url: https://linkedin.com/in/svitlana-sm
+  image_url: /img/people/icon/svitlana.png
 zain:
   name: Zain Hasan
   title: Developer Advocate
