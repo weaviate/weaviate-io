@@ -1,17 +1,8 @@
 ---
 title: ref2vec-centroid
 sidebar_position: 7
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Retrievers & Vectorizers
-# nav-parent: Modules
-# description: Calculate vectors based on the centroid of references
+image: og/documentation.jpeg
 # tags: ['ref2vec-centroid', 'centroid']
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/modules/ref2vec-centroid.html
 ---
 import Badges from '/_includes/badges.mdx';
 

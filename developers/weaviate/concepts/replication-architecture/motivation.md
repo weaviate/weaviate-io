@@ -1,15 +1,8 @@
 ---
 title: Use Cases (Motivation)
 sidebar_position: 1
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Architecture
-# title: Architecture
-# description: Architecture Overview
+image: og/documentation.jpeg
 # tags: ['architecture']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: false
 ---
 import Badges from '/_includes/badges.mdx';
 

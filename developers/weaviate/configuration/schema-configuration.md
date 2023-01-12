@@ -1,18 +1,8 @@
 ---
 title: Schema
 sidebar_position: 1
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Schema
-# title: Schema configuration
-# description: 
-# tags: ['Schema configuration']
-# sidebar_position: 1
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.4.1/data-schema/schema-configuration.html
-#     - /developers/weaviate/v1.11.0/data-schema/schema-configuration.html
+image: og/documentation.jpeg
+# tags: ['configuration', 'schema']
 ---
 import Badges from '/_includes/badges.mdx';
 

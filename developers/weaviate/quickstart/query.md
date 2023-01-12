@@ -1,14 +1,8 @@
 ---
 title: Query
 sidebar_position: 4
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Getting started
-# description: Getting started with querying Weaviate
+image: og/documentation.jpeg
 # tags: ['basics']
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

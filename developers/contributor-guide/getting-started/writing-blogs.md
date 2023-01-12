@@ -1,14 +1,8 @@
 ---
 title: Creating Content / Apps
 sidebar_position: 5
-
-# layout: layout-documentation
-# solution: contributor-guide
-# sub-menu: Getting Started
 # tags: ['contributor-guide']
-# open-graph-type: article
-# og-img: documentation.jpg
-# toc: true
+image: og/contributor-guide.jpeg
 ---
 The Weaviate community produces a lot of great content including blog posts, tutorials, and demo applications. To help these reach the broader community, we maintain a curated list of these in our [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) repository. 
 

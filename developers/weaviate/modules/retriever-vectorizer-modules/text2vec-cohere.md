@@ -1,18 +1,8 @@
 ---
 title: text2vec-cohere
 sidebar_position: 1
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Retrievers & Vectorizers
-# nav-parent: Modules
-# title: text2vec-cohere
-# description: Use any Cohere model inside Weaviate
-# tags: ['text2vec-cohere']
-# menu-order: 1
-# open-graph-type: article
-# toc: true
-# enabled-on-wcs: true
+image: og/documentation.jpeg
+# tags: ['text2vec', 'text2vec-cohere']
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -118,8 +108,6 @@ import GraphQLFiltersNearNextCohere from '/_includes/code/graphql.filters.nearTe
 import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get%7B%0D%0A++++Publication%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveAwayFrom%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++++force%3A+0.45%0D%0A++++++++%7D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++name%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-
-<!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Publication%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveAwayFrom%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++++force%3A+0.45%0D%0A++++++++%7D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++name%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
 
 ## Additional information
 

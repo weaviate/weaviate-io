@@ -1,14 +1,8 @@
 ---
 title: Improving Documentation
 sidebar_position: 4
-
-# layout: layout-documentation
-# solution: contributor-guide
-# sub-menu: Getting Started
 # tags: ['contributor-guide']
-# open-graph-type: article
-# og-img: documentation.jpg
-# toc: true
+image: og/contributor-guide.jpeg
 ---
 <!-- TODO: this whole page needs refactoring as it refers to Jekyll style docs -->
 ## Introduction

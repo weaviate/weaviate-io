@@ -1,16 +1,8 @@
 ---
 title: Installation
 sidebar_position: 1
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Getting started
-# description: Getting started with Weaviate installation
+image: og/documentation.jpeg
 # tags: ['installation']
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.7.2/getting-started/installation.html
 ---
 import Badges from '/_includes/badges.mdx';
 

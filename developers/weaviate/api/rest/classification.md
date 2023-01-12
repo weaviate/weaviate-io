@@ -1,21 +1,8 @@
 ---
 title: REST - /v1/classification
 sidebar_position: 15
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: RESTful API references
-# title: /v1/classification
-# intro: The RESTful classification endpoint allows you to start a <a href="#knn-classification">kNN</a> classification, and get the status, results and metadata of a previously created classification.
-# description: RESTful API classification reference
+image: og/documentation.jpeg
 # tags: ['RESTful API', 'references', 'classification']
-# sidebar_position: 5
-# open-graph-type: article
-# toc: false
-# redirect_from:
-#     - /developers/weaviate/v1.1.0/restful-api-references/classification.html
-#     - /documentation/weaviate/current/classification/contextual-classification.html
-#     - /documentation/weaviate/current/classification/knn-classification.html
-#     - /documentation/weaviate/references/rest/classification.html
 ---
 import Badges from '/_includes/badges.mdx';
 

@@ -1,20 +1,8 @@
 ---
 title: Example use cases
 sidebar_position: 6
-# layout: layout-documentation
-# bodyclass: ["page--guides", " "]
-# solution: weaviate
-# sub-menu: More resources
-# title: Example use cases
-# intro: Here you'll read about four example use cases with Weaviate.
-# description: An overview of Weaviate use cases 
-# tags: ['Weaviate', 'use cases']
-# sidebar_position: 4
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/getting-started/use-cases.html
-#     - /developers/weaviate/getting-started/use-cases.html
+image: og/documentation.jpeg
+# tags: ['use cases']
 ---
 import Badges from '/_includes/badges.mdx';
 

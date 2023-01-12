@@ -25,7 +25,7 @@ export default function MeetTheTeam() {
         })}
       </div>
     
-    <LinkButton link="https://www.semi.technology/careers.html">Browse open positions</LinkButton>
+    <LinkButton link="/company/careers">Browse open positions</LinkButton>
     </div>
 
 

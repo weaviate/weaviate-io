@@ -1,19 +1,8 @@
 ---
 title: Index types and performance
 sidebar_position: 7
-# layout: layout-documentation
-# bodyclass: ["page--guides", " "]
-# solution: weaviate
-# sub-menu: More resources
-# title: Index types and performance
-# intro: 
-# description: 
-# tags: ['Weaviate', 'performance']
-# sidebar_position: 5
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.11.0/more-resources/performance.html
+image: og/documentation.jpeg
+# tags: ['performance']
 ---
 import Badges from '/_includes/badges.mdx';
 

@@ -1,20 +1,8 @@
 ---
 title: (TBC) Classification with Weaviate
 sidebar_position: 9
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Tutorials
-# title: How to do classification?
-# intro: How to classify data with Weaviate?
-# description: How to classify data with Weaviate?
+image: og/documentation.jpeg
 # tags: ['how to', 'classify data', 'classification']
-# sidebar_position: 6
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.3.0/tutorials/how-to-do-classification.html
-#     - /developers/weaviate/v1.4.1/tutorials/how-to-do-classification.html
-#     - /documentation/weaviate/current/tutorials/how-to-do-classification.html
 ---
 
 ## Overview

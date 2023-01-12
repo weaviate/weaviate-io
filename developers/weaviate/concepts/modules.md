@@ -1,16 +1,8 @@
 ---
 title: Modules
 sidebar_position: 2
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Modules
-# nav-parent: Modules
-# title: Modules
-# description: Weaviate Modules
+image: og/documentation.jpeg
 # tags: ['Modules']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

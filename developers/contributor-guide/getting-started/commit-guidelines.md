@@ -1,14 +1,8 @@
 ---
 title: Commit Guidelines
 sidebar_position: 7
-
-# layout: layout-documentation
-# solution: contributor-guide
-# sub-menu: Getting Started
 # tags: ['contributor-guide']
-# open-graph-type: article
-# og-img: documentation.jpg
-# toc: true
+image: og/contributor-guide.jpeg
 ---
 ## Introduction
 

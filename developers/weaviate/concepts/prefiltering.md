@@ -1,15 +1,8 @@
 ---
 title: Filtered Vector Search
 sidebar_position: 13
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Architecture
-# title: Filtered Vector Search
-# description: Weaviate allows for efficiently combining vector and scalar search
+image: og/documentation.jpeg
 # tags: ['architecture', 'filtered vector search', 'pre-filtering']
-# sidebar_position: 4
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

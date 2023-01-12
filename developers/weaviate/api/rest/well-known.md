@@ -1,18 +1,8 @@
 ---
 title: REST - /v1/.well-known
 sidebar_position: 18
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: RESTful API references
-# title: /v1/.well-known
-# intro: OpenID Configuration, Liveness and Readiness, all endpoints under the .well-known endpoint, give you information about the configuration and status of the Weaviate instance.
-# description: RESTful API open ID configuration reference
+image: og/documentation.jpeg
 # tags: ['RESTful API', 'references', 'discovery', 'oidc', 'well-known']
-# sidebar_position: 7
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/references/rest/well-known.html
 ---
 import Badges from '/_includes/badges.mdx';
 

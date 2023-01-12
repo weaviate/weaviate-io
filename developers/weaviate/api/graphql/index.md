@@ -1,19 +1,8 @@
 ---
 title: GraphQL API
 sidebar_position: 0
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: GraphQL references
-# title: GraphQL references
-# intro: GraphQL references overview
-# description: GraphQL references overview
+image: og/documentation.jpeg
 # tags: ['GraphQL references']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/graphql-references/index.html
-#     - /documentation/weaviate/current/graphql-references/
 ---
 import Badges from '/_includes/badges.mdx';
 

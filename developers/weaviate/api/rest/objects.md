@@ -1,21 +1,8 @@
 ---
 title: REST - /v1/objects
 sidebar_position: 12
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: RESTful API references
-# title: /v1/objects
-# intro: 'You can get, add, update, and delete individual data objects to and from a Weaviate via this end-point. If you want to add multiple data objects in one request, checkout the <a href="./batch.html">batch</a> endpoint. To query and search through the data checkout the <a href="../references/graphql/get.html">GraphQL</a> section.'
-# description: 'You can add individual data objects to a Weaviate via this end-point.'
+image: og/documentation.jpeg
 # tags: ['RESTful API', 'references', 'class']
-# sidebar_position: 2
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.1.0/restful-api-references/objects.html
-#     - /documentation/weaviate/current/query-data/get.html
-#     - /documentation/weaviate/references/rest/semantic-kind.html
-#     - /developers/weaviate/restful-api-references/semantic-kind.html
 ---
 import Badges from '/_includes/badges.mdx';
 

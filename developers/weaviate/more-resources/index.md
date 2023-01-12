@@ -1,19 +1,8 @@
 ---
 title: More resources
 sidebar_position: 0
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: More resources
-# title: More resources
-# intro: More resources overview
-# description: More resources overview
+image: og/documentation.jpeg
 # tags: ['More resources']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: false
-# redirect_from:
-#     - /documentation/weaviate/references/rest/index.html
-#     - /documentation/weaviate/references/rest/
 ---
 import Badges from '/_includes/badges.mdx';
 

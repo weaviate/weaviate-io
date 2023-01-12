@@ -1,19 +1,8 @@
 ---
 title: RESTful API
 sidebar_position: 0
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: RESTful API references
-# title: RESTful API references
-# intro: This page contains information about Weaviate's RESTful API.
-# description: This page contains information about Weaviate's RESTful API.
+image: og/documentation.jpeg
 # tags: ['RESTful API references']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/references/rest/index.html
-#     - /documentation/weaviate/references/rest/
 ---
 import Badges from '/_includes/badges.mdx';
 

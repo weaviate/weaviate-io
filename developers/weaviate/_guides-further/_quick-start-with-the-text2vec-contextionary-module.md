@@ -1,18 +1,8 @@
 ---
 title: Text2Vec-Contextionary Quickstart
 sidebar_position: 7
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Tutorials
-# title: Quick start with the text2vec-contextionary module.
-# intro: Quick start tutorial of Weaviate running with the text2vec-contextionary module with a demo dataset. This page also shows how contextual classification can be done. The Contextionary is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe.
-# description: Quick start with the text2vec-contextionary module.
-# tags: ['how to', 'create a schema']
-# sidebar_position: 1
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.9.0/tutorials/quick-start-with-the-text2vec-contextionary-module.html
+image: og/documentation.jpeg
+# tags: ['how to', 'schema']
 ---
 
 # **Run Weaviate with a demo dataset**

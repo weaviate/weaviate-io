@@ -1,18 +1,8 @@
 ---
 title: Spell Check
 sidebar_position: 1
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Other Modules
-# nav-parent: Modules
-# description: Weaviate spellcheck module
+image: og/documentation.jpeg
 # tags: ['spellcheck']
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.11.0/other-modules/spellcheck.html
-#     - /developers/weaviate/modules/spellcheck.html
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -172,8 +162,6 @@ The module extends existing `text2vec-*` modules with an `autoCorrect` flag, whi
 import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28nearText%3A%7B%0D%0A++++++concepts%3A+%5B%22houssing+prices%22%5D%2C%0D%0A++++++autocorrect%3A+true%0D%0A++++%7D%29+%7B%0D%0A++++++title%0D%0A++++++_additional%7B%0D%0A++++++++spellCheck%7B%0D%0A++++++++++changes%7B%0D%0A++++++++++++corrected%0D%0A++++++++++++original%0D%0A++++++++++%7D%0D%0A++++++++++didYouMean%0D%0A++++++++++location%0D%0A++++++++++originalText%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-
-<!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28nearText%3A%7B%0D%0A++++++concepts%3A+%5B%22houssing+prices%22%5D%2C%0D%0A++++++autocorrect%3A+true%0D%0A++++%7D%29+%7B%0D%0A++++++title%0D%0A++++++_additional%7B%0D%0A++++++++spellCheck%7B%0D%0A++++++++++changes%7B%0D%0A++++++++++++corrected%0D%0A++++++++++++original%0D%0A++++++++++%7D%0D%0A++++++++++didYouMean%0D%0A++++++++++location%0D%0A++++++++++originalText%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
 
 ## More resources
 

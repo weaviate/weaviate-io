@@ -1,18 +1,8 @@
 ---
 title: Question Answering - transfomers
 sidebar_position: 1
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Readers & Generators
-# nav-parent: Modules
-# description: Weaviate Q&A Transformers module
+image: og/documentation.jpeg
 # tags: ['qna-transformers', 'transformers']
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.11.0/reader-generator-modules/qna-transformers.html
-#     - /developers/weaviate/modules/qna-transformers.html
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -120,8 +110,6 @@ import CodeQnaTransformer from '/_includes/code/qna-transformers.ask.mdx';
 import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++ask%3A+%7B%0D%0A++++++++question%3A+%22Who+is+the+king+of+the+Netherlands%3F%22%2C%0D%0A++++++++properties%3A+%5B%22summary%22%5D%0D%0A++++++%7D%2C+%0D%0A++++++limit%3A1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++certainty%0D%0A++++++++++property%0D%0A++++++++++result%0D%0A++++++++++startPosition%0D%0A++++++++++endPosition%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-
-<!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++ask%3A+%7B%0D%0A++++++++question%3A+%22Who+is+the+king+of+the+Netherlands%3F%22%2C%0D%0A++++++++properties%3A+%5B%22summary%22%5D%0D%0A++++++%7D%2C+%0D%0A++++++limit%3A1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++certainty%0D%0A++++++++++property%0D%0A++++++++++result%0D%0A++++++++++startPosition%0D%0A++++++++++endPosition%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
 
 ### GraphQL response
 

@@ -1,17 +1,8 @@
 ---
 title: Getting Started
 sidebar_position: 0
-
-# layout: layout-documentation
-# solution: contributor-guide
-# sub-menu: Getting Started
-# intro: To help you get started contributing to Weaviate.
-# description: To help you get started contributing to Weaviate.
-# tags: ['index', 'contributor-guide']
-# open-graph-type: article
-# og-img: documentation.jpg
-# toc: true
-# redirect_from:
+# tags: ['contributor-guide']
+image: og/contributor-guide.jpeg
 ---
 
 ## Introduction

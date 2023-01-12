@@ -1,22 +1,8 @@
 ---
 title: Example datasets
 sidebar_position: 5
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: More resources
-# title: Example datasets
-# intro: There are currently two demo datasets available. If you have a dataset you want to add, please contact us, we're happy to help you setting it up.
-# description: Example datasets
+image: og/documentation.jpeg
 # tags: ['example datasets']
-# sidebar_position: 3
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.11.0/tutorials/example-datasets.html
-#     - /developers/weaviate/v1.14.1/more-resources/example-datasets.html
-#     - /documentation/weaviate/current/datasets/newspublications.html
-#     - /documentation/weaviate/current/getting-started/example-datasets.html
-#     - /developers/weaviate/getting-started/example-datasets.html
 ---
 import Badges from '/_includes/badges.mdx';
 

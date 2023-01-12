@@ -1,22 +1,8 @@
 ---
 title: Contributor Guide
 sidebar_position: 0
-
-# layout: layout-documentation
-# bodyclass: ["page--guides", " "]
-# solution: contributor-guide
-# sub-menu: index
-# title: Introduction
-# intro: This guide provides resources to help you develop Weaviate and its related offerings.
-# description: About
 # tags: ['index', 'contributor-guide']
-# sidebar_position: 1
-# open-graph-type: article
-# og-img: documentation.jpg
-# toc: true
-# redirect_from:
-#   - /documentation/contributor-guide/current/index.html
-#   - /documentation/contributor-guide/current/
+image: og/contributor-guide.jpeg
 ---
 
 ![img](/img/contributor-guide/Weaviate.png)

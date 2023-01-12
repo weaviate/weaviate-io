@@ -1,17 +1,7 @@
 ---
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: More resources
-# title: Deprecation messages
-# intro: Deprecation messages intro
-# description: Deprecation messages description
+title: Deprecation messages
+image: og/documentation.jpeg
 # tags: ['Deprecation messages']
-# sidebar_position: 8
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.14.1/more-resources/deprecation-messages.html
-#     - /documentation/weaviate/current/more-resources/deprecation-messages.html
 ---
 import Badges from '/_includes/badges.mdx';
 

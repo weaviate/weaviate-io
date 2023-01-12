@@ -1,14 +1,8 @@
 ---
 title: Modules
 sidebar_position: 9
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Getting started
-# description: Getting started with querying Weaviate
+image: og/documentation.jpeg
 # tags: ['modules']
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

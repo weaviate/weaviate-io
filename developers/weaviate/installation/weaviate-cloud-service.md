@@ -1,13 +1,8 @@
 ---
 title: Weaviate Cloud Service
 sidebar_position: 1
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Installation
-# description: DESC
+image: og/documentation.jpeg
 # tags: ['installation', 'Weaviate Cloud Service']
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

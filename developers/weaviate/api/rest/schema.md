@@ -1,19 +1,8 @@
 ---
 title: REST - /v1/schema
 sidebar_position: 11
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: RESTful API references
-# title: /v1/schema
-# intro: 'Before adding data to Weaviate, you need to create a schema. The schema contains the structure of your Weaviate in graph format. You will use the graph format to search through your Weaviate instance using <a href="../references/graphql/">GraphQL</a>. To learn how to create a schema, you can follow <a href="/developers/weaviate/guides/how-to-create-a-schema.md">this How-To tutorial</a>.'
-# description: 'Before adding data to Weaviate, you need to create a schema. The schema contains the structure of your Weaviate in graph format. You will use the graph format to search through your Weaviate instance.'
+image: og/documentation.jpeg
 # tags: ['RESTful API', 'references', 'schema']
-# sidebar_position: 1
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.11.0/data-weaviate/schema-configuration.md
-#     - /documentation/weaviate/references/rest/schema.md
 ---
 import Badges from '/_includes/badges.mdx';
 

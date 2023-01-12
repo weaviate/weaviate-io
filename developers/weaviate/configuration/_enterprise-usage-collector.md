@@ -1,17 +1,8 @@
 ---
 title: Enterprise Usage Collector
 sidebar_position: 7
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Configuration
-# title: Enterprise Usage Collector
-# description: Enterprise Usage Collector
+image: og/documentation.jpeg
 # tags: ['configuration']
-# sidebar_position: 6
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.1.0/configuration/enterprise-usage-collector.html
 ---
 import Badges from '/_includes/badges.mdx';
 

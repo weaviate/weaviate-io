@@ -1,15 +1,8 @@
 ---
 title: Horizontal Scaling
 sidebar_position: 12
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Architecture
-# title: Horizontal Scaling
-# description: Run Weaviate in a cluster, scale horizontally and shard and/or replicate your indices.
+image: og/documentation.jpeg
 # tags: ['architecture', 'horizontal scaling', 'cluster', 'replication', 'sharding']
-# sidebar_position: 2
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

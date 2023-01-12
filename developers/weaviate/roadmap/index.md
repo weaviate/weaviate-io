@@ -1,23 +1,14 @@
 ---
 title: Roadmap
 sidebar_position: 0
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Roadmap
-# title: Roadmap
-# description: Weaviate roadmap
+image: og/documentation.jpeg
 # tags: ['roadmap']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: false
 ---
 import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-<!-- :::caution UNDER CONSTRUCTION
-This page is being migrated.
-::: -->
+<!-- TODO: Roadmap UNDER CONSTRUCTION -->
 
 ## Overview
 

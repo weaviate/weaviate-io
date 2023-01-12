@@ -1,15 +1,8 @@
 ---
 title: References - API
 sidebar_position: 0
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Schema
-# title: Data schema
-# description: 
-# tags: ['Data schema']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: false
+image: og/documentation.jpeg
+# tags: ['schema']
 ---
 import Badges from '/_includes/badges.mdx';
 

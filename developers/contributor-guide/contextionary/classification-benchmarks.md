@@ -1,18 +1,8 @@
 ---
 title: Classification Benchmarks
 sidebar_position: 1
-
-# layout: layout-documentation
-# solution: contributor-guide
-# sub-menu: Contextionary
-# intro: This page contains various released and unreleased contextionary versions run through classification benchmarks. This is meant to give an initial impression of where the strengths and weaknesses of various versions lie.
-# description: Testing various classification datasets against each other
-# tags: ['contributor-guide', 'item']
-# open-graph-type: article
-# og-img: documentation.jpg
-# toc: true
-# redirect_from:
-#   - /documentation/contributor-guide/current/contextionary/classification-benchmarks.html
+# tags: ['contributor-guide']
+image: og/contributor-guide.jpeg
 ---
 
 ## Model Version Details

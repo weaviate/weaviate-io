@@ -1,16 +1,8 @@
 ---
 title: (TBC) Bring your own vectors
 sidebar_position: 1
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Tutorials
-# title: How to use Weaviate with your own vectors without modules?
-# intro: Learn how to use Weaviate with your own vectors (no modules).
-# description: How to use Weaviate with your own vectors (no modules)?
+image: og/documentation.jpeg
 # tags: ['how to', 'no modules']
-# sidebar_position: 7
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

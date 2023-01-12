@@ -1,19 +1,8 @@
 ---
 title: (TBC) Vector/Semantic Search
 sidebar_position: 2
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Tutorials
-# title: How to perform a semantic search?
-# intro: How to perform a semantic search in Weaviate?
-# description: How to perform a semantic search in Weaviate?
+image: og/documentation.jpeg
 # tags: ['how to', 'perform a semantic search']
-# sidebar_position: 5
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.11.0/tutorials/how-to-perform-a-semantic-search.html
-#     - /documentation/weaviate/current/tutorials/how-to-perform-a-semantic-search.html
 ---
 
 ## Overview
@@ -53,8 +42,6 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get%7B%0D%0A++++Publication%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveAwayFrom%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++++force%3A+0.45%0D%0A++++++++%7D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
-<!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get%7B%0D%0A++++Publication%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveAwayFrom%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++++force%3A+0.45%0D%0A++++++++%7D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
-
 This will result in something like the following. Vogue was selected as only result, because there were no other publications related enough to "fashion" and "haute couture".
 
 ```json
@@ -84,8 +71,6 @@ import HowtoSemanticSearchFunction from '/_includes/code/howto.semanticsearch.fu
 <HowtoSemanticSearchFunction/>
 
 <MoleculeGQLDemo query='%7B%0D%0A++Explore+%28%0D%0A++++nearText%3A+%7B%0D%0A++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++certainty%3A+0.7%2C%0D%0A++++++moveTo%3A+%7B%0D%0A++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++force%3A+0.45%0D%0A++++++%7D%2C%0D%0A++++++moveAwayFrom%3A+%7B%0D%0A++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++force%3A+0.85%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%29+%7B%0D%0A++++beacon%0D%0A++++certainty%0D%0A++++className%0D%0A++%7D%0D%0A%7D'/>
-
-<!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Explore+%28%0D%0A++++nearText%3A+%7B%0D%0A++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++certainty%3A+0.7%2C%0D%0A++++++moveTo%3A+%7B%0D%0A++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++force%3A+0.45%0D%0A++++++%7D%2C%0D%0A++++++moveAwayFrom%3A+%7B%0D%0A++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++force%3A+0.85%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%29+%7B%0D%0A++++beacon%0D%0A++++certainty%0D%0A++++className%0D%0A++%7D%0D%0A%7D' %} -->
 
 As you can see, the same arguments are applied in the "explore" filter and the `Explore{}` function. There is however no class specified. Instead, the `className` is returned as one of the GraphQL fields. The result of this query contains both data objects from the class `Publication` and `Article`:
 

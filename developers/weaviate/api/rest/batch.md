@@ -1,23 +1,8 @@
 ---
 title: REST - /v1/batch
 sidebar_position: 13
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: RESTful API references
-# title: /v1/batch
-# intro: With batch you can upload a lot of data objects in bulk. This saves time compared to a lot of single request.
-# description: RESTful API batch reference
+image: og/documentation.jpeg
 # tags: ['RESTful API', 'references', 'batching']
-# sidebar_position: 3
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.1.0/restful-api-references/batch.html
-#     - /documentation/weaviate/current/add-data/batching.html
-#     - /documentation/weaviate/references/rest/batch.html
-#     - /documentation/weaviate/current/add-data/add_and_modify.html
-#     - /documentation/weaviate/current/tutorials/how-to-import-data.html
-#     - /developers/weaviate/tutorials/how-to-import-data.html
 ---
 import Badges from '/_includes/badges.mdx';
 

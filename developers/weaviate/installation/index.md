@@ -1,17 +1,8 @@
 ---
 title: Installation
 sidebar_position: 0
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Installation
-# intro: You can run Weaviate using the Weaviate Cloud Service or ​host it yourself. ​For self-hosted versions, ​Weaviate is completely containerized; you can use Docker Compose and/or Kubernetes to run it.
-# description: Install Weaviate, Weaviate is completely containerized, you can use Docker Compose and/or Kubernetes to run it.
+image: og/documentation.jpeg
 # tags: ['installation']
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/get-started/install.html
-#     - /documentation/weaviate/current/getting-started/installation.html
 ---
 import Badges from '/_includes/badges.mdx';
 

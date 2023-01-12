@@ -1,18 +1,8 @@
 ---
 title: Data types
 sidebar_position: 2
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Schema
-# title: Data types
-# description: 
+image: og/documentation.jpeg
 # tags: ['Data types']
-# sidebar_position: 2
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.3.0/data-schema/datatypes.html
-#     - /developers/weaviate/data-schema/datatypes.html
 ---
 import Badges from '/_includes/badges.mdx';
 

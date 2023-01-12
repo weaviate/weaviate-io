@@ -1,20 +1,8 @@
 ---
 title: Replication
 sidebar_position: 19
-# layout: layout-documentation
-# bodyclass: ["page--guides", " "]
-# solution: weaviate
-# sub-menu: Configuration
-# title: Monitoring
-# intro: Use Weaviate's built-in monitoring for an observable setup in production.
-# description: Weaviate supports Prometheus-compatible metrics for easy monitoring in production. See concurrent requests, request durations, database vitals, and much more.
-# tags: ['Weaviate', 'operations', 'monitoring', 'observability']
-# sidebar_position: 7
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#   - /developers/weaviate/v1.14.1/configuration/monitoring.html
-#   - /developers/weaviate/more-resources/monitoring.html
+image: og/documentation.jpeg
+# tags: ['configuration', 'operations', 'monitoring', 'observability']
 ---
 import Badges from '/_includes/badges.mdx';
 

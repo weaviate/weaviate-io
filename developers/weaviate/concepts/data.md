@@ -1,14 +1,8 @@
 ---
 title: Data structure
 sidebar_position: 1
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Core Knowledge
-# description:  Weaviate vector search engine basics
+image: og/documentation.jpeg
 # tags: ['basics']
-# sidebar_position: 1
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

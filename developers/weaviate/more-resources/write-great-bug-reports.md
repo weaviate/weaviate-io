@@ -1,16 +1,8 @@
 ---
 title: How to write great bug reports
 sidebar_position: 99
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Tutorials
-# title: Write great Bug Reports
-# intro: Bugs can be annoying, right? They don't have to be. Every discovered bug is a chance to help make Weaviate better. We are happy about bug reports because they highlight that we missed something and help us make sure an issue will never occur again. For our engineers to quickly identify and fix a bug there is some information that we may need. This tutorial is about how to write a great bug report.
-# description: How to write great bug reports
+image: og/documentation.jpeg
 # tags: ['how to', 'reporting a bug', 'bugfix', 'reproducing example']
-# sidebar_position: 8
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

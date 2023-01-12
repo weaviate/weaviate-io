@@ -1,15 +1,8 @@
 ---
 title: Storage
 sidebar_position: 11
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Architecture
-# title: Storage
-# description: Weaviate - storage
+image: og/documentation.jpeg
 # tags: ['architecture', 'storage']
-# sidebar_position: 3
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 
