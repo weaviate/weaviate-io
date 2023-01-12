@@ -20,7 +20,7 @@ gsutil -m rm -r gs://$GS_BUCKET_WEAVIATE_IO/**
 cd build/
 
 # copy stuff
-gsutil -m cp -r ./ gs://$GS_BUCKET/
+gsutil -m cp -r ./ gs://$GS_BUCKET_WEAVIATE_IO/
 
 # Invalidate the CDN
 gcloud compute url-maps invalidate-cdn-cache "weaviate-io" --path "/*" --async
