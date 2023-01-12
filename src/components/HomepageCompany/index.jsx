@@ -14,14 +14,14 @@ export default function HomepageCompany() {
         We provide guidance, support and professional services for Weaviate.
       </p>
       <div className={styles.links}>
-        <Link to="/company#our_company_values">
+        <Link to="/company/about-us#our_company_values">
           Our Values {'>'}
         </Link>
         <Link to="/company/careers">Careers {'>'}</Link>
         <Link to="/company/playbook">
           How we work - Playbook {'>'}
         </Link>
-        <Link to="/company#meet_the_team">
+        <Link to="/company/about-us#meet_the_team">
           Meet the team {'>'}
         </Link>
         <Link to="/company/investors">
