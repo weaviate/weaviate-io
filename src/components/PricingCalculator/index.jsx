@@ -164,7 +164,7 @@ export default function PricingCalculator() {
               </>
             )}
             {price.error === true && (
-              <a href="mailto:hello@semi.technology" className="salesBtn">
+              <a href="mailto:hello@weaviate.io" className="salesBtn">
                 Contact Us
               </a>
             )}

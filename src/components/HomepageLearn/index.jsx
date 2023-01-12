@@ -35,7 +35,7 @@ export default function HomepageLearn() {
               Vector Library versus Vector Database
             </h3>
             <div className={styles.linksSmall}>
-              <Link to="https://weaviate.io/blog/2022/12/vector-library-vs-vector-database.html">
+              <Link to="/blog/vector-library-vs-vector-database">
                 Read the blog {'>'}{' '}
               </Link>
             </div>
@@ -55,7 +55,7 @@ export default function HomepageLearn() {
           <div className={styles.smallUp}>
             <h3 className={styles.title}>Backup and Restore in Weaviate</h3>
             <div className={styles.linksSmall}>
-              <Link to="https://weaviate.io/blog/2022/11/tutorial-backup-and-restore-in-weaviate.html">
+              <Link to="/blog/tutorial-backup-and-restore-in-weaviate">
                 Read the tutorial {'>'}{' '}
               </Link>
             </div>
@@ -63,7 +63,7 @@ export default function HomepageLearn() {
           <div className={styles.smallDown}>
             <h3 className={styles.title}>Why is Vector Search so fast?</h3>
             <div className={styles.linksSmall}>
-              <Link to="https://weaviate.io/blog/2022/09/Why-is-Vector-Search-so-fast.html">
+              <Link to="/blog/Why-is-Vector-Search-so-fast">
                 Read the blog {'>'}{' '}
               </Link>
             </div>
