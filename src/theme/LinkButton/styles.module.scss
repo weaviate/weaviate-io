@@ -1,0 +1,32 @@
+.buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  [data-theme='dark'] {
+    .btn {
+      border-radius: 0.375rem;
+      padding: 8px 12px;
+      background-color: #e7fade;
+      color: #00b800;
+  
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  
+  .btn {
+    border-radius: 0.375rem;
+    padding: 8px 12px;
+    background-color: #00b800;
+    color: #fff;
+  
+    &:hover {
+      text-decoration: none;
+    }
+  }

@@ -14,20 +14,20 @@ export default function HomepageCompany() {
         We provide guidance, support and professional services for Weaviate.
       </p>
       <div className={styles.links}>
-        <Link to="https://www.semi.technology/#our_company_values">
+        <Link to="/company#our_company_values">
           Our Values {'>'}
         </Link>
-        <Link to="https://www.semi.technology/careers.html">Careers {'>'}</Link>
-        <Link to="https://www.semi.technology/#how_we_do">
-          How we work - meta {'>'}
+        <Link to="/company/careers">Careers {'>'}</Link>
+        <Link to="/company/playbook">
+          How we work - Playbook {'>'}
         </Link>
-        <Link to="https://www.semi.technology/#meet_the_team">
+        <Link to="/company#meet_the_team">
           Meet the team {'>'}
         </Link>
-        <Link to="https://www.semi.technology/investors.html">
+        <Link to="/company/investors">
           Investors {'>'}
         </Link>
-        <Link to="mailto:hello@semi.technology">Get in touch {'>'}</Link>
+        <Link to="mailto:hello@weaviate.io">Get in touch {'>'}</Link>
       </div>
     </div>
   );

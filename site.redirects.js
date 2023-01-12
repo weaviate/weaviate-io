@@ -1,5 +1,10 @@
 const siteRedirects = {
     redirects: [
+        // Safeguard, weaviate.io/company
+        {
+            to: '/company/about-us',
+            from: '/company'
+        },
         {
             to: '/developers/weaviate/roadmap',
             from: [
