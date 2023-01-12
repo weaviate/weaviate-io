@@ -6,6 +6,8 @@ node_js:
 #     - main
 cache:
   yarn: true
+  directories:
+    - $HOME/google-cloud-sdk
 install:
   - yarn install
 script:
