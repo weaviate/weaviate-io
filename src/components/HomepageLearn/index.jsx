@@ -14,7 +14,7 @@ export default function HomepageLearn() {
       </div>
       <div className={styles.cards}>
         <div className={styles.left}>
-          <Link to="https://weaviate.io/podcast.html">
+          <Link to="/podcast">
             <h3 className={styles.title}>
               Podcast:
               <br /> Neural Magic in Weaviate
