@@ -7,11 +7,11 @@
         where:{
           valueInt: 2,
           operator: GreaterThanEqual,
-          path: ["WroteArticles"]
+          path: ["wroteArticles"]
         }
       ) {
         name
-        WroteArticles {
+        wroteArticles {
           ... on Article {
             title
           }
@@ -36,11 +36,11 @@ get_articles_where = """
           where:{
             valueInt: 2,
             operator: GreaterThanEqual,
-            path: ["WroteArticles"]
+            path: ["wroteArticles"]
           }
         ) {
           name
-          WroteArticles {
+          wroteArticles {
             ... on Article {
               title
             }
@@ -67,11 +67,11 @@ const client = weaviate.client({
 client.graphql
       .get()
       .withClassName('Author')
-      .withFields('name WroteArticles {... on Article {title}}')
+      .withFields('name wroteArticles {... on Article {title}}')
       .withWhere({
         valueInt: 2,
         operator: "GreaterThanEqual",
-        path: ["WroteArticles"]
+        path: ["wroteArticles"]
       })
       .do()
       .then(res => {
@@ -101,13 +101,13 @@ client := weaviate.New(cfg)
 where := `{
   valueInt: 2
   operator: GreaterThanEqual
-  path: ["WroteArticles"]
+  path: ["wroteArticles"]
 }`
 ctx := context.Background()
 
 result, err := client.GraphQL().Get().Things().
   WithClassName("Author").
-  WithFields("name WroteArticles{ ... on Article { title }}").
+  WithFields("name wroteArticles{ ... on Article { title }}").
   WithWhere(where).
   Do(ctx)
 
@@ -127,11 +127,11 @@ $ echo '{
           where:{
             valueInt: 2
             operator: GreaterThanEqual
-            path: [\"WroteArticles\"]
+            path: [\"wroteArticles\"]
           }
         ) {
           name
-          WroteArticles {
+          wroteArticles {
             ... on Article {
               title
             }

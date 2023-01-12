@@ -6,7 +6,7 @@
       where:{
         valueInt: 2,
         operator: GreaterThanEqual,
-        path: ["WroteArticles"]
+        path: ["wroteArticles"]
       }
     ) {
       name
@@ -29,7 +29,7 @@ client = weaviate.Client("http://localhost:8080")
 where_filter = {
   'valueInt': 2,
   'operator': 'GreaterThanEqual',
-  'path': ["WroteArticles"]
+  'path': ["wroteArticles"]
 }
 
 query_result = (
@@ -73,7 +73,7 @@ public class App {
                 .build();
 
         WhereFilter where = WhereFilter.builder()
-                .path(new String[]{"WroteArticles"})
+                .path(new String[]{"wroteArticles"})
                 .operator(Operator.GreaterThanEqual)
                 .valueInt(2)
                 .build();
@@ -109,7 +109,7 @@ client.graphql
       .withWhere({
         valueInt: 2,
         operator: "GreaterThanEqual",
-        path: ["WroteArticles"]
+        path: ["wroteArticles"]
       })
       .do()
       .then(res => {
@@ -150,7 +150,7 @@ func main() {
 	}
 
 	where := filters.Where().
-		WithPath([]string{"WroteArticles"}).
+		WithPath([]string{"wroteArticles"}).
 		WithOperator(filters.GreaterThanEqual).
 		WithValueInt(2)
 
@@ -178,7 +178,7 @@ $ echo '{
         where:{
           valueInt: 2
           operator: GreaterThanEqual
-          path: [\"WroteArticles\"]
+          path: [\"wroteArticles\"]
         }
       ) {
         name

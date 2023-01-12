@@ -59,7 +59,7 @@ const client = weaviate.client({
 client.graphql
       .get()
       .withClassName('Author')
-      .withFields('name WroteArticles {... on Article {title _certainty}}')
+      .withFields('name wroteArticles {... on Article {title _certainty}}')
       .withExplore({
         concepts: ["fashion"],
         certainty: 0.7,
