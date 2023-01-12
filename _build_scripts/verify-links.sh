@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-URL_IGNORES="jsonlines.org/|arxiv.org/|huggingface.co/|linkedin.com/in/|crunchbase.com"
+URL_IGNORES="jsonlines.org/|arxiv.org/|huggingface.co/|linkedin.com/in/|crunchbase.com|beta.openai.com"
 DOCUSAURUS_IGNORES="github.com/.*github.com/|github.com/semi-technologies/weaviate-io/tree/"
 # Note #1 github.com/.*github.com/ - is to ignore meta links that include blog co-authors
 # Note #2 github.com/semi-technologies/weaviate-io/tree/ - is for edit on github links
