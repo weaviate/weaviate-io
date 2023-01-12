@@ -318,9 +318,6 @@ The backup API is built in a way that no long-running network requests are requi
 
 If you would like your application to wait for the background backup process to complete, you can use the "wait for completion" feature that is present in all language clients. The clients will poll the status endpoint in the background and block until the status is either `SUCCESS` or `FAILED`. This makes it easy to write simple synchronous backup scripts, even with the async nature of the API.
 
-## Limitations & Outlook
-In Weaviate `v1.15`, backups were limited to single-node setups. Weaviate `v1.16` introduces support for multi-node setups. Currently, an unexpected node restart during a backup or restore operation leads to a failed operation. In the future, backups will become resilient to this problem. You can read the technical proposal and track the progress on the feature [here](https://github.com/semi-technologies/weaviate/issues/2153).
-
 ## Other Use cases
 
 ### Migrating to another environment
