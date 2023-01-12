@@ -1,23 +1,12 @@
 ---
 title: Indexing
 sidebar_position: 3
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Core Knowledge
-# description: Core Knowledge for Indexing in Weaviate
+image: og/documentation.jpeg
 # tags: ['basics']
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 
 <Badges/>
-
-<!-- :::caution Migrated From:
-- `Core knowledge/Indexing`
-  - ANN configuration options & tips consolidated in `References:Configuration/ANN Index`, along with `Vector Index Plugins/HNSW`
-::: -->
 
 :::info Related pages
 - [Concepts: Vector Indexing](./vector-index.md)

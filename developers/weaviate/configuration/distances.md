@@ -1,15 +1,8 @@
 ---
 title: Distance metrics
 sidebar_position: 3
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Vector Index (ANN) Plugins
-# title: Distance Metrics
-# description: The distance metrics and their implementation that can be used with Weaviate
+image: og/documentation.jpeg
 # tags: ['HNSW']
-# sidebar_position: 2
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

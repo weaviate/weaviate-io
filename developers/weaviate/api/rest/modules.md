@@ -1,18 +1,8 @@
 ---
 title: REST - /v1/modules
 sidebar_position: 19
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: RESTful API references
-# title: /v1/modules/
-# intro: 
-# description: 
+image: og/documentation.jpeg
 # tags: ['RESTful API', 'modules']
-# sidebar_position: 8
-# open-graph-type: article
-# toc: false
-# redirect_from:
-#     - /developers/weaviate/v1.8.0/restful-api-references/modules.html
 ---
 import Badges from '/_includes/badges.mdx';
 

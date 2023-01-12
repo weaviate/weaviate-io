@@ -1,20 +1,8 @@
 ---
 title: Weaviate Clients
 sidebar_position: 0
-
-# layout: layout-documentation
-# solution: contributor-guide
-# sub-menu: Weaviate Clients
-# intro: An overview of the Weaviate Client development
-# description: An overview of the Weaviate Client development
 # tags: ['contributor-guide', 'clients']
-# open-graph-type: article
-# og-img: documentation.jpg
-# toc: true
-# redirect_from:
-#   - /developers/contributor-guide/v1.0.4/weaviate-clients/
-#   - /documentation/contributor-guide/current/weaviate-clients/index.html
-#   - /documentation/contributor-guide/current/weaviate-clients/
+image: og/contributor-guide.jpeg
 ---
 
 # Contributor guidelines 

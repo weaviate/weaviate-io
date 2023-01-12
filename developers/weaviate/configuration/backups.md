@@ -1,21 +1,8 @@
 ---
 title: Backups
 sidebar_position: 12
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Configuration
-# title: Backups
-# description: |-
-#   Weaviate cloud-native backups allow backing up to and restoring
-#   from S3, GCS, etc. Supports backups without downtimes, even accepts new write requests
-#   while backups are running.
+image: og/documentation.jpeg
 # tags: ['configuration', 'backups']
-# sidebar_position: 2
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.8.0/configuration/backups-and-persistence.html
-#     - /developers/weaviate/v1.9.0/configuration/backups-and-persistence.html
 ---
 import Badges from '/_includes/badges.mdx';
 

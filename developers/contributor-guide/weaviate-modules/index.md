@@ -1,17 +1,8 @@
 ---
 title: Weaviate Modules
 sidebar_position: 0
-
-# layout: layout-documentation
-# solution: contributor-guide
-# sub-menu: Weaviate Modules
-# intro: How the Weaviate module system works.
-# description: How the Weaviate module system works.
-# tags: ['weaviate module system']
-# open-graph-type: article
-# og-img: documentation.jpg
-# toc: false
-# redirect_from:
+# tags: ['contributor-guide', 'weaviate module system']
+image: og/contributor-guide.jpeg
 ---
 
 - [Overview and High-Level Architecture](./overview.md)

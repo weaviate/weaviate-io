@@ -1,17 +1,8 @@
 ---
 title: Benchmarks
 sidebar_position: 0
-# layout: layout-documentation
-# bodyclass: ["page--guides", " "]
-# solution: weaviate
-# sub-menu: Benchmarks
-# title: Benchmarks
-# intro: 
-# description: Overview of benchmarks for the Weaviate vector search engine
+image: og/documentation.jpeg
 # tags: ['Weaviate', 'performance', 'benchmarks', 'ann benchmarks']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

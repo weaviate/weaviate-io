@@ -1,16 +1,8 @@
 ---
 title: (TBC) Larger dataset example (Wikipedia)
 sidebar_position: 99
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Tutorials
-# title: Semantic search through Wikipedia
-# intro: 
-# description: Semantic search through Wikipedia with Weaviate
+image: og/documentation.jpeg
 # tags: ['semantic search', 'wikipedia']
-# sidebar_position: 2
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

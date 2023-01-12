@@ -1,18 +1,8 @@
 ---
 title: REST - /v1/meta
 sidebar_position: 16
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: RESTful API references
-# title: /v1/meta
-# intro: The RESTful meta endpoint gives information about the current Weaviate instance. It can be used to learn about your current Weaviate instance and to provide information to another Weaviate instances that wants to interact with the current instance.
-# description: RESTful API meta reference
+image: og/documentation.jpeg
 # tags: ['RESTful API', 'references', 'meta']
-# sidebar_position: 6
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/references/rest/meta.html
 ---
 import Badges from '/_includes/badges.mdx';
 

@@ -1,20 +1,8 @@
 ---
 title: Python
 sidebar_position: 1
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Client libraries
-# title: Python
-# intro: Weaviate has a native Python client to interact with Weaviate and its data. This page shows how to get started. Code examples are included in all example code blocks of the API (RESTful and GraphQL) on this website. The Python client has additional functionalities (for example schema operations), which are covered in the full client documentation on <a href="https://weaviate-python-client.readthedocs.io/#">weaviate-python-client.readthedocs.io</a>.
-# description: Python client library for Weaviate
+image: og/documentation.jpeg
 # tags: ['python', 'client library']
-# sidebar_position: 1
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/client-libs/python.html
-#     - /documentation/weaviate/current/client-libraries/python.html
-#     - /documentation/weaviate/current/client-libraries/javascript.html
 ---
 import Badges from '/_includes/badges.mdx';
 

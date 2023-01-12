@@ -1,14 +1,8 @@
 ---
 title: Schema
 sidebar_position: 2
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Getting started
-# description: Getting started with the Weaviate schema
+image: og/documentation.jpeg
 # tags: ['basics']
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

@@ -1,17 +1,8 @@
 ---
 title: Migration Guide
 sidebar_position: 8
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: More resources
-# title: Migration Guide
-# intro: 
-# tags: ['Migration']
-# sidebar_position: 7
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.7.2/more-resources/migration-guide.html
+image: og/documentation.jpeg
+# tags: ['migration']
 ---
 import Badges from '/_includes/badges.mdx';
 

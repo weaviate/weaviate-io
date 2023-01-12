@@ -1,14 +1,8 @@
 ---
 title: Kubernetes
 sidebar_position: 3
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Installation
-# intro: We recommend using Kubernetes to deploy Weaviate for any long-running deployments or those with specific availability expectations, such as production use cases. For local development or personal evaluation, using <a href="./docker-compose.html">Docker Compose</a> will most likely be sufficient.
-# description: Kubernetes setup for Weaviate
+image: og/documentation.jpeg
 # tags: ['installation', 'Kubernetes']
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

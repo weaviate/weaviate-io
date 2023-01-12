@@ -1,18 +1,8 @@
 ---
 title: Java
 sidebar_position: 3
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Client libraries
-# title: Java
-# intro: A Java client library for Weaviate.
-# description: Java client library for Weaviate
+image: og/documentation.jpeg
 # tags: ['java', 'client library']
-# sidebar_position: 3
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.11.0/client-libraries/java.html
 ---
 import Badges from '/_includes/badges.mdx';
 

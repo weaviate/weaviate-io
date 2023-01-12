@@ -1,15 +1,8 @@
 ---
 title: Resource Planning
 sidebar_position: 14
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Architecture
-# title: Resource Planning
-# description: Size your Weaviate nodes according to your needs
+image: og/documentation.jpeg
 # tags: ['architecture', 'resource', 'cpu', 'memory', 'gpu']
-# sidebar_position: 4
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

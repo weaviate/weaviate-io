@@ -1,18 +1,8 @@
 ---
 title: img2vec-neural
 sidebar_position: 5
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Retrievers & Vectorizers
-# nav-parent: Modules
-# description: Use Resnet models in Weaviate
+image: og/documentation.jpeg
 # tags: ['img2vec-neural']
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.11.0/retriever-vectorizer-modules/img2vec-neural.html
-#     - /developers/weaviate/modules/img2vec-neural.html
 ---
 import Badges from '/_includes/badges.mdx';
 

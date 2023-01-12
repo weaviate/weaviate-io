@@ -1,18 +1,8 @@
 ---
 title: (TBC) Search Basics
 sidebar_position: 1
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Tutorials
-# title: How to query data?
-# intro: How to query data in Weaviate?
-# description: How to query data in Weaviate?
+image: og/documentation.jpeg
 # tags: ['how to', 'query data']
-# sidebar_position: 4
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/tutorials/how-to-query-data.html
 ---
 
 ## Overview
@@ -73,8 +63,6 @@ import HowtoQueryData from '/_includes/code/howto.query.data.mdx';
 import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article++%28where%3A+%7B%0D%0A++++++operator%3AEqual%2C%0D%0A++++++valueString%3A%22Wired%22%2C%0D%0A++++++path%3A+%5B%22inPublication%22%2C+%22Publication%22%2C+%22name%22%5D%0D%0A++++%7D%29%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++++hasAuthors%7B%0D%0A++++++++...+on+Author+%7B%0D%0A++++++++++name%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-
-<!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article++%28where%3A+%7B%0D%0A++++++operator%3AEqual%2C%0D%0A++++++valueString%3A%22Wired%22%2C%0D%0A++++++path%3A+%5B%22inPublication%22%2C+%22Publication%22%2C+%22name%22%5D%0D%0A++++%7D%29%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++++hasAuthors%7B%0D%0A++++++++...+on+Author+%7B%0D%0A++++++++++name%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
 
 1. **View the results**\\
    The results of the previous query looks something like the following in JSON:

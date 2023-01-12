@@ -1,17 +1,8 @@
 ---
 title: Import
 sidebar_position: 3
-
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Getting started
-# description: Getting started with importing in Weaviate
+image: og/documentation.jpeg
 # tags: ['import']
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#   - /developers/weaviate/v1.8.0/tutorials/how-to-import-data.html
-#   - /developers/weaviate/v1.14.1/getting-started/import.html
 ---
 import Badges from '/_includes/badges.mdx';
 

@@ -1,19 +1,8 @@
 ---
 title: How to import data
 sidebar_position: 3
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Tutorials
-# title: How to import data?
-# intro: How to import data in Weaviate?
-# description: How to import data in Weaviate?
-# tags: ['how to', 'import data']
-# sidebar_position: 3
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/add-data/add_and_modify.html
-#     - /documentation/weaviate/current/tutorials/how-to-import-data.html
+image: og/documentation.jpeg
+# tags: ['how to', 'import']
 ---
 import Badges from '/_includes/badges.mdx';
 

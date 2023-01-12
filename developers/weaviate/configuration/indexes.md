@@ -1,17 +1,8 @@
 ---
 title: Indexes
 sidebar_position: 13
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Configuration
-# title: Vector Index Type
-# description: Vector Index Type
+image: og/documentation.jpeg
 # tags: ['configuration', 'vector index']
-# sidebar_position: 2
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.11.0/configuration/vector-index-type.html
 ---
 import Badges from '/_includes/badges.mdx';
 

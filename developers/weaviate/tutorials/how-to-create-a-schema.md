@@ -1,19 +1,8 @@
 ---
 title: How to define a schema
 sidebar_position: 2
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Tutorials
-# title: How to create a schema?
-# intro: A schema is used to define the concepts of the data you will be adding to Weaviate. On this page you will learn how to define the concepts in the Weaviate schema.
-# description: How to create a schema in Weaviate?
-# tags: ['how to', 'create a schema']
-# sidebar_position: 2
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/add-data/define_schema.html
-#     - /documentation/weaviate/current/tutorials/how-to-create-a-schema.html
+image: og/documentation.jpeg
+# tags: ['how to', 'schema']
 ---
 import Badges from '/_includes/badges.mdx';
 

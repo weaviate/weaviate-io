@@ -1,17 +1,8 @@
 ---
 title: Introduction
 sidebar_position: 0
-# layout: layout-documentation
-# bodyclass: ["page--guides", " "]
-# solution: weaviate
-# sub-menu: index
-# title: Introduction
-# intro: Welcome to the Weaviate documentation. Here you will find what Weaviate is all about, how to create your Weaviate instance, interact with it, and use it to perform vector searches and classification.<br /><br />Like what you see? Consider giving us a <a href="https://github.com/semi-technologies/weaviate/stargazers">⭐ on Github</a>.
-# description: About Weaviate
-# tags: ['Weaviate', 'about']
-# sidebar_position: 1
-# open-graph-type: article
-# toc: true
+
+# tags: []
 ---
 
 import Badges from '/_includes/badges.mdx';

@@ -1,23 +1,8 @@
 ---
 title: REST - /v1/backups
 sidebar_position: 14
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: RESTful API references
-# title: /v1/backups
-# intro: |-
-#   Weaviate's backup API allows you to backup to and restore from any attached backend with a single command.
-# description: RESTful API batch reference
+image: og/documentation.jpeg
 # tags: ['RESTful API', 'references', 'batching']
-# sidebar_position: 4
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/add-data/batching.html
-#     - /documentation/weaviate/references/rest/batch.html
-#     - /documentation/weaviate/current/add-data/add_and_modify.html
-#     - /documentation/weaviate/current/tutorials/how-to-import-data.html
-#     - /developers/weaviate/tutorials/how-to-import-data.html
 ---
 import Badges from '/_includes/badges.mdx';
 

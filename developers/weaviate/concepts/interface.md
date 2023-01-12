@@ -1,17 +1,8 @@
 ---
 title: Interface
 sidebar_position: 16
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Architecture
-# title: Interface
-# description: Interface
+image: og/documentation.jpeg
 # tags: ['architecture', 'interface', 'API design']
-# sidebar_position: 6
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.14.1/architecture/
 ---
 import Badges from '/_includes/badges.mdx';
 

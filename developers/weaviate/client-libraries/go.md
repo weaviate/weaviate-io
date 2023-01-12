@@ -1,20 +1,8 @@
 ---
 title: Go
 sidebar_position: 4
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Client libraries
-# title: Go
-# intro: A Go client library for Weaviate.
-# description: Go client library for Weaviate
+image: og/documentation.jpeg
 # tags: ['go', 'client library']
-# sidebar_position: 4
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.1.0/client-libraries/go.html
-#     - /documentation/weaviate/current/client-libs/go.html
-#     - /documentation/weaviate/current/client-libraries/go.html
 ---
 import Badges from '/_includes/badges.mdx';
 

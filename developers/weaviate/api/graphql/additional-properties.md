@@ -1,19 +1,8 @@
 ---
 title: GraphQL - Additional properties
 sidebar_position: 6
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: GraphQL references
-# title: Additional properties
-# intro: 
-# description: GraphQL underscore properties function
+image: og/documentation.jpeg
 # tags: ['graphql', 'additional properties', 'additional', 'underscore']
-# sidebar_position: 6
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/graphql-references/underscore-properties.html
-#     - /developers/weaviate/graphql-references/underscore-properties.html
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -174,8 +163,6 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++classification+%7B%0D%0A++++++++++basedOn%0D%0A++++++++++classifiedFields%0D%0A++++++++++completed%0D%0A++++++++++id%0D%0A++++++++++scope%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
-<!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++classification+%7B%0D%0A++++++++++basedOn%0D%0A++++++++++classifiedFields%0D%0A++++++++++completed%0D%0A++++++++++id%0D%0A++++++++++scope%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
-
 ### Feature Projection
 
 Because Weaviate stores all data in a vector space, you can visualize the results according to the results of your query. The feature projection is intended to reduce the dimensionality of the object's vector into something easily suitable for visualizing, such as 2d or 3d. The underlying algorithm is exchangeable, the first algorithm to be provided is [t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding).
@@ -197,8 +184,6 @@ import GraphQLUnderscoreFeature from '/_includes/code/graphql.underscoreproperti
 <GraphQLUnderscoreFeature/>
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A%7B+%0D%0A++++++++concepts%3A%5B%22music%22%5D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22beatles%22%5D%2C%0D%0A++++++++++force%3A+0.5%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++featureProjection%28dimensions%3A+2%29+%7B%0D%0A++++++++++vector%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-
-<!-- {% include molecule-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A%7B+%0D%0A++++++++concepts%3A%5B%22music%22%5D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22beatles%22%5D%2C%0D%0A++++++++++force%3A+0.5%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++featureProjection%28dimensions%3A+2%29+%7B%0D%0A++++++++++vector%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
 
 The above result can be plotted as follows (where the result in red is the first result):
 

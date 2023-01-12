@@ -1,19 +1,8 @@
 ---
 title: CICD Philosophy
 sidebar_position: 2
-
-# layout: layout-documentation
-# solution: contributor-guide
-# sub-menu: Weaviate Core
-# intro: 
-# description: Our Philosophy on CICD and trunk-based development and releases
-# tags: ['contributor-guide', 'item']
-# open-graph-type: article
-# og-img: documentation.jpg
-# toc: false
-# redirect_from:
-#   - /documentation/contributor-guide/current/build-run-test/cicd.html
-#   - /developers/contributor-guide/current/build-run-test/cicd.html
+# tags: ['contributor-guide']
+image: og/contributor-guide.jpeg
 ---
 
 Weaviate is not a continuously deployed application, as it is published as releases

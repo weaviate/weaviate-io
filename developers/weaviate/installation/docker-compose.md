@@ -1,14 +1,8 @@
 ---
 title: Docker Compose
 sidebar_position: 2
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Installation
-# intro: Weaviate can be run using Docker-compose. This setup is ideal to develop locally or in the cloud. The handy configurator can be used to configure a setup to your liking.
-# description: DESC
+image: og/documentation.jpeg
 # tags: ['installation', 'Docker']
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

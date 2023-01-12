@@ -1,17 +1,8 @@
 ---
 title: Quickstart Tutorial
 sidebar_position: 0
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Getting started
-# description: Getting started with Weaviate guides overview
+image: og/documentation.jpeg
 # tags: ['getting started']
-# open-graph-type: article
-# toc: false
-# redirect_from:
-#     - /documentation/weaviate/current/getting-started/index.html
-#     - /documentation/weaviate/current/getting-started/
-#     - /developers/weaviate/getting-started/quick-start.html
 ---
 import Badges from '/_includes/badges.mdx';
 

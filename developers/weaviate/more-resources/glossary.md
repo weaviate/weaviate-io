@@ -1,18 +1,8 @@
 ---
 title: Glossary
 sidebar_position: 4
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: More resources
-# title: Glossary
-# intro: 
-# description: Glossary
+image: og/documentation.jpeg
 # tags: ['glossary', 'terminology']
-# sidebar_position: 2
-# open-graph-type: article
-# toc: false
-# redirect_from:
-#     - /documentation/weaviate/current/more-resources/glossary.html
 ---
 import Badges from '/_includes/badges.mdx';
 

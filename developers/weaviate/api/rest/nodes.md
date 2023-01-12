@@ -1,18 +1,8 @@
 ---
 title: REST - /v1/nodes
 sidebar_position: 17
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: RESTful API references
-# title: /v1/nodes
-# intro: The RESTful nodes endpoint gives information about each node's status in a Weaviate cluster. It can be used to learn about Weaviate instances running in the cluster, their versions and basic statistics.
-# description: RESTful API nodes reference
+image: og/documentation.jpeg
 # tags: ['RESTful API', 'references', 'nodes']
-# sidebar_position: 6
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/references/rest/nodes.html
 ---
 import Badges from '/_includes/badges.mdx';
 

@@ -1,19 +1,8 @@
 ---
 title: Vector Indexing
 sidebar_position: 4
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Vector Index (ANN) Plugins
-# title: Vector Index (ANN) Plugins
-# intro: With Weaviate, data is stored in a vector-first manner. A well performing ANN algorithm is used for indexing data with vectors, namely HNSW. Since Weaviate's vector indexing is pluggable, other (ANN) methods could be used, instead of HNSW. Stay tuned for updates on the software.
-# description: Vector Index (ANN) Plugins. With Weaviate, data is stored in a vector-first manner. A well performing ANN algorithm is used for indexing data with vectors, namely HNSW. Since Weaviate's vector indexing is pluggable, other (ANN) methods could be used, instead of HNSW. Stay tuned for updates on the software.
+image: og/documentation.jpeg
 # tags: ['Vector Index Plugins']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /documentation/weaviate/current/vector-index-plugins/index.html
-#     - /documentation/weaviate/current/vector-index-plugins/
 ---
 import Badges from '/_includes/badges.mdx';
 

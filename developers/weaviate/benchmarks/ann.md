@@ -1,18 +1,8 @@
 ---
 title: ANN
 sidebar_position: 1
-# layout: layout-documentation
-# bodyclass: ["page--guides", " "]
-# solution: weaviate
-# sub-menu: Benchmarks
-# SEOtitle: Weaviate ANN benchmarks
-# title: ANN
-# intro: ANN benchmarks for the Weaviate vector search engine
-# description: ANN benchmarks for the Weaviate vector search engine
+image: og/documentation.jpeg
 # tags: ['Weaviate', 'performance', 'benchmarks', 'ANN benchmarks']
-# sidebar_position: 5
-# open-graph-type: article
-# toc: true
 ---
 import Badges from '/_includes/badges.mdx';
 

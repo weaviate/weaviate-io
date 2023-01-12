@@ -1,20 +1,8 @@
 ---
 title: FAQ
 sidebar_position: 3
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: More resources
-# title: FAQ
-# intro: Aha, you have a question! We hope that you can find the answer here, but if you don't, you can reach us via Stackoverflow (make sure to tag your question with weaviate), Github, or Slack. If your question serves a general-purpose, we will add it to this page.
-# description: Frequently Asked Questions about Weaviate
+image: og/documentation.jpeg
 # tags: ['FAQ']
-# sidebar_position: 1
-# open-graph-type: article
-# toc: true
-# redirect_from:
-#     - /developers/weaviate/v1.9.0/more-resources/faq.html
-#     - /documentation/weaviate/current/more-resources/faq.html
-#     - /developers/weaviate/more-resources/faq.html
 ---
 import Badges from '/_includes/badges.mdx';
 

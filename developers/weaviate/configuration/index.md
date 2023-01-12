@@ -1,19 +1,8 @@
 ---
 title: References - Configuration
 sidebar_position: 0
-# layout: layout-documentation
-# solution: weaviate
-# sub-menu: Configuration
-# title: Configuration
-# description: Configuration overview
+image: og/documentation.jpeg
 # tags: ['configuration']
-# sidebar_position: 0
-# open-graph-type: article
-# toc: false
-# redirect_from:
-#     - /documentation/weaviate/current/configuration/index.html
-#     - /documentation/weaviate/current/configuration/
-#     - /documentation/weaviate/current/setup/health_check.html
 ---
 import Badges from '/_includes/badges.mdx';
 
