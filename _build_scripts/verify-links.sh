@@ -17,7 +17,7 @@ linkinator https://63c1935248a6be2b9bab8a86--tangerine-buttercream-20c32f.netlif
 --timeout 5000 \
 --verbosity error \
 --url-rewrite-search "https://weaviate.io" \
---url-rewrite-replace "${NETLIFY_URL}"
+--url-rewrite-replace "https://63c1935248a6be2b9bab8a86--tangerine-buttercream-20c32f.netlify.app"
 
 # USE search/replace to test validity of links on Nelify, as they might not yet exist on weaviate.io
 
