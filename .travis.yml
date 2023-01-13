@@ -15,7 +15,7 @@ script:
   # - yarn build
 
   # Install additional packages
-  - yarn global add linkinator@4.1.1
+  - yarn global add linkinator
   # - yarn global add netlify-cli
   
   # Deploy to Netlify
