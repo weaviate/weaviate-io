@@ -18,7 +18,11 @@ linkinator $NETLIFY_URL \
 --timeout 5000 \
 --verbosity error \
 --url-rewrite-search "https://weaviate.io" \
---url-rewrite-replace "${NETLIFY_URL}"
+--url-rewrite-replace "${NETLIFY_URL}" \
+--retry true \
+--retry-errors true \
+--retry-errors-count 5 \
+--retry-errors-jitter 5
 
 # USE search/replace to test validity of links on Nelify, as they might not yet exist on weaviate.io
 
