@@ -6,7 +6,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
 const siteRedirects = require('./site.redirects');
 
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'Weaviate - Just add Data',
@@ -26,10 +25,7 @@ const config = {
     projectName: 'weaviate-io', // Usually your repo name.
     plugins: [
         'docusaurus-plugin-sass',
-        [
-            '@docusaurus/plugin-client-redirects',
-            siteRedirects
-        ],
+        ['@docusaurus/plugin-client-redirects', siteRedirects],
 
         // Playbook configuration
         [
@@ -42,22 +38,22 @@ const config = {
 
                 showReadingTime: true,
                 postsPerPage: 10,
-              /**
-               * Required for any multi-instance plugin
-               */
-              id: 'playbook-blog',
-              /**
-               * URL route for the blog section of your site.
-               * *DO NOT* include a trailing slash.
-               */
-              routeBasePath: '/company/playbook',
-              /**
-               * Path to data on filesystem relative to site dir.
-               */
-              path: 'playbook',
-              authorsMapPath: '../authors.yml'
+                /**
+                 * Required for any multi-instance plugin
+                 */
+                id: 'playbook-blog',
+                /**
+                 * URL route for the blog section of your site.
+                 * *DO NOT* include a trailing slash.
+                 */
+                routeBasePath: '/company/playbook',
+                /**
+                 * Path to data on filesystem relative to site dir.
+                 */
+                path: 'playbook',
+                authorsMapPath: '../authors.yml',
             },
-          ],
+        ],
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -77,7 +73,7 @@ const config = {
                     sidebarPath: require.resolve('./sidebars.js'),
                     path: 'developers', // folder name – where the docs are
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
-                    
+
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     editUrl:
@@ -106,6 +102,7 @@ const config = {
         ({
             navbar: {
                 title: '',
+                hideOnScroll: true,
                 logo: {
                     alt: 'Weaviate',
                     src: 'img/site/weaviate-logo.png',
@@ -134,9 +131,9 @@ const config = {
                             },
                             {
                                 label: 'Contact us',
-                                href: 'mailto:hello@weaviate.io'
-                            }
-                        ]
+                                href: 'mailto:hello@weaviate.io',
+                            },
+                        ],
                     },
                     {
                         type: 'dropdown',
