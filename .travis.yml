@@ -4,10 +4,10 @@ node_js:
 # branches:
 #   only:
 #     - main
-cache:
-  yarn: true
-  directories:
-    - $HOME/google-cloud-sdk
+# cache:
+#   yarn: true
+#   directories:
+#     - $HOME/google-cloud-sdk
 install:
   - yarn install
 script:
