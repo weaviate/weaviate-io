@@ -8,10 +8,11 @@ DOCUSAURUS_IGNORES="github.com/.*github.com/|github.com/semi-technologies/weavia
 
 echo "**************************************
 Starting Link Verification
+PATH: ${NETLIFY_URL}
 URL_IGNORES: ${URL_IGNORES}|${DOCUSAURUS_IGNORES}
 **************************************"
 
-linkinator https://63c1935248a6be2b9bab8a86--tangerine-buttercream-20c32f.netlify.app \
+linkinator $NETLIFY_URL \
 --recurse \
 --skip "${URL_IGNORES}|${DOCUSAURUS_IGNORES}" \
 --timeout 5000 \
