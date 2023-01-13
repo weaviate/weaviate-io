@@ -12,7 +12,7 @@ install:
   - yarn install
 script:
   # Build the project
-  # - yarn build
+  - yarn build
 
   # Install additional packages
   - yarn global add netlify-cli linkinator
