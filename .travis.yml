@@ -4,18 +4,18 @@ node_js:
 # branches:
 #   only:
 #     - main
-# cache:
-#   yarn: true
-#   directories:
-#     - $HOME/google-cloud-sdk
+cache:
+  yarn: true
+  directories:
+    - $HOME/google-cloud-sdk
 install:
-  - npm install
+  - yarn install
 script:
   # Build the project
-  - npm run build
+  - yarn build
 
   # Install additional packages
-  - npm install -g netlify-cli linkinator
+  - yarn global add netlify-cli linkinator
   
   # Deploy to Netlify
   - source _build_scripts/publish-to-netlify.sh
