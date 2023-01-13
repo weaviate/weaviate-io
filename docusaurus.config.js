@@ -51,29 +51,28 @@ const config = {
             },
         ],
         // Add HTML Header tags
-        () => ({
-            name: "inject-tag",
-            injectHtmlTags() {
-                return {
-                    headTags: [
-                    // Add plausible
-                    {
-                        tagName: 'script',
-                        attributes: {
-                            defer: '',
-                            'data-domain': 'weaviate.io',
-                            src:'https://plausible.io/js/plausible.js',
-                        },
-                    },
-                    // Add hotjar
-                    // {
-                    //     tagName: 'script',
-                    //     innerHTML: `(function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:3237492,hjsv:6};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`
-                    // }
-                ],
-                };
-            },
-        })
+        // () => ({
+        //     name: "inject-tag",
+        //     injectHtmlTags() {
+        //         return {
+        //             headTags: [
+        //             // Add plausible
+        //             {
+        //                 tagName: 'script',
+        //                 attributes: {
+        //                     defer: '',
+        //                     'data-domain': 'weaviate.io',
+        //                     src:'https://plausible.io/js/plausible.js',
+        //                 },
+        //             },
+        //             // Add hotjar
+        //             {
+        //                 tagName: 'script',
+        //                 innerHTML: `(function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:3237492,hjsv:6};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`
+        //             }],
+        //         };
+        //     },
+        // })
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
