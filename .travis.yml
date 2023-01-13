@@ -16,17 +16,17 @@ script:
 
   # Install additional packages
   - yarn global add linkinator
-  - yarn global add netlify-cli
+  # - yarn global add netlify-cli
   
   # Deploy to Netlify
-  - source _build_scripts/publish-to-netlify.sh
+  # - source _build_scripts/publish-to-netlify.sh
   
   # Send Slack Message
-  - |
-    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
-      source _build_scripts/slack-find-author.sh
-      source _build_scripts/slack-netlify-message.sh
-    fi
+  # - |
+  #   if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
+  #     source _build_scripts/slack-find-author.sh
+  #     source _build_scripts/slack-netlify-message.sh
+  #   fi
 
   # Link Validation
   - source _build_scripts/verify-links.sh
