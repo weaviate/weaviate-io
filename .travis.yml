@@ -9,13 +9,13 @@ node_js:
 #   directories:
 #     - $HOME/google-cloud-sdk
 install:
-  - yarn install
+  - npm install
 script:
   # Build the project
-  - yarn build
+  - npm run build
 
   # Install additional packages
-  - yarn global add netlify-cli linkinator
+  - npm install -g netlify-cli linkinator
   
   # Deploy to Netlify
   - source _build_scripts/publish-to-netlify.sh
