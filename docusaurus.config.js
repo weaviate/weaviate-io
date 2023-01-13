@@ -5,8 +5,6 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
 const siteRedirects = require('./site.redirects');
-const { func } = require('joi');
-
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
