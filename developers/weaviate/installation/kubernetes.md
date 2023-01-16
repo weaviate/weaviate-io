@@ -1,7 +1,7 @@
 ---
 title: Kubernetes
 sidebar_position: 3
-image: og/documentation.jpeg
+image: og/docs/installation.jpg
 # tags: ['installation', 'Kubernetes']
 ---
 import Badges from '/_includes/badges.mdx';

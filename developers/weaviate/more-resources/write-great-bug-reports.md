@@ -1,7 +1,7 @@
 ---
 title: How to write great bug reports
 sidebar_position: 99
-image: og/documentation.jpeg
+image: og/docs/more-resources.jpg
 # tags: ['how to', 'reporting a bug', 'bugfix', 'reproducing example']
 ---
 import Badges from '/_includes/badges.mdx';

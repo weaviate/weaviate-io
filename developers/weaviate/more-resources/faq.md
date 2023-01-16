@@ -1,7 +1,7 @@
 ---
 title: FAQ
 sidebar_position: 3
-image: og/documentation.jpeg
+image: og/docs/more-resources.jpg
 # tags: ['FAQ']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -70,7 +70,7 @@ Weaviate has no notion of transactions, operations always affect exactly a singl
 
 ## Q: Can I train my own text2vec-contextionary vectorizer module?
 
-A: Not yet (but soon), you can currently use the [available contextionaries](/developers/weaviate/quickstart/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](http://weaviate-newsletter.semi.technology/) or [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep updated about the release of custom contextionary training
+A: Not yet (but soon), you can currently use the [available contextionaries](/developers/weaviate/quickstart/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](https://newsletter.weaviate.io) or [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep updated about the release of custom contextionary training
 
 <!-- ## Q: Why is the contextionary created using GloVe?
 

@@ -1,7 +1,7 @@
 ---
 title: Distance metrics
 sidebar_position: 3
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['HNSW']
 ---
 import Badges from '/_includes/badges.mdx';

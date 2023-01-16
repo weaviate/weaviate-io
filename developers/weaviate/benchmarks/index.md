@@ -1,7 +1,7 @@
 ---
 title: Benchmarks
 sidebar_position: 0
-image: og/documentation.jpeg
+image: og/docs/benchmarks.jpg
 # tags: ['Weaviate', 'performance', 'benchmarks', 'ann benchmarks']
 ---
 import Badges from '/_includes/badges.mdx';

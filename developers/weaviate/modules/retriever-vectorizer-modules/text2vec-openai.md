@@ -1,8 +1,8 @@
 ---
 title: text2vec-openai
 sidebar_position: 1
-image: og/documentation.jpeg
-# tags: ['text2vec', 'text2vec-openai']
+image: og/docs/modules.jpg
+# tags: ['text2vec', 'text2vec-openai', 'openai']
 ---
 import Badges from '/_includes/badges.mdx';
 

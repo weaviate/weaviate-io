@@ -1,7 +1,7 @@
 ---
 title: How to import data
 sidebar_position: 3
-image: og/documentation.jpeg
+image: og/docs/tutorials.jpg
 # tags: ['how to', 'import']
 ---
 import Badges from '/_includes/badges.mdx';

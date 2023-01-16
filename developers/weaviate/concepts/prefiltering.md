@@ -1,7 +1,7 @@
 ---
 title: Filtered Vector Search
 sidebar_position: 13
-image: og/documentation.jpeg
+image: og/docs/concepts.jpg
 # tags: ['architecture', 'filtered vector search', 'pre-filtering']
 ---
 import Badges from '/_includes/badges.mdx';

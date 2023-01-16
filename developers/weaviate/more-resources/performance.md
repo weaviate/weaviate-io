@@ -1,7 +1,7 @@
 ---
 title: Index types and performance
 sidebar_position: 7
-image: og/documentation.jpeg
+image: og/docs/more-resources.jpg
 # tags: ['performance']
 ---
 import Badges from '/_includes/badges.mdx';

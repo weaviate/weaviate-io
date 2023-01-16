@@ -1,7 +1,7 @@
 ---
 title: Authorization
 sidebar_position: 15
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['authorization']
 ---
 import Badges from '/_includes/badges.mdx';

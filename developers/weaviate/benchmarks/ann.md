@@ -1,7 +1,7 @@
 ---
 title: ANN
 sidebar_position: 1
-image: og/documentation.jpeg
+image: og/docs/benchmarks.jpg
 # tags: ['Weaviate', 'performance', 'benchmarks', 'ANN benchmarks']
 ---
 import Badges from '/_includes/badges.mdx';

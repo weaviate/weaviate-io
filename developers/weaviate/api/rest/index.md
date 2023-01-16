@@ -1,7 +1,7 @@
 ---
 title: RESTful API
 sidebar_position: 0
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['RESTful API references']
 ---
 import Badges from '/_includes/badges.mdx';

@@ -1,7 +1,7 @@
 ---
 title: Weaviate Cloud Service
 sidebar_position: 1
-image: og/documentation.jpeg
+image: og/docs/installation.jpg
 # tags: ['installation', 'Weaviate Cloud Service']
 ---
 import Badges from '/_includes/badges.mdx';

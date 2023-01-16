@@ -1,7 +1,7 @@
 ---
 title: text2vec-transformers
 sidebar_position: 3
-image: og/documentation.jpeg
+image: og/docs/modules.jpg
 # tags: ['text2vec', 'text2vec-transformers']
 ---
 import Badges from '/_includes/badges.mdx';

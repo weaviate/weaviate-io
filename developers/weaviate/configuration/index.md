@@ -1,7 +1,7 @@
 ---
 title: References - Configuration
 sidebar_position: 0
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['configuration']
 ---
 import Badges from '/_includes/badges.mdx';

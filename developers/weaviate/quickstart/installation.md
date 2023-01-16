@@ -1,7 +1,7 @@
 ---
 title: Installation
 sidebar_position: 1
-image: og/documentation.jpeg
+image: og/docs/quickstart-tutorial.jpg
 # tags: ['installation']
 ---
 import Badges from '/_includes/badges.mdx';

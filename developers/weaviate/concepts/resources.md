@@ -1,7 +1,7 @@
 ---
 title: Resource Planning
 sidebar_position: 14
-image: og/documentation.jpeg
+image: og/docs/concepts.jpg
 # tags: ['architecture', 'resource', 'cpu', 'memory', 'gpu']
 ---
 import Badges from '/_includes/badges.mdx';

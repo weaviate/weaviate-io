@@ -1,8 +1,8 @@
 ---
 title: Tests
 sidebar_position: 3
+image: og/contributor-guide/weaviate-core.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 
 ## Philosophy

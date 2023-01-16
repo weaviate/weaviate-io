@@ -1,7 +1,7 @@
 ---
 title: REST - /v1/backups
 sidebar_position: 14
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'batching']
 ---
 import Badges from '/_includes/badges.mdx';

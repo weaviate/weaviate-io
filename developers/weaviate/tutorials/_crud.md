@@ -1,6 +1,8 @@
 ---
 title: (NEW) Perform CRUD operations
 sidebar_position: 5
+image: og/docs/tutorials.jpg
+# tags: ['how to', 'CRUD']
 ---
 import Badges from '/_includes/badges.mdx';
 

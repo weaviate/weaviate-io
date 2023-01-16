@@ -1,7 +1,7 @@
 ---
 title: Concepts
 sidebar_position: 0
-image: og/documentation.jpeg
+image: og/docs/concepts.jpg
 # tags: ['getting started']
 ---
 import Badges from '/_includes/badges.mdx';

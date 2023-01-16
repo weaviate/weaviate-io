@@ -1,7 +1,7 @@
 ---
 title: Enterprise Usage Collector
 sidebar_position: 7
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['configuration']
 ---
 import Badges from '/_includes/badges.mdx';

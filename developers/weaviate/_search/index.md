@@ -1,6 +1,8 @@
 ---
 title: Search tutorials
 sidebar_position: 0
+image: og/docs/search.jpg
+# tags: []
 ---
 
 <!-- TODO: Remove explanatory header once layout review complete -->

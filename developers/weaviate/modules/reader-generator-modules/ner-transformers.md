@@ -1,7 +1,7 @@
 ---
 title: Named Entity Recognition
 sidebar_position: 5
-image: og/documentation.jpeg
+image: og/docs/modules.jpg
 # tags: ['ner-transformers', 'transformers', 'token classification']
 ---
 import Badges from '/_includes/badges.mdx';

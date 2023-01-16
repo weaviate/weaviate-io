@@ -1,7 +1,7 @@
 ---
 title: GraphQL - Vector search parameters
 sidebar_position: 5
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['graphql', 'vector search parameters']
 ---
 import Badges from '/_includes/badges.mdx';

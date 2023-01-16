@@ -1,11 +1,7 @@
 ---
 title: Custom modules
 sidebar_position: 9
-image: og/documentation.jpeg
-# solution: weaviate
-# sub-menu: Other Modules
-# nav-parent: Modules
-# description: How to create custom Weaviate modules
+image: og/docs/modules.jpg
 # tags: ['modules', 'custom modules']
 ---
 import Badges from '/_includes/badges.mdx';

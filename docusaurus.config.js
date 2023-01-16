@@ -117,6 +117,7 @@ const config = {
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            image: 'og/default.jpg',
             navbar: {
                 title: '',
                 logo: {
@@ -166,7 +167,7 @@ const config = {
                             },
                             {
                                 label: 'Newsletter',
-                                href: 'http://weaviate-newsletter.semi.technology/',
+                                href: 'https://newsletter.weaviate.io',
                             },
                         ],
                     },
