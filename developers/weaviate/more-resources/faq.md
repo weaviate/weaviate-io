@@ -18,7 +18,7 @@ A: Our goal is three-folded. Firstly, we want to make it as easy as possible for
 
 ## Q: Do you offer Weaviate as a managed service?
 
-A: Yes, it is called the [Weaviate Console](https://console.semi.technology).
+A: Yes, it is called the [Weaviate Console](/pricing).
 
 ## Q: How to configure the size of your instance?
 

@@ -9,7 +9,7 @@ export default function HomePage() {
           Weaviate is an Open Source <br />
           Vector Search engine
         </h2>
-        <p>It works out-of-the box and is eaisly configurable</p>
+        <p>It works out-of-the box and is easily configurable</p>
       </div>
       <div className={styles.features}>
         <div className={styles.box}>
@@ -22,7 +22,7 @@ export default function HomePage() {
         </div>
         <div className={styles.box}>
           <p className={styles.icon2}></p>
-          <h4 className={styles.title}>Leverange advanced feauters</h4>
+          <h4 className={styles.title}>Leverage advanced features</h4>
           <p className={styles.subTitle}>
             like vector and hybrid search, recommendations and summarization. No
             AI expertise required.

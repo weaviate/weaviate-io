@@ -7,7 +7,7 @@ export default function HomepageNewsletter() {
       <div className={styles.box}>
         <div className={styles.text}>
           <h2>Stay updated</h2>
-          <span>Subscribe for our newsletter</span>
+          <span>Subscribe to our newsletter</span>
         </div>
         <div className={styles.iframe}>
           <iframe
