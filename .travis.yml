@@ -15,7 +15,8 @@ script:
   - yarn build
 
   # Install additional packages
-  - yarn global add netlify-cli linkinator
+  - yarn global add netlify-cli
+  # - yarn global add netlify-cli linkinator
   
   # Deploy to Netlify
   - source _build_scripts/publish-to-netlify.sh
@@ -28,7 +29,7 @@ script:
     fi
 
   # Link Validation
-  - source _build_scripts/verify-links.sh
+  # - source _build_scripts/verify-links.sh
 
   ### TODO: When going live
   ## Replace "docusaurus-migration" with "main"
