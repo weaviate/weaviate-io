@@ -181,7 +181,7 @@ ports:
 ```
 to your `text2vec-transformers`. 
 
-Then you can send REST requests to it directly, e.g. `curl localhost:9090/vectors -d '{"text": "foo bar"}'` and it will print the created vector directly. 
+Then you can send REST requests to it directly, e.g. `curl localhost:9090/vectors/ -d '{"text": "foo bar"}'` and it will print the created vector directly. 
 
 # How to configure
 
