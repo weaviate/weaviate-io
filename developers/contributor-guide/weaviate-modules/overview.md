@@ -1,8 +1,8 @@
 ---
 title: Overview 
 sidebar_position: 1
+image: og/contributor-guide/weaviate-modules.jpg
 # tags: ['contributor-guide', 'weaviate module system']
-image: og/contributor-guide.jpeg
 ---
 
 ## Weaviate Module System

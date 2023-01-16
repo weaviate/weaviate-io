@@ -1,8 +1,8 @@
 ---
 title: Weaviate Modules
 sidebar_position: 0
+image: og/contributor-guide/weaviate-modules.jpg
 # tags: ['contributor-guide', 'weaviate module system']
-image: og/contributor-guide.jpeg
 ---
 
 - [Overview and High-Level Architecture](./overview.md)

@@ -1,7 +1,7 @@
 ---
 title: Python
 sidebar_position: 1
-image: og/documentation.jpeg
+image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
 ---
 import Badges from '/_includes/badges.mdx';

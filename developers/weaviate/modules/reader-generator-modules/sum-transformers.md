@@ -1,8 +1,8 @@
 ---
 title: Summarization
 sidebar_position: 8
-image: og/documentation.jpeg
-# tags: ['transformers', 'text summary']
+image: og/docs/modules.jpg
+# tags: ['transformers']
 ---
 import Badges from '/_includes/badges.mdx';
 

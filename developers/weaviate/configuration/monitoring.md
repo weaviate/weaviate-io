@@ -1,7 +1,7 @@
 ---
 title: Monitoring
 sidebar_position: 18
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['configuration', 'operations', 'monitoring', 'observability']
 ---
 import Badges from '/_includes/badges.mdx';

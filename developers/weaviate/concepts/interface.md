@@ -1,7 +1,7 @@
 ---
 title: Interface
 sidebar_position: 16
-image: og/documentation.jpeg
+image: og/docs/concepts.jpg
 # tags: ['architecture', 'interface', 'API design']
 ---
 import Badges from '/_includes/badges.mdx';

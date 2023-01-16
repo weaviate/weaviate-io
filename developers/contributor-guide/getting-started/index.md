@@ -1,8 +1,8 @@
 ---
 title: Getting Started
 sidebar_position: 0
+image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 
 ## Introduction
@@ -42,7 +42,7 @@ Navigating a new project can be difficult, and it takes time to become acquainte
 Here are additional resources that will help you familiarize with Weaviate and its applications:
 
 * [Weaviate Blog](/blog) – a series of blog around Weaviate and the overall vector search space.
-* [Weaviate Newsletter](http://weaviate-newsletter.semi.technology/) – bi-weekly newsletter with updates on the latest and greatest announcements.
+* [Weaviate Newsletter](https://newsletter.weaviate.io) – bi-weekly newsletter with updates on the latest and greatest announcements.
 * [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) – a list of curated examples and tutorials on how to use Weaviate.
 * [Weaviate Examples](https://github.com/semi-technologies/weaviate-examples) – a repository of various example projects created by the community. Each example shows a different Weaviate use case. You can add your own examples too!
 * [Weaviate's YouTube Channel](https://www.youtube.com/c/SeMI-and-Weaviate/featured) – podcasts and live demos showcasing Weaviate, and providing insight into the vector search space in general.

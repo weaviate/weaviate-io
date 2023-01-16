@@ -1,7 +1,7 @@
 ---
 title: REST - /v1/classification
 sidebar_position: 15
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'classification']
 ---
 import Badges from '/_includes/badges.mdx';

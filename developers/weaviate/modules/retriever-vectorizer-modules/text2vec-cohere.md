@@ -1,8 +1,8 @@
 ---
 title: text2vec-cohere
 sidebar_position: 1
-image: og/documentation.jpeg
-# tags: ['text2vec', 'text2vec-cohere']
+image: og/docs/modules.jpg
+# tags: ['text2vec', 'text2vec-cohere', 'cohere']
 ---
 import Badges from '/_includes/badges.mdx';
 

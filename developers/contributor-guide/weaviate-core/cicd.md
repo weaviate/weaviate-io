@@ -1,8 +1,8 @@
 ---
 title: CICD Philosophy
 sidebar_position: 2
+image: og/contributor-guide/weaviate-core.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 
 Weaviate is not a continuously deployed application, as it is published as releases

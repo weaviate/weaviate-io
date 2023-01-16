@@ -1,7 +1,7 @@
 ---
 title: References - Client Libraries
 sidebar_position: 0
-image: og/documentation.jpeg
+image: og/docs/client-libraries.jpg
 # tags: ['client libraries', 'cli']
 ---
 import Badges from '/_includes/badges.mdx';

@@ -1,8 +1,8 @@
 ---
 title: Reporting Bugs 
 sidebar_position: 3
+image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 
 We include brief guidelines below for submitting bug reports. These guidelines are designed to make it easier for the maintainers and the community to understand the report and to quash that bug.

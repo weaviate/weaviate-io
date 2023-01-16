@@ -1,7 +1,7 @@
 ---
 title: Weaviate console
 sidebar_position: 90
-image: og/documentation.jpeg
+image: og/docs/quickstart-tutorial.jpg
 # tags: ['Weaviate console']
 ---
 import Badges from '/_includes/badges.mdx';

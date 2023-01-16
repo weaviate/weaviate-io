@@ -1,7 +1,7 @@
 ---
 title: Data types
 sidebar_position: 2
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
 import Badges from '/_includes/badges.mdx';

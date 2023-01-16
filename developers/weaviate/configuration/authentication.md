@@ -1,7 +1,7 @@
 ---
 title: Authentication
 sidebar_position: 14
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['authentication']
 ---
 import Badges from '/_includes/badges.mdx';

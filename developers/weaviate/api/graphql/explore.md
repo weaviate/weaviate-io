@@ -1,7 +1,7 @@
 ---
 title: GraphQL - Explore{}
 sidebar_position: 3
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['graphql', 'explore{}']
 ---
 import Badges from '/_includes/badges.mdx';

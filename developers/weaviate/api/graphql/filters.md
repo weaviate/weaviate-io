@@ -1,7 +1,7 @@
 ---
 title: GraphQL - Filters
 sidebar_position: 4
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['graphql', 'filters']
 ---
 import Badges from '/_includes/badges.mdx';

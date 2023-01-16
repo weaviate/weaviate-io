@@ -1,7 +1,7 @@
 ---
 title: Indexes
 sidebar_position: 13
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
 import Badges from '/_includes/badges.mdx';

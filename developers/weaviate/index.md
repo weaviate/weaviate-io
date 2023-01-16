@@ -1,15 +1,13 @@
 ---
 title: Introduction
 sidebar_position: 0
-
+image: og/docs/introduction.jpg
 # tags: []
 ---
 
 import Badges from '/_includes/badges.mdx';
 
 <Badges/>
-
-<!-- - This pages comes from `Introduction` page, but with an added `Overview` explaining the naming convention. -->
 
 ## Overview
 

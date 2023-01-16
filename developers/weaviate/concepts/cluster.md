@@ -1,7 +1,7 @@
 ---
 title: Horizontal Scaling
 sidebar_position: 12
-image: og/documentation.jpeg
+image: og/docs/concepts.jpg
 # tags: ['architecture', 'horizontal scaling', 'cluster', 'replication', 'sharding']
 ---
 import Badges from '/_includes/badges.mdx';

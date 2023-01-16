@@ -1,7 +1,7 @@
 ---
 title: REST - /v1/.well-known
 sidebar_position: 18
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'discovery', 'oidc', 'well-known']
 ---
 import Badges from '/_includes/badges.mdx';

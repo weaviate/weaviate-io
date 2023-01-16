@@ -1,8 +1,8 @@
 ---
 title: Git and GitHub guide 
 sidebar_position: 6
+image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 ## Introduction
 

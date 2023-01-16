@@ -42,20 +42,21 @@ const config = {
 
                 showReadingTime: true,
                 postsPerPage: 10,
-              /**
-               * Required for any multi-instance plugin
-               */
-              id: 'playbook-blog',
-              /**
-               * URL route for the blog section of your site.
-               * *DO NOT* include a trailing slash.
-               */
-              routeBasePath: '/company/playbook',
-              /**
-               * Path to data on filesystem relative to site dir.
-               */
-              path: 'playbook',
-              authorsMapPath: '../authors.yml'
+
+                /**
+                 * Required for any multi-instance plugin
+                 */
+                id: 'playbook-blog',
+                /**
+                 * URL route for the blog section of your site.
+                 * *DO NOT* include a trailing slash.
+                 */
+                routeBasePath: '/company/playbook',
+                /**
+                 * Path to data on filesystem relative to site dir.
+                 */
+                path: 'playbook',
+                authorsMapPath: '../authors.yml',
             },
           ],
     ],
@@ -104,6 +105,7 @@ const config = {
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            image: 'og/default.jpg',
             navbar: {
                 title: '',
                 logo: {
@@ -153,7 +155,7 @@ const config = {
                             },
                             {
                                 label: 'Newsletter',
-                                href: 'http://weaviate-newsletter.semi.technology/',
+                                href: 'https://newsletter.weaviate.io',
                             },
                         ],
                     },

@@ -1,7 +1,7 @@
 ---
 title: (TBC) Classification with Weaviate
 sidebar_position: 9
-image: og/documentation.jpeg
+image: og/docs/further-guides.jpg
 # tags: ['how to', 'classify data', 'classification']
 ---
 

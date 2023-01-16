@@ -1,8 +1,8 @@
 ---
 title: Parsing Objects & Resolving References
 sidebar_position: 5
+image: og/contributor-guide/weaviate-core.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 
 ## Overview

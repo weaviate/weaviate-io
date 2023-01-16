@@ -1,7 +1,7 @@
 ---
 title: Example use cases
 sidebar_position: 6
-image: og/documentation.jpeg
+image: og/docs/more-resources.jpg
 # tags: ['use cases']
 ---
 import Badges from '/_includes/badges.mdx';

@@ -1,7 +1,7 @@
 ---
 title: HNSW
 sidebar_position: 2
-image: og/documentation.jpeg
+image: og/docs/vectors.jpg
 # tags: ['HNSW']
 ---
 

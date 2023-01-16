@@ -1,8 +1,8 @@
 ---
 title: Code structure and Style
 sidebar_position: 1
+image: og/contributor-guide/weaviate-core.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 
 ## Package structure

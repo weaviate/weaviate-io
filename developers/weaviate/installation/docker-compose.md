@@ -1,7 +1,7 @@
 ---
 title: Docker Compose
 sidebar_position: 2
-image: og/documentation.jpeg
+image: og/docs/installation.jpg
 # tags: ['installation', 'Docker']
 ---
 import Badges from '/_includes/badges.mdx';

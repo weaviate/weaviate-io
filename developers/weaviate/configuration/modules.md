@@ -1,7 +1,7 @@
 ---
 title: Modules
 sidebar_position: 11
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['configuration', 'modules']
 ---
 import Badges from '/_includes/badges.mdx';
