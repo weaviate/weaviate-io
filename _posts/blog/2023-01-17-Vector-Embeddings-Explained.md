@@ -1,13 +1,13 @@
 ---
 layout: post
 title: Vector Embeddings Explained
-description: ""
+description: "Learn more about vector embeddings and how they are generated."
 published: true
 author: Dan Dascalescu 
 author-img: /img/people/Dan.jpg
-card-img: /img/blog/hero/pulling-back-the-curtains-text2vec.png
-hero-img: /img/blog/hero/pulling-back-the-curtains-text2vec.png
-og: /img/blog/hero/pulling-back-the-curtains-text2vec.png
+card-img: /img/blog/hero/vector-embeddings-explained.png
+hero-img: /img/blog/hero/vector-embeddings-explained.png
+og: /img/blog/hero/vector-embeddings-explained.png
 date: 2023-01-16
 toc: true
 ---
@@ -32,6 +32,8 @@ These two vectors have a very high similarity. In contrast, vectors for “banjo
 Now that you’ve seen what vectors are, and that they can represent meaning to some extent, you might have further questions. For one, what does each number represent? That depends on the machine learning model that generated the vectors, and isn’t necessarily clear at least in terms of our human conception of language and meaning. But we can sometimes gain a rough idea by correlating vectors to words with which we are familiar. 
 
 Vector-based representation of meaning caused quite a stir a few years back, with the revelation of mathematical operations between words. Perhaps *the* most famous result is that of “king − man + woman ≈ queen”, indicating that the difference between “king” and “man” was some sort of “royalty”, which was analogously and mathematically applicable to “queen” - “woman”. Jay Alamar provided a helpful [visualization](https://jalammar.github.io/illustrated-word2vec/) around this equation:
+
+![vector embeddings visualization](/img/blog/vector-embeddings-explained/vector-embeddings-visualization.png)
 
 In the example above, the concepts are vectorized into (represented by) an array of 50 numbers generated using the [GloVe model](https://en.wikipedia.org/wiki/GloVe), and those numbers are visualized using colors. In [vector terminology](https://en.wikipedia.org/wiki/Vector_(mathematics)), the 50 numbers are called dimensions. We can see that all words share a red column in one of the dimensions (though we can’t quite tell what that represents), and the word “water” _looks_ quite different from the rest, which makes sense given that the rest are people. Also, “girl” and “boy” look more similar to each other than to “king” and “queen” respectively, while “king” and “queen” look similar to each other as well.
 
@@ -59,6 +61,8 @@ A set of simplistic vector embeddings (with only 5 dimensions) for the objects a
 If we look at each of the 5 elements of the vectors, we can see quickly that `cat` and `dog` are much closer than `dog` and `apple` (we don’t even need to calculate the distances). In the same way, `fruit` is much closer to `apple` and `strawberry` than to the other words, so those will be the top results of the “fruit” query.
 
 But where do these numbers come from? That’s where the real magic is, and where advances in modern deep learning have made a huge impact. 
+
+![vector embeddings example](/img/blog/vector-embeddings-explained/vector-embeddings-example.png)
 
 ## How are vector embeddings generated?
 The magic of vector search resides primarily in how the embeddings are generated for each entity and the query, and secondarily in how to efficiently search within very large datasets (see our [“Why is Vector Search so Fast”](/blog/2022/09/Why-is-Vector-Search-so-fast.html) article for the latter).
@@ -96,7 +100,8 @@ Some of the potential downsides include:
 * increased memory requirements: context-sensitivity greatly increases memory requirements, which often leads to limited possible input lengths
 
 Despite these downsides, transformer models have been wildly successful. Countless text vectorizer models have proliferated over the recent past. Plus, many more vectorizer models exist for other data types such as audio, video and images, to name a few. Some models, such as CLIP, are capable of vectorizing multiple data types (images and text in this case) into one vector space, so that an image can be searched by its content using only text.
-#### Vector embeddings with Weaviate
+
+### Vector embeddings with Weaviate
 
 For this reason, Weaviate is configured to support many different vectorizer models and vectorizer service providers. You can even bring your own vectors, for example if you already have a vectorization pipeline available, or if none of the publicly available models are suitable for you.
 
