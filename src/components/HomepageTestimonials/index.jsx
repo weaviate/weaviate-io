@@ -5,7 +5,7 @@ export default function HomepageTestimonials() {
   return (
     <div className="container">
       <h2 className={styles.title}>
-        Trusted by innovative organisations all over the world
+        Trusted by innovative organizations all over the world
       </h2>
       <div className={styles.logos}>
         <span className={styles.logoS} />

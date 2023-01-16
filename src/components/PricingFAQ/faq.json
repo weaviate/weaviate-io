@@ -26,7 +26,7 @@
   },
   {
     "question": "What is Hibernation?",
-    "answer": "​Hibernation ​is a process where a cluster goes down (i.e., 'hybernates') while retaining your data after a given period. This is ideal for research or development purposes; when the service endpoints are used again, the service comes back up with a short time delay."
+    "answer": "​Hibernation ​is a process where a cluster goes down (i.e., 'hibernates') while retaining your data after a given period. This is ideal for research or development purposes; when the service endpoints are used again, the service comes back up with a short time delay."
   },
   {
     "question": "​What is round-robin provisioning?",

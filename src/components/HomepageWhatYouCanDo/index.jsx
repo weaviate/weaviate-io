@@ -26,7 +26,7 @@ export default function HomepageWhatYouCanDo() {
               >
                 <h3>Search</h3>
                 <p>
-                  Go beyond keyword matching, find meaning in antything <br />{' '}
+                  Go beyond keyword matching, find meaning in anything <br />{' '}
                   from images to molecules.
                 </p>
               </Tabs.Trigger>
