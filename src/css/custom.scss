@@ -8,12 +8,12 @@
 
 @font-face {
   font-family: 'FredokaOneRegular';
-  src: url('../../static/fonts/FredokaOne-Regular.ttf');
+  src: url('/fonts/FredokaOne-Regular.ttf');
 }
 
 @font-face {
   font-family: 'NiramitRegular';
-  src: url('../../static/fonts/Niramit-Regular.ttf');
+  src: url('/fonts/Niramit-Regular.ttf');
 }
 
 :root {
@@ -304,7 +304,7 @@
   height: 200px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../../static/img/site/weaviate-logo-main.png');
+  background-image: url('/img/site/weaviate-logo-dark.png');
 
   @media screen and (max-width: 768px) {
     height: 150px;
@@ -366,11 +366,17 @@
   }
 }
 
+.navbar__logo {
+  width: 200px;
+  height: 4rem;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 [data-theme='light'] {
   .hero__logo {
-    background-image: url('../../static/img/site/weaviate-logo-light.png');
-    height: 100px;
-    margin-top: 80px;
+    background-image: url('/img/site/weaviate-logo-light.png');
   }
   .navbar {
     // background: rgb(208, 228, 236);
@@ -387,11 +393,7 @@
     img {
       display: none;
     }
-    width: 200px;
-    height: 4rem;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url('../../static/img/site/w-logo-small.png');
+    background-image: url('/img/site/weaviate-nav-logo-light.svg');
   }
 }
 
@@ -414,11 +416,7 @@
     img {
       display: none;
     }
-    width: 200px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 5rem;
-    background-image: url('../../static/img/site/weaviate-logo.png');
+    background-image: url('/img/site/weaviate-nav-logo-dark.svg');
   }
   .footer--dark {
     // background: rgb(0, 0, 0);

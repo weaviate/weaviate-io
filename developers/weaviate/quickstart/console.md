@@ -1,7 +1,7 @@
 ---
 title: Weaviate console
 sidebar_position: 90
-image: og/documentation.jpeg
+image: og/docs/quickstart-tutorial.jpg
 # tags: ['Weaviate console']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -15,12 +15,12 @@ Learn how to use the Weaviate console
 The Weaviate Console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Service (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 
 :::tip
-The console is available on: [console.semi.technology](https://console.semi.technology).
+The console is available on: [console.weaviate.io](https://console.weaviate.io).
 :::
 
 ## Login page
 
-When opening the [Weaviate Console](https://console.semi.technology), you'll see two options:
+When opening the [Weaviate Console](https://console.weaviate.io), you'll see two options:
 
 1. ["Sign in with the Weaviate Cloud Service"](#the-weaviate-cloud-service)
 2. ["Self-hosted Weaviate"](#connect-to-a-self-hosted-weaviate)
@@ -50,7 +50,7 @@ GraphiQL is a graphical interface that allows you to manually write GraphQL quer
 
 ## Try out the console with your own instance
 
-1. Go to: [https://console.semi.technology](https://console.semi.technology)
+1. Go to: [https://console.weaviate.io](https://console.weaviate.io)
 2. In the Self-hosted Weaviate section, provide the endpoint of you instance. If you run Weaviate locally this will be `http://localhost:8080`.
 3. Click "connect"
 

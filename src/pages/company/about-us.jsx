@@ -1,16 +1,18 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import AboutUsHeader from '../../components/AboutUs/header';
-import CompanyValues from '../../components/AboutUs/values';
-import MeetTheTeam from '../../components/AboutUs/meet-team';
-// import MeetTheTeam from '../../components/AboutUs/meet-team';
+import { MetaSEO } from '/src/theme/MetaSEO';
+
+import AboutUsHeader from '/src/components/AboutUs/header';
+import CompanyValues from '/src/components/AboutUs/values';
+import MeetTheTeam from '/src/components/AboutUs/meet-team';
 
 export default function AboutUsPage() {
   return (
     <Layout>
-        <AboutUsHeader />
-        <CompanyValues />
-        <MeetTheTeam />
+      <MetaSEO img="og/company/about-us.jpg" />
+      <AboutUsHeader />
+      <CompanyValues />
+      <MeetTheTeam />
     </Layout>
   );
 }

@@ -1,8 +1,8 @@
 ---
 title: Suggesting Enhancements 
 sidebar_position: 2
+image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 We love to hear your ideas.
 

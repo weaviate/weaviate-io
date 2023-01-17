@@ -1,7 +1,7 @@
 ---
 title: REST - /v1/meta
 sidebar_position: 16
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'meta']
 ---
 import Badges from '/_includes/badges.mdx';

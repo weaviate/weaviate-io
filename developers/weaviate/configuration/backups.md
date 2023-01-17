@@ -1,7 +1,7 @@
 ---
 title: Backups
 sidebar_position: 12
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['configuration', 'backups']
 ---
 import Badges from '/_includes/badges.mdx';

@@ -1,7 +1,7 @@
 ---
 title: GraphQL - Get{}
 sidebar_position: 1
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['graphql', 'get{}']
 ---
 import Badges from '/_includes/badges.mdx';

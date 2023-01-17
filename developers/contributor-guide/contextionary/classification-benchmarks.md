@@ -1,8 +1,8 @@
 ---
 title: Classification Benchmarks
 sidebar_position: 1
+image: og/contributor-guide/contextionary.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 
 ## Model Version Details

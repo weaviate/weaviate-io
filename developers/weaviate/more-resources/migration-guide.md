@@ -1,7 +1,7 @@
 ---
 title: Migration Guide
 sidebar_position: 8
-image: og/documentation.jpeg
+image: og/docs/more-resources.jpg
 # tags: ['migration']
 ---
 import Badges from '/_includes/badges.mdx';

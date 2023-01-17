@@ -1,6 +1,6 @@
 ---
 title: Deprecation messages
-image: og/documentation.jpeg
+image: og/docs/more-resources.jpg
 # tags: ['Deprecation messages']
 ---
 import Badges from '/_includes/badges.mdx';

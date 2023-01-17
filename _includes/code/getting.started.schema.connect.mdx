@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.semi.network/") # <== if you use the WCS
+client = weaviate.Client("https://some-endpoint.weaviate.network/") # <== if you use the WCS
 # or
 client = weaviate.Client("http://localhost:8080") # <== if you use Docker-compose
 
@@ -27,7 +27,7 @@ const weaviate = require("weaviate-client");
 // if you use the WCS
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.semi.network/',
+    host: 'some-endpoint.weaviate.network/',
   }); 
 
 // or 
@@ -65,7 +65,7 @@ import (
 func GetSchema() {
     // if you use the WCS
     cfg := weaviate.Config{
-        Host:   "some-endpoint.semi.network/",
+        Host:   "some-endpoint.weaviate.network/",
         Scheme: "https",
     }
 
@@ -101,7 +101,7 @@ import technology.semi.weaviate.client.v1.misc.model.Meta;
 public class App {
   public static void main(String[] args) {
     // if you use the WCS
-    Config config = new Config("https", "some-endpoint.semi.network/");
+    Config config = new Config("https", "some-endpoint.weaviate.network/");
     
     // or 
 
@@ -127,7 +127,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl https://some-endpoint.semi.network/v1/schema
+$ curl https://some-endpoint.weaviate.network/v1/schema
 
 # or
 

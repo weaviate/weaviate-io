@@ -1,7 +1,7 @@
 ---
 title: Data types
 sidebar_position: 2
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -45,7 +45,7 @@ There are two datatypes dedicated to saving textual information: string and text
 
 ## DataType: date
 
-Weaviate requires an [RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date that includes the time and the offset.
+Weaviate requires an [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) formatted date that includes the time and the offset.
 
 For example:
 

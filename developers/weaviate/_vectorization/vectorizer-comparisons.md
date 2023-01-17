@@ -1,6 +1,8 @@
 ---
 title: (NEW) Vectorizer comparisons
 sidebar_position: 3
+image: og/docs/vectors.jpg
+# tags: []
 ---
 
 ## Introduction

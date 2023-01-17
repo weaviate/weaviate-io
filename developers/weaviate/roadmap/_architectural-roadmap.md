@@ -1,16 +1,9 @@
-<!-- ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Roadmap
+---
 title: Architectural roadmap
-description: Weaviate's architectural roadmap
-tags: ['architecture', 'roadmap']
 sidebar_position: 2
-open-graph-type: article
-toc: true
-redirect_from:
-    - /developers/weaviate/architecture/roadmap.html
---- -->
+image: og/docs/roadmap.jpg
+# tags: ['architecture', 'roadmap']
+---
 import Badges from '/_includes/badges.mdx';
 
 <Badges/>

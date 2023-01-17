@@ -1,8 +1,8 @@
 ---
 title: Weaviate Clients
 sidebar_position: 0
+image: og/contributor-guide/weaviate-clients.jpg
 # tags: ['contributor-guide', 'clients']
-image: og/contributor-guide.jpeg
 ---
 
 # Contributor guidelines 

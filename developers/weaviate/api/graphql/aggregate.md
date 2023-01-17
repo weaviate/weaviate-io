@@ -1,7 +1,7 @@
 ---
 title: GraphQL - Aggregate{}
 sidebar_position: 2
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['graphql', 'aggregate', 'aggregate{}', 'meta']
 ---
 import Badges from '/_includes/badges.mdx';

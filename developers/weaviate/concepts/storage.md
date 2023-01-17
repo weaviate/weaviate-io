@@ -1,7 +1,7 @@
 ---
 title: Storage
 sidebar_position: 11
-image: og/documentation.jpeg
+image: og/docs/concepts.jpg
 # tags: ['architecture', 'storage']
 ---
 import Badges from '/_includes/badges.mdx';

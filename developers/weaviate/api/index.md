@@ -1,7 +1,7 @@
 ---
 title: References - API
 sidebar_position: 0
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['schema']
 ---
 import Badges from '/_includes/badges.mdx';

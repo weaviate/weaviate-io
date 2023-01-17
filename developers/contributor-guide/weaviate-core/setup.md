@@ -1,8 +1,8 @@
 ---
 title: Weaviate development setup
 sidebar_position: 4
+image: og/contributor-guide/weaviate-core.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 
 ## Prerequisities
@@ -67,7 +67,7 @@ always guaranteed to work.
 
 
 To make query search use this link for console:
-[https://console.semi.technology/](https://console.semi.technology/).
+[https://console.weaviate.io/](https://console.weaviate.io/).
 
 ## More Resources
 

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 import weaviate
 
-client = weaviate.Client("https://some-endpoint.semi.network/")
+client = weaviate.Client("https://some-endpoint.weaviate.network/")
 
 # Load data from the data.json file
 data_file = open('data.json')
@@ -47,7 +47,7 @@ const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.semi.network/',
+  host: 'some-endpoint.weaviate.network/',
 });
 
 async function getJsonData() {
@@ -131,7 +131,7 @@ func main() {
 	ctx := context.Background()
 
 	cfg := weaviate.Config{
-		Host:   "some-endpoint.semi.network/",
+		Host:   "some-endpoint.weaviate.network/",
 		Scheme: "https",
 	}
 	client := weaviate.New(cfg)
@@ -239,7 +239,7 @@ public class App {
   private final WeaviateClient client;
 
   public App() {
-    Config config = new Config("https", "some-endpoint.semi.network/");
+    Config config = new Config("https", "some-endpoint.weaviate.network/");
     client = new WeaviateClient(config);
   }
 
@@ -338,7 +338,7 @@ $ curl \
       ]
   }]
 }' \
-https://some-endpoint.semi.network/v1/batch/objects
+https://some-endpoint.weaviate.network/v1/batch/objects
 ```
 
 </TabItem>

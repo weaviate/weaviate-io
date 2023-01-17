@@ -1,7 +1,7 @@
 ---
 title: Roadmap
 sidebar_position: 0
-image: og/documentation.jpeg
+image: og/docs/roadmap.jpg
 # tags: ['roadmap']
 ---
 import Badges from '/_includes/badges.mdx';

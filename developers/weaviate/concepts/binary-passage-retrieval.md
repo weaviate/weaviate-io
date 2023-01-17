@@ -1,7 +1,7 @@
 ---
 title: Binary Passage Retrieval
 sidebar_position: 15
-image: og/documentation.jpeg
+image: og/docs/concepts.jpg
 # tags: ['architecture', 'binary-passage-retrieval', 'memory consumption', 'learning-to-hash', 'resource optimization']
 ---
 import Badges from '/_includes/badges.mdx';

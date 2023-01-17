@@ -1,7 +1,7 @@
 ---
 title: Schema
 sidebar_position: 2
-image: og/documentation.jpeg
+image: og/docs/quickstart-tutorial.jpg
 # tags: ['basics']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -16,7 +16,7 @@ This will also be a guide to getting your hands dirty! Oh, and this guide is a b
 
 At this point, you should have Weaviate running either:
 
-* in a sandbox on the [Weaviate Cloud Service](https://console.semi.technology)
+* in a sandbox on the [Weaviate Cloud Service](https://console.weaviate.io)
     * if not, refer to the [Installation](./installation.md) lesson for instructions
 * or locally with Docker
     1. Download [this docker-compose.yml file](https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version=v||site.weaviate_version||).
@@ -57,7 +57,7 @@ This means you're connected to an empty Weaviate.
 
 <!-- TODO: Discuss when to use info vs note - personally I am unsure (JP) -->
 :::info Default endpoint for this tutorial
-From now on, all examples will provide the code using the WCS endpoint: `"some-endpoint.semi.network/"`<br/>Replace the value to match your host endpoint.
+From now on, all examples will provide the code using the WCS endpoint: `"some-endpoint.weaviate.network/"`<br/>Replace the value to match your host endpoint.
 :::
 
 ### Resetting your Weaviate instance
@@ -67,7 +67,7 @@ If this is not the case and you see (old) classes, you can restart your instance
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.semi.network/")
+client = weaviate.Client("https://some-endpoint.weaviate.network/")
 
 # delete all classes
 client.schema.delete_all()

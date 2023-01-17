@@ -1,8 +1,8 @@
 ---
 title: img2vec-neural
 sidebar_position: 5
-image: og/documentation.jpeg
-# tags: ['img2vec-neural']
+image: og/docs/modules.jpg
+# tags: ['img2vec', 'img2vec-neural']
 ---
 import Badges from '/_includes/badges.mdx';
 

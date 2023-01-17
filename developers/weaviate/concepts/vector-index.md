@@ -1,8 +1,8 @@
 ---
 title: Vector Indexing
 sidebar_position: 4
-image: og/documentation.jpeg
-# tags: ['Vector Index Plugins']
+image: og/docs/concepts.jpg
+# tags: ['vector index plugins']
 ---
 import Badges from '/_includes/badges.mdx';
 

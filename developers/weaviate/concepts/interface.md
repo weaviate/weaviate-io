@@ -1,7 +1,7 @@
 ---
 title: Interface
 sidebar_position: 16
-image: og/documentation.jpeg
+image: og/docs/concepts.jpg
 # tags: ['architecture', 'interface', 'API design']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -131,7 +131,7 @@ There are currently three main functions in a GraphQL request: "Get{}", "Explore
 
 ## Weaviate Console
 
-The [Weaviate Console](https://console.semi.technology) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.
+The [Weaviate Console](https://console.weaviate.io) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.
 
 ![GraphQL Query Module in Weaviate Console](./img/console-capture.png)
 

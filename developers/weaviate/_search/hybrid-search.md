@@ -1,6 +1,8 @@
 ---
 title: (NEW) Hybrid Search
 sidebar_position: 4
+image: og/docs/search.jpg
+# tags: []
 ---
 
 ## Overview

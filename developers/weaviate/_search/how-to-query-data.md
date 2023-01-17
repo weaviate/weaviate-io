@@ -1,7 +1,7 @@
 ---
 title: (TBC) Search Basics
 sidebar_position: 1
-image: og/documentation.jpeg
+image: og/docs/search.jpg
 # tags: ['how to', 'query data']
 ---
 

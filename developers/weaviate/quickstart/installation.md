@@ -1,7 +1,7 @@
 ---
 title: Installation
 sidebar_position: 1
-image: og/documentation.jpeg
+image: og/docs/quickstart-tutorial.jpg
 # tags: ['installation']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -16,7 +16,7 @@ There are three ways you can run Weaviate, and they are -we believe- pretty stra
 
 ## Weaviate Cloud Service
 
-The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use the _Weaviate Cloud Service_ (aka, the WCS). The WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate. Currently, the service is in private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.semi.technology), you can create a free sandbox to play around with.
+The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use the _Weaviate Cloud Service_ (aka, the WCS). The WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate. Currently, the service is in private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.weaviate.io), you can create a free sandbox to play around with.
 
 If you are itching to get started with WCS, just skip to the [WCS hands-on section](#wcs-hands-on).
 
@@ -65,10 +65,10 @@ To create a new Weaviate instance on the Weaviate Cloud Service, we need to foll
 
 ### Sign in to WCS
 
-In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.semi.technology) and "Sign in with the Weaviate Cloud Service", where you will be able to create and manage your Weaviate Clusters.
+In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.weaviate.io) and "Sign in with the Weaviate Cloud Service", where you will be able to create and manage your Weaviate Clusters.
 
 #### No account, no problem
-If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.semi.technology/console/wcs) link and create an account.
+If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.weaviate.io/console/wcs) link and create an account.
 
 <!-- TODO - the style is not applied here. Generally Docusaurus seems to ignore these trailing braces like style or target: _blank -->
 ![Register link](./img/register.jpg){:style="max-width: 400px"}

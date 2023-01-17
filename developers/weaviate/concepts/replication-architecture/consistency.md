@@ -1,7 +1,7 @@
 ---
 title: Consistency
 sidebar_position: 4
-image: og/documentation.jpeg
+image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 import Badges from '/_includes/badges.mdx';
