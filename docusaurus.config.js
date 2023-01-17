@@ -137,35 +137,23 @@ const config = {
                 title: '',
                 logo: {
                     alt: 'Weaviate',
-                    src: 'img/site/weaviate-logo.png',
+                    src: '/img/site/weaviate-nav-logo-light.svg',
                 },
                 items: [
                     {
                         type: 'dropdown',
-                        label: 'Company',
+                        label: 'Weaviate Cloud Service',
                         position: 'right',
                         items: [
                             {
-                                label: 'About us',
-                                to: '/company/about-us',
+                                label: 'Pricing',
+                                to: '/pricing',
                             },
                             {
-                                label: 'Playbook',
-                                to: '/company/playbook',
+                                label: 'Try Now',
+                                href: 'https://console.semi.technology/',
                             },
-                            {
-                                label: 'Careers',
-                                to: '/company/careers',
-                            },
-                            {
-                                label: 'Investors',
-                                to: '/company/investors',
-                            },
-                            {
-                                label: 'Contact us',
-                                href: 'mailto:hello@weaviate.io'
-                            }
-                        ]
+                        ],
                     },
                     {
                         type: 'dropdown',
@@ -219,19 +207,32 @@ const config = {
                     },
                     {
                         type: 'dropdown',
-                        label: 'Weaviate Cloud Service',
+                        label: 'Company',
                         position: 'right',
                         items: [
                             {
-                                label: 'Pricing',
-                                to: '/pricing',
+                                label: 'About us',
+                                to: '/company/about-us',
                             },
                             {
-                                label: 'Try Now',
-                                href: 'https://console.semi.technology/',
+                                label: 'Playbook',
+                                to: '/company/playbook',
                             },
-                        ],
+                            {
+                                label: 'Careers',
+                                to: '/company/careers',
+                            },
+                            {
+                                label: 'Investors',
+                                to: '/company/investors',
+                            },
+                            {
+                                label: 'Contact us',
+                                href: 'mailto:hello@weaviate.io'
+                            }
+                        ]
                     },
+                    
                     {
                         to: 'https://weaviate.slack.com/',
                         label: ' ',
@@ -254,6 +255,7 @@ const config = {
                         className: 'fa-brands fa-lg fa-twitter',
                     },
                     {
+                        // to: 'https://www.youtube.com/@SeMI-and-Weaviate/playlists',
                         to: 'https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0',
                         label: ' ',
                         position: 'right',
@@ -277,8 +279,8 @@ const config = {
                     //   title: 'Docs',
                     //   items: [
                     //     {
-                    //       label: 'Tutorial',
-                    //       to: '/developers/weaviate/getting-started',
+                    //       label: 'Getting Started',
+                    //       to: '/developers/weaviate/quickstart',
                     //     },
                     //   ],
                     // },
@@ -306,10 +308,10 @@ const config = {
                                 label: 'Blog',
                                 to: '/blog',
                             },
-                            // {
-                            //   label: 'Podcast',
-                            //   to: '/podcast',
-                            // },
+                            {
+                              label: 'Podcast',
+                              to: '/podcast',
+                            },
                             {
                                 label: 'GitHub',
                                 href: 'https://github.com/semi-technologies/weaviate-io',

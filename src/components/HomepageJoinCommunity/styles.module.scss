@@ -1,13 +1,13 @@
 [data-theme='light'] {
   .socialBox {
     .slack {
-      background-image: url('../../../static/img/site/slack.png');
+      background-image: url('/img/site/slack.png');
     }
     .github {
-      background-image: url('../../../static/img/site/git.png');
+      background-image: url('/img/site/git.png');
     }
     .twitter {
-      background-image: url('../../../static/img/site/twitter.png');
+      background-image: url('/img/site/twitter.png');
     }
   }
 }
@@ -51,7 +51,7 @@
     height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../../static/img/site/slack_1.png');
+    background-image: url('/img/site/slack_1.png');
   }
   .text {
     padding-top: 10px;
@@ -65,7 +65,7 @@
     height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../../static/img/site/git_1.png');
+    background-image: url('/img/site/git_1.png');
   }
   .twitter {
     display: flex;
@@ -73,6 +73,6 @@
     height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../../static/img/site/twitter_1.png');
+    background-image: url('/img/site/twitter_1.png');
   }
 }

@@ -1,22 +1,22 @@
 [data-theme='light'] {
   .cards {
     .left {
-      background-image: url('../../../static/img/site/card-1-light.png');
+      background-image: url('/img/site/card-1-light.png');
     }
     .middle {
       .smallUp {
-        background-image: url('../../../static/img/site/card-2-light.png');
+        background-image: url('/img/site/card-2-light.png');
       }
       .smallDown {
-        background-image: url('../../../static/img/site/card-3-light.png');
+        background-image: url('/img/site/card-3-light.png');
       }
     }
     .right {
       .smallUp {
-        background-image: url('../../../static/img/site/card-4-light.png');
+        background-image: url('/img/site/card-4-light.png');
       }
       .smallDown {
-        background-image: url('../../../static/img/site/card-5-light.png');
+        background-image: url('/img/site/card-5-light.png');
       }
     }
   }
@@ -42,7 +42,7 @@
     flex: 1;
   }
   .left {
-    background-image: url('../../../static/img/site/card-1.png');
+    background-image: url('/img/site/card-1.png');
     border-radius: 25px;
     min-height: 380px;
     width: 100%;
@@ -68,7 +68,7 @@
     }
     .smallUp {
       border-radius: 25px;
-      background-image: url('../../../static/img/site/card-2.png');
+      background-image: url('/img/site/card-2.png');
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 180px;
@@ -81,7 +81,7 @@
     }
     .smallDown {
       border-radius: 25px;
-      background-image: url('../../../static/img/site/card-4.png');
+      background-image: url('/img/site/card-4.png');
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 180px;
@@ -107,7 +107,7 @@
 
     .smallUp {
       border-radius: 25px;
-      background-image: url('../../../static/img/site/card-3.png');
+      background-image: url('/img/site/card-3.png');
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 180px;
@@ -120,7 +120,7 @@
     }
     .smallDown {
       border-radius: 25px;
-      background-image: url('../../../static/img/site/card-5.png');
+      background-image: url('/img/site/card-5.png');
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 180px;

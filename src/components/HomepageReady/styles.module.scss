@@ -1,6 +1,6 @@
 [data-theme='light'] {
   .logo {
-    background-image: url('../../../static/img/site/weaviate-logo-light.png');
+    background-image: url('/img/site/weaviate-logo-light.png');
     height: 100px;
   }
 }
@@ -10,7 +10,7 @@
   height: 200px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../../../static/img/site/weaviate-logo-main.png');
+  background-image: url('/img/site/weaviate-logo-dark.png');
 }
 
 .title {

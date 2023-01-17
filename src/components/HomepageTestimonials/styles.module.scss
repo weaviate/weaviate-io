@@ -1,16 +1,16 @@
 [data-theme='light'] {
   .logos {
     .logoS {
-      background-image: url('../../../static/img/site/scribd-logo-light.png');
+      background-image: url('/img/site/scribd-logo-light.png');
     }
     .logoN {
-      background-image: url('../../../static/img/site/nasa-logo-light.png');
+      background-image: url('/img/site/nasa-logo-light.png');
     }
     .logoY {
-      background-image: url('../../../static/img/site/you-com-logo-light.png');
+      background-image: url('/img/site/you-com-logo-light.png');
     }
     .logoNo {
-      background-image: url('../../../static/img/site/notion-logo-light.png');
+      background-image: url('/img/site/notion-logo-light.png');
     }
   }
 }
@@ -32,7 +32,7 @@
   .logoS {
     width: 100%;
     height: 3rem;
-    background-image: url('../../../static/img/site/scribd-logo.png');
+    background-image: url('/img/site/scribd-logo.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -40,7 +40,7 @@
   .logoN {
     width: 100%;
     height: 3rem;
-    background-image: url('../../../static/img/site/nasa-logo.png');
+    background-image: url('/img/site/nasa-logo.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -48,7 +48,7 @@
   .logoY {
     width: 100%;
     height: 3rem;
-    background-image: url('../../../static/img/site/you-com-logo.png');
+    background-image: url('/img/site/you-com-logo.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -56,7 +56,7 @@
   .logoNo {
     width: 100%;
     height: 3rem;
-    background-image: url('../../../static/img/site/notion-logo.png');
+    background-image: url('/img/site/notion-logo.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

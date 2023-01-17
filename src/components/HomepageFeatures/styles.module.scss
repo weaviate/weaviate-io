@@ -2,13 +2,13 @@
   .features {
     .box {
       .icon1 {
-        background-image: url('./../../../static/img/site/icon-1-light.png');
+        background-image: url('/img/site/icon-1-light.png');
       }
       .icon2 {
-        background-image: url('./../../../static/img/site/icon-2-light.png');
+        background-image: url('/img/site/icon-2-light.png');
       }
       .icon3 {
-        background-image: url('./../../../static/img/site/icon-3-light.png');
+        background-image: url('/img/site/icon-3-light.png');
       }
     }
   }
@@ -43,7 +43,7 @@
     flex: 1;
 
     .icon1 {
-      background-image: url('./../../../static/img/site/icon-1.png');
+      background-image: url('/img/site/icon-1.png');
       width: 100%;
       height: 6rem;
       background-size: contain;
@@ -52,7 +52,7 @@
     }
 
     .icon2 {
-      background-image: url('./../../../static/img/site/icon-2.png');
+      background-image: url('/img/site/icon-2.png');
       width: 100%;
       height: 6rem;
       background-size: contain;
@@ -60,7 +60,7 @@
       background-position: center;
     }
     .icon3 {
-      background-image: url('./../../../static/img/site/icon-3.png');
+      background-image: url('/img/site/icon-3.png');
       width: 100%;
       height: 6rem;
       background-size: contain;

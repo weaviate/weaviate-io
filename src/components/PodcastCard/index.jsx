@@ -1,5 +1,5 @@
 import React from 'react';
-import podcasts from '../../../static/data/podcasts.json';
+import podcasts from '/data/podcasts.json';
 import styles from './styles.module.scss';
 
 export default function PodcastCard() {
