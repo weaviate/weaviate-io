@@ -15,33 +15,33 @@ export default function PricingEnterprise() {
       </div>
       <div className={styles.features}>
         <li>
-          <i class="fa-solid fa-circle-check"></i>{' '}
+          <i className="fas fa-circle-check"></i>{' '}
           <span>
             $0.100 per 1M vector dimensions stored or queried per month
           </span>
         </li>
         <li>
-          <i class="fa-solid fa-circle-check"></i>
+          <i className="fas fa-circle-check"></i>
           <span>AWS, Azure, GCP</span>
         </li>
         <li>
-          <i class="fa-solid fa-circle-check"></i>{' '}
+          <i className="fas fa-circle-check"></i>{' '}
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>
-          <i class="fa-solid fa-circle-check"></i>{' '}
+          <i className="fas fa-circle-check"></i>{' '}
           <span>Hibernation after 8 hours</span>
         </li>
         <li>
-          <i class="fa-solid fa-circle-check"></i>
+          <i className="fas fa-circle-check"></i>
           <span>Monitoring</span>
         </li>
         <li>
-          <i class="fa-solid fa-circle-check"></i>{' '}
+          <i className="fas fa-circle-check"></i>{' '}
           <span>SeMI Slack or Teams / Email</span>
         </li>
         <li>
-          <i class="fa-solid fa-circle-check"></i>{' '}
+          <i className="fas fa-circle-check"></i>{' '}
           <span>
             Severity 1 - max 1h <br />
             Severity 2 - max 4h <br />
@@ -49,11 +49,11 @@ export default function PricingEnterprise() {
           </span>
         </li>
         <li>
-          <i class="fa-solid fa-circle-check"></i>
+          <i className="fas fa-circle-check"></i>
           <span>Multi AZ</span>
         </li>
         <li>
-          <i class="fa-solid fa-circle-check"></i>
+          <i className="fas fa-circle-check"></i>
           <span>HA optional</span>
         </li>
       </div>

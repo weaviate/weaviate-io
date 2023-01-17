@@ -19,7 +19,7 @@ export default function PodcastHeader() {
           to="https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0"
           target="_blank"
         >
-          Subscribe to the YouTube channel
+          Subscribe to the YouTube channel <i className="fab fa-youtube"></i>
         </Link>
         <Link
           className={styles.spotify}
