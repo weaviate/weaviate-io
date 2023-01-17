@@ -51,15 +51,19 @@ Send REST requests to Weaviate without any additional authentication headers or 
 With [OpenID Connect](https://openid.net/connect/){:target="_blank"} (based on OAuth2), an
 external identity provider and token issuer ('token issuer' hereafter) is responsible for managing users.
 
+OIDC authentication requires obtaining a valid token from the token issuer so that it can be sent in the header of any request to Weaviate. This applies to both REST and GraphQL requests.
+
 When Weaviate receives a token (JSON Web Token or JWT), it verifies
 that it was indeed signed by the configured token issuer. If the signature is
 correct, all contents of the token are trusted, which authenticates the user based on the information in the token.
 
 ## Requirements &amp; Defaults
 
-- Any "OpenID Connect" compatible token issuer implementing OpenID Connect
-  Discovery can be
-  used with Weaviate. Popular open-source solutions include Java-based
+- Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discovery can be used with Weaviate. Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
+  
+  1) For very simple usecases such as just needing a single user, you can use the OIDC token issuer of the [weaviate cloud service](https://console.semi.technology/){:target="_blank"}. Sign up and use `https://auth.wcs.api.semi.technology/auth/realms/SeMI` as the issuer and your sing-up email as user.
+  2) If you need a more advanced setup you can use commercial OIDC providers like [Okta](https://www.okta.com/){:target="_blank"}.
+  3) For full control, you can run your own OIDC token issuer server which is the most complex solution. Popular open-source solutions include Java-based
   [Keycloak](https://www.keycloak.org/){:target="_blank"} and Golang-based
   [dex](https://github.com/dexidp/dex){:target="_blank"}.
 
@@ -69,7 +73,7 @@ correct, all contents of the token are trusted, which authenticates the user bas
 
 ## Configuration
 
-To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate. Additionally, the **OIDC token issuer** must be configured as appropriate. Configuring the OIDC token issuer is outside the scope of this document.
+To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate. 
 
 > As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff){:target="_blank"} may be useful.
 
@@ -105,8 +109,8 @@ services:
       # https://tools.ietf.org/html/rfc6749#section-1.1      
       AUTHENTICATION_OIDC_CLIENT_ID: 'my-weaviate-client'
 
-      # username_claim (required) tells weaviate which claim to use for extracting
-      # the username. The username will be passed to the authorization plugin.      
+      # username_claim (required) tells weaviate which claim in the token to use for extracting
+      # the username. The username will be passed to the authorization plugin.
       AUTHENTICATION_OIDC_USERNAME_CLAIM: 'email'
 
       # skip_client_id_check (optional, defaults to false) skips the client_id
@@ -126,10 +130,7 @@ $ curl [WEAVIATE URL]/v1/.well-known/openid-configuration
 
 ## How to use
 
-OIDC authentication requires obtaining a valid token from the token issuer so that it can be sent in the header of any request to Weaviate. This applies to both REST and GraphQL requests.
-
 The OIDC standard allows for many different methods *(flows)* of obtaining tokens. The appropriate method can vary depending on your situation, including configurations at the token issuer, and your requirements.
-
 
 While it is outside the scope of our documentation to cover every OIDC authentication flow, some possible options are to:
 - Use `client credentials flow` for machine-to-machine authorization. (Note that this will authorize an app, rather than a particular user.)
