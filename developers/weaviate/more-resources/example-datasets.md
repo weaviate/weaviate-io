@@ -110,7 +110,7 @@ Weaviate will be available and preloaded with the News Articles demo dataset on:
 If you have your own version of Weaviate running on an **external** host or localhost **without** Docker Compose;
 
 ```bash
-# WEAVIATE ORIGIN (e.g., https://foobar.semi.network), note paragraph basics for setting the local IP
+# WEAVIATE ORIGIN (e.g., https://foobar.weaviate.network), note paragraph basics for setting the local IP
 $ export WEAVIATE_ORIGIN=WEAVIATE_ORIGIN
 # Optionally you can specify which newspaper language you want (only two options `cache-en` or `cache-nl`, if not specified by default it is `cache-en` )
 $ export CACHE_DIR=<YOUR_CHOICE_OF_CACHE_DIR>

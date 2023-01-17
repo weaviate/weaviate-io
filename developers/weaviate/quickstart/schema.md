@@ -57,7 +57,7 @@ This means you're connected to an empty Weaviate.
 
 <!-- TODO: Discuss when to use info vs note - personally I am unsure (JP) -->
 :::info Default endpoint for this tutorial
-From now on, all examples will provide the code using the WCS endpoint: `"some-endpoint.semi.network/"`<br/>Replace the value to match your host endpoint.
+From now on, all examples will provide the code using the WCS endpoint: `"some-endpoint.weaviate.network/"`<br/>Replace the value to match your host endpoint.
 :::
 
 ### Resetting your Weaviate instance
@@ -67,7 +67,7 @@ If this is not the case and you see (old) classes, you can restart your instance
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.semi.network/")
+client = weaviate.Client("https://some-endpoint.weaviate.network/")
 
 # delete all classes
 client.schema.delete_all()

@@ -68,7 +68,7 @@ To create a new Weaviate instance on the Weaviate Cloud Service, we need to foll
 In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.weaviate.io) and "Sign in with the Weaviate Cloud Service", where you will be able to create and manage your Weaviate Clusters.
 
 #### No account, no problem
-If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.semi.technology/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.weaviate.io/console/wcs) link and create an account.
+If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.weaviate.io/console/wcs) link and create an account.
 
 <!-- TODO - the style is not applied here. Generally Docusaurus seems to ignore these trailing braces like style or target: _blank -->
 ![Register link](./img/register.jpg){:style="max-width: 400px"}
