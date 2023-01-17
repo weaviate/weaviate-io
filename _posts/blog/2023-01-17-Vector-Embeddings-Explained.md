@@ -38,7 +38,7 @@ Vector-based representation of meaning caused quite a [stir](https://www.ed.ac.u
 
     “king − man + woman ≈ queen”
     
-It indicated that the difference between “king” and “man” was some sort of “royalty”, which was analogously and mathematically applicable to “queen” minus “woman”. Jay Alamar provided a helpful [visualization](https://jalammar.github.io/illustrated-word2vec/) around this equation. Several concepts (“woman”, “girl”, “boy” etc.) are vectorized into (represented by) an array of 50 numbers generated using the [GloVe model](https://en.wikipedia.org/wiki/GloVe). In [vector terminology](https://en.wikipedia.org/wiki/Vector_(mathematics)), the 50 numbers are called dimensions. The arrays of numbers are visualized using colors and arranged next to each word:
+It indicated that the difference between “king” and “man” was some sort of “royalty”, which was analogously and mathematically applicable to “queen” minus “woman”. Jay Alamar provided a helpful [visualization](https://jalammar.github.io/illustrated-word2vec/) around this equation. Several concepts (“woman”, “girl”, “boy” etc.) are vectorized into (represented by) an array of 50 numbers generated using the [GloVe model](https://en.wikipedia.org/wiki/GloVe). In [vector terminology](https://en.wikipedia.org/wiki/Vector_(mathematics)), the 50 numbers are called dimensions. The vectors are visualized using colors and arranged next to each word:
 
 <figure>
   <img src="/img/blog/vector-embeddings-explained/vector-embeddings-visualization.png" alt="vector embeddings visualization"/>
