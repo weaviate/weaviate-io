@@ -61,7 +61,7 @@ correct, all contents of the token are trusted, which authenticates the user bas
 
 - Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discovery can be used with Weaviate. Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
   
-  1) For very simple usecases such as just needing a single user, you can use the OIDC token issuer of the [weaviate cloud service](https://console.semi.technology/){:target="_blank"}. Sign up and use `https://auth.wcs.api.semi.technology/auth/realms/SeMI` as the issuer and your sing-up email as user.
+  1) For very simple usecases such as just needing a single user, you can use the OIDC token issuer of the [weaviate cloud service](https://auth.wcs.api.weaviate.io){:target="_blank"}. Sign up and use `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer and your sing-up email as user.
   2) If you need a more advanced setup you can use commercial OIDC providers like [Okta](https://www.okta.com/){:target="_blank"}.
   3) For full control, you can run your own OIDC token issuer server which is the most complex solution. Popular open-source solutions include Java-based
   [Keycloak](https://www.keycloak.org/){:target="_blank"} and Golang-based
@@ -137,9 +137,8 @@ While it is outside the scope of our documentation to cover every OIDC authentic
   - Validated using Okta and Azure as identity providers; GCP does not support client credentials grant flow (as of December 2022).
   - Weaviate's Python client directly supports this method.
   - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
-- Use `resource owner password flow` for trusted applications. 
-  - You can use Weaviate Cloud Services / WCS (`https://auth.wcs.api.semi.technology/`) as the token issuer using the `resource owner password flow`.
-  - Weaviate's Python client directly supports this method.
+- Use `resource owner password flow` for trusted applications such as the [weaviate cloud service](https://auth.wcs.api.weaviate.io){:target="_blank"}. 
+  - Weaviate's Python and JavaScript client directly supports this method.
 - Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
 ### OIDC support for Weaviate clients
