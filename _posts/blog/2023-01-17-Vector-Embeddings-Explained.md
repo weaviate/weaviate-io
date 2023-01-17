@@ -16,7 +16,7 @@ One of the most common use cases for Weaviate is to perform semantic searches, f
 
 ![vector embeddings example](/img/blog/vector-embeddings-explained/vector-embeddings-example.png)
 
-Semantic searches (as well as question answering) are essentially searches by similarity, such as by the meaning of text, or by what objects are contained in images. For example, consider a library of wine names and descriptions, one of which mentioning that the wine is “good with **fish**”. A “wine for **seafood**” keyword search, or even a synonym search, won’t find that wine. A meaning-based search should understand that “fish” is a type of “seafood”, and should find the wine.
+Semantic searches (as well as question answering) are essentially searches by similarity, such as by the meaning of text, or by what objects are contained in images. For example, consider a library of wine names and descriptions, one of which mentioning that the wine is “good with **fish**”. A “wine for **seafood**” keyword search, or even a synonym search, won’t find that wine. A meaning-based search should understand that “fish” is similar to “seafood”, and “good with X” means the wine is “for X”—and should find the wine.
 
 How can computers mimic our understanding of language, and similarities of words or paragraphs? To tackle this problem, semantic search uses at its core a data structure called **vector embedding** (or simply, **vector** or **embedding**), which is an array of numbers. A [vector search engine](/blog/2022/12/vector-library-vs-vector-database.html) like Weaviate will compute an embedding for each data object as it is inserted or updated into the database. The embeddings are placed into an index, so that the search engine can [quickly](/blog/2022/09/Why-is-Vector-Search-so-fast.html) find the [closest](/blog/2022/09/Distance-Metrics-in-Vector-Search.html) vectors to a given vector that will be computed for the query.
 
@@ -34,7 +34,11 @@ These two vectors have a very high similarity. In contrast, vectors for “banjo
 
 Now that you’ve seen what vectors are, and that they can represent meaning to some extent, you might have further questions. For one, what does each number represent? That depends on the machine learning model that generated the vectors, and isn’t necessarily clear, at least in terms of our human conception of language and meaning. But we can sometimes gain a rough idea by correlating vectors to words with which we are familiar. 
 
-Vector-based representation of meaning caused quite a [stir](https://www.ed.ac.uk/informatics/news-events/stories/2019/king-man-woman-queen-the-hidden-algebraic-struct) a few years back, with the revelation of mathematical operations between words. Perhaps *the* most famous result is that of “king − man + woman ≈ queen”, indicating that the difference between “king” and “man” was some sort of “royalty”, which was analogously and mathematically applicable to “queen” minus “woman”. Jay Alamar provided a helpful [visualization](https://jalammar.github.io/illustrated-word2vec/) around this equation:
+Vector-based representation of meaning caused quite a [stir](https://www.ed.ac.uk/informatics/news-events/stories/2019/king-man-woman-queen-the-hidden-algebraic-struct) a few years back, with the revelation of mathematical operations between words. Perhaps *the* most famous result was that of
+
+    “king − man + woman ≈ queen”
+    
+It indicated that the difference between “king” and “man” was some sort of “royalty”, which was analogously and mathematically applicable to “queen” minus “woman”. Jay Alamar provided a helpful [visualization](https://jalammar.github.io/illustrated-word2vec/) around this equation:
 
 <figure>
   <img src="/img/blog/vector-embeddings-explained/vector-embeddings-visualization.png" alt="vector embeddings visualization"/>
