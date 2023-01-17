@@ -61,7 +61,7 @@ $ docker-compose up
 Weaviate will be available and preloaded with the News Articles demo dataset on:
 
 - `http://localhost:8080/`
-- [Via the Console](https://console.semi.technology): connect to `https://demo.dataset.playground.semi.technology`.
+- [Via the Console](https://console.weaviate.io): connect to `https://demo.dataset.playground.semi.technology`.
 
 #### Text2vec-transformers (without GPU)
 
@@ -82,7 +82,7 @@ $ docker-compose up
 Weaviate will be available and preloaded with the News Articles demo dataset on:
 
 - `http://localhost:8080/`
-- [Via the Console](https://console.semi.technology): connect to `https://demo.dataset.playground.semi.technology`.
+- [Via the Console](https://console.weaviate.io): connect to `https://demo.dataset.playground.semi.technology`.
 
 #### Text2vec-transformers (with GPU enabled)
 
@@ -103,7 +103,7 @@ $ docker-compose up
 Weaviate will be available and preloaded with the News Articles demo dataset on:
 
 - `http://localhost:8080/`
-- [Via the Console](https://console.semi.technology): connect to `https://demo.dataset.playground.semi.technology`.
+- [Via the Console](https://console.weaviate.io): connect to `https://demo.dataset.playground.semi.technology`.
 
 ### Run manually
 

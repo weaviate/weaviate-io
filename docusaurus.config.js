@@ -190,7 +190,7 @@ const config = {
                             },
                             {
                                 label: 'Weaviate Cloud Service',
-                                href: 'https://console.semi.technology/',
+                                href: 'https://console.weaviate.io/',
                             },
                             {
                                 label: 'GitHub',
@@ -213,7 +213,7 @@ const config = {
                             },
                             {
                                 label: 'Try Now',
-                                href: 'https://console.semi.technology/',
+                                href: 'https://console.weaviate.io/',
                             },
                         ],
                     },

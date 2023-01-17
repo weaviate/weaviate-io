@@ -26,11 +26,11 @@ docker-compose up
 Weaviate will be available and preloaded with the news article demo dataset on:
 
 - `http://localhost:8080/v1`
-- [Via the Console](https://console.semi.technology).
+- [Via the Console](https://console.weaviate.io).
 
 # **Query via the Weaviate console**
 
-You can query your local machine via the [Weaviate console](https://console.semi.technology). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` (you will get redirected to the "http" version of the client).
+You can query your local machine via the [Weaviate console](https://console.weaviate.io). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` (you will get redirected to the "http" version of the client).
 
 # **Validate via the RESTful API**
 
@@ -693,11 +693,11 @@ The output will look something like this:
 
 # Query the dataset with GraphQL
 
-When querying Weaviate, you will always be using the GraphQL API. Weaviate has a publicly available graphical user interface (GUI) called [the Console](https://console.semi.technology), which you can use to query.
+When querying Weaviate, you will always be using the GraphQL API. Weaviate has a publicly available graphical user interface (GUI) called [the Console](https://console.weaviate.io), which you can use to query.
 
 ### Accessing the Console
 
-Go to [console.semi.technology](https://console.semi.technology). Log in and connect to your Weaviate instance (e.g. on `http://localhost:8080`), and then go to 'Query' in the left menu.
+Go to [console.weaviate.io](https://console.weaviate.io). Log in and connect to your Weaviate instance (e.g. on `http://localhost:8080`), and then go to 'Query' in the left menu.
 
 ### Your First Query
 
