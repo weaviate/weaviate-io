@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.semi.network/")
+client = weaviate.Client("https://some-endpoint.weaviate.network/")
 
 all_objects = client.data_object.get()
 print(json.dumps(all_objects))
@@ -24,7 +24,7 @@ const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.semi.network/',
+    host: 'some-endpoint.weaviate.network/',
   }); 
 
 client
@@ -53,7 +53,7 @@ import (
 
 func GetSchema() {
     cfg := weaviate.Config{
-        Host:   "some-endpoint.semi.network/",
+        Host:   "some-endpoint.weaviate.network/",
         Scheme: "https",
     }
 
@@ -84,7 +84,7 @@ import technology.semi.weaviate.client.v1.data.model.WeaviateObject;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.semi.network/");
+    Config config = new Config("https", "some-endpoint.weaviate.network/");
 
     WeaviateClient client = new WeaviateClient(config);
 
@@ -104,7 +104,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl https://some-endpoint.semi.network/v1/objects
+$ curl https://some-endpoint.weaviate.network/v1/objects
 ```
 
 </TabItem>

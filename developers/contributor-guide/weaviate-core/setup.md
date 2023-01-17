@@ -67,7 +67,7 @@ always guaranteed to work.
 
 
 To make query search use this link for console:
-[https://console.semi.technology/](https://console.semi.technology/).
+[https://console.weaviate.io/](https://console.weaviate.io/).
 
 ## More Resources
 
