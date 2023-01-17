@@ -46,15 +46,65 @@ client
 
 ## Authentication
 
-You can pass authentication credentials in a header to the client, which is added to the initialization of the client in your JavaScript script: 
+Please see the [authentication](../configuration/authentication.html) for broader information in relation to authentication with Weaviate.
+
+The JavaScript client supports multiple OIDC authentication flows to use with Weaviate. 
+
+First, choose one of the supported flows and create the flow-specific authentication configuration, which can then be passed to the client. The configuration, including secrets, are used by the client to obtain an `access token` and (if configured) a `refresh token`.
+
+The `access token` is included in the HTTP-header of any request and is used to authenticate against weaviate. However, this token usually has a limited lifetime and the `refresh token` can be used to acquire a new set of tokens.
+
+### Resource Owner Password flow
+
+This flow authenticates users using their *username* and *password* and should only be used on trusted devices. Both information are not saved in the client and are only used to obtain the first tokens, after which existing tokens will be used to obtain subsequent tokens if possible.
+
+Not every provider automatically includes a `refresh token` and an appropriate *scope* might be required that depends on your identity provider. The client uses *offline_access* as default scope which works with some providers.
+
+Without a refresh token, there is no possibility to acquire a new `access token` and the client becomes unauthenticated after expiration.
+
+```js
+const client = weaviate.client({
+  scheme: "http",
+  host: "weaviate-host",
+  authClientSecret: new weaviate.AuthUserPasswordCredentials({
+    username: "user123",
+    password: "password"
+    scope = "scope1 scope2" # optional, depends on the configuration of your identity provider
+  })
+});
+```
+
+### Bearer token 
+
+Any other authentication method can be used to obtain tokens directly from your identity provider, for example by using this step-by-step guide of the [hybrid flow](../configuration/authentication.html).
+
+If no `refresh token` is provided, there is no possibility to obtain a new `access token` and the client becomes unauthenticated after expiration.
+
+```js
+const client = weaviate.client({
+  scheme: "http",
+  host: "weaviate-host",
+  authClientSecret: new weaviate.AuthAccessTokenCredentials({
+    accessToken: "abcd1234",
+    expiresIn: 900,
+    refreshToken: "efgh5678"
+  })
+});
+```
+
+## Custom headers
+
+You can pass custom headers to the client, which are added to the initialization of the client in your JavaScript script: 
 
 ```js
 const client = weaviate.client({
     scheme: 'http',
-    host: 'localhost:8080',
-    headers: {authorization: 'Bearer <put your token here>'}
+    host: 'weaviate-host',
+    headers: {headerName: 'HeaderValue'}
   });
 ```
+
+These headers will be included in every request that the client makes.
 
 # References
 
