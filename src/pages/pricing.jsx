@@ -1,12 +1,12 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import { MetaSEO } from '@site/src/theme/MetaSEO';
+import { MetaSEO } from '/src/theme/MetaSEO';
 
-import PricingHeader from '../components/PricingHeader';
-import PricingCalculator from '../components/PricingCalculator';
-import PricingPlan from '../components/PricingPlan';
-import PricingFAQ from '../components/PricingFAQ';
-import ContactUsForm from '../components/ContactUsForm';
+import PricingHeader from '/src/components/Pricing/Header';
+import PricingCalculator from '/src/components/Pricing/Calculator';
+import PricingPlan from '/src/components/Pricing/Plan';
+import PricingFAQ from '/src/components/Pricing/FAQ';
+import ContactUsForm from '/src/components/ContactUsForm';
 
 export default function PricingPage() {
   return (

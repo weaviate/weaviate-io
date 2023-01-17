@@ -63,11 +63,9 @@ p {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
-    .icon {
-      width: 20px;
+    
+    i {
       margin: 0 4px;
-      fill: white;
     }
   }
 }
