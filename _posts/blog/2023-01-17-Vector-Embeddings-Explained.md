@@ -99,7 +99,7 @@ However, word2vec still suffers from important limitations:
 
 Which takes us to the next, state-of-the-art, models.
 
-### Transformer models (BERT, ELmo, and others)
+### Transformer models (BERT, ELMo, and others)
 The current state-of-the-art models are based on what’s called a “transformer” architecture as introduced in [this paper](https://arxiv.org/abs/1706.03762).  
 
 [Transformer models](https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)) such as BERT and its successors improve search accuracy, [precision and recall](https://en.wikipedia.org/wiki/Precision_and_recall) by looking at every word’s context to create full contextual embeddings (though [the exact mechanism of BERT’s success is not fully understood](https://aclanthology.org/D19-1445/)). Unlike word2vec embeddings which are context-agnostic, transformer-generated embeddings take the entire input text into account—each occurrence of a word has its own embedding that is modified by the surrounding text. These embeddings better reflect the polysemantic nature of words, which can only be disambiguated when they are considered in context. 
