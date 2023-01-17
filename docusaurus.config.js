@@ -54,6 +54,21 @@ const config = {
             injectHtmlTags() {
                 return {
                     headTags: [
+                    //Add Font Awesome
+                    {
+                        tagName: 'link',
+                        attributes: {
+                            href: '/fonts/font-awesome/fontawesome.css',
+                            rel: 'stylesheet'
+                        }
+                    },
+                    {
+                        tagName: 'link',
+                        attributes: {
+                            href: '/fonts/font-awesome/brands.css',
+                            rel: 'stylesheet'
+                        }
+                    },
                     // Add plausible
                     {
                         tagName: 'script',
@@ -216,6 +231,41 @@ const config = {
                                 href: 'https://console.semi.technology/',
                             },
                         ],
+                    },
+                    {
+                        to: 'https://weaviate.slack.com/',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fa-brands fa-lg fa-slack',
+                    },
+                    {
+                        to: 'https://github.com/semi-technologies/weaviate',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fa-brands fa-lg fa-github',
+                    },
+                    {
+                        to: 'https://twitter.com/weaviate_io',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fa-brands fa-lg fa-twitter',
+                    },
+                    {
+                        to: 'https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fa-brands fa-lg fa-youtube',
+                    },
+                    {
+                        to: 'https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fa-brands fa-lg fa-spotify',
                     },
                 ],
             },
