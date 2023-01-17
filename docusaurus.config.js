@@ -54,28 +54,6 @@ const config = {
             injectHtmlTags() {
                 return {
                     headTags: [
-                    //Add Font Awesome
-                    {
-                        tagName: 'link',
-                        attributes: {
-                            href: '/fonts/font-awesome/fontawesome.css',
-                            rel: 'stylesheet'
-                        }
-                    },
-                    {
-                        tagName: 'link',
-                        attributes: {
-                            href: '/fonts/font-awesome/brands.css',
-                            rel: 'stylesheet'
-                        }
-                    },
-                    {
-                        tagName: 'link',
-                        attributes: {
-                            href: '/fonts/font-awesome/solid.css',
-                            rel: 'stylesheet'
-                        }
-                    },
                     // Add plausible
                     {
                         tagName: 'script',
@@ -93,6 +71,13 @@ const config = {
                 };
             },
         })
+    ],
+
+    stylesheets: [
+        //Add Font Awesome stylesheets
+        '/fonts/font-awesome/fontawesome.css',
+        '/fonts/font-awesome/solid.css',
+        '/fonts/font-awesome/brands.css'
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -130,7 +115,10 @@ const config = {
                     // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
                 },
                 theme: {
-                    customCss: [require.resolve('./src/css/custom.scss')],
+                    customCss: [
+                        require.resolve('./src/css/custom.scss'),
+                        require.resolve('./src/css/blog-and-docs.scss'),
+                    ],
                 },
             }),
         ],
