@@ -1,10 +1,10 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import { MetaSEO } from '@site/src/theme/MetaSEO';
+import { MetaSEO } from '/src/theme/MetaSEO';
 
-import AboutUsHeader from '../../components/AboutUs/header';
-import CompanyValues from '../../components/AboutUs/values';
-import MeetTheTeam from '../../components/AboutUs/meet-team';
+import AboutUsHeader from '/src/components/AboutUs/header';
+import CompanyValues from '/src/components/AboutUs/values';
+import MeetTheTeam from '/src/components/AboutUs/meet-team';
 
 export default function AboutUsPage() {
   return (

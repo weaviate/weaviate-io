@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import { MetaSEO } from '@site/src/theme/MetaSEO';
+import { MetaSEO } from '/src/theme/MetaSEO';
 
 import PricingHeader from '/src/components/Pricing/Header';
 import PricingCalculator from '/src/components/Pricing/Calculator';
