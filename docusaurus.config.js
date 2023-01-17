@@ -69,6 +69,13 @@ const config = {
                             rel: 'stylesheet'
                         }
                     },
+                    {
+                        tagName: 'link',
+                        attributes: {
+                            href: '/fonts/font-awesome/solid.css',
+                            rel: 'stylesheet'
+                        }
+                    },
                     // Add plausible
                     {
                         tagName: 'script',

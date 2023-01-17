@@ -1,7 +1,5 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 export default function PricingStandard() {
   return (
@@ -17,40 +15,44 @@ export default function PricingStandard() {
       </div>
       <div className={styles.features}>
         <li>
-          <FontAwesomeIcon icon={faCircleCheck} />{' '}
+          <i class="fa-solid fa-circle-check"></i>{' '}
           <span>
             $0.050 per 1M vector dimensions stored or queried per month
           </span>
         </li>
         <li>
-          <FontAwesomeIcon icon={faCircleCheck} />{' '}
+          <i class="fa-solid fa-circle-check"></i>{' '}
           <span>Round robin region: AWS, Azure, GCP</span>
         </li>
         <li>
-          <FontAwesomeIcon icon={faCircleCheck} />{' '}
+          <i class="fa-solid fa-circle-check"></i>{' '}
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>
-          <FontAwesomeIcon icon={faCircleCheck} />{' '}
+          <i class="fa-solid fa-circle-check"></i>{' '}
           <span>Hibernation after 1 hour</span>
         </li>
         <li>
-          <FontAwesomeIcon icon={faCircleCheck} /> <span>Monitoring</span>
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Monitoring</span>
         </li>
         <li>
-          <FontAwesomeIcon icon={faCircleCheck} /> <span>Public Slack</span>
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Public Slack</span>
         </li>
         <li>
-          <FontAwesomeIcon icon={faCircleCheck} />{' '}
+          <i class="fa-solid fa-circle-check"></i>{' '}
           <span>
             Severity 1 - max 1h Severity 2 max 4h Severity 3 Severity 3 max 1bd
           </span>
         </li>
         <li>
-          <FontAwesomeIcon icon={faCircleCheck} /> <span>Multi AZ</span>
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Multi AZ</span>
         </li>
         <li>
-          <FontAwesomeIcon icon={faCircleCheck} /> <span>HA optional</span>
+          <i class="fa-solid fa-circle-check"></i>
+          <span>HA optional</span>
         </li>
       </div>
     </div>
