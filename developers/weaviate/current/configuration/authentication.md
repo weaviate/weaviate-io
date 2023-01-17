@@ -1,18 +1,24 @@
 ---
+layout: layout-documentation
+solution: weaviate
+sub-menu: Configuration
 title: Authentication
-sidebar_position: 14
-image: og/docs/configuration.jpg
-# tags: ['authentication']
+intro: By default, Weaviate runs without any form of authentication. To run Weaviate with authentication, you can enable OpenID authentication in Weaviate's configuration file. Then, use a Bearer token to authenticate.
+description: Authentication in Weaviate
+tags: ['authentication']
+menu-order: 4
+open-graph-type: article
+toc: true
+redirect_from:
+    - /documentation/weaviate/current/setup/authenticate.html
+    - /documentation/weaviate/current/configuration/authentication.html
 ---
-import Badges from '/_includes/badges.mdx';
-
-<Badges/>
 
 # Overview
 
 We built Weaviate to be as easy to use as possible while catering to different cases such as for trying it out locally, or in production in an enterprise environment.
 
-Weaviate's authentication capabilities reflect this by allowing for both anonymous users as well as authenticated users through OpenID Connect (OIDC). Thus, different authentication schemes can be selected and even combined, from which different [authorization](./authorization.md) options can be specified for different sets of users. 
+Weaviate's authentication capabilities reflect this by allowing for both anonymous users as well as authenticated users through OpenID Connect (OIDC). Thus, different authentication schemes can be selected and even combined, from which different [authorization](./authorization.html) options can be specified for different sets of users. 
 
 # Anonymous Access
 By default, Weaviate is configured to accept requests without any
@@ -42,7 +48,7 @@ Send REST requests to Weaviate without any additional authentication headers or 
 
 # OpenID Connect (OIDC)
 
-With [OpenID Connect](https://openid.net/connect/) (based on OAuth2), an
+With [OpenID Connect](https://openid.net/connect/){:target="_blank"} (based on OAuth2), an
 external identity provider and token issuer ('token issuer' hereafter) is responsible for managing users.
 
 When Weaviate receives a token (JSON Web Token or JWT), it verifies
@@ -54,8 +60,8 @@ correct, all contents of the token are trusted, which authenticates the user bas
 - Any "OpenID Connect" compatible token issuer implementing OpenID Connect
   Discovery can be
   used with Weaviate. Popular open-source solutions include Java-based
-  [Keycloak](https://www.keycloak.org/) and Golang-based
-  [dex](https://github.com/dexidp/dex).
+  [Keycloak](https://www.keycloak.org/){:target="_blank"} and Golang-based
+  [dex](https://github.com/dexidp/dex){:target="_blank"}.
 
 - By default, Weaviate will validate that the token includes a specified client
   id in the audience claim. If your token issuer does not support this feature,
@@ -65,7 +71,7 @@ correct, all contents of the token are trusted, which authenticates the user bas
 
 To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate. Additionally, the **OIDC token issuer** must be configured as appropriate. Configuring the OIDC token issuer is outside the scope of this document.
 
-> As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff) may be useful.
+> As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff){:target="_blank"} may be useful.
 
 The OIDC-related Docker Compose environment variables are shown below. Please see the inline-yaml comments for details around the respective fields:
 
@@ -100,7 +106,7 @@ services:
       AUTHENTICATION_OIDC_CLIENT_ID: 'my-weaviate-client'
 
       # username_claim (required) tells weaviate which claim to use for extracting
-      # the username. The username will be passed to the authorization plugin.
+      # the username. The username will be passed to the authorization plugin.      
       AUTHENTICATION_OIDC_USERNAME_CLAIM: 'email'
 
       # skip_client_id_check (optional, defaults to false) skips the client_id
@@ -139,7 +145,7 @@ While it is outside the scope of our documentation to cover every OIDC authentic
 
 The latest versions (from mid-December 2022 and onwards) of Python, JavaScript, Go and Java Weaviate clients support OIDC authentication. If Weaviate is set up to use the `client credentials grant` flow as or `resource owner password flow`, the respective Weaviate client can instantiate a connection to Weaviate that incorporates the authentication flow.
 
-Please refer to the [client libraries documentation](../client-libraries/index.md) for each client for code examples.
+Please refer to the [client libraries documentation](../client-libraries/index.html) for each client for code examples.
 
 ### Manually obtaining & passing tokens
 
@@ -165,7 +171,7 @@ For cases or workflows where you may wish to manually obtain a token, we outline
 3. Send a GET request to `href` to fetch the token issuer's OIDC configuration (`token_oidc_config`)
 4. Construct a URL (`auth_url`) with the following parameters, based on `authorization_endpoint` from `token_oidc_config`. This will look like the following:
 - `{authorization_endpoint}`?client_id=`{clientId}`&response_type=code%20id_token&response_mode=fragment&redirect_url=`{redirect_url}`&scope=openid&nonce=abcd
-- the `redirect_url` must have been [pre-registered](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) with your token issuer. 
+- the `redirect_url` must have been [pre-registered](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest){:target="_blank"} with your token issuer. 
 5. Go to the `auth_url` in your browser, and log in if prompted. If successful, the token issuer will redirect the browser to the `redirect_url`, with additional parameters that include an `id_token` parameter. 
 6. Parse the `id_token` parameter value. This is your Bearer token.
 
@@ -251,10 +257,8 @@ For example, you can use a CURL command as shown below:
 $ curl http://localhost:8080/v1/objects -H "Authorization: Bearer {Bearer}"
 ```
 
-If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#authentication), [Javascript](../client-libraries/javascript.md#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
+If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.html#authentication), [Javascript](../client-libraries/javascript.html#authentication), [Java](../client-libraries/java.html#authentication) or [Go](../client-libraries/go.html#authentication) to find instructions on how to attach a token with that client.
 
-## More Resources
+# More Resources
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
-
-<DocsMoreResources />
+{% include docs-support-links.html %}
