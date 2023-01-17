@@ -214,10 +214,6 @@ const config = {
                                 type: 'doc',
                             },
                             {
-                                label: 'Weaviate Cloud Service',
-                                href: 'https://console.weaviate.io/',
-                            },
-                            {
                                 label: 'GitHub',
                                 href: 'https://github.com/semi-technologies/weaviate-io',
                             },
