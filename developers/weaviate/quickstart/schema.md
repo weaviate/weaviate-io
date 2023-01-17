@@ -1,7 +1,7 @@
 ---
 title: Schema
 sidebar_position: 2
-image: og/documentation.jpeg
+image: og/docs/quickstart-tutorial.jpg
 # tags: ['basics']
 ---
 import Badges from '/_includes/badges.mdx';

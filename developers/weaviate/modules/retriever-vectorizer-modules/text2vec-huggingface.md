@@ -1,8 +1,8 @@
 ---
 title: text2vec-huggingface
 sidebar_position: 2
-image: og/documentation.jpeg
-# tags: ['text2vec', 'text2vec-huggingface']
+image: og/docs/modules.jpg
+# tags: ['text2vec', 'text2vec-huggingface', 'huggingface']
 ---
 import Badges from '/_includes/badges.mdx';
 

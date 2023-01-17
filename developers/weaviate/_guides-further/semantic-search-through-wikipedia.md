@@ -1,7 +1,7 @@
 ---
 title: (TBC) Larger dataset example (Wikipedia)
 sidebar_position: 99
-image: og/documentation.jpeg
+image: og/docs/further-guides.jpg
 # tags: ['semantic search', 'wikipedia']
 ---
 import Badges from '/_includes/badges.mdx';

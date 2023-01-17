@@ -1,8 +1,8 @@
 ---
 title: Contributor Guide
 sidebar_position: 0
+image: og/contributor-guide/welcome.jpg
 # tags: ['index', 'contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 
 ![img](/img/contributor-guide/Weaviate.png)

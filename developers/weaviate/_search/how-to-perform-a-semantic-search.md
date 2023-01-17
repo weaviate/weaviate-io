@@ -1,7 +1,7 @@
 ---
 title: (TBC) Vector/Semantic Search
 sidebar_position: 2
-image: og/documentation.jpeg
+image: og/docs/search.jpg
 # tags: ['how to', 'perform a semantic search']
 ---
 

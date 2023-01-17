@@ -1,8 +1,8 @@
 ---
 title: Weaviate Core
 sidebar_position: 0
+image: og/contributor-guide/weaviate-core.jpg
 # tags: ['build, run, test']
-image: og/contributor-guide.jpeg
 ---
 
 - [Code structure and style](./structure.md)

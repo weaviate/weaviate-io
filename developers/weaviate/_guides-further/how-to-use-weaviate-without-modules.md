@@ -1,7 +1,7 @@
 ---
 title: (TBC) Bring your own vectors
 sidebar_position: 1
-image: og/documentation.jpeg
+image: og/docs/further-guides.jpg
 # tags: ['how to', 'no modules']
 ---
 import Badges from '/_includes/badges.mdx';

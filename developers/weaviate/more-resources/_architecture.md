@@ -1,15 +1,8 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: More resources
 title: Architecture
-intro: 
-tags: ['Architecture']
 sidebar_position: 4
-open-graph-type: article
-toc: true
-redirect_from:
-    - /documentation/weaviate/current/more-resources/architecture.html
+image: og/docs/more-resources.jpg
+# tags: ['Architecture']
 ---
 import Badges from '/_includes/badges.mdx';
 

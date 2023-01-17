@@ -1,7 +1,7 @@
 ---
 title: GraphQL - Filters
 sidebar_position: 4
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['graphql', 'filters']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -58,7 +58,7 @@ the path selector for `name` will be `["inPublication", "Publication", "name"]`
 - `valueString`: The string value that the `Path`'s last property name should be compared to.
 - `valueText`: The text value that the `Path`'s last property name should be compared to.
 - `valueNumber`: The number (float) value that the `Path`'s last property name should be compared to.
-- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://tools.ietf.org/html/rfc3339)) value that the `Path`'s last property name should be compared to.
+- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339)) value that the `Path`'s last property name should be compared to.
 
 ```graphql
 {
@@ -153,7 +153,7 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
 
 ### Filter by timestamps
 
-Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
+Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
 
 *Note: filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps) for details* 
 
@@ -207,7 +207,7 @@ Supported operators are `(not) equal` and `greater/less than (equal)` and values
 
 You can set multiple operands by providing an array.
 
-For example, these filters select based on the class Article with a wordCount higher than 1000 and who are published before January 1st 2020. Note that you can filter a date and time just similar to numbers, with the `valueDate` given as `string`. Note that the `valueDate` should be formatted according to standard [RFC3339](https://tools.ietf.org/html/rfc3339).
+For example, these filters select based on the class Article with a wordCount higher than 1000 and who are published before January 1st 2020. Note that you can filter a date and time just similar to numbers, with the `valueDate` given as `string`. Note that the `valueDate` should be formatted according to standard [RFC3339](https://www.rfc-editor.org/rfc/rfc3339).
 
 import GraphQLFiltersWhereOperands from '/_includes/code/graphql.filters.where.operands.mdx';
 

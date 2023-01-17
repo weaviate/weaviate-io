@@ -1,6 +1,8 @@
 ---
 title: Concepts - Vectors
 sidebar_position: 2
+image: og/docs/vectors.jpg
+# tags: []
 ---
 
 ## Introduction

@@ -1,7 +1,7 @@
 ---
 title: Persistence
 sidebar_position: 16
-image: og/documentation.jpeg
+image: og/docs/configuration.jpg
 # tags: ['configuration', 'persistence']
 ---
 import Badges from '/_includes/badges.mdx';

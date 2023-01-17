@@ -1,7 +1,7 @@
 ---
 title: Quickstart Tutorial
 sidebar_position: 0
-image: og/documentation.jpeg
+image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 ---
 import Badges from '/_includes/badges.mdx';

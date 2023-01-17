@@ -1,7 +1,7 @@
 ---
 title: REST - /v1/schema
 sidebar_position: 11
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'schema']
 ---
 import Badges from '/_includes/badges.mdx';

@@ -1,7 +1,7 @@
 ---
 title: Text2Vec-Contextionary Quickstart
 sidebar_position: 7
-image: og/documentation.jpeg
+image: og/docs/further-guides.jpg
 # tags: ['how to', 'schema']
 ---
 

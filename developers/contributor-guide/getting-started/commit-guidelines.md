@@ -1,8 +1,8 @@
 ---
 title: Commit Guidelines
 sidebar_position: 7
+image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 ## Introduction
 

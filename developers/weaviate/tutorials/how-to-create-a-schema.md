@@ -1,7 +1,7 @@
 ---
 title: How to define a schema
 sidebar_position: 2
-image: og/documentation.jpeg
+image: og/docs/tutorials.jpg
 # tags: ['how to', 'schema']
 ---
 import Badges from '/_includes/badges.mdx';

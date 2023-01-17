@@ -1,8 +1,8 @@
 ---
 title: Weaviate development setup
 sidebar_position: 4
+image: og/contributor-guide/weaviate-core.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 
 ## Prerequisities

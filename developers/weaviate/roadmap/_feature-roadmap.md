@@ -1,13 +1,8 @@
 ---
-layout: layout-documentation
-solution: weaviate
-sub-menu: Roadmap
 title: Feature roadmap
-description: Weaviate's Feature Roadmap
-tags: ['functional', 'roadmap']
 sidebar_position: 1
-open-graph-type: article
-toc: true
+image: og/docs/roadmap.jpg
+# tags: ['functional', 'roadmap']
 ---
 import Badges from '/_includes/badges.mdx';
 

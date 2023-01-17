@@ -1,8 +1,8 @@
 ---
 title: Improving Documentation
 sidebar_position: 4
+image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
-image: og/contributor-guide.jpeg
 ---
 <!-- TODO: this whole page needs refactoring as it refers to Jekyll style docs -->
 ## Introduction

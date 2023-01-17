@@ -1,7 +1,7 @@
 ---
 title: text2vec-contextionary
 sidebar_position: 4
-image: og/documentation.jpeg
+image: og/docs/modules.jpg
 # tags: ['text2vec', 'text2vec-contextionary', 'contextionary']
 ---
 import Badges from '/_includes/badges.mdx';

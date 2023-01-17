@@ -1,7 +1,7 @@
 ---
 title: Tutorials - Further Topics
 sidebar_position: 0
-image: og/documentation.jpeg
+image: og/docs/further-guides.jpg
 # tags: ['how to']
 ---
 

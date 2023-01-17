@@ -1,8 +1,8 @@
 ---
 title: ref2vec-centroid
 sidebar_position: 7
-image: og/documentation.jpeg
-# tags: ['ref2vec-centroid', 'centroid']
+image: og/docs/modules.jpg
+# tags: ['ref2vec', 'ref2vec-centroid', 'centroid']
 ---
 import Badges from '/_includes/badges.mdx';
 

@@ -40,7 +40,7 @@ Dense vectors represent information stored in a database; this includes text, im
 
 Vector search engines, like [Weaviate](/developers/weaviate/), store these embeddings and calculate the distance between the two vectors. [Distance metrics](/blog/Distance-Metrics-in-Vector-Search) show how similar or dissimilar two vector embeddings are. The search query is converted to a vector, similar to the data vectors, and the distance value determines how close the vectors are. 
 
-![Hybrid Search](./img/hero.png)
+![Hybrid Search](./img/hybrid-search-explained.png)
 
 ## Hybrid Search Explained
 Hybrid search merges dense and sparse vectors together to deliver the best of both search methods. Generally speaking, dense vectors excel at understanding the context of the query, whereas sparse vectors excel at keyword matches. Consider the query, “How to catch an Alaskan Pollock”. The dense vector representation is able to disambiguate “catch” as meaning fishing rather than baseball or sickness. The sparse vector search will match the phrase “Alaskan Pollock” only. This example query shows where hybrid search combines the best of both sparse and dense vectors.

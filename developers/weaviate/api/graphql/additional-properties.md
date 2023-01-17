@@ -1,7 +1,7 @@
 ---
 title: GraphQL - Additional properties
 sidebar_position: 6
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['graphql', 'additional properties', 'additional', 'underscore']
 ---
 import Badges from '/_includes/badges.mdx';

@@ -1,7 +1,7 @@
 ---
 title: GraphQL API
 sidebar_position: 0
-image: og/documentation.jpeg
+image: og/docs/api.jpg
 # tags: ['GraphQL references']
 ---
 import Badges from '/_includes/badges.mdx';
