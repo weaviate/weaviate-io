@@ -152,6 +152,33 @@ const config = {
                     },
                     {
                         type: 'dropdown',
+                        label: 'Company',
+                        position: 'right',
+                        items: [
+                            {
+                                label: 'About us',
+                                to: '/company/about-us',
+                            },
+                            {
+                                label: 'Playbook',
+                                to: '/company/playbook',
+                            },
+                            {
+                                label: 'Careers',
+                                to: '/company/careers',
+                            },
+                            {
+                                label: 'Investors',
+                                to: '/company/investors',
+                            },
+                            {
+                                label: 'Contact us',
+                                href: 'mailto:hello@weaviate.io'
+                            }
+                        ]
+                    },
+                    {
+                        type: 'dropdown',
                         label: 'Content',
                         position: 'right',
                         items: [
@@ -199,33 +226,6 @@ const config = {
                                 href: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw',
                             },
                         ],
-                    },
-                    {
-                        type: 'dropdown',
-                        label: 'Company',
-                        position: 'right',
-                        items: [
-                            {
-                                label: 'About us',
-                                to: '/company/about-us',
-                            },
-                            {
-                                label: 'Playbook',
-                                to: '/company/playbook',
-                            },
-                            {
-                                label: 'Careers',
-                                to: '/company/careers',
-                            },
-                            {
-                                label: 'Investors',
-                                to: '/company/investors',
-                            },
-                            {
-                                label: 'Contact us',
-                                href: 'mailto:hello@weaviate.io'
-                            }
-                        ]
                     },
                     
                     {
@@ -297,6 +297,31 @@ const config = {
                         ],
                     },
                     {
+                        title: 'Meetups',
+                        items: [
+                            {
+                                label: 'Amsterdam',
+                                href: 'https://www.meetup.com/weaviate-amsterdam',
+                            },
+                            {
+                                label: 'Boston',
+                                href: 'https://www.meetup.com/weaviate-boston',
+                            },
+                            {
+                                label: 'New York',
+                                href: 'https://www.meetup.com/weaviate-NYC',
+                            },
+                            {
+                                label: 'San Francisco',
+                                href: 'https://www.meetup.com/weaviate-san-francisco',
+                            },
+                            {
+                                label: 'Toronto',
+                                href: 'https://www.meetup.com/weaviate-toronto',
+                            },
+                        ],
+                    },
+                    {
                         title: 'More',
                         items: [
                             {
@@ -306,6 +331,10 @@ const config = {
                             {
                               label: 'Podcast',
                               to: '/podcast',
+                            },
+                            {
+                              label: 'Playbook',
+                              to: 'company/playbook',
                             },
                             {
                                 label: 'GitHub',
