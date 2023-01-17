@@ -31,7 +31,7 @@ export default function PricingHeader() {
           </Link>
           <Link
             className={styles.btn}
-            to="https://console.semi.technology"
+            to="https://console.weaviate.io"
             target="_blank"
           >
             Create a free sandbox

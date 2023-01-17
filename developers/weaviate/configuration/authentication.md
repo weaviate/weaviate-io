@@ -131,7 +131,7 @@ While it is outside the scope of our documentation to cover every OIDC authentic
   - Weaviate's Python client directly supports this method.
   - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
 - Use `resource owner password flow` for trusted applications. 
-  - You can use Weaviate Cloud Services / WCS (`https://auth.wcs.api.semi.technology/`) as the token issuer using the `resource owner password flow`.
+  - You can use Weaviate Cloud Services / WCS (`https://auth.wcs.api.weaviate.io/`) as the token issuer using the `resource owner password flow`.
   - Weaviate's Python client directly supports this method.
 - Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 

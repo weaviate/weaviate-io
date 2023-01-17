@@ -56,7 +56,7 @@ import CodeImportAuthors from '/_includes/code/getting-started.import.authors.md
 You can quickly check the imported object by opening – `weaviate-endpoint/v1/objects` in a browser, like this:
 
 ```
-https://some-endpoint.semi.network/v1/objects
+https://some-endpoint.weaviate.network/v1/objects
 ```
 
 Or you can read the objects in your project, like this:
