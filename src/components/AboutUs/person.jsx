@@ -2,10 +2,6 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 
-import TwitterIcon from '@site/static/icons/twitter.svg';
-import GitHubIcon from '@site/static/icons/github.svg';
-import LinkedInIcon from '@site/static/icons/linkedin.svg';
-
 export default function Person(props) {
   const { details } = props;
   return (
@@ -16,19 +12,19 @@ export default function Person(props) {
       <div className={styles.personLinks}>
         {details.linkedin != null && 
           <Link to={"https://linkedin.com/in/" + details.linkedin}>
-            <LinkedInIcon title="LinkedIn" className={styles.icon} />
+            <i class="fa-brands fa-xl fa-linkedin"></i>
           </Link>
         }
 
         {details.twitter != null && 
           <Link to={"https://twitter.com/" + details.twitter}>
-            <TwitterIcon title="Twitter" className={styles.icon} />
+            <i class="fa-brands fa-xl fa-twitter"></i>
           </Link>
         }
 
         {details.github != null &&
           <Link to={"https://github.com/" + details.github}>
-            <GitHubIcon title="GitHub" className={styles.icon} />
+            <i class="fa-brands fa-xl fa-github"></i>
           </Link>
         }
       </div>

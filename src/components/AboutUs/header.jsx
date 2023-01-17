@@ -1,7 +1,7 @@
 import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '@site/src/theme/LinkButton';
+import { LinkButton, ButtonContainer } from '/src/theme/LinkButton';
 
 export default function AboutUsHeader() {
   return (

@@ -1,0 +1,48 @@
+.box {
+  border: 1px solid #a2a2a2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2rem;
+  flex: 1;
+  border-radius: 12px;
+
+  .price {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .big {
+      font-weight: 800;
+      font-size: 2rem;
+    }
+  }
+  .features {
+    padding: 1rem;
+  }
+  .title {
+    border-bottom: 1px solid #a2a2a2;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h3 {
+      margin-bottom: 0;
+    }
+  }
+
+  li {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    i {
+      margin-top: 2px;
+      color: #00b800;
+    }
+  }
+}

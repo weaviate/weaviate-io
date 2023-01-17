@@ -73,6 +73,13 @@ const config = {
         })
     ],
 
+    stylesheets: [
+        //Add Font Awesome stylesheets
+        '/fonts/font-awesome/fontawesome.css',
+        '/fonts/font-awesome/solid.css',
+        '/fonts/font-awesome/brands.css'
+    ],
+
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
     // to replace "en" with "zh-Hans".
@@ -108,7 +115,10 @@ const config = {
                     // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
                 },
                 theme: {
-                    customCss: [require.resolve('./src/css/custom.scss')],
+                    customCss: [
+                        require.resolve('./src/css/custom.scss'),
+                        require.resolve('./src/css/blog-and-docs.scss'),
+                    ],
                 },
             }),
         ],
@@ -122,9 +132,24 @@ const config = {
                 title: '',
                 logo: {
                     alt: 'Weaviate',
-                    src: 'img/site/weaviate-logo.png',
+                    src: '/img/site/weaviate-nav-logo-light.svg',
                 },
                 items: [
+                    {
+                        type: 'dropdown',
+                        label: 'Weaviate Cloud Service',
+                        position: 'right',
+                        items: [
+                            {
+                                label: 'Pricing',
+                                to: '/pricing',
+                            },
+                            {
+                                label: 'Try Now',
+                                href: 'https://console.weaviate.io/',
+                            },
+                        ],
+                    },
                     {
                         type: 'dropdown',
                         label: 'Company',
@@ -202,20 +227,42 @@ const config = {
                             },
                         ],
                     },
+                    
                     {
-                        type: 'dropdown',
-                        label: 'Weaviate Cloud Service',
+                        to: 'https://weaviate.slack.com/',
+                        label: ' ',
                         position: 'right',
-                        items: [
-                            {
-                                label: 'Pricing',
-                                to: '/pricing',
-                            },
-                            {
-                                label: 'Try Now',
-                                href: 'https://console.weaviate.io/',
-                            },
-                        ],
+                        target: '_blank',
+                        className: 'fa-brands fa-lg fa-slack',
+                    },
+                    {
+                        to: 'https://github.com/semi-technologies/weaviate',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fa-brands fa-lg fa-github',
+                    },
+                    {
+                        to: 'https://twitter.com/weaviate_io',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fa-brands fa-lg fa-twitter',
+                    },
+                    {
+                        // to: 'https://www.youtube.com/@SeMI-and-Weaviate/playlists',
+                        to: 'https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fa-brands fa-lg fa-youtube',
+                    },
+                    {
+                        to: 'https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fa-brands fa-lg fa-spotify',
                     },
                 ],
             },
@@ -227,8 +274,8 @@ const config = {
                     //   title: 'Docs',
                     //   items: [
                     //     {
-                    //       label: 'Tutorial',
-                    //       to: '/developers/weaviate/getting-started',
+                    //       label: 'Getting Started',
+                    //       to: '/developers/weaviate/quickstart',
                     //     },
                     //   ],
                     // },
@@ -250,16 +297,45 @@ const config = {
                         ],
                     },
                     {
+                        title: 'Meetups',
+                        items: [
+                            {
+                                label: 'Amsterdam',
+                                href: 'https://www.meetup.com/weaviate-amsterdam',
+                            },
+                            {
+                                label: 'Boston',
+                                href: 'https://www.meetup.com/weaviate-boston',
+                            },
+                            {
+                                label: 'New York',
+                                href: 'https://www.meetup.com/weaviate-NYC',
+                            },
+                            {
+                                label: 'San Francisco',
+                                href: 'https://www.meetup.com/weaviate-san-francisco',
+                            },
+                            {
+                                label: 'Toronto',
+                                href: 'https://www.meetup.com/weaviate-toronto',
+                            },
+                        ],
+                    },
+                    {
                         title: 'More',
                         items: [
                             {
                                 label: 'Blog',
                                 to: '/blog',
                             },
-                            // {
-                            //   label: 'Podcast',
-                            //   to: '/podcast',
-                            // },
+                            {
+                              label: 'Podcast',
+                              to: '/podcast',
+                            },
+                            {
+                              label: 'Playbook',
+                              to: 'company/playbook',
+                            },
                             {
                                 label: 'GitHub',
                                 href: 'https://github.com/semi-technologies/weaviate-io',

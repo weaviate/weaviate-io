@@ -199,7 +199,7 @@ import SemanticKindObjectGet from '/_includes/code/semantic-kind.object.get.mdx'
 
 <SemanticKindObjectGet/>
 
-### Example request for retrieving a data object with consistency_level=QUORUM
+#### Example request for retrieving a data object with consistency_level=QUORUM
 
 import SemanticKindObjectGetReplication from '/_includes/code/replication.get.object.by.id.mdx';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import { MetaSEO } from '@site/src/theme/MetaSEO';
+import { MetaSEO } from '/src/theme/MetaSEO';
 
-import PodcastHeader from '../components/PodcastHeader';
-import PodcastCard from '../components/PodcastCard';
+import PodcastHeader from '/src/components/Podcast/Header';
+import PodcastCard from '/src/components/Podcast/Card';
 
 export default function PodcastPage() {
   return (
