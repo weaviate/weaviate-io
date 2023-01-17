@@ -38,14 +38,14 @@ Vector-based representation of meaning caused quite a [stir](https://www.ed.ac.u
 
     “king − man + woman ≈ queen”
     
-It indicated that the difference between “king” and “man” was some sort of “royalty”, which was analogously and mathematically applicable to “queen” minus “woman”. Jay Alamar provided a helpful [visualization](https://jalammar.github.io/illustrated-word2vec/) around this equation:
+It indicated that the difference between “king” and “man” was some sort of “royalty”, which was analogously and mathematically applicable to “queen” minus “woman”. Jay Alamar provided a helpful [visualization](https://jalammar.github.io/illustrated-word2vec/) around this equation. Several concepts (“woman”, “girl”, “boy” etc.) are vectorized into (represented by) an array of 50 numbers generated using the [GloVe model](https://en.wikipedia.org/wiki/GloVe). In [vector terminology](https://en.wikipedia.org/wiki/Vector_(mathematics)), the 50 numbers are called dimensions. The arrays of numbers are visualized using colors and arranged next to each word:
 
 <figure>
   <img src="/img/blog/vector-embeddings-explained/vector-embeddings-visualization.png" alt="vector embeddings visualization"/>
   <figcaption>Credit: Jay Alamar</figcaption>
 </figure>
 
-In the example above, the concepts are vectorized into (represented by) an array of 50 numbers generated using the [GloVe model](https://en.wikipedia.org/wiki/GloVe), and those numbers are visualized using colors. In [vector terminology](https://en.wikipedia.org/wiki/Vector_(mathematics)), the 50 numbers are called dimensions. We can see that all words share a dark blue column in one of the dimensions (though we can’t quite tell what that represents), and the word “water” _looks_ quite different from the rest, which makes sense given that the rest are people. Also, “girl” and “boy” look more similar to each other than to “king” and “queen” respectively, while “king” and “queen” look similar to each other as well.
+We can see that all words share a dark blue column in one of the dimensions (though we can’t quite tell what that represents), and the word “water” _looks_ quite different from the rest, which makes sense given that the rest are people. Also, “girl” and “boy” look more similar to each other than to “king” and “queen” respectively, while “king” and “queen” look similar to each other as well.
 
 So we can *see* that these vector embeddings of words align with our intuitive understanding of meaning. And even more amazingly, vector embeddings are not limited to representing meanings of words.
 
@@ -76,26 +76,18 @@ But where do these numbers come from? That’s where the real magic is, and wher
 ## How are vector embeddings generated?
 The magic of vector search resides primarily in how the embeddings are generated for each entity and the query, and secondarily in how to efficiently search within very large datasets (see our [“Why is Vector Search so Fast”](/blog/2022/09/Why-is-Vector-Search-so-fast.html) article for the latter).
 
-As we mentioned, vector embeddings can be generated for various media types such as text, images, audio and others. For text, vectorization techniques have evolved tremendously over the last decade, from inefficient methods like “[One-Hot Encoding](​​https://www.tensorflow.org/text/guide/word_embeddings#one-hot_encodings)”, to the venerable [word2vec](https://en.wikipedia.org/wiki/Word2vec) (2013), to the state of the art transformer models, such as [BERT](https://en.wikipedia.org/wiki/BERT_(language_model)), published [in 2018 by Google](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html).
-
-Vectorization of text objects begins with tokenization: the text is lowercased, split into tokens such as words, stop words (“the”, “a” etc.) (and often punctuation) are removed, and rare words are replaced with placeholders. The resulting tokens are then encoded using one of the methods mentioned above. Finally, the encodings are combined into a sentence-level encoding, e.g. by averaging the values for all words across each dimension.
-
-### One-Hot Encoding
-One-Hot Encoding is an older data representation technique. It calculates the dimensionality of the vector as the size of the vocabulary (top N most frequent words), then assigns to each word a vector with N-1 zeros and a `1` at the index of that word in the vocabulary. Since the size of the vocabulary often greatly outweighs words used in a particular text, they tend to produce vectors that mostly contain zeros. For this reason, these vectors are called sparse. The One-Hot Encoding method consequently consumes large amounts of storage and suffers from a number of limitations, mainly that the order of words is ignored, and that the algorithm only matches exact words (“run” and ”ran” are completely different to it, even though to humans they’re very close).
+As we mentioned, vector embeddings can be generated for various media types such as text, images, audio and others. For text, vectorization techniques have evolved tremendously over the last decade, from the venerable [word2vec](https://en.wikipedia.org/wiki/Word2vec) ([2013](https://code.google.com/archive/p/word2vec/)), to the state of the art transformer models era, spurred by the release of [BERT](https://en.wikipedia.org/wiki/BERT_(language_model)) in [2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html).
 
 ### Word-level dense vector models (word2vec, GloVe, etc.)
 [word2vec](https://wiki.pathmind.com/word2vec) is a [family of model architectures](https://www.tensorflow.org/tutorials/text/word2vec) that introduced the idea of “dense” vectors in language processing, in which all values are non-zero.
 
-Word2vec in particular uses a neural network [model](https://arxiv.org/pdf/1301.3781.pdf) to learn word associations from a large corpus of text (it was initially trained by Google with 100 billion words). It has some advantages over One-Hot Encoding:
-* the meaning of words can be quantified - “run” and “ran” are no longer completely different words, and the model recognizes that they are far more similar than “run” and “coffee”
-* word vectors can be manipulated to derive analogies (as in the “king is to man as is queen is to…” example you saw earlier), and
-* words vectors can be aggregated to represent larger strings 
+Word2vec in particular uses a neural network [model](https://arxiv.org/pdf/1301.3781.pdf) to learn word associations from a large corpus of text (it was initially trained by Google with 100 billion words). It first creates a vocabulary from the corpus, then learns vector representations for the words, typically with 300 dimensions. Words found in similar contexts have vector representations that are close in vector space, but each word from the vocabulary has only one resulting word vector. Thus, the meaning of words can be quantified - “run” and “ran” are recognized as being far more similar than “run” and “coffee”, but words like “run” with multiple meanings have only one vector representation.
 
 As the name suggests, word2vec is a word-level model and cannot by itself produce a vector to represent longer text such as sentences, paragraphs or documents. However, this can be done by aggregating vectors of constituent words, which is often done by incorporating weightings such that certain words are weighted more heavily than others.
 
 However, word2vec still suffers from important limitations:
-* It doesn’t address words with multiple meanings (polysemantic): “run”, “set”, “go”, or “take” each have [over 300 meanings](https://www.insider.com/words-with-the-most-definitions-2019-1) (!)
-* It doesn’t address words with ambiguous meanings: “to consult” can be its own antonym, like [many other words](http://www.dailywritingtips.com/75-contronyms-words-with-contradictory-meanings/)
+* it doesn’t address words with multiple meanings (polysemantic): “run”, “set”, “go”, or “take” each have [over 300 meanings](https://www.insider.com/words-with-the-most-definitions-2019-1) (!)
+* it doesn’t address words with ambiguous meanings: “to consult” can be its own antonym, like [many other words](http://www.dailywritingtips.com/75-contronyms-words-with-contradictory-meanings/)
 
 Which takes us to the next, state-of-the-art, models.
 
@@ -121,4 +113,4 @@ But they all perform the same core task—which is to represent the “meaning�
 ## Stay Connected
 Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw){:target="_blank"} or [Twitter](https://twitter.com/weaviate_io){:target="_blank"}. 
 
-Weaviate is open-source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
+Weaviate is open-source. You can follow the project on [GitHub](https://github.com/semi-technologies/weaviate){:target="_blank"}. Don't forget to give us a ⭐️ while you are there.
