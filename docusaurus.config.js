@@ -241,8 +241,7 @@ const config = {
                         className: 'fa-brands fa-lg fa-twitter',
                     },
                     {
-                        // to: 'https://www.youtube.com/@SeMI-and-Weaviate/playlists',
-                        to: 'https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0',
+                        to: 'https://www.youtube.com/@Weaviate/playlists',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
