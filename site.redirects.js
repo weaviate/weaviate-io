@@ -8,216 +8,216 @@ const siteRedirects = {
         {
             to: '/developers/weaviate/roadmap',
             from: [
-                '/developers/weaviate/current/roadmap/index.html',
-                '/developers/weaviate/current/roadmap/architectural-roadmap.html',
-                '/developers/weaviate/current/roadmap/feature-roadmap.html',
+                '/developers/weaviate/current/roadmap/index',
+                '/developers/weaviate/current/roadmap/architectural-roadmap',
+                '/developers/weaviate/current/roadmap/feature-roadmap',
             ]
-        },              
+        },
         {
             to: '/developers/weaviate/concepts/data',
-            from: '/developers/weaviate/current/core-knowledge/basics.html'
+            from: '/developers/weaviate/current/core-knowledge/basics'
         },
         {
             to: '/developers/weaviate/concepts/vector-index',
             from: [
                 '/developers/weaviate/current/vector-index-plugins',
-                '/developers/weaviate/current/vector-index-plugins/hnsw.html'
+                '/developers/weaviate/current/vector-index-plugins/hnsw'
             ]
         },
         {
             to: '/developers/weaviate/client-libraries',
-            from: '/developers/weaviate/current/core-knowledge/clients.html'
+            from: '/developers/weaviate/current/core-knowledge/clients'
         },
         {
             to: '/developers/weaviate/quickstart/console',
-            from: '/developers/weaviate/current/core-knowledge/console.html'
+            from: '/developers/weaviate/current/core-knowledge/console'
         },
 
         // Configuration redirects
         {
             to: '/developers/weaviate/configuration/datatypes',
-            from: '/developers/weaviate/current/schema/datatypes.html'
+            from: '/developers/weaviate/current/schema/datatypes'
         },
         {
             to: '/developers/weaviate/configuration/distances',
-            from: '/developers/weaviate/current/vector-index-plugins/distances.html'
+            from: '/developers/weaviate/current/vector-index-plugins/distances'
         },
         {
             to: '/developers/weaviate/configuration/indexes',
-            from: '/developers/weaviate/current/configuration/vector-index-type.html'
+            from: '/developers/weaviate/current/configuration/vector-index-type'
         },
         {
             to: '/developers/weaviate/configuration/schema-configuration',
             from: [
                 '/developers/weaviate/current/schema',
-                '/developers/weaviate/current/schema/schema-configuration.html'
+                '/developers/weaviate/current/schema/schema-configuration'
             ]
         },
 
         // More-resources redirects
         {
             to: '/developers/weaviate/more-resources/example-datasets',
-            from: '/developers/weaviate/current/tutorials/example-datasets.html'
+            from: '/developers/weaviate/current/tutorials/example-datasets'
         },
         {
             to: '/developers/weaviate/more-resources/write-great-bug-reports',
-            from: '/developers/weaviate/current/tutorials/write-great-bug-reports.html'
+            from: '/developers/weaviate/current/tutorials/write-great-bug-reports'
         },
         {
             to: '/developers/weaviate/',
-            from: '/developers/weaviate/current/more-resources/deprecation-messages.html'
+            from: '/developers/weaviate/current/more-resources/deprecation-messages'
         },
 
         // Tutorial redirects
         {
             to: '/developers/weaviate/tutorials/how-to-create-a-schema',
-            from: '/developers/weaviate/current/tutorials/how-to-create-a-schema.html'
+            from: '/developers/weaviate/current/tutorials/how-to-create-a-schema'
         },
         {
             to: '/developers/weaviate/tutorials',
             from: [
-                '/developers/weaviate/current/tutorials/how-to-do-classification.html',
-                '/developers/weaviate/current/tutorials/how-to-perform-a-semantic-search.html',
-                '/developers/weaviate/current/tutorials/how-to-query-data.html',
-                '/developers/weaviate/current/tutorials/how-to-use-weaviate-without-modules.html',
-                '/developers/weaviate/current/tutorials/other-examples.html',
-                '/developers/weaviate/current/tutorials/quick-start-with-the-text2vec-contextionary-module.html',
-                '/developers/weaviate/current/tutorials/semantic-search-through-wikipedia.html'
+                '/developers/weaviate/current/tutorials/how-to-do-classification',
+                '/developers/weaviate/current/tutorials/how-to-perform-a-semantic-search',
+                '/developers/weaviate/current/tutorials/how-to-query-data',
+                '/developers/weaviate/current/tutorials/how-to-use-weaviate-without-modules',
+                '/developers/weaviate/current/tutorials/other-examples',
+                '/developers/weaviate/current/tutorials/quick-start-with-the-text2vec-contextionary-module',
+                '/developers/weaviate/current/tutorials/semantic-search-through-wikipedia'
             ]
         },
 
         // Blog redirects
         {
             to: '/blog/understand-your-unstructured-data',
-            from: '/blog/2021/01/understand-your-unstructured-data.html'
+            from: '/blog/2021/01/understand-your-unstructured-data'
         },
         {
             to: '/blog/history-of-weaviate',
-            from: '/blog/2021/01/The-history-of-Weaviate.html'
+            from: '/blog/2021/01/The-history-of-Weaviate'
         },
         {
             to: '/blog/GraphQL-API-design',
-            from: '/blog/2021/01/GraphQL-API-design.html'
+            from: '/blog/2021/01/GraphQL-API-design'
         },
         {
             to: '/blog/CRUD-support-in-Weaviate',
-            from: '/blog/2021/02/CRUD-support-in-Weaviate.html'
+            from: '/blog/2021/02/CRUD-support-in-Weaviate'
         },
         {
             to: '/blog/weaviate-1-2-transformer-models',
-            from: '/blog/2021/03/Weaviate-1-2-transformer-models.html'
+            from: '/blog/2021/03/Weaviate-1-2-transformer-models'
         },
         {
             to: '/blog/Docker-and-Containers-with-Weaviate',
-            from: '/blog/2021/05/Docker-and-Containers-with-Weaviate.html'
+            from: '/blog/2021/05/Docker-and-Containers-with-Weaviate'
         },
         {
             to: '/blog/Semantic-Search-with-Wikipedia-and-Weaviate',
-            from: '/blog/2021/11/Semantic-Search-with-Wikipedia-and-Weaviate.html'
+            from: '/blog/2021/11/Semantic-Search-with-Wikipedia-and-Weaviate'
         },
         {
             to: '/blog/The-AI-First-Database-Ecosystem',
-            from: '/blog/2022/06/The-AI-First-Database-Ecosystem.html'
+            from: '/blog/2022/06/The-AI-First-Database-Ecosystem'
         },
         {
             to: '/blog/weaviate-1-14-release',
-            from: '/blog/2022/07/Weaviate-release-1-14.html'
+            from: '/blog/2022/07/Weaviate-release-1-14'
         },
         {
             to: '/blog/Using-Cross-Encoders-as-reranker-in-multistage-vector-search',
-            from: '/blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search.html'
+            from: '/blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search'
         },
         {
             to: '/blog/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications',
-            from: '/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html'
+            from: '/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications'
         },
         {
             to: '/blog/Research-Insights-Spider',
-            from: '/blog/2022/08/Research-Insights-Spider.html'
+            from: '/blog/2022/08/Research-Insights-Spider'
         },
         {
             to: '/blog/Weaviate-Cloud-Service',
-            from: '/blog/2022/09/Weaviate-Cloud-Service.html'
+            from: '/blog/2022/09/Weaviate-Cloud-Service'
         },
         {
             to: '/blog/weaviate-1-15-release',
-            from: '/blog/2022/09/Weaviate-release-1-15.html'
+            from: '/blog/2022/09/Weaviate-release-1-15'
         },
         {
             to: '/blog/Why-is-Vector-Search-so-fast',
-            from: '/blog/2022/09/Why-is-Vector-Search-so-fast.html'
+            from: '/blog/2022/09/Why-is-Vector-Search-so-fast'
         },
         {
             to: '/blog/Distance-Metrics-in-Vector-Search',
-            from: '/blog/2022/09/Distance-Metrics-in-Vector-Search.html'
+            from: '/blog/2022/09/Distance-Metrics-in-Vector-Search'
         },
         {
             to: '/blog/weaviate-1-15-1-release',
-            from: '/blog/2022/09/Weaviate-release-1-15-1.html'
+            from: '/blog/2022/09/Weaviate-release-1-15-1'
         },
         {
             to: '/blog/Hugging-Face-Inference-API-in-Weaviate',
-            from: '/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html'
+            from: '/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate'
         },
         {
             to: '/blog/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face',
-            from: '/blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face.html'
+            from: '/blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face'
         },
         {
             to: '/blog/ANN-algorithms-Vamana-vs-HNSW',
-            from: '/blog/2022/10/ANN-algorithms-Vamana-vs-HNSW.html'
+            from: '/blog/2022/10/ANN-algorithms-Vamana-vs-HNSW'
         },
         {
             to: '/blog/how-to-build-an-image-search-application-with-weaviate',
-            from: '/blog/2022/10/how-to-build-an-image-search-application-with-weaviate.html'
+            from: '/blog/2022/10/how-to-build-an-image-search-application-with-weaviate'
         },
         {
             to: '/blog/Lock-striping-pattern',
-            from: '/blog/2022/10/Lock-striping-pattern.html'
+            from: '/blog/2022/10/Lock-striping-pattern'
         },
         {
             to: '/blog/weaviate-1-16-release',
-            from: '/blog/2022/11/Weaviate-release-1-16.html'
+            from: '/blog/2022/11/Weaviate-release-1-16'
         },
         {
             to: '/blog/tutorial-backup-and-restore-in-weaviate',
-            from: '/blog/2022/11/tutorial-backup-and-restore-in-weaviate.html'
+            from: '/blog/2022/11/tutorial-backup-and-restore-in-weaviate'
         },
         {
             to: '/blog/ref2vec-centroid',
-            from: '/blog/2022/11/ref2vec-centroid.html'
+            from: '/blog/2022/11/ref2vec-centroid'
         },
         {
             to: '/blog/vector-library-vs-vector-database',
-            from: '/blog/2022/12/vector-library-vs-vector-database.html'
+            from: '/blog/2022/12/vector-library-vs-vector-database'
         },
         {
             to: '/blog/sphere-dataset-in-weaviate',
-            from: '/blog/2022/12/sphere-dataset-in-weaviate.html'
+            from: '/blog/2022/12/sphere-dataset-in-weaviate'
         },
         {
             to: '/blog/Cohere-multilingual-with-weaviate',
-            from: '/blog/2022/12/Cohere-multilingual-with-weaviate.html'
+            from: '/blog/2022/12/Cohere-multilingual-with-weaviate'
         },
         {
             to: '/blog/weaviate-1-17-release',
-            from: '/blog/2022/12/Weaviate-release-1-17.html'
+            from: '/blog/2022/12/Weaviate-release-1-17'
         },
         {
             to: '/blog/details-behind-the-sphere-dataset-in-weaviate',
-            from: '/blog/2022/12/details-behind-the-sphere-dataset-in-weaviate.html'
+            from: '/blog/2022/12/details-behind-the-sphere-dataset-in-weaviate'
         },
         {
             to: '/blog/hybrid-search-explained',
-            from: '/blog/2023/01/Hybrid-Search-Explained.html'
+            from: '/blog/2023/01/Hybrid-Search-Explained'
         },
         {
             to: '/blog/pulling-back-the-curtains-on-text2vec',
-            from: '/blog/2023/01/pulling-back-the-curtains-on-text2vec.html'
+            from: '/blog/2023/01/pulling-back-the-curtains-on-text2vec'
         },
         {
             to: '/blog/vector-embeddings-explained',
-            from: '/blog/2023/01/Vector-Embeddings-Explained.html'
+            from: '/blog/2023/01/Vector-Embeddings-Explained'
         },
     ],
     createRedirects(existingPath) {
