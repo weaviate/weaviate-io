@@ -9,11 +9,11 @@ We include brief guidelines below for submitting bug reports. These guidelines a
 
 ## How to write bug reports
 
-Bug reports are tracked as GitHub issues, such as these in [Weaviate core]](https://github.com/semi-technologies/weaviate/issues).
+Bug reports are tracked as GitHub issues, such as these in [Weaviate core]](https://github.com/weaviate/weaviate/issues).
 
 Once you've determined which repository your bug is related to, check first for a duplicate WIP (work in progress) issue.
 
-If not, open an issue in that repository with **a complete, specific and accurate description**. We recommend using this [template](https://github.com/semi-technologies/weaviate-io/blob/main/.github/ISSUE_TEMPLATE/report_bug.yml).
+If not, open an issue in that repository with **a complete, specific and accurate description**. We recommend using this [template](https://github.com/weaviate/weaviate-io/blob/main/.github/ISSUE_TEMPLATE/report_bug.yml).
 
 * **Use a clear and descriptive title** for the issue.
 * **Describe the exact steps** needed to reproduce the problem with as much detail as possible. For example, include any custom Weaviate configurations, modules used or shell commands. 

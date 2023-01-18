@@ -90,7 +90,7 @@ HNSW, on the other hand, implements the same idea a bit differently. Instead of 
 ## Performance comparison
 So, how do they perform? Let's take a look in terms of speed as well as recall.
 
-The chart below illustrates a comparison of the C++ Vamana [reference code](https://github.com/microsoft/DiskANN) provided by Microsoft and our [HNSW implementation](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw) when using Sift1M. Following Microsoft’s experiments, we have used sift-query.fvecs (100,000 vectors sample) for building the index and sift-query.fvecs (1,000 vectors sample) for querying. We are retrieving 10 **(fig. 1)** and 100 **(fig. 2)** objects per query. The chart shows the recall vs. latency on the same Google Cloud setup Microsoft used. In both cases, you might notice that both Vamana and HNSW implementations are performing similarly.
+The chart below illustrates a comparison of the C++ Vamana [reference code](https://github.com/microsoft/DiskANN) provided by Microsoft and our [HNSW implementation](https://github.com/weaviate/weaviate/tree/master/adapters/repos/db/vector/hnsw) when using Sift1M. Following Microsoft’s experiments, we have used sift-query.fvecs (100,000 vectors sample) for building the index and sift-query.fvecs (1,000 vectors sample) for querying. We are retrieving 10 **(fig. 1)** and 100 **(fig. 2)** objects per query. The chart shows the recall vs. latency on the same Google Cloud setup Microsoft used. In both cases, you might notice that both Vamana and HNSW implementations are performing similarly.
 
 *Keep in mind that – while Vamana is the algorithm that powers DiskANN – at this stage, we are comparing both solutions in memory.*
 
@@ -162,4 +162,4 @@ Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) a
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
-Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

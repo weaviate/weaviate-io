@@ -128,7 +128,7 @@ Read the [Replication Usage page here](/developers/weaviate/configuration/replic
   * Tunable Read Consistency for all requests
   * Repairs (Read-Repairs or Background/Async Repairs)
 * Not scheduled yet 
-  * Multi-Datacenter replication (you can upvote this feature [here](https://github.com/semi-technologies/weaviate/issues/2436))
+  * Multi-Datacenter replication (you can upvote this feature [here](https://github.com/weaviate/weaviate/issues/2436))
 
 
 ## More Resources

@@ -15,9 +15,9 @@ So if you spot any typos, errors, unclear explanations, missing references or an
 
 ## How Weaviate documentation is built
 
-Weaviate's documentation is built with a static site builder (Jekyll) with data from our [GitHub repository](https://github.com/semi-technologies/weaviate-io). Before you get started, we suggest you set up a local development environment first. This will allow you to preview any changes on your computer as you work on it. 
+Weaviate's documentation is built with a static site builder (Jekyll) with data from our [GitHub repository](https://github.com/weaviate/weaviate-io). Before you get started, we suggest you set up a local development environment first. This will allow you to preview any changes on your computer as you work on it. 
 
-For instructions on setting up the development environment, please take a look at this [README file](https://github.com/semi-technologies/weaviate-io/blob/main/README.md).
+For instructions on setting up the development environment, please take a look at this [README file](https://github.com/weaviate/weaviate-io/blob/main/README.md).
 
 Once your local environment is set up, you can make your proposed changes, preview them locally, and submit them for review. 
 

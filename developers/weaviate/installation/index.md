@@ -19,7 +19,7 @@ This section shows you available options for running Weaviate, and how to instal
 
 ## Options for running Weaviate
 
-​Weaviate versions on the Weaviate Cloud Service (WCS) and Weaviate open source are identical, with the only difference that the WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/semi-technologies/weaviate/blob/master/LICENSE).
+​Weaviate versions on the Weaviate Cloud Service (WCS) and Weaviate open source are identical, with the only difference that the WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
 
 You have three options to run Weaviate, all come with their own installation guides. 
 
@@ -37,10 +37,10 @@ When self-hosting, we recommend starting with the Docker Compose configurator an
 
 ### Run an unreleased version
 
-You can run Weaviate with `docker-compose`, building your own container off the [`master`](https://github.com/semi-technologies/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
+You can run Weaviate with `docker-compose`, building your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
 
 ```sh
-git clone https://github.com/semi-technologies/weaviate.git
+git clone https://github.com/weaviate/weaviate.git
 cd weaviate
 docker build --target weaviate -t name-of-your-weaviate-image .
 ```

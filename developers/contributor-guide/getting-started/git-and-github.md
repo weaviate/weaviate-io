@@ -16,9 +16,9 @@ If you are new to git/GitHub, you can go through this section like a tutorial an
 
 There are four major GitHub repositories of Weaviate, any of which you can contribute to. This includes:
 
-* [Weaviate](https://github.com/semi-technologies/weaviate) - Weaviate's "core" codebase
-* [Weaviate-io](https://github.com/semi-technologies/weaviate-io) - official Weaviate documentation
-* [Weaviate Examples](https://github.com/semi-technologies/weaviate-examples) - apps built using Weaviate
+* [Weaviate](https://github.com/weaviate/weaviate) - Weaviate's "core" codebase
+* [Weaviate-io](https://github.com/weaviate/weaviate-io) - official Weaviate documentation
+* [Weaviate Examples](https://github.com/weaviate/weaviate-examples) - apps built using Weaviate
 * [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) - list of examples and tutorials on how to use Weaviate 
 
 Generally speaking, the process to contribute using git and GitHub goes like this:
@@ -228,7 +228,7 @@ When all of your changes have been committed and pushed to GitHub, visit the pag
 
 If you need to make any further commits to your Pull Request, simply check out your development branch and push the updates to GitHub. Your Pull Request will automatically keep track of and update the commits made to your development branch.
 
-* Complete the Pull Request by filling out our [Pull Request template](https://github.com/semi-technologies/weaviate/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
+* Complete the Pull Request by filling out our [Pull Request template](https://github.com/weaviate/weaviate/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
 
 ![Pull Request template](/img/contributor-guide/getting-started/pull_request_temp.png)
 
@@ -274,7 +274,7 @@ A fork separates a repository from its upstream equivalent. So, you will need to
 To do this, first track the upstream repo by adding a remote upstream URL to the local repository.
 
 ```shell
-git remote add upstream https://github.com/semi-technologies/weaviate.git
+git remote add upstream https://github.com/weaviate/weaviate.git
 ```
 
 * To check if your local copy properly references the upstream repository on GitHub, run the command below
@@ -288,8 +288,8 @@ You should see:
 ```shell
 origin    https://github.com/Your_Username/weaviate.git (fetch)
 origin    https://github.com/Your_Username/weaviate.git (push)
-upstream  https://github.com/semi-technologies/weaviate.git (fetch)
-upstream  https://github.com/semi-technologies/weaviate.git (push)
+upstream  https://github.com/weaviate/weaviate.git (fetch)
+upstream  https://github.com/weaviate/weaviate.git (push)
 ```
 
 To bring in upstream changes to your fork, you need to fetch and pull the upstream repo's branches and commits. The below are two ways that you can do this:
@@ -348,7 +348,7 @@ git push origin main
 One liner script for super users:
 
 ```shell
-git remote add upstream https://github.com/semi-technologies/weaviate.git || true && git fetch upstream && git checkout main && git pull upstream main && git push origin main
+git remote add upstream https://github.com/weaviate/weaviate.git || true && git fetch upstream && git checkout main && git pull upstream main && git push origin main
 ```
 
 ### View all branches including remote branches
