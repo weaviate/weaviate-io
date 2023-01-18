@@ -80,7 +80,7 @@ services:
 
 ### Backups
 
-See [Backups](./backups).
+See [Backups](./backups.md).
 
 ## Kubernetes
 

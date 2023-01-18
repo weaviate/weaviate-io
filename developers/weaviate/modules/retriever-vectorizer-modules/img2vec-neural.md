@@ -61,7 +61,7 @@ services:
 
 You can substitute `semitechnologies/img2vec-pytorch:resnet50` with `semitechnologies/img2vec-keras:resnet50` in case you want to use the `keras` module.
 
-You can combine the image vectorization module with a text vectorization module. In the following example, we use both the [`text2vec-contextionary`](./text2vec-contextionary) module as well as the `img2vec-neural` module. We set `text2vec-contextionary` to default vectorizer module, which means we need to specify in a data schema when we want a class to be vectorized as with the `img2vec-neural` module instead of the `text2vec-contextionary` module.
+You can combine the image vectorization module with a text vectorization module. In the following example, we use both the [`text2vec-contextionary`](./text2vec-contextionary.md) module as well as the `img2vec-neural` module. We set `text2vec-contextionary` to default vectorizer module, which means we need to specify in a data schema when we want a class to be vectorized as with the `img2vec-neural` module instead of the `text2vec-contextionary` module.
 
 <!-- TODO: do we need this for anythig?
 ```yaml

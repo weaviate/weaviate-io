@@ -1,4 +1,5 @@
 const siteRedirects = {
+    // fromExtensions: ['html', 'htm'],
     redirects: [
         // Safeguard, weaviate.io/company
         {
@@ -69,10 +70,11 @@ const siteRedirects = {
         },
 
         // Tutorial redirects
-        {
-            to: '/developers/weaviate/tutorials/how-to-create-a-schema',
-            from: '/developers/weaviate/current/tutorials/how-to-create-a-schema'
-        },
+        // {
+        //     to: '/developers/weaviate/tutorials/how-to-create-a-schema',
+        //     from: '/developers/weaviate/current/tutorials/how-to-create-a-schema'
+        // },
+
         {
             to: '/developers/weaviate/tutorials',
             from: [

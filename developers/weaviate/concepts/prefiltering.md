@@ -32,7 +32,7 @@ Some authors make a distinction between "pre-filtering" and "single-stage filter
 ## Efficient Pre-Filtered Searches in Weaviate
 
 In the section about Storage, [we have described in detail which parts make up a
-shard in Weaviate](./storage). Most notably, each shard contains an
+shard in Weaviate](./storage.md). Most notably, each shard contains an
 inverted index right next to the HNSW index. This allows for efficient
 pre-filtering. The process is as follows:
 
