@@ -97,8 +97,7 @@ const config = {
                     
                     // TODO: Update to 'main' for release
                     editUrl:
-                        'https://github.com/weaviate/weaviate-io/tree/docusaurus-migration/',
-                        // 'https://github.com/weaviate/weaviate-io/tree/main/',
+                        'https://github.com/weaviate/weaviate-io/tree/main/',
                     remarkPlugins: [remarkReplace],
                 },
                 blog: {
@@ -107,8 +106,7 @@ const config = {
 
                     // TODO: Update to 'main' for release
                     editUrl:
-                        'https://github.com/weaviate/weaviate-io/tree/docusaurus-migration/',
-                        // 'https://github.com/weaviate/weaviate-io/tree/main/',
+                        'https://github.com/weaviate/weaviate-io/tree/main/',
                 },
                 theme: {
                     customCss: [
