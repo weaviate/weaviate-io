@@ -162,7 +162,7 @@ const config = {
                             },
                             {
                                 label: 'Careers',
-                                to: '/company/careers',
+                                to: 'https://careers.weaviate.io/',
                             },
                             {
                                 label: 'Investors',
