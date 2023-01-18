@@ -25,29 +25,22 @@ export default function HomepageWhatYouCanDo() {
                 value="tab1"
                 disabled={false}
               >
-                <div>
-                  <h3>Vector Search</h3>
-                  <p>
-                    Perform lightning-fast pure vector search over raw vectors or similarity search over data objects.
-                  </p>
-                </div>
+                <h3>Vector Search</h3>
+                <p>
+                  Perform lightning-fast pure vector search over raw vectors or similarity search over data objects.
+                </p>
               </Tabs.Trigger>
               <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
-
-                <div>
                 <h3>Hybrid Search</h3>
                 <p>
                   Find data objects by automatically combining vector search with traditional search filters.
                 </p>
-                </div>
               </Tabs.Trigger>
               <Tabs.Trigger className={styles.tabsTrigger} value="tab3">
-                <div>
                 <h3>Generative Search</h3>
                 <p>
                   Use any generative model in combination with your data, for example to do Q&A over your dataset.
                 </p>
-                </div>
               </Tabs.Trigger>
             </Tabs.List>
           </div>
