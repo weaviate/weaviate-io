@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 import { LinkButton } from '/src/theme/LinkButton';
 
-export default function GomepageIntegrations() {
+export default function HomepageIntegrations() {
   return (
     <div className="container">
       <div className={styles.box}>
@@ -26,11 +26,7 @@ export default function GomepageIntegrations() {
             for vectorization. You can also choose one of the integrations with
             one of the well-known neural search frameworks.
           </p>
-          <p>
-            <div className={styles.buttons}>
-              <LinkButton link="/developers/weaviate/modules" newTab={false}>Learn about Weaviate modules</LinkButton>
-            </div>
-          </p>
+          <LinkButton link="/developers/weaviate/modules" newTab={false}>Learn about Weaviate modules</LinkButton>
         </div>
       </div>
     </div>
