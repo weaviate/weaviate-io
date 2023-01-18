@@ -363,9 +363,9 @@
     // background: transparent;
     background: linear-gradient(
       90deg,
-      rgba(208, 228, 236, 0.4) 0%,
-      rgba(224, 238, 211, 0.4) 47%,
-      rgba(207, 228, 237, 0.4) 100%
+      rgba(208, 228, 236, 1.0) 0%,
+      rgba(224, 238, 211, 1.0) 47%,
+      rgba(207, 228, 237, 1.0) 100%
     );
     box-shadow: none;
   }
@@ -388,9 +388,9 @@
     // background: transparent;
     background: linear-gradient(
         90deg,
-        rgba(0, 0, 0, 0.4) 4%,
-        rgba(17, 11, 62, 0.4) 50%,
-        rgba(25, 16, 92, 0.4) 96%
+        rgba(0, 0, 0, 1.0) 4%,
+        rgba(17, 11, 62, 1.0) 50%,
+        rgba(25, 16, 92, 1.0) 96%
       );
     box-shadow: none;
   }
