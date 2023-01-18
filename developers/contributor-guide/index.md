@@ -5,7 +5,7 @@ image: og/contributor-guide/welcome.jpg
 # tags: ['index', 'contributor-guide']
 ---
 
-![img](/img/contributor-guide/Weaviate.png)
+![img](/img/contributor-guide/Weaviate.jpg)
 
 # Welcome
 
