@@ -8,6 +8,7 @@
     margin-left: 15px;
   }
 }
+
 .tabs {
   display: flex;
   flex-direction: row;
@@ -55,16 +56,40 @@
 
     div[data-state='active'] {
       display: flex;
+      // flex-direction: column;
       flex: 1;
-      .code {
-        background-image: url('/img/site/code-box-1.png');
-        background-size: cover;
-        height: 375px;
-        width: 100%;
-        background-repeat: no-repeat;
-        @media screen and (max-width: 485px) {
-          height: 270px;
-        }
+
+        .codeContainer {
+          display: grid;
+          grid-template-rows: 1fr auto;
+
+          height: 375px;
+          width: 100%;
+          
+          .codeImage {
+            background-size: contain;
+            height: 100%;
+            width: 100%;
+            background-repeat: no-repeat;
+            @media screen and (max-width: 485px) {
+              height: 270px;
+            }
+          }
+          
+          .code1 {
+            background-image: url('/img/site/code-box-1.png');
+          }
+          .code2 {
+            background-image: url('/img/site/code-box-2.png');
+          }
+          .code3 {
+            background-image: url('/img/site/code-box-3.png');
+          }
+
+          .tryButton {
+            margin-top: 4px;
+            justify-self: flex-start;
+          }
       }
     }
   }
