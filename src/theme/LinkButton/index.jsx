@@ -13,6 +13,12 @@ export function LinkButton({children, link, newTab=true}) {
   );
 }
 
+export function DownloadButton({children, link, newTab=true}) {
+  return (
+    <a className={styles.btn} href={link} download>{children}</a>
+  );
+}
+
 export function ButtonContainer({children}) {
   return (
     <div className={styles.buttons}>

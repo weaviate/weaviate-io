@@ -5,6 +5,7 @@ image: og/docs/quickstart-tutorial.jpg
 # tags: ['import']
 ---
 import Badges from '/_includes/badges.mdx';
+import { DownloadButton } from '/src/theme/LinkButton';
 
 <Badges/>
 
@@ -27,18 +28,24 @@ First of all, some rules of thumb.
 
 Assuming that you've read the [schema quickstart tutorial](./schema.md), you import data based on the classes and properties defined in the schema.
 
-For the purpose of this tutorial, we've prepared a **data.json** file, which contains a few Authors and Publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json), and add it to your project.
+For the purpose of this tutorial, we've prepared a **data.json** file, which contains a few Authors and Publications. Download it, and add it to your project.
+
+<p>
+  <DownloadButton link="/downloads/quickstart/data.json">Download data.json</DownloadButton>
+</p>
+
+### Steps to follow
 
 Now, to import the data we need to follow these steps:
 1. Connect to your Weaviate instance
 1. Load objects from the `data.json` file
 1. Prepare a batch process
 1. Loop through all Publications
-  * Parse each publication – to a structure expected by the language client of your choice
-  * Push the object through a batch process
+    * Parse each publication – to a structure expected by the language client of your choice
+    * Push the object through a batch process
 1. Loop through all Authors
-  * Parse each author – to a structure expected by the language client of your choice
-  * Push the object through a batch process
+    * Parse each author – to a structure expected by the language client of your choice
+    * Push the object through a batch process
 1. Flush the batch process – in case there are any remaining objects in the buffer
 
 Here is the full code you need to import the **Publications** (note, the **importAuthors** example is shorter).

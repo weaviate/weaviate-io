@@ -1,0 +1,149 @@
+{
+    "authors": [
+        {
+            "id": "dedd462a-23c8-32d0-9412-6fcf9c1e8149",
+            "name": "Alice Munro",
+            "age": 91,
+            "born": "1931-07-10T00:00:00.0Z",
+            "wonNobelPrize": true,
+            "description": "Alice Ann Munro is a Canadian short story writer who won the Nobel Prize in Literature in 2013. Munro's work has been described as revolutionizing the architecture of short stories, especially in its tendency to move forward and backward in time.",
+            "vector": [
+                -0.16147631,
+                -0.065765485,
+                -0.06546908
+            ]
+        },
+        {
+            "id": "779c8970-0594-301c-bff5-d12907414002",
+            "name": "Paul Krugman",
+            "age": 69,
+            "born": "1953-02-28T00:00:00.0Z",
+            "wonNobelPrize": true,
+            "description": "Paul Robin Krugman is an American economist and public intellectual, who is Distinguished Professor of Economics at the Graduate Center of the City University of New York, and a columnist for The New York Times. In 2008, Krugman was the winner of the Nobel Memorial Prize in Economic Sciences for his contributions to New Trade Theory and New Economic Geography.",
+            "vector": [
+                -0.93070928,
+                -0.03782172,
+                -0.56288009
+            ]
+        }
+    ],
+    "publications": [
+        {
+            "name": "Fox News",
+            "id": "16476dca-59ce-395e-b896-050080120cd4",
+            "vector": [
+                -0.23465763,
+                0.17979929,
+                0.102799274
+            ]
+        },
+        {
+            "name": "Wired",
+            "id": "212e56a6-e535-3569-ad1b-2215526c1d9d",
+            "vector": [
+                -0.13612957,
+                -0.06287188,
+                -0.066284634
+            ]
+        },
+        {
+            "name": "The New York Times Company",
+            "id": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
+            "vector": [
+                -0.0030892247,
+                0.17440806,
+                0.024489688
+            ]
+        },
+        {
+            "name": "Game Informer",
+            "id": "7abf5426-5048-31ce-9c0a-822c58b19b47",
+            "vector": [
+                -0.0437179,
+                0.2276628,
+                -0.08515345
+            ]
+        },
+        {
+            "name": "New Yorker",
+            "id": "7e9b9ffe-e645-302d-9d94-517670623b35",
+            "vector": [
+                -0.20407139,
+                0.42393374,
+                0.122685745
+            ]
+        },
+        {
+            "name": "Wall Street Journal",
+            "id": "8e14bddf-cd2e-3f5b-8fd5-6e34ee13999e",
+            "vector": [
+                -0.14838812,
+                0.39373013,
+                -0.019083085
+            ]
+        },
+        {
+            "name": "New York Times",
+            "id": "9f0c7463-8633-30ff-99e9-fd84349018f5",
+            "vector": [
+                -0.12199396,
+                0.15883811,
+                -0.02439011
+            ]
+        },
+        {
+            "name": "Vogue",
+            "id": "ac884d35-ccb4-3937-81f8-8474a4d7a549",
+            "vector": [
+                0.03527758,
+                -0.0150233405,
+                -0.0101946825
+            ]
+        },
+        {
+            "name": "The Economist",
+            "id": "b7285ce8-a172-3053-b74d-7200a96bce26",
+            "vector": [
+                -0.202515,
+                0.18077189,
+                -0.005465668
+            ]
+        },
+        {
+            "name": "International New York Times",
+            "id": "c9a0e53b-93fe-38df-a6ea-4c8ff4501783",
+            "vector": [
+                -0.12092031,
+                0.13498639,
+                -0.0057744063
+            ]
+        },
+        {
+            "name": "Financial Times",
+            "id": "eaa33b83-3927-3aaf-af4b-4990c79485da",
+            "vector": [
+                -0.16187595,
+                0.06548311,
+                -0.09078615
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "id": "f2968730-9ce5-3e6f-8e64-b6b9f68984b0",
+            "vector": [
+                0.050504766,
+                0.34891042,
+                0.053314738
+            ]
+        },
+        {
+            "name": "CNN",
+            "id": "fa207f19-e080-3902-982c-393d321776be",
+            "vector": [
+                -0.080069505,
+                -0.1065043,
+                0.010922157
+            ]
+        }
+    ]
+}
