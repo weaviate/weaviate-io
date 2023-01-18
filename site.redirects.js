@@ -211,6 +211,14 @@ const siteRedirects = {
             to: '/blog/hybrid-search-explained',
             from: '/blog/2023/01/Hybrid-Search-Explained.html'
         },
+        {
+            to: '/blog/pulling-back-the-curtains-on-text2vec',
+            from: '/blog/2023/01/pulling-back-the-curtains-on-text2vec.html'
+        },
+        {
+            to: '/blog/vector-embeddings-explained',
+            from: '/blog/2023/01/Vector-Embeddings-Explained.html'
+        },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

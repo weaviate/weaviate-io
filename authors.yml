@@ -18,16 +18,16 @@ connor:
   title: Developer Advocate / Researcher 
   url: https://github.com/CShorten
   image_url: /img/people/icon/connor.jpg
-dirk:
-  name: Dirk Kulawiak
-  title: Software Developer
-  url: https://github.com/dirkkul
-  image_url: /img/people/icon/dirk.jpg
 dan:
   name: Dan Dascalescu
   title: Developer Advocate
   url: https://github.com/dandv
   image_url: /img/people/icon/dan.jpg
+dirk:
+  name: Dirk Kulawiak
+  title: Software Developer
+  url: https://github.com/dirkkul
+  image_url: /img/people/icon/dirk.jpg
 erika:
   name: Erika Cardenas
   title: Developer Advocate
