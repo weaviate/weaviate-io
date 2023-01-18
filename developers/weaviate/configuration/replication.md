@@ -9,7 +9,7 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 :::info Related pages
-- [Concepts: Replication Architecture](../concepts/replication-architecture/)
+- [Concepts: Replication Architecture](../concepts/replication-architecture/index.md)
 :::
 
 Weaviate instances can be replicated to increase availability, read throughput and enable zero downtime upgrades. On this page, you will learn how to set replication for your Weaviate instance.
@@ -22,7 +22,7 @@ Read more about how Replication is designed and built in Weaviate on the [Replic
 
 ## How to configure: Schema
 
-Replication is enabled per data class in the [data schema](./schema-configuration). This means you can set different replication factors per class in your dataset. To enable replication on a class (this is disabled by default), the replication factor has to be set. In a class in the schema, this looks like the following. `"replicationConfig": {“factor”: 3”}` can be specified per class in the schema object.
+Replication is enabled per data class in the [data schema](./schema-configuration.md). This means you can set different replication factors per class in your dataset. To enable replication on a class (this is disabled by default), the replication factor has to be set. In a class in the schema, this looks like the following. `"replicationConfig": {“factor”: 3”}` can be specified per class in the schema object.
 
 
 ```json
