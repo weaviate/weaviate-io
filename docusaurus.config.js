@@ -94,22 +94,21 @@ const config = {
                     sidebarPath: require.resolve('./sidebars.js'),
                     path: 'developers', // folder name – where the docs are
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
-
-                    // Please change this to your repo.
-                    // Remove this to remove the "edit this page" links.
+                    
+                    // TODO: Update to 'main' for release
                     editUrl:
                         'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/',
-                    // TODO: Update to 'main' for release
-                    // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
+                        // 'https://github.com/semi-technologies/weaviate-io/tree/main/',
                     remarkPlugins: [remarkReplace],
                 },
                 blog: {
                     showReadingTime: true,
                     authorsMapPath: '../authors.yml',
+
+                    // TODO: Update to 'main' for release
                     editUrl:
                         'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/',
-                    // TODO: Update to 'main' for release
-                    // 'https://github.com/semi-technologies/weaviate-io/tree/main/'
+                        // 'https://github.com/semi-technologies/weaviate-io/tree/main/',
                 },
                 theme: {
                     customCss: [
@@ -127,7 +126,7 @@ const config = {
             image: 'og/default.jpg',
             navbar: {
                 title: '',
-                hideOnScroll: true,
+                // hideOnScroll: true,
                 logo: {
                     alt: 'Weaviate',
                     src: '/img/site/weaviate-nav-logo-light.svg',
