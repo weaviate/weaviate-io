@@ -74,6 +74,7 @@ const siteRedirects = {
         //     to: '/developers/weaviate/tutorials/how-to-create-a-schema',
         //     from: '/developers/weaviate/current/tutorials/how-to-create-a-schema'
         // },
+
         {
             to: '/developers/weaviate/tutorials',
             from: [
