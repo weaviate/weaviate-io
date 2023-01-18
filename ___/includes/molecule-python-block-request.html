@@ -1,9 +1,0 @@
-<div class="tabs">
-  <nav class="tabs__nav" role="tablist">
-     <!-- aria-controls="x" correspondents with the id of the tabpanel and *must* be unique -->
-     <button class="tabs__tab" aria-controls="panel-{{ include.block_id }}-1" role="tab" tabindex="0" aria-selected="true">Python</button>
-  </nav>
-  <div class="tabs__panel" id="panel-{{ include.block_id }}-1" tabindex="0" role="tabpanel">
-     {% include molecule-code.html content=python language="python" %}
-  </div>
-</div>

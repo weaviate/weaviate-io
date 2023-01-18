@@ -97,8 +97,7 @@ const config = {
                     
                     // TODO: Update to 'main' for release
                     editUrl:
-                        'https://github.com/weaviate/weaviate-io/tree/docusaurus-migration/',
-                        // 'https://github.com/weaviate/weaviate-io/tree/main/',
+                        'https://github.com/weaviate/weaviate-io/tree/main/',
                     remarkPlugins: [remarkReplace],
                 },
                 blog: {
@@ -107,8 +106,7 @@ const config = {
 
                     // TODO: Update to 'main' for release
                     editUrl:
-                        'https://github.com/weaviate/weaviate-io/tree/docusaurus-migration/',
-                        // 'https://github.com/weaviate/weaviate-io/tree/main/',
+                        'https://github.com/weaviate/weaviate-io/tree/main/',
                 },
                 theme: {
                     customCss: [
@@ -243,8 +241,7 @@ const config = {
                         className: 'fa-brands fa-lg fa-twitter',
                     },
                     {
-                        // to: 'https://www.youtube.com/@SeMI-and-Weaviate/playlists',
-                        to: 'https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0',
+                        to: 'https://www.youtube.com/@Weaviate/playlists',
                         label: ' ',
                         position: 'right',
                         target: '_blank',

@@ -161,7 +161,7 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
   data set and query profile) should be left as linux page cache.
 
 ## Standalone mode in 0.22.x
-**NOTE: KEEP THIS HEADER FOR REFS FROM THE SOFTWARE ERROR MESSAGES (https://semi.technology/documentation/weaviate/current/more-resources/architecture.html#standalone-mode-in-022x)**
+<!-- **NOTE: KEEP THIS HEADER FOR REFS FROM THE SOFTWARE ERROR MESSAGES (/developers/weaviate/more-resources/architecture.html#standalone-mode-in-022x)** -->
 
 * **Important**: While standalone mode is a preview of the standalone feature
   which will become the standard in 1.0.0, standalone mode is **not a preview
