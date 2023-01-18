@@ -22,8 +22,7 @@ export default function AboutUsHeader() {
       <ButtonContainer>
         <LinkButton link="#our_company_values" newTab={false}>Our Values</LinkButton>
         <LinkButton link="#meet_the_team" newTab={false}>Meet the Team</LinkButton>
-        {/* TODO: make it a redirect to blog with meta tag */}
-        {/* <LinkButton>How We Work</LinkButton> */}
+        <LinkButton link="/company/playbook" newTab={false}>How We Work</LinkButton>
       </ButtonContainer>
     </div>
   );
