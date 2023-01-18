@@ -1,0 +1,30 @@
+.header {
+  color: var(--ifm-link-color);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  .youtube,
+  .spotify {
+    border-radius: 0.375rem;
+    padding: 8px 12px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .youtube {
+    background-color: #ffe3ec;
+    color: #ff007d;
+  }
+
+  .spotify {
+    background-color: #e7fade;
+    color: #00b800;
+  }
+}

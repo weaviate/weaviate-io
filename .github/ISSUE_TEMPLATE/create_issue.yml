@@ -1,0 +1,36 @@
+name: Create a new issue
+description: Create a new issue to suggest improvements in the docs or the website
+body:
+  - type: markdown
+    attributes:
+      value: |
+
+        * For questions, ask in [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
+        * Before you file an issue read the [Contributing guide](https://github.com/weaviate/weaviate-io/blob/main/CONTRIBUTING.md).
+        * Check to make sure someone hasn't already opened a similar [issue](https://github.com/weaviate/weaviate-io/issues).
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: This project has a Code of Conduct that all participants are expected to understand and follow.
+      options:
+        - label: I have read and agree to the Weaviate's [Code of Conduct](https://github.com/weaviate/weaviate-io/blob/main/CODE_OF_CONDUCT.md)
+          required: true
+
+  - type: textarea
+    attributes:
+      label: What part of document/web-page on weaviate.io is affected?
+      description: |
+        - Give as much detail as you can to help us understand the change you want to see.
+        - Why should the docs be changed?
+        - What is the expected outcome?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional comments?
+      description: Any additional information, configuration, or data that might be necessary to reproduce the issue.
+    validations:
+      required: false

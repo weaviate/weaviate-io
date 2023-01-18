@@ -1,0 +1,195 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+
+# Batch import all Authors
+for author in data['authors']:
+  print("importing author: ", author["name"])
+
+  properties = {
+    "name": author["name"],
+    "age": author["age"],
+    "born": author["born"],
+    "wonNobelPrize": author["wonNobelPrize"],
+    "description": author["description"]
+  }
+
+  client.batch.add_data_object(properties, "Author", author["id"], author["vector"])
+
+# Flush the remaining buffer to make sure all objects are imported
+client.batch.flush()
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+
+async function importAuthors() {
+  // Get the data from the data.json file
+  const data = await this.getJsonData();
+
+  // Prepare a batcher
+  let batcher = client.batch.objectsBatcher();
+  let counter = 0;
+
+  // Loop through all authors and import them
+  data.authors.forEach(author => {
+    // Construct an object with a class, id, properties and vector
+    const obj = {
+      class: "Author",
+      id: author.id,
+      properties: {
+        name: author.name,
+        age: author.age,
+        born: author.born,
+        wonNobelPrize: author.wonNobelPrize,
+        description: author.description,
+      },
+      vector: author.vector
+    }
+
+    // add the object to the batch queue
+    batcher = batcher.withObject(obj);
+
+    // When the batch counter reaches 20, push the objects to Weaviate
+    if (counter++ == 20) {
+      // flush the batch queue (use await to execute the promise)
+      let result = await (batcher.do());
+      console.log(`Batch loaded: ${JSON.stringify(result)}`);
+      
+      // restart the batch queue
+      counter = 0;
+      batcher = client.batch.objectsBatcher();
+    }
+  });
+
+  // Flush the remaining objects
+  let result = await (batcher.do());
+}
+
+importAuthors();
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+func importAuthors(ctx context.Context, client *weaviate.Client) error {
+	data, err := parseFile()
+	if err != nil {
+		return err
+	}
+
+	authorObjects := []*models.Object{}
+	for _, author := range data.Authors {
+		authorObjects = append(authorObjects, &models.Object{
+			Class: "Author",
+			ID:    strfmt.UUID(author.ID),
+			Properties: map[string]interface{}{
+				"name":          author.Name,
+				"age":           author.Age,
+				"born":          author.Born,
+				"wonNobelPrize": author.WonNobelPrize,
+				"description":   author.Description,
+			},
+			Vector: author.Vector,
+		})
+	}
+
+	batcher := client.Batch().ObjectsBatcher()
+	for _, authorObject := range authorObjects {
+		batcher.WithObject(authorObject)
+	}
+
+	if resp, err := batcher.Do(ctx); err != nil {
+		return errors.Wrap(err, "importing authors")
+	} else if len(resp) != len(authorObjects) {
+		return errors.Wrap(err, "invalid number of imported authors")
+	}
+
+	return nil
+}
+  
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+
+public void importAuthors() throws FileNotFoundException {
+  Data data = parseFile();
+
+  Stream<WeaviateObject> authorObjects = Arrays.stream(data.authors)
+    .map(author -> WeaviateObject.builder()
+      .className("Author")
+      .id(author.id)
+      .properties(new HashMap<String, Object>() {{
+        put("name", author.name);
+        put("age", author.age);
+        put("born", author.born);
+        put("wonNobelPrize", author.wonNobelPrize);
+        put("description", author.description);
+      }})
+      .vector(author.vector)
+      .build()
+    );
+
+  ObjectsBatcher batcher = client.batch().objectsBatcher();
+  authorObjects.forEach(batcher::withObject);
+  Result<ObjectGetResponse[]> result = batcher.run();
+
+  if (result.hasErrors()) {
+    System.out.println(result.getError());
+    return;
+  }
+  Arrays.stream(result.getResult()).forEach(System.out::println);
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+$ curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+  "objects": [{
+    "id": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
+    "class": "Publication",
+    "properties": {
+        "name": "The New York Times"
+    },
+    "vector": [
+        -0.0030892247,
+        0.17440806,
+        0.024489688
+    ]
+  }, {
+      "id": "f564113e-11e2-11ed-861d-0242ac120002",
+      "class": "Author",
+      "properties": {
+          "name": "Paul Krugman",
+          "age": 69,
+          "born": "1953-02-28T00:00:00.0Z",
+          "wonNobelPrize": true,
+          "description": "Paul Robin Krugman is an American economist [...] New Economic Geography."
+      },
+      "vector": [
+          -0.16147631,
+          -0.065765485,
+          -0.06546908
+      ]
+  }]
+}' \
+https://some-endpoint.weaviate.network/v1/batch/objects
+```
+
+</TabItem>
+</Tabs>

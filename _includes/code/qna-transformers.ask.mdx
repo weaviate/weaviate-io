@@ -1,0 +1,233 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(
+      ask: {
+        question: "Who is the king of the Netherlands?",
+        properties: ["summary"],
+        rerank: false # supported from v1.10.0 on
+      }, 
+      limit: 1
+    ) {
+      title
+      _additional {
+        answer {
+          hasAnswer
+          certainty
+          property
+          result
+          startPosition
+          endPosition
+        }
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+ask = {
+  "question": "Who is the king of the Netherlands?",
+  "properties": ["summary"]
+}
+
+result = (
+  client.query
+  .get("Article", ["title", "_additional {answer {hasAnswer certainty property result startPosition endPosition} }"])
+  .with_ask(ask)
+  .with_limit(1)
+  .do()
+)
+
+print(result)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.graphql
+      .get()
+      .withClassName('Article')
+      .withAsk({
+        question: "Who is the king of the Netherlands?",
+        properties: ["summary"],
+      })
+      .withFields('title _additional { answer { hasAnswer certainty property result startPosition endPosition } }')
+      .withLimit(1)
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      });
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+  "github.com/semi-technologies/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  className := "Article"
+  fields := []graphql.Field{
+    {Name: "title"},
+    {Name: "_additional", Fields: []graphql.Field{
+      {Name: "answer", Fields: []graphql.Field{
+        {Name: "hasAnswer"},
+        {Name: "certainty"},
+        {Name: "property"},
+        {Name: "result"},
+        {Name: "startPosition"},
+        {Name: "endPosition"},
+      }},
+    }},
+  }
+  ask := client.GraphQL().AskArgBuilder().
+    WithQuestion("Who is the king of the Netherlands?").
+    WithProperties([]string{"summary"})
+  ctx := context.Background()
+
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(fields...).
+    WithAsk(ask).
+    WithLimit(1).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package technology.semi.weaviate;
+
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
+import technology.semi.weaviate.client.v1.graphql.query.argument.AskArgument;
+import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Field title = Field.builder().name("title").build();
+    Field _additional = Field.builder()
+      .name("_additional")
+      .fields(new Field[]{
+        Field.builder()
+          .name("answer")
+          .fields(new Field[]{
+            Field.builder().name("hasAnswer").build(),
+            Field.builder().name("certainty").build(),
+            Field.builder().name("property").build(),
+            Field.builder().name("result").build(),
+            Field.builder().name("startPosition").build(),
+            Field.builder().name("endPosition").build()
+          }).build()
+      }).build();
+
+    AskArgument ask = AskArgument.builder()
+      .question("Who is the king of the Netherlands?")
+      .properties(new String[]{ "summary" })
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Article")
+      .withFields(title, _additional)
+      .withAsk(ask)
+      .withLimit(1)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+$ echo '{ 
+  "query": "{
+    Get {
+      Article(
+        ask: {
+          question: \"Who is the king of the Netherlands?\",
+          properties: [\"summary\"]
+        }, 
+        limit: 1
+      ) {
+        title
+        _additional {
+          answer {
+            hasAnswer
+            certainty
+            property
+            result
+            startPosition
+            endPosition
+          }
+        }
+      }
+    }
+  }
+  "
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+</Tabs>

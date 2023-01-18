@@ -1,0 +1,47 @@
+// Set Fonts
+.blog-post-page, .blog-list-page, .docs-doc-page {
+  --blog-heading-font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  --blog-base-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+
+  // Set Fonts for Blogs and Docs - content
+  // #docusaurus_skipToContent_fallback – is for the page content, which excludes the navbar
+  #docusaurus_skipToContent_fallback {
+    font-family: var(--blog-base-font-family);
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--blog-heading-font-family);
+    }
+  }
+
+  pre code {
+    max-height: 700px;
+  }
+}
+
+// Set Background
+.docs-doc-page {
+  #__docusaurus {
+    background-image: none;
+  }
+}
+
+.docs-doc-page[data-theme='dark'] {
+  #__docusaurus, .navbar {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 4%,
+      rgba(17, 11, 62, 1) 50%,
+      rgba(25, 16, 92, 1) 96%
+    );
+  }
+}
+
+.docs-doc-page[data-theme='light'] {
+  #__docusaurus, .navbar {
+    background: linear-gradient(
+      90deg,
+      rgba(208, 228, 236, 1) 0%,
+      rgba(224, 238, 211, 1) 47%,
+      rgba(207, 228, 237, 1) 100%
+    );
+  }
+}

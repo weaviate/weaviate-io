@@ -1,0 +1,75 @@
+abdel:
+  name: Abdel Rodriguez
+  title: Software Developer 
+  url: https://github.com/abdelr
+  image_url: /img/people/icon/abdel.jpg
+bob:
+  name: Bob van Luijt
+  title: CEO
+  url: https://github.com/bobvanluijt
+  image_url: /img/people/icon/bob.jpg
+byron:
+  name: Byron Voorbach
+  title: Head of Customer Success 
+  url: https://github.com/byronvoorbach
+  image_url: /img/people/icon/byron.png
+connor:
+  name: Connor Shorten
+  title: Developer Advocate / Researcher 
+  url: https://github.com/CShorten
+  image_url: /img/people/icon/connor.jpg
+dan:
+  name: Dan Dascalescu
+  title: Developer Advocate
+  url: https://github.com/dandv
+  image_url: /img/people/icon/dan.jpg
+dirk:
+  name: Dirk Kulawiak
+  title: Software Developer
+  url: https://github.com/dirkkul
+  image_url: /img/people/icon/dirk.jpg
+erika:
+  name: Erika Cardenas
+  title: Developer Advocate
+  url: https://github.com/erika-cardenas
+  image_url: /img/people/icon/erika.jpg
+etienne:
+  name: Etienne Dilocker
+  title: CTO
+  url: https://github.com/etiennedi
+  image_url: /img/people/icon/etienne.jpg
+jessie:
+  name: Jessie de Groot
+  title: Head of People and Culture
+  url: https://linkedin.com/in/jessiedegroot/
+  image_url: /img/people/icon/jessie.png
+jp:
+  name: Joon-Pil (JP) Hwang
+  title: Technical Curriculum Developer
+  url: https://github.com/databyjp
+  image_url: /img/people/icon/jp.jpg
+laura:
+  name: Laura Ham
+  title: Developer Advocate / Researcher
+  url: https://github.com/laura-ham
+  image_url: /img/people/icon/laura.jpg
+sebastian:
+  name: Sebastian Witalec
+  title: Head of DevRel
+  url: https://github.com/sebawita
+  image_url: /img/people/icon/sebastian.jpg
+stefan:
+  name: Stefan Bogdan
+  title: Customer Solutions
+  url: https://github.com/StefanBogdan
+  image_url: /img/people/icon/stefan.jpg
+svitlana:
+  name: Svitlana Smolianova
+  title: Head of Design
+  url: https://linkedin.com/in/svitlana-sm
+  image_url: /img/people/icon/svitlana.png
+zain:
+  name: Zain Hasan
+  title: Developer Advocate
+  url: https://github.com/zainhas
+  image_url: /img/people/icon/zain.jpg

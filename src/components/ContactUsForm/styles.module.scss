@@ -1,0 +1,86 @@
+.form {
+  padding: 2rem;
+  box-shadow: 0px 0px 30px 10px rgb(233, 233, 233);
+  border-radius: 12px;
+  .intro {
+    h2 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+  .formWrapper {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  .input {
+    appearance: none;
+    display: flex;
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #01b0db;
+    background-color: transparent;
+    border-radius: 12px;
+    &:focus-visible {
+      outline: none;
+    }
+  }
+  .selectWrapper {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    .select {
+      appearance: none;
+      margin-top: 1rem;
+      display: flex;
+      flex: 1;
+      padding: 1rem;
+      border: 1px solid #01b0db;
+      background-color: transparent;
+      border-radius: 12px;
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+  .actionBtn {
+    display: flex;
+    margin-top: 3rem;
+    justify-content: center;
+    .button {
+      cursor: pointer;
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      background-color: #01b0db;
+      color: #fff;
+      border: none;
+      padding: 1rem;
+      border-radius: 12px;
+    }
+  }
+}
+[data-theme='dark'] {
+  .form {
+    box-shadow: 0px 0px 30px 10px rgb(0, 0, 0);
+    .input {
+      border: 1px solid #01b0db;
+    }
+    .select {
+      border: 1px solid #01b0db;
+    }
+  }
+  .actionBtn {
+    .button {
+      background-color: #00b800;
+    }
+  }
+}

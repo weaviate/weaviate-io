@@ -1,0 +1,359 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+import json
+
+client = weaviate.Client("https://some-endpoint.weaviate.network/") # <== update the endpoint here!
+
+# we will create the class "Author" and the properties
+# from the basics section of this guide
+class_obj = {
+    "class": "Author", # <= note the capital "A".
+    "description": "A description of this class, in this case, it is about authors",
+    "properties": [
+        {
+            "dataType": [
+                "string"
+            ],
+            "description": "The name of the Author",
+            "name": "name",
+        },
+        {
+            "dataType": [
+                "int"
+            ],
+            "description": "The age of the Author",
+            "name": "age"
+        },
+        {
+            "dataType": [
+                "date"
+            ],
+            "description": "The date of birth of the Author",
+            "name": "born"
+        },
+        {
+            "dataType": [
+                "boolean"
+            ],
+            "description": "A boolean value if the Author won a nobel prize",
+            "name": "wonNobelPrize"
+        },
+        {
+            "dataType": [
+                "text"
+            ],
+            "description": "A description of the author",
+            "name": "description"
+        }
+    ]
+}
+
+# add the schema
+client.schema.create_class(class_obj)
+
+# get the schema
+schema = client.schema.get()
+
+# print the schema
+print(json.dumps(schema, indent=4))
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+
+const weaviate = require("weaviate-client");
+
+// update the endpoint here!
+const client = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.weaviate.network/',
+  }); 
+
+// we will create the class "Author" and the properties
+// from the basics section of this guide
+var classObj = {
+  "class": "Author", // <= note the capital "A".
+  "description": "A description of this class, in this case, it is about authors",
+  "properties": [
+      {
+          "dataType": [
+              "string"
+          ],
+          "description": "The name of the Author",
+          "name": "name",
+      },
+      {
+          "dataType": [
+              "int"
+          ],
+          "description": "The age of the Author",
+          "name": "age"
+      },
+      {
+          "dataType": [
+              "date"
+          ],
+          "description": "The date of birth of the Author",
+          "name": "born"
+      },
+      {
+          "dataType": [
+              "boolean"
+          ],
+          "description": "A boolean value if the Author won a nobel prize",
+          "name": "wonNobelPrize"
+      },
+      {
+          "dataType": [
+              "text"
+          ],
+          "description": "A description of the author",
+          "name": "description"
+      }
+  ]
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+
+// get and print the schema
+client
+  .schema
+  .getter()
+  .do()
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+    "fmt"
+    "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+    "github.com/semi-technologies/weaviate/entities/models"
+)
+
+func main() {
+    // update the endpoint here!
+    cfg := weaviate.Config{
+        Host:   "some-endpoint.weaviate.network/",
+		Scheme: "https",
+    }
+
+    client := weaviate.New(cfg)
+
+    // we will create the class "Author" and the properties
+    // from the basics section of this guide
+    classObj := &models.Class{
+        Class:       "Author", // <= note the capital "A".
+        Description: "A description of this class, in this case, it is about authors",
+        Properties: []*models.Property{
+            {
+                DataType:    []string{"string"},
+                Description: "The name of the Author",
+                Name:        "name",
+            },
+            {
+                DataType:    []string{"int"},
+                Description: "The age of the Author",
+                Name:        "age",
+            },
+            {
+                DataType:    []string{"date"},
+                Description: "The date of birth of the Author",
+                Name:        "born",
+            },
+            {
+                DataType:    []string{"boolean"},
+                Description: "A boolean value if the Author won a nobel prize",
+                Name:        "wonNobelPrize",
+            },
+            {
+                DataType:    []string{"text"},
+                Description: "A description of the author",
+                Name:        "description",
+            },
+        },
+    }
+
+    // add the schema
+    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+
+    // get the schema
+    schema, err := client.Schema().Getter().Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+
+    // print the schema
+    fmt.Printf("%v", schema)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+
+package technology.semi.weaviate;
+
+import java.util.ArrayList;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.schema.model.DataType;
+import technology.semi.weaviate.client.v1.schema.model.Property;
+import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    // if you use the WCS
+    Config config = new Config("https", "some-endpoint.weaviate.network/");
+    
+    // or 
+
+    // if you use Docker-compose
+    Config config = new Config("http", "localhost:8080");
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // we will create the class "Author" and the properties
+    // from the basics section of this guide
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Author")
+      .description("A description of this class, in this case, it is about authors")
+      .properties(new ArrayList() { {
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.STRING); } })
+          .description("The name of the Author")
+          .name("name")
+          .build());
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.INT); } })
+          .description("The age of the Author")
+          .name("age")
+          .build());
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.DATE); } })
+          .description("The date of birth of the Author")
+          .name("born")
+          .build());
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.BOOLEAN); } })
+          .description("A boolean value if the Author won a nobel prize")
+          .name("wonNobelPrize")
+            .build());
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.TEXT); } })
+          .description("A description of the author")
+          .name("description")
+          .build());
+      } })
+      .build();
+    
+    // add the schema
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+
+    // get the schema
+    Result<Schema> result = client.schema().getter().run();
+    if (result.hasErrors()) {
+        System.out.println(result.getError());
+        return;
+    }
+
+    // print the schema
+    System.out.println(result.getResult());
+    
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Author",
+        "description": "A description of this class, in this case, it is about authors",
+        "properties": [
+            {
+                "dataType": [
+                    "string"
+                ],
+                "description": "The name of the Author",
+                "name": "name"
+            },
+            {
+                "dataType": [
+                    "int"
+                ],
+                "description": "The age of the Author",
+                "name": "age"
+            },
+            {
+                "dataType": [
+                    "date"
+                ],
+                "description": "The date of birth of the Author",
+                "name": "born"
+            },
+            {
+                "dataType": [
+                    "boolean"
+                ],
+                "description": "A boolean value if the Author won a nobel prize",
+                "name": "wonNobelPrize"
+            },
+            {
+                "dataType": [
+                    "text"
+                ],
+                "description": "A description of the author",
+                "name": "description"
+            }
+        ]
+    }' \
+    # update the endpoint here!
+    https://some-endpoint.weaviate.network/v1/schema
+```
+
+</TabItem>
+</Tabs>

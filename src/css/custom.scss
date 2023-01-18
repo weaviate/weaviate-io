@@ -1,0 +1,529 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+
+@font-face {
+  font-family: 'FredokaOneRegular';
+  src: url('/fonts/FredokaOne-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'NiramitRegular';
+  src: url('/fonts/Niramit-Regular.ttf');
+}
+
+:root {
+  --ifm-h2-font-size: 2rem;
+  @media screen and (max-width: 768px) {
+    --ifm-h2-font-size: 1.5rem;
+  }
+  --ifm-navbar-height: 6rem;
+  --ifm-color-primary: #fa0171;
+  --ifm-color-primary-dark: #e10166;
+  --ifm-color-primary-darker: #d40160;
+  --ifm-color-primary-darkest: #af014f;
+  --ifm-color-primary-light: #fe167e;
+  --ifm-color-primary-lighter: #fe2385;
+  --ifm-color-primary-lightest: #fe489a;
+  --ifm-code-font-size: 95%;
+  --ifm-heading-font-family: 'FredokaOneRegular';
+  --ifm-font-family-base: 'NiramitRegular';
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-heading-font-weight: 500;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--ifm-heading-color);
+    font-family: var(--ifm-heading-font-family);
+    font-weight: var(--ifm-heading-font-weight);
+    line-height: var(--ifm-heading-line-height);
+    margin: var(--ifm-heading-margin-top) 0 var(--ifm-heading-margin-bottom) 0;
+  }
+  // Weaviate configurator styling
+  .configuratin-generator-app {
+    text-align: center;
+  }
+  .__configGenContainer {
+    margin: 30px 0;
+  }
+  .__ConfigurationOption {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .__ConfigurationOption .__accordion {
+    box-shadow: none;
+    width: 600px;
+    margin-bottom: 10px;
+    cursor: inherit;
+  }
+  .__ConfigurationOption .__accordion .__accordionSummary {
+    margin-bottom: -1;
+    min-height: 56;
+    display: flex;
+    cursor: default !important;
+  }
+  .__ConfigurationOption .__accordion .__accordionSummary .__displayName {
+    font-family: Alegreya Sans, sans-serif;
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 100px;
+    width: 260px;
+    text-align: left;
+  }
+  .__ConfigurationOption .__accordion .__accordionSummary .__userInput {
+    font-family: Alegreya Sans, sans-serif;
+    font-size: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 200px;
+    text-align: right;
+  }
+  .__ConfigurationOption .__accordion .__accordionDetails {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .__ConfigurationOption .__accordion .__accordionDetails .__description {
+    font-family: Alegreya Sans, sans-serif;
+    text-align: start;
+    margin-bottom: 25px;
+  }
+  .__ConfigurationOption .__accordion .__accordionDetails .__actionButtonsDiv {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .__multilineContainer {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  .__multilineContainer .__multilineSelect {
+    width: 98%;
+    transition: background 0.256s ease-out, border-color 0.256s ease-out,
+      border-radius 0.256s ease-out, color 0.256s ease-out,
+      opacity 0.256s ease-out, outline 0.256s ease-out,
+      transform 0.256s ease-out;
+    border: 3px solid transparent;
+    border-top-left-radius: 1.5em;
+    border-top-right-radius: 1.5em;
+    font-family: Alegreya Sans, sans-serif;
+    padding: 0.3em;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+  }
+  .__multilineContainer .__multilineSelect .__arrowIcon {
+    transform: translateY(1px);
+    font-size: 18px;
+  }
+  .__multilineContainer .__opened {
+    transition: background 0.128s ease-out, border-color 0.128s ease-out,
+      border-radius 0.128s ease-out, color 0.128s ease-out,
+      opacity 0.128s ease-out, outline 0.128s ease-out,
+      transform 0.128s ease-out;
+    border-radius: 1.5em;
+    border-bottom-left-radius: 0;
+    outline: none;
+  }
+  .__multilineContainer .__multilineOptions {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 5000;
+    width: 100%;
+  }
+  .__multilineContainer .__multilineOptions .__multilineOption {
+    cursor: pointer;
+    padding: 10px;
+  }
+  .__multilineContainer .__multilineOptions .__disabledOption {
+    cursor: default;
+  }
+  .__multilineContainer
+    .__multilineOptions
+    .__multilineOption
+    .__multilineOptionName {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+  }
+  .__multilineContainer
+    .__multilineOptions
+    .__multilineOption
+    .__multilineOptionDescription {
+    text-align: left;
+    margin: 5px 0;
+  }
+  .__multilineContainer .__hidden {
+    display: none;
+  }
+  .__simpleTextInput {
+    width: 98%;
+    transition: background 0.256s ease-out, border-color 0.256s ease-out,
+      border-radius 0.256s ease-out, color 0.256s ease-out,
+      opacity 0.256s ease-out, outline 0.256s ease-out,
+      transform 0.256s ease-out;
+    border: 3px solid transparent;
+    border-top-left-radius: 1.5em;
+    border-top-right-radius: 1.5em;
+    font-family: Alegreya Sans, sans-serif;
+    padding: 0.5em;
+    margin-bottom: 25px;
+  }
+  .__simpleTextInput:active,
+  .__simpleTextInput:focus {
+    transition: background 0.128s ease-out, border-color 0.128s ease-out,
+      border-radius 0.128s ease-out, color 0.128s ease-out,
+      opacity 0.128s ease-out, outline 0.128s ease-out,
+      transform 0.128s ease-out;
+    border-radius: 1.5em;
+    border-bottom-left-radius: 0;
+    outline: none;
+  }
+  .__simpleButton {
+    transition: background 0.256s ease-out, border-color 0.256s ease-out,
+      border-radius 0.256s ease-out, color 0.256s ease-out,
+      opacity 0.256s ease-out, outline 0.256s ease-out,
+      transform 0.256s ease-out;
+    border: 0 !important;
+    border-radius: 0.5em 0.5em 0.5em 0;
+    font-family: Alegreya Sans, sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  .__simpleButton:hover {
+    transition: background 0.128s ease-out, border-color 0.128s ease-out,
+      border-radius 0.128s ease-out, color 0.128s ease-out,
+      opacity 0.128s ease-out, outline 0.128s ease-out,
+      transform 0.128s ease-out;
+    border-radius: 0.5em 0 0.5em 0.5em;
+    outline-width: 0;
+  }
+  .__simpleButton:focus {
+    outline-width: 0;
+  }
+  .__hidden {
+    opacity: 0;
+    cursor: default;
+  }
+  .__instructions {
+    margin-top: 25px;
+  }
+  .__instructions .__heading {
+    text-align: left;
+  }
+  .__instructions .__paragraph {
+    text-align: left;
+    word-wrap: break-word;
+  }
+  .__instructions .__code {
+    display: flex;
+    align-items: center;
+  }
+  .__instructions .__code .__codeBlock {
+    font-family: monospace;
+    white-space: pre;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    font-weight: 500;
+    word-break: break-all;
+    overflow: scroll;
+  }
+  .__previousStepContainer {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+  }
+  .__previousStepContainer .__previousStepHelper {
+    margin: 0;
+  }
+  .__previousStepContainer .__previousStepHelper:hover {
+    text-decoration: underline;
+  }
+}
+
+.theme-doc-sidebar-menu {
+  font-size: 0.9rem !important;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-footer-link-color: #ffffff;
+  --ifm-footer-background-color: #000000;
+  --ifm-heading-color: #ffffff;
+  --ifm-link-color: #00b800;
+  --ifm-font-color-base: #c8c8c8;
+  --ifm-hero-background-color: #12bf38;
+  --ifm-color-primary: #fc3988;
+  --ifm-color-primary-dark: #fc1b76;
+  --ifm-color-primary-darker: #fb0b6d;
+  --ifm-color-primary-darkest: #d50358;
+  --ifm-color-primary-light: #fc579a;
+  --ifm-color-primary-lighter: #fd67a3;
+  --ifm-color-primary-lightest: #fd94bf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+[data-theme='light'] {
+  --ifm-heading-color: #2d3197;
+  --ifm-font-color-base: #7072aa;
+  --ifm-link-color: #2d3197;
+  --ifm-navbar-link-color: #2d3197;
+
+  svg {
+    path {
+      fill: #2d3197;
+    }
+  }
+  .footer__copyright {
+    color: #7072aa;
+  }
+  .footer__title {
+    color: #7072aa;
+  }
+  .footer__link-item {
+    color: #7072aa;
+  }
+}
+
+/* Styling for both modes  */
+.hero__logo {
+  width: 100%;
+  background-position-x: center;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('/img/site/weaviate-logo-dark.png');
+
+  @media screen and (max-width: 768px) {
+    height: 150px;
+  }
+}
+
+.hero__subtitle {
+  font-size: 1.2rem;
+  text-align: center;
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.hero__title {
+  text-align: center;
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.container {
+  padding: 3rem;
+  @media screen and (max-width: 768px) {
+    padding: 2rem;
+  }
+}
+
+/* light mode */
+
+#__docusaurus {
+  background-image: url('/img/site/background-light.jpg');
+  background-size: cover;
+}
+
+.footer {
+  background: transparent;
+  .container {
+    border-top: 0.5px solid #00b800;
+  }
+}
+
+.navbar__logo {
+  width: 200px;
+  height: 4rem;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+[data-theme='light'] {
+  .hero__logo {
+    background-image: url('/img/site/weaviate-logo-light.png');
+  }
+  .navbar {
+    // background: transparent;
+    background: linear-gradient(
+      90deg,
+      rgba(208, 228, 236, 1.0) 0%,
+      rgba(224, 238, 211, 1.0) 47%,
+      rgba(207, 228, 237, 1.0) 100%
+    );
+    box-shadow: none;
+  }
+  .navbar__logo {
+    img {
+      display: none;
+    }
+    background-image: url('/img/site/weaviate-nav-logo-light.svg');
+  }
+}
+
+/* Styling one class specially in dark mode */
+[data-theme='dark'] {
+  #__docusaurus {
+    background-image: url('/img/site/background-dark.jpg');
+    background-size: cover;
+  }
+
+  .navbar {
+    // background: transparent;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 1.0) 4%,
+        rgba(17, 11, 62, 1.0) 50%,
+        rgba(25, 16, 92, 1.0) 96%
+      );
+    box-shadow: none;
+  }
+
+  .navbar__logo {
+    img {
+      display: none;
+    }
+    background-image: url('/img/site/weaviate-nav-logo-dark.svg');
+  }
+  .footer--dark {
+    background: transparent;
+
+    .container {
+      border-top: 0.5px solid #01b0db;
+    }
+  }
+
+  // Weaviate configurator properties
+  .__ConfigurationOption .__accordion {
+    background-color: rgba(200, 200, 200, 0.05);
+    border: 1px solid rgba(125, 125, 125, 0.5);
+    color: #fff;
+  }
+  .__ConfigurationOption .__accordion .__accordionSummary {
+    background-color: rgba(50, 50, 50, 0.05);
+    border-bottom: 1px solid rgba(125, 125, 125, 0.5);
+    color: #fff;
+  }
+  .__multilineContainer .__multilineSelect {
+    background: rgb(15, 0, 50);
+    border-bottom-color: #fa0171;
+    color: #fff;
+  }
+  .__multilineContainer .__opened {
+    border: 3px solid #d611b5;
+  }
+  .__multilineContainer .__multilineOptions {
+    background: rgb(15, 0, 50);
+    border: 2px solid rgb(15, 0, 50);
+  }
+  .__multilineContainer .__multilineOptions .__multilineOption {
+    border-bottom: 1px solid rgb(15, 0, 50);
+  }
+  .__multilineContainer .__multilineOptions .__multilineOption:hover {
+    background: rgb(15, 0, 50);
+  }
+  .__multilineContainer .__multilineOptions .__disabledOption {
+    color: #848484;
+  }
+  .__multilineContainer .__multilineOptions .__disabledOption:hover {
+    background: rgb(15, 0, 50);
+  }
+  .__simpleTextInput {
+    background: rgb(15, 0, 50);
+    border-bottom-color: #fa0171;
+    color: rgb(15, 0, 50);
+  }
+  .__simpleTextInput:focus {
+    border: 3px solid rgb(15, 0, 50);
+  }
+  .__simpleButton {
+    background: #fa0171;
+    color: rgb(15, 0, 50);
+  }
+  .__simpleButton:hover {
+    background: #fa0171;
+    border-bottom: 2px solid #636363;
+    color: rgb(15, 0, 50);
+  }
+  .__instructions .__code .__codeBlock {
+    border: 1px solid #313131;
+    background: rgb(15, 0, 50);
+  }
+}
+
+[data-theme='light'] {
+  // Weaviate configurator properties
+  .__ConfigurationOption .__accordion {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+  }
+  .__ConfigurationOption .__accordion .__accordionSummary {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+  .__multilineContainer .__multilineSelect {
+    background: #fff;
+    border-bottom-color: #fa0171;
+    color: #00152b;
+  }
+  .__multilineContainer .__opened {
+    border: 3px solid #38d611;
+  }
+  .__multilineContainer .__multilineOptions {
+    background: #fff;
+    border: 2px solid #eaeaea;
+  }
+  .__multilineContainer .__multilineOptions .__multilineOption {
+    border-bottom: 1px solid #eaeaea;
+  }
+  .__multilineContainer .__multilineOptions .__multilineOption:hover {
+    background: #eaeaea;
+  }
+  .__multilineContainer .__multilineOptions .__disabledOption {
+    color: #848484;
+  }
+  .__multilineContainer .__multilineOptions .__disabledOption:hover {
+    background: #fff;
+  }
+  .__simpleTextInput {
+    background: #fff;
+    border-bottom-color: #fa0171;
+    color: #00152b;
+  }
+  .__simpleTextInput:focus {
+    border: 3px solid #38d611;
+  }
+  .__simpleButton {
+    background: #fa0171;
+    color: #fff;
+  }
+  .__simpleButton:hover {
+    background: #fa0171;
+    border-bottom: 2px solid #fa0171;
+    color: #fff;
+  }
+  .__instructions .__code .__codeBlock {
+    border: 1px solid #d1d1d1;
+    background: #f7f7f7;
+  }
+}
+
+.text-center {
+  text-align: center;
+}

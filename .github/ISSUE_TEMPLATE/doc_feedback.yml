@@ -1,0 +1,25 @@
+name: Documentation Feedback
+description: Provide docs feedback
+title: "[Documentation Feedback]: "
+labels:
+  - user-feedback
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your feedback. We highly appreciate it and are constantly striving to create better, more useful documentation.
+  - type: input
+    id: page-url
+    attributes:
+      label: Page URL
+      description: The URL of the page you provide feedback for.
+      placeholder: ex. https://weaviate.io/developers/weaviate/
+    validations:
+      required: true
+  - type: textarea
+    id: feedback
+    attributes:
+      label: User feedback
+      description: What is your feedback? Any tips you would want us to consider?
+    validations:
+      required: true

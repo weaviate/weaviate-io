@@ -1,0 +1,205 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+class_obj = {
+    "class": "Article",
+    "description": "A written text, for example a news article or blog post",
+    "properties": [
+        {
+        "dataType": [
+            "string"
+        ],
+        "description": "Title of the article",
+        "name": "title",
+        },
+        {
+        "dataType": [
+            "text"
+        ],
+        "description": "The content of the article",
+        "name": "content"
+        }
+    ]
+}
+
+client.schema.create_class(class_obj)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+var classObj = {
+    "class": "Article",
+    "description": "A written text, for example a news article or blog post",
+    "vectorizeClassName": true,
+    "properties": [
+        {
+        "dataType": [
+            "string"
+        ],
+        "description": "Title of the article",
+        "name": "title",
+        "vectorizePropertyName": true,
+        "index": true
+        },
+        {
+        "dataType": [
+            "text"
+        ],
+        "description": "The content of the article",
+        "name": "content"
+        }
+    ]
+}
+
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+    "context"
+
+    "github.com/semi-technologies/weaviate-go-client/v4/weaviate"
+    "github.com/semi-technologies/weaviate/entities/models"
+)
+
+func main() {
+    cfg := weaviate.Config{
+        Host:   "localhost:8080",
+        Scheme: "http",
+    }
+    client := weaviate.New(cfg)
+
+    classObj := &models.Class{
+        Class:       "Article",
+        Description: "A written text, for example a news article or blog post",
+        Properties: []*models.Property{
+            {
+                DataType:    []string{"string"},
+                Description: "Title of the article",
+                Name:        "title",
+            },
+            {
+                DataType:    []string{"text"},
+                Description: "The content of the article",
+                Name:        "content",
+            },
+        },
+    }
+
+    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package technology.semi.weaviate;
+
+import java.util.ArrayList;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.schema.model.DataType;
+import technology.semi.weaviate.client.v1.schema.model.Property;
+import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Article")
+      .description("A written text, for example a news article or blog post")
+      .properties(new ArrayList() { {
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.STRING); } })
+          .description("Title of the article")
+          .name("title")
+          .build());
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.TEXT); } })
+          .description("The content of the article")
+          .name("content")
+          .build());
+      } })
+      .build();
+
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+$ curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Article",
+        "description": "A written text, for example a news article or blog post",
+        "properties": [
+            {
+            "dataType": [
+                "string"
+            ],
+            "description": "Title of the article",
+            "name": "title"
+            },
+            {
+            "dataType": [
+                "text"
+            ],
+            "description": "The content of the article",
+            "name": "content"
+            }
+        ]
+    }' \
+    http://localhost:8080/v1/schema
+```
+
+</TabItem>
+</Tabs>
