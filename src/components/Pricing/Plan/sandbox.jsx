@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.scss';
 
-export default function PricingSandBox() {
+export default function PricingSandbox() {
   return (
     <div className={styles.sandbox}>
       <div className={styles.title}>

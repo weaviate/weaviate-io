@@ -6,9 +6,9 @@ import ToggleSwitch from '/src/components/ToggleSwitch';
 import Slider from 'react-rangeslider';
 
 export default function PricingCalculator() {
-  const [embeddingSize, setEmbeddingSize] = useState(100);
-  const [amountOfDataObjs, setAmountOfDataObjs] = useState(0);
-  const [queriesPerMonth, setQueriesPerMonth] = useState(0);
+  const [embeddingSize, setEmbeddingSize] = useState(128);
+  const [amountOfDataObjs, setAmountOfDataObjs] = useState(100000);
+  const [queriesPerMonth, setQueriesPerMonth] = useState(100000);
   const [slaTier, setSlaTier] = useState('standard');
   const [highAvailability, setHighAvailability] = useState(false);
   const [price, setPrice] = useState({});
@@ -55,7 +55,7 @@ export default function PricingCalculator() {
             <span>Vector Dimensions:</span>
           </div>
           <Slider
-            step={1}
+            step={10}
             min={100}
             max={12800}
             value={embeddingSize}
@@ -63,11 +63,15 @@ export default function PricingCalculator() {
           />
           <div className="value">
             <input
-              type="text"
-              placeholder={embeddingSize}
               name="embeddingSize"
-              value={embeddingSize.valueAsNumber}
-              onChange={(e) => parseInt(setEmbeddingSize(e.target.value))}
+              id="embeddingSizeValue"
+              type="number"
+              step={10}
+              min={100}
+              max={12800}
+              // placeholder={embeddingSize}
+              value={embeddingSize}
+              onChange={(e) => setEmbeddingSize(parseInt(e.target.value))}
             />
           </div>
         </div>
@@ -76,7 +80,7 @@ export default function PricingCalculator() {
             <span>Data Objects:</span>
           </div>
           <Slider
-            step={2}
+            step={1000}
             min={0}
             max={100000000}
             value={amountOfDataObjs}
@@ -86,11 +90,14 @@ export default function PricingCalculator() {
           />
           <div className="value">
             <input
-              type="text"
-              placeholder={amountOfDataObjs}
               name="amountOfDataObjs"
-              value={amountOfDataObjs.valueAsNumber}
-              onChange={(e) => parseInt(setAmountOfDataObjs(e.target.value))}
+              type="number"
+              step={1000}
+              min={0}
+              max={100000000}
+              // placeholder={amountOfDataObjs}
+              value={amountOfDataObjs}
+              onChange={(e) => setAmountOfDataObjs(parseInt(e.target.value))}
             />
           </div>
         </div>
@@ -99,7 +106,7 @@ export default function PricingCalculator() {
             <span>Monthly Queries:</span>
           </div>
           <Slider
-            step={3}
+            step={1000}
             min={0}
             max={250000000}
             value={queriesPerMonth}
@@ -108,10 +115,13 @@ export default function PricingCalculator() {
           <div className="value">
             <input
               name="queriesPerMonth"
-              type="text"
-              placeholder={queriesPerMonth}
-              value={queriesPerMonth.valueAsNumber}
-              onChange={(e) => parseInt(setQueriesPerMonth(e.target.value))}
+              type="number"
+              step={1000}
+              min={0}
+              max={250000000}
+              // placeholder={queriesPerMonth}
+              value={queriesPerMonth}
+              onChange={(e) => setQueriesPerMonth(parseInt(e.target.value))}
             />
           </div>
         </div>

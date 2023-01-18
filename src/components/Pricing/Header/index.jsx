@@ -1,6 +1,7 @@
 import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
+import { LinkButton, ButtonContainer } from '/src/theme/LinkButton';
 
 export default function PricingHeader() {
   return (
@@ -25,18 +26,10 @@ export default function PricingHeader() {
         </p>
       </div>
       <div className="container">
-        <div className={styles.buttons}>
-          <Link className={styles.btn} to="#register">
-            Register for Private Beta
-          </Link>
-          <Link
-            className={styles.btn}
-            to="https://console.weaviate.io"
-            target="_blank"
-          >
-            Create a free sandbox
-          </Link>
-        </div>
+        <ButtonContainer>
+          <LinkButton link="#register" newTab={false}>Register for Private Beta</LinkButton>
+          <LinkButton link="https://console.weaviate.io">Create a free sandbox</LinkButton>
+        </ButtonContainer>
       </div>
     </div>
   );
