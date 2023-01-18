@@ -31,15 +31,12 @@ script:
   # Link Validation
   # - source _build_scripts/verify-links.sh
 
-  ### TODO: When going live
-  ## Replace "docusaurus-migration" with "main"
   ###
   ##
   # Deploy to Cloud Bucket
   - |
-    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH = "docusaurus-migration" ]; then
+    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH = "main" ]; then
       source _build_scripts/gcp-bucket.sh
-      
       source _build_scripts/slack-find-author.sh
       source _build_scripts/slack-release-message.sh
     fi
