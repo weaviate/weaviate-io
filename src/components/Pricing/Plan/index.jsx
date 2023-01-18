@@ -1,8 +1,8 @@
 import React from 'react';
-import PricingBusinessCritical from '/src/components/Pricing/BusinessCritical';
-import PricingEnterprise from '/src/components/Pricing/Enterprise';
-import PricingSandBox from '/src/components/Pricing/SandBox';
-import PricingStandard from '/src/components/Pricing/Standard';
+import PricingBusinessCritical from './businessCritical';
+import PricingEnterprise from './enterprise';
+import PricingSandbox from './sandbox';
+import PricingStandard from './standard';
 import styles from './styles.module.scss';
 
 export default function PricingPlan() {
@@ -16,7 +16,7 @@ export default function PricingPlan() {
           production, simply pick a plan that best suits your needs.
         </p>
       </div>
-      <PricingSandBox />
+      <PricingSandbox />
       <div className={styles.plan}>
         <PricingStandard />
         <PricingEnterprise />

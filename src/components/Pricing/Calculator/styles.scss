@@ -16,6 +16,10 @@
   align-items: center;
   margin-bottom: 20px;
 
+  .label {
+    width: 140px;
+  }
+
   @media screen and (max-width: 668px) {
     flex-direction: column;
   }
@@ -97,6 +101,7 @@
 
 .value {
   input {
+    width: 140px;
     appearance: none;
     padding: 1rem;
     border: 1px solid #01b0db;
