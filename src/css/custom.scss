@@ -336,23 +336,8 @@
 /* light mode */
 
 #__docusaurus {
-  background: rgb(208, 228, 236);
-  background: linear-gradient(
-    45deg,
-    rgba(208, 228, 236, 1) 0%,
-    rgba(224, 238, 211, 1) 47%,
-    rgba(207, 228, 237, 1) 100%
-  );
-}
-
-.navbar {
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 1) 4%,
-    rgba(17, 11, 62, 1) 50%,
-    rgba(25, 16, 92, 1) 96%
-  );
+  background-image: url('/img/site/background-light.png');
+  background-size: cover;
 }
 
 .footer {
@@ -375,12 +360,12 @@
     background-image: url('/img/site/weaviate-logo-light.png');
   }
   .navbar {
-    background: rgb(208, 228, 236);
+    // background: transparent;
     background: linear-gradient(
       90deg,
-      rgba(208, 228, 236, 1) 0%,
-      rgba(224, 238, 211, 1) 0%,
-      rgba(207, 228, 237, 1) 100%
+      rgba(208, 228, 236, 0.4) 0%,
+      rgba(224, 238, 211, 0.4) 47%,
+      rgba(207, 228, 237, 0.4) 100%
     );
     box-shadow: none;
   }
@@ -393,16 +378,21 @@
 }
 
 /* Styling one class specially in dark mode */
-
 [data-theme='dark'] {
   #__docusaurus {
-    background: rgb(0, 0, 0);
+    background-image: url('/img/site/background-dark.png');
+    background-size: cover;
+  }
+
+  .navbar {
+    // background: transparent;
     background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 1) 4%,
-      rgba(17, 11, 62, 1) 50%,
-      rgba(25, 16, 92, 1) 96%
-    );
+        90deg,
+        rgba(0, 0, 0, 0.4) 4%,
+        rgba(17, 11, 62, 0.4) 50%,
+        rgba(25, 16, 92, 0.4) 96%
+      );
+    box-shadow: none;
   }
 
   .navbar__logo {
@@ -412,13 +402,7 @@
     background-image: url('/img/site/weaviate-nav-logo-dark.svg');
   }
   .footer--dark {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 1) 4%,
-      rgba(17, 11, 62, 1) 50%,
-      rgba(25, 16, 92, 1) 96%
-    );
+    background: transparent;
 
     .container {
       border-top: 0.5px solid #01b0db;

@@ -12,19 +12,19 @@ export default function Person(props) {
       <div className={styles.personLinks}>
         {details.linkedin != null && 
           <Link to={"https://linkedin.com/in/" + details.linkedin}>
-            <i class="fa-brands fa-xl fa-linkedin"></i>
+            <i className="fab fa-xl fa-linkedin"></i>
           </Link>
         }
 
         {details.twitter != null && 
           <Link to={"https://twitter.com/" + details.twitter}>
-            <i class="fa-brands fa-xl fa-twitter"></i>
+            <i className="fab fa-xl fa-twitter"></i>
           </Link>
         }
 
         {details.github != null &&
           <Link to={"https://github.com/" + details.github}>
-            <i class="fa-brands fa-xl fa-github"></i>
+            <i className="fab fa-xl fa-github"></i>
           </Link>
         }
       </div>
