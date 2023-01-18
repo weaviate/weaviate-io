@@ -37,7 +37,7 @@ When creating a property, Weaviate needs to know what type of data you will give
 | blob | base64 encoded string | [more info](#datatype-blob) |
 | *cross reference* | string | [more info](#datatype-cross-reference) |
 
-(*) Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/semi-technologies/weaviate/issues/1563). As current workaround is to use a `string` instead.
+(*) Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
 
 ## DataType: string vs. text
 

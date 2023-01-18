@@ -16,7 +16,7 @@ module, imports a few sample images (you can add your own images, too!) and
 provides a very simple search frontend in [React](https://reactjs.org/) using
 the [Weaviate JS Client](/developers/weaviate/client-libraries/javascript.md)
 
-[Get started here](https://github.com/semi-technologies/weaviate-examples/blob/main/clip-multi-modal-text-image-search/README.md)
+[Get started here](https://github.com/weaviate/weaviate-examples/blob/main/clip-multi-modal-text-image-search/README.md)
 
 ## Semantic Search through Wikipedia
 

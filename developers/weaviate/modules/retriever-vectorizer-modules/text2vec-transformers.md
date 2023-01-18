@@ -26,7 +26,7 @@ The `text2vec-transformers` module is not available on the WCS.
 
 You have three options to select your desired model:
 
-1. **Use [any of our pre-built transformers model containers](#pre-built-images).** The models selected in [this list](#pre-built-images) have proven to work well with semantic search in the past. These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/semi-technologies/weaviate/issues)).
+1. **Use [any of our pre-built transformers model containers](#pre-built-images).** The models selected in [this list](#pre-built-images) have proven to work well with semantic search in the past. These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/weaviate/weaviate/issues)).
 2. **Use any model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publically-available-huggingface-model). The `text2vec-transformers` module supports any PyTorch or Tensorflow transformer model. 
 3. **Use any private or local PyTorch or Tensorflow transformer model.** [Click here to learn how](#option-3-custom-build-with-a-private-or-local-model). If you have your own transformer model in a registry or on a local disk, you can use this with Weaviate.
 
@@ -111,7 +111,7 @@ the existing git tags of this repository. E.g. to pin `distilbert-base-uncased`
 to version `1.0.0`, you can use
 `semitechnologies/transformers-inference:distilbert-base-uncased-1.0.0`.
 
-Your favorite model is not included? [Open an issue](https://github.com/semi-technologies/weaviate/issues) to include it or build
+Your favorite model is not included? [Open an issue](https://github.com/weaviate/weaviate/issues) to include it or build
 a custom image as outlined below.
 
 ### Option 2: Use any publically available Huggingface Model

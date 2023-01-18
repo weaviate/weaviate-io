@@ -97,8 +97,8 @@ const config = {
                     
                     // TODO: Update to 'main' for release
                     editUrl:
-                        'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/',
-                        // 'https://github.com/semi-technologies/weaviate-io/tree/main/',
+                        'https://github.com/weaviate/weaviate-io/tree/docusaurus-migration/',
+                        // 'https://github.com/weaviate/weaviate-io/tree/main/',
                     remarkPlugins: [remarkReplace],
                 },
                 blog: {
@@ -107,8 +107,8 @@ const config = {
 
                     // TODO: Update to 'main' for release
                     editUrl:
-                        'https://github.com/semi-technologies/weaviate-io/tree/docusaurus-migration/',
-                        // 'https://github.com/semi-technologies/weaviate-io/tree/main/',
+                        'https://github.com/weaviate/weaviate-io/tree/docusaurus-migration/',
+                        // 'https://github.com/weaviate/weaviate-io/tree/main/',
                 },
                 theme: {
                     customCss: [
@@ -212,7 +212,7 @@ const config = {
                             },
                             {
                                 label: 'GitHub',
-                                href: 'https://github.com/semi-technologies/weaviate-io',
+                                href: 'https://github.com/weaviate/weaviate-io',
                             },
                             {
                                 label: 'Slack',
@@ -229,7 +229,7 @@ const config = {
                         className: 'fa-brands fa-lg fa-slack',
                     },
                     {
-                        to: 'https://github.com/semi-technologies/weaviate',
+                        to: 'https://github.com/weaviate/weaviate',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
@@ -331,7 +331,7 @@ const config = {
                             },
                             {
                                 label: 'GitHub',
-                                href: 'https://github.com/semi-technologies/weaviate-io',
+                                href: 'https://github.com/weaviate/weaviate-io',
                             },
                         ],
                     },

@@ -133,7 +133,7 @@ docker run -it \
 A few side notes on the above command:
 * I have explicitly set `GOGC` to 100; this would have also been the default if I had not set it.
 * I have enabled `GODEBUG=gctrace=1`. That makes the GC more verbose. It will log every time it runs. Each log message prints both the current heap size and the new target.
-* I have enabled Prometheus monitoring using `PROMETHEUS_MONITORING_ENABLED=true` and exposed the metrics port on port 2112. I am also running a Prometheus and Grafana instance. How to set up those is out of the scope of this article, but there is an excellent end-to-end [Weaviate Prometheus Example here](https://github.com/semi-technologies/weaviate-examples/tree/main/monitoring-prometheus-grafana).
+* I have enabled Prometheus monitoring using `PROMETHEUS_MONITORING_ENABLED=true` and exposed the metrics port on port 2112. I am also running a Prometheus and Grafana instance. How to set up those is out of the scope of this article, but there is an excellent end-to-end [Weaviate Prometheus Example here](https://github.com/weaviate/weaviate-examples/tree/main/monitoring-prometheus-grafana).
 
 It is now time to start our import and see what happens. As predicted, I was not able to import all objects. After around 240,000 out of 400,000 objects, the dreaded OOM kill happened:
 
@@ -249,4 +249,4 @@ Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) a
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
-Weaviate is open source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

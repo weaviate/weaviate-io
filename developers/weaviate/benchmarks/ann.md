@@ -61,7 +61,7 @@ users would also experience. In particular, these means:
 ### Scripts
 
 This benchmark is produced using [open-source
-scripts](https://github.com/semi-technologies/weaviate-benchmarking), so you can reproduce it yourself.
+scripts](https://github.com/weaviate/weaviate-benchmarking), so you can reproduce it yourself.
 
 ### Hardware
 
@@ -100,7 +100,7 @@ send your queries using another language. For the maximum throughput, we
 recommend using the [Go](/developers/weaviate/client-libraries/go.md) or
 [Java](/developers/weaviate/client-libraries/java.md) clients.
 
-The complete import and test scripts are available [here](https://github.com/semi-technologies/weaviate-benchmarking).
+The complete import and test scripts are available [here](https://github.com/weaviate/weaviate-benchmarking).
 
 # Results
 
@@ -344,7 +344,7 @@ hints to look at:
 
 ## Where can I find the scripts to run this benchmark myself?
 
-The [repository is located here](https://github.com/semi-technologies/weaviate-benchmarking).
+The [repository is located here](https://github.com/weaviate/weaviate-benchmarking).
 
 <!-- <style type="text/css">
 

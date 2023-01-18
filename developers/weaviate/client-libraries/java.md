@@ -311,7 +311,7 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 # Change logs
 
 
-Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-java-client/releases) for updates on the latest `Java client` changes.
+Check the [change logs on GitHub](https://github.com/weaviate/weaviate-java-client/releases) for updates on the latest `Java client` changes.
 
 ## More Resources
 

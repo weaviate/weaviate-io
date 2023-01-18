@@ -70,7 +70,7 @@ As of Weaviate `v1.16`, the supported external backup providers are:
 - [S3](/developers/weaviate/configuration/backups.md#s3-aws-or-s3-compatible)
 - [GCS](/developers/weaviate/configuration/backups.md#gcs-google-cloud-storage)
 
-Thanks to the extensibility of the module system, new providers can be readily added. If you are interested in an external provider other than the ones listed above, feel free to reach out via our [community Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), or open an issue on [GitHub](https://github.com/semi-technologies/weaviate).
+Thanks to the extensibility of the module system, new providers can be readily added. If you are interested in an external provider other than the ones listed above, feel free to reach out via our [community Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), or open an issue on [GitHub](https://github.com/weaviate/weaviate).
 
 ### Internal provider
 

@@ -38,7 +38,7 @@ Get the Helm chart and `values.yml` configuration file.
 # Set the Weaviate chart version
 export CHART_VERSION="v||site.helm_version||"
 # Download the Weaviate Helm chart
-wget https://github.com/semi-technologies/weaviate-helm/releases/download/$CHART_VERSION/weaviate.tgz
+wget https://github.com/weaviate/weaviate-helm/releases/download/$CHART_VERSION/weaviate.tgz
 # Download an example values.yml (with the default configuration)
 wget https://raw.githubusercontent.com/semi-technologies/weaviate-helm/$CHART_VERSION/weaviate/values.yaml
 ```
@@ -50,7 +50,7 @@ make sure that you set the correct Weaviate version. This may either be through
 explicitly setting it as part of the `values.yaml` or through overwriting the
 default as outlined in the deploy step below._
 
-In the [`values.yaml`](https://github.com/semi-technologies/weaviate-helm/blob/master/weaviate/values.yaml)
+In the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)
 file you can tweak the configuration to align it with your
 setup. The yaml file is extensively documented to help you align the
 configuration with your setup.

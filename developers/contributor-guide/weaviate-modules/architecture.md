@@ -21,7 +21,7 @@ is a really small one. A module essentially only has to provide a `Name()
 string` and `Init(...) error` method.
 
 If your struct implements [this small
-interface](https://github.com/semi-technologies/weaviate/blob/master/entities/modulecapabilities/module.go)
+interface](https://github.com/weaviate/weaviate/blob/master/entities/modulecapabilities/module.go)
 it is already a valid Weaviate Module.
 
 ## Module Capabilities
@@ -38,10 +38,10 @@ implement a specific capability when calling all modules hooked-in functions.
 An example for such a capability interface would be the `Vectorizer`
 capability. If your module should be able to vectorize an object, it must
 implement [this small
-interface](https://github.com/semi-technologies/weaviate/blob/master/entities/modulecapabilities/vectorizer.go).
+interface](https://github.com/weaviate/weaviate/blob/master/entities/modulecapabilities/vectorizer.go).
 
 All possible capabilities can be found in the [`modulecapabilites`
-package](https://github.com/semi-technologies/weaviate/tree/master/entities/modulecapabilities).
+package](https://github.com/weaviate/weaviate/tree/master/entities/modulecapabilities).
 
 This setup also allows us to extend the module API itself in a fashion that is
 completely non-breaking to existing modules. If a new capability is added and
@@ -49,7 +49,7 @@ existing modules don't implement this new interface, they are simply ignored
 for this capability, but all others keep working.
 
 The [`moduletools`
-package](https://github.com/semi-technologies/weaviate/tree/master/entities/moduletools)
+package](https://github.com/weaviate/weaviate/tree/master/entities/moduletools)
 provides the modules with various tools that a module might need when providing
 various capabilities. They are injected through the signatures of the
 capability interface methods.
@@ -57,7 +57,7 @@ capability interface methods.
 
 ### Module Capabilities: additional.go
 
-Here is a detailed explanation of what you can find in [`additional.go`](https://github.com/semi-technologies/weaviate/blob/master/entities/modulecapabilities/additional.go):
+Here is a detailed explanation of what you can find in [`additional.go`](https://github.com/weaviate/weaviate/blob/master/entities/modulecapabilities/additional.go):
 * The function `GraphQLFieldFn` generates a GraphQL field based on a class name.
 * The function `ExtractAdditionalFn`extracts parameters from graphql queries. 
 * The interface `AdditionalPropertyWithSearchVector`defines additional property parameters with the ability to pass a search vector. If an additional parameter must contain a search vector, then a given param needs to implement `SetSearchVector` method, so that then that search vector will be added to given parameter.
@@ -113,5 +113,5 @@ A module completely controls the communication with any container or service it 
 
 Take a look at some of the existing modules to get a feel for how they work:
 
-- [`text2vec-contextionary`](https://github.com/semi-technologies/weaviate/tree/master/modules/text2vec-contextionary)
-- [`text2vec-transformers`](https://github.com/semi-technologies/weaviate/tree/master/modules/text2vec-transformers)
+- [`text2vec-contextionary`](https://github.com/weaviate/weaviate/tree/master/modules/text2vec-contextionary)
+- [`text2vec-transformers`](https://github.com/weaviate/weaviate/tree/master/modules/text2vec-transformers)

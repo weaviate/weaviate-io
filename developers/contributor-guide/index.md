@@ -15,7 +15,7 @@ We are delighted to have you here. We are thrilled that you want to contribute t
 
 ##  Weaviate on GitHub
 
-If you're using Weaviate or if you like the project, please <a href="https://github.com/semi-technologies/weaviate">⭐ this repository</a>  to show your support!
+If you're using Weaviate or if you like the project, please <a href="https://github.com/weaviate/weaviate">⭐ this repository</a>  to show your support!
 
 ## Contributor Guide Structure
 

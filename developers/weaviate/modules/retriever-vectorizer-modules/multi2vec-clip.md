@@ -18,7 +18,7 @@ To choose your specific model, you simply need to select the correct Docker cont
 
 You have three options to select your desired model:
 
-1. **Use [any of our pre-built clip model containers](#pre-built-images).** These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/semi-technologies/weaviate/issues)).
+1. **Use [any of our pre-built clip model containers](#pre-built-images).** These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/weaviate/weaviate/issues)).
 2. **Use any SBERT Clip model from HuggingFace Model Hub.** [Click here to learn how](#option-2-use-any-publically-available-huggingface-model). The `multi2vec-clip` module supports any CLIP-based transformer model compatible with `SentenceTransformers`. 
 3. **Use any private or SBERT Clip model.** [Click here to learn how](#option-3-custom-build-with-a-private-or-local-model). If you have your own CLIB-based `SentenceTransformers` model in a registry or on a local disk, you can use this with Weaviate.
 

@@ -61,7 +61,7 @@ You can also use the Docker compose [configurator](/developers/weaviate/quicksta
 
 Obtain your token as described in step 1.
 
-Get a Weaviate [helm chart](https://github.com/semi-technologies/weaviate-helm/releases) of version `||site.helm_version||` or higher. 
+Get a Weaviate [helm chart](https://github.com/weaviate/weaviate-helm/releases) of version `||site.helm_version||` or higher. 
 
 Enable the proxy and configure the proxy using the `collector_proxy` key from the `values.yaml` like so:
 ```
