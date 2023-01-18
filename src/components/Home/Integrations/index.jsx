@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
+import { LinkButton } from '/src/theme/LinkButton';
 
 export default function GomepageIntegrations() {
   return (
@@ -24,6 +25,11 @@ export default function GomepageIntegrations() {
             also choose one of Weaviate's modules with out-of-the-box support
             for vectorization. You can also choose one of the integrations with
             one of the well-known neural search frameworks.
+          </p>
+          <p>
+            <div className={styles.buttons}>
+              <LinkButton link="/developers/weaviate/modules" newTab={false}>Learn about Weaviate modules</LinkButton>
+            </div>
           </p>
         </div>
       </div>

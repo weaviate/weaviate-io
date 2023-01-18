@@ -6,18 +6,16 @@ export default function HomepageCompany() {
   return (
     <div className="container">
       <h2>
-        Weaviate is developed and supported <br /> by SeMI Technologies
+        We believe in open-source
       </h2>
       <p>
-        We believe open source is the best way to develop and deliver software.{' '}
-        <br />
-        We provide guidance, support and professional services for Weaviate.
+      Weaviate is open-source and available for anybody to use wherever they want. Our services are created around SaaS, Hybrid-SaaS, and industry-standard service-level agreements.
       </p>
       <div className={styles.links}>
         <Link to="/company/about-us#our_company_values">
           Our Values {'>'}
         </Link>
-        <Link to="/company/careers">Careers {'>'}</Link>
+        <Link href="https://careers.weaviate.io/">Careers {'>'}</Link>
         <Link to="/company/playbook">
           How we work - Playbook {'>'}
         </Link>

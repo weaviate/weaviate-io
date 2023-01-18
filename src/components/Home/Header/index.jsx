@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
+import { LinkButton } from '/src/theme/LinkButton';
 
 export default function HomepageHeader() {
   return (
@@ -8,13 +9,12 @@ export default function HomepageHeader() {
       <div className="container">
         <p className="hero__logo" />
         <h1 className="hero__title">
-          Weaviate <br /> Beyond search
+          Weaviate
         </h1>
         <p className="hero__subtitle">
-          Weaviate empowers developers to deliver <br /> Scalable machine
-          learning-powered apps
+          Weaviate is an open-source vector search engine.<br/>It allows you to store data objects and vector embeddings from your favorite ML-models,<br/>and scale seamlessly into billions of data objects.
         </p>
-        <div className={styles.buttons}>
+        {/* <div className={styles.buttons}>
           <Link className="link" to="/developers/weaviate">
             Documentation {'>'}
           </Link>
@@ -24,8 +24,10 @@ export default function HomepageHeader() {
           <Link className="link" to="/developers/weaviate">
             Demo {'>'}
           </Link>
+        </div> */}
+        <div className={styles.buttons}></div>
+          <LinkButton link="/developers/weaviate/quickstart" newTab={false}>Get Started Now</LinkButton>
         </div>
-      </div>
     </header>
   );
 }

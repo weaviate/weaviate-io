@@ -8,7 +8,7 @@ export default function HomepageWhatYouCanDo() {
       <div className={styles.header}>
         <h2 className={styles.title}>What you can do with Weaviate</h2>
         <p className={styles.subtitle}>
-          Beyond search, Weaviate's next-gen vector search engine can power a
+          Weaviate's next-gen vector search engine can power a
           wide range of innovative apps.
         </p>
       </div>
@@ -24,24 +24,21 @@ export default function HomepageWhatYouCanDo() {
                 value="tab1"
                 disabled={false}
               >
-                <h3>Search</h3>
+                <h3>Vector Search</h3>
                 <p>
-                  Go beyond keyword matching, find meaning in anything <br />{' '}
-                  from images to molecules.
+                Perform lightning-fast pure vector search over raw vectors or similarity search over data objects.
                 </p>
               </Tabs.Trigger>
               <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
-                <h3>Recommendations</h3>
+                <h3>Hybrid Search</h3>
                 <p>
-                  Provide top match recommendations seamlessly with minimal
-                  setup.
+                Find data objects by automatically combining vector search with traditional search filters.
                 </p>
               </Tabs.Trigger>
               <Tabs.Trigger className={styles.tabsTrigger} value="tab3">
-                <h3>Integrations</h3>
+                <h3>Generative Search</h3>
                 <p>
-                  Use AI models, datasets and services such as GTP-3, Wikipedia
-                  and Jira.
+                  Use any generative model in combination with your data, for example to do Q&A over your dataset.
                 </p>
               </Tabs.Trigger>
             </Tabs.List>

@@ -8,8 +8,7 @@ export default function HomepageLearn() {
       <div className={styles.header}>
         <h2>Learn & get inspired</h2>
         <p>
-          The sky is the limit to what you can do with Weaviate. Learn how to
-          use Weaviate and see what people are building with it.
+          Learn how to use Weaviate and see what people are building with it.
         </p>
       </div>
       <div className={styles.cards}>
@@ -17,7 +16,7 @@ export default function HomepageLearn() {
           <Link to="/podcast">
             <h3 className={styles.title}>
               Podcast:
-              <br /> Neural Magic in Weaviate
+              <br /> Listen to industry experts
             </h3>
           </Link>
           <div className={styles.links}>
