@@ -32,8 +32,8 @@ Weaviate uses a custom implementation of HNSW that overcomes certain limitations
 
 Custom HNSW implementation in Weaviate references:
 
-- [HNSW plugin (Github)](https://github.com/semi-technologies/weaviate/tree/master/adapters/repos/db/vector/hnsw)
-- [vector dot product ASM](https://github.com/semi-technologies/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s)
+- [HNSW plugin (Github)](https://github.com/weaviate/weaviate/tree/master/adapters/repos/db/vector/hnsw)
+- [vector dot product ASM](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s)
 
 More information:
 
@@ -90,7 +90,7 @@ A: Yes, you can! Weaviate support ontology, RDF-like definitions in its schema, 
 
 ## Q: Why isn't there a text2vec-contextionary in my language?
 
-A: Because you are probably one of the first that needs one! Ping us [here on Github](https://github.com/semi-technologies/weaviate/issues), and we will make sure in the next iteration it will become available (unless you want it in [Silbo Gomero](https://en.wikipedia.org/wiki/Silbo_Gomero) or another language which is whistled).
+A: Because you are probably one of the first that needs one! Ping us [here on Github](https://github.com/weaviate/weaviate/issues), and we will make sure in the next iteration it will become available (unless you want it in [Silbo Gomero](https://en.wikipedia.org/wiki/Silbo_Gomero) or another language which is whistled).
 
 ## Q: How to deal with custom terminology?
 
@@ -130,7 +130,7 @@ A: Weaviate uses Docker images as a means to distribute releases and uses Docker
 
 ## Q: Can I request a feature in Weaviate?
 
-A: Sure (also, feel free to [issue a pull request](https://github.com/semi-technologies/weaviate/pulls) 😉) you can [add those requests here](https://github.com/semi-technologies/weaviate/issues). The only thing you need is a Github account, and while you're there, make sure to give us a star 😇.
+A: Sure (also, feel free to [issue a pull request](https://github.com/weaviate/weaviate/pulls) 😉) you can [add those requests here](https://github.com/weaviate/weaviate/issues). The only thing you need is a Github account, and while you're there, make sure to give us a star 😇.
 
 ## Q: Does Weaviate require NFS volumes on Kubernetes?
 
@@ -182,7 +182,7 @@ A: In short: for convenience you can add relations to your data schema, because 
 
 ## Q: Is it possible to create one-to-many relationships in the schema?
 
-A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example)[/developers/weaviate/tutorials/how-to-create-a-schema.md#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/semi-technologies/weaviate/issues/1611).
+A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example)[/developers/weaviate/tutorials/how-to-create-a-schema.md#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/weaviate/weaviate/issues/1611).
 
 ## Q: What is the different between `text` and `string` and `valueText` and `valueString`?
 
@@ -196,7 +196,7 @@ We have recently implemented a LSM tree based approached to storage in Weaviate 
 
 ## Q: With your aggregations I could not see how to do time buckets, is this possible?
 
-A: At the moment, we cannot aggregate over timeseries into time buckets yet, but architecturally there's nothing in the way. If there is demand, this seems like a nice feature request, you can submit an [issue here](https://github.com/semi-technologies/weaviate/issues). (We're a very small company though and the priority is on Horizontal Scaling at the moment.)
+A: At the moment, we cannot aggregate over timeseries into time buckets yet, but architecturally there's nothing in the way. If there is demand, this seems like a nice feature request, you can submit an [issue here](https://github.com/weaviate/weaviate/issues). (We're a very small company though and the priority is on Horizontal Scaling at the moment.)
 
 ## Q: Is there support to multiple versions of the query/document embedding models to co-exist at a given time? (helps with live experiments of new model versions)
 
@@ -230,10 +230,10 @@ A: Here are top 3 best practices for updating data:
 
 ## Q: How can I run the latest master branch with docker-compose?
 
-A: You can run Weaviate with `docker-compose`, you can build your own container off the [`master`](https://github.com/semi-technologies/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
+A: You can run Weaviate with `docker-compose`, you can build your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
 
 ```sh
-git clone https://github.com/semi-technologies/weaviate.git
+git clone https://github.com/weaviate/weaviate.git
 cd weaviate
 docker build --target weaviate -t name-of-your-weaviate-image .
 ```
@@ -273,7 +273,7 @@ A: To obtain the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_simila
 
 ## Q: My Weaviate setup is using more memory than what I think is reasonable. How can I debug this?
 
-A: First of all, make sure your import runs with the latest version of Weaviate, since `v1.12.0`/`v1.12.1` fixed an issue where [too much data was written to disk](https://github.com/semi-technologies/weaviate/issues/1868) which then lead to unreasonable memory consumption after restarts. If this did not fix the issue yet, please see this post on [how to profile the memory usage of a Weaviate setup](https://stackoverflow.com/a/71793178/5322199). 
+A: First of all, make sure your import runs with the latest version of Weaviate, since `v1.12.0`/`v1.12.1` fixed an issue where [too much data was written to disk](https://github.com/weaviate/weaviate/issues/1868) which then lead to unreasonable memory consumption after restarts. If this did not fix the issue yet, please see this post on [how to profile the memory usage of a Weaviate setup](https://stackoverflow.com/a/71793178/5322199). 
 
 ## Q: The quality of my search results change depending on the specified limit. Why? How can I fix this?
 
@@ -298,7 +298,7 @@ If you need a higher search quality for a given limit you can consider the follo
 
 Look at the:
 
-1. [Knowledge base of old issues](https://github.com/semi-technologies/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
+1. [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
 1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
-1. For issues: [Github](https://github.com/semi-technologies/weaviate/issues). Or,
+1. For issues: [Github](https://github.com/weaviate/weaviate/issues). Or,
 1. Ask your question in the Slack channel: [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).

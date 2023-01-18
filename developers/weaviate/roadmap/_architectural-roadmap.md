@@ -39,7 +39,7 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
   </tr>
   <tr>
     <td>
-      <i>status: done in <a href="https://github.com/semi-technologies/weaviate/releases/tag/v1.4.0">v1.4.0</a></i>
+      <i>status: done in <a href="https://github.com/weaviate/weaviate/releases/tag/v1.4.0">v1.4.0</a></i>
     </td>
   </tr>
   <tr>
@@ -58,7 +58,7 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
   </tr>
   <tr>
     <td>
-      <i>status: done in <a href="https://github.com/semi-technologies/weaviate/releases/tag/v1.5.0">v1.5.0</a></i>
+      <i>status: done in <a href="https://github.com/weaviate/weaviate/releases/tag/v1.5.0">v1.5.0</a></i>
     </td>
   </tr>
   <tr>
@@ -118,7 +118,7 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
   </tr>
   <tr>
     <td>
-      <i>status: in progress (<a href="https://github.com/semi-technologies/weaviate/milestone/21">follow on GitHub</a>)</i>
+      <i>status: in progress (<a href="https://github.com/weaviate/weaviate/milestone/21">follow on GitHub</a>)</i>
     </td>
   </tr>
   <tr>

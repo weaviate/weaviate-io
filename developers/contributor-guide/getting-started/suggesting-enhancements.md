@@ -10,7 +10,7 @@ Here are some guidelines for suggesting enhancements. They are designed to make 
 
 ## How to suggest enhancements
 
-Suggestions are tracked as GitHub issues, such as these in [Weaviate core]](https://github.com/semi-technologies/weaviate/issues). Check first for a duplicate WIP (work in progress) issue. If not, create an issue in the relevant GitHub repository with the following:
+Suggestions are tracked as GitHub issues, such as these in [Weaviate core]](https://github.com/weaviate/weaviate/issues). Check first for a duplicate WIP (work in progress) issue. If not, create an issue in the relevant GitHub repository with the following:
 
 * **Use a clear and descriptive title**.
 * **A specific and accurate description** of the suggested enhancement; include steps if necessary.

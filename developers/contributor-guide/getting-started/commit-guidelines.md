@@ -68,7 +68,7 @@ This PR fixes: #123
 
 ### Description
 
-Every repository has a [pull request template](https://github.com/semi-technologies/weaviate-io/blob/main/.github/PULL_REQUEST_TEMPLATE.md) with a specific set of headers that you can use to write the body of commit messages. You can modify this template at the time of making a pull request and exclude the parts which is not necessary.
+Every repository has a [pull request template](https://github.com/weaviate/weaviate-io/blob/main/.github/PULL_REQUEST_TEMPLATE.md) with a specific set of headers that you can use to write the body of commit messages. You can modify this template at the time of making a pull request and exclude the parts which is not necessary.
 
 Example:
 

@@ -111,11 +111,11 @@ Response:
 
 ### B. Build a completely new module
 
-Implementing a fully new module with both part 1 and 2 is a lot more flexible, because you can control naming, APIs, behavior, etc. To achieve this, you are essentially contributing to Weaviate. Note that for this option, you need to understand at least parts of Weaviate's architecture, and what a module can and can not control (what is "fixed"). You can fork [Weaviate's repository](https://github.com/semi-technologies/weaviate) and create a completely new [module](https://github.com/semi-technologies/weaviate/tree/master/modules) inside it. This new module can also depend on any number of other containers (which you will have to supply), and could use any API for communication with its dependencies (it could also have not any dependencies). 
+Implementing a fully new module with both part 1 and 2 is a lot more flexible, because you can control naming, APIs, behavior, etc. To achieve this, you are essentially contributing to Weaviate. Note that for this option, you need to understand at least parts of Weaviate's architecture, and what a module can and can not control (what is "fixed"). You can fork [Weaviate's repository](https://github.com/weaviate/weaviate) and create a completely new [module](https://github.com/weaviate/weaviate/tree/master/modules) inside it. This new module can also depend on any number of other containers (which you will have to supply), and could use any API for communication with its dependencies (it could also have not any dependencies). 
 
 Detailed instructions are described in the [contributor guide](/developers/contributor-guide/weaviate-modules/how-to-build-a-new-module)
 
-If you choose to build a completely new module including a Weaviate Go interface, you can contact us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or through an [issue on Github](https://github.com/semi-technologies/weaviate/issues) so we help you get started.
+If you choose to build a completely new module including a Weaviate Go interface, you can contact us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or through an [issue on Github](https://github.com/weaviate/weaviate/issues) so we help you get started.
 
 ## Important notes
 - The length of the vectors your vectorizer has influences later usage, for example if you're exploring your data by vector with the GraphQL explore filter, the length of this vector should match with the vector length of the data points. 

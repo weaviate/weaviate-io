@@ -20,7 +20,7 @@ export default function HomepageJoinCommunity() {
             </Link>
           </div>
           <div className={styles.socialBox}>
-            <Link to="https://github.com/semi-technologies/weaviate">
+            <Link to="https://github.com/weaviate/weaviate">
               <div className={styles.github} />
               <p className={styles.text}>GitHub</p>
             </Link>

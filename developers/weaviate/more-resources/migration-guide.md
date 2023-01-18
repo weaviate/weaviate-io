@@ -309,7 +309,7 @@ upgrading.
   * *Improve Aggregation Queries*. Reduces the amount of allocations required for some aggregation queries, speeding them up and reduces the amount of timeouts encountered during aggregations.
 
 
-Check [this github page](https://github.com/semi-technologies/weaviate/releases/tag/v1.5.0) for all the changes. 
+Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.5.0) for all the changes. 
 
 
 # Changelog for version 1.4.0
@@ -329,7 +329,7 @@ Check [this github page](https://github.com/semi-technologies/weaviate/releases/
   * Detect schema settings that will most likely lead to duplicate vectors and print warning
   * Fix missing schema validation on transformers module
 
-Check [this github page](https://github.com/semi-technologies/weaviate/releases/tag/v1.4.0) for all the changes. 
+Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.4.0) for all the changes. 
 
 
 # Changelog for version 1.3.0
@@ -338,14 +338,14 @@ Check [this github page](https://github.com/semi-technologies/weaviate/releases/
 * New feature: [Question Answering (Q&A) Module](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md)
 * New feature: New Meta Information for all transformer-based modules
   
-Check [this github page](https://github.com/semi-technologies/weaviate/releases/tag/v1.3.0) for all the changes. 
+Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.3.0) for all the changes. 
 
 # Changelog for version 1.2.0
 
 * No breaking changes
 * New feature: Introduction of the [Transformer Module](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md)
 
-Check [this github page](https://github.com/semi-technologies/weaviate/releases/tag/v1.2.0) for all the changes. 
+Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.2.0) for all the changes. 
 
 # Changelog for version 1.1.0
 
@@ -353,7 +353,7 @@ Check [this github page](https://github.com/semi-technologies/weaviate/releases/
 * New feature: GraphQL `nearObject` search to get most similar object.
 * Architectural  update: Cross-reference batch import speed improvements.
  
-Check [this github page](https://github.com/semi-technologies/weaviate/releases/tag/v1.1.0) for all the changes. 
+Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.1.0) for all the changes. 
 
 # Migration to version 1.0.0
 
@@ -896,7 +896,7 @@ The default vectorizer module can be specified in a new environment variable so 
 
 
 # Official release notes
-Official release notes can be found on [Github](https://github.com/semi-technologies/weaviate/releases/tag/0.23.0). 
+Official release notes can be found on [Github](https://github.com/weaviate/weaviate/releases/tag/0.23.0). 
 
 
 ## More Resources

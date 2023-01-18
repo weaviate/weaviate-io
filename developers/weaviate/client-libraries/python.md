@@ -704,7 +704,7 @@ Note that you need to use the `.do()` method to execute the query.
 
 # Change logs
 
-Check the [change logs on GitHub](https://github.com/semi-technologies/weaviate-python-client/releases) for updates on the latest `Python client` changes.
+Check the [change logs on GitHub](https://github.com/weaviate/weaviate-python-client/releases) for updates on the latest `Python client` changes.
 
 ## More Resources
 

@@ -63,9 +63,9 @@ with Weaviate in general and a specific Weaviate version.
 
 For inspiration of how to write great tests for your client, take a look at the
 tests of the Javascript client
-([Example](https://github.com/semi-technologies/weaviate-javascript-client/blob/master/data/journey.test.js))
+([Example](https://github.com/weaviate/weaviate-javascript-client/blob/master/data/journey.test.js))
 or Go client
-([Example](https://github.com/semi-technologies/weaviate-go-client/tree/master/test)).
+([Example](https://github.com/weaviate/weaviate-go-client/tree/master/test)).
 
 # How to get started
 

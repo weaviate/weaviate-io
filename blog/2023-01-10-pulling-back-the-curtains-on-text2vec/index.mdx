@@ -27,16 +27,16 @@ But while the future is here, it isn't yet perfect. Tools like Weaviate can seem
 
 So let's take a look inside the magic box together in this post. 
 
-If you would like to follow along, the Jupyter notebook and data are available [here](https://github.com/semi-technologies/weaviate-examples/tree/main/text2vec-behind-curtain). You can use our free [Weaviate Cloud Service](https://console.weaviate.io/) (WCS) sandbox, or set up your own Weaviate instance also.
+If you would like to follow along, the Jupyter notebook and data are available [here](https://github.com/weaviate/weaviate-examples/tree/main/text2vec-behind-curtain). You can use our free [Weaviate Cloud Service](https://console.weaviate.io/) (WCS) sandbox, or set up your own Weaviate instance also.
 
-> Note: The vectorization is done by [Weaviate “core”](https://github.com/semi-technologies/weaviate) and not at the client level. So even though we use Python examples, the principles are universally applicable.
+> Note: The vectorization is done by [Weaviate “core”](https://github.com/weaviate/weaviate) and not at the client level. So even though we use Python examples, the principles are universally applicable.
 Let's get started!
 
 ## Text2vec: behind the scenes
 
 Weaviate's `text2vec-*` modules transform text data into dense vectors for populating a Weaviate database. Each `text2vec-*` module uses an external API (like `text2vec-openai` or `text2vec-huggingface`) or a local instance like `text2vec-transformers` to produce a vector for each object.
 
-Let's try vectorizing data with the `text2vec-cohere` module. We will be using data from `tiny_jeopardy.csv` [available here](https://github.com/semi-technologies/weaviate-examples/tree/main/text2vec-behind-curtain) containing questions from the game show Jeopardy. We'll just use a few (20) questions here, but the [full dataset on Kaggle](https://www.kaggle.com/datasets/tunguz/200000-jeopardy-questions) includes 200k+ questions.  
+Let's try vectorizing data with the `text2vec-cohere` module. We will be using data from `tiny_jeopardy.csv` [available here](https://github.com/weaviate/weaviate-examples/tree/main/text2vec-behind-curtain) containing questions from the game show Jeopardy. We'll just use a few (20) questions here, but the [full dataset on Kaggle](https://www.kaggle.com/datasets/tunguz/200000-jeopardy-questions) includes 200k+ questions.  
 
 Load the data into a Pandas dataframe, then populate Weaviate like this:
 
@@ -267,4 +267,4 @@ Now that you've seen exactly what happens behind the curtains, we encourage you 
 ## Stay Connected
 Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io). 
 
-Weaviate is open-source, you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don't forget to give us a ⭐️ while you are there.
+Weaviate is open-source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.
