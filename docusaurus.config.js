@@ -212,7 +212,7 @@ const config = {
                             },
                             {
                                 label: 'GitHub',
-                                href: 'https://github.com/weaviate/weaviate-io',
+                                href: 'https://github.com/weaviate/weaviate',
                             },
                             {
                                 label: 'Slack',
@@ -331,7 +331,7 @@ const config = {
                             },
                             {
                                 label: 'GitHub',
-                                href: 'https://github.com/weaviate/weaviate-io',
+                                href: 'https://github.com/weaviate/weaviate',
                             },
                         ],
                     },
