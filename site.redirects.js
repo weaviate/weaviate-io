@@ -89,135 +89,135 @@ const siteRedirects = {
         // Blog redirects
         {
             to: '/blog/understand-your-unstructured-data',
-            from: '/blog/2021/01/understand-your-unstructured-data.html'
+            from: '/blog/2021/01/understand-your-unstructured-data'
         },
         {
             to: '/blog/history-of-weaviate',
-            from: '/blog/2021/01/The-history-of-Weaviate.html'
+            from: '/blog/2021/01/The-history-of-Weaviate'
         },
         {
             to: '/blog/GraphQL-API-design',
-            from: '/blog/2021/01/GraphQL-API-design.html'
+            from: '/blog/2021/01/GraphQL-API-design'
         },
         {
             to: '/blog/CRUD-support-in-Weaviate',
-            from: '/blog/2021/02/CRUD-support-in-Weaviate.html'
+            from: '/blog/2021/02/CRUD-support-in-Weaviate'
         },
         {
             to: '/blog/weaviate-1-2-transformer-models',
-            from: '/blog/2021/03/Weaviate-1-2-transformer-models.html'
+            from: '/blog/2021/03/Weaviate-1-2-transformer-models'
         },
         {
             to: '/blog/Docker-and-Containers-with-Weaviate',
-            from: '/blog/2021/05/Docker-and-Containers-with-Weaviate.html'
+            from: '/blog/2021/05/Docker-and-Containers-with-Weaviate'
         },
         {
             to: '/blog/Semantic-Search-with-Wikipedia-and-Weaviate',
-            from: '/blog/2021/11/Semantic-Search-with-Wikipedia-and-Weaviate.html'
+            from: '/blog/2021/11/Semantic-Search-with-Wikipedia-and-Weaviate'
         },
         {
             to: '/blog/The-AI-First-Database-Ecosystem',
-            from: '/blog/2022/06/The-AI-First-Database-Ecosystem.html'
+            from: '/blog/2022/06/The-AI-First-Database-Ecosystem'
         },
         {
             to: '/blog/weaviate-1-14-release',
-            from: '/blog/2022/07/Weaviate-release-1-14.html'
+            from: '/blog/2022/07/Weaviate-release-1-14'
         },
         {
             to: '/blog/Using-Cross-Encoders-as-reranker-in-multistage-vector-search',
-            from: '/blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search.html'
+            from: '/blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search'
         },
         {
             to: '/blog/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications',
-            from: '/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications.html'
+            from: '/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications'
         },
         {
             to: '/blog/Research-Insights-Spider',
-            from: '/blog/2022/08/Research-Insights-Spider.html'
+            from: '/blog/2022/08/Research-Insights-Spider'
         },
         {
             to: '/blog/Weaviate-Cloud-Service',
-            from: '/blog/2022/09/Weaviate-Cloud-Service.html'
+            from: '/blog/2022/09/Weaviate-Cloud-Service'
         },
         {
             to: '/blog/weaviate-1-15-release',
-            from: '/blog/2022/09/Weaviate-release-1-15.html'
+            from: '/blog/2022/09/Weaviate-release-1-15'
         },
         {
             to: '/blog/Why-is-Vector-Search-so-fast',
-            from: '/blog/2022/09/Why-is-Vector-Search-so-fast.html'
+            from: '/blog/2022/09/Why-is-Vector-Search-so-fast'
         },
         {
             to: '/blog/Distance-Metrics-in-Vector-Search',
-            from: '/blog/2022/09/Distance-Metrics-in-Vector-Search.html'
+            from: '/blog/2022/09/Distance-Metrics-in-Vector-Search'
         },
         {
             to: '/blog/weaviate-1-15-1-release',
-            from: '/blog/2022/09/Weaviate-release-1-15-1.html'
+            from: '/blog/2022/09/Weaviate-release-1-15-1'
         },
         {
             to: '/blog/Hugging-Face-Inference-API-in-Weaviate',
-            from: '/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate.html'
+            from: '/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate'
         },
         {
             to: '/blog/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face',
-            from: '/blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face.html'
+            from: '/blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face'
         },
         {
             to: '/blog/ANN-algorithms-Vamana-vs-HNSW',
-            from: '/blog/2022/10/ANN-algorithms-Vamana-vs-HNSW.html'
+            from: '/blog/2022/10/ANN-algorithms-Vamana-vs-HNSW'
         },
         {
             to: '/blog/how-to-build-an-image-search-application-with-weaviate',
-            from: '/blog/2022/10/how-to-build-an-image-search-application-with-weaviate.html'
+            from: '/blog/2022/10/how-to-build-an-image-search-application-with-weaviate'
         },
         {
             to: '/blog/Lock-striping-pattern',
-            from: '/blog/2022/10/Lock-striping-pattern.html'
+            from: '/blog/2022/10/Lock-striping-pattern'
         },
         {
             to: '/blog/weaviate-1-16-release',
-            from: '/blog/2022/11/Weaviate-release-1-16.html'
+            from: '/blog/2022/11/Weaviate-release-1-16'
         },
         {
             to: '/blog/tutorial-backup-and-restore-in-weaviate',
-            from: '/blog/2022/11/tutorial-backup-and-restore-in-weaviate.html'
+            from: '/blog/2022/11/tutorial-backup-and-restore-in-weaviate'
         },
         {
             to: '/blog/ref2vec-centroid',
-            from: '/blog/2022/11/ref2vec-centroid.html'
+            from: '/blog/2022/11/ref2vec-centroid'
         },
         {
             to: '/blog/vector-library-vs-vector-database',
-            from: '/blog/2022/12/vector-library-vs-vector-database.html'
+            from: '/blog/2022/12/vector-library-vs-vector-database'
         },
         {
             to: '/blog/sphere-dataset-in-weaviate',
-            from: '/blog/2022/12/sphere-dataset-in-weaviate.html'
+            from: '/blog/2022/12/sphere-dataset-in-weaviate'
         },
         {
             to: '/blog/Cohere-multilingual-with-weaviate',
-            from: '/blog/2022/12/Cohere-multilingual-with-weaviate.html'
+            from: '/blog/2022/12/Cohere-multilingual-with-weaviate'
         },
         {
             to: '/blog/weaviate-1-17-release',
-            from: '/blog/2022/12/Weaviate-release-1-17.html'
+            from: '/blog/2022/12/Weaviate-release-1-17'
         },
         {
             to: '/blog/details-behind-the-sphere-dataset-in-weaviate',
-            from: '/blog/2022/12/details-behind-the-sphere-dataset-in-weaviate.html'
+            from: '/blog/2022/12/details-behind-the-sphere-dataset-in-weaviate'
         },
         {
             to: '/blog/hybrid-search-explained',
-            from: '/blog/2023/01/Hybrid-Search-Explained.html'
+            from: '/blog/2023/01/Hybrid-Search-Explained'
         },
         {
             to: '/blog/pulling-back-the-curtains-on-text2vec',
-            from: '/blog/2023/01/pulling-back-the-curtains-on-text2vec.html'
+            from: '/blog/2023/01/pulling-back-the-curtains-on-text2vec'
         },
         {
             to: '/blog/vector-embeddings-explained',
-            from: '/blog/2023/01/Vector-Embeddings-Explained.html'
+            from: '/blog/2023/01/Vector-Embeddings-Explained'
         },
     ],
     createRedirects(existingPath) {
