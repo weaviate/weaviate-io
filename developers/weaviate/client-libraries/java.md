@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-# Installation and setup
+## Installation and setup
 To get the latest stable version of the Java client library, add this dependency to your project:
 
 ```xml
@@ -67,23 +67,23 @@ public class App {
 }
 ```
 
-# References
+## References
 
 All [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) references covered by the Java client, and explained on those reference pages in the code blocks.
 
-# Design
+## Design
 
-## Builder pattern
+### Builder pattern
 
 The Java client functions are designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../api/rest/index.md) and the [GraphQL reference pages](../api/graphql/index.md).
 
 The code snippet above shows a simple query similar to `RESTful GET /v1/meta`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by using the `.metaGetter()` on `.misc()`. The query will be sent with the `.run()` function, this object is thus required for every function you want to build and execute. 
 
-# Migration Guides
+## Migration Guides
 
-## From `2.4.0` to `3.0.0`
+### From `2.4.0` to `3.0.0`
 
-### Removed @Deprecated method `Aggregate::withFields(Fields fields)`
+#### Removed @Deprecated method `Aggregate::withFields(Fields fields)`
 
 Before:
 ```java
@@ -99,7 +99,7 @@ After:
 client.graphQL().aggregate().withFields(name, description)...
 ```
 
-### Removed @Deprecated method `Get::withFields(Fields fields)`
+#### Removed @Deprecated method `Get::withFields(Fields fields)`
 
 Before:
 ```java
@@ -115,7 +115,7 @@ After:
 client.graphQL().get().withFields(name, description)...
 ```
 
-### Removed @Deprecated method `Get::withNearVector(Float[] vector)`
+#### Removed @Deprecated method `Get::withNearVector(Float[] vector)`
 
 Before:
 ```java
@@ -130,11 +130,11 @@ NearVectorArgument nearVector = NearVectorArgument.builder().vector(new Float[]{
 client.graphQL().get().withNearVector(nearVector)...
 ```
 
-### All `where` filters use the same implementation
+#### All `where` filters use the same implementation
 
 With `batch delete` feature, unified `filters.WhereFilter` implementation is introduced, which replaces `classifications.WhereFilter`, `graphql.query.argument.WhereArgument` and `graphql.query.argument.WhereFilter`.
 
-#### GraphQL
+##### GraphQL
 
 Before:
 ```java
@@ -258,7 +258,7 @@ WhereFilter where = WhereFilter.builder()
 client.graphQL().aggregate().withWhere(where)...
 ```
 
-#### Classification
+##### Classification
 
 Before:
 ```java
@@ -308,7 +308,7 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 ```
 
 
-# Change logs
+## Change logs
 
 
 Check the [change logs on GitHub](https://github.com/weaviate/weaviate-java-client/releases) for updates on the latest `Java client` changes.

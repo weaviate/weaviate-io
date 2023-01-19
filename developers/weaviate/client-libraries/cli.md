@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-# Installation
+## Installation
 
 The Weaviate CLI is available on [Pypi.org](https://pypi.org/project/weaviate-cli/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher.
 
@@ -26,9 +26,9 @@ $ weaviate version
 
 which should return ||site.weaviate_cli_version||.
 
-# Functions
+## Functions
 
-## Configuration
+### Configuration
 
 You need to configure the CLI tool before you can interact with you Weaviate instance. This can be done manually or by adding flags to commands. 
 - Manually (interactive): 
@@ -81,7 +81,7 @@ You can view the configuration with the command:
 $ weaviate config view
 ```
 
-## Ping
+### Ping
 You can ping the Weaviate URL you're connected to with:
 ```sh
 $ weaviate ping
@@ -90,10 +90,10 @@ $ weaviate ping
 Which returns `Weaviate is reachable!` if the connection with the Weaviate server is set up correctly.
 
 
-## Schema
+### Schema
 There are three operations available with regard to the schema: [import](#import), [export](#export) and [truncate](#truncate).
 
-### Import
+#### Import
 
 Adding a schema can be done via:
 
@@ -109,7 +109,7 @@ To overwrite your schema you can use the `--force` flag, this will clear the ind
 $ weaviate schema import --force my_schema.json # using --force will delete your data
 ```
 
-### Export
+#### Export
 You can export a schema to a json file that is present in the Weaviate instance by:
 
 ```sh
@@ -118,7 +118,7 @@ $ weaviate schema export my_schema.json
 
 Where `my_schema.json` can be replaces by a json file and local location. Naturally this function only outputs the schema to the given location when a schema is present in Weaviate. 
 
-### Truncate
+#### Truncate
 
 With `delete` you can remove the entire schema and all the data that is associated with it. You will be asked for confirmation unless the `--force` flag is added.
 
@@ -126,9 +126,9 @@ With `delete` you can remove the entire schema and all the data that is associat
 $ weaviate schema delete
 ```
 
-## Data
+### Data
 
-### Import
+#### Import
 The `import` function enables data import from a json file. When the flag `--fail-on-error` is added, this command execution will fail if an error was thrown by Weaviate when loading the data object in. 
 
 ```sh
@@ -162,13 +162,13 @@ The json file and location is passed in the command. The file needs to be format
 }
 ```
 
-### Empty
+#### Empty
 With `delete` you can remove all data objects in Weaviate. You will be asked for confirmation unless the `--force` flag is added.
 
 ```sh
 $ weaviate data delete
 ```
-# Change logs
+## Change logs
 
 Check the [change logs on GitHub](https://github.com/weaviate/weaviate-cli/releases) for updates on the latest `CLI` changes.
 
