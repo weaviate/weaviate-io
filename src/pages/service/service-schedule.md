@@ -1,10 +1,10 @@
 ---
 title: Services Schedule
-# image: og/service/_title.jpg
+# image: og/service/service-schedule.jpg
 ---
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-<MetaSEO img="og/service/_title.jpg" />
+<MetaSEO img="og/service/service-schedule.jpg" />
 
 # Services Schedule
 

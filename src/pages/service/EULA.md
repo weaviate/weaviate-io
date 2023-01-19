@@ -1,10 +1,10 @@
 ---
 title: End-User License Agreement ("Agreement")
-# image: og/service/_title.jpg
+# image: og/service/eula.jpg
 ---
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-<MetaSEO img="og/service/_title.jpg" />
+<MetaSEO img="og/service/eula.jpg" />
 
 # End-User License Agreement ("Agreement")
 

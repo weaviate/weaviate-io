@@ -1,10 +1,10 @@
 ---
 title: Contributor License Agreement
-# image: og/service/_title.jpg
+# image: og/service/contributor-license-agreement.jpg
 ---
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-<MetaSEO img="og/service/_title.jpg" />
+<MetaSEO img="og/service/contributor-license-agreement.jpg" />
 
 # Contributor License Agreement
 

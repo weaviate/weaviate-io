@@ -1,10 +1,10 @@
 ---
 title: General Terms
-# image: og/service/_title.jpg
+# image: og/service/general-terms.jpg
 ---
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-<MetaSEO img="og/service/_title.jpg" />
+<MetaSEO img="og/service/general-terms.jpg" />
 
 # General Terms
 

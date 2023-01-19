@@ -1,10 +1,10 @@
 ---
 title: Code of Conduct
-# image: og/service/_title.jpg
+# image: og/service/code-of-conduct.jpg
 ---
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-<MetaSEO img="og/service/_title.jpg" />
+<MetaSEO img="og/service/code-of-conduct.jpg" />
 
 # Code of ethics and professional conduct
 
