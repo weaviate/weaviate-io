@@ -1,22 +1,20 @@
 ---
-title: Service
-image: og/service/_title.jpg
+title: Weaviate Service pages
+# image: og/service/_title.jpg
 ---
 import { MetaSEO } from '/src/theme/MetaSEO';
 
 <MetaSEO img="og/service/_title.jpg" />
 
-## Welcome to the Service page 
+## Weaviate Service pages
 
-Markdown goes here
+For more information related to one of the documents below, please reach out to [hello@weaviate.io](mailto:hello@weaviate.io).
 
-:::tip
-You can even add [admonitions](https://docusaurus.io/docs/markdown-features/admonitions)
-:::
-
-<details>
-  <summary>Or even do some <code>Dark Magic</code> thing?</summary>
-
-I can write a special message hiiiieeeereeeee!!!!
-
-</details>
+* Contributors
+  * [Code of Conduct](./code-of-conduct)
+  * [Contributor License Agreement](./contributor-license-agreement)
+* Customers
+  * [General Terms](./general-terms)
+  * [End-User License Agreement](./EULA)
+  * [Service Level Agreement](./sla)
+  * [Service Schedule](./service-schedule)
