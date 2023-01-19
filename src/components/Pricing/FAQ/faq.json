@@ -18,42 +18,38 @@
   },
   {
     "question": "Is there a discount for non-profits, startups, or students?",
-    "answer": "​Yes, please reach out to us at <a href='mailto:hello+discount@weaviate.io'>hello+discount@weaviate.io</a>"
+    "answer": "Yes, please reach out to us at <a href='mailto:hello+discount@weaviate.io'>hello+discount@weaviate.io</a>"
   },
   {
-    "question": "​Is the Weaviate Cloud Service SOC2 compliment?",
+    "question": "Is the Weaviate Cloud Service SOC2 compliment?",
     "answer": "Not yet; we are currently in the process of becoming SOC2 compliant. Feel free to email us for a status update on <a href='mailto:hello+soc2@weaviate.io'>hello+soc2@weaviate.io</a>"
   },
   {
     "question": "What is Hibernation?",
-    "answer": "​Hibernation ​is a process where a cluster goes down (i.e., 'hibernates') while retaining your data after a given period. This is ideal for research or development purposes; when the service endpoints are used again, the service comes back up with a short time delay."
+    "answer": "Hibernation is a process where a cluster goes down (i.e., 'hibernates') while retaining your data after a given period. This is ideal for research or development purposes; when the service endpoints are used again, the service comes back up with a short time delay."
   },
   {
-    "question": "​What is round-robin provisioning?",
-    "answer": "​If your SLA tier contains round-robin provisioning, the Weaviate Cloud Service will provision on Amazon Web Services (AWS), Google Cloud Platform (GCP), ​or Microsoft Azure where enough resources are available."
+    "question": "What is round-robin provisioning?",
+    "answer": "If your SLA tier contains round-robin provisioning, the Weaviate Cloud Service will provision on Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure where enough resources are available."
   },
   {
     "question": "Do I pay for data objects without embeddings?",
-    "answer": "​No, storage of data objects without vector embeddings is on us.​"
+    "answer": "No, storage of data objects without vector embeddings is on us."
   },
   {
-    "question": "​W​hich Weaviate modules​ are available?​",
-    "answer": "Weaviate modules based on inference APIs are automatically integrated in the cloud service. These modules currently include Hugging Face Inference and OpenAI's embeddings end-points.​"
+    "question": "Which Weaviate modules are available?",
+    "answer": "Weaviate modules based on inference APIs are automatically integrated in the cloud service. These modules currently include Hugging Face Inference and OpenAI's embeddings end-points."
   },
   {
     "question": "Can I store data from different models with different embedding sizes?",
     "answer": "Yes."
   },
   {
-    "question": "​My use case fluctuates in the number of data objects stored per month, how do you calculate the total number of objects per month?",
-    "answer": "​We take the median number of vectors per month measured per hour."
+    "question": "My use case fluctuates in the number of data objects stored per month, how do you calculate the total number of objects per month?",
+    "answer": "We take the median number of vectors per month measured per hour."
   },
   {
-    "question": "What if I have an unexpected ​usage spike?",
-    "answer": "Usage spikes are -almost- always a good sign! Your Weaviate-powered app or platform is being actively used, and we don't want your bill to be in the way of your success. Spikes are analyzed at the end of the month, and occasional ones are on us.​"
-  },
-  {
-    "question": "Who is behind Weaviate?​",
-    "answer": "​The company behind Weaviate is <a href='https://semi.technology' target='_blank'>SeMI Technologies</a>. They run the Cloud Service and maintain the open source software.​"
+    "question": "What if I have an unexpected usage spike?",
+    "answer": "Usage spikes are -almost- always a good sign! Your Weaviate-powered app or platform is being actively used, and we don't want your bill to be in the way of your success. Spikes are analyzed at the end of the month, and occasional ones are on us."
   }
 ]
