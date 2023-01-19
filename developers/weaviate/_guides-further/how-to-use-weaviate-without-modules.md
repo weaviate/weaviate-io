@@ -35,7 +35,7 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 ### Download the Docker Compose configuration file. 
 <!-- TODO: {{site.weaviate_version needs to be replaced}} -->
 ```bash
-curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
+curl -o docker-compose.yml "https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
 ```
 
 This will download the `docker-compose.yml` file. If you inspect its contents with your favorite text editor, you should see the below lines amongst others:
