@@ -78,7 +78,7 @@ The following guidelines help us write clean and maintainable code:
 * Use [golangci-lint](https://github.com/golangci/golangci-lint) to combine
   various meta linters. The current config can be found in `.golangci.yml`. It
   is inspired by the settings on [Go Report
-  Card](https://goreportcard.com/report/github.com/semi-technologies/weaviate)
+  Card](https://goreportcard.com/report/github.com/weaviate/weaviate)
   where Weaviate holds an A+ rating.
 * Keep methods short. 
 * Don't comment obvious things, comment intent on decisions you took that might
