@@ -9,8 +9,7 @@ export default function HomepageWhatYouCanDo() {
       <div className={styles.header}>
         <h2 className={styles.title}>What you can do with Weaviate</h2>
         <p className={styles.subtitle}>
-          Beyond search, Weaviate's next-gen vector search engine can power a
-          wide range of innovative apps.
+          Beyond search, Weaviate's next-gen vector search engine can power a wide range of innovative apps.
         </p>
       </div>
       <div className={styles.module}>
@@ -27,13 +26,13 @@ export default function HomepageWhatYouCanDo() {
               >
                 <h3>Vector Search</h3>
                 <p>
-                  Perform lightning-fast pure vector search over raw vectors or similarity search over data objects.
+                  Perform lightning-fast pure vector similarity search over raw vectors or data objects, even with filters.
                 </p>
               </Tabs.Trigger>
               <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
                 <h3>Hybrid Search</h3>
                 <p>
-                  Find data objects by automatically combining vector search with traditional search filters.
+                  Combine keyword-based search with vector search techniques for state-of-the-art results.
                 </p>
               </Tabs.Trigger>
               <Tabs.Trigger className={styles.tabsTrigger} value="tab3">

@@ -7,13 +7,19 @@ export default function HomePage() {
     <div className="container">
       <div className={styles.header}>
         <h2>
-        We're all about developer experience
+        Developer Experience &amp; Community
         </h2>
         <p>
-          Because we care how fast you can go from zero to production,<br/>we've open-sourced our database, made different SaaS services available,<br/>and integrated with your favorite embedding providers through our modular ecosystem.
+        Because we care about how fast you can go from zero to production,<br/>we aim to serve our community by:
+        <ul>
+          <li>Publishing open-source</li>
+          <li>Creating valuable SaaS services</li>
+          <li>Integrating with your favorite embedding providers and frameworks</li>
+        </ul>
         </p>
+
         <div className={styles.buttons}>
-          <LinkButton link="/developers/weaviate/concepts" newTab={false}>Learn all about how Weaviate works</LinkButton>
+          <LinkButton link="https://weaviate.slack.com" newTab={false}>Join our community on Slack</LinkButton>
         </div>
       </div>
       <div className={styles.features}>
@@ -28,14 +34,14 @@ export default function HomePage() {
           <p className={styles.icon2}></p>
           <h4 className={styles.title}>Hybrid Search</h4>
           <p className={styles.subTitle}>
-            Combine modern vector search filters with traditional search filters for the best search results.
+            Combine multiple search techniques, such as keyword-based and vector search, to provide state-of-the-art search experiences.
           </p>
         </div>
         <div className={styles.box}>
           <p className={styles.icon3}></p>
           <h4 className={styles.title}>Generative Search</h4>
           <p className={styles.subTitle}>
-            Improve your search results by piping them through LLM models like GPT-3.
+            Improve your search results by piping them through LLM models like GPT-3 to create next-gen search experiences.
           </p>
         </div>
       </div>
