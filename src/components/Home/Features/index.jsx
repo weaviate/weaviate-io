@@ -10,12 +10,14 @@ export default function HomePage() {
         Developer Experience &amp; Community
         </h2>
         <p>
-        Because we care about how fast you can go from zero to production, we aim to serve our community by:<br/>        
-        <li>Publishing open-source</li>
-        <li>Creating valuable SaaS services</li>
-        <li>Integrating with your favorite embedding providers and frameworks</li>
-        
+        Because we care about how fast you can go from zero to production,<br/>we aim to serve our community by:
+        <ul>
+          <li>Publishing open-source</li>
+          <li>Creating valuable SaaS services</li>
+          <li>Integrating with your favorite embedding providers and frameworks</li>
+        </ul>
         </p>
+
         <div className={styles.buttons}>
           <LinkButton link="https://weaviate.slack.com" newTab={false}>Join our community on Slack</LinkButton>
         </div>

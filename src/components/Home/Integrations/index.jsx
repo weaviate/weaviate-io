@@ -21,10 +21,7 @@ export default function HomepageIntegrations() {
         <div className={styles.right}>
           <h2>Integrations</h2>
           <p>
-            Besides Weaviate's capabilities to bring your own vectors, you can
-            also choose one of Weaviate's modules with out-of-the-box support
-            for vectorization. You can also pick from a wide variety of
-            ​well-known neural search frameworks with Weaviate integrations.
+            Besides Weaviate's capabilities to bring your own vectors, you can also choose one of Weaviate's modules with out-of-the-box support for vectorization. You can also pick from a wide variety of well-known neural search frameworks with Weaviate integrations.
           </p>
           <LinkButton link="/developers/weaviate/modules" newTab={false}>Learn about Weaviate modules</LinkButton>
         </div>

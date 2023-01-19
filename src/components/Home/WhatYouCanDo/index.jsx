@@ -9,8 +9,7 @@ export default function HomepageWhatYouCanDo() {
       <div className={styles.header}>
         <h2 className={styles.title}>What you can do with Weaviate</h2>
         <p className={styles.subtitle}>
-          Beyond search, Weaviate's next-gen vector search engine can power a
-          wide range of innovative apps.
+          Beyond search, Weaviate's next-gen vector search engine can power a wide range of innovative apps.
         </p>
       </div>
       <div className={styles.module}>
@@ -33,7 +32,7 @@ export default function HomepageWhatYouCanDo() {
               <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
                 <h3>Hybrid Search</h3>
                 <p>
-                  Combine keyword-based and vector search techniques for state-of-the-art results.
+                  Combine keyword-based search with vector search techniques for state-of-the-art results.
                 </p>
               </Tabs.Trigger>
               <Tabs.Trigger className={styles.tabsTrigger} value="tab3">
