@@ -13,7 +13,7 @@ const config = {
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
     url: 'https://weaviate.io',
     baseUrl: '/',
-    trailingSlash: true,
+    trailingSlash: false,
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
