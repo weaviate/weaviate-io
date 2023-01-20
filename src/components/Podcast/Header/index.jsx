@@ -1,7 +1,7 @@
 import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
-import { LinkButton, LinkButtonAccent, ButtonContainer } from '/src/theme/Buttons';
+import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 
 export default function PodcastHeader() {
   return (
@@ -15,11 +15,11 @@ export default function PodcastHeader() {
         customers.
       </p>
       <ButtonContainer position="left">
-        <LinkButtonAccent
+        <LinkButton color="accent"
           link="https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0"
         >
           Subscribe to the YouTube channel <i className="fab fa-youtube"></i>
-        </LinkButtonAccent>
+        </LinkButton>
         <LinkButton
           link="https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7"
         >

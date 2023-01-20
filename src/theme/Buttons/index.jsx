@@ -1,23 +1,20 @@
 import Link from '@docusaurus/Link';
-import { stubArray } from 'lodash';
 import React from 'react';
 import styles from './styles.module.scss';
 
-export function LinkButton({children, link, newTab=true}) {
-  return (
-    <div className={styles.buttons}>
-      <Link className={styles.btn}
-        to={link}
-        target={newTab ? '_blank' : '_self'}
-      >{children}</Link>
-    </div>
-  );
-}
+export function LinkButton({children, link, color='main', newTab=true}) {
+  let style = styles.btn;
+  switch(color) {
+    case 'accent':
+      style += ' ' + styles.btnAccent;
+      break;
+    default:
+      style += ' ' + styles.btnMain;
+  }
 
-export function LinkButtonAccent({children, link, newTab=true}) {
   return (
     <div className={styles.buttons}>
-      <Link className={styles.btnAccent}
+      <Link className={style}
         to={link}
         target={newTab ? '_blank' : '_self'}
       >{children}</Link>
