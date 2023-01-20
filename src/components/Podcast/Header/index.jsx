@@ -18,7 +18,7 @@ export default function PodcastHeader() {
         <LinkButton color="accent"
           link="https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0"
         >
-          Subscribe to the YouTube channel <i className="fab fa-youtube"></i>
+          Subscribe to the YouTube Channel <i className="fab fa-youtube"></i>
         </LinkButton>
         <LinkButton
           link="https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7"

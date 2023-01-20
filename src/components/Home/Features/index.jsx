@@ -1,4 +1,5 @@
 import React from 'react';
+import { ButtonContainer } from '../../../theme/Buttons';
 import styles from './styles.module.scss';
 import { LinkButton } from '/src/theme/Buttons';
 
@@ -18,9 +19,9 @@ export default function HomePage() {
           <i className="fas fa-stars"></i> Integrating with your favorite embedding providers and frameworks
         </p>
 
-        <div className={styles.buttons}>
-          <LinkButton link="https://weaviate.slack.com" newTab={false}>Join our community on Slack</LinkButton>
-        </div>
+        <ButtonContainer>
+          <LinkButton link="https://weaviate.slack.com">Join Our Community on Slack</LinkButton>
+        </ButtonContainer>
       </div>
       <div className={styles.features}>
         <div className={styles.box}>

@@ -28,7 +28,7 @@ export default function PricingHeader() {
       <div className="container">
         <ButtonContainer>
           <LinkButton link="#register" newTab={false}>Register for Private Beta</LinkButton>
-          <LinkButton link="https://console.weaviate.io">Create a free sandbox</LinkButton>
+          <LinkButton link="https://console.weaviate.io">Create a Free Sandbox</LinkButton>
         </ButtonContainer>
       </div>
     </div>

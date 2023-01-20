@@ -13,12 +13,10 @@ export function LinkButton({children, link, color='main', newTab=true}) {
   }
 
   return (
-    <div className={styles.buttons}>
-      <Link className={style}
-        to={link}
-        target={newTab ? '_blank' : '_self'}
-      >{children}</Link>
-    </div>
+    <Link className={style}
+      to={link}
+      target={newTab ? '_blank' : '_self'}
+    >{children}</Link>
   );
 }
 

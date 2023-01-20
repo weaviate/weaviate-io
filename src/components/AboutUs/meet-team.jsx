@@ -4,6 +4,7 @@ import { LinkButton } from '/src/theme/Buttons';
 
 import Person from './person';
 import people from '/data/people.json'
+import { ButtonContainer } from '../../theme/Buttons';
 
 export default function MeetTheTeam() {
   return (
@@ -25,7 +26,9 @@ export default function MeetTheTeam() {
         })}
       </div>
     
-      <LinkButton link="/company/careers">Browse open positions</LinkButton>
+      <ButtonContainer>
+        <LinkButton link="/company/careers">Browse Open Positions</LinkButton>
+      </ButtonContainer>
     </div>
 
 
