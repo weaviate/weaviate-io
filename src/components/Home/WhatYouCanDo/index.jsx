@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import * as Tabs from '@radix-ui/react-tabs';
-import { LinkButton } from '/src/theme/LinkButton';
+import { LinkButton } from '/src/theme/Buttons';
 
 export default function HomepageWhatYouCanDo() {
   return (

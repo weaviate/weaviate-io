@@ -1,0 +1,42 @@
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+  
+.btn {
+  border-radius: 0.375rem;
+  padding: 8px 12px;
+  background-color: #00b800;
+  color: #fff;
+
+  &:hover {
+    text-decoration: none;
+    background-color: #00cc00;
+    color: #fff;
+  }
+}
+
+.btnAccent {
+  border-radius: 0.375rem;
+  padding: 8px 12px;
+  background-color: #ff007d;
+  color: #ffe3ec;
+
+  &:hover {
+    text-decoration: none;
+    background-color: #ff008d;
+    color: #ffe3ec;
+  }
+}

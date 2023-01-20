@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/LinkButton';
+import { LinkButton } from '/src/theme/Buttons';
 
 import Person from './person';
 import people from '/data/people.json'
