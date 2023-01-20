@@ -22,13 +22,13 @@ the [Weaviate JS Client](/developers/weaviate/client-libraries/javascript.md)
 
 We imported the complete English language Wikipedia article dataset into a single Weaviate instance to conduct semantic search queries through the Wikipedia articles, besides this, we've made all the graph relations between the articles too. We have made the import scripts, pre-processed articles, and backup available so that you can run the complete setup yourself.
 
-[Get started here](https://github.com/semi-technologies/semantic-search-through-Wikipedia-with-Weaviate)
+[Get started here](https://github.com/weaviate/semantic-search-through-Wikipedia-with-Weaviate)
 
 ## Meta AI Research - Biggraph on Wikidata
 
 We have imported the complete Wikidata PBG model into a Weaviate to search through the entire dataset in < 50 milliseconds (excluding internet latency). The demo GraphQL queries contain both pure vector search and scalar and vector searched mixed queries.
 
-[Get started here](https://github.com/semi-technologies/biggraph-wikidata-search-with-weaviate)
+[Get started here](https://github.com/weaviate/biggraph-wikidata-search-with-weaviate)
 
 ## News publications
 
@@ -49,7 +49,7 @@ The Docker Compose file contains both Weaviate with the `text2vec-contextionary`
 Download the Docker Compose file
 
 ```bash
-$ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-contextionary-newspublications/docker-compose.yaml
+$ curl -o docker-compose.yml https://raw.githubusercontent.com/weaviate/weaviate-examples/main/weaviate-contextionary-newspublications/docker-compose.yaml
 ```
 
 Run Docker (optional: run with `-d` to run Docker in the background)
@@ -70,7 +70,7 @@ The Docker Compose file contains both Weaviate with the `text2vec-contextionary`
 Download the Docker Compose file
 
 ```bash
-$ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose.yaml
+$ curl -o docker-compose.yml https://raw.githubusercontent.com/weaviate/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose.yaml
 ```
 
 Run Docker (optional: run with `-d` to run Docker in the background)
@@ -91,7 +91,7 @@ The Docker Compose file contains both Weaviate with the `text2vec-contextionary`
 Download the Docker Compose file
 
 ```bash
-$ curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-gpu.yaml
+$ curl -o docker-compose.yml https://raw.githubusercontent.com/weaviate/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-gpu.yaml
 ```
 
 Run Docker (optional: run with `-d` to run Docker in the background)

@@ -1,7 +1,7 @@
 import React from 'react';
+import { ButtonContainer } from '../../../theme/Buttons';
 import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
-import { LinkButton } from '/src/theme/LinkButton';
+import { LinkButton } from '/src/theme/Buttons';
 
 export default function HomepageHeader() {
   return (
@@ -14,8 +14,9 @@ export default function HomepageHeader() {
         <p className="hero__subtitle">
           Weaviate is an open-source vector search engine.<br/>It allows you to store data objects and vector embeddings from your favorite ML-models,<br/>and scale seamlessly into billions of data objects.
         </p>
-        <div className={styles.buttons}></div>
+        <ButtonContainer>
           <LinkButton link="/developers/weaviate/quickstart" newTab={false}>Get Started Now</LinkButton>
+        </ButtonContainer>
         </div>
     </header>
   );

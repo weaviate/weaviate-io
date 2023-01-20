@@ -34,7 +34,7 @@ export default function CompanyValues() {
             <ValueKind className={styles.valueImg} title="Value - Be Kind" />
             <div className={styles.valueContent}>
               <h2 className={styles.header}>Be Kind</h2>
-              <p>Our people make working at SeMI a joy. Their kindness is the magic, which contributes to our success.</p>
+              <p>Our people make working at Weaviate a joy. Their kindness is the magic, which contributes to our success.</p>
             </div>
           </div>
 

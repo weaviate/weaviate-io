@@ -38,13 +38,14 @@ export default function PricingBusinessCritical() {
         </li>
         <li>
           <i className="fas fa-circle-check"></i>{' '}
-          <span>SeMI Slack or Teams / Email</span>
+          <span>Weaviate Internal Slack or Teams / Email</span>
         </li>
         <li>
           <i className="fas fa-circle-check"></i>{' '}
           <span>
-            Severity 1 - max 1h <br /> Severity 2 - max 4h <br /> Severity 3 -
-            max 1bd
+            Severity 1 - max 1h <br />
+            Severity 2 - max 4h <br />
+            Severity 3 - max 1bd
           </span>
         </li>
         <li>

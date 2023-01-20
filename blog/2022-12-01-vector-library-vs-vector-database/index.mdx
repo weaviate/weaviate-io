@@ -41,13 +41,16 @@ Most vector libraries cannot be queried while importing your data. It is require
 ### Examples of Vector Libraries
 There are quite a few <a href="http://ann-benchmarks.com/" target="_blank" data-proofer-ignore>libraries</a> to choose from - [Facebook Faiss](https://github.com/facebookresearch/faiss), [Spotify Annoy](https://github.com/spotify/annoy), [Google ScaNN](https://github.com/google-research/google-research/tree/master/scann), [NMSLIB](https://github.com/nmslib/nmslib), and [HNSWLIB](https://github.com/nmslib/hnswlib). These libraries enable users to perform vector similarity search using the ANN algorithm.
 
-
 The ANN algorithm has different implementations depending on the vector library. Faiss uses the clustering method, Annoy uses trees, and ScaNN uses vector compression. There is a performance tradeoff for each, which you can choose depending on your application and performance measure.
 
 ### Example Use Cases
 Vector libraries are commonly used for applications that do not have changing data. For example, academic information retrieval benchmarks are designed to test performance on a **static snapshot** of data. When plugging an ANN index into production-ready applications, databases offer many appealing features not found in a library.
 
-![vector library versus vector database](./img/vector-library-vs-database.png){:width="90%"}
+<img
+    src={require('./img/vector-library-vs-database.png').default}
+    alt="alt"
+    style={{ maxWidth: "75%" }}
+/>
 
 ## Vector Databases
 One of the core features that set vector databases apart from libraries is the ability to store and update your data. Vector databases have full **CRUD** (create, read, update, and delete) support that solves the limitations of a vector library. Additionally, databases are more focused on enterprise-level [production deployments](https://www.youtube.com/watch?v=gXPuhyM11_k).
@@ -80,6 +83,7 @@ Weaviate also has a bunch of example use cases on [GitHub](https://github.com/we
 The table below summarizes the differences between vector libraries and databases. This is by no means an exhaustive list of features, and not every library or database has the same features. 
 
 |**Feature**|**Vector Library**|**Vector Database** (Weaviate as an example)|
+| ----- | ----- | ----- |
 | Filtering (in combination with Vector Search)| No| Yes|
 | Updatability (CRUD)| No (some do, e.g. hnswlib)| Yes|
 | Incremental importing, concurrent reading while importing| No (some do, e.g. hnswlib) | Yes |

@@ -1,6 +1,7 @@
 import React from 'react';
+import { ButtonContainer } from '../../../theme/Buttons';
 import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/LinkButton';
+import { LinkButton } from '/src/theme/Buttons';
 
 export default function HomePage() {
   return (
@@ -11,16 +12,16 @@ export default function HomePage() {
         </h2>
         <p>
         Because we care about how fast you can go from zero to production,<br/>we aim to serve our community by:
-        <ul>
-          <li>Publishing open-source</li>
-          <li>Creating valuable SaaS services</li>
-          <li>Integrating with your favorite embedding providers and frameworks</li>
-        </ul>
+        </p>
+        <p>
+          <i className="fas fa-stars"></i> Publishing open-source<br/>
+          <i className="fas fa-stars"></i> Creating valuable SaaS services<br/>
+          <i className="fas fa-stars"></i> Integrating with your favorite embedding providers and frameworks
         </p>
 
-        <div className={styles.buttons}>
-          <LinkButton link="https://weaviate.slack.com" newTab={false}>Join our community on Slack</LinkButton>
-        </div>
+        <ButtonContainer>
+          <LinkButton link="https://weaviate.slack.com">Join Our Community on Slack</LinkButton>
+        </ButtonContainer>
       </div>
       <div className={styles.features}>
         <div className={styles.box}>

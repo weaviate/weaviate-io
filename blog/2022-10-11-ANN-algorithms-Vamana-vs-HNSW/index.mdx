@@ -76,11 +76,19 @@ Traversing a graph is a bit like planning international travel. First, we could 
 
 For a better understanding, consider the below graphic, which shows a graph with all the connections generated using 1000 objects in two dimensions.
 
-![Vamana graph with 1000 objects](./img/vamana-graph.png){:width="75%"}
+<img
+    src={require('./img/vamana-graph.png').default}
+    alt="Vamana graph with 1000 objects"
+    style={{ maxWidth: "50%" }}
+/>
 
 If we iterate over it in steps – we can analyze how Vamana navigates through the graph.
 
-![Vamana graph - animated in 3/6/9 steps](./img/vamana-graph-animated.gif){:width="75%"}
+<img
+    src={require('./img/vamana-graph-animated.gif').default}
+    alt="Vamana graph - animated in 3/6/9 steps"
+    style={{ maxWidth: "50%" }}
+/>
 
 In the **first step**, you can see that the entry point for the search is in the center, and then the long-range connections allow jumping to the edges. This means that when a query comes, it will quickly move in the appropriate direction.<br/>
 The **second**, **third**, and **final steps** highlight the nodes reachable within **three**, **six**, and **nine** hops from the entry node.

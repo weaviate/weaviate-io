@@ -98,7 +98,7 @@ disadvantages: Mainly deviating code-bases and painful merge conflicts.
 
 ### Making a release
 
-*This section only applies to SeMI employees. Outside contributors cannot make
+*This section only applies to Weaviate employees. Outside contributors cannot make
 releases. If you have made a contribution and think it should be released,
 please let us know on the the public Weaviate Slack*
 

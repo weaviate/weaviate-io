@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import * as Tabs from '@radix-ui/react-tabs';
-import { LinkButton } from '/src/theme/LinkButton';
+import { LinkButton } from '/src/theme/Buttons';
+import { ButtonContainer } from '../../../theme/Buttons';
 
 export default function HomepageWhatYouCanDo() {
   return (
@@ -47,32 +48,32 @@ export default function HomepageWhatYouCanDo() {
             <Tabs.Content className={styles.tabsContent} value="tab1">
               <div className={styles.codeContainer}>
                 <p className={styles.codeImage + ' ' + styles.code1}></p>
-                <div className={styles.tryButton}>
+                <ButtonContainer position='left'>
                   <LinkButton 
                     link="https://console.weaviate.io/console/query#weaviate_uri=https://demo.dataset.playground.semi.technology&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Publication(%0A%20%20%20%20%20%20nearText%3A%20%7B%0A%20%20%20%20%20%20%20%20concepts%3A%20%5B%22fashion%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20certainty%0A%20%20%20%20%20%20%20%20distance%0A%20%20%20%20%20%20%20%20vector%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"
                   >Try Vector Search</LinkButton>
-                </div>
+                </ButtonContainer>
               </div>
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab2">
               <div className={styles.codeContainer}>
                 <p className={styles.codeImage + ' ' + styles.code2}></p>
 
-                <div className={styles.tryButton}>
+                <ButtonContainer position='left'>
                   <LinkButton
                     link="https://console.weaviate.io/console/query#weaviate_uri=https://demo.dataset.playground.semi.technology&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Article(%0A%20%20%20%20%20%20hybrid%3A%20%7B%0A%20%20%20%20%20%20%20%20query%3A%20%22Board%20games%20people%20are%20looking%20out%20for%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%2010%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20summary%0A%20%20%20%20%20%20title%0A%20%20%20%20%20%20url%0A%20%20%20%20%20%20wordCount%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"
                   >Try Hybrid Search</LinkButton>
-                </div>
+                </ButtonContainer>
               </div>
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab3">
               <div className={styles.codeContainer}>
                 <p className={styles.codeImage + ' ' + styles.code3}></p>
-                <div className={styles.tryButton}>
+                <ButtonContainer position='left'>
                   <LinkButton
                     link="https://console.weaviate.io/console/query#weaviate_uri=https://demo.dataset.playground.semi.technology&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Article(%0A%20%20%20%20%20%20ask%3A%20%7B%0A%20%20%20%20%20%20%20%20question%3A%20%22What%20movie%20did%20Ravensburger%20create%20a%20board%20game%20about%3F%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20summary%0A%20%20%20%20%20%20title%0A%20%20%20%20%20%20url%0A%20%20%20%20%20%20wordCount%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20answer%20%7B%0A%20%20%20%20%20%20%20%20%20%20result%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"
                   >Try Generative Search</LinkButton>
-                </div>
+                </ButtonContainer>
               </div>
             </Tabs.Content>
           </div>

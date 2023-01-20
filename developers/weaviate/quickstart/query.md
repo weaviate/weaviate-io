@@ -398,9 +398,9 @@ And yes, you can combine vector search with where filters.
 
 [Try out ⬆️](https://link.semi.technology/3QgJPfo)
 
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 We call Weaviate "vector first". This means that when combining vector search with a where filter, the where-filter will create an allowed-list that skips entries that are not allowed in the ANN index.
-</div>
+:::info
+We call Weaviate "vector first". This means that when combining vector search with a where filter, the where-filter will create an allowed-list that skips entries that are not allowed in the ANN index.
+:::
 
 If you use Weaviate with modules (the current Wikipedia demo dataset uses the [`text2vec-transformers`](../modules/retriever-vectorizer-modules/text2vec-transformers.md) vectorizer module and the [Q&A generator](../modules/reader-generator-modules/qna-transformers.md) module), they might add custom filters and custom `_additional` properties. These arguments are described in the documentation of the respective modules themselves.
 
@@ -644,10 +644,11 @@ The `Explore{}` function works very straightforwardly and only returns four prop
 3. `certainty` is the order from the query to the dataobject.
 4. `distance` is the distance between the query and the data object.
 
-<!-- TODO: Replace these with :::alert or similar -->
-<div class="alert alert-secondary alert-getting-started" markdown="1">
-💡 Data objects without vectors and data objects with different vector lengths than the input vector length or ID are skipped.
-</div>
+:::warning Warning
+Data objects without vectors are skipped.
+
+Data objects with different vector lengths than the input vector length or ID are skipped.
+:::
 
 ## Recap
 

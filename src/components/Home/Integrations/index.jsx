@@ -1,6 +1,7 @@
 import React from 'react';
+import { ButtonContainer } from '../../../theme/Buttons';
 import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/LinkButton';
+import { LinkButton } from '/src/theme/Buttons';
 
 export default function HomepageIntegrations() {
   return (
@@ -23,7 +24,9 @@ export default function HomepageIntegrations() {
           <p>
             Besides Weaviate's capabilities to bring your own vectors, you can also choose one of Weaviate's modules with out-of-the-box support for vectorization. You can also pick from a wide variety of well-known neural search frameworks with Weaviate integrations.
           </p>
-          <LinkButton link="/developers/weaviate/modules" newTab={false}>Learn about Weaviate modules</LinkButton>
+          <ButtonContainer position='left'>
+            <LinkButton link="/developers/weaviate/modules" newTab={false}>Learn about Weaviate modules</LinkButton>
+          </ButtonContainer>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ image: og/docs/quickstart-tutorial.jpg
 # tags: ['import']
 ---
 import Badges from '/_includes/badges.mdx';
-import { DownloadButton } from '/src/theme/LinkButton';
+import { DownloadButton } from '/src/theme/Buttons';
 
 <Badges/>
 

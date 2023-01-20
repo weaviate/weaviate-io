@@ -18,7 +18,11 @@ And more importantly: **How to choose a Sentence Transformer for Semantic Search
 
 There are too many models to summarize in one flowchart. So instead, we will describe factors that differentiate these models and give you tools to **choose the perfect model for your use case**.
 
-![Weaviate Sentence Transformers](./img/huggingface-sentence-transformers.png){:width="70%"}
+<img
+    src={require('./img/huggingface-sentence-transformers.png').default}
+    alt="Weaviate Sentence Transformers"
+    style={{ maxWidth: "70%" }}
+/>
 
 ## Differences in Deep Learning models
 
@@ -54,7 +58,11 @@ To put it as bluntly as possible, what makes `dangvantuan/sentence-camembert-lar
 
 Note that these tags are a part of Hugging Face’s **model cards**, an impressive effort to continue advancing the organization of Machine Learning models. At the time of this writing, model cards still rely on **manual tagging**. It may be the case that the developer uploading the model hasn’t filled out these details. If you are new to Hugging Face, please consider annotating your uploaded models by [adding a model card](https://huggingface.co/docs/hub/model-cards) - YAML sections in the `README.md`, like this:
 
-![How to populate a Hugging Face model card](./img/how-to-populate-model-card-min.png){:width="50%"}
+<img
+    src={require('./img/how-to-populate-model-card-min.png').default}
+    alt="How to populate a Hugging Face model card"
+    style={{ maxWidth: "70%" }}
+/>
 
 ### Private models
 A large part of the beauty of Weaviate's integration with Hugging Face is that **anyone** can upload their models to Hugging Face and use them in Weaviate's vector search engine. For example, I am doing research on COVID-19 literature, so I have fine-tuned a model on CORD-19 title to abstract matching and uploaded it to [CShorten/CORD-19-Title-Abstracts](https://huggingface.co/CShorten/CORD-19-Title-Abstracts-1-more-epoch).

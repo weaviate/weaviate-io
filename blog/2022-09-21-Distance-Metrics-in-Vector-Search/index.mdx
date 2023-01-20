@@ -51,13 +51,21 @@ For that reason, we have different distance metrics that balance the speed and a
 ## Cosine distance 
 The cosine similarity measures the angle between two vectors in a multi-dimensional space – with the idea that similar vectors point in a similar direction. Cosine similarity is commonly used in Natural Language Processing (NLP). It measures the similarity between documents regardless of the magnitude. This is advantageous because if two documents are far apart by the euclidean distance, the angle between them could still be small. For example, if the word ‘fruit' appears 30 times in one document and 10 in the other, that is a clear difference in magnitude, but the documents can still be similar if we only consider the angle. The smaller the angle is, the more similar the documents are.  
 
-The cosine similarity and cosine distance have an inverse relationship. As the distance between two vectors increases, the similarity will decrease. Likewise, if the distance decreases, then the similarity between the two vectors increases. 
+The cosine similarity and cosine distance have an inverse relationship. As the distance between two vectors increases, the similarity will decrease. Likewise, if the distance decreases, then the similarity between the two vectors increases.
 
-![Similarity-Distance](./img/new-similarity-distance.png){:width="50%"}
+<img
+    src={require('./img/new-similarity-distance.png').default}
+    alt="Similarity-Distance"
+    style={{ maxWidth: "50%" }}
+/>
 
 The cosine similarity is calculated as: 
 
-![Cosine Similarity Formula](./img/cosine-similarity-formula.png){:width="50%"}
+<img
+    src={require('./img/cosine-similarity-formula.png').default}
+    alt="Cosine Similarity Formula"
+    style={{ maxWidth: "50%" }}
+/>
 
 __A·B__ is the product (dot) of the vectors A and B
 
@@ -72,7 +80,11 @@ Let's use an example to calculate the similarity between two fruits – strawber
 Strawberry → `[4, 0, 1]`<br/>
 Blueberry →  `[3, 0, 1]`
 
-![Cosine Similarity Example](./img/cosine-example.png){:width="50%"}
+<img
+    src={require('./img/cosine-example.png').default}
+    alt="Cosine Similarity Example"
+    style={{ maxWidth: "50%" }}
+/>
 
 A distance of 0 indicates that the vectors are identical, whereas a distance of 2 represents opposite vectors. The similarity between the two vectors is 0.998 and the distance is 0.002. This means that strawberries and blueberries are closely related. 
 
@@ -82,11 +94,19 @@ To calculate the cosine distance, you need to use the dot product. Likewise, the
 ## Dot Product distance
 The dot product takes two or more vectors and multiplies them together. It is also known as the scalar product since the output is a single (scalar) value. The dot product is a similarity metric and shows the direction of two vectors. The output value can be any real number. If the vectors are in different directions, then the dot product will be negative (see image below). Similarly, if the vectors are in the same direction, then the dot product is positive. 
 
-![Direction of Vectors](./img/direction.png){:width="50%"}
+<img
+    src={require('./img/direction.png').default}
+    alt="Direction of Vectors"
+    style={{ maxWidth: "50%" }}
+/>
 
 The dot product is calculated as:
 
-![Dot Product Calculation](./img/dot-product-formula.png){:width="50%"}
+<img
+    src={require('./img/dot-product-formula.png').default}
+    alt="Dot Product Calculation"
+    style={{ maxWidth: "50%" }}
+/>
 
 We will use the same example from above to calculate the dot product of the two vectors.
 
@@ -102,7 +122,11 @@ The Squared Euclidean (L2-Squared) calculates the distance between two vectors b
 
 The squared euclidean distance is calculated as:
 
-![L2-Squared Formula](./img/l2-squared-formula.png){:width="50%"}
+<img
+    src={require('./img/l2-squared-formula.png').default}
+    alt="L2-Squared Formula"
+    style={{ maxWidth: "50%" }}
+/>
 
 The squared euclidean distance of strawberries `[4, 0, 1]` and blueberries `[3, 0, 1]` is equal to 1. 
 
@@ -111,11 +135,19 @@ The squared euclidean distance of strawberries `[4, 0, 1]` and blueberries `[3, 
 ## Manhattan distance 
 Manhattan distance, also known as "L1 norm" and "Taxicab Distance", calculates the distance between a pair of vectors. The metric is calculated by summing the absolute distance between the components of the two vectors. 
 
-![Manhattan Distance Formula](./img/manhattan-formula.png){:width="50%"}
+<img
+    src={require('./img/manhattan-formula.png').default}
+    alt="Manhattan Distance Formula"
+    style={{ maxWidth: "50%" }}
+/>
 
 The name comes from the grid layout resembling the streets of Manhattan. The city is designed with buildings on every corner and one-way streets. If you're trying to go from point A to point B, the shortest path isn't straight through because you cannot drive through buildings. The fastest route is one with fewer twists and turns.
 
-![Manhattan Distance](./img/weaviate-manhatten-distance.png)
+<img
+    src={require('./img/weaviate-manhatten-distance.png').default}
+    alt="Manhattan Distance"
+    style={{ maxWidth: "50%" }}
+/>
 
 ### Manhattan versus Euclidean Distance
 The Manhattan distance (L1 norm) and Euclidean distance (L2 norm) are two metrics used in machine learning models. The L1 norm is calculated by taking the sum of the absolute values of the vector. The L2 norm takes the square root of the sum of the squared vector values. The Manhattan distance is faster to calculate since the values are typically smaller than the Euclidean distance.
@@ -138,6 +170,7 @@ Weaviate has implemented the first method, comparing numeric vectors. In the nex
 Let's use an example to calculate the Hamming distance. Imagine we have a dataset containing a variety of fruit and vegetables. Your first query is to see which item pairs best with your banana pancakes. To achieve that we need to compare the banana pancakes' vector with the other vectors. Like this:
 
 | Banana Pancakes | [5,6,8] | **Hamming Distance** |
+| --- | --- | --- |
 | Blueberries     | [5,6,9] |         1        	   |
 | Broccoli     	  | [8,2,9] |         3        	   |
 
@@ -148,7 +181,11 @@ Binary Passage Retrieval (BPR) translates vectors into a binary sequence. For ex
 
 To compute the Hamming distance between two strings, you compare the position of each bit in the sequence. This is done with an XOR bit operation. XOR stands for "exclusive or", meaning if the bits in the sequence do not match, then the output is 1. Keep in mind that the strings need to be of equal length to perform the comparison. Below is an example of comparing two binary sequences.
 
-![XOR Operation](./img/hamming-xor.png){:width="40%"}
+<img
+    src={require('./img/hamming-xor.png').default}
+    alt="XOR Operation"
+    style={{ maxWidth: "40%" }}
+/>
 
 There are three positions where the numbers are different (highlighted above). Therefore, the Hamming distance is equal to 3. [Norouzi et al.](https://papers.nips.cc/paper/2012/hash/59b90e1005a220e2ebc542eb9d950b1e-Abstract.html) stated that binary sequences are storage efficient and allow storing massive datasets in memory. There is a great page in the [Weaviate documentation](/developers/weaviate/concepts/binary-passage-retrieval) that explains this in more detail.
 

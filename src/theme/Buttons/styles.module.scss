@@ -1,0 +1,52 @@
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  // TODO: find a better way to manage margins around ButtonContainer
+  margin-top: 16px;
+
+  @media screen and (max-width: 768px) {
+    gap: 16px;
+  }
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+  
+.btn {
+  border-radius: 0.375rem;
+  padding: 8px 12px;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// TODO: update colours to work from variables
+.btnMain {
+  background-color: #00b800;
+  color: #fff;
+
+  &:hover {
+    background-color: #00cc00;
+    color: #fff;
+  }
+}
+
+.btnAccent {
+  background-color: #ff007d;
+  color: #ffe3ec;
+
+  &:hover {
+    background-color: #ff008d;
+    color: #ffe3ec;
+  }
+}

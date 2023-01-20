@@ -1,7 +1,7 @@
 import React from 'react';
 // Import the original mapper
 import MDXComponents from '@theme-original/MDXComponents';
-import { LinkButton, ButtonContainer, DownloadButton } from './LinkButton';
+import { LinkButton, ButtonContainer, DownloadButton } from './Buttons';
 import { MetaSEO } from './MetaSEO';
 
 export default {

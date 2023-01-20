@@ -14,7 +14,7 @@ The Docker Compose files below contain both Weaviate and the dataset.
 Download the Docker Compose file (note, the Dockerfile has GPUs - i.e., CUDA - disabled, this impacts import and query time significantly. If you have a GPU available ([that is reachable with Docker](https://docs.docker.com/compose/gpu-support/)) simply set `ENABLE_CUDA` to `1` in the [dockerfile](https://github.com/weaviate/weaviate-examples/blob/main/weaviate-transformers-newspublications/docker-compose-withgpu.yaml#L27)
 
 ```bash
-curl -o docker-compose.yml https://raw.githubusercontent.com/semi-technologies/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-simple.yml
+curl -o docker-compose.yml https://raw.githubusercontent.com/weaviate/weaviate-examples/main/weaviate-transformers-newspublications/docker-compose-simple.yml
 ```
 
 Run Docker (optional: run with `-d` to run Docker in the background)

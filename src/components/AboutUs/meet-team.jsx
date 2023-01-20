@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/LinkButton';
+import { LinkButton } from '/src/theme/Buttons';
 
 import Person from './person';
 import people from '/data/people.json'
+import { ButtonContainer } from '../../theme/Buttons';
 
 export default function MeetTheTeam() {
   return (
@@ -13,7 +14,7 @@ export default function MeetTheTeam() {
           Meet the <span className={styles.header}>Team</span>
         </h1>
         <p className="text-center">
-          SeMI Technologies a global remote-first startup, with teams hailing from many different parts of the world, where it is not totally uncommon for someone to work remotely from fun places. At SeMI we believe that the next wave of software infrastructure is AI-first and that a strong open-source community is a basis for creating high-quality software.
+          Weaviate a global remote-first startup, with teams hailing from many different parts of the world, where it is not totally uncommon for someone to work remotely from fun places. At Weaviate we believe that the next wave of software infrastructure is AI-first and that a strong open-source community is a basis for creating high-quality software.
         </p>
       </div>
 
@@ -25,7 +26,9 @@ export default function MeetTheTeam() {
         })}
       </div>
     
-      <LinkButton link="/company/careers">Browse open positions</LinkButton>
+      <ButtonContainer>
+        <LinkButton link="/company/careers">Browse Open Positions</LinkButton>
+      </ButtonContainer>
     </div>
 
 
