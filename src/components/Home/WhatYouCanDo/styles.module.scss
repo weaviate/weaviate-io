@@ -62,6 +62,7 @@
         .codeContainer {
           display: grid;
           grid-template-rows: 1fr auto;
+          grid-row-gap: 4px;
 
           height: 375px;
           width: 100%;
@@ -84,11 +85,6 @@
           }
           .code3 {
             background-image: url('/img/site/code-box-3.png');
-          }
-
-          .tryButton {
-            margin-top: 4px;
-            justify-self: flex-start;
           }
       }
     }
