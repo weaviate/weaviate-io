@@ -292,7 +292,11 @@ If you navigate to 127.0.0.1, you will see the running web app.
 
 Let's test a query to see which dog looks most similar to a Goldendoodle puppy. We can see that the puppy resembles the Goldendoodle and Golden Retriever that are in our database.
 
-![Results](./img/results.jpg){:width="70%"}
+<img
+    src={require('./img/results.jpg').default}
+    alt="Results"
+    style={{ maxWidth: "70%" }}
+/>
 
 And just like that, you've built a complete app! Users can load an image of their favorite dog and see the nearest neighbor breed in the database!
 
