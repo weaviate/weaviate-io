@@ -20,9 +20,18 @@ export function LinkButton({children, link, color='main', newTab=true}) {
   );
 }
 
-export function DownloadButton({children, link, newTab=true}) {
+export function DownloadButton({children, link, color='main', newTab=true}) {
+  let style = styles.btn;
+  switch(color) {
+    case 'accent':
+      style += ' ' + styles.btnAccent;
+      break;
+    default:
+      style += ' ' + styles.btnMain;
+  }
+
   return (
-    <a className={styles.btn} href={link} download>{children}</a>
+    <a className={style} href={link} download>{children}</a>
   );
 }
 

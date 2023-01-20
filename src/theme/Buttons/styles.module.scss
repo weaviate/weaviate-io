@@ -5,9 +5,11 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
+  // TODO: find a better way to manage margins around ButtonContainer
+  margin-top: 16px;
 
   @media screen and (max-width: 768px) {
-    gap: 8px;
+    gap: 16px;
   }
 }
 
@@ -22,24 +24,28 @@
 .btn {
   border-radius: 0.375rem;
   padding: 8px 12px;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// TODO: update colours to work from variables
+.btnMain {
   background-color: #00b800;
   color: #fff;
 
   &:hover {
-    text-decoration: none;
     background-color: #00cc00;
     color: #fff;
   }
 }
 
 .btnAccent {
-  border-radius: 0.375rem;
-  padding: 8px 12px;
   background-color: #ff007d;
   color: #ffe3ec;
 
   &:hover {
-    text-decoration: none;
     background-color: #ff008d;
     color: #ffe3ec;
   }
