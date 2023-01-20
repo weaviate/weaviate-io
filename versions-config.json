@@ -2,5 +2,5 @@
     "weaviate_version": "1.17.1",
     "helm_version": "15.0.0",
     "weaviate_cli_version": "2.1.2",
-    "python_client_version": "3.9.0"
+    "python_client_version": "3.11.0"
 }
