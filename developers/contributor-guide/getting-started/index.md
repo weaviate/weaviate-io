@@ -27,7 +27,7 @@ There are four major GitHub repositories of Weaviate, any of which you can contr
 * [Weaviate](https://github.com/weaviate/weaviate) - Weaviate's "core" codebase
 * [Weaviate-io](https://github.com/weaviate/weaviate-io) - official Weaviate documentation
 * [Weaviate Examples](https://github.com/weaviate/weaviate-examples) - apps built using Weaviate
-* [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) - list of examples and tutorials on how to use Weaviate 
+* [Awesome Weaviate](https://github.com/weaviate/awesome-weaviate) - list of examples and tutorials on how to use Weaviate 
 
 It is important that any contributions such as suggestions or bug reports be made to the correct repository, as they will be otherwise very difficult to understand or integrate.
 
@@ -43,7 +43,7 @@ Here are additional resources that will help you familiarize with Weaviate and i
 
 * [Weaviate Blog](/blog) – a series of blog around Weaviate and the overall vector search space.
 * [Weaviate Newsletter](https://newsletter.weaviate.io) – bi-weekly newsletter with updates on the latest and greatest announcements.
-* [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) – a list of curated examples and tutorials on how to use Weaviate.
+* [Awesome Weaviate](https://github.com/weaviate/awesome-weaviate) – a list of curated examples and tutorials on how to use Weaviate.
 * [Weaviate Examples](https://github.com/weaviate/weaviate-examples) – a repository of various example projects created by the community. Each example shows a different Weaviate use case. You can add your own examples too!
 * [Weaviate's YouTube Channel](https://www.youtube.com/c/SeMI-and-Weaviate/featured) – podcasts and live demos showcasing Weaviate, and providing insight into the vector search space in general.
 

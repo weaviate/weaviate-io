@@ -38,7 +38,7 @@ export default function PricingEnterprise() {
         </li>
         <li>
           <i className="fas fa-circle-check"></i>{' '}
-          <span>SeMI Slack or Teams / Email</span>
+          <span>Weaviate Internal Slack or Teams / Email</span>
         </li>
         <li>
           <i className="fas fa-circle-check"></i>{' '}

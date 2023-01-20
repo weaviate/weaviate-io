@@ -4,7 +4,7 @@ sidebar_position: 5
 image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
 ---
-The Weaviate community produces a lot of great content including blog posts, tutorials, and demo applications. To help these reach the broader community, we maintain a curated list of these in our [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) repository. 
+The Weaviate community produces a lot of great content including blog posts, tutorials, and demo applications. To help these reach the broader community, we maintain a curated list of these in our [Awesome Weaviate](https://github.com/weaviate/awesome-weaviate) repository. 
 
 If you would like to share your own work, we would love to hear from you. We can help it reach the wider Weaviate community, who will in turn benefit from your work. 
 
@@ -37,7 +37,7 @@ We ask for the app to:
 
 ## Create a PR when ready
 
-When you are ready to share your work, create a pull request in [Awesome Weaviate](https://github.com/semi-technologies/awesome-weaviate) repository.
+When you are ready to share your work, create a pull request in [Awesome Weaviate](https://github.com/weaviate/awesome-weaviate) repository.
 
 ## Resources
 

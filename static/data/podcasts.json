@@ -254,8 +254,8 @@
     "logo": "/img/deepset.png"
   },
   {
-    "title": "Bob van Luijt of SeMI • Vector search use cases, GraphQL API UX, multimodal models, and more...",
-    "description": "Join Connor Shorten and Bob van Luijt (SeMI Technologies) for the third Weaviate vector search engine Podcast. During the show, they will be discussing use cases, the GraphQL API, knowledge graphs, Weaviate as a product, vector search engine use cases, and a vision for the future of vector search.",
+    "title": "Bob van Luijt of Weaviate • Vector search use cases, GraphQL API UX, multimodal models, and more...",
+    "description": "Join Connor Shorten and Bob van Luijt (Weaviate) for the third Weaviate vector search engine Podcast. During the show, they will be discussing use cases, the GraphQL API, knowledge graphs, Weaviate as a product, vector search engine use cases, and a vision for the future of vector search.",
     "youtube": "8wdUREOzi2M",
     "date": "2021-12-20",
     "cover_image": "/img/podcasts/podcast-3.jpg",
@@ -271,8 +271,8 @@
     "logo": "/img/keenious.png"
   },
   {
-    "title": "Etienne Dilocker of SeMI • Community and Weaviate core update",
-    "description": "Join Connor Shorten and Etienne Dilocker (SeMI Technologies) for the first Weaviate Podcast. During the show, they will be discussing Weaviate's horizontal scalability features in the v1.8.0 release and a wide variety of topics surrounding the Weaviate Slack channel.",
+    "title": "Etienne Dilocker of Weaviate • Community and Weaviate core update",
+    "description": "Join Connor Shorten and Etienne Dilocker (Weaviate) for the first Weaviate Podcast. During the show, they will be discussing Weaviate's horizontal scalability features in the v1.8.0 release and a wide variety of topics surrounding the Weaviate Slack channel.",
     "youtube": "Gjyxt1MXmm8",
     "date": "2021-12-05",
     "cover_image": "/img/podcasts/podcast-1.jpg",

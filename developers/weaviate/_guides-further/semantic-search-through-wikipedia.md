@@ -38,13 +38,13 @@ In this tutorial, you'll find the 3-steps needed to replicate the import, but th
 
 * [💡 Live Demo Weaviate GraphQL front-end](http://console.weaviate.io/console/query#weaviate_uri=http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Paragraph(%0A%20%20%20%20%20%20ask%3A%20%7B%0A%20%20%20%20%20%20%20%20question%3A%20%22Who%20was%20Stanley%20Kubrick%3F%22%0A%20%20%20%20%20%20%20%20properties%3A%20%5B%22content%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20content%0A%20%20%20%20%20%20order%0A%20%20%20%20%20%20title%0A%20%20%20%20%20%20inArticle%20%7B%0A%20%20%20%20%20%20%20%20...%20on%20Article%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20answer%20%7B%0A%20%20%20%20%20%20%20%20%20%20result%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D)
 * [💡 Live Demo Weaviate RESTful Endpoint](http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080/v1/schema)
-* [Project code](https://github.com/semi-technologies/semantic-search-through-Wikipedia-with-Weaviate)
+* [Project code](https://github.com/weaviate/semantic-search-through-Wikipedia-with-Weaviate)
 * [[BLOG] Semantic search through Wikipedia with Weaviate (GraphQL, Sentence-BERT, and BERT Q&A)](/blog/Semantic-Search-with-Wikipedia-and-Weaviate)
 * [[VIDEO] Wikipedia Vector Search Demo with Weaviate](https://www.youtube.com/watch?v=IGB8vjCuay0)
 
 ### Acknowledgments
 
-* The [`t2v-transformers` module](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) used contains the [sentence-transformers-paraphrase-MiniLM-L6-v2](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/tree/main/step-3/docker-compose-gpu.yml#L32) transformer created by the [SBERT team](https://www.sbert.net/)
+* The [`t2v-transformers` module](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) used contains the [sentence-transformers-paraphrase-MiniLM-L6-v2](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/tree/main/step-3/docker-compose-gpu.yml#L32) transformer created by the [SBERT team](https://www.sbert.net/)
 * Thanks to the team of [Obsei](https://github.com/obsei/obsei) for sharing the idea on our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) channel
 
 ![Example semantic search queries in Weaviate's GraphQL interface)[/img/wikipedia-demo.gif)
@@ -92,7 +92,7 @@ We will be using a single Weaviate instance, but four Tesla P4 GPUs that we will
 
 ![Weaviate Wikipedia import architecture with transformers and vectorizers)[/img/4GPU-wikipedia-dataset.png)
 
-* Every Weaviate [text2vec-module)[/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) will be using a [semitechnologies/tparaphrase-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L6-v2) sentence transformer.
+* Every Weaviate [text2vec-module)[/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) will be using a [sentence-transformers/paraphrase-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L6-v2) sentence transformer.
 * The volume is mounted _outside_ the container to `/var/weaviate`. This allows us to use this folder as a backup that can be imported in the next step.
 * Make sure to have Docker-compose _with_ GPU support [installed](https://gist.github.com/bobvanluijt/af6fe0fa392ca8f93e1fdc96fc1c86d8).
 * The import scripts assumes that the JSON file is called `wikipedia-en-articles.json`.
@@ -124,7 +124,7 @@ Note that Weaviate needs some time to import the backup (if you use the setup me
 
 ```sh
 # clone this repository
-$ git clone https://github.com/semi-technologies/semantic-search-through-Wikipedia-with-Weaviate/
+$ git clone https://github.com/weaviate/semantic-search-through-Wikipedia-with-Weaviate/
 # go into the backup dir
 $ cd step-3
 # download the Weaviate backup
@@ -321,7 +321,7 @@ Get all Wikipedia graph connections for _"jazz saxophone players"_ [try it live!
 | Can I run this setup with all languages? | Yes – you can follow two strategies. You can use a multilingual model or extend the Weaviate schema to store different languages with different classes. The latter has the upside that you can use multiple vectorizers (e.g., per language) or a more elaborate sharding strategy. But in the end, both are possible. | 
 | Can I run this with Kubernetes? | Of course, you need to start from Step 2. But if you follow the Kubernetes set up in the [docs](/developers/weaviate/quickstart/installation.md#kubernetes-k8s) you should be good :-) |
 | Can I run this with my own data? | Yes! This is just a demo dataset, you can use any data you have and like. Go to the [Weaviate docs](/developers/weaviate/) or join our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to get started. |
-| Can I run the dataset without the Q&A module? | Yes, see [this](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/issues/2#issuecomment-995595909) answer |
+| Can I run the dataset without the Q&A module? | Yes, see [this](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/issues/2#issuecomment-995595909) answer |
 
 ## More Resources
 

@@ -111,7 +111,7 @@
     "cover_image": "https://opengraph.githubassets.com/9a0bc3dc8c1a138d42e8a981c7e6e8f85caf8922588a2479d195d66a808fc3cc/semi-technologies/semantic-search-through-wikipedia-with-weaviate",
     "description": "We imported the complete English language Wikipedia article dataset into a single Weaviate instance. It is all available so go and run the complete setup yourself!",
     "source": "github",
-    "link": "https://github.com/semi-technologies/semantic-search-through-Wikipedia-with-Weaviate",
+    "link": "https://github.com/weaviate/semantic-search-through-Wikipedia-with-Weaviate",
     "tags": [
       "dataset"
     ]
@@ -122,7 +122,7 @@
     "cover_image": "https://opengraph.githubassets.com/8a137d82f4edc11c85cacfe69a16fd29936215d59a1d993569af8f89ed15c384/semi-technologies/biggraph-wikidata-search-with-weaviate",
     "description": "In this repository on Github, you'll find a guide on how you can import the complete Wikidata PBG model into a Weaviate.",
     "source": "github",
-    "link": "https://github.com/semi-technologies/biggraph-wikidata-search-with-weaviate",
+    "link": "https://github.com/weaviate/biggraph-wikidata-search-with-weaviate",
     "tags": [
       "dataset"
     ]
@@ -202,7 +202,7 @@
     "title": "Presentation by Laura Ham",
     "date": "2021-11-11T00:00:00.000Z",
     "cover_image": "https://i3.ytimg.com/vi/KZMl66wYfDI/maxresdefault.jpg",
-    "description": "AI-powered Vector Search Engine Weaviate by Laura Ham of SeMI Technologies during a Linux Foundation event.",
+    "description": "AI-powered Vector Search Engine Weaviate by Laura Ham - during a Linux Foundation event.",
     "source": "youtube",
     "link": "https://www.youtube.com/watch?v=KZMl66wYfDI",
     "tags": [
@@ -298,7 +298,7 @@
     "title": "Architecture Deep Dive",
     "date": "2021-06-24T00:00:00.000Z",
     "cover_image": "https://i3.ytimg.com/vi/6hdEJdHWXRE/maxresdefault.jpg",
-    "description": "Weaviate is a full-fledged vector database with full CRUD support. In this meetup, Etienne Dilocker of SeMI Technologies explains how Weaviate works under the hood.",
+    "description": "Weaviate is a full-fledged vector database with full CRUD support. In this meetup, Etienne Dilocker explains how Weaviate works under the hood.",
     "source": "youtube",
     "link": "https://www.youtube.com/watch?v=6hdEJdHWXRE",
     "tags": [

@@ -15,7 +15,7 @@ The `text2vec-​openai` module allows you to use the [OpenAI embeddings](https:
 * Note: this module uses a third-party API and may incur costs.
 * Note: make sure to check the OpenAI [pricing page](https://openai.com/api/pricing/) before vectorizing large amounts of data.
 * Note: Weaviate automatically parallelizes requests to the OpenAI-API when using the batch endpoint, see the previous note.
-* Note: [Check-out the demo dataset](https://github.com/semi-technologies/DEMO-text2vec-openai).
+* Note: [Check-out the demo dataset](https://github.com/weaviate/DEMO-text2vec-openai).
 
 ## How to enable
 

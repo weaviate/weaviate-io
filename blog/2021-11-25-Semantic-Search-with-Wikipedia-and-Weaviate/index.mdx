@@ -11,24 +11,24 @@ image: ./img/hero.jpg
 ---
 ![Wikipedia and Weaviate](./img/hero.jpg)
 
-To conduct semantic search queries on a large scale, one needs a vector search engine to search through the large number of vector representations that represent the data. To show you how this can be done, [we have open-sourced the complete English language Wikipedia corpus](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate) backup in Weaviate. In this article, I will outline how we've created the dataset, show you how you can run the dataset yourself, and present search strategies on how to implement similar vector and semantic search solutions in your own projects and how to bring them to production.
+To conduct semantic search queries on a large scale, one needs a vector search engine to search through the large number of vector representations that represent the data. To show you how this can be done, [we have open-sourced the complete English language Wikipedia corpus](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate) backup in Weaviate. In this article, I will outline how we've created the dataset, show you how you can run the dataset yourself, and present search strategies on how to implement similar vector and semantic search solutions in your own projects and how to bring them to production.
 
 The Wikipedia dataset used is the "truthy" version of October 9th, 2021. After processing it contains 11.348.257 articles, 27.377.159 paragraphs, and 125.447.595 graph cross-references. Although a bigger machine (see below) is needed for importing the data, the serving is done on a 12 CPU, 100 GB RAM, 250Gb SSD Google Cloud VM with 1 x NVIDIA Tesla P4. The ML-models used are [multi-qa-MiniLM-L6-cos-v1](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1) and [bert-large-uncased-whole-word-masking-finetuned-squad](https://huggingface.co/bert-large-uncased-whole-word-masking-finetuned-squad) both are available as [pre-built modules](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers#pre-built-images) in Weaviate.
 
 <!-- truncate -->
 
-📄 The complete dataset and code is open-source and available [on Github](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate).
+📄 The complete dataset and code is open-source and available [on Github](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate).
 
 ![Demo GIF of Weaviate using the Wikipedia dataset](./img/weaviate-using-the-Wikipedia-dataset.gif)
 *Example semantic search queries in Weaviate's GraphQL interface — GIF by Author*
 
 ## Importing the Data In Two Steps
-> You can also directly import a backup into Weaviate without doing the import your self as outlined [here](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/tree/main#step-3-load-from-backup).
+> You can also directly import a backup into Weaviate without doing the import your self as outlined [here](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/tree/main#step-3-load-from-backup).
 
 To import the data we use two different methods. The first is to clean the data set and the second one is to import the data.
 
 ### Step 1 – Cleaning the Data
-The first step is pretty straightforward, we will clean the data and create a [JSON Lines](https://jsonlines.org/) file to iterate over during import. You can run this process yourself or download the proceed file following [this](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate#step-1-process-the-wikipedia-dump) link.
+The first step is pretty straightforward, we will clean the data and create a [JSON Lines](https://jsonlines.org/) file to iterate over during import. You can run this process yourself or download the proceed file following [this](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate#step-1-process-the-wikipedia-dump) link.
 
 ### Step 2 — Importing the Data
 This is where the heavy lifting happens because all paragraphs need to be vectorized we are going to use Weaviate's modular setup to use multiple GPUs that we will stuff with models, but before we do this we need to create a Weaviate schema that represents our use case.
@@ -96,7 +96,7 @@ Last, we want to make graph relations, in the dataset from step one we will dist
 ```
 *Paragraph cross-references*
 
-The complete schema we import using the [Python client](/developers/weaviate/client-libraries/python) can be found [here](https://github.com/semi-technologies/semantic-search-through-wikipedia-with-weaviate/blob/main/step-2/import.py#L19-L120).
+The complete schema we import using the [Python client](/developers/weaviate/client-libraries/python) can be found [here](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/blob/main/step-2/import.py#L19-L120).
 
 ## Step 2.2 — Import the Data
 Because we are going to vectorize a lot of data. We will be using the same machine as mentioned in the opening but with 4 instead of 1 GPU.
