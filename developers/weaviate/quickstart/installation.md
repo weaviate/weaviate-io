@@ -70,21 +70,26 @@ In order to access WCS, navigate to the [Weaviate Cloud Console](https://console
 #### No account, no problem
 If you don't have an account with WCS yet, click the ["Don't have an account? Sign Up"](https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.weaviate.io/console/wcs) link and create an account.
 
-<!-- TODO - the style is not applied here. Generally Docusaurus seems to ignore these trailing braces like style or target: _blank -->
-![Register link](./img/register.jpg){:style="max-width: 400px"}
+<!-- TODO: update the image -->
+
+<img
+    src={require('./img/register.jpg').default}
+    alt="Register link"
+    style={{ maxWidth: "400px" }}
+/>
 
 ### Create a Weaviate Cluster
 
 To create a new Weaviate Cluster:
 1. Press the "Create a Weaviate Cluster" button
 1. Configure the cluster:
-    0. Set the `name` for your cluster – note: The name will become part of the URL we will use to access this instance. Please use a different name than "getting-started".
-    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 30 days
-    0. Leave the `Weaviate Version` as the latest
-    0. Leave the `Standalone Or Modules` as `Standalone, no Modules`
-    0. **change** the `OIDC Authentication` to `Disabled`
+    1. Set the `name` for your cluster – note: The name will become part of the URL we will use to access this instance. Please use a different name than "getting-started".
+    1. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 30 days
+    1. Leave the `Weaviate Version` as the latest
+    1. Leave the `Standalone Or Modules` as `Standalone, no Modules`
+    1. **change** the `OIDC Authentication` to `Disabled`
     
-    ![Cluster Configuration](./img/cluster-configuration.jpg){:style="max-width: 600px"}
+    ![Cluster Configuration](./img/cluster-configuration.jpg)
 1. Finally, press **Create**.
 
 This will start the process to create a new cluster. The status indicator on the left will show the progress (in %); after a few minutes, you should see a green tick ✔️ - indicating that the cluster is ready.
@@ -155,12 +160,6 @@ services:
 Let's just cut straight to the chase; running modules with ML models yourself (i.e., a Weaviate module where the model is encapsulated inside the module) on a CPU is just not going to work well. It's sloooow 🐌.
 
 You can use the Kubernetes set up with modules _or_ run Weaviate with Docker on a machine with a GPU ([this Github Gist](https://gist.github.com/bobvanluijt/af6fe0fa392ca8f93e1fdc96fc1c86d8) contains an installation script to install Docker Compose with GPU support on a Debian machine)
-
-## Recap
-
-* There is a configurator you can use to configure your Weaviate instance.
-* You can run Weaviate with Docker, Kubernetes, or with the Weaviate Cloud Service.
-* Running Weaviate Modules with an encepsulated ML-model on CPUs is slow.
 
 ## Recap
 
