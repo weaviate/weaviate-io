@@ -47,5 +47,8 @@
   },
   "engines": {
     "node": ">=16.14"
-  }
+  },
+  "resolutions": {
+    "eta": "1.13.0"
+  }  
 }
