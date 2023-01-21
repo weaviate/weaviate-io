@@ -27,5 +27,6 @@ All references have their individual subpages, click on one of the references be
 - [/v1/backups](./backups.md)
 - [/v1/classification](./classification.md)
 - [/v1/meta](./meta.md)
+- [/v1/nodes](./nodes.md)
 - [/v1/.well-known](./well-known.md)
 - [/v1/modules](./modules.md)
