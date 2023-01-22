@@ -6,8 +6,6 @@ node_js:
 #     - main
 cache:
   yarn: true
-  directories:
-    - $HOME/google-cloud-sdk
 install:
   - yarn install
 script:
@@ -37,7 +35,6 @@ script:
   - |
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH = "main" ]; then
       source _build_scripts/publish-prod-to-netlify.sh
-      source _build_scripts/gcp-bucket.sh
       source _build_scripts/slack-find-author.sh
       source _build_scripts/slack-release-message.sh
     fi
