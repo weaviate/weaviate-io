@@ -18,8 +18,8 @@ script:
   - yarn global add netlify-cli
   # - yarn global add netlify-cli linkinator
   
-  # Deploy to Netlify
-  - source _build_scripts/publish-to-netlify.sh
+  # Deploy draft to Netlify
+  - source _build_scripts/publish-draft-to-netlify.sh
   
   # Send Slack Message
   - |
@@ -33,9 +33,10 @@ script:
 
   ###
   ##
-  # Deploy to Cloud Bucket
+  # Deploy to Cloud Bucket and Production Netlify
   - |
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH = "main" ]; then
+      source _build_scripts/publish-prod-to-netlify.sh
       source _build_scripts/gcp-bucket.sh
       source _build_scripts/slack-find-author.sh
       source _build_scripts/slack-release-message.sh
