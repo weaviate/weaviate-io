@@ -27,19 +27,16 @@ In this guide, we will show you how to:
 
 You can also read briefly about [modules](./modules.md), and the [console](./console.md).
 
+By the end of the guide, you will end up with a simple, but fully functioning vector database. You will also have performed vector searches to retrieve information from that database.
+
 Have fun working with Weaviate, and please do let us know when you have questions or if you have a cool use case to share!
 
 ## Before you start 
 
-In the tutorial, we make a few basic assumptions (you are somewhat familiar with databases, know what vector embeddings are, and can read essential JSON and GraphQL).
+The guide assumes that you are somewhat familiar with databases and vector embeddings. 
 
-We suggest you read the pages in order, like so:
+But don't worry too much even if you are uncomfortable with any of these. The guide is structured so you should be able to follow along even if some of the concepts are unfamiliar. And you can always revisit some of these ideas in the documentation. 
 
-| Topic | Description |
-| --- | --- |
-| [Installation](./installation.md) | Install Weaviate |
-| [Schema](./schema.md) | Build a schema|
-| [Import](./import.md) | Import data |
-| [Query](./query.md) | Run queries using GraphQL and the RESTful API |
-| (Optional) [Modules](./modules.md) | Overview of modules |
-| (Optional) [Console](./console.md) | Overview of the console |
+## Next
+
+Get started by [installing Weaviate](./installation.md).
