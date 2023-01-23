@@ -39,7 +39,9 @@ Now, to import the data we need to follow these steps:
 
 Here is the full code you need to import the **Publications**:
 
-{% include code/1.x/getting-started.import.publications.html %}
+import CodeImportPubs from '/_includes/code/getting.started.import.publications.mdx';
+
+<CodeImportPubs />
 
 You can quickly check the imported object by opening – `weaviate-endpoint/v1/objects` in a browser, like this:
 
@@ -49,7 +51,9 @@ https://some-endpoint.semi.network/v1/objects
 
 Or you can read the objects in your project, like this:
 
-{% include code/1.x/getting-started.import.get.html %}
+import CodeImportGet from '/_includes/code/getting.started.import.get.mdx';
+
+<CodeImportGet />
 
 The result should look something like this:
 

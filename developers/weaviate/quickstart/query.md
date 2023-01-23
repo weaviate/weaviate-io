@@ -37,7 +37,9 @@ The function to use in retrieving objects from Weaviate is `Get`. If this looks 
 
 You should have performed a `Get` query at the end of the last section to confirm that the data import was successful. Here is the same code as a reminder:
 
-{% include code/1.x/getting-started.import.get.html %}
+import CodeImportGet from '/_includes/code/getting.started.import.get.mdx';
+
+<CodeImportGet />
 
 Let's build on this query by adding a vector search. 
 
@@ -45,7 +47,9 @@ Each of the **Publication** objects that we imported earlier included vectors co
 
 So try the following code example, where our client queries Weaviate with a rounded version of *Wired*'s vector (i.e. `[-0.14, -0.06, -0.07]`). It should return *Wired* as well as any other similar **Publication** objects. 
 
-{% include code/1.x/getting-started.query.publication.nearvector.html %}
+import CodeQueryPubsNearVec from '/_includes/code/getting.started.query.publication.nearvector.mdx';
+
+<CodeQueryPubsNearVec />
 
 You will see that we have added a `nearVector` argument in the query, specifying the `vector` to search for as well as a similarity threshold in the form of `certainty`.
 
@@ -111,7 +115,9 @@ In these cases, you can use Weaviate's scalar filtering capabilities - either al
 
 Try the following:
 
-{% include code/1.x/getting-started.query.publication.where.1.html %}
+import CodeQueryWhere1 from '/_includes/code/getting.started.query.where.1.mdx';
+
+<CodeQueryWhere1 />
 
 This query asks Weaviate for **Publication** objects whose names contain the string `New York*`. You should see a result like this:
 
@@ -148,7 +154,9 @@ Combining a filter with a vector search is an additive process. Let us show you 
 
 Take a look at the below example, where we start from the `nearVector` search used above and add a `where` filter to only retrieve **Publication** objects containing the string `Times`.
 
-{% include code/1.x/getting-started.query.publication.where.2.html %}
+import CodeQueryWhere2 from '/_includes/code/getting.started.query.where.2.mdx';
+
+<CodeQueryWhere2 />
 
 Running this code should result in the below:
 
@@ -186,7 +194,9 @@ As the name suggests, the `Aggregate` function can be used to show aggregated da
 
 For example, the below query will return the number of data objects in the `Publication` class:
 
-{% include code/1.x/getting-started.query.aggregate.1.html %}
+import CodeQueryAggregate1 from '/_includes/code/getting.started.query.aggregate.1.mdx';
+
+<CodeQueryAggregate1 />
 
 Like so:
 ```json
@@ -207,7 +217,9 @@ Like so:
 
 And you can also use the `Aggregate` function with filters, just as you saw with the `Get` function earlier. The below query for example will return the number of **Publication** objects containing the word "New York*".
 
-{% include code/1.x/getting-started.query.aggregate.2.html %}
+import CodeQueryAggregate2 from '/_includes/code/getting.started.query.aggregate.2.mdx';
+
+<CodeQueryAggregate2 />
 
 And as you saw above, there are four objects that match the query filter.
 

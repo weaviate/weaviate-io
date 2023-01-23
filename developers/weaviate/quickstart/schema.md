@@ -34,7 +34,9 @@ To do this we need to point the `host` endpoint to *your* instance. Just replace
 
 Run the below code in your project.
 
-{% include code/1.x/getting-started.schema.connect.html %}
+import CodeConnectToWeaviate from '/_includes/code/getting.started.schema.connect.mdx';
+
+<CodeConnectToWeaviate />
 
 The result should look like this:
 
@@ -76,7 +78,9 @@ Our **Publication** class will contain one property:
 
 Run the below code in you application, which will define the schema for the **Publication** class and display the created schema information.
 
-{% include code/1.x/getting-started.schema.create.2.html %}
+import CodeCreateSchema from '/_includes/code/getting.started.schema.create.2.mdx';
+
+<CodeCreateSchema />
 
 The result should look something like this:
 
