@@ -9,82 +9,145 @@ import { DownloadButton } from '/src/theme/Buttons';
 
 <Badges/>
 
-Although importing itself is pretty straightforward, creating an optimized import strategy needs a bit of planning on your end. Hence, before we start with this guide, there are a few things to keep in mind.
+In this section, we will show you how to import data objects into your instance of Weaviate.
 
-1. When importing, you want to make sure that you max out all the CPUs available. It's more often than not the case that the import script is the bottleneck.
-    0. Tip, use `htop` when importing to see if all CPUs are maxed out.
-    0. Learn more about how to plan your setup [here](./installation.md#running-weaviate-yourself).
-1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
-1. For Kubernetes, fewer large machines are faster than more small machines, simply because of network latency.
+## Prerequisites 
 
-## Importing
+At this point, you should have: 
+- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology)
+- Installed the appropriate client library in a language of your choice, and
+- Added a schema for the **Publication** class.
 
-First of all, some rules of thumb.
+If you have not done this, go back to [set up your Weaviate instance and client library](./installation.md) and [add a schema](./schema.md) first and come back 🙂.
 
-* You should always use batch import.
-* As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
-* Process error messages.
-* Some clients (especially Python) have some built-in logic to efficiently regulate batch importing.
+## Import data
 
-Assuming that you've read the [schema quickstart tutorial](./schema.md), you import data based on the classes and properties defined in the schema.
+The data to be imported needs to match the classes and properties defined in the Weaviate schema. So in our case, we will import data according to the properties of the **Publication** class defined in the previous section.
 
-For the purpose of this tutorial, we've prepared a **data.json** file, which contains a few Authors and Publications. Download it, and add it to your project.
+Weaviate allows data objects to be created as a single object or in batches. For importing data, we **strongly suggest that you use batch imports**. Accordingly, this guide is written for batch import methods.
 
-<p>
-  <DownloadButton link="/downloads/quickstart/data.json">Download data.json</DownloadButton>
-</p>
-
-### Steps to follow
+For the purpose of this guide, we've prepared a **data.json** file containing a few publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json), and add it to your project.
 
 Now, to import the data we need to follow these steps:
-1. Connect to your Weaviate instance
-1. Load objects from the `data.json` file
-1. Prepare a batch process
-1. Loop through all Publications
-    * Parse each publication – to a structure expected by the language client of your choice
-    * Push the object through a batch process
-1. Loop through all Authors
-    * Parse each author – to a structure expected by the language client of your choice
-    * Push the object through a batch process
-1. Flush the batch process – in case there are any remaining objects in the buffer
+0. Connect to your Weaviate instance
+0. Load objects from the `data.json` file
+0. Prepare a batch process
+0. Loop through all Publications
+  * Parse each publication – to a structure expected by the language client of your choice
+  * Push the object through a batch process
+0. Flush the batch process – in case there are any remaining objects in the buffer
 
-Here is the full code you need to import the **Publications** (note, the **importAuthors** example is shorter).
+Here is the full code you need to import the **Publications**:
 
-import CodeImportPubs from '/_includes/code/getting-started.import.publications.mdx';
-
-<CodeImportPubs/>
-
-And here is the code to import **Authors**.
-
-import CodeImportAuthors from '/_includes/code/getting-started.import.authors.mdx';
-
-<CodeImportAuthors/>
+{% include code/1.x/getting-started.import.publications.html %}
 
 You can quickly check the imported object by opening – `weaviate-endpoint/v1/objects` in a browser, like this:
 
 ```
-https://some-endpoint.weaviate.network/v1/objects
+https://some-endpoint.semi.network/v1/objects
 ```
 
 Or you can read the objects in your project, like this:
 
-import CodeImportGet from '/_includes/code/getting-started.import.get.mdx';
+{% include code/1.x/getting-started.import.get.html %}
 
-<CodeImportGet/>
+The result should look something like this:
 
-## Other object operations
+```json
+{
+  deprecations: null,
+  objects: [
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: '16476dca-59ce-395e-b896-050080120cd4',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: '212e56a6-e535-3569-ad1b-2215526c1d9d',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    ...
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: 'eaa33b83-3927-3aaf-af4b-4990c79485da',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: 'f2968730-9ce5-3e6f-8e64-b6b9f68984b0',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+    {
+      class: 'Publication',
+      creationTimeUnix: 1665494303066,
+      id: 'fa207f19-e080-3902-982c-393d321776be',
+      lastUpdateTimeUnix: 1665494303066,
+      properties: [Object],
+      vectorWeights: null
+    },
+  ],
+  totalResults: 13
+}
+```
 
-All other CRUD object operations are available in the [objects RESTful API documentation](../api/rest/objects.md) and the [batch RESTful API documentation](../api/rest/batch.md).
+If you see something like the result above - congratulations! You have a fully functioning instance of Weaviate with data 🚀🎉. 
+
+Now you are ready to start asking some big questions to Weaviate.
+
+> 💡 Note: For importing large datasets, creating an optimized import strategy will make a big difference in import time. So please read our tips below on [data import best practices](#data-import---best-practices) if this is the case for you.
 
 ## Recap
 
-Importing into Weaviate needs some planning on your side. In almost all cases, you want to use the [batch endpoint](../api/rest/batch.md) to create data objects. More often than not, the bottleneck sits in the import script and not in Weaviate. Try to optimize for maxing out all CPUs to get the fastest import speeds.
+* Data to be imported should match the database schema
+* Use batch import if possible
+* For importing large datasets, make sure to consider and optimize your import strategy.
 
-<!-- ## What would you like to learn next?
+## Next
 
-- [Learn how to query with the GraphQL-API](./query.md)
-- [Bring me back to working with the schema](./schema.md)
-- [Show me how modules work](./modules.md) -->
+- [Perform queries with Weaviate](./query.html)
+
+## Notes
+
+### Data import - best practices
+
+Although importing itself can be done in a few steps, creating an optimized import strategy needs a bit of planning. Here are a few things to keep in mind.
+
+0. When importing, you want to make sure that you max out all the CPUs available. It's more often than not the case that the import script is the bottleneck.
+    0. Use `htop` when importing to see if all CPUs are maxed out.
+    0. Learn more about how to plan your setup [here](./installation.html#running-weaviate-yourself).
+0. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
+0. For Kubernetes, fewer large machines are faster than more small machines. Just because of network latency.
+
+Our rules of thumb are:
+* You should always use batch import.
+* As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
+* Process error messages.
+* Some clients (especially Python) have some build-in logic to efficiently regulate batch importing.
+
+### Other object operations
+
+All other CRUD object operations are available in the [objects RESTful API documentation](../restful-api-references/objects.html) and the [batch RESTful API documentation](../restful-api-references/batch.html).
 
 ## More Resources
 
