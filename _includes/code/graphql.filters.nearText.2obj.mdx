@@ -35,7 +35,6 @@ import TabItem from '@theme/TabItem';
 <TabItem value="py" label="Python">
 
 ```python
-
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
@@ -44,7 +43,7 @@ nearText = {
   "concepts": ["traveling in Asia"],
   "certainty": 0.7,
   "moveTo": {
-    "objects": [{'id': "2faf2b7d-f185-30c0-8c80-a01b7cfeefb4"}],
+    "objects": [{"id": "2faf2b7d-f185-30c0-8c80-a01b7cfeefb4"}],
     "force": 0.85
   }
 }
@@ -63,8 +62,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -74,13 +72,13 @@ const client = weaviate.client({
 client.graphql
   .get()
   .withClassName('Article')
-  .withFields("title summary _additional { certainty }")
+  .withFields('title summary _additional { certainty }')
   .withNearText({
-    concepts: ["traveling in Asia"],
+    concepts: ['traveling in Asia'],
     certainty: 0.7,
     moveTo: {
       // this ID is of the article: "Tohoku: A Japan destination for all seasons."
-      objects: [{ id: "2faf2b7d-f185-30c0-8c80-a01b7cfeefb4" }],
+      objects: [{ id: '2faf2b7d-f185-30c0-8c80-a01b7cfeefb4' }],
       force: 0.85
     }
   })
@@ -153,7 +151,6 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-
 package technology.semi.weaviate;
 
 import technology.semi.weaviate.client.Config;

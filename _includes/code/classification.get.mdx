@@ -18,7 +18,7 @@ print(classification_info)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -27,7 +27,7 @@ const client = weaviate.client({
 
 client.classifications
       .getter()
-      .withId("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c")
+      .withId('ee722219-b8ec-4db1-8f8d-5150bb1a9e0c')
       .do()
       .then(res => {
         console.log(res)

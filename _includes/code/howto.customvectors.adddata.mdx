@@ -17,7 +17,7 @@ client.data_object.create(
   data_obj,
   "Post",
   "36ddd591-2dee-4e7e-a3cc-eb86d30a0934",
-  vector = [0.3, 0.2, 0.1, .... 0.9], # supported types are `list`, 'numpy.ndarray`, `torch.Tensor` and `tf.Tensor`. Make sure the length matches with your Weaviate settings.
+  vector = [0.3, 0.2, 0.1, .... 0.9], # supported types are `list`, `numpy.ndarray`, `torch.Tensor` and `tf.Tensor`. Make sure the length matches with your Weaviate settings.
 )
 ```
 
@@ -25,7 +25,7 @@ client.data_object.create(
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -35,9 +35,9 @@ const client = weaviate.client({
 client.data
       .creator()
       .withClassName('Post')
-      .withId("36ddd591-2dee-4e7e-a3cc-eb86d30a0934")
+      .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a0934')
       .withProperties({
-        "content": "This is a news update of May 28 2021. Today ......."
+        'content': 'This is a news update of May 28 2021. Today .......'
       })
       .withVector([0.3, 0.2, 0.1, 0.4, 0.6, 0.9])
       .do()

@@ -59,7 +59,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -70,8 +70,8 @@ client.graphql
       .get()
       .withClassName('Article')
       .withAsk({
-        question: "Who is the king of the Netherlands?",
-        properties: ["summary"],
+        question: 'Who is the king of the Netherlands?',
+        properties: ['summary'],
       })
       .withFields('title _additional { answer { hasAnswer certainty property result startPosition endPosition } }')
       .withLimit(1)

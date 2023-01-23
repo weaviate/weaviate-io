@@ -34,14 +34,14 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 where_filter = {
-  'operator': 'Equal',
-  'valueString': "Wired",
-  'path': ["inPublication", "Publication", "name"]
+  "operator": "Equal",
+  "valueString": "Wired",
+  "path": ["inPublication", "Publication", "name"]
 }
 
 query_result = (
   client.query
-  .get('Article', ['title', 'url', 'hasAuthors{... on Author {name}}'])
+  .get("Article", ["title", "url", "hasAuthors{... on Author {name}}"])
   .with_where(where_filter)
   .do()
 )
@@ -52,7 +52,7 @@ print(query_result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -65,8 +65,8 @@ client.graphql
       .withFields('title url wordCount HasAuthors{ ... on Author { name }}')
       .withWhere({
         operator: 'Equal',
-        path: ['inPublication", "Publication", "name'],
-        valueString:"Wired"
+        path: ['inPublication', 'Publication', 'name'],
+        valueString:'Wired'
       })
       .do()
       .then(res => {

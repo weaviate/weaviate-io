@@ -9,7 +9,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-client.schema.delete_class('Article') # deletes the class 'Article' along with all data points of class 'Article'
+client.schema.delete_class("Article") # deletes the class "Article" along with all data points of class "Article"
 # OR
 client.schema.delete_all() # deletes all classes along with the whole data
 ```
@@ -18,7 +18,7 @@ client.schema.delete_all() # deletes all classes along with the whole data
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',

@@ -47,25 +47,25 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 near_text_filter = {
-  'concepts': ["fashion"],
-  'distance': 0.6, #prior to v1.14 use certainty: 0.7
-  'moveAwayFrom': {
-    'concepts': ["finance"],
-    'force': 0.45
+  "concepts": ["fashion"],
+  "distance": 0.6, #prior to v1.14 use certainty: 0.7
+  "moveAwayFrom": {
+    "concepts": ["finance"],
+    "force": 0.45
   },
-  'moveTo': {
-    'concepts': ["haute couture"],
-    'force': 0.85
+  "moveTo": {
+    "concepts": ["haute couture"],
+    "force": 0.85
   }
 }
 
 additional_props = {
-  'semanticPath': 'path {distanceToNext distanceToPrevious distanceToQuery distanceToResult}'
+  "semanticPath": "path {distanceToNext distanceToPrevious distanceToQuery distanceToResult}"
 } 
 
 query_result = (
   client.query
-  .get('Publication', 'name')
+  .get("Publication", "name")
   .with_additional(additional_props)
   .with_near_text(near_text_filter)
   .do()
@@ -78,7 +78,7 @@ print(query_result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -90,14 +90,14 @@ client.graphql
       .withClassName('Publication')
       .withFields('name _additional { semanticPath{ path {concept distanceToNext distanceToPrevious distanceToQuery distanceToResult}}}')
       .withNearText({
-        concepts: ["fashion"],
+        concepts: ['fashion'],
         distance: 0.6, #prior to v1.14 use certainty: 0.7
         moveAwayFrom: {
-          concepts: ["finance"],
+          concepts: ['finance'],
           force: 0.45
         },
         moveTo: {
-          concepts: ["haute couture"],
+          concepts: ['haute couture'],
           force: 0.85
         }
       })

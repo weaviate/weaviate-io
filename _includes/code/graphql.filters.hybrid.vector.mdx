@@ -43,7 +43,7 @@ client.graphql
   .withClassName('Article')
   .withFields('title summary  _additional{score}')
   .withHybrid({
-      query: "Fisherman that catches salmon",
+      query: 'Fisherman that catches salmon',
       vector: [1, 2, 3]  // optional. Not needed if weaviate handles the vectorization.
       alpha: 0.5, // optional, defaults to 0.75
      }

@@ -40,14 +40,14 @@ import TabItem from '@theme/TabItem';
 ```python
 import weaviate
 
-client = weaviate.Client('http://localhost:8080')
+client = weaviate.Client("http://localhost:8080")
 
 result = (
   client.query
-  .aggregate('Article')
+  .aggregate("Article")
   .with_meta_count()
-  .with_fields('wordCount {count maximum mean median minimum mode sum type} inPublication {pointingTo type}')
-  .with_near_text({'concepts': ["apple iphone"], 'distance': 0.7})  # prior to v1.14 use "certainty" instead of "distance"
+  .with_fields("wordCount {count maximum mean median minimum mode sum type} inPublication {pointingTo type}")
+  .with_near_text({"concepts": ["apple iphone"], "distance": 0.7})  # prior to v1.14 use "certainty" instead of "distance"
   .with_object_limit(200)  # at least one of "objectLimit", 
   .do()                    # and/or "distance" must be set
 )                          # when using near media filters
@@ -59,7 +59,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -70,7 +70,7 @@ client.graphql
       .aggregate()
       .withClassName('Article')
       .withFields('meta { count } wordCount {count maximum mean median minimum mode sum type}')
-      .withNearText({ concepts: ["apple iphone"], distance: 0.7 })  // prior to v1.14 use "certainty" 
+      .withNearText({ concepts: ['apple iphone'], distance: 0.7 })  // prior to v1.14 use "certainty" 
       .withObjectLimit(100)                                         // instead of "distance".`
       .do()                                                         // at least one of "objectLimit",
       .then(res => {                                                // and/or "distance" must be set
