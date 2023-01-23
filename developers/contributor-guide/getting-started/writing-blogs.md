@@ -46,4 +46,4 @@ When you are ready to share your work, create a pull request in [Awesome Weaviat
 * [Podcasts by Weaviate](/podcast)
 * [Developer Style Guide (FreeCodeCamp)](https://www.freecodecamp.org/news/developer-news-style-guide/)
 
-If you need any help, reach out to us on our [Slack](https://weaviate.slack.com/).
+If you need any help, reach out to us on our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/).

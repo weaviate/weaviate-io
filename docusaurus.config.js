@@ -220,7 +220,7 @@ const config = {
                     },
                     
                     {
-                        to: 'https://weaviate.slack.com/',
+                        to: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
@@ -278,7 +278,7 @@ const config = {
                             },
                             {
                                 label: 'Slack',
-                                href: 'https://weaviate.slack.com/',
+                                href: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/',
                             },
                             {
                                 label: 'Twitter',
