@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-# Installation and setup
+## Installation and setup
 
 The Python library is available on [Pypi.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher. The current Python client version is ||site.python_client_version||.
 
@@ -26,7 +26,7 @@ client = weaviate.Client("http://localhost:8080") # or another location where yo
 client.schema.get() # get the full schema as example
 ```
 
-## Authentication
+### Authentication
 
 Please see the [authentication](../configuration/authentication.md) for broader information in relation to authentication with Weaviate.
 
@@ -36,7 +36,7 @@ First, choose one of the supported flows and create the flow-specific authentica
 
 The `access token` is included in the HTTP-header of any request and is used to authenticate against weaviate. However, this token usually has a limited lifetime and the `refresh token` can be used to acquire a new set of tokens.
 
-### Resource Owner Password flow
+#### Resource Owner Password flow
 
 This flow authenticates users using their *username* and *password* and should only be used on trusted devices. Both information are not saved in the client and are only used to obtain the first tokens, after which existing tokens will be used to obtain subsequent tokens if possible.
 
@@ -57,7 +57,7 @@ resource_owner_config = weaviate.AuthClientPassword(
 client = weaviate.Client("https://localhost:8080", auth_client_secret=resource_owner_config)
 ```
 
-### Client credentials flow
+#### Client credentials flow
 
 This flow is recommended for server-to-server communication without end-users and authenticates an application to weaviate.
 
@@ -77,7 +77,7 @@ client_credentials_config = weaviate.AuthClientCredentials(
 client = weaviate.Client("https://localhost:8080", auth_client_secret=client_credentials_config)
 ```
 
-### Bearer token 
+#### Bearer token 
 
 Any other authentication method can be used to obtain tokens directly from your identity provider, for example by using this step-by-step guide of the [hybrid flow](../configuration/authentication.md).
 
@@ -192,11 +192,11 @@ schema = {
 client.schema.create(schema)
 ```
 
-### Example: Blog Post on How to get started with Weaviate and the Python client
+#### Example: Blog Post on How to get started with Weaviate and the Python client
 
 A full example of how to use the Python client for Weaviate can be found in [this article on Towards Data Science](https://towardsdatascience.com/quickstart-with-weaviate-python-client-e85d14f19e4f). 
 
-# Batching
+## Batching
 
 Batching is a way of importing/creating `objects` and `references` in bulk using a single API request to the Weaviate Server. With python this can be done using 3 different methods:
 
@@ -221,10 +221,9 @@ client.batch(  # or client.batch.configure(
 )
 ```
 
-## Auto-batching
+### Auto-batching
 
 This method allows the python-client to handle all the `object` and `reference` import/creation. This means that the user does NOT have to explicitly import/create `objects`and `reference`, all the user has to do is add everything he want to be imported/created to the `Batch`, and the `Batch` is going to take care of it. To enable auto-batching we need to configure `batch_size` to be a positive integer (by default `None`)(see `Batch-configuration` below for more information). The `Batch` is going to import/create objects then references, if number of objects + number of references == `batch_size`. See example below:
-
 
 ```python
 import weaviate
@@ -338,7 +337,7 @@ with client.batch as batch:
 # done, everything is imported/created
 ```
 
-## Dynamic-batching
+### Dynamic-batching
 
 This method allows the python-client to handle all the `object` and `reference` import/creation in a dynamic manner. This means that the user does NOT have to explicitly import/create `objects`and `reference`, all the user has to do is add everything he want to be imported/created to the `Batch`, and the `Batch` is going to take care of it (same as `Auto-batching`). To enable dynamic-batching we need to configure `batch_size` to be a positive integer (by default `None`) AND `dynamic` to be `True`(by default `False`)(see `Batch-configuration` below for more information). For this method the `Batch` is going to compute the `recommended_num_objects` and `recommended_num_references` after the first `Batch` creation, where the `batch_size` is used for `recommended_num_objects` and `recommended_num_references` as the initial value. The `Batch` is going to import/create objects then references, if current number of objects reached `recommended_num_objects` OR current number of reference reached `recommended_num_references`. See example below:
 
@@ -455,7 +454,7 @@ with client.batch as batch:
 # done, everything is imported/created
 ```
 
-## Manual-batching
+### Manual-batching
 
 This method gives the user total control over the `Batch`, meaning the `Batch` is NOT going to perform any import/creation implicitly but will leave it to the user's discretion. See example below:
 
@@ -580,7 +579,7 @@ with client.batch as batch:
 # done, everything is imported/created
 ```
 
-## Batch-configuration
+### Batch-configuration
 The `Batch` object can be configured using the `batch.configure()` method or the `batch()` (i.e. call batch object, `__call__` method), they are the same function. In the examples above we saw that we can configure the `batch_size` and `dynamic`, but it allows to set more configurations:
 
 - `batch_size` - (`int` or `None`: default `None`): If it is `int` then auto-/dynamic-batching is enabled. For Auto-batching, if number of objects + number of references == `batch_size` then the `Batch` is going to import/create current objects then references (see Auto-batching for more info). For Dynamic-batching it is used as the initial value for `recommended_num_objects` and `recommended_num_references` (see Dynamic-batching for more info). `None` value means it is Manual-batching, no automatic object/reference import/creation.
@@ -604,7 +603,7 @@ client.batch(
 )
 ```
 
-## Tips &amp; Tricks
+### Tips &amp; Tricks
 
 * There is no limit to how many objects/references one could add to a batch before committing/creating it. However a too large batch can lead to a TimeOut error, which means that Weaviate could not process and create all the objects from the batch in the specified time (the timeout configuration can be set like [this](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.html#weaviate.Client) or [this](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.html#weaviate.Client.timeout_config)). Note that setting a timeout configuration higher that 60s would require some changes to the docker-compose.yml/helm chart file.
 * The `batch` class in the Python Client can be used in three ways:
@@ -613,7 +612,7 @@ client.batch(
     * Case 3: Similar to Case II but uses dynamic batching, i.e. auto-creates either objects or references when one of them reached the `recommended_num_objects` or `recommended_num_references` respectively. See docs for the `configure` or `__call__` method for how to enable it.
     * **Context-manager support**: Can be use with the with statement. When it exists the context-manager it calls the flush method for you. Can be combined with `configure` or `__call__` method, in order to set it to the desired Case.
 
-## Error Handling
+### Error Handling
 
 Creating objects in `Batch` is faster then creating each object/reference individually but it comes at the cost of skipping some validation steps. Skipping some validation steps at object/reference level can result in some objects that failed to create or some references that could not be added. In this case the `Batch` does not fail but individual objects/references might and we can make sure that everything was imported/created without errors by checking the returned value of the `batch.create_objects()` and `batch.create_references()`. Here are examples how to catch and handle errors on individual `Batch` objects/references.
 
@@ -661,9 +660,9 @@ result = client.batch.create_references()
 check_batch_result(result)
 ```
 
-# Design
+## Design
 
-## GraphQL query builder pattern
+### GraphQL query builder pattern
 
 For complex GraphQL queries (e.g. with filters), the client uses a builder pattern to form the queries. An example is the following query with multiple filters:
 
@@ -702,7 +701,7 @@ print(query_result)
 
 Note that you need to use the `.do()` method to execute the query. 
 
-# Change logs
+## Change logs
 
 Check the [change logs on GitHub](https://github.com/weaviate/weaviate-python-client/releases) or [readthedocs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html) for updates on the latest `Python client` changes.
 

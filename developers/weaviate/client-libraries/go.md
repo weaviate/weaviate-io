@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-# Installation and setup
+## Installation and setup
 To get the latest stable version of the Go client library, run the following:
 
 ```bash
@@ -60,23 +60,23 @@ cfg := weaviate.Config{
 client := weaviate.New(cfg)
 ```
 
-# References
+## References
 
 All [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) references covered by the Go client, and explained on those reference pages in the code blocks.
 
-# Design
+## Design
 
-## Builder pattern
+### Builder pattern
 
 The Go client functions are designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../api/rest/index.md) and the [GraphQL reference pages](../api/graphql/index.md).
 
 The code snippet above shows a simple query similar to `RESTful GET /v1/schema`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by getting the `.Schema` with `.Getter()`. The query will be sent with the `.Go()` function, this object is thus required for every function you want to build and execute. 
 
-# Migration Guides
+## Migration Guides
 
-## From `v2` to `v4`
+### From `v2` to `v4`
 
-### Unnecessary `.Objects()` removed from `GraphQL.Get()`
+#### Unnecessary `.Objects()` removed from `GraphQL.Get()`
 
 Before:
 
@@ -90,7 +90,7 @@ After:
 client.GraphQL().Get().WithClassName
 ```
 
-### GraphQL `Get().WithNearVector()` uses a builder pattern
+#### GraphQL `Get().WithNearVector()` uses a builder pattern
 
 In `v2` specifying a `nearVector` argument to `client.GraphQL().Get()` required passing a string. As a result the user had to know the structure of the GraphQL API. `v4` fixes this by using a builder pattern like so:
 
@@ -112,11 +112,11 @@ client.GraphQL().Get().
 ```
 
 
-### All `where` filters use the same builder
+#### All `where` filters use the same builder
 
 In `v2` filters were sometimes specified as strings, sometimes in a structured way. `v4` unifies this and makes sure that you can always use the same builder pattern.
 
-#### GraphQL Get
+##### GraphQL Get
 
 Before:
 
@@ -157,7 +157,7 @@ client.GraphQL().Get().
   WithWhere(where)...
 ```
 
-#### GraphQL Aggregate
+##### GraphQL Aggregate
 
 Before:
 
@@ -184,7 +184,7 @@ client.GraphQL().Aggregate().
   WithWhere(where)...
 ```
 
-#### Classification
+##### Classification
 
 Before:
 
@@ -227,7 +227,7 @@ client.Classifications().Scheduler().
   WithTargetWhereFilter(targetWhere)...
 ```
 
-### GraphQL `Get().WithFields()`
+#### GraphQL `Get().WithFields()`
 
 In `v2` `.WithFields()` took a GraphQL string that required knowledge of how GraphQL fields are structured. Now this can be done with a variadic function. E.g:
 
@@ -244,7 +244,7 @@ client.GraphQL.Get().WithClassName("MyClass").
   WithFields(graphql.Field{Name: "name"},graphql.Field{Name: "price"}, graphql.Field{Name: "age"})...
 ```
 
-### Graphql `Get().WithGroup()`
+#### Graphql `Get().WithGroup()`
 
 In `v2` `.WithFields()` took a GraphQL string that required knowledge of how GraphQL fields are structured. Now this can be done with a builder. E.g:
 
@@ -264,7 +264,7 @@ group := client.GraphQL().GroupArgBuilder()
 client.GraphQL.Get().WithClassName("MyClass").WithGroup(group)
 ```
 
-### Graphql `Data().Validator()` property renamed
+#### Graphql `Data().Validator()` property renamed
 
 In `v2` the naming of the method to specify the Schema was inconsistent with other places in the client. This has been fixed in `v4`. Rename according to the following:
 
@@ -279,7 +279,7 @@ client.Data().Validator().WithProperties(properties)
 ```
 
 
-# Change logs
+## Change logs
 
 Check the [change logs on GitHub](https://github.com/weaviate/weaviate-go-client/releases) for updates on the latest `Go client` changes.
 
