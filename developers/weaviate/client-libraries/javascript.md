@@ -51,7 +51,13 @@ The `access token` is included in the HTTP-header of any request and is used to 
 
 ### Resource Owner Password flow
 
-This flow authenticates users using their *username* and *password* and should only be used on trusted devices. Both information are not saved in the client and are only used to obtain the first tokens, after which existing tokens will be used to obtain subsequent tokens if possible.
+:::caution
+This flow authenticates users using their *username* and *password*.
+
+The username or password are not saved in the Weaviate client. They are only used to obtain the first tokens, after which existing tokens will be used to obtain subsequent tokens if possible.
+
+Nonetheless, this authentication flow should only be used on trusted devices. 
+:::
 
 Not every provider automatically includes a `refresh token` and an appropriate *scope* might be required that depends on your identity provider. The client uses *offline_access* as default scope which works with some providers.
 
@@ -64,7 +70,7 @@ const client = weaviate.client({
   authClientSecret: new weaviate.AuthUserPasswordCredentials({
     username: "user123",
     password: "password"
-    scope = "scope1 scope2" # optional, depends on the configuration of your identity provider
+    scope = "scope1 scope2"  // optional, depends on the configuration of your identity provider
   })
 });
 ```
@@ -99,7 +105,7 @@ const client = weaviate.client({
   });
 ```
 
-These headers will be included in every request that the client makes.
+These headers will then be included in every request that the client makes.
 
 ## References
 
