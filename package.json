@@ -26,6 +26,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-js-switch": "^1.1.6",
+    "react-player": "^2.11.0",
     "react-radio-group": "^3.0.3",
     "react-rangeslider": "^2.2.0",
     "sass": "^1.56.1"
@@ -50,5 +51,5 @@
   },
   "resolutions": {
     "eta": "1.13.0"
-  }  
+  }
 }
