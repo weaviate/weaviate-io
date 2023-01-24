@@ -33,7 +33,7 @@ client = weaviate.Client("http://localhost:8080")
 
 result = client.query.aggregate("Article") \
     .with_group_by_filter(["isAccessible"]) \
-    .with_fields("meta { count }") \
+    .with_meta_count() \
     .with_fields("wordCount {count maximum mean median minimum mode sum type}") \
     .do()
 

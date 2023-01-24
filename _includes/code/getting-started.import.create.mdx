@@ -21,7 +21,7 @@ def check_batch_result(results: dict):
         for result in results:
             if "result" in result and "errors" in result["result"]:
                 if "error" in result["result"]["errors"]:
-                    print(result["result"]["errors"]["error"])
+                    print(result["result"])
 
 client = weaviate.Client("https://some-endpoint.weaviate.network/")
 
@@ -59,9 +59,9 @@ batch_obj_array = [{
 
 # import the batch
 with client.batch(callback=check_batch_result) as batch:
-  for obj in batch_obj_array:
-    # Add object with a custom vector
-    batch.add_data_object(obj["properties"], obj["class"], obj["id"], vector=obj["vector"])
+    for obj in batch_obj_array:
+        # Add object with a custom vector
+        batch.add_data_object(obj["properties"], obj["class"], obj["id"], vector=obj["vector"])
 ```
 
 </TabItem>

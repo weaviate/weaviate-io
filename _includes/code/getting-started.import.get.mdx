@@ -10,8 +10,8 @@ import json
 
 client = weaviate.Client("https://some-endpoint.weaviate.network/")
 
-all_objects = client.data_object.get()
-print(json.dumps(all_objects))
+some_objects = client.data_object.get()
+print(json.dumps(some_objects))
 ```
 
 </TabItem>

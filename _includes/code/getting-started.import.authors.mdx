@@ -11,11 +11,11 @@ for author in data["authors"]:
   print("importing author: ", author["name"])
 
   properties = {
-    "name": author["name"],
-    "age": author["age"],
-    "born": author["born"],
-    "wonNobelPrize": author["wonNobelPrize"],
-    "description": author["description"]
+    "name":           author["name"],
+    "age":            author["age"],
+    "born":           author["born"],
+    "wonNobelPrize":  author["wonNobelPrize"],
+    "description":    author["description"],
   }
 
   client.batch.add_data_object(properties, "Author", author["id"], author["vector"])

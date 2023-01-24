@@ -42,7 +42,7 @@ client.batch.configure(
 with client.batch as batch:
   # Add object without a custom vector.
   # When using vectorization modules this can be used
-  # or when you don"t want to set a vector
+  # or when you don't want to set a vector
   batch.add_data_object(first_object_props, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
   # Add object with a custom vector
   batch.add_data_object(second_object_props, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4304", vector=[0.1, 0.2, 0.3])

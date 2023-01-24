@@ -32,7 +32,7 @@ with client.batch as batch:
       "name": publication["name"]
     }
 
-    batch.add_data_object(properties, "Publication", publication["id"], publication["vector"])
+    client.batch.add_data_object(properties, "Publication", publication["id"], publication["vector"])
 ```
 
 </TabItem>

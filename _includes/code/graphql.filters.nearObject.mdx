@@ -35,7 +35,8 @@ nearObject = {"id": "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"} # or {"beacon": "wea
 
 result = (
   client.query
-  .get("Publication", ["name", "_additional {certainty distance}"]) # certainty only supported if distance==cosine
+  .get("Publication", "name")
+  .with_additional("distance") # "certainty" only supported if distance==cosine
   .with_near_object(nearObject)
   .do()
 )
