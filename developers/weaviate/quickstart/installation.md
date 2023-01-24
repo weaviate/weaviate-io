@@ -48,7 +48,7 @@ If you feel comfortable making a few changes to the code examples in the tutoria
     ```js
     curl -o docker-compose.yml "https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version=v||site.weaviate_version||"
     ```
-1. Sping up docker
+1. Spin up docker
     ```js
     docker-compose up -d
     ```
