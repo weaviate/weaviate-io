@@ -1,6 +1,6 @@
 ---
 title: Query
-sidebar_position: 4
+sidebar_position: 5
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['basics']
 ---

@@ -1,6 +1,6 @@
 ---
 title: Schema
-sidebar_position: 2
+sidebar_position: 3
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['basics']
 ---
@@ -156,7 +156,7 @@ Great! Your database is set up with a schema and ready to go. Next, we will show
 
 ## Next
 
-* [Learn how to import data](./import.html)
+* [Import data](./import.md)
 
 ## Notes
 
