@@ -12,9 +12,9 @@ Here, you will be creating a new Weaviate instance for use throughout the gettin
 
 ## Weaviate Cloud Service
 
-The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use the _Weaviate Cloud Service_ (aka, the WCS). The WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate. Currently, the service is in private beta, but (🤫) if you log in to the [Weaviate Cloud Console](https://console.weaviate.io), you can create a free sandbox to play around with.
+The fastest way 🚀 to create a new Weaviate instance – from scratch – is to use _Weaviate Cloud Service_ (WCS). WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate.   
 
-If you are itching to get started with WCS, just skip to the [WCS hands-on section](#wcs-hands-on).
+WCS offers a free sandbox for you to play around with, so let's use that for this guide. If you would prefer a local instance, we recommend getting started with Docker. We include [a separate section below](#running-weaviate-with-docker) to help you follow along.
 
 ### Sign in to WCS
 
