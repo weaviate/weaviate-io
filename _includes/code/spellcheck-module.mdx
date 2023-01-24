@@ -53,7 +53,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -65,7 +65,7 @@ client.graphql
       .withClassName('Article')
       .withFields('title _additional {spellCheck { change {corrected original} didYouMean location originalText}}')
       .withNearText({
-        concepts: ["houssing prices"],
+        concepts: ['houssing prices'],
       })
       .do()
       .then(res => {

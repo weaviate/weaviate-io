@@ -10,9 +10,17 @@ from weaviate.data.replication import ConsistencyLevel
 
 client = weaviate.Client("http://localhost:8080")
 
-data_object = client.data_object.get_by_id(uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303", class_name="MyClass", consistency_level=ConsistencyLevel.QUORUM)
+data_object = (
+  client.data_object.get_by_id(
+    uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+    class_name="MyClass",
+    consistency_level=ConsistencyLevel.QUORUM,
+  )
+)
 
-# The parameter "consistency_level" can be one of ConsistencyLevel.ALL, ConsistencyLevel.QUORUM, or ConsistencyLevel.ONE. Determines how many replicas must acknowledge a request before it is considered successful.
+# The parameter "consistency_level" can be one of ConsistencyLevel.ALL, ConsistencyLevel.QUORUM,
+# or ConsistencyLevel.ONE. Determines how many replicas must acknowledge a request before it is
+# considered successful.
 
 print(data_object)
 ```
@@ -21,7 +29,7 @@ print(data_object)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',

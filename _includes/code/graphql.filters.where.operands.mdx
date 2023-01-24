@@ -41,9 +41,9 @@ where_filter = {
         "operator": "GreaterThan",
         "valueInt": 1000
       }, {
-        path: ["publicationDate"],
-        operator: LessThan,
-        valueDate:"2020-01-01T00:00:00-07:00"
+        "path": ["publicationDate"],
+        "operator": "LessThan",
+        "valueDate": "2020-01-01T00:00:00-07:00".
       }]
 }
 
@@ -61,7 +61,7 @@ print(query_result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -75,13 +75,13 @@ client.graphql
       .withWhere({
         operator: 'And',
         operands: [{
-          path: ["wordCount"],
+          path: ['wordCount'],
           operator: 'GreaterThan',
           valueInt: 1000
         }, {
-          path: ["publicationDate"],
+          path: ['publicationDate'],
           operator: LessThan,
-          valueDate:"2020-01-01T00:00:00-07:00"
+          valueDate:'2020-01-01T00:00:00-07:00'
         }]
       })
       .do()

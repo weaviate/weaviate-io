@@ -82,7 +82,7 @@ client.schema.create_class(class_obj)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -90,68 +90,68 @@ const client = weaviate.client({
 });
 
 var classObj = {
-    "class": "Article",
-    "description": "A written text, for example a news article or blog post",
-    "vectorIndexType": "hnsw",
-    "vectorIndexConfig": {
-        "distance": "cosine",
-        "efConstruction": 128,
-        "maxConnections": 64
+    'class': 'Article',
+    'description': 'A written text, for example a news article or blog post',
+    'vectorIndexType': 'hnsw',
+    'vectorIndexConfig': {
+        'distance': 'cosine',
+        'efConstruction': 128,
+        'maxConnections': 64
     },
-    "vectorizer": "text2vec-contextionary",
-    "moduleConfig": {
-      "text2vec-contextionary": {  
-        "vectorizeClassName": true
+    'vectorizer': 'text2vec-contextionary',
+    'moduleConfig': {
+      'text2vec-contextionary': {  
+        'vectorizeClassName': true
       }
     },
-    "properties": [
+    'properties': [
         {
-            "dataType": [
-                "string"
+            'dataType': [
+                'string'
             ],
-            "description": "Title of the article",
-            "name": "title",
-            "indexInverted": true,
-            "moduleConfig": {
-                "text2vec-contextionary": {
-                  "skip": false,                   
-                  "vectorizePropertyName": false
+            'description': 'Title of the article',
+            'name': 'title',
+            'indexInverted': true,
+            'moduleConfig': {
+                'text2vec-contextionary': {
+                  'skip': false,                   
+                  'vectorizePropertyName': false
                 }
               }
         },
         {
-            "dataType": [
-                "text"
+            'dataType': [
+                'text'
             ],
-            "description": "The content of the article",
-            "name": "content",
-            "indexInverted": true,
-            "moduleConfig": {
-                "text2vec-contextionary": {
-                  "skip": false,                   
-                  "vectorizePropertyName": false
+            'description': 'The content of the article',
+            'name': 'content',
+            'indexInverted': true,
+            'moduleConfig': {
+                'text2vec-contextionary': {
+                  'skip': false,                   
+                  'vectorizePropertyName': false
                 }
               }
         }
     ],
-    "shardingConfig": {
-      "virtualPerPhysical": 128,
-      "desiredCount": 1,             
-      "desiredVirtualCount": 128,
-      "key": "_id",
-      "strategy": "hash",
-      "function": "murmur3"
+    'shardingConfig': {
+      'virtualPerPhysical': 128,
+      'desiredCount': 1,             
+      'desiredVirtualCount': 128,
+      'key': '_id',
+      'strategy': 'hash',
+      'function': 'murmur3'
     },
-    "invertedIndexConfig": {
-      "stopwords": {
-        "preset": "en",
-        "additions": ["star", "nebula"],
-        "removals": ["a", "the"]
+    'invertedIndexConfig': {
+      'stopwords': {
+        'preset': 'en',
+        'additions': ['star', 'nebula'],
+        'removals': ['a', 'the']
       },
-      "indexTimestamps": true
+      'indexTimestamps': true
     },
-    "replicationConfig": {
-      "factor": 3
+    'replicationConfig': {
+      'factor': 3
     }
 }
 

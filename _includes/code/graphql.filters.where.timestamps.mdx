@@ -46,7 +46,7 @@ print(query_result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -60,7 +60,7 @@ client.graphql
       .withWhere({
         operator: 'Greater',
         path: ['_creationTimeUnix'],
-        valueDate: "2022-03-18T20:26:34.586-0500",
+        valueDate: '2022-03-18T20:26:34.586-0500',
       })
       .do()
       .then(res => {

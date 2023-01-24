@@ -5,7 +5,6 @@ import TabItem from '@theme/TabItem';
 <TabItem value="py" label="Python">
 
 ```python
-
 import weaviate
 
 def check_batch_result(results: dict):
@@ -20,9 +19,9 @@ def check_batch_result(results: dict):
 
     if results is not None:
         for result in results:
-            if 'result' in result and 'errors' in result['result']:
-                if 'error' in result['result']['errors']:
-                    print(result['result']['errors']['error'])
+            if "result" in result and "errors" in result["result"]:
+                if "error" in result["result"]["errors"]:
+                    print(result["result"])
 
 client = weaviate.Client("https://some-endpoint.weaviate.network/")
 
@@ -59,18 +58,17 @@ batch_obj_array = [{
 }]
 
 # import the batch
-for obj in batch_obj_array:
-    with client.batch(callback=check_batch_result) as batch:
+with client.batch(callback=check_batch_result) as batch:
+    for obj in batch_obj_array:
         # Add object with a custom vector
-        batch.add_data_object(obj['properties'], obj['class'], obj['id'], vector=obj['vector'])
+        batch.add_data_object(obj["properties"], obj["class"], obj["id"], vector=obj["vector"])
 ```
 
 </TabItem>
 <TabItem value="js" label="JavaScript">
 
 ```js
-
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
     scheme: 'https',
@@ -78,27 +76,27 @@ const client = weaviate.client({
   }); 
 
 var toImport = [{
-  "id": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
-  "class": "Publication",
-  "properties": {
-      "name": "The New York Times"
+  'id': '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6',
+  'class': 'Publication',
+  'properties': {
+      'name': 'The New York Times'
   },
-  "vector": [
+  'vector': [
       -0.0030892247,
       0.17440806,
       0.024489688
   ]
 }, {
-  "id": "f564113e-11e2-11ed-861d-0242ac120002",
-  "class": "Author",
-  "properties": {
-      "name": "Paul Krugman",
-      "age": 69,
-      "born": "1953-02-28T00:00:00.0Z",
-      "wonNobelPrize": true,
-      "description": "Paul Robin Krugman is an American economist [...] New Economic Geography."
+  'id': 'f564113e-11e2-11ed-861d-0242ac120002',
+  'class': 'Author',
+  'properties': {
+      'name': 'Paul Krugman',
+      'age': 69,
+      'born': '1953-02-28T00:00:00.0Z',
+      'wonNobelPrize': true,
+      'description': 'Paul Robin Krugman is an American economist [...] New Economic Geography.'
   },
-  "vector": [
+  'vector': [
       -0.16147631,
       -0.065765485,
       -0.06546908

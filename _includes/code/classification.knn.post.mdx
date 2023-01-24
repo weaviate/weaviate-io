@@ -21,7 +21,7 @@ client.classification.schedule()\
             .with_based_on_properties(["summary"])\
             .with_classify_properties(["hasPopularity"])\
             .with_training_set_where_filter(trainingSetWhere)\
-            .with_settings({'k':3})\
+            .with_settings({"k":3})\
             .do()
 ```
 
@@ -29,7 +29,7 @@ client.classification.schedule()\
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -43,7 +43,7 @@ client.classifications
       .withSettings({k: 3})
       .withClassName('Article')
       .withClassifyProperties(['hasPopularity'])
-      .withBasedOnProperties(["summary"])
+      .withBasedOnProperties(['summary'])
       .do()
       .then(res => {
         console.log(res)
@@ -59,7 +59,7 @@ client.classifications
       .withSettings({k: 3})
       .withClassName('Article')
       .withClassifyProperties(['hasPopularity'])
-      .withBasedOnProperties(["summary"])
+      .withBasedOnProperties(['summary'])
       .withWaitForCompletion()
       .withWaitTimeout(60 * 1000)
       .do()

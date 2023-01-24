@@ -33,7 +33,7 @@ client = weaviate.Client("http://localhost:8080")
 
 result = client.query.aggregate("Article") \
     .with_group_by_filter(["isAccessible"]) \
-    .with_fields('meta { count }') \
+    .with_meta_count() \
     .with_fields("wordCount {count maximum mean median minimum mode sum type}") \
     .do()
 
@@ -46,7 +46,7 @@ print(result)
 ```js
 // this query currently gives an inconsistent result from a plain graphql query, see https://github.com/weaviate/weaviate-javascript-client/issues/8
 
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -56,7 +56,7 @@ const client = weaviate.client({
 client.graphql
       .aggregate()
       .withClassName('Article')
-      .withGroupBy(["isAccessible"])
+      .withGroupBy(['isAccessible'])
       .withFields('meta { count } wordCount {mean} groupedBy {value path}')
       .do()
       .then(res => {
