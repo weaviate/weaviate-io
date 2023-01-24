@@ -26,16 +26,21 @@ The data to be imported needs to match the classes and properties defined in the
 
 Weaviate allows data objects to be created as a single object or in batches. For importing data, we **strongly suggest that you use batch imports**. Accordingly, this guide is written for batch import methods.
 
-For the purpose of this guide, we've prepared a **data.json** file containing a few publications. Download it from [here](https://raw.githubusercontent.com/semi-technologies/weaviate-io/main/downloads/data.json), and add it to your project.
+For the purpose of this guide, we've prepared a **data.json** file containing a few publications. Download it from below, and add it to your project.
+
+<p>
+  <DownloadButton link="/downloads/quickstart/data.json">Download data.json</DownloadButton>
+</p>
 
 Now, to import the data we need to follow these steps:
-0. Connect to your Weaviate instance
-0. Load objects from the `data.json` file
-0. Prepare a batch process
-0. Loop through all Publications
-  * Parse each publication – to a structure expected by the language client of your choice
-  * Push the object through a batch process
-0. Flush the batch process – in case there are any remaining objects in the buffer
+
+1. Connect to your Weaviate instance
+1. Load objects from the `data.json` file
+1. Prepare a batch process
+1. Loop through all Publications
+    1. Parse each publication – to a structure expected by the language client of your choice
+    1. Push the object through a batch process
+1. Flush the batch process – in case there are any remaining objects in the buffer
 
 Here is the full code you need to import the **Publications**:
 
@@ -119,7 +124,9 @@ If you see something like the result above - congratulations! You have a fully f
 
 Now you are ready to start asking some big questions to Weaviate.
 
-> 💡 Note: For importing large datasets, creating an optimized import strategy will make a big difference in import time. So please read our tips below on [data import best practices](#data-import---best-practices) if this is the case for you.
+:::note
+For importing large datasets, creating an optimized import strategy will make a big difference in import time. So please read our tips below on [data import best practices](#data-import---best-practices) if this is the case for you.
+:::
 
 ## Recap
 
@@ -137,11 +144,13 @@ Now you are ready to start asking some big questions to Weaviate.
 
 Although importing itself can be done in a few steps, creating an optimized import strategy needs a bit of planning. Here are a few things to keep in mind.
 
-0. When importing, you want to make sure that you max out all the CPUs available. It's more often than not the case that the import script is the bottleneck.
-    0. Use `htop` when importing to see if all CPUs are maxed out.
-    0. Learn more about how to plan your setup [here](./installation.html#running-weaviate-yourself).
-0. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
-0. For Kubernetes, fewer large machines are faster than more small machines. Just because of network latency.
+1. When importing, you want to make sure that you max out all the CPUs available. It's more often than not the case that the import script is the bottleneck.
+
+    1. Use `htop` when importing to see if all CPUs are maxed out.
+    1. Learn more about how to plan your setup [here](./installation.html#running-weaviate-yourself).
+
+1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
+1. For Kubernetes, fewer large machines are faster than more small machines. Just because of network latency.
 
 Our rules of thumb are:
 * You should always use batch import.

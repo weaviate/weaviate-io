@@ -27,15 +27,15 @@ If you don't have an account with WCS yet, click the ["Don't have an account? Si
 ### Create a Weaviate Cluster
 
 To create a new Weaviate Cluster:
-0. Press the "Create a Weaviate Cluster" button
-0. Configure the cluster:
-    0. Set a unique `name` for your cluster – note: The name will become part of the URL uses to access this instance. 
-    0. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 30 days
-    0. Leave the `Weaviate Version` as the latest
-    0. **Change** the `OIDC Authentication` to `Disabled`
+1. Press the "Create a Weaviate Cluster" button
+1. Configure the cluster:
+    1. Set a unique `name` for your cluster – note: The name will become part of the URL uses to access this instance. 
+    1. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 30 days
+    1. Leave the `Weaviate Version` as the latest
+    1. **Change** the `OIDC Authentication` to `Disabled`
     
-    ![Cluster Configuration](/img/getting-started/install/WCS-screenshot.jpg)
-0. Finally, press **Create**.
+    ![Cluster Configuration](./img/WCS-screenshot.jpg)
+1. Finally, press **Create**.
 
 This will start the process to create a new cluster. The status indicator on the page will show the progress (in %); after a short while, you should see a green tick ✔️ - indicating that the cluster is ready.
 
@@ -89,11 +89,11 @@ Working with Docker is great if you are building an application around Weaviate 
 
 To set up Weaviate with Docker, follow these two steps:
 
-0. Get `docker-compose.yml` configuration file by calling:
+1. Get `docker-compose.yml` configuration file by calling:
     ```js
     curl -o docker-compose.yml "https://configuration.semi.technology/v2/docker-compose/docker-compose.yml?enterprise_usage_collector=false&modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
     ```
-0. Spin up docker
+1. Spin up docker
     ```js
     docker-compose up -d
     ```

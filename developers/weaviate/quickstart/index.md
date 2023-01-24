@@ -17,9 +17,17 @@ import Badges from '/_includes/badges.mdx';
 
 Welcome to the Weaviate **Quickstart tutorial**. 
 
-Here, you will get a hands-on experience using Weaviate to get an idea of some of its key features.
+This tutorial teaches you how to use Weaviate, from spinning up an instance to performing queries.
 
-By the end, you will end up with a simple, but fully functioning vector database. 
+In this guide, we will show you how to:
+- Spin up an instance of Weaviate
+- Set up a database schema
+- Import data to populate the database, and
+- Perform queries to retrieve relevant data 
+
+You can also read briefly about [modules](./modules.md), and the [console](./console.md).
+
+By the end of the guide, you will end up with a simple, but fully functioning vector database. You will also have performed vector searches to retrieve information from that database.
 
 ## Before you start 
 
