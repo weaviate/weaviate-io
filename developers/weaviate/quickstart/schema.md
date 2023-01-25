@@ -1,5 +1,5 @@
 ---
-title: Schema
+title: Manual schema
 sidebar_position: 3
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['basics']

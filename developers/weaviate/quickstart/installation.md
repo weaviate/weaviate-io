@@ -7,16 +7,17 @@ image: og/docs/quickstart-tutorial.jpg
 import Badges from '/_includes/badges.mdx';
 import registerImg from './img/register.jpg';
 import WCSScreenshotImg from './img/WCS-screenshot.jpg';
+import weaviateClusterImg from './img/weaviate-cluster.jpg';
 
 <Badges/>
 
-Here, you will be creating a new Weaviate instance for use throughout the quickstart tutorial.
+Here, you create a new Weaviate instance for use throughout the quickstart tutorial.
 
 ## Weaviate Cloud Service
 
 The fastest way 🚀 to create a new Weaviate instance from scratch is to use _Weaviate Cloud Service_ (WCS). WCS is a completely managed service, so you don't have to install or maintain anything to run Weaviate.   
 
-WCS offers a free sandbox for you to play around with, so we will refer to that for this guide. 
+We will use a the free sandbox tier offered by WCS. 
 
 :::info Using a local instance of Weaviate instead
 If you would prefer a local instance of Weaviate, we recommend getting started with Docker. We include [a separate section below](#running-weaviate-with-docker) to help you follow along.
@@ -24,11 +25,11 @@ If you would prefer a local instance of Weaviate, we recommend getting started w
 
 ### Sign in to WCS
 
-In order to access WCS, navigate to the [Weaviate Cloud Console](https://console.weaviate.io/). 
+To access WCS, first navigate to the [Weaviate Cloud Console](https://console.weaviate.io/). 
 
 If you don't have an account with WCS yet, click on the "Sign Up" button:
 
-<img src={registerImg} width="50%" alt="Register button"/>
+<img src={registerImg} width="400px" alt="Register button"/>
 
 Or [click here to sign up](https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.weaviate.io/registration-login) to create an account.
 
@@ -44,7 +45,7 @@ To create a new Weaviate Cluster:
     1. Leave the `Weaviate Version` as the latest
     1. **Change** the `OIDC Authentication` to `Disabled`
 
-    <img src={WCSScreenshotImg} width="50%" alt="Cluster configuration"/>
+    <img src={WCSScreenshotImg} width="400px" alt="Cluster configuration"/>
 
 1. Finally, press **Create**.
 
@@ -53,7 +54,8 @@ This will start the process to create a new cluster. The status indicator on the
 ### Connect to Weaviate
 
 Click on the `Cluster Id` link, which will open a new page in your browser and display all the available endpoints.
-![Weaviate Cluster](./img/weaviate-cluster.jpg)
+
+<img src={weaviateClusterImg} width="100%" alt="Weaviate Cluster"/>
 
 :::note
 For every endpoint, there is a `documentationHref` link, which points to relevant documentation pages.
@@ -104,6 +106,7 @@ To set up Weaviate with Docker, follow these two steps:
 Then you can continue with the tutorial.
 
 If you are running Weaviate with Docker, keep in mind that the address for Weaviate will change from the WCS address to `http://localhost:8080`.
+
 ### More on deployment options
 
 To learn more about the other self-deployment options, check out the documentation for installation with [Docker](https://weaviate.io/developers/weaviate/current/installation/docker-compose.html) or [Kubernetes](https://weaviate.io/developers/weaviate/current/installation/kubernetes.html). 

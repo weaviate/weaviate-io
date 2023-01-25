@@ -1,5 +1,5 @@
 ---
-title: Import
+title: (Batch) Import
 sidebar_position: 4
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['import']

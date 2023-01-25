@@ -17,7 +17,7 @@ import Badges from '/_includes/badges.mdx';
 
 Welcome to the Weaviate **Quickstart tutorial**. 
 
-This tutorial teaches you how to use Weaviate, from spinning up an instance to performing queries.
+This tutorial introduces you to Weaviate, and some of its main features. You will get hands-on experience running Weaviate and doing things with it.
 
 ### Data
 
@@ -38,7 +38,7 @@ We will begin with this (tiny) dataset consisting of questions from the popular 
 
 ### What you will build
 
-In this tutorial, you will build a Weaviate database with this data and then perform queries to retrieve information. By the end, you will begin to see some of the benefits of vector search, and get some ideas on what you can do with Weaviate.
+In this tutorial, you will build a Weaviate database with this data and then perform queries to retrieve relevant information from it. By the end, you will begin to see some of the benefits of vector search, and get some ideas on what you can do with Weaviate.
 
 We also include brief optional chapters about [modules](./modules.md), and the [console](./console.md).
 
