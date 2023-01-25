@@ -28,21 +28,15 @@ client.schema.get() # get the full schema as example
 
 ### Authentication
 
-Please see the [authentication](../configuration/authentication.md) for broader information in relation to authentication with Weaviate.
+import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
 
-The Python client supports multiple OIDC authentication flows to use with Weaviate. 
-
-First, choose one of the supported flows and create the flow-specific authentication configuration, which can then be passed to the client. The configuration, including secrets, are used by the client to obtain an `access token` and (if configured) a `refresh token`.
-
-The `access token` is included in the HTTP-header of any request and is used to authenticate against weaviate. However, this token usually has a limited lifetime and the `refresh token` can be used to acquire a new set of tokens.
+<ClientAuthIntro clientName="Python"/>
 
 #### Resource Owner Password flow
 
-This flow authenticates users using their *username* and *password* and should only be used on trusted devices. Both information are not saved in the client and are only used to obtain the first tokens, after which existing tokens will be used to obtain subsequent tokens if possible.
+import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
 
-Not every provider automatically includes a `refresh token` and an appropriate *scope* might be required that depends on your identity provider. The client uses *offline_access* as default scope which works with some providers.
-
-Without a refresh token, there is no possibility to acquire a new `access token` and the client becomes unauthenticated after expiration.
+<ClientAuthFlowResourceOwnerPassword />
 
 ```python
 import weaviate
@@ -59,11 +53,9 @@ client = weaviate.Client("https://localhost:8080", auth_client_secret=resource_o
 
 #### Client credentials flow
 
-This flow is recommended for server-to-server communication without end-users and authenticates an application to weaviate.
+import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
 
-To authenticate a client secret most identity providers require a *scope* to be specified. This *scope* depends on the configuration of the identity providers, so we ask you to refer to the identity provider's documentation.
-
-Most providers do not include a refresh token in their response so `client secret` is saved in the client to obtain a new `access token` on expiration of the existing one.  
+<ClientAuthFlowClientCredentials />
 
 ```python
 import weaviate
@@ -79,9 +71,9 @@ client = weaviate.Client("https://localhost:8080", auth_client_secret=client_cre
 
 #### Bearer token 
 
-Any other authentication method can be used to obtain tokens directly from your identity provider, for example by using this step-by-step guide of the [hybrid flow](../configuration/authentication.md).
+import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
 
-If no `refresh token` is provided, there is no possibility to obtain a new `access token` and the client becomes unauthenticated after expiration.
+<ClientAuthBearerToken />
 
 ```python
 import weaviate
