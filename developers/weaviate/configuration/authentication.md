@@ -112,6 +112,9 @@ services:
       # Not recommended to set this option as it reduces security, only set this
       # if your token issuer is unable to provide a correct audience claim
       AUTHENTICATION_OIDC_SKIP_CLIENT_ID_CHECK: 'false'
+
+      # scope (optional) specifies the group of claims to be used by an application during authentication to provide information as required
+      AUTHENTICATION_OIDC_SCOPES: ''
 ```
 
 #### Weaviate OpenID endpoint
