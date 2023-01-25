@@ -46,28 +46,9 @@ The result should look like this:
 
 Great! You've successfully made your first client query to Weaviate 🎉. The output tells us that this instance of Weaviate does not contain any classes. So let's create some.
 
-:::caution Resetting your Weaviate instance
-If this is not the case and your Weaviate instance contains classes, you can reset your instance, or you can manually delete the schema.
+import CautionSchemaDeleteAll from '/_includes/schema-delete-all.mdx'
 
-**But beware that will also delete all associated objects!** 
-
-Do not do this to a production database, or anywhere where you do not wish to delete your data. 
-
-Run this Python code to reset your instance;
-
-```python
-import weaviate
-import json
-
-client = weaviate.Client("https://some-endpoint.semi.network/")
-
-# delete all classes - THIS WILL DELETE ALL DATA IN YOUR INSTANCE
-client.schema.delete_all()
-
-schema = client.schema.get()
-print(json.dumps(schema))
-```
-:::
+<CautionSchemaDeleteAll />
 
 ## Create a class
 
