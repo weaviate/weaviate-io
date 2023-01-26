@@ -114,7 +114,7 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 OpenAI has multiple models available with different trade-offs. All the models offered by OpenAI can be used within Weaviate. Note that the more dimensions a model produces, the larger your data footprint will be. To estimate the total size of your dataset use [this](/developers/weaviate/concepts/resources.md#an-example-calculation) calculation.
 
-The default model is: `text-embedding-ada-002` but you can also specify it in your schema. An example as part of a class definition:
+The default model is `text-embedding-ada-002` but you can also specify it in your schema. An example as part of a class definition:
 
 ```json
 {
@@ -134,38 +134,15 @@ The default model is: `text-embedding-ada-002` but you can also specify it in yo
 }
 ```
 
-### Default model
+For document embeddings you can choose one of the following models:
+* [ada](https://beta.openai.com/docs/engines/ada)
+* [babbage](https://beta.openai.com/docs/engines/babbage)
+* [curie](https://beta.openai.com/docs/engines/curie)
+* [davinci](https://beta.openai.com/docs/engines/davinci)
 
-The default model is: `text-embedding-ada-002` but you can also specify it in your schema. An example as part of a class definition:
-
-```json
-{
-  "classes": [
-    {
-      "class": "Document",
-      "vectorizer": "text2vec-openai",
-      "moduleConfig": {
-        "text2vec-openai": {
-          "model": "ada",
-          "modelVersion": "002",
-          "type": "text"
-        }
-      }
-    }
-  ]
-}
-```
-
-### Other models
-
-* For document embeddings you can choose one of the following models:
-  * [ada](https://beta.openai.com/docs/engines/ada)
-  * [babbage](https://beta.openai.com/docs/engines/babbage)
-  * [curie](https://beta.openai.com/docs/engines/curie)
-  * [davinci](https://beta.openai.com/docs/engines/davinci)
-* For code embeddings you can choose one of the following models:
-  * [ada](https://beta.openai.com/docs/engines/ada)
-  * [babbage](https://beta.openai.com/docs/engines/babbage)
+For code embeddings you can choose one of the following models:
+* [ada](https://beta.openai.com/docs/engines/ada)
+* [babbage](https://beta.openai.com/docs/engines/babbage)
 
 In the `moduleConfig` inside a class, you need to set two values:
 
