@@ -113,7 +113,7 @@ services:
       # if your token issuer is unable to provide a correct audience claim
       AUTHENTICATION_OIDC_SKIP_CLIENT_ID_CHECK: 'false'
 
-      # scope (optional) specifies the group of claims to be used by an application during authentication to provide information as required
+      # scope (optional) these scopes will be used by clients as default scopes for authentication
       AUTHENTICATION_OIDC_SCOPES: ''
 ```
 
