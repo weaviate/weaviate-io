@@ -11,15 +11,15 @@ client = weaviate.Client("http://localhost:8080")
 
 # Update a shard
 client.schema.update_class_shard(
-  class_name='Article',
-  status='READONLY',
-  shard_name='shard-1234',
+  class_name="Article",
+  status="READONLY",
+  shard_name="shard-1234",
 )
 
 # Convenience method to update all shards in a class
 client.schema.update_class_shard(
-  class_name='Article',
-  status='READONLY',
+  class_name="Article",
+  status="READONLY",
 )
 ```
 
@@ -27,7 +27,7 @@ client.schema.update_class_shard(
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -37,9 +37,9 @@ const client = weaviate.client({
 // Update a shard
 client.schema
   .shardUpdater()
-  .withClassName("Article")
-  .withShardName("shard-1234")
-  .withStatus("READONLY")
+  .withClassName('Article')
+  .withShardName('shard-1234')
+  .withStatus('READONLY')
   .do()
 
 // Convenience method to update all shards in a class

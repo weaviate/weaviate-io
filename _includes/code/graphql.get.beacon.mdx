@@ -29,9 +29,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-query = "{Get {Article {title url wordCount inPublication {... on Publication {name }}}}}"
-
-result = client.query.raw(query)
+result = client.query.get("Article", ["title", "url", "wordCount", "inPublication {... on Publication {name }}"])
 
 print(result)
 ```
@@ -40,7 +38,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',

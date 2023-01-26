@@ -36,16 +36,16 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 near_text_filter = {
-  'concepts': ["fashion"]
+  "concepts": ["fashion"]
 }
 
 additional_props = {
-  'classification' : ['basedOn', 'classifiedFields', 'completed', 'id']
+  "classification" : ["basedOn", "classifiedFields", "completed", "id"]
 }
 
 query_result = (
   client.query
-  .get('Article', 'title')
+  .get("Article", "title")
   .with_additional(additional_props)
   .with_near_text(near_text_filter)
   .do()
@@ -58,7 +58,7 @@ print(query_result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',

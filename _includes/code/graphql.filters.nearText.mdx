@@ -54,7 +54,8 @@ nearText = {
 
 result = (
   client.query
-  .get("Publication", ["name", "_additional {certainty distance} "]) # note that certainty is only supported if distance==cosine
+  .get("Publication", "name")
+  .with_additional("certainty OR distance"]) # note that certainty is only supported if distance==cosine
   .with_near_text(nearText)
   .do()
 )
@@ -66,7 +67,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -78,14 +79,14 @@ client.graphql
   .withClassName('Publication')
   .withFields('name _additional{certainty distance}') // note that certainty is only supported if distance==cosine
   .withNearText({
-    concepts: ["fashion"],
+    concepts: ['fashion'],
     distance: 0.6, // prior to v1.14 use certainty instead of distance
     moveAwayFrom: {
-      concepts: ["finance"],
+      concepts: ['finance'],
       force: 0.45
     },
     moveTo: {
-      concepts: ["haute couture"],
+      concepts: ['haute couture'],
       force: 0.85
     }
   })

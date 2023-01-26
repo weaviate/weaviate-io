@@ -24,7 +24,7 @@ client.schema.property.create("Publication", reference_property)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -33,11 +33,11 @@ const client = weaviate.client({
 
 const className = 'Publication';
 const prop = {
-  "dataType": [
-    "Article"
+  'dataType': [
+    'Article'
   ],
-  "description": "The articles this publication has",
-  "name": "hasArticles"
+  'description': 'The articles this publication has',
+  'name': 'hasArticles'
 };
 
 client.schema

@@ -68,8 +68,7 @@ print(json.dumps(schema, indent=4))
 <TabItem value="js" label="JavaScript">
 
 ```js
-
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 // update the endpoint here!
 const client = weaviate.client({
@@ -80,43 +79,43 @@ const client = weaviate.client({
 // we will create the class "Author" and the properties
 // from the basics section of this guide
 var classObj = {
-  "class": "Author", // <= note the capital "A".
-  "description": "A description of this class, in this case, it is about authors",
-  "properties": [
+  'class': 'Author', // <= note the capital "A".
+  'description': 'A description of this class, in this case, it is about authors',
+  'properties': [
       {
-          "dataType": [
-              "string"
+          'dataType': [
+              'string'
           ],
-          "description": "The name of the Author",
-          "name": "name",
+          'description': 'The name of the Author',
+          'name': 'name',
       },
       {
-          "dataType": [
-              "int"
+          'dataType': [
+              'int'
           ],
-          "description": "The age of the Author",
-          "name": "age"
+          'description': 'The age of the Author',
+          'name': 'age'
       },
       {
-          "dataType": [
-              "date"
+          'dataType': [
+              'date'
           ],
-          "description": "The date of birth of the Author",
-          "name": "born"
+          'description': 'The date of birth of the Author',
+          'name': 'born'
       },
       {
-          "dataType": [
-              "boolean"
+          'dataType': [
+              'boolean'
           ],
-          "description": "A boolean value if the Author won a nobel prize",
-          "name": "wonNobelPrize"
+          'description': 'A boolean value if the Author won a nobel prize',
+          'name': 'wonNobelPrize'
       },
       {
-          "dataType": [
-              "text"
+          'dataType': [
+              'text'
           ],
-          "description": "A description of the author",
-          "name": "description"
+          'description': 'A description of the author',
+          'name': 'description'
       }
   ]
 }
@@ -224,7 +223,6 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-
 package technology.semi.weaviate;
 
 import java.util.ArrayList;

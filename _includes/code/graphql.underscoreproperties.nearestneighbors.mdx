@@ -38,47 +38,21 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-get_nearest_neighbors = """
-  {
-    Get {
-      Publication (
-        nearText: {
-          concepts:["music"],
-          moveTo: {
-            concepts: ["beatles"],
-            force: 0.5
-          }
-        }
-      ) {
-        name
-        _additional {
-          nearestNeighbors{
-            neighbors {
-              concept
-              distance
-            }
-          }
-        }
-      }
-    }
-  }
-"""
-
 near_text_filter = {
-  'concepts': ["music"],
-  'moveTo': {
-    'concepts': ["beatles"],
-    'force': 0.5
+  "concepts": ["music"],
+  "moveTo": {
+    "concepts": ["beatles"],
+    "force": 0.5
   }
 }
 
 additional_props = {
-  'nearestNeighbors': 'neighbors {concept distance}'
+  "nearestNeighbors": "neighbors {concept distance}"
 } 
 
 query_result = (
   client.query
-  .get('Publication', 'name')
+  .get("Publication", "name")
   .with_additional(additional_props)
   .with_near_text(near_text_filter)
   .do()
@@ -91,7 +65,7 @@ print(query_result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -103,9 +77,9 @@ client.graphql
       .withClassName('Publication')
       .withFields('name _additional {nearestNeighbors{ neighbors {concept distance}}}')
       .withNearText({
-        concepts:["music"],
+        concepts:['music'],
         moveTo: {
-          concepts: ["beatles"],
+          concepts: ['beatles'],
           force: 0.5
         }
       })

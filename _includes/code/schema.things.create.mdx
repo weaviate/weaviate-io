@@ -37,7 +37,7 @@ client.schema.create_class(class_obj)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -45,25 +45,25 @@ const client = weaviate.client({
 });
 
 var classObj = {
-    "class": "Article",
-    "description": "A written text, for example a news article or blog post",
-    "vectorizeClassName": true,
-    "properties": [
+    'class': 'Article',
+    'description': 'A written text, for example a news article or blog post',
+    'vectorizeClassName': true,
+    'properties': [
         {
-        "dataType": [
-            "string"
+        'dataType': [
+            'string'
         ],
-        "description": "Title of the article",
-        "name": "title",
-        "vectorizePropertyName": true,
-        "index": true
+        'description': 'Title of the article',
+        'name': 'title',
+        'vectorizePropertyName': true,
+        'index': true
         },
         {
-        "dataType": [
-            "text"
+        'dataType': [
+            'text'
         ],
-        "description": "The content of the article",
-        "name": "content"
+        'description': 'The content of the article',
+        'name': 'content'
         }
     ]
 }

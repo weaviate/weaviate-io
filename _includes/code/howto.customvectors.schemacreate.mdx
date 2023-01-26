@@ -25,7 +25,7 @@ client.schema.create_class(class_obj)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -34,11 +34,11 @@ const client = weaviate.client({
 
 var classObj = {
   {
-    "class": "Post",
-    "vectorizer": "none", // explicitly tell Weaviate not to vectorize anything, we are providing the vectors ourselves through our BERT model
-    "properties": [{
-        "name": "content",
-        "dataType": ["text"],
+    'class': 'Post',
+    'vectorizer': 'none', // explicitly tell Weaviate not to vectorize anything, we are providing the vectors ourselves through our BERT model
+    'properties': [{
+        'name': 'content',
+        'dataType': ['text'],
     }]
 };
 

@@ -36,15 +36,15 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 where_filter = {
-  'concepts': ["fashion"],
-  'distance': 0.6, # prior to v1.14 use 'certainty': 0.7,
-  'moveAwayFrom': {
-    'concepts': ["finance"],
-    'force': 0.45
+  "concepts": ["fashion"],
+  "distance": 0.6, # prior to v1.14 use "certainty": 0.7,
+  "moveAwayFrom": {
+    "concepts": ["finance"],
+    "force": 0.45
   },
-  'moveTo': {
-    'concepts': ["haute couture"],
-    'force': 0.85
+  "moveTo": {
+    "concepts": ["haute couture"],
+    "force": 0.85
   }
 }
 
@@ -52,7 +52,7 @@ query_result = client.query.raw(get_articles_query)
 
 query_result = (
   client.query
-  .get('Publication', 'name')
+  .get("Publication", "name")
   .with_where(where_filter)
   .do()
 )
@@ -64,7 +64,7 @@ print(query_result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -76,14 +76,14 @@ client.graphql
       .withClassName('Publication')
       .withFields('name')
       .withNearText({
-        concepts: ["fashion"],
+        concepts: ['fashion'],
         distance: 0.6, # prior to v1.14 use certainty: 0.7,
         moveAwayFrom: {
-          concepts: ["finance"],
+          concepts: ['finance'],
           force: 0.45
         },
         moveTo: {
-          concepts: ["haute couture"],
+          concepts: ['haute couture'],
           force: 0.85
         }
       })

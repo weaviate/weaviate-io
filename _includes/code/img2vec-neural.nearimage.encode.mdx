@@ -61,7 +61,7 @@ print(result)
 ```js
 // The JavaScript client doesn't support image encoding via a helper function, you need to give the input image as base64 format yourself
 
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -72,7 +72,7 @@ client.graphql
       .get()
       .withClassName('FashionItem')
       .withFields('image')
-      .withNearImage({image: "/9j/4AAQSkZJRgABAgE..."})
+      .withNearImage({image: '/9j/4AAQSkZJRgABAgE...'})
       .do()
       .then(res => {
         console.log(res)

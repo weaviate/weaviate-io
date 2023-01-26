@@ -42,14 +42,14 @@ import TabItem from '@theme/TabItem';
 ```python
 import weaviate
 
-client = weaviate.Client('http://localhost:8080')
+client = weaviate.Client("http://localhost:8080")
 
 result = (
   client.query
-  .aggregate('Article')
+  .aggregate("Article")
   .with_meta_count()
-  .with_fields('wordCount {count maximum mean median minimum mode sum type} inPublication {pointingTo type}')
-  .with_near_object({'id': '9199ee38-b0db-4800-b146-dea8cfc62351', 'distance': 0.6}) # prior to v1.14 use certainty instead of distance
+  .with_fields("wordCount {count maximum mean median minimum mode sum type} inPublication {pointingTo type}")
+  .with_near_object({"id": "9199ee38-b0db-4800-b146-dea8cfc62351", "distance": 0.6}) # prior to v1.14 use certainty instead of distance
   .with_object_limit(200)
   .do()
 )
@@ -61,7 +61,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -72,7 +72,7 @@ client.graphql
       .aggregate()
       .withClassName('Article')
       .withFields('meta { count } wordCount {count maximum mean median minimum mode sum type}')
-      .withNearObject({ id: "abefd256-8574-442b-9293-9205193737ee", distance: 0.6 }) # prior to v1.14 use certainty instead of distance
+      .withNearObject({ id: 'abefd256-8574-442b-9293-9205193737ee', distance: 0.6 }) # prior to v1.14 use certainty instead of distance
       .withObjectLimit(100)
       .do()
       .then(res => {

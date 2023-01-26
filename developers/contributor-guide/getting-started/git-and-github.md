@@ -244,11 +244,11 @@ For any changes you commit, make sure that you:
 
 * Compare your Pull Request's source changes to staging to ensure that the output matches the source and that everything is rendering as expected. This assists in detecting issues such as typos or content that isn't rendering due to versioning issues.
 
-* If there are any failing checks in your PR, try troubleshooting them until they are passing or [ask for help](https://weaviate.slack.com/).
+* If there are any failing checks in your PR, try troubleshooting them until they are passing or [ask for help](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/).
 
 ### Documentation-specific guidelines
 
-* Check for technical accuracy in the content. You can always [ask for help](https://weaviate.slack.com/) if you get stuck.
+* Check for technical accuracy in the content. You can always [ask for help](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/) if you get stuck.
 
 * Verify that the syntax of new or updated Liquid statements is proper. Jekyll uses the [Liquid](https://shopify.github.io/liquid/) templating language to process templates.
 

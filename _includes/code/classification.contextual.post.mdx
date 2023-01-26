@@ -35,7 +35,7 @@ client.classification.schedule()\
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -48,7 +48,7 @@ client.classifications
       .withType('text2vec-contextionary-contextual')
       .withClassName('Article')
       .withClassifyProperties(['ofCategory'])
-      .withBasedOnProperties(["summary"])
+      .withBasedOnProperties(['summary'])
       .do()
       .then(res => {
         console.log(res)
@@ -63,7 +63,7 @@ client.classifications
       .withType('text2vec-contextionary-contextual')
       .withClassName('Article')
       .withClassifyProperties(['ofCategory'])
-      .withBasedOnProperties(["summary"])
+      .withBasedOnProperties(['summary'])
       .withWaitForCompletion()
       .withWaitTimeout(60 * 1000)
       .do()
