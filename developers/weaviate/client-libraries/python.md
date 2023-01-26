@@ -86,6 +86,7 @@ bearer_config = weaviate.AuthBearerToken(
 
 # Initiate the client with the auth config
 client = weaviate.Client("https://localhost:8080", auth_client_secret=bearer_config)
+```
 
 ## Neural Search Frameworks
 
