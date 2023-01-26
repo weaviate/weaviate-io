@@ -9,11 +9,11 @@ image: ./img/hero.png
 
 ![Pulling back the curtains on text2vec](./img/hero.png)
 
-You probably know that Weaviate converts a text corpus into a set of vectors - each object is given a vector that captures its 'meaning'. But you might not know exactly how it does that, or how to adjust that behavior. Here, we will we pull back the curtains to examine those questions, by revealing some of the mechanics behind `text2vec`'s magic. 
+You probably know that Weaviate converts a text corpus into a set of vectors - each object is given a vector that captures its 'meaning'. But you might not know exactly how it does that, or how to adjust that behavior. Here, we will pull back the curtains to examine those questions, by revealing some of the mechanics behind `text2vec`'s magic. 
 
 <!-- truncate -->
 
-First, we will reproduce Weaviate's output vector using only an external API. Then we will see how to the text vectorization process can tweaked, before wrapping up by discussing a few considerations also.
+First, we will reproduce Weaviate's output vector using only an external API. Then we will see how the text vectorization process can be tweaked, before wrapping up by discussing a few considerations also.
 
 ## Background
 
@@ -83,7 +83,7 @@ This is the 'magic' part. So let's look behind the curtain, and see if we can re
 
 We know that the vector for each object corresponds to its text. What we don't know is how, exactly. 
 
-As each object only contains the two properties, `question` and `answer`, let's try concatenating our text and compare it to Weaviate's. And instead of the `text2vec-cohere` module, we will go straight to the Cohere API. 
+As each object only contains the two properties, `question` and `answer`, let's try concatenating our text and comparing it to Weaviate's. And instead of the `text2vec-cohere` module, we will go straight to the Cohere API. 
 
 Concatenating the text from the object:
 
@@ -225,7 +225,7 @@ question_class = {
 client.schema.create_class(question_class)
 ```
 
-The schema is defined such that at least some of the options, such as `moduleConfig`/`text2vec-cohere` /`vectorizeClassName` and `properties`/`moduleConfig`/`text2vec-cohere`/`vectorizePropertyName` differ to their defaults. 
+The schema is defined such that at least some of the options, such as `moduleConfig`/`text2vec-cohere` /`vectorizeClassName` and `properties`/`moduleConfig`/`text2vec-cohere`/`vectorizePropertyName` differ from their defaults. 
 
 And as a result, a `nearVector` search with the previously-matching Cohere API vector is now at a distance of `0.00395`. 
 
