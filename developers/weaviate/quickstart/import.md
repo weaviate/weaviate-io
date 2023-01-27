@@ -16,7 +16,7 @@ You have already seen how to import data into Weaviate. So in this section, let'
 ## Prerequisites 
 
 At this point, you should have: 
-- An new instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
+- An instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
 - Installed your preferred Weaviate client library, and
 - Set up a `Question` class in your schema. 

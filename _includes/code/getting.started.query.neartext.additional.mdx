@@ -39,6 +39,7 @@ result = (
     .get("Question", ["question", "answer"])
     .with_near_text(nearText)
     .with_limit(2)
+    .with_additional(['vector', 'certainty'])
     .do()
 )
 
@@ -60,7 +61,7 @@ const client = weaviate.client({
 client.graphql
   .get()
   .withClassName('Question')
-  .withFields('question answer')
+  .withFields('question answer _additional {vector certainty}')
   .withNearText({concepts: ["famous scientist"]})
   .withLimit(2)
   .do()
