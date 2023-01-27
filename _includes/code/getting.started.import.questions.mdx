@@ -16,14 +16,6 @@ client = weaviate.Client(
     }
 )
 
-# ===== add schema ===== 
-class_obj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"  # Or "text2vec-cohere" or "text2vec-huggingface"
-}
-
-client.schema.create_class(class_obj)
-
 # ===== import data ===== 
 import json
 
@@ -52,7 +44,6 @@ with client.batch as batch:
 ```js
 const weaviate = require("weaviate-client");
 
-// update the endpoint!
 const client = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.weaviate.network/',
@@ -62,19 +53,6 @@ var classObj = {
     "class": "Question",
     "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
 }
-
-// add the schema
-client
-  .schema
-  .classCreator()
-  .withClass(classObj)
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
 
 async function getJsonData() {
     const file = await fetch('./jeopardy_tiny.json');
@@ -146,7 +124,6 @@ import (
 	"fmt"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
   "github.com/weaviate/weaviate/entities/models"
-
 )
 
 func main() {
@@ -157,16 +134,7 @@ func main() {
 
     client := weaviate.New(cfg)
 
-    classObj := &models.Class{
-        Class:      "Question", 
-        Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
-    }
-
-    // add the schema
-    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-    if err != nil {
-        panic(err)
-    }
+    // add code here
 }
 ```
 
@@ -191,18 +159,7 @@ public class App {
 
     WeaviateClient client = new WeaviateClient(config);
 
-    // we will create the class "Question" and the properties
-    WeaviateClass clazz = WeaviateClass.builder()
-      .className("Question")
-      .vectorizer("text2vec-openai")  // Or "text2vec-cohere" or "text2vec-huggingface"
-      .build();
-    
-    // add the schema
-    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
-    if (result.hasErrors()) {
-      System.out.println(result.getError());
-      return;
-    }
+    // add code here
   }
 }
 ```

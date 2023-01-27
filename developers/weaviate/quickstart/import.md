@@ -9,44 +9,69 @@ import { DownloadButton } from '/src/theme/Buttons';
 
 <Badges/>
 
-In this section, we will show you how to import data objects into your instance of Weaviate.
+## Overview
+
+You have already seen how to import data into Weaviate. So in this section, let's dig a little bit further into the details of imports including how vectors were imported, and some things to remember for optimization.
 
 ## Prerequisites 
 
 At this point, you should have: 
-- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology)
-- Installed the appropriate client library in a language of your choice, and
-- Added a schema for the **Publication** class.
+- An new instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
+- An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
+- Installed your preferred Weaviate client library, and
+- Set up a `Question` class in your schema. 
 
-If you have not done this, go back to [set up your Weaviate instance and client library](./installation.md) and [add a schema](./schema.md) first and come back 🙂.
-
-## Import data
-
-The data to be imported needs to match the classes and properties defined in the Weaviate schema. So in our case, we will import data according to the properties of the **Publication** class defined in the previous section.
-
-Weaviate allows data objects to be created as a single object or in batches. For importing data, we **strongly suggest that you use batch imports**. Accordingly, this guide is written for batch import methods.
-
-For the purpose of this guide, we've prepared a **data.json** file containing a few publications. Download it from below, and add it to your project.
+Download the dataset below to your working directory if you haven't yet, as we will use it again here.
 
 <p>
-  <DownloadButton link="/downloads/quickstart/data.json">Download data.json</DownloadButton>
+  <DownloadButton link="https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json">Download jeopardy_tiny.json</DownloadButton>
 </p>
 
-Now, to import the data we need to follow these steps:
+## Import setup
+
+We said in the [schema section](./schema.md) earlier that the `schema` specifies the structure of the information to be saved to Weaviate. 
+
+So the data must be imported by matching properties of the relevant class, which in this case is the **Question** class defined in the previous section.
+
+### Batch imports
+
+Weaviate allows data objects to be created as a single object or in batches. 
+
+For importing data, we **strongly suggest that you use batch imports**. Batch imports are carried out through the [`batch` REST endpoint](https://weaviate.io/developers/weaviate/api/rest/batch), and can greatly improve performance by sending multiple objects in single request.
+
+### Batch import process
+
+The general import process looks like this:
 
 1. Connect to your Weaviate instance
-1. Load objects from the `data.json` file
+1. Load objects from the data file
 1. Prepare a batch process
-1. Loop through all Publications
-    1. Parse each publication – to a structure expected by the language client of your choice
+1. Loop through the records
+    1. Parse each record and build an object
     1. Push the object through a batch process
 1. Flush the batch process – in case there are any remaining objects in the buffer
 
-Here is the full code you need to import the **Publications**:
+Here is the full code you need to import the **Question** objects:
 
-import CodeImportPubs from '/_includes/code/getting.started.import.publications.mdx';
+import CodeImportQuestions from '/_includes/code/getting.started.import.questions.mdx';
 
-<CodeImportPubs />
+<CodeImportQuestions />
+
+There are a couple of things to note here. 
+
+One is the size of the batch. This can be specified in some clients as a parameter (e.g. `batch_size` in the Python client), or manually determined by periodically flushing the batch. 
+
+Typically a size of 100 is a reasonable starting point, although this may differ depending on the size of each data object. A smaller size may be preferable for larger data objects, such as if you are uploading your own vectors rather than using a vectorizer.
+
+Another is that we do not provide a vector. This is due to the fact that we specified a `vectorizer` earlier in our schema definition. Accordingly, Weaviate will send a request to the appropriate module (`text2vec-openai` in this case) to vectorize the data, and the vector in the response will be indexed and saved into Weaviate tied to the data object.
+
+#### Bring your own vector
+
+If you wish to upload your own vector, for example because you have already vectorized your data, or if you have a custom vectorization pipeline, you can do so with Weaviate.
+
+You can even manually upload existing vectors and use a vectorizer module for vectorizing queries.
+
+## Confirm import
 
 You can quickly check the imported object by opening – `weaviate-endpoint/v1/objects` in a browser, like this:
 
@@ -64,83 +89,15 @@ The result should look something like this:
 
 ```json
 {
-  deprecations: null,
-  objects: [
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: '16476dca-59ce-395e-b896-050080120cd4',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: '212e56a6-e535-3569-ad1b-2215526c1d9d',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    ...
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: 'eaa33b83-3927-3aaf-af4b-4990c79485da',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: 'f2968730-9ce5-3e6f-8e64-b6b9f68984b0',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-    {
-      class: 'Publication',
-      creationTimeUnix: 1665494303066,
-      id: 'fa207f19-e080-3902-982c-393d321776be',
-      lastUpdateTimeUnix: 1665494303066,
-      properties: [Object],
-      vectorWeights: null
-    },
-  ],
-  totalResults: 13
+    "deprecations": null,
+    "objects": [
+        ...  // Details of each object
+    ],
+    "totalResults": 10  // You should see 10 results here
 }
 ```
 
-If you see something like the result above - congratulations! You have a fully functioning instance of Weaviate with data 🚀🎉. 
-
-Now you are ready to start asking some big questions to Weaviate.
-
-:::note
-For importing large datasets, creating an optimized import strategy will make a big difference in import time. So please read our tips below on [data import best practices](#data-import---best-practices) if this is the case for you.
-:::
-
-## Recap
-
-* Data to be imported should match the database schema
-* Use batch import if possible
-* For importing large datasets, make sure to consider and optimize your import strategy.
-
-## Next
-
-- [Perform queries with Weaviate](./query.html)
-
-## Notes
-
-### Data import - best practices
+## Data import - best practices
 
 Although importing itself can be done in a few steps, creating an optimized import strategy needs a bit of planning. Here are a few things to keep in mind.
 
@@ -157,6 +114,28 @@ Our rules of thumb are:
 * As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
 * Process error messages.
 * Some clients (especially Python) have some build-in logic to efficiently regulate batch importing.
+
+### Error handling
+
+:::info `200` status code != 100% batch success
+A `200` status code for the batch request does not mean that each batch item added/created!
+:::
+
+A batch request will always return a HTTP `200` status code when a the batch **request** was successful. This means that the request was successfully sent to Weaviate, and there were no issues with the connection or processing of the batch and no malformed request
+
+However, it is important to note that even if the response code was `200`, individual data object imports could have failed. 
+
+Accordingly, we recommend that you implement error handling at an object level following the [example laid out here](../api/rest/batch.md#error-handling)
+
+## Recap
+
+* Data to be imported should match the database schema
+* Use batch import if possible
+* For importing large datasets, make sure to consider and optimize your import strategy.
+
+## Next
+
+- [Perform queries with Weaviate](./query.html)
 
 ### Other object operations
 

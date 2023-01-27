@@ -229,7 +229,7 @@ You can read more about various schema, data type, modules, and index configurat
 
 ## Next
 
-* [Import data](./import.md)
+* [All about (batch) imports](./import.md)
 
 ## More Resources
 

@@ -20,13 +20,11 @@ At this point, you should have:
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
 - Installed your preferred Weaviate client library. 
 
-If you have not done any of these, [go back](./installation.md) to finish this and come back. We'll still be here 😉.
-
 import CautionSchemaDeleteAll from '/_includes/schema-delete-all.mdx'
 
 <CautionSchemaDeleteAll />
 
-If you are ready, download the dataset below to your working directory and let's get going!
+Download the dataset below to your working directory and let's get going!
 
 <p>
   <DownloadButton link="https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json">Download jeopardy_tiny.json</DownloadButton>
@@ -188,9 +186,20 @@ That's a powerful outcome, which shows a big reason behind the popularity of vec
 
 Try it out yourself with different strings, by changing the string from "famous scientist". 
 
-## Next
+## Recap
 
-We've seen a lot in just a couple of pages. Next, we revisit these processes and start to review each section in more detail.
+If you made it here - that's it. You've successfully built a fully functioning vector database! 🥳
+
+Of course, this was just a quick look, and there's a lot of options and configurations that we have yet to explore. But we've covered a lot in just a couple of pages. 
+
+You have:
+- Spun up an instance of Weaviate through WCS
+- Populated it with data, vectorizing it with an inference API, and
+- Performed text similarity searches.
+
+Next, we will revisit these processes and start to review each section in more detail, starting with the schema.
+
+## Next
 
 - [Manually specify a schema](./schema.md).
 
