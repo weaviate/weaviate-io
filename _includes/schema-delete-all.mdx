@@ -17,6 +17,6 @@ client = weaviate.Client("https://some-endpoint.weaviate.io/")
 client.schema.delete_all()
 
 schema = client.schema.get()
-print(json.dumps(schema))
+print(json.dumps(schema, indent=4))
 ```
 :::

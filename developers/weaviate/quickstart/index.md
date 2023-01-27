@@ -15,13 +15,13 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Welcome to the Weaviate **Quickstart tutorial**. 
+Welcome to the Weaviate **Quickstart tutorial**. We are very excited to have you here.
 
-This tutorial introduces you to Weaviate, and some of its main features. You will get hands-on experience running Weaviate and doing things with it.
+In this tutorial, you will get hands-on experience running Weaviate including some of its main features. 
 
 ### Data
 
-We will begin with this (tiny) dataset consisting of questions from the popular quiz show "Jeopardy!":
+We will start with this (tiny) dataset consisting of questions from the popular quiz show "Jeopardy!":
 
 |    | Category   | Question                                                                                                     | Answer                              |
 |---:|:-----------|:-------------------------------------------------------------------------------------------------------------|:------------------------------------|
@@ -38,7 +38,7 @@ We will begin with this (tiny) dataset consisting of questions from the popular 
 
 ### What you will build
 
-In this tutorial, you will build a Weaviate database with this data and then perform queries to retrieve relevant information from it. By the end, you will begin to see some of the benefits of vector search, and get some ideas on what you can do with Weaviate.
+You will build a Weaviate database with this data and then perform queries to retrieve relevant information from it. By the end, you will begin to see some of the benefits of vector searches and get some ideas on what you can do with Weaviate.
 
 We also include brief optional chapters about [modules](./modules.md), and the [console](./console.md).
 
@@ -48,16 +48,26 @@ We also include brief optional chapters about [modules](./modules.md), and the [
 
 The guide assumes that you are somewhat familiar with databases and vector embeddings. 
 
-But don't worry too much even if you are uncomfortable with any of these. The guide is structured so you should be able to follow along even if some of the concepts are unfamiliar. And you can always revisit some of these ideas in the documentation. 
+But don't worry too much even if you are uncomfortable with any of these. This tutorial is about getting you started **doing things with Weaviate**. It is structured so that you should be able to follow along even if some of the concepts are unfamiliar. And you can always revisit some of these ideas in the documentation. 
 
 ### Accounts and API keys
 
-We recommend following along with the tutorial by creating free accounts with:
+You will be creating your own instance of Weaviate in this tutorial. You will also be specifying an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs). 
+
+To follow along with the tutorial, we recommend you create accounts with:
 1. A [Weaviate Cloud Service (WCS)](https://console.weaviate.io/) account, and
 1. An account with an inference API provider such as:
     1. [OpenAI](https://beta.openai.com/docs/guides/embeddings),
     1. [Cohere](https://docs.cohere.ai/reference/embed), or
     1. [Hugging Face](https://huggingface.co/docs/api-inference/index).
+
+The free tiers for all of them will be sufficient for you to follow along. 
+
+:::warning TODO
+Add info here about contacting us if anyone has issues with the Quickstart
+- File a GH issue, or
+- Contact us on slack
+:::
 
 ## Next
 

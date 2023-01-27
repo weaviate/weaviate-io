@@ -8,43 +8,37 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-Now we are ready start to work on our instance of Weaviate.
+## Overview
 
-For this guide, let's build a database containing news publications. Before populating our database with data objects, we must first tell the database about the structure of the information to be saved. 
+In the previous section, you saw that we specified a class name the vectorizer to be used in this format:
 
-This is called a _schema_. In our case, our schema will specify the structure of the **Publication** and objects that Weaviate will store.
+import CodeAutoschemaMinimumSchema from '/_includes/code/getting.started.autoschema.minimum.schema.mdx'
 
-Here, we will show you how to set up such a schema.
+<CodeAutoschemaMinimumSchema />
+
+Then when you navigated to the [`schema` endpoint](../api/rest/schema.md) at `https://some-endpoint.weaviate.network/v1/schema`, you should have seen the above-specified class name and the vectorizer. 
+
+### Auto-schema vs. manual schema
+
+But you might have also noticed that the `schema` included a whole lot of information that you did not specify. 
+
+They are required to specify the structure of the information to be saved to Weaviate. When any required information is missing as in the previous section, Weaviate will infer the rest from the data being imported as well as the default settings. 
+
+This is called the [`Auto-schema` feature](../configuration/schema-configuration.md#auto-schema).
+
+Although auto schema works well for some instances, we generally advise manually setting your schema to optimize Weaviate's performance.
+
+So here, we will introduce you to manual specification of the schema as well as why you might want to.
 
 ## Prerequisites 
 
 At this point, you should have: 
-- Weaviate running on the [Weaviate Cloud Service](https://console.semi.technology), and
-- Installed the appropriate client library in a language of your choice. 
 
-If you have not done this, [go back](./installation.md) to set up your Weaviate instance and client library first and come back :).
+- An new instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
+- An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
+- Installed your preferred Weaviate client library. 
 
-## Connect to Weaviate
-
-First, let's make sure that you can connect to your Weaviate instance.
-
-To do this we need to point the `host` endpoint to *your* instance. Just replace `some-endpoint` in the code example below with the `cluster-id` you created in the previous step.
-
-> Note: From now on, all examples will provide the code using the WCS endpoint:<br/> `"some-endpoint.semi.network/"`<br/>Replace the value to match your host endpoint, or `http://localhost:8080` if you are running it on Docker.
-
-Run the below code in your project.
-
-import CodeConnectToWeaviate from '/_includes/code/getting.started.schema.connect.mdx';
-
-<CodeConnectToWeaviate />
-
-The result should look like this:
-
-```json
-{"classes": []}
-```
-
-Great! You've successfully made your first client query to Weaviate 🎉. The output tells us that this instance of Weaviate does not contain any classes. So let's create some.
+If you have completed the previous section, your Weaviate instance will contain data objects and a schema. We recommend deleting it all before starting this section:
 
 import CautionSchemaDeleteAll from '/_includes/schema-delete-all.mdx'
 
@@ -52,12 +46,26 @@ import CautionSchemaDeleteAll from '/_includes/schema-delete-all.mdx'
 
 ## Create a class
 
-First let's add a class called **Publication**. We will use it to store info about publication outlets like *The New York Times* or *The Guardian*.
+Let's add a class to store our quiz data as we did before. 
 
-Our **Publication** class will contain one property:
-* `name`: type `string`
+### About classes
 
-Run the below code in you application, which will define the schema for the **Publication** class and display the created schema information.
+Weaviate classes:
+- Are always written with a capital letter first. This is to distinguish them from generic names for cross-referencing.
+- Have properties, each specifying type of data values to store.
+- Can each have different vectorizers (e.g. one class can have a `text2vec-openai` vectorizer, and another might have `multi2vec-clip` vectorizer, or `none` if providing own vectors).
+
+### Create a basic class
+
+Let's create a class called **Question** as we did before. 
+
+Our **Question** class will:
+- Contain three properties:
+    - name `answer`: type `string`
+    - name `question`: type `string`
+- Use a `text2vec-openai` vectorizer
+
+Run the below code in you application, which will define the schema for the **Question** class and display the created schema information.
 
 import CodeCreateSchema from '/_includes/code/getting.started.schema.create.2.mdx';
 
@@ -69,8 +77,8 @@ The result should look something like this:
 {
     "classes": [
         {
-            "class": "Publication",
-            "description": "A description of this class, in this case, it's about publications",
+            "class": "Question",
+            "description": "Information from a Jeopardy! question",
             "invertedIndexConfig": {
                 "bm25": {
                     "b": 0.75,
@@ -83,16 +91,47 @@ The result should look something like this:
                     "removals": null
                 }
             },
+            "moduleConfig": {
+                "text2vec-openai": {
+                    "model": "ada",
+                    "modelVersion": "002",
+                    "type": "text",
+                    "vectorizeClassName": true
+                }
+            },
             "properties": [
                 {
                     "dataType": [
                         "string"
                     ],
-                    "description": "The name of the Publication",
-                    "name": "name",
+                    "description": "The question",
+                    "moduleConfig": {
+                        "text2vec-openai": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "question",
+                    "tokenization": "word"
+                },
+                {
+                    "dataType": [
+                        "string"
+                    ],
+                    "description": "The answer",
+                    "moduleConfig": {
+                        "text2vec-openai": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "answer",
                     "tokenization": "word"
                 }
             ],
+            "replicationConfig": {
+                "factor": 1
+            },
             "shardingConfig": {
                 "virtualPerPhysical": 128,
                 "desiredCount": 1,
@@ -112,22 +151,75 @@ The result should look something like this:
                 "dynamicEfMin": 100,
                 "dynamicEfMax": 500,
                 "dynamicEfFactor": 8,
-                "vectorCacheMaxObjects": 2000000,
+                "vectorCacheMaxObjects": 1000000000000,
                 "flatSearchCutoff": 40000,
                 "distance": "cosine"
             },
             "vectorIndexType": "hnsw",
-            "vectorizer": "none"
+            "vectorizer": "text2vec-openai"
         }
     ]
 }
 ```
 
-Wow! That's a lot more settings than what we specified!
+We get back a lot of information here. 
 
-What's happened is that Weaviate has added some default configurations for you. You can change these options if you wish, but there is no need to for this guide.
+Some of it is what we specified, such as the class name (`class`), and `properties` including their `dataType` and`name`. But the others are inferred by Weaviate based on the defaults and the data provided. 
 
-Great! Your database is set up with a schema and ready to go. Next, we will show you how you can add **Publication** data into Weaviate.
+### Class property specification examples
+
+And depending on your needs, you might want to change any number of these. For example, you might change:
+
+- `moduleConfig` to modify how each module behaves. In this case, you could change model and/or version for the OpenAI inference API, and the vectorization behavior such as whether the class name is used for vectorization.
+- `properties` / `moduleConfig` to further modify module behavior at a class data property level. You might choose to skip a particular property being included for vectorization.
+- `invertedIndexConfig` to add or remove particular stopwords, or change BM25 indexing constants.
+- `vectorIndexConfig` to change vector index (e.g. HNSW) parameters, such as for speed / recall tradeoffs. 
+
+So for example, you might specify a schema like the one below:
+
+```json
+{
+    "class": "Question",
+    "description": "Information from a Jeopardy! question",
+    "moduleConfig": {
+        "text2vec-openai": {
+            "vectorizeClassName": false
+        }
+    },
+    "invertedIndexConfig": {
+        "bm25": {
+            "k1": 1.5,
+            "b": 0.75
+        }
+    },    
+    "properties": [
+        {
+            "dataType": ["string"],
+            "description": "The question",
+            "name": "question",
+            "moduleConfig": {
+                "text2vec-openai": {
+                    "vectorizePropertyName": true
+                }
+            },            
+        },
+        {
+            "dataType": ["string"],
+            "description": "The answer",
+            "name": "answer",
+        },
+    ]
+}
+```
+
+With which you will have changed the specified properties from their defaults. 
+
+You can read more about various schema, data type, modules, and index configuration options in the pages below. 
+
+- [Schema](../configuration/schema-configuration.md)
+- [Data types](../configuration/datatypes.md)
+- [Modules](../configuration/modules.md)
+- [Indexes](../configuration/indexes.md)
 
 ## Recap
 
@@ -138,18 +230,6 @@ Great! Your database is set up with a schema and ready to go. Next, we will show
 ## Next
 
 * [Import data](./import.md)
-
-## Notes
-
-### Auto-schema feature
-
-You can import data into Weaviate without creating a schema. Weaviate will use all default settings, and guess what data type you use. If you have a setup with modules, Weaviate will also guess the default settings for the modules.
-
-Although auto schema works well for some instances, we generally advise manually setting your schema to optimize Weaviate's performance.
-
-### Other schema operations
-
-All schema operations are available in the [API documentation for the schema endpoint](../restful-api-references/schema.html). The documentation also includes examples in different client languages.
 
 ## More Resources
 
