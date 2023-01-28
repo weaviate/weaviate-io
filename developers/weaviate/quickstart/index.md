@@ -15,38 +15,45 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Welcome to the Weaviate **Quickstart tutorial**. We are very excited to have you here.
-
-In this tutorial, you will get hands-on experience running Weaviate including some of its main features. 
+Welcome to the **Quickstart tutorial** for Weaviate! This part is all about getting hands-on experience with Weaviate.
 
 ### Data
 
 We will start with this (tiny) dataset consisting of questions from the popular quiz show "Jeopardy!":
 
-|    | Category   | Question                                                                                                     | Answer                              |
-|---:|:-----------|:-------------------------------------------------------------------------------------------------------------|:------------------------------------|
-|  0 | SCIENCE    | These in the skies of Albuquerque on October 3, 1999 were a fine example of Charles' Law in action           | hot air balloons                    |
-|  1 | SCIENCE    | Fructose is a monosaccharide, a simple one of these                                                          | a sugar                             |
-|  2 | SCIENCE    | After the sun & moon, this planet is the brightest object in the sky                                         | Venus                               |
-|  3 | SCIENCE    | Base 10 equivalent to the binary number "11"                                                                 | 3                                   |
-|  4 | HISTORY    | On December 2, 1804 this man crowned himself emperor                                                         | Napoleon Bonaparte                  |
-|  5 | HISTORY    | In 1931 the invading Japanese made this Chinese area a puppet state called Manchukuo                         | Manchuria                           |
-|  6 | SCIENCE    | His 1905 paper "On the Electrodynamics of Moving Bodies" contained his special Theory of Relativity          | Albert Einstein                     |
-|  7 | SCIENCE    | In 1665 Robert Hooke described & named this structural unit; bacteria have only one                          | Cell                                |
-|  8 | HISTORY    | Historic ones of these occurred on St. Bartholomew's Day in 1572 & St. Valentine's Day in 1929               | massacres                           |
-|  9 | HISTORY    | While Richard the Lion-Hearted was on a Crusade in the 1190s, this youngest brother tried to usurp the crown | John ("John Lackland", "Poor John") |
+|    | Category   | Question                                                                                                          | Answer                  |
+|---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------|
+|  0 | SCIENCE    | This organ removes excess glucose from the blood & stores it as glycogen                                          | Liver                   |
+|  1 | ANIMALS    | It's the only living mammal in the order Proboseidea                                                              | Elephant                |
+|  2 | ANIMALS    | The gavial looks very much like a crocodile except for this bodily feature                                        | the nose or snout       |
+|  3 | ANIMALS    | Weighing around a ton, the eland is the largest species of this animal in Africa                                  | Antelope                |
+|  4 | ANIMALS    | Heaviest of all poisonous snakes is this North American rattlesnake                                               | the diamondback rattler |
+|  5 | SCIENCE    | 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification | species                 |
+|  6 | SCIENCE    | A metal that is "ductile" can be pulled into this while cold & under pressure                                     | wire                    |
+|  7 | SCIENCE    | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance              | DNA                     |
+|  8 | SCIENCE    | Changes in the tropospheric layer of this are what gives us weather                                               | the atmosphere          |
+|  9 | SCIENCE    | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it                                      | Sound barrier           |
 
-### What you will build
+### Agenda
 
-You will build a Weaviate database with this data and then perform queries to retrieve relevant information from it. By the end, you will begin to see some of the benefits of vector searches and get some ideas on what you can do with Weaviate.
+By the time you're done with this tutorial, you will have:
+- Built a Weaviate database,
+- Vectorized and imported data, and
+- Performed queries to retrieve objects and aggregations, including filters.
 
-We also include brief optional chapters about [modules](./modules.md), and the [console](./console.md).
+You will see how Weaviate can:
+- Vectorize data at import time,
+- Use an external inference APIm
+- Automate data schema construction if necessary, and
+- Perform vector searches and filter results.
+
+We also include additional, optional chapters about [modules](./modules.md), and the Weaviate [console](./console.md).
 
 ## Before you start 
 
 ### Assumed knowledge
 
-The guide assumes that you are somewhat familiar with databases and vector embeddings. 
+The tutorial assumes that you are somewhat familiar with databases and vector embeddings. 
 
 But don't worry too much even if you are uncomfortable with any of these. This tutorial is about getting you started **doing things with Weaviate**. It is structured so that you should be able to follow along even if some of the concepts are unfamiliar. And you can always revisit some of these ideas in the documentation. 
 

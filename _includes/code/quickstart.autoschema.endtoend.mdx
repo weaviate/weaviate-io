@@ -5,12 +5,40 @@ import TabItem from '@theme/TabItem';
 <TabItem value="py" label="Python">
 
 ```python
+import weaviate
+import json
+
+client = weaviate.Client(
+    url="https://some-endpoint.weaviate.network/",
+    additional_headers={
+        "X-OpenAI-Api-Key": api_tkn  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key" 
+    }
+)
+
+# ===== add schema ===== 
+class_obj = {
+    "class": "Question",
+    "vectorizer": "text2vec-openai"  # Or "text2vec-cohere" or "text2vec-huggingface"
+}
+
+client.schema.create_class(class_obj)
+
+# ===== import data ===== 
+# Load data from the data.json file
+with open('jeopardy_tiny.json', 'r') as f:
+    data = json.load(f)
+
 # Configure a batch process
 with client.batch as batch:
     batch.batch_size=100
+    # Batch import all Questions
     for i, d in enumerate(data):
+        print(f"importing question: {i+1}")
+
         properties = {
-            ...
+            "answer": d["Answer"],
+            "question": d["Question"],
+            "category": d["Category"],
         }
 
         client.batch.add_data_object(properties, "Question")
@@ -20,7 +48,41 @@ with client.batch as batch:
 <TabItem value="js" label="JavaScript">
 
 ```js
+const weaviate = require("weaviate-client");
+
+// update the endpoint!
+const client = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.weaviate.network/',
+  }); 
+
+var classObj = {
+    "class": "Question",
+    "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+
+async function getJsonData() {
+    const file = await fetch('./jeopardy_tiny.json');
+    return file.json();
+}
+
 async function importQuestions() {
+  // Get the data from the data.json file
+  const data = await this.getJsonData();
+
   // Prepare a batcher
   let batcher = client.batch.objectsBatcher();
   let counter = 0;
@@ -31,7 +93,9 @@ async function importQuestions() {
     const obj = {
       class: 'Question',
       properties: {
-        ...
+        answer: question.Answer,
+        question: question.Question,
+        category: question.Category,
       },
     }
 

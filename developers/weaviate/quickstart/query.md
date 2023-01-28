@@ -24,14 +24,12 @@ At this point, you should have:
 - Imported the `jeopardy_tiny.json` data.
 
 :::note GraphQL
-Weaviate's queries are built using GraphQL. If this is new to you, don't worry. We will take it step-by-step and build up from the basics. Also, in many cases the GraphQL syntax is abstracted by the client.
+Weaviate's queries are built using GraphQL. If this is new to you, don't worry. We will take it step-by-step and build up from the basics. Also, in many cases, the GraphQL syntax is abstracted by the client.
 :::
-
-## Vector search
 
 You can query Weaviate using one or a combination of a semantic (i.e. vector) search and a lexical (i.e. scalar) search. As you've seen, a vector search allows for similarity-based searches, while scalar searches allow filtering by exact matches. 
 
-### Object retrieval with `Get`
+## Object retrieval with `Get`
 
 First, we will start by making queries to Weaviate to retrieve **Question** objects that we imported earlier.
 
@@ -53,7 +51,7 @@ import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.nearte
 
 This might also look familiar, as it was used in an [earlier section](./end-to-end.md). But let's break it down a little.
 
-Here, we are using a `nearText` parameter. What we are doing is to provide Weaviate with a query `concept` of `famous scientist`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example), and uses that vector as the basis for a vector search.
+Here, we are using a `nearText` parameter. What we are doing is to provide Weaviate with a query `concept` of `famous scientist`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example) and uses that vector as the basis for a vector search.
 
 Additionally, we use the `limit` argument to only fetch a maximum of two (2) objects. 
 
@@ -61,7 +59,7 @@ If you run this query, you should see the entries on *"Albert Einstein"* and *"h
 
 ### `Get` with `nearVector`
 
-In some cases you might wish to input a vector directly as a search query. For example, you might be running Weaviate with a custom, external vectorizer. In such a case, you can use the `nearVector` parameter to provide the query vector to Weaviate.
+In some cases, you might wish to input a vector directly as a search query. For example, you might be running Weaviate with a custom, external vectorizer. In such a case, you can use the `nearVector` parameter to provide the query vector to Weaviate.
 
 For example, here is an example Python code obtaining an OpenAI embedding manually and providing it through the `nearVector` parameter:
 
@@ -70,7 +68,8 @@ import openai
 
 openai.api_key = api_tkn
 model="text-embedding-ada-002"
-oai_resp = openai.Embedding.create(input = ["famous scientist"], model=model)
+oai_resp = openai.Embedding.create(input = ["biology"], model=model)
+
 oai_embedding = oai_resp['data'][0]['embedding']
 
 result = (
@@ -83,11 +82,11 @@ result = (
     .with_limit(2)
     .do()
 )
-
-print(json.dumps(result, indent=4))
 ```
 
-And it should return the same results as above.
+And it should return the same results as above. 
+
+Note that we used the same OpenAI embedding model (`text-embedding-ada-002`) here so that the vectors are in the same vector "space".
 
 You might also have noticed that we have added a `certainty` argument in the `with_near_vector` method. This lets you specify a similarity threshold for objects, and can be very useful for ensuring that no distant objects are returned.
 
@@ -108,17 +107,19 @@ Try it out, and you should see a response like this:
             "Question": [
                 {
                     "_additional": {
-                        "certainty": 0.8984273970127106,
+                        "certainty": 0.9030631184577942
                     },
-                    "answer": "Albert Einstein",
-                    "question": "His 1905 paper \"On the Electrodynamics of Moving Bodies\" contained his special Theory of Relativity"
+                    "answer": "DNA",
+                    "category": "SCIENCE",
+                    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance"
                 },
                 {
                     "_additional": {
-                        "certainty": 0.8881804645061493,
+                        "certainty": 0.900638073682785
                     },
-                    "answer": "hot air balloons",
-                    "question": "These in the skies of Albuquerque on October 3, 1999 were a fine example of Charles' Law in action"
+                    "answer": "species",
+                    "category": "SCIENCE",
+                    "question": "2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification"
                 }
             ]
         }
@@ -142,7 +143,7 @@ import CodeQueryWhere1 from '/_includes/code/quickstart.query.where.1.mdx'
 
 <CodeQueryWhere1 />
 
-This query asks Weaviate for **Question** objects whose category contains the string `HISTORY`. You should see a result like this:
+This query asks Weaviate for **Question** objects whose category contains the string `ANIMALS`. You should see a result like this:
 
 ```json
 {
@@ -150,24 +151,24 @@ This query asks Weaviate for **Question** objects whose category contains the st
         "Get": {
             "Question": [
                 {
-                    "answer": "John (\"John Lackland\", \"Poor John\")",
-                    "category": "HISTORY",
-                    "question": "While Richard the Lion-Hearted was on a Crusade in the 1190s, this youngest brother tried to usurp the crown"
+                    "answer": "the diamondback rattler",
+                    "category": "ANIMALS",
+                    "question": "Heaviest of all poisonous snakes is this North American rattlesnake"
                 },
                 {
-                    "answer": "Napoleon Bonaparte",
-                    "category": "HISTORY",
-                    "question": "On December 2, 1804 this man crowned himself emperor"
+                    "answer": "Elephant",
+                    "category": "ANIMALS",
+                    "question": "It's the only living mammal in the order Proboseidea"
                 },
                 {
-                    "answer": "Manchuria",
-                    "category": "HISTORY",
-                    "question": "In 1931 the invading Japanese made this Chinese area a puppet state called Manchukuo"
+                    "answer": "the nose or snout",
+                    "category": "ANIMALS",
+                    "question": "The gavial looks very much like a crocodile except for this bodily feature"
                 },
                 {
-                    "answer": "massacres",
-                    "category": "HISTORY",
-                    "question": "Historic ones of these occurred on St. Bartholomew's Day in 1572 & St. Valentine's Day in 1929"
+                    "answer": "Antelope",
+                    "category": "ANIMALS",
+                    "question": "Weighing around a ton, the eland is the largest species of this animal in Africa"
                 }
             ]
         }
@@ -194,17 +195,19 @@ This query asks Weaviate for **Question** objects that are closest to "famous sc
             "Question": [
                 {
                     "_additional": {
-                        "certainty": 0.8798889815807343
+                        "certainty": 0.8918434679508209
                     },
-                    "answer": "Napoleon Bonaparte",
-                    "question": "On December 2, 1804 this man crowned himself emperor"
+                    "answer": "the nose or snout",
+                    "category": "ANIMALS",
+                    "question": "The gavial looks very much like a crocodile except for this bodily feature"
                 },
                 {
                     "_additional": {
-                        "certainty": 0.8727743029594421
+                        "certainty": 0.8867587149143219
                     },
-                    "answer": "John (\"John Lackland\", \"Poor John\")",
-                    "question": "While Richard the Lion-Hearted was on a Crusade in the 1190s, this youngest brother tried to usurp the crown"
+                    "answer": "Elephant",
+                    "category": "ANIMALS",
+                    "question": "It's the only living mammal in the order Proboseidea"
                 }
             ]
         }
@@ -212,9 +215,9 @@ This query asks Weaviate for **Question** objects that are closest to "famous sc
 }
 ```
 
-Note that the results are confined to the choices from the history category. In lieu of any scientists Weaviate returns entries related to famous people.
+Note that the results are confined to the choices from the 'animals' category. Note that these results, while not being cutting-edge science, are biological factoids.
 
-## Aggregations
+## Metadata with `Aggregate`
 
 As the name suggests, the `Aggregate` function can be used to show aggregated data such as on entire classes or groups of objects.  
 
@@ -224,7 +227,7 @@ import CodeQueryAggregate1 from '/_includes/code/quickstart.query.aggregate.1.md
 
 <CodeQueryAggregate1 />
 
-And you can also use the `Aggregate` function with filters, just as you saw with the `Get` function earlier. The below query for example will return the number of **Question** objects containing the word "xx".
+And you can also use the `Aggregate` function with filters, just as you saw with the `Get` function earlier. The below query for example will return the number of **Question** objects with the category "ANIMALS".
 
 import CodeQueryAggregate2 from '/_includes/code/quickstart.query.aggregate.2.mdx'
 
@@ -248,11 +251,11 @@ And as you saw above, there are four objects that match the query filter.
 }
 ```
 
-Hopefully the logic of that makes sense. Weaviate has identified the same objects as before; and instead of returning the individual objects you are seeing the requested aggregated statistic (count) here.
+Here, Weaviate has identified the same objects that you saw earlier in the similar `Get` queries. The difference is that instead of returning the individual objects you are seeing the requested aggregated statistic (count) here.
 
 ## Recap
 
-Congratulations - you've made it through our getting started guide! We hope that this guide was a useful introduction to Weaviate, all the way from installation to performing queries.
+Congratulations - you've made it through the body of our quickstart tutorial! We hope that this tutorial was a useful introduction to Weaviate, all the way from installation to performing queries.
 
 Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us. 
 
@@ -263,9 +266,12 @@ See you soon!
 ## What next?
 
 - [Introduction to modules](./modules.md)
-- [Installation options](../installation/index.md)
+- [Introduction to Weaviate console](./console.md)
+- [References: Installation](../installation/index.md)
+- [References: Configuration](../configuration/index.md)
+- [References: API](../api/index.md)
+- [Concepts](../concepts/index.md)
 - [Roadmap](../roadmap/index.md)
-- [Learn more about Weaviate](../concepts/index.md)
 
 ## Notes
 

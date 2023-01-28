@@ -10,15 +10,18 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-You should have spun up an instance of Weaviate. Now, let's get an overview of kinds of things you can do with Weaviate, before digging into each step in more detail later on.
+Here, you will gain a hands-on overview of things that you can do with Weaviate. If you are curious about some of the steps - don't worry, we will dig further into each step in more detail later on.
 
-By the end of this page, you will have vectorized the quiz data and added it to Weaviate, as well has performed vector searches to retrieve relevant objects! 😊 
+By the end of this page, you will have:
+- Vectorized the quiz data
+- Added the vectorized data to Weaviate, and
+- Performed vector searches to retrieve relevant objects
 
 ## Prerequisites 
 
 At this point, you should have: 
 
-- An new instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
+- A new instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
 - Installed your preferred Weaviate client library. 
 
@@ -26,7 +29,7 @@ import CautionSchemaDeleteAll from '/_includes/schema-delete-all.mdx'
 
 <CautionSchemaDeleteAll />
 
-Download the dataset below to your working directory and let's get going!
+Download the dataset below to your working directory, and you will be ready to get started 😊.
 
 <p>
   <DownloadButton link="https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json">Download jeopardy_tiny.json</DownloadButton>
@@ -34,40 +37,47 @@ Download the dataset below to your working directory and let's get going!
 
 ## Import data 
 
-Weaviate can take care of data vectorization at import time with its modules. To do so with an inference API, the next steps are to:
+Weaviate can take care of data vectorization at import time with its [`vectorizer modules`](../modules/retriever-vectorizer-modules/index.md). So you don't need to worry about vectorization other than choosing an appropriate vectorizer and passing the data to Weaviate. 
+
+Using an inference API is one good way to do this. To do so:
 
 - Specify a vectorizer module (e.g. `text2vec-openai`)
 - Provide the API key
 - Load & import data into Weaviate
 
-### Specify vectorizer 
+### Specify a vectorizer 
 
-First, We will define the class of `Question` objects, including telling Weaviate what vectorizer to use. The class definition looks like the following:
+First, we must define the class objects to store the data and specify what vectorizer to use. The following `Question` class definition will do just that:
 
 import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
 
 <CodeAutoschemaMinimumSchema />
 
-Weaviate will infer any further schema information from the given data. 
+Weaviate will infer any further schema information from the given data. We'll cover more on this later.
 
 ### Provide the API key
 
-The API key can be provided as an environment variable, but for now, we will include it in our code in the form of a header, for example:
+We will include the API key in our code in the form of a header, like:
 
-```python
-client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network/",
-    additional_headers={
-        "X-OpenAI-Api-Key": api_tkn  # Or "X-OpenAI-Api-Key" or "X-HuggingFace-Api-Key" 
-    }
-)
+```json
+{
+    "X-OpenAI-Api-Key": api_tkn  // Or "X-OpenAI-Api-Key" or "X-HuggingFace-Api-Key" 
+}
 ```
+
+:::note API key options
+The API key can also be provided as an environment variable. Refer to the docs for your favorite inference API [module](../modules/retriever-vectorizer-modules/index.md).
+:::
 
 ### Load & import data
 
-Now, we can load our dataset and pass it to the Weaviate client for vectorization and import. 
+Now, we can load our dataset and import it into Weaviate. The code looks roughly like this:
 
-Note that we use a batch import process here. This will greatly speed up imports, especially when you have a large number of objects, such as ranging in millions, tens of millions, or even larger!
+import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.mdx'
+
+<CodeAutoschemaImport />
+
+Note that we use a batch import process here for speed. You should use batch imports unless you have a good reason not to. We'll cover more on this later.
 
 ### Putting it together
 
@@ -76,16 +86,16 @@ The following code puts it all together, taking care of everything from schema d
 :::info Inference API and key
 If you are using a different module, replace the module name (e.g. `text2vec-openai`) and the key header name in the code examples to suit your preferred module. 
 
-Also, replace the API key with your own API key. 
+Also, replace the API key `api_tkn` with your own API key.
 :::
 
-import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.mdx'
+import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoend.mdx'
 
-<CodeAutoschemaImport />
+<CodeAutoschemaEndToEnd />
 
-And we are done. 
+And that should have populated Weaviate with the data including corresponding vectors!
 
-Note again that we did not provide vectors to Weaviate. That's all managed by Weaviate which calls the inference API for you and turns your object into a vector at import time. 
+Note again that we did not provide any vectors to Weaviate. That's all managed by Weaviate which calls the inference API for you and turns your object into a vector at import time. 
 
 :::info Can I specify my own vectors?
 Yes! You can bring your own vectors and pass them to Weaviate directly.
@@ -94,6 +104,10 @@ Yes! You can bring your own vectors and pass them to Weaviate directly.
 ## Review import
 
 Let's pause here to check that our data import went as expected, and show you a couple of RESTful endpoints.
+
+:::info REST & GraphQL in Weaviate
+Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API end-points can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
+:::
 
 ### Confirm schema creation
 
@@ -110,14 +124,14 @@ You should see:
     "classes": [
         {
             "class": "Question",
-            ...  // lots of additional information here
+            ...  // truncated additional information here
             "vectorizer": "text2vec-openai"
         }
     ]
 }
 ```
 
-### Confirm import
+### Confirm data import
 
 Navigate to the [`objects` endpoint](../api/rest/objects.md) to check that all objects have been imported:
 
@@ -147,7 +161,7 @@ Now that you've built a database, let's try some queries.
 
 One of the most common use cases is text similarity search. As we have a `text2vec` module enabled, we can use the `nearText` parameter for this purpose. 
 
-If you wanted to find entries which related to famous scientists, you can apply the `nearText` parameter like so:
+If you wanted to find entries which related to biology, you can apply the `nearText` parameter like so:
 
 import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
 
@@ -163,12 +177,14 @@ You should see something like this:
         "Get": {
             "Question": [
                 {
-                    "answer": "Albert Einstein",
-                    "question": "His 1905 paper \"On the Electrodynamics of Moving Bodies\" contained his special Theory of Relativity"
+                    "answer": "DNA",
+                    "category": "SCIENCE",
+                    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance"
                 },
                 {
-                    "answer": "hot air balloons",
-                    "question": "These in the skies of Albuquerque on October 3, 1999 were a fine example of Charles' Law in action"
+                    "answer": "species",
+                    "category": "SCIENCE",
+                    "question": "2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification"
                 }
             ]
         }
@@ -176,17 +192,17 @@ You should see something like this:
 }
 ```
 
-Note that neither 'famous' nor 'scientist' occur anywhere, but Weaviate has returned the entry on Einstein as the closest result. The second closest result is also related to the query, as it relates to Charles' Law (named after scientist Jacques Charles).
+Note that even though the word 'biology' does not appear anywhere, Weaviate has returned biology-related entries (on DNA and species) as the closest results. Also, it has returned these entries over and above many entries otherwise related to animals in general.
 
-That's a powerful outcome, which shows a big reason behind the popularity of vector searches. Vectorized data objects allow for searches based on degrees of similarity, such as semantic similarity of text as we did here.
+That's a simple but powerful outcome, which shows a big reason behind the popularity of vector searches. Vectorized data objects allow for searches based on degrees of similarity, such as semantic similarity of text as we did here.
 
-Try it out yourself with different strings, by changing the string from "famous scientist". 
+Try it out yourself with different strings, by changing the string from "biology". 
 
 ## Recap
 
-If you made it here - that's it. You've successfully built a fully functioning vector database! 🥳
+If you made it here - well done. You've successfully built a fully functioning vector database. 🥳
 
-Of course, this was just a quick look, and there's a lot of options and configurations that we have yet to explore. But we've covered a lot in just a couple of pages. 
+Of course, this was just a quick look, and there are a lot of options and configurations that we have yet to explore. But we've covered a lot in just a couple of pages. 
 
 You have:
 - Spun up an instance of Weaviate through WCS

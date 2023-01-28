@@ -17,13 +17,11 @@ client = weaviate.Client(
 )
 
 # ===== import data ===== 
-import json
-
 # Load data from the data.json file
 with open('jeopardy_tiny.json', 'r') as f:
     data = json.load(f)
 
-# Configure a batch process
+# Prepare a batch process
 with client.batch as batch:
     batch.batch_size=100
     # Batch import all Questions

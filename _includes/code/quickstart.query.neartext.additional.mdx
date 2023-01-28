@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
   Get{
     Question(
       nearText: {
-        concepts: ["famous scientist"],
+        concepts: ["biology"],
       }
     ){
       question
@@ -32,7 +32,7 @@ client  = weaviate.Client(
     }
 )
 
-nearText = {"concepts": ["famous scientist"]}
+nearText = {"concepts": ["biology"]}
 
 result = (
     client.query
@@ -62,7 +62,7 @@ client.graphql
   .get()
   .withClassName('Question')
   .withFields('question answer category _additional {certainty}')
-  .withNearText({concepts: ["famous scientist"]})
+  .withNearText({concepts: ["biology"]})
   .withLimit(2)
   .do()
   .then(console.log)
@@ -96,7 +96,7 @@ func main() {
   question := graphql.Field{Name: "question"}
   answer := graphql.Field{Name: "answer"}
 
-  concepts := []string{"famous scientist"}
+  concepts := []string{"biology"}
   nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts).
 
@@ -183,7 +183,7 @@ $ echo '{
     Get{
       Question(
         nearText: {
-          concepts: [\"famous scientist\"],
+          concepts: [\"biology\"],
         },
         limit: 1
       ){

@@ -19,7 +19,7 @@ Here, you will create a new Weaviate instance for use throughout this tutorial.
 
 We will use the free sandbox tier from _Weaviate Cloud Service_ (WCS) for this tutorial.
 
-WCS is a managed service, so you don't have to install or maintain anything to run Weaviate. WCS is the fastest way 🚀 to create a new Weaviate instance, so let's spin up an instance with it. 
+WCS is a managed service, so you don't have to install or maintain anything to run Weaviate. WCS is the fastest way 🚀 to create a new Weaviate instance, so let's spin up an instance with it for use throughout this tutorial. 
 
 :::info Prefer a local instance?
 If you prefer a local instance of Weaviate, we recommend getting started with Docker. Please refer to [the separate section below](#running-weaviate-with-docker) to follow along.
@@ -75,6 +75,10 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 Next, we will take you end-to-end with Weaviate, all the way to making vector queries already!
 
+:::note Java / Go code examples
+Please be patient as we update our Java and Go code examples. They will be ready soon!
+:::
+
 ## Recap
 
 * You have a working instance of Weaviate in Weaviate Cloud Service (WCS).
@@ -108,6 +112,8 @@ If you are running Weaviate with Docker, keep in mind that the address for Weavi
 ### More on deployment options
 
 To learn more about the other self-deployment options, check out the documentation for installation with [Docker](https://weaviate.io/developers/weaviate/current/installation/docker-compose.html) or [Kubernetes](https://weaviate.io/developers/weaviate/current/installation/kubernetes.html). 
+
+-----
 
 ## More Resources
 

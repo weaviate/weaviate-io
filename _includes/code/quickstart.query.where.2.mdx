@@ -22,11 +22,11 @@ client  = weaviate.Client(
     }
 )
 
-nearText = {"concepts": ["famous scientist"]}
+nearText = {"concepts": ["biology"]}
 where_filter = {
     "path": ["category"],
     "operator": "Equal",
-    "valueText": "HISTORY",
+    "valueString": "ANIMALS",
 }
 
 result = (
@@ -57,7 +57,7 @@ const client = weaviate.client({
 const where_filter = {
     "path": ["category"],
     "operator": "Equal",
-    "valueText": "HISTORY",
+    "valueString": "ANIMALS",
 }
 
 client.graphql

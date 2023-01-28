@@ -25,7 +25,7 @@ client  = weaviate.Client(
 where_filter = {
   "path": ["category"],
   "operator": "Equal",
-  "valueText": "HISTORY",
+  "valueString": "ANIMALS",
 }
 
 result = (
@@ -54,7 +54,7 @@ const client = weaviate.client({
 const where_filter = {
     "path": ["category"],
     "operator": "Equal",
-    "valueText": "HISTORY",
+    "valueString": "ANIMALS",
 }
 
 client.graphql
