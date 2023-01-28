@@ -36,10 +36,9 @@ nearText = {"concepts": ["famous scientist"]}
 
 result = (
     client.query
-    .get("Question", ["question", "answer"])
+    .get("Question", ["question", "answer", "category"])
     .with_near_text(nearText)
     .with_limit(2)
-    .with_additional(['vector', 'certainty'])
     .do()
 )
 
@@ -61,7 +60,7 @@ const client = weaviate.client({
 client.graphql
   .get()
   .withClassName('Question')
-  .withFields('question answer _additional {vector certainty}')
+  .withFields('question answer category')
   .withNearText({concepts: ["famous scientist"]})
   .withLimit(2)
   .do()
@@ -70,7 +69,7 @@ client.graphql
 ```
 
 </TabItem>
-<TabItem value="go" label="Go">
+{/* <TabItem value="go" label="Go">
 
 ```go
 package main
@@ -116,8 +115,8 @@ func main() {
 }
 ```
 
-</TabItem>
-<TabItem value="java" label="Java">
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
 
 ```java
 package technology.semi.weaviate;
@@ -174,8 +173,8 @@ public class App {
 }
 ```
 
-</TabItem>
-<TabItem value="curl" label="Curl">
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
 
 ```bash
 $ echo '{
@@ -200,5 +199,5 @@ $ echo '{
     http://localhost:8080/v1/graphql
 ```
 
-</TabItem>
+</TabItem> */}
 </Tabs>

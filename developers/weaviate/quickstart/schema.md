@@ -1,5 +1,5 @@
 ---
-title: Manual schema
+title: Schemas in detail
 sidebar_position: 3
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['basics']
@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 
 In the previous section, you saw that we specified a class name the vectorizer to be used in this format:
 
-import CodeAutoschemaMinimumSchema from '/_includes/code/getting.started.autoschema.minimum.schema.mdx'
+import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
 
 <CodeAutoschemaMinimumSchema />
 
@@ -67,7 +67,7 @@ Our **Question** class will:
 
 Run the below code in you application, which will define the schema for the **Question** class and display the created schema information.
 
-import CodeCreateSchema from '/_includes/code/getting.started.schema.create.2.mdx';
+import CodeCreateSchema from '/_includes/code/quickstart.schema.create.mdx';
 
 <CodeCreateSchema />
 
@@ -229,7 +229,7 @@ You can read more about various schema, data type, modules, and index configurat
 
 ## Next
 
-* [All about (batch) imports](./import.md)
+* [Imports in detail](./import.md)
 
 ## More Resources
 

@@ -63,10 +63,10 @@ To follow along with the tutorial, we recommend you create accounts with:
 
 The free tiers for all of them will be sufficient for you to follow along. 
 
-:::warning TODO
-Add info here about contacting us if anyone has issues with the Quickstart
-- File a GH issue, or
-- Contact us on slack
+:::info Is something broken?
+We want you to have the best experience possible here. So if you find that something here doesn't work, or doesn't make sense, please let us know! You can:
+- File an [issue on GitHub](https://github.com/weaviate/weaviate-io/issues), or
+- Talk to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
 :::
 
 ## Next

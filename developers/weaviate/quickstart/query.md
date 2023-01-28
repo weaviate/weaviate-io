@@ -1,5 +1,5 @@
 ---
-title: More queries
+title: Queries in detail
 sidebar_position: 5
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['basics']
@@ -37,7 +37,7 @@ First, we will start by making queries to Weaviate to retrieve **Question** obje
 
 The Weaviate function for retrieving objects is `Get`. If this looks familiar, that's because you have already used it! You should have performed a `Get` query at the end of the last section to confirm that the data import was successful. Here is the same code as a reminder:
 
-import CodeImportGet from '/_includes/code/getting.started.import.get.mdx';
+import CodeImportGet from '/_includes/code/quickstart.import.get.mdx';
 
 <CodeImportGet />
 
@@ -47,11 +47,11 @@ Let's build on this query by adding a vector search.
 
 This is a vector search using a `Get` query. 
 
-import CodeAutoschemaNeartext from '/_includes/code/getting.started.autoschema.neartext.mdx'
+import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
 
 <CodeAutoschemaNeartext />
 
-This might also look familiar, as it was used in an [earlier section](./autoschema.md). But let's break it down a little.
+This might also look familiar, as it was used in an [earlier section](./end-to-end.md). But let's break it down a little.
 
 Here, we are using a `nearText` parameter. What we are doing is to provide Weaviate with a query `concept` of `famous scientist`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example), and uses that vector as the basis for a vector search.
 
@@ -93,9 +93,9 @@ You might also have noticed that we have added a `certainty` argument in the `wi
 
 ## Additional properties
 
-We can ask Weaviate to return `_additional` properties for any returned objects. This allows us to obtain properties such as the `vector` of each returned object as well as the actual `certainty` value, so we can verify how close each object is to our query vector. 
+We can ask Weaviate to return `_additional` properties for any returned objects. This allows us to obtain properties such as the `vector` of each returned object as well as the actual `certainty` value, so we can verify how close each object is to our query vector. Here is a query that will return the `certainty` value:
 
-import CodeQueryNeartextAdditional from '/_includes/code/getting.started.query.neartext.additional.mdx'
+import CodeQueryNeartextAdditional from '/_includes/code/quickstart.query.neartext.additional.mdx'
 
 <CodeQueryNeartextAdditional />
 
@@ -109,7 +109,6 @@ Try it out, and you should see a response like this:
                 {
                     "_additional": {
                         "certainty": 0.8984273970127106,
-                        "vector": [...],
                     },
                     "answer": "Albert Einstein",
                     "question": "His 1905 paper \"On the Electrodynamics of Moving Bodies\" contained his special Theory of Relativity"
@@ -117,7 +116,6 @@ Try it out, and you should see a response like this:
                 {
                     "_additional": {
                         "certainty": 0.8881804645061493,
-                        "vector": [...],
                     },
                     "answer": "hot air balloons",
                     "question": "These in the skies of Albuquerque on October 3, 1999 were a fine example of Charles' Law in action"
@@ -128,7 +126,9 @@ Try it out, and you should see a response like this:
 }
 ```
 
-We encourage you to try out different queries and see how that changes the results and distances, not only with this dataset but also with different datasets, and/or vectorizers.
+You can try modifying this query to see if you retrieve the vector (note - it will be a looooong response 😉).
+
+We encourage you to also try out different queries and see how that changes the results and distances not only with this dataset but also with different datasets, and/or vectorizers. 
 
 ## Filters
 
@@ -138,15 +138,42 @@ In these cases, you can use Weaviate's scalar filtering capabilities - either al
 
 Try the following:
 
-:::warning todo
-TODO - Code
-:::
+import CodeQueryWhere1 from '/_includes/code/quickstart.query.where.1.mdx'
+
+<CodeQueryWhere1 />
 
 This query asks Weaviate for **Question** objects whose category contains the string `HISTORY`. You should see a result like this:
 
-:::warning todo
-TODO - add results
-:::
+```json
+{
+    "data": {
+        "Get": {
+            "Question": [
+                {
+                    "answer": "John (\"John Lackland\", \"Poor John\")",
+                    "category": "HISTORY",
+                    "question": "While Richard the Lion-Hearted was on a Crusade in the 1190s, this youngest brother tried to usurp the crown"
+                },
+                {
+                    "answer": "Napoleon Bonaparte",
+                    "category": "HISTORY",
+                    "question": "On December 2, 1804 this man crowned himself emperor"
+                },
+                {
+                    "answer": "Manchuria",
+                    "category": "HISTORY",
+                    "question": "In 1931 the invading Japanese made this Chinese area a puppet state called Manchukuo"
+                },
+                {
+                    "answer": "massacres",
+                    "category": "HISTORY",
+                    "question": "Historic ones of these occurred on St. Bartholomew's Day in 1572 & St. Valentine's Day in 1929"
+                }
+            ]
+        }
+    }
+}
+```
 
 Now that you've seen a scalar filter, let's see how it can be combined with vector search functions. 
 
@@ -154,15 +181,38 @@ Now that you've seen a scalar filter, let's see how it can be combined with vect
 
 Combining a filter with a vector search is an additive process. Let us show you what we mean by that.
 
-:::warning todo
-TODO - Code
-:::
+import CodeQueryWhere2 from '/_includes/code/quickstart.query.where.2.mdx'
 
-This query asks Weaviate for **Question** objects whose category contains the string `HISTORY`. You should see a result like this:
+<CodeQueryWhere2 />
 
-:::warning todo
-TODO - add results
-:::
+This query asks Weaviate for **Question** objects that are closest to "famous scientist", but within the category of `HISTORY`. You should see a result like this:
+
+```json
+{
+    "data": {
+        "Get": {
+            "Question": [
+                {
+                    "_additional": {
+                        "certainty": 0.8798889815807343
+                    },
+                    "answer": "Napoleon Bonaparte",
+                    "question": "On December 2, 1804 this man crowned himself emperor"
+                },
+                {
+                    "_additional": {
+                        "certainty": 0.8727743029594421
+                    },
+                    "answer": "John (\"John Lackland\", \"Poor John\")",
+                    "question": "While Richard the Lion-Hearted was on a Crusade in the 1190s, this youngest brother tried to usurp the crown"
+                }
+            ]
+        }
+    }
+}
+```
+
+Note that the results are confined to the choices from the history category. In lieu of any scientists Weaviate returns entries related to famous people.
 
 ## Aggregations
 
@@ -170,21 +220,17 @@ As the name suggests, the `Aggregate` function can be used to show aggregated da
 
 For example, the below query will return the number of data objects in the `Question` class:
 
-:::warning todo
-TODO - Code
-:::
+import CodeQueryAggregate1 from '/_includes/code/quickstart.query.aggregate.1.mdx'
+
+<CodeQueryAggregate1 />
 
 And you can also use the `Aggregate` function with filters, just as you saw with the `Get` function earlier. The below query for example will return the number of **Question** objects containing the word "xx".
 
-:::warning todo
-TODO - Code
-:::
+import CodeQueryAggregate2 from '/_includes/code/quickstart.query.aggregate.2.mdx'
+
+<CodeQueryAggregate2 />
 
 And as you saw above, there are four objects that match the query filter.
-
-:::warning todo
-TODO - update results
-:::
 
 ```json
 {

@@ -1,5 +1,5 @@
 ---
-title: (Batch) Import
+title: Imports in detail
 sidebar_position: 4
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['import']
@@ -53,7 +53,7 @@ The general import process looks like this:
 
 Here is the full code you need to import the **Question** objects:
 
-import CodeImportQuestions from '/_includes/code/getting.started.import.questions.mdx';
+import CodeImportQuestions from '/_includes/code/quickstart.import.questions.mdx';
 
 <CodeImportQuestions />
 
@@ -81,7 +81,7 @@ https://some-endpoint.semi.network/v1/objects
 
 Or you can read the objects in your project, like this:
 
-import CodeImportGet from '/_includes/code/getting.started.import.get.mdx';
+import CodeImportGet from '/_includes/code/quickstart.import.get.mdx';
 
 <CodeImportGet />
 
@@ -104,7 +104,6 @@ Although importing itself can be done in a few steps, creating an optimized impo
 1. When importing, you want to make sure that you max out all the CPUs available. It's more often than not the case that the import script is the bottleneck.
 
     1. Use `htop` when importing to see if all CPUs are maxed out.
-    1. Learn more about how to plan your setup [here](./installation.html#running-weaviate-yourself).
 
 1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
 1. For Kubernetes, fewer large machines are faster than more small machines. Just because of network latency.
@@ -135,11 +134,11 @@ Accordingly, we recommend that you implement error handling at an object level f
 
 ## Next
 
-- [Perform queries with Weaviate](./query.html)
+- [Queries in detail](./query.md)
 
 ### Other object operations
 
-All other CRUD object operations are available in the [objects RESTful API documentation](../restful-api-references/objects.html) and the [batch RESTful API documentation](../restful-api-references/batch.html).
+All other CRUD object operations are available in the [objects RESTful API documentation](../api/rest/index.md) and the [batch RESTful API documentation](../api/rest/batch.md).
 
 ## More Resources
 

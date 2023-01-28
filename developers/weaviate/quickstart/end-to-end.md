@@ -1,5 +1,5 @@
 ---
-title: Auto-schema & query
+title: Weaviate, end-to-end
 sidebar_position: 2
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['basics']
@@ -10,7 +10,9 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Now that we have spun up an instance of Weaviate, we are ready to build our database. By the end of this page, you will have added quiz data to Weaviate including the vectors, and queried it to retrieve objects! 😊
+You should have spun up an instance of Weaviate. Now, let's get an overview of kinds of things you can do with Weaviate, before digging into each step in more detail later on.
+
+By the end of this page, you will have vectorized the quiz data and added it to Weaviate, as well has performed vector searches to retrieve relevant objects! 😊 
 
 ## Prerequisites 
 
@@ -42,7 +44,7 @@ Weaviate can take care of data vectorization at import time with its modules. To
 
 First, We will define the class of `Question` objects, including telling Weaviate what vectorizer to use. The class definition looks like the following:
 
-import CodeAutoschemaMinimumSchema from '/_includes/code/getting.started.autoschema.minimum.schema.mdx'
+import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
 
 <CodeAutoschemaMinimumSchema />
 
@@ -77,15 +79,9 @@ If you are using a different module, replace the module name (e.g. `text2vec-ope
 Also, replace the API key with your own API key. 
 :::
 
-import CodeAutoschemaImport from '/_includes/code/getting.started.autoschema.import.mdx'
+import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.mdx'
 
 <CodeAutoschemaImport />
-
-:::warning TODO
-TODO - add code to import data in all non-Python sections
-
-note: cURL - see if we can pipe the JSON to cURL for simplicity
-:::
 
 And we are done. 
 
@@ -153,7 +149,7 @@ One of the most common use cases is text similarity search. As we have a `text2v
 
 If you wanted to find entries which related to famous scientists, you can apply the `nearText` parameter like so:
 
-import CodeAutoschemaNeartext from '/_includes/code/getting.started.autoschema.neartext.mdx'
+import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
 
 <CodeAutoschemaNeartext />
 
@@ -201,7 +197,7 @@ Next, we will revisit these processes and start to review each section in more d
 
 ## Next
 
-- [Manually specify a schema](./schema.md).
+- [Schemas in detail](./schema.md).
 
 ## More Resources
 

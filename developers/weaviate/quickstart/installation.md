@@ -69,11 +69,11 @@ You can communicate with Weaviate with the available [client libraries](../clien
 
 Install your preferred client by following the relevant instructions below:
 
-import CodeClientInstall from '/_includes/code/getting.started.clients.install.mdx';
+import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 <CodeClientInstall />
 
-Next, let's build our database.
+Next, we will take you end-to-end with Weaviate, all the way to making vector queries already!
 
 ## Recap
 
@@ -83,7 +83,7 @@ Next, let's build our database.
 
 ## Next
 
-- [Autoschema & query](./autoschema.md).
+- [Weaviate, end-to-end](./end-to-end.md).
 
 -----
 

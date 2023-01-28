@@ -16,15 +16,20 @@ class_obj = {
     "description": "Information from a Jeopardy! question",  # description of the class
     "properties": [
         {
-            "dataType": ["string"],
+            "dataType": ["text"],
             "description": "The question",
             "name": "question",
         },
         {
-            "dataType": ["string"],
+            "dataType": ["text"],
             "description": "The answer",
             "name": "answer",
         },
+        {
+            "dataType": ["string"],
+            "description": "The category",
+            "name": "category",
+        },        
     ]
 }
 
@@ -57,15 +62,20 @@ var classObj = {
     'description': 'Information from a Jeopardy! question',  // description of the class
     'properties': [
         {
-            "dataType": ["string"],
+            "dataType": ["text"],
             "description": "The question",
             "name": "question",
         },
         {
-            "dataType": ["string"],
+            "dataType": ["text"],
             "description": "The answer",
             "name": "answer",
         },
+        {
+            "dataType": ["string"],
+            "description": "The category",
+            "name": "category",
+        },        
     ]
 }
 
@@ -96,7 +106,7 @@ client
 ```
 
 </TabItem>
-<TabItem value="go" label="Go">
+{/* <TabItem value="go" label="Go">
 
 ```go
 package main
@@ -152,8 +162,8 @@ func main() {
 }
 ```
 
-</TabItem>
-<TabItem value="java" label="Java">
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
 
 ```java
 package technology.semi.weaviate;
@@ -210,8 +220,8 @@ public class App {
 }
 ```
 
-</TabItem>
-<TabItem value="curl" label="Curl">
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
 
 ```bash
 $ curl \
@@ -238,5 +248,5 @@ https://some-endpoint.weaviate.network/v1/schema
 curl https://some-endpoint.weaviate.network/v1/schema
 ```
 
-</TabItem>
+</TabItem> */}
 </Tabs>

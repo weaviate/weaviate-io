@@ -32,7 +32,8 @@ with client.batch as batch:
 
         properties = {
             "answer": d["Answer"],
-            "question": d["Question"]        
+            "question": d["Question"],
+            "category": d["Category"],             
         }
 
         client.batch.add_data_object(properties, "Question")
@@ -74,7 +75,8 @@ async function importQuestions() {
       class: 'Question',
       properties: {
         answer: question.Answer,
-        question: question.Question,        
+        question: question.Question,
+        category: question.Category,
       },
     }
 
@@ -114,7 +116,7 @@ importQuestions();
 ```
 
 </TabItem>
-<TabItem value="go" label="Go">
+{/* <TabItem value="go" label="Go">
 
 ```go
 package main
@@ -138,8 +140,8 @@ func main() {
 }
 ```
 
-</TabItem>
-<TabItem value="java" label="Java">
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
 
 ```java
 
@@ -178,5 +180,5 @@ $ curl \
 https://some-endpoint.weaviate.network/v1/schema
 ```
 
-</TabItem>
+</TabItem> */}
 </Tabs>
