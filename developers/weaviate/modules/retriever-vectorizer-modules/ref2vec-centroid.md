@@ -144,7 +144,7 @@ This module can be used with the existing [nearVector](/developers/weaviate/api/
 
 ## Additional information
 
-⚠️ It is important to note that updating a _referenced_ object will not automatically trigger an udpate to the _referencing_ object's vector. ⚠️
+⚠️ It is important to note that updating a _referenced_ object will not automatically trigger an update to the _referencing_ object's vector. ⚠️
 
 In other words, using our `Article`/`Paragraph` example:
 
