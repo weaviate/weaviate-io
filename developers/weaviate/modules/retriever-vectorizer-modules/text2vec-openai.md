@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-The `text2vec-​openai` module allows you to use the [OpenAI embeddings](https://beta.openai.com/docs/guides/embeddings) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using OpenAI's `text-embedding-ada-002` model (legacy Ada, Babbage, Curie, or Davinci models are also supported).
+The `text2vec-openai` module allows you to use the [OpenAI embeddings](https://beta.openai.com/docs/guides/embeddings) directly in the Weaviate vector search engine as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using OpenAI's `text-embedding-ada-002` model (legacy Ada, Babbage, Curie, or Davinci models are also supported).
 
 * Note: this module uses a third-party API and may incur costs.
 * Note: make sure to check the OpenAI [pricing page](https://openai.com/api/pricing/) before vectorizing large amounts of data.
@@ -54,7 +54,7 @@ services:
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/developers/weaviate/quickstart/schema.md) first.
+In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/developers/weaviate/quickstart/schema.md) first.
 
 For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-openai` using the `babbage` model.
 
@@ -114,7 +114,7 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 OpenAI has multiple models available with different trade-offs. All the models offered by OpenAI can be used within Weaviate. Note that the more dimensions a model produces, the larger your data footprint will be. To estimate the total size of your dataset use [this](/developers/weaviate/concepts/resources.md#an-example-calculation) calculation.
 
-The default model is: `text-embedding-ada-002` but you can also specify it in your schema. An example as part of a class definition:
+The default model is `text-embedding-ada-002` but you can also specify it in your schema. An example as part of a class definition:
 
 ```json
 {
@@ -134,43 +134,20 @@ The default model is: `text-embedding-ada-002` but you can also specify it in yo
 }
 ```
 
-### Legacy models
+For document embeddings you can choose one of the following models:
+* [ada](https://beta.openai.com/docs/engines/ada)
+* [babbage](https://beta.openai.com/docs/engines/babbage)
+* [curie](https://beta.openai.com/docs/engines/curie)
+* [davinci](https://beta.openai.com/docs/engines/davinci)
 
-The default model is: `text-embedding-ada-002` but you can also specify it in your schema. An example as part of a class definition:
-
-```json
-{
-  "classes": [
-    {
-      "class": "Document",
-      "vectorizer": "text2vec-openai",
-      "moduleConfig": {
-        "text2vec-openai": {
-          "model": "ada",
-          "modelVersion": "002",
-          "type": "text"
-        }
-      }
-    }
-  ]
-}
-```
-
-### Legacy models
-
-* For document embeddings you can choose one of the following models:
-  * [ada](https://beta.openai.com/docs/engines/ada)
-  * [babbage](https://beta.openai.com/docs/engines/babbage)
-  * [curie](https://beta.openai.com/docs/engines/curie)
-  * [davinci](https://beta.openai.com/docs/engines/davinci)
-* For code embeddings you can choose one of the following models:
-  * [ada](https://beta.openai.com/docs/engines/ada)
-  * [babbage](https://beta.openai.com/docs/engines/babbage)
+For code embeddings you can choose one of the following models:
+* [ada](https://beta.openai.com/docs/engines/ada)
+* [babbage](https://beta.openai.com/docs/engines/babbage)
 
 In the `moduleConfig` inside a class, you need to set two values:
 
-1. `model` – one of the models mentioned above. E.g., `babbage`.
-2. `modelVersion` – one of the model version as mentioned above. E.g., `babbage`.
+1. `model` – one of the models mentioned above, e.g. `davinci`.
+2. `modelVersion` – version string, e.g. `003`.
 3. `type` – `text` or `code`.
 
 Example (as part of a class definition):
