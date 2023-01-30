@@ -1,5 +1,5 @@
 ---
-title: (Optional) Modules
+title: Modules - an introduction
 sidebar_position: 9
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['modules']

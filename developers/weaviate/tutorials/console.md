@@ -1,5 +1,5 @@
 ---
-title: (Optional) Weaviate console
+title: Weaviate console - an introduction
 sidebar_position: 90
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['Weaviate console']
