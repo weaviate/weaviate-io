@@ -86,7 +86,7 @@ To combine `Get { }` with a vector search argument, here is an overview of the s
 
 ## Filters
 
-`Get{}` functions can be extended with search filters (both semantic filters as traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.md).
+`Get{}` functions can be extended with search filters (both semantic filters and traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.md).
 
 ### Sorting
 
