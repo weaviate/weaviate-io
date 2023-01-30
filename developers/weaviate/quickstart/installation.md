@@ -6,7 +6,7 @@ image: og/docs/quickstart-tutorial.jpg
 ---
 import Badges from '/_includes/badges.mdx';
 import registerImg from './img/register.jpg';
-import WCSScreenshotImg from './img/WCS-screenshot.jpg';
+import WCSScreenshotImg from './img/WCS-screenshot.png';
 import weaviateClusterImg from './img/weaviate-cluster.jpg';
 
 <Badges/>
@@ -51,7 +51,7 @@ To create a new Weaviate Cluster:
 1. Finally, press **Create**.
 
 Your selections should look like this:
-<img src={WCSScreenshotImg} width="400px" alt="Cluster configuration"/>
+<img src={WCSScreenshotImg} width="90%" alt="Cluster configuration"/>
 
 This will start the process to create a new cluster, and you should see a progress indicator. After a short while, you should see a green tick ✔️ - indicating that the cluster is ready.
 
