@@ -19,7 +19,7 @@ The tests are grouped into the following three levels:
 #### Unit tests
 
 Unit tests test the smallest possible unit, mostly one "class" (usually a
-`struct` in golang) with its methods. Unit tests are designed the validate the
+`struct` in golang) with its methods. Unit tests are designed to validate the
 business logic and not the internals.
 
 Unit tests are stateless and do not depend on any external programs or runtime
