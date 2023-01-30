@@ -22,7 +22,7 @@ Request a Cohere API-key via [their dashboard](https://dashboard.cohere.ai/welco
 
 ### Weaviate Cloud Service
 
-This module is enabled by default on the WCS
+This module is enabled by default on the WCS.
 
 ### Weaviate open source
 
@@ -96,7 +96,7 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
 
 ## How to use
 
-* If the Cohere API key is not set in the `text2vec-cohere` module, you can set the API key on query time by adding the following to the HTTP header: `X-Cohere-Api-Key: <cohere-api-key>`.
+* If the Cohere API key is not set in the `text2vec-cohere` module, you can set the API key at query time by adding the following to the HTTP header: `X-Cohere-Api-Key: <cohere-api-key>`.
 * Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](../../api/graphql/vector-search-parameters.md#neartext).
 
 ### Example

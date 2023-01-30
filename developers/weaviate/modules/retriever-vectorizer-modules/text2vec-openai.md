@@ -23,7 +23,7 @@ Request an OpenAI API-key via [their website](https://openai.com/api/).
 
 ### Weaviate Cloud Service
 
-This module is enabled by default on the WCS
+This module is enabled by default on the WCS.
 
 ### Weaviate open source
 
@@ -95,7 +95,7 @@ For example, the following schema configuration will set Weaviate to vectorize t
 
 ## How to use
 
-* If the OpenAI API key is not set in the `text2vec-​openai` module, you can set the API key on query time by adding the following to the HTTP header: `X-OpenAI-Api-Key: <openai-api-key>`.
+* If the OpenAI API key is not set in the `text2vec-​openai` module, you can set the API key at query time by adding the following to the HTTP header: `X-OpenAI-Api-Key: <openai-api-key>`.
 * Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
 
 ### Example
