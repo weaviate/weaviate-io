@@ -61,7 +61,7 @@ We will include the API key in our code in the form of a header, like:
 
 ```json
 {
-    "X-OpenAI-Api-Key": api_tkn  // Or "X-OpenAI-Api-Key" or "X-HuggingFace-Api-Key" 
+    "X-OpenAI-Api-Key": api_tkn  // Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key" 
 }
 ```
 
