@@ -182,7 +182,7 @@ A: In short: for convenience you can add relations to your data schema, because 
 
 ## Q: Is it possible to create one-to-many relationships in the schema?
 
-A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. [This example)[/developers/weaviate/tutorials/how-to-create-a-schema.md#creating-your-first-schema-with-the-python-client) shows how the `hasArticles` has references to the `Article` class. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/weaviate/weaviate/issues/1611).
+A: Yes, it is possible to reference to one or more objects (Class -> one or more Classes) through cross-references. Referring to lists or arrays of primitives, this will be available [soon](https://github.com/weaviate/weaviate/issues/1611).
 
 ## Q: What is the different between `text` and `string` and `valueText` and `valueString`?
 

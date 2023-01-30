@@ -57,7 +57,7 @@ import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.nearte
 
 <CodeAutoschemaNeartext />
 
-This might also look familiar, as it was used in the [Quickstart tutorial](./end-to-end.md). But let's break it down a little.
+This might also look familiar, as it was used in the [Quickstart tutorial](../quickstart/end-to-end.md). But let's break it down a little.
 
 Here, we are using a `nearText` parameter. What we are doing is to provide Weaviate with a query `concept` of `famous scientist`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example) and uses that vector as the basis for a vector search.
 
@@ -282,7 +282,7 @@ As you can see, the `Aggregate` function can return handy aggregated, or metadat
 
 ### How is certainty calculated?
 
-`certainty` in Weaviate is a measure of distance from the vector to the data objects. You can also calculate the cosine similarity based on the certainty as described [here](../more-resources/faq.html#q-how-do-i-get-the-cosine-similarity-from-weaviates-certainty).
+`certainty` in Weaviate is a measure of distance from the vector to the data objects. You can also calculate the cosine similarity based on the certainty as described [here](../more-resources/faq.md#q-how-do-i-get-the-cosine-similarity-from-weaviates-certainty?).
 
 ## More Resources
 

@@ -66,7 +66,7 @@ Variable explanations:
 
 # How to configure
 
-​In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new to Weaviate schemas, you might want to check out the [getting started guide on the Weaviate schema](../../quickstart/schema.md) first.
+​In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](../../tutorials/schema.md) first.
 
 The following schema configuration uses the `ada` model.
 

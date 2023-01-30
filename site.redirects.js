@@ -30,7 +30,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/clients'
         },
         {
-            to: '/developers/weaviate/quickstart/console',
+            to: '/developers/weaviate/tutorials/console',
             from: '/developers/weaviate/current/core-knowledge/console'
         },
 
@@ -113,11 +113,9 @@ const siteRedirects = {
             to: '/developers/weaviate/tutorials',
             from: [
                 '/developers/weaviate/current/tutorials/how-to-do-classification',
-                '/developers/weaviate/current/tutorials/how-to-perform-a-semantic-search',
                 '/developers/weaviate/current/tutorials/how-to-use-weaviate-without-modules',
                 '/developers/weaviate/current/tutorials/other-examples',
                 '/developers/weaviate/current/tutorials/quick-start-with-the-text2vec-contextionary-module',
-                '/developers/weaviate/current/tutorials/semantic-search-through-wikipedia'
             ]
         },
 

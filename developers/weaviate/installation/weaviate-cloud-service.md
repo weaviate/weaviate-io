@@ -14,7 +14,7 @@ import Badges from '/_includes/badges.mdx';
 
 The Weaviate Cloud Service can be accessed via the [console](https://console.weaviate.io) and is the SaaS version of Weaviate.
 
-* You can learn more about the console in [this guide](../quickstart/console.md).
+* You can learn more about the console in [this guide](../tutorials/console.md).
 * You can create free-tier sandboxes and [sign up](https://console.weaviate.io) for the private beta of our production SaaS.
 
 ## Sign in
