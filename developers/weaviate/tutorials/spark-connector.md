@@ -31,7 +31,7 @@ We will also need the Weaviate Spark connector. You can download this by running
 wget https://github.com/weaviate/spark-connector/releases/download/v1.0.0/spark-connector-assembly-1.0.0.jar
 ```
 
-For this tutorial, you will also need a Weaviate instance running with the `text2vec-huggingface` module. We assume your instance is running at `http://localhost:8080`.
+For this tutorial, you will also need a Weaviate instance running at `http://localhost:8080`.
   
 
 ## What is the Spark Connector?
@@ -95,8 +95,6 @@ Prior to this step make sure your weaviate instance is running at `http://localh
 
 The Spark Connector assumes that a schema has already been created in Weaviate. For this reason we will use the Python client to create this schema. For more information on how we create the schema see this [tutorial](./how-to-create-a-schema.md).
 
-Additionally we will specify the vectorizer as `text2vec-huggingface` and `facebook-dpr` as the specific models from HuggingFace which we can use to vectorize our queries. Make sure your HuggingFace Access Token is added to your path variable using the command `export HUGGINGFACE_APIKEY=my-key-here`
-
 ```python
 import weaviate
 
@@ -105,15 +103,6 @@ client = weaviate.Client("http://localhost:8080")
 client.schema.create_class(
     {
         "class": "Sphere",
-        "vectorizer": "text2vec-huggingface",
-        "moduleConfig": {
-        "passageModel": "sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base",
-        "queryModel": "sentence-transformers/facebook-dpr-question_encoder-single-nq-base",
-        "options": {
-            "waitForModel": True,
-            "useCache": True
-        }
-        },
         "properties": [
             {
                 "name": "raw", 
@@ -165,24 +154,10 @@ Let's examine the code above to understand exactly what's happening and all the 
 
 - Using `.mode("append")` we specify the write mode as `append`. Currently only the append write mode is supported.
 
-Now that we've written our data to Weaviate and we understand the capabilities of the Spark Connector and its settings. We can query the data via the python client to confirm that the data has been loaded.
+Now that we've written our data to Weaviate and we understand the capabilities of the Spark Connector and its settings. As a last step, we can query the data via the python client to confirm that the data has been loaded.
 
 ```python
 client.query.get("Sphere", "title").do()
-```
-
-You can also now architect more interesting queries that allow you to conduct hybrid search:
-
-```python
-result = (
-    client.query
-    .get("Sphere", ["title","raw"])
-    .with_hybrid("fashion industry investing", alpha=0.5)
-    .with_limit(5)
-    .do()
-  )
-
-print(result)
 ```
 
 ## More Resources
