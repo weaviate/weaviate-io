@@ -11,19 +11,21 @@ import { DownloadButton } from '/src/theme/Buttons';
 
 ## Overview
 
-You have already seen how to import data into Weaviate. So in this section, we will dig a little bit further into its details. 
-
-We will discuss points such as how are vectors imported, what a batch import is, how to manage errors, and some advice on optimization.
+In this section, we will explore data import, including details of the batch import process. We will discuss points such as how are vectors imported, what a batch import is, how to manage errors, and some advice on optimization.
 
 ## Prerequisites 
 
-At this point, you should have: 
+We recommend you complete the [Quickstart tutorial](../quickstart/index.md) first. 
+
+Before you start this tutorial, you should follow the steps in the tutorials to have:
+
 - An instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
 - Installed your preferred Weaviate client library, and
 - Set up a `Question` class in your schema. 
+    - You can follow the Quickstart guide, or the [schema tutorial](./schema.md) to construct the Question class if you have not already.
 
-Download the dataset below to your working directory if you haven't yet, as we will use it again here.
+We will use the below dataset. We suggest that you download it to your working directory.
 
 <p>
   <DownloadButton link="https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json">Download jeopardy_tiny.json</DownloadButton>
@@ -31,13 +33,29 @@ Download the dataset below to your working directory if you haven't yet, as we w
 
 ## Import setup
 
-We said in the [schema section](./schema.md) earlier that the `schema` specifies the structure of the information to be saved to Weaviate. 
+As mentioned in the [schema tutorial](./schema.md), the `schema` specifies the data structure for Weaviate. 
 
-So the data must be imported by matching properties of the relevant class, which in this case is the **Question** class defined in the previous section.
+So conversely, the data must be imported by matching properties of the relevant class, which in this case is the **Question** class defined in the previous section.
+
+### Data object structure
+
+The syntax of a data object is as follows:
+
+```json
+{
+  "class": "<class name>",  // as defined during schema creation
+  "id": "<UUID>",     // optional, should be in UUID format.
+  "properties": {
+    "<property name>": "<property value>", // specified in dataType defined during schema creation
+  }
+}
+```
+
+Most commonly, Weaviate users import data through a Weaviate client library. But it's worth noting that data is ultimately added through the RESTful API, either through the [`objects` endpoint](../api/rest/objects.md) or the [`batch` endpoint](../api/rest/batch.md). 
+
+As the names suggest, the use of these endpoints depend on whether objects are being imported as batches or individually.
 
 ### To batch or not to batch
-
-Weaviate allows data objects to be created as a single object or in batches. 
 
 For importing data, we **strongly suggest that you use batch imports** unless you have a specific reason not to. Batch imports can greatly improve performance by sending multiple objects in a single request.
 
@@ -134,9 +152,12 @@ Accordingly, we recommend that you implement error handling at an object level s
 * Use batch import unless you have a good reason not to
 * For importing large datasets, make sure to consider and optimize your import strategy.
 
-## Next
+## Suggested reading
 
+- [Schemas in detail](./schema.md)
 - [Queries in detail](./query.md)
+- [Introduction to modules](./modules.md)
+- [Introduction to Weaviate Console](./console.md)
 
 ### Other object operations
 

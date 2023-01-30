@@ -19,7 +19,7 @@ Here, you will create a new Weaviate instance for use throughout this tutorial.
 
 We will use the free sandbox tier from _Weaviate Cloud Service_ (WCS) for this tutorial.
 
-WCS is a managed service, so you don't have to install or maintain anything to run Weaviate. WCS is the fastest way 🚀 to create a new Weaviate instance, so let's spin up an instance with it for use throughout this tutorial. 
+WCS is a managed SaaS service. As it is the fastest 🚀 way to create a new Weaviate instance and requires no maintenance at your end, let's spin up an instance with it for use throughout this tutorial. 
 
 :::info Prefer a local instance?
 If you prefer a local instance of Weaviate, we recommend getting started with Docker. Please refer to [the separate section below](#running-weaviate-with-docker) to follow along.

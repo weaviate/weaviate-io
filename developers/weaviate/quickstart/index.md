@@ -39,15 +39,15 @@ We will start with this (tiny) dataset consisting of questions from the popular 
 By the time you're done with this tutorial, you will have:
 - Built a Weaviate database,
 - Vectorized and imported data, and
-- Performed queries to retrieve objects and aggregations, including filters.
+- Performed queries to retrieve objects.
 
 You will see how Weaviate can:
 - Vectorize data at import time,
-- Use an external inference APIm
+- Use an external inference API,
 - Automate data schema construction if necessary, and
-- Perform vector searches and filter results.
+- Perform vector searches.
 
-We also include additional, optional chapters about [modules](./modules.md), and the Weaviate [console](./console.md).
+And once you're done with these - you can move on to our more [in-depth tutorials](../tutorials/index.md).
 
 ## Before you start 
 

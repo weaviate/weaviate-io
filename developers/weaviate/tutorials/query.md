@@ -10,11 +10,15 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Now let's take a little more time to talk about different queries that you can perform with Weaviate. Here, we will expand on the `nearText` queries that you performed earlier to show you different query types, filters and metrics that can be used.
+In this section, we will explore different queries that you can perform with Weaviate. Here, we will expand on the `nearText` queries that you may have seen in the [Quickstart tutorial](../quickstart/end-to-end.md) to show you different query types, filters and metrics that can be used.
 
 By the end of this section, you will have performed vector and scalar searches separately as well as in combination to retrieve individual objects and aggregations. 
 
 ## Prerequisites 
+
+We recommend you complete the [Quickstart tutorial](../quickstart/index.md) first. 
+
+Before you start this tutorial, you should follow the steps in the tutorials to have:
 
 At this point, you should have: 
 - An instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
@@ -33,13 +37,17 @@ You can query Weaviate using one or a combination of a semantic (i.e. vector) se
 
 First, we will start by making queries to Weaviate to retrieve **Question** objects that we imported earlier.
 
-The Weaviate function for retrieving objects is `Get`. If this looks familiar, that's because you have already used it! You should have performed a `Get` query at the end of the last section to confirm that the data import was successful. Here is the same code as a reminder:
+The Weaviate function for retrieving objects is `Get`. 
+
+This might be familiar for some of you. If you have completed our [Imports in detail tutorial](./import.md), you may have performed a `Get` query to confirm that the data import was successful. Here is the same code as a reminder:
 
 import CodeImportGet from '/_includes/code/quickstart.import.get.mdx';
 
 <CodeImportGet />
 
-Let's build on this query by adding a vector search. 
+This query simply asks Weaviate for *some* objects of this (`Question`) class.
+
+Of course, in most cases we would want to retrieve information on some criteria. Let's build on this query by adding a vector search. 
 
 ### `Get` with `nearText`
 
@@ -49,7 +57,7 @@ import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.nearte
 
 <CodeAutoschemaNeartext />
 
-This might also look familiar, as it was used in an [earlier section](./end-to-end.md). But let's break it down a little.
+This might also look familiar, as it was used in the [Quickstart tutorial](./end-to-end.md). But let's break it down a little.
 
 Here, we are using a `nearText` parameter. What we are doing is to provide Weaviate with a query `concept` of `famous scientist`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example) and uses that vector as the basis for a vector search.
 
@@ -227,7 +235,7 @@ import CodeQueryAggregate1 from '/_includes/code/quickstart.query.aggregate.1.md
 
 <CodeQueryAggregate1 />
 
-And you can also use the `Aggregate` function with filters, just as you saw with the `Get` function earlier. The below query for example will return the number of **Question** objects with the category "ANIMALS".
+And you can also use the `Aggregate` function with filters, just as you saw with the `Get` function above. The below query for example will return the number of **Question** objects with the category "ANIMALS".
 
 import CodeQueryAggregate2 from '/_includes/code/quickstart.query.aggregate.2.mdx'
 
@@ -253,32 +261,28 @@ And as you saw above, there are four objects that match the query filter.
 
 Here, Weaviate has identified the same objects that you saw earlier in the similar `Get` queries. The difference is that instead of returning the individual objects you are seeing the requested aggregated statistic (count) here.
 
+As you can see, the `Aggregate` function can return handy aggregated, or metadata, information from the Weaviate database.
+
 ## Recap
 
-Congratulations - you've made it through the body of our quickstart tutorial! We hope that this tutorial was a useful introduction to Weaviate, all the way from installation to performing queries.
+* `Get` queries are used for retrieving data objects.
+* `Aggregate` queries can be used to retrieve metadata, or aggregated data.
+* Parameters such as `nearText` or `nearVector` can be used for vector queries.
+* Scalar filters can be used for exact filtering, taking advantage of inverted indexes.
+* Vector and scalar filters can be combined, and are available on both `Get` and `Aggregate` queries
 
-Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us. 
+## Suggested reading
 
-Also, please feel free to reach out to us on our community [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw). We love to hear from our users. 
-
-See you soon!
-
-## What next?
-
+- [Schemas in detail](./schema.md)
+- [Import in detail](./import.md)
 - [Introduction to modules](./modules.md)
-- [Introduction to Weaviate console](./console.md)
-- [References: Installation](../installation/index.md)
-- [References: Configuration](../configuration/index.md)
-- [References: API](../api/index.md)
-- [Concepts](../concepts/index.md)
-- [Roadmap](../roadmap/index.md)
+- [Introduction to Weaviate Console](./console.md)
 
 ## Notes
 
 ### How is certainty calculated?
 
 `certainty` in Weaviate is a measure of distance from the vector to the data objects. You can also calculate the cosine similarity based on the certainty as described [here](../more-resources/faq.html#q-how-do-i-get-the-cosine-similarity-from-weaviates-certainty).
-
 
 ## More Resources
 

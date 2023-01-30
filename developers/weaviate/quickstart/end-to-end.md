@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Here, you will gain a hands-on overview of things that you can do with Weaviate. If you are curious about some of the steps - don't worry, we will dig further into each step in more detail later on.
+Here, you will gain a hands-on overview of things that you can do with Weaviate. If you are curious about some of the steps - don't worry, you can dig further into each step in more detail later on.
 
 By the end of this page, you will have:
 - Vectorized the quiz data
@@ -200,20 +200,29 @@ Try it out yourself with different strings, by changing the string from "biology
 
 ## Recap
 
-If you made it here - well done. You've successfully built a fully functioning vector database. 🥳
-
-Of course, this was just a quick look, and there are a lot of options and configurations that we have yet to explore. But we've covered a lot in just a couple of pages. 
+If you made it here - well done. We have covered a lot in just a couple of pages, and you've successfully built a fully functioning vector database! 🥳 
 
 You have:
-- Spun up an instance of Weaviate through WCS
-- Populated it with data, vectorizing it with an inference API, and
+- Spun up an instance of Weaviate through WCS,
+- Vectorized your dataset through an inference API,
+- Populated your WCS instance with the vectorized data, and
 - Performed text similarity searches.
 
-Next, we will revisit these processes and start to review each section in more detail, starting with the schema.
+Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us. 
+
+Also, please feel free to reach out to us on our community [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw). We love to hear from our users. 
 
 ## Next
 
-- [Schemas in detail](./schema.md).
+You can choose your own direction from here. For example, you can:
+
+- Learn more about how to do things in [Tutorials](../tutorials/index.md), like [build schemas](../tutorials/schema.md), [import data](../tutorials/import.md), [query data](../tutorials/query.md) and more.
+- Read about important [concepts/theory about Weaviate](../concepts/index.md)
+- Read our references for:
+    - [Configuration](../configuration/index.md)
+    - [API](../api/index.md)
+    - [Modules](../modules/index.md)
+    - [Client libraries](../client-libraries/index.md)
 
 ## More Resources
 
