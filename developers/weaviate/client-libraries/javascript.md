@@ -66,7 +66,9 @@ const client = weaviate.client({
 
 ### Client Credentials flow
 
-Authenticates users using a client secret which is granted by the authentication server. This authentication flow is typically regarded as more secure than the resource owner password flow:  a compromised client secret can be simply revoked, whereas a compromised password may have larger implications beyond the scope of breached authentication.
+import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
+
+<ClientAuthFlowClientCredentials />
 
 ```js
 const client = weaviate.client({
