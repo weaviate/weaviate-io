@@ -14,7 +14,7 @@ Lists all data objects in reverse order of creation. The data will be returned a
 
 #### Method and URL
 
-Without any restrictions (across classes, default limit):
+Without any restrictions (across classes, default limit = 100):
 
 ```js
 GET /v1/objects

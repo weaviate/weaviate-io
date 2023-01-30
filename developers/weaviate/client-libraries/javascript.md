@@ -70,12 +70,27 @@ const client = weaviate.client({
   authClientSecret: new weaviate.AuthUserPasswordCredentials({
     username: "user123",
     password: "password"
-    scope = "scope1 scope2"  // optional, depends on the configuration of your identity provider
+    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
   })
 });
 ```
 
-### Bearer token 
+### Client Credentials flow
+
+Authenticates users using a client secret which is granted by the authentication server. This authentication flow is typically regarded as more secure than the resource owner password flow:  a compromised client secret can be simply revoked, whereas a compromised password may have larger implications beyond the scope of breached authentication.
+
+```js
+const client = weaviate.client({
+  scheme: "http",
+  host: "weaviate-host",
+  authClientSecret: new weaviate.AuthClientCredentials({
+    clientSecret: "supersecuresecret",
+    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
+  })
+});
+```
+
+### Refresh Token flow
 
 Any other authentication method can be used to obtain tokens directly from your identity provider, for example by using this step-by-step guide of the [hybrid flow](../configuration/authentication.md).
 
