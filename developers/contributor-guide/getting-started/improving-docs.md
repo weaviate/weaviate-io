@@ -4,7 +4,6 @@ sidebar_position: 4
 image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
 ---
-<!-- TODO: this whole page needs refactoring as it refers to Jekyll style docs -->
 ## Introduction
 
 Maintaining consistent, accurate and readable documentation is way to improve the user experience for everybody, including experienced users. 
@@ -15,13 +14,13 @@ So if you spot any typos, errors, unclear explanations, missing references or an
 
 ## How Weaviate documentation is built
 
-Weaviate's documentation is built with a static site builder (Jekyll) with data from our [GitHub repository](https://github.com/weaviate/weaviate-io). Before you get started, we suggest you set up a local development environment first. This will allow you to preview any changes on your computer as you work on it. 
+Weaviate's documentation is built with a static site builder (Docusaurus) with data from our [GitHub repository](https://github.com/weaviate/weaviate-io). Before you get started, we suggest you set up a local development environment first. This will allow you to preview any changes on your computer as you work on it. 
 
 For instructions on setting up the development environment, please take a look at this [README file](https://github.com/weaviate/weaviate-io/blob/main/README.md).
 
 Once your local environment is set up, you can make your proposed changes, preview them locally, and submit them for review. 
 
-## Documentation folders
+<!-- ## Documentation folders
 
 The documentation repository is structured as below:
 
@@ -63,9 +62,19 @@ The documentation repository is structured as below:
 └── setup.sh                            #script for setting up the website
 ```
 
-The content is stored on HTML and Markdown (.md) files, and YAML files are used for configurations.
+The content is stored on HTML and Markdown (.md) files, and YAML files are used for configurations. -->
 
-## Liquid syntax
+## MDX syntax
+
+You will notice MDX / React syntax throughout this site. Docusaurus has built-in support for MDX v1, which allows you to write JSX within your Markdown files and render them as React components.
+
+Read [this Docusaurus page](https://docusaurus.io/docs/markdown-features/react) for more information.
+
+## Infima styling
+
+This site uses Infima for styling. Read [this Docusaurus page](https://docusaurus.io/docs/styling-layout#styling-your-site-with-infima) for more information.
+
+<!-- ## Liquid syntax
 
 Jekyll uses the [Liquid](https://shopify.github.io/liquid/) templating language to process templates. To learn more about Liquid, check out the [official Liquid Documentation](https://shopify.github.io/liquid/).
 
@@ -73,10 +82,10 @@ Here are some syntax which we commonly use in our code:
 
 * `if` conditional
 
-This executes the block of code only if the given condition is true. For example:
+This executes the block of code only if the given condition is true. For example: -->
 
 <!-- Using html rather than liquid code block as display style for liquid/jinja does not use a black background -->
-```html 
+<!-- ```html 
 {% raw %}
 Published on {{ page.date | date: '%B %d, %Y' }}
 {% if page.canonical-name %}
@@ -118,4 +127,4 @@ The assign tag is used to create a new variable. For example:
 {% raw %}
 {% assign sortedResources = site.data.podcasts | sort: 'date' %}
 {% endraw %}
-```  
+```   -->
