@@ -250,7 +250,7 @@ For any changes you commit, make sure that you:
 
 * Check for technical accuracy in the content. You can always [ask for help](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/) if you get stuck.
 
-* Verify that the syntax of new or updated Liquid statements is proper. Jekyll uses the [Liquid](https://shopify.github.io/liquid/) templating language to process templates.
+* Verify that the syntax of new or updated MDX or React statements is proper.
 
 ## After submitting a Pull Request
 
