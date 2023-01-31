@@ -41,27 +41,16 @@ client
 
 ## Authentication
 
-Please see the [authentication](../configuration/authentication.md) for broader information in relation to authentication with Weaviate.
+import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
 
-The JavaScript client supports multiple OIDC authentication flows to use with Weaviate. 
-
-First, choose one of the supported flows and create the flow-specific authentication configuration, which can then be passed to the client. The configuration, including secrets, are used by the client to obtain an `access token` and (if configured) a `refresh token`.
-
-The `access token` is included in the HTTP-header of any request and is used to authenticate against weaviate. However, this token usually has a limited lifetime and the `refresh token` can be used to acquire a new set of tokens.
+<ClientAuthIntro clientName="JavaScript"/>
 
 ### Resource Owner Password flow
 
-:::caution
-This flow authenticates users using their *username* and *password*.
+import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
 
-The username or password are not saved in the Weaviate client. They are only used to obtain the first tokens, after which existing tokens will be used to obtain subsequent tokens if possible.
+<ClientAuthFlowResourceOwnerPassword />
 
-Nonetheless, this authentication flow should only be used on trusted devices. 
-:::
-
-Not every provider automatically includes a `refresh token` and an appropriate *scope* might be required that depends on your identity provider. The client uses *offline_access* as default scope which works with some providers.
-
-Without a refresh token, there is no possibility to acquire a new `access token` and the client becomes unauthenticated after expiration.
 
 ```js
 const client = weaviate.client({
@@ -77,7 +66,9 @@ const client = weaviate.client({
 
 ### Client Credentials flow
 
-Authenticates users using a client secret which is granted by the authentication server. This authentication flow is typically regarded as more secure than the resource owner password flow:  a compromised client secret can be simply revoked, whereas a compromised password may have larger implications beyond the scope of breached authentication.
+import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
+
+<ClientAuthFlowClientCredentials />
 
 ```js
 const client = weaviate.client({
@@ -92,9 +83,9 @@ const client = weaviate.client({
 
 ### Refresh Token flow
 
-Any other authentication method can be used to obtain tokens directly from your identity provider, for example by using this step-by-step guide of the [hybrid flow](../configuration/authentication.md).
+import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
 
-If no `refresh token` is provided, there is no possibility to obtain a new `access token` and the client becomes unauthenticated after expiration.
+<ClientAuthBearerToken />
 
 ```js
 const client = weaviate.client({
