@@ -23,7 +23,7 @@ script:
     fi
 
   # Link Validation
-  # - source _build_scripts/verify-links.sh
+  - source _build_scripts/verify-links.sh
 
   ###
   ##
