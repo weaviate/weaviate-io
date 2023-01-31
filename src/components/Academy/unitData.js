@@ -1,15 +1,16 @@
 export const unitData = {
-  intro: {
+  hello_weaviate: {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features.",
-    buttonType: "TBD",
+    buttonType: "Click here",
     badgeType: "mixed",
     learningGoals: [
-      "Learn what vector search is.",
-      "Learn what Weaviate is.",
-      "Learn what features Weaviate has."
+      "Learn what semantic search is",
+      "How vectors and deep learning models enable semantic search",
+      "How Weaviate scales these capabilities.",
     ],
     learningOutcomes: [
+      "Explain what a vector is, and how they can represent meaning.",
       "Explain what a vector search engine is.",
       "Explain what Weaviate is.",
       "Explain what capabilities Weaviate has."
@@ -20,7 +21,7 @@ export const unitData = {
   search_theory: {
     title: "Vector search theory",
     body: "Vector search powers Weaviate - but what is it and how does it work?",
-    buttonType: "TBD",
+    buttonType: "Click here",
     badgeType: "theory",
     learningGoals: [
       "Learn what vectors are",
@@ -38,7 +39,7 @@ export const unitData = {
   wcs_intro: {
     title: "Weaviate Cloud Service (WCS)",
     body: "Learn about WCS, and how to get started using it for free.",
-    buttonType: "TBD",
+    buttonType: "Click here",
     badgeType: "practical",
     learningGoals: [
       "Learn what the Weaviate Cloud Service is.",
@@ -94,7 +95,7 @@ export const unitData = {
   schema_1: {
     title: "Schema 1",
     body: "Learn what role the schema plays in Weaviate, and how to define it",
-    buttonType: "TBD",
+    buttonType: "Click here",
     badgeType: "mixed",
     learningGoals: [
       "Learn what a Weaviate data schema is.",
@@ -133,7 +134,7 @@ export const unitData = {
   crud_operations: {
     title: "CRUD operations",
     body: "How to perform object manipulation operations in Weaviate.",
-    buttonType: "TBD",
+    buttonType: "Notify",
     badgeType: "practical",
     learningGoals: [
       "Learn how to handle data objects in Weaviate, with Create, Read, Update and Delete (CRUD) operations for data objects via its RESTful endpoint."
@@ -150,7 +151,7 @@ export const unitData = {
   modules: {
     title: "Modules",
     body: "What roles modules play, and how to enable and use them, including examples.",
-    buttonType: "TBD",
+    buttonType: "Notify",
     badgeType: "mixed",
     learningGoals: [
       "Learn that Weaviate is fully modularized", 
@@ -221,7 +222,7 @@ export const unitData = {
   t2v_under_hood: {
     title: "Text2vec under the hood",
     body: "Find out exactly how Weaviate vectorizes text, and how to modify its behavior.",
-    buttonType: "TBD",
+    buttonType: "Notify",
     badgeType: "theory",
     learningGoals: [
       "Understand Weaviate's default object vectorization behavior in terms of data types and order of text concatenation, and how to modify this"
@@ -274,7 +275,7 @@ export const unitData = {
   backups: {
     title: "Backups",
     body: "How to back up and restore data in Weaviate: try partial and full backups to local or cloud storage.",
-    buttonType: "TBD",
+    buttonType: "Notify",
     badgeType: "practical",
     learningGoals: [
       "Learn how to back up and restore data in Weaviate, both partial and full backups to local and cloud storage. "
@@ -289,7 +290,7 @@ export const unitData = {
   auth: {
     title: "Authentication & Authorization",
     body: "Identify users and control access with OpenID Connect (OIDC).",
-    buttonType: "TBD",
+    buttonType: "Notify",
     badgeType: "practical",
     learningGoals: [
       "An overview of authentication and authorization, as well as how to implement token-based authentication and authorization in Weaviate."
@@ -347,7 +348,7 @@ export const unitData = {
   clients: {
     title: "Weaviate Clients",
     body: "An overview: what's available, where to find them, and their capabilities.",
-    buttonType: "TBD",
+    buttonType: "Notify",
     badgeType: "mixed",
     learningGoals: [
       "Learn what Weaviate client libraries offer, which client languages are available and how to use them."
@@ -375,7 +376,7 @@ export const unitData = {
   docker: {
     title: "Weaviate with Docker",
     body: "How to run Weaviate on Docker, and best practice tips.",
-    buttonType: "TBD",
+    buttonType: "Notify",
     badgeType: "practical",
     learningGoals: [
       ""

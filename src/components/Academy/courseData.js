@@ -7,7 +7,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: true, 
     units: [
-      "intro", "wcs_intro", "queries_1", 
+      "hello_weaviate", "wcs_intro", "queries_1", 
       "vectorizer_selection_1", "schema_1", "data_import", "crud_operations", "modules"
     ],
     learningGoals: [
@@ -25,7 +25,7 @@ export const courseData = {
   "zero_to_mvp_advanced": {
     title: "Zero to MVP: Advanced",
     courseId: "1A",
-    body: "In-depth discussions topics to follow on from the `Getting to MVP` course.",
+    body: "In-depth discussion topics to follow on from the `Getting to MVP` course.",
     buttonType: "TBD",
     badgeType: "course",
     isCourse: true,
@@ -46,7 +46,7 @@ export const courseData = {
   "customization_with_modules": {
     title: "Customization using modules",
     courseId: "2",
-    body: "For data scientists: adapt Weaviate with your own vectorizer models, custom modules and tweaked vectorization behavior.",
+    body: "How to adapt Weaviate with custom vectorizer models and modules as well as tweaked vectorization behavior.",
     buttonType: "Notify",
     badgeType: "course",   
     isCourse: true,   
