@@ -80,8 +80,8 @@ We can get even better results by filtering our searches with the `speaker` and 
         operator: Equal,
         valueString: "Sam Bean"
       }
-      hybrid: {
-        query: "How does You.com use Weaviate?"
+      nearText: {
+        concepts: ["How does You.com use Weaviate?"]
       }
     ){
     content
@@ -103,8 +103,8 @@ We can also filter on podcast numbers. Weviate podcast #30 “The Future of Sear
         valueInt: 30
         operator: GreaterThanEqual
       }
-      hybrid: {
-        query: "ChatGPT and Weaviate"
+      nearText: {
+        concepts: ["ChatGPT and Weaviate"]
       }
     ){
     content
@@ -114,6 +114,8 @@ We can also filter on podcast numbers. Weviate podcast #30 “The Future of Sear
   }
 }
 ```
+
+Using the `where` filter with hybrid search could improve the search results. This [feature](https://github.com/weaviate/weaviate/issues/2393) will be added to the Weaviate v.18 release.
 
 ## The Future of Podcasting UX
 
