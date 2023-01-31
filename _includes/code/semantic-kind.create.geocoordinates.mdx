@@ -28,7 +28,7 @@ data_uuid = client.data_object.create(
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -38,12 +38,12 @@ const client = weaviate.client({
 client.data
       .creator()
       .withClassName('Publication')
-      .withId("df48b9f6-ba48-470c-bf6a-57657cb07390")
+      .withId('df48b9f6-ba48-470c-bf6a-57657cb07390')
       .withProperties({
-        "name": "Elsevier",
-        "headquartersGeoLocation": {
-          "latitude": 52.3932696,
-          "longitude": 4.8374263
+        'name': 'Elsevier',
+        'headquartersGeoLocation': {
+          'latitude': 52.3932696,
+          'longitude': 4.8374263
         })
       .do()
       .then(res => {

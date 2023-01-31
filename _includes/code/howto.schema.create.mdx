@@ -37,7 +37,7 @@ client.schema.create_class(class_obj)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -45,22 +45,22 @@ const client = weaviate.client({
 });
 
 var classObj = {
-  "class": "Publication",
-  "description": "A publication with an online source",
-  "properties": [
+  'class': 'Publication',
+  'description': 'A publication with an online source',
+  'properties': [
     { 
-      "dataType": [
-        "string"
+      'dataType': [
+        'string'
       ],
-      "description": "Name of the publication",
-      "name": "name"
+      'description': 'Name of the publication',
+      'name': 'name'
     },
     {
-      "dataType": [
-          "geoCoordinates"
+      'dataType': [
+          'geoCoordinates'
       ],
-      "description": "Geo location of the HQ",
-      "name": "headquartersGeoLocation"
+      'description': 'Geo location of the HQ',
+      'name': 'headquartersGeoLocation'
     }
   ]
 };

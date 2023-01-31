@@ -20,7 +20,7 @@ export default function HomePage() {
         </p>
 
         <ButtonContainer>
-          <LinkButton link="https://weaviate.slack.com">Join Our Community on Slack</LinkButton>
+          <LinkButton link="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw">Join Our Community on Slack</LinkButton>
         </ButtonContainer>
       </div>
       <div className={styles.features}>

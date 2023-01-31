@@ -272,7 +272,7 @@ Like retrievers & vectorizers, the modules can extend the GraphQL-API. The quest
 {
   Get {
     Article(
-      # the ask filter is introduced through the Q&A module
+      # the ask filter is introduced through the QandA module
       ask: {
         question: "What was the monkey doing during Elon Musk's brain-chip startup release?"
       }
@@ -290,7 +290,7 @@ Like retrievers & vectorizers, the modules can extend the GraphQL-API. The quest
 }
 ```
 
-You can try this query in real time [here](https://link.semi.technology/3dPI0rV).
+You can try this query in real time [here](https://link.weaviate.io/3HGe3qv).
 
 ## Recap
 

@@ -18,7 +18,7 @@ print(exists)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -27,8 +27,8 @@ const client = weaviate.client({
 
 client.data
   .checker()
-  .withClassName("MyClass")
-  .withId("df48b9f6-ba48-470c-bf6a-57657cb07390")
+  .withClassName('MyClass')
+  .withId('df48b9f6-ba48-470c-bf6a-57657cb07390')
   .do()
   .then((exists) => {
     console.log(exists)

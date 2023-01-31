@@ -50,7 +50,7 @@ print(query_result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -62,7 +62,7 @@ client.graphql
       .withClassName('Publication')
       .withFields('name')
       .withGroup({
-        type: "merge",
+        type: 'merge',
         force: 0.05
       })
       .do()

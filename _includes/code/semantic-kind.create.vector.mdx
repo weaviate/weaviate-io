@@ -17,7 +17,7 @@ data_uuid = client.data_object.create(
   data_obj, 
   "YourClass", 
   uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a0923", # optional, if not provided, one is going to be generated
-  vector = [0.3, 0.2, 0.1, .... 0.9], # supported types are `list`, 'numpy.ndarray`, `torch.Tensor` and `tf.Tensor`. Make sure the length matches with your Weaviate settings.
+  vector = [0.3, 0.2, 0.1, .... 0.9], # supported types are `list`, `numpy.ndarray`, `torch.Tensor` and `tf.Tensor`. Make sure the length matches with your Weaviate settings.
 )
 ```
 
@@ -25,7 +25,7 @@ data_uuid = client.data_object.create(
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -37,12 +37,12 @@ const vector = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 client.data
       .creator()
       .withClassName('Publication')
-      .withId("df48b9f6-ba48-470c-bf6a-57657cb07390")
+      .withId('df48b9f6-ba48-470c-bf6a-57657cb07390')
       .withProperties({
-        "name": "Elsevier",
-        "headquartersGeoLocation": {
-          "latitude": 52.3932696,
-          "longitude": 4.8374263
+        'name': 'Elsevier',
+        'headquartersGeoLocation': {
+          'latitude': 52.3932696,
+          'longitude': 4.8374263
         })
       .withVector(vector)
       .do()

@@ -7,11 +7,11 @@ import TabItem from '@theme/TabItem';
 ```python
 import weaviate
 
-client = weaviate.Client('http://localhost:8080')
+client = weaviate.Client("http://localhost:8080")
 
 result = client.backup.get_create_status(
-  backup_id='my-very-first-backup',
-  backend='filesystem',
+  backup_id="my-very-first-backup",
+  backend="filesystem",
 )
 
 print(result)
@@ -21,7 +21,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -29,8 +29,8 @@ const client = weaviate.client({
 });
 
 client.backup.createStatusGetter()
-  .withBackend("filesystem")
-  .withBackupId("my-very-first-backup")
+  .withBackend('filesystem')
+  .withBackupId('my-very-first-backup')
   .do()
   .then(console.log)
   .catch(console.error)

@@ -31,13 +31,13 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 near_text_filter = {
-  'concepts': ['fashion']
+  "concepts": ["fashion"]
 }
 
 query_result = (
   client.query
-  .get('Article', 'title')
-  .with_additional(['id', 'certainty'])
+  .get("Article", "title")
+  .with_additional(["id", "certainty"])
   .with_near_text(near_text_filter)
   .do()
 )
@@ -49,7 +49,7 @@ print(query_result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -59,7 +59,7 @@ const client = weaviate.client({
 client.graphql
       .get()
       .withClassName('Article')
-      .withNearText({concepts: ["fashion"]})
+      .withNearText({concepts: ['fashion']})
       .withFields('title _additional { id certainty }')
       .do()
       .then(res => {
