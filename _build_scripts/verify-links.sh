@@ -12,7 +12,7 @@ PATH: ${NETLIFY_URL}
 URL_IGNORES: ${URL_IGNORES}|${DOCUSAURUS_IGNORES}
 **************************************"
 
-linkinator $NETLIFY_URL \
+./node_modules/.bin/linkinator $NETLIFY_URL \
 --recurse \
 --skip "${URL_IGNORES}|${DOCUSAURUS_IGNORES}" \
 --timeout 5000 \
