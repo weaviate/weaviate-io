@@ -61,7 +61,7 @@ spark = (
 spark.sparkContext.setLogLevel("WARN")
 ```
 
-You should now have a Spark Session created and will be able to view it using the [Spark UI](http://localhost:4040).
+You should now have a Spark Session created and will be able to view it using the **Spark UI** at `http://localhost:4040`.
 
 You can also verify the local Spark Session is running by executing:
 
