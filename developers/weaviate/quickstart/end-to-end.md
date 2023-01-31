@@ -57,13 +57,11 @@ Weaviate will infer any further schema information from the given data. We'll co
 
 ### Provide the API key
 
-We will include the API key in our code in the form of a header, like:
+Include the API key in our code in the form of a header, as in the example below. Select the right format for your preferred inference API:
 
-```json
-{
-    "X-OpenAI-Api-Key": api_tkn  // Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key" 
-}
-```
+import JSONApiKey from '/_includes/code/api.key.mdx'
+
+<JSONApiKey />
 
 :::note API key options
 The API key can also be provided as an environment variable. Refer to the docs for your favorite inference API [module](../modules/retriever-vectorizer-modules/index.md).
