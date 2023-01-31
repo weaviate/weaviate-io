@@ -9,7 +9,8 @@ image: ./img/hero.png
 
 ![Weaviate Podcast Search](./img/hero.png)
 
-Recent advances in AI are breathing new life into podcasting! The Whisper speech-to-text model is a game-changer! It can transcribe podcasts with astonishing accuracy, allowing us to index them into Weaviate! I have been hosting the Weaviate podcast for a little over a year with 34 published episodes and am super excited to tell you how this will completely revamp our podcast, as well as the details behind how to build something like this for yourself.
+Recent advances in AI are breathing new life into podcasting! The Whisper speech-to-text model is a game-changer! It can transcribe podcasts with astonishing accuracy, allowing us to [index them into Weaviate](https://github.com/weaviate/weaviate-podcast-search)! 
+I have been hosting the Weaviate podcast for a little over a year with 34 published episodes and am super excited to tell you how this will completely revamp our podcast, as well as the details behind how to build something like this for yourself.
 <!-- truncate -->
 
 Podcasts are easy to consume, we can listen to podcasts as we drive to work, take a walk, or play a video game. However, despite their convenience, podcasts have lacked a crucial aspect that other knowledge base mediums have - the ability to easily reference and search past content.
@@ -48,7 +49,7 @@ I think it would be fairly easy to fine-tune Whisper on these corrections, but I
 If you are already familiar with Weaviate, you can simply clone the repository [here](https://github.com/weaviate/weaviate-podcast-search) and get going with:
 
 ```bash
-Docker-compose up -d
+docker-compose up -d
 python3 restore.py
 ```
 
@@ -136,7 +137,7 @@ This is one of my favorite applications of our new [`ref2vec` module](/developer
 
 Stay tuned for more updates on ref2vec!
 
-### Dog-fooding
+## Dog-fooding
 
 “Dog-fooding” describes learning about your product by using it, as in eating your own dog food. There are 3 main features in development of Weaviate that I am super excited to develop with the Weaviate Podcast serving as the dataset.
 
@@ -158,22 +159,10 @@ Stay tuned for more updates on ref2vec!
 I have spoken with a few Weaviate users who typically evaluate search performance with a small set of manually annotated queries and relevant documents. A new breakthrough is emerging in the intersection of Large Language Models and Search, in addition to the more flashy retrieval-augmented ChatGPT, etc. Using the Language Models to `generate training or testing data` for any given dataset, led by papers such as InPars, Promptagator, and InPars-Light. 
 All you do is ask ChatGPT to `please generate a query that would match the information in this document`. There are a little more details to this such as roundtrip consistency filtering, stay tuned for our Weaviate podcast with Leo Boystov to learn more about this!
 
-### Concluding thoughts on Podcasting
+## Concluding thoughts on Podcasting
 
 I think there are a lot of obvious benefits for making a podcast. It is a great way to meet people for the joint sake of collaboration on content and overall developing friendships and partnerships. It is a great intellectual exercise to explore these ideas with someone who has a different perspective than you do. 
 I would also add that podcasting has a nice fact verification component to it compared to a solo content medium like blogging. For example, if I make some wild claim about embedding models while interviewing Nils Reimers, he will probably respond with a shocked reaction and refute the claim. I am very happy to have taken up podcasting and super excited about this new ability to build a knowledge base from the podcasts!
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Stay Connected
 Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io). 
