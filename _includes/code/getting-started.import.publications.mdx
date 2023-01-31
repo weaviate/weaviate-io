@@ -5,13 +5,12 @@ import TabItem from '@theme/TabItem';
 <TabItem value="py" label="Python">
 
 ```python
-
 import weaviate
 
-client = weaviate.Client("https://some-endpoint.weaviate.network/")
+client = weaviate.Client("https://some-endpoint.semi.network/")
 
 # Load data from the data.json file
-data_file = open('data.json')
+data_file = open("data.json")
 data = json.load(data_file)
 # Closing file
 data_file.close()
@@ -25,25 +24,22 @@ client.batch.configure(
 )
 
 # Batch import all Publications
-for publication in data['publications']:
-  print("importing publication: ", publication["name"])
+with client.batch as batch:
+  for publication in data["publications"]:
+    print("importing publication: ", publication["name"])
 
-  properties = {
-    "name": publication["name"]
-  }
+    properties = {
+      "name": publication["name"]
+    }
 
-  client.batch.add_data_object(properties, "Publication", publication["id"], publication["vector"])
-
-# Flush the remaining buffer to make sure all objects are imported
-client.batch.flush()
+    client.batch.add_data_object(properties, "Publication", publication["id"], publication["vector"])
 ```
 
 </TabItem>
 <TabItem value="js" label="JavaScript">
 
 ```js
-
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -66,7 +62,7 @@ async function importPublications() {
   data.publications.forEach(publication => {
     // Construct an object with a class, id, properties and vector
     const obj = {
-      class: "Publication",
+      class: 'Publication',
       id: publication.id,
       properties: {
         name: publication.name,

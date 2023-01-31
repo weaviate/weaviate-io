@@ -36,9 +36,9 @@ import TabItem from '@theme/TabItem';
 import weaviate
 
 client  = weaviate.Client(
-    url='http://localhost:8080',
+    url="http://localhost:8080",
     additional_headers={
-        'X-OpenAI-Api-Key': '<THE-KEY>'
+        "X-OpenAI-Api-Key": "<THE-KEY>"
     }
 )
 
@@ -62,7 +62,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -74,8 +74,8 @@ client.graphql
       .get()
       .withClassName('Article')
       .withAsk({
-        question: "Who is Stanley Kubrick?",
-        properties: ["summary"],
+        question: 'Who is Stanley Kubrick?',
+        properties: ['summary'],
       })
       .withFields('title _additional { answer { hasAnswer property result startPosition endPosition } }')
       .withLimit(1)

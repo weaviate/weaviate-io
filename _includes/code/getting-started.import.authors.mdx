@@ -7,15 +7,15 @@ import TabItem from '@theme/TabItem';
 ```python
 
 # Batch import all Authors
-for author in data['authors']:
+for author in data["authors"]:
   print("importing author: ", author["name"])
 
   properties = {
-    "name": author["name"],
-    "age": author["age"],
-    "born": author["born"],
-    "wonNobelPrize": author["wonNobelPrize"],
-    "description": author["description"]
+    "name":           author["name"],
+    "age":            author["age"],
+    "born":           author["born"],
+    "wonNobelPrize":  author["wonNobelPrize"],
+    "description":    author["description"],
   }
 
   client.batch.add_data_object(properties, "Author", author["id"], author["vector"])
@@ -41,7 +41,7 @@ async function importAuthors() {
   data.authors.forEach(author => {
     // Construct an object with a class, id, properties and vector
     const obj = {
-      class: "Author",
+      class: 'Author',
       id: author.id,
       properties: {
         name: author.name,
@@ -91,11 +91,11 @@ func importAuthors(ctx context.Context, client *weaviate.Client) error {
 			Class: "Author",
 			ID:    strfmt.UUID(author.ID),
 			Properties: map[string]interface{}{
-				"name":          author.Name,
-				"age":           author.Age,
-				"born":          author.Born,
+				"name": author.Name,
+				"age": author.Age,
+				"born": author.Born,
 				"wonNobelPrize": author.WonNobelPrize,
-				"description":   author.Description,
+				"description": author.Description,
 			},
 			Vector: author.Vector,
 		})
@@ -121,7 +121,6 @@ func importAuthors(ctx context.Context, client *weaviate.Client) error {
 <TabItem value="java" label="Java">
 
 ```java
-
 public void importAuthors() throws FileNotFoundException {
   Data data = parseFile();
 

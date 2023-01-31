@@ -39,7 +39,7 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 result = client.query.aggregate("Article") \
-    .with_fields('meta { count }') \
+    .with_meta_count() \
     .with_fields("wordCount {count maximum mean median minimum mode sum type}") \
     .do()
 ```
@@ -48,7 +48,7 @@ result = client.query.aggregate("Article") \
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',

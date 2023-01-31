@@ -59,12 +59,29 @@ const client = weaviate.client({
   authClientSecret: new weaviate.AuthUserPasswordCredentials({
     username: "user123",
     password: "password"
-    scope = "scope1 scope2"  // optional, depends on the configuration of your identity provider
+    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
   })
 });
 ```
 
-### Bearer token 
+### Client Credentials flow
+
+import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
+
+<ClientAuthFlowClientCredentials />
+
+```js
+const client = weaviate.client({
+  scheme: "http",
+  host: "weaviate-host",
+  authClientSecret: new weaviate.AuthClientCredentials({
+    clientSecret: "supersecuresecret",
+    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
+  })
+});
+```
+
+### Refresh Token flow
 
 import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
 

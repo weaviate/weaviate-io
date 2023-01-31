@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -20,7 +20,7 @@ const client = weaviate.client({
 });
 
 client.backup.getter()
-  .withBackend("filesystem")
+  .withBackend('filesystem')
   .do()
   .then(console.log)
   .catch(console.error)

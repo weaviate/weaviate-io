@@ -29,17 +29,17 @@ http://localhost:8080/v1/batch/objects
 ```python
 import weaviate
 
-client = weaviate.Client('http://localhost:8080')
+client = weaviate.Client("http://localhost:8080")
 
 result = client.batch.delete_objects(
-	class_name='Author',
+	class_name="Author",
 	# same where operator as in the GraphQL API
 	where={
-		'operator': 'Equal',
-		'path': ['name'],
-		'valueText': 'Jane'
+		"operator": "Equal",
+		"path": ["name"],
+		"valueText": "Jane"
 	},
-	output='verbose',
+	output="verbose",
 	dry_run=False,
 )
 
@@ -50,7 +50,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
 	scheme: 'http',
@@ -59,13 +59,13 @@ const client = weaviate.client({
 
 client.batch
 	.objectsBatchDeleter()
-	.withClassName("Article")
-	.withOutput("verbose")
+	.withClassName('Article')
+	.withOutput('verbose')
 	.withDryRun(false)
 	.withWhere({
-	  operator: "GreaterThan",
-	  path: ["_creationTimeUnix"],
-	  valueString: "1651514874263",
+	  operator: 'GreaterThan',
+	  path: ['_creationTimeUnix'],
+	  valueString: '1651514874263',
 	})
 	.do()
 	.then(console.log)

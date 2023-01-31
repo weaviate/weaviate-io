@@ -65,7 +65,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -75,7 +75,7 @@ const client = weaviate.client({
 client.graphql
       .get()
       .withClassName('Article')
-      .withSort([{ path: ["title"], order: "asc" }])
+      .withSort([{ path: ['title'], order: 'asc' }])
       .withFields('title url wordCount')
       .do()
       .then(res => {

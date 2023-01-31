@@ -40,7 +40,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -51,7 +51,7 @@ client.graphql
       .get()
       .withClassName('FashionItem')
       .withFields('image')
-      .withNearImage({image: "/9j/4AAQSkZJRgABAgE..."})
+      .withNearImage({image: '/9j/4AAQSkZJRgABAgE...'})
       .do()
       .then(res => {
         console.log(res)

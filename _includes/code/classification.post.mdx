@@ -25,7 +25,7 @@ print(query_result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -37,7 +37,7 @@ client.classifications
       .withType('<e.g. knn>')
       .withSettings(<e.g. {k: 3}>) // optional for knn classification
       .withClassName('<className>')
-      .withClassifyProperties(["<property1>", "<property2>"])
+      .withClassifyProperties(['<property1>', '<property2>'])
       .withBasedOnProperties(['<property3>'])
       .withWaitForCompletion()
       .do()

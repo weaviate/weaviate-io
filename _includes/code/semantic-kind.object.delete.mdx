@@ -16,7 +16,7 @@ client.data_object.delete("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "MyClass")
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',
@@ -25,7 +25,7 @@ const client = weaviate.client({
 
 client.data
       .deleter()
-      .withClassName("MyClass")
+      .withClassName('MyClass')
       .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
       .do()
       .then(res => {

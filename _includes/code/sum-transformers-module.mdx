@@ -34,7 +34,7 @@ client = weaviate.Client("http://localhost:8080")
 
 result = (
   client.query
-  .get('Article', ['title', '_additional {summary ( properties: ["summary"]) { property result }}'])
+  .get("Article", ["title", "_additional {summary ( properties: ["summary"]) { property result }}"])
   .do()
 )
 
@@ -45,7 +45,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'http',

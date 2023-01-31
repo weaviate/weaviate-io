@@ -26,7 +26,7 @@ B​uilt-in search parameters are available in all Weaviate instances and don't 
 
 This filter allows you to find data objects in the vicinity of an input vector. It's supported by the `Get{}` function.
 
-* Note: this argument is different from the [GraphQL `Explore{}` function](./explore.md) )
+* Note: this argument is different from the [GraphQL `Explore{}` function](./explore.md)
 * Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md) filter
 
 #### Variables
@@ -268,13 +268,19 @@ This results in the following. Note that publications `International New York Ti
 }
 ```
 
-## Module specific parameters
+## Module-specific parameters
 
-Module specific search parameters are made available in certain Weaviate modules.​
+Module-specific search parameters are made available in certain Weaviate modules.​
 
 ### nearText
 
-Enabled by the modules: [text2vec-openai](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md), [text2vec-transformers](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md), [text2vec-contextionary](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md).
+Enabled by the modules: 
+- [text2vec-openai](../../modules/retriever-vectorizer-modules/text2vec-openai.md), 
+- [text2vec-cohere](../../modules/retriever-vectorizer-modules/text2vec-cohere.md), 
+- [text2vec-huggingface](../../modules/retriever-vectorizer-modules/text2vec-huggingface.md), 
+- [text2vec-transformers](../../modules/retriever-vectorizer-modules/text2vec-transformers.md),
+- [text2vec-contextionary](../../modules/retriever-vectorizer-modules/text2vec-contextionary.md).
+- [multi2vec-clip](../../modules/retriever-vectorizer-modules/multi2vec-clip.md).
 
 This filter allows you to find data objects in the vicinity of the vector representation of a single or multiple concepts. It's supported by the `Get{}` function.
 
@@ -283,8 +289,8 @@ This filter allows you to find data objects in the vicinity of the vector repres
 | Variables | Mandatory | Type | Description |
 | --- | --- | --- | --- |
 | `concepts` | yes | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing) |
-| `certainty` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. |
-| `distance` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite). |
+| `certainty` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values.<br/>Values can be between 0 (no match) and 1 (perfect match).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `distance` variable. |
+| `distance` | no | `float` | Normalized Distance between the result item and the search vector.<br/>The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `certainty` variable.|
 | `autocorrect` | no | `boolean` | Autocorrect input text values |
 | `moveTo` | no | `object{}` | Move your search term closer to another vector described by keywords |
 | `moveTo{concepts}`| no | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
@@ -294,8 +300,6 @@ This filter allows you to find data objects in the vicinity of the vector repres
 | `moveAwayFrom{concepts}`| no | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
 | `moveAwayFrom{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space | 
 | `moveAwayFrom{force}`| no | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible | 
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
-| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
 
 #### Example I
 
