@@ -1,5 +1,6 @@
 ---
 title: Data Import
+sidebar_position: 106
 ---
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';

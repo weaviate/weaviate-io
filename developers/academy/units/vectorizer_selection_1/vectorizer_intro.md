@@ -1,6 +1,6 @@
 ---
-title: Background
-sidebar_position: 1
+title: Introduction to vectorizers
+sidebar_position: 10
 ---
 
 ## Background (Why this module?)

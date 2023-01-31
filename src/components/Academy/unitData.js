@@ -5,36 +5,22 @@ export const unitData = {
     buttonType: "Click here",
     badgeType: "mixed",
     learningGoals: [
-      "Learn what semantic search is",
+      "What Weaviate is, and what it does.",
+      "What semantic search is and how it differs to scalar search",
       "How vectors and deep learning models enable semantic search",
-      "How Weaviate scales these capabilities.",
+      "Weaviate's vector storage and search capabilities.",
+      "Review examples of semantic searches.",
     ],
     learningOutcomes: [
+      "Broadly describe what Weaviate is.",
+      "Outline what semantic search is, and contrast it to a scalar or lexical search.",
       "Explain what a vector is, and how they can represent meaning.",
-      "Explain what a vector search engine is.",
-      "Explain what Weaviate is.",
-      "Explain what capabilities Weaviate has."
+      "Outline how a vector database works.",
+      "Recall Weaviate's key capabilities.",
+      "Construct a semantic search query string to retrieve relevant information.",
     ],
     owner: "laura",
     reviewer: "jp"
-  },  
-  search_theory: {
-    title: "Vector search theory",
-    body: "Vector search powers Weaviate - but what is it and how does it work?",
-    buttonType: "Click here",
-    badgeType: "theory",
-    learningGoals: [
-      "Learn what vectors are",
-      "Understand how vectors vectors can be used to represent meaning",
-      "Understand how vector search works"
-    ],
-    learningOutcomes: [
-      "Understand the connection between vectors and meaning",
-      "Understand how vectors representing the meaning of data enables semantic search.",
-      "Understand how vectors can be calculated from e.g. machine learning models."
-    ],
-    owner: "laura",
-    reviewer: "jp"  
   },  
   wcs_intro: {
     title: "Weaviate Cloud Service (WCS)",
@@ -42,12 +28,15 @@ export const unitData = {
     buttonType: "Click here",
     badgeType: "practical",
     learningGoals: [
-      "Learn what the Weaviate Cloud Service is.",
-      "Learn how to use the Weaviate Cloud Service."
+      "What the Weaviate Cloud Service is.",
+      "How to create a WCS account.",
+      "How to create a Weaviate instance on WCS.",
+      "How to connect to the WCS instance.",
     ],
     learningOutcomes: [
       "Create a Weaviate Cloud Service account.",
-      "Use the WCS to create an instance of Weaviate"
+      "Use WCS to create an instance of Weaviate",
+      "Connect to the Weaviate instance and inspect its configuration.",
     ],
     owner: "laura",
     reviewer: "jp"
@@ -165,6 +154,24 @@ export const unitData = {
     owner: "laura",
     reviewer: "jp"       
   },        
+  search_theory: {
+    title: "Vector search theory",
+    body: "Vector search powers Weaviate - but what is it and how does it work?",
+    buttonType: "Click here",
+    badgeType: "theory",
+    learningGoals: [
+      "Learn what vectors are",
+      "Understand how vectors vectors can be used to represent meaning",
+      "Understand how vector search works"
+    ],
+    learningOutcomes: [
+      "Understand the connection between vectors and meaning",
+      "Understand how vectors representing the meaning of data enables semantic search.",
+      "Understand how vectors can be calculated from e.g. machine learning models."
+    ],
+    owner: "laura",
+    reviewer: "jp"  
+  },    
   queries_2: {
     title: "Queries 2 (Advanced)",
     body: "Learn about BM25 and hybrid searches, and the `Explore` function.",
@@ -344,7 +351,19 @@ export const unitData = {
     learningOutcomes: [
       ""
     ]
-  },   
+  }, 
+  kubernetes: {
+    title: "Weaviate and Kubernetes",  
+    body: "How to run Weaviate on Kubernetes, and best practice tips.",
+    buttonType: "Notify",
+    badgeType: "practical",
+    learningGoals: [
+      ""
+    ],
+    learningOutcomes: [
+      ""
+    ]
+  },       
   clients: {
     title: "Weaviate Clients",
     body: "An overview: what's available, where to find them, and their capabilities.",
@@ -360,19 +379,7 @@ export const unitData = {
     ],
     owner: "laura",
     reviewer: "jp"
-  },      
-  kubernetes: {
-    title: "Weaviate and Kubernetes",
-    body: "How to run Weaviate on Kubernetes, and best practice tips.",
-    buttonType: "Notify",
-    badgeType: "practical",
-    learningGoals: [
-      ""
-    ],
-    learningOutcomes: [
-      ""
-    ]
-  },    
+  },       
   docker: {
     title: "Weaviate with Docker",
     body: "How to run Weaviate on Docker, and best practice tips.",
