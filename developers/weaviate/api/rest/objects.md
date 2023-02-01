@@ -79,6 +79,11 @@ Sort by by author_name, and then title.
 GET /v1/objects?class=Book&sort=author_name,title
 ```
 
+Sort by by author_name, and then title with order:
+```js
+GET /v1/objects?class=Book&sort=author_name,title&order=desc,asc
+```
+
 ### Response fields
 
 The response of a `GET` query of a data object will give you information about all objects [(or a single object)](#get-a-data-object). Next to general information about the data objects, like schema information and property values, meta information will be shown depending on the `include` fields or `additional properties` of your request.
