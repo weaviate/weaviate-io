@@ -31,7 +31,9 @@
     "sass": "^1.56.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.3.0"
+    "@docusaurus/module-type-aliases": "2.3.0",
+    "linkinator": "4.1.2",
+    "netlify-cli": "12.10.0"
   },
   "browserslist": {
     "production": [

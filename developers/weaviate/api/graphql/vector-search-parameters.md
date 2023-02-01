@@ -124,10 +124,9 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
 ```json
 {
   "class": "string",
-  "sparseIndexType": "bm25f",
   // Configuration of the sparse index
-  "sparseIndexConfig": {
-    "bm25f": {
+  "invertedIndexConfig": {
+    "bm25": {
       "b": 0.75,
       "k1": 1.2
     }
@@ -140,8 +139,8 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
         "string"
       ],
       // Property-level settings override the class-level settings
-      "sparseIndexConfig": {
-        "bm25f": {
+      "invertedIndexConfig": {
+        "bm25": {
           "b": 0.75,
           "k1": 1.2
         }
