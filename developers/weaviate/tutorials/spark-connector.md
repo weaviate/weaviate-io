@@ -28,11 +28,12 @@ For demonstration purposes this tutorial runs Spark locally. Please see the Apac
 We will also need the Weaviate Spark connector. You can download this by running the following command in your terminal:
 
 ```bash
-wget https://github.com/weaviate/spark-connector/releases/download/v1.0.0/spark-connector-assembly-1.0.0.jar
+curl https://github.com/weaviate/spark-connector/releases/download/v1.0.0/spark-connector-assembly-1.0.0.jar --output spark-connector-assembly-1.0.0.jar
 ```
 
-For this tutorial, you will also need a Weaviate instance running at `http://localhost:8080`.
-  
+For this tutorial, you will also need a Weaviate instance running at `http://localhost:8080`. This instance does not need to have any modules and can be setup by following the [Quickstart tutorial](../quickstart/index.md).
+
+You will also need Java 8+ and Scala 2.12 installed. You can get these seperately setup or a more convenient way to get both of these set up is to install [IntelliJ](https://www.jetbrains.com/idea/). 
 
 ## What is the Spark Connector?
 
@@ -93,12 +94,25 @@ df.limit(3).toPandas().head()
 Prior to this step make sure your weaviate instance is running at `http://localhost:8080`. You can refer to the [Quickstart tutorial](../quickstart/index.md) for instructions on how to set that up.
 :::
 
+To quickly get a weaviate instance running you can run the line of code below to get a docker file:
+
+```bash
+curl -o docker-compose.yml "https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version=v1.17.2"
+```
+
+Once you have the file you can spin up the `docker-compose.yml` using:
+```bash
+docker compose up -d 
+```
+
 The Spark Connector assumes that a schema has already been created in Weaviate. For this reason we will use the Python client to create this schema. For more information on how we create the schema see this [tutorial](./how-to-create-a-schema.md).
 
 ```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
+
+client.schema.delete_all()
 
 client.schema.create_class(
     {
