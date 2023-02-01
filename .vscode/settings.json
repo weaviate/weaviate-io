@@ -1,0 +1,17 @@
+
+{
+    "editor.quickSuggestions": {
+        "comments": "inline",
+        "strings": "inline"
+    },
+    "[markdown]": {
+        "editor.quickSuggestions": {
+            "other": "on",
+            "comments": "inline",
+            "strings": "inline"
+        }
+    },
+    "files.associations": {
+        "*.mdx": "markdown"
+    }
+}
