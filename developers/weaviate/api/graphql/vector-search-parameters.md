@@ -201,11 +201,11 @@ The `_additional` object in the GraphQL result exposes the score:
 ```
 
 
-### group
+## group
 
 You can use a group operator to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
 
-#### Variables
+### Variables
 
 | Variables | Mandatory | Type | Description |
 | --- | --- | --- | --- |
