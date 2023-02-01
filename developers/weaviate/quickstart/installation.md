@@ -133,7 +133,7 @@ For this one, you need to understand how Kubernetes works; these are just two ha
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:1.14.0
+    image: semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     restart: on-failure:0
