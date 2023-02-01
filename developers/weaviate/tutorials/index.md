@@ -29,7 +29,7 @@ Here, you can learn how to:
 <!-- - [Import data]  (./_how-to-import-data.md): Use batch imports for large datasets, including what options are available to maximize the import speed. -->
 - [How to use the Weaviate console](../quickstart/console.md): Use the Weaviate console to conveniently perform queries.
 <!-- - [Perform CRUD operations]  (./_crud.md): Perform CRUD operations with Weaviate. -->
-
+- [Spark Connector](./spark-connector.md): Loading data into Weaviate using Spark.
 <!-- Once you are finished with this section, we suggest moving on to our [Search tutorials]  (../_search/index.md). There we guide you through the powerful yet flexible options Weaviate provides for searching through your data.  -->
 
 Each of these tutorials are self-contained. So you can read them in any order.

@@ -45,7 +45,7 @@ We deployed 6 instances of Weaviate (one on each GKE node with automatic shardin
 
 To import the dataset into Weaviate, we used the [Spark Connector](https://github.com/weaviate/weaviate-spark-connector) instead of one of our client libraries. The massive size of this dataset led to the use of the Spark dataframe, and the Spark connector can efficiently populate Weaviate from a Spark dataframe. Another time-saving feature is that the connector is able to automatically infer the correct datatype for your Weaviate class schema based on the Spark DataType. (We have a podcast speaking with the creator of the Spark connector coming up soon on our [YouTube channel](https://www.youtube.com/@Weaviate) so keep your eyes and ears peeled for that!)
 
-We used a single 64 GiB Google Cloud Platform(GCP) n2 instance to run Spark. The steps below can be followed to import data from the Sphere dataset. You can get access to the full import code used over [here](https://github.com/weaviate/weaviate-examples/blob/main/loading-sphere-with-spark/spark-sphere-demo.ipynb). 
+We used a single 64 GiB Google Cloud Platform(GCP) n2 instance to run Spark. The steps below can be followed to import data from the Sphere dataset. You can refer to this [tutorial](/developers/weaviate/tutorials/spark-connector) for details on the import code. 
 
 > If you are following along, make sure to modify the code to import only as much of the Sphere dataset as you dare, as it might potentially become a very expensive exercise! 
 First, using the `pyspark` library, you can instantiate a connection, called a `SparkSession`: 
