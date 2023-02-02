@@ -72,7 +72,11 @@ Make sure you set the `ENABLE_MODULES=multi2vec-clip` environment variable. Addi
 
 #### Step 2: Run your favorite model
 
-Choose [any of our pre-built CLIP models](/developers/weaviate/installation/docker-compose.md#configurator) (for building your own model container, see below) and spin it up with your setup. Use a CUDA-enabled machine for optimal performance.
+Choose [any of our pre-built CLIP models](/developers/weaviate/installation/docker-compose.md#configurator) (for building your own model container, see below) and spin it up with your setup. 
+
+:::tip
+Use a CUDA-enabled machine for optimal performance.
+:::
 
 #### Step 3: Tell Weaviate where to find the inference 
 

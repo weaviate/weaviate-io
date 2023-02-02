@@ -112,6 +112,9 @@ services:
       # Not recommended to set this option as it reduces security, only set this
       # if your token issuer is unable to provide a correct audience claim
       AUTHENTICATION_OIDC_SKIP_CLIENT_ID_CHECK: 'false'
+
+      # scope (optional) these will be used by clients as default scopes for authentication
+      AUTHENTICATION_OIDC_SCOPES: ''
 ```
 
 #### Weaviate OpenID endpoint

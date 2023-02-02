@@ -21,7 +21,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-This document lays out how Weaviate deals with data objects, including how they are stores, represented, and linked to each other.
+This document lays out how Weaviate deals with data objects, including how they are stored, represented, and linked to each other.
 
 ## Data object nomenclature
 
