@@ -65,7 +65,7 @@ If you can see this response in your browser, *congratulations!* you have succes
 
 ## Client libraries
 
-You can communicate with Weaviate with the available [client libraries](../client-libraries/) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](/developers/weaviate/current/restful-api-references/).
+You can communicate with Weaviate with the available [client libraries](../client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](../api/rest/index.md).
 
 Install your preferred client by following the relevant instructions below:
 
@@ -97,7 +97,7 @@ Please be patient as we update our Java and Go code examples. They will be ready
 
 To set up Weaviate with Docker, follow these two steps:
 
-1. Get `docker-compose.yml` configuration file by going to the [Weaviate configurator](http://localhost:3000/developers/weaviate/installation/docker-compose)
+1. Get a `docker-compose.yml` configuration file by going to the [Weaviate configurator](../installation/docker-compose.md)
     1. Select "With Modules" when asked "Standalone or Modules", and
     1. Select the module for your preferred inference API (e.g. `text2vec-openai` for OpenAI, or `text2vec-cohere` for Cohere)
 1. Spin up Weaviate with Docker
@@ -111,7 +111,7 @@ If you are running Weaviate with Docker, keep in mind that the address for Weavi
 
 ### More on deployment options
 
-To learn more about the other self-deployment options, check out the documentation for installation with [Docker](https://weaviate.io/developers/weaviate/current/installation/docker-compose.html) or [Kubernetes](https://weaviate.io/developers/weaviate/current/installation/kubernetes.html). 
+To learn more about the other self-deployment options, check out the documentation for installation with [Docker](../installation/docker-compose.md) or [Kubernetes](../installation/kubernetes.md). 
 
 -----
 

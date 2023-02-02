@@ -21,7 +21,7 @@ By the end of this page, you will have:
 
 We have prepared a [Jupyter notebook](https://github.com/weaviate/weaviate-examples/blob/main/quickstart_code/quickstart_code.ipynb) which you can run on Google Colab, a cloud Python environment with a browser front end.
 
-You can click on the below link and try it out without a need to set up a local Python environment.
+You can click on the below link and try it out without the need to set up a local Python environment.
 
 <a target="_blank" href="https://colab.research.google.com/github/weaviate/weaviate-examples/blob/main/quickstart_code/quickstart_code.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
@@ -57,7 +57,7 @@ Using an inference API is one good way to do this. To do so:
 
 ### Specify a vectorizer 
 
-First, we must define the class objects to store the data and specify what vectorizer to use. The following `Question` class definition will do just that:
+First, we must define the class objects to store the data and specify what vectorizer to use. The following will create a `Question` class with the given vectorizer, and add it to the schema:
 
 import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
 
@@ -94,16 +94,16 @@ The following code puts it all together, taking care of everything from schema d
 :::info Inference API and key
 If you are using a different module, replace the module name (e.g. `text2vec-openai`) and the key header name in the code examples to suit your preferred module. 
 
-Also, replace the API key `api_tkn` with your own API key.
+Also, replace the API key `api_tkn` with your API key.
 :::
 
 import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoend.mdx'
 
 <CodeAutoschemaEndToEnd />
 
-And that should have populated Weaviate with the data including corresponding vectors!
+And that should have populated Weaviate with the data, including corresponding vectors!
 
-Note again that we did not provide any vectors to Weaviate. That's all managed by Weaviate which calls the inference API for you and turns your object into a vector at import time. 
+Note again that we did not provide any vectors to Weaviate. That's all managed by Weaviate, which calls the inference API for you and obtains a vector corresponding to your object at import time. 
 
 :::info Can I specify my own vectors?
 Yes! You can bring your own vectors and pass them to Weaviate directly.
@@ -114,7 +114,7 @@ Yes! You can bring your own vectors and pass them to Weaviate directly.
 Let's pause here to check that our data import went as expected, and show you a couple of RESTful endpoints.
 
 :::info REST & GraphQL in Weaviate
-Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API end-points can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
+Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API endpoints can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
 :::
 
 ### Confirm schema creation
@@ -222,7 +222,7 @@ Also, please feel free to reach out to us on our community [Slack](https://join.
 
 ## Next
 
-You can choose your own direction from here. For example, you can:
+You can choose your direction from here. For example, you can:
 
 - Learn more about how to do things in [Tutorials](../tutorials/index.md), like [build schemas](../tutorials/schema.md), [import data](../tutorials/import.md), [query data](../tutorials/query.md) and more.
 - Read about important [concepts/theory about Weaviate](../concepts/index.md)
