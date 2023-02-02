@@ -17,9 +17,11 @@ client = weaviate.Client(
 )
 
 # ===== import data ===== 
-# Load data from the data.json file
-with open('jeopardy_tiny.json', 'r') as f:
-    data = json.load(f)
+# Load data 
+import requests
+url = 'https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json'
+resp = requests.get(url)
+data = json.loads(resp.text)
 
 # Prepare a batch process
 with client.batch as batch:
@@ -55,7 +57,7 @@ let classObj = {
 }
 
 async function getJsonData() {
-    const file = await fetch('./jeopardy_tiny.json');
+    const file = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json');
     return file.json();
 }
 

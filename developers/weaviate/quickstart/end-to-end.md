@@ -39,7 +39,7 @@ import CautionSchemaDeleteAll from '/_includes/schema-delete-all.mdx'
 
 <CautionSchemaDeleteAll />
 
-Download the dataset below to your working directory, and you will be ready to get started 😊.
+We will be working with the below dataset. Note that scripts may load the file directly from the remote URL.
 
 <p>
   <DownloadButton link="https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json">Download jeopardy_tiny.json</DownloadButton>

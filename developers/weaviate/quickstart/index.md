@@ -8,11 +8,6 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-<!-- :::caution Migrated From:
-- `Getting Started`
-- Added `Weaviate console` from `Core knowledge/Console`
-::: -->
-
 ## Overview
 
 Welcome to the **Quickstart tutorial** for Weaviate! This part is all about getting hands-on experience with Weaviate.
