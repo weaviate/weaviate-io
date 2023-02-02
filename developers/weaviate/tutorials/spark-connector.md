@@ -105,7 +105,7 @@ Once you have the file you can spin up the `docker-compose.yml` using:
 docker compose up -d 
 ```
 
-The Spark Connector assumes that a schema has already been created in Weaviate. For this reason we will use the Python client to create this schema. For more information on how we create the schema see this [tutorial](./how-to-create-a-schema.md).
+The Spark Connector assumes that a schema has already been created in Weaviate. For this reason we will use the Python client to create this schema. For more information on how we create the schema see this [tutorial](./schema.md).
 
 ```python
 import weaviate
