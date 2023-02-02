@@ -1,12 +1,146 @@
 ---
-title: Semantic search
+title: Introduction to Weaviate
 sidebar_position: 10
 ---
 
-## What is semantic search?
+## What is Weaviate?
 
-## Why use semantic searches?
+:::warning TODO
+Video here
+:::
 
-## Semantic search vs scalar / lexical search
+Weaviate is an open-source vector search engine. That's a short sentence, but it packs a lot of domain-specific information. 
 
-## Definition of similarity
+<iframe src="https://giphy.com/embed/l0Ex8rdyy2QdX6Li8" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cbc-funny-comedy-l0Ex8rdyy2QdX6Li8">via GIPHY</a></p>
+
+So let's spend some time unpacking it here, bit by bit.
+
+### Open-source
+
+Weaviate is open-source, with its [codebase available online](https://github.com/weaviate/weaviate) for anyone to see and use<sup>[(1)](#1)</sup>. 
+
+This means that regardless of *how* you use Weaviate, the core software is the same. (And you can run it in many different ways, as you will see later on.) So whether you run Weaviate on your own computer, on a cloud compute environment such as AWS or GCP, or simply use it through our managed service [Weaviate Cloud Service, or WCS](https://console.weaviate.io/), you are using the exact same technology.
+
+It also means that your knowledge about Weaviate is fungible, between local, cloud or managed instances of Weaviate. So anything you learn here about Weaviate using WCS will be equally applicable to running it locally, and vice versa. 😉
+
+<Quiz questions={weaviateOpenSource} />
+
+### Vector search engine
+
+You are probably familiar with the term "search engine". They help you to carry out searches (primarily the Web), some prominent historical examples being AltaVista [(remember?)](https://en.wikipedia.org/wiki/AltaVista), DuckDuckGo, Bing and Google. The term as well as search engines themselves have become ubiquitous over the last two (2)-plus decades.
+
+A vector search engine is an extension of this concept. A vector search engine is named so because it helps you to retrieve information using "vectors". They do this because it is a **fantastic way of carrying out similarity-based searches**. 
+
+:::warning TODO
+ADD VECTOR SEARCH EXAMPLE HERE, PREFERABLY INTERACTIVE
+:::
+
+Vector searches are also referred to as "semantic searches", because they return results based on similarity of meaning (therefore "semantic").
+
+<Quiz questions={vectorSearchDefinition} />
+
+## How does Weaviate do it?
+
+:::warning TODO
+Video here
+:::
+
+Weaviate enables vector searches by storing your data objects and vector embeddings from machine-learning models. Put another way, Weaviate processes and organizes your data in such a way that it can be retrieved using similarity-based methods as discussed above. 
+
+There are a few factors here that are important to point out.
+
+### Machine-learning models
+
+So far, you've heard from us that vector searches are similarity-based. But how does that work, exactly? And what does it even mean for two vectors, two pieces of text, or two objects, to be "similar"?
+
+This is a relatively simple idea that is actually incredibly interesting and intricate once we start to dive into the details. 
+
+But for now, you should know that machine-learning models are key to this whole process. A machine learning model is what will turn data, like a piece of text, an image, an audio clip, or whatever, into a vector. And any measures of similarity will depend on how that machine learning model works.
+
+Selecting the right model for the job is important. So throughout our courses, you will see many different models and learn about model selection both as rules of thumb and detailed discussions. 
+
+And for this reason, Weaviate is capable of vectorizing data from any of a huge number of machine learning models. Our courses will also cover different ways to configure Weaviate so that you are using your preferred model in the way that suits your goals and needs.
+
+:::warning TODO
+Quiz on ML models and vectorization
+:::
+
+### Indexing
+
+Traditional databases include an index of data, typically called an "inverted index", where data is organized based on the constituent components (such as words) for speedy lookup. 
+
+Vector search engines such as Weaviate include a *vector index*, typically in addition to an inverted index. They allow fast information retrieval without compromising the quality of retrieval performance (i.e. at high *recall*). Nonetheless, they are not without cost as the size of the information set increases, and the user must balance memory requirements as well as retrieval times and recall performance.
+
+You will learn about these aspects throughout the course, including the *HNSW* index which is Weaviate's primary index type.
+
+:::warning TODO
+Quiz on Indexing
+:::
+
+### Scalability
+
+Weaviate also enables you to do this at horizontal and vertical scale, expanding potentially into billions of data objects for many users. 
+
+We will cover this in more detail later, especially in our courses and units related to production deployment. 
+
+## What else can Weaviate do?
+
+:::warning TODO
+Video here
+:::
+
+In short, a lot more 😅.
+
+While Weaviate is primarily a vector search engine, its core functionality powers a lot of other, related functionality, such as question answering, summarization, classification, and named entity recognition. You will see some of these functionalities throughout the course. 
+
+## Wrap-up
+
+:::warning TODO
+Video here
+:::
+
+In this section, you learned about what Weaviate is, and gained an introduction to vector search at a high level. 
+
+### Wrap-up exercise
+
+Can you describe, in your own sentence, what vector search is?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+- What is a vector search
+- What is Weaviate
+:::
+
+### Key takeaways
+
+- Weaviate is an open source vector search engine.
+- The core Weaviate library the same whether you run it locally, on the cloud, or with WCS.
+- Vector searches are similarity-based searches.
+- Machine learning models are used to vectorize objects, and in turn define what it means for objects to be "similar".
+- Vector databases such as Weaviate include a vector index as well as an inverted index.
+
+## Notes
+<a name="1"></a>(1) Subject to terms of its license, of course.
+
+import Quiz from '/src/components/Academy/quiz.js' 
+const weaviateOpenSource = [
+  {
+    questionText: 'What is the difference in the Weaviate codebase between local and cloud deployments?',
+    answerOptions: [
+      { answerText: 'The cloud deployments include additional modules.', isCorrect: false, feedback: 'Cloud deployments of Weaviate do not include any special, or additional, modules.'},
+      { answerText: 'The local deployments are optimized for GPU use.', isCorrect: false, feedback: 'GPU usage can be enabled for inference whether locally or remotely deployed.'},
+      { answerText: 'The cloud deployments are optimized for scalability.', isCorrect: false, feedback: 'We agree that cloud deployments should be optimized for scalability. But the Weaviate codebase is built for scalability regardless of deployment location.'},      
+      { answerText: 'None, they are the same.', isCorrect: true, feedback: 'They are the same, open-source codebase available on GitHub.'},
+    ],
+  },     
+];
+const vectorSearchDefinition = [
+  {
+    questionText: 'What is the best description of vector search?',
+    answerOptions: [
+      { answerText: 'Vector search is a directional search.', isCorrect: false, feedback: 'The definition of "vector" in this context is not direction-related.'},
+      { answerText: 'Vector search is a similarity-based search.', isCorrect: true, feedback: 'It searches a data collection or database for proximity in its representation of "meaning".'},   
+      { answerText: 'Vector search is a number-based search.', isCorrect: false, feedback: 'This is partially true, but not the best answer. While there are numbers involved, that description does not quite capture the key concept of vector searches.'},
+    ],
+  },     
+];

@@ -3,9 +3,79 @@ title: Vectors and semantic search
 sidebar_position: 20
 ---
 
-## What is a vector?
+## Vectors and search
 
-## How does a vector represent meaning?
+:::warning TODO
+Intro video here
+:::
+
+### What is a vector?
+
+In mathematics and sciences, the word "vector" can be used refer to many things. A vector in this context of data science is a set of numbers. To be precise, a vector is **an one-dimensional array of numbers**.
+
+If you see the word "tensor", or "array" they generally refer to similar things.
+
+A vector is typically shown as its constituent numbers wrapped in square brackets. So, an object such as `[1, 5, 5]` is a vector, as are `[0.591, 0.132, 0, 0.105]` and `[0, 0, 0, 0, 0, 0]`. 
+
+### How can a vector represent meaning?
+
+
+
+### How does a vector search work?
+
+
+
+## Semantic vs. Vector search?
+
+## What is a semantic search?
+
+"Semantic" refers to something being "related to meaning". It is often used in the field of linguistics (study of languages) to contrast to "syntactic", which refers to structure or grammar.
+
+Thus "semantic search" refers to a search that is based on meaning.
+
+If you are thinking that most searches are related to meaning - you're not wrong. But the key differentiator of semantic searches is that it focussed on the meaning of the query more so than the exact words. Search systems that rely on exact matches of strings or words, like Excel filters or SQL filters, are often called "lexical" search methods.
+
+:::info Vector vs Semantic search
+Vector search is the dominant way of performing semantic searches. We will circle back to *how* vector searches enable semantic searches, and make that distinction more clearly. But for the most part, you can read these terms largely interchangeably.
+::: 
+
+### What is a lexical search?
+
+Traditional search systems use "lexical" searches, based on a "vocabulary" of the search system or database at hand.
+
+A lexical search relies on matching exact strings or substrings and using various operators to manipulate sets of information that either meets or does not meet certain criteria. 
+
+For example, looking through a database of recipes to retrieve all objects containing the ingredient "chili" is an example of a lexical search. You might typically combine multiple conditions, so that for example the below entry would look for entries that where added after the year 2010.
+
+```sql
+SELECT * FROM recipe_table WHERE (ingredients LIKE '%chili%') AND (entry_year > 2010)
+```
+
+While this enquiry will return an exact answer, it suffers from being  inflexible. 
+
+For one, it would not retrieve recipes where another string is used (e.g. `ghost pepper`) that is synonymous (has the same meaning) with chili. It would also not handle typos well, for example if the entry was mislabelled as `chilli`, or if the entry was mistyped as such. 
+
+On the other hand, semantic searches manage these issues with a little more nuance.
+
+:::note Jargon ("lexical", "semantic", "syntactic")
+We try to avoid jargon unless necessary. But where we do use them, we will include explanations for those who have not encountered them.
+
+Because vector search as we use them has some roots in *natural language processing*, terms like *lexical* and *semantic* are commonly used. These are terms that come from linguistics which are used commonly in vector search context. The term *vector* comes from the world of mathematics, as you will see later on. 🤓
+:::
+
+### Vector search vs lexical searches
+
+When facing a query of a recipes database with the word `chili` for ingredients, a vector search engine returns entities that include that exact word in the recipe data. 
+
+This means that a search for `chili` would include in its results entities with semantically related terms such as `ghost pepper`, `jalapeno`, `habanero` or `carolina reaper`, all of which would be ignored by a lexical search.
+
+A modern vector search engine can also take the context into account, such as the context of a word as a part of its parent sentence. So a vector search will differentiate between whether the recipe calls for these ingredients, or whether the recipe asks the cook to "*not* use any chili". 
+
+Also importantly, a vector search engine can determine the degree of similarity between items, such as between a query and each result. Accordingly, the results can be ranked by a meaningful metric that describes the degree of similarity, thereby improving the chance of finding more relevant results faster.
+
+
+
+
 
 ## How is data converted to vectors?
 

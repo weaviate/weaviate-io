@@ -30,7 +30,7 @@ function LearningGoals(props) {
     )    
   };
 
-  return (
+  return (    
     <div class="card __academycard">
       <div class="card__body">
         <div class="learning_goal_head">
@@ -46,7 +46,7 @@ function LearningGoals(props) {
         </div>
         <ul>{outcomesArray}</ul>    
       </div>  
-    </div>
+    </div>       
   )
 };
 
