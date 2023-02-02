@@ -21,6 +21,8 @@ By the end of this page, you will have:
 
 We have prepared a [Jupyter notebook](https://github.com/weaviate/weaviate-examples/blob/main/quickstart_code/quickstart_code.ipynb) which you can run on Google Colab, a cloud Python environment with a browser front end.
 
+You can click on the below link and try it out without a need to set up a local Python environment.
+
 <a target="_blank" href="https://colab.research.google.com/github/weaviate/weaviate-examples/blob/main/quickstart_code/quickstart_code.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
