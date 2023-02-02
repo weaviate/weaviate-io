@@ -88,6 +88,17 @@ bearer_config = weaviate.AuthBearerToken(
 client = weaviate.Client("https://localhost:8080", auth_client_secret=bearer_config)
 ```
 
+## Custom headers 
+
+You can pass custom headers to the client, which are added at initialization:
+
+```python
+client = weaviate.Client(
+  url="https://localhost:8080", 
+  additional_headers={"HeaderKey": "HeaderValue"},
+)
+```
+
 ## Neural Search Frameworks
 
 There is a variety of neural search frameworks that use Weaviate under the hood to store, search through, and retrieve vectors.

@@ -118,7 +118,7 @@ client := weaviate.New(*cfg)
 
 ## Custom headers 
 
-You can pass custom headers to the client, which are added to the initialization of the client: 
+You can pass custom headers to the client, which are added at initialization:
 
 ```go
 cfg, err := weaviate.NewConfig(
