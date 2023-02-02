@@ -119,10 +119,10 @@ Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful AP
 
 ### Confirm schema creation
 
-Navigate to the [`schema` endpoint](../api/rest/schema.md) to check the Weaviate schema:
+Navigate to the [`schema` endpoint](../api/rest/schema.md) to check the Weaviate schema (replace with your actual endpoint):
 
 ```
-https://some-endpoint.weaviate.network/v1/schema
+https://some-endpoint.weaviate.network/v1/schema  
 ```
 
 You should see:
@@ -141,7 +141,7 @@ You should see:
 
 ### Confirm data import
 
-Navigate to the [`objects` endpoint](../api/rest/objects.md) to check that all objects have been imported:
+Navigate to the [`objects` endpoint](../api/rest/objects.md) to check that all objects have been imported (replace with your actual endpoint):
 
 ```
 https://some-endpoint.weaviate.network/v1/objects
@@ -175,7 +175,7 @@ import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.nearte
 
 <CodeAutoschemaNeartext />
 
-Note that we use the `Get` function to fetch objects, and the query text is specified in the `concept` field.
+Note that we use the `Get` function (or the relevant client implementation) to fetch objects, and the query text is specified in the `concept` field.
 
 You should see something like this:
 

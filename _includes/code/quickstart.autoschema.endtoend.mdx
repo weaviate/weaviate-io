@@ -54,9 +54,10 @@ const weaviate = require("weaviate-client");
 const client = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
+    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
   }); 
 
-var classObj = {
+let classObj = {
     "class": "Question",
     "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
 }
@@ -81,7 +82,7 @@ async function getJsonData() {
 
 async function importQuestions() {
   // Get the data from the data.json file
-  const data = await this.getJsonData();
+  const data = await getJsonData();
 
   // Prepare a batcher
   let batcher = client.batch.objectsBatcher();

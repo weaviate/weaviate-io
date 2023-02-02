@@ -61,6 +61,8 @@ This might also look familiar, as it was used in the [Quickstart tutorial](../qu
 
 Here, we are using a `nearText` parameter. What we are doing is to provide Weaviate with a query `concept` of `famous scientist`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example) and uses that vector as the basis for a vector search.
 
+Also note here that we pass the API key in the header. This is required as the inference API is used to vectorize the input query.
+
 Additionally, we use the `limit` argument to only fetch a maximum of two (2) objects. 
 
 If you run this query, you should see the entries on *"Albert Einstein"* and *"hot air balloons"* returned by Weaviate.

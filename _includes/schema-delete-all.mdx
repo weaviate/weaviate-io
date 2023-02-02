@@ -11,7 +11,7 @@ Run this Python code to reset your instance and get an output confirming it;
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.weaviate.network/")
+client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
 
 # delete all classes - THIS WILL DELETE ALL DATA IN YOUR INSTANCE
 client.schema.delete_all()

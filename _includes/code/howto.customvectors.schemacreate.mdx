@@ -32,7 +32,7 @@ const client = weaviate.client({
   host: 'localhost:8080',
 });
 
-var classObj = {
+let classObj = {
   {
     'class': 'Post',
     'vectorizer': 'none', // explicitly tell Weaviate not to vectorize anything, we are providing the vectors ourselves through our BERT model
