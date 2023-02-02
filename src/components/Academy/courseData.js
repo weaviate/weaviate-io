@@ -25,7 +25,7 @@ export const courseData = {
   "zero_to_mvp_advanced": {
     title: "Zero to MVP: Advanced",
     courseId: "1A",
-    body: "In-depth discussion topics to follow on from the `Getting to MVP` course.",
+    body: "Expand on the `Getting to MVP` course for deeper dives into key topics like search theory, indexing and queries.",
     buttonType: "TBD",
     badgeType: "course",
     isCourse: true,
