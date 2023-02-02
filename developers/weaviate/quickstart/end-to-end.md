@@ -17,6 +17,14 @@ By the end of this page, you will have:
 - Added the vectorized data to Weaviate, and
 - Performed vector searches to retrieve relevant objects
 
+### Jupyter notebook for Python users
+
+We have prepared a [Jupyter notebook](https://github.com/weaviate/weaviate-examples/blob/main/quickstart_code/quickstart_code.ipynb) which you can run on Google Colab, a cloud Python environment with a browser front end.
+
+<a target="_blank" href="https://colab.research.google.com/github/weaviate/weaviate-examples/blob/main/quickstart_code/quickstart_code.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 ## Prerequisites 
 
 At this point, you should have: 
