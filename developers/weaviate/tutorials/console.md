@@ -1,5 +1,5 @@
 ---
-title: Weaviate console
+title: Weaviate console - an introduction
 sidebar_position: 90
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['Weaviate console']
@@ -10,9 +10,9 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Learn how to use the Weaviate console
+Here you can learn how to use the Weaviate console.
 
-The Weaviate Console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Service (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
+The Weaviate console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Service (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 
 :::tip
 The console is available on: [console.weaviate.io](https://console.weaviate.io).
@@ -64,11 +64,13 @@ The console might ask to downgrade to HTTP. This is done to avoid [CORS](https:/
 * You can use the Weaviate Console to connect to the Weaviate Cloud Service to create managed Weaviate instances.
 * Because Weaviate uses GraphQL, you can easily query it with the console's GraphiQL integration.
 
-## What would you like to learn next?
+## What next?
 
-* [Let me query Weaviate!](../quickstart/query.md)
-* [Learn how to add a schema](/developers/weaviate/quickstart/schema.md)
-* [Learn how to import data](../quickstart/import.md)
+- [References: Installation](../installation/index.md)
+- [References: Configuration](../configuration/index.md)
+- [References: API](../api/index.md)
+- [Concepts](../concepts/index.md)
+- [Roadmap](../roadmap/index.md)
 
 ## Legend
 

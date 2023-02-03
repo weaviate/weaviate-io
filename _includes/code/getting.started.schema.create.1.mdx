@@ -78,7 +78,7 @@ const client = weaviate.client({
 
 // we will create the class "Author" and the properties
 // from the basics section of this guide
-var classObj = {
+let classObj = {
   'class': 'Author', // <= note the capital "A".
   'description': 'A description of this class, in this case, it is about authors',
   'properties': [

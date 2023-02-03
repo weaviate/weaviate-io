@@ -44,7 +44,7 @@ const client = weaviate.client({
   host: 'localhost:8080',
 });
 
-var classObj = {
+let classObj = {
     'class': 'Article',
     'description': 'A written text, for example a news article or blog post',
     'vectorizeClassName': true,

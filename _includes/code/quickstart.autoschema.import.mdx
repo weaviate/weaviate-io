@@ -1,0 +1,164 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+# Configure a batch process
+with client.batch as batch:
+    batch.batch_size=100
+    for i, d in enumerate(data):
+        properties = {
+            "answer": d["Answer"],
+            "question": d["Question"],
+            "category": d["Category"],
+        }
+
+        client.batch.add_data_object(properties, "Question")
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+async function importQuestions() {
+  // Prepare a batcher
+  let batcher = client.batch.objectsBatcher();
+  let counter = 0;
+  let batchSize = 100;
+
+  data.forEach(question => {
+    // Construct an object with a class and properties 'answer' and 'question'
+    const obj = {
+      class: 'Question',
+      properties: {
+        answer: question.Answer,
+        question: question.Question,
+        category: question.Category,
+      },
+    }
+
+    // add the object to the batch queue
+    batcher = batcher.withObject(obj);
+
+    // When the batch counter reaches batchSize, push the objects to Weaviate
+    if (counter++ == batchSize) {
+      // flush the batch queue
+      batcher
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      });
+      
+      // restart the batch queue
+      counter = 0;
+      batcher = client.batch.objectsBatcher();
+    }
+  });
+
+  // Flush the remaining objects
+  batcher
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+}
+
+importQuestions(); 
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
+
+)
+
+func main() {
+    cfg := weaviate.Config{
+        Host:   "some-endpoint.weaviate.network/",
+        Scheme: "https",
+    }
+
+    client := weaviate.New(cfg)
+
+    classObj := &models.Class{
+        Class:      "Question", 
+        Vectorizer: "text2vec-openai",
+    }
+
+    // add the schema
+    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+}
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+
+package technology.semi.weaviate;
+
+import java.util.ArrayList;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.schema.model.DataType;
+import technology.semi.weaviate.client.v1.schema.model.Property;
+import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "some-endpoint.weaviate.network/");
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // we will create the class "Question" and the properties
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Question")
+      .vectorizer("text2vec-openai")
+      .build();
+    
+    // add the schema
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+  }
+}
+```
+
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
+
+```bash
+$ curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+    "class": "Question",
+    "vectorizer": "text2vec-openai",
+}' \
+https://some-endpoint.weaviate.network/v1/schema
+```
+
+</TabItem> */}
+</Tabs>

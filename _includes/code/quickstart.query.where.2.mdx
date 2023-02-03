@@ -1,0 +1,99 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+{/* <TabItem value="graphql" label="GraphQL">
+
+```graphql
+TBC
+```
+
+</TabItem> */}
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+import json
+
+client  = weaviate.Client(
+    url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
+    additional_headers={
+        "X-OpenAI-Api-Key": api_tkn  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key" 
+    }
+)
+
+nearText = {"concepts": ["biology"]}
+where_filter = {
+    "path": ["category"],
+    "operator": "Equal",
+    "valueString": "ANIMALS",
+}
+
+result = (
+    client.query
+    .get("Question", ["question", "answer", "category"])
+    .with_near_text(nearText)
+    .with_limit(2)
+    .with_additional(['certainty'])    
+    .with_where(where_filter)
+    .do()
+)
+
+print(json.dumps(result, indent=4))
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+    scheme: "https",
+    host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
+    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+});
+
+const where_filter = {
+    "path": ["category"],
+    "operator": "Equal",
+    "valueString": "ANIMALS",
+}
+
+client.graphql
+    .get()
+    .withClassName('Question')
+    .withFields('question answer category')
+    .withWhere(where_filter)
+    .do()
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.error(err)
+    });
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+TBC
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+TBC
+```
+
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
+
+```bash
+TBC
+```
+
+</TabItem> */}
+</Tabs>

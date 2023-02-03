@@ -19,7 +19,7 @@ import Badges from '/_includes/badges.mdx';
 | **HNSW** | Hierarchical Navigable Small World - a multilayered graph that serves as the first vector index type supported by Weaviate. |
 | **Inverted index** | An index storing a mapping from data property values, to its locations of data objects in a database (named in contrast to a forward index, which maps from data objects to property data values). |
 | **Property** | All classes have properties. E.g., the class Company might have the property _name_. In Weaviate, properties can be recognized because they always have a lowercase first character. |
-| **Schema** | In Weaviate, a schema is used to define the types of data you will be adding and querying. You can learn more about it [here](/developers/weaviate/tutorials/how-to-create-a-schema.md). |
+| **Schema** | In Weaviate, a schema is used to define the types of data you will be adding and querying. You can learn more about it [here](../tutorials/schema.md). |
 | **Weaviate Cluster** | A managed Weaviate cluster |
 | **Weaviate Cloud Service (WCS)** | The Weaviate Cloud Service (WCS) is the SaaS version of Weaviate |
 | **Vector index** | A data storage mechanism where data is stored as vectors (long arrays of numbers, also seen as coordinates in a high dimensional space), allowing for context-based search |

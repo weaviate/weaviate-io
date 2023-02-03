@@ -8,21 +8,28 @@ import TabItem from '@theme/TabItem';
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.weaviate.network/")
+client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
 
-# we will create the class "Publication" and the properties
-# from the basics section of this guide
+# we will create the class "Question"
 class_obj = {
-    "class": "Publication",
-    "description": "A description of this class, in this case, it is about publications",
+    "class": "Question",
+    "description": "Information from a Jeopardy! question",  # description of the class
     "properties": [
         {
-            "dataType": [
-                "string"
-            ],
-            "description": "The name of the Publication",
-            "name": "name",
-        }
+            "dataType": ["text"],
+            "description": "The question",
+            "name": "question",
+        },
+        {
+            "dataType": ["text"],
+            "description": "The answer",
+            "name": "answer",
+        },
+        {
+            "dataType": ["string"],
+            "description": "The category",
+            "name": "category",
+        },        
     ]
 }
 
@@ -45,23 +52,30 @@ const weaviate = require('weaviate-client');
 // update the endpoint!
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',
+    host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
   }); 
 
-// we will create the class "Publication" and the properties
-// from the basics section of this guide
+// we will create the class "Question"
 
-var classObj = {
-    'class': 'Publication',
-    'description': 'A description of this class, in this case, it is about publications',
+let classObj = {
+    'class': 'Question',
+    'description': 'Information from a Jeopardy! question',  // description of the class
     'properties': [
         {
-            'dataType': [
-                'string'
-            ],
-            'description': 'The name of the Publication',
-            'name': 'name',
-        }
+            "dataType": ["text"],
+            "description": "The question",
+            "name": "question",
+        },
+        {
+            "dataType": ["text"],
+            "description": "The answer",
+            "name": "answer",
+        },
+        {
+            "dataType": ["string"],
+            "description": "The category",
+            "name": "category",
+        },        
     ]
 }
 
@@ -92,7 +106,7 @@ client
 ```
 
 </TabItem>
-<TabItem value="go" label="Go">
+{/* <TabItem value="go" label="Go">
 
 ```go
 package main
@@ -113,17 +127,21 @@ func main() {
 
     client := weaviate.New(cfg)
 
-    // we will create the class "Publication" and the properties
-    // from the basics section of this guide
+    // we will create the class "Question"
     classObj := &models.Class{
-        Class:       "Publication", // <= note the capital "A".
-        Description: "A description of this class, in this case, it is about publications",
+        Class:       "Question",
+        Description: "Information from a Jeopardy! question",  // description of the class
         Properties: []*models.Property{
             {
                 DataType:    []string{"string"},
-                Description: "The name of the Publication",
-                Name:        "name",
+                Description: "The question",
+                Name:        "question",
             },
+            {
+                DataType:    []string{"string"},
+                Description: "The answer",
+                Name:        "answer",
+            },            
         },
     }
 
@@ -144,8 +162,8 @@ func main() {
 }
 ```
 
-</TabItem>
-<TabItem value="java" label="Java">
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
 
 ```java
 package technology.semi.weaviate;
@@ -164,16 +182,20 @@ public class App {
 
     WeaviateClient client = new WeaviateClient(config);
 
-    // we will create the class "Publication" and the properties
-    // from the basics section of this guide
+    // we will create the class "Question"
     WeaviateClass clazz = WeaviateClass.builder()
-      .className("Publication")
-      .description("A description of this class, in this case, it is about publications")
+      .className("Question")
+      .description("Information from a Jeopardy! question")
       .properties(new ArrayList() { {
         add(Property.builder()
           .dataType(new ArrayList(){ { add(DataType.STRING); } })
-          .description("The name of the Publication")
-          .name("name")
+          .description("The question")
+          .name("question")
+          .build());        
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.STRING); } })
+          .description("The answer")
+          .name("answer")
           .build());
       } })
       .build();
@@ -198,24 +220,27 @@ public class App {
 }
 ```
 
-</TabItem>
-<TabItem value="curl" label="Curl">
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
 
 ```bash
 $ curl \
 -X POST \
 -H "Content-Type: application/json" \
 -d '{
-    "class": "Publication",
-    "description": "A description of this class, in this case, it is about Publications",
+    "class": "Question",
+    "description": "Information from a Jeopardy! question",
     "properties": [
         {
-            "dataType": [
-                "string"
-            ],
-            "description": "The name of the Publication",
-            "name": "name"
-        }
+            "dataType": ["string"],
+            "description": "The question",
+            "name": "question"
+        },
+        {
+            "dataType": ["string"],
+            "description": "The answer",
+            "name": "answer"
+        }        
     ]
 }' \
 https://some-endpoint.weaviate.network/v1/schema
@@ -223,5 +248,5 @@ https://some-endpoint.weaviate.network/v1/schema
 curl https://some-endpoint.weaviate.network/v1/schema
 ```
 
-</TabItem>
+</TabItem> */}
 </Tabs>

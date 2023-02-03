@@ -22,9 +22,9 @@ Currently Weaviate supports:
 If you want to contribute one or request for us to work on a particualar client, please let us know on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
 :::
 
-With these clients you can perform *all* RESTful and GraphQL requests. This means you can use any endpoint, and perform all GraphQL queries directly from your Python, JS, Java or Go scripts!
+import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
 
-How to use these clients for RESTful API requests and GraphQL queries, code snippets are included in the code blocks on the dedicated [Restful API](../api/rest/index.md) and [GraphQL](../api/graphql/index.md) reference pages. The methods of the clients are designed to reflect the API functions 1-1, but are designed (structured and named) in the way native to the language.
+<ClientCapabilitiesOverview />
 
 ## Native vs GraphQL queries
 
