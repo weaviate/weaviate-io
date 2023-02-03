@@ -17,15 +17,9 @@ By the end of this page, you will have:
 - Added the vectorized data to Weaviate, and
 - Performed vector searches to retrieve relevant objects
 
-### Jupyter notebook for Python users
+### Code examples
 
-We have prepared a [Jupyter notebook](https://github.com/weaviate/weaviate-examples/blob/main/quickstart_code/quickstart_code.ipynb) which you can run on Google Colab, a cloud Python environment with a browser front end.
-
-You can click on the below link and try it out without the need to set up a local Python environment.
-
-<a target="_blank" href="https://colab.research.google.com/github/weaviate/weaviate-examples/blob/main/quickstart_code/quickstart_code.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
+We have prepared code examples to help you follow along here. Go to [weaviate-tutorials/quickstart] on (https://github.com/weaviate-tutorials/quickstart) on GitHub to take a look.
 
 ## Prerequisites 
 
@@ -35,7 +29,7 @@ At this point, you should have:
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
 - Installed your preferred Weaviate client library. 
 
-We will be working with [this dataset](https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json). But our scripts will load the file directly from the remote URL.
+We will be working with [this dataset](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json). But our scripts will load the file directly from the remote URL.
 
 ## Connect to Weaviate
 

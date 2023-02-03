@@ -28,7 +28,7 @@ Before you start this tutorial, you should follow the steps in the tutorials to 
 We will use the below dataset. We suggest that you download it to your working directory.
 
 <p>
-  <DownloadButton link="https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json">Download jeopardy_tiny.json</DownloadButton>
+  <DownloadButton link="https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json">Download jeopardy_tiny.json</DownloadButton>
 </p>
 
 ## Import setup

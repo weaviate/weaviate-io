@@ -19,7 +19,7 @@ client = weaviate.Client(
 # ===== import data ===== 
 # Load data 
 import requests
-url = 'https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json'
+url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json'
 resp = requests.get(url)
 data = json.loads(resp.text)
 
@@ -57,7 +57,7 @@ let classObj = {
 }
 
 async function getJsonData() {
-    const file = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json');
+    const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json');
     return file.json();
 }
 
