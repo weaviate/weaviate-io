@@ -19,7 +19,7 @@ By the end of this page, you will have:
 
 ### Code examples
 
-We have prepared code examples to help you follow along here. Go to [weaviate-tutorials/quickstart] on (https://github.com/weaviate-tutorials/quickstart) on GitHub to take a look.
+We have prepared code examples to help you follow along here. Go to [weaviate-tutorials/quickstart](https://github.com/weaviate-tutorials/quickstart) on GitHub to take a look.
 
 ## Prerequisites 
 
@@ -29,7 +29,7 @@ At this point, you should have:
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
 - Installed your preferred Weaviate client library. 
 
-We will be working with [this dataset](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json). But our scripts will load the file directly from the remote URL.
+We will be working with [this dataset](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json), which will be loaded directly from the remote URL.
 
 ## Connect to Weaviate
 
@@ -55,6 +55,8 @@ First, we must define the class objects to store the data and specify what vecto
 
 :::note Which inference API?
 This tutorial uses the OpenAI API to obtain vectors. But you can use any of Cohere, Hugging Face or OpenAI inference APIs with WCS, as the relevant [Weaviate modules](../modules/retriever-vectorizer-modules/index.md) for those are already built in by default.
+
+Change the vectorizer setting below to point to your preferred module.
 :::
 
 import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'

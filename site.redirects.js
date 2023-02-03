@@ -91,6 +91,28 @@ const siteRedirects = {
             from: '/developers/weaviate/quickstart/console',
         },        
 
+        // Quickstart redirects
+        {
+            to: '/developers/weaviate/tutorials/schema',
+            from: '/developers/weaviate/current/quickstart/schema'
+        },
+        {
+            to: '/developers/weaviate/tutorials/import',
+            from: '/developers/weaviate/current/quickstart/import'
+        },
+        {
+            to: '/developers/weaviate/tutorials/query',
+            from: '/developers/weaviate/current/quickstart/query'
+        },
+        {
+            to: '/developers/weaviate/tutorials/modules',
+            from: '/developers/weaviate/current/quickstart/modules'
+        },
+        {
+            to: '/developers/weaviate/tutorials/console',
+            from: '/developers/weaviate/current/quickstart/console'
+        }, 
+
         // Tutorial redirects
         {
             to: '/developers/weaviate/tutorials/schema',
