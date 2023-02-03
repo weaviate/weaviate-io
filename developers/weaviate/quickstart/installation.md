@@ -19,7 +19,7 @@ Here, you will create a new Weaviate instance for use throughout this tutorial.
 
 We will use the free sandbox tier from _Weaviate Cloud Service_ (WCS) for this tutorial.
 
-WCS is a managed SaaS service. As it is the fastest 🚀 way to create a new Weaviate instance and requires no maintenance at your end, let's spin up an instance with it for use throughout this tutorial. 
+WCS is a managed SaaS service that requires no maintenance at your end. As it is the fastest 🚀 way to create a new Weaviate instance, let's spin up an instance with it for use throughout this tutorial. 
 
 :::info Prefer a local instance?
 If you prefer a local instance of Weaviate, we recommend getting started with Docker. Please refer to [the separate section below](#running-weaviate-with-docker) to follow along.
@@ -63,7 +63,7 @@ Click on the `Cluster Id` link, which will open a new page in your browser and d
 
 If you can see this response in your browser, *congratulations!* you have successfully started up an instance of Weaviate. 🎉
 
-## Install client library
+## Install a client library
 
 You can communicate with Weaviate with the available [client libraries](../client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [RESTful API](../api/rest/index.md).
 

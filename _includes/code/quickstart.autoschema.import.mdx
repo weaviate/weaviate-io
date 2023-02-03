@@ -10,7 +10,9 @@ with client.batch as batch:
     batch.batch_size=100
     for i, d in enumerate(data):
         properties = {
-            ...
+            "answer": d["Answer"],
+            "question": d["Question"],
+            "category": d["Category"],
         }
 
         client.batch.add_data_object(properties, "Question")
@@ -31,7 +33,9 @@ async function importQuestions() {
     const obj = {
       class: 'Question',
       properties: {
-        ...
+        answer: question.Answer,
+        question: question.Question,
+        category: question.Category,
       },
     }
 
@@ -94,7 +98,7 @@ func main() {
 
     classObj := &models.Class{
         Class:      "Question", 
-        Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
+        Vectorizer: "text2vec-openai",
     }
 
     // add the schema
@@ -129,7 +133,7 @@ public class App {
     // we will create the class "Question" and the properties
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Question")
-      .vectorizer("text2vec-openai")  // Or "text2vec-cohere" or "text2vec-huggingface"
+      .vectorizer("text2vec-openai")
       .build();
     
     // add the schema

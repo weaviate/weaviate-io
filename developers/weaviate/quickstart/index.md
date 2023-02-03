@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Welcome to the **Quickstart tutorial** for Weaviate! This part is all about getting hands-on experience with Weaviate.
+Welcome to the **Quickstart tutorial** for Weaviate! Here, you will learn how to quickly get up and running with Weaviate, including an introduction to our managed cloud solution.
 
 ### Data
 
@@ -31,12 +31,12 @@ We will start with this (tiny) dataset consisting of questions from the popular 
 
 ### Agenda
 
-By the time you're done with this tutorial, you will have:
+By the end of this tutorial, you will be familiar with the key features and functionalities of Weaviate. You will have:
 - Built a Weaviate database,
 - Vectorized and imported data, and
 - Performed queries to retrieve objects.
 
-You will see how Weaviate can:
+You will also see how Weaviate can:
 - Vectorize data at import time,
 - Use an external inference API,
 - Automate data schema construction if necessary, and
@@ -54,7 +54,7 @@ But don't worry too much even if you are uncomfortable with any of these. This t
 
 ### Accounts and API keys
 
-You will be creating your own instance of Weaviate in this tutorial. You will also be specifying an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs). 
+You will be creating your own instance of Weaviate in this tutorial, and using an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs). 
 
 To follow along with the tutorial, we recommend you create accounts with:
 1. A [Weaviate Cloud Service (WCS)](https://console.weaviate.io/) account, and
@@ -63,7 +63,7 @@ To follow along with the tutorial, we recommend you create accounts with:
     1. [Cohere](https://docs.cohere.ai/reference/embed), or
     1. [Hugging Face](https://huggingface.co/docs/api-inference/index).
 
-The free tiers for all of them will be sufficient for you to follow along. 
+The free tiers for any of them will be sufficient for you to follow along. 
 
 :::info Is something broken?
 We want you to have the best experience possible here. So if you find that something here doesn't work, or doesn't make sense, please let us know! You can:

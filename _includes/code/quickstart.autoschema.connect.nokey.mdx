@@ -9,10 +9,6 @@ import weaviate
 
 client = weaviate.Client(
     url = "https://some-endpoint.weaviate.network/",  # Replace with your endpoint
-    additional_headers = {
-        # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key" 
-        "X-OpenAI-Api-Key": api_tkn  # Replace with your API key
-    }
 )
 ```
 
@@ -25,8 +21,6 @@ const weaviate = require("weaviate-client");
 const client = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
-    // Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
-    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
   }); 
 ```
 
@@ -54,7 +48,7 @@ func main() {
 
     classObj := &models.Class{
         Class:      "Question", 
-        Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
+        Vectorizer: "text2vec-openai",
     }
 
     // add the schema
@@ -89,7 +83,7 @@ public class App {
     // we will create the class "Question" and the properties
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Question")
-      .vectorizer("text2vec-openai")  // Or "text2vec-cohere" or "text2vec-huggingface"
+      .vectorizer("text2vec-openai")
       .build();
     
     // add the schema

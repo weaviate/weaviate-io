@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Here, you will gain a hands-on overview of things that you can do with Weaviate. If you are curious about some of the steps - don't worry, you can dig further into each step in more detail later on.
+Here, you will gain a hands-on overview of what you can do with Weaviate. If you have questions about some of the steps - don't worry, you can dig further into each step in more detail in later [tutorials](../tutorials/index.md).
 
 By the end of this page, you will have:
 - Vectorized the quiz data
@@ -35,11 +35,15 @@ At this point, you should have:
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
 - Installed your preferred Weaviate client library. 
 
-We will be working with the below dataset. Note that scripts may load the file directly from the remote URL.
+We will be working with [this dataset](https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json). But our scripts will load the file directly from the remote URL.
 
-<p>
-  <DownloadButton link="https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json">Download jeopardy_tiny.json</DownloadButton>
-</p>
+## Connect to Weaviate
+
+You can connect to your instance of Weaviate using the Weaviate client as shown below. If this creates an instance of client, you should be ready to go.
+
+import ConnectToWeaviateNoKey from '/_includes/code/quickstart.autoschema.connect.nokey.mdx'
+
+<ConnectToWeaviateNoKey />
 
 ## Import data 
 
@@ -56,9 +60,7 @@ Using an inference API is one good way to do this. To do so:
 First, we must define the class objects to store the data and specify what vectorizer to use. The following will create a `Question` class with the given vectorizer, and add it to the schema:
 
 :::note Which inference API?
-This tutorial uses the OpenAI API to obtain vectors. But you can use any of Cohere, Hugging Face or OpenAI inference APIs with WCS, as the relevant Weaviate modules for those are already built in by default.
-
-If you are not using OpenAI, change the API key parameter in the code examples from `X-OpenAI-Api-Key` to one relevant to your chosen inference API.
+This tutorial uses the OpenAI API to obtain vectors. But you can use any of Cohere, Hugging Face or OpenAI inference APIs with WCS, as the relevant [Weaviate modules](../modules/retriever-vectorizer-modules/index.md) for those are already built in by default.
 :::
 
 import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
@@ -79,9 +81,13 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 The API key can be provided to Weaviate as an environment variable, or in the HTTP header with every request. Here, we will add them to the Weaviate client at instantiation as shown below. It will then send the key as a part of the header with every request.
 
-import ConnectToWeaviate from '/_includes/code/quickstart.autoschema.connect.mdx'
+import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
 
-<ConnectToWeaviate />
+<ConnectToWeaviateWithKey />
+
+:::note Not using OpenAI?
+If you are not using OpenAI, change the API key parameter in the code examples from `X-OpenAI-Api-Key` to one relevant to your chosen inference API, such as `X-Cohere-Api-Key` for Cohere or `X-HuggingFace-Api-Key` for Hugging Face.
+:::
 
 ### Load & import data
 
