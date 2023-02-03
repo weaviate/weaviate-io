@@ -256,7 +256,7 @@ import HowtoSchemaCreatePython from '/_includes/code/howto.schema.create.python.
 
 <HowtoSchemaCreatePython/>
 
-## Creating your first schema (RESTful API, Python or JavaScript)
+## Creating your first schema (RESTful API, Python, JavaScript, Java, Go or Curl)
 
 Currently, only with the Python client it is possible to upload a whole schema at once. If you are not using Python, you need to upload classes to Weaviate one by one. The schema from the previous example can be uploaded in the following steps:
 
