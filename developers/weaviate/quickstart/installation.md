@@ -63,9 +63,13 @@ Click on the `Cluster Id` link, which will open a new page in your browser and d
 
 If you can see this response in your browser, *congratulations!* you have successfully started up an instance of Weaviate. 🎉
 
-## Client libraries
+## Install client library
 
-You can communicate with Weaviate with the available [client libraries](../client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [restful API](../api/rest/index.md).
+You can communicate with Weaviate with the available [client libraries](../client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [RESTful API](../api/rest/index.md).
+
+import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
+
+<ClientCapabilitiesOverview />
 
 Install your preferred client by following the relevant instructions below:
 

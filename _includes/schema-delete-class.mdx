@@ -1,0 +1,99 @@
+<hr />
+
+### Deleting classes
+
+If your Weaviate instance contains data where you would like it to be empty, or you can manually delete the unwanted class(es).
+
+:::caution Deleting a class == Deleting its objects
+Know that **deleting a class will also delete all associated objects**!
+
+Do not do this to a production database, or anywhere where you do not wish to delete your data. 
+
+Run this code to delete the relevant class and get an output confirming it;
+:::
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+{/* <TabItem value="graphql" label="GraphQL">
+
+```graphql
+
+```
+
+</TabItem> */}
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+import json
+
+client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
+
+# delete class "YourClassName" - THIS WILL DELETE ALL DATA IN THIS CLASS
+client.schema.delete_class("YourClassName")  # Replace with your class name
+
+schema = client.schema.get()
+print(json.dumps(schema, indent=4))
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-client');
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
+}); 
+
+var className = 'YourClassName';  // Replace with your class name
+
+client.schema
+  .classDeleter()
+  .withClassName(className)
+  .do()
+  .then(
+    client
+      .schema
+      .getter()
+      .do()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  )
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+
+```
+
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
+
+```bash
+
+```
+
+</TabItem> */}
+</Tabs>
+
+<hr />

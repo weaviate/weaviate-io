@@ -35,10 +35,6 @@ At this point, you should have:
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
 - Installed your preferred Weaviate client library. 
 
-import CautionSchemaDeleteAll from '/_includes/schema-delete-all.mdx'
-
-<CautionSchemaDeleteAll />
-
 We will be working with the below dataset. Note that scripts may load the file directly from the remote URL.
 
 <p>
@@ -59,23 +55,33 @@ Using an inference API is one good way to do this. To do so:
 
 First, we must define the class objects to store the data and specify what vectorizer to use. The following will create a `Question` class with the given vectorizer, and add it to the schema:
 
+:::note Which inference API?
+This tutorial uses the OpenAI API to obtain vectors. But you can use any of Cohere, Hugging Face or OpenAI inference APIs with WCS, as the relevant Weaviate modules for those are already built in by default.
+
+If you are not using OpenAI, change the API key parameter in the code examples from `X-OpenAI-Api-Key` to one relevant to your chosen inference API.
+:::
+
 import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
 
 <CodeAutoschemaMinimumSchema />
 
-Weaviate will infer any further schema information from the given data. We'll cover more on this later.
+Weaviate will infer any further schema information from the given data. If you would like to know more, check out [this tutorial](../tutorials/schema.md) which covers schemas in more detail.
+
+:::note If you see this error: `Name 'Question' already used as a name for an Object class`
+You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions. 
+:::
+
+import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
+
+<CautionSchemaDeleteClass />
 
 ### Provide the API key
 
-Include the API key in our code in the form of a header, as in the example below. Select the right format for your preferred inference API:
+The API key can be provided to Weaviate as an environment variable, or in the HTTP header with every request. Here, we will add them to the Weaviate client at instantiation as shown below. It will then send the key as a part of the header with every request.
 
-import JSONApiKey from '/_includes/code/api.key.mdx'
+import ConnectToWeaviate from '/_includes/code/quickstart.autoschema.connect.mdx'
 
-<JSONApiKey />
-
-:::note API key options
-The API key can also be provided as an environment variable. Refer to the docs for your favorite inference API [module](../modules/retriever-vectorizer-modules/index.md).
-:::
+<ConnectToWeaviate />
 
 ### Load & import data
 
@@ -89,13 +95,7 @@ Note that we use a batch import process here for speed. You should use batch imp
 
 ### Putting it together
 
-The following code puts it all together, taking care of everything from schema definition to data import:
-
-:::info Inference API and key
-If you are using a different module, replace the module name (e.g. `text2vec-openai`) and the key header name in the code examples to suit your preferred module. 
-
-Also, replace the API key `api_tkn` with your API key.
-:::
+The following code puts it all together, taking care of everything from schema definition to data import. Remember to replace the endpoint and inference API key (and API key name if necessary).
 
 import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoend.mdx'
 

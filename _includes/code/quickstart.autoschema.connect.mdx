@@ -6,7 +6,6 @@ import TabItem from '@theme/TabItem';
 
 ```python
 import weaviate
-import json
 
 client = weaviate.Client(
     url = "https://some-endpoint.weaviate.network/",  # Replace with your endpoint
@@ -15,36 +14,6 @@ client = weaviate.Client(
         "X-OpenAI-Api-Key": api_tkn  # Replace with your API key
     }
 )
-
-# ===== add schema ===== 
-class_obj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"  # Or "text2vec-cohere" or "text2vec-huggingface"
-}
-
-client.schema.create_class(class_obj)
-
-# ===== import data ===== 
-# Load data 
-import requests
-url = 'https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json'
-resp = requests.get(url)
-data = json.loads(resp.text)
-
-# Configure a batch process
-with client.batch as batch:
-    batch.batch_size=100
-    # Batch import all Questions
-    for i, d in enumerate(data):
-        print(f"importing question: {i+1}")
-
-        properties = {
-            "answer": d["Answer"],
-            "question": d["Question"],
-            "category": d["Category"],
-        }
-
-        client.batch.add_data_object(properties, "Question")
 ```
 
 </TabItem>
@@ -59,83 +28,6 @@ const client = weaviate.client({
     // Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
     headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
   }); 
-
-let classObj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
-}
-
-// add the schema
-client
-  .schema
-  .classCreator()
-  .withClass(classObj)
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
-
-async function getJsonData() {
-    const file = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json');
-    return file.json();
-}
-
-async function importQuestions() {
-  // Get the data from the data.json file
-  const data = await getJsonData();
-
-  // Prepare a batcher
-  let batcher = client.batch.objectsBatcher();
-  let counter = 0;
-  let batchSize = 100;
-
-  data.forEach(question => {
-    // Construct an object with a class and properties 'answer' and 'question'
-    const obj = {
-      class: 'Question',
-      properties: {
-        answer: question.Answer,
-        question: question.Question,
-        category: question.Category,
-      },
-    }
-
-    // add the object to the batch queue
-    batcher = batcher.withObject(obj);
-
-    // When the batch counter reaches batchSize, push the objects to Weaviate
-    if (counter++ == batchSize) {
-      // flush the batch queue
-      batcher
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
-      
-      // restart the batch queue
-      counter = 0;
-      batcher = client.batch.objectsBatcher();
-    }
-  });
-
-  // Flush the remaining objects
-  batcher
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
-}
-
-importQuestions(); 
 ```
 
 </TabItem>

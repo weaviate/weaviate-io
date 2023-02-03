@@ -24,11 +24,11 @@ Before you start this tutorial, you should follow the steps in the tutorials to 
 
 If you have completed the entire Quickstart tutorial, your Weaviate instance will contain data objects and a schema. 
 
-**We recommend deleting it all before starting this section.**
+**We recommend deleting it the `Question` class before starting this section.**
 
-import CautionSchemaDeleteAll from '/_includes/schema-delete-all.mdx'
+import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
-<CautionSchemaDeleteAll />
+<CautionSchemaDeleteClass />
 
 ## Introduction
 
