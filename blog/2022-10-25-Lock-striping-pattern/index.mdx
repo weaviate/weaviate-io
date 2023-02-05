@@ -18,7 +18,7 @@ Are you curious about, the challenge that we faced, which solutions we considere
 ## Background
 Databases must be able to import data quickly and reliably while maintaining data integrity and reducing time overhead. Weaviate is no exception to this! Given that our users populate Weaviate with hundreds of millions of data objects (if not more), we appreciate that import performance is of the highest ... *import-ance* (sorry) 🥁.
 
-Weaviate offers and strongly recommends the [batch import feature](/developers/weaviate/quickstart/import#importing) for adding data objects in bulk. To further speed up the import process, you can use parallelization, which lets you run multiple batches concurrently. Each object in these batches is then checked for duplicates and assigned a unique internal DocID used by Weaviate to access objects.
+Weaviate offers and strongly recommends the [batch import feature](/developers/weaviate/tutorials/import#import-setup) for adding data objects in bulk. To further speed up the import process, you can use parallelization, which lets you run multiple batches concurrently. Each object in these batches is then checked for duplicates and assigned a unique internal DocID used by Weaviate to access objects.
 
 We uncovered that there could be a race condition in this process. Sometimes when multiple batches contained identical objects with the same UUID, they could be added more than once to Weaviate, each time with different DocIDs. This, in turn, could cause issues within Weaviate.
 

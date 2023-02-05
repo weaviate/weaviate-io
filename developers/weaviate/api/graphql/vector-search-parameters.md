@@ -124,10 +124,9 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
 ```json
 {
   "class": "string",
-  "sparseIndexType": "bm25f",
   // Configuration of the sparse index
-  "sparseIndexConfig": {
-    "bm25f": {
+  "invertedIndexConfig": {
+    "bm25": {
       "b": 0.75,
       "k1": 1.2
     }
@@ -140,8 +139,8 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
         "string"
       ],
       // Property-level settings override the class-level settings
-      "sparseIndexConfig": {
-        "bm25f": {
+      "invertedIndexConfig": {
+        "bm25": {
           "b": 0.75,
           "k1": 1.2
         }
@@ -202,11 +201,11 @@ The `_additional` object in the GraphQL result exposes the score:
 ```
 
 
-### group
+## group
 
 You can use a group operator to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
 
-#### Variables
+### Variables
 
 | Variables | Mandatory | Type | Description |
 | --- | --- | --- | --- |

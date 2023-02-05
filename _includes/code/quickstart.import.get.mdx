@@ -8,8 +8,7 @@ import TabItem from '@theme/TabItem';
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.weaviate.network/")
-
+client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
 some_objects = client.data_object.get()
 print(json.dumps(some_objects))
 ```
@@ -22,7 +21,7 @@ const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',
+    host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
   }); 
 
 client
@@ -38,7 +37,7 @@ client
 ```
 
 </TabItem>
-<TabItem value="go" label="Go">
+{/* <TabItem value="go" label="Go">
 
 ```go
 package main
@@ -68,8 +67,8 @@ func GetSchema() {
 }
 ```
 
-</TabItem>
-<TabItem value="java" label="Java">
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
 
 ```java
 package technology.semi.weaviate;
@@ -98,12 +97,12 @@ public class App {
 }
 ```
 
-</TabItem>
-<TabItem value="curl" label="Curl">
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
 
 ```bash
 $ curl https://some-endpoint.weaviate.network/v1/objects
 ```
 
-</TabItem>
+</TabItem> */}
 </Tabs>

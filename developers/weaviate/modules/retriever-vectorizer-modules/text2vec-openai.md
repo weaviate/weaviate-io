@@ -54,7 +54,7 @@ services:
 
 ## How to configure
 
-In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/developers/weaviate/quickstart/schema.md) first.
+In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](../../tutorials/schema.md) first.
 
 For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-openai` using the `babbage` model.
 

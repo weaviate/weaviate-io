@@ -101,7 +101,7 @@ Adding a schema can be done via:
 $ weaviate schema import my_schema.json
 ```
 
-Where `my_schema.json` contains the schema as described [here](/developers/weaviate/tutorials/how-to-create-a-schema.md).
+Where `my_schema.json` contains the schema as described [here](../tutorials/schema.md).
 
 To overwrite your schema you can use the `--force` flag, this will clear the index and replace your schema:
 

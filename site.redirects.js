@@ -30,7 +30,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/clients'
         },
         {
-            to: '/developers/weaviate/quickstart/console',
+            to: '/developers/weaviate/tutorials/console',
             from: '/developers/weaviate/current/core-knowledge/console'
         },
 
@@ -69,22 +69,75 @@ const siteRedirects = {
             from: '/developers/weaviate/current/more-resources/deprecation-messages'
         },
 
+        // Quickstart redirects
+        {
+            to: '/developers/weaviate/tutorials/schema',
+            from: '/developers/weaviate/quickstart/schema',
+        },
+        {
+            to: '/developers/weaviate/tutorials/import',
+            from: '/developers/weaviate/quickstart/import',
+        },
+        {
+            to: '/developers/weaviate/tutorials/query',
+            from: '/developers/weaviate/quickstart/query',
+        },
+        {
+            to: '/developers/weaviate/tutorials/modules',
+            from: '/developers/weaviate/quickstart/modules',
+        },
+        {
+            to: '/developers/weaviate/tutorials/console',
+            from: '/developers/weaviate/quickstart/console',
+        },        
+
+        // Quickstart redirects
+        {
+            to: '/developers/weaviate/tutorials/schema',
+            from: '/developers/weaviate/current/quickstart/schema'
+        },
+        {
+            to: '/developers/weaviate/tutorials/import',
+            from: '/developers/weaviate/current/quickstart/import'
+        },
+        {
+            to: '/developers/weaviate/tutorials/query',
+            from: '/developers/weaviate/current/quickstart/query'
+        },
+        {
+            to: '/developers/weaviate/tutorials/modules',
+            from: '/developers/weaviate/current/quickstart/modules'
+        },
+        {
+            to: '/developers/weaviate/tutorials/console',
+            from: '/developers/weaviate/current/quickstart/console'
+        }, 
+
         // Tutorial redirects
-        // {
-        //     to: '/developers/weaviate/tutorials/how-to-create-a-schema',
-        //     from: '/developers/weaviate/current/tutorials/how-to-create-a-schema'
-        // },
+        {
+            to: '/developers/weaviate/tutorials/schema',
+            from: '/developers/weaviate/current/tutorials/how-to-create-a-schema'
+        },
+        {
+            to: '/developers/weaviate/tutorials/query',
+            from: '/developers/weaviate/current/tutorials/how-to-query-data'
+        },
+        {
+            to: '/developers/weaviate/tutorials/query',
+            from: '/developers/weaviate/current/tutorials/how-to-perform-a-semantic-search'
+        },
+        {
+            to: '/developers/weaviate/tutorials/query',
+            from: '/developers/weaviate/current/tutorials/semantic-search-through-wikipedia'
+        },
 
         {
             to: '/developers/weaviate/tutorials',
             from: [
                 '/developers/weaviate/current/tutorials/how-to-do-classification',
-                '/developers/weaviate/current/tutorials/how-to-perform-a-semantic-search',
-                '/developers/weaviate/current/tutorials/how-to-query-data',
                 '/developers/weaviate/current/tutorials/how-to-use-weaviate-without-modules',
                 '/developers/weaviate/current/tutorials/other-examples',
                 '/developers/weaviate/current/tutorials/quick-start-with-the-text2vec-contextionary-module',
-                '/developers/weaviate/current/tutorials/semantic-search-through-wikipedia'
             ]
         },
 

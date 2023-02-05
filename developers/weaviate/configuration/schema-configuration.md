@@ -9,7 +9,7 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 :::info Related pages
-- [Quickstart Tutorial: Schema](../quickstart/schema.md)
+- [Tutorial: Schema](../tutorials/schema.md)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)
 :::

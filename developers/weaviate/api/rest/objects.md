@@ -26,15 +26,65 @@ With optional query params:
 GET /v1/objects?class={className}&limit={limit}&include={include}
 ```
 
-#### Parameters
+### Parameters
 
 | name | location | type | description |
-| ---- | ---- | ----------- |
-| `limit` | URL Query Parameter (optional) | integer | The maximum number of data objects to return. |
-| `include` | URL Query Parameter (optional) | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
+| ---- | ---- | ----------- | ---- |
 | `class` | URL Query Parameter (optional) | string | List objects by class using the class name. |
+| `limit` | URL Query Parameter (optional) | integer | The maximum number of data objects to return. |
+| `offset` | URL Query Parameter (optional) | integer | The offset of objects returned (the starting index of the returned objects).<br/>Should be used in conjunction with the `limit` parameter. |
+| `include` | URL Query Parameter (optional) | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
+| `sort` | URL Query Parameter (optional) | string | Name of the property to sort by - i.e. `sort=city`<br/>You can also provide multiple names – i.e. `sort=country,city` |
+| `order` | URL Query Parameter (optional) | string | Order in which to sort by.<br/>Possible values: `asc` (default) and `desc`. <br/>Should be used in conjunction with the `sort` parameter.|
 
-#### Response fields
+### Example paging
+
+:::tip
+You can use `limit` and `offset` for paging your results.
+:::
+
+Get the first 10 objects:
+```js
+GET /v1/objects?class=MyClass&limit=10
+```
+
+Get the second batch of 10 objects:
+```js
+GET /v1/objects?class=MyClass&limit=10&offset=10
+```
+
+Get the next batch of 10 objects:
+```js
+GET /v1/objects?class=MyClass&limit=10&offset=20
+```
+
+### Example sorting
+
+:::tip
+You can use `sort` and `order` to sort your results.
+:::
+
+Ascending sort by author_name:
+```js
+GET /v1/objects?class=Book&sort=author_name
+```
+
+Descending sort by author_name:
+```js
+GET /v1/objects?class=Book&sort=author_name&order=desc
+```
+
+Sort by by author_name, and then title.
+```js
+GET /v1/objects?class=Book&sort=author_name,title
+```
+
+Sort by by author_name, and then title with order:
+```js
+GET /v1/objects?class=Book&sort=author_name,title&order=desc,asc
+```
+
+### Response fields
 
 The response of a `GET` query of a data object will give you information about all objects [(or a single object)](#get-a-data-object). Next to general information about the data objects, like schema information and property values, meta information will be shown depending on the `include` fields or `additional properties` of your request.
 
@@ -43,12 +93,11 @@ The response of a `GET` query of a data object will give you information about a
 ```js
 {
   "objects": [/* list of objects, see below */],
-  "deprecations: null,
+  "deprecations": null,
 }
-
 ```
 
-#### Object fields
+### Object fields
 
 | field name | datatype | required `include` or `additional` field |  description |
 | ---- | ---- | ---- | ---- |
@@ -73,7 +122,7 @@ The response of a `GET` query of a data object will give you information about a
 | `classification` > `scope` | list of strings |  `classification` | the initial fields to classify |
 | `featureProjection` > `vector` | list of floats |  `featureProjection` | the 2D or 3D vector coordinates of the feature projection |
 
-#### Status codes and error cases
+### Status codes and error cases
 
 | Cause | Description | Result |
 | --- | --- | --- |

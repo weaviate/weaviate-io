@@ -54,7 +54,7 @@ at import and search time:
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:1.14.0
+    image: semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -74,7 +74,7 @@ An example docker-compose setup file with the transformers model [`sentence-tran
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:1.14.0
+    image: semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - "8080:8080"

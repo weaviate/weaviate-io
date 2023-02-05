@@ -1,5 +1,5 @@
 ---
-title: Modules
+title: Modules - an introduction
 sidebar_position: 9
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['modules']
@@ -8,7 +8,11 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-Weaviate modules can be added to your instance and are mostly used to vectorize data or process results (e.g., question answering). The structure of the module name (`x2vec`) informs you of what the module does. E.g., `text2vec` generates text embeddings, `img2vec` image embeddings, etc.
+## Overview
+
+In this guide, you will get an introduction to the role that modules play in Weaviate.
+
+As their name suggest, Weaviate modules are options components to enhance Weaviate's functionality, such as to vectorize data or process results (e.g., question answering). The structure of the module name (`x2vec`) informs you of what the module does. E.g., `text2vec` generates text embeddings, `img2vec` image embeddings, etc.
 
 ## Retrievers & Vectorizers
 
@@ -76,6 +80,7 @@ If you don't want to vectorize a property at all, you can simply skip it.
 
 ## Example
 
+<!-- TODO: Update this to the new domain -->
 If you [look at the schema](https://demo.dataset.playground.semi.technology/v1/schema) of the article demo dataset, ​you can see a complete example.
 
 Let's take a look at the schema item for the Article class. Look for the `"moduleConfig"` entries on the class and on the property level.

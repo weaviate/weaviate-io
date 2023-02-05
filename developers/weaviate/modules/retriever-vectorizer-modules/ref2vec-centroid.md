@@ -34,7 +34,7 @@ services:html
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:{{ current_page_version | remove_first: "v" }}
+    image: semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     restart: on-failure:0
@@ -49,7 +49,7 @@ services:html
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [quickstart tutorial on the Weaviate schema](/developers/weaviate/quickstart/schema.md) first.
+​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](../../tutorials/schema.md) first.
 
 For example, here is an `Article` class which is configured to use ref2vec-centroid. Doing so requires only a class-level `moduleConfig`, containing two fields:
 

@@ -11,10 +11,6 @@ install:
 script:
   # Build the project
   - yarn build
-
-  # Install additional packages
-  - yarn global add netlify-cli
-  # - yarn global add netlify-cli linkinator
   
   # Deploy draft to Netlify
   - source _build_scripts/publish-draft-to-netlify.sh
@@ -27,7 +23,7 @@ script:
     fi
 
   # Link Validation
-  # - source _build_scripts/verify-links.sh
+  - source _build_scripts/verify-links.sh
 
   ###
   ##
