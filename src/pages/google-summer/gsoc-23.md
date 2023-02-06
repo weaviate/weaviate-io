@@ -1,6 +1,6 @@
 ---
-title: Google Summer of Code 2022
-# og: /img/og/og-gsoc.jpg
+title: Google Summer of Code 2023
+og: /img/og/google-summmer/gsoc.jpg
 ---
 
 # Contribute to Weaviate this summer during Google Summer of Code
@@ -9,17 +9,27 @@ Are you looking for a challenge in the summer? Apply for Google Summer of Code, 
 
 Read more about the program and apply at the [Google Summer of Code website](https://summerofcode.withgoogle.com/).
 
-# About Weaviate
+## About Weaviate
 
 Weaviate is an open-source vector search engine that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. Read more about Weaviate [here](/developers/weaviate/).
 
-# How to register
+## How to register
 
-We value initiative, creativity, and motivation. To show your initiative, creativity, and motivation, add your ideas on how you would approach this challenge to your submission. Please also mention your previous projects (if any) and which technologies and tools you are comfortable with. In addition, don't forget what you want to learn during the Summer of Code competition, both in terms of technology and other (soft) experiences.
+If you’re interested, you need to send your submission via both:
+1. [Weaviate's GSoC 2023 form](https://forms.gle/9rUu76r6GDy8e7Eb7),
+2. [GSoC website](https://summerofcode.withgoogle.com/).
+
+:::caution Important
+You need to apply on both websites!
+:::
+
+You can also join our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/) and talk to us and the other participant in the #gsoc channel.
 
 Don't hesitate to contact us for questions about the challenge and the Open Source project Weaviate.
 
-If you’re interested, you can apply through [our form](https://forms.gle/H6WDByjYbs8ReEuk9) (or via our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/) in the #gsoc channel), and don't forget to apply on the [GSoC website.](https://summerofcode.withgoogle.com/). So you'll need to apply on both websites! 
+### What we value
+
+We value initiative, creativity, and motivation. To show your initiative, creativity, and motivation, add your ideas on how you would approach this challenge to your submission. Please also mention your previous projects (if any) and which technologies and tools you are comfortable with. In addition, don't forget what you want to learn during the Summer of Code competition, both in terms of technology and other (soft) experiences.
 
 ## How to create a project application/proposal?**
 
@@ -35,13 +45,7 @@ We expect your application to be in the range of 1000-1500 words. Your proposal 
 * Do you plan to have any other commitments during GSoC that may affect your work? Any vacations/holidays? Will you be available full time to work on your project? (Please refrain from applying if you cannot manage your time and cannot guarantee 100% commitment.)
 * Also, you must join our Slack and get in touch with the mentors before hand so that they’ll help you draft an amazing application by reviewing it ahead of time. (Note:  This must be done one week ahead of the submission deadline).
 
-The best way to demonstrate your capability would be to submit a small patch/pull request ahead of the project selection for an existing issue or a new issue. We always prefer candidates who are self motivated and can do great with some guidance from the mentors, and have some understanding of Machine Learning, Natural Language Processing and Vector Search. 
-
-Make sure to both sign up on **both** [our form](https://forms.gle/H6WDByjYbs8ReEuk9), and on the [GSoC website.](https://summerofcode.withgoogle.com/).
-
 You can pick any project idea from the list below.
-
-If you have other ideas that are not in this list, contact the team first to make sure it is relevant to our organization.
 
 If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) 
 
@@ -52,16 +56,43 @@ Depending on the challenge, different skills are preferred. It does not mean tha
 ## Mentors
 
 We are happy to announce a great pool of mentors this year. Depending on the subject, they will guide you through the GSoC process and help you with your contribution to Weaviate!
-* [Laura Ham](https://www.linkedin.com/in/laura-ham/)
+* [Sebastian Witalec](https://www.linkedin.com/in/sebawita/)
 * [Saurabh Rai](https://www.linkedin.com/in/srbh077/)
-* [Bob van Luijt](https://www.linkedin.com/in/bobvanluijt/)
+* [Joon-Pill Hwang](https://www.linkedin.com/in/jphwang/)
 * [Stefan Bogdan](https://www.linkedin.com/in/stefan-bogdan/)
-* [Etienne Dilocker](https://www.linkedin.com/in/etienne-dilocker-60727b175/)
 * [Marcin Antas](https://www.linkedin.com/in/antasmarcin/)
-* [Sila Uygun](https://www.linkedin.com/in/silauygun/)
-* [Donna van der Rijst](https://www.linkedin.com/in/donna-van-der-rijst-693586123/)
 
-## Ideas:
+## Project Ideas
+
+### Project 1 - Embedded editable and executable code examples
+
+**Project Description**: Weaviate's documentation website is built with Docusaurs (which is React-based). We are looking for a way to embed executable and editable code examples for Python, Java, JavaScript and Go.
+
+Currently, all our code examples are static, which allows our community to copy and paste any code sample. However, it would be great, if they could edit the code examples directly on our website and execute them there. This would be very useful to test out what would happen if x,y,z changed. i.e. we could have an example that show how to sort results, the user could run the embedded code, see the results, then change some of the parameters and see how the result changes.
+
+(Optional) we could also look into embedding GraphQL code examples. Currently, we send our community to a Weaviate Console, which contains a built-in GUI to execute GraphQL queries. But it would be great if we could embed this directly in the docs.
+
+:::info
+Note, we could use 3rd party tools that provide ability to execute embedded code examples.
+:::
+
+**Required Skills:** A good grasp of React and JavaScript, with ability to create reusable components. A light understanding of Python, Java and Go - to be able to test code examples.
+
+An understanding of how client-side applications work and how to work with embedded code examples.
+
+**Topics:** React, Python, JavaScript, GraphQL, Java, Go, Embedded code
+
+**Difficulty Level:** Medium
+
+**Expected Length**: 175 Hours
+
+**Mentors**: Sebastian Witalec, JP Hwang, Saurabh Rai
+
+**Expected outcome:** A new branch on weaviate/weaviate-io with a working PoC, with examples for each programming language, together with a detailed documentation on how to use it.
+
+
+## Old topics
+
 
 ### 1. Make a new multi-model example with Weaviate (e.g. images and text), using the CLIP model or a new multi-modal ML model.
 
@@ -69,7 +100,7 @@ We are happy to announce a great pool of mentors this year. Depending on the sub
 
 **Required Skills:** The ability to understand Weaviate’s Core and its vector search. Understanding of multi-modal ML Models. Medium advanced knowledge of Python. Basic understanding of Docker and docker compose (containerization). Good to have basic understanding of ML and NLP, not mandatory. 
 
-**topics:** Python, New Feature, Machine Learning, NLP 
+**Topics:** Python, New Feature, Machine Learning, NLP 
 
 **Difficulty Level:** Easy
 
@@ -94,7 +125,7 @@ If you're new to ML and Weaviate, but are already a bit familiar with Python, th
 
 **Required Skills:** It’s a beginner-level project. Ability to understand Weaviate’s Core and its vector search. Being proficient in Python and being able to experiment with new features to add new example using either an existing module or via a new module.
 
-**topics:** Python, New Feature, Machine Learning, Demo
+**Topics:** Python, New Feature, Machine Learning, Demo
 
 **Difficulty Level:** Easy
 
@@ -106,7 +137,7 @@ If you're new to ML and Weaviate, but are already a bit familiar with Python, th
 
 **Documentation:**
 
-* [Awesome Weaviate · GitHub](https://github.com/weaviate/awesome-weaviate) 
+* [Awesome Weaviate · GitHub](https://github.com/weaviate/awesome-weaviate)
 
 ---
 
@@ -116,7 +147,7 @@ If you're new to ML and Weaviate, but are already a bit familiar with Python, th
 
 **Required Skills:** For this project, you'll need to be familiar with programming languages like JavaScript. Being able to work with Docker is a pre. 
 
-**topics:** Web/Fronted, New Feature, Dashboard
+**Topics:** Web/Fronted, New Feature, Dashboard
 
 **Difficulty Level:** Medium
 
@@ -140,7 +171,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 **Required Skills:**  Creating a new type of weaviate module by using our Weaviate.go module. Basic knowledge of golang is required.
 
-**topics:** Golang
+**Topics:** Golang
 
 **Difficulty Level:** Medium
 
@@ -163,7 +194,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 **Required Skills:** Check the Go Documentation and Modules Documentation below to get an understanding of how to create new/custom modules. The knowledge of Machine Learning & NLP Based Models like text2vec, word vectors, etc. is important. Medium-advanced knowledge of golang is desired. 
 
-**topics:** Golang, New Feature
+**Topics:** Golang, New Feature
 
 **Difficulty Level:** Hard 
 
@@ -187,7 +218,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 **Required Skills:** Create a new CLI or improve upon the existing CLI to make it more User Friendly, and be able to interact with Weaviate instances (running in the cloud) in a better manner. Medium knowledge of Python required. 
 
-**topics:** Enchantment, New Feature, CMD, CLI, Python
+**Topics:** Enchantment, New Feature, CMD, CLI, Python
 
 **Difficulty Level:** Easy
 
@@ -210,7 +241,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 **Required Skills:** Knowledge about SQL and basic knowledge about Weaviate schemas.
 
-**topics:** SQL
+**Topics:** SQL
 
 **Difficulty Level:** Moderate
 
@@ -232,7 +263,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 **Required Skills:** n/a 
 
-**topics:** Machine Learning, NLP
+**Topics:** Machine Learning, NLP
 
 **Difficulty Level:** Easy, Medium or Hard
 

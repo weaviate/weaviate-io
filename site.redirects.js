@@ -274,6 +274,16 @@ const siteRedirects = {
             to: '/blog/vector-embeddings-explained',
             from: '/blog/2023/01/Vector-Embeddings-Explained'
         },
+
+        // GSOC and GSOD redirects
+        {
+            to: '/google-summer/gsod-summary-22',
+            from: '/resources/gsod-summary'
+        },
+        {
+            to: '/google-summer',
+            from: ['/resources/gsod','/resources/gsoc']
+        },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
