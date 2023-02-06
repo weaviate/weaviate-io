@@ -1,8 +1,8 @@
 ---
-title: Generator - OpenAI
+title: Generative - OpenAI
 sidebar_position: 2
 image: og/docs/modules.jpg
-# tags: ['qna', 'qna-openai', 'transformers', 'openai']
+# tags: ['generative', 'transformers', 'openai']
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## In short
 
-* The OpenAI Generator module is a Weaviate module for generating responses based on the data stored in your Weaviate instance.
+* The Generative OpenAI module is a Weaviate module for generating responses based on the data stored in your Weaviate instance.
 * The module adds an `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries
 * Added in Weaviate `v1.18.0`
 
