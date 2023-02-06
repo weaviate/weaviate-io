@@ -38,9 +38,9 @@ Custom HNSW implementation in Weaviate references:
 More information:
 
 - [Weaviate, an ANN Database with CRUD support – DB-Engines.com](https://db-engines.com/en/blog_post/87) ⬅️ best resource on the topic
-- [Weaviate's HNSW implementation in the docs)[/developers/weaviate/concepts/vector-index.md#hnsw)
+- [Weaviate's HNSW implementation in the docs](/developers/weaviate/concepts/vector-index.md#hnsw)
 
-_Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here)[/developers/weaviate/vector-index/)_
+_Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here](/developers/weaviate/vector-index/)_
 
 ## Q: Are all ANN algorithms potential candidates to become an indexation plugin in Weaviate?
 
@@ -94,7 +94,7 @@ A: Because you are probably one of the first that needs one! Ping us [here on Gi
 
 ## Q: How to deal with custom terminology?
 
-A: Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here)[/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
+A: Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
 
 ## Q: How can you index data near-realtime without losing semantic meaning?
 
@@ -208,7 +208,7 @@ A: The UUID must be presented as a string matching the [Canonical Textual repres
 
 ## Q: What is the best way to iterate through objects? Can I do paginated API calls? 
 
-A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's)[/developers/weaviate/api/graphql/filters.md#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
+A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's](/developers/weaviate/api/graphql/filters.md#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
 
 ## Q: What happens when the weaviate docker container restarts? Is my data in the weaviate database lost?
 
