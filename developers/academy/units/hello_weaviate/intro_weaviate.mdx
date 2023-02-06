@@ -23,8 +23,6 @@ And that is **the** codebase, regardless of *how* you use it. So whether you run
 
 It also means that your knowledge about Weaviate is fungible, between local, cloud or managed instances of Weaviate. So anything you learn here about Weaviate using WCS will be equally applicable to running it locally, and vice versa. 😉
 
-<Quiz questions={weaviateOpenSource} />
-
 ### Vector search engine
 
 Many of you might know what a vector search engine is, but let's cover it briefly. 
@@ -40,6 +38,8 @@ ADD VECTOR SEARCH EXAMPLE HERE, PREFERABLY INTERACTIVE
 :::
 
 Vector searches are also referred to as "semantic searches", because they return results based on similarity of meaning (therefore "semantic").
+
+<Quiz questions={weaviateOpenSource} />
 
 <Quiz questions={vectorSearchDefinition} />
 
@@ -73,8 +73,6 @@ As a result, it is paramount that the right model for the job is chosen. Or, at 
 
 And to help our users leverage the best model for them, Weaviate is built to be compatible with a huge number of vectorization models and services. Our courses will also cover different ways to configure Weaviate so that you are using your preferred model and method in the way that suits your goals and needs.
 
-<Quiz questions={vectorizationAndML} />
-
 ### Indexing
 
 Traditional databases include an index of the constituent data, typically called an "inverted index", where data is organized based on the constituent components (such as words) for speedy lookup. 
@@ -85,8 +83,6 @@ Weaviate uses a technique called "approximate nearest neighbor" (ANN) algorithm 
 
 You will learn about these aspects throughout the course, including the *HNSW* index which is Weaviate's primary vector index type.
 
-<Quiz questions={weaviateIndexing} />
-
 ### Going to production
 
 Vector databases often need to scale horizontally and vertically. The scale of vector databases can expand into billions of data objects, thus requiring indexing and retrieval of billions of vectors to be retrievable by many concurrent users. 
@@ -94,6 +90,10 @@ Vector databases often need to scale horizontally and vertically. The scale of v
 We appreciate that this presents additional and very different challenges to the data science aspect of vector search. For this reason, we are building units related to taking your Weaviate instance all the way to production.  
 
 All things related to taking Weaviate to production, such as authentication and authorization, backups, monitoring, replication and more will be covered in these units. 
+
+<Quiz questions={vectorizationAndML} />
+
+<Quiz questions={weaviateIndexing} />
 
 ## What else can Weaviate do?
 
