@@ -72,9 +72,7 @@ You may see this error if you try to create a class that already exists in your 
 <details>
   <summary>Confirm schema creation</summary>
 
-Let's pause here to check that our schema creation went as expected. We will use a RESTful endpoint to do this.
-
-To confirm successful schema creation, navigate to the [`schema` endpoint](../api/rest/schema.md) to check the Weaviate schema (replace with your actual endpoint):
+After you have added the class to the schema, you can confirm that it has been created by visiting the [`schema` endpoint](../api/rest/schema.md). You can inspect the Weaviate schema here (replace the URL with your actual endpoint):
 
 ```
 https://some-endpoint.weaviate.network/v1/schema  
@@ -94,7 +92,7 @@ You should see:
 }
 ```
 
-To indicate that the `Question` class has been added to the schema. 
+Where the schema should indicate that the `Question` class has been added. 
 
 :::note REST & GraphQL in Weaviate
 Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API endpoints can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
