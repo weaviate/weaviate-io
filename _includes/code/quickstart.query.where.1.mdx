@@ -15,8 +15,8 @@ TBC
 import weaviate
 import json
 
-client  = weaviate.Client(
-    url="http://localhost:8080",
+client = weaviate.Client(
+    url="https://some-endpoint.semi.network",
     additional_headers={
         'X-OpenAI-Api-Key': api_tkn
     }
