@@ -101,7 +101,7 @@ const client = weaviate.client({
 
 ## Custom headers
 
-You can pass custom headers to the client, which are added to the initialization of the client in your JavaScript script: 
+You can pass custom headers to the client, which are added at initialization:
 
 ```js
 const client = weaviate.client({
