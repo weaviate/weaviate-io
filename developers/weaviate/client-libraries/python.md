@@ -26,13 +26,13 @@ client = weaviate.Client("http://localhost:8080") # or another location where yo
 client.schema.get() # get the full schema as example
 ```
 
-### Authentication
+## Authentication
 
 import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="Python"/>
 
-#### Resource Owner Password flow
+### Resource Owner Password flow
 
 import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
 
@@ -51,7 +51,7 @@ resource_owner_config = weaviate.AuthClientPassword(
 client = weaviate.Client("https://localhost:8080", auth_client_secret=resource_owner_config)
 ```
 
-#### Client credentials flow
+### Client credentials flow
 
 import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
 
@@ -69,7 +69,7 @@ client_credentials_config = weaviate.AuthClientCredentials(
 client = weaviate.Client("https://localhost:8080", auth_client_secret=client_credentials_config)
 ```
 
-#### Bearer token 
+### Refresh Token flow
 
 import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
 
