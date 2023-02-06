@@ -1,5 +1,5 @@
 ---
-title: Generative - OpenAI
+title: Generative Search - OpenAI
 sidebar_position: 2
 image: og/docs/modules.jpg
 # tags: ['generative', 'transformers', 'openai']
@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 
 * The Generative OpenAI module is a Weaviate module for generating responses based on the data stored in your Weaviate instance.
 * The module adds an `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries
-* Added in Weaviate `v1.18.0`
+* Added in Weaviate `v1.17.3`
 
 # Introduction
 
@@ -116,7 +116,7 @@ additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++c
 
 OpenAI has one model available to generate answers based on the prompt.
 
-* [davinci 002](https://beta.openai.com/docs/engines/davinci)
+* [davinci 003](https://beta.openai.com/docs/engines/davinci)
 
 # More resources
 
