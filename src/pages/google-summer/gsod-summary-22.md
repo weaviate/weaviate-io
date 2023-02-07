@@ -1,6 +1,6 @@
 ---
 title: Google Season of Docs 2022 - Summary
-# og: /img/og/og-gsod.png
+og: /img/og/google-summmer/gsod.jpg
 ---
 
 # Google Summer of Docs – Project 2022
