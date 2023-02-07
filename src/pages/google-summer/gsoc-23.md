@@ -7,7 +7,7 @@ og: /img/og/google-summmer/gsoc.jpg
 
 Are you looking for a challenge in the summer? Apply for Google Summer of Code, learn about Open Source development and contribute to Weaviate!
 
-Read more about the program and apply at the [Google Summer of Code website](https://summerofcode.withgoogle.com/).
+Read more about the program and [apply below](#how-to-register).
 
 ## About Weaviate
 
@@ -27,7 +27,7 @@ You can also join our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt
 
 Don't hesitate to contact us for questions about the challenge and the Open Source project Weaviate.
 
-### What we value
+## What we value
 
 We value initiative, creativity, and motivation. To show your initiative, creativity, and motivation, add your ideas on how you would approach this challenge to your submission. Please also mention your previous projects (if any) and which technologies and tools you are comfortable with. In addition, don't forget what you want to learn during the Summer of Code competition, both in terms of technology and other (soft) experiences.
 
@@ -61,215 +61,186 @@ We are happy to announce a great pool of mentors this year. Depending on the sub
 * [Joon-Pill Hwang](https://www.linkedin.com/in/jphwang/)
 * [Stefan Bogdan](https://www.linkedin.com/in/stefan-bogdan/)
 * [Marcin Antas](https://www.linkedin.com/in/antasmarcin/)
+* [Dirk Kulawiak](https://www.linkedin.com/in/dirk-kulawiak/)
+
 
 ## Project Ideas
 
-### Project 1 - Embedded editable and executable code examples
+### 1. A new demo (e.g. Jupyter notebook) showcasing Weaviate
 
-**Project Description**: Weaviate's documentation website is built with Docusaurs (which is React-based). We are looking for a way to embed executable and editable code examples for Python, Java, JavaScript and Go.
+**Project Description:** Want to build a cool, new demo app to showcase powers of deep learning models? This is your chance!
 
-Currently, all our code examples are static, which allows our community to copy and paste any code sample. However, it would be great, if they could edit the code examples directly on our website and execute them there. This would be very useful to test out what would happen if x,y,z changed. i.e. we could have an example that show how to sort results, the user could run the embedded code, see the results, then change some of the parameters and see how the result changes.
+Clear, useful, and inspiring examples are essential for helping new users understand a software library, and Weaviate is no exception. In this project, you will create a working demo app using Weaviate, along with a tutorial or explanation to accompany it.
 
-(Optional) we could also look into embedding GraphQL code examples. Currently, we send our community to a Weaviate Console, which contains a built-in GUI to execute GraphQL queries. But it would be great if we could embed this directly in the docs.
+You can do this by any means you see fit, with a dataset of your choice (e.g. from Kaggle.com or https://paperswithcode.com/datasets. We encourage you to be creative and have fun with this project.
 
-:::info
-Note, we could use 3rd party tools that provide ability to execute embedded code examples.
-:::
+The demo app is expected to be developed in Python or JavaScript, but we are open to proposals in other languages as well. 
 
-**Required Skills:** A good grasp of React and JavaScript, with ability to create reusable components. A light understanding of Python, Java and Go - to be able to test code examples.
+This project is a great opportunity to gain hands-on experience, and should be suitable even for those new to Weaviate.
 
-An understanding of how client-side applications work and how to work with embedded code examples.
+There are opportunities to build demo apps that will stand out incorporating one of many new cutting-edge Weaviate modules. For example, our [`ref2vec`](/developers/weaviate/modules/retriever-vectorizer-modules/ref2vec-centroid.md), ['text2vec-openai'](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md), ['text2vec-cohere'](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere.md) or ['qna-openai`](/developers/weaviate/modules/reader-generator-modules/qna-openai.md) modules are relatively new and could be used to create a demo app that is unique and exciting.
 
-**Topics:** React, Python, JavaScript, GraphQL, Java, Go, Embedded code
+**Required Skills:** Some experience with Python (or another appropriate language), git + GitHub, and conceptual familiarity with vectors in machine learning context. Ability to work independently and communicate clearly.
 
-**Difficulty Level:** Medium
-
-**Expected Length**: 175 Hours
-
-**Mentors**: Sebastian Witalec, JP Hwang, Saurabh Rai
-
-**Expected outcome:** A new branch on weaviate/weaviate-io with a working PoC, with examples for each programming language, together with a detailed documentation on how to use it.
-
-
-## Old topics
-
-
-### 1. Make a new multi-model example with Weaviate (e.g. images and text), using the CLIP model or a new multi-modal ML model.
-
-**Project Description**: Weaviate is a vector search engine that is completely modularized. The Core of Weaviate, without any modules attached, is a pure vector-native database and search engine. The functionality of the vector-native database can be enriched by modules. One or more modules can be attached, for example to *vectorize* data or other functionalities like *question answering*. The goal of this project is to make a new example using one of Weaviate's multi-modal modules. For example, you can make a tutorial using a dataset that combines image and text. 
-
-**Required Skills:** The ability to understand Weaviate’s Core and its vector search. Understanding of multi-modal ML Models. Medium advanced knowledge of Python. Basic understanding of Docker and docker compose (containerization). Good to have basic understanding of ML and NLP, not mandatory. 
-
-**Topics:** Python, New Feature, Machine Learning, NLP 
+**topics:** Python, JavaScript, Machine Learning, Demo
 
 **Difficulty Level:** Easy
 
 **Expected Length**: 175 Hours
 
-**Mentors**: Laura Ham, Saurabh Rai, Bob van Luijt, Stefan Bogdan
+**Mentors**: JP Hwang, Stefan Bogdan
 
-**Expected outcome:** A new repository with a new Weaviate example. There should be a multi-modal dataset used, together with one of Weaviate's multi-modal modules. There should be a detailed explanation or tutorial (may be in Google Colab) to how to use the code.
-
-**Documentation:**
-
-* [Developers · Weaviate Documentation](/developers/weaviate/)  
-* [Modules · Weaviate Documentation](/developers/weaviate/modules/)  
-* [CLIP · Weaviate Documentation](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip)
-
----
-
-### 2. Any new demo (e.g. python notebook) that can be integrated into our website/examples etc.
-
-**Project Description:** If you're new to Weaviate (or any other new piece of software), people are always very helped by looking at examples. Example datasets loaded in Weaviate, with example queries, are a perfect start for a Weaviate-newbie. So we can't get enough of these demos! You create a Google Colab notebook, and/or a page on Weaviate's website and/or write a blog post with a new demo. You can use a dataset of you're liking, for example from Kaggle.com or https://paperswithcode.com/datasets. 
-If you're new to ML and Weaviate, but are already a bit familiar with Python, then this project is perfect for you!
-
-**Required Skills:** It’s a beginner-level project. Ability to understand Weaviate’s Core and its vector search. Being proficient in Python and being able to experiment with new features to add new example using either an existing module or via a new module.
-
-**Topics:** Python, New Feature, Machine Learning, Demo
-
-**Difficulty Level:** Easy
-
-**Expected Length**: 175 Hours
-
-**Mentors**: Laura Ham, Saurabh Rai, Donna van der Rijst, Stefan Bogdan
-
-**Expected outcome:** A new repository with a new Weaviate example. There should be a detailed explanation or tutorial (may be in Google Colab) to how to use the code. You will also learn how to adapt Weaviate's documentation website, so you can document your code and present a tutorial on how to use it.
+**Expected outcome:** A new repository with a new Weaviate example. A detailed explanation or tutorial (e.g. Jupyter Notebook) on how the code works as well as how to use it. You will also learn how to work with Weaviate's documentation website, so you can add a blog post or tutorial on the topic.
 
 **Documentation:**
 
-* [Awesome Weaviate · GitHub](https://github.com/weaviate/awesome-weaviate)
+* [Awesome Weaviate · GitHub](https://github.com/weaviate/awesome-weaviate) 
+* [Quickstart · Weaviate](/developers/weaviate/quickstart/index.md)
+* [Tutorials · Weaviate](/developers/weaviate/tutorials/index.md)
+* [Blog · Weaviate](/blog/)
 
 ---
 
-### 3. Make Weaviate work on the edge. (e.g. running Weaviate in the browser using a weaviate.js)
+### 2. A new Django app (or a popular CMS integration) for Weaviate
 
-**Project Description:** Weaviate is a vector search engine and database that runs in a dockerized container. This project is about adapting Weaviate such that it is able to run it on the edge (e.g. in the browser using a weaviate.js).  
+**Project Description:** We want to show how we can give a web app superpowers with vector search.
 
-**Required Skills:** For this project, you'll need to be familiar with programming languages like JavaScript. Being able to work with Docker is a pre. 
+And we think combining Django with Weaviate is a great way of doing this. Django is a popular Python framework for creating web applications. It's easy to use, and has a large community of developers.
 
-**Topics:** Web/Fronted, New Feature, Dashboard
+You will create a new Django app that showcases what is possible by using a state-of-the-art vector database. You can do this by any means you see fit, with a dataset of your choice (e.g. from Kaggle.com or https://paperswithcode.com/datasets. We encourage you to be creative and have fun with this project.
+
+You will also write a tutorial or blog on how you built the app, so as to help other developers get started with Weaviate and Django.
+
+We are open to your proposals, whether it's an API-only app using Django REST, or a full-fledged web app with Django templates or even a frontend framework like React.
+
+This project is a great opportunity to gain hands-on experience, and should be suitable even for those new to Weaviate. It may be beneficial if you are already familiar with the Django framework, and with web development.
+
+**Required Skills:** Some experience with Python (and preferably Django), git + GitHub, and conceptual familiarity with vectors in machine learning context. Ability to work independently and communicate clearly.
+
+**topics:** Python, Machine Learning, Demo, Web Development
 
 **Difficulty Level:** Medium
 
 **Expected Length**: 350 Hours
 
-**Mentors**: Laura Ham, Saurabh Rai, Sila Uygun, Marcin Antas
+**Mentors**: JP Hwang, Stefan Bogdan
 
-**Expected outcome:** A weaviate.js module that enables Weaviate usage as module in a browser.
+**Expected outcome:** A new repository with the new Django + Weaviate app, as well as a working deployed instance. A detailed explanation or tutorial on how the code works as well as how to use it. You will also learn how to work with Weaviate's documentation website, so you can add a blog post or tutorial on the topic.
 
-**Documentation**
+**Documentation:**
 
-* [JavaScript · Weaviate Documentation](/developers/weaviate/client-libraries/javascript)
-* [Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/cli)
+* [Quickstart · Weaviate](/developers/weaviate/quickstart/index.md)
+* [Tutorials · Weaviate](/developers/weaviate/tutorials/index.md)
+* [Blog · Weaviate](/blog/)
+* [Django documentation](https://docs.djangoproject.com/)
 
 ---
 
-### 4. Make a new Weaviate module (e.g. [gene2vec](https://github.com/jingcheng-du/Gene2vec#:~:text=Gene2Vec%20is%20a%20distributed%20representation,sets%20from%20the%20GEO%20databases.), or a new type of ML model) 
+### 3. Research (& implement) best practice for interactive code examples (in Python and JavaScript, possibly also Go and Java)
 
-**Project Description:** Weaviate is a vector search engine that is completely modularized. The Core of Weaviate, without any modules attached, is a pure vector-native database and search engine. The functionality of the vector-native database can be enriched by modules. One or more modules can be attached, for example to vectorize data or other functionalities like question answering. The goal of this project is to make a new module for Weaviate. Think about a gene2vec model or a text2text generation like summarization model).  See [here](/developers/weaviate/modules/other-modules/custom-modules#how-to-build-and-use-a-custom-module) for more details.
-You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you can learn along the way
+**Project Description:** Help our users learn how to make your documentation stand out by adding interactive code examples that engage users and enhance their learning experience.
 
-**Required Skills:**  Creating a new type of weaviate module by using our Weaviate.go module. Basic knowledge of golang is required.
+As part of this project, you will research and evaluate the best ways to make our code examples interactive. By doing so, you'll not only improve the user experience with Weaviate, but also gain valuable knowledge in the fields of web development and tech education.
 
-**Topics:** Golang
+Your research will include reviewing and comparing existing solutions such as [CodeSandbox](https://codesandbox.io/) and [CodePen](https://codepen.io/). You will then summarize your findings and share them with the team. Depending on your progress, you may also develop a proof of concept or implement a solution directly on our website.
 
-**Difficulty Level:** Medium
+Our primary focus will be on providing an outstanding user experience for our Python users through live code examples. However, we also want to support our JavaScript, Go, and Java users, so incorporating support for these languages is a potential stretch goal.
+
+**Required Skills:** Some experience in web development, git + GitHub. Ability to work independently and communicate clearly.
+
+**topics:** Web development, demo, documentation 
+
+**Difficulty Level:** Easy
 
 **Expected Length**: 175 Hours
 
-**Mentors**: Laura Ham, Saurabh Rai, Etienne Dilocker, Marcin Antas
+**Mentors**: JP Hwang, Sebastian Witalec
+
+**Expected outcome:** A summary report on the findings, and a proposal for how to implement the solution. You may also create a proof of concept for how to create and then share code examples.
+
+---
+
+### 4. A Weaviate data importer app
+
+**Project Description:** A common challenge with database software like Weaviate is the effort required to import data. We want to change that.
+
+In this project, you will build a user-friendly web application that streamlines the data import process for Weaviate. You'll enable users to effortlessly add data from various sources, including CSV and JSON files, and potentially multimedia sources like images. Additionally, the app should facilitate the import of pre-processed datasets into a Weaviate instance.
+
+Your focus should be on building a fast and efficient import process that delivers a delightful user experience. By doing so, you'll help make Weaviate accessible to a wider audience and gain hands-on experience in web development, data formats, and Weaviate's data structures.
+
+**Required Skills:** Some experience with full-stack development, git + GitHub. Ability to work independently and communicate clearly.
+
+**topics:** Full-stack development, app development
+
+**Difficulty Level:** Medium
+
+**Expected Length**: 350 Hours
+
+**Mentors**: JP Hwang, TBD
+
+**Expected outcome:** A new repository with the app, as well as a working deployed instance. A detailed explanation or tutorial on how the code works as well as how to use it. You will also learn how to work with Weaviate's documentation website, so you can add a blog post or tutorial on the topic.
+
+---
+
+### 5. Build a new Weaviate module
+
+**Project Description:** Weaviate is a modularized vector search engine that can be extended with various modules. For example, modules can be added to *vectorize* data or provide additional functionalities such as *question answering*.
+
+In this project, you will contribute to the growing library of Weaviate [modules](/developers/weaviate/modules/) by developing a new module. We have some suggestions in mind, like a module that can handle audio vectorization, but we're also open to your unique ideas.
+
+The module will be written in Go, and you'll receive guidance and support from Etienne and Marcin, who are experts in the language. 
+
+This is an opportunity to gain hands-on experience with Go and contribute to the development of Weaviate.
+
+A great example of a module would be – to create a scalable inference container (for example img2vec)using [Ray](https://docs.ray.io/en/latest/index.html)
+
+**Required Skills:**  Creating a new Weaviate module in Go. Basic knowledge of golang is required.
+
+**topics:** Golang
+
+**Difficulty Level:** Medium, New Feature
+
+**Expected Length**: 350 Hours
+
+**Mentors**: Marcin Antas
 
 **Expected outcome:** A new Weaviate module [code](https://github.com/weaviate/weaviate/tree/master/modules) and [documentation](/developers/weaviate/modules/).
 
-**Documentation:**
-
-* [Gene2vec · GitHub](https://github.com/jingcheng-du/Gene2vec#:~:text=Gene2Vec%20is%20a%20distributed%20representation,sets%20from%20the%20GEO%20databases) 
-
 ---
 
-### 5. Make Weaviate support a new datatype (e.g. videos, or 3D models, etc)
+### 6.  Improve Weaviate Client of choice (Python, Java, JavaScript or Go)
 
-**Project Description:** At the moment, Weaviate is able to store [datatypes](/developers/weaviate/configuration/datatypes) like text and images. The goal of this project is to create a new datatype for Weaviate, like speech, videos or 3D mesh. You'll work in Go.
-You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you can learn along the way. 
+**Project Description**: Weaviate provides a selection of [language clients](/developers/weaviate/client-libraries) (in Python, Java, JavaScript and Go), which allow developers to integrate with Weaviate in the language of their choice.
 
-**Required Skills:** Check the Go Documentation and Modules Documentation below to get an understanding of how to create new/custom modules. The knowledge of Machine Learning & NLP Based Models like text2vec, word vectors, etc. is important. Medium-advanced knowledge of golang is desired. 
+In this project you will work on a selected Weaviate client to help us improve the Development Experience (DX) and help us make it more intuitive to code with it. Plus there is an oportunity to help us implement the batch process to make it work like we have it in the Python client.
 
-**Topics:** Golang, New Feature
+**Required Skills:** A good grasp of the programming language for the selected client JavaScript (Python, Java, JavaScript or Go) and GraphQL, plus basic knowledge of Python.
 
-**Difficulty Level:** Hard 
+**Topics:** Python, JavaScript, GraphQL, Java, Go
 
-**Expected Length**: 350 Hours
-
-**Mentors**: Laura Ham, Saurabh Rai, Etienne Dilocker, Marcin Antas
-
-**Expected outcome:** Code in [Weaviate](https://github.com/weaviate/weaviate) that supports a new datatype.
-
-**Documentation:**
-
-* [Go · Weaviate Documentation](/developers/weaviate/client-libraries/go)
-* [Custom modules · Weaviate Documentation](/developers/weaviate/modules/other-modules/custom-modules)
-* [Modules · Weaviate Documentation](/developers/weaviate/modules/)  
-
----
-
-### 6. Improve the Weaviate CLI (CLI Based Improvements)
-
-**Project Description:** Weaviate has a Command Line Interface (CLI), written in Python. This CLI tool is a text-based interface used to interact with a Weaviate instance by typing direct commands. Using the CLI you can configure a Weaviate instance and import and export a schema and data. Your goal is to improve the functionality of the CLI to improve its UX and for it to be able to use all REST functions through the CLI  (right now this is very limited). You'll work in Python, and will be supported and guided by the current creator of the CLI. 
-
-**Required Skills:** Create a new CLI or improve upon the existing CLI to make it more User Friendly, and be able to interact with Weaviate instances (running in the cloud) in a better manner. Medium knowledge of Python required. 
-
-**Topics:** Enchantment, New Feature, CMD, CLI, Python
-
-**Difficulty Level:** Easy
+**Difficulty Level:** Medium
 
 **Expected Length**: 175 Hours
 
-**Mentors**: Laura Ham, Saurabh Rai, Stefan Bogdan, Bob van Luijt
+**Mentors**: Sebastian Witalec, Dirk, JP Hwang, Saurabh Rai
 
-**Expected outcome:** Extension of the CLI in Python code with a list of functionalities like (but not limited to):
-    * Data schema REST calls
-    * Data REST calls
-
-**Documentation:**
-[Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/cli)
+**Expected outcome:** A new repository with the update client, plus updated documentation for the relevant changes.
 
 ---
-   
-### 7. Create a SQL to Weaviate schema convertor
 
-**Project Description:** Weaviate's schema is suited to represent SQL schemas. The idea is to create a converter from SQL to Weaviate. It might be nice to even integrate an import function based on this schema. Because SQL doesn't have a concept as vector representation or vectorizers. You might want to add an example like WordPress to Weaviate.
-
-**Required Skills:** Knowledge about SQL and basic knowledge about Weaviate schemas.
-
-**Topics:** SQL
-
-**Difficulty Level:** Moderate
-
-**Expected Length**: 40 Hours
-
-**Mentors**: Laura Ham, Saurabh Rai, Stefan Bogdan
-
-**Expected outcome:** A CLI tool (or extension of the Weaviate CLI too) that allows converting SQL schemas into Weaviate schemas.
-
-**Documentation:**
-[Weaviate schema · Weaviate Documentation](/developers/weaviate/api/rest/schema)
-[Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/cli) 
-   
----
-
-### 8. Your Own Idea 
+### 7. Your Own Project Idea 
 
 **Project Description:** If you are an out of the box thinker, and have a great understanding about vector search, and you can contribute in a manner not listed above. Feel free to contact the team on Slack so that we can discuss the possibilities and create that idea. 
 
 **Required Skills:** n/a 
 
-**Topics:** Machine Learning, NLP
+**topics:** Machine Learning, NLP
 
 **Difficulty Level:** Easy, Medium or Hard
 
 **Expected Length**: 175 Hours or 350 hours
 
-**Mentors**: Laura Ham
+**Mentors**: tbd
 
 **Expected outcome:** A new great idea... Surprise us!
 
