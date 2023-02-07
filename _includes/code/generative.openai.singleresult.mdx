@@ -20,7 +20,7 @@ import TabItem from '@theme/TabItem';
         generate(
           singleResult: {
             prompt: """
-            	Describe the following as a Facebook Ad: {summary}
+              Describe the following as a Facebook Ad: {summary}
             """
           }
         ) {
@@ -83,12 +83,12 @@ const client = weaviate.client({
 
 // highlight-start
 // instruction for the generative module
-generatePrompt = '"Describe the following as a Facebook Ad: {summary}"'
+let generatePrompt = '"Describe the following as a Facebook Ad: {summary}"'
 // highlight-end
 
 client.graphql
   .get()
-  .withClassName('Artile')
+  .withClassName('Article')
   .withFields(
     'title summary ' +
     // highlight-next-line
@@ -130,12 +130,12 @@ func main() {
 
   // highlight-start
   // instruction for the generative module
-  generatePrompt = "\"Describe the following as a Facebook Ad: {summary}\""
+  generatePrompt := "\"Describe the following as a Facebook Ad: {content}\""
   // highlight-end
 
   fields := []graphql.Field{
     {Name: "title"},
-    {Name: "summary"},
+    {Name: "content"},
     // highlight-start
     {
       Name: "_additional",
@@ -159,8 +159,7 @@ func main() {
 
   result, err := client.GraphQL().Get().
     WithClassName("Article").
-    // highlight-next-line
-    WithFields(name, fields).
+    WithFields(fields...).
     WithNearText(nearText).
     WithLimit(5).
     Do(ctx)
@@ -178,35 +177,37 @@ func main() {
 ```java
 package technology.semi.weaviate;
 
+import java.util.HashMap;
+import java.util.Map;
 import technology.semi.weaviate.client.Config;
 import technology.semi.weaviate.client.WeaviateClient;
 import technology.semi.weaviate.client.base.Result;
 import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
-import technology.semi.weaviate.client.v1.graphql.query.argument.AskArgument;
+import technology.semi.weaviate.client.v1.graphql.query.argument.NearTextArgument;
 import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
 
 public class App {
   public static void main(String[] args) {
-    Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-OpenAI-Api-Key", "<THE-KEY>");
-    } };
+    Map<String, String> headers = new HashMap<String, String>() {
+      {put("X-OpenAI-Api-Key", "<THE-KEY>");}
+    };
     Config config = new Config("https", "some-endpoint.weaviate.network", headers);
     WeaviateClient client = new WeaviateClient(config);
 
     // highlight-start
     // instruction for the generative module
-    generatePrompt = '"Describe the following as a Facebook Ad: {summary}"'
+    String generatePrompt = "\"Describe the following as a Facebook Ad: {content}\""
     // highlight-end
 
     Field title = Field.builder().name("title").build();
-    Field summary = Field.builder().name("summary").build();
+    Field content = Field.builder().name("content").build();
 
     // highlight-start
     Field generate = Field.builder()
       .name("generate(singleResult:{ prompt: " + generatePrompt + " } )")
       .fields(new Field[]{ Field.builder().name("singleResult").build() })
       .build();
-    Field generate = Field.builder()
+    Field _additional = Field.builder()
       .name("_additional")
       .fields(new Field[]{ generate })
       .build();
@@ -218,8 +219,7 @@ public class App {
 
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName("Article")
-      // highlight-next-line
-      .withFields(title, summary, generate)
+      .withFields(title, content, _additional)
       .withNearText(nearText)
       .withLimit(5)
       .run();
