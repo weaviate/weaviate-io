@@ -10,14 +10,14 @@ import Badges from '/_includes/badges.mdx';
 
 ## In short
 
-* The Generative OpenAI module is a Weaviate module for generating responses based on the data stored in your Weaviate instance.
+* The Generative OpenAI (`generative-openai`) module is a Weaviate module for generating responses based on the data stored in your Weaviate instance.
 * The module can generate a response for each returned object or a single response for a group of objects.
 * The module adds an `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries
 * Added in Weaviate `v1.17.3`
 
 ## Introduction
 
-​The Generative OpenAI module is a Weaviate module for generating data based on responses stored in Weaviate.
+`generative-openai` is a Weaviate module for generating data based on responses stored in Weaviate.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
@@ -29,7 +29,7 @@ You can use the Generative OpenAI module with any other modules. For example, yo
 
 ### Generate response for single or group
 
-The generate module can provide results for:
+The generative module can provide results for:
 * each returned object - `singleResult{ prompt }`
 * the group of all results together – `groupedResult{ task }`
 
@@ -37,15 +37,15 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 ## OpenAI API key
 
-The Generative OpenAI module requires an `OpenAI API key`.
+`generative-openai` requires an `OpenAI API key` to perform the generation task.
 
 :::tip
-You can request an OpenAI API key at [openai.com/api](https://openai.com/api/).
+You can request an `OpenAI API key` at [openai.com/api](https://openai.com/api/).
 :::
 
 ### Providing the key to Weaviate
 
-You can provide your OpenAI API key in two ways:
+You can provide your `OpenAI API key` in two ways:
 
 1. During **configuration** of your docker instance, by adding `OPENAI_APIKEY` under `environment` to your `docker-compose` file, like this:
 
@@ -55,7 +55,7 @@ You can provide your OpenAI API key in two ways:
     ...
   ```
 
-2. (recommended) At run-time, by providing `"X-OpenAI-Api-Key"` to the Weaviate client, like this:
+2. (recommended) At **run-time**, by providing `"X-OpenAI-Api-Key"` to the Weaviate client, like this:
 
 import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 
@@ -167,17 +167,11 @@ import OpenAIGroupedResult from '/_includes/code/generative.openai.groupedresult
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++ask%3A+%7B%0D%0A++++++++question%3A+%22Who+is+the+king+of+the+Netherlands%3F%22%2C%0D%0A++++++++properties%3A+%5B%22summary%22%5D%0D%0A++++++%7D%2C+%0D%0A++++++limit%3A1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_
 additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++certainty%0D%0A++++++++++property%0D%0A++++++++++result%0D%0A++++++++++startPosition%0D%0A++++++++++endPosition%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
 
-### GraphQL response
-
-...
-
 ### Example response
 
-...
-
-## How it works (under the hood)
-
-...
+```
+TODO: add an example response here
+```
 
 ## Additional information
 
