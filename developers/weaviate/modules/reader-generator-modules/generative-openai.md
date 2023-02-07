@@ -35,8 +35,6 @@ The generate module can provide results for:
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 
-<!-- ​The module extents the  `_additional {...}`  property in the​ `Get {...}` query with a `generate {...}` function. -->
-
 ## OpenAI API key
 
 The Generative OpenAI module requires an `OpenAI API key`.
@@ -62,7 +60,6 @@ You can provide your OpenAI API key in two ways:
 import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 
 <ClientKey />
-
 
 ## Enabling the module
 
@@ -116,39 +113,61 @@ services:
 
 ## Schema configuration
 
-<!-- TODO: continue here -->
+The Generative module doesn't require a specific schema configuration.
 
-​In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
+:::note
+You need schema configured to run queries on your data, so that the module can use the results to generate a response.
+:::
 
-The following schema configuration uses the `ada` model.
+<details>
+  <summary>New to Weaviate Schemas?</summary>
 
-```json
-# TBD
-```
+If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers/weaviate/tutorials/schema.md).
 
-## How to use (GraphQL)
+</details>
 
-### GraphQL Ask search
+## How to use
 
-This module extents the  `_additional {...}`  property in the​ `Get {...}` query.
+This module extents the  `_additional {...}` property with a `generate` operator.
 
-This new parameter takes the following arguments:
+`generate` takes the following arguments:
 
 | Field | Data Type | Required | Example value | Description |
 |- |- |- |- |- |
-| `singleResult{ prompt }`  | string | no | `"..."`  | ... |
-| `groupedResult{ task }`  | string | no | `"..."`  | ... |
+| `singleResult{prompt}`  | string | no | `"..."`  | Generates a response for each individual search result |
+| `groupedResult{task}`  | string | no | `"..."`  | Generates a single response for all search results |
+
+:::note
+Currently, you can't provide your OpenAI key in the Weaviate console. Which means that you can't use the `GraphQL` examples with your WCS instances, but if you provide your API key in the docker configuration, then this should work.
+:::
+
+### Examples Single Result
+
+Here is an example of a query where:
+* we run a vector search (with `nearText`) => to find artciles articles about "Italian food"
+* then we ask the generator module => to describe the results as a Facebook ad.
+  * note the inclusion of `{content}`, which indicates which propery contains the relevant content.
+
+import OpenAISingleResult from '/_includes/code/generative.openai.singleresult.mdx';
+
+<OpenAISingleResult/>
+
+### Examples Grouped Result
+
+
+
+### GraphQL Ask search
+
+
 
 ### Example query
 
-import CodeQNAOpenAIAsk from '/_includes/code/generative-openai.ask.mdx';
 
-<CodeQNAOpenAIAsk/>
 
-import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
+<!-- import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++ask%3A+%7B%0D%0A++++++++question%3A+%22Who+is+the+king+of+the+Netherlands%3F%22%2C%0D%0A++++++++properties%3A+%5B%22summary%22%5D%0D%0A++++++%7D%2C+%0D%0A++++++limit%3A1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_
-additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++certainty%0D%0A++++++++++property%0D%0A++++++++++result%0D%0A++++++++++startPosition%0D%0A++++++++++endPosition%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
+additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++certainty%0D%0A++++++++++property%0D%0A++++++++++result%0D%0A++++++++++startPosition%0D%0A++++++++++endPosition%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
 
 ### GraphQL response
 
