@@ -45,19 +45,95 @@ func GetSchema() {
 
 ## Authentication
 
-Authentication can be added to the configuration of the client as follows:
+import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
+
+<ClientAuthIntro clientName="Go"/>
+
+### Resource Owner Password flow
+
+import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
+
+<ClientAuthFlowResourceOwnerPassword />
 
 ```go
-token := &oauth2.Token{
-    AccessToken:  "<token>",
-    TokenType:   "Bearer",
+cfg, err := weaviate.NewConfig(
+  Host:"weaviate.example.com", 
+  Scheme: "http", 
+  authConfig: auth.ResourceOwnerPasswordFlow{
+    Username: "Your user",
+    Password: "Your password",
+    Scopes: []string{"offline_access"}, // can be nil
+  }
+  headers: nil,
+)
+if err != nil{
+  fmt.Println(err)
 }
-cfg := weaviate.Config{
-    Host:   "weaviate.example.com",
-    Scheme: "https",
-    ConnectionClient: oauth2.NewClient(context.Background(), oauth2.StaticTokenSource(token)),
+client := weaviate.New(*cfg)
+```
+
+### Client Credentials flow
+
+import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
+
+<ClientAuthFlowClientCredentials />
+
+```go
+cfg, err := weaviate.NewConfig(
+  Host:"weaviate.example.com", 
+  Scheme: "http", 
+  authConfig: auth.ClientCredentials{
+    ClientSecret: "your_client_secret", 
+    Scopes: []string{"SomeScope"}
+  }
+  headers: nil,
+)
+if err != nil{
+  fmt.Println(err)
 }
-client := weaviate.New(cfg)
+client := weaviate.New(*cfg)
+```
+
+### Refresh Token flow
+
+import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
+
+<ClientAuthBearerToken />
+
+```go
+cfg, err := weaviate.NewConfig(
+  Host:"weaviate.example.com", 
+  Scheme: "http", 
+  authConfig: auth.BearerToken{
+    AccessToken: "some token",
+    RefreshToken: "other token",
+    ExpiresIn: uint(500)}, // in seconds
+  headers: nil,
+)
+if err != nil{
+  fmt.Println(err)
+}
+client := weaviate.New(*cfg)
+```
+
+## Custom headers 
+
+You can pass custom headers to the client, which are added at initialization:
+
+```go
+cfg, err := weaviate.NewConfig(
+  Host:"weaviate.example.com", 
+  Scheme: "http", 
+  authConfig: nil
+  headers: map[string]string{
+    "header_key1": "value", 
+    "header_key2": "otherValue",
+    },
+)
+if err != nil{
+  fmt.Println(err)
+}
+client := weaviate.New(*cfg)
 ```
 
 ## References

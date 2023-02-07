@@ -69,6 +69,37 @@ Weaviate will infer any further schema information from the given data. If you w
 You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions. 
 :::
 
+<details>
+  <summary>Confirm schema creation</summary>
+
+After you have added the class to the schema, you can confirm that it has been created by visiting the [`schema` endpoint](../api/rest/schema.md). You can inspect the Weaviate schema here (replace the URL with your actual endpoint):
+
+```
+https://some-endpoint.weaviate.network/v1/schema  
+```
+
+You should see:
+
+```json
+{
+    "classes": [
+        {
+            "class": "Question",
+            ...  // truncated additional information here
+            "vectorizer": "text2vec-openai"
+        }
+    ]
+}
+```
+
+Where the schema should indicate that the `Question` class has been added. 
+
+:::note REST & GraphQL in Weaviate
+Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API endpoints can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
+:::
+
+</details>
+
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <CautionSchemaDeleteClass />
@@ -105,45 +136,16 @@ import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoe
 
 And that should have populated Weaviate with the data, including corresponding vectors!
 
+:::info Can I specify my own vectors?
+Yes! You can bring your own vectors and pass them to Weaviate directly. See [this reference](../api/rest/objects.md#create-a-data-object-with-a-custom-vector) for more information.
+:::
+
 Note again that we did not provide any vectors to Weaviate. That's all managed by Weaviate, which calls the inference API for you and obtains a vector corresponding to your object at import time. 
 
-:::info Can I specify my own vectors?
-Yes! You can bring your own vectors and pass them to Weaviate directly.
-:::
+<details>
+  <summary>Confirm data import</summary>
 
-## Review import
-
-Let's pause here to check that our data import went as expected, and show you a couple of RESTful endpoints.
-
-:::info REST & GraphQL in Weaviate
-Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API endpoints can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
-:::
-
-### Confirm schema creation
-
-Navigate to the [`schema` endpoint](../api/rest/schema.md) to check the Weaviate schema (replace with your actual endpoint):
-
-```
-https://some-endpoint.weaviate.network/v1/schema  
-```
-
-You should see:
-
-```json
-{
-    "classes": [
-        {
-            "class": "Question",
-            ...  // truncated additional information here
-            "vectorizer": "text2vec-openai"
-        }
-    ]
-}
-```
-
-### Confirm data import
-
-Navigate to the [`objects` endpoint](../api/rest/objects.md) to check that all objects have been imported (replace with your actual endpoint):
+To confirm successful data import, navigate to the [`objects` endpoint](../api/rest/objects.md) to check that all objects have been imported (replace with your actual endpoint):
 
 ```
 https://some-endpoint.weaviate.network/v1/objects
@@ -161,7 +163,9 @@ You should see:
 }
 ```
 
-If you see that the schema includes the `Question` class, and `10` total objects, you've successfully imported the data. 
+Where you should be able to confirm that you have imported all `10` objects. 
+
+</details>
 
 ## Query Weaviate
 

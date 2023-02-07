@@ -1,6 +1,6 @@
 ---
 title: Google Summer of Code 2022
-# og: /img/og/og-gsoc.jpg
+og: /img/og/google-summmer/gsoc.jpg
 ---
 
 # Contribute to Weaviate this summer during Google Summer of Code
