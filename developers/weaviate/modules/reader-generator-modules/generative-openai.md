@@ -132,7 +132,7 @@ This module extents the  `_additional {...}` property with a `generate` operator
 
 `generate` takes the following arguments:
 
-| Field | Data Type | Required | Example value | Description |
+| Field | Data Type | Required | Description |
 |- |- |- |- |- |
 | `singleResult{prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result, note that you need to set the property to include in the prompt |
 | `groupedResult{task}`  | string | no | `Explain why these results are similar to eachother`  | Generates a single response for all search results |
