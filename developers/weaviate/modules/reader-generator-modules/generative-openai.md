@@ -145,7 +145,7 @@ Currently, you can't provide your OpenAI key in the Weaviate console. Which mean
 
 Here is an example of a query where:
 * we run a vector search (with `nearText`) => to find artciles articles about "Italian food"
-* then we ask the generator module => to describe the results as a Facebook ad.
+* then we ask the generator module => to describe each result as a Facebook ad.
   * note the inclusion of `{content}`, which indicates which propery contains the relevant content.
 
 import OpenAISingleResult from '/_includes/code/generative.openai.singleresult.mdx';
@@ -154,15 +154,13 @@ import OpenAISingleResult from '/_includes/code/generative.openai.singleresult.m
 
 ### Examples Grouped Result
 
+Here is an example of a query where:
+* we run a vector search (with `nearText`) => to find publications about finance.
+* then we ask the generator module => to explain why these articles are about finance.
 
+import OpenAIGroupedResult from '/_includes/code/generative.openai.groupedresult.mdx';
 
-### GraphQL Ask search
-
-
-
-### Example query
-
-
+<OpenAIGroupedResult />
 
 <!-- import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
