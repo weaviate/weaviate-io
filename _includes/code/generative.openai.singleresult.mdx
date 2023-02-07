@@ -14,13 +14,13 @@ import TabItem from '@theme/TabItem';
       limit: 1
     ) {
       title
-      content
+      summary
       _additional {
         # highlight-start
         generate(
           singleResult: {
             prompt: """
-            	Describe the following as a Facebook Ad: {content}
+            	Describe the following as a Facebook Ad: {summary}
             """
           }
         ) {
@@ -49,12 +49,12 @@ client  = weaviate.Client(
 
 # highlight-start
 # instruction for the generative module
-generatePrompt = '"Describe the following as a Facebook Ad: {content}"'
+generatePrompt = '"Describe the following as a Facebook Ad: {summary}"'
 # highlight-end
 
 result = (
   client.query
-  .get("Article", ["title", "content"])
+  .get("Article", ["title", "summary"])
   # highlight-start
   .with_additional(
     "generate(singleResult:{ prompt: " + generatePrompt + " }) { singleResult }"
@@ -83,14 +83,14 @@ const client = weaviate.client({
 
 // highlight-start
 // instruction for the generative module
-generatePrompt = '"Describe the following as a Facebook Ad: {content}"'
+generatePrompt = '"Describe the following as a Facebook Ad: {summary}"'
 // highlight-end
 
 client.graphql
   .get()
   .withClassName('Artile')
   .withFields(
-    'title content ' +
+    'title summary ' +
     // highlight-next-line
     `_additional {generate(singleResult:{ prompt: ${generatePrompt} }) { singleResult }}`
   )
@@ -130,12 +130,12 @@ func main() {
 
   // highlight-start
   // instruction for the generative module
-  generatePrompt = "\"Describe the following as a Facebook Ad: {content}\""
+  generatePrompt = "\"Describe the following as a Facebook Ad: {summary}\""
   // highlight-end
 
   fields := []graphql.Field{
     {Name: "title"},
-    {Name: "content"},
+    {Name: "summary"},
     // highlight-start
     {
       Name: "_additional",
@@ -195,11 +195,11 @@ public class App {
 
     // highlight-start
     // instruction for the generative module
-    generatePrompt = '"Describe the following as a Facebook Ad: {content}"'
+    generatePrompt = '"Describe the following as a Facebook Ad: {summary}"'
     // highlight-end
 
     Field title = Field.builder().name("title").build();
-    Field content = Field.builder().name("content").build();
+    Field summary = Field.builder().name("summary").build();
 
     // highlight-start
     Field generate = Field.builder()
@@ -219,7 +219,7 @@ public class App {
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName("Article")
       // highlight-next-line
-      .withFields(title, content, generate)
+      .withFields(title, summary, generate)
       .withNearText(nearText)
       .withLimit(5)
       .run();
@@ -247,13 +247,13 @@ $ echo '{
         limit: 5
       ) {
         title
-        content
+        summary
         # highlight-start
         _additional {
           generate(
             singleResult: {
               prompt: """
-                Describe the following as a Facebook Ad: {content}
+                Describe the following as a Facebook Ad: {summary}
               """
             }
           ) {

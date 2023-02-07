@@ -134,12 +134,56 @@ This module extents the  `_additional {...}` property with a `generate` operator
 
 | Field | Data Type | Required | Example value | Description |
 |- |- |- |- |- |
-| `singleResult{prompt}`  | string | no | `"..."`  | Generates a response for each individual search result |
-| `groupedResult{task}`  | string | no | `"..."`  | Generates a single response for all search results |
+| `singleResult{prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result, note that you need to set the property to include in the prompt |
+| `groupedResult{task}`  | string | no | `Explain why these results are similar to eachother`  | Generates a single response for all search results |
 
 :::note
 Currently, you can't provide your OpenAI key in the Weaviate console. Which means that you can't use the `GraphQL` examples with your WCS instances, but if you provide your API key in the docker configuration, then this should work.
 :::
+
+### Example of properties in the prompt 
+
+​When piping the results to the prompt, the results from Weaviate must be added to the prompt. If you don't add any results, Weaviate will throw an error.
+
+​For example, if your schema looks like this:
+
+```graphql
+{
+  Document {
+    title   # property 'title' of the Document class
+    content # property 'content' of the Document class
+  }
+}
+```
+
+You can add both `title` and `content` to the prompt by encapsulating them with curly brackets.
+
+For example:
+
+```graphql
+{
+  Get {
+    Document {
+      title
+      content
+      _additional {
+        generate(
+          singleResult: {
+            prompt: """
+            Summarize the following in a tweet:
+            
+            {title} - {content}
+            """
+          }
+        ) {
+          singleResult
+          error
+        }
+      }
+    }
+  }
+}
+```
 
 ### Examples Single Result
 
@@ -151,6 +195,29 @@ Here is an example of a query where:
 import OpenAISingleResult from '/_includes/code/generative.openai.singleresult.mdx';
 
 <OpenAISingleResult/>
+
+### Example response Single Result
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "_additional": {
+            "generate": {
+              "error": null,
+              "singleResult": "This Facebook Ad will explore the fascinating history of Italian food and how it has evolved over time. Learn from Dr Eva Del Soldato and Diego Zancani, two experts in Italian food history, about how even the emoji for pasta isn't just pasta -- it's a steaming plate of spaghetti heaped with tomato sauce on top. Discover how Italy's complex history has shaped the Italian food we know and love today."
+            }
+          },
+          "summary": "Even the emoji for pasta isn't just pasta -- it's a steaming plate of spaghetti heaped with tomato sauce on top. But while today we think of tomatoes as inextricably linked to Italian food, that hasn't always been the case. \"People tend to think Italian food was always as it is now -- that Dante was eating pizza,\" says Dr Eva Del Soldato , associate professor of romance languages at the University of Pennsylvania, who leads courses on Italian food history. In fact, she says, Italy's complex history -- it wasn't unified until 1861 -- means that what we think of Italian food is, for the most part, a relatively modern concept. Diego Zancani, emeritus professor of medieval and modern languages at Oxford University and author of \"How We Fell in Love with Italian Food,\" agrees.",
+          "title": "How this fruit became the star of Italian cooking"
+        }
+      ]
+    }
+  }
+}
+```
 
 ### Examples Grouped Result
 
@@ -167,10 +234,38 @@ import OpenAIGroupedResult from '/_includes/code/generative.openai.groupedresult
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++ask%3A+%7B%0D%0A++++++++question%3A+%22Who+is+the+king+of+the+Netherlands%3F%22%2C%0D%0A++++++++properties%3A+%5B%22summary%22%5D%0D%0A++++++%7D%2C+%0D%0A++++++limit%3A1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_
 additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++certainty%0D%0A++++++++++property%0D%0A++++++++++result%0D%0A++++++++++startPosition%0D%0A++++++++++endPosition%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
 
-### Example response
+### Example response Grouped Result
 
-```
-TODO: add an example response here
+```json
+{
+  "data": {
+    "Get": {
+      "Publication": [
+        {
+          "_additional": {
+            "generate": {
+              "error": null,
+              "groupedResult": "The Financial Times, Wall Street Journal, and The New York Times Company are all about finance because they provide news and analysis on the latest financial markets, economic trends, and business developments. They also provide advice and commentary on personal finance, investments, and other financial topics."
+            }
+          },
+          "name": "Financial Times"
+        },
+        {
+          "_additional": {
+            "generate": null
+          },
+          "name": "Wall Street Journal"
+        },
+        {
+          "_additional": {
+            "generate": null
+          },
+          "name": "The New York Times Company"
+        }
+      ]
+    }
+  }
+}
 ```
 
 ## Additional information
