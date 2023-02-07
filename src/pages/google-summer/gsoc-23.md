@@ -78,7 +78,7 @@ The demo app is expected to be developed in Python or JavaScript, but we are ope
 
 This project is a great opportunity to gain hands-on experience, and should be suitable even for those new to Weaviate.
 
-There are opportunities to build demo apps that will stand out incorporating one of many new cutting-edge Weaviate modules. For example, our [`ref2vec`](/developers/weaviate/modules/retriever-vectorizer-modules/ref2vec-centroid.md), ['text2vec-openai'](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md), ['text2vec-cohere'](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere.md) or ['qna-openai`](/developers/weaviate/modules/reader-generator-modules/qna-openai.md) modules are relatively new and could be used to create a demo app that is unique and exciting.
+There are opportunities to build demo apps that will stand out incorporating one of many new cutting-edge Weaviate modules. For example, our [`ref2vec`](/developers/weaviate/modules/retriever-vectorizer-modules/ref2vec-centroid), ['text2vec-openai'](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai), ['text2vec-cohere'](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere) or ['qna-openai`](/developers/weaviate/modules/reader-generator-modules/qna-openai) modules are relatively new and could be used to create a demo app that is unique and exciting.
 
 **Required Skills:** Some experience with Python (or another appropriate language), git + GitHub, and conceptual familiarity with vectors in machine learning context. Ability to work independently and communicate clearly.
 
@@ -95,8 +95,8 @@ There are opportunities to build demo apps that will stand out incorporating one
 **Documentation:**
 
 * [Awesome Weaviate · GitHub](https://github.com/weaviate/awesome-weaviate) 
-* [Quickstart · Weaviate](/developers/weaviate/quickstart/index.md)
-* [Tutorials · Weaviate](/developers/weaviate/tutorials/index.md)
+* [Quickstart · Weaviate](/developers/weaviate/quickstart)
+* [Tutorials · Weaviate](/developers/weaviate/tutorials)
 * [Blog · Weaviate](/blog/)
 
 ---
@@ -129,8 +129,8 @@ This project is a great opportunity to gain hands-on experience, and should be s
 
 **Documentation:**
 
-* [Quickstart · Weaviate](/developers/weaviate/quickstart/index.md)
-* [Tutorials · Weaviate](/developers/weaviate/tutorials/index.md)
+* [Quickstart · Weaviate](/developers/weaviate/quickstart)
+* [Tutorials · Weaviate](/developers/weaviate/tutorials)
 * [Blog · Weaviate](/blog/)
 * [Django documentation](https://docs.djangoproject.com/)
 
