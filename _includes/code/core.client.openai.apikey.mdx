@@ -1,0 +1,89 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client(
+  url = "https://some-endpoint.weaviate.network/",
+  # highlight-start
+  additional_headers = {
+    "X-OpenAI-Api-Key": "<THE-KEY>"  # Replace with your API key
+  }
+  # highlight-end
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.weaviate.network/',
+    // highlight-start
+    // Replace with your API key
+    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},
+    // highlight-end
+  }); 
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
+)
+
+func main() {
+    cfg := weaviate.Config{
+        Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
+        Scheme: "https",
+        // highlight-start
+        // Replace with your API key
+        Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"} 
+        // highlight-end
+    }
+
+    client := weaviate.New(cfg)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package technology.semi.weaviate;
+import java.util.ArrayList;
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+
+public class App {
+  public static void main(String[] args) {
+    // highlight-start
+    Map<String, String> headers = new HashMap<String, String>() { {
+      // Replace with your API key
+      put("X-OpenAI-Api-Key", "<THE-KEY>");
+    } };
+    // highlight-end
+
+    Config config = new Config("https", "some-endpoint.weaviate.network/", headers);
+    WeaviateClient client = new WeaviateClient(config);
+  }
+}
+```
+
+</TabItem>
+</Tabs>

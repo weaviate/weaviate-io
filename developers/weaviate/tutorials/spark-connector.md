@@ -97,7 +97,7 @@ Prior to this step make sure your weaviate instance is running at `http://localh
 To quickly get a weaviate instance running you can run the line of code below to get a docker file:
 
 ```bash
-curl -o docker-compose.yml "https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version=v1.17.2"
+curl -o docker-compose.yml "https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version=v||site.weaviate_version||"
 ```
 
 Once you have the file you can spin up the `docker-compose.yml` using:
