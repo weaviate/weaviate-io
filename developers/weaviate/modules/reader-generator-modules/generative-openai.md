@@ -132,16 +132,16 @@ This module extents the  `_additional {...}` property with a `generate` operator
 
 `generate` takes the following arguments:
 
-| Field | Data Type | Required | Example value | Description |
+| Field | Data Type | Required | Description |
 |- |- |- |- |- |
-| `singleResult{prompt}`  | string | no | `"..."`  | Generates a response for each individual search result |
-| `groupedResult{task}`  | string | no | `"..."`  | Generates a single response for all search results |
+| `singleResult{prompt}`  | string | no | Generates a response for each individual search result |
+| `groupedResult{task}`  | string | no | Generates a single response for all search results |
 
 :::note
 Currently, you can't provide your OpenAI key in the Weaviate console. Which means that you can't use the `GraphQL` examples with your WCS instances, but if you provide your API key in the docker configuration, then this should work.
 :::
 
-### Examples Single Result
+### Example Single Result
 
 Here is an example of a query where:
 * we run a vector search (with `nearText`) => to find artciles articles about "Italian food"
@@ -152,7 +152,7 @@ import OpenAISingleResult from '/_includes/code/generative.openai.singleresult.m
 
 <OpenAISingleResult/>
 
-### Examples Grouped Result
+### Example Grouped Result
 
 Here is an example of a query where:
 * we run a vector search (with `nearText`) => to find publications about finance.
