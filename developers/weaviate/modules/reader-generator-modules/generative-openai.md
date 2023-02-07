@@ -11,27 +11,80 @@ import Badges from '/_includes/badges.mdx';
 ## In short
 
 * The Generative OpenAI module is a Weaviate module for generating responses based on the data stored in your Weaviate instance.
+* The module can generate a response for each returned object or a single response for a group of objects.
 * The module adds an `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries
 * Added in Weaviate `v1.17.3`
 
-# Introduction
+## Introduction
 
-​The Generative OpenAI module is a Weaviate module for generating data based on responses stored in Weaviate. You can create responses based on single results, or group all results together.
+​The Generative OpenAI module is a Weaviate module for generating data based on responses stored in Weaviate.
+
+The module works in two steps:
+1. (Weaviate) Run a search query in Weaviate to find relevant objects.
+2. (OpenAI) Use OpenAI to generate a response based on the results (from the previous step) and the provided prompt or task.
+
+:::note
+You can use the Generative OpenAI module with any other modules. For example, you could use `text2vec-cohere` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-openai` module to generate a response.
+:::
+
+### Generate response for single or group
+
+The generate module can provide results for:
+* each returned object - `singleResult{ prompt }`
+* the group of all results together – `groupedResult{ task }`
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 
-​The module extents the  `_additional {...}`  property in the​ `Get {...}` query with a `generate {...}` function.
+<!-- ​The module extents the  `_additional {...}`  property in the​ `Get {...}` query with a `generate {...}` function. -->
 
-# How to enable
+## OpenAI API key
 
-Request an OpenAI API-key via [their website](https://openai.com/api/).
+The Generative OpenAI module requires an `OpenAI API key`.
 
-# How to enable (module configuration)
+:::tip
+You can request an OpenAI API key at [openai.com/api](https://openai.com/api/).
+:::
 
-### Docker-compose
+### Providing the key to Weaviate
 
-* The Generative module can be added as a service to the Docker-compose file.
-* An example Docker-compose file for using the `generative-openai` module in combination with the `text2vec-openai` is as follows:
+You can provide your OpenAI API key in two ways:
+
+1. During **configuration** of your docker instance, by adding `OPENAI_APIKEY` under `environment` to your `docker-compose` file, like this:
+
+  ```
+  environment:
+    OPENAI_APIKEY: 'your-key-goes-here'
+    ...
+  ```
+
+2. (recommended) At run-time, by providing `"X-OpenAI-Api-Key"` to the Weaviate client, like this:
+
+import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
+
+<ClientKey />
+
+
+## Enabling the module
+
+:::caution
+Your Weaviate instance must be on `1.17.3` or newer.
+
+If your instance is older than `1.17.3` then you need to migrate or upgrade it to a newer version.
+:::
+
+### WCS
+
+The `Generative OpenAI` module is enabled by default in the Weaviate Cloud Service (WCS). If your instance version is on `1.17.3` or newer, then the module is ready to go.
+
+### Local deployment with Docker
+
+To enable the Generative OpenAI module with your local deployment of Weaviate, you need to configure your `docker-compose` file. Add `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+
+```
+ENABLE_MODULES: 'text2vec-openai,generative-openai'
+```
+
+Here is a full example of a docker configuration, which uses `generative-openai` module in combination with the `text2vec-openai`:
 
 ```yaml
 ---
@@ -55,18 +108,17 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
+      // highlight-next-line
       ENABLE_MODULES: 'text2vec-openai,generative-openai'
-      OPENAI_APIKEY: sk-foobar # this parameter is optional, as you can also provide it at insert/query time
+      OPENAI_APIKEY: sk-foobar # this parameter is optional, as you can also provide it through the client
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-Variable explanations:
+## Schema configuration
 
-* Note: Starting with `v1.11.0` the `OPENAI_APIKEY` variable is now optional and you can instead provide the key at insert/query time as an HTTP header.
+<!-- TODO: continue here -->
 
-# How to configure
-
-​In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](../../tutorials/schema.md) first.
+​In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
 
 The following schema configuration uses the `ada` model.
 
@@ -74,7 +126,7 @@ The following schema configuration uses the `ada` model.
 # TBD
 ```
 
-# How to use (GraphQL)
+## How to use (GraphQL)
 
 ### GraphQL Ask search
 
@@ -106,19 +158,19 @@ additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++c
 
 ...
 
-# How it works (under the hood)
+## How it works (under the hood)
 
 ...
 
-# Additional information
+## Additional information
 
-## Available models
+### Available models
 
 OpenAI has one model available to generate answers based on the prompt.
 
 * [davinci 003](https://beta.openai.com/docs/engines/davinci)
 
-# More resources
+## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
