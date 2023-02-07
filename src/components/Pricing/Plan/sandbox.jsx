@@ -9,19 +9,19 @@ export default function PricingSandbox() {
       </div>
       <div className={styles.featuresLong}>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIconSandbox}></div>
           <span> Round robin region: AWS, Azure, GCP</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i> 30 days lifetime
+          <div className={styles.checkIconSandbox}></div> 30 days lifetime
         </li>
       </div>
       <div className={styles.features}>
         <li>
-          <i className="fas fa-circle-check"></i> Monitoring
+          <div className={styles.checkIconSandbox}></div> Monitoring
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
+          <div className={styles.checkIconSandbox}></div>
           <a href="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw">
             {' '}
             Public Slack
@@ -30,12 +30,11 @@ export default function PricingSandbox() {
       </div>
       <div className={styles.features}>
         <li>
-          {' '}
-          <i className="fas fa-circle-check"></i> Community support
+          <div className={styles.checkIconSandbox}></div>
+          <span>Community support</span>
         </li>
         <li>
-          {' '}
-          <i className="fas fa-circle-check"></i> Single AZ
+          <div className={styles.checkIconSandbox}></div> Single AZ
         </li>
       </div>
     </div>

@@ -9,18 +9,28 @@ export default function PricingPlan() {
   return (
     <div className="container">
       <div className={styles.header}>
-        <h2>Pick your plan</h2>
+        <h2>Weaviate Cloud Services Saas</h2>
         <p>
           Our pricing is designed to give you all the capabilities to build and
-          test your applications for free. When you are ready to move to
+          test your applications for free. <br /> When you are ready to move to
           production, simply pick a plan that best suits your needs.
         </p>
       </div>
-      <PricingSandbox />
-      <div className={styles.plan}>
-        <PricingStandard />
-        <PricingEnterprise />
-        <PricingBusinessCritical />
+      <div className={styles.planContainer}>
+        <div className={styles.plan}>
+          <PricingStandard />
+          <PricingEnterprise />
+          <PricingBusinessCritical />
+        </div>
+        <PricingSandbox />
+      </div>
+      <div className={styles.buttons}>
+        <div className={styles.buttonGradient}>
+          Register for Private Beta
+        </div>
+        <div className={styles.buttonOutline}>
+          Create a Free Sandbox
+        </div>
       </div>
     </div>
   );
