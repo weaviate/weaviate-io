@@ -134,8 +134,8 @@ This module extents the  `_additional {...}` property with a `generate` operator
 
 | Field | Data Type | Required | Description |
 |- |- |- |- |- |
-| `singleResult{prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result, note that you need to set the property to include in the prompt |
-| `groupedResult{task}`  | string | no | `Explain why these results are similar to eachother`  | Generates a single response for all search results |
+| `singleResult {prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result, note that you need to set the property to include in the prompt |
+| `groupedResult {task}`  | string | no | `Explain why these results are similar to each other`  | Generates a single response for all search results |
 
 :::note
 Currently, you can't provide your OpenAI key in the Weaviate console. Which means that you can't use the `GraphQL` examples with your WCS instances, but if you provide your API key in the docker configuration, then this should work.
