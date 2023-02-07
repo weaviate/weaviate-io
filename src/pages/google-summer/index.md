@@ -13,9 +13,10 @@ We have prepared a number exciting projects for students to work on, and we have
 
 ### Details, how to register and the list of projects
 
-Check out our [GSoC page](/google-summer/gsoc-23) to:
-* learn [how to register](/google-summer/gsoc-23#how-to-register) and see other details,
-* and to see the [list of project ideas](/google-summer/gsoc-23#project-ideas).
+Check out our [GSoC page](/google-summer/gsoc-23) to learn all about it.
+
+* Check out [how to register](/google-summer/gsoc-23#how-to-register)
+* and to see the [list of project ideas](/google-summer/gsoc-23#project-ideas)
 
 ## Previous projects
 
