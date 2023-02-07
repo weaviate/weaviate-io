@@ -17,15 +17,15 @@ import Badges from '/_includes/badges.mdx';
 * The answer with the highest `certainty` (confidence level) will be returned.
 * Added in Weaviate `v1.16.6`
 
-# Introduction
+## Introduction
 
 The Question and Answer (Q&A) OpenAI module is a Weaviate module for answer extraction from data. It uses the [completions endpoint](https://beta.openai.com/docs/api-reference/completions), created by OpenAI, to try and extract an answer from the most relevant docs. This module can be used in GraphQL `Get{...}` queries, as a search operator. The `qna-openai` module tries to find an answer in the data objects of the specified class. If an answer is found within the given `certainty` range, it will be returned in the GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the optionally set `certainty`. The answer with the highest `certainty` (confidence level) will be returned.
 
-# How to enable
+## How to enable
 
 Request an OpenAI API-key via [their website](https://openai.com/api/).
 
-# How to enable (module configuration)
+## How to enable (module configuration)
 
 ### Docker-compose
 
@@ -64,9 +64,9 @@ Variable explanations:
 
 * Note: Starting with `v1.11.0` the `OPENAI_APIKEY` variable is now optional and you can instead provide the key at insert/query time as an HTTP header.
 
-# How to configure
+## How to configure
 
-​In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](../../tutorials/schema.md) first.
+​In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
 
 The following schema configuration uses the `ada` model.
 
@@ -103,7 +103,7 @@ The following schema configuration uses the `ada` model.
 
 For information on how to use the individual parameters you [can check here](https://beta.openai.com/docs/api-reference/completions)
 
-# How to use (GraphQL)
+## How to use (GraphQL)
 
 ### GraphQL Ask search
 
@@ -163,7 +163,7 @@ Note: `startPosition`, `endPosition` and `property` in the response are not guar
 }
 ```
 
-# How it works (under the hood)
+## How it works (under the hood)
 
 Under the hood, the model uses a two-step approach. First it performs a semantic search with `k=1` to find the document (e.g. a Sentence, Paragraph, Article, etc.) which is most likely to contain the answer. This step has no certainty threshold and as long as at least one document is present, it will be fetched and selected as the one most likely containing the answer. In a second step, Weaviate creates the required prompt as an input to an external call made to the OpenAI Completions endpoint. Weaviate uses the most relevant documents to establish a prompt for which OpenAI extracts the answer. There are three possible outcomes:
 
@@ -173,9 +173,9 @@ Under the hood, the model uses a two-step approach. First it performs a semantic
 
 The module performs a semantic search under the hood, so a `text2vec-...` module is required. It does not need to be transformers-based and you can also combine it with `text2vec-contextionary`. However, we expect that you will receive the best results by combining it with a well-fitting transformers model by using the appropriate configured `text2vec-transformers` module.
 
-# Additional information
+## Additional information
 
-## Available models
+### Available models
 
 OpenAI has multiple models available for the extraction of answers from a given context.
 
@@ -187,7 +187,7 @@ OpenAI has multiple models available for the extraction of answers from a given 
 
 These models can be configured
 
-# More resources
+## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
