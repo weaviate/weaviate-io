@@ -32,25 +32,25 @@ $ kubectl get pods
 
 ## Obtain the Helm Chart
 
-Get the Helm chart and `values.yml` configuration file.
+Add the Weaviate helm repo that contains the Weaviate helm chart
 
 ```bash
-# Set the Weaviate chart version
-export CHART_VERSION="v||site.helm_version||"
-# Download the Weaviate Helm chart
-wget https://github.com/weaviate/weaviate-helm/releases/download/$CHART_VERSION/weaviate.tgz
-# Download an example values.yml (with the default configuration)
-wget https://raw.githubusercontent.com/weaviate/weaviate-helm/$CHART_VERSION/weaviate/values.yaml
+helm repo add weaviate https://weaviate.github.io/weaviate-helm
+```
+
+Get the default `values.yml` configuration file from the Weaviate helm chart:
+```bash
+helm show values weaviate/weaviate > values.yml
 ```
 
 ## Adjust the configuration in the values.yml (Optional)
 
 _Note: You can skip this step and run with all default values. In any case,
 make sure that you set the correct Weaviate version. This may either be through
-explicitly setting it as part of the `values.yaml` or through overwriting the
+explicitly setting it as part of the `values.yml` or through overwriting the
 default as outlined in the deploy step below._
 
-In the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)
+In the [`values.yml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yml)
 file you can tweak the configuration to align it with your
 setup. The yaml file is extensively documented to help you align the
 configuration with your setup.
@@ -76,17 +76,13 @@ You can deploy the helm charts as follows:
 # Create a Weaviate namespace
 $ kubectl create namespace weaviate
 
-# set the desired Weaviate version
-export WEAVIATE_VERSION="||site.weaviate_version||"
-
 # Deploy
-$ helm upgrade \
+$ helm install \
   "weaviate" \
-  weaviate.tgz \
+  weaviate/weaviate \
   --install \
   --namespace "weaviate" \
-  --values ./values.yaml \
-  --set "image.tag=$WEAVIATE_VERSION"
+  --values ./values.yml
 ```
 
 The above assumes that you have permissions to create a new namespace. If you
