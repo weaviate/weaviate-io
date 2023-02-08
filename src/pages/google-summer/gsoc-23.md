@@ -31,7 +31,7 @@ Don't hesitate to contact us for questions about the challenge and the Open Sour
 
 We value initiative, creativity, and motivation. To show your initiative, creativity, and motivation, add your ideas on how you would approach this challenge to your submission. Please also mention your previous projects (if any) and which technologies and tools you are comfortable with. In addition, don't forget what you want to learn during the Summer of Code competition, both in terms of technology and other (soft) experiences.
 
-## How to create a project application/proposal?**
+## How to create a project application/proposal?
 
 We expect your application to be in the range of 1000-1500 words. Your proposal should contain all the relevant information which are stated below and must explain in depth about the problem you are solving, the tools, data structures, algorithms etc. that are required in order for you to successfully complete the project. Your proposal should contain at least the following information, plus anything you think is relevant:
 
@@ -246,5 +246,7 @@ In this project you will work on a selected Weaviate client to help us improve t
 
 **Documentation:**
 * [Developers · Weaviate Documentation](/developers/weaviate/)  
+
+---
 
 If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
