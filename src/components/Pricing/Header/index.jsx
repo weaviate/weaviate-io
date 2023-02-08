@@ -24,7 +24,7 @@ export default function PricingHeader({selectedType, handleSelected}) {
           <div className={`${styles.border} ${selectedType === 'saas' ? styles.outline : styles.opacity}`}>
             <div className={styles.btn} onClick={() => handleSelected('saas')}>
               <div className={styles.saasPng} />
-              <h1 className={styles.test}>SaaS</h1>
+              <h1>SaaS</h1>
               <p>Control you data, run and deploy the</p>
               <p>software on your own private cloud.</p>
             </div>
@@ -32,7 +32,7 @@ export default function PricingHeader({selectedType, handleSelected}) {
           <div className={`${styles.border} ${selectedType === 'hybrid' ? styles.outline :  styles.opacity}`}>
             <div className={styles.btn} onClick={() => handleSelected('hybrid')}>
             <div className={styles.hybridPng} />
-            <h1 className={styles.test}>Hybrid SaaS</h1>
+            <h1>Hybrid SaaS</h1>
             <p>We install Weaviate in your cloud and</p>
             <p>manage your infrastructure.</p>
           </div>
