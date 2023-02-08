@@ -53,7 +53,9 @@ To create a new Weaviate Cluster:
 Your selections should look like this:
 <img src={WCSScreenshotImg} width="90%" alt="Cluster configuration"/>
 
-This will start the process to create a new cluster, and you should see a progress indicator. After a short while, you should see a green tick ✔️ - indicating that the cluster is ready.
+This will start the process to create a new cluster, and you should see a progress indicator. This should take a minute or two, and you should see a green tick ✔️ when it's done - indicating that the cluster is ready.
+
+(In the meantime, you can start installing a client library - or grab a hot drink 😉.)
 
 ### Connect to Weaviate
 
