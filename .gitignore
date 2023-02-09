@@ -19,12 +19,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 package-lock.json
+yarn.lock
 
 .python-version
-# Old docs
-.bundle
-_site
-.jekyll-metadata
-.jekyll-cache
-.ruby-version
-img/og/og-documentation
