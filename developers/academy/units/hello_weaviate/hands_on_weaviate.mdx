@@ -1,0 +1,209 @@
+---
+title: Hands-on with Weaviate
+sidebar_position: 30
+---
+
+## Introduction
+
+Recall Weaviate's key capabilities.
+Construct a semantic search query string to retrieve relevant information.
+
+:::warning TODO
+Video here
+:::
+
+You have learned a lot already about vector searches. You have learned what vectors are, how they can represent meaning, and how vector searches can leverage these representations to perform similarity-based searches. 
+
+In this lab, you will start to take that theory to practice and try vector searches in action by searching through our demo database of quiz questions and categories. You will learn how to use Weaviate to retrieve objects based on their similarity, using various query types such as an input text, vector, or object. In the process you will also begin to familiarize yourself with GraphQL which is the primary query language in Weaviate.
+
+You will also compare vector search with keyword search to compare and contrast the two techniques, before learning how to combine the two techniques through the use of filters.
+
+We will also touch on advanced techniques such as hybrid search.
+
+## A simple example
+
+For our first search, let's look for categories that best match our input query. The "Category" class in the Weaviate instance [DEMO INSTANCE LOCATION] is populated with categories that each question belongs to. 
+
+The below has been set up so that it would retrieve the closest categories to the input query "QUERY". Try running it yourself:
+
+:::warning TODO
+- Pre-set QUERY here (show results when user hits GO)
+- Should be something where the results don't have literal matches
+:::
+
+Note that the results are very much conceptually relevant even though they don't have much in the way of literal overlap with our query. This is exactly what we have been learning about - vector searches can identify related objects. What we have not yet seen however, is the syntax. So let's dive into that a little bit.
+
+## GraphQL
+
+Weaviate utilizes GraphQL as the query language for its searches. GraphQL is a very flexible and efficient query language built on graph data structures. 
+
+Although much of the specific GraphQL syntax will be abstracted away if you use a Weaviate client library, it is very useful to know what GraphQL enables. So let's spend a little bit of time learning the basic syntax.
+
+Each GraphQL query in Weaviate is structured like this:
+
+```graphql
+{
+  <Function> {
+    <Class> {
+      <properties>
+      _additional {
+        <additional_properties>
+      }
+    }
+  }
+}
+```
+
+The query format begins with a `Function`, such as `Get` (to retrieve objects) and `Aggregate` (to retrieve metadata), as well as a `Class` denoting the data object collection. Notably, it then goes on to specify a set of `properties` as well as `additional_properties`, which determine the fields to be returned. 
+
+You may notice from this that the data to be returned is not predetermined, unlike, for example, REST endpoints. This difference allows you to request only the data that you need from Weaviate, reducing over-fetching or under-fetching of data. 
+
+## Search query examples
+
+Now let's try constructing a few GraphQL queries to search our Weaviate instance and retrieve data objects using the `Get` function.
+
+We will continue to query the `Category` class. But first, let's inspect the `Category` class to review what properties may be obtained. 
+
+:::warning TODO
+Show the Category class schema
+:::
+
+### Retrieve objects
+
+To retrieve objects in the `Category` class with their `title` property, the query would look like this:
+
+```graphql
+{
+  Get {
+    Category {
+      title
+    }
+  }
+}
+```
+
+Which returns a list of categories as below.
+
+:::warning TODO
+Show query results
+:::
+
+Note that this did not specify how many results to return. This can be specified as an argument in the context of the `Class` (`Category` in this case). The maximum number of objects to be returned can be specified as a `limit` argument as below:
+
+client.query.raw("""
+{
+  Get {
+    Category (limit: 2) {
+      title
+    }
+  }
+}
+""")
+
+:::warning TODO
+Show query results
+:::
+
+These 'arguments` are the other significant parts of constructing a GraphQL query. They allow you to provide additional information to Weaviate as we did here with the upper limit of objects.
+
+Now that you're familiar with a basic GraphQL syntax, let's try vector searches next.
+
+### Perform a vector (nearText) search
+
+Let's reproduce the demo vector search above where we searched for `Category` objects similar to 'QUERY ENTRY'.
+
+This is achieved in Weaviate with a `nearText` search, and can be carried out with the below syntax: 
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 1
+      nearText: {
+        concepts: ["A pivotal point in world history"],
+        distance: 0.6 
+      }
+    ) {
+      question answer
+    }
+  }
+}
+```
+
+Which produces 
+
+```json
+{
+  "data": {
+    "Get": {
+      "Question": [
+        {
+          "answer": "discovery of the New World",
+          "question": "This world-changing event was first announced in a Barcelona banquet hall in April 1493"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Retrieve similarity values
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 5
+      nearText: {
+        concepts: ["Related to seafaring in Scandanavia."],
+      }
+    ) {
+      question 
+      answer 
+      _additional {
+        distance
+        id
+      }
+    }
+  }
+}
+```
+
+### Vector searches with filters
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 5
+      nearText: {
+        concepts: ["Related to seafaring in Scandanavia."],
+      }
+      where: {
+        path: ["question"],    
+        operator: Like,  
+        valueText: "*sail*"
+      }      
+    ) {
+      question 
+      answer 
+      _additional {
+        distance
+        id
+      }
+    }
+  }
+}
+```
+
+### nearObject search
+
+:::warning TODO
+Show nearObject query
+:::
+
+### nearVector search
+
+:::warning TODO
+Show nearObject query
+:::
