@@ -50,7 +50,7 @@ make sure that you set the correct Weaviate version. This may either be through
 explicitly setting it as part of the `values.yml` or through overwriting the
 default as outlined in the deploy step below._
 
-In the [`values.yml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yml)
+In the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)
 file you can tweak the configuration to align it with your
 setup. The yaml file is extensively documented to help you align the
 configuration with your setup.
