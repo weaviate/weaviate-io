@@ -139,31 +139,30 @@ The `generate { }` parameter has the following arguments:
 Here is an example of a GraphQL query using the `singleResult{ prompt }`. From the `PodClip` class, we want the generative model to answer the question "What is Ref2Vec?" based on the content.
 
 ```graphql
-{
-    Get {
-        PodClip (
-            hybrid: {
-                query: "What is Ref2Vec?"
-                alpha: 0.5
-            },
-        limit: 1
-        )
-            {
-                content
-                _additional {
-                    generate(
-                        singleResult: {
-                            prompt: """
-                            Question: What is Ref2Vec?
-                            Please answer the question based on: {content}
-                            """
-                        }
-                    ){
-                    singleResult
-                    }
-                }
-            }
+{  
+	Get {
+    PodClip (
+      hybrid: {
+        query: "What is Ref2Vec?"
+        alpha: 0.5
+      },
+      limit: 1
+    ){
+      content
+      _additional {
+        generate(
+          singleResult: {
+            prompt: """
+            Question: What is Ref2Vec?
+            Please answer the question based on: {content}
+            """
+      		}
+      	){
+      		singleResult
+      	}
+      }
     }
+	}
 }
 ```
 The response looks like this:
