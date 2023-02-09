@@ -11,13 +11,13 @@ import Badges from '/_includes/badges.mdx';
 ## In short
 
 * The Generative OpenAI (`generative-openai`) module is a Weaviate module for generating responses based on the data stored in your Weaviate instance.
-* The module can generate a response for each returned object or a single response for a group of objects.
-* The module adds an `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries
+* The module can generate a response for each returned object, or a single response for a group of objects.
+* The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries
 * Added in Weaviate `v1.17.3`
 
 ## Introduction
 
-`generative-openai` is a Weaviate module for generating data based on responses stored in Weaviate.
+`generative-openai` is a Weaviate module for generating text based on fields returned by Weaviate queries.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
@@ -27,8 +27,6 @@ The module works in two steps:
 You can use the Generative OpenAI module with any other modules. For example, you could use `text2vec-cohere` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-openai` module to generate a response.
 :::
 
-### Generate response for single or group
-
 The generative module can provide results for:
 * each returned object - `singleResult{ prompt }`
 * the group of all results together – `groupedResult{ task }`
@@ -37,17 +35,13 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 ## OpenAI API key
 
-`generative-openai` requires an `OpenAI API key` to perform the generation task.
-
-:::tip
-You can request an `OpenAI API key` at [openai.com/api](https://openai.com/api/).
-:::
+`generative-openai` requires an [OpenAI API key](https://openai.com/api/) to perform the generation task.
 
 ### Providing the key to Weaviate
 
-You can provide your `OpenAI API key` in two ways:
+You can provide your OpenAI API key in two ways:
 
-1. During **configuration** of your docker instance, by adding `OPENAI_APIKEY` under `environment` to your `docker-compose` file, like this:
+1. During **configuration** of your Docker instance, by adding `OPENAI_APIKEY` under `environment` to your `docker-compose` file, like this:
 
   ```
   environment:
@@ -55,7 +49,7 @@ You can provide your `OpenAI API key` in two ways:
     ...
   ```
 
-2. (recommended) At **run-time**, by providing `"X-OpenAI-Api-Key"` to the Weaviate client, like this:
+2. At **run-time** (recommended), by providing `"X-OpenAI-Api-Key"` to the Weaviate client, like this:
 
 import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 
@@ -75,13 +69,13 @@ The `Generative OpenAI` module is enabled by default in the Weaviate Cloud Servi
 
 ### Local deployment with Docker
 
-To enable the Generative OpenAI module with your local deployment of Weaviate, you need to configure your `docker-compose` file. Add `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+To enable the Generative OpenAI module with your local deployment of Weaviate, you need to configure your `docker-compose` file. Add the `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-openai,generative-openai'
 ```
 
-Here is a full example of a docker configuration, which uses `generative-openai` module in combination with the `text2vec-openai`:
+Here is a full example of a Docker configuration, which uses the `generative-openai` module in combination with `text2vec-openai`:
 
 ```yaml
 ---
@@ -116,7 +110,7 @@ services:
 The Generative module doesn't require a specific schema configuration.
 
 :::note
-You need schema configured to run queries on your data, so that the module can use the results to generate a response.
+You need a schema to run queries on your data, so that the module can use the results to generate a response.
 :::
 
 <details>
@@ -128,24 +122,24 @@ If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers
 
 ## How to use
 
-This module extents the  `_additional {...}` property with a `generate` operator.
+This module extends the  `_additional {...}` property with a `generate` operator.
 
 `generate` takes the following arguments:
 
-| Field | Data Type | Required | Description |
+| Field | Data Type | Required | Example | Description |
 |- |- |- |- |- |
-| `singleResult {prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result, note that you need to set the property to include in the prompt |
+| `singleResult {prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result. You need to include at least one result field in the prompt, between braces. |
 | `groupedResult {task}`  | string | no | `Explain why these results are similar to each other`  | Generates a single response for all search results |
 
 :::note
-Currently, you can't provide your OpenAI key in the Weaviate console. Which means that you can't use the `GraphQL` examples with your WCS instances, but if you provide your API key in the docker configuration, then this should work.
+Currently, you can't provide your OpenAI key in the Weaviate console. That means you can't use the `GraphQL` examples with your WCS instances, but if you provide your API key in the Docker configuration, then this should work.
 :::
 
 ### Example of properties in the prompt 
 
-​When piping the results to the prompt, the results from Weaviate must be added to the prompt. If you don't add any results, Weaviate will throw an error.
+​When piping the results to the prompt, at least one field returned by the query must be added to the prompt. If you don't add any fields, Weaviate will throw an error.
 
-​For example, if your schema looks like this:
+​For example, assume your schema looks like this:
 
 ```graphql
 {
@@ -156,9 +150,7 @@ Currently, you can't provide your OpenAI key in the Weaviate console. Which mean
 }
 ```
 
-You can add both `title` and `content` to the prompt by encapsulating them with curly brackets.
-
-For example:
+You can add both `title` and `content` to the prompt by enclosing them in curly brackets:
 
 ```graphql
 {
@@ -185,18 +177,18 @@ For example:
 }
 ```
 
-### Examples Single Result
+### Examples - single result
 
 Here is an example of a query where:
-* we run a vector search (with `nearText`) => to find artciles articles about "Italian food"
-* then we ask the generator module => to describe each result as a Facebook ad.
-  * note the inclusion of `{content}`, which indicates which propery contains the relevant content.
+* we run a vector search (with `nearText`) to find articles about "Italian food"
+* then we ask the generator module to describe each result as a Facebook ad.
+  * the query asks for the `summary` field, which it then includes in `prompt` argument of the `generate` operator.
 
 import OpenAISingleResult from '/_includes/code/generative.openai.singleresult.mdx';
 
 <OpenAISingleResult/>
 
-### Example response Single Result
+### Example response - single result
 
 ```json
 {
@@ -219,11 +211,11 @@ import OpenAISingleResult from '/_includes/code/generative.openai.singleresult.m
 }
 ```
 
-### Examples Grouped Result
+### Example - grouped result
 
 Here is an example of a query where:
-* we run a vector search (with `nearText`) => to find publications about finance.
-* then we ask the generator module => to explain why these articles are about finance.
+* we run a vector search (with `nearText`) to find publications about finance.
+* then we ask the generator module to explain why these articles are about finance.
 
 import OpenAIGroupedResult from '/_includes/code/generative.openai.groupedresult.mdx';
 
@@ -234,7 +226,7 @@ import OpenAIGroupedResult from '/_includes/code/generative.openai.groupedresult
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++ask%3A+%7B%0D%0A++++++++question%3A+%22Who+is+the+king+of+the+Netherlands%3F%22%2C%0D%0A++++++++properties%3A+%5B%22summary%22%5D%0D%0A++++++%7D%2C+%0D%0A++++++limit%3A1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_
 additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++certainty%0D%0A++++++++++property%0D%0A++++++++++result%0D%0A++++++++++startPosition%0D%0A++++++++++endPosition%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
 
-### Example response Grouped Result
+### Example response - grouped result
 
 ```json
 {
@@ -274,11 +266,10 @@ additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++c
 
 OpenAI has one model available to generate answers based on the prompt.
 
-* [davinci 003](https://beta.openai.com/docs/engines/davinci)
+* [davinci 003](https://platform.openai.com/docs/models/davinci)
 
 ## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
-

@@ -130,12 +130,12 @@ func main() {
 
   // highlight-start
   // instruction for the generative module
-  generatePrompt := "\"Describe the following as a Facebook Ad: {content}\""
+  generatePrompt := "\"Describe the following as a Facebook Ad: {summary}\""
   // highlight-end
 
   fields := []graphql.Field{
     {Name: "title"},
-    {Name: "content"},
+    {Name: "summary"},
     // highlight-start
     {
       Name: "_additional",
@@ -196,11 +196,11 @@ public class App {
 
     // highlight-start
     // instruction for the generative module
-    String generatePrompt = "\"Describe the following as a Facebook Ad: {content}\""
+    String generatePrompt = "\"Describe the following as a Facebook Ad: {summary}\""
     // highlight-end
 
     Field title = Field.builder().name("title").build();
-    Field content = Field.builder().name("content").build();
+    Field summary = Field.builder().name("summary").build();
 
     // highlight-start
     Field generate = Field.builder()
@@ -219,7 +219,7 @@ public class App {
 
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName("Article")
-      .withFields(title, content, _additional)
+      .withFields(title, summary, _additional)
       .withNearText(nearText)
       .withLimit(5)
       .run();
@@ -259,7 +259,7 @@ $ echo '{
           ) {
             singleResult
             error
-          } 
+          }
         }
         # highlight-end
       }

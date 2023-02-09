@@ -80,7 +80,7 @@ const client = weaviate.client({
 
 // highlight-start
 // instruction for the generative module
-let generateTask = '"Explain why these magazines or newspapers are about finance"'
+const generateTask = '"Explain why these magazines or newspapers are about finance"';
 // highlight-end
 
 client.graphql
@@ -253,7 +253,7 @@ $ echo '{
           ) {
             groupedResult
             error
-          } 
+          }
         }
         # highlight-end
       }
