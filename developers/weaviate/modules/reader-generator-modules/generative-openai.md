@@ -177,7 +177,7 @@ You can add both `title` and `content` to the prompt by enclosing them in curly 
 }
 ```
 
-### Examples - single result
+### Example - single result
 
 Here is an example of a query where:
 * we run a vector search (with `nearText`) to find articles about "Italian food"
