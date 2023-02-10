@@ -146,6 +146,15 @@
   }
 }
 
+.labelColor {
+  color: rgba(46, 49, 143);;
+  text-decoration: none;
+}
+
+.labelColorSecond {
+  text-decoration: none;
+}
+
 .buttons {
   margin-top: 70px;
   display: flex;
@@ -180,6 +189,8 @@
   }
 }
 
+
+
 [data-theme='light'] {
   .buttonGradient {
     background-image: none;
@@ -191,6 +202,15 @@
     outline: 1px solid #20e220;
     font-weight: bold;
     color: rgba(46, 49, 143);
+  }
+
+  .labelColor {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .labelColorSecond {
+    text-decoration: none;
   }
 
   .box {

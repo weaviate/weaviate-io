@@ -1,3 +1,4 @@
+import Link from '@docusaurus/Link';
 import React from 'react';
 import PricingBusinessCritical from './businessCritical';
 import PricingEnterprise from './enterprise';
@@ -26,10 +27,10 @@ export default function PricingPlan() {
       </div>
       <div className={styles.buttons}>
         <div className={styles.buttonGradient}>
-          Register for Private Beta
+          <Link to={'https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.weaviate.io/registration-login'} className={styles.labelColor}>Register for Private Beta</Link>
         </div>
         <div className={styles.buttonOutline}>
-          Create a Free Sandbox
+          <Link className={styles.labelColorSecond} to={'https://console.weaviate.io/'}>Create a Free Sandbox</Link>
         </div>
       </div>
     </div>

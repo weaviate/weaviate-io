@@ -46,6 +46,12 @@
     line-height: var(--ifm-heading-line-height);
     margin: var(--ifm-heading-margin-top) 0 var(--ifm-heading-margin-bottom) 0;
   }
+  p {
+    font-weight: bold;
+  }
+  a, a:hover {
+    text-decoration: none;
+  }
   // Weaviate configurator styling
   .configuratin-generator-app {
     text-align: center;
@@ -337,8 +343,8 @@
 /* light mode */
 
 #__docusaurus {
-  background-image: url('/img/site/background-light.jpg');
-  background-size: cover;
+  background-image: url('/img/site/weaviate-pricing-light-clouds.png');
+  background-size: auto;
   background-position: top;
 }
 

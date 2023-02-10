@@ -62,9 +62,11 @@ export default function HybridBusinessCritical() {
         </div>
       </div>
       <div className={styles.buttons}>
-        <div className={styles.buttonGradient}>
-          Contact us for more info
-        </div>
+        <a href="mailto:hello@weaviate.io">
+          <div className={styles.buttonGradient}>
+              Contact us for more info
+          </div>
+        </a>
       </div>
     </div>
   );
