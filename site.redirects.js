@@ -290,6 +290,12 @@ const siteRedirects = {
             to: '/google-summer',
             from: ['/resources/gsod','/resources/gsoc']
         },
+
+        // moved/renamed pages
+        {
+            to: '/developers/weaviate/installation/weaviate-cloud-services',
+            from: '/developers/weaviate/installation/weaviate-cloud-service'
+        }
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
