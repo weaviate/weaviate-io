@@ -179,8 +179,11 @@ const siteRedirects = {
             from: '/blog/2022/07/Weaviate-release-1-14'
         },
         {
-            to: '/blog/Using-Cross-Encoders-as-reranker-in-multistage-vector-search',
-            from: '/blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search'
+            to: '/blog/cross-encoders-as-reranker',
+            from: [
+                '/blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search',
+                '/blog/Using-Cross-Encoders-as-reranker-in-multistage-vector-search'
+            ]
         },
         {
             to: '/blog/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications',

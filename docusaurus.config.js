@@ -32,7 +32,8 @@ const config = {
             {
                 blogTitle: 'Weaviate Playbook',
                 blogDescription: 'Learn How we run Weaviate as a Company',
-                blogSidebarCount: 'ALL',
+                blogSidebarCount: 12,
+                postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Playbook',
 
                 id: 'playbook-blog',
@@ -40,9 +41,7 @@ const config = {
                 // path to data on filesystem relative to site dir.
                 path: 'playbook',
                 authorsMapPath: '../authors.yml',
-
                 showReadingTime: true,
-                postsPerPage: 10,
             },
         ],
         // Add HTML Header tags
@@ -105,6 +104,8 @@ const config = {
                     authorsMapPath: '../authors.yml',
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
+                    blogSidebarCount: 12,
+                    postsPerPage: 6,
                 },
                 theme: {
                     customCss: [
