@@ -127,14 +127,6 @@
 		"github": ""
 	},
 	{
-		"name": "Laura Ham",
-		"title": "ML Product Researcher ",
-		"photo": "laura.png",
-		"linkedin": "laura-ham/",
-		"twitter": "laura_hamham",
-		"github": "laura-ham"
-	},
-	{
 		"name": "Marcin Antas",
 		"title": "Core Engineer ",
 		"photo": "marcin.png",
@@ -172,6 +164,13 @@
 		"github": "sebawita"
 	},
 	{
+		"name": "Shukri Hasan",
+		"title": "Community Solution Engineer",
+		"photo": "shukri.png",
+		"linkedin": "mohdshukrihasan",
+		"twitter": "MohdShukriHasa1"
+	},
+	{
 		"name": "Sila Uygun",
 		"title": "Account Manager",
 		"photo": "sila.png",
@@ -203,12 +202,6 @@
 		"name": "Zain Hasan",
 		"title": "Senior Developer Advocate",
 		"photo": "zain.png",
-		"linkedin": "zainhas"
-	},
-	{
-		"name": "Shukri ",
-		"title": "Senior Developer Advocate",
-		"photo": "shukri.png",
 		"linkedin": "zainhas"
 	}
 ]
