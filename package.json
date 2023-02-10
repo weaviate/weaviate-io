@@ -1,5 +1,5 @@
 {
-  "name": "my-website",
+  "name": "weaviate-docusaurus",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -54,5 +54,5 @@
   },
   "resolutions": {
     "eta": "1.13.0"
-  }  
+  }
 }
