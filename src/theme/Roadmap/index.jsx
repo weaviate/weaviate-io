@@ -9,7 +9,7 @@ export function Roadmap({label}) {
     fetch(`https://api.github.com/repos/weaviate/weaviate/issues?per_page=1000&labels=${label}`)
     .then(response => response.json())
     .then(data => {
-      // console.log(data)
+      console.log(data)
       const parsed_data = data.map(item => { return {
         id: item.number,
         url: item.html_url,
@@ -28,8 +28,8 @@ export function Roadmap({label}) {
           if (!item) return null;
           return (
             <li className={styles.roadmapItem} key={item.id}>
-            <a href={item.url} target="_blank">
-              <i className="far fa-heart"></i>  [{item.score}] - {item.title}
+            <a href={item.url} target>
+              <i className="far fa-thumbs-up"></i>  [{item.score}] - {item.title}
             </a>
             </li>
           );
