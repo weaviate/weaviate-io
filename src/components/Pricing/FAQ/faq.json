@@ -14,14 +14,14 @@
   },
   {
     "question": "Is there a difference between Weaviate open source and the Weaviate version used by the WCS?",
-    "answer": "No, the Weaviate Cloud Service (WCS) is a different solution using the same code as Weaviate open-source. The difference is the WCS itself (i.e., SaaS) and different SLA types (opposed to the open-source BSD3 license)."
+    "answer": "No, the Weaviate Cloud Services (WCS) is a different solution using the same code as Weaviate open-source. The difference is the WCS itself (i.e., SaaS) and different SLA types (opposed to the open-source BSD3 license)."
   },
   {
     "question": "Is there a discount for non-profits, startups, or students?",
     "answer": "Yes, please reach out to us at <a href='mailto:hello+discount@weaviate.io'>hello+discount@weaviate.io</a>"
   },
   {
-    "question": "Is the Weaviate Cloud Service SOC2 compliment?",
+    "question": "Is the Weaviate Cloud Services SOC2 compliment?",
     "answer": "Not yet; we are currently in the process of becoming SOC2 compliant. Feel free to email us for a status update on <a href='mailto:hello+soc2@weaviate.io'>hello+soc2@weaviate.io</a>"
   },
   {
@@ -30,7 +30,7 @@
   },
   {
     "question": "What is round-robin provisioning?",
-    "answer": "If your SLA tier contains round-robin provisioning, the Weaviate Cloud Service will provision on Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure where enough resources are available."
+    "answer": "If your SLA tier contains round-robin provisioning, the Weaviate Cloud Services will provision on Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure where enough resources are available."
   },
   {
     "question": "Do I pay for data objects without embeddings?",

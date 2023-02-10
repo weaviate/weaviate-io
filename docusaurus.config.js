@@ -143,7 +143,7 @@ const config = {
                 items: [
                     {
                         type: 'dropdown',
-                        label: 'Weaviate Cloud Service',
+                        label: 'Weaviate Cloud Services',
                         position: 'right',
                         items: [
                             {

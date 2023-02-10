@@ -40,7 +40,7 @@ When a new class object is created, it will be added to a Weaviate.
 
 ## How to enable
 
-### Weaviate Cloud Service
+### Weaviate Cloud Services
 
 The `text2vec-contextionary` module is not available on the WCS.
 

@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 
 Here you can learn how to use the Weaviate console.
 
-The Weaviate console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Service (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
+The Weaviate console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Services (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 
 :::tip
 The console is available on: [console.weaviate.io](https://console.weaviate.io).
@@ -22,12 +22,12 @@ The console is available on: [console.weaviate.io](https://console.weaviate.io).
 
 When opening the [Weaviate Console](https://console.weaviate.io), you'll see two options:
 
-1. ["Sign in with the Weaviate Cloud Service"](#the-weaviate-cloud-service)
+1. ["Sign in with the Weaviate Cloud Services"](#weaviate-cloud-services)
 2. ["Self-hosted Weaviate"](#connect-to-a-self-hosted-weaviate)
 
-## The Weaviate Cloud Service
+## Weaviate Cloud Services
 
-The Weaviate Cloud Service allows you to create Weaviate instances as SaaS instances on our infrastructure. There is no difference between locally run Weaviate instances or Weaviate SaaS instances other than that the latter ones are managed by us.
+Weaviate Cloud Services allow you to create Weaviate instances as SaaS instances on our infrastructure. There is no difference between locally run Weaviate instances or Weaviate SaaS instances other than that the latter ones are managed by us.
 
 :::note
 Sandboxes are free Weaviate instances! You can create them for small test use cases if you don't want to run Weaviate locally.
@@ -61,7 +61,7 @@ The console might ask to downgrade to HTTP. This is done to avoid [CORS](https:/
 ## Recap
 
 * You can use the Weaviate Console to connect to any Weaviate instance.
-* You can use the Weaviate Console to connect to the Weaviate Cloud Service to create managed Weaviate instances.
+* You can use the Weaviate Console to connect to the Weaviate Cloud Services to create managed Weaviate instances.
 * Because Weaviate uses GraphQL, you can easily query it with the console's GraphiQL integration.
 
 ## What next?

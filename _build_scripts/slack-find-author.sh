@@ -23,6 +23,7 @@ git_slack_map=(
     ["Peter Schramm"]="<@U03MWHJQ7PX>"
     ["Sebastian Witalec"]="<@U03DENV56CR>"
     ["Stefan Bogdan"]="<@U01DPKTVA93>"
+    ["Svitlana"]="<@U03DQTXFDHS>"
     ["svitlana-sm"]="<@U03DQTXFDHS>"
     ["Wera"]="<@U043TKSEU5V>"
     ["Zain Hasan"]="<@U043TKSJQF9>"

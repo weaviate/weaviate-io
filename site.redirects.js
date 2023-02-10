@@ -194,8 +194,11 @@ const siteRedirects = {
             from: '/blog/2022/08/Research-Insights-Spider'
         },
         {
-            to: '/blog/Weaviate-Cloud-Service',
-            from: '/blog/2022/09/Weaviate-Cloud-Service'
+            to: '/blog/weaviate-cloud-services',
+            from: [
+                '/blog/2022/09/Weaviate-Cloud-Service',
+                '/blog/weaviate-cloud-service'
+            ]
         },
         {
             to: '/blog/weaviate-1-15-release',
@@ -287,6 +290,12 @@ const siteRedirects = {
             to: '/google-summer',
             from: ['/resources/gsod','/resources/gsoc']
         },
+
+        // moved/renamed pages
+        {
+            to: '/developers/weaviate/installation/weaviate-cloud-services',
+            from: '/developers/weaviate/installation/weaviate-cloud-service'
+        }
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
