@@ -141,6 +141,33 @@
 			"</Tabs>"
 		],
 		"description": "Adds the tabs section for code examples"
+	},
+
+	"Quiz variable": {
+		"prefix": "docusaurus-academy-quiz-def",
+			"scope": "markdown",
+			"body": [
+				"const ${varName} = [{",
+				"  questionText: '${questionText}',",
+				"  answerOptions: [",
+				"    {",
+				"      answerText: '${answerOne}',",
+				"      isCorrect: false,",
+				"      feedback: '${feedbackOne}',",
+				"    },",
+				"    {",
+				"      answerText: '${answerTwo}',",
+				"      isCorrect: false,",
+				"      feedback: '${feedbackTwo}',",
+				"    },",
+				"    {",
+				"      answerText: '${answerThree}',",
+				"      isCorrect: false,",
+				"      feedback: '${feedbackThree}',",
+				"    },",
+				"  ]",
+				"}];"
+			]
 	}
 }
 

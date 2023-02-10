@@ -20,13 +20,15 @@ You will also compare vector search with keyword search to compare and contrast 
 
 We will also touch on advanced techniques such as hybrid search.
 
-## A simple example
+### Vector search in action
 
-For our first search, let's look for categories that best match our input query. The "Category" class in the Weaviate instance [DEMO INSTANCE LOCATION] is populated with categories that each question belongs to. 
+For our first search, let's look for categories that best match our input query. The "Category" class in the Weaviate instance [DEMO INSTANCE LOCATION](http://example.com) is populated with categories that each question belongs to. 
 
-The below has been set up so that it would retrieve the closest categories to the input query "QUERY". Try running it yourself:
+The below has been set up so that it would retrieve the closest categories to the input query "Ground-breaking scientific discovery". Try running it yourself:
 
 :::warning TODO
+- Replace instance location ABOVE with actual instance
+- Replace query ABOVE with actual query
 - Pre-set QUERY here (show results when user hits GO)
 - Should be something where the results don't have literal matches
 :::
@@ -60,41 +62,99 @@ You may notice from this that the data to be returned is not predetermined, unli
 
 ## Search query examples
 
-Now let's try constructing a few GraphQL queries to search our Weaviate instance and retrieve data objects using the `Get` function.
+Now let's construct a few GraphQL queries to search the `Question` class and retrieve objects using the `Get` function.
 
-We will continue to query the `Category` class. But first, let's inspect the `Category` class to review what properties may be obtained. 
+To begin, we wil inspect its schema to identify the right properties to query.
 
-:::warning TODO
-Show the Category class schema
-:::
+<details>
+  <summary>Class schema</summary>
+
+```json
+{
+    "classes": [
+        {
+            "class": "Question",
+            "description": "A Jeopardy! question",
+            "moduleConfig": {
+                "text2vec-openai": {
+                    "model": "ada",
+                    "modelVersion": "002",
+                    "type": "text",
+                    "vectorizeClassName": true
+                }
+            },
+            "properties": [
+                {
+                    "dataType": [
+                        "text"
+                    ],
+                    "description": "Question asked to the contestant",
+                    "moduleConfig": {
+                        "text2vec-openai": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "question",
+                    "tokenization": "word"
+                },
+                {
+                    "dataType": [
+                        "text"
+                    ],
+                    "description": "Answer provided by the contestant",
+                    "moduleConfig": {
+                        "text2vec-openai": {
+                            "skip": false,
+                            "vectorizePropertyName": false
+                        }
+                    },
+                    "name": "answer",
+                    "tokenization": "word"
+                },
+                //  Additional properties truncated for brevity
+            ],
+            //  Truncated for brevity
+            "vectorIndexType": "hnsw",
+            "vectorizer": "text2vec-openai"
+        }
+    ]
+}
+```
+
+</details>
+
+The class contains (among others) properties named "question" and "answer". We will query for these properties as doing so will give us enough detail to identify whether the query has identified appropriate objects.
 
 ### Retrieve objects
 
-To retrieve objects in the `Category` class with their `title` property, the query would look like this:
+To retrieve objects in the `Question` class with their `question` and `answer` properties, the query would look like this:
 
 ```graphql
 {
   Get {
-    Category {
-      title
+    Question {
+      question
+      answer
     }
   }
 }
 ```
 
-Which returns a list of categories as below.
+Which returns a list of questions as below.
 
 :::warning TODO
 Show query results
 :::
 
-Note that this did not specify how many results to return. This can be specified as an argument in the context of the `Class` (`Category` in this case). The maximum number of objects to be returned can be specified as a `limit` argument as below:
+Note that this did not specify how many results to return. This can be specified as an argument in the context of the `Class` (`Question` in this case). The maximum number of objects to be returned can be specified as a `limit` argument as below:
 
 client.query.raw("""
 {
   Get {
-    Category (limit: 2) {
-      title
+    Question (limit: 2) {
+      question
+      answre
     }
   }
 }
@@ -110,7 +170,7 @@ Now that you're familiar with a basic GraphQL syntax, let's try vector searches 
 
 ### Perform a vector (nearText) search
 
-Let's reproduce the demo vector search above where we searched for `Category` objects similar to 'QUERY ENTRY'.
+Let's reproduce the demo vector search above where we searched for `Question` objects similar to 'QUERY ENTRY'.
 
 This is achieved in Weaviate with a `nearText` search, and can be carried out with the below syntax: 
 
