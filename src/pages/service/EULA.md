@@ -28,9 +28,9 @@ You agree not to, and you will not permit others to:
 
 a) license, sell, rent, lease, assign, distribute, transmit, host, outsource, disclose or otherwise commercially exploit the Application or make the Application available to any third party.
 
-### Modifications to Weaviate Cloud Service
+### Modifications to Weaviate Cloud Services
 
-Regarding the Weaviate Cloud Service (Weaviate SaaS), Weaviate B.V. reserves the right to modify, suspend or discontinue, temporarily or permanently, the Application or any service to which it connects, with or without notice and without liability to you.
+Regarding the Weaviate Cloud Services (Weaviate SaaS), Weaviate B.V. reserves the right to modify, suspend or discontinue, temporarily or permanently, the Application or any service to which it connects, with or without notice and without liability to you.
 
 ### Term and Termination
 

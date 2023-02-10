@@ -20,7 +20,7 @@ The `text2vec-cohere` module allows you to use the [Cohere embeddings](https://d
 
 Request a Cohere API-key via [their dashboard](https://dashboard.cohere.ai/welcome/login).
 
-### Weaviate Cloud Service
+### Weaviate Cloud Services
 
 This module is enabled by default on the WCS.
 

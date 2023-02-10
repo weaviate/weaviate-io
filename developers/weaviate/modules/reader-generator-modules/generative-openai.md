@@ -65,7 +65,7 @@ If your instance is older than `1.17.3` then you need to migrate or upgrade it t
 
 ### WCS
 
-The `Generative OpenAI` module is enabled by default in the Weaviate Cloud Service (WCS). If your instance version is on `1.17.3` or newer, then the module is ready to go.
+The `Generative OpenAI` module is enabled by default in the Weaviate Cloud Services (WCS). If your instance version is on `1.17.3` or newer, then the module is ready to go.
 
 ### Local deployment with Docker
 

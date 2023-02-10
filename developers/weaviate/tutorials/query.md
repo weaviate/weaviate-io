@@ -21,7 +21,7 @@ We recommend you complete the [Quickstart tutorial](../quickstart/index.md) firs
 Before you start this tutorial, you should follow the steps in the tutorials to have:
 
 At this point, you should have: 
-- An instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
+- An instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.io)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
 - Installed your preferred Weaviate client library,
 - Set up a `Question` class in your schema, and

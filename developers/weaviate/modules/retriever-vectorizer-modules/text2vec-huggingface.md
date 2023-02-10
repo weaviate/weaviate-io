@@ -21,7 +21,7 @@ The `text2vec-huggingface` module allows you to use [Hugging Face models](https:
 
 Request a Huggingface API Token via [their website](https://huggingface.co/settings/tokens).
 
-### Weaviate Cloud Service
+### Weaviate Cloud Services
 
 This module is enabled by default on the WCS.
 

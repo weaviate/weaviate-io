@@ -57,7 +57,7 @@ But don't worry too much even if you are uncomfortable with any of these. This t
 You will be creating your own instance of Weaviate in this tutorial, and using an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs). 
 
 To follow along with the tutorial, we recommend you create accounts with:
-1. A [Weaviate Cloud Service (WCS)](https://console.weaviate.io/) account, and
+1. A [Weaviate Cloud Services (WCS)](https://console.weaviate.io/) account, and
 1. An account with an inference API provider such as:
     1. [OpenAI](https://beta.openai.com/docs/guides/embeddings),
     1. [Cohere](https://docs.cohere.ai/reference/embed), or
