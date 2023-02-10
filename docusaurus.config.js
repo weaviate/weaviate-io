@@ -73,6 +73,7 @@ const config = {
         //Add Font Awesome stylesheets
         '/fonts/font-awesome/fontawesome.css',
         '/fonts/font-awesome/solid.css',
+        '/fonts/font-awesome/regular.css',
         '/fonts/font-awesome/brands.css'
     ],
 
