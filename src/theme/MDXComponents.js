@@ -3,6 +3,7 @@ import React from 'react';
 import MDXComponents from '@theme-original/MDXComponents';
 import { LinkButton, ButtonContainer, DownloadButton } from './Buttons';
 import { MetaSEO } from './MetaSEO';
+import { Roadmap } from './Roadmap';
 
 export default {
   // Re-use the default mapping
@@ -11,4 +12,5 @@ export default {
   DownloadButton: DownloadButton,
   ButtonContainer: ButtonContainer,
   MetaSEO: MetaSEO,
+  Roadmap: Roadmap
 };
