@@ -14,51 +14,106 @@ Skills: Outline how a vector database works.
 Intro video here
 :::
 
-## Search implementation in Weaviate
+So far, you have learned what a semantic search is and what a vector search is, as well as have performed a number of searches using Weaviate.
 
-### Indexes
+In this section, you will start to learn about how Weaviate does what it does. We will discuss at a high level how Weaviate is able to perform vector searches, how it stores data and where Weaviate obtains vectors.
 
-Describe index types in Weaviate, and what they do.
+## Data storage & retrieval
+
+Weaviate relies on multiple components facilitate storage and retrieval of data. They are: object store, object index and vector index.
+
+### Object store
+
+Each object is stored in Weaviate as a JSON document, where they are grouped into collections, called `Classes` in Weaviate.
+
+### Object index
+
+The object index enables filtering by properties. From 1.18 onwards, Weaviate introduces a bitmap-based (Roaring Bitmap) index to its object index in addition to its inverted index. This enables fast retrieval especially in cases involving large datasets or result sets.
+
+### Vector index
+
+Each object can have a vector associated with them, which are in turn collected and stored into a vector index. A separate vector index is necessary to enables searches based on vector similarity. In Weaviate, the vector index is based on an ANN (approximate nearest neighbor) algorithm. 
+
+#### ANN
+
+One way to perform vector search is a k-nearest neighbor, or kNN, similarity search. Unfortunately, kNN searches scale very poorly and it will likely be not viable for most significantly sized datasets. 
+
+On the other hand, ANN-based indexes allow Weaviate to perform vector searches at lightning fast speeds while maintaining high recall. Weaviate currently uses an HNSW-based ANN index.
+
+## Vector search at a high level
 
 :::note TODO
-
+An image showing vector search
 :::
 
-### ANN
+You can perform a vector search in Weaviate in combination with an algebraic filter. For instance, you could search for quiz questions based on similarity to a particular vector, but only within a group of questions belonging to a category of "World History".
 
-Describe what ANN is, why it exists, and how they help perform vector searches.
+The above components come together to enable this in Weaviate. 
 
-:::note TODO
+When this search query is sent to Weaviate, it uses the object index to build what is called an "allow list" of object IDs. The allow list is then used in conjunction with the vector search, such that the result set is determined by the union of the vector search results and the allow list.
 
-:::
+The result set of object IDs is then be used to fetch the required properties the object store and serve them back to the user. 
 
-### (Pre-)Filtering
-
-Describe how filtering works in Weaviate, whether it is a pre- or post-filter, why this matters.
-
-:::note TODO
-
+:::info Pre-filtering
+This method of filtering is called pre-filtering, as the filtering occurs prior to the vector search. This maximizes the chance of Weaviate returning the requested number of results even when the filter is very restrictive.
 :::
 
 ## Data structure
 
+As previously noted, Weaviate stores each object within its document store. Let's examine in a little more detail.
+
 ### Objects
 
-Outline how objects are stored in Weaviate, how Classes and Cross-references work
+Each object is stored in the document store as a JSON object as a key-value pair using a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) as the key. An object might look something like the below, where the `id` is the unique UUID. 
 
 :::note TODO
-
+Replace object with one from actual edu database
 :::
+
+```json
+{
+    "id": "779c8970-0594-301c-bff5-d12907414002",
+    "class": "Author",
+    "properties": {
+        "name": "Alice Munro",
+        (...)
+    },
+    "vector": [
+        -0.16147631,
+        -0.065765485,
+        -0.06546908
+    ]
+}
+```
+
+Each object belongs to a `class`, denoting collections of data, and can have one or more `properties`. And the `vector` field stores the object's vector representation if there is one.
+
+Data objects can also be linked to each other in Weaviate using cross-references. This is an analogous concepts to foreign keys in relational databases.
+
+The structure of data in Weaviate is defined in the `schema`. 
 
 ### Schema
 
-Outline the role of schemas in Weaviate, how/where to construct it, auto-schemas. More detail to come in the unit on schemas.
+A `schema` in Weaviate is the blueprint that defines its data structure. 
 
-:::note TODO
+The schema specifies for each class the metadata such as its name and description as well as the same for properties of each class. Additionally, it defines any cross-references between classes and settings for indexes including the object index and the vector index. 
+
+Importantly, the schema also holds information in relation to vectorizers, such as what model to use to vectorize data, and how to vectorize the data such as what properties to include or ignore, and whether to include property headings or not.
+
+We will look at schema definition in more detail in another module.
+
+:::info Auto-schema
 
 :::
 
 #### Data types
+
+Each `class` definition will include one or more properties, which must have a data type. The currently supported data types include the below.
+
+<detail>
+</detail>
+
+Note that most data types can include one such instance, or a list of instances, such as `string` or `string[]`.  
 
 List data types available - and mention broadly why it matters to pick the right types (e.g. vectorization, changes to indexing behaviour).
 
