@@ -11,24 +11,19 @@ import { Roadmap } from '/src/theme/Roadmap';
 
 The following is an overview of features planned for Weaviate. By clicking the link, you can upvote the feature or engage in a discussion about it. You can also join our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to discuss the roadmap in more detail.
 
-:::info
-The current version of Weaviate is **v||site.weaviate_version||**. You can check the version you're currently running at the [meta](/developers/weaviate/api/rest/meta.md) endpoint.
-:::
-
-:::tip Upvote issues of interest
+:::tip Upvote issues that matter to you
 We use your feedback and votes on Github pages to plan future releases.<br/>
-If you find any of the issues of interest. <br/>
-Follow it's link and upvote it on Github by clicking the 👍 emoji.
+If you find any of the issues of interest, follow the link and upvote <i className="far fa-thumbs-up"></i> it on GitHub.
 :::
 
 Please feel free to engage with us about the roadmap on [Weaviate's Github](https://github.com/weaviate/weaviate) or on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
 
 
-## Planned for version 1.18
+## Planned for Weaviate 1.18
 
 <Roadmap label="planned-1.18"/>
 
-## Planned for version 1.19
+## Planned for Weaviate 1.19
 
 <Roadmap label="planned-1.19"/>
 
