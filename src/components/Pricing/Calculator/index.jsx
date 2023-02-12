@@ -2,7 +2,9 @@ import React from 'react';
 import './styles.scss';
 import { useState, useEffect } from 'react';
 import ToggleSwitch from '/src/components/ToggleSwitch';
-import Slider from 'react-rangeslider';
+// import Slider from 'react-rangeslider';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 export default function PricingCalculator() {
   const [embeddingSize, setEmbeddingSize] = useState(128);
