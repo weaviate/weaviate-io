@@ -27,7 +27,7 @@ export default function PricingPlan() {
       </div>
       <div className={styles.buttons}>
         <div className={styles.buttonGradient}>
-          <Link to={'https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.weaviate.io/registration-login'} className={styles.labelColor}>Register for Private Beta</Link>
+          <a href={'#register'} className={styles.labelColor}>Register for Private Beta</a>
         </div>
         <div className={styles.buttonOutline}>
           <Link className={styles.labelColorSecond} to={'https://console.weaviate.io/'}>Create a Free Sandbox</Link>

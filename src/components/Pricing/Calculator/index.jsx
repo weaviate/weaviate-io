@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.scss';
 import { useState, useEffect } from 'react';
-import { RadioButton } from '/src/components/RadioButton';
 import ToggleSwitch from '/src/components/ToggleSwitch';
 import Slider from 'react-rangeslider';
 

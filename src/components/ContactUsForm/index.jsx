@@ -43,7 +43,7 @@ export default function ContactUsForm() {
   };
 
   return (
-    <div className="container">
+    <div className="container" id="register">
       <form className={styles.form} id="contact-sales" onSubmit={handleSubmit}>
         <div className={styles.intro}>
           <div className={styles.hybridPng} />
