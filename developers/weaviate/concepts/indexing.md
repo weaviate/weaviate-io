@@ -17,30 +17,30 @@ import Badges from '/_includes/badges.mdx';
 
 Weaviate supports two types of indices.
 
-1. An **approximate nearest neighbor index (ANN)** - the ANN index is used to serve all vector-search queries.
+1. An **approximate nearest neighbor index (ANN)** - the ANN index is used to serve all vector-search queries.
 1. An **inverted index** - the inverted index allows for filtering by properties, as well as serve BM25 queries.
 
-You can configure indices in Weaviate per class. One of Weaviate's core strengths is combining the ANN index with an inverted index.
+You can configure indices in Weaviate per class. One of Weaviate's core strengths is combining the ANN index with an inverted index.
 
 Some things to bear in mind:
 
-* Especially for large datasets, configuring the indices is important because the more you index, the more storage is needed.
+* Especially for large datasets, configuring the indices is important because the more you index, the more storage is needed.
 * A rule of thumb -- if you don't query over a specific field or vector space, don't index it.
-* One of Weaviate's unique features is how the indices are regulated (learn more about this [here](../concepts/prefiltering.md)).
+* One of Weaviate's unique features is how the indices are configured (learn more about this [here](../concepts/prefiltering.md)).
 
 ### ANN indexing
 
 What's important to know, is that the "A" in ANN (i.e., the "approximate") comes with a trade-off. That is, the index is _approximate_ and, therefore _not_ always 100% accurate. This is what the experts mean when they talk about the "recall of the algorithm."
 
 :::tip
-There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>. Only those algorithms which support [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) can be used in Weaviate (we want that sweet database UX) and Weaviate's ANN system is [completely plug-and-playable](../concepts/index.md#weaviates-architecture-from-above) so that we can always add other algorithms in the future.
+There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>. Only those algorithms which support [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) can be used in Weaviate (we want that sweet database UX) and Weaviate's ANN system is [completely plug-and-playable](../concepts/index.md#weaviates-architecture-from-above) so that we can always add other algorithms in the future.
 :::
 
 <!-- TODO: Not sure if we need this here -->
 <!-- If you always want total recall (i.e., a 100% recall, not to be confused with the Arnold Schwarzenegger movie), you need brute-force vector comparisons that are super slow (as in, _really_ slow) and not useful for production settings (hence ANN algorithms exist). -->
 
 :::note
-Because vector search use cases are growing rapidly, more and more ANN-algorithm are produced. A "good" ANN algorithm means that the recall is high _and_ that it's fast. You can dive into the rabbit hole right [here](https://arxiv.org/search/?query=approximate+nearest+neighbor&searchtype=all). But! Don't be like Alice; just make sure to come back here.
+Because vector search use cases are growing rapidly, more and more ANN-algorithm are produced. A "good" ANN algorithm means that the recall is high _and_ that it's fast. You can dive into the rabbit hole right [here](https://arxiv.org/search/?query=approximate+nearest+neighbor&searchtype=all). But! Don't be like Alice; just make sure to come back here.
 :::
 
 Let's take a look a few ANN settings in an example schema.
@@ -80,7 +80,7 @@ Read more below on:
 - [Explanation of vector indices](../concepts/vector-index.md)
 
 :::note
-The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are. 
+The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are.
 :::
 
 ## Module configuration
@@ -102,7 +102,7 @@ An example configuration:
 }
 ```
 
-When using vectorizers, you need to set vectorization on the class and property level. In the case you use text vectorizers, the way the vectorizers work is explained [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#regulate-semantic-indexing).
+When using vectorizers, you need to set vectorization at the class and property level. If you use text vectorizers, the way the vectorizers work is explained [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#configure-semantic-indexing).
 
 ```js
 {
