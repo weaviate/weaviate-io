@@ -120,7 +120,13 @@ RESPONSE OBJECT HERE
 
 ### `Explore` vector spaces
 
-`Explore` is a powerful function in Weaviate that allows you to navigate the entire vector space 
+`Explore` is a powerful function in Weaviate that allows you to navigate the entire vector space.
+
+This is very useful when you may not be sure of what class to search for, so you wish to search through all your data objects. 
+
+
+
+ then you can use the `Explore{}` function instead of the `Get{}` function. In the `Explore{}` function you don't specify which classes you perform the semantic search on, so the semantic search will be performed on all the data objects. Since this search is fuzzy, the only fields you can return
 
 ## Additional options
 
