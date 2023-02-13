@@ -1,8 +1,8 @@
 ---
-title: Weaviate Cloud Service
+title: Weaviate Cloud Services
 sidebar_position: 1
 image: og/docs/installation.jpg
-# tags: ['installation', 'Weaviate Cloud Service']
+# tags: ['installation', 'Weaviate Cloud Services']
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -10,9 +10,9 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-​Using the Weaviate Cloud Service (WCS) may be the easiest way to run Weaviate. You simply create a cluster and the WCS manages it for you.
+​Using the Weaviate Cloud Services (WCS) may be the easiest way to run Weaviate. You simply create a cluster and the WCS manages it for you.
 
-The Weaviate Cloud Service can be accessed via the [console](https://console.weaviate.io) and is the SaaS version of Weaviate.
+The Weaviate Cloud Services can be accessed via the [console](https://console.weaviate.io) and is the SaaS version of Weaviate.
 
 * You can learn more about the console in [this guide](../tutorials/console.md).
 * You can create free-tier sandboxes and [sign up](https://console.weaviate.io) for the private beta of our production SaaS.
@@ -20,7 +20,7 @@ The Weaviate Cloud Service can be accessed via the [console](https://console.wea
 ## Sign in
 
 1. Visit [https://console.weaviate.io/](https://console.weaviate.io)
-2. Click _Sign in with the Weaviate Cloud Service_ or [create an account](https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.weaviate.io/console/wcs).
+2. Click _Sign in with the Weaviate Cloud Services_ or [create an account](https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.weaviate.io/console/wcs).
 3. After signing in you will be able to create a Weaviate cluster.
 
 ## Create a cluster

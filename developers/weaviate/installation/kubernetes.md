@@ -38,16 +38,16 @@ Add the Weaviate helm repo that contains the Weaviate helm chart
 helm repo add weaviate https://weaviate.github.io/weaviate-helm
 ```
 
-Get the default `values.yml` configuration file from the Weaviate helm chart:
+Get the default `values.yaml` configuration file from the Weaviate helm chart:
 ```bash
-helm show values weaviate/weaviate > values.yml
+helm show values weaviate/weaviate > values.yaml
 ```
 
-## Adjust the configuration in the values.yml (Optional)
+## Adjust the configuration in the values.yaml (Optional)
 
 _Note: You can skip this step and run with all default values. In any case,
 make sure that you set the correct Weaviate version. This may either be through
-explicitly setting it as part of the `values.yml` or through overwriting the
+explicitly setting it as part of the `values.yaml` or through overwriting the
 default as outlined in the deploy step below._
 
 In the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)

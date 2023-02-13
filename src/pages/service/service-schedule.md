@@ -24,7 +24,7 @@ These terms and conditions (Terms) apply to the order by you and supply of Servi
  
 2.5 We will use all reasonable endeavours to meet any service level commitments or milestones specified in the contract but any such service levels or milestones are estimates only and failure to perform the Services by such commitments will not give you the right to terminate the Contract.
 
-2.6 All service levels are applicable on the Weaviate Cloud Service, public cloud or on premise (hybrid-SaaS).
+2.6 All service levels are applicable on the Weaviate Cloud Services, public cloud or on premise (hybrid-SaaS).
 
 2.7 In the case of Hybrid-SaaS installations, all services need at least Kubernetes or similar services to host Weaviate.
 
@@ -34,7 +34,7 @@ These terms and conditions (Terms) apply to the order by you and supply of Servi
 
 2.9.1 Replacement of the BSD3 open source license of Weaviate with this enterprise Service License Agreement.
 
-2.9.2 Weaviate cluster on the Weaviate Cloud Service.
+2.9.2 Weaviate cluster on the Weaviate Cloud Services.
 
 2.9.3 A cluster is provisioned in a round-robin region on Amazon Web Services, Microsoft Azure, or Google Cloud Platform based on available resources.
 

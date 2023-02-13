@@ -14,7 +14,7 @@ We built Weaviate to be as easy to use as possible while catering to different c
 
 Weaviate's authentication capabilities reflect this by allowing for both anonymous users as well as authenticated users through OpenID Connect (OIDC). Thus, different authentication schemes can be selected and even combined, from which different [authorization](./authorization.md) options can be specified for different sets of users. 
 
-## Anonymous Access
+## Anonymous access
 By default, Weaviate is configured to accept requests without any
 authentication headers or parameters. Users sending such requests will be
 authenticated as `user: anonymous`.
@@ -51,11 +51,11 @@ When Weaviate receives a token (JSON Web Token or JWT), it verifies
 that it was indeed signed by the configured token issuer. If the signature is
 correct, all contents of the token are trusted, which authenticates the user based on the information in the token.
 
-### Requirements &amp; Defaults
+### Requirements and defaults
 
 Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discovery can be used with Weaviate. Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
 
-1. For very simple use-cases such as for a single user, you can use [Weaviate Cloud Service](https://auth.wcs.api.weaviate.io) as the OIDC token issuer. Sign up and specify `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer and your sign-up email as the user in the OIDC configuration .
+1. For very simple use-cases such as for a single user, you can use [Weaviate Cloud Services](https://auth.wcs.api.weaviate.io) as the OIDC token issuer. Sign up and specify `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer and your sign-up email as the user in the OIDC configuration .
 1. If you need a more customizable setup you can use commercial OIDC providers like [Okta](https://www.okta.com/).
 1. As another alternative, you can run your own OIDC token issuer server, which may be the most complex but also configurable solution. Popular open-source solutions include Java-based [Keycloak](https://www.keycloak.org/) and Golang-based [dex](https://github.com/dexidp/dex).
 
@@ -65,7 +65,7 @@ By default, Weaviate will validate that the token includes a specified client id
 
 ### Configuration
 
-To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate. To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate. 
+To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate.
 
 :::info
 As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff) may be useful.
@@ -134,7 +134,7 @@ While it is outside the scope of our documentation to cover every OIDC authentic
     - Validated using Okta and Azure as identity providers; GCP does not support client credentials grant flow (as of December 2022).
     - Weaviate's Python client directly supports this method.
     - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
-1. Use `resource owner password flow` for trusted applications such as [Weaviate Cloud Service](https://auth.wcs.api.weaviate.io). 
+1. Use `resource owner password flow` for trusted applications such as [Weaviate Cloud Services](https://auth.wcs.api.weaviate.io). 
     - Weaviate's Python and JavaScript clients directly support this method.
 1. Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
@@ -144,7 +144,7 @@ The latest versions (from mid-December 2022 and onwards) of Python, JavaScript, 
 
 Please refer to the [client libraries documentation](../client-libraries/index.md) for each client for code examples.
 
-#### Manually obtaining & passing tokens
+#### Manually obtaining and passing tokens
 
 For cases or workflows where you may wish to manually obtain a token, we outline below the steps to do so, for the resource owner password flow and hybrid flow.
 
@@ -256,7 +256,7 @@ $ curl http://localhost:8080/v1/objects -H "Authorization: Bearer {Bearer}"
 
 If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#authentication), [Javascript](../client-libraries/javascript.md#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
 
-## More Resources
+## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

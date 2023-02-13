@@ -18,7 +18,7 @@ To choose your specific model, you simply need to select the correct Docker cont
 
 ## How to enable
 
-### Weaviate Cloud Service
+### Weaviate Cloud Services
 
 The `text2vec-transformers` module is not available on the WCS.
 

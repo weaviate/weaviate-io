@@ -21,7 +21,7 @@ The `text2vec-openai` module allows you to use the [OpenAI embeddings](https://b
 
 Request an OpenAI API-key via [their website](https://openai.com/api/).
 
-### Weaviate Cloud Service
+### Weaviate Cloud Services
 
 This module is enabled by default on the WCS.
 

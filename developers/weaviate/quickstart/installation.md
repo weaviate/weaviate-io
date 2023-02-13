@@ -15,9 +15,9 @@ import weaviateClusterImg from './img/weaviate-cluster.jpg';
 
 Here, you will create a new Weaviate instance for use throughout this tutorial.
 
-## Weaviate Cloud Service
+## Weaviate Cloud Services
 
-We will use the free sandbox tier from _Weaviate Cloud Service_ (WCS) for this tutorial.
+We will use the free sandbox tier from _Weaviate Cloud Services_ (WCS) for this tutorial.
 
 WCS is a managed SaaS service that requires no maintenance at your end. As it is the fastest 🚀 way to create a new Weaviate instance, let's spin up an instance with it for use throughout this tutorial. 
 
@@ -87,8 +87,8 @@ Please be patient as we update our Java and Go code examples. They will be ready
 
 ## Recap
 
-* You have a working instance of Weaviate in Weaviate Cloud Service (WCS).
-* Weaviate Cloud Service (WCS) is a managed Weaviate SaaS.
+* You have a working instance of Weaviate in Weaviate Cloud Services (WCS).
+* Weaviate Cloud Services (WCS) is a managed Weaviate SaaS.
 * You have installed a client library in your preferred language.
 
 ## Next
