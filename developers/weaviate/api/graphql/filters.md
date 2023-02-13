@@ -225,7 +225,7 @@ Using the `Like` operator allows you to do string searches based on partial matc
   - `car*` matches `car`, `care`, `carpet`, etc
   - `*car*` matches `car`, `healthcare`, etc.
 
-import GraphQLFiltersWhereLike from '/_includes/code/graphql.filters.where.operands.mdx';
+import GraphQLFiltersWhereLike from '/_includes/code/graphql.filters.where.like.mdx';
 
 <GraphQLFiltersWhereLike/>
 
