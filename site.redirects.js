@@ -225,7 +225,7 @@ const siteRedirects = {
             from: '/blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face'
         },
         {
-            to: '/blog/ANN-algorithms-Vamana-vs-HNSW',
+            to: '/blog/ann-algorithms-vamana-vs-hnsw',
             from: '/blog/2022/10/ANN-algorithms-Vamana-vs-HNSW'
         },
         {
