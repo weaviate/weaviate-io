@@ -7,7 +7,7 @@ tags: []
 image: ./img/hero.png
 ---
 
-![ChatGPT for Generative Search](./img/hero.png)
+![What to expect from Weaviate in 2023](./img/hero.png)
 
 
 Without a doubt, 2022 has been the most exciting year for Weaviate so far. The company and the product have grown tremendously, and we are incredibly excited about 2023. Weaviate’s usage numbers are through the roof, and so are your feedback and requests for what you’re still missing from Weaviate.
@@ -29,14 +29,14 @@ We want to give you even more flexibility in combining these steps this year. Yo
 ### Beyond Billion Scale: Large-Scale Performance
 ![Billion Scale](./img/billion-scale.png)
 
-In 2022, we published the [Sphere Demo Dataset for Weaviate](/blog/sphere-dataset-in-weaviate). This marked the first time (to our knowledge) that more than a billion objects and vectors were imported into Weaviate. But it doesn’t stop there. Dealing with ever-growing datasets is not only about being able to handle their size. Our users run complex queries in production and often have strict latency requirements. This pillar is all about performance. The first big step will be the move towards a [Native Roaring Bitmap Index](https://github.com/weaviate/weaviate/issues/2511). In the most extreme case, this new index time can speed up filtered vector search [by a factor of 1000](https://twitter.com/etiennedi/status/1621180981519458305).  But it doesn’t stop there; we are already thinking about the next steps. Whether you want faster aggregations or new types of specialized indexes, we will ensure you can hit all your p99 latency targets with Weaviate.
+In 2022, we published the [Sphere Demo Dataset for Weaviate](/blog/sphere-dataset-in-weaviate). This marked the first time (to our knowledge) that more than a billion objects and vectors were imported into Weaviate. Dealing with ever-growing datasets is not only about being able to handle their size. Our users run complex queries in production and often have strict latency requirements. This pillar is all about performance. The first big step will be the move towards a [Native Roaring Bitmap Index](https://github.com/weaviate/weaviate/issues/2511). In the most extreme case, this new index time can speed up filtered vector search [by a factor of 1000](https://twitter.com/etiennedi/status/1621180981519458305).  But it doesn’t stop there; we are already thinking about the next steps. Whether you want faster aggregations or new types of specialized indexes, we will ensure you can hit all your p99 latency targets with Weaviate.
 
 <br></br>
 
 ### Cloud Operations & Scaling
 ![cloud operations scaling](./img/cloud-operations-scaling.png)
 
-When we introduced [Replication](/developers/weaviate/concepts/replication-architecture) to Weaviate in late 2022, we celebrated a significant milestone. It’s never been easier to achieve a highly available setup, and you can even dynamically scale your setup to increase throughput. But it doesn’t stop there. 2023 is all about improving your cloud and operations experience. We will give you more control over [how to structure your workloads](https://github.com/weaviate/weaviate/issues/2586) in a distributed setup and more [flexibility to adapt to your ever-changing needs](https://github.com/weaviate/weaviate/issues/2228). And, of course, we’re constantly working on making your distributed cluster [even more resilient](https://github.com/weaviate/weaviate/issues/2405).
+When we introduced [Replication](/developers/weaviate/concepts/replication-architecture) to Weaviate in late 2022, we celebrated a significant milestone. It’s never been easier to achieve a highly available setup, and you can even dynamically scale your setup to increase throughput. 2023 is all about improving your cloud and operations experience. We will give you more control over [how to structure your workloads](https://github.com/weaviate/weaviate/issues/2586) in a distributed setup and more [flexibility to adapt to your ever-changing needs](https://github.com/weaviate/weaviate/issues/2228). And, of course, we’re constantly working on making your distributed cluster [even more resilient](https://github.com/weaviate/weaviate/issues/2405).
 
 Speaking of Cloud, arguably the easiest way to spin up a new use case with Weaviate is through the [Weaviate Cloud Service](/pricing). Having spent some time in private beta, the public beta is approaching rapidly. 
 
@@ -47,7 +47,7 @@ Speaking of Cloud, arguably the easiest way to spin up a new use case with Weavi
 
 Last year we gave you a sneak peek into our [Vector Indexing Research](/blog/ann-algorithms-vamana-vs-hnsw), and this year you will be able to try out new vector indexes for yourself. Since the beginning, Weaviate has supported vector indexing with [HNSW](/developers/weaviate/concepts/vector-index), which leads to [best-in-class query times](/developers/weaviate/benchmarks/ann). But not every use case requires single-digit millisecond latencies. Instead, some prefer cost-effectiveness. Due to its relatively high memory footprint, HNSW is only cost-efficient in high-throughput scenarios. However, HNSW is inherently optimized for in-memory access. Simply storing the index or vectors on disk or memory-mapping the index kills performance.
 
-This is why we will offer you not just one but two memory-saving options to index your vectors without sacrificing latency and throughput. In early 2023, you will be able to use Product Quantization, a vector compression algorithm, in Weaviate for the first time. But it doesn’t stop there; we are already working on a fully disk-based solution which we will release in late 2023. 
+This is why we will offer you not just one but two memory-saving options to index your vectors without sacrificing latency and throughput. In early 2023, you will be able to use Product Quantization, a vector compression algorithm, in Weaviate for the first time. We are already working on a fully disk-based solution which we will release in late 2023. 
 
 <br></br>
 
