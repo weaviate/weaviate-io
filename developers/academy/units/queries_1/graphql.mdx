@@ -12,7 +12,9 @@ Introductory video on GraphQL
 Intro video here
 :::
 
-## What is GraphQL
+## GraphQL in Weaviate
+
+### Basic GraphQL syntax structure
 
 You may have already seen that Weaviate utilizes GraphQL as the query language for its searches.
 
@@ -43,17 +45,82 @@ The client libraries also give the option to use raw GraphQL queries directly.
 
 In this section, we'll continue to use raw GraphQL queries to deepen your understanding and increase your comfort level with this crucial topic.
 
+### GraphQL in the JSON payload
+
+We note that each GraphQL query which is sent to the endpoint takes the below form, where the GraphQL query is provided as the value to the `query` key.
+
+```json
+{
+    "query": "{ # GRAPHQL QUERY }"
+}
+```
+
+However, in most cases we will only need to construct the query body and pass it to the GraphQL console, or to an appropriate client as the raw query.
+
 ## Overview of GraphQL API
 
-The GraphQL functions most commonly used in Weaviate are `Get` and `Aggregate`.
+The available GraphQL functions in Weaviate are `Get`, `Aggregate` and `Explore`. These three functions are used to `Get` objects, `Aggregate` information and `Explore` vector spaces. 
+
+Let's review each one briefly, before we learn about them in detail in the following sections.
 
 ### `Get` objects
 
+You might have seen this function in the earlier, introductory, unit. The `Get` function is used in Weaviate to retrieve data objects. That means that each query using the `Get` function will return sets of objects. 
 
+Try the following query, for example:
 
-### `Aggregate` meta information
+```graphql
+{
+  Get {
+    Question (limit: 1) {
+      question
+      answer
+    }
+  }
+}
+```
+
+This query applies the `Get` function on the `Question` class, with an argument `limit: 1` which limits the number of returned objects to a maximum of 1. 
+
+It should produce a response look like the following:
+
+```json
+RESPONSE OBJECT HERE
+```
+
+You can see that the response includes a data object from the `Question` class, and values of its `question` and `answer` properties. 
+
+### `Aggregate` information
+
+Whereas `Get` returns objects, `Aggregate` returns summary statistics or aggregates from the result set. 
+
+This allows retrieval of calculations on a set of values to return a single value, or summary value produced based on groups of outputs. 
+
+For example, the following query will produce a number of statistical values in relation to the `value` property in the `Question` class.
+
+```graphql
+{
+  Aggregate {
+    Question (limit: 100) {
+      value {
+        minimum
+        maximum
+        mean
+      }
+    }
+  }
+}
+```
+
+It should produce a response look like the following:
+
+```json
+RESPONSE OBJECT HERE
+```
 
 ### `Explore` vector spaces
+
+`Explore` is a powerful function in Weaviate that allows you to navigate the entire vector space 
 
 ## Additional options
 
