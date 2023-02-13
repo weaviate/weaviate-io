@@ -41,7 +41,7 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 You can provide your OpenAI API key in two ways:
 
-1. During **configuration** of your Docker instance, by adding `OPENAI_APIKEY` under `environment` to your `docker-compose` file, like this:
+1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` under `environment` to your `docker-compose` file, like this:
 
   ```
   environment:
@@ -143,28 +143,28 @@ Currently, you can't provide your OpenAI key in the Weaviate console. That means
 
 ```graphql
 {
-  Document {
-    title   # property 'title' of the Document class
-    content # property 'content' of the Document class
+  Article {
+    title
+    summary
   }
 }
 ```
 
-You can add both `title` and `content` to the prompt by enclosing them in curly brackets:
+You can add both `title` and `summary` to the prompt by enclosing them in curly brackets:
 
 ```graphql
 {
   Get {
-    Document {
+    Article {
       title
-      content
+      summary
       _additional {
         generate(
           singleResult: {
             prompt: """
             Summarize the following in a tweet:
             
-            {title} - {content}
+            {title} - {summary}
             """
           }
         ) {
@@ -182,7 +182,7 @@ You can add both `title` and `content` to the prompt by enclosing them in curly 
 Here is an example of a query where:
 * we run a vector search (with `nearText`) to find articles about "Italian food"
 * then we ask the generator module to describe each result as a Facebook ad.
-  * the query asks for the `summary` field, which it then includes in `prompt` argument of the `generate` operator.
+  * the query asks for the `summary` field, which it then includes in the `prompt` argument of the `generate` operator.
 
 import OpenAISingleResult from '/_includes/code/generative.openai.singleresult.mdx';
 
@@ -214,7 +214,7 @@ import OpenAISingleResult from '/_includes/code/generative.openai.singleresult.m
 ### Example - grouped result
 
 Here is an example of a query where:
-* we run a vector search (with `nearText`) to find publications about finance.
+* we run a vector search (with `nearText`) to find publications about finance,
 * then we ask the generator module to explain why these articles are about finance.
 
 import OpenAIGroupedResult from '/_includes/code/generative.openai.groupedresult.mdx';
