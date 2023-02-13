@@ -180,10 +180,10 @@ The module performs a semantic search under the hood, so a `text2vec-...` module
 OpenAI has multiple models available for the extraction of answers from a given context.
 
 * For document embeddings you can choose one of the following models:
-  * [ada](https://beta.openai.com/docs/engines/ada)
-  * [babbage](https://beta.openai.com/docs/engines/babbage)
-  * [curie](https://beta.openai.com/docs/engines/curie)
-  * [davinci](https://beta.openai.com/docs/engines/davinci)
+  * [ada](https://platform.openai.com/docs/models/ada)
+  * [babbage](https://platform.openai.com/docs/models/babbage)
+  * [curie](https://platform.openai.com/docs/models/curie)
+  * [davinci](https://platform.openai.com/docs/models/davinci)
 
 These models can be configured
 
