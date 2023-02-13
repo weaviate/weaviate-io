@@ -25,7 +25,7 @@ import DocsConfigGen from '/_includes/docs-config-gen.mdx';
 If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079).
 :::
 
-To start Weaviate with docker-compose, you need a docker-compose configuration file, typically called `docker-compose.yml`. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional [environment variables](#environment-variables) can be set in this file, which regulate your Weaviate setup, authentication and authorization, module settings, and data storage settings.
+To start Weaviate with docker-compose, you need a docker-compose configuration file, typically called `docker-compose.yml`. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional [environment variables](#environment-variables) can be set in this file, which control your Weaviate setup, authentication and authorization, module settings, and data storage settings.
 
 ## Persistent volume
 
