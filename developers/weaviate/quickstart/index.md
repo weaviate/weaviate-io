@@ -59,7 +59,7 @@ You will be creating your own instance of Weaviate in this tutorial, and using a
 To follow along with the tutorial, we recommend you create accounts with:
 1. A [Weaviate Cloud Services (WCS)](https://console.weaviate.io/) account, and
 1. An account with an inference API provider such as:
-    1. [OpenAI](https://beta.openai.com/docs/guides/embeddings),
+    1. [OpenAI](https://platform.openai.com/docs/guides/embeddings),
     1. [Cohere](https://docs.cohere.ai/reference/embed), or
     1. [Hugging Face](https://huggingface.co/docs/api-inference/index).
 

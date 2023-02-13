@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## In short
 
-* The OpenAI Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI [completions endpoint](https://beta.openai.com/docs/api-reference/completions).
+* The OpenAI Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI [completions endpoint](https://platform.openai.com/docs/api-reference/completions).
 * The module depends on a text vectorization module that should be running with Weaviate.
 * The module adds an `ask {}` parameter to the GraphQL `Get {}` queries
 * The module returns a max. of 1 answer in the GraphQL `_additional {}` field.
@@ -19,7 +19,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-The Question and Answer (Q&A) OpenAI module is a Weaviate module for answer extraction from data. It uses the [completions endpoint](https://beta.openai.com/docs/api-reference/completions), created by OpenAI, to try and extract an answer from the most relevant docs. This module can be used in GraphQL `Get{...}` queries, as a search operator. The `qna-openai` module tries to find an answer in the data objects of the specified class. If an answer is found within the given `certainty` range, it will be returned in the GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the optionally set `certainty`. The answer with the highest `certainty` (confidence level) will be returned.
+The Question and Answer (Q&A) OpenAI module is a Weaviate module for answer extraction from data. It uses the [completions endpoint](https://platform.openai.com/docs/api-reference/completions), created by OpenAI, to try and extract an answer from the most relevant docs. This module can be used in GraphQL `Get{...}` queries, as a search operator. The `qna-openai` module tries to find an answer in the data objects of the specified class. If an answer is found within the given `certainty` range, it will be returned in the GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the optionally set `certainty`. The answer with the highest `certainty` (confidence level) will be returned.
 
 ## How to enable
 
@@ -101,7 +101,7 @@ The following schema configuration uses the `ada` model.
 }
 ```
 
-For information on how to use the individual parameters you [can check here](https://beta.openai.com/docs/api-reference/completions)
+For information on how to use the individual parameters you [can check here](https://platform.openai.com/docs/api-reference/completions)
 
 ## How to use (GraphQL)
 
@@ -180,10 +180,10 @@ The module performs a semantic search under the hood, so a `text2vec-...` module
 OpenAI has multiple models available for the extraction of answers from a given context.
 
 * For document embeddings you can choose one of the following models:
-  * [ada](https://beta.openai.com/docs/engines/ada)
-  * [babbage](https://beta.openai.com/docs/engines/babbage)
-  * [curie](https://beta.openai.com/docs/engines/curie)
-  * [davinci](https://beta.openai.com/docs/engines/davinci)
+  * [ada](https://platform.openai.com/docs/models/ada)
+  * [babbage](https://platform.openai.com/docs/models/babbage)
+  * [curie](https://platform.openai.com/docs/models/curie)
+  * [davinci](https://platform.openai.com/docs/models/davinci)
 
 These models can be configured
 
