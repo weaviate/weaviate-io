@@ -37,6 +37,7 @@ export const unitData = {
       "Create a Weaviate Cloud Service account.",
       "Use WCS to create an instance of Weaviate",
       "Connect to the Weaviate instance and inspect its configuration.",
+      "Import data into the Weaviate instance.",
     ],
     owner: "laura",
     reviewer: "jp"
@@ -48,7 +49,11 @@ export const unitData = {
     badgeType: "practical",
     buttonURL: "/developers/academy/units/queries_1",
     learningGoals: [
-      "How to retrieve relevant information from Weaviate using a combination of vector searches and scalar filters.",
+      "How to use `Get` queries to retrieve objects.",
+      "How to use `Aggregate` queries to retrieve meta information about objects.",
+      "The difference between `nearVector`, `nearObject` and `nearText` parameters.",
+      "How to use `certainty` and `distance` parameters to modify vector searches.",
+      "How to add filters to vector searches.",
     ],
     learningOutcomes: [
       "Demonstrate understanding of GraphQL syntax structure",

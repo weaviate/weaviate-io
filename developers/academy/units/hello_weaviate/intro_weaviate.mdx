@@ -13,23 +13,21 @@ As you may have read on [our homepage](https://weaviate.io/), Weaviate is an ope
 
 <iframe src="https://giphy.com/embed/l0Ex8rdyy2QdX6Li8" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cbc-funny-comedy-l0Ex8rdyy2QdX6Li8">via GIPHY</a></p>
 
-That's a short sentence that packs a lot of domain-specific information. So let's spend some time unpacking it here, bit by bit.
+That's a short sentence that packs a lot of information. So let's spend some time unpacking it here, bit by bit.
 
 ### Open-source
 
-Weaviate is open-source, with its [codebase available online](https://github.com/weaviate/weaviate) for anyone to see and use<sup>[(1)](#1)</sup>. 
+Weaviate is open-source, which means that its [codebase is available online](https://github.com/weaviate/weaviate) for anyone to see and use<sup>[(1)](#1)</sup>. 
 
-And that is **the** codebase, regardless of *how* you use it. So whether you run Weaviate on your own computer, on a cloud compute environment such as AWS or GCP, or simply use it through our managed service [Weaviate Cloud Service, or WCS](https://console.weaviate.io/), you are using the exact same technology.
+And that is *the* codebase, regardless of how you use it. So whether you run Weaviate on your own computer, on a cloud compute environment, or through our managed service [Weaviate Cloud Service, or WCS](https://console.weaviate.io/), you are using the exact same technology.
 
 It also means that your knowledge about Weaviate is fungible, between local, cloud or managed instances of Weaviate. So anything you learn here about Weaviate using WCS will be equally applicable to running it locally, and vice versa. 😉
 
 ### Vector search engine
 
-Many of you might know what a vector search engine is, but let's cover it briefly. 
+A vector search engine is an advanced type of search engine that helps you to retrieve information using "vectors". 
 
-You are probably familiar with the term "search engine". Services like Google, Bing, DuckDuckGo help you to carry out searches (primarily of the Web). The term as well as search engines themselves have become ubiquitous over the last two (2)-plus decades.
-
-A vector search engine is an extension of this concept. A vector search engine is named so because it helps you to retrieve information using "vectors". They do this because it is a **fantastic way of carrying out similarity-based searches**. 
+Unlike traditional search engines, which return results based on keyword matches, vector search engines return results based on comparisons of vectors, each of which represents an object like a passage of text, a book, or an image. A vector search is a **fantastic way of carrying out a similarity-based search**. 
 
 Take a look for yourself at this example of a vector search:
 
@@ -37,7 +35,16 @@ Take a look for yourself at this example of a vector search:
 ADD VECTOR SEARCH EXAMPLE HERE, PREFERABLY INTERACTIVE
 :::
 
-Vector searches are also referred to as "semantic searches", because they return results based on similarity of meaning (therefore "semantic").
+A vector search is also referred to as a "semantic search", because it returns results based on similarity of meaning (therefore "semantic").
+
+Think of it like searching for a book in a library. Instead of searching for a particular word, like "history", or "penguins" a vector search engines enables searches for books that are similar in theme, tone, or style.
+
+Over the course of this unit, we will see all this works, including:
+
+- What vectors are
+- How vectors represent meaning
+- How vector similarity can be measured
+- How Weaviate performs vector searches
 
 <Quiz questions={weaviateOpenSource} />
 
@@ -57,7 +64,7 @@ There are a few factors here that are important to point out.
 
 ### Quantifying similarity
 
-So far, you've heard from us that vector searches are similarity-based. But we have not yet mentioned how that works, exactly. More specifically, we have yet to discuss what it even means for two vectors, two pieces of text, or two objects in general, to be "similar". 
+As we've mentioned, vector searches are similarity-based, but what does that actually mean? How do we determine that two pieces of data are "similar"? What does it mean for two vectors, two pieces of text, or two objects in general, to be similar?
 
 This is a relatively simple idea that is actually incredibly interesting and intricate once we start to dive into the details. 
 
@@ -65,29 +72,25 @@ But for now, you should know that machine learning (ML) models are key to this w
 
 #### ML models and vectorization
 
-Weaviate is not itself a vectorizer for creating a vector corresponding to a data object. Instead, it is connectable to modules that can leverage a chosen machine learning model for this purpose.
-
-A machine learning model is what will turn data, like a piece of text, an image, an audio clip, or whatever, into a vector. This type of models are often also referred to as "vectorizers". And any measures of similarity will depend on the particular machine learning model used.
+A machine learning model is what will turn data, like a piece of text, an image, an audio clip, and more into a vector. This type of models are often also referred to as "vectorizers". And measures of similarity will depend on the particular machine learning model used.
 
 As a result, it is paramount that the right model for the job is chosen. Or, at least, that a wrong model is not chosen. So throughout our courses, you will see many different models and learn about model selection both as rules of thumb and detailed discussions. 
 
-And to help our users leverage the best model for them, Weaviate is built to be compatible with a huge number of vectorization models and services. Our courses will also cover different ways to configure Weaviate so that you are using your preferred model and method in the way that suits your goals and needs.
+Weaviate does not itself vectorize data, but it is built to be compatible with a huge number of vectorization models and services. Our courses will also cover different ways to configure Weaviate to vectorize your data in the way that suits your goals and needs.
 
 ### Indexing
 
-Traditional databases include an index of the constituent data, typically called an "inverted index", where data is organized based on the constituent components (such as words) for speedy lookup. 
+To retrieve data quickly and efficiently, Weaviate uses a vector index in addition to an object index. The vector index allows for fast information retrieval, while still maintaining high recall performance. However, as the size of the dataset increases, the memory requirements and retrieval times must be balanced.
 
-Vector search engines such as Weaviate include a *vector index*, typically in addition to an inverted index. They allow fast information retrieval without compromising the quality of retrieval performance (i.e. at high *recall*). Nonetheless, they are not without cost as the size of the information set increases, and the user must balance memory requirements as well as retrieval times and recall performance.
+Weaviate uses an "approximate nearest neighbor" (ANN) algorithm for its indexing, which enables it to scale at a sublinear complexity. This means that the search time increases at a slower rate than the size of the dataset, making Weaviate highly scalable.
 
-Weaviate uses a technique called "approximate nearest neighbor" (ANN) algorithm in its indexing which enables it to scale at a sublinear complexity. This means that the rate of increase in search time is less than the rate of increase of the dataset, which is extremely beneficial for scalability.
-
-You will learn about these aspects throughout the course, including the *HNSW* index which is Weaviate's primary vector index type.
+Throughout the course, you'll learn about indexing in Weaviate and the HNSW index, which is Weaviate's primary vector index type.
 
 ### Going to production
 
 Vector databases often need to scale horizontally and vertically. The scale of vector databases can expand into billions of data objects, thus requiring indexing and retrieval of billions of vectors to be retrievable by many concurrent users. 
 
-We appreciate that this presents additional and very different challenges to the data science aspect of vector search. For this reason, we are building units related to taking your Weaviate instance all the way to production.  
+We appreciate that this presents additional and very different challenges to the data science aspect of vector search. To help you navigate these challenges, we'll cover all the key aspects of taking Weaviate to production in dedicated units of the course.
 
 All things related to taking Weaviate to production, such as authentication and authorization, backups, monitoring, replication and more will be covered in these units. 
 

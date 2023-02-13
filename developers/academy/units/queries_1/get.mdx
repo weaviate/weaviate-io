@@ -23,3 +23,69 @@ sidebar_position: 20
 ## Retrieving additional properties
 - Try basic interactive query
 - Make sure that they get back the right object(s) back
+
+
+## Move these to appropriate places
+
+From an earlier draft of hands on with Weaviate
+
+### Retrieve similarity values
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 5
+      nearText: {
+        concepts: ["Related to seafaring in Scandanavia."],
+      }
+    ) {
+      question 
+      answer 
+      _additional {
+        distance
+        id
+      }
+    }
+  }
+}
+```
+
+### Vector searches with filters
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 5
+      nearText: {
+        concepts: ["Related to seafaring in Scandanavia."],
+      }
+      where: {
+        path: ["question"],    
+        operator: Like,  
+        valueText: "*sail*"
+      }      
+    ) {
+      question 
+      answer 
+      _additional {
+        distance
+        id
+      }
+    }
+  }
+}
+```
+
+### nearObject search
+
+:::warning TODO
+Show nearObject query
+:::
+
+### nearVector search
+
+:::warning TODO
+Show nearObject query
+:::

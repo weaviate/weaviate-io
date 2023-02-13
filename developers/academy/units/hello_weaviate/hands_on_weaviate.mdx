@@ -149,7 +149,7 @@ Show query results
 
 Note that this did not specify how many results to return. This can be specified as an argument in the context of the `Class` (`Question` in this case). The maximum number of objects to be returned can be specified as a `limit` argument as below:
 
-client.query.raw("""
+```graphql
 {
   Get {
     Question (limit: 2) {
@@ -158,7 +158,7 @@ client.query.raw("""
     }
   }
 }
-""")
+```
 
 :::warning TODO
 Show query results
@@ -207,63 +207,18 @@ Which produces
 }
 ```
 
-### Retrieve similarity values
+## Weaviate client libraries
 
-```graphql
-{
-  Get {
-    Question (
-      limit: 5
-      nearText: {
-        concepts: ["Related to seafaring in Scandanavia."],
-      }
-    ) {
-      question 
-      answer 
-      _additional {
-        distance
-        id
-      }
-    }
-  }
-}
-```
+You can communicate with Weaviate with the available [client libraries](/developers/weaviate/client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or directly with the [RESTful API](/developers/weaviate/api/rest/index.md) and the [GraphQL API](/developers/weaviate/api/graphql/index.md).
 
-### Vector searches with filters
+import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
 
-```graphql
-{
-  Get {
-    Question (
-      limit: 5
-      nearText: {
-        concepts: ["Related to seafaring in Scandanavia."],
-      }
-      where: {
-        path: ["question"],    
-        operator: Like,  
-        valueText: "*sail*"
-      }      
-    ) {
-      question 
-      answer 
-      _additional {
-        distance
-        id
-      }
-    }
-  }
-}
-```
+<ClientCapabilitiesOverview />
 
-### nearObject search
+Install your preferred client by following the relevant instructions below:
 
-:::warning TODO
-Show nearObject query
-:::
+import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
-### nearVector search
+<CodeClientInstall />
 
-:::warning TODO
-Show nearObject query
-:::
+Next, we will take you end-to-end with Weaviate, all the way to making vector queries already!
