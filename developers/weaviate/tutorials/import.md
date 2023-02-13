@@ -132,7 +132,7 @@ Our rules of thumb are:
 * You should always use batch import.
 * As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
 * Process error messages.
-* Some clients (especially Python) have some built-in logic to efficiently regulate batch importing.
+* Some clients (especially Python) have some built-in logic to efficiently control batch importing.
 
 ### Error handling
 
