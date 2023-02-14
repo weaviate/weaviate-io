@@ -7,7 +7,7 @@ sidebar_position: 20
 Intro video here
 :::
 
-## `Get` queries in Weaviate
+## Overview: `Get` queries in Weaviate
 
 In many use cases, retrieving objects from a Weaviate instance may be the most common operation. 
 
@@ -22,7 +22,7 @@ The syntax of a `Get` function is as follows:
 ```graphql
 {
   Get {
-    <ClassName> (
+    <Class> (
       <arguments>
     ) {
       <properties>
@@ -33,36 +33,161 @@ The syntax of a `Get` function is as follows:
 
 To review the syntax:
 
-- The `ClassName` argument specifies the class of objects to be retrieved. 
+- The `Class` field specifies the name of the class of objects to be retrieved. 
 - The `arguments` argument specifies the search criteria to be used to retrieve the objects. 
 - The `properties` argument specifies the properties of the objects to be retrieved, including any `_additional` properties.
 
-## Retrieving objects 
-- Try basic interactive query
-- Make sure that they get back the right object(s) back
+### Class-based fields: `Class` and `properties`
 
-## Retrieving desired properties
-- Try basic interactive query
-- Make sure that they get back the right object(s) back
+From this context, the `Class` and `properties` must correspond to collections of objects that have been defined in the Weaviate schema.
 
-## Retrieving additional properties
-- Try basic interactive query
-- Make sure that they get back the right object(s) back
+In other words, the `Class` must be the name of a class that has been defined in the Weaviate schema, and the `properties` must be the names of properties that have been defined for that class.
 
+Let us review an example schema to illustrate this point. A schema might contain definitions of object collections (i.e. classes) as follows (truncated for readability):
 
-## Move these to appropriate places
+<details>
+  <summary>
+    Example schema
+  </summary>
+  <div>
 
-From an earlier draft of hands on with Weaviate
+```json
+{
+  "classes": [
+    {
+      "class": "Category",
+      "description": "A Jeopardy! category",
+      ...
+      "properties": [
+        {
+          "dataType": [
+            "string"
+          ],
+          "description": "The title of the category",
+          "name": "title",
+          "tokenization": "word"
+        }
+      ],
+      ...
+      "vectorizer": "text2vec-openai"
+    },
+    {
+      "class": "Question",
+      ...
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "description": "Question asked to the contestant",
+          ...
+          "name": "question",
+          "tokenization": "word"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "description": "Answer provided by the contestant",
+          ...
+          "name": "answer",
+          "tokenization": "word"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "description": "Points that the question was worth",
+          ...
+          "name": "value"
+        },
+        ...
+      ],
+      ...
+      "vectorizer": "text2vec-openai"
+    }
+  ]
+}
+```
 
-### Retrieve similarity values
+  </div>
+</details>
+
+The schema contains two classes: `Category` and `Question`. The `Category` class contains the property `title`, and the `Question` class contains properties: `question`, `answer`, `value`, and `category`.
+
+So, a query retrieving objects from the `Category` class will specify can specify the `title` property, and a query retrieving objects from the `Question` class can specify any of the `question`, `answer`, `value`, and `category` properties.
+
+### Function-based fields: `arguments`
+
+The `arguments` field specifies the search criteria to be used to retrieve the objects. This may be to specify criteria for a vector search, to specify a filter to be applied to the results, or to provide additional constraints such as the number of limits to be returned. 
+
+The `arguments` field is optional, and if it is not specified, then all objects of the specified class will be returned.
+
+<Quiz questions={varName} />
+
+## `Get` queries in practice
+
+Now that we've read about the syntax of the `Get` function, let's see it in action.
+
+### `Get` without vector search
+
+It is possible to query Weaviate with the `Get` function without any vector search parameters.
 
 ```graphql
 {
   Get {
     Question (
-      limit: 5
+      limit: 2
+    ) {
+      question 
+      answer 
+    }
+  }
+}
+```
+
+In this case, Weaviate will return two objects due to the `limit:2` argument. Without this limit, Weaviate would return a maximum number according to its configuration.
+
+As this does not apply any user-specific criteria to the search, the results will not be very useful. However, this may be a viable method for "sanity" checks, such as checking that you can connect to a Weaviate instance, or that at least some objects have been imported successfully.
+
+### `Get` with additional properties
+
+In this example, we've built on the previous example by adding the `_additional` field to the `Get` query. This field allows us to retrieve additional properties that are not defined in the schema, such as the `vector` and `id` properties, for the object vector and the UUID respectively.
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 2
+    ) {
+      question 
+      answer 
+      _additional {
+        vector
+        id
+      }
+    }
+  }
+}
+```
+
+Note that the returned vector in many cases will be a very long list of numbers. 
+
+While inspecting the individual values of the vector may have limited use, it may be useful to review the length of the vector to ensure that it is as you expected, or to retrieve the vector for re-use.
+
+### `Get` with `nearText`
+
+The `nearText` parameter specifies the a text input which will be the basis for the vector search. 
+
+This parameter is passed as an argument in the GraphQL query like below, where the `concepts` argument specifies the text input to be used for the vector search.
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 2
       nearText: {
-        concepts: ["Related to seafaring in Scandanavia."],
+        concepts: ["Seafaring technology from Scandanavia."],
       }
     ) {
       question 
@@ -75,6 +200,63 @@ From an earlier draft of hands on with Weaviate
   }
 }
 ```
+
+This should produce a result like the following:
+
+<details>
+  <summary>Search results</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Question": [
+        {
+          "_additional": {
+            "distance": 0.14929104,
+            "id": "5d9d5c8d-13e7-5791-b2f9-3724a1a1d301"
+          },
+          "answer": "Oslo",
+          "question": "1,200-year-old Viking ships are on display at the Vikingskiphuset in this Norwegian capital"
+        },
+        {
+          "_additional": {
+            "distance": 0.17065966,
+            "id": "67e4c36d-2970-5ffd-af81-d7917f58de01"
+          },
+          "answer": "Roald Amundsen",
+          "question": "Using a herring boat, this Norwegian became the first to navigate the Northwest Passage in 1906"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+Under the hood, what is happening is that Weaviate is converting the input to a vector, and performing a vector search. The results are then returned in order of their similarity to the input vector.
+
+You will also notice that the query included the `distance` property in the `_additional` field. This represents the similarity value between the input vector and the vector of the object. The value is a number between 0 and 1, where 0 means the two objects are identical, and 1 orthogonal.
+
+:::info `nearText` parameter requires a vectorizer!
+As you know, a text object must be converted to a vector before it can be used in a vector search. Accordingly, the `nearText` parameter is only available when a vectorizer module has been specified for the class.
+:::
+
+<Quiz questions={varName} />
+
+## Retrieving additional properties
+- Try basic interactive query
+- Make sure that they get back the right object(s) back
+
+
+## Move these to appropriate places
+
+From an earlier draft of hands on with Weaviate
+
+### Retrieve similarity values
+
+
 
 ### Vector searches with filters
 
@@ -117,3 +299,26 @@ Show nearObject query
 
 ## Get with cross-references
 
+<Quiz questions={varName} />
+
+import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
