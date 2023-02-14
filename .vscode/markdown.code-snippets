@@ -147,6 +147,9 @@
 		"prefix": "docusaurus-academy-quiz-def",
 			"scope": "markdown",
 			"body": [
+				"<Quiz questions={varName} />",
+				"",
+				"import Quiz from '/src/components/Academy/quiz.js'",
 				"const ${varName} = [{",
 				"  questionText: '${questionText}',",
 				"  answerOptions: [",

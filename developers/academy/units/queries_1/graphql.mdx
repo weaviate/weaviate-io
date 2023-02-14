@@ -18,6 +18,10 @@ Intro video here
 
 You may have already seen that Weaviate utilizes GraphQL as the query language for its searches.
 
+GraphQL allows the user to specify the data to retrieve. This allows the user to only specify the data that is needed. Additionally, the user can specify multiple properties, which means that what might potentially take multiple requests with a REST API can be done in a single query. 
+
+The ability of GraphQL to reduce over-fetching and under-fetching of data is a key reason that it is used by Weaviate.
+
 Let's take a look at the basic GraphQL syntax in Weaviate again.  
 
 ```graphql
@@ -33,9 +37,14 @@ Let's take a look at the basic GraphQL syntax in Weaviate again.
 }
 ```
 
-Unlike in REST APIs, GraphQL allows the user to specify the data to retrieve - which in this case is specified in the `<properties>` field. This allows the user to only specify the data that is needed. Additionally, the user can specify multiple properties, which means that what might potentially take multiple requests with a REST API can be done in a single query.
+If you were to query a database of quiz objects, the fields in the above query would be as follows:
 
-These benefits of GraphQL in reducing over-fetching and under-fetching of data is a key reason that it is used by Weaviate.
+* `<Function>`: The function that you want to use, such as `Get`, `Aggregate`, or `Explore`.
+* `<Class>`: The class that you want to retrieve data from, such as `Question` or `Category`.
+* `<properties>`: The properties that you want to retrieve, such as `question`, `answer` or `value`.
+* `<additional_properties>`: The properties that you want to retrieve from the additional properties, such as `id` or `vector`.
+
+Each field can also accept arguments, such as `limit` to limit the number of objects to be returned, or `where` to apply a filter. 
 
 ### GraphQL and Weaviate clients
 
@@ -45,9 +54,9 @@ The client libraries also give the option to use raw GraphQL queries directly.
 
 In this section, we'll continue to use raw GraphQL queries to deepen your understanding and increase your comfort level with this crucial topic.
 
-### GraphQL in the JSON payload
+### GraphQL in requests
 
-We note that each GraphQL query which is sent to the endpoint takes the below form, where the GraphQL query is provided as the value to the `query` key.
+We note that each GraphQL query which is sent to the endpoint takes the below form. The GraphQL query is provided as the value to the `query` key in the JSON payload.
 
 ```json
 {
@@ -55,7 +64,9 @@ We note that each GraphQL query which is sent to the endpoint takes the below fo
 }
 ```
 
-However, in most cases we will only need to construct the query body and pass it to the GraphQL console, or to an appropriate client as the raw query.
+For our purposes, however, we will only need to construct the query body and pass it to the GraphQL console, or to an appropriate client as the raw query.
+
+<Quiz questions={varName} />
 
 ## Overview of GraphQL API
 
@@ -85,7 +96,18 @@ This query applies the `Get` function on the `Question` class, with an argument 
 It should produce a response look like the following:
 
 ```json
-RESPONSE OBJECT HERE
+{
+  "data": {
+    "Get": {
+      "Question": [
+        {
+          "answer": "Amazon.com",
+          "question": "On July 16, 1995 this company made its first sale, a science textbook"
+        }
+      ]
+    }
+  }
+}
 ```
 
 You can see that the response includes a data object from the `Question` class, and values of its `question` and `answer` properties. 
@@ -112,24 +134,208 @@ For example, the following query will produce a number of statistical values in 
 }
 ```
 
-It should produce a response look like the following:
+It should produce a response that looks like the following:
 
 ```json
-RESPONSE OBJECT HERE
+{
+  "data": {
+    "Aggregate": {
+      "Question": [
+        {
+          "value": {
+            "maximum": 10000,
+            "mean": 632.41,
+            "minimum": 0
+          }
+        }
+      ]
+    }
+  }
+}
 ```
 
 ### `Explore` vector spaces
 
-`Explore` is a powerful function in Weaviate that allows you to navigate the entire vector space.
+`Explore` is a powerful function in Weaviate that allows you to navigate the entire vector space. 
 
-This is very useful when you may not be sure of what class to search for, so you wish to search through all your data objects. 
+This means that you can use `Explore` to find objects that are similar to a given object or vector, regardless of the class of the object. As such, `Explore` is very useful when you may not be sure of what class to search for.
 
+In relation to our Quiz dataset, a query using the `Explore` function would return a set of objects from both the `Question` and `Category` classes.
 
+We will explore the `Explore` function in more detail in a following unit.
 
- then you can use the `Explore{}` function instead of the `Get{}` function. In the `Explore{}` function you don't specify which classes you perform the semantic search on, so the semantic search will be performed on all the data objects. Since this search is fuzzy, the only fields you can return
+<Quiz questions={varName} />
 
-## Additional options
+## Query arguments
 
-- Filters
-- Vector search parameters
-- Additional properties
+You've already seen that GraphQL queries can take arguments such as `limit`. In this section, we'll take a closer look at the arguments that are available for each function. 
+
+### Argument syntax in GraphQL
+
+Arguments are provided in GraphQL as a comma-separated list of key-value pairs, enclosed in parentheses. Recall the following example for the `Get` function, where we provided the limit argument:
+
+```graphql
+{
+  Get {
+    Question (limit: 1) {
+      question
+      answer
+    }
+  }
+}
+```
+
+We can introduce additional arguments by adding them. Let's take a look at examples of types of arguments which can be added to queries.
+
+### Vector search parameters
+
+As you know, Weaviate can search for objects based on their proximity to a vector. This vector can be specified with a variety of parameters, including `nearVector`, `nearObject`, or `nearText` for example. 
+
+These parameters are provided to Weaviate as arguments to the class (e.g. `Get`) in the GraphQL query. 
+
+For example, the below query will add a `nearVector` parameter:
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 1,
+      nearVector: {vector: <VECTOR>}
+      ) {
+      question
+      answer
+    }
+  }
+}
+
+print(json.dumps(response, indent=2))
+```
+
+When a vector for "unusual animals" is used as a the input, the query returns:
+
+```json
+{
+  "data": {
+    "Get": {
+      "Question": [
+        {
+          "answer": "raccoons",
+          "question": "The crab-eating one of these masked animals eats fish, fruit & frogs, too"
+        }
+      ]
+    }
+  }
+}
+```
+
+Vector search parameters can also be used with the `Aggregate` and `Explore` functions. They are key inputs that specify the way in which the vector space is searched. We will review these in more detail in a following section of this unit.
+
+### Filters
+
+Filters are used to limit the results of a query to a subset of the data. For example, you might wish to limit the search to a particular category, or perhaps to those questions that have a value greater than a certain threshold.
+
+So, we could modify the above query to only search for questions with a value greater than 100:
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 1,
+      nearVector: {vector: <VECTOR>},
+      where: {
+        path: ["value"],
+        operator: GreaterThan,
+        valueInt: 100,
+      }
+      ) {
+      question
+      answer
+    }
+  }
+}
+```
+
+The additional `where` filter limits the results here to questions where the `value` property is greater than 100. Our top result is now:
+
+```json
+{
+  "data": {
+    "Get": {
+      "Question": [
+        {
+          "answer": "Zebra",
+          "question": "It's the striped African mammal with whom the insect seen here shares part of its name"
+        }
+      ]
+    }
+  }
+}
+```
+
+Filters are available for all functions, and are an important part of your search strategy. We will review these in more detail in a following section of this unit.
+
+## Additional properties
+
+Each GraphQL query can also be extended to request additional properties. These include information such as the `id` or `vector` of the object or a `certainty` value of the search result. 
+
+Weaviate's GraphQL syntax includes a reserved `_additional` field which can be used to request additional properties. The following will request the object's ID along with the `question` and `answer` properties:
+
+```graphql
+{
+  Get {
+    Question (limit: 1) {
+      question
+      answer
+      _additional {
+        id
+      }
+    }
+  }
+}
+```
+
+And it will return:
+
+```json
+{
+  "data": {
+    "Get": {
+      "Question": [
+        {
+          "_additional": {
+            "id": "0000d624-976b-5c43-abf3-ec9491ddb1bc"
+          },
+          "answer": "Amazon.com",
+          "question": "On July 16, 1995 this company made its first sale, a science textbook"
+        }
+      ]
+    }
+  }
+}
+```
+
+Additional properties are extremely valuable. They can help to retrieve object IDs or vectors for re-use, or review search results based on their certainty. We will also review these in more detail in a following section of this unit.
+
+<Quiz questions={varName} />
+
+import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
