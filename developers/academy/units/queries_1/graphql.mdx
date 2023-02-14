@@ -3,16 +3,13 @@ title: GraphQL
 sidebar_position: 10
 ---
 
-import ReactPlayer from 'react-player'
-
-Introductory video on GraphQL
-<ReactPlayer url='https://www.youtube.com/watch?v=eIQh02xuVw4' controls="true" /><br/>
-
 :::warning TODO
 Intro video here
 :::
 
 ## GraphQL in Weaviate
+
+![](https://kinsta.com/wp-content/uploads/2022/09/graphql.png)
 
 ### Basic GraphQL syntax structure
 
@@ -126,8 +123,9 @@ Or even (notice the comma):
 ```graphql
 {Get{Question(limit:1){question,answer}}}
 ```
-:::
 
+Do note that, however, names in GraphQL [are case-sensitive](https://spec.graphql.org/October2021/#sec-Names), so `Get` and `Question` are different from `get` and `question`.
+:::
 
 ### `Aggregate` information
 
@@ -338,6 +336,27 @@ And it will return:
 Additional properties are extremely valuable. They can help to retrieve object IDs or vectors for re-use, or review search results based on their certainty. We will also review these in more detail in a following section of this unit.
 
 <Quiz questions={varName} />
+
+## Review
+
+:::warning TODO
+Video here
+:::
+
+### Review exercise
+
+Can you describe, in your own sentence, XXX?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+??
+:::
+
+### Key takeaways
+
+:::info
+Add summary
+:::
 
 import Quiz from '/src/components/Academy/quiz.js'
 const varName = [{

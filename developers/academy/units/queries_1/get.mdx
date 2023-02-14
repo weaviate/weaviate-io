@@ -101,6 +101,14 @@ Let us review an example schema to illustrate this point. A schema might contain
           ...
           "name": "value"
         },
+        {
+          "dataType": [
+            "Category"
+          ],
+          "description": "The category of the question",
+          ...
+          "name": "hasCategory"
+        }        
         ...
       ],
       ...
@@ -113,9 +121,9 @@ Let us review an example schema to illustrate this point. A schema might contain
   </div>
 </details>
 
-The schema contains two classes: `Category` and `Question`. The `Category` class contains the property `title`, and the `Question` class contains properties: `question`, `answer`, `value`, and `category`.
+The schema contains two classes: `Category` and `Question`. The `Category` class contains the property `title`, and the `Question` class contains properties: `question`, `answer`, `value`, and `hasCategory`.
 
-So, a query retrieving objects from the `Category` class will specify can specify the `title` property, and a query retrieving objects from the `Question` class can specify any of the `question`, `answer`, `value`, and `category` properties.
+So, a query retrieving objects from the `Category` class will specify can specify the `title` property, and a query retrieving objects from the `Question` class can specify any of its properties such as `question`, `answer`, `value`, and `hasCategory`.
 
 ### Function-based fields: `arguments`
 
@@ -185,7 +193,7 @@ This parameter is passed as an argument in the GraphQL query like below, where t
 {
   Get {
     Question (
-      limit: 2
+      limit: 3
       nearText: {
         concepts: ["Seafaring technology from Scandanavia."],
       }
@@ -213,7 +221,7 @@ This should produce a result like the following:
       "Question": [
         {
           "_additional": {
-            "distance": 0.14929104,
+            "distance": 0.14927602,
             "id": "5d9d5c8d-13e7-5791-b2f9-3724a1a1d301"
           },
           "answer": "Oslo",
@@ -221,11 +229,19 @@ This should produce a result like the following:
         },
         {
           "_additional": {
-            "distance": 0.17065966,
+            "distance": 0.1706214,
             "id": "67e4c36d-2970-5ffd-af81-d7917f58de01"
           },
           "answer": "Roald Amundsen",
           "question": "Using a herring boat, this Norwegian became the first to navigate the Northwest Passage in 1906"
+        },
+        {
+          "_additional": {
+            "distance": 0.17154193,
+            "id": "5edd4acb-9860-5c84-b7b7-90e757aa8c1e"
+          },
+          "answer": "Eric the Red",
+          "question": "In 982 he sailed from Iceland to Greenland with his household & livestock"
         }
       ]
     }
@@ -237,36 +253,25 @@ This should produce a result like the following:
 
 Under the hood, what is happening is that Weaviate is converting the input to a vector, and performing a vector search. The results are then returned in order of their similarity to the input vector.
 
-You will also notice that the query included the `distance` property in the `_additional` field. This represents the similarity value between the input vector and the vector of the object. The value is a number between 0 and 1, where 0 means the two objects are identical, and 1 orthogonal.
+You will also notice that the query included the `distance` property in the `_additional` field. This represents the degree of similarity (or, in this case, the *difference*) between the input vector and the vector of the object. The value is a number between 0 and 1, where 0 means the two objects are identical, and 1 orthogonal.
 
 :::info `nearText` parameter requires a vectorizer!
-As you know, a text object must be converted to a vector before it can be used in a vector search. Accordingly, the `nearText` parameter is only available when a vectorizer module has been specified for the class.
+Because text object must be converted to a vector before it can be used in a vector search, the `nearText` parameter is only available when a vectorizer module has been specified for the class.
 :::
 
-<Quiz questions={varName} />
+### `Get` with a filter
 
-## Retrieving additional properties
-- Try basic interactive query
-- Make sure that they get back the right object(s) back
+Next, we will extend the query again by introducing a filter. A filter is a way to specify additional criteria to be applied to the results of the vector search. It is analogous to the `WHERE` clause in a SQL query, and in fact the argument in Weaviate is also called `where`.
 
-
-## Move these to appropriate places
-
-From an earlier draft of hands on with Weaviate
-
-### Retrieve similarity values
-
-
-
-### Vector searches with filters
+Below, we extend our query again to now include a `where` argument, specifying that the `question` property of the object must contain the text `sail`.
 
 ```graphql
 {
   Get {
     Question (
-      limit: 5
+      limit: 2
       nearText: {
-        concepts: ["Related to seafaring in Scandanavia."],
+        concepts: ["Seafaring technology from Scandanavia."],
       }
       where: {
         path: ["question"],    
@@ -285,21 +290,152 @@ From an earlier draft of hands on with Weaviate
 }
 ```
 
-### nearObject search
+This should produce a result like the following:
 
-:::warning TODO
-Show nearObject query
-:::
+<details>
+  <summary>Search results</summary>
 
-### nearVector search
+```json
+{
+  "data": {
+    "Get": {
+      "Question": [
+        {
+          "_additional": {
+            "distance": 0.17154193,
+            "id": "5edd4acb-9860-5c84-b7b7-90e757aa8c1e"
+          },
+          "answer": "Eric the Red",
+          "question": "In 982 he sailed from Iceland to Greenland with his household & livestock"
+        },
+        {
+          "_additional": {
+            "distance": 0.18194813,
+            "id": "ba9c9bc6-17fc-5fde-b8c2-4801829dbdbd"
+          },
+          "answer": "engines",
+          "question": "France II, at 419 feet the largest merchant sailing ship ever built, also had 2 of these to back up the sails"
+        },
+        {
+          "_additional": {
+            "distance": 0.18973523,
+            "id": "135fd0ad-66bf-5974-b6e6-ac79793df469"
+          },
+          "answer": "a clipper ship",
+          "question": "The \"Baltimore\" type of this sailing ship originated in the Chesapeake Bay region in the 1800s"
+        }
+      ]
+    }
+  }
+}
+```
 
-:::warning TODO
-Show nearObject query
-:::
+</details>
+
+Refer to the results above, and observe how the results have changed. The first two entries from the earlier result set have been removed as they do not contain the text `sail` in the `question` property. 
+
+This approach of combining a vector search with a filter is a powerful way to find objects that are similar to a given input, but also meet additional criteria as you see. And while filtering may remove some objects which might otherwise be "closer" to the query vector than the remaining ones, it provides a powerful strategy to find the most relevant objects by removing false positive.
+
+<Quiz questions={varName} />
 
 ## Get with cross-references
 
+And before we wrap up this section, let's take a look at how to perform a `Get` query with cross-references. While we have not yet covered cross-references in detail in this unit, for now it is sufficient to know that they are a way to connect objects to each other.
+
+In the example below, we will perform a `Get` query on the `Question` class, but this time we will include the `hasCategory` property in the query. This property is a cross-reference to the `Category` class, and will be used to return the category of each question.
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 1
+      nearText: {
+        concepts: ["Seafaring technology from Scandanavia."],
+      }   
+    ) {
+      question 
+      answer 
+      hasCategory {
+        ... on Category {
+          title
+          _additional {
+            id
+          }            
+        }
+      }      
+      _additional {
+        distance
+        id
+      }
+    }
+  }
+}
+```
+
+:::info `... on Category` syntax
+The `... on Category` pattern syntax is called a "fragment" in GraphQL terms. This fragment specifies that the `hasCategory` property is of type `Category`, and that the results should be returned as such.
+:::
+
+This produces a result like the following:
+
+<details>
+  <summary>Search results</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Question": [
+        {
+          "_additional": {
+            "distance": 0.14927602,
+            "id": "5d9d5c8d-13e7-5791-b2f9-3724a1a1d301"
+          },
+          "answer": "Oslo",
+          "hasCategory": [
+            {
+              "_additional": {
+                "id": "fec50326-dfa1-53c9-90e8-63d0240bd933"
+              },
+              "title": "MUSEUMS"
+            }
+          ],
+          "question": "1,200-year-old Viking ships are on display at the Vikingskiphuset in this Norwegian capital"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+Where the `hasCategory` property is now an array of objects, containing objects of type `Category` that the Question is related to and their requested properties. The `title` property of the `Category` class is returned as well, and the `_additional` field contains the `id` of the category. 
+
+Cross-references provide you with a great deal of flexibility and power in your data model, and are a great way to connect objects to each other. We will cover them in more detail in our unit on schemas.
+
 <Quiz questions={varName} />
+
+## Review
+
+:::warning TODO
+Video here
+:::
+
+### Review exercise
+
+Can you describe, in your own sentence, XXX?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+??
+:::
+
+### Key takeaways
+
+:::info
+Add summary
+:::
 
 import Quiz from '/src/components/Academy/quiz.js'
 const varName = [{

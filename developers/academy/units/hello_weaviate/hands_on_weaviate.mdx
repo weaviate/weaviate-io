@@ -22,6 +22,8 @@ We will also touch on advanced techniques such as hybrid search.
 
 ### Vector search in action
 
+![](https://media.istockphoto.com/id/1219473617/vector/young-male-character-writing-code-on-a-desktop-computer-working-from-home-millennials-at-work.jpg?s=612x612&w=is&k=20&c=roUA97RKbkKr1nTUf1snC9rbEXSTUH5obfDw9xFo-5g=)
+
 For our first search, let's look for categories that best match our input query. The "Category" class in the Weaviate instance [DEMO INSTANCE LOCATION](http://example.com) is populated with categories that each question belongs to. 
 
 The below has been set up so that it would retrieve the closest categories to the input query "Ground-breaking scientific discovery". Try running it yourself:
@@ -36,6 +38,8 @@ The below has been set up so that it would retrieve the closest categories to th
 Note that the results are very much conceptually relevant even though they don't have much in the way of literal overlap with our query. This is exactly what we have been learning about - vector searches can identify related objects. What we have not yet seen however, is the syntax. So let's dive into that a little bit.
 
 ## GraphQL
+
+![](https://devopedia.org/images/article/147/8496.1558526064.jpg)
 
 Weaviate utilizes GraphQL as the query language for its searches. GraphQL is a very flexible and efficient query language built on graph data structures. 
 
@@ -61,6 +65,8 @@ The query format begins with a `Function`, such as `Get` (to retrieve objects) a
 You may notice from this that the data to be returned is not predetermined, unlike, for example, REST endpoints. This difference allows you to request only the data that you need from Weaviate, reducing over-fetching or under-fetching of data. 
 
 ## Search query examples
+
+![](https://media.istockphoto.com/id/1124838925/vector/programming-code-application-window.jpg?s=612x612&w=is&k=20&c=-39O-FalRyZHGF5P5FFVEN17hXTLgkNyWHaZY9C-VbQ=)
 
 Now let's construct a few GraphQL queries to search the `Question` class and retrieve objects using the `Get` function.
 
@@ -209,6 +215,8 @@ Which produces
 
 ## Weaviate client libraries
 
+![](https://cdn.hackr.io/uploads/posts/large/1611758548dzkO7CszxO.png)
+
 You can communicate with Weaviate with the available [client libraries](/developers/weaviate/client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or directly with the [RESTful API](/developers/weaviate/api/rest/index.md) and the [GraphQL API](/developers/weaviate/api/graphql/index.md).
 
 import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
@@ -222,3 +230,24 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 <CodeClientInstall />
 
 Next, we will take you end-to-end with Weaviate, all the way to making vector queries already!
+
+## Review
+
+:::warning TODO
+Video here
+:::
+
+### Review exercise
+
+Can you describe, in your own sentence, XXX?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+??
+:::
+
+### Key takeaways
+
+:::info
+Add summary
+:::

@@ -3,6 +3,8 @@ title: A peek inside Weaviate
 sidebar_position: 40
 ---
 
+![](https://weaviate.io/assets/images/pulling-back-the-curtains-text2vec-d28fe2ad487a17046fe5dc5fc8d85424.png)
+
 ## Introduction
 
 :::warning TODO
@@ -20,6 +22,8 @@ Now, it's time to dive deeper into the inner workings of Weaviate. In this secti
 This information will help you understand the mechanisms behind the powerful search capabilities of Weaviate, enabling you to make the most of this tool in your development projects.
 
 ## Data storage & retrieval
+
+![](https://media.istockphoto.com/id/1177204050/vector/flat-isometric-servers-computer-hardware-network-vector-icon.jpg?s=612x612&w=is&k=20&c=inGNylOUbN6nOC6Eq2qvABwbuNohpLFHvqb0WJnWgWg=)
 
 Weaviate's efficient storage and retrieval of data is made possible through its use of three key components: the object store, object index, and vector index.
 
@@ -43,9 +47,7 @@ A traditional k-nearest neighbor (kNN) similarity search can be slow and ineffic
 
 ## High-level overview of vector search
 
-:::note TODO
-An image showing vector search
-:::
+![](https://weaviate.io/assets/images/hero-a483b9830f359fa00af19ca4896cad10.png)
 
 In Weaviate, vector search can be combined with an algebraic filter for more precise results. For example, you could search for quiz questions similar to a specific vector, but only within the "World History" category.
 
@@ -128,6 +130,8 @@ We will look at schema definition including data types in more detail in another
 
 ## Vector representations in Weaviate
 
+![](https://weaviate.io/assets/images/hero-94bc05f994216b3d19985a226e6b5a2e.png)
+
 :::warning TODO
 Intro video here
 :::
@@ -153,6 +157,27 @@ It is possible to both upload your own vectors and specify a vectorizer for Weav
 We will explore these options in more detail in another unit.
 
 <Quiz questions={vectorizeObject} />
+
+## Review
+
+:::warning TODO
+Video here
+:::
+
+### Review exercise
+
+Can you describe, in your own sentence, XXX?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+??
+:::
+
+### Key takeaways
+
+:::info
+Add summary
+:::
 
 import Quiz from '/src/components/Academy/quiz.js' 
 const dataStorageComponents = [
