@@ -126,7 +126,7 @@ An overview of environment variables in the docker-compose file:
 
 | Variable | Description | Type | Example Value |
   | --- | --- | --- | --- |
-  | `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications). | `string - memory limit in SI uints` | `4096MiB` |
+  | `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/gomemlimit-a-game-changer-for-high-memory-applications). | `string - memory limit in SI uints` | `4096MiB` |
   | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
   | <code>CONTEXTIONARY_<wbr />URL</code> | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
   | <code>PERSISTENCE_<wbr />DATA_<wbr />PATH</code> | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |

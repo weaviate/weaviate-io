@@ -151,11 +151,11 @@ const siteRedirects = {
             from: '/blog/2021/01/The-history-of-Weaviate'
         },
         {
-            to: '/blog/GraphQL-API-design',
+            to: '/blog/graphql-api-design',
             from: '/blog/2021/01/GraphQL-API-design'
         },
         {
-            to: '/blog/CRUD-support-in-Weaviate',
+            to: '/blog/crud-support-in-weaviate',
             from: '/blog/2021/02/CRUD-support-in-Weaviate'
         },
         {
@@ -163,15 +163,15 @@ const siteRedirects = {
             from: '/blog/2021/03/Weaviate-1-2-transformer-models'
         },
         {
-            to: '/blog/Docker-and-Containers-with-Weaviate',
+            to: '/blog/docker-and-containers-with-weaviate',
             from: '/blog/2021/05/Docker-and-Containers-with-Weaviate'
         },
         {
-            to: '/blog/Semantic-Search-with-Wikipedia-and-Weaviate',
+            to: '/blog/semantic-search-with-wikipedia-and-weaviate',
             from: '/blog/2021/11/Semantic-Search-with-Wikipedia-and-Weaviate'
         },
         {
-            to: '/blog/The-AI-First-Database-Ecosystem',
+            to: '/blog/the-ai-first-database-ecosystem',
             from: '/blog/2022/06/The-AI-First-Database-Ecosystem'
         },
         {
@@ -186,11 +186,11 @@ const siteRedirects = {
             ]
         },
         {
-            to: '/blog/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications',
+            to: '/blog/gomemlimit-a-game-changer-for-high-memory-applications',
             from: '/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications'
         },
         {
-            to: '/blog/Research-Insights-Spider',
+            to: '/blog/research-insights-spider',
             from: '/blog/2022/08/Research-Insights-Spider'
         },
         {
@@ -205,11 +205,11 @@ const siteRedirects = {
             from: '/blog/2022/09/Weaviate-release-1-15'
         },
         {
-            to: '/blog/Why-is-Vector-Search-so-fast',
+            to: '/blog/why-is-vector-search-so-fast',
             from: '/blog/2022/09/Why-is-Vector-Search-so-fast'
         },
         {
-            to: '/blog/Distance-Metrics-in-Vector-Search',
+            to: '/blog/distance-metrics-in-vector-search',
             from: '/blog/2022/09/Distance-Metrics-in-Vector-Search'
         },
         {
@@ -217,15 +217,15 @@ const siteRedirects = {
             from: '/blog/2022/09/Weaviate-release-1-15-1'
         },
         {
-            to: '/blog/Hugging-Face-Inference-API-in-Weaviate',
+            to: '/blog/hugging-face-inference-api-in-weaviate',
             from: '/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate'
         },
         {
-            to: '/blog/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face',
+            to: '/blog/how-to-choose-a-sentence-transformer-from-hugging-face',
             from: '/blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face'
         },
         {
-            to: '/blog/ANN-algorithms-Vamana-vs-HNSW',
+            to: '/blog/ann-algorithms-vamana-vs-hnsw',
             from: '/blog/2022/10/ANN-algorithms-Vamana-vs-HNSW'
         },
         {
@@ -257,7 +257,7 @@ const siteRedirects = {
             from: '/blog/2022/12/sphere-dataset-in-weaviate'
         },
         {
-            to: '/blog/Cohere-multilingual-with-weaviate',
+            to: '/blog/cohere-multilingual-with-weaviate',
             from: '/blog/2022/12/Cohere-multilingual-with-weaviate'
         },
         {

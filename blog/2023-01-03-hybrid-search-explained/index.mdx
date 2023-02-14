@@ -22,7 +22,7 @@ Sparse and dense vectors are calculated with distinct algorithms. Sparse vectors
 
 Note, the current implementation of hybrid search in Weaviate uses BM25/BM25F and vector search. 
 
-If you’re interested to learn about how dense vector indexes are built and optimized in Weaviate, check out this [article](/blog/Why-is-Vector-Search-so-fast). 
+If you’re interested to learn about how dense vector indexes are built and optimized in Weaviate, check out this [article](/blog/why-is-vector-search-so-fast). 
 
 ### BM25
 BM25 builds on the keyword scoring method [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) (Term-Frequency Inverse-Document Frequency) by taking the [Binary Independence Model](https://en.wikipedia.org/wiki/Binary_Independence_Model) from the IDF calculation and adding a normalization penalty that weighs a document’s length relative to the average length of all the documents in the database. 
@@ -38,7 +38,7 @@ BM25F was also implemented in Weaviate `1.17`. BM25F is a variant of BM25 that a
 ### Dense Vectors 
 Dense vectors represent information stored in a database; this includes text, images, and other types of data. These embeddings are generated from machine learning models that convert data to vectors. The vectors are densely packed with information and are mostly made up of non-zero values. The meaning of each value in the vector depends on the machine learning model that you used. 
 
-Vector search engines, like [Weaviate](/developers/weaviate/), store these embeddings and calculate the distance between the two vectors. [Distance metrics](/blog/Distance-Metrics-in-Vector-Search) show how similar or dissimilar two vector embeddings are. The search query is converted to a vector, similar to the data vectors, and the distance value determines how close the vectors are. 
+Vector search engines, like [Weaviate](/developers/weaviate/), store these embeddings and calculate the distance between the two vectors. [Distance metrics](/blog/distance-metrics-in-vector-search) show how similar or dissimilar two vector embeddings are. The search query is converted to a vector, similar to the data vectors, and the distance value determines how close the vectors are. 
 
 ![Hybrid Search](./img/hybrid-search-explained.png)
 
