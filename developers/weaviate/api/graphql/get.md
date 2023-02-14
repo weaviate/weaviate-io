@@ -36,6 +36,10 @@ The above query will result in something like the following:
 }
 ```
 
+:::info Get query without arguments
+The order of object retrieval is not guaranteed in a `Get` query without any search parameters or filters. Accordingly, such a `Get` query is not suitable for any substantive object retrieval strategy.
+:::
+
 ## Query beacon references
 
 If you've set a beacon reference in the schema, you can query it as follows:
