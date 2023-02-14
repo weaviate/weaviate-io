@@ -1,16 +1,41 @@
 ---
-title: Get
+title: Retrieving objects with Get{}
 sidebar_position: 20
 ---
 
-## `Get` queries in Weaviate
-- What do `Get` queries do
-- What don't `Get` queries do (e.g. contrast with `Aggregate`)
+:::warning TODO
+Intro video here
+:::
 
-## `Get` syntax overview
-- Basic syntax construction
-- Try syntax with/without spaces and commas
-- Code examples in other languages
+## `Get` queries in Weaviate
+
+In many use cases, retrieving objects from a Weaviate instance may be the most common operation. 
+
+For example, a user may want to retrieve a list of passages most closely related to the input query, or they may wish to retrieve a list of images which are most similar to another image. It may even be possible to retrieve a set of images that best match a given passage.
+
+In Weaviate, these operations are performed using the `Get` function.
+
+## `Get` function syntax
+
+The syntax of a `Get` function is as follows:
+
+```graphql
+{
+  Get {
+    <ClassName> (
+      <arguments>
+    ) {
+      <properties>
+    }
+  }
+}
+```
+
+To review the syntax:
+
+- The `ClassName` argument specifies the class of objects to be retrieved. 
+- The `arguments` argument specifies the search criteria to be used to retrieve the objects. 
+- The `properties` argument specifies the properties of the objects to be retrieved, including any `_additional` properties.
 
 ## Retrieving objects 
 - Try basic interactive query
@@ -89,3 +114,6 @@ Show nearObject query
 :::warning TODO
 Show nearObject query
 :::
+
+## Get with cross-references
+
