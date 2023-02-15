@@ -1,0 +1,124 @@
+---
+title: Compile results with Aggregate{}
+sidebar_position: 30
+---
+
+## About `Aggregate` queries
+
+:::warning TODO
+Intro video here
+:::
+
+Now that you have seen how to retrieve individual objects with `Get` queries, let's take a look at how to compile information from multiple objects with `Aggregate` queries.
+
+This is a powerful feature that allows you to combine information from multiple objects into a single result, whether it be data or metadata about those objects.
+
+Using `Aggregate` queries is a great way to get a quick overview of your data, and can be used to create a variety of useful reports.
+
+### `Aggregate` function syntax
+
+![](../../tmp_images/a_person_holding_a_magnifying_glass_at_computer_screen_with_code_0_short.png)
+
+While the overall structure of `Aggregate` queries is similar to `Get` queries, there are some important differences as the queries relate to sets of results. The syntax for `Aggregate` queries is as follows:
+
+```graphql
+{
+  Aggregate (groupBy:[<property>]) {  # `groupBy`: optional argument
+    groupedBy {  # requires `groupBy` argument
+        path
+        value
+    }
+    meta {  # optional
+      count
+    }
+    <Class> (
+      <arguments>
+    ) {
+      <properties>
+    }
+  }
+}
+```
+
+You will notice the presence of the `groupBy` argument, This is an optional argument that can be used to group results of the query. The `Aggregate` function can also return metadata about the results, such as the number of results in each group.
+
+Additionally, available properties differ according to data types of the property being queried. For example, the available properties for a `String` property are different from those for an `Integer` property or a cross-reference.
+
+### Remember to limit search space
+
+In order to produce meaningful aggregations with a vector search, you must limit the search space.
+
+This is different from aggregations in lexical searches, such as those often carried out in relational database. In a relational database, grouping or aggregating data can be done using `groupby` with functions such as SUM, AVG, MIN, MAX, etc. This allows you to find a result set and then aggregate the results.
+
+However, a vector search will return all results as it retrieve results based on *degrees* of similarity. As such, a vector search in itself does not exclude any results from the dataset. Accordingly, an aggregation of a vector search result set will include all results, regardless of the certainty of the match.
+
+Accordingly, the search space must be limited so that only relevant results are included in the aggregation. This can be done by setting an explicit `objectLimit` or a `certainty` in the query.
+
+We will see more concrete examples of this below.
+
+<Quiz questions={varName} />
+
+## `Aggregate` queries in practice
+
+:::warning TODO
+Intro video here
+:::
+
+Now that we've read about the syntax of the `Aggregate` function, let's see it in action.
+
+### Standalone `Aggregate` queries
+
+### `Aggregate` with `meta` properties
+
+### `Aggregate` with `nearText`
+
+### `Aggregate` with a filter
+
+### `Aggregate` with cross-references
+
+### Grouping `Aggregate` queries with `GroupBy`
+
+<Quiz questions={varName} />
+
+## Review
+
+:::warning TODO
+Video here
+:::
+
+### Review exercise
+
+Can you describe, in your own sentence, XXX?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+??
+:::
+
+### Key takeaways
+
+:::info
+Add summary
+:::
+
+import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
