@@ -3,8 +3,6 @@ title: A peek inside Weaviate
 sidebar_position: 40
 ---
 
-![](https://weaviate.io/assets/images/pulling-back-the-curtains-text2vec-d28fe2ad487a17046fe5dc5fc8d85424.png)
-
 ## Introduction
 
 :::warning TODO
@@ -21,50 +19,6 @@ Now, it's time to dive deeper into the inner workings of Weaviate. In this secti
 
 This information will help you understand the mechanisms behind the powerful search capabilities of Weaviate, enabling you to make the most of this tool in your development projects.
 
-## Data storage & retrieval
-
-![](https://media.istockphoto.com/id/1177204050/vector/flat-isometric-servers-computer-hardware-network-vector-icon.jpg?s=612x612&w=is&k=20&c=inGNylOUbN6nOC6Eq2qvABwbuNohpLFHvqb0WJnWgWg=)
-
-Weaviate's efficient storage and retrieval of data is made possible through its use of three key components: the object store, object index, and vector index.
-
-### Object store
-
-In Weaviate, each object is stored as a JSON document and organized into collections referred to as "Classes".
-
-### Object index
-
-The object index allows for filtering based on specific properties. From version 1.18 onwards, Weaviate has added a Roaring Bitmap-based index to its object index, in addition to its existing inverted index. This significantly enhances retrieval speed, particularly for large datasets or result sets.
-
-### Vector index
-
-Objects in Weaviate can be associated with vectors, which are collected and stored in the vector index. The vector index enables searches based on vector similarity and is built using an ANN (Approximate Nearest Neighbor) algorithm.
-
-#### ANN
-
-A traditional k-nearest neighbor (kNN) similarity search can be slow and inefficient for larger datasets. In contrast, ANN-based indexes allow Weaviate to perform vector searches quickly while maintaining high recall. Weaviate currently uses an HNSW-based ANN index.
-
-<Quiz questions={dataStorageComponents} />
-
-## High-level overview of vector search
-
-![](https://weaviate.io/assets/images/hero-a483b9830f359fa00af19ca4896cad10.png)
-
-In Weaviate, vector search can be combined with an algebraic filter for more precise results. For example, you could search for quiz questions similar to a specific vector, but only within the "World History" category.
-
-The various components of Weaviate come together to make this type of search possible.
-
-When a vector search query is sent to Weaviate, it uses the object index to create an "allow list" of object IDs. This allow list is then used in conjunction with the vector search, so that the result set is the combination of the vector search results and the allow list.
-
-The resulting set of object IDs is then used to retrieve the desired properties from the object store, which are then returned to the user.
-
-:::info Pre-filtering
-This method of pre-filtering occurs before the vector search, maximizing the chance of Weaviate returning the desired results even when the filter is restrictive.
-
-This type of filtering is called pre-filtering, as the filtering occurs prior to the vector search. This maximizes the chance of Weaviate returning the requested number of results even when the filter is restrictive.
-:::
-
-<Quiz questions={objectIndex} />
-
 ## Data structure
 
 :::warning TODO
@@ -72,6 +26,8 @@ Intro video here
 :::
 
 ### Objects
+
+![](../../tmp_images/a_beautiful_document_page_with_a_long_number_on_top_and_lots_of_text_underneath_1.png)
 
 Each object in Weaviate is stored as a JSON document within its document store, with a unique [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) serving as the key. An object can be structured like this:
 
@@ -95,6 +51,8 @@ Replace object with one from actual edu database
 In Weaviate, objects can be linked to one another using cross-references, similar to foreign keys in relational databases. The overall structure of data in Weaviate is defined by the `schema`. 
 
 ### Schema
+
+![](../../tmp_images/a_complex_architectural_blueprint_laid_out_on_the_table_0.png)
 
 A `schema` in Weaviate is the blueprint that defines its data structure. Here is an example schema structure:
 
@@ -128,17 +86,57 @@ We will look at schema definition including data types in more detail in another
 
 <Quiz questions={autoSchema} />
 
-## Vector representations in Weaviate
+### Data indexing
 
-![](https://weaviate.io/assets/images/hero-94bc05f994216b3d19985a226e6b5a2e.png)
+![](../../tmp_images/robot_arm_picking_up_a_box_from_many_many_orgainized_boxes_with_labels_0.png)
+
+To enable efficient search, Weaviate uses a number of indexes to store and retrieve data.
+
+#### Object index
+
+The object index allows for filtering based on specific properties. From version 1.18 onwards, Weaviate has added a Roaring Bitmap-based index to its object index, in addition to its existing inverted index. This significantly enhances retrieval speed, particularly for large datasets or result sets.
+
+#### Vector index
+
+Objects in Weaviate can be associated with vectors, which are collected and stored in the vector index. The vector index enables searches based on vector similarity and is built using an ANN (Approximate Nearest Neighbor) algorithm.
+
+A traditional k-nearest neighbor (kNN) similarity search can be slow and inefficient for larger datasets. In contrast, ANN-based indexes allow Weaviate to perform vector searches quickly while maintaining high recall. Weaviate currently uses an HNSW-based ANN index.
+
+<Quiz questions={dataStorageComponents} />
+
+## A closer look at the vector search process
 
 :::warning TODO
 Intro video here
 :::
 
+### Order of search sub-processes
+
+![](../../tmp_images/manufacturing_line_with_multiple_factory_robots_for_different_tasks_0.png)
+
+In Weaviate, vector search can be combined with an algebraic filter for more precise results. For example, you could search for quiz questions similar to a specific vector, but only within the "World History" category.
+
+The various components of Weaviate come together to make this type of search possible.
+
+When a vector search query is sent to Weaviate, it uses the object index to create an "allow list" of object IDs. This allow list is then used in conjunction with the vector search, so that the result set is the combination of the vector search results and the allow list.
+
+The resulting set of object IDs is then used to retrieve the desired properties from the object store, which are then returned to the user.
+
+:::info Pre-filtering
+This method of pre-filtering occurs before the vector search, maximizing the chance of Weaviate returning the desired results even when the filter is restrictive.
+
+This type of filtering is called pre-filtering, as the filtering occurs prior to the vector search. This maximizes the chance of Weaviate returning the requested number of results even when the filter is restrictive.
+:::
+
+<Quiz questions={objectIndex} />
+
+### Sources of vectors
+
+![](../../tmp_images/a_machine_with_a_conveyer_belt_producing_many_long_numbers_0.png)
+
 Weaviate provides multiple ways for users to associate vector representations with objects. In general, users can either use Weaviate's vectorizer modules to obtain vector representations during the import process or supply their own vector representations.
 
-### Using vectorizer modules
+#### Using vectorizer modules
 
 If you want to obtain vectors at the time of import, you can use a Weaviate vectorizer module. These modules can be categorized into two groups: those (`text2vec-openai`, `text2vec-cohere`, `text2vec-huggingface`) that call external inference APIs, and those that run locally as a microservice to perform vectorization (e.g. `text2vec-transformers`).
 
@@ -146,7 +144,7 @@ Weaviate's set of vectorizer modules is versatile and extensible. It includes mo
 
 Custom modules can also be created to extend the capabilities of Weaviate as needed.
 
-### Uploading vectors
+#### Uploading vectors
 
 Another option for adding vectors to Weaviate is to manually upload them. This is sometimes referred to as the "Bring Your Own Vector" option in our documentation, and may be a good choice for users who prefer to generate vectors outside of Weaviate or who have already vectorized their data.
 

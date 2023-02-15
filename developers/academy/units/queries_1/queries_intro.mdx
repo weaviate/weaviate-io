@@ -1,57 +1,133 @@
 ---
-title: GraphQL
+title: Querying Weaviate
 sidebar_position: 10
 ---
+
+## GraphQL and REST APIs in Weaviate
 
 :::warning TODO
 Intro video here
 :::
 
-## GraphQL in Weaviate
+### Introduction to REST and GraphQL
+
+![](https://nordicapis.com/wp-content/uploads/REST-vs-GraphQL.png)
+
+REST and GraphQL are two different approaches to building APIs. REST is a widely used approach to building APIs, while GraphQL is a relatively new approach that is gaining popularity.
+
+REST is an acronym for REpresentational State Transfer. A REST API provides multiple endpoints, each with its own URL, that can be used to interact with the API. The endpoints are organized into a hierarchy, with each endpoint representing a resource. The client can then request information about these resources by sending a request to the server.
+
+GraphQL is a query language for APIs. First released by Facebook in 2015, it is now maintained by the GraphQL Foundation. GraphQL is a specification for a query language that can be used to request information from a server. GraphQL is a strongly typed language, which means that the client must specify the type of data that it wants to receive.
+
+The two approaches are complementary and so Weaviate uses both to provide a rich API for its users.
+
+#### Uses in Weaviate
+
+In Weaviate, the REST API is used to interact with Weaviate for CRUD operations and to obtain metadata about the database. 
+
+The GraphQL API is used to interact with Weaviate for data searches. More specifically, it can be used to retrieve data objects, aggregate information, and explore vector spaces.
+
+In this module, we will focus on various strategies to query Weaviate using GraphQL to retrieve information.
+
+### Why GraphQL for data retrieval
 
 ![](https://kinsta.com/wp-content/uploads/2022/09/graphql.png)
 
-### Basic GraphQL syntax structure
+One of the key benefits of GraphQL is that it allows the user to specify the exact data that they want to retrieve. This means that the user can request only the data that they need, reducing over-fetching or under-fetching of data.
 
-You may have already seen that Weaviate utilizes GraphQL as the query language for its searches.
-
-GraphQL allows the user to specify the data to retrieve. This allows the user to only specify the data that is needed. Additionally, the user can specify multiple properties, which means that what might potentially take multiple requests with a REST API can be done in a single query. 
-
-The ability of GraphQL to reduce over-fetching and under-fetching of data is a key reason that it is used by Weaviate.
-
-Let's take a look at the basic GraphQL syntax in Weaviate again.  
+Let's review the fundamental syntax of GraphQL in Weaviate.
 
 ```graphql
 {
   <Function> {
     <Class> {
       <properties>
-      _additional {
-        <additional_properties>
-      }
     }
   }
 }
 ```
 
-If you were to query a database of quiz objects, the fields in the above query would be as follows:
+You can see that a Weaviate GraphQL query contains multiple components. If you were to query a database of quiz objects, the fields in the above query would be as follows:
 
 * `<Function>`: The function that you want to use, such as `Get`, `Aggregate`, or `Explore`.
 * `<Class>`: The class that you want to retrieve data from, such as `Question` or `Category`.
 * `<properties>`: The properties that you want to retrieve, such as `question`, `answer` or `value`.
-* `<additional_properties>`: The properties that you want to retrieve from the additional properties, such as `id` or `vector`.
 
 Each field can also accept arguments, such as `limit` to limit the number of objects to be returned, or `where` to apply a filter. 
 
+This specificity may seem challenging at first. However, it is a powerful feature that allows you to build highly customized queries, and to retrieve only the data that you need. 
+
+It is also highly efficient, as what may have taken multiple requests in a REST API can be done in a single GraphQL query.
+
 ### GraphQL and Weaviate clients
+
+![](https://cdn.hackr.io/uploads/posts/large/1611758548dzkO7CszxO.png)
 
 Weaviate offers client libraries for multiple widely used programming languages in Python, JavaScript, Java, and Go. These client libraries simplify the use of GraphQL syntax by allowing interaction with Weaviate using constructs of the respective native programming language.
 
 The client libraries also give the option to use raw GraphQL queries directly.
 
-In this section, we'll continue to use raw GraphQL queries to deepen your understanding and increase your comfort level with this crucial topic.
+So, the learning material will refer to use raw GraphQL queries to deepen your understanding and increase your comfort level with this crucial topic. However, we will provide code examples using the client libraries as we go.
 
-### GraphQL in requests
+Where available, each code example will be shown in tabs to allow you to switch between the raw GraphQL query and the client library code. For example, the following code example is shown in both raw GraphQL and Python client library code.
+
+<!-- Delete these imports if already imported in the file -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Question (limit: 1) {
+      question
+      answer
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+<!-- Python code goes here -->
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+<!-- JavaScript code goes here -->
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+<!-- Go code goes here -->
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+<!-- Java code goes here -->
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+<!-- Curl code goes here -->
+```
+
+</TabItem>
+</Tabs>
+
+:::info GraphQL in requests
 
 We note that each GraphQL query which is sent to the endpoint takes the below form. The GraphQL query is provided as the value to the `query` key in the JSON payload.
 
@@ -63,9 +139,11 @@ We note that each GraphQL query which is sent to the endpoint takes the below fo
 
 For our purposes, however, we will only need to construct the query body and pass it to the GraphQL console, or to an appropriate client as the raw query.
 
+:::
+
 <Quiz questions={varName} />
 
-## Overview of GraphQL API
+## GraphQL functions
 
 :::warning TODO
 Intro video here
@@ -113,7 +191,7 @@ It should produce a response look like the following:
 
 You can see that the response includes a data object from the `Question` class, and values of its `question` and `answer` properties. 
 
-:::info GraphQL formatting tips
+:::info Formatting in GraphQL queries
 For the most part GraphQL is very flexible in terms of formatting, such that [whitespaces](https://spec.graphql.org/October2021/#sec-White-Space) and [commas](https://spec.graphql.org/October2021/#sec-Insignificant-Commas) are typically insignificant. For instance, the above query could have been written as the following:
 ```graphql
 {Get{Question(limit:1){question answer}}}
@@ -181,7 +259,7 @@ We will explore the `Explore` function in more detail in a following unit.
 
 <Quiz questions={varName} />
 
-## Query arguments
+## GraphQL arguments
 
 :::warning TODO
 Intro video here

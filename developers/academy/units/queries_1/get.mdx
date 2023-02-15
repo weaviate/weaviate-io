@@ -3,11 +3,11 @@ title: Retrieving objects with Get{}
 sidebar_position: 20
 ---
 
+## About `Get` queries
+
 :::warning TODO
 Intro video here
 :::
-
-## Overview: `Get` queries in Weaviate
 
 In many use cases, retrieving objects from a Weaviate instance may be the most common operation. 
 
@@ -15,7 +15,9 @@ For example, a user may want to retrieve a list of passages most closely related
 
 In Weaviate, these operations are performed using the `Get` function.
 
-## `Get` function syntax
+### `Get` function syntax
+
+![](../../tmp_images/a_person_holding_a_magnifying_glass_at_computer_screen_with_code_0_short.png)
 
 The syntax of a `Get` function is as follows:
 
@@ -135,9 +137,13 @@ The `arguments` field is optional, and if it is not specified, then all objects 
 
 ## `Get` queries in practice
 
+:::warning TODO
+Intro video here
+:::
+
 Now that we've read about the syntax of the `Get` function, let's see it in action.
 
-### `Get` without vector search
+### Standalone `Get` queries
 
 It is possible to query Weaviate with the `Get` function without any vector search parameters.
 
@@ -158,7 +164,7 @@ In this case, Weaviate will return two objects due to the `limit:2` argument. Wi
 
 As this does not apply any user-specific criteria to the search, the results will not be very useful. However, this may be a viable method for "sanity" checks, such as checking that you can connect to a Weaviate instance, or that at least some objects have been imported successfully.
 
-### `Get` with additional properties
+### `Get` with `additional` properties
 
 In this example, we've built on the previous example by adding the `_additional` field to the `Get` query. This field allows us to retrieve additional properties that are not defined in the schema, such as the `vector` and `id` properties, for the object vector and the UUID respectively.
 
@@ -338,7 +344,7 @@ This approach of combining a vector search with a filter is a powerful way to fi
 
 <Quiz questions={varName} />
 
-## Get with cross-references
+### `Get` with cross-references
 
 And before we wrap up this section, let's take a look at how to perform a `Get` query with cross-references. While we have not yet covered cross-references in detail in this unit, for now it is sufficient to know that they are a way to connect objects to each other.
 
@@ -371,10 +377,6 @@ In the example below, we will perform a `Get` query on the `Question` class, but
   }
 }
 ```
-
-:::info `... on Category` syntax
-The `... on Category` pattern syntax is called a "fragment" in GraphQL terms. This fragment specifies that the `hasCategory` property is of type `Category`, and that the results should be returned as such.
-:::
 
 This produces a result like the following:
 
@@ -413,6 +415,10 @@ This produces a result like the following:
 Where the `hasCategory` property is now an array of objects, containing objects of type `Category` that the Question is related to and their requested properties. The `title` property of the `Category` class is returned as well, and the `_additional` field contains the `id` of the category. 
 
 Cross-references provide you with a great deal of flexibility and power in your data model, and are a great way to connect objects to each other. We will cover them in more detail in our unit on schemas.
+
+:::info `...` pattern
+You may have noticed the `... on Category` pattern in the above query. This syntax is called a "fragment" in GraphQL terms. Populated this way, the fragment specifies that the `hasCategory` property is of type `Category`, and that the results should be returned as such.
+:::
 
 <Quiz questions={varName} />
 

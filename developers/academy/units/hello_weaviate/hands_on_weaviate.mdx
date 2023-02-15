@@ -3,10 +3,7 @@ title: Hands-on with Weaviate
 sidebar_position: 30
 ---
 
-## Introduction
-
-Recall Weaviate's key capabilities.
-Construct a semantic search query string to retrieve relevant information.
+## Vector search in action
 
 :::warning TODO
 Video here
@@ -20,9 +17,9 @@ You will also compare vector search with keyword search to compare and contrast 
 
 We will also touch on advanced techniques such as hybrid search.
 
-### Vector search in action
+### Our first search
 
-![](https://media.istockphoto.com/id/1219473617/vector/young-male-character-writing-code-on-a-desktop-computer-working-from-home-millennials-at-work.jpg?s=612x612&w=is&k=20&c=roUA97RKbkKr1nTUf1snC9rbEXSTUH5obfDw9xFo-5g=)
+![](../../tmp_images/students_looking_at_computer_screen_with_code_0.png)
 
 For our first search, let's look for categories that best match our input query. The "Category" class in the Weaviate instance [DEMO INSTANCE LOCATION](http://example.com) is populated with categories that each question belongs to. 
 
@@ -39,6 +36,10 @@ Note that the results are very much conceptually relevant even though they don't
 
 ## GraphQL
 
+:::warning TODO
+Video here
+:::
+
 ![](https://devopedia.org/images/article/147/8496.1558526064.jpg)
 
 Weaviate utilizes GraphQL as the query language for its searches. GraphQL is a very flexible and efficient query language built on graph data structures. 
@@ -52,21 +53,18 @@ Each GraphQL query in Weaviate is structured like this:
   <Function> {
     <Class> {
       <properties>
-      _additional {
-        <additional_properties>
-      }
     }
   }
 }
 ```
 
-The query format begins with a `Function`, such as `Get` (to retrieve objects) and `Aggregate` (to retrieve metadata), as well as a `Class` denoting the data object collection. Notably, it then goes on to specify a set of `properties` as well as `additional_properties`, which determine the fields to be returned. 
+The query format begins with a `Function`, such as `Get` (to retrieve objects) and `Aggregate` (to retrieve metadata), as well as a `Class` denoting the data object collection. Notably, it then goes on to specify a set of `properties` which determine the fields to be returned. 
 
 You may notice from this that the data to be returned is not predetermined, unlike, for example, REST endpoints. This difference allows you to request only the data that you need from Weaviate, reducing over-fetching or under-fetching of data. 
 
-## Search query examples
+### Retrieve objects with GraphQL
 
-![](https://media.istockphoto.com/id/1124838925/vector/programming-code-application-window.jpg?s=612x612&w=is&k=20&c=-39O-FalRyZHGF5P5FFVEN17hXTLgkNyWHaZY9C-VbQ=)
+![](../../tmp_images/a_robot_arm_picks_up_a_word_from_a_pile_of_words_1.png)
 
 Now let's construct a few GraphQL queries to search the `Question` class and retrieve objects using the `Get` function.
 
@@ -132,7 +130,7 @@ To begin, we wil inspect its schema to identify the right properties to query.
 
 The class contains (among others) properties named "question" and "answer". We will query for these properties as doing so will give us enough detail to identify whether the query has identified appropriate objects.
 
-### Retrieve objects
+#### Retrieve objects
 
 To retrieve objects in the `Question` class with their `question` and `answer` properties, the query would look like this:
 
@@ -174,7 +172,7 @@ These 'arguments` are the other significant parts of constructing a GraphQL quer
 
 Now that you're familiar with a basic GraphQL syntax, let's try vector searches next.
 
-### Perform a vector (nearText) search
+#### Perform a vector (nearText) search
 
 Let's reproduce the demo vector search above where we searched for `Question` objects similar to 'QUERY ENTRY'.
 

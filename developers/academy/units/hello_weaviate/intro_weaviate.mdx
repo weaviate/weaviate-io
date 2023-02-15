@@ -11,11 +11,11 @@ Video here
 
 As you may have read on [our homepage](https://weaviate.io/), Weaviate is an open-source vector search engine. 
 
-<iframe src="https://giphy.com/embed/l0Ex8rdyy2QdX6Li8" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cbc-funny-comedy-l0Ex8rdyy2QdX6Li8">via GIPHY</a></p>
-
 That's a short sentence that packs a lot of information. So let's spend some time unpacking it here, bit by bit.
 
 ### Open-source
+
+![](../../tmp_images/a_crowd_looking_at_many_many_lines_of_computer_code_1.png)
 
 Weaviate is open-source, which means that its [codebase is available online](https://github.com/weaviate/weaviate) for anyone to see and use<sup>[(1)](#1)</sup>. 
 
@@ -25,7 +25,7 @@ It also means that your knowledge about Weaviate is fungible, between local, clo
 
 ### Vector search engine
 
-![](https://media.istockphoto.com/id/1294081206/vector/online-cloud-file-query-and-management-isometric-businessman-holding-a-magnifying-glass-to.jpg?s=1024x1024&w=is&k=20&c=xMhKZ8J8PitGZjql-huPqZ-jWs3GL-dfTdcL7EkIrtI=)
+![](../../tmp_images/person_holding_a_magnifying_glass_in_front_of_a_big_pile_of_numbers_1.png)
 
 A vector search engine is an advanced type of search engine that helps you to retrieve information using "vectors". 
 
@@ -66,7 +66,7 @@ There are a few factors here that are important to point out.
 
 ### Quantifying similarity
 
-![](https://media.istockphoto.com/id/1035897840/vector/leaf-style-geometric-minimalism-background.jpg?s=1024x1024&w=is&k=20&c=oX78ho6W11oLM995uzKliMNwErvMQFfdK_5Nq27iGf4=)
+![](../../tmp_images/confused_person_holding_documents_on_either_hand_0.png)
 
 As we've mentioned, vector searches are similarity-based, but what does that actually mean? How do we determine that two pieces of data are "similar"? What does it mean for two vectors, two pieces of text, or two objects in general, to be similar?
 
@@ -76,8 +76,6 @@ But for now, you should know that machine learning (ML) models are key to this w
 
 #### ML models and vectorization
 
-![](https://media.istockphoto.com/id/1091751808/vector/technology-and-packing-concept-in-flat-style-industrial-machine-vector-illustration.jpg?s=1024x1024&w=is&k=20&c=8PwZznTBkQvTlHjLdGWcVynN3CPKIzHzRj9TDMg5uVw=)
-
 A machine learning model is what will turn data, like a piece of text, an image, an audio clip, and more into a vector. This type of models are often also referred to as "vectorizers". And measures of similarity will depend on the particular machine learning model used.
 
 As a result, it is paramount that the right model for the job is chosen. Or, at least, that a wrong model is not chosen. So throughout our courses, you will see many different models and learn about model selection both as rules of thumb and detailed discussions. 
@@ -86,6 +84,8 @@ Weaviate does not itself vectorize data, but it is built to be compatible with a
 
 ### Indexing
 
+![](../../tmp_images/orgainized_filing_cabinets_with_many_folders_1.png)
+
 To retrieve data quickly and efficiently, Weaviate uses a vector index in addition to an object index. The vector index allows for fast information retrieval, while still maintaining high recall performance. However, as the size of the dataset increases, the memory requirements and retrieval times must be balanced.
 
 Weaviate uses an "approximate nearest neighbor" (ANN) algorithm for its indexing, which enables it to scale at a sublinear complexity. This means that the search time increases at a slower rate than the size of the dataset, making Weaviate highly scalable.
@@ -93,6 +93,8 @@ Weaviate uses an "approximate nearest neighbor" (ANN) algorithm for its indexing
 Throughout the course, you'll learn about indexing in Weaviate and the HNSW index, which is Weaviate's primary vector index type.
 
 ### Going to production
+
+![](../../tmp_images/a_machine_with_a_conveyer_belt_producing_boxes_of_documents.png)
 
 Vector databases often need to scale horizontally and vertically. The scale of vector databases can expand into billions of data objects, thus requiring indexing and retrieval of billions of vectors to be retrievable by many concurrent users. 
 
@@ -105,6 +107,8 @@ All things related to taking Weaviate to production, such as authentication and 
 <Quiz questions={weaviateIndexing} />
 
 ## What else can Weaviate do?
+
+![](../../tmp_images/person_wondering_what_to_do_next_0.png)
 
 :::warning TODO
 Video here
