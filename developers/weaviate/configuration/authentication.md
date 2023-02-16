@@ -17,7 +17,7 @@ Weaviate allows an optional authentication scheme through OpenID Connect (OIDC),
 OIDC authentication can be confusing, because it involves three parties.
 
 1. A **user** who wants to access a resource.
-1. An **identity provider** (e.g. Okta, Microsoft, or WCS) that authenticates the user and issues tokens.
+1. An **identity provider (a.k.a token issuer)** (e.g. Okta, Microsoft, or WCS) that authenticates the user and issues tokens.
 1. A **resource** (in this case, Weaviate) who validates the tokens to rely on the identity provider's authentication.
 
 A Weaviate instance is a resource, Weaviate Cloud Service (WCS) may be an identity provider, and the Weaviate client may act on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication. 
@@ -44,9 +44,9 @@ correct, all contents of the token are trusted, which authenticates the user bas
 This applies to all WCS users
 :::
 
-If you are a Weaviate Cloud Services (WCS) user, WCS is the token provider by default, and no further configuration is required from the Weaviate side as the token issuer or the resource.
+If you are a Weaviate Cloud Services (WCS) user, WCS is set up as the token issuer by default, and no further configuration is required regarding the token issuer or the resource.
 
-In this case, we recommend that you use the "Resource Owner Password Flow" method with your preferred client library. Please refer to the relevant `WCS authentication` section below:
+In this case, we recommend that you use the "Resource Owner Password Flow" method with your preferred client library for client-side authentication. Please refer to the relevant `WCS authentication` section below:
 
 - [Python](../client-libraries/python.md#wcs-authentication)
 - [JavaScript](../client-libraries/javascript.md#wcs-authentication)
