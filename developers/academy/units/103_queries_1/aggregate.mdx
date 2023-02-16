@@ -56,6 +56,14 @@ Accordingly, the search space must be limited so that only relevant results are 
 
 We will see more concrete examples of this below.
 
+### Grouping `Aggregate` queries
+
+Results identified by an `Aggregate` query can be further grouped by using a `groupBy` argument. This argument takes a list of properties as an argument, and will group the results by the values of those properties.
+
+This is a particularly useful query pattern for identifying characteristics for subsets of results of a vector search. 
+
+Imagine that you are searching a database of text passages from a collection of books. You may perform a vector search to identify passages 
+
 <Quiz questions={varName} />
 
 ## `Aggregate` queries in practice
@@ -64,19 +72,293 @@ We will see more concrete examples of this below.
 Intro video here
 :::
 
-Now that we've read about the syntax of the `Aggregate` function, let's see it in action.
+Now that we've read about the syntax of the `Aggregate` function, let's see it in action. As a reminder, the Weaviate instance contains objects of the following schema:
+
+import ExampleSchema from '/developers/academy/snippets/example_schema.mdx';
+
+<ExampleSchema/>
 
 ### Standalone `Aggregate` queries
 
-### `Aggregate` with `meta` properties
+As we did with `Get` queries, let's begin to look at simple examples of `Aggregate` queries. Take a look at the below query:
+
+```graphql
+{
+  Aggregate {
+    Question {
+      meta {
+        count
+      }
+    }
+  }
+}
+```
+
+This should return something like the below:
+
+<details>
+  <summary>Query results</summary>
+
+```json
+{
+  "data": {
+    "Aggregate": {
+      "Question": [
+        {
+          "meta": {
+            "count": 10000
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+Note that in our `Aggregate` query we specified a sub-property `count` under the requested property `meta`. This is a key difference between `Aggregate` and `Get` queries. 
+
+In `Get` queries, we directly specify a property as the query returns individual objects according to our search criteria. On the other hand, an `Aggregate` query returns a set of results. Accordingly, we must specify a sub-property which can reflect some aspect of the entire set of results, such as the number of entries here.
+
+The `meta` property is available for all data types, and can be used with the `count` sub-property to return the number of retrieved objects. 
+
+### `Aggregate` queries with `groupBy`
+
+So far, we have seen how to use `Aggregate` queries to retrieve information relating one set of results. But this can be extended to retrieve information from multiple, subsets of results. This is done by using the `groupBy` argument.
+
+For example, let's say we want to know how many questions there are for each value of the `value` property. We can do this by adding the `groupBy` argument to the query:
+
+```graphql
+{
+  Aggregate {
+    Question (groupBy: ["value"]) {
+      groupedBy {
+        value
+      }
+      meta {
+        count
+      }
+    }
+  }
+}
+```
+
+Which will produce:
+
+<details>
+  <summary>Query results</summary>
+
+```json
+{
+  "data": {
+    "Aggregate": {
+      "Question": [
+        {
+          "groupedBy": {
+            "value": "400"
+          },
+          "meta": {
+            "count": 1891
+          }
+        },
+        {
+          "groupedBy": {
+            "value": "200"
+          },
+          "meta": {
+            "count": 1622
+          }
+        },
+        {
+          "groupedBy": {
+            "value": "800"
+          },
+          "meta": {
+...
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+Note that query also included an additional property `groupedBy` under the `Question` class. This property is only available when the `groupBy` argument is used, and its sub-properties can be used to identify the group that the result belongs to.
 
 ### `Aggregate` with `nearText`
 
+We had looked at a few results of a `nearText` query earlier in the earlier section on `Get` queries. We can also use `nearText` in an `Aggregate` query. For example, let's say we are still interested in a similar input text ("Seafaring technology from Scandanavia.") as before, but instead of individual queries, we would like to know how many questions might be related to this query.
+
+We can do this by introducing the `nearText` argument:
+
+```graphql
+{
+  Aggregate {
+    Question (
+        nearText: {
+          concepts: ["Seafaring technology from Scandanavia."],
+          distance: 0.2
+        }
+      ) {
+      meta {
+        count
+      }
+    }
+  }
+}
+```
+
+Notice that as discussed above, we introduce the `distance` argument to limit the search space. This threshold limits the returned results to those that are relevant to the input.
+
+By performing a vector search with a distance threshold, we are able to aggregate information here on the questions that are relevant to the input text.
+
+:::note Exercise: Threshold distances
+Try changing the query text, and `distance` threshold to higher, or lower, values to see what happens. Note how the number of results change.
+:::
+
 ### `Aggregate` with a filter
 
-### `Aggregate` with cross-references
+Filters work similarly with `Aggregate` queries as they do with `Get` queries, providing you with a way to limit the results of your query. 
 
-### Grouping `Aggregate` queries with `GroupBy`
+To identify how many questions have a value of over 600, a `where` filter can be constructed as shown below:
+
+```graphql
+{
+  Aggregate {
+    Question (
+      nearText: {
+        concepts: ["Seafaring technology from Scandanavia."],
+        distance: 0.2
+      }
+      where: {
+          path: ["value"],
+          operator: GreaterThan,
+          valueInt: 600,
+      }        
+      ) {
+      meta {
+        count
+      }
+    }
+  }
+}
+```
+
+Which reduces the result set by filtering them by the question's `value` property.
+
+<details>
+  <summary>Query results</summary>
+
+```json
+{
+  "data": {
+    "Aggregate": {
+      "Question": [
+        {
+          "meta": {
+            "count": 27
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<!-- ### `Aggregate` with cross-references -->
+
+## Sub-properties for `Aggregate`
+
+As we have seen, the `meta` property is available for all data types, and can be used with the `count` sub-property to return the number of retrieved objects.
+
+In addition to this, there are a number of other sub-properties that can be used with `Aggregate` queries. Their availability, however, depend on the data type that is being queried.
+
+Let's take a look at some of these sub-properties, based on the `Question` class. It includes a property (`answer`) of the `text` data type, and a property (`value`) of the `int` data type.
+
+### Sub-properties for `text` data types
+
+As the name suggests, `text` data types are used to store text. Along with the `string` data type, `text` properties may be queried to retrieve one or more of:
+
+- count
+- type
+- topOccurrences
+
+So, for example - the following query will reveal the most common tokens in the `answer` property among the vector results:
+
+```graphql
+{
+  Aggregate {
+    Question (
+      nearText: {
+        concepts: ["Seafaring technology from Scandanavia."],
+        distance: 0.2
+      }   
+      ) {
+      meta {
+        count
+      }
+      answer {
+        type
+        topOccurrences {
+          value
+          occurs
+        }
+      }
+    }
+  }
+}
+```
+
+<details>
+  <summary>Query results</summary>
+
+```json
+{
+  "data": {
+    "Aggregate": {
+      "Question": [
+        {
+          "answer": {
+            "topOccurrences": [
+              {
+                "occurs": 4,
+                "value": "Oslo"
+              },
+              {
+                "occurs": 2,
+                "value": "Baltic Sea"
+              },
+              {
+                "occurs": 2,
+                "value": "Danish"
+              },
+              {
+                "occurs": 2,
+                "value": "Denmark"
+              },
+              {
+                "occurs": 2,
+                "value": "Greenland"
+              }
+            ],
+            "type": "text"
+          },
+          "meta": {
+            "count": 60
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+
 
 <Quiz questions={varName} />
 

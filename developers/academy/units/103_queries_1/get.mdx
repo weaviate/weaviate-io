@@ -47,81 +47,9 @@ In other words, the `Class` must be the name of a class that has been defined in
 
 Let us review an example schema to illustrate this point. A schema might contain definitions of object collections (i.e. classes) as follows (truncated for readability):
 
-<details>
-  <summary>
-    Example schema
-  </summary>
-  <div>
+import ExampleSchema from '/developers/academy/snippets/example_schema.mdx';
 
-```json
-{
-  "classes": [
-    {
-      "class": "Category",
-      "description": "A Jeopardy! category",
-      ...
-      "properties": [
-        {
-          "dataType": [
-            "string"
-          ],
-          "description": "The title of the category",
-          "name": "title",
-          "tokenization": "word"
-        }
-      ],
-      ...
-      "vectorizer": "text2vec-openai"
-    },
-    {
-      "class": "Question",
-      ...
-      "properties": [
-        {
-          "dataType": [
-            "text"
-          ],
-          "description": "Question asked to the contestant",
-          ...
-          "name": "question",
-          "tokenization": "word"
-        },
-        {
-          "dataType": [
-            "text"
-          ],
-          "description": "Answer provided by the contestant",
-          ...
-          "name": "answer",
-          "tokenization": "word"
-        },
-        {
-          "dataType": [
-            "int"
-          ],
-          "description": "Points that the question was worth",
-          ...
-          "name": "value"
-        },
-        {
-          "dataType": [
-            "Category"
-          ],
-          "description": "The category of the question",
-          ...
-          "name": "hasCategory"
-        }        
-        ...
-      ],
-      ...
-      "vectorizer": "text2vec-openai"
-    }
-  ]
-}
-```
-
-  </div>
-</details>
+<ExampleSchema/>
 
 The schema contains two classes: `Category` and `Question`. The `Category` class contains the property `title`, and the `Question` class contains properties: `question`, `answer`, `value`, and `hasCategory`.
 
@@ -218,7 +146,7 @@ This parameter is passed as an argument in the GraphQL query like below, where t
 This should produce a result like the following:
 
 <details>
-  <summary>Search results</summary>
+  <summary>Query results</summary>
 
 ```json
 {
@@ -265,6 +193,64 @@ You will also notice that the query included the `distance` property in the `_ad
 Because text object must be converted to a vector before it can be used in a vector search, the `nearText` parameter is only available when a vectorizer module has been specified for the class.
 :::
 
+#### Adding a distance threshold
+
+It is important to understand that, unlike a lexical search, a vector search does not by itself exclude any results.
+
+As described above, a vector search returns a ranked set of objects based on degrees of similarity on a scale of 0 to 1. If you wish to retrieve a limited set of results, a similarity threshold must be specified in the query so that objects that are more dissimilar can be rejected. 
+
+In Weaviate, you can do this by specifying a `distance` threshold like so:
+
+```graphql
+{
+  Get {
+    Question (
+      nearText: {
+        concepts: ["Seafaring technology from Scandanavia."],
+        distance: 0.15
+      }
+    ) {
+      question 
+      answer 
+      _additional {
+        distance
+        id
+      }
+    }
+  }
+}
+```
+
+This will only retrieve objects which are within a cosine distance of 0.15, limiting the results to the below. Note that due to the distance threshold being provided, Weaviate only returns one object even though the `limit` argument has been removed.
+
+<details>
+  <summary>Query results</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Question": [
+        {
+          "_additional": {
+            "distance": 0.1492011,
+            "id": "5d9d5c8d-13e7-5791-b2f9-3724a1a1d301"
+          },
+          "answer": "Oslo",
+          "question": "1,200-year-old Viking ships are on display at the Vikingskiphuset in this Norwegian capital"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+:::note Exercise: Threshold distances
+Try changing the query text, and `distance` threshold to higher, or lower, values to see what happens. How many results do you get back? How many of the results seem "relevant"?
+:::
+
 ### `Get` with a filter
 
 Next, we will extend the query again by introducing a filter. A filter is a way to specify additional criteria to be applied to the results of the vector search. It is analogous to the `WHERE` clause in a SQL query, and in fact the argument in Weaviate is also called `where`.
@@ -299,7 +285,7 @@ Below, we extend our query again to now include a `where` argument, specifying t
 This should produce a result like the following:
 
 <details>
-  <summary>Search results</summary>
+  <summary>Query results</summary>
 
 ```json
 {
@@ -381,7 +367,7 @@ In the example below, we will perform a `Get` query on the `Question` class, but
 This produces a result like the following:
 
 <details>
-  <summary>Search results</summary>
+  <summary>Query results</summary>
 
 ```json
 {
