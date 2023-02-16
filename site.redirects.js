@@ -280,6 +280,11 @@ const siteRedirects = {
             to: '/blog/vector-embeddings-explained',
             from: '/blog/2023/01/Vector-Embeddings-Explained'
         },
+        {
+            // to: '/blog/generative-search',
+            to: '/developers/weaviate/modules/reader-generator-modules/generative-openai',
+            from: '/blog/chatgpt-for-generative-search'
+        },
 
         // GSOC and GSOD redirects
         {
