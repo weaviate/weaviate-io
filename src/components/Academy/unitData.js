@@ -22,7 +22,7 @@ export const unitData = {
     owner: "laura",
     reviewer: "jp"
   },  
-  wcs_intro: {
+  set: {
     title: "Weaviate Cloud Service (WCS)",
     body: "Learn about WCS, and how to get started using it for free.",
     buttonType: "Click here",
