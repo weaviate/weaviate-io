@@ -20,7 +20,7 @@ OIDC authentication can be confusing, because it involves three parties.
 1. An **identity provider** (e.g. Okta, Microsoft, or WCS) that authenticates the user and issues tokens.
 1. A **resource** (in this case, Weaviate) who validates the tokens to rely on the identity provider's authentication.
 
-As a result of this, and variations from each side, there are many, many, different ways to configure OIDC systems.
+A Weaviate instance is a resource, Weaviate Cloud Service (WCS) may be an identity provider, and the Weaviate client may act on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication. 
 
 <details>
   <summary>
