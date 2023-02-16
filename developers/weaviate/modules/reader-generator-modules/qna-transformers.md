@@ -1,7 +1,7 @@
 ---
 title: Question Answering - transfomers
 sidebar_position: 1
-image: og/docs/modules.jpg
+image: og/docs/modules/qna-transformers.jpg
 # tags: ['qna', 'qna-transformers', 'transformers']
 ---
 import Badges from '/_includes/badges.mdx';

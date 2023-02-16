@@ -1,7 +1,7 @@
 ---
 title: References - Modules
 sidebar_position: 0
-image: og/docs/modules.jpg
+image: og/docs/modules/_title.jpg
 # tags: ['modules']
 ---
 import Badges from '/_includes/badges.mdx';

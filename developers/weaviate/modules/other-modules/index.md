@@ -1,8 +1,8 @@
 ---
 title: Modules - Other
 sidebar_position: 0
-image: og/docs/modules.jpg
-# tags: ['modules', 'custom modules']
+image: og/docs/modules/_title.jpg
+# tags: ['modules', 'other modules']
 ---
 import Badges from '/_includes/badges.mdx';
 
