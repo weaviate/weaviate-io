@@ -2,6 +2,8 @@ Please see the [authentication](/developers/weaviate/configuration/authenticatio
 
 <p>The {props.clientName} client supports multiple OIDC authentication flows to use with Weaviate.</p>
 
+Choosing appropriate authentication options and methods for the client depends significantly on how the Weaviate instance is configured. 
+
 First, choose one of the supported flows and create the flow-specific authentication configuration, which can then be passed to the client. The configuration, including secrets, are used by the client to obtain an `access token` and (if configured) a `refresh token`.
 
 The `access token` is included in the HTTP-header of any request and is used to authenticate against Weaviate. However, this token usually has a limited lifetime and the `refresh token` can be used to acquire a new set of tokens.

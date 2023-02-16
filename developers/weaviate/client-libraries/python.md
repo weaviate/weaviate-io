@@ -32,7 +32,13 @@ import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="Python"/>
 
-### Resource Owner Password flow
+### WCS authentication
+
+import ClientAuthWCS from '/_includes/client.auth.wcs.mdx'
+
+<ClientAuthWCS />
+
+### Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
 
