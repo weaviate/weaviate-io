@@ -86,6 +86,8 @@ The result should show something like:
 
 You can test the connection using curl; you can also use the client libraries directly.​ This is especially handy because they have authentication built in. ​
 
+For more on authentication, please refer to the documentation on [authentication for WCS users](../configuration/authentication.md#oidc-for-wcs-users).
+
 ```sh
 $ curl -H "Authorization: Bearer {Bearer}" https://{name}.weaviate.network/v1/meta
 ```
