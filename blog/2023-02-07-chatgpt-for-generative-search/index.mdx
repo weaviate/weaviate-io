@@ -15,7 +15,7 @@ When OpenAI launched ChatGPT at the end of 2022, more than one million people ha
 
 Though this was not the first AI chatbot that has been released to the public, what really surprised people about this particular service was the breadth and depth of knowledge it had and its ability to articulate that knowledge with human-like responses. Aside from this, the generative aspect of this model is also quite apparent as it can hallucinate situations and dream up vivid details to fill in descriptions when prompted to do so. This gives the chatbot service somewhat of a human-like “creativity” - which is what adds a wow factor to the user experience!
 
-Generative LLMs like ChatGPT (Chat Generative Pre-trained Transformer) are trained on a huge corpora of open data from the internet - since the majority of general human knowledge is archived and accessible via the Internet, these models have a lot of training material to learn from. This enables them to have a wide breadth of general knowledge about the world and natural language.
+Generative LLMs like ChatGPT's GPT-3 (Chat Generative Pre-trained Transformer) are trained on a huge corpora of open data from the internet - since the majority of general human knowledge is archived and accessible via the Internet, these models have a lot of training material to learn from. This enables them to have a wide breadth of general knowledge about the world and natural language.
 
 ## Providing custom context to LLMs
 
@@ -23,19 +23,19 @@ However, for all the well-founded hype and fascination, LLMs do have one shortco
 
 This point might seem obvious since it doesn’t know what it doesn’t know, however the shortcoming becomes more relevant when you consider this: if you ask ChatGPT for specific information, perhaps company policies that are private and not publicly available on the internet, it cannot produce a factually correct answer either. This is a limitation of the training process and more specifically the data that was unavailable while training. Currently, ChatGPT cannot accurately perform tasks outside the context of information which its training set has provided.
 
-In order to benefit from the capabilities of LLMs like ChatGPT in real-life use cases, it would be ideal if we could apply its generative power to new or custom data. For example, this would enable a private customized version of ChatGPT that's been trained on your company's internal documents and could act as a human resources chatbot. Wondering what the onboarding process for new employees looks like or how you can sign up for health benefits? You can simply ask ChatGPT! The applications of a customized ChatGPT are limitless and quite exciting! The million-dollar question, then, is how do we achieve such a milestone?
+In order to benefit from the capabilities of LLMs like ChatGPT's GPT-3 in real-life use cases, it would be ideal if we could apply its generative power to new or custom data. For example, this would enable a private customized version of ChatGPT that's been trained on your company's internal documents and could act as a human resources chatbot. Wondering what the onboarding process for new employees looks like or how you can sign up for health benefits? You can simply ask your customized ChatGPT! The applications of a customized ChatGPT are limitless and quite exciting! The million-dollar question, then, is how do we achieve such a milestone?
 
 ## Generative Search - OpenAI Module for Weaviate
-Today we are announcing the release of the `generative-openai` module for Weaviate! This module enables you to leverage the power of ChatGPT on your own customized datasets and for specific use cases previously not possible!💥
+Today we are announcing the release of the `generative-openai` module for Weaviate! This module enables you to leverage the power of ChatGPT's GPT-3 model on your own customized datasets and for specific use cases previously not possible!💥
 
-The `generative-openai` module makes a custom version of ChatGPT possible by combining it with the Weaviate vector search engine! By integrating a general purpose LLM with a vector search engine like Weaviate, you can utilize the model's power to carry out tasks in the context of your own data housed in Weaviate!
+The `generative-openai` module makes a "custom version of ChatGPT" possible by combining it with the Weaviate vector search engine! By integrating a general purpose LLM with a vector search engine like Weaviate, you can utilize the model's power to carry out tasks in the context of your own data housed in Weaviate!
 
 ## How the module works
-The `generative-openai` module can be used to get ChatGPT to accomplish tasks grounded in the context of knowledge provided by Weaviate search results. The process consists of two steps: first, we use Weaviate to extract context by filtering a subset of your data that has knowledge relevant to a specific prompt. Secondly, we send the prompt as well as the filtered subset of documents from step one directly to the OpenAI endpoint to accomplish the task specified in the prompt.
+The `generative-openai` module can be used to get GPT-3 to accomplish tasks grounded in the context of knowledge provided by Weaviate search results. The process consists of two steps: first, we use Weaviate to extract context by filtering a subset of your data that has knowledge relevant to a specific prompt. Secondly, we send the prompt as well as the filtered subset of documents from step one directly to the [OpenAI Completion endpoint](https://platform.openai.com/docs/guides/completion) to accomplish the task specified in the prompt.
 
 ![flow](./img/flow.png)
 
-We’ll provide a guide on how you can set up the module, examples of how you can use the module, as well as show you the nuances of how to prompt ChatGPT to utilize the search results from Weaviate. So without further ado, let's get into it!
+We’ll provide a guide on how you can set up the module, examples of how you can use the module, as well as show you the nuances of how to prompt GPT-3 to utilize the search results from Weaviate. So without further ado, let's get into it!
 
 ## How to use it
 The [Generative OpenAI](/developers/weaviate/modules/reader-generator-modules/generative-openai) module is a new feature that can generate responses based on your data. To access this module, you will need to use Weaviate `1.17.3` or a newer version.
