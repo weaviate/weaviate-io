@@ -67,9 +67,11 @@ This applies to anyone who is running their own Weaviate instance.
 
 Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discovery can be used with Weaviate. Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
 
-1. For very simple use-cases such as for a single user, you can use [Weaviate Cloud Services](https://auth.wcs.api.weaviate.io) as the OIDC token issuer. Sign up and specify `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer and your sign-up email as the user in the OIDC configuration .
-1. If you need a more customizable setup you can use commercial OIDC providers like [Okta](https://www.okta.com/).
-1. As another alternative, you can run your own OIDC token issuer server, which may be the most complex but also configurable solution. Popular open-source solutions include Java-based [Keycloak](https://www.keycloak.org/) and Golang-based [dex](https://github.com/dexidp/dex).
+- For simple use-cases such as for a single user, you can use [Weaviate Cloud Services (WCS)](https://auth.wcs.api.weaviate.io) as the OIDC token issuer. 
+    - Make sure you have a WCS account (you can [sign up here](https://console.weaviate.io/)). 
+    - Specify `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer and your WCS account email as the user in the OIDC configuration .
+- If you need a more customizable setup you can use commercial OIDC providers like [Okta](https://www.okta.com/).
+- As another alternative, you can run your own OIDC token issuer server, which may be the most complex but also configurable solution. Popular open-source solutions include Java-based [Keycloak](https://www.keycloak.org/) and Golang-based [dex](https://github.com/dexidp/dex).
 
 :::info
 By default, Weaviate will validate that the token includes a specified client id in the audience claim. If your token issuer does not support this feature, you can turn it off as outlined in the configuration section below.
