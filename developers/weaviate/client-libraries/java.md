@@ -69,10 +69,10 @@ import technology.semi.weaviate.client.WeaviateAuthClient;
 
 Config config = new Config("http", "weaviate.example.com:8080");
 WeaviateAuthClient.clientPassword(
-    config=config,
-    username="Your user",
-    password="Your password",
-    scopes=Arrays.asList("offline_access") // optional, depends on the configuration of your identity provider (not required with WCS)
+    config,
+    "Your user",
+    "Your password",
+    Arrays.asList("scope1", "scope2") // optional, depends on the configuration of your identity provider (not required with WCS)
 );
 ```
 
@@ -88,9 +88,9 @@ import technology.semi.weaviate.client.WeaviateAuthClient;
 
 Config config = new Config("http", "weaviate.example.com:8080");
 WeaviateAuthClient.clientCredentials(
-    config=config,
-    clientSecret="your_client_secret",
-    scopes=Arrays.asList("scope1 scope2") // optional, depends on the configuration of your identity provider
+    config,
+    "your_client_secret",
+    Arrays.asList("scope1,scope2") // optional, depends on the configuration of your identity provider
 );
 ```
 
@@ -106,10 +106,10 @@ import technology.semi.weaviate.client.WeaviateAuthClient;
 
 Config config = new Config("http", "weaviate.example.com:8080");
 WeaviateAuthClient.bearerToken(
-    config=config,
-    accessToken="Your_access_token",
-    accessTokenLifetime=500,  // in seconds
-    refreshToken="Your_refresh_token",
+    config,
+    "Your_access_token",
+    500,  // lifetime in seconds
+    "Your_refresh_token",
 );
 ```
 
