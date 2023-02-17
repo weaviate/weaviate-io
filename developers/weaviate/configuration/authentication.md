@@ -12,6 +12,10 @@ import Badges from '/_includes/badges.mdx';
 
 Weaviate allows an optional authentication scheme through OpenID Connect (OIDC), from which different [authorizations](authorization.md) may be permitted. If OIDC is disabled, all anonymous requests will be allowed.
 
+We provide documentation here for both scenarios, including:
+- [Configuring Weaviate for anonymous access](#anonymous-access)
+- [Configuring Weaviate and the client for OIDC](#oidc---a-systems-perspective)
+
 ## OIDC - A systems perspective
 
 OIDC authentication can be confusing, because it involves three parties.
