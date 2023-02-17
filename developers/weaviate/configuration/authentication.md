@@ -152,12 +152,12 @@ The latest versions (from mid-December 2022 and onwards) of Python, JavaScript, 
 
 Please refer to the [client libraries documentation](../client-libraries/index.md) for each client for code examples.
 
+### Manually obtaining and passing tokens
+
 <details>
   <summary>
     Manually obtaining and passing tokens
   </summary>
-
-### Manually obtaining and passing tokens
 
 For cases or workflows where you may wish to manually obtain a token, we outline below the steps to do so, for the resource owner password flow and hybrid flow.
 
