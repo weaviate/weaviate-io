@@ -128,23 +128,23 @@ An overview of environment variables in the docker-compose file:
   | --- | --- | --- | --- |
   | `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/gomemlimit-a-game-changer-for-high-memory-applications). | `string - memory limit in SI uints` | `4096MiB` |
   | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
-  | <code>CONTEXTIONARY_<wbr />URL</code> | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
-  | <code>PERSISTENCE_<wbr />DATA_<wbr />PATH</code> | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
-  | <code>ENABLE_<wbr />MODULES</code> | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
-  | <code>TRANSFORMERS_<wbr />INFERENCE_<wbr />API</code> | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
-  | <code>DEFAULT_<wbr />VECTORIZER_<wbr />MODULE</code> | Default vectorizer module, so this doesn't need to be defined per class in the schema | `string` | `text2vec-contextionary` |
-  | <code>AUTHENTICATION_<wbr />ANONYMOUS_<wbr />ACCESS_<wbr />ENABLED</code> | Allow users to interact with weaviate without auth | `string - true/false` | `true` |
-  | <code>AUTHENTICATION_<wbr />OIDC_<wbr />ENABLED</code> | Enable OIDC Auth | `string - true/false` | `false` |
-  | <code>AUTHENTICATION_<wbr />OIDC_<wbr />ISSUER</code> | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
-  | <code>AUTHENTICATION_<wbr />OIDC_<wbr />CLIENT_<wbr />ID</code> | OIDC Client ID | `string` | `my-client-id` |
-  | <code>AUTHENTICATION_<wbr />OIDC_<wbr />USERNAME_<wbr />CLAIM</code> | OIDC Username Claim | `string` | `email` |
-  | <code>AUTHENTICATION_<wbr />OIDC_<wbr />GROUPS_<wbr />CLAIM</code> | OIDC Groups Claim | `string` | `groups` |
-  | <code>AUTHORIZATION_<wbr />ADMINLIST_<wbr />ENABLED</code> | Enable AdminList Authorization mode | `string - true/false` | `true` |
-  | <code>AUTHORIZATION_<wbr />ADMINLIST_<wbr />USERS</code> | Users with admin permission| `string - comma-separated list` | <code>jane@example.com,<wbr />john@example.com</code> |
-  | <code>AUTHORIZATION_<wbr />ADMINLIST_<wbr />READONLY_<wbr />USERS</code> | Users with read-only permission| `string - comma-separated list` | <code>alice@example.com,<wbr />dave@example.com</code> |
-| <code>DISK_<wbr />USE_<wbr />WARNING_<wbr />PERCENTAGE</code> |  If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `80` |
-| <code>DISK_<wbr />USE_<wbr />READONLY_<wbr />PERCENTAGE</code>  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `90` |
-| <code>PROMETHEUS_<wbr />MONITORING_<wbr />ENABLED</code>  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `string - true/false` | `false` |
+  | <code>CONTEXTIONARY<wbr />_URL</code> | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
+  | <code>PERSISTENCE<wbr />_DATA<wbr />_PATH</code> | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
+  | <code>ENABLE<wbr />_MODULES</code> | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
+  | <code>TRANSFORMERS<wbr />_INFERENCE<wbr />_API</code> | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
+  | <code>DEFAULT<wbr />_VECTORIZER<wbr />_MODULE</code> | Default vectorizer module, so this doesn't need to be defined per class in the schema | `string` | `text2vec-contextionary` |
+  | <code>AUTHENTICATION<wbr/>_ANONYMOUS<wbr/>_ACCESS<wbr/>_ENABLED</code> | Allow users to interact with weaviate without auth | `string - true/false` | `true` |
+  | <code>AUTHENTICATION<wbr />_OIDC<wbr />_ENABLED</code> | Enable OIDC Auth | `string - true/false` | `false` |
+  | <code>AUTHENTICATION<wbr />_OIDC<wbr />_ISSUER</code> | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
+  | <code>AUTHENTICATION<wbr />_OIDC<wbr />_CLIENT<wbr />_ID</code> | OIDC Client ID | `string` | `my-client-id` |
+  | <code>AUTHENTICATION<wbr />_OIDC<wbr />_USERNAME<wbr />_CLAIM</code> | OIDC Username Claim | `string` | `email` |
+  | <code>AUTHENTICATION<wbr />_OIDC<wbr />_GROUPS<wbr />_CLAIM</code> | OIDC Groups Claim | `string` | `groups` |
+  | <code>AUTHORIZATION<wbr />_ADMINLIST<wbr />_ENABLED</code> | Enable AdminList Authorization mode | `string - true/false` | `true` |
+  | <code>AUTHORIZATION<wbr />_ADMINLIST<wbr />_USERS</code> | Users with admin permission| `string - comma-separated list` | <code>jane@example.com,<wbr />john@example.com</code> |
+  | <code>AUTHORIZATION<wbr />_ADMINLIST<wbr />_READONLY<wbr />_USERS</code> | Users with read-only permission| `string - comma-separated list` | <code>alice@example.com,<wbr />dave@example.com</code> |
+| <code>DISK<wbr />_USE<wbr />_WARNING<wbr />_PERCENTAGE</code> |  If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `80` |
+| <code>DISK<wbr />_USE<wbr />_READONLY<wbr />_PERCENTAGE</code>  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `90` |
+| <code>PROMETHEUS<wbr />_MONITORING<wbr />_ENABLED</code>  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `string - true/false` | `false` |
 | `BACKUP_*` | Various configuration variables for backup provider modules. They are outlined in detail on the [Backups page](/developers/weaviate/configuration/backups.md). | |
 
 ## More Resources
