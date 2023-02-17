@@ -68,7 +68,7 @@ cfg, err := weaviate.NewConfig(
   authConfig: auth.ResourceOwnerPasswordFlow{
     Username: "Your user",
     Password: "Your password",
-    Scopes: []string{"offline_access"}, // can be nil
+    Scopes: []string{"offline_access"}, // optional, depends on the configuration of your identity provider (not required with WCS)
   }
   headers: nil,
 )
@@ -90,7 +90,7 @@ cfg, err := weaviate.NewConfig(
   Scheme: "http", 
   authConfig: auth.ClientCredentials{
     ClientSecret: "your_client_secret", 
-    Scopes: []string{"SomeScope"}
+    Scopes: []string{"scope1 scope2"}  // optional, depends on the configuration of your identity provider (not required with WCS)
   }
   headers: nil,
 )
