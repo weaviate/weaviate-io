@@ -1,5 +1,6 @@
 const visit = require('unist-util-visit');
 const fs = require('fs');
+const { appendDynamicConfig } = require('./dynamic-config');
 
 // Read file config, which contains weaviate_version, etc.
 const readSiteConfig = () => {
@@ -7,14 +8,17 @@ const readSiteConfig = () => {
   return JSON.parse(data);
 }
 
-const siteConfig = readSiteConfig();
-console.log(siteConfig);
+let siteConfig = readSiteConfig();
+appendDynamicConfig(siteConfig)
+.then(() => console.log(siteConfig));
+
+// console.log(siteConfig);
 
 // pattern to match: ||site.some_name||
-const pattern = /[|]{2}[ ]*site\.([a-z_]*)[ ]*[|]{2}/
+const pattern = /[|]{2}[ ]*site\.([a-z_]*)[ ]*[|]{2}/g
 const interpolate = (value, vfile) => {
   // replace the pattern with config variables
-  return value.replace(pattern, (_, name) => {
+  return value.replaceAll(pattern, (_, name) => {
     // display a warning if config variable is missing
     if (siteConfig[name] == undefined) {
       console.warn('\x1b[33m%s', vfile.path, '\x1b[0m');
