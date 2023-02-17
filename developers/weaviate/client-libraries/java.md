@@ -15,7 +15,7 @@ To get the latest stable version of the Java client library, add this dependency
 <dependency>
   <groupId>technology.semi.weaviate</groupId>
   <artifactId>client</artifactId>
-  <version>3.2.0</version>
+  <version>3.5.0</version>
 </dependency>
 ```
 
@@ -46,6 +46,93 @@ public class App {
 ```
 
 ## Authentication
+
+import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
+
+<ClientAuthIntro clientName="Java"/>
+
+### WCS authentication
+
+import ClientAuthWCS from '/_includes/client.auth.wcs.mdx'
+
+<ClientAuthWCS />
+
+### Resource Owner Password Flow
+
+import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
+
+<ClientAuthFlowResourceOwnerPassword />
+
+```java
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateAuthClient;
+
+Config config = new Config("http", "weaviate.example.com:8080");
+WeaviateAuthClient.clientPassword(
+    config=config,
+    username="Your user",
+    password="Your password",
+    scopes=Arrays.asList("offline_access") // optional, depends on the configuration of your identity provider (not required with WCS)
+);
+```
+
+### Client credentials flow
+
+import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
+
+<ClientAuthFlowClientCredentials />
+
+```java
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateAuthClient;
+
+Config config = new Config("http", "weaviate.example.com:8080");
+WeaviateAuthClient.clientCredentials(
+    config=config,
+    clientSecret="your_client_secret",
+    scopes=Arrays.asList("scope1 scope2") // optional, depends on the configuration of your identity provider
+);
+```
+
+### Refresh Token flow
+
+import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
+
+<ClientAuthBearerToken />
+
+```java
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateAuthClient;
+
+Config config = new Config("http", "weaviate.example.com:8080");
+WeaviateAuthClient.bearerToken(
+    config=config,
+    accessToken="Your_access_token",
+    accessTokenLifetime=500,  // in seconds
+    refreshToken="Your_refresh_token",
+);
+```
+
+## Custom headers 
+
+You can pass custom headers to the client, which are added at initialization:
+
+```java
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+
+public class App {
+  public static void main(String[] args) {
+    Map<String, String> headers = new HashMap<String, String>() { {
+      put("header_key", "value");
+    } };
+    Config config = new Config("http", "localhost:8080", headers);
+    WeaviateClient client = new WeaviateClient(config);
+  }
+}
+```
+
+
 
 You can pass authentication credentials in a header to the client, which is added to the initialization of the client in your Java project:
 
