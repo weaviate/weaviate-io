@@ -15,7 +15,7 @@ To get the latest stable version of the Java client library, add this dependency
 <dependency>
   <groupId>technology.semi.weaviate</groupId>
   <artifactId>client</artifactId>
-  <version>3.5.0</version>
+  <version>3.6.0</version>
 </dependency>
 ```
 
@@ -128,28 +128,6 @@ public class App {
     } };
     Config config = new Config("http", "localhost:8080", headers);
     WeaviateClient client = new WeaviateClient(config);
-  }
-}
-```
-
-
-
-You can pass authentication credentials in a header to the client, which is added to the initialization of the client in your Java project:
-
-```clike
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.misc.model.Meta;
-
-public class App {
-  public static void main(String[] args) {
-    Map<String, String> headers = new HashMap<String, String>() { {
-      put("Authorization", "Bearer <put your token here>");
-    } };
-    Config config = new Config("http", "localhost:8080", headers);
-    WeaviateClient client = new WeaviateClient(config);
-    Result<Meta> meta = client.misc().metaGetter().run();    
   }
 }
 ```
