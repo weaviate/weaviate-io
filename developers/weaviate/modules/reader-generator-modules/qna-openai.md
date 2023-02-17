@@ -1,7 +1,7 @@
 ---
 title: Question Answering - OpenAI
 sidebar_position: 2
-image: og/docs/modules.jpg
+image: og/docs/modules/qna-openai.jpg
 # tags: ['qna', 'qna-openai', 'transformers', 'openai']
 ---
 import Badges from '/_includes/badges.mdx';

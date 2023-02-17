@@ -1,6 +1,6 @@
 ---
 title: ChatGPT for Generative Search
-slug: chatgpt-for-generative-search
+slug: generative-search
 authors: [zain, erika, connor]
 date: 2023-02-07
 tags: []
@@ -187,17 +187,22 @@ The response looks like this:
 ```
 
 ## Generation prompts
-A `prompt` is a common term used to describe the instructions given to the LLM. Crafting the ideal prompt is typically more of an art than a science. It is also typically an iterative process where we begin with a draft of what we want the LLM to do and then tweak the prompt based on what we get back. Prompt tuning is hardly a straightforward task and the term “prompt engineering” has emerged to encapsulate the complexity of this process. To help you get started with prompt engineering Weaviate-augmented LLMs, here are 4 examples of prompt refinement: knowledge grounding, uncertainty probing, citing sources, and step-by-step thinking.
+A `prompt` is a common term used to describe the instructions given to the LLM. Crafting the ideal prompt is typically more of an art than a science. It is also typically an iterative process where we begin with a draft of what we want the LLM to do and then tweak the prompt based on what we get back. Prompt tuning is hardly a straightforward task and the term “prompt engineering” has emerged to encapsulate the complexity of this process. To help you get started with prompt engineering Weaviate-augmented LLMs, here are 4 examples of prompt refinement: 
+
+* knowledge grounding,
+* uncertainty probing,
+* citing sources, 
+* and step-by-step thinking.
 
 ### Knowledge grounding
-To help LLMs like ChatGPT utilize the search results in its generations, we use special prompts. For example, a simple one is to add `based on the following search results` to a task description. So in total a question answering prompt would become:
+We can specifically prompt LLMs to ground it knowledge source on search results, this way we make sure the generated response is based on our data. For example, we can add `based on the following search results` to a task description. So in total a question answering prompt would become:
 
 ```
 Please answer this question: {question} based on the following search results: {search_results}.
 ```
 
 ### Uncertainty probing
-Prompting LLMs to get the behavior we want is a very exciting emerging area of AI technology. Another prompt that is very important for our use case is for ChatGPT to explicitly tell us when it doesn’t have enough information. This is also done by adding something like `If you do not have enough information, please output “not enough information”` to the prompt.
+Prompting LLMs to get the behavior we want is a very exciting emerging area of AI technology. Another prompt that is very important for our use case is for the LLM to explicitly tell us when it doesn’t have enough information. This is also done by adding something like `If you do not have enough information, please output “not enough information”` to the prompt.
 
 ### Citing sources
 Another useful prompt example is to ask the LLM to cite its sources. For example, when using the `groupedResult` argument in `generate`, the LLM will receive a few search results to base its answer on. We may ask the LLM to either summarize the relevance of each result to the query, or just outright tell us which result was the most influential to the final answer.

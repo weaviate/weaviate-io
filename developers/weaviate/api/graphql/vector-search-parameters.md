@@ -349,6 +349,7 @@ A practical example would be: `concepts: ["beatles", "John Lennon"]`
 The semantic path returns an array of concepts from the query to the data object. This allows you to see which steps Weaviate took and how the query and data object are interpreted. 
 
 | Property | Description |
+| --- | --- |
 | `concept` | the concept that is found in this step. |
 | `distanceToNext` | the distance to the next step (null for the last step). |
 | `distanceToPrevious` | this distance to the previous step (null for the first step). |

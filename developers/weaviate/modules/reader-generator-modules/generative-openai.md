@@ -1,7 +1,7 @@
 ---
 title: Generative Search - OpenAI
 sidebar_position: 2
-image: og/docs/modules-generative-openai.jpg
+image: og/docs/modules/generative-openai.jpg
 # tags: ['generative', 'transformers', 'openai']
 ---
 import Badges from '/_includes/badges.mdx';
