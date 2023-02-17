@@ -45,7 +45,13 @@ import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="JavaScript"/>
 
-### Resource Owner Password flow
+### WCS authentication
+
+import ClientAuthWCS from '/_includes/client.auth.wcs.mdx'
+
+<ClientAuthWCS />
+
+### Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
 
@@ -59,7 +65,7 @@ const client = weaviate.client({
   authClientSecret: new weaviate.AuthUserPasswordCredentials({
     username: "user123",
     password: "password"
-    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
+    scopes: ["offline_access"]  // optional, depends on the configuration of your identity provider (not required with WCS)
   })
 });
 ```
@@ -76,7 +82,7 @@ const client = weaviate.client({
   host: "weaviate-host",
   authClientSecret: new weaviate.AuthClientCredentials({
     clientSecret: "supersecuresecret",
-    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
+    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider (not required with WCS)
   })
 });
 ```

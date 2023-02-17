@@ -32,7 +32,13 @@ import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="Python"/>
 
-### Resource Owner Password flow
+### WCS authentication
+
+import ClientAuthWCS from '/_includes/client.auth.wcs.mdx'
+
+<ClientAuthWCS />
+
+### Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
 
@@ -44,7 +50,7 @@ import weaviate
 resource_owner_config = weaviate.AuthClientPassword(
   username = "user", 
   password = "pass", 
-  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider
+  scope = "offline_access" # optional, depends on the configuration of your identity provider (not required with WCS)
   )
 
 # Initiate the client with the auth config
@@ -62,7 +68,7 @@ import weaviate
 
 client_credentials_config = weaviate.AuthClientCredentials(
   client_secret = "client_secret", 
-  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider
+  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider (not required with WCS)
   )
 
 # Initiate the client with the auth config
