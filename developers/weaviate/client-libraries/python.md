@@ -28,19 +28,19 @@ client.schema.get() # get the full schema as example
 
 ## Authentication
 
-import ClientAuthIntro from '/developers/weaviate/client-libraries/components/client.auth.introduction.mdx'
+import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="Python"/>
 
 ### WCS authentication
 
-import ClientAuthWCS from '/developers/weaviate/client-libraries/components/client.auth.wcs.mdx'
+import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
 
 <ClientAuthWCS />
 
 ### Resource Owner Password Flow
 
-import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/components/client.auth.flow.resource.owner.password.mdx'
+import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
 <ClientAuthFlowResourceOwnerPassword />
 
@@ -59,7 +59,7 @@ client = weaviate.Client("https://localhost:8080", auth_client_secret=resource_o
 
 ### Client credentials flow
 
-import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/components/client.auth.flow.client.credentials.mdx'
+import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
 <ClientAuthFlowClientCredentials />
 
@@ -77,7 +77,7 @@ client = weaviate.Client("https://localhost:8080", auth_client_secret=client_cre
 
 ### Refresh Token flow
 
-import ClientAuthBearerToken from '/developers/weaviate/client-libraries/components/client.auth.bearer.token.mdx'
+import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
 <ClientAuthBearerToken />
 
