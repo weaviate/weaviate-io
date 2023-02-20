@@ -1,7 +1,19 @@
 const fetch = require('node-fetch');
 
 const getRepoVersion = async (repoName) => {
-    const response = await fetch(`https://api.github.com/repos/weaviate/${repoName}/releases/latest`)
+    const response = await fetch(
+        `https://api.github.com/repos/weaviate/${repoName}/releases/latest`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': // Use the github token if available
+                    (process.env.GITHUB_API_TOKEN) ? 
+                        `Bearer ${ process.env.GITHUB_API_TOKEN }` : ''
+            }
+        }
+    );
+    
     const repoData = await response.json();
     
     const version = repoData.tag_name.match(/\d{1,2}\.\d{1,2}\.\d{1,2}/g)[0]   
