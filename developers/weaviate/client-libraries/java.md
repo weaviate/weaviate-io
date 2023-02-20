@@ -8,8 +8,8 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::note
-The current Java client version is `||site.java_client_version||`.
+:::note Java client version
+The current Java client version is `v||site.java_client_version||`.
 :::
 
 ## Installation and setup

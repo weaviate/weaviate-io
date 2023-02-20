@@ -7,12 +7,12 @@ const readSiteConfig = () => {
   return JSON.parse(data);
 }
 
-let siteConfig = readSiteConfig();
-console.log(siteConfig);
-
-// pattern to match: ||site.some_name||
+// pattern to match: ||site.some_name|| in markdown
 const pattern = /[|]{2}[ ]*site\.([a-z_]*)[ ]*[|]{2}/g
+
 const interpolate = (value, vfile) => {
+  let siteConfig = readSiteConfig();
+
   // replace the pattern with config variables
   return value.replaceAll(pattern, (_, name) => {
     // display a warning if config variable is missing

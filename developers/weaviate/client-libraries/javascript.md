@@ -8,8 +8,8 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::note
-The current JavaScript client version is `||site.javascript_client_version||`.
+:::note JavaScript client version
+The current JavaScript client version is `v||site.javascript_client_version||`.
 :::
 
 ## Installation and setup

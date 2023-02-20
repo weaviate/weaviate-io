@@ -8,8 +8,8 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::note
-The current Python client version is `||site.python_client_version||`
+:::note Python client version
+The current Python client version is `v||site.python_client_version||`
 :::
 
 ## Installation and setup

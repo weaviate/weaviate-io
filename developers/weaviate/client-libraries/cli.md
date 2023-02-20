@@ -8,8 +8,8 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::note
-The current Weaviate CLI version is `||site.weaviate_cli_version||`.
+:::note Weaviate CLI version
+The current Weaviate CLI version is `v||site.weaviate_cli_version||`.
 :::
 
 ## Installation
