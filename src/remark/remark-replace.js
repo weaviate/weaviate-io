@@ -12,8 +12,6 @@ let siteConfig = readSiteConfig();
 appendDynamicConfig(siteConfig)
 .then(() => console.log(siteConfig));
 
-// console.log(siteConfig);
-
 // pattern to match: ||site.some_name||
 const pattern = /[|]{2}[ ]*site\.([a-z_]*)[ ]*[|]{2}/g
 const interpolate = (value, vfile) => {

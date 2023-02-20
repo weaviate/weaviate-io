@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 
 const getSparkProperties = async () => {
     const response = await fetch(`https://api.github.com/repos/weaviate/spark-connector/releases/latest`)
