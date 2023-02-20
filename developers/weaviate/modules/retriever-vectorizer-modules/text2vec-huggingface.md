@@ -14,7 +14,7 @@ The `text2vec-huggingface` module allows you to use [Hugging Face models](https:
 
 * Note: this module uses a third-party API.
 * Note: make sure to check the Inference [pricing page](https://huggingface.co/inference-api#pricing) before vectorizing large amounts of data.
-* Note: Weaviate automatically parallelizes requests to the Inference-API when using the batch endpoint.
+* Note: Weaviate automatically parallelizes requests to the Inference API when using the batch endpoint.
 * Note: This module only supports [sentence similarity](https://huggingface.co/models?pipeline_tag=sentence-similarity) models.
 
 ## How to enable
