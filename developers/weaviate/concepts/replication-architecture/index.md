@@ -12,15 +12,15 @@ import Badges from '/_includes/badges.mdx';
 - [Configuration: Replication](../../configuration/replication.md)
 :::
 
-Weaviate's v1.17 release introduces replication. Using Weaviate in a cluster with multiple server nodes, Weaviate can now automatically replicate data across nodes in the background. This enables a variety of [Use cases](./motivation.md). For example, if a node goes down, another node can shoulder the load without loss of availability or data. Database replication improves reliability, scalability, and/or performance. The user can control trade-offs between consistency and availability through [tunable consistency](./consistency.md). Weaviate has a leaderless replication design, so there is no distinction between primary and secondary nodes thereby removing all single points of failures.
+Weaviate release v1.17 introduces replication. Using Weaviate in a cluster with multiple server nodes, Weaviate can now automatically replicate data across nodes in the background. This enables a variety of [use cases](./motivation.md). For example, if a node goes down, another node can shoulder the load without loss of availability or data. Database replication improves reliability, scalability, and/or performance. The user can control trade-offs between consistency and availability through [tunable consistency](./consistency.md). Weaviate has a leaderless replication design, so there is no distinction between primary and secondary nodes thereby removing all single points of failures.
 
 In this Replication Architecture series, you will find information about:
 
 * **General Concepts**, on this page
-  * What is replication
+  * What is replication?
   * CAP Theorem
   * Why replication for Weaviate?
-  * Replication vs Sharding
+  * Replication vs. Sharding
   * How does replication work in Weaviate?
   * Roadmap
 
@@ -59,11 +59,11 @@ In this Replication Architecture series, you will find information about:
 
 ## What is replication?
 
-Database replication occurs when you keep a copy of the same datapoint on multiple nodes of a cluster, which in-turn creates a distributed database. A distributed database consists of multiple nodes, all of which can contain a copy of the data. So if one node (server) goes down, users can still access data from another node. In addition, query throughput can be improved with replication. In short, a distributed database is more reliable and can achieve higher performance than a centralized system.
+Database replication occurs when you keep a copy of the same datapoint on multiple nodes of a cluster, which in turn creates a distributed database. A distributed database consists of multiple nodes, all of which can contain a copy of the data. So if one node (server) goes down, users can still access data from another node. In addition, query throughput can be improved with replication. In short, a distributed database is more reliable and can achieve higher performance than a centralized system.
 
 ## CAP Theorem
 
-The primary goal of introducing replication is to improve reliability. [Eric Brewer](https://en.wikipedia.org/wiki/Eric_Brewer_(scientist)) states that there are some limits on reliability for distributed databases, described by the CAP theorem. The [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem) states that a distributed database can only provide two of the following three guarantees: 
+The primary goal of introducing replication is to improve reliability. [Eric Brewer](https://en.wikipedia.org/wiki/Eric_Brewer_(scientist)) states that there are some limits on reliability for distributed databases, described by the [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem). The CAP theorem states that a distributed database can only provide two of the following three guarantees: 
 * **Consistency (C)** - Every database read receives the most recent write after creation or modification (or an error).
 * **Availability (A)** - Every request receives a non-error response all the time, without the guarantee that it contains the most recent write. 
 * **Partition tolerance (P)** - The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes.
@@ -72,16 +72,16 @@ The primary goal of introducing replication is to improve reliability. [Eric Bre
 
 Ideally you want a database, like Weaviate, to have the highest reliability as possible, but this is limited by the tradeoff between consistency, availability and partition tolerance. Only two out of three concepts can be guaranteed. Since we're talking about distributed systems in which network partitions are present, only two options are left for designing the system: **consistency (C)** or **availability (A)**. When you prioritize **consistency** over availability, the database will return an error or timeout when it cannot be guaranteed that the data is up to date due to network partitioning. When prioritizing **availability** over consistency, the database will always process the query and try to return the most recent version of data even if it cannot guarantee it is up to date due to network partitioning. 
 
-C over A is preferred when the database contains critical data, such as transactional bank account data. For transactional data, you want the data to always be consistent (otherwise your bank balance is not guaranteed to be correct if you make transactions while some nodes (e.g. atms) are down). 
+C over A is preferred when the database contains critical data, such as transactional bank account data. For transactional data, you want the data to always be consistent (otherwise your bank balance is not guaranteed to be correct if you make transactions while some nodes (e.g. ATMs) are down). 
 When a database involves less critical data, A over C can be preferred. An example can be a messaging service, where you can tolerate showing some old data but the application should be highly available and handle large amounts of writes with minimal latency. Weaviate follows this latter design, since Weaviate typically deals with less critical data and  is used for approximate search as a secondary database in use cases with more critical data. More about this design decision in [Philosophy](./philosophy.md).
 
 
 ## Why replication for Weaviate?
 
-Weaviate is a database, and users want to reliably receive answers to their requests made to the database. As discussed above, database reliability consists of various parts. Use cases in which replication for Weaviate is desired are the following. For detailed information about those use cases, visit the [Replication Use Cases (Motivation) page](./motivation.md).
+Weaviate is a database, and users want to reliably receive answers to their requests made to the database. As discussed above, database reliability consists of various parts. Below are Weaviate use cases in which replication is desired. For detailed information, visit the [Replication Use Cases (Motivation) page](./motivation.md).
 
 1. **High availability (redundancy)** \
-  With a distributed (replicated) database structure, service will not be interrupted if one server node goes down. Read queries can still be available, the users' queries will be (unnoticeably) redirected to an available node. 
+  With a distributed (replicated) database structure, service will not be interrupted if one server node goes down. The database can still be available, read queries will just be (unnoticeably) redirected to an available node. 
 2. **Increased (read) throughput** \
   Adding extra server nodes to your database setup means that the throughput scales with it. The more server nodes, the more users (read operations) the system will be able to handle. When reading is set to a low consistency level, then scaling the replication factor (i.e. how many database server nodes) increases the throughput linearly.  
 3. **Zero downtime upgrades** \
@@ -90,7 +90,7 @@ Weaviate is a database, and users want to reliably receive answers to their requ
   When users are located in different regional areas (e.g. Iceland and Australia as extreme examples), you cannot ensure low latency for all users due to the physical distance between the database server and the users. With a distributed database, you can place nodes in different local regions to decrease this latency. This depends on the Multi-Datacenter feature of replication. 
 
 
-## Replication vs Sharding
+## Replication vs. Sharding
 Replication is not the same as sharding. [Sharding (horizontal scaling) was introduced to Weaviate in v1.8](../cluster.md).
 
 * **Replication** copies the data to different server nodes. For Weaviate, this helps data availability and provides redundancy in case a single node fails. Query throughput can be improved with replication. 
@@ -116,7 +116,7 @@ Read more about how replication works in Weaviate in [Philosophy](./philosophy.m
 
 ## How do I enable replication in Weaviate?
 
-Read the [Replication Usage page here](/developers/weaviate/configuration/replication.md). You can enable replication on class-level in the data schema of your Weaviate instance. During querying, you can specify the consistency level.
+See the [Replication Usage page](/developers/weaviate/configuration/replication.md). You can enable replication at the class level in the data schema of your Weaviate instance. During querying, you can specify the consistency level.
 
 ## Roadmap
 
