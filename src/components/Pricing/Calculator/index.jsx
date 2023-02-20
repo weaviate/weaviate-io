@@ -33,10 +33,29 @@ export default function PricingCalculator() {
     queriesPerMonth,
   ]);
 
-  function formatNumber(num) {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+  const handleLabel = (value) => {
+    let valueFormated = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    return valueFormated;
   }
-  
+
+  const handleChangeEmbeddingSize = (e) => {
+    let clearValue = e.target.value.replace('.','').replace(',','');
+    clearValue = clearValue.replace('.','').replace(',','');
+    setEmbeddingSize(clearValue)
+  };
+
+  const handleChangeAmountOfDataObjs = (e) => {
+    let clearValue = e.target.value.replace('.','').replace(',','');
+    clearValue = clearValue.replace('.','').replace(',','');
+    setAmountOfDataObjs(clearValue)
+  };
+
+  const handleChangeQueriesPerMonth = (e) => {
+    let clearValue = e.target.value.replace('.','').replace(',','');
+    clearValue = clearValue.replace('.','').replace(',','');
+    setQueriesPerMonth(clearValue)
+  };
+
 
   const onHighAvailabilityChange = (checked) => {
     setHighAvailability(checked);
@@ -72,10 +91,11 @@ export default function PricingCalculator() {
               <input
                 className='labelResult'
                 type="text"
-                placeholder={formatNumber(embeddingSize)}
+                maxlength='11'
+                placeholder={handleLabel(embeddingSize)}
                 name="embeddingSize"
-                value={embeddingSize.valueAsNumber}
-                onChange={(e) => parseInt(setEmbeddingSize(e.target.value))}
+                value={handleLabel(embeddingSize)}
+                onChange={handleChangeEmbeddingSize}
               />
             </div>
           </div>
@@ -96,10 +116,11 @@ export default function PricingCalculator() {
               <input
                 className='labelResult'
                 type="text"
-                placeholder={formatNumber(amountOfDataObjs)}
+                maxlength='11'
+                placeholder={handleLabel(amountOfDataObjs)}
                 name="amountOfDataObjs"
-                value={amountOfDataObjs.valueAsNumber}
-                onChange={(e) => parseInt(setAmountOfDataObjs(e.target.value))}
+                value={handleLabel(amountOfDataObjs)}
+                onChange={handleChangeAmountOfDataObjs}
               />
             </div>
           </div>
@@ -119,9 +140,10 @@ export default function PricingCalculator() {
                 className='labelResult'
                 name="queriesPerMonth"
                 type="text"
-                placeholder={formatNumber(queriesPerMonth)}
-                value={queriesPerMonth.valueAsNumber}
-                onChange={(e) => parseInt(setQueriesPerMonth(e.target.value))}
+                maxlength='11'
+                placeholder={handleLabel(queriesPerMonth)}
+                value={handleLabel(queriesPerMonth)}
+                onChange={handleChangeQueriesPerMonth}
               />
             </div>
           </div>
