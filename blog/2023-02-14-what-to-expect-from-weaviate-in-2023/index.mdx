@@ -20,9 +20,9 @@ In this blog post, I will introduce you to the six pillars outlining how Weaviat
 
 ### Ingestion and Search Pipelines
 ![Ingestion and Search Pipelines](./img/search-pipeline.png)
-Weaviate’s strong and growing module ecosystem gives you plenty of flexibility with using Weaviate. Whether you use it as a pure vector search engine or with the addition of vectorizer, reader, and generator modules, you can always configure it to your liking. In early 2023 we even saw the addition of the [`generative-openai`](/developers/weaviate/modules/reader-generator-modules/generative-openai) module (with other generative modules to come). 
+Weaviate’s strong and growing module ecosystem gives you plenty of flexibility. Whether you use Weaviate as a pure vector search engine or with the addition of vectorizer, reader, and generator modules, you can always configure it to your liking. In early 2023 we even saw the addition of the [`generative-openai`](/developers/weaviate/modules/reader-generator-modules/generative-openai) module (with other generative modules to come).
 
-We want to give you even more flexibility in combining these steps this year. You can control arbitrary querying steps through the [proposed Pipe API](https://github.com/weaviate/weaviate/issues/2560), such as reading, re-ranking, summarizing, generating, and others. Similarly, we want to give you more flexibility during ingestion time: How about [extracting PDFs](https://github.com/weaviate/weaviate/issues/2509) or applying [stemming](https://github.com/weaviate/weaviate/issues/2439) to your BM25 and hybrid search?  
+We want to give you even more flexibility in combining these steps this year. You can control arbitrary querying steps through the [proposed Pipe API](https://github.com/weaviate/weaviate/issues/2560), such as reading, re-ranking, summarizing, generating, and others. Similarly, we want to give you more flexibility during ingestion time: how about [extracting PDFs](https://github.com/weaviate/weaviate/issues/2509) or applying [stemming](https://github.com/weaviate/weaviate/issues/2439) to your BM25 and hybrid search?
 
 <br></br>
 
@@ -38,7 +38,7 @@ In 2022, we published the [Sphere Demo Dataset for Weaviate](/blog/sphere-datase
 
 When we introduced [Replication](/developers/weaviate/concepts/replication-architecture) to Weaviate in late 2022, we celebrated a significant milestone. It’s never been easier to achieve a highly available setup, and you can even dynamically scale your setup to increase throughput. 2023 is all about improving your cloud and operations experience. We will give you more control over [how to structure your workloads](https://github.com/weaviate/weaviate/issues/2586) in a distributed setup and more [flexibility to adapt to your ever-changing needs](https://github.com/weaviate/weaviate/issues/2228). And, of course, we’re constantly working on making your distributed cluster [even more resilient](https://github.com/weaviate/weaviate/issues/2405).
 
-Speaking of Cloud, arguably the easiest way to spin up a new use case with Weaviate is through the [Weaviate Cloud Service](/pricing). Having spent some time in private beta, the public beta is approaching rapidly. 
+Speaking of Cloud, arguably the easiest way to spin up a new use case with Weaviate is through the [Weaviate Cloud Service](/pricing). Having spent some time in private beta, the public beta is approaching rapidly.
 
 <br></br>
 
@@ -47,23 +47,23 @@ Speaking of Cloud, arguably the easiest way to spin up a new use case with Weavi
 
 Last year we gave you a sneak peek into our [Vector Indexing Research](/blog/ann-algorithms-vamana-vs-hnsw), and this year you will be able to try out new vector indexes for yourself. Since the beginning, Weaviate has supported vector indexing with [HNSW](/developers/weaviate/concepts/vector-index), which leads to [best-in-class query times](/developers/weaviate/benchmarks/ann). But not every use case requires single-digit millisecond latencies. Instead, some prefer cost-effectiveness. Due to its relatively high memory footprint, HNSW is only cost-efficient in high-throughput scenarios. However, HNSW is inherently optimized for in-memory access. Simply storing the index or vectors on disk or memory-mapping the index kills performance.
 
-This is why we will offer you not just one but two memory-saving options to index your vectors without sacrificing latency and throughput. In early 2023, you will be able to use Product Quantization, a vector compression algorithm, in Weaviate for the first time. We are already working on a fully disk-based solution which we will release in late 2023. 
+This is why we will offer you not just one but two memory-saving options to index your vectors without sacrificing latency and throughput. In early 2023, you will be able to use Product Quantization, a vector compression algorithm, in Weaviate for the first time. We are already working on a fully disk-based solution which we will release in late 2023.
 
 <br></br>
 
 ### Improving our Client and Module Ecosystem
 ![client modules](./img/client-modules.png)
 
-So far, we have only discussed features related to Weaviate Core, the server in your setup. But the Weaviate experience is more than that. Modules allow you to integrate seamlessly with various embedding providers, and our language clients make Weaviate accessible right from your application. This year, we will further improve both. This includes [improved APIs](https://github.com/weaviate/weaviate-python-client/issues/205) on the client side, new modules, for example, for [generative search](/developers/weaviate/modules/reader-generator-modules/generative-openai), and improvements to our existing modules. 
+So far, we have only discussed features related to Weaviate Core, the server in your setup. But the Weaviate experience is more than that. Modules allow you to integrate seamlessly with various embedding providers, and our language clients make Weaviate accessible right from your application. This year, we will further improve both. This includes [improved APIs](https://github.com/weaviate/weaviate-python-client/issues/205) on the client side, new modules, for example, for [generative search](/developers/weaviate/modules/reader-generator-modules/generative-openai), and improvements to our existing modules.
 
 <br></br>
 
 ### Community
 ![community](./img/community.png)
 
-The most important pillar is all of you – our community. This includes both free, open-source users that self-host their Weaviate setup, as well as paid enterprise users and anyone using our Weaviate-as-a-Service offerings. We value your feedback and love that you are part of shaping our future. 
+The most important pillar is all of you – our community. This includes both free, open-source users that self-host their Weaviate setup, as well as paid enterprise users and anyone using our Weaviate-as-a-Service offerings. We value your feedback and love that you are part of shaping our future.
 
-Last year we introduced our [dynamic roadmap page](/developers/weaviate/roadmap) that allows you to create and upvote your favorite feature requests. This way, you can make sure that your voice is heard, and we can see what all of you need the most. 
+Last year we introduced our [dynamic roadmap page](/developers/weaviate/roadmap) that allows you to create and upvote your favorite feature requests. This way, you can make sure that your voice is heard, and we can see what all of you need the most.
 
 <br></br>
 
