@@ -47,19 +47,19 @@ public class App {
 
 ## Authentication
 
-import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
+import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="Java"/>
 
 ### WCS authentication
 
-import ClientAuthWCS from '/_includes/client.auth.wcs.mdx'
+import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
 
 <ClientAuthWCS />
 
 ### Resource Owner Password Flow
 
-import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
+import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
 <ClientAuthFlowResourceOwnerPassword />
 
@@ -78,7 +78,7 @@ WeaviateAuthClient.clientPassword(
 
 ### Client credentials flow
 
-import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
+import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
 <ClientAuthFlowClientCredentials />
 
@@ -90,13 +90,13 @@ Config config = new Config("http", "weaviate.example.com:8080");
 WeaviateAuthClient.clientCredentials(
     config,
     "your_client_secret",
-    Arrays.asList("scope1,scope2") // optional, depends on the configuration of your identity provider
+    Arrays.asList("scope1" ,"scope2") // optional, depends on the configuration of your identity provider
 );
 ```
 
 ### Refresh Token flow
 
-import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
+import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
 <ClientAuthBearerToken />
 
