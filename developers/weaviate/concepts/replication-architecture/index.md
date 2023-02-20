@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 - [Configuration: Replication](../../configuration/replication.md)
 :::
 
-Weaviate release v1.17 introduces replication. Using Weaviate in a cluster with multiple server nodes, Weaviate can now automatically replicate data across nodes in the background. This enables a variety of [use cases](./motivation.md). For example, if a node goes down, another node can shoulder the load without loss of availability or data. Database replication improves reliability, scalability, and/or performance. The user can control trade-offs between consistency and availability through [tunable consistency](./consistency.md). Weaviate has a leaderless replication design, so there is no distinction between primary and secondary nodes thereby removing all single points of failures.
+Weaviate release v1.17 introduces replication. When used in a cluster with multiple server nodes, Weaviate can now automatically replicate data across nodes in the background. This enables a variety of [use cases](./motivation.md). For example, if a node goes down, another node can shoulder the load without loss of availability or data. Database replication improves reliability, scalability, and/or performance. The user can control trade-offs between consistency and availability through [tunable consistency](./consistency.md). Weaviate has a leaderless replication design, so there is no distinction between primary and secondary nodes thereby removing all single points of failures.
 
 In this Replication Architecture series, you will find information about:
 
@@ -59,7 +59,7 @@ In this Replication Architecture series, you will find information about:
 
 ## What is replication?
 
-Database replication occurs when you keep a copy of the same datapoint on multiple nodes of a cluster, which in turn creates a distributed database. A distributed database consists of multiple nodes, all of which can contain a copy of the data. So if one node (server) goes down, users can still access data from another node. In addition, query throughput can be improved with replication. In short, a distributed database is more reliable and can achieve higher performance than a centralized system.
+Database replication occurs when you keep a copy of the same data point on multiple nodes of a cluster, which in turn creates a distributed database. A distributed database consists of multiple nodes, all of which can contain a copy of the data. So if one node (server) goes down, users can still access data from another node. In addition, query throughput can be improved with replication. In short, a distributed database is more reliable and can achieve higher performance than a centralized system.
 
 ## CAP Theorem
 
@@ -80,20 +80,21 @@ When a database involves less critical data, A over C can be preferred. An examp
 
 Weaviate is a database, and users want to reliably receive answers to their requests made to the database. As discussed above, database reliability consists of various parts. Below are Weaviate use cases in which replication is desired. For detailed information, visit the [Replication Use Cases (Motivation) page](./motivation.md).
 
-1. **High availability (redundancy)** \
+1. **High availability (redundancy)**<br/>
   With a distributed (replicated) database structure, service will not be interrupted if one server node goes down. The database can still be available, read queries will just be (unnoticeably) redirected to an available node. 
-2. **Increased (read) throughput** \
+2. **Increased (read) throughput**<br/>
   Adding extra server nodes to your database setup means that the throughput scales with it. The more server nodes, the more users (read operations) the system will be able to handle. When reading is set to a low consistency level, then scaling the replication factor (i.e. how many database server nodes) increases the throughput linearly.  
-3. **Zero downtime upgrades** \
+3. **Zero downtime upgrades**<br/>
   Without replication, there is a window of downtime when you update a Weaviate instance. This is because the single node needs to stop, update and restart before it's ready to serve again. With replication, upgrades are done using a rolling update, in which at most one node is unavailable at any point in time while the other nodes can still serve traffic. 
-4. **Regional proximity** \
+4. **Regional proximity**<br/>
   When users are located in different regional areas (e.g. Iceland and Australia as extreme examples), you cannot ensure low latency for all users due to the physical distance between the database server and the users. With a distributed database, you can place nodes in different local regions to decrease this latency. This depends on the Multi-Datacenter feature of replication. 
 
 
 ## Replication vs. Sharding
+
 Replication is not the same as sharding. [Sharding (horizontal scaling) was introduced to Weaviate in v1.8](../cluster.md).
 
-* **Replication** copies the data to different server nodes. For Weaviate, this helps data availability and provides redundancy in case a single node fails. Query throughput can be improved with replication. 
+* **Replication** copies the data to different server nodes. For Weaviate, this increases data availability and provides redundancy in case a single node fails. Query throughput can be improved with replication. 
 * **Sharding** handles horizontal scaling across servers by dividing the data and sending the pieces of data (shards) to multiple replica sets. The data is thus divided, and all shards together form the entire set of data. You can use sharding with Weaviate to run larger datasets and speed up imports. 
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-replication-vs-sharding.png" alt="Replication vs Sharding" width="60%"/></p>
@@ -103,11 +104,12 @@ Replication and sharding can be combined in a setup, to improve throughput and a
 
 
 ## How does replication work in Weaviate?
+
 Weaviate’s implementation of replication is inspired by other databases like Cassandra. Availability is favored over Consistency. Weaviate's replication has a leaderless design, which means there are no primary and secondary nodes. When writing and reading data, the client contacts one or more nodes. A load balancer exists between the user and the nodes, so the user doesn't know which node they are talking to (Weaviate will forward internally if a user is requesting a wrong node). 
 
 Weaviate’s data schema changes are strongly consistent, since this is rarely changed, but critical. Schema changes will happen with a distributed transaction with a two-phase commit. This is 'slow', but consistent because it disallows conflicting schema changes at the same time.
 
-The number of nodes that need to acknowledge the read or write (from v1.18) operation is tunable, to ONE, QUORUM (n/2+1) or ALL. When write operations are configured to ALL, the database works synchronously. If write is not set to ALL (possible from v1.18), writing data is asynchronous from the user's perspective. 
+The number of nodes that need to acknowledge the read or write (from v1.18) operation is tunable, to `ONE`, `QUORUM` (n/2+1) or `ALL`. When write operations are configured to `ALL`, the database works synchronously. If write is not set to `ALL` (possible from v1.18), writing data is asynchronous from the user's perspective. 
 
 The number of replicas doesn't have to match the number of nodes (cluster size). It is possible to split data in Weaviate based on Classes. Note that this is [different from Sharding](#replication-vs-sharding). 
 
@@ -116,14 +118,14 @@ Read more about how replication works in Weaviate in [Philosophy](./philosophy.m
 
 ## How do I enable replication in Weaviate?
 
-See the [Replication Usage page](/developers/weaviate/configuration/replication.md). You can enable replication at the class level in the data schema of your Weaviate instance. During querying, you can specify the consistency level.
+See the [Replication Usage page](/developers/weaviate/configuration/replication.md). You can enable replication at the class level in the data schema of your Weaviate instance. During querying, you can specify the desired consistency level.
 
 ## Roadmap
 
 * v1.17 (12/2022)
   * Leaderless Replication
   * Tunable Read Consistency for Get-by-ID requests
-* v1.18 (02/2022)
+* v1.18 (02/2023)
   * Tunable Write Consistency
   * Tunable Read Consistency for all requests
   * Repairs (Read-Repairs or Background/Async Repairs)

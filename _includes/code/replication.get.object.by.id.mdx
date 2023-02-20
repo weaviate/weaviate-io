@@ -18,9 +18,9 @@ data_object = (
   )
 )
 
-# The parameter "consistency_level" can be one of ConsistencyLevel.ALL, ConsistencyLevel.QUORUM,
-# or ConsistencyLevel.ONE. Determines how many replicas must acknowledge a request before it is
-# considered successful.
+# The parameter "consistency_level" can be one of ConsistencyLevel.ALL,
+# ConsistencyLevel.QUORUM, or ConsistencyLevel.ONE. Determines how many
+# replicas must acknowledge a request before it is considered successful.
 
 print(data_object)
 ```
@@ -50,8 +50,14 @@ client
         console.error(err)
     });
 
-// The parameter "withConsistencyLevel" can be one of weaviate.replication.ConsistencyLevel.ALL, weaviate.replication.ConsistencyLevel.QUORUM, or weaviate.replication.ConsistencyLevel.ONE. Determines how many replicas must acknowledge a request before it is considered successful.
-    
+// The parameter passed to `withConsistencyLevel` can be one of:
+// * weaviate.replication.ConsistencyLevel.ALL,
+// * weaviate.replication.ConsistencyLevel.QUORUM, or
+// * weaviate.replication.ConsistencyLevel.ONE.
+//
+// It determines how many replicas must acknowledge a request
+// before it is considered successful.
+
 ```
 
 </TabItem>
@@ -87,7 +93,13 @@ func main() {
     fmt.Printf("%v", data)
 }
 
-// The parameter "WithConsistencyLevel" can be one of weaviate.replication.ConsistencyLevel.ALL, weaviate.replication.ConsistencyLevel.QUORUM, or weaviate.replication.ConsistencyLevel.ONE. Determines how many replicas must acknowledge a request before it is considered successful.
+// The parameter passed to "WithConsistencyLevel" can be one of:
+// * weaviate.replication.ConsistencyLevel.ALL,
+// * weaviate.replication.ConsistencyLevel.QUORUM, or
+// * weaviate.replication.ConsistencyLevel.ONE.
+//
+// It determines how many replicas must acknowledge a request
+// before it is considered successful.
 
 ```
 
@@ -123,7 +135,13 @@ public class App {
   }
 }
 
-// The parameter "withConsistencyLevel" can be one of ConsistencyLevel.ALL, ConsistencyLevel.QUORUM, or ConsistencyLevel.ONE. Determines how many replicas must acknowledge a request before it is considered successful.
+// The parameter passed to `withConsistencyLevel` can be one of:
+// * weaviate.replication.ConsistencyLevel.ALL,
+// * weaviate.replication.ConsistencyLevel.QUORUM, or
+// * weaviate.replication.ConsistencyLevel.ONE.
+//
+// It determines how many replicas must acknowledge a request
+// before it is considered successful.
 
 ```
 
@@ -133,7 +151,8 @@ public class App {
 ```bash
 $ curl http://localhost:8080/v1/objects/MyClass/36ddd591-2dee-4e7e-a3cc-eb86d30a4303?consistency_level=QUORUM
 
-# The parameter "consistency_level" can be one of ALL, QUORUM, or ONE. Determines how many replicas must acknowledge a request before it is considered successful.
+# The parameter "consistency_level" can be one of ALL, QUORUM, or ONE. Determines how many
+# replicas must acknowledge a request before it is considered successful.
 # curl /v1/objects/{className}/{id}?consistency_level=ALL
 ```
 
