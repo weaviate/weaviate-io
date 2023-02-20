@@ -8,6 +8,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::note
+The current Java client version is `||site.java_client_version||`.
+:::
+
 ## Installation and setup
 To get the latest stable version of the Java client library, add this dependency to your project:
 

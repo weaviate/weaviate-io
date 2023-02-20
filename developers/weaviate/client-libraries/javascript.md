@@ -8,6 +8,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::note
+The current JavaScript client version is `||site.javascript_client_version||`.
+:::
+
 ## Installation and setup
 
 The JavaScript client library package can be easily installed using [npm](https://www.npmjs.com/).
