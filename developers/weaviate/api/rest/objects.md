@@ -398,7 +398,7 @@ If the schema of the object is valid, this request should return `True`/`true` i
 
 ## Cross-references
 
-### Add a cross reference
+### Add a cross-reference
 
 #### Method and URL
 
@@ -450,7 +450,7 @@ import SemanticKindObjectReferenceAdd from '/_includes/code/semantic-kind.object
 
 If the addition was successful, no content will be returned.
 
-## Update a cross reference
+## Update a cross-reference
 
 A `PUT` request updates *all* references of a property of a data object.
 
@@ -505,7 +505,7 @@ import SemanticKindObjectReferenceUpdate from '/_includes/code/semantic-kind.obj
 If the update was successful, no content will be returned.
 
 
-### Delete a cross reference
+### Delete a cross-reference
 
 Delete the single reference that is given in the body from the list of references that this property of a data object has.
 
