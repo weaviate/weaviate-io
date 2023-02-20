@@ -64,7 +64,7 @@ Consult the `WCS authentication` section for your preferred client library and u
 - [Python](../client-libraries/python.md#wcs-authentication)
 - [JavaScript](../client-libraries/javascript.md#wcs-authentication)
 - [Go](../client-libraries/go.md#wcs-authentication)
-- (Feature in Java client coming soon)
+- [Java](../client-libraries/java.md#wcs-authentication)
 :::
 
 ### Connect to Weaviate

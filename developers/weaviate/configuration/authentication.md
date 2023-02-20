@@ -55,7 +55,7 @@ In this case, we recommend that you use the "Resource Owner Password Flow" metho
 - [Python](../client-libraries/python.md#wcs-authentication)
 - [JavaScript](../client-libraries/javascript.md#wcs-authentication)
 - [Go](../client-libraries/go.md#wcs-authentication)
-- (Feature in Java client coming soon)
+- [Java](../client-libraries/java.md#wcs-authentication)
 
 ## OIDC - Configuring Weaviate as the resource
 
