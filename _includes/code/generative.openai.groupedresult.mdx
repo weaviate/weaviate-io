@@ -239,7 +239,7 @@ $ echo '{
     Get {
       Publication(
         nearText: {
-          concepts: ["magazine or newspaper about finance"]
+          concepts: [\"magazine or newspaper about finance\"]
         }
         limit: 5
       ) {
@@ -260,7 +260,7 @@ $ echo '{
     }
   }
   "
-}' | curl \
+}' | tr -d "\n" | curl \
     -X POST \
     -H 'Content-Type: application/json' \
     -H "X-OpenAI-Api-Key: <THE-KEY>" \
