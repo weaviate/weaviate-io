@@ -450,7 +450,7 @@ import SemanticKindObjectReferenceAdd from '/_includes/code/semantic-kind.object
 
 If the addition was successful, no content will be returned.
 
-## Update a cross-reference
+### Update a cross-reference
 
 A `PUT` request updates *all* references of a property of a data object.
 
