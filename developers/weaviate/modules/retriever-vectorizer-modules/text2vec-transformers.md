@@ -10,11 +10,13 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-The `text2vec-transformers` module allows you to use a pre-trained language transformer model as a Weaviate vectorization module. Transformer models differ from the Contextionary as they allow you to plug in a pretrained NLP module specific to your use case. This means models like `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. can be used out-of-the box with Weaviate.
+The `text2vec-transformers` module allows you to run your own inference container with a pre-trained language transformer model as a Weaviate vectorization module. Note that this is in contrast to an API-based module such as [`text2vec-openai`](./text2vec-openai.md), [`text2vec-cohere`](./text2vec-cohere.md) and [`text2vec-huggingface`](./text2vec-huggingface.md) which use an external API to vectorize your data.
 
-To use transformers with Weaviate, the `text2vec-transformers` module needs to be enabled. The models are encapsulated in Docker containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled serves, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.
+With the `text2vec-transformers` module, you can use one of any number of pretrained NLP models specific to your use case. This means models like `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. can be used out-of-the box with Weaviate.
 
-To choose your specific model, you simply need to select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile.
+The models are encapsulated in Docker containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled servers, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.
+
+To choose your specific model, select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile.
 
 ## How to enable
 
