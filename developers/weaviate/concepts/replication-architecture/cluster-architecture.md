@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-This page describes how the nodes or clusters in Weaviate's replication are designed in a leaderless fashion. 
+This page describes how the nodes or clusters in Weaviate's replication design behave in a leaderless fashion. 
 
 ## Leaderless Design
 
@@ -20,12 +20,14 @@ The following illustration shows a leaderless replication design in Weaviate. Th
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-main-quorum.png" alt="Replication Architecture" width="75%"/></p>
 
-The main advantage of a leaderless replication design is improved fault-tolerance. Without a leader that handles all requests, a leaderless design offers better availability. In a single-leader design, all writes need to be processed by this leader. If this node cannot be reached or goes down, no writes can be processed. With a leaderless design, all nodes can receive write operations, so there is no risk of one master node failing.
+The main advantage of a leaderless replication design is improved fault tolerance. Without a leader that handles all requests, a leaderless design offers better availability. In a single-leader design, all writes need to be processed by this leader. If this node cannot be reached or goes down, no writes can be processed. With a leaderless design, all nodes can receive write operations, so there is no risk of one master node failing.
 
 On the flipside of high availability, a leaderless database tends to be less consistent. Because there is no leader node, data on different nodes may temporarily be out of date. Leaderless databases tend to be eventually consistent. Consistency in Weaviate is [tunable](./consistency.md), but this occurs at the expense of availability. 
 
 
 ## Replication Factor
+
+In Weaviate, replication is enabled and controlled per class. This means you can have different replication factors for different classes.
 
 The replication factor (RF or n) determines how many copies of data are stored in the distributed setup. A replication factor of 1 means that there is only 1 copy of each data entry in the database setup, in other words there is no replication. A replication factor of 2 means that there are two copies of each data entry, which are present on two different nodes (replicas). Naturally, the replication factor cannot be higher than the number of nodes. Any node in the cluster can act as a coordinating node to lead queries to the correct target node(s). 
 
@@ -41,7 +43,7 @@ On a write operation, the client’s request will be sent to any node in the clu
 **Steps**
 1. The client sends data to any node, which will be assigned as the coordinator node
 2. The coordinator node sends the data to more than one replica node in the cluster
-3. The coordinator node waits for acknowledgement from x nodes. Starting with v1.18, x is [configurable](./consistency.md), and defaults to ALL nodes.
+3. The coordinator node waits for acknowledgement from x nodes. Starting with v1.18, x is [configurable](./consistency.md), and defaults to `ALL` nodes.
 4. When x ACKs are received by the coordinator node, the write is successful.
 
 As an example, consider a cluster size of 3 with replication factor of 3. So, all nodes in the distributed setup contain a copy of the data. When the client sends new data, this will be replicated to all three nodes.
@@ -59,7 +61,7 @@ Read operations are also coordinated by a coordinator node, which directs a quer
 **Steps**
 1. The client sends a query to Weaviate, any node in the cluster that receives the request first will act as the coordinator node
 2. The coordinator node sends the query to more than one replica node in the cluster
-3. The coordinator waits for a response from x nodes. *x is [configurable](./consistency.md) (ALL, QUORUM or ONE, available from v1.18, Get-Object-By-ID type requests have tunable consistency from v1.17).*
+3. The coordinator waits for a response from x nodes. *x is [configurable](./consistency.md) (`ALL`, `QUORUM` or `ONE`, available from v1.18, Get-Object-By-ID type requests have tunable consistency from v1.17).*
 4. The coordinator node resolves conflicting data using some metadata (e.g. timestamp, id, version number)
 5. The coordinator returns the latest data to the client
 

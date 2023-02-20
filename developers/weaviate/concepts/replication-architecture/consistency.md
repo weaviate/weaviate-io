@@ -41,7 +41,7 @@ Data objects in Weaviate have **eventual consistency**, which means that all nod
 
 Eventual consistency is chosen over strong consistency, to ensure high availability. Nevertheless, write and read consistency are tunable, so you have some influence on the tradeoff between availability and consistency. 
 
-*The animation below is an example of how a write or a read is performed with Weaviate with a replication factor of 3 and 8 nodes. The blue node acts as coordinator node. The consistency level is set to QUORUM, so the coordinator node only waits for two out of three responses before sending the result back to the client.*
+*The animation below is an example of how a write or a read is performed with Weaviate with a replication factor of 3 and 8 nodes. The blue node acts as coordinator node. The consistency level is set to `QUORUM`, so the coordinator node only waits for two out of three responses before sending the result back to the client.*
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-quorum-animation.gif" alt="Write consistency QUORUM" width="75%"/></p>
 
@@ -50,12 +50,12 @@ Eventual consistency is chosen over strong consistency, to ensure high availabil
 Adding or changing data objects are **write** operations.  
 
 :::note
-Write operations are tunable starting with Weaviate v1.18, to ONE, QUORUM or ALL. In v1.17, write operations are always set to ALL (highest consistency).
+Write operations are tunable starting with Weaviate v1.18, to `ONE`, `QUORUM` or `ALL`. In v1.17, write operations are always set to `ALL` (highest consistency).
 :::
 
-The main reason for introducing configurable write consistency in v1.18 is because that is also when automatic repairs are introduced. A write will always be written to n (replication factor) nodes, regardless of the chosen consistency level. The coordinator node however waits for acknowledgements from ONE, QUORUM or ALL nodes before it returns. To guarantee that a write is applied everywhere without the availability of repairs on read requests, write consistency is set to ALL for now. Possible settings in v1.18+ are:
+The main reason for introducing configurable write consistency in v1.18 is because that is also when automatic repairs are introduced. A write will always be written to n (replication factor) nodes, regardless of the chosen consistency level. The coordinator node however waits for acknowledgements from `ONE`, `QUORUM` or `ALL` nodes before it returns. To guarantee that a write is applied everywhere without the availability of repairs on read requests, write consistency is set to `ALL` for now. Possible settings in v1.18+ are:
 * **ONE** - a write must receive an acknowledgement from at least one replica node. This is the fastest (most available), but least consistent option. 
-* **QUORUM** - a write must receive an acknowledgement from at least QUORUM replica nodes. QUORUM is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
+* **QUORUM** - a write must receive an acknowledgement from at least `QUORUM` replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
 * **ALL** - a write must receive an acknowledgement from all replica nodes. This is the most consistent, but 'slowest' (least available) option.
 
 
@@ -63,27 +63,27 @@ The main reason for introducing configurable write consistency in v1.18 is becau
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-ONE.png" alt="Write consistency ONE" width="60%"/></p>
 
-*Figure below: a replicated Weaviate setup with Write Consistency of QUORUM (n/2+1). There are 8 nodes in total, out of which 3 replicas.*
+*Figure below: a replicated Weaviate setup with Write Consistency of `QUORUM` (n/2+1). There are 8 nodes in total, out of which 3 replicas.*
 
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-QUORUM.png" alt="Write consistency QUORUM" width="60%"/></p>
 
-*Figure below: a replicated Weaviate setup with Write Consistency of ALL. There are 8 nodes in total, out of which 3 replicas.*
+*Figure below: a replicated Weaviate setup with Write Consistency of `ALL`. There are 8 nodes in total, out of which 3 replicas.*
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-ALL.png" alt="Write consistency ALL" width="60%"/></p>
 
 
 ### Tunable Read Consistency
 
-Read operations are GET queries to data objects in Weaviate. Like write, read consistency is tunable, to ONE, QUORUM or ALL.
+Read operations are GET queries to data objects in Weaviate. Like write, read consistency is tunable, to `ONE`, `QUORUM` or `ALL`.
 
 :::note
-With v1.17, read consistency is tunable only for Get-Objects-By-ID type requests. All read requests (including searches) will be added in v1.18. Read requests other than Get-Objects-By-ID have a read consistency of ALL.
+With v1.17, read consistency is tunable only for Get-Objects-By-ID type requests. All read requests (including searches) will be added in v1.18. Read requests other than Get-Objects-By-ID have a read consistency of `ALL`.
 :::
 
 Possible Read Consistency levels are:
 * **ONE** - a read response must be returned by at least one replica. This is the fastest (most available), but least consistent option. 
-* **QUORUM** - a response must be returned by QUORUM amount of replica nodes. QUORUM is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
+* **QUORUM** - a response must be returned by `QUORUM` amount of replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
 * **ALL** - a read response must be returned by all replicas. The read operation will fail if at least one replica fails to respond. This is the most consistent, but 'slowest' (least available) option.
 
 Examples:
@@ -93,20 +93,20 @@ Examples:
   <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-ONE.png" alt="Write consistency ONE" width="60%"/></p>
 
 * **QUORUM**<br/>
-  In a single datacenter with a replication factor of 3 and a read consistency level of QUORUM, the coordinator node will wait for n / 2 + 1 = 3 / 2 + 1 = 2 replicas nodes to return a response.
+  In a single datacenter with a replication factor of 3 and a read consistency level of `QUORUM`, the coordinator node will wait for n / 2 + 1 = 3 / 2 + 1 = 2 replicas nodes to return a response.
 
   <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-QUORUM.png" alt="Write consistency QUORUM" width="60%"/></p>
 
 
 * **ALL**<br/>
-  In a single datacenter with a replication factor of 3 and a read consistency level of ALL, the coordinator node will wait for all 3 replicas nodes to return a response.
+  In a single datacenter with a replication factor of 3 and a read consistency level of `ALL`, the coordinator node will wait for all 3 replicas nodes to return a response.
 
   <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-ALL.png" alt="Write consistency ALL" width="60%"/></p>
 
   
 ## Repairs
 
-Repairs can be executed by Weaviate in case of a discovered inconsistency. A scenario where a repair could be necessary is the following: The user writes with a consistency level of ONE. The node dies before it can contact some of the other nodes. The node comes back up with the latest data. Some other nodes may now be out of sync and need to be repaired.
+Repairs can be executed by Weaviate in case of a discovered inconsistency. A scenario where a repair could be necessary is the following: The user writes with a consistency level of `ONE`. The node dies before it can contact some of the other nodes. The node comes back up with the latest data. Some other nodes may now be out of sync and need to be repaired.
 
 Repairs can happen in the background, for example when a read operation is done. Repairs (and more information about them) will be available starting with v1.18 (Q1 2023).
 
