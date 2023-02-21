@@ -1,7 +1,7 @@
 ---
 title: ref2vec-centroid
 sidebar_position: 7
-image: og/docs/modules.jpg
+image: og/docs/modules/ref2vec-centroid.jpg
 # tags: ['ref2vec', 'ref2vec-centroid', 'centroid']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -14,7 +14,7 @@ The `ref2Vec-centroid` module is used to calculate object vectors based on the c
 
 ## How to enable
 
-### Weaviate Cloud Service
+### Weaviate Cloud Services
 
 The `ref2vec-centroid` module is not currently available on the WCS.
 

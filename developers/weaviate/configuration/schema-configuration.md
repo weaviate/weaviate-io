@@ -39,13 +39,12 @@ It has the following characteristics:
 * When a previously seen class is imported, which contains a property that Weaviate has not seen yet, the module alters the schema before importing the object. See section "DataTypes" below for details on how a property should be created.
 * When a previously seen class is imported, which contains a property which conflicts with the current schema type, an error is thrown. (e.g. trying to import a `string` into a field that exists in the schema as `int`).
 * When a previously unseen class is imported, the class is created alongside all the properties.
-* Also Weaviate automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`. 
+* Weaviate also automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`. 
 
 ### Class
 
 A class describes a data object in the form of a noun (e.g., *Person*,
-*Product*, *Timezone*, etcetera) or a verb (e.g., *Move*, *Buy*, *Eat*,
-etcetera). If you are using the `text2vec-contextionary` vectorizer module,
+*Product*, *Timezone*) or a verb (e.g., *Move*, *Buy*, *Eat*). If you are using the `text2vec-contextionary` vectorizer module,
 then Weaviate will always validate if it contextually understands the words in
 the name you include in the schema. If you add a Class name that it can't
 recognize, it will not accept the schema.
@@ -112,25 +111,29 @@ An example of a complete class object including properties:
 }
 ```
 
-#### vectorizer
+### vectorizer
 
 The vectorizer (`"vectorizer": "..."`) can be specified per class in the schema object. Check the [modules page](/developers/weaviate/modules/index.md) for available vectorizer modules.
 
 In case you don't want to use a vectorization module to calculate vectors from data objects, and want to enter the vectors per data object yourself when adding data objects, make sure to set `"vectorizer": "none"`.
 
-__Regulate semantic indexing__
+__Configure semantic indexing__
 
-With the [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/developers/weaviate/configuration/schema-configuration.md#regulate-semantic-indexing) how this works.
+With the [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing) how this works.
 
-#### vectorIndexType
+### vectorIndexType
 
 The vectorIndexType defaults to [`hnsw`](/developers/weaviate/concepts/vector-index.md#hnsw) since this is the only available vector indexing algorithm implemented at the moment.
 
-#### vectorIndexConfig
+### vectorIndexConfig
 
 Check the [`hnsw` page](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) for `hnsw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
 
-#### shardingConfig (introduced in v1.8.0)
+### shardingConfig
+
+:::note
+Introduced in v1.8.0.
+:::
 
 The `"shardingConfig"` controls how a class should be [sharded and distributed across multiple nodes](/developers/weaviate/concepts/cluster.md). All values are optional and default to the following settings:
 
@@ -188,9 +191,11 @@ The meaning of the individual fields in detail:
   target (virtual - and therefore physical) shard. `"murmur3"` creates a 64bit
   hash making hash collisions very unlikely.
 
-#### invertedIndexConfig > stopwords (Stopword lists)
+### invertedIndexConfig > stopwords (stopword lists)
 
-*Note: This feature was introduced in `v1.12.0`.*
+:::note
+This feature was introduced in `v1.12.0`.
+:::
 
 Properties of type `text` and `string` may contain words that are very common
 and have no meaning. In this case you may want to remove them entirely from
@@ -218,19 +223,22 @@ preset and adding all your desired stopwords as additions.
 This configuration allows stopwords to be configured by class. If not set, these values are set to the following defaults:
 
 | Parameter | Default value | Acceptable values |
-| --- | --- | --- | 
+| --- | --- | --- |
 | `"preset"` | `"en"` | `"en"`, `"none"` |
 | `"additions"` | `[]` | *any list of custom words* |
 | `"removals"` | `[]` | *any list of custom words* |
 
 
-**Notes**
+:::note
 - If none is the selected preset, then the class' stopwords will consist entirely of the additions list.
 - If the same item is included in both additions and removals, then an error is returned
+:::
 
-#### invertedIndexConfig > indexTimestamps
+### invertedIndexConfig > indexTimestamps
 
-*Note: This feature was introduced in `v1.13.0`.*
+:::note
+This feature was introduced in `v1.13.0`.
+:::
 
 To perform queries which are filtered by timestamps, the target class must first be configured to maintain an inverted index for each object by their internal timestamps -- currently these include `creationTimeUnix` and `lastUpdateTimeUnix`. This configuration is done by setting the `indexTimestamps` field of the `invertedIndexConfig` object to `true`.
 
@@ -240,9 +248,11 @@ To perform queries which are filtered by timestamps, the target class must first
   }
 ```
 
-#### invertedIndexConfig > indexNullState
+### invertedIndexConfig > indexNullState
 
-*Note: This feature was introduced in `v1.16.0`.*
+:::note
+This feature was introduced in `v1.16.0`.
+:::
 
 To perform queries which are filtered by being null or not null, the target class must first be configured to maintain an inverted index for each property of a class that tracks if objects are null or not. This configuration is done by setting the `indexNullState` field of the `invertedIndexConfig` object to `true`.
 
@@ -252,9 +262,11 @@ To perform queries which are filtered by being null or not null, the target clas
   }
 ```
 
-#### invertedIndexConfig > indexPropertyLength
+### invertedIndexConfig > indexPropertyLength
 
-*Note: This feature was introduced in `v1.16.0`.*
+:::note
+This feature was introduced in `v1.16.0`.
+:::
 
 To perform queries which are filtered by the length of a property, the target class must first be configured to maintain an inverted index for this. This configuration is done by setting the `indexPropertyLength` field of the `invertedIndexConfig` object to `true`.
 
@@ -265,8 +277,9 @@ To perform queries which are filtered by the length of a property, the target cl
 ```
 
 
-**Notes**
-- Using these features requires more resources, as the additional inverted indices must be created/maintained for the lifetime of the Class
+:::note
+Using these features requires more resources, as the additional inverted indices must be created/maintained for the lifetime of the class.
+:::
 
 ## Property object
 
@@ -323,9 +336,11 @@ Author
   writesFor
 ```
 
-### Property Tokenization
+### Property tokenization
 
-*Note: This feature was introduced in `v1.12.0`.*
+:::note
+This feature was introduced in `v1.12.0`.
+:::
 
 Properties of type `text` and `string` use tokenization when indexing and
 searching through the inverted index. Text is always tokenized at the `word`
@@ -346,20 +361,22 @@ would not return the object mentioned above, but only the exact string `"hello
 If no values are provided, properties of type `text` and `string` default to
 `"word"` level tokenization for backward-compatibility.
 
-## Regulate semantic indexing
+## Configure semantic indexing
 
-* Only for `text2vec` module
+:::info
+Only for `text2vec-*` modules
+:::
 
 In the schema you can define advanced settings for how data is stored and used by Weaviate. 
 
-In some cases, you want to be able to regulate specific parts of the schema to optimise indexing.
+In some cases, you want to be able to configure specific parts of the schema to optimize indexing.
 
 For example, a data object with the following schema:
 
 ```yaml
 Article:
   title: Cows lose their jobs as milk prices drop
-  summary: As his 100 diary cows lumberred over for their Monday...
+  summary: As his 100 diary cows lumbered over for their Monday...
 ```
 
 which will be vectorized as:
@@ -367,15 +384,15 @@ which will be vectorized as:
 ```md
 article cows lose their
 jobs as milk prices drop summary
-as his diary cows lumberred
+as his diary cows lumbered
 over for their monday
 ```
 
-By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can regulate the indexing.
+By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can configure the indexing.
 
-#### Datatypes
+### Datatypes
 
-Weaviate needs to guess the datatypes based on the objects it sees, for this you can set some preferences. e.g.
+Weaviate needs to guess the datatypes based on the objects it sees. For this you can set some preferences. e.g.
 
 * `AUTOSCHEMA_DEFAULT_STRING=text` would tell Weaviate that when it sees a prop of type `string`, it should treat it as `text` (as opposed to `string`)
 * `AUTOSCHEMA_DEFAULT_NUMBER=number` would tell Weaviate that when its sees a numerical value, it should treat it as number as opposed to `int`, etc.
@@ -387,7 +404,7 @@ In addition, we need to catch types we do not support at all:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what the class of the resolved beacon is, since it needs the ClassName to be able to alter the schema.
 
-#### Default distance metric
+### Default distance metric
 
 Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every class unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
 

@@ -94,6 +94,10 @@ to obtain the metric for the entire Weaviate instance.
 Extending Weaviate with new metrics is very easy and we'd be happy to receive
 your contribution.
 
+### Versioning
+
+Be aware that metrics do not follow the semantic versioning guidelines of other Weaviate features. Weaviate's main APIs are stable and breaking changes are extremely rare. Metrics, however, have shorter feature lifecycles. It can sometimes be necessary to introduce an incompatible change or entirely remove a metric, for example, because the cost of observing a specific metric in production has grown too high. As a result, it is possible that a Weaviate minor release contains a breaking change for the Monitoring system. If so, it will be clearly highlighted in the release notes.
+
 ## Sample Dashboards
 
 Weaviate does not ship with any dashboards by default, but here is a list of

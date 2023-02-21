@@ -1,7 +1,7 @@
 ---
 title: text2vec-contextionary
 sidebar_position: 4
-image: og/docs/modules.jpg
+image: og/docs/modules/text2vec-contextionary.jpg
 # tags: ['text2vec', 'text2vec-contextionary', 'contextionary']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -40,13 +40,13 @@ When a new class object is created, it will be added to a Weaviate.
 
 ## How to enable
 
-### Weaviate Cloud Service
+### Weaviate Cloud Services
 
 The `text2vec-contextionary` module is not available on the WCS.
 
 ### Weaviate open source
 
-Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. The service can be added like this:
+You can find an example Docker Compose file below, which will spin up Weaviate with the `text2vec-contextionary` module.
 
 ```yaml
 ---
