@@ -36,8 +36,7 @@ CPUs can be used, however, this will significantly slow down your queries.
 
 Here is the current list of available `SUM` modules - sourced from [Hugging Face](https://huggingface.co/):
 * [`bart-large-cnn`](https://huggingface.co/facebook/bart-large-cnn)
-<!-- TODO: include when/if the build completes -->
-<!-- * [`pegasus-xsum`](https://huggingface.co/google/pegasus-xsum) -->
+* [`pegasus-xsum`](https://huggingface.co/google/pegasus-xsum)
 
 ## How to enable (module configuration)
 
@@ -83,7 +82,8 @@ services:
     ports:
     - 9999:9999
   sum-transformers:
-    image: semitechnologies/sum-transformers:facebook-bart-large-cnn-1.0.0
+    image: semitechnologies/sum-transformers:facebook-bart-large-cnn-1.2.0  
+    # image: semitechnologies/sum-transformers:google-pegasus-xsum-1.2.0  # Could be used instead
 ...
 ```
 
@@ -173,7 +173,7 @@ You can now push your image to your favorite registry or reference it locally in
 
 ## How it works (under the hood)
 
-The `sum-transformers` module uses transformer-based summarizer models. They are abstractive, in that they generate new, shorter, text from the input text. For example, a model may take text like this:
+The `sum-transformers` module uses transformer-based summarizer models. They are abstractive, in that they generate new text from the input text, rather than to extract particular sentences. For example, a model may take text like this:
 
 <details>
   <summary>See original text</summary>
@@ -191,6 +191,8 @@ Note that much of output does not copy the input verbatim, but is *based on* it.
 
 :::note Input length
 Note that like many other language models, summarizer models can only process a limited amount of text. The `sum-transformers` module will be limited to the maximum length of the model it is using. For example, the `facebook/bart-large-cnn` model can only process 1024 tokens.
+
+On the other hand, be aware that providing an input of insufficient length and detail may cause the transformer model to [hallucinate](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)). 
 :::
 
 ## More resources
