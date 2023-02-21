@@ -8,6 +8,9 @@ export function LinkButton({children, link, color='main', newTab=true}) {
     case 'accent':
       style += ' ' + styles.btnAccent;
       break;
+      case 'outlined':
+        style += ' ' + styles.btnOutlined;
+        break;
     default:
       style += ' ' + styles.btnMain;
   }
