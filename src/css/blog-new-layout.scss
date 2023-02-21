@@ -1,0 +1,47 @@
+// for big screens - display blog previews in 2 columns
+@media (min-width:996px) {
+    .blog-list-page {
+        .container .row main {
+            --ifm-col-width: calc(9 / 12 * 100%);
+        }
+    
+        main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 25px;
+            row-gap: 0px;
+        }
+
+        header h2 {
+            font-size: larger;
+        }
+    }
+}
+
+// Layout for each blog item
+.blog-list-page {
+    article {
+      display: grid;
+      grid-template-areas:
+        "head"
+        "mid"
+        "foot";
+  
+      div {
+        grid-area: head;
+      }
+      header {
+        grid-area: mid;
+      }
+      footer {
+        grid-area: foot;
+      }
+      
+
+      footer {
+        display: none;
+        margin: 0;
+      }
+  
+    }
+}
