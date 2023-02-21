@@ -8,6 +8,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::note Go client version
+The current Go client version is `v||site.go_client_version||`.
+:::
+
 ## Installation and setup
 To get the latest stable version of the Go client library, run the following:
 

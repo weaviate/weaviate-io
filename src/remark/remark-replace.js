@@ -7,14 +7,14 @@ const readSiteConfig = () => {
   return JSON.parse(data);
 }
 
-const siteConfig = readSiteConfig();
-console.log(siteConfig);
+// pattern to match: ||site.some_name|| in markdown
+const pattern = /[|]{2}[ ]*site\.([a-z_]*)[ ]*[|]{2}/g
 
-// pattern to match: ||site.some_name||
-const pattern = /[|]{2}[ ]*site\.([a-z_]*)[ ]*[|]{2}/
 const interpolate = (value, vfile) => {
+  let siteConfig = readSiteConfig();
+
   // replace the pattern with config variables
-  return value.replace(pattern, (_, name) => {
+  return value.replaceAll(pattern, (_, name) => {
     // display a warning if config variable is missing
     if (siteConfig[name] == undefined) {
       console.warn('\x1b[33m%s', vfile.path, '\x1b[0m');

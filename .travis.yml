@@ -9,6 +9,7 @@ cache:
 install:
   - yarn install
 script:
+  - node _build_scripts/update-config-versions.js
   # Build the project
   - |
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then

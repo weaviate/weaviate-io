@@ -35,7 +35,8 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.3.1",
     "linkinator": "4.1.2",
-    "netlify-cli": "12.10.0"
+    "netlify-cli": "12.10.0",
+    "node-fetch": "^2.6.1"
   },
   "browserslist": {
     "production": [
