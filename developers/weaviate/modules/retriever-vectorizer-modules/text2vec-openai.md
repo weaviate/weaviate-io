@@ -51,10 +51,9 @@ services:
 ...
 ```
 
-:::note
-* You can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to create a Weaviate setup with this module.
-* Starting with `v1.11.0` the `OPENAI_APIKEY` variable is now optional and you can instead provide the key at insert/query time as an HTTP header.
-:::
+import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.mdx';
+
+<T2VInferenceYamlNotes apiname="OPENAI_APIKEY"/>
 
 ## How to configure
 

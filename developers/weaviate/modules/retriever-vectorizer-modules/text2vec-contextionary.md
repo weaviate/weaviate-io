@@ -46,7 +46,7 @@ The `text2vec-contextionary` module is not available on the WCS.
 
 ### Weaviate open source
 
-Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. The service can be added like this:
+You can find an example Docker Compose file below, which will spin up Weaviate with the `text2vec-contextionary` module.
 
 ```yaml
 ---

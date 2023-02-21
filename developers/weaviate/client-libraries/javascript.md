@@ -45,19 +45,19 @@ client
 
 ## Authentication
 
-import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
+import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="JavaScript"/>
 
 ### WCS authentication
 
-import ClientAuthWCS from '/_includes/client.auth.wcs.mdx'
+import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
 
 <ClientAuthWCS />
 
 ### Resource Owner Password Flow
 
-import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
+import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
 <ClientAuthFlowResourceOwnerPassword />
 
@@ -76,7 +76,7 @@ const client = weaviate.client({
 
 ### Client Credentials flow
 
-import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
+import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
 <ClientAuthFlowClientCredentials />
 
@@ -93,7 +93,7 @@ const client = weaviate.client({
 
 ### Refresh Token flow
 
-import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
+import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
 <ClientAuthBearerToken />
 

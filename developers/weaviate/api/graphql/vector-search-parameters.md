@@ -154,7 +154,7 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
 ### Variables
 The `bm25` operator supports two variables:
 * `query` (mandatory) - the keyword search query
-* `properties` (optional) - array of properties (fields) to search in, defaulting to all properties in the class. Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "description"]`.
+* `properties` (optional) - array of properties (fields) to search in, defaulting to all properties in the class. Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
 
 ### Example query
 

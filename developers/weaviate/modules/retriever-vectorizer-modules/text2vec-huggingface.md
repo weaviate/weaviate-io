@@ -14,7 +14,7 @@ The `text2vec-huggingface` module allows you to use [Hugging Face models](https:
 
 * Note: this module uses a third-party API.
 * Note: make sure to check the Inference [pricing page](https://huggingface.co/inference-api#pricing) before vectorizing large amounts of data.
-* Note: Weaviate automatically parallelizes requests to the Inference-API when using the batch endpoint, see the previous note.
+* Note: Weaviate automatically parallelizes requests to the Inference API when using the batch endpoint.
 * Note: This module only supports [sentence similarity](https://huggingface.co/models?pipeline_tag=sentence-similarity) models.
 
 ## How to enable
@@ -43,17 +43,19 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       DEFAULT_VECTORIZER_MODULE: text2vec-huggingface
       ENABLE_MODULES: text2vec-huggingface
-      HUGGINFACE_APIKEY: sk-foobar # request a key on huggingface.co, setting this parameter is optional, you can also provide the API key on runtime
+      HUGGINGFACE_APIKEY: sk-foobar # request a key on huggingface.co, setting this parameter is optional, you can also provide the API key on runtime
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-* Note: you can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to create a Weaviate setup with this module.
+import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.mdx';
+
+<T2VInferenceYamlNotes apiname="HUGGINGFACE_APIKEY"/>
 
 ## How to configure
 
 ​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
 
-The following schema configuration uses the `all-MiniLM-L6-v2` model. 
+For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-huggingface` using the `all-MiniLM-L6-v2` model.
 
 ```json
 {
@@ -94,8 +96,8 @@ The following schema configuration uses the `all-MiniLM-L6-v2` model.
 
 ## How to use
 
-* When sending a request to Weaviate, you can set the API key on query time: `X-Huggingface-Api-Key: <huggingface-api-key>`.
-* New GraphQL vector search parameters made available by this module can be found [here](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
+* If the OpenAI API key is not set in the `text2vec-huggingface` module, you can set the API key at query time by adding the following to the HTTP header: `X-Huggingface-Api-Key: <huggingface-api-key>`.
+* Using this module will enable [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
 
 ### Example
 
