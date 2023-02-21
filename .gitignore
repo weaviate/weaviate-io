@@ -4,9 +4,15 @@
 # Production
 /build
 
+# Dev
+/build.dev
+
 # Generated files
 .docusaurus
 .cache-loader
+
+# Ignore Academy for now
+/developers/academy
 
 # Misc
 .DS_Store

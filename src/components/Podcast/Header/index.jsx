@@ -25,6 +25,11 @@ export default function PodcastHeader() {
         >
           Open in Spotify <i className="fab fa-spotify"></i>
         </LinkButton>
+        <LinkButton
+          color="outlined" link="https://anchor.fm/s/cffc3468/podcast/rss"
+        >
+          Weaviate RSS feed <i className="fa-solid fa-square-rss"></i>
+        </LinkButton>
       </ButtonContainer>
     </div>
   );

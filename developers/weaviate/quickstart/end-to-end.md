@@ -25,7 +25,7 @@ We have prepared code examples to help you follow along here. Go to [weaviate-tu
 
 At this point, you should have: 
 
-- A new instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
+- A new instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.io)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
 - Installed your preferred Weaviate client library. 
 

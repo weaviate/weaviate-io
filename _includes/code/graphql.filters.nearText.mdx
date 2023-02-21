@@ -55,7 +55,7 @@ nearText = {
 result = (
   client.query
   .get("Publication", "name")
-  .with_additional("certainty OR distance"]) # note that certainty is only supported if distance==cosine
+  .with_additional(["certainty OR distance"]) # note that certainty is only supported if distance==cosine
   .with_near_text(nearText)
   .do()
 )

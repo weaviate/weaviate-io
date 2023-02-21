@@ -1,7 +1,7 @@
 ---
 title: Retrievers & Vectorizers
 sidebar_position: 0
-image: og/docs/modules.jpg
+image: og/docs/modules/vectorizers-overview.jpg
 # tags: ['modules']
 ---
 import Badges from '/_includes/badges.mdx';
