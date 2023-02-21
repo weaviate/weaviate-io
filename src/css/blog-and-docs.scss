@@ -1,4 +1,4 @@
-@import 'blog-new-layout.scss';
+@import 'blog-custom-layout.scss';
 
 // Set Fonts
 .blog-post-page, .blog-list-page, .docs-doc-page {
@@ -20,13 +20,13 @@
 }
 
 // Set Background
-.docs-doc-page {
+.docs-doc-page, .blog-list-page, .blog-post-page {
   #__docusaurus {
     background-image: none;
   }
 }
 
-.docs-doc-page[data-theme='dark'] {
+.docs-doc-page[data-theme='dark'], .blog-list-page[data-theme='dark'], .blog-post-page[data-theme='dark'] {
   #__docusaurus, .navbar {
     background: linear-gradient(
       90deg,
@@ -37,7 +37,7 @@
   }
 }
 
-.docs-doc-page[data-theme='light'] {
+.docs-doc-page[data-theme='light'], .blog-list-page[data-theme='light'], .blog-post-page[data-theme='light'] {
   #__docusaurus, .navbar {
     background: linear-gradient(
       90deg,

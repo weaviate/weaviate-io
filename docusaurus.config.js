@@ -32,8 +32,8 @@ const config = {
             {
                 blogTitle: 'Weaviate Playbook',
                 blogDescription: 'Learn How we run Weaviate as a Company',
-                blogSidebarCount: 12,
-                postsPerPage: 8,
+                blogSidebarCount: 0,
+                postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Playbook',
 
                 id: 'playbook-blog',
@@ -105,8 +105,8 @@ const config = {
                     authorsMapPath: '../authors.yml',
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
-                    blogSidebarCount: 12,
-                    postsPerPage: 8,
+                    blogSidebarCount: 0,
+                    postsPerPage: 12,
                 },
                 theme: {
                     customCss: [

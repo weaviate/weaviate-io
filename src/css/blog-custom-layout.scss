@@ -1,0 +1,74 @@
+// for big screens - display blog previews in 2 columns
+@media (min-width:996px) {
+  .blog-list-page[data-theme='dark'] {
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 30px;
+      row-gap: 0px;
+    }
+  }
+  .blog-list-page[data-theme='light'] {
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 25px;
+      row-gap: 0px;
+    }
+  }
+}
+
+@media (min-width:996px) {
+  .blog-list-page {
+    main {
+      margin: 0;
+    }
+    // main {
+    //   display: grid;
+    //   grid-template-columns: 1fr 1fr;
+    //   column-gap: 25px;
+    //   row-gap: 0px;
+    // }
+
+    // aside {
+      // --ifm-col-width: calc(2 / 12 * 100%);
+      // display: none;
+    // }
+
+    .container .row main {
+      // --ifm-col-width: calc(10 / 12 * 100%);
+      --ifm-col-width: 100%;
+    }
+
+    header h2 {
+      font-size: larger;
+    }
+  }
+}
+
+// Layout for each blog item
+.blog-list-page {
+  article {
+    display: grid;
+    grid-template-areas:
+    "head"
+    "mid"
+    "foot";
+
+    div.markdown {
+      grid-area: head;
+    }
+    header {
+      grid-area: mid;
+    }
+    footer {
+      grid-area: foot;
+    }
+
+    footer {
+      // display: none;
+      margin: 0;
+    }
+
+  }
+}
