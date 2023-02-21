@@ -7,7 +7,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: true, 
     units: [
-      "hello_weaviate", "setup", "queries_1", 
+      "hello_weaviate", "inside_weaviate", "queries_1", 
       "vectorizer_selection_1", "schema_1", "data_import", "crud_operations", "modules"
     ],
     learningGoals: [

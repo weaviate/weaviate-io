@@ -23,28 +23,41 @@ A vector search engine is an advanced type of search engine that helps you to re
 
 Unlike traditional search engines, which return results based on keyword matches, vector search engines return results based on comparisons of vectors, each of which represents an object like a passage of text, a book, or an image. A vector search is a **fantastic way of carrying out a similarity-based search**. 
 
+A vector search is also referred to as a "semantic search", because it returns results based on similarity of meaning (therefore "semantic").
+
+Think of it like searching for a book in a library. Instead of searching for a particular word, like "history", or "penguins" a vector search engines enables searches for books that are similar in theme, tone, or style.
+
 Take a look for yourself at this example of a vector search:
 
 :::warning TODO
 ADD VECTOR SEARCH EXAMPLE HERE, PREFERABLY INTERACTIVE
 :::
 
-A vector search is also referred to as a "semantic search", because it returns results based on similarity of meaning (therefore "semantic").
+Weaviate can help you to do this, and actually a lot more. Another way to think about Weaviate is that it supercharges the way you use information. 
 
-Think of it like searching for a book in a library. Instead of searching for a particular word, like "history", or "penguins" a vector search engines enables searches for books that are similar in theme, tone, or style.
+#### Information, made dynamic
 
-Over the course of this unit, we will see all this works, including:
+We are used to thinking of information as static, like a book. But modern AI and language models allows us to do much more than that. With Weaviate, you can not only identify and retrieve your existing information, but easily build on top of it.
 
-- What vectors are
-- How vectors represent meaning
-- How vector similarity can be measured
-- How Weaviate performs vector searches
+For example, you can extract answers to questions using Weaviate:
+
+:::warning TODO
+ADD QA EXAMPLE HERE, PREFERABLY INTERACTIVE
+:::
+
+Or you can synthesise passages using retrieved information with Weaviate:
+
+:::warning TODO
+ADD QA EXAMPLE HERE, PREFERABLY INTERACTIVE
+:::
+
+We will cover these and many more capabilities, such as vectorization, summarization and classification, in our units. For now, keep in mind that Weaviate is a vector search engine at its core which can also leverage AI tools to do more with the retrieved information.
 
 ### Open-source
 
 ![](../../tmp_images/a_crowd_looking_at_many_many_lines_of_computer_code_1.jpg)
 
-Weaviate is open-source, which means that its [codebase is available online](https://github.com/weaviate/weaviate) for anyone to see and use<sup>[(1)](#1)</sup>. 
+Weaviate is open-source. In other words, its [codebase is available online](https://github.com/weaviate/weaviate) for anyone to see and use<sup>[(1)](#1)</sup>. 
 
 And that is *the* codebase, regardless of how you use it. So whether you run Weaviate on your own computer, on a cloud compute environment, or through our managed service [Weaviate Cloud Service, or WCS](https://console.weaviate.io/), you are using the exact same technology.
 
@@ -74,51 +87,7 @@ As we've mentioned, vector searches are similarity-based, but what does that act
 
 This is a relatively simple idea that is actually incredibly interesting and intricate once we start to dive into the details. 
 
-But for now, you should know that machine learning (ML) models are key to this whole process. 
-
-#### ML models and vectorization
-
-A machine learning model is what will turn data, like a piece of text, an image, an audio clip, and more into a vector. This type of models are often also referred to as "vectorizers". And measures of similarity will depend on the particular machine learning model used.
-
-As a result, it is paramount that the right model for the job is chosen. Or, at least, that a wrong model is not chosen. So throughout our courses, you will see many different models and learn about model selection both as rules of thumb and detailed discussions. 
-
-Weaviate does not itself vectorize data, but it is built to be compatible with a huge number of vectorization models and services. Our courses will also cover different ways to configure Weaviate to vectorize your data in the way that suits your goals and needs.
-
-### Fast data retrieval
-
-![](../../tmp_images/orgainized_filing_cabinets_with_many_folders_1.jpg)
-
-To retrieve data quickly and efficiently, Weaviate uses a vector index in addition to an object index. The vector index allows for fast information retrieval, while still maintaining high recall performance. However, as the size of the dataset increases, the memory requirements and retrieval times must be balanced.
-
-Weaviate uses an "approximate nearest neighbor" (ANN) algorithm for its indexing, which enables it to scale at a sublinear complexity. This means that the search time increases at a slower rate than the size of the dataset, making Weaviate highly scalable.
-
-Throughout the course, you'll learn about indexing in Weaviate and the HNSW index, which is Weaviate's primary vector index type.
-
-### Going to production
-
-![](../../tmp_images/a_machine_with_a_conveyer_belt_producing_boxes_of_documents.jpg)
-
-Vector databases often need to scale horizontally and vertically. The scale of vector databases can expand into billions of data objects, thus requiring indexing and retrieval of billions of vectors to be retrievable by many concurrent users. 
-
-We appreciate that this presents additional and very different challenges to the data science aspect of vector search. To help you navigate these challenges, we'll cover all the key aspects of taking Weaviate to production in dedicated units of the course.
-
-All things related to taking Weaviate to production, such as authentication and authorization, backups, monitoring, replication and more will be covered in these units. 
-
-<Quiz questions={vectorizationAndML} />
-
-<Quiz questions={weaviateIndexing} />
-
-## What else can Weaviate do?
-
-![](../../tmp_images/person_wondering_what_to_do_next_0.jpg)
-
-:::warning TODO
-Video here
-:::
-
-In short, a lot more 😅.
-
-While Weaviate is primarily a vector search engine, its core functionality powers a lot of other, related functionality, such as question answering, summarization, classification, and named entity recognition. You will see some of these functionalities throughout our courses. 
+But for now, you should know that machine learning (ML) models are key to this whole process, and it is important to select the right model for the job. We will cover this in more detail later on. 
 
 ## Review
 
@@ -168,27 +137,6 @@ const vectorSearchDefinition = [
       { answerText: 'Vector search is a directional search.', isCorrect: false, feedback: 'The definition of "vector" in this context is not direction-related.'},
       { answerText: 'Vector search is a similarity-based search.', isCorrect: true, feedback: 'It searches a data collection or database for proximity in its representation of "meaning".'},   
       { answerText: 'Vector search is a number-based search.', isCorrect: false, feedback: 'This is partially true, but not the best answer. While there are numbers involved, that description does not quite capture the key concept of vector searches.'},
-    ],
-  },     
-];
-const vectorizationAndML = [
-  {
-    questionText: 'What does Weaviate use to obtain a vector corresponding to a data object?',
-    answerOptions: [
-      { answerText: 'Weaviate is capable of creating a vector from data objects.', isCorrect: false, feedback: 'Weaviate is not itself a vectorizer.'},
-      { answerText: 'Weaviate uses modules to obtain vectors from machine learning models.', isCorrect: true, feedback: 'You will learn about vectorizer models and corresponding Weaviate modules later on.'},   
-      { answerText: 'Weaviate requires a vector to be uploaded at import time.', isCorrect: false, feedback: 'While you can upload a vector, this is not required.'},
-    ],
-  },     
-];
-const weaviateIndexing = [
-  {
-    questionText: 'What types of indexes does Weaviate use?',
-    answerOptions: [
-      { answerText: 'Weaviate does not rely on indexing as it relies on a kNN vector search.', isCorrect: false, feedback: 'Weaviate does not use a kNN search as it is computationally very expensive.'},
-      { answerText: 'Weaviate uses a vector index.', isCorrect: false, feedback: 'This is only partially true.'},
-      { answerText: 'Weaviate uses an inverted index.', isCorrect: false, feedback: 'This is only partially true.'},      
-      { answerText: 'Weaviate uses a vector index and an inverted index.', isCorrect: true, feedback: 'Both indexes are used for different, and complementary reasons.'},
     ],
   },     
 ];

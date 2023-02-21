@@ -7,21 +7,41 @@ export const unitData = {
     badgeType: "mixed",
     learningGoals: [
       "What Weaviate is, and what it does.",
-      "What semantic search is and how it differs to scalar search",
-      "How vectors and deep learning models enable semantic search",
-      "Review examples of vector searches.",
-      "Weaviate's vector storage and search capabilities.",
+      "How to create your own Weaviate instance.",
+      "Weaviate clients and how to install them.",
+      "Weaviate's vector search capabilities.",
     ],
     learningOutcomes: [
       "Broadly describe what Weaviate is.",
-      "Explain what a vector is, and how they can represent meaning.",
-      "Outline what semantic search is and how vector search works.",
-      "Recall multiple ways to perform vector searches with Weaviate.",
       "Outline what vector search engines do.",
+      "Create a Weaviate instance.",
+      "Install your preferred Weaviate client.",
+      "Perform a vector search with Weaviate.",
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"
-  },  
+  },
+  inside_weaviate: {
+    title: "Inside Weaviate",
+    body: "Learn how Weaviate works.",
+    buttonType: "Click here",
+    badgeType: "theory",
+    buttonURL: "/developers/academy/units/inside_weaviate",
+    learningGoals: [
+      "What is a vector, and how it can represent meaning.",
+      "What semantic search is and how it differs to scalar search.",
+      "How vectors and deep learning models enable semantic search.",
+      "How Weaviate can perform vector searches fast.",
+    ],
+    learningOutcomes: [
+      "Explain what a vector is, and how they can represent meaning.",
+      "Contrast semantic searches with scalar search.",
+      "Describe how vector searches and semantic searches are related.",
+      "Outline how Weaviate can perform vector searches fast.",
+    ],
+    owner: "jp",
+    reviewer: "jp"    
+  },
   setup: {
     title: "Weaviate Cloud Service (WCS)",
     body: "Learn about WCS, and how to get started using it for free.",
@@ -40,7 +60,7 @@ export const unitData = {
       "Connect to the Weaviate instance and inspect its configuration.",
       "Import data into the Weaviate instance.",
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"
   },   
   queries_1: {
@@ -64,7 +84,7 @@ export const unitData = {
       "Add filters to queries such as by themselves and in combination."
     ],
     owner: "jp",
-    reviewer: "laura"    
+    reviewer: "jp"    
   },
   vectorizer_selection_1: {
     title: "Vectorizer selection 1",
@@ -85,7 +105,7 @@ export const unitData = {
       "Demonstrate ability to change the class vectorizer in Weaviate.",
     ],
     owner: "jp",
-    reviewer: "laura"      
+    reviewer: "jp"      
   },
   schema_1: {
     title: "Schema 1",
@@ -103,7 +123,7 @@ export const unitData = {
       "Create a schema with classes, properties, various data types and basic vectorization settings.",
       "Use upload, retrieve and change operations to a data schema in Weaviate."
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"      
   },
   data_import: {
@@ -125,7 +145,7 @@ export const unitData = {
       "Identify object-level import errors and implement error handling through the Weaviate client.",
     ],
     owner: "jp",
-    reviewer: "laura"      
+    reviewer: "jp"      
   },
   crud_operations: {
     title: "CRUD operations",
@@ -142,7 +162,7 @@ export const unitData = {
       "Use the RESTful objects endpoint (PUT/PATCH) to update data objects in Weaviate.",
       "Use the RESTful objects endpoint (HEAD) to check and validate if data objects exists without retrieving it."
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"        
   },
   modules: {
@@ -160,7 +180,7 @@ export const unitData = {
       "Explain the different types of modules that you can use with Weaviate.",
       "Select the right modules for your use case, and enable them for your Weaviate instance."
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"       
   },        
   search_theory: {
@@ -178,7 +198,7 @@ export const unitData = {
       "Understand how vectors representing the meaning of data enables semantic search.",
       "Understand how vectors can be calculated from e.g. machine learning models."
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"  
   },    
   queries_2: {
@@ -197,7 +217,7 @@ export const unitData = {
       "Construct GraphQL Explore queries for data exploration",
       "Construct GraphQL queries with module-specific filters, functions and parameters.",
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"       
   },  
   indexing: {
@@ -214,7 +234,7 @@ export const unitData = {
       "Recognize and describe various indexing methods.",
       "Understand and use configuration parameters of HNSW to balance speed and recall."
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"       
   },
   schema_2: {
@@ -232,7 +252,7 @@ export const unitData = {
       "Use different indexing settings for data objects in the schema.",
       "Use module-specific settings for data objects in the schema."
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"
   },
   t2v_under_hood: {
@@ -250,7 +270,7 @@ export const unitData = {
       "Formulate a vectorization strategy and defend its reasoning given a data object and a goal."
     ],
     owner: "jp",
-    reviewer: "laura"       
+    reviewer: "jp"       
   },  
   vectorizer_selection_2: {
     title: "Vectorizer selection 2",
@@ -300,7 +320,7 @@ export const unitData = {
       "Create partial and full backups of a Weaviate instance.",
       "Restore backups of a Weaviate instance into another instance."
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"
   },  
   auth: {
@@ -318,7 +338,7 @@ export const unitData = {
       "Implement authorization with Weaviate based on OIDC authentication."
     ],
     owner: "jp",
-    reviewer: "laura"    
+    reviewer: "jp"    
   },
   scaling: {
     title: "Scaling",
@@ -346,7 +366,7 @@ export const unitData = {
       "Create a replicated Weaviate setup through settings in the schema.",
       "Create queries to retrieve data with various consistency levels."
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"
   },
   migration: {
@@ -386,7 +406,7 @@ export const unitData = {
       "Understand the capabilities of the Weaviate clients.", 
       "Use a client to interact with Weaviate's API endpoints."
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"
   },       
   docker: {
@@ -415,7 +435,7 @@ export const unitData = {
       "Use third party (HuggingFace, OpenAI) reader and/or generator models in a Weaviate setup.",
       "Use reader and generator modules in GraphQL queries."
     ],
-    owner: "laura",
+    owner: "jp",
     reviewer: "jp"
   },
   beyond_text: {
@@ -433,7 +453,7 @@ export const unitData = {
       "Implement a Weaviate instance with vectorized non-text data.",
     ],
     owner: "jp",
-    reviewer: "laura"    
+    reviewer: "jp"    
   },    
   vectorizer_text_overview: {
     title: "Text vectorizers: An overview",
@@ -449,7 +469,7 @@ export const unitData = {
       "Distinguish key differences between each model types as well as key limitations or challenges for each model type.",
     ],
     owner: "jp",
-    reviewer: "laura"      
+    reviewer: "jp"      
   },      
   // {
   //   title: "Placeholder",

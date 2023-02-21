@@ -1,6 +1,6 @@
 ---
 title: A peek inside Weaviate
-sidebar_position: 40
+sidebar_position: 50
 ---
 
 ## Introduction
@@ -18,6 +18,39 @@ Now, it's time to dive deeper into the inner workings of Weaviate. In this secti
 - The source of vectors used by Weaviate
 
 This information will help you understand the mechanisms behind the powerful search capabilities of Weaviate, enabling you to make the most of this tool in your development projects.
+
+
+#### ML models and vectorization
+
+A machine learning model is what will turn data, like a piece of text, an image, an audio clip, and more into a vector. This type of models are often also referred to as "vectorizers". And measures of similarity will depend on the particular machine learning model used.
+
+As a result, it is paramount that the right model for the job is chosen. Or, at least, that a wrong model is not chosen. So throughout our courses, you will see many different models and learn about model selection both as rules of thumb and detailed discussions. 
+
+Weaviate does not itself vectorize data, but it is built to be compatible with a huge number of vectorization models and services. Our courses will also cover different ways to configure Weaviate to vectorize your data in the way that suits your goals and needs.
+
+### Fast data retrieval
+
+![](../../tmp_images/orgainized_filing_cabinets_with_many_folders_1.jpg)
+
+To retrieve data quickly and efficiently, Weaviate uses a vector index in addition to an object index. The vector index allows for fast information retrieval, while still maintaining high recall performance. However, as the size of the dataset increases, the memory requirements and retrieval times must be balanced.
+
+Weaviate uses an "approximate nearest neighbor" (ANN) algorithm for its indexing, which enables it to scale at a sublinear complexity. This means that the search time increases at a slower rate than the size of the dataset, making Weaviate highly scalable.
+
+Throughout the course, you'll learn about indexing in Weaviate and the HNSW index, which is Weaviate's primary vector index type.
+
+### Going to production
+
+![](../../tmp_images/a_machine_with_a_conveyer_belt_producing_boxes_of_documents.jpg)
+
+Vector databases often need to scale horizontally and vertically. The scale of vector databases can expand into billions of data objects, thus requiring indexing and retrieval of billions of vectors to be retrievable by many concurrent users. 
+
+We appreciate that this presents additional and very different challenges to the data science aspect of vector search. To help you navigate these challenges, we'll cover all the key aspects of taking Weaviate to production in dedicated units of the course.
+
+All things related to taking Weaviate to production, such as authentication and authorization, backups, monitoring, replication and more will be covered in these units. 
+
+<Quiz questions={vectorizationAndML} />
+
+<Quiz questions={weaviateIndexing} />
 
 ## Data structure
 
@@ -178,6 +211,27 @@ Add summary
 :::
 
 import Quiz from '/src/components/Academy/quiz.js' 
+const vectorizationAndML = [
+  {
+    questionText: 'What does Weaviate use to obtain a vector corresponding to a data object?',
+    answerOptions: [
+      { answerText: 'Weaviate is capable of creating a vector from data objects.', isCorrect: false, feedback: 'Weaviate is not itself a vectorizer.'},
+      { answerText: 'Weaviate uses modules to obtain vectors from machine learning models.', isCorrect: true, feedback: 'You will learn about vectorizer models and corresponding Weaviate modules later on.'},   
+      { answerText: 'Weaviate requires a vector to be uploaded at import time.', isCorrect: false, feedback: 'While you can upload a vector, this is not required.'},
+    ],
+  },     
+];
+const weaviateIndexing = [
+  {
+    questionText: 'What types of indexes does Weaviate use?',
+    answerOptions: [
+      { answerText: 'Weaviate does not rely on indexing as it relies on a kNN vector search.', isCorrect: false, feedback: 'Weaviate does not use a kNN search as it is computationally very expensive.'},
+      { answerText: 'Weaviate uses a vector index.', isCorrect: false, feedback: 'This is only partially true.'},
+      { answerText: 'Weaviate uses an inverted index.', isCorrect: false, feedback: 'This is only partially true.'},      
+      { answerText: 'Weaviate uses a vector index and an inverted index.', isCorrect: true, feedback: 'Both indexes are used for different, and complementary reasons.'},
+    ],
+  },     
+];
 const dataStorageComponents = [
   {
     questionText: 'What are the key components of data storage and retrieval system in Weaviate?',
