@@ -39,20 +39,27 @@ const client = weaviate.client({
 });
 
 let classObj = {
-    class: 'Article',
-    properties: [
+    'class': 'Article',
+    'properties': [
         {
-            dataType: [
+            'dataType': [
                 'string'
             ],
-            description: 'Title of the article',
-            name: 'title'
+            'description': 'Title of the article',
+            'name': 'title',
+            'indexInverted': true,
+            'moduleConfig': {
+                'text2vec-contextionary': {
+                  'skip': false,                   
+                  'vectorizePropertyName': false
+                }
+              }
         }
     ],
-    replicationConfig: {
-      factor: 3
+    'replicationConfig': {
+      'factor': 3
     }
-};
+}
 
 client
   .schema
@@ -167,7 +174,14 @@ $ curl \
                 "string"
             ],
             "description": "Title of the article",
-            "name": "title"
+            "name": "title",
+            "indexInverted": true,
+            "moduleConfig": {
+                "text2vec-contextionary": {
+                  "skip": false,                   
+                  "vectorizePropertyName": true
+                }
+              }
         },
     ],
     "replicationConfig": {

@@ -151,11 +151,11 @@ const siteRedirects = {
             from: '/blog/2021/01/The-history-of-Weaviate'
         },
         {
-            to: '/blog/graphql-api-design',
+            to: '/blog/GraphQL-API-design',
             from: '/blog/2021/01/GraphQL-API-design'
         },
         {
-            to: '/blog/crud-support-in-weaviate',
+            to: '/blog/CRUD-support-in-Weaviate',
             from: '/blog/2021/02/CRUD-support-in-Weaviate'
         },
         {
@@ -163,15 +163,15 @@ const siteRedirects = {
             from: '/blog/2021/03/Weaviate-1-2-transformer-models'
         },
         {
-            to: '/blog/docker-and-containers-with-weaviate',
+            to: '/blog/Docker-and-Containers-with-Weaviate',
             from: '/blog/2021/05/Docker-and-Containers-with-Weaviate'
         },
         {
-            to: '/blog/semantic-search-with-wikipedia-and-weaviate',
+            to: '/blog/Semantic-Search-with-Wikipedia-and-Weaviate',
             from: '/blog/2021/11/Semantic-Search-with-Wikipedia-and-Weaviate'
         },
         {
-            to: '/blog/the-ai-first-database-ecosystem',
+            to: '/blog/The-AI-First-Database-Ecosystem',
             from: '/blog/2022/06/The-AI-First-Database-Ecosystem'
         },
         {
@@ -179,37 +179,31 @@ const siteRedirects = {
             from: '/blog/2022/07/Weaviate-release-1-14'
         },
         {
-            to: '/blog/cross-encoders-as-reranker',
-            from: [
-                '/blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search',
-                '/blog/Using-Cross-Encoders-as-reranker-in-multistage-vector-search'
-            ]
+            to: '/blog/Using-Cross-Encoders-as-reranker-in-multistage-vector-search',
+            from: '/blog/2022/08/Using-Cross-Encoders-as-reranker-in-multistage-vector-search'
         },
         {
-            to: '/blog/gomemlimit-a-game-changer-for-high-memory-applications',
+            to: '/blog/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications',
             from: '/blog/2022/08/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications'
         },
         {
-            to: '/blog/research-insights-spider',
+            to: '/blog/Research-Insights-Spider',
             from: '/blog/2022/08/Research-Insights-Spider'
         },
         {
-            to: '/blog/weaviate-cloud-services',
-            from: [
-                '/blog/2022/09/Weaviate-Cloud-Service',
-                '/blog/weaviate-cloud-service'
-            ]
+            to: '/blog/Weaviate-Cloud-Service',
+            from: '/blog/2022/09/Weaviate-Cloud-Service'
         },
         {
             to: '/blog/weaviate-1-15-release',
             from: '/blog/2022/09/Weaviate-release-1-15'
         },
         {
-            to: '/blog/why-is-vector-search-so-fast',
+            to: '/blog/Why-is-Vector-Search-so-fast',
             from: '/blog/2022/09/Why-is-Vector-Search-so-fast'
         },
         {
-            to: '/blog/distance-metrics-in-vector-search',
+            to: '/blog/Distance-Metrics-in-Vector-Search',
             from: '/blog/2022/09/Distance-Metrics-in-Vector-Search'
         },
         {
@@ -217,15 +211,15 @@ const siteRedirects = {
             from: '/blog/2022/09/Weaviate-release-1-15-1'
         },
         {
-            to: '/blog/hugging-face-inference-api-in-weaviate',
+            to: '/blog/Hugging-Face-Inference-API-in-Weaviate',
             from: '/blog/2022/09/Hugging-Face-Inference-API-in-Weaviate'
         },
         {
-            to: '/blog/how-to-choose-a-sentence-transformer-from-hugging-face',
+            to: '/blog/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face',
             from: '/blog/2022/10/How-to-Choose-a-Sentence-Transformer-from-Hugging-Face'
         },
         {
-            to: '/blog/ann-algorithms-vamana-vs-hnsw',
+            to: '/blog/ANN-algorithms-Vamana-vs-HNSW',
             from: '/blog/2022/10/ANN-algorithms-Vamana-vs-HNSW'
         },
         {
@@ -257,7 +251,7 @@ const siteRedirects = {
             from: '/blog/2022/12/sphere-dataset-in-weaviate'
         },
         {
-            to: '/blog/cohere-multilingual-with-weaviate',
+            to: '/blog/Cohere-multilingual-with-weaviate',
             from: '/blog/2022/12/Cohere-multilingual-with-weaviate'
         },
         {
@@ -280,11 +274,6 @@ const siteRedirects = {
             to: '/blog/vector-embeddings-explained',
             from: '/blog/2023/01/Vector-Embeddings-Explained'
         },
-        {
-            // to: '/blog/generative-search',
-            to: '/developers/weaviate/modules/reader-generator-modules/generative-openai',
-            from: '/blog/chatgpt-for-generative-search'
-        },
 
         // GSOC and GSOD redirects
         {
@@ -295,12 +284,6 @@ const siteRedirects = {
             to: '/google-summer',
             from: ['/resources/gsod','/resources/gsoc']
         },
-
-        // moved/renamed pages
-        {
-            to: '/developers/weaviate/installation/weaviate-cloud-services',
-            from: '/developers/weaviate/installation/weaviate-cloud-service'
-        }
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

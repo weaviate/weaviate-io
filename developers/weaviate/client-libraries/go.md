@@ -8,10 +8,6 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::note Go client version
-The current Go client version is `v||site.go_client_version||`.
-:::
-
 ## Installation and setup
 To get the latest stable version of the Go client library, run the following:
 
@@ -49,19 +45,13 @@ func GetSchema() {
 
 ## Authentication
 
-import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
+import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="Go"/>
 
-### WCS authentication
+### Resource Owner Password flow
 
-import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
-
-<ClientAuthWCS />
-
-### Resource Owner Password Flow
-
-import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
+import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
 
 <ClientAuthFlowResourceOwnerPassword />
 
@@ -72,7 +62,7 @@ cfg, err := weaviate.NewConfig(
   authConfig: auth.ResourceOwnerPasswordFlow{
     Username: "Your user",
     Password: "Your password",
-    Scopes: []string{"offline_access"}, // optional, depends on the configuration of your identity provider (not required with WCS)
+    Scopes: []string{"offline_access"}, // can be nil
   }
   headers: nil,
 )
@@ -84,7 +74,7 @@ client := weaviate.New(*cfg)
 
 ### Client Credentials flow
 
-import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
+import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
 
 <ClientAuthFlowClientCredentials />
 
@@ -94,7 +84,7 @@ cfg, err := weaviate.NewConfig(
   Scheme: "http", 
   authConfig: auth.ClientCredentials{
     ClientSecret: "your_client_secret", 
-    Scopes: []string{"scope1 scope2"}  // optional, depends on the configuration of your identity provider (not required with WCS)
+    Scopes: []string{"SomeScope"}
   }
   headers: nil,
 )
@@ -106,7 +96,7 @@ client := weaviate.New(*cfg)
 
 ### Refresh Token flow
 
-import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
+import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
 
 <ClientAuthBearerToken />
 

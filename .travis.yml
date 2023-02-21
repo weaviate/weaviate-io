@@ -9,18 +9,12 @@ cache:
 install:
   - yarn install
 script:
-  - node _build_scripts/update-config-versions.js
   # Build the project
-  - |
-    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then
-      yarn build
-      # Deploy draft to Netlify
-      source _build_scripts/publish-draft-to-netlify.sh
-    else
-      # for PRs - build a dev version - with trailing slash for links
-      yarn build-dev
-    fi
-
+  - yarn build
+  
+  # Deploy draft to Netlify
+  - source _build_scripts/publish-draft-to-netlify.sh
+  
   # Send Slack Message
   - |
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
@@ -29,16 +23,10 @@ script:
     fi
 
   # Link Validation
-  - |
-    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then
-      # Validate links on Netlify
-      source _build_scripts/verify-links.sh
-    else
-      # for PRs - validate links from the build.dev folder
-      source _build_scripts/verify-links-build-dev.sh
-    fi
+  - source _build_scripts/verify-links.sh
 
   ###
+  ##
   # Deploy to Cloud Bucket and Production Netlify
   - |
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH = "main" ]; then

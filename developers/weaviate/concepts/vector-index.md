@@ -4,7 +4,6 @@ sidebar_position: 4
 image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---
-
 import Badges from '/_includes/badges.mdx';
 
 <Badges/>
@@ -21,7 +20,7 @@ This page explains what vector indices are, and what purpose they serve in Weavi
 :::info Related pages
 - [Concepts: Indexing](./indexing.md)
 - [Configuration: Indexes](../configuration/indexes.md)
-- [Configuration: Schema (Configure semantic indexing)](../configuration/schema-configuration.md#configure-semantic-indexing)
+- [Configuration: Schema (Regulate semantic indexing)](../configuration/schema-configuration.md#regulate-semantic-indexing)
 :::
 
 ## Introduction
@@ -74,13 +73,13 @@ Note that the vector index type only specifies how the vectors of data objects a
 [HNSW](https://arxiv.org/abs/1603.09320) is the first vector index type supported by Weaviate.
 
 ### What is HNSW?
-HNSW stands for Hierarchical Navigable Small World, a multilayered graph. Every object that is in the database, are captured in the lowest layer (layer 0 in the picture). These data objects are very well connected. On each layer on top of the lowest layer, there are fewer data points represented. These datapoints match with lower layers, but there are exponentially fewer points in each higher layer. If a search query comes in, the closest datapoints will be found in the highest layer. In the example below that is only one more datapoint. Then it goes one layer deeper, and finds the closest datapoints from the first found datapoint in the highest layer, and searches nearest neighbors from there. In the deepest layer, the actual closest data object to the search query will be found. 
+HNSW stands for Hierarchical Navigable Small World, a multilayered graph. Every object that is in the database, are captured in the lowest layer (layer 0 in the picture). These data objects are very well connected. On each layer on top of the lowest layer, there are fewer data points represented. These datapoints match with lower layers, but there are exponentially less points in each higher layer. If a search query comes in, the closest datapoints will be found in the highest layer. In the example below that is only one more datapoint. Then it goes one layer deeper, and finds the closest datapoints from the first found datapoint in the highest layer, and searches nearest neighbors from there. In the deepest layer, the actual closest data object to the search query will be found. 
 
 If there were no hierarchical layers in this approach, only the deepest layer (0) would be present and significantly more datapoints would have needed to be explored from the search query, since all data objects are present there. In higher layers, with less datapoints, fewer hops between datapoints need to be made, over larger distances. HNSW is a very fast and memory efficient approach of similarity search, because only the highest layer (top layer) is kept in cache instead of all the datapoints in the lowest layer. Only the datapoints that are closest to the search query are loaded once they are requested by a higher layer, which means that only a small amount of memory needs to be reserved.
 
 The picture shows how a HNSW algorithm is used to go from a search query vector (blue) on the top layer to the closes search result (green) in the lowest layer. Only three data hops are made (indicated by blue solid arrows), whereas more data objects would have need to be search through when this layering was not present (the closest datapoint of *all* datapoints in each layer needs to be found).h
 
-![HNSW layers](./img/hnsw-layers.svg "HNSW layers")
+![HNSW layers](./img/hnsw-layers.svg "HNSW layers"){:height="50%" width="50%"}
 
 ### Distance metrics
 

@@ -10,26 +10,37 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Weaviate allows an optional authentication scheme through OpenID Connect (OIDC), from which different [authorizations](authorization.md) may be permitted. If OIDC is disabled, all anonymous requests will be allowed.
+We built Weaviate to be as easy to use as possible while catering to different cases such as for trying it out locally, or in production in an enterprise environment.
 
-We provide documentation here for both scenarios, including:
-- [Configuring Weaviate for anonymous access](#anonymous-access)
-- [Configuring Weaviate and the client for OIDC](#oidc---a-systems-perspective)
+Weaviate's authentication capabilities reflect this by allowing for both anonymous users as well as authenticated users through OpenID Connect (OIDC). Thus, different authentication schemes can be selected and even combined, from which different [authorization](./authorization.md) options can be specified for different sets of users. 
 
-## OIDC - A systems perspective
+## Anonymous Access
+By default, Weaviate is configured to accept requests without any
+authentication headers or parameters. Users sending such requests will be
+authenticated as `user: anonymous`.
 
-OIDC authentication can be confusing, because it involves three parties.
+You can use the authorization plugin to specify which
+permissions to apply to anonymous users. When anonymous access is disabled altogether,
+any request without an allowed authentication scheme will return `401
+Unauthorized`.
 
-1. A **user** who wants to access a resource.
-1. An **identity provider (a.k.a token issuer)** (e.g. Okta, Microsoft, or WCS) that authenticates the user and issues tokens.
-1. A **resource** (in this case, Weaviate) who validates the tokens to rely on the identity provider's authentication.
+### Configuration
+Anonymous access can be enabled or disabled in the configuration yaml using the environment variable shown below:
 
-A Weaviate instance is a resource, Weaviate Cloud Service (WCS) may be an identity provider, and the Weaviate client may act on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication. 
+```yaml
+services:
+  weaviate:
+    ...
+    environment:
+      ...
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+```
 
-<details>
-  <summary>
-    More about OIDC
-  </summary>
+### How to use
+
+Send REST requests to Weaviate without any additional authentication headers or parameters.
+
+## OpenID Connect (OIDC)
 
 With [OpenID Connect](https://openid.net/connect/) (based on OAuth2), an
 external identity provider and token issuer ('token issuer' hereafter) is responsible for managing users.
@@ -40,46 +51,21 @@ When Weaviate receives a token (JSON Web Token or JWT), it verifies
 that it was indeed signed by the configured token issuer. If the signature is
 correct, all contents of the token are trusted, which authenticates the user based on the information in the token.
 
-</details>
-
-### OIDC for WCS users
-
-:::tip
-This applies to all WCS users
-:::
-
-If you are a Weaviate Cloud Services (WCS) user, WCS is set up as the token issuer by default, and no further configuration is required regarding the token issuer or the resource.
-
-In this case, we recommend that you use the "Resource Owner Password Flow" method with your preferred client library for client-side authentication. Please refer to the relevant `WCS authentication` section below:
-
-- [Python](../client-libraries/python.md#wcs-authentication)
-- [JavaScript](../client-libraries/javascript.md#wcs-authentication)
-- [Go](../client-libraries/go.md#wcs-authentication)
-- [Java](../client-libraries/java.md#wcs-authentication)
-
-## OIDC - Configuring Weaviate as the resource
-
-:::tip
-This applies to anyone who is running their own Weaviate instance.
-:::
-
-### Requirements and defaults
+### Requirements &amp; Defaults
 
 Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discovery can be used with Weaviate. Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
 
-- For simple use-cases such as for a single user, you can use [Weaviate Cloud Services (WCS)](https://auth.wcs.api.weaviate.io) as the OIDC token issuer. 
-    - Make sure you have a WCS account (you can [sign up here](https://console.weaviate.io/)). 
-    - Specify `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer and your WCS account email as the user in the OIDC configuration .
-- If you need a more customizable setup you can use commercial OIDC providers like [Okta](https://www.okta.com/).
-- As another alternative, you can run your own OIDC token issuer server, which may be the most complex but also configurable solution. Popular open-source solutions include Java-based [Keycloak](https://www.keycloak.org/) and Golang-based [dex](https://github.com/dexidp/dex).
+1. For very simple use-cases such as for a single user, you can use [Weaviate Cloud Service](https://auth.wcs.api.weaviate.io) as the OIDC token issuer. Sign up and specify `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer and your sign-up email as the user in the OIDC configuration .
+1. If you need a more customizable setup you can use commercial OIDC providers like [Okta](https://www.okta.com/).
+1. As another alternative, you can run your own OIDC token issuer server, which may be the most complex but also configurable solution. Popular open-source solutions include Java-based [Keycloak](https://www.keycloak.org/) and Golang-based [dex](https://github.com/dexidp/dex).
 
 :::info
 By default, Weaviate will validate that the token includes a specified client id in the audience claim. If your token issuer does not support this feature, you can turn it off as outlined in the configuration section below.
 :::
 
-### Setting configuration options
+### Configuration
 
-To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate.
+To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate. To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate. 
 
 :::info
 As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff) may be useful.
@@ -139,7 +125,7 @@ If you have authentication enabled, you can obtain Weaviate's OIDC configuration
 $ curl [WEAVIATE URL]/v1/.well-known/openid-configuration
 ```
 
-## OIDC - A client-side perspective
+### How to use
 
 The OIDC standard allows for many different methods *(flows)* of obtaining tokens. The appropriate method can vary depending on your situation, including configurations at the token issuer, and your requirements.
 
@@ -148,21 +134,17 @@ While it is outside the scope of our documentation to cover every OIDC authentic
     - Validated using Okta and Azure as identity providers; GCP does not support client credentials grant flow (as of December 2022).
     - Weaviate's Python client directly supports this method.
     - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
-1. Use `resource owner password flow` for trusted applications such as [Weaviate Cloud Services](https://auth.wcs.api.weaviate.io). 
+1. Use `resource owner password flow` for trusted applications such as [Weaviate Cloud Service](https://auth.wcs.api.weaviate.io). 
+    - Weaviate's Python and JavaScript clients directly support this method.
 1. Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
-### OIDC support for Weaviate clients
+#### OIDC support for Weaviate clients
 
 The latest versions (from mid-December 2022 and onwards) of Python, JavaScript, Go and Java Weaviate clients support OIDC authentication. If Weaviate is set up to use the `client credentials grant` flow as or `resource owner password flow`, the respective Weaviate client can instantiate a connection to Weaviate that incorporates the authentication flow.
 
 Please refer to the [client libraries documentation](../client-libraries/index.md) for each client for code examples.
 
-### Manually obtaining and passing tokens
-
-<details>
-  <summary>
-    Manually obtaining and passing tokens
-  </summary>
+#### Manually obtaining & passing tokens
 
 For cases or workflows where you may wish to manually obtain a token, we outline below the steps to do so, for the resource owner password flow and hybrid flow.
 
@@ -261,8 +243,6 @@ print("Set as bearer token in the clients to access Weaviate.")
 
 The token has a configurable expiry time that is set by the token issuer. We suggest establishing a workflow to periodically obtain a new token before expiry. 
 
-</details>
-
 ### Add a Bearer to a Request
 
 Once you have obtained a token, attach it to all requests to Weaviate in the header like so: `Authorization: Bearer <token>`, where `<token>` is your actual token.
@@ -276,33 +256,7 @@ $ curl http://localhost:8080/v1/objects -H "Authorization: Bearer {Bearer}"
 
 If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#authentication), [Javascript](../client-libraries/javascript.md#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
 
-## Anonymous access
-By default, Weaviate is configured to accept requests without any
-authentication headers or parameters. Users sending such requests will be
-authenticated as `user: anonymous`.
-
-You can use the authorization plugin to specify which
-permissions to apply to anonymous users. When anonymous access is disabled altogether,
-any request without an allowed authentication scheme will return `401
-Unauthorized`.
-
-### Configuration
-Anonymous access can be enabled or disabled in the configuration yaml using the environment variable shown below:
-
-```yaml
-services:
-  weaviate:
-    ...
-    environment:
-      ...
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-```
-
-### How to use
-
-Send REST requests to Weaviate without any additional authentication headers or parameters.
-
-## More resources
+## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

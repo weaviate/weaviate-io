@@ -15,9 +15,9 @@ import weaviateClusterImg from './img/weaviate-cluster.jpg';
 
 Here, you will create a new Weaviate instance for use throughout this tutorial.
 
-## Weaviate Cloud Services
+## Weaviate Cloud Service
 
-We will use the free sandbox tier from _Weaviate Cloud Services_ (WCS) for this tutorial.
+We will use the free sandbox tier from _Weaviate Cloud Service_ (WCS) for this tutorial.
 
 WCS is a managed SaaS service that requires no maintenance at your end. As it is the fastest 🚀 way to create a new Weaviate instance, let's spin up an instance with it for use throughout this tutorial. 
 
@@ -57,16 +57,6 @@ This will start the process to create a new cluster, and you should see a progre
 
 (In the meantime, you can start installing a client library - or grab a hot drink 😉.)
 
-:::tip Authenticating with WCS + Weaviate client
-If you do enable OIDC in WCS for added security, the easiest way to authenticate as a user is to use the Weaviate client library.
-
-Consult the `WCS authentication` section for your preferred client library and use the "Resource Owner Password Flow" method, by passing on the `username` and `password` you used to sign in to WCS. See the docs below:
-- [Python](../client-libraries/python.md#wcs-authentication)
-- [JavaScript](../client-libraries/javascript.md#wcs-authentication)
-- [Go](../client-libraries/go.md#wcs-authentication)
-- [Java](../client-libraries/java.md#wcs-authentication)
-:::
-
 ### Connect to Weaviate
 
 Click on the `Cluster Id` link, which will open a new page in your browser and display all the available endpoints.
@@ -97,8 +87,8 @@ Please be patient as we update our Java and Go code examples. They will be ready
 
 ## Recap
 
-* You have a working instance of Weaviate in Weaviate Cloud Services (WCS).
-* Weaviate Cloud Services (WCS) is a managed Weaviate SaaS.
+* You have a working instance of Weaviate in Weaviate Cloud Service (WCS).
+* Weaviate Cloud Service (WCS) is a managed Weaviate SaaS.
 * You have installed a client library in your preferred language.
 
 ## Next

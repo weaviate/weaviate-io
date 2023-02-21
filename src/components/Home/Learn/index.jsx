@@ -62,7 +62,7 @@ export default function HomepageLearn() {
           <div className={styles.smallDown}>
             <h3 className={styles.title}>Why is Vector Search so fast?</h3>
             <div className={styles.linksSmall}>
-              <Link to="/blog/why-is-vector-search-so-fast">
+              <Link to="/blog/Why-is-Vector-Search-so-fast">
                 Read the blog {'>'}{' '}
               </Link>
             </div>

@@ -19,7 +19,7 @@ We recommend you complete the [Quickstart tutorial](../quickstart/index.md) firs
 
 Before you start this tutorial, you should follow the steps in the tutorials to have:
 
-- An instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.io)),
+- An instance of Weaviate running (e.g. on the [Weaviate Cloud Service](https://console.weaviate.io)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
 - Installed your preferred Weaviate client library, and
 - Set up a `Question` class in your schema. 
@@ -132,7 +132,7 @@ Our rules of thumb are:
 * You should always use batch import.
 * As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
 * Process error messages.
-* Some clients (especially Python) have some built-in logic to efficiently control batch importing.
+* Some clients (especially Python) have some built-in logic to efficiently regulate batch importing.
 
 ### Error handling
 

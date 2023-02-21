@@ -8,13 +8,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::note Python client version
-The current Python client version is `v||site.python_client_version||`
-:::
-
 ## Installation and setup
 
-The Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher. 
+The Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher. The current Python client version is ||site.python_client_version||.
 
 ```bash
 $ pip install weaviate-client
@@ -32,19 +28,13 @@ client.schema.get() # get the full schema as example
 
 ## Authentication
 
-import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
+import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="Python"/>
 
-### WCS authentication
+### Resource Owner Password flow
 
-import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
-
-<ClientAuthWCS />
-
-### Resource Owner Password Flow
-
-import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
+import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
 
 <ClientAuthFlowResourceOwnerPassword />
 
@@ -54,7 +44,7 @@ import weaviate
 resource_owner_config = weaviate.AuthClientPassword(
   username = "user", 
   password = "pass", 
-  scope = "offline_access" # optional, depends on the configuration of your identity provider (not required with WCS)
+  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider
   )
 
 # Initiate the client with the auth config
@@ -63,7 +53,7 @@ client = weaviate.Client("https://localhost:8080", auth_client_secret=resource_o
 
 ### Client credentials flow
 
-import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
+import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
 
 <ClientAuthFlowClientCredentials />
 
@@ -72,7 +62,7 @@ import weaviate
 
 client_credentials_config = weaviate.AuthClientCredentials(
   client_secret = "client_secret", 
-  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider (not required with WCS)
+  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider
   )
 
 # Initiate the client with the auth config
@@ -81,7 +71,7 @@ client = weaviate.Client("https://localhost:8080", auth_client_secret=client_cre
 
 ### Refresh Token flow
 
-import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
+import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
 
 <ClientAuthBearerToken />
 
