@@ -242,7 +242,7 @@ $ echo '{
     Get {
       Article(
         nearText: {
-          concepts: ["Italian food"]
+          concepts: [\"Italian food\"]
         }
         limit: 5
       ) {
@@ -252,9 +252,9 @@ $ echo '{
         _additional {
           generate(
             singleResult: {
-              prompt: """
+              prompt: \"\"\"
                 Describe the following as a Facebook Ad: {summary}
-              """
+              \"\"\"
             }
           ) {
             singleResult
@@ -266,7 +266,7 @@ $ echo '{
     }
   }
   "
-}' | curl \
+}' | tr -d "\n" | curl \
     -X POST \
     -H 'Content-Type: application/json' \
     -H "X-OpenAI-Api-Key: <THE-KEY>" \

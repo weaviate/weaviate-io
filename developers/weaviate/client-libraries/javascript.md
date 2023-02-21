@@ -41,13 +41,19 @@ client
 
 ## Authentication
 
-import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
+import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="JavaScript"/>
 
-### Resource Owner Password flow
+### WCS authentication
 
-import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
+import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
+
+<ClientAuthWCS />
+
+### Resource Owner Password Flow
+
+import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
 <ClientAuthFlowResourceOwnerPassword />
 
@@ -59,14 +65,14 @@ const client = weaviate.client({
   authClientSecret: new weaviate.AuthUserPasswordCredentials({
     username: "user123",
     password: "password"
-    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
+    scopes: ["offline_access"]  // optional, depends on the configuration of your identity provider (not required with WCS)
   })
 });
 ```
 
 ### Client Credentials flow
 
-import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
+import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
 <ClientAuthFlowClientCredentials />
 
@@ -76,14 +82,14 @@ const client = weaviate.client({
   host: "weaviate-host",
   authClientSecret: new weaviate.AuthClientCredentials({
     clientSecret: "supersecuresecret",
-    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
+    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider (not required with WCS)
   })
 });
 ```
 
 ### Refresh Token flow
 
-import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
+import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
 <ClientAuthBearerToken />
 

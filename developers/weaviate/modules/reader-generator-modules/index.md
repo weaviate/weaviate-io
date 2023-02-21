@@ -1,7 +1,7 @@
 ---
 title: Readers & Generators
 sidebar_position: 0
-image: og/docs/modules.jpg
+image: og/docs/modules/readers-generators-overview.jpg
 # tags: ['modules', 'transformers']
 ---
 import Badges from '/_includes/badges.mdx';

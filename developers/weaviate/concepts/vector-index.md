@@ -4,6 +4,7 @@ sidebar_position: 4
 image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---
+
 import Badges from '/_includes/badges.mdx';
 
 <Badges/>
@@ -79,7 +80,7 @@ If there were no hierarchical layers in this approach, only the deepest layer (0
 
 The picture shows how a HNSW algorithm is used to go from a search query vector (blue) on the top layer to the closes search result (green) in the lowest layer. Only three data hops are made (indicated by blue solid arrows), whereas more data objects would have need to be search through when this layering was not present (the closest datapoint of *all* datapoints in each layer needs to be found).h
 
-![HNSW layers](./img/hnsw-layers.svg "HNSW layers"){:height="50%" width="50%"}
+![HNSW layers](./img/hnsw-layers.svg "HNSW layers")
 
 ### Distance metrics
 

@@ -45,13 +45,19 @@ func GetSchema() {
 
 ## Authentication
 
-import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
+import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="Go"/>
 
-### Resource Owner Password flow
+### WCS authentication
 
-import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
+import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
+
+<ClientAuthWCS />
+
+### Resource Owner Password Flow
+
+import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
 <ClientAuthFlowResourceOwnerPassword />
 
@@ -62,7 +68,7 @@ cfg, err := weaviate.NewConfig(
   authConfig: auth.ResourceOwnerPasswordFlow{
     Username: "Your user",
     Password: "Your password",
-    Scopes: []string{"offline_access"}, // can be nil
+    Scopes: []string{"offline_access"}, // optional, depends on the configuration of your identity provider (not required with WCS)
   }
   headers: nil,
 )
@@ -74,7 +80,7 @@ client := weaviate.New(*cfg)
 
 ### Client Credentials flow
 
-import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
+import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
 <ClientAuthFlowClientCredentials />
 
@@ -84,7 +90,7 @@ cfg, err := weaviate.NewConfig(
   Scheme: "http", 
   authConfig: auth.ClientCredentials{
     ClientSecret: "your_client_secret", 
-    Scopes: []string{"SomeScope"}
+    Scopes: []string{"scope1 scope2"}  // optional, depends on the configuration of your identity provider (not required with WCS)
   }
   headers: nil,
 )
@@ -96,7 +102,7 @@ client := weaviate.New(*cfg)
 
 ### Refresh Token flow
 
-import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
+import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
 <ClientAuthBearerToken />
 

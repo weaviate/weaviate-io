@@ -28,13 +28,19 @@ client.schema.get() # get the full schema as example
 
 ## Authentication
 
-import ClientAuthIntro from '/_includes/client.auth.introduction.mdx'
+import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
 
 <ClientAuthIntro clientName="Python"/>
 
-### Resource Owner Password flow
+### WCS authentication
 
-import ClientAuthFlowResourceOwnerPassword from '/_includes/client.auth.flow.resource.owner.password.mdx'
+import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
+
+<ClientAuthWCS />
+
+### Resource Owner Password Flow
+
+import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
 <ClientAuthFlowResourceOwnerPassword />
 
@@ -44,7 +50,7 @@ import weaviate
 resource_owner_config = weaviate.AuthClientPassword(
   username = "user", 
   password = "pass", 
-  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider
+  scope = "offline_access" # optional, depends on the configuration of your identity provider (not required with WCS)
   )
 
 # Initiate the client with the auth config
@@ -53,7 +59,7 @@ client = weaviate.Client("https://localhost:8080", auth_client_secret=resource_o
 
 ### Client credentials flow
 
-import ClientAuthFlowClientCredentials from '/_includes/client.auth.flow.client.credentials.mdx'
+import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
 <ClientAuthFlowClientCredentials />
 
@@ -62,7 +68,7 @@ import weaviate
 
 client_credentials_config = weaviate.AuthClientCredentials(
   client_secret = "client_secret", 
-  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider
+  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider (not required with WCS)
   )
 
 # Initiate the client with the auth config
@@ -71,7 +77,7 @@ client = weaviate.Client("https://localhost:8080", auth_client_secret=client_cre
 
 ### Refresh Token flow
 
-import ClientAuthBearerToken from '/_includes/client.auth.bearer.token.mdx'
+import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
 <ClientAuthBearerToken />
 
