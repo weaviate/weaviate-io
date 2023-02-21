@@ -30,7 +30,6 @@ Let’s look at an example of sequential chains in a conversation between the bo
 
 <div style = {{textAlign: "center"}}> 
 
-
 *All credit to [jagilley](https://github.com/jagilley/fact-checker) for creating this awesome example*
 
 </div>
@@ -105,7 +104,6 @@ Chat History:
 Follow Up Input: {question}
 Standalone question:"""
 ```
-
 
 We put the chat_history and the latest user input in the curly bracket syntax. Then we take this new query and hit the Weaviate semantic search engine to get context to answer the question. The ChatVectorDB chain we use has a default value of k = 4 search results, if we use longer search results we will need another CombineDocuments chain here as well! With the 4 search results, we answer the question with this final prompt:
 
