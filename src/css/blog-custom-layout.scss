@@ -1,34 +1,15 @@
 // for big screens - display blog previews in 2 columns
 @media (min-width:996px) {
-  .blog-list-page[data-theme='dark'] {
+  .blog-list-page {
     main {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      column-gap: 30px;
-      row-gap: 0px;
+      margin: 0;
     }
-  }
-  .blog-list-page[data-theme='light'] {
     main {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 25px;
       row-gap: 0px;
     }
-  }
-}
-
-@media (min-width:996px) {
-  .blog-list-page {
-    main {
-      margin: 0;
-    }
-    // main {
-    //   display: grid;
-    //   grid-template-columns: 1fr 1fr;
-    //   column-gap: 25px;
-    //   row-gap: 0px;
-    // }
 
     // aside {
       // --ifm-col-width: calc(2 / 12 * 100%);
