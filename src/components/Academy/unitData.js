@@ -3,7 +3,7 @@ export const unitData = {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/units/hello_weaviate",
+    buttonURL: "/developers/academy/units/101_hello_weaviate",
     badgeType: "mixed",
     learningGoals: [
       "What Weaviate is, and what it does.",
@@ -27,6 +27,7 @@ export const unitData = {
     body: "Learn about WCS, and how to get started using it for free.",
     buttonType: "Click here",
     badgeType: "practical",
+    buttonURL: "/developers/academy/units/102_set_up",
     learningGoals: [
       "What the Weaviate Cloud Service is.",
       "How to create a WCS account.",
@@ -47,7 +48,7 @@ export const unitData = {
     body: "Learn how to use `Get` and `Aggregate` queries with vector searches and scalar filters.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/units/queries_1",
+    buttonURL: "/developers/academy/units/103_queries_1",
     learningGoals: [
       "How to use `Get` queries to retrieve objects.",
       "How to use `Aggregate` queries to retrieve meta information about objects.",
@@ -70,7 +71,7 @@ export const unitData = {
     body: "How to find a good baseline vectorizer for given data and task types.",
     buttonType: "Click here",
     badgeType: "theory", 
-    buttonURL: "/developers/academy/units/vectorizer_selection_1",
+    buttonURL: "/developers/academy/units/105_vectorizer_selection_1",
     learningGoals: [
       "Theory and heuristics for selecting appropriate, robust vectorizers for the data type and task at hand and how to set the vectorizer appropriately in Weaviate.",
     ],
@@ -91,6 +92,7 @@ export const unitData = {
     body: "Learn what role the schema plays in Weaviate, and how to define it",
     buttonType: "Click here",
     badgeType: "mixed",
+    buttonURL: "/developers/academy/units/104_schema_1",
     learningGoals: [
       "Learn what a Weaviate data schema is.",
       "Learn what classes, properties and datatypes are.",
@@ -109,7 +111,7 @@ export const unitData = {
     body: "How to efficiently import data into Weaviate.",
     buttonType: "Click here",
     badgeType: "practical",   
-    buttonURL: "/developers/academy/units/data_import",
+    buttonURL: "/developers/academy/units/106_data_import",
     learningGoals: [
       "The ability to populate Weaviate with data, including an understanding of suggested best practices such as batching, error diagnoses and handling.",
     ],
@@ -129,6 +131,7 @@ export const unitData = {
     title: "CRUD operations",
     body: "How to perform object manipulation operations in Weaviate.",
     buttonType: "Notify",
+    buttonURL: "/developers/academy/units/107_crud_operations",
     badgeType: "practical",
     learningGoals: [
       "Learn how to handle data objects in Weaviate, with Create, Read, Update and Delete (CRUD) operations for data objects via its RESTful endpoint."
@@ -146,6 +149,7 @@ export const unitData = {
     title: "Modules",
     body: "What roles modules play, and how to enable and use them, including examples.",
     buttonType: "Notify",
+    buttonURL: "/developers/academy/units/108_modules",
     badgeType: "mixed",
     learningGoals: [
       "Learn that Weaviate is fully modularized", 
