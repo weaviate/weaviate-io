@@ -1,5 +1,29 @@
 [
   {
+    "title": "LangChain and Weaviate",
+    "description": "Harrison Chase and Bob van Luijt discuss the new ideas in LangChain and its collaboration with Weaviate!",
+    "youtube": "lhby7Ql7hbk",
+    "date": "2023-02-14",
+    "cover_image": "/img/podcasts/podcast-36.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Generative Search with Weaviate",
+    "description": "Bob van Luijt on Weaviate's new generate module!",
+    "youtube": "ro3ln4A9N8w",
+    "date": "2023-02-07",
+    "cover_image": "/img/podcasts/podcast-35.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Neural Search Frameworks",
+    "description": "Dmitry Kan on the Neural Search Pyramid and the state of Search technology.",
+    "youtube": "1ebCUCUJraE",
+    "date": "2023-01-24",
+    "cover_image": "/img/podcasts/podcast-34.png",
+    "is_use_case": false
+  },
+  {
     "title": "Cohere Multilingual Embedding Models",
     "description": "Nils Reimers discusses the details of Cohere's new models and research on Deep Learning for Text Embeddings!",
     "youtube": "TKJh2H5Prcs",

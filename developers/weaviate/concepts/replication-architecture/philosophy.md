@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## A design modeled after how our users use Weaviate
 
-The architecture that guides the principles for Weaviate’s replication systems is modeled after how users typically use Weaviate. Weaviate powers site-search, recommendation, knowledge extraction, and other information retrieval cases. These cases all have a few things in common:
+The architecture that guides the principles for Weaviate’s replication systems is modeled after how users typically use Weaviate. Weaviate powers site search, recommendation, knowledge extraction, and other information retrieval cases. These cases all have a few things in common:
 * They are often **very-large-scale** (with datasets in the billions of objects and vectors)
 * They often incur **large parallel usage with strict latency requirements** (i.e. high throughput with low p99 latencies)
 * It is vital that the service is **highly-available** and resilient to unplanned outages or planned maintenance, such as version upgrades.
@@ -23,13 +23,13 @@ Based on the above usage patterns, and keeping the [CAP theorem](./index.md#cap-
 
 ## Reasons for a leaderless architecture
 
-Weaviate’s replication architecture is inspired by other modern, internet-scale databases that serve similar goals; [Apache Cassandra](https://cassandra.apache.org/_/index.html) is a notable example. Weaviate’s [Replication Architecture](./cluster-architecture.md) has significant similarities to Cassandra's. Unsurprisingly, a leaderless pattern was chosen to achieve both availability and throughput goals. In a leaderful setup, leader nodes have two significant disadvantages: Firstly, leaders become a performance bottleneck, e.g., because every write request needs to pass through the leader. Secondly, a leader's failure involves the election of a new leader, which can be a complex and costly process that can lead to temporary unavailability. The main advantage of a leaderful system is that it may be easier to provide specific consistency guarantees. As outlined in the motivation above, Weaviate prefers large-scale use cases, linear scaling, and availability over strict consistency.
+Weaviate’s replication architecture is inspired by other modern, Internet-scale databases that serve similar goals; [Apache Cassandra](https://cassandra.apache.org/_/index.html) is a notable example. Weaviate’s [Replication Architecture](./cluster-architecture.md) has significant similarities to Cassandra's. Unsurprisingly, a leaderless pattern was chosen to achieve both availability and throughput goals. In a leaderful setup, leader nodes have two significant disadvantages: Firstly, leaders become a performance bottleneck, e.g., because every write request needs to pass through the leader. Secondly, a leader's failure involves the election of a new leader, which can be a complex and costly process that can lead to temporary unavailability. The main advantage of a leaderful system is that it may be easier to provide specific consistency guarantees. As outlined in the motivation above, Weaviate prefers large-scale use cases, linear scaling, and availability over strict consistency.
 
 ## Gradual rollout
 
-As with many of Weaviate features, Replication is rolled out in multiple phases. This does not mean that the first release with replication is to be considered incomplete. But instead it means that Replication is an umbrella term that accompanies many features that work together to achieve the various goals of replication. The most significant of those are contained in the first release (v1.17), but some may only follow in subsequent releases, such as v1.18 and v1.19. 
+As with many other Weaviate features, Replication is being rolled out in multiple phases. This does not mean that the first release with replication is to be considered incomplete. Instead it means that Replication is an umbrella term that accompanies many features that work together to achieve the various goals of replication. The most significant of those are contained in the first release (v1.17), but some may only follow in subsequent releases, such as v1.18 and v1.19. 
 
-The motivation behind this phased roll-out is two-fold; First, not everyone has the same requirements, and the feature set included in the first release is sufficient for many use cases. You can use the [Replication Roadmap](./index.md#roadmap) section to make an informed decision. Secondly, your feedback and learning about your needs are extremely valuable to guide the future releases of features. By releasing early and often, we can reduce the time to get valuable feedback.
+The motivation behind this phased roll-out is two-fold. First, not everyone has the same requirements, and the feature set included in the first release is sufficient for many use cases. You can use the [Replication Roadmap](./index.md#roadmap) section to make an informed decision. Second, your feedback and learning about your needs are extremely valuable to guide the future releases of features. By releasing early and often, we can reduce the time to get valuable feedback.
 
 
 ## More Resources

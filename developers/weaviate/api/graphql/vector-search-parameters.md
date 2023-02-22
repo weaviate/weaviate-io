@@ -154,7 +154,7 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
 ### Variables
 The `bm25` operator supports two variables:
 * `query` (mandatory) - the keyword search query
-* `properties` (optional) - array of properties (fields) to search in, defaulting to all properties in the class. Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "description"]`.
+* `properties` (optional) - array of properties (fields) to search in, defaulting to all properties in the class. Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
 
 ### Example query
 
@@ -349,6 +349,7 @@ A practical example would be: `concepts: ["beatles", "John Lennon"]`
 The semantic path returns an array of concepts from the query to the data object. This allows you to see which steps Weaviate took and how the query and data object are interpreted. 
 
 | Property | Description |
+| --- | --- |
 | `concept` | the concept that is found in this step. |
 | `distanceToNext` | the distance to the next step (null for the last step). |
 | `distanceToPrevious` | this distance to the previous step (null for the first step). |

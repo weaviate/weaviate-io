@@ -7,7 +7,7 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "build-dev": "docusaurus build --config docusaurus.dev.config.js --out-dir build.dev",
-    "verify-links-build-dev": "./_build_scripts/verify-links-build-dev.sh",
+    "verify-links": "yarn build-dev && ./_build_scripts/verify-links-build-dev.sh",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -16,9 +16,9 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@docusaurus/core": "2.3.0",
-    "@docusaurus/plugin-client-redirects": "2.3.0",
-    "@docusaurus/preset-classic": "2.3.0",
+    "@docusaurus/core": "^2.3.1",
+    "@docusaurus/plugin-client-redirects": "^2.3.1",
+    "@docusaurus/preset-classic": "^2.3.1",
     "@mdx-js/react": "^1.6.22",
     "@radix-ui/react-tabs": "^1.0.1",
     "clsx": "^1.2.1",
@@ -35,13 +35,14 @@
     "weaviate-client": "^2.14.4"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.3.0",
+    "@docusaurus/module-type-aliases": "^2.3.1",
     "autoprefixer": "^10.4.13",
     "linkinator": "4.1.2",
     "netlify-cli": "12.10.0",
     "postcss": "^8.4.21",
     "postcss-prefix-selector": "^1.16.0",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.2.7",
+    "node-fetch": "^2.6.1"
   },
   "browserslist": {
     "production": [
