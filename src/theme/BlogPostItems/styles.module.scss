@@ -39,3 +39,10 @@
   display: flex;
   align-items: center;
 }
+
+.blogCardButton {
+  grid-area: button;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

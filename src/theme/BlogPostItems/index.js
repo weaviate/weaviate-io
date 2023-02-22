@@ -2,14 +2,11 @@ import React from 'react';
 import {BlogPostProvider} from '@docusaurus/theme-common/internal';
 import BlogPostItem from '@theme/BlogPostItem';
 import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
+import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 export default function BlogPostItems({
   items,
   component: BlogPostItemComponent = BlogPostItem,
 }) {
-  console.log(items[0]);
-  console.log(items[0].content.metadata.readingTime);
-
   return (
     <>
       {items.map(({content: BlogPostContent}) => (
@@ -36,8 +33,14 @@ export default function BlogPostItems({
               <div className={styles.blogCardInfo}>
                 <span>{BlogPostContent.metadata.formattedDate} · {Math.round(BlogPostContent.metadata.readingTime)} min read</span>
               </div>
-              <LinkButton className={styles.blogCardButton} link="#our_company_values" newTab={false}>Read More</LinkButton>
-
+              <div className={styles.blogCardButton}>
+                <ButtonContainer position="right">
+                <LinkButton
+                  link={BlogPostContent.metadata.permalink}
+                  newTab={false}
+                >Read More <i className='fas fa-book-reader'/> </LinkButton>
+                </ButtonContainer>
+              </div>
               {/* <BlogPostContent /> */}
             </div>
           </BlogPostItemComponent>
