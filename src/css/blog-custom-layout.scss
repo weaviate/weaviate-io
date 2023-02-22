@@ -21,35 +21,53 @@
       --ifm-col-width: 100%;
     }
 
-    header h2 {
-      font-size: larger;
-    }
+    // header div div div.avatar {
+    //   display: none;
+    // }
+    // header h2 {
+    //   font-size: larger;
+    // }
+  }
+}
+.blog-list-page {
+  header, footer {
+    display: none;
   }
 }
 
 // Layout for each blog item
-.blog-list-page {
-  article {
-    display: grid;
-    grid-template-areas:
-    "head"
-    "mid"
-    "foot";
+// .blog-list-page {
+//   article {
+//     display: grid;
+//     grid-template-areas:
+//     "content content"
+//     "mid read";
 
-    div.markdown {
-      grid-area: head;
-    }
-    header {
-      grid-area: mid;
-    }
-    footer {
-      grid-area: foot;
-    }
+//     div.markdown {
+//       grid-area: content;
+//       padding-bottom: 10px;
+//     }
+//     header {
+//       grid-area: mid;
 
-    footer {
-      // display: none;
-      margin: 0;
-    }
+//       // Built-in article title
+//       h2:first-child {
+//         display: none;
+//       }
+//       // Built-in list of authors
+//       div:first-of-type {
+//         margin: 0;
+//       }
+//     }
+//     footer {
+//       grid-area: read;
+//       margin: 0px;
+//     }
 
-  }
-}
+//     footer {
+//       // display: none;
+//       margin: 0;
+//     }
+
+//   }
+// }
