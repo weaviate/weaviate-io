@@ -6,9 +6,7 @@ date: 2023-02-07
 tags: []
 image: ./img/hero.png
 ---
-
 ![ChatGPT for Generative Search](./img/hero.png)
-<!-- [![ChatGPT for Generative Search](./img/hero.png)](/blog/2023-02-07-generative-search/index.mdx) -->
 
 <!-- truncate -->
 
