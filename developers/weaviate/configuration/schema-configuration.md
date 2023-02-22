@@ -71,33 +71,33 @@ An example of a complete class object including properties:
 {
   "class": "string",                        // The name of the class in string format
   "description": "string",                  // A description for your reference
-  "vectorIndexType": "hnsw",                // defaults to hnsw, can be omitted in schema definition since this is the only available type for now
+  "vectorIndexType": "hnsw",                // Defaults to hnsw, can be omitted in schema definition since this is the only available type for now
   "vectorIndexConfig": {
-    ...                                     // vector index type specific settings, including distance metric
+    ...                                     // Vector index type specific settings, including distance metric
   },
-  "vectorizer": "text2vec-contextionary",   // vectorizer to use for data objects added to this class
+  "vectorizer": "text2vec-contextionary",   // Vectorizer to use for data objects added to this class
   "moduleConfig": {
     "text2vec-contextionary": {  
-      "vectorizeClassName": true            // include the class name in vector calculation (default true)
+      "vectorizeClassName": true            // Include the class name in vector calculation (default true)
     }
   },
   "properties": [                           // An array of the properties you are adding, same as a Property Object
     {
       "name": "string",                     // The name of the property
       "description": "string",              // A description for your reference
-      "dataType": [                         // The data type of the object as described above, When creating cross references, a property can have multiple dataTypes
+      "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes
         "string"
       ],
-      "moduleConfig": {                     // module specific settings
+      "moduleConfig": {                     // Module-specific settings
         "text2vec-contextionary": {
-          "skip": true,                     // if true, the whole property will NOT be included in vectorization. default is false, meaning that the object will be NOT be skipped
-          "vectorizePropertyName": true,    // whether name of the property is used in the calculation for the vector position of data objects. default is false
+          "skip": true,                     // If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped.
+          "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
         }
       },
-      "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector-search. You can ignore properties in searches by explicitly setting index to false.
+      "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
     }
   ],
-  "invertedIndexConfig": {                  // Optional, index configuration.
+  "invertedIndexConfig": {                  // Optional, index configuration
     "stopwords": { 
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
@@ -140,7 +140,7 @@ The `"shardingConfig"` controls how a class should be [sharded and distributed a
 ```json
   "shardingConfig": {
     "virtualPerPhysical": 128,
-    "desiredCount": 1,             # defaults to the amount of Weaviate nodes in the cluster
+    "desiredCount": 1,           // defaults to the amount of Weaviate nodes in the cluster
     "actualCount": 1,
     "desiredVirtualCount": 128,
     "actualVirtualCount": 128,
@@ -291,17 +291,17 @@ An example of a complete property object:
 {
     "name": "string",                     // The name of the property
     "description": "string",              // A description for your reference
-    "dataType": [                         // The data type of the object as described above, When creating cross references, a property can have multiple dataTypes
+    "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes.
     "string"
     ],
     "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See Property Tokenization below for more detail.
-    "moduleConfig": {                     // module specific settings
+    "moduleConfig": {                     // Module-specific settings
       "text2vec-contextionary": {
-          "skip": true,                     // if true, the whole property will NOT be included in vectorization. default is false, meaning that the object will be NOT be skipped
-          "vectorizePropertyName": true,    // whether name of the property is used in the calculation for the vector position of data objects. default is false
+          "skip": true,                     // If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped.
+          "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
       }
     },
-    "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector-search. You can ignore properties in searches by explicitly setting index to false.
+    "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
 }
 ```
 

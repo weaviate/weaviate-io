@@ -12,7 +12,7 @@ client = weaviate.Client("https://some-endpoint.weaviate.network/")
 
 add_prop = {
   "dataType": [
-      "Author" # <== note how the name of the class is the cross reference
+      "Author" # <== note how the name of the class is the cross-reference
   ],
   "name": "has"
 }
@@ -36,11 +36,11 @@ const weaviate = require('weaviate-client');
 const client = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.weaviate.network/',
-  }); 
+  });
 
 const className = 'Publication';
 const prop = {
-  dataType: ['Author'], // <== note how the name of the class is the cross reference
+  dataType: ['Author'], // <== note how the name of the class is the cross-reference
   name: 'has',
 };
 
@@ -92,7 +92,7 @@ func main() {
     client := weaviate.New(cfg)
 
     prop := &models.Property{
-        DataType: []string{"Author"}, // <== note how the name of the class is the cross reference
+        DataType: []string{"Author"}, // <== note how the name of the class is the cross-reference
         Name:     "has",
     }
 
@@ -132,11 +132,11 @@ import technology.semi.weaviate.client.v1.schema.model.Property;
 public class App {
   public static void main(String[] args) {
     Config config = new Config("https", "some-endpoint.weaviate.network/");
-    
+
     WeaviateClient client = new WeaviateClient(config);
 
     Property property = Property.builder()
-      .dataType(Arrays.asList("Author")) // <== note how the name of the class is the cross reference
+      .dataType(Arrays.asList("Author")) // <== note how the name of the class is the cross-reference
       .name("has")
       .build();
 
@@ -171,7 +171,7 @@ public class App {
 $ curl \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{ 
+    -d '{
       "dataType": [
         "Author"
       ],
