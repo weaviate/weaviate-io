@@ -50,3 +50,21 @@
     color: #ffe3ec;
   }
 }
+[data-theme='light']{
+  .btnOutlined{
+    background-color: #d8eae0;
+    border: 1px solid #00b800;
+    color: rgb(16 36 69);
+  }
+}
+.btnOutlined {
+  background-color: #0C1428;
+  border: 1px solid #00b800;
+  color: #ffe3ec;
+
+  &:hover {
+    background-color: transparent;
+  border: 1px solid #00b800;
+  color: #00b800;
+  }
+}

@@ -40,7 +40,7 @@ client = weaviate.Client("http://localhost:8080")
 
 result = (
   client.query
-  .get("Article", ["title", "_additional {tokens ( properties: ["title"], limit: 1, certainty: 0.7) {entity property word certainty startPosition endPosition }}"])
+  .get("Article", ["title", "_additional {tokens ( properties: [\"title\"], limit: 1, certainty: 0.7) {entity property word certainty startPosition endPosition }}"])
   .do()
 )
 
