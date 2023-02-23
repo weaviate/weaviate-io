@@ -79,7 +79,7 @@ instance.*
 
 *Note: For backward compatibility, you can omit the class name in the
 short-form beacon format that is used for `to`. You can specify it as
-weaviate://localhost/&lt;id&gt;. This is, however, considered deprecated and will be
+`weaviate://localhost/{id}`. This is, however, considered deprecated and will be
 removed with a future release, as duplicate IDs across classes could mean that
 this beacon is not uniquely identifiable. For the long-form beacon - used as part
 of `from` - you always need to specify the full beacon, including the reference
@@ -159,11 +159,11 @@ Possible values for `output`
     "successful": "<int>"        # how many objects were successfully deleted in this round
     "failed": "<int>"            # how many objects should have been deleted but could not be deleted
     "objects": [{                # one json object per weaviate object
-      "id": "&lt;id&gt;",              # This successfully deleted object would be ommitted with output=minimal
+      "id": "<id>",              # This successfully deleted object would be omitted with output=minimal
       "status": "SUCCESS",       # Possible status values are: "SUCCESS", "FAILED", "DRYRUN"
       "error": null
     }, {
-      "id": "&lt;id&gt;",              # This error'd object will always be listed, even with output=minimal
+      "id": "<id>",              # This error'd object will always be listed, even with output=minimal
       "status": "FAILED",
       "errors": {
          "error": [{
