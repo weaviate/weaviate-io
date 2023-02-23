@@ -5,13 +5,13 @@ sidebar_position: 40
 
 ## Vectors in action
 
-:::warning TODO
-Video here
-:::
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
-You have learned a lot already about vector searches. You have learned what vectors are, how they can represent meaning, and how vector searches can leverage these representations to perform similarity-based searches. 
+<img src={imageUrl} alt="Image alt" width="75%"/>
 
-In this lab, you will start to take that theory to practice and try vector searches in action by searching through our demo database of quiz questions and categories. You will learn how to use Weaviate to retrieve objects based on their similarity, using various query types such as an input text, vector, or object. 
+Now that you have learned what vector searches are, and set up a WCS instance, let's dive in and start to get our hands a little bit dirty. 
+
+We will try vector searches in action by searching through our demo database that contains multiple datasets. You will learn how to use Weaviate to retrieve objects based on their similarity, using various query types such as an input text, vector, or object. 
 
 You will also compare vector search with keyword search to compare and contrast the two techniques, before learning how to combine the two techniques through the use of filters.
 
@@ -21,7 +21,7 @@ You will also compare vector search with keyword search to compare and contrast 
 
 For our first search, let's look for categories that best match our input query. The "Category" class in the Weaviate instance [DEMO INSTANCE LOCATION](http://example.com) is populated with categories that each question belongs to. 
 
-The below has been set up so that it would retrieve the closest categories to the input query "Ground-breaking scientific discovery". Try running it yourself:
+The below has been set up so that it would retrieve the closest categories to the input query "Fast things". Try running it yourself:
 
 :::warning TODO
 - Replace instance location ABOVE with actual instance
@@ -29,6 +29,74 @@ The below has been set up so that it would retrieve the closest categories to th
 - Pre-set QUERY here (show results when user hits GO)
 - Should be something where the results don't have literal matches
 :::
+
+<details>
+  <summary><i class="fa-solid fa-code"></i> See the full query</summary>
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      nearText: {
+        concepts: ["Fast things"]
+      }
+      limit: 3
+    ) {
+      question
+      answer
+      _additional {
+        distance
+      }
+    }
+  }
+}
+```
+
+</details>
+
+Weaviate retrieves these answers:
+
+- **the automobile**: In 1922 Warren Harding said that this \"gauges the speed of our present-day life. It long ago ran down simple living
+- **Bonnie Blair**: At the 1994 Olympics, this U.S. woman speed skater surpassed Eric Heiden's medal total
+- **jai alai**: In this sport a long basket called a cesta is worn on one hand
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See Weaviate response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.20446062
+          },
+          "answer": "the automobile",
+          "question": "In 1922 Warren Harding said that this \"gauges the speed of our present-day life. It long ago ran down simple living\""
+        },
+        {
+          "_additional": {
+            "distance": 0.23422599
+          },
+          "answer": "Bonnie Blair",
+          "question": "At the 1994 Olympics, this U.S. woman speed skater surpassed Eric Heiden's medal total"
+        },
+        {
+          "_additional": {
+            "distance": 0.23698944
+          },
+          "answer": "jai alai",
+          "question": "In this sport a long basket called a cesta is worn on one hand"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
 
 Note that the results are very much conceptually relevant even though they don't have much in the way of literal overlap with our query. This is exactly what we have been learning about - vector searches can identify related objects. What we have not yet seen however, is the syntax. So let's dive into that a little bit.
 
@@ -42,15 +110,100 @@ Show how hard it might be to replicate the above just with keyword searching.
 
 ## Beyond vector searching
 
-Show a little taste of what else Weaviate can do in additon ot vector searching
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+You can do a lot more with Weaviate than what we think of as simple "search". Let's take a look at a couple of examples, where we do more than simply retrieve objects from the database. 
+
+We'll use this Wiki entry as an example:
+
+<details>
+  <summary>The Sydney Opera House" Wikipedia summary</summary>
+
+The Sydney Opera House is a multi-venue performing arts centre in Sydney. Located on the foreshore of Sydney Harbour, it is widely regarded as one of the world's most famous and distinctive buildings and a masterpiece of 20th-century architecture.Designed by Danish architect Jørn Utzon, but completed by an Australian architectural team headed by Peter Hall, the building was formally opened by Queen Elizabeth II on 20 October 1973 after a gestation beginning with Utzon's 1957 selection as winner of an international design competition. The Government of New South Wales, led by the premier, Joseph Cahill, authorised work to begin in 1958 with Utzon directing construction. The government's decision to build Utzon's design is often overshadowed by circumstances that followed, including cost and scheduling overruns as well as the architect's ultimate resignation.The building and its surrounds occupy the whole of Bennelong Point on Sydney Harbour, between Sydney Cove and Farm Cove, adjacent to the Sydney central business district and the Royal Botanic Gardens, and near to the Sydney Harbour Bridge.
+
+The building comprises multiple performance venues, which together host well over 1,500 performances annually, attended by more than 1.2 million people. Performances are presented by numerous performing artists, including three resident companies: Opera Australia, the Sydney Theatre Company and the Sydney Symphony Orchestra. As one of the most popular visitor attractions in Australia, the site is visited by more than eight million people annually, and approximately 350,000 visitors take a guided tour of the building each year. The building is managed by the Sydney Opera House Trust, an agency of the New South Wales State Government.
+
+On 28 June 2007, the Sydney Opera House became a UNESCO World Heritage Site, having been listed on the (now defunct) Register of the National Estate since 1980, the National Trust of Australia register since 1983, the City of Sydney Heritage Inventory since 2000, the New South Wales State Heritage Register since 2003, and the Australian National Heritage List since 2005. The Opera House was also a finalist in the New7Wonders of the World campaign list.
+
+</details>
 
 ### Question-answering in action
 
-Added as module available in WCS
+```graphql
+{
+  Get {
+    WikiArticle (
+      ask: {
+        question: "When did construction for the Sydney Opera House start?",
+        properties: ["wiki_summary"]
+      },
+      limit: 1
+    ) {
+      title
+      _additional {
+        answer {
+          hasAnswer
+          property
+          result
+          startPosition
+          endPosition
+        }
+      }
+    }
+  }
+}
+```
+
+<details>
+  <summary>See response</summary>
+
+:::note Weaviate says:
+Construction for the Sydney Opera House started in 1958.
+:::
+
+</details>
 
 ### Generative search in action
 
-Added as module available in WCS
+
+
+```graphql
+{
+  Get {
+    WikiArticle(
+      nearText: {
+        concepts: ["Sydney Opera House"]
+      }
+      limit: 1
+    ) {
+      title
+      wiki_summary
+      _additional {
+        generate(
+          singleResult: {
+            prompt: """
+              Write a fun tweet encouraging people to read about this: ## {title} 
+              by summarizing highlights from: ## {wiki_summary}
+            """
+          }
+        ) {
+          singleResult
+          error
+        }        
+      }
+    }
+  }
+}
+```
+
+<details>
+  <summary>See response</summary>
+
+:::note Weaviate says:
+Explore the world-famous Sydney Opera House and its incredible architecture! From the iconic design to the amazing performances, there's something for everyone to enjoy. #SydneyOperaHouse #Explore #Architecture #Performances #Experience
+:::
+
+</details>
 
 ## Review
 

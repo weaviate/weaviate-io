@@ -9,14 +9,14 @@ export const unitData = {
       "What Weaviate is, and what it does.",
       "How to create your own Weaviate instance.",
       "Weaviate clients and how to install them.",
-      "Weaviate's vector search capabilities.",
+      "Getting a preview of Weaviate's capabilities.",
     ],
     learningOutcomes: [
       "Broadly describe what Weaviate is.",
-      "Outline what vector search engines do.",
+      "Outline what vector search is.",
       "Create a Weaviate instance.",
       "Install your preferred Weaviate client.",
-      "Perform a vector search with Weaviate.",
+      "Describe some of Weaviate's capabilities.",
     ],
     owner: "jp",
     reviewer: "jp"

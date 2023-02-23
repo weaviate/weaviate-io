@@ -41,7 +41,7 @@ export default function Quiz(props) {
 			{showFeedback ? (
 				<div>
 				<div className='feedback-section'>
-					<h3>Feedback</h3>
+					<h3><i class="fa-solid fa-comments"></i>&nbsp;&nbsp;Feedback</h3>
 					<div className='question-text'>{feedback}</div>
 				</div>
 				<div className='answer-section'>
@@ -52,7 +52,7 @@ export default function Quiz(props) {
 				<>
 					<div className='question-section'>
 						<div className='question-count'>
-							<span>Question</span>
+							<span><i class="fa-solid fa-clipboard-question"></i>&nbsp;&nbsp;Question</span>
 						</div>
 						<div className='question-text'>{questions[currentQuestion].questionText}</div>
 					</div>

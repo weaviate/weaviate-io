@@ -5,6 +5,10 @@ sidebar_position: 30
 
 ## The role of clients
 
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
 You can communicate with Weaviate with the available [client libraries](/developers/weaviate/client-libraries/index.md) or directly with the [RESTful API](/developers/weaviate/api/rest/index.md) and the [GraphQL API](/developers/weaviate/api/graphql/index.md).
 
 ### Available clients
@@ -21,8 +25,64 @@ import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
 
 ## Installation
 
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
 Install your preferred client by following the relevant instructions below:
 
 import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 <CodeClientInstall />
+
+## Getting started with the client
+
+### Authentication with WCS
+
+### Upload demo data
+
+### Fetch schema
+
+### Fetch node status
+
+## Review
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+Each section should have a quick recap/review video of about a minute.
+
+### Review exercise
+
+**Aspirational section.** Would like to have the user provide a freeform input, and get back a similarity score and our definition.
+
+:::info TODO
+Can you describe, in your own sentence, XXX?
+
+Input box -> vectorizer -> compare to model answer.
+:::
+
+### Key takeaways
+
+:::info
+Add summary
+:::
+
+import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];

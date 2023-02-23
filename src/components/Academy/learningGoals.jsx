@@ -34,14 +34,14 @@ function LearningGoals(props) {
     <div class="card __academycard">
       <div class="card__body">
         <div class="learning_goal_head">
-          <h4>Here, we will cover:</h4>
+          <h4><i class="fa-solid fa-person-chalkboard"></i>&nbsp;&nbsp;Here, we will cover:</h4>
           <span class="badge badge--secondary">Learning Goals</span>
         </div>
         
         <ul>{goalsArray}</ul>
         <hr/>
         <div class="learning_goal_head">
-          <h4>By the time you are finished, you will to be able to:</h4>       
+          <h4><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;&nbsp;By the time you are finished, you will to be able to:</h4>       
           <span class="badge badge--secondary">Learning Outcomes</span>
         </div>
         <ul>{outcomesArray}</ul>    
