@@ -290,11 +290,7 @@ const siteRedirects = {
         // Hidden as not participating in 2023
         {
             to: '/',
-            from: '/resources/gsod-summary'
-        },
-        {
-            to: '/',
-            from: ['/resources/gsod','/resources/gsoc']
+            from: ['/resources/gsod','/resources/gsoc', '/google-summer/gsoc-23', '/google-summer/', '/resources/gsod-summary']
         },
 
         // moved/renamed pages
