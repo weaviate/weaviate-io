@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
+import CommandPalette, { getItemIndex, useHandleOpenCommandPalette } from "react-cmdk";
 import "react-cmdk/dist/cmdk.css";
-import CommandPalette, { filterItems, getItemIndex, useHandleOpenCommandPalette } from "react-cmdk";
 import { useState } from "react";
 import { query } from "./query";
 
@@ -32,7 +32,6 @@ export default function CommandMenu({open, setOpen}) {
        
     },[search])
 
-    // console.log('filteredItems', filteredItems)
     useHandleOpenCommandPalette(setOpen);
 
   return (
