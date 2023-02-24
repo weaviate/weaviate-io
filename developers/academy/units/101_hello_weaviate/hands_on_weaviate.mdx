@@ -19,16 +19,39 @@ You will also compare vector search with keyword search to compare and contrast 
 
 ![](../../tmp_images/students_looking_at_computer_screen_with_code_0.jpg)
 
-For our first search, let's look for categories that best match our input query. The "Category" class in the Weaviate instance [DEMO INSTANCE LOCATION](http://example.com) is populated with categories that each question belongs to. 
+For our first search, let's look through our demo dataset which contains a small sample of questions from the quiz show *Jeopardy!*. 
 
-The below has been set up so that it would retrieve the closest categories to the input query "Fast things". Try running it yourself:
+Imagine that you're running a quiz night, and want to get some questions around the category of just anything that goes "fast". You could look for word matches - perhaps something like:
 
-:::warning TODO
-- Replace instance location ABOVE with actual instance
-- Replace query ABOVE with actual query
-- Pre-set QUERY here (show results when user hits GO)
-- Should be something where the results don't have literal matches
-:::
+```sql
+SELECT question, answer 
+FROM jeopardy_questions 
+WHERE question LIKE '%fast%' 
+OR question LIKE '%speedy%' 
+OR question LIKE '%quick%' 
+OR question LIKE '%swift%' 
+OR question LIKE '%rapid%' 
+OR question LIKE '%dashing%' 
+OR question LIKE '%blazing%' 
+OR question LIKE '%sprinting%' 
+OR question LIKE '%velocity%' 
+OR question LIKE '%acceleration%' 
+OR question LIKE '%high-speed%'
+```
+
+Or maybe you could relate them to certain objects? Like:
+
+```sql
+SELECT question, answer 
+FROM jeopardy_questions
+WHERE (question LIKE '%fast%' OR question LIKE '%speedy%' OR question LIKE '%quick%' OR question LIKE '%rapid%')
+   OR (question LIKE '%race%' OR question LIKE '%rally%' OR question LIKE '%formula%')
+   OR (question LIKE '%vehicle%' OR question LIKE '%car%' OR question LIKE '%motor%' OR question LIKE '%cycle%')
+```
+
+But this is very difficult. 
+
+Not so much with Weaviate, though. The next query will retrieve questions related to the input query "fast things". Try running it yourself:
 
 <details>
   <summary><i class="fa-solid fa-code"></i> See the full query</summary>
@@ -38,7 +61,69 @@ The below has been set up so that it would retrieve the closest categories to th
   Get {
     JeopardyQuestion (
       nearText: {
-        concepts: ["Fast things"]
+        concepts: ["fast things"]
+      }
+      limit: 3
+    ) {
+      question
+      answer
+    }
+  }
+}
+```
+
+</details>
+
+Weaviate retrieves the below a the top answers:
+
+- **the automobile**: In 1922 Warren Harding said that this \"gauges the speed of our present-day life. It long ago ran down simple living
+- **Bonnie Blair**: At the 1994 Olympics, this U.S. woman speed skater surpassed Eric Heiden's medal total
+- **jai alai**: In this sport a long basket called a cesta is worn on one hand
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the full JSON response from Weaviate</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "the automobile",
+          "question": "In 1922 Warren Harding said that this \"gauges the speed of our present-day life. It long ago ran down simple living\""
+        },
+        {
+          "answer": "Bonnie Blair",
+          "question": "At the 1994 Olympics, this U.S. woman speed skater surpassed Eric Heiden's medal total"
+        },
+        {
+          "answer": "jai alai",
+          "question": "In this sport a long basket called a cesta is worn on one hand"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+Note just how relevant the results are, despite their diversity and difference. 
+
+The concept of a car, especially in the eyes of someone from 1922, a champion speed skater, or a sport involving an incredibly fast ball - none of them included the word "fast", all match the description very well. 
+
+This is exactly what we have been learning about - vector searches identifying related objects without the need to match exact texts. 
+
+### Vector similarities in action
+
+What if we run *this* query? What will we get back?
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      nearText: {
+        concepts: ["European geography"]
       }
       limit: 3
     ) {
@@ -52,16 +137,7 @@ The below has been set up so that it would retrieve the closest categories to th
 }
 ```
 
-</details>
-
-Weaviate retrieves these answers:
-
-- **the automobile**: In 1922 Warren Harding said that this \"gauges the speed of our present-day life. It long ago ran down simple living
-- **Bonnie Blair**: At the 1994 Olympics, this U.S. woman speed skater surpassed Eric Heiden's medal total
-- **jai alai**: In this sport a long basket called a cesta is worn on one hand
-
-<details>
-  <summary><i class="fa-solid fa-radar"></i> See Weaviate response</summary>
+Take a look at this response. What do you notice that is different?
 
 ```json
 {
@@ -70,24 +146,46 @@ Weaviate retrieves these answers:
       "JeopardyQuestion": [
         {
           "_additional": {
-            "distance": 0.20446062
+            "distance": 0.21701801
           },
-          "answer": "the automobile",
-          "question": "In 1922 Warren Harding said that this \"gauges the speed of our present-day life. It long ago ran down simple living\""
+          "answer": "Atlantic Ocean",
+          "question": "Some say the Weddell Sea is an arm of the Antarctic Ocean; others say it's part of this larger ocean"
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the full JSON response from Weaviate</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.21701801
+          },
+          "answer": "Atlantic Ocean",
+          "question": "Some say the Weddell Sea is an arm of the Antarctic Ocean; others say it's part of this larger ocean"
         },
         {
           "_additional": {
-            "distance": 0.23422599
+            "distance": 0.22529364
           },
-          "answer": "Bonnie Blair",
-          "question": "At the 1994 Olympics, this U.S. woman speed skater surpassed Eric Heiden's medal total"
+          "answer": "Champagne",
+          "question": "Sparkling wine sold under the name Champagne must come from this region in Northeast France"
         },
         {
           "_additional": {
-            "distance": 0.23698944
+            "distance": 0.22557938
           },
-          "answer": "jai alai",
-          "question": "In this sport a long basket called a cesta is worn on one hand"
+          "answer": "Yucatan Peninsula",
+          "question": "In 1517 Cordova became the first Spaniard to reach Mexico when he landed on this east coast peninsula"
         }
       ]
     }
@@ -97,16 +195,11 @@ Weaviate retrieves these answers:
 
 </details>
 
+The answer now contains a "distance" value - indicative of the degree of similarity between the returned object and the query. 
 
-Note that the results are very much conceptually relevant even though they don't have much in the way of literal overlap with our query. This is exactly what we have been learning about - vector searches can identify related objects. What we have not yet seen however, is the syntax. So let's dive into that a little bit.
+If you're wondering exactly what that means, and who decides how similar any two objects or concepts are, those are great questions! We will cover those in more detail later. 
 
-### Vector similarities in action
-
-Show similar demo to above, but this time retrieve similarities - possibly visualize them?
-
-### Vector searching vs keyword searching in action
-
-Show how hard it might be to replicate the above just with keyword searching.
+For now, just keep in mind that smaller distances mean two objects are more similar to each other. 
 
 ## Beyond vector searching
 
@@ -128,6 +221,8 @@ On 28 June 2007, the Sydney Opera House became a UNESCO World Heritage Site, hav
 </details>
 
 ### Question-answering in action
+
+For one, Weaviate can extract knowledge from text. 
 
 ```graphql
 {
@@ -154,6 +249,8 @@ On 28 June 2007, the Sydney Opera House became a UNESCO World Heritage Site, hav
 }
 ```
 
+Given this question, Weaviate can not only identify the most relevant object, but also the actual answer, based on the textual information above!
+
 <details>
   <summary>See response</summary>
 
@@ -165,7 +262,7 @@ Construction for the Sydney Opera House started in 1958.
 
 ### Generative search in action
 
-
+Weaviate can do even more with these entries, too. You can ask it to grab an object from its store, like the Wikipedia entry above for the Sydney Opera House, and generate derivative text.
 
 ```graphql
 {
@@ -196,6 +293,8 @@ Construction for the Sydney Opera House started in 1958.
 }
 ```
 
+For example, the above will generate a Tweet based on the Wikipedia entry!
+
 <details>
   <summary>See response</summary>
 
@@ -204,6 +303,8 @@ Explore the world-famous Sydney Opera House and its incredible architecture! Fro
 :::
 
 </details>
+
+You could of course vary the prompt to build any number of other outputs from this input. So you can see already how Weaviate makes it easy to not only retrieve information, but build on top of your information.
 
 ## Review
 

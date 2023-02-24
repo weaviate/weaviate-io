@@ -1,0 +1,120 @@
+---
+title: Running Weaviate
+sidebar_position: 20
+---
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+## Options for running Weaviate
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+You can run Weaviate with our managed clusters (WCS), or manage your own instances using Docker or Kubernetes. 
+
+As mentioned before, the underlying Weaviate code is identical regardless of the method. There are some differences to be aware of.
+
+### WCS (Recommended)
+
+[WCS, or Weaviate Cloud Services](https://console.weaviate.io/), is a managed SaaS service that requires no maintenance at your end. 
+
+As it is managed by Weaviate (the company), it is the fastest way to create a new instance of Weaviate and requires the least amount of effort. 
+
+Weaviate instances on WCS come pre-configured for convenience. They include a number of Weaviate "modules" by default, as well as built-in support for user authentication for security. 
+
+WCS includes a free "sandbox" tier, which is our recommend method of running Weaviate throughout this course unless otherwise specified. 
+
+### Docker / Kubernetes
+
+You can run Weaviate instances using containerization solutions such as [Docker](https://docs.docker.com/) and/or [Kubernetes](https://kubernetes.io/docs/home/). 
+
+This provides you with the same code base as one that is used in WCS, although you will need to manage its configuration and deployment yourself. 
+
+Self-managed set ups using Docker or Kubernetes is slightly outside the scope of the core group of units, and will be discussed in standalone, separate units in the future.
+
+If you are familiar with either solutions and would prefer to install Weaviate through them, we refer you to our documentation for installation with [Docker-Compose](/developers/weaviate/installation/docker-compose.md) or [Kubernetes](/developers/weaviate/installation/kubernetes.md).
+
+## Get started with WCS
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+:::note
+To be completed later; especially given ongoing WCS upgrades
+:::
+
+### Sign up to WCS
+
+- Show how to visit WCS site
+- Show how to create a new account 
+
+### Start an instance
+
+- Discuss different tiers & options
+- Use sandbox tier to create instance
+- Take users through cluster creation options
+- Discuss Authentication (suggest disabling for tutorial)
+
+:::info Authentication
+- Briefly touch on authentication
+  - What is it (vs authorization)
+  - Why does WCS have it
+  - Why OIDC
+:::
+
+### Send requests to Weaviate APIs
+
+- Show how to make API calls to Weaviate
+- REST endpoints
+  - `meta`
+  - `nodes`
+  - `schema` (empty)
+- GraphQL
+  - `Get` query (empty)
+
+:::info Authentication
+- Show that endpoints not accessible without Auth
+- Except `well-known`
+:::
+
+## Review
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+Each section should have a quick recap/review video of about a minute.
+
+### Review exercise
+
+**Aspirational section.** Would like to have the user provide a freeform input, and get back a similarity score and our definition.
+
+:::info TODO
+Can you describe, in your own sentence, XXX?
+
+Input box -> vectorizer -> compare to model answer.
+:::
+
+### Key takeaways
+
+:::info
+Add summary
+:::
+
+import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
