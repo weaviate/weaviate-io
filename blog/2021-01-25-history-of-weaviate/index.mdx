@@ -2,7 +2,7 @@
 layout: post
 title: The History of Weaviate
 slug: history-of-weaviate
-authors: [bob] 
+authors: [bob]
 date: 2021-01-25
 tags: []
 image: ./img/hero.png
@@ -56,48 +56,48 @@ To validate if we could disambiguate the word "apple" the following simple step 
 
 In the next step, the goal was to validate if we could keep semantic meaning when storing a data object in the hyperspace by calculating the centroid using the individual words as beacons. We did that as follows, the title of this Vogue article: "Louis Vuitton's New Capsule with League of Legends Brings French High Fashion to Online Gaming — and Vice Versa".
 
-If we look up the vector positions for the individual words (i.e., Louis, Vuitton, new, capsule, etcetera). And place a new beacon in the center of the space of those vector positions, can we find the article by searching for "haute couture"? This turns out to work as well! Of course, through time, the centroid calculation algorithm in Weaviate has become way more sophisticated, but the overall concept is still the same.
+If we look up the vector positions for the individual words (Louis, Vuitton, new, capsule, etc.) and place a new beacon in the center of the space of those vector positions, can we find the article by searching for "haute couture"? This turns out to work as well! Of course, through time, the centroid calculation algorithm in Weaviate has become way more sophisticated, but the overall concept is still the same.
 
-> By validating the above two assumptions, we knew that we could almost instantly store data objects in a semantic space rather than a more traditional row-column structure or graph. Allowing us to index data based on its meaning.
+> By validating the above two assumptions, we knew that we could almost instantly store data objects in a semantic space rather than a more traditional row-column structure or graph. This allows us to index data based on its meaning.
 
-Although we had validated the assumptions of the semantic concepts, it was not enough to create an actual semantic search engine, Weaviate also needed a data model to represent these results.
+Although we had validated the assumptions of the semantic concepts, it was not enough to create an actual semantic search engine. Weaviate also needed a data model to represent these results.
 
 ## Things Rather Than Strings
-In September 2017 I wrote a [blog post](https://medium.com/bob-van-luijt/semantic-internet-of-things-42811e1ca7a7) about the overlap between the internet of things and the semantic web. IoT focusses on physical objects (i.e., "things") and the semantic web focuses on the mapping of data objects that represent something (a product, transaction, car, person, etcetera) which on the highest level of abstraction, are also "things".
+In September 2017 I wrote a [blog post](https://medium.com/bob-van-luijt/semantic-internet-of-things-42811e1ca7a7) about the overlap between the internet of things and the semantic web. IoT focuses on physical objects (i.e., "things") and the semantic web focuses on the mapping of data objects that represent something (a product, transaction, car, person, etcetera) which at the highest level of abstraction, are also "things".
 
-I wrote this article because, in January 2016, I was invited as part of the Google Developer Expert program in San Francisco to visit the Ubiquity Conference. A conference where, back then, Google's Weave and Brillo were introduced to the public.
+I wrote this article because, in January 2016, I was invited as part of the Google Developer Expert program in San Francisco, to visit the Ubiquity Conference. A conference where, back then, Google's Weave and Brillo were introduced to the public.
 
-Weave was the cloud application built around Brillo, but it piqued my interest because it focussed on "things", how you defined them, and actions that you could execute around them. The very first iteration of Weaviate focussed on exactly this: "Could Weave be used to define other things than IoT devices like transactions, or cars, or any other things?" In 2017 Google deprecated Weave and renamed Brillo to Android Things but the concept for Weaviate stayed.
+Weave was the cloud application built around Brillo, but it piqued my interest because it focused on "things", how you defined them, and actions that you could execute around them. The very first iteration of Weaviate focused on exactly this: "Could Weave be used to define other things than IoT devices like transactions, or cars, or any other things?". In 2017 Google deprecated Weave and renamed Brillo to Android Things but the concept for Weaviate stayed.
 
-From the get-go, I knew that the "things" in Weaviate should be connected to each other in graph format because I wanted to be able to represent the relationships between the data objects rather than flat, row-based information as simple and straightforward as possible.
+From the get-go, I knew that the "things" in Weaviate should be connected to each other in graph format because I wanted to be able to represent the relationships between the data objects (rather than flat, row-based information) in an as simple and straightforward manner as possible.
 
-> This search led to the RDF structure that is used on schema.org which functioned as an inspiration on how to represent Weaviate's data objects.
+> This search led to the RDF structure used by schema.org, which functioned as an inspiration for how to represent Weaviate's data objects.
 
-Weaviate is not perse RDF or schema.org based but definitely inspired by it. One of the most important upsides of this approach was that we could use GraphQL (the graph query language which was entering the software stage through Facebook open-sourcing it) to represent the data inside Weaviate.
+Weaviate is not per se RDF- or schema.org-based, but is definitely inspired by it. One of the most important upsides of this approach was that we could use GraphQL (the graph query language which was entering the software stage through Facebook open-sourcing it) to represent the data inside Weaviate.
 
 With the concept of realtime vectorization of data objects and RDF-like representation of Weaviate objects in GraphQL, all the ingredients to turn Weaviate into the search graph that it currently is, were present.
 
 ## The Birth of the Weaviate Search Graph
-By the end of 2018, I entered a startup accelerator in The Netherlands with Weaviate. A place where I had the time to build a team around Weaviate that could help to get the software to production level and create a business model around the open-source project (the startup became: SeMI Technologies, which is short for Semantic Machine Insights).
+By the end of 2018, I entered Weaviate into a startup accelerator program in The Netherlands. A place where I had the time to build a team around Weaviate that could help get the software to production and create a business model around the open-source project (the startup became: SeMI Technologies, which is short for Semantic Machine Insights).
 
-When the team started, Weaviate was more a traditional graph where the semantic (NLP) element was a feature rather than the core architecture. But when we started to learn how powerful the out of the box semantic search was and the role that embeddings play in day-to-day software development (i.e., a lot of machine-learning models create embeddings as output) the team decided that we wanted to double down on the NLP part and vector storage, creating a unique open-source project which could be used as a semantic search engine, the Weaviate Search Graph was born.
+When the team started, Weaviate was more of a traditional graph where the semantic (NLP) element was a feature rather than the core architecture. But when we started to learn how powerful the out-of-the-box semantic search was and the role that embeddings play in day-to-day software development (i.e., a lot of machine learning models create embeddings as output), the team decided that we wanted to double down on the NLP part and vector storage, creating a unique open-source project which could be used as a semantic search engine. The Weaviate Search Graph was born.
 
 ## How people use it today
-One of the coolest things about an open-source community and users of the software is to see how people use it and what trends you one can see emerge around implementations. The core features of Weaviate are the semantic search element and the semantic classification which are used in a variety of ways and industries.
+One of the coolest things about an open-source community and users of the software is to see how people use it and what trends you can see emerge around implementations. The core features of Weaviate are the semantic search element and the semantic classification, which are used in a variety of ways and industries.
 
-Examples of implementations include: classification of invoices to categories, searching through documents for specific concepts rather than keywords, site search, product knowledge graphs, and many other things.
+Examples of implementations include: classification of invoices into categories, searching through documents for specific concepts rather than keywords, site search, product knowledge graphs, and many other things.
 
 ## The Future
-Weaviate will stay fully open source for the community to use. The team is growing to accelerate building Weaviate and supporting users. We are releasing new features very frequently, like new vector indices and search pipeline features, and for the Weaviate Cloud Services and Weaviate Console. 
+Weaviate will stay fully open source for the community to use. The team is growing to accelerate building Weaviate and supporting users. We are releasing new features very frequently, like new vector indices and search pipeline features, and Weaviate Cloud Services and Weaviate Console.
 
 ![Weaviate Console](./img/weaviate-console.jpeg)
 
 ## Listen to Bob's story at the Open Source Data
-Want to learn more about the background of Vector Search and how the ecosystem is developing? [Listen to Sam Ramji from DataStax interviewing Bob van Luijt about Vector Search and the AI stack.](https://www.datastax.com/resources/podcast/vector-search-ai-stack-more-bob-van-luijt). 
+Want to learn more about the background of Vector Search and how the ecosystem is developing? [Listen to Sam Ramji from DataStax interviewing Bob van Luijt about Vector Search and the AI stack.](https://www.datastax.com/resources/podcast/vector-search-ai-stack-more-bob-van-luijt).
 
 ## What next
 Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
-Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source. You can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there!

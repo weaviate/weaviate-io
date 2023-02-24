@@ -28,7 +28,7 @@ For demonstration purposes this tutorial runs Spark locally. Please see the Apac
 We will also need the Weaviate Spark connector. You can download this by running the following command in your terminal:
 
 ```bash
-curl https://github.com/weaviate/spark-connector/releases/download/v1.0.0/spark-connector-assembly-1.0.0.jar --output spark-connector-assembly-1.0.0.jar
+curl https://github.com/weaviate/spark-connector/releases/download/v||site.spark_connector_version||/spark-connector-assembly-||site.spark_connector_version||.jar --output spark-connector-assembly-||site.spark_connector_version||.jar
 ```
 
 For this tutorial, you will also need a Weaviate instance running at `http://localhost:8080`. This instance does not need to have any modules and can be setup by following the [Quickstart tutorial](../quickstart/index.md).
@@ -52,7 +52,7 @@ import os
 spark = (
     SparkSession.builder.config(
         "spark.jars",
-        "spark-connector-assembly-1.0.0.jar",  #specify the spark connector JAR
+        "spark-connector-assembly-||site.spark_connector_version||.jar",  #specify the spark connector JAR
     )
     .master("local[*]")
     .appName("weaviate")
