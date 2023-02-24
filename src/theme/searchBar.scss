@@ -26,6 +26,11 @@
     align-items: center;
     justify-content: center;
     font-weight: 500;
+
+    .searchIcon {
+        color: #e5e5e5;
+        margin-right: 3px;
+    }
 }
 
 .searchPlaceholderText {
@@ -54,7 +59,7 @@
         border: rgb(45, 49, 151, 0.5) solid 0.3px
     }
 
-    .searchPlaceholderText {
+    .searchPlaceholderText, .searchIcon {
         color: #1C1468;
     }
 
