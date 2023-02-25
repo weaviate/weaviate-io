@@ -1,0 +1,50 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+# Only if authentication enabled; assuming WCS sandbox use
+auth_config = weaviate.AuthClientPassword(  
+    username = "wcs_username",
+    password = "wcs_password",
+)
+
+# Instantiate the client
+client = weaviate.Client(
+    url="https://example.weaviate.network",
+    auth_client_secret=auth_config,  # Only necessary if authentication enabled
+    additional_headers={
+        "X-Cohere-Api-Key": "<COHERE-KEY>",
+        "X-HuggingFace-Api-Key": "<HUGGINGFACE-KEY>",
+        "X-OpenAI-Api-Key": "<OPENAI-KEY>",
+    }
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+
+```
+
+</TabItem>
+</Tabs>
