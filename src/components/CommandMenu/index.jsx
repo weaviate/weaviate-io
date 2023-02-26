@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import CommandPalette, { getItemIndex, useHandleOpenCommandPalette } from "react-cmdk";
-import "react-cmdk/dist/cmdk.css";
+import "./cmdk.css";
 import { useState } from "react";
 import { query } from "./query";
 
@@ -10,26 +10,30 @@ export default function CommandMenu({open, setOpen}) {
     const [search, setSearch] = useState("");
     const [filteredItems, setFilteredItems] = useState([]);
 
-    useEffect(async () => {
+    const handleQuery = () => {
+      query(search).then(res => {
+        const data = res.data.Get.PageChunkOpenAI
+        const resultFormated = data.map((item, index) => {
+          return {
+              id: index,
+              children: item.title,
+              icon: "HomeIcon",
+              href: item.url
+          }
+        })
+        const formated = [{
+            heading: 'Documentation',
+            id: 'documentation',
+            items: resultFormated
+        }];
+        setFilteredItems(formated)
+      }).catch(err => console.log(err))
+    }
+
+    useEffect(() => {
         if(search){
-            const result = await query(search);
-            const data = result.data.Get.PageChunkOpenAI;
-            const resultFormated = data.map((item, index) => {
-                return {
-                    id: index,
-                    children: item.title,
-                    icon: "HomeIcon",
-                    href: item.url
-                }
-            })
-            const formated = [{
-                heading: 'Documentation',
-                id: 'documentation',
-                items: resultFormated
-            }];
-            setFilteredItems(formated)
+          handleQuery()
         }
-       
     },[search])
 
     useHandleOpenCommandPalette(setOpen);
