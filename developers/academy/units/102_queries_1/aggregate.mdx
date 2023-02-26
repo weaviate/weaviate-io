@@ -1,13 +1,13 @@
 ---
-title: Compile results with Aggregate{}
+title: Aggregate{} the result set
 sidebar_position: 30
 ---
 
-## About `Aggregate` queries
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
-:::warning TODO
-Intro video here
-:::
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;About `Aggregate` queries
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
 
 Now that you have seen how to retrieve individual objects with `Get` queries, let's take a look at how to compile information from multiple objects with `Aggregate` queries.
 
@@ -15,7 +15,7 @@ This is a powerful feature that allows you to combine information from multiple 
 
 Using `Aggregate` queries is a great way to get a quick overview of your data, and can be used to create a variety of useful reports.
 
-### `Aggregate` function syntax
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Aggregate` function syntax
 
 ![](../../tmp_images/a_person_holding_a_magnifying_glass_at_computer_screen_with_code_0_short.jpg)
 
@@ -44,48 +44,31 @@ You will notice the presence of the `groupBy` argument, This is an optional argu
 
 Additionally, available properties differ according to data types of the property being queried. For example, the available properties for a `String` property are different from those for an `Integer` property or a cross-reference.
 
-### Remember to limit search space
+Now let's learn by trying out some `Aggregate` queries.
 
-In order to produce meaningful aggregations with a vector search, you must limit the search space.
+As a reminder, our objects include the following schema:
 
-This is different from aggregations in lexical searches, such as those often carried out in relational database. In a relational database, grouping or aggregating data can be done using `groupby` with functions such as SUM, AVG, MIN, MAX, etc. This allows you to find a result set and then aggregate the results.
+<details>
+  <summary>See relevant schema</summary>
 
-However, a vector search will return all results as it retrieve results based on *degrees* of similarity. As such, a vector search in itself does not exclude any results from the dataset. Accordingly, an aggregation of a vector search result set will include all results, regardless of the certainty of the match.
+import ShortSchema from './_snippets/academy.queries.schema.short.mdx';
 
-Accordingly, the search space must be limited so that only relevant results are included in the aggregation. This can be done by setting an explicit `objectLimit` or a `certainty` in the query.
+<ShortSchema/>
 
-We will see more concrete examples of this below.
+</details>
 
-### Grouping `Aggregate` queries
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Standalone `Aggregate` queries
 
-Results identified by an `Aggregate` query can be further grouped by using a `groupBy` argument. This argument takes a list of properties as an argument, and will group the results by the values of those properties.
+As we did with `Get` queries, let's begin to look at simple examples of `Aggregate` queries. 
 
-This is a particularly useful query pattern for identifying characteristics for subsets of results of a vector search. 
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
 
-Imagine that you are searching a database of text passages from a collection of books. You may perform a vector search to identify passages 
-
-<Quiz questions={varName} />
-
-## `Aggregate` queries in practice
-
-:::warning TODO
-Intro video here
-:::
-
-Now that we've read about the syntax of the `Aggregate` function, let's see it in action. As a reminder, the Weaviate instance contains objects of the following schema:
-
-import ExampleSchema from '/developers/academy/_snippets/example_schema.mdx';
-
-<ExampleSchema/>
-
-### Standalone `Aggregate` queries
-
-As we did with `Get` queries, let's begin to look at simple examples of `Aggregate` queries. Take a look at the below query:
+Take a look at the below query:
 
 ```graphql
 {
   Aggregate {
-    Question {
+    JeopardyQuestion {
       meta {
         count
       }
@@ -94,10 +77,16 @@ As we did with `Get` queries, let's begin to look at simple examples of `Aggrega
 }
 ```
 
+What do you expect back?
+
+:::note Try it out yourself!
+SOME WAY OF TRYING THIS OUT
+:::
+
 This should return something like the below:
 
 <details>
-  <summary>Query results</summary>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
 
 ```json
 {
@@ -117,15 +106,19 @@ This should return something like the below:
 
 </details>
 
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`meta` property
+
 Note that in our `Aggregate` query we specified a sub-property `count` under the requested property `meta`. This is a key difference between `Aggregate` and `Get` queries. 
 
 In `Get` queries, we directly specify a property as the query returns individual objects according to our search criteria. On the other hand, an `Aggregate` query returns a set of results. Accordingly, we must specify a sub-property which can reflect some aspect of the entire set of results, such as the number of entries here.
 
 The `meta` property is available for all data types, and can be used with the `count` sub-property to return the number of retrieved objects. 
 
-### `Aggregate` queries with `groupBy`
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Aggregate` with `groupBy`
 
 So far, we have seen how to use `Aggregate` queries to retrieve information relating one set of results. But this can be extended to retrieve information from multiple, subsets of results. This is done by using the `groupBy` argument.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
 
 For example, let's say we want to know how many questions there are for each value of the `value` property. We can do this by adding the `groupBy` argument to the query:
 
@@ -144,10 +137,14 @@ For example, let's say we want to know how many questions there are for each val
 }
 ```
 
-Which will produce:
+What do you expect to see here? How will the results differ, now that we've added the `groupBy` argument?
+
+:::note Try it out yourself!
+SOME WAY OF TRYING THIS OUT
+:::
 
 <details>
-  <summary>Query results</summary>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
 
 ```json
 {
@@ -184,11 +181,21 @@ Which will produce:
 
 </details>
 
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`groupBy` + `groupedBy`
+
+Results identified by an `Aggregate` query can be further grouped by using a `groupBy` argument. This argument takes a list of properties as an argument, and will group the results by the values of those properties.
+
+This is a particularly useful query pattern for identifying characteristics for subsets of results of a vector search. 
+
 Note that query also included an additional property `groupedBy` under the `Question` class. This property is only available when the `groupBy` argument is used, and its sub-properties can be used to identify the group that the result belongs to.
 
-### `Aggregate` with `nearText`
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Aggregate` with `nearText`
 
-We had looked at a few results of a `nearText` query earlier in the earlier section on `Get` queries. We can also use `nearText` in an `Aggregate` query. For example, let's say we are still interested in a similar input text ("Seafaring technology from Scandanavia.") as before, but instead of individual queries, we would like to know how many questions might be related to this query.
+We had looked at a few results of a `nearText` query earlier in the earlier section on `Get` queries. We can also use `nearText` in an `Aggregate` query. Take a look:
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+
+For example, let's say we are still interested in a similar input text ("Seafaring technology from Scandanavia.") as before, but instead of individual queries, we would like to know how many questions might be related to this query.
 
 We can do this by introducing the `nearText` argument:
 
@@ -209,84 +216,46 @@ We can do this by introducing the `nearText` argument:
 }
 ```
 
-Notice that as discussed above, we introduce the `distance` argument to limit the search space. This threshold limits the returned results to those that are relevant to the input.
+How do you expect the results to be aggregated? Also, how would the results change as the `distance` parameter changes?
 
-By performing a vector search with a distance threshold, we are able to aggregate information here on the questions that are relevant to the input text.
-
-:::note Exercise: Threshold distances
-Try changing the query text, and `distance` threshold to higher, or lower, values to see what happens. Note how the number of results change.
+:::note Try it out yourself!
+SOME WAY OF TRYING THIS OUT
 :::
 
-### `Aggregate` with a filter
-
-Filters work similarly with `Aggregate` queries as they do with `Get` queries, providing you with a way to limit the results of your query. 
-
-To identify how many questions have a value of over 600, a `where` filter can be constructed as shown below:
-
-```graphql
-{
-  Aggregate {
-    Question (
-      nearText: {
-        concepts: ["Seafaring technology from Scandanavia."],
-        distance: 0.2
-      }
-      where: {
-          path: ["value"],
-          operator: GreaterThan,
-          valueInt: 600,
-      }        
-      ) {
-      meta {
-        count
-      }
-    }
-  }
-}
-```
-
-Which reduces the result set by filtering them by the question's `value` property.
-
 <details>
-  <summary>Query results</summary>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
 
-```json
-{
-  "data": {
-    "Aggregate": {
-      "Question": [
-        {
-          "meta": {
-            "count": 27
-          }
-        }
-      ]
-    }
-  }
-}
-```
+  JSON RESPONSE GOES HERE
 
 </details>
 
-<!-- ### `Aggregate` with cross-references -->
+Notice we introduce the `distance` argument to limit the search space. This threshold limits the returned results to those that are relevant to the input. Without it, the search results would potentially include the entire class.
 
-## Sub-properties for `Aggregate`
+By performing a vector search with a distance threshold, we are able to aggregate information only from the questions that are relevant to the input text.
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Limit search space
+
+In order to produce meaningful aggregations with a vector search, you must limit the search space.
+
+This is different from aggregations in lexical searches, such as those often carried out in relational database. In a relational database, grouping or aggregating data can be done using `groupby` with functions such as SUM, AVG, MIN, MAX, etc. This allows you to find a result set and then aggregate the results.
+
+However, a vector search will return all results as it retrieve results based on *degrees* of similarity. As such, a vector search in itself does not exclude any results from the dataset. Accordingly, an aggregation of a vector search result set will include all results, regardless of the certainty of the match.
+
+Accordingly, the search space must be limited so that only relevant results are included in the aggregation. This can be done by setting an explicit `objectLimit` or a `certainty` in the query.
+
+<Quiz questions={varName} />
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Sub-properties for `Aggregate`
 
 As we have seen, the `meta` property is available for all data types, and can be used with the `count` sub-property to return the number of retrieved objects.
 
 In addition to this, there are a number of other sub-properties that can be used with `Aggregate` queries. Their availability, however, depend on the data type that is being queried.
 
-Let's take a look at some of these sub-properties, based on the `Question` class. It includes a property (`answer`) of the `text` data type, and a property (`value`) of the `int` data type.
+Let's take a look at some of these sub-properties, based on the `Question` class. 
 
-### Sub-properties for `text` data types
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
 
-As the name suggests, `text` data types are used to store text. Along with the `string` data type, `text` properties may be queried to retrieve one or more of:
-
-- count
-- type
-- topOccurrences
-
-So, for example - the following query will reveal the most common tokens in the `answer` property among the vector results:
+Try the following query:
 
 ```graphql
 {
@@ -312,8 +281,14 @@ So, for example - the following query will reveal the most common tokens in the 
 }
 ```
 
+Take a note of the requested properties in the GraphQL query, and consider what types of values they might return. How might these properties change according to the nature of the source data?
+
+:::note Try it out yourself!
+SOME WAY OF TRYING THIS OUT
+:::
+
 <details>
-  <summary>Query results</summary>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
 
 ```json
 {
@@ -358,17 +333,27 @@ So, for example - the following query will reveal the most common tokens in the 
 
 </details>
 
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Sub-properties for `text` data types
 
+It includes a property (`answer`) of the `text` data type, and a property (`value`) of the `int` data type.
+
+As the name suggests, `text` data types are used to store text. Along with the `string` data type, `text` properties may be queried to retrieve one or more of:
+
+- count
+- type
+- topOccurrences
+
+So, for example -  will reveal the most common tokens in the `answer` property among the vector results:
 
 <Quiz questions={varName} />
 
-## Review
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
 :::warning TODO
 Video here
 :::
 
-### Review exercise
+### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
 
 Can you describe, in your own sentence, XXX?
 
@@ -377,7 +362,7 @@ Input box for user to put answer in and get back a similarity score & our defini
 ??
 :::
 
-### Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
 :::info
 Add summary

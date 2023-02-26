@@ -1,0 +1,341 @@
+---
+title: Get{} objects
+sidebar_position: 20
+---
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;About `Get` queries
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+In many use cases, retrieving objects from a Weaviate instance may be the most common operation. 
+
+For example, a user may want to retrieve a list of passages most closely related to the input query, or they may wish to retrieve a list of images which are most similar to another image. It may even be possible to retrieve a set of images that best match a given passage.
+
+In Weaviate, these operations are performed using the `Get` function.
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Get` function syntax
+
+![](../../tmp_images/a_person_holding_a_magnifying_glass_at_computer_screen_with_code_0_short.jpg)
+
+The syntax of a `Get` function is as follows:
+
+```graphql
+{
+  Get {
+    <Class> (
+      <arguments>
+    ) {
+      <properties>
+    }
+  }
+}
+```
+
+To review the syntax:
+
+- The `Class` field specifies the name of the class of objects to be retrieved. 
+- The `arguments` argument specifies the search criteria to be used to retrieve the objects. 
+- The `properties` argument specifies the properties of the objects to be retrieved, including any `_additional` properties.
+
+Now let's try out some `Get` queries.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Standalone `Get` queries
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+It is possible to query Weaviate with the `Get` function without any vector search parameters.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+
+Take a look at this example:
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+    ) {
+      question 
+      answer 
+    }
+  }
+}
+```
+
+What results do you expect? See if you can correspond each field to the syntax. 
+
+Then, try running the query yourself.
+
+:::note Try it out yourself!
+SOME WAY OF TRYING THIS OUT
+:::
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "Georgia",
+          "question": "Though not in travel brochures, Erskine Caldwell's \"Tobacco Road\" is located in this state"
+        },
+        {
+          "answer": "Postimpressionist",
+          "question": "Roger Fry of the Met coined this term for the works of artists like Cezanne & Gauguin"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+In this case, Weaviate will return two objects due to the `limit:2` argument. Without this limit, Weaviate would return a maximum number according to its configuration.
+
+As this does not apply any user-specific criteria to the search, the specific results will likely not be very useful. 
+
+However, this may be a viable method for "sanity" checks, such as checking that you can connect to a Weaviate instance, or that at least some objects have been imported successfully.
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Class` and `properties`
+
+In the above example, we specify a `Class` of `JeopardyQuestion` and `properties` of `questions` and `answer`.
+
+That is possible because those are available as defined in the schema, as shown below:
+
+import ShortSchema from './_snippets/academy.queries.schema.short.mdx';
+
+<ShortSchema/>
+
+The `Class` and `properties` fields must correspond to collections of objects that have been defined in the Weaviate schema.
+
+The `Class` must be the name of a data object class, and the `properties` a list of properties to be retrieved.
+
+The schema contains the `JeopardyQuestion` class, with properties: `question`, `answer` and `value`.
+
+So, a query retrieving objects from the `Question` class could specify any of its properties such as `question`, `answer`, and `value`.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Get` with `nearText`
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+The `nearText` parameter specifies the a text input which will be the basis for the vector search. 
+
+This parameter is passed as an argument in the GraphQL query like below, where the `concepts` argument specifies the text input to be used for the vector search.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+
+Here is an example:
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Sports facts"],
+      }
+    ) {
+      question 
+      answer     
+    }
+  }
+}
+```
+
+Take a look at the query, and think about the following before you view the response. 
+
+How is this different to the earlier query? What class would the results come from? How many, and which, properties would be returned? 
+
+:::note Try it out yourself!
+SOME WAY OF TRYING THIS OUT
+:::
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "jai alai",
+          "question": "In this sport a long basket called a cesta is worn on one hand"
+        },
+        {
+          "answer": "the L.A. Kings",
+          "question": "The Royal Report is the official e-newsletter of this hockey team"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+Every vector search needs a "source" vector to form the basis of the search.
+
+Although the `nearText` parameter is not a vector, Weaviate converts the input to a vector before performing a vector search. The results are then returned in order of their similarity to the input vector, before.
+
+:::info `nearText` parameter requires a vectorizer!
+Because text object must be converted to a vector before it can be used in a vector search, the `nearText` parameter is only available when a vectorizer module has been specified for the class.
+:::
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`arguments`
+
+The `arguments` field is optional, but essential for performing meaningful searches. It specifies the search criteria to be used to retrieve the objects. 
+
+This may be to specify criteria for a vector search as you see above, or using `nearVector` or `nearObject` operators. 
+
+You can also use `arguments` to specify a filter to be applied to the results, or to provide additional constraints such as the number of limits to be returned. 
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Get` with `additional` properties
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+The `additional` field allows us to retrieve additional properties that are not defined in the schema.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+
+In this example, we've built on the previous example by adding the `_additional` field to the `Get` query with sub-fields. 
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Sports facts"],
+      }
+    ) {
+      question 
+      answer 
+      _additional {
+        distance
+        id
+      }      
+    }
+  }
+}
+```
+
+Again, consider what the response might look like. What would the `_additional` fields of `distance` and `id` return?
+
+:::note Try it out yourself!
+SOME WAY OF TRYING THIS OUT
+:::
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.19086593,
+            "id": "193592d0-ece4-53d5-9012-369d5f1420af"
+          },
+          "answer": "basketball",
+          "question": "Double-dribbling & shooting air balls are undesirable activities in this sport"
+        },
+        {
+          "_additional": {
+            "distance": 0.22519588,
+            "id": "989ff2ad-ec3e-53b5-b538-30a9bc7a6898"
+          },
+          "answer": "Emmitt Smith",
+          "question": "In 1994 this Dallas Cowboy scored 22 touchdowns; in 1995 he topped that with 25"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+Here, the `distance` and `id` properties contain the object's distance to the query and its unique ID respectively.
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`_additonal` properties
+
+The `_additional` properties make available for retrieval fields than those explicitly created as class properties.
+
+You will also notice that the query included the `distance` property in the `_additional` field. This represents the degree of similarity (or, in this case, the *dissimilarity*) between the input vector and the vector of the object.
+
+:::info Vector also available through `_additional`
+
+The object vector can also be retrieved through an `_additional` field, by specifying `vector` in its sub-field. 
+
+Note that the returned vector in many cases will be a very long list of numbers. 
+
+:::
+
+<Quiz questions={varName} />
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+
+:::warning TODO
+Video here
+:::
+
+### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+
+Can you describe, in your own sentence, XXX?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+??
+:::
+
+### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+
+:::info
+Add summary
+:::
+
+import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];

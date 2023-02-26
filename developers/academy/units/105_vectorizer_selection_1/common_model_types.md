@@ -3,7 +3,7 @@ title: Common model types
 sidebar_position: 2
 ---
 
-## Types of vector representations
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Types of vector representations
 
 :::warning TODO
 Intro video here
@@ -69,11 +69,11 @@ Their current key shortcoming is their resource-intensive nature, especially as 
 
 <Quiz questions={wordVecVsTransformer} />
 
-## By media type
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;By media type
 
-## Text vectorizer types
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Text vectorizer types
 
-## Multi-media vectorizers
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Multi-media vectorizers
 
 import Quiz from '/src/components/Academy/quiz.js' 
 const sparseOrDense = [

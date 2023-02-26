@@ -3,4 +3,4 @@ title: Vectorizer Selection Heuristics
 sidebar_position: 4
 ---
 
-## Vectorizer selection heuristics
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vectorizer selection heuristics

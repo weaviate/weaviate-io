@@ -3,7 +3,7 @@ title: Introduction to vectorizers
 sidebar_position: 10
 ---
 
-## Background (Why this module?)
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Background (Why this module?)
 
 This unit aims to provide you with tools to help you make good vectorizer selections. 
 
@@ -30,7 +30,7 @@ Lastly, new models are being developed and released every day. Such is the rate 
 
 All of this can be a recipe for decision paralysis.
 
-## Don't panic!
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Don't panic!
 
 The good news, however, is that you do not need to select the "perfect model" for your application to work well. 
 

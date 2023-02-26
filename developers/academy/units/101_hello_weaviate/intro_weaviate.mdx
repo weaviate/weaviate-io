@@ -5,23 +5,23 @@ sidebar_position: 10
 
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
-## What is Weaviate?
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;What is Weaviate?
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-As you may have read on [our homepage](https://weaviate.io/), Weaviate is an open-source vector search engine. 
+Weaviate is an open-source vector search engine. But what does that mean? Let's unpack it here.
 
-That's a short sentence that packs a lot of information. So let's spend some time unpacking it here, bit by bit.
-
-### Vector search engine
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector search engine
 
 ![](../../tmp_images/person_holding_a_magnifying_glass_in_front_of_a_big_pile_of_numbers_1.jpg)
 
 Weaviate is a fantastic tool for retrieving the information you need, quickly and accurately. It does this by being an amazing **vector search engine**.
 
-A vector search engine is a type of search engine that retrieves information based on similarity. 
+A vector search engine is a type of search engine that retrieves information based on similarity. This is different to traditional search methods, for example using SQL.
 
-Imagine that you are looking in a library, looking for books related to birds. Maybe you are a bird-watcher, or perhaps you're an ornithologist (bird scientist). If the library was catalogued using a traditional search system, you might construct a query like this: 
+#### How traditional searches work
+
+Imagine that you are searching a relational database for books related to birds. Maybe you are a bird-watcher, or perhaps you're an ornithologist (bird scientist). Using SQL, you might construct a query like this: 
 
 ```sql
 SELECT title, author, summary
@@ -37,11 +37,19 @@ WHERE title LIKE '%bird%'
     OR title LIKE '%avifauna%'
 ```
 
-Which would return books that contained any of these strings (`bird`, `avian`, `ornithology`, ... etc) in the `title`. Note how we have to identify any and all terms that *might* have been used in relation to the topic. Otherwise, the search would miss any entities that didn't include any of these terms.
+Which would return books that contained any of these strings (`bird`, `avian`, `ornithology`, ... etc) in the `title`. 
 
-What's more, this doesn't solve the problem of how to rank, or sort, the list of resulting books. Based on your search, a book like *"The Birdie Book. A Miscellany Of Golf"* (irrelevant) is given equal weighting to *"What It's Like to Be a Bird"* (highly relevant).
+#### Limitations of traditional search
+
+There are two main challenges with this approach.
+
+Here, you must identify all terms that have been used with the topic. Otherwise, the search would miss any entities that didn't include any of these terms.
+
+What's more, this doesn't solve the problem of how to rank, or sort, the list of resulting books. Based on your search, a book like *"The Birdie Book. A Miscellany Of Golf"* (irrelevant) is given equal weighting to *"What It's Like to Be a Bird"* (highly relevant). 
 
 A vector search engine makes this job simpler by enabling searches based on similarity. 
+
+#### Examples of vector search
 
 So, you could perform a query like this in Weaviate:
 
@@ -57,15 +65,33 @@ So, you could perform a query like this in Weaviate:
 
 And it would return a list of books that are *ranked by their similarity* to the query - the idea of "birds". 
 
-A vector search is also referred to as a "semantic search", because it returns results based on similarity of meaning (therefore "semantic").
-
 Weaviate can help you to do this, and actually a lot more. Another way to think about Weaviate is that it supercharges the way you use information. 
 
-#### Information, made dynamic
+:::info Vector vs semantic search
+A vector search is also referred to as a "semantic search" because it returns results based on the similarity of meaning (therefore "semantic").
+:::
 
-We are used to thinking of information as static, like a book. But modern AI and language models allows us to do much more than that. With Weaviate, you can not only identify and retrieve your existing information, but easily build on top of it.
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Open-source
 
-For example, you can extract answers to questions using Weaviate. Given a list of Wikipedia entries, you could ask Weaviate: 
+![](../../tmp_images/a_crowd_looking_at_many_many_lines_of_computer_code_1.jpg)
+
+Weaviate is open-source. In other words, its [codebase is available online](https://github.com/weaviate/weaviate) for anyone to see and use<sup>[(1)](#1)</sup>. 
+
+And that is *the* codebase, regardless of how you use it. So whether you run Weaviate on your own computer, on a cloud computing environment, or through our managed service [Weaviate Cloud Service, or WCS](https://console.weaviate.io/), you are using the exact same technology.
+
+It also means that your knowledge about Weaviate is fungible, between local, cloud, or managed instances of Weaviate. So anything you learn here about Weaviate using WCS will be equally applicable to running it locally, and vice versa. 😉
+
+<Quiz questions={weaviateOpenSource} />
+
+<Quiz questions={vectorSearchDefinition} />
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Information, made dynamic
+
+We are used to thinking of information as static, like a book. But modern AI and language models allow us to do much more than that. With Weaviate, you can not only identify and retrieve your existing information but easily build on top of it. Take a look at these examples:
+
+#### Question answering
+
+Given a list of Wikipedia entries, you could ask Weaviate: 
 
 :::note We asked Weaviate:
 When was Lewis Hamilton born?
@@ -125,6 +151,8 @@ Lewis Hamilton was born on January 7, 1985. ([check for yourself](https://en.wik
 ```
 
 </details>
+
+#### Generative search
 
 Or you can synthesize passages using retrieved information with Weaviate:
 
@@ -200,37 +228,21 @@ Check out the amazing story of Lewis Hamilton, the 7-time Formula One World Driv
 </details>
 
 
-We will cover these and many more capabilities, such as vectorization, summarization and classification, in our units. For now, keep in mind that Weaviate is a vector search engine at its core which can also leverage AI tools to do more with the retrieved information.
+We will cover these and many more capabilities, such as vectorization, summarization and classification, in our units. 
 
-### Open-source
+For now, keep in mind that Weaviate is a vector search engine at its core which can also leverage AI tools to do more with the retrieved information.
 
-![](../../tmp_images/a_crowd_looking_at_many_many_lines_of_computer_code_1.jpg)
-
-Weaviate is open-source. In other words, its [codebase is available online](https://github.com/weaviate/weaviate) for anyone to see and use<sup>[(1)](#1)</sup>. 
-
-And that is *the* codebase, regardless of how you use it. So whether you run Weaviate on your own computer, on a cloud compute environment, or through our managed service [Weaviate Cloud Service, or WCS](https://console.weaviate.io/), you are using the exact same technology.
-
-It also means that your knowledge about Weaviate is fungible, between local, cloud or managed instances of Weaviate. So anything you learn here about Weaviate using WCS will be equally applicable to running it locally, and vice versa. 😉
-
-:::note Revision
-
-<Quiz questions={weaviateOpenSource} />
-
-<Quiz questions={vectorSearchDefinition} />
-
-:::
-
-## How does Weaviate work?
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;How does Weaviate work?
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
 Weaviate enables vector searches by indexing and storing data objects and corresponding vector embeddings from machine learning models. 
 
-In more plain terms, Weaviate processes and organizes your data in such a way that objects can be retrieved based on their similarity to a query. 
+In plain terms, Weaviate processes and organizes your data in such a way that objects can be retrieved based on their similarity to a query. 
 
 There are a few factors here that are important to point out.
 
-### Quantifying similarity
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Quantifying similarity
 
 ![](../../tmp_images/confused_person_holding_documents_on_either_hand_0.jpg)
 
@@ -240,13 +252,15 @@ This is a relatively simple idea that is actually incredibly interesting and int
 
 But for now, you should know that machine learning (ML) models are key to this whole process, and it is important to select the right model for the job. We will cover this in more detail later on. 
 
-## Review
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
 In this section, you learned about what Weaviate is and how it works at a very high level. You have also been introduced to what vector search is at a high level, that it is a similarity-based search method. 
 
-### Review exercise
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Practical subhead
+
+### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
 
 Can you describe, in your own sentence, what vector search is?
 
@@ -256,14 +270,14 @@ Input box for user to put answer in and get back a similarity score & our defini
 - What is Weaviate
 :::
 
-### Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
 - Weaviate is an open source vector search engine.
-- The core Weaviate library the same whether you run it locally, on the cloud, or with WCS.
+- The core Weaviate library is the same whether you run it locally, on the cloud, or with WCS.
 - Vector searches are similarity-based searches.
 - Weaviate can also transform your data after retrieving it before returning it to you.
 
-## Notes
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Notes
 <a name="1"></a>(1) Subject to terms of its license, of course.
 
 import Quiz from '/src/components/Academy/quiz.js' 
