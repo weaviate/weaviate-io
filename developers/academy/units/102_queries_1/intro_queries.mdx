@@ -9,17 +9,17 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-Weaviate provides REST and GraphQL API interfaces for communication. This section will explain the differences between the two and how they are used in Weaviate.
+Weaviate provides both REST and GraphQL API interfaces. This section will explain the differences between the two and how they are used in Weaviate.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Uses in Weaviate
 
-The two approaches are complementary and so Weaviate uses both to provide a rich API for its users.
+In Weaviate, REST and GraphQL interfaces are provided in a complementary fashion to provide a rich API for its users.
 
-In Weaviate, the REST API is used to interact with Weaviate for CRUD operations and to obtain metadata about the database. 
+The REST API is used to interact with Weaviate for CRUD (Create, Read, Update and Delete) operations and to obtain metadata about the database. 
 
 The GraphQL API is used to interact with Weaviate for data searches. More specifically, it can be used to retrieve data objects, aggregate information, and explore vector spaces.
 
-In this module, we will focus on various strategies to query Weaviate using GraphQL to retrieve information.
+In this unit, we will focus on various strategies to query Weaviate using GraphQL to retrieve information.
 
 <details>
   <summary>What is REST?</summary>
@@ -86,7 +86,7 @@ Take a look at the following:
 ```graphql
 {
   Get {
-    Question (limit: 1) {
+    JeopardyQuestion (limit: 1) {
       question
       answer
     }
@@ -94,7 +94,7 @@ Take a look at the following:
 }
 ```
 
-This query applies the `Get` function on the `Question` class, with an argument `limit: 1` which limits the number of returned objects to a maximum of 1. 
+This query applies the `Get` function to the `JeopardyQuestion` class, with an argument `limit: 1` which limits the number of returned objects to a maximum of 1. 
 
 It should produce a response like the following:
 
@@ -102,7 +102,7 @@ It should produce a response like the following:
 {
   "data": {
     "Get": {
-      "Question": [
+      "JeopardyQuestion": [
         {
           "answer": "Amazon.com",
           "question": "On July 16, 1995 this company made its first sale, a science textbook"
@@ -113,20 +113,20 @@ It should produce a response like the following:
 }
 ```
 
-You can see that the response includes a data object from the `Question` class, and values of its `question` and `answer` properties. 
+You can see that the response includes a data object from the `JeopardyQuestion` class, and values of its `question` and `answer` properties. 
 
 :::info Formatting in GraphQL queries
 For the most part GraphQL is very flexible in terms of formatting, such that [whitespaces](https://spec.graphql.org/October2021/#sec-White-Space) and [commas](https://spec.graphql.org/October2021/#sec-Insignificant-Commas) are typically insignificant. For instance, the above query could have been written as the following:
 ```graphql
-{Get{Question(limit:1){question answer}}}
+{Get{JeopardyQuestion(limit:1){question answer}}}
 ```
 
 Or even (notice the comma):
 ```graphql
-{Get{Question(limit:1){question,answer}}}
+{Get{JeopardyQuestion(limit:1){question,answer}}}
 ```
 
-Do note that, however, names in GraphQL [are case-sensitive](https://spec.graphql.org/October2021/#sec-Names), so `Get` and `Question` are different from `get` and `question`.
+Do note that, however, names in GraphQL [are case-sensitive](https://spec.graphql.org/October2021/#sec-Names), so `Get` and `JeopardyQuestion` are different from `get` and `jeopardyquestion`.
 :::
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Aggregate` information
@@ -135,12 +135,12 @@ Whereas `Get` returns objects, `Aggregate` returns summary statistics or aggrega
 
 As such you can use `Aggregate` to obtain summary values such as counts, sums, means and so on from groups of objects. 
 
-For example, the following query will produce the maximum, minimum and mean of the `value` property in the `Question` class.
+For example, the following query will produce the maximum, minimum and mean of the `value` property in the `JeopardyQuestion` class.
 
 ```graphql
 {
   Aggregate {
-    Question (limit: 100) {
+    JeopardyQuestion (limit: 100) {
       value {
         maximum
         minimum
@@ -157,7 +157,7 @@ It should produce a response like the following:
 {
   "data": {
     "Aggregate": {
-      "Question": [
+      "JeopardyQuestion": [
         {
           "value": {
             "maximum": 10000,
@@ -179,7 +179,7 @@ Notice that even though the query related to a maximum of 100 objects, the resul
 
 This means that you can use `Explore` to find objects that are similar to a given object or vector, regardless of the class of the object. As such, `Explore` is very useful when you may not be sure of what class to search for.
 
-In relation to our Quiz dataset, a query using the `Explore` function would return a set of objects from both the `Question` and `Category` classes.
+In relation to our Quiz dataset, a query using the `Explore` function would return a set of objects from both the `JeopardyQuestion` and `Category` classes.
 
 We will explore the `Explore` function in more detail in a separate, following unit.
 
@@ -198,7 +198,7 @@ Arguments are provided in GraphQL as a comma-separated list of key-value pairs, 
 ```graphql
 {
   Get {
-    Question (limit: 1) {
+    JeopardyQuestion (limit: 1) {
       question
       answer
     }

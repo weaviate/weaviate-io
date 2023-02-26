@@ -21,40 +21,22 @@ You will also compare vector search with keyword search to compare and contrast 
 
 For our first search, let's look through our demo dataset which contains a small sample of questions from the quiz show *Jeopardy!*. 
 
-Imagine that you're running a quiz night, and want to get some questions around the category of just anything that goes "fast". You could look for word matches - perhaps something like:
+Imagine that you're running a quiz night, and want to get some questions around the category of "animals in movies". You could look for word matches - perhaps something like:
 
 ```sql
-SELECT question, answer 
-FROM jeopardy_questions 
-WHERE question LIKE '%fast%' 
-OR question LIKE '%speedy%' 
-OR question LIKE '%quick%' 
-OR question LIKE '%swift%' 
-OR question LIKE '%rapid%' 
-OR question LIKE '%dashing%' 
-OR question LIKE '%blazing%' 
-OR question LIKE '%sprinting%' 
-OR question LIKE '%velocity%' 
-OR question LIKE '%acceleration%' 
-OR question LIKE '%high-speed%'
-```
-
-Or maybe you could relate them to certain objects? Like:
-
-```sql
-SELECT question, answer 
+SELECT question, answer
 FROM jeopardy_questions
-WHERE (question LIKE '%fast%' OR question LIKE '%speedy%' OR question LIKE '%quick%' OR question LIKE '%rapid%')
-   OR (question LIKE '%race%' OR question LIKE '%rally%' OR question LIKE '%formula%')
-   OR (question LIKE '%vehicle%' OR question LIKE '%car%' OR question LIKE '%motor%' OR question LIKE '%cycle%')
+WHERE (question LIKE '%animal%' OR question LIKE '%creature%' OR question LIKE '%beast%')
+AND (question LIKE '%movie%' OR question LIKE '%film%' OR question LIKE '%picture%' OR question LIKE '%cinema%')
+
 ```
 
-But this is very difficult. 
+But this is very difficult. You likely need to know the names of the specific animals ot carry this out.
 
 Not so much with Weaviate, though. See what happened when we ran the following query:
 
 :::note We searched Weaviate for:
-Fast things
+animals in movies
 :::
 
 <details>
@@ -65,7 +47,7 @@ Fast things
   Get {
     JeopardyQuestion (
       nearText: {
-        concepts: ["fast things"]
+        concepts: ["animals in movies"]
       }
       limit: 3
     ) {
@@ -81,9 +63,9 @@ Fast things
 Weaviate retrieved these as the top answers:
 
 :::note Weaviate retrieved:
-- **the automobile**: In 1922 Warren Harding said that this "gauges the speed of our present-day life. It long ago ran down simple living"
-- **Bonnie Blair**: At the 1994 Olympics, this U.S. woman speed skater surpassed Eric Heiden's medal total
-- **jai alai**: In this sport a long basket called a cesta is worn on one hand
+- **meerkats**: Group of mammals seen here like Timon in *The Lion King*
+- **dogs**: Scooby-Doo, Goofy & Pluto are cartoon versions
+- **The Call of the Wild Thornberrys**: Jack London story about the dog Buck who joins a Nick cartoon about Eliza, who can talk to animals
 :::
 
 <details>
@@ -95,16 +77,16 @@ Weaviate retrieved these as the top answers:
     "Get": {
       "JeopardyQuestion": [
         {
-          "answer": "the automobile",
-          "question": "In 1922 Warren Harding said that this \"gauges the speed of our present-day life. It long ago ran down simple living\""
+          "answer": "meerkats",
+          "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]"
         },
         {
-          "answer": "Bonnie Blair",
-          "question": "At the 1994 Olympics, this U.S. woman speed skater surpassed Eric Heiden's medal total"
+          "answer": "dogs",
+          "question": "Scooby-Doo, Goofy & Pluto are cartoon versions"
         },
         {
-          "answer": "jai alai",
-          "question": "In this sport a long basket called a cesta is worn on one hand"
+          "answer": "The Call of the Wild Thornberrys",
+          "question": "Jack London story about the dog Buck who joins a Nick cartoon about Eliza, who can talk to animals"
         }
       ]
     }
@@ -114,11 +96,7 @@ Weaviate retrieved these as the top answers:
 
 </details>
 
-Note just how relevant the results are, despite their diversity and difference. 
-
-The results are a car (in the eyes of someone from 1922), a champion speed skater, or a sport involving an incredibly fast ball. 
-
-None of these included the word "fast", but all match the description very well. 
+Note just how relevant the results are, despite none of them including the word "animal", or the "movie", let alone both!
 
 This is exactly why vector searches are so useful. They can identify related objects without the need to match exact texts. 
 
@@ -154,16 +132,17 @@ Take a look at this response. Do you notice any additional information?
       "JeopardyQuestion": [
         {
           "_additional": {
-            "distance": 0.21701801
+            "distance": 0.15916324
           },
-          "answer": "Atlantic Ocean",
-          "question": "Some say the Weddell Sea is an arm of the Antarctic Ocean; others say it's part of this larger ocean"
+          "answer": "Bulgaria",
+          "question": "A European republic: Sofia"
         },
         ...
       ]
     }
   }
 }
+
 ```
 
 <details>
@@ -176,29 +155,30 @@ Take a look at this response. Do you notice any additional information?
       "JeopardyQuestion": [
         {
           "_additional": {
-            "distance": 0.21701801
+            "distance": 0.15916324
           },
-          "answer": "Atlantic Ocean",
-          "question": "Some say the Weddell Sea is an arm of the Antarctic Ocean; others say it's part of this larger ocean"
+          "answer": "Bulgaria",
+          "question": "A European republic: Sofia"
         },
         {
           "_additional": {
-            "distance": 0.22529364
+            "distance": 0.16247147
           },
-          "answer": "Champagne",
-          "question": "Sparkling wine sold under the name Champagne must come from this region in Northeast France"
+          "answer": "Balkan Peninsula",
+          "question": "The European part of Turkey lies entirely on this peninsula"
         },
         {
           "_additional": {
-            "distance": 0.22557938
+            "distance": 0.16832423
           },
-          "answer": "Yucatan Peninsula",
-          "question": "In 1517 Cordova became the first Spaniard to reach Mexico when he landed on this east coast peninsula"
+          "answer": "Mediterranean Sea",
+          "question": "It's the only body of water with shores on the continents of Asia, Africa & Europe"
         }
       ]
     }
   }
 }
+
 ```
 
 </details>

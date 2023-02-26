@@ -195,7 +195,7 @@ We had looked at a few results of a `nearText` query earlier in the earlier sect
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
 
-For example, let's say we are still interested in a similar input text ("Seafaring technology from Scandanavia.") as before, but instead of individual queries, we would like to know how many questions might be related to this query.
+For example, let's say we are still interested in a similar input text as before, but instead of individual queries, we would like to know how many questions might be related to this query.
 
 We can do this by introducing the `nearText` argument:
 
@@ -204,7 +204,7 @@ We can do this by introducing the `nearText` argument:
   Aggregate {
     Question (
         nearText: {
-          concepts: ["Seafaring technology from Scandanavia."],
+          concepts: ["Space travel in real life"],
           distance: 0.2
         }
       ) {
@@ -225,7 +225,21 @@ SOME WAY OF TRYING THIS OUT
 <details>
   <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
 
-  JSON RESPONSE GOES HERE
+```json
+{
+  "data": {
+    "Aggregate": {
+      "JeopardyQuestion": [
+        {
+          "meta": {
+            "count": 25
+          }
+        }
+      ]
+    }
+  }
+}
+```
 
 </details>
 
@@ -260,9 +274,9 @@ Try the following query:
 ```graphql
 {
   Aggregate {
-    Question (
+    JeopardyQuestion (
       nearText: {
-        concepts: ["Seafaring technology from Scandanavia."],
+        concepts: ["Space travel in real life"],
         distance: 0.2
       }   
       ) {
@@ -294,35 +308,35 @@ SOME WAY OF TRYING THIS OUT
 {
   "data": {
     "Aggregate": {
-      "Question": [
+      "JeopardyQuestion": [
         {
           "answer": {
             "topOccurrences": [
               {
-                "occurs": 4,
-                "value": "Oslo"
+                "occurs": 2,
+                "value": "Alan Shepard"
               },
               {
                 "occurs": 2,
-                "value": "Baltic Sea"
+                "value": "Endeavour"
               },
               {
                 "occurs": 2,
-                "value": "Danish"
+                "value": "a hot air balloon"
               },
               {
                 "occurs": 2,
-                "value": "Denmark"
+                "value": "the Moon"
               },
               {
-                "occurs": 2,
-                "value": "Greenland"
+                "occurs": 1,
+                "value": "(Alan) Shepard"
               }
             ],
             "type": "text"
           },
           "meta": {
-            "count": 60
+            "count": 25
           }
         }
       ]
@@ -335,7 +349,7 @@ SOME WAY OF TRYING THIS OUT
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Sub-properties for `text` data types
 
-It includes a property (`answer`) of the `text` data type, and a property (`value`) of the `int` data type.
+The current schema includes a property (`answer`) of the `text` data type, and a property (`value`) of the `int` data type.
 
 As the name suggests, `text` data types are used to store text. Along with the `string` data type, `text` properties may be queried to retrieve one or more of:
 
@@ -343,7 +357,7 @@ As the name suggests, `text` data types are used to store text. Along with the `
 - type
 - topOccurrences
 
-So, for example -  will reveal the most common tokens in the `answer` property among the vector results:
+And as you might imagine, these properties that can be queried will vary according to the data type that is being aggregated.
 
 <Quiz questions={varName} />
 

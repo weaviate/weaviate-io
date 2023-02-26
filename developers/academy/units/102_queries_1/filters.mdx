@@ -51,7 +51,7 @@ Below, we extend our query again to now include a `where` argument, specifying t
 ```graphql
 {
   Get {
-    Question (
+    JeopardyQuestion (
       limit: 2
       nearText: {
         concepts: ["Seafaring technology from Scandanavia."],
@@ -82,7 +82,7 @@ This should produce a result like the following:
 {
   "data": {
     "Get": {
-      "Question": [
+      "JeopardyQuestion": [
         {
           "_additional": {
             "distance": 0.17154193,
@@ -126,7 +126,7 @@ So, we could modify the above query to only search for questions with a value gr
 ```graphql
 {
   Get {
-    Question (
+    JeopardyQuestion (
       limit: 1,
       nearVector: {vector: <VECTOR>},
       where: {
@@ -148,7 +148,7 @@ The additional `where` filter limits the results here to questions where the `va
 {
   "data": {
     "Get": {
-      "Question": [
+      "JeopardyQuestion": [
         {
           "answer": "Zebra",
           "question": "It's the striped African mammal with whom the insect seen here shares part of its name"
@@ -173,7 +173,7 @@ To identify how many questions have a value of over 600, a `where` filter can be
 ```graphql
 {
   Aggregate {
-    Question (
+    JeopardyQuestion (
       nearText: {
         concepts: ["Seafaring technology from Scandanavia."],
         distance: 0.2
@@ -201,7 +201,7 @@ Which reduces the result set by filtering them by the question's `value` propert
 {
   "data": {
     "Aggregate": {
-      "Question": [
+      "JeopardyQuestion": [
         {
           "meta": {
             "count": 27
@@ -230,7 +230,7 @@ Specifying a `distance` threshold can be done like so:
 ```graphql
 {
   Get {
-    Question (
+    JeopardyQuestion (
       nearText: {
         concepts: ["Seafaring technology from Scandanavia."],
         distance: 0.15
@@ -256,7 +256,7 @@ Think about how you expect the results to look before viewing the expected JSON 
 {
   "data": {
     "Get": {
-      "Question": [
+      "JeopardyQuestion": [
         {
           "_additional": {
             "distance": 0.1492011,
