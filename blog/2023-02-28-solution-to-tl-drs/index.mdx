@@ -168,7 +168,12 @@ Here is how:
 The required steps to make use of this module are as follows:
 
 1. Enable the module in your configuration file (e.g. `docker-compose.yml`).
-1. Add `_additional { summary ( properties: ["<FIELD_TO_BE_SUMMARIZED>"]) { property result } }` to your query.
+1. Add this to your query:
+
+    ```graphql
+    _additional { summary ( properties: ["<FIELD_TO_BE_SUMMARIZED>"]) { property result } }
+    ```
+    
 1. Parse the results!
 
 That's all there is to it. Let's take a look at each step in more detail.
