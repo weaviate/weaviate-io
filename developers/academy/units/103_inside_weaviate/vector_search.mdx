@@ -17,9 +17,9 @@ Earlier on, we mentioned that a vector can be used to represent the meaning of a
 
 You can probably see how these two ideas converge. A vector search relies on these numerical representation of meaning to carry out similarity-based searches. The closer two vectors are to each other, the more similar the words they represent.
 
-A vector search therefore works by providing a vector-based query object to a vector search engine. The vector search engine then returns a list of results that are most similar to the query object.
+A vector search therefore works by providing a vector-based query object to a vector index. The vector index then returns a list of results that are most similar to the query object.
 
-It may be that a vector search engine takes as input an object such as a text passage or an image which it converts to a vector. Or it may receive a vector as the query object directly. 
+It may be that a vector index takes as input an object such as a text passage or an image which it converts to a vector. Or it may receive a vector as the query object directly. 
 
 ### How is vector similarity measured?
 
@@ -86,13 +86,13 @@ Because vector search as we use them has some roots in *natural language process
 ![](../../tmp_images/person_holding_a_magnifying_glass_in_front_of_a_big_pile_of_numbers_1.jpg)
 ![](../../tmp_images/person_holding_a_magnifying_glass_in_front_of_a_big_pile_of_words_1.jpg)
 
-When facing a query of a recipes database with the word `chili` for ingredients, a vector search engine returns entities that include that exact word in the recipe data. 
+When facing a query of a recipes database with the word `chili` for ingredients, a vector database returns entities that include that exact word in the recipe data. 
 
 This means that a search for `chili` would include in its results entities with semantically related terms such as `ghost pepper`, `jalapeno`, `habanero` or `carolina reaper`, all of which would be ignored by a lexical search.
 
-A modern vector search engine can also take the context into account, such as the context of a word as a part of its parent sentence. So a vector search will differentiate between whether the recipe calls for these ingredients, or whether the recipe asks the cook to "*not* use any chili". 
+A modern vector search can also take the context into account, such as the context of a word as a part of its parent sentence. So a vector search will differentiate between whether the recipe calls for these ingredients, or whether the recipe asks the cook to "*not* use any chili". 
 
-Also importantly, a vector search engine can determine the degree of similarity between items, such as between a query and each result. Accordingly, the results can be ranked by a meaningful metric that describes the degree of similarity, thereby improving the chance of finding more relevant results faster.
+Also importantly, a vector database can determine the degree of similarity between items, such as between a query and each result. Accordingly, the results can be ranked by a meaningful metric that describes the degree of similarity, thereby improving the chance of finding more relevant results faster.
 
 <Quiz questions={lexicalSearch} />
 

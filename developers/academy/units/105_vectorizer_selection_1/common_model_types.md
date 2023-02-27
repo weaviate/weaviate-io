@@ -59,7 +59,7 @@ Word vectors in a text can be combined with a weighting method such as TF-IDF or
 
 #### Transformer-derived vectors
 
-Most modern vector search engines use vectors that are derived from what are called "transformer" models. 
+Most modern vector database use vectors that are derived from what are called "transformer" models. 
 
 Transformers are a type of neural network that are able to take into account the context of its parent sentence in determining the meaning of each word. This means that they are able to disambiguate words that have multiple meanings, such as the word "bank" in the example above.
 
