@@ -4,12 +4,14 @@ slug:  solution-to-tl-drs
 authors: jp
 date: 2023-02-28
 tags: []
-# image: 
+image: ./img/hero.png
 ---
 
 How often do you find yourself facing a wall of text in an email, a report, or a paper, and letting out a sigh? Nobody enjoys hacking their way through boring, dense prose. Especially if it's just to see if the information is even relevant.
 
 In this day and age, this is a more common problem than ever. For a while now, the bottleneck in knowledge work has been our rate of information discovery and consumption. So how do we solve this problem? 
+
+<!-- truncate -->
 
 You probably already know that Weaviate, as a vector search engine, can help with information cataloging and discovery. But did you know that Weaviate can also summarize information during retrieval? 
 
@@ -97,14 +99,24 @@ Some researchers argue that bitmap indexes are also useful for moderate or even 
 
 </details>
 
-If you examine these summaries, you will notice that these sentences are not lifted verbatim from the original text. Instead, what is produced is an *abstractive* summary, which are newly produced based on the original text. 
+If you examine these summaries, you will notice that these sentences are not lifted verbatim from the original text. Instead, what is produced is an *abstractive* summary, which is newly produced based on the original text. 
 
 The summarization module achieves this at query time by passing on the text that is retrieved from Weaviate to a language model that is trained specifically for summarization. 
 
-This means that you can set up your Weaviate instance to not only retrieve the most relevant query results for you, but take the next step and add an overview of each retrieved object.
+This means that you can set up your Weaviate instance to not only retrieve the most relevant query results for you but take the next step and add an overview of each retrieved object.
 
-:::warning ADD HERO IMAGE WITHOUT TEXT
-:::
+![](./img/Weaviate-summarize.png)
+
+import ThemedImage from '@theme/ThemedImage';
+require 
+
+<ThemedImage
+  alt="Docusaurus themed image"
+  sources={{
+    light: './img/Weaviate-summarize_light.png',
+    dark: './img/Weaviate-summarize.png',
+  }}
+/>;
 
 So, in a parallel fashion to the generative module, you can get back the information stored in Weaviate and *then some*.
 
@@ -168,7 +180,7 @@ That's all there is to it. Let's take a look at each step in more detail.
 
 ### Configuration (`docker-compose.yml`) file
 
-The `sum-transformers` module is to be used in addition to the usual vectorizer module, such as `text2vec-transformers`, or inference-API based ones such as `text2vec-openai/cohere/huggingface`. 
+The `sum-transformers` module is to be used in addition to the usual vectorizer module, such as `text2vec-transformers`, or inference-API-based ones such as `text2vec-openai/cohere/huggingface`. 
 
 Accordingly, the relevant lines are:
 
@@ -189,7 +201,7 @@ services:
 ...
 ```
 
-Notice that the `ENABLE_MODULES` variable includes `sum-transformers`, and there is a `sum-transformers` section which specifies the Docker image to be used, specifying the summarizer model, and whether to use CUDA (GPU) acceleration.
+Notice that the `ENABLE_MODULES` variable includes `sum-transformers`, and there is a `sum-transformers` section that specifies the Docker image to be used, specifies the summarizer model, and whether to use CUDA (GPU) acceleration.
 
 <details>
   <summary>Example of an entire configuration yaml</summary>
@@ -249,7 +261,7 @@ However, you can perform summarizations with the `generative-openai` module, by 
 
 ### Results with summaries
 
-Summaries are available at query time. In other words, they are not pre-determined, but generated from the retrieved results by the `sum-transformers` model. 
+Summaries are available at query time. In other words, they are not pre-determined but generated from the retrieved results by the `sum-transformers` model. 
 
 This can be triggered as an `additional` property, with a GraphQL query syntax like so:
 
@@ -330,13 +342,13 @@ Note that in this example, `Article` was the class name, `wiki_summary` was the 
 
 </details>
 
-Grabbing these results are relatively straightforward. But as with many tasks that involve language models, there are a few tips and tricks to help you get the most out of this wonderful tool.
+Grabbing these results is relatively straightforward. But as with many tasks that involve language models, there are a few tips and tricks to help you get the most out of this wonderful tool.
 
 ### Summarization - with `generative-openai`
 
 You might have heard of our new `generative-openai` module already. It can take your results, and provide a prompt to a generative model to get back a response. 
 
-So, this module can also be used to generate summaries by prompting it directly to do so. The below is one such example:
+So, this module can also be used to generate summaries by prompting it directly to do so. Below is one such example:
 
 ```graphql
 {
@@ -391,7 +403,7 @@ While this is not a custom-trained summarization model, this may be a great alte
 
 The `sum-transformers` module is configured to spin up a Docker container on your system to carry out the inference (i.e. summarization) task. While inference tasks are far less resource intensive than training, they are still non-trivial. 
 
-It will run much faster on systems that support GPU acceleration with CUDA. CPUs may be fine for occasional or private, evaluation use, but for any kind of deployment we highly recommend utilizing GPU acceleration.
+It will run much faster on systems that support GPU acceleration with CUDA. CPUs may be fine for occasional or private, evaluation use, but for any kind of deployment, we highly recommend utilizing GPU acceleration.
 
 ### Model choice
 
@@ -399,11 +411,11 @@ Currently, the `sum-transformers` module uses the `bart-large-cnn` model under t
 
 In addition to these two models, however, you can use any model from the Hugging Face Hub (or your own) by following [this guide](/developers/weaviate/modules/reader-generator-modules/sum-transformers#use-another-summarization-module-from-huggingface). 
 
-Even when looking only at language models that is trained for summarization task, there is still a wide range of choices in terms of sheer numbers, which vary in target domain (e.g. medical, legal, scientific, etc.) and size (number of parameters, i.e. speed). If you have specific needs, we recommend investigating other models. 
+Even when looking only at language models that are trained for summarization task, there is still a wide range of choices in terms of sheer numbers, which vary in the target domain (e.g. medical, legal, scientific, etc.) and size (number of parameters, i.e. speed). If you have specific needs, we recommend investigating other models. 
 
 ### Avoid too long an input 
 
-All transformer models have a maximum input length size. For example, `bart-large-cnn` has a maximum limit of 1024 tokens, where each token is a part of a word (i.e. a few characters). 
+All transformer models have a maximum input length size. For example, `bart-large-cnn` has a maximum limit of 1024 tokens, where each token is part of a word (i.e. a few characters). 
 
 Inputting too long a text into the summarizer module will cause it to throw an error. Accordingly, if you envisage generating summaries using `sum-transformers`, we recommend considering chunking your data at import time to make sure that the content of each field is shorter than the maximum length. 
 
@@ -411,7 +423,7 @@ Inputting too long a text into the summarizer module will cause it to throw an e
 
 The [Goldilocks Principle](https://en.wikipedia.org/wiki/Goldilocks_principle) also applies here, where too short an input may cause the summarizer model to misbehave (i.e. [hallucinate](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence))).
 
-When fed insufficient input, the model may "pad" the output with tokens that have very little grounding to the truth. Generally speaking, an input length that is shorter than a typical "summary" output length by the model is inadvisable. 
+When fed insufficient input, the model may "pad" the output with tokens that have very little grounding in the truth. Generally speaking, an input length that is shorter than a typical "summary" output length by the model is inadvisable. 
 
 ## Do more with less
 
