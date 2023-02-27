@@ -262,30 +262,107 @@ Accordingly, the returned data set is very different.
 
 
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`Aggreagte` with `where`
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Space travel in real life"],
+      }
+      where: {
+        operator: And, 
+        operands: [
+        {
+          path: ["question"],    
+          operator: Like,  
+          valueText: "*rocket*"
+        }
+        {
+          path: ["value"],    
+          operator: LessThan,  
+          valueInt: 400        
+        },        
+        ]     
 
+      }
+    ) {
+      question 
+      answer 
+      value
+      _additional {
+        distance
+        id
+      }      
+    }
+  }
+}
+```
+
+Take a look at the argument under `where`. What limitations do you expect in the results?
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.15372223,
+            "id": "ddcc3f06-5410-5944-85c4-3cb56ab27088"
+          },
+          "answer": "space shuttles",
+          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane",
+          "value": 200
+        },
+        {
+          "_additional": {
+            "distance": 0.2411471,
+            "id": "5a16f15a-9d9e-50a4-9afa-53a51f73b0cf"
+          },
+          "answer": "Liquid oxygen",
+          "question": "Common fuels in rockets include liquid hydrogen & LOX, which stands for this",
+          "value": 300
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+This query has been modified to only return `JeopardyQuestion` objects with a `value` less than than 400, AND include the text `rocket` in the `question` field. 
+
+</details>
+
+Take a look at the argument under `where`. What limitations do you expect in the results?
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`Aggreagte` with `where`
 
 Filters work similarly with `Aggregate` queries as they do with `Get` queries, providing you with a way to limit the results of your query. 
 
-To identify how many questions have a value of over 600, a `where` filter can be constructed as shown below:
+Take a look at the below example: 
 
 ```graphql
 {
   Aggregate {
     JeopardyQuestion (
-      nearText: {
-        concepts: ["Seafaring technology from Scandanavia."],
-        distance: 0.2
-      }
       where: {
-          path: ["value"],
-          operator: GreaterThan,
-          valueInt: 600,
-      }        
-      ) {
+        path: ["question"],    
+        operator: Like,  
+        valueText: "*rocket*"   
+      }
+    ) {
       meta {
         count
-      }
+      }      
     }
   }
 }
@@ -303,7 +380,7 @@ Which reduces the result set by filtering them by the question's `value` propert
       "JeopardyQuestion": [
         {
           "meta": {
-            "count": 27
+            "count": 10
           }
         }
       ]
@@ -314,33 +391,99 @@ Which reduces the result set by filtering them by the question's `value` propert
 
 </details>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Distance thresholds
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
 
-As you saw previously, vector search evaluate objects based on degrees of similarity, and as a result does not exclude any of the results.
+The query uses the `where` filter to limit the count to objects which include the string "rocket", reducing the results set to a very small number.
 
-Accordingly, it is desirable to limit the search space using a `limit` argument or based on distance. 
+</details>
 
-As you have seen before, the `limit` argument specifies the number of results to be retrieved. On the other hand, a threshold value such as `distance` or `certainty` specify the maximum distance (or, looked from the other direction, minimum similarity) required for objects being retrieved.
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vector search parameters
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Examples
+<img src={imageUrl} alt="Image alt" width="75%"/>
 
-Specifying a `distance` threshold can be done like so:
+Vector search parameters are available to further specify how to carry out each search. 
+
+Take a look at a few of these examples.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`nearVector` / `nearObject`
+
+You've already seen how to carry out vector searches with the `nearText` parameter. 
+
+The `nearVector` and `nearObject` parameters are two other available options for carrying out vector search. 
+
+Both `nearVector` and `nearObject` directly provides Weaviate with a source vector with which it can perform a vector search. 
+
+In case of `nearVector`, the query must include a source vector based on which similarity will be measured. An example query might look like:
 
 ```graphql
 {
   Get {
     JeopardyQuestion (
-      nearText: {
-        concepts: ["Seafaring technology from Scandanavia."],
-        distance: 0.15
+      limit: 2
+      nearVector: {
+        vector: <QUERY_VECTOR>
       }
     ) {
       question 
       answer 
+      value
       _additional {
         distance
         id
+      }      
+    }
+  }
+}
+```
+
+Where `<QUERY_VECTOR>` is a string containing the vector as an array (e.g. `"[0.016475919634103775, -0.005134709179401398, -0.00508853979408741, ...]"`).
+
+In case of `nearObject`, the query must include an object ID, whose vector Weaviate will retrieve as the source vector in the search. An example query might look like:
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearObject: {
+        id: "03c57191-0a63-5b76-ae67-bf6d09a5de2d"
       }
+    ) {
+      question 
+      answer 
+      value
+      _additional {
+        distance
+        id
+      }      
+    }
+  }
+}
+```
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Distance thresholds
+
+As you saw previously, vector search evaluate objects based on degrees of similarity, and as a result does not exclude any of the results.
+
+Accordingly, it is desirable to limit the search space to exclude irrelevant objects. This can be done using a `limit` argument or distance. 
+
+You have seen that the `limit` argument specifies the number of results. On the other hand, a threshold value such as `distance` or `certainty` specify the maximum distance (or, looked from the other direction, minimum similarity) required for objects being retrieved.
+
+Specifying a `distance` threshold can be done like so:
+
+```graphql
+{
+  Aggregate {
+    JeopardyQuestion (
+      nearText: {
+        concepts: ["Space travel in real life"],
+        distance: 0.2,
+      }
+    ) {
+      meta {
+        count
+      }    
     }
   }
 }
@@ -354,15 +497,12 @@ Think about how you expect the results to look before viewing the expected JSON 
 ```json
 {
   "data": {
-    "Get": {
+    "Aggregate": {
       "JeopardyQuestion": [
         {
-          "_additional": {
-            "distance": 0.1492011,
-            "id": "5d9d5c8d-13e7-5791-b2f9-3724a1a1d301"
-          },
-          "answer": "Oslo",
-          "question": "1,200-year-old Viking ships are on display at the Vikingskiphuset in this Norwegian capital"
+          "meta": {
+            "count": 25
+          }
         }
       ]
     }
@@ -372,27 +512,27 @@ Think about how you expect the results to look before viewing the expected JSON 
 
 </details>
 
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+The query only aggregates outputs from those within `0.2` of similarity, which results in a limited search space.
+
+</details>
+
 :::note Exercise: Threshold distances
 Try changing the query text, and `distance` threshold to higher, or lower, values to see what happens. How many results do you get back? How many of the results seem "relevant"?
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Pagination
+In this context, `distance` measures the degree of difference. You might also see `certainty` used in some contexts. This is the opposite of `distance`, where higher values imply larger differences in meaning. 
 
-Pagination can be used to retrieve latter parts of a results set; for example results 
+We will cover later on what these values mean, exactly, and where they come form. But it is most important to remember that:
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`nearVector` with pagination
-
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Practical considerations
-
-Pagination is tied to a search. Accordingly, pagination results are retrieved by obtaining search results and then discarding those results ahead of the `offset`. This can make pagination resource-intensive. 
-
-For use-cases that require high pagination, we refer you to our [documentation on this topic](/developers/weaviate/api/graphql/filters.md#performance-and-resource-considerations--limitations).
+- `distance` is a measure of dissimilarity (lower is more similar), and
+- `certainty` is a measure of similarity (higher is more similar)
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
-:::warning TODO
-Video here
-:::
+<img src={imageUrl} alt="Image alt" width="75%"/>
 
 ### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
 
