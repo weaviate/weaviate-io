@@ -462,6 +462,12 @@ In case of `nearObject`, the query must include an object ID, whose vector Weavi
 }
 ```
 
+:::info `nearVector` / `nearObject` availability
+Both `nearVector` and `nearObject` are available in Weaviate at all times, whereas `nearText` is only available when a vectorizer module is enabled and in use. 
+:::
+
+You might use a `nearVector` query when you are using your own vectorizer, or have a library of vectors already available. A `nearObject` is a useful query for finding similar objects to an existing one. 
+
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Distance thresholds
 
 As you saw previously, vector search evaluate objects based on degrees of similarity, and as a result does not exclude any of the results.
@@ -525,7 +531,7 @@ Try changing the query text, and `distance` threshold to higher, or lower, value
 
 In this context, `distance` measures the degree of difference. You might also see `certainty` used in some contexts. This is the opposite of `distance`, where higher values imply larger differences in meaning. 
 
-We will cover later on what these values mean, exactly, and where they come form. But it is most important to remember that:
+We will cover later on what these values mean, exactly, and where they come form. But for now, remember that:
 
 - `distance` is a measure of dissimilarity (lower is more similar), and
 - `certainty` is a measure of similarity (higher is more similar)
