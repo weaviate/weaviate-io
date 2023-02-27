@@ -44,7 +44,10 @@ A filter is a way to specify additional criteria to be applied to the results of
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Single operand example
 
-Below, we extend our query again to now include a `where` argument, specifying that the `question` property of the object must contain the text `sail`.
+We ran a example query like this earlier about space travel:
+
+<details>
+  <summary>See original query</summary>
 
 ```graphql
 {
@@ -52,26 +55,24 @@ Below, we extend our query again to now include a `where` argument, specifying t
     JeopardyQuestion (
       limit: 2
       nearText: {
-        concepts: ["Seafaring technology from Scandanavia."],
-      }
-      where: {
-        path: ["question"],    
-        operator: Like,  
-        valueText: "*sail*"
-      }      
+        concepts: ["Space travel in real life"],
+      }        
     ) {
       question 
       answer 
+      value
       _additional {
         distance
         id
-      }
+      }      
     }
   }
 }
 ```
 
-This should produce a result like the following:
+</details>
+
+Which returned these answers:
 
 <details>
   <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
@@ -83,27 +84,21 @@ This should produce a result like the following:
       "JeopardyQuestion": [
         {
           "_additional": {
-            "distance": 0.17154193,
-            "id": "5edd4acb-9860-5c84-b7b7-90e757aa8c1e"
+            "distance": 0.15368003,
+            "id": "ddcc3f06-5410-5944-85c4-3cb56ab27088"
           },
-          "answer": "Eric the Red",
-          "question": "In 982 he sailed from Iceland to Greenland with his household & livestock"
+          "answer": "space shuttles",
+          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane",
+          "value": 200
         },
         {
           "_additional": {
-            "distance": 0.18194813,
-            "id": "ba9c9bc6-17fc-5fde-b8c2-4801829dbdbd"
+            "distance": 0.17277694,
+            "id": "b1645a32-0c22-5814-8f35-58f142eadf7e"
           },
-          "answer": "engines",
-          "question": "France II, at 419 feet the largest merchant sailing ship ever built, also had 2 of these to back up the sails"
-        },
-        {
-          "_additional": {
-            "distance": 0.18973523,
-            "id": "135fd0ad-66bf-5974-b6e6-ac79793df469"
-          },
-          "answer": "a clipper ship",
-          "question": "The \"Baltimore\" type of this sailing ship originated in the Chesapeake Bay region in the 1800s"
+          "answer": "escaping the Earth's gravity (and go off into outer space, on your way to the moon, for instance)",
+          "question": "It takes approximately 24,840 MPH to achieve this",
+          "value": 0
         }
       ]
     }
@@ -113,34 +108,40 @@ This should produce a result like the following:
 
 </details>
 
-Refer to the results above, and observe how the results have changed. The first two entries from the earlier result set have been removed as they do not contain the text `sail` in the `question` property. 
-
-This approach of combining a vector search with a filter is a powerful way to find objects that are similar to a given input, but also meet additional criteria as you see. And while filtering may remove some objects which might otherwise be "closer" to the query vector than the remaining ones, it provides a powerful strategy to find the most relevant objects by removing false positive.
-
-<Quiz questions={varName} />
-
-So, we could modify the above query to only search for questions with a value greater than 100:
+So let's extend our query to now include a `where` argument and using a `Like` operator.
 
 ```graphql
 {
   Get {
     JeopardyQuestion (
-      limit: 1,
-      nearVector: {vector: <VECTOR>},
-      where: {
-        path: ["value"],
-        operator: GreaterThan,
-        valueInt: 100,
+      limit: 2
+      nearText: {
+        concepts: ["Space travel in real life"],
       }
-      ) {
-      question
-      answer
+      where: {
+        path: ["question"],    
+        operator: Like,  
+        valueText: "*rocket*"
+      }
+    ) {
+      question 
+      answer 
+      value
+      _additional {
+        distance
+        id
+      }      
     }
   }
 }
 ```
 
-The additional `where` filter limits the results here to questions where the `value` property is greater than 100. Our top result is now:
+Can you guess how you would expect the earlier response to change, if at all?
+
+Here is the actual response:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
 
 ```json
 {
@@ -148,14 +149,114 @@ The additional `where` filter limits the results here to questions where the `va
     "Get": {
       "JeopardyQuestion": [
         {
-          "answer": "Zebra",
-          "question": "It's the striped African mammal with whom the insect seen here shares part of its name"
+          "_additional": {
+            "distance": 0.15368003,
+            "id": "ddcc3f06-5410-5944-85c4-3cb56ab27088"
+          },
+          "answer": "space shuttles",
+          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane",
+          "value": 200
+        },
+        {
+          "_additional": {
+            "distance": 0.21451926,
+            "id": "36ffe6ca-9b73-5a54-80eb-a93f01822956"
+          },
+          "answer": "Robert Goddard",
+          "question": "He's been called the \"Father of Modern Rocketry\"",
+          "value": 400
         }
       ]
     }
   }
 }
 ```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+Observe how the results have changed. The second entry from the earlier result set (about *gravity*) have been removed as it does not contain the text `rocket` in the `question` property. 
+
+This approach of combining a vector search with a filter is a powerful way to find objects that are similar to a given input, but also meet additional criteria as you see. And while filtering may remove some objects which might otherwise be "closer" to the query vector than the remaining ones, it provides a powerful strategy to find the most relevant objects by removing false positive.
+
+</details>
+
+<Quiz questions={varName} />
+
+We can apply the query to filter the data in any number of ways. For example, consider the below query:
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Space travel in real life"],
+      }
+      where: {
+        path: ["value"],    
+        operator: GreaterThan,  
+        valueInt: 200
+      }
+    ) {
+      question 
+      answer 
+      value
+      _additional {
+        distance
+        id
+      }      
+    }
+  }
+}
+```
+
+How do you expect that this query will be different to the earlier queries?
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.17798066,
+            "id": "b988a207-2a18-50b2-b9e3-7de19ea692b7"
+          },
+          "answer": "Alan Shepard",
+          "question": "He was the first American in space",
+          "value": 500
+        },
+        {
+          "_additional": {
+            "distance": 0.18319404,
+            "id": "03c57191-0a63-5b76-ae67-bf6d09a5de2d"
+          },
+          "answer": "Mir here (or Mir near)",
+          "question": "2-word phrase the photographer on Discovery could have said while <a href=\"http://www.j-archive.com/media/2010-05-18_DJ_14.jpg\" target=\"_blank\">close</a> to the Russian space station in 1998",
+          "value": 800
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+This query has been modified to only return `JeopardyQuestion` objects with a `value` greater than 200. 
+
+Accordingly, the returned data set is very different.
+
+</details>
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Multiple operands example
 
