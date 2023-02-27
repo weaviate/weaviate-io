@@ -8,6 +8,14 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::note Vector spaces and Expore{}
+
+The `Explore` function is currently not available on Weaviate Cloud Services (WCS) instances, or others where it is likely that multiple vector spaces will exist. 
+
+As WCS by default enables multiple inference-API modules and therefore multiple vector spaces, `Explore` is disabled by default by Weaviate.
+
+::: 
+
 ## Explore{} query structure and syntax
 
 The `Explore{}` function is always defined based on the following principle:

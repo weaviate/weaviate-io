@@ -35,7 +35,7 @@ This filter allows you to find data objects in the vicinity of an input vector. 
 | --- | --- | --- | --- |
 | `vector` | yes | `[float]` | This variable takes a vector embedding in the form of an array of floats. The array should have the same length as the vectors in this class. |
 | `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
-| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
+| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors).. Can't be used together with the `distance` variable. |
 
 #### Example
 
@@ -71,7 +71,7 @@ This filter allows you to find data objects in the vicinity of other data object
 | `id` | yes | `UUID` | Data object identifier in the uuid format. |
 | `beacon` | yes | `url` | Data object identifier in the beacon URL format. E.g., `weaviate://<hostname>/<kind>/id`. |
 | `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
-| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
+| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors).. Can't be used together with the `distance` variable. |
 
 #### Example
 
