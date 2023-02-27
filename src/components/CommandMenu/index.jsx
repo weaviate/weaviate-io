@@ -17,7 +17,6 @@ export default function CommandMenu({open, setOpen}) {
           return {
               id: index,
               children: item.title,
-              icon: "HomeIcon",
               href: item.url
           }
         })
