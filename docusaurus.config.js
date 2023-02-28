@@ -101,6 +101,7 @@ const config = {
                     remarkPlugins: [remarkReplace],
                 },
                 blog: {
+                    blogTitle: 'Weaviate Blog',
                     showReadingTime: true,
                     authorsMapPath: '../authors.yml',
                     editUrl:
@@ -184,23 +185,9 @@ const config = {
                         ],
                     },
                     {
-                        type: 'dropdown',
-                        label: 'Content',
+                        label: 'Blog',
+                        to: '/blog',
                         position: 'right',
-                        items: [
-                            {
-                                label: 'Blog',
-                                to: '/blog',
-                            },
-                            {
-                                label: 'Podcast',
-                                to: '/podcast',
-                            },
-                            {
-                                label: 'Newsletter',
-                                href: 'https://newsletter.weaviate.io',
-                            },
-                        ],
                     },
                     {
                         type: 'dropdown',
@@ -235,35 +222,43 @@ const config = {
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-slack',
+                        className: 'fab fa-lg fa-slack',
                     },
                     {
                         to: 'https://github.com/weaviate/weaviate',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-github',
+                        className: 'fab fa-lg fa-github',
                     },
                     {
                         to: 'https://twitter.com/weaviate_io',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-twitter',
+                        className: 'fab fa-lg fa-twitter',
                     },
                     {
-                        to: 'https://www.youtube.com/@Weaviate/playlists',
+                        to: 'https://newsletter.weaviate.io',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-youtube',
+                        className: 'fas fa-lg fa-envelope',
+                    },
+                    {
+                        to: 'https://weaviate.io/podcast',
+                        // to: 'https://www.youtube.com/@Weaviate/playlists',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fab fa-lg fa-youtube',
                     },
                     {
                         to: 'https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-spotify',
+                        className: 'fab fa-lg fa-spotify',
                     },
                 ],
             },
@@ -271,15 +266,6 @@ const config = {
             footer: {
                 style: 'dark',
                 links: [
-                    // {
-                    //   title: 'Docs',
-                    //   items: [
-                    //     {
-                    //       label: 'Getting Started',
-                    //       to: '/developers/weaviate/quickstart',
-                    //     },
-                    //   ],
-                    // },
                     {
                         title: 'Community',
                         items: [
