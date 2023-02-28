@@ -274,7 +274,7 @@ import HowtoSchemaCreate from '/_includes/code/howto.schema.create.mdx';
 
 **2. Add reference properties to the existing classes.**
 
-   There are three classes in your Weaviate schema now, but we did not link them to each other with cross references yet. Let's add the reference between `Publication` and `Articles` in the property `hasArticles` like this:
+   There are three classes in your Weaviate schema now, but we did not link them to each other with cross-references yet. Let's add the reference between `Publication` and `Articles` in the property `hasArticles` like this:
 
 import HowtoSchemaPropertyAdd from '/_includes/code/howto.schema.property.add.mdx';
 
