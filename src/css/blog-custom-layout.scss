@@ -12,6 +12,12 @@
     --ifm-col-width: 100%;
   }
 }
+ 
+.blog-title {
+  font-size: 3rem;
+  text-align: center;
+
+}
 
 // styles for the BlogPostItems
 // for big screens - display blog previews in 2 columns
@@ -22,11 +28,25 @@
     column-gap: 25px;
     row-gap: 0px;
   }
+
+  .blog-title {
+    font-size: 4rem;
+  }  
 }
+
+@media (min-width:1440px) {
+  .blogs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 25px;
+    row-gap: 0px;
+  }
+}
+
 
 .blogCard {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 130px;
   grid-template-areas:
     "title title"
     "image image"
