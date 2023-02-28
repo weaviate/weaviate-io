@@ -8,7 +8,7 @@ export default function BlogPostItems({
   component: BlogPostItemComponent = BlogPostItem,
 }) {
   return (
-    <>
+    <div className={styles.blogs}>
       {items.map(({content: BlogPostContent}) => (
         <BlogPostProvider
           key={BlogPostContent.metadata.permalink}
@@ -46,6 +46,6 @@ export default function BlogPostItems({
           </BlogPostItemComponent>
         </BlogPostProvider>
       ))}
-    </>
+    </div>
   );
 }

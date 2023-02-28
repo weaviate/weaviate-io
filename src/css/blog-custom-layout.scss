@@ -1,73 +1,74 @@
-// for big screens - display blog previews in 2 columns
-@media (min-width:996px) {
-  .blog-list-page {
-    main {
-      margin: 0;
-    }
-    main {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 25px;
-      row-gap: 0px;
-    }
-
-    // aside {
-      // --ifm-col-width: calc(2 / 12 * 100%);
-      // display: none;
-    // }
-
-    .container .row main {
-      // --ifm-col-width: calc(10 / 12 * 100%);
-      --ifm-col-width: 100%;
-    }
-
-    // header div div div.avatar {
-    //   display: none;
-    // }
-    // header h2 {
-    //   font-size: larger;
-    // }
-  }
-}
+// update built-in docusarus styles for the blog page
 .blog-list-page {
+  main {
+    margin: 0;
+  }
+
   header, footer {
     display: none;
   }
+
+  .container .row main {
+    --ifm-col-width: 100%;
+  }
 }
 
-// Layout for each blog item
-// .blog-list-page {
-//   article {
-//     display: grid;
-//     grid-template-areas:
-//     "content content"
-//     "mid read";
+// styles for the BlogPostItems
+// for big screens - display blog previews in 2 columns
+@media (min-width:996px) {
+  .blogs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25px;
+    row-gap: 0px;
+  }
+}
 
-//     div.markdown {
-//       grid-area: content;
-//       padding-bottom: 10px;
-//     }
-//     header {
-//       grid-area: mid;
+.blogCard {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "title title"
+    "image image"
+    "shortText shortText"
+    "info button";
+}
 
-//       // Built-in article title
-//       h2:first-child {
-//         display: none;
-//       }
-//       // Built-in list of authors
-//       div:first-of-type {
-//         margin: 0;
-//       }
-//     }
-//     footer {
-//       grid-area: read;
-//       margin: 0px;
-//     }
+.blogCardTitle {
+  grid-area: title;
+  h2 {
+    display: flex;
+    font-size: 1.5em;
+    min-height: 4em;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
 
-//     footer {
-//       // display: none;
-//       margin: 0;
-//     }
+.blogCardImage {
+  grid-area: image;
+  img {
+    width: 100%;
+  }
+}
 
-//   }
-// }
+.blogCardDescription {
+  grid-area: shortText;
+  font-style: italic;
+}
+
+.blogCardInfo {
+  grid-area: info;
+  display: flex;
+  align-items: center;
+}
+
+.blogCardButton {
+  grid-area: button;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
