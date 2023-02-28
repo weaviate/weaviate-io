@@ -1,6 +1,5 @@
 const visit = require('unist-util-visit');
 const fs = require('fs');
-const { config } = require('process');
 
 // Read file config, which contains weaviate_version, etc.
 const readSiteConfig = () => {
