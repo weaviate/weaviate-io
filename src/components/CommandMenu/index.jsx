@@ -36,14 +36,14 @@ export default function CommandMenu({open, setOpen}) {
         const sliceArray = resultFormated.slice(0,5);
         let documentationSection = [];
         let blogSection = [];
-        let anotherSection = [];
+        let miscSection = [];
         sliceArray.map(item => {
           if(item.type === 'docs'){
             documentationSection.push(item)
           }else if(item.type === 'blog'){
             blogSection.push(item);
           }else{
-            anotherSection.push(item)
+            miscSection.push(item)
           }
         })
         let formated = [
@@ -58,9 +58,9 @@ export default function CommandMenu({open, setOpen}) {
             items: blogSection
           },
           {
-            heading: 'Another',
-            id: 'another',
-            items: anotherSection
+            heading: 'Miscellaneous',
+            id: 'miscellaneous',
+            items: miscSection
           }
         ];
         formated = formated.filter(item => item.items.length > 0)
