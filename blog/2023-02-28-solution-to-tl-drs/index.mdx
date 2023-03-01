@@ -19,7 +19,7 @@ In this day and age, this is a more common problem than ever. For a while now, t
 
 You probably already know that Weaviate, as a vector search engine, can help with information cataloging and discovery. But did you know that Weaviate can also summarize information during retrieval? 
 
-Our summarizer module (`sum-transformers`) can be added to a Weaviate instance to do exactly that. 
+Our summarizer module ([`sum-transformers`](/developers/weaviate/modules/reader-generator-modules/sum-transformers)) can be added to a Weaviate instance to do exactly that. 
 
 And as a bonus, we will also show you how to use our new generative module (`generative-openai`) to do the same thing as well.
 
@@ -36,7 +36,7 @@ From an original text that has about 7x the length!
 <details>
   <summary>See original text</summary>
 
-*The Sydney Opera House is a multi-venue performing arts centre in Sydney. Located on the foreshore of Sydney Harbour, it is widely regarded as one of the world's most famous and distinctive buildings and a masterpiece of 20th-century architecture.Designed by Danish architect Jørn Utzon, but completed by an Australian architectural team headed by Peter Hall, the building was formally opened by Queen Elizabeth II on 20 October 1973 after a gestation beginning with Utzon's 1957 selection as winner of an international design competition. The Government of New South Wales, led by the premier, Joseph Cahill, authorised work to begin in 1958 with Utzon directing construction. The government's decision to build Utzon's design is often overshadowed by circumstances that followed, including cost and scheduling overruns as well as the architect's ultimate resignation.The building and its surrounds occupy the whole of Bennelong Point on Sydney Harbour, between Sydney Cove and Farm Cove, adjacent to the Sydney central business district and the Royal Botanic Gardens, and near to the Sydney Harbour Bridge.*
+*The Sydney Opera House is a multi-venue performing arts centre in Sydney. Located on the foreshore of Sydney Harbour, it is widely regarded as one of the world's most famous and distinctive buildings and a masterpiece of 20th-century architecture. Designed by Danish architect Jørn Utzon, but completed by an Australian architectural team headed by Peter Hall, the building was formally opened by Queen Elizabeth II on 20 October 1973 after a gestation beginning with Utzon's 1957 selection as winner of an international design competition. The Government of New South Wales, led by the premier, Joseph Cahill, authorised work to begin in 1958 with Utzon directing construction. The government's decision to build Utzon's design is often overshadowed by circumstances that followed, including cost and scheduling overruns as well as the architect's ultimate resignation. The building and its surrounds occupy the whole of Bennelong Point on Sydney Harbour, between Sydney Cove and Farm Cove, adjacent to the Sydney central business district and the Royal Botanic Gardens, and near to the Sydney Harbour Bridge.*
 
 *The building comprises multiple performance venues, which together host well over 1,500 performances annually, attended by more than 1.2 million people. Performances are presented by numerous performing artists, including three resident companies: Opera Australia, the Sydney Theatre Company and the Sydney Symphony Orchestra. As one of the most popular visitor attractions in Australia, the site is visited by more than eight million people annually, and approximately 350,000 visitors take a guided tour of the building each year. The building is managed by the Sydney Opera House Trust, an agency of the New South Wales State Government.*
 
@@ -99,7 +99,7 @@ A bitmap index is a special kind of database index that uses bitmaps. Bitmap ind
 
 Bitmap indexes have traditionally been considered to work well for low-cardinality columns, which have a modest number of distinct values, either absolutely, or relative to the number of records that contain the data. The extreme case of low cardinality is Boolean data (e.g., does a resident in a city have internet access?), which has two values, True and False. Bitmap indexes use bit arrays (commonly called bitmaps) and answer queries by performing bitwise logical operations on these bitmaps. Bitmap indexes have a significant space and performance advantage over other structures for query of such data. Their drawback is they are less efficient than the traditional B-tree indexes for columns whose data is frequently updated: consequently, they are more often employed in read-only systems that are specialized for fast query - e.g., data warehouses, and generally unsuitable for online transaction processing applications.
 
-Some researchers argue that bitmap indexes are also useful for moderate or even high-cardinality data (e.g., unique-valued data) which is accessed in a read-only manner, and queries access multiple bitmap-indexed columns using the AND, OR or XOR operators extensively.Bitmap indexes are also useful in data warehousing applications for joining a large fact table to smaller dimension tables such as those arranged in a star schema.
+Some researchers argue that bitmap indexes are also useful for moderate or even high-cardinality data (e.g., unique-valued data) which is accessed in a read-only manner, and queries access multiple bitmap-indexed columns using the AND, OR or XOR operators extensively. Bitmap indexes are also useful in data warehousing applications for joining a large fact table to smaller dimension tables such as those arranged in a star schema.
 
 </details>
 
@@ -261,7 +261,7 @@ However, you can perform summarizations with the `generative-openai` module, by 
 
 ### Results with summaries
 
-Summaries are available at query time. In other words, they are not pre-determined but generated from the retrieved results by the `sum-transformers` model. 
+Summaries are available at query time. In other words, they are not pre-determined but generated from the results retrieved by the `sum-transformers` model. 
 
 This can be triggered as an `additional` property, with a GraphQL query syntax like so:
 
@@ -346,7 +346,7 @@ Grabbing these results is relatively straightforward. But as with many tasks tha
 
 ### Alternative: `generative-openai`
 
-You might have heard of our new `generative-openai` module already. It can take your results, and provide a prompt to a generative model to get back a response. 
+You might have heard of our new [`generative-openai` module](/developers/weaviate/modules/reader-generator-modules/generative-openai) already. It can take your results, and provide a prompt to a generative model to get back a response. 
 
 So, this module can also be used to generate summaries by prompting it directly to do so. Below is one such example:
 
@@ -391,7 +391,7 @@ From the original text below:
 
 *Bitmap indexes have traditionally been considered to work well for low-cardinality columns, which have a modest number of distinct values, either absolutely, or relative to the number of records that contain the data. The extreme case of low cardinality is Boolean data (e.g., does a resident in a city have internet access?), which has two values, True and False. Bitmap indexes use bit arrays (commonly called bitmaps) and answer queries by performing bitwise logical operations on these bitmaps. Bitmap indexes have a significant space and performance advantage over other structures for query of such data. Their drawback is they are less efficient than the traditional B-tree indexes for columns whose data is frequently updated: consequently, they are more often employed in read-only systems that are specialized for fast query - e.g., data warehouses, and generally unsuitable for online transaction processing applications.*
 
-*Some researchers argue that bitmap indexes are also useful for moderate or even high-cardinality data (e.g., unique-valued data) which is accessed in a read-only manner, and queries access multiple bitmap-indexed columns using the AND, OR or XOR operators extensively.Bitmap indexes are also useful in data warehousing applications for joining a large fact table to smaller dimension tables such as those arranged in a star schema.*
+*Some researchers argue that bitmap indexes are also useful for moderate or even high-cardinality data (e.g., unique-valued data) which is accessed in a read-only manner, and queries access multiple bitmap-indexed columns using the AND, OR or XOR operators extensively. Bitmap indexes are also useful in data warehousing applications for joining a large fact table to smaller dimension tables such as those arranged in a star schema.*
 
 </details>
 
@@ -411,7 +411,7 @@ Currently, the `sum-transformers` module uses the `bart-large-cnn` model under t
 
 In addition to these two models, however, you can use any model from the Hugging Face Hub (or your own) by following [this guide](/developers/weaviate/modules/reader-generator-modules/sum-transformers#use-another-summarization-module-from-huggingface). 
 
-Even when looking only at language models that are trained for summarization task, there is still a wide range of choices in terms of sheer numbers, which vary in the target domain (e.g. medical, legal, scientific, etc.) and size (number of parameters, i.e. speed). If you have specific needs, we recommend investigating other models. 
+Even when looking only at language models that are trained for summarization tasks, there is still a wide range of choices in terms of sheer numbers, which vary in the target domain (e.g. medical, legal, scientific, etc.) and size (number of parameters, i.e. speed). If you have specific needs, we recommend investigating other models. 
 
 ### Avoid too long an input 
 
