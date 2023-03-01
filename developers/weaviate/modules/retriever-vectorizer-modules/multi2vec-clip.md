@@ -19,7 +19,7 @@ To choose your specific model, you simply need to select the correct Docker cont
 You have three options to select your desired model:
 
 1. **Use [any of our pre-built clip model containers](#pre-built-images).** These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/weaviate/weaviate/issues)).
-2. **Use any SBERT Clip model from HuggingFace Model Hub.** [Click here to learn how](#option-2-use-any-publically-available-huggingface-model). The `multi2vec-clip` module supports any CLIP-based transformer model compatible with `SentenceTransformers`. 
+2. **Use any SBERT CLIP model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publicly-available-hugging-face-model). The `multi2vec-clip` module supports any CLIP-based transformer model compatible with `SentenceTransformers`. 
 3. **Use any private or SBERT Clip model.** [Click here to learn how](#option-3-custom-build-with-a-private-or-local-model). If you have your own CLIB-based `SentenceTransformers` model in a registry or on a local disk, you can use this with Weaviate.
 
 ## Option 1: Use a pre-built transformer model container
@@ -84,9 +84,9 @@ Set the Weaviate environment variable `CLIP_INFERENCE_API` to where your inferen
 
 You can now use Weaviate normally and all vectorization during import and search time will be done with the selected CLIP transformers model.
 
-## Option 2: Use any publically available SBERT Clip Model from the Huggingface Model Hub
+## Option 2: Use any publicly available SBERT CLIP model from the Hugging Face Model Hub
 
-You can build a docker image which supports any model from the [Huggingface model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`clip-ViT-B-32` model](https://huggingface.co/sentence-transformers/clip-ViT-B-32). *Note: This model exists as a pre-built container, you don't have to build it yourself. This is just to outline the process.*
+You can build a Docker image which supports any model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`clip-ViT-B-32` model](https://huggingface.co/sentence-transformers/clip-ViT-B-32). *Note: This model exists as a pre-built container, you don't have to build it yourself. This is just to outline the process.*
 
 #### Step 1: Create a `Dockerfile`
 Create a new `Dockerfile`. We will name it `clip.Dockerfile`. Add the following lines to it: 
@@ -107,7 +107,7 @@ You can now push your image to your favorite registry or reference it locally in
 
 ## Option 3: Custom build with a private or local model
 
-You can build a docker image which supports any model which is compatible with
+You can build a Docker image which supports any model which is compatible with
 `SentenceTransformers` `ClIPModel`. Additionally, the text model can be a
 regular sentence-transformers model, but it must produce compatible vector
 representations. So, only use models that have been specifically trained for
