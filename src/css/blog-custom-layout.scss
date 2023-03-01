@@ -1,4 +1,4 @@
-// update built-in docusarus styles for the blog page
+// update built-in docusarus styles for the blog list page
 .blog-list-page {
   main {
     margin: 0;
@@ -11,15 +11,20 @@
   .container .row main {
     --ifm-col-width: 100%;
   }
-}
- 
-.blog-title {
-  font-size: 3rem;
-  text-align: center;
 
+  .blog-page-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  @media (min-width:996px) {
+    .blog-page-title {
+      font-size: 4rem;
+    }
+  }
 }
 
-// styles for the BlogPostItems
+// Layout to display blogs in a grid
 // for big screens - display blog previews in 2 columns
 @media (min-width:996px) {
   .blogs {
@@ -28,22 +33,15 @@
     column-gap: 25px;
     row-gap: 0px;
   }
-
-  .blog-title {
-    font-size: 4rem;
-  }  
 }
 
 @media (min-width:1440px) {
   .blogs {
-    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 25px;
-    row-gap: 0px;
   }
 }
 
-
+// styles for the BlogPostItems - displayed on the blog list page
 .blogCard {
   display: grid;
   grid-template-columns: 1fr 130px;
@@ -57,6 +55,7 @@
 .blogCardTitle {
   grid-area: title;
   h2 {
+    font-family: var(--blog-heading-font-family);
     display: flex;
     font-size: 1.5em;
     min-height: 4em;
@@ -76,11 +75,13 @@
 }
 
 .blogCardDescription {
+  font-family: var(--blog-base-font-family); 
   grid-area: shortText;
   font-style: italic;
 }
 
 .blogCardInfo {
+  font-family: var(--blog-base-font-family);
   grid-area: info;
   display: flex;
   align-items: center;

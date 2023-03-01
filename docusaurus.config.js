@@ -30,7 +30,7 @@ const config = {
         [
             '@docusaurus/plugin-content-blog',
             {
-                blogTitle: 'Weaviate Playbook',
+                blogTitle: 'Playbook',
                 blogDescription: 'Learn How we run Weaviate as a Company',
                 blogSidebarCount: 0,
                 postsPerPage: 6,
@@ -101,13 +101,14 @@ const config = {
                     remarkPlugins: [remarkReplace],
                 },
                 blog: {
-                    blogTitle: 'Weaviate Blog',
+                    blogTitle: 'Blog',
                     showReadingTime: true,
                     authorsMapPath: '../authors.yml',
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
                     blogSidebarCount: 0,
                     postsPerPage: 12,
+                    blogSidebarTitle: 'Weaviate Blog',
                 },
                 theme: {
                     customCss: [
@@ -246,11 +247,11 @@ const config = {
                         className: 'fas fa-lg fa-envelope',
                     },
                     {
-                        to: 'https://weaviate.io/podcast',
+                        to: '/podcast',
                         // to: 'https://www.youtube.com/@Weaviate/playlists',
                         label: ' ',
                         position: 'right',
-                        target: '_blank',
+                        // target: '_blank',
                         className: 'fab fa-lg fa-youtube',
                     },
                     {

@@ -29,7 +29,7 @@ function BlogListPageContent(props) {
   const {metadata, items, sidebar} = props;
   return (
     <BlogLayout sidebar={sidebar}>
-      <h1 className='blog-title'>{metadata.blogTitle}</h1>
+      <h1 className='blog-page-title'>Weaviate <span className='highlight'>{metadata.blogTitle}</span></h1>
       <BlogPostItems items={items} />
       <BlogListPaginator metadata={metadata} />
     </BlogLayout>

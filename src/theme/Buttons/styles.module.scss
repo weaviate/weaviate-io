@@ -41,15 +41,25 @@
     background-color: #00cc00;
     color: #fff;
   }
+
+  i {
+    color: inherit;
+    background-color: inherit;
+  }
 }
 
 .btnAccent {
-  background-color: #ff007d;
+  background-color: var(--ifm-color-primary);
   color: #ffe3ec;
 
   &:hover {
-    background-color: #ff008d;
+    background-color: var(--ifm-color-primary-darkest);
     color: #ffe3ec;
+  }
+
+  i {
+    color: inherit;
+    background-color: inherit;
   }
 }
 [data-theme='light']{
@@ -68,5 +78,10 @@
     background-color: transparent;
   border: 1px solid #00b800;
   color: #00b800;
+  }
+
+  i {
+    color: inherit;
+    background-color: inherit;
   }
 }

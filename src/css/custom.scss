@@ -32,8 +32,12 @@
   --ifm-color-primary-lighter: #fe2385;
   --ifm-color-primary-lightest: #fe489a;
   --ifm-code-font-size: 95%;
+
   --ifm-heading-font-family: 'FredokaOneRegular';
   --ifm-font-family-base: 'NiramitRegular';
+  --blog-heading-font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  --blog-base-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-heading-font-weight: 500;
   h1,
@@ -282,12 +286,17 @@
   --ifm-color-primary-lighter: #fd67a3;
   --ifm-color-primary-lightest: #fd94bf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --font-icon-link-color: #00b800;
 }
 [data-theme='light'] {
   --ifm-heading-color: #2d3197;
   --ifm-font-color-base: #7072aa;
-  --ifm-link-color: #2d3197;
+  // --ifm-link-color: #2d3197;
+  // --ifm-link-color: #00b800;
+  --ifm-link-color: #fa0171;
   --ifm-navbar-link-color: #2d3197;
+  --font-icon-link-color: #2d3197;
 
   svg {
     path {
@@ -531,8 +540,4 @@
     border: 1px solid #d1d1d1;
     background: #f7f7f7;
   }
-}
-
-.text-center {
-  text-align: center;
 }
