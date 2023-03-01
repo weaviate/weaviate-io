@@ -49,6 +49,11 @@
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-heading-font-weight: 500;
+
+  // TODO: make sure this doesn't mess up anything unexpected
+  // Base color for all text
+  color: var(--site-font-main-color);
+
   h1,
   h2,
   h3,
