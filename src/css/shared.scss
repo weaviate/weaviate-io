@@ -1,6 +1,6 @@
-
+@import 'variables.scss';
 .highlight {
-  color: var(--ifm-link-color);
+  color: var(--site-font-accent-color);
 }
 
 .text-center {
@@ -10,6 +10,6 @@
 // fonticon links
 a {
   .fab, .fas, .far {
-    color: var(--font-icon-link-color);
+    color: var(--site-link-font-color);
   }
 }

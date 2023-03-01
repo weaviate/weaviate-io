@@ -1,8 +1,9 @@
+@import 'variables.scss';
 @import 'blog-custom-layout.scss';
 
 // Set Fonts
 // .blog-post-page, .blog-list-page, .docs-doc-page {
-.blog-post-page, .docs-doc-page {
+.blog-post-page, .docs-doc-page, .podcast-page {
   // Set Fonts for Blogs and Docs - content
   // #docusaurus_skipToContent_fallback – is for the page content, which excludes the navbar
   #docusaurus_skipToContent_fallback {
@@ -18,30 +19,19 @@
 }
 
 // Set Background
-.docs-doc-page, .blog-list-page, .blog-post-page {
+.docs-doc-page, .blog-list-page, .blog-post-page, .podcast-page {
   #__docusaurus {
     background-image: none;
   }
-}
-
-.docs-doc-page[data-theme='dark'], .blog-list-page[data-theme='dark'], .blog-post-page[data-theme='dark'] {
+  
   #__docusaurus, .navbar {
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 1) 4%,
-      rgba(17, 11, 62, 1) 50%,
-      rgba(25, 16, 92, 1) 96%
-    );
+    background: var(--site-background);
   }
-}
 
-.docs-doc-page[data-theme='light'], .blog-list-page[data-theme='light'], .blog-post-page[data-theme='light'] {
-  #__docusaurus, .navbar {
-    background: linear-gradient(
-      90deg,
-      rgba(208, 228, 236, 1) 0%,
-      rgba(224, 238, 211, 1) 47%,
-      rgba(207, 228, 237, 1) 100%
-    );
+  // TODO: make it work across the whole site
+  .navbar {
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-bottom-color: var(--ifm-toc-border-color);
   }
 }

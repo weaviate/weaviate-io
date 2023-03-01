@@ -4,7 +4,7 @@ import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 export default function PodcastHeader() {
   return (
     <div className="container">
-      <h1>
+      <h1 className="page-title">
         Weaviate <span className="highlight">Podcast</span>
       </h1>
       <p>

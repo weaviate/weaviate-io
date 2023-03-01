@@ -128,11 +128,9 @@ const config = {
             announcementBar: {
                 id: 'announcement-bar',
                 content:
-                    // 'We are excited to announce our new generative search module! <a target="_blank" rel="noopener noreferrer" href="https://www.prnewswire.com/news-releases/weaviate-releases-a-generative-search-module-301740697.html">press release</a> - <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/modules/reader-generator-modules/qna-openai">documentation</a>',
                     'We are excited to announce the first generative search module for Weaviate! <a target="_blank" rel="noopener noreferrer" href="https://www.prnewswire.com/news-releases/weaviate-releases-a-generative-search-module-301740697.html">press release</a> - <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/modules/reader-generator-modules/generative-openai">documentation</a>',
-                // backgroundColor: '#00b800',
-                backgroundColor: '#2d3197',
-                textColor: '#fff',
+                backgroundColor: '#1C1468',
+                textColor: '#F5F5F5',
                 isCloseable: true,
             },
             navbar: {
