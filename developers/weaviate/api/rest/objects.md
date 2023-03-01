@@ -76,7 +76,7 @@ The `after` parameter retrieves objects of a class based on the order of ids. It
 
 It is not possible to use the `after` parameter without specifying a `class`.
 
-Setting `after=null` is the same as not setting it, and the equivalent of `offset=0`.
+For a null value similar to `offset=0`, set `after=` or `after` (i.e. with an empty string) in the request.
 
 #### Examples
 
