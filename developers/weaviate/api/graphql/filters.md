@@ -415,7 +415,7 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 }
 ```
 
-## Offset argument (pagination)
+## Pagination with `offset`
 
 Supported by the `Get{}`, `Explore{}` and `Aggregate{}` function.
 
@@ -464,6 +464,24 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 - The cost of retrieving one further page is higher than that of the last. Effectively when searching for search results 91-100, Weaviate will internally retrieve 100 search results and discard results 0-90 before serving them to the user. This effect is amplified if running in a multi-shard setup, where each shard would retrieve 100 results, then the results aggregated and ultimately cut off. So in a 10-shard setup asking for results 91-100 Weaviate will effectively have to retrieve 1000 results (100 per shard) and discard 990 of them before serving. This means, high page numbers lead to longer response times and more load on the machine/cluster.
 - Due to the increasing cost of each page outlined above, there is a limit to how many objects can be retrieved using pagination. By default setting the sum of `offset` and `limit` to higher than 10,000 objects, will lead to an error. If you must retrieve more than 10,000 objects, you can increase this limit by setting the environment variable `QUERY_MAXIMUM_RESULTS=<desired-value>`. Warning: Setting this to arbitrarily high values can make the memory consumption of a single query explode and single queries can slow down the entire cluster. We recommend setting this value to the lowest possible value that does not interfere with your users' expectations.
 - The pagination setup is not stateful. If the database state has changed between retrieving two pages there is no guarantee that your pages cover all results. If no writes happened, then pagination can be used to retrieve all possible within the maximum limit. This means asking for a single page of 10,000 objects will lead to the same results overall as asking for 100 pages of 100 results. 
+
+## Cursor with `after`
+
+From version `1.18`, the `after` parameter can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
+
+The `after` parameter relies on the order of ids. It can therefore only be applied to list queries without any search operators. In other words, `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, etc. 
+
+For those cases, use pagination with `offset`.
+
+An example of the `after` parameter usage:
+
+import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
+
+<GraphQLFiltersAfter/>
+
+:::note
+The `after` cursor is available on both single-shard and multi-shard set-ups.  
+:::
 
 ## More Resources
 

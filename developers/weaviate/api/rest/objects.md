@@ -16,46 +16,79 @@ Lists all data objects in reverse order of creation. The data will be returned a
 
 Without any restrictions (across classes, default limit = 100):
 
-```js
+```http
 GET /v1/objects
 ```
 
 With optional query params:
 
-```js
+```http
 GET /v1/objects?class={className}&limit={limit}&include={include}
 ```
 
 ### Parameters
 
-| name | location | type | description |
-| ---- | ---- | ----------- | ---- |
-| `class` | URL Query Parameter (optional) | string | List objects by class using the class name. |
-| `limit` | URL Query Parameter (optional) | integer | The maximum number of data objects to return. |
-| `offset` | URL Query Parameter (optional) | integer | The offset of objects returned (the starting index of the returned objects).<br/>Should be used in conjunction with the `limit` parameter. |
-| `include` | URL Query Parameter (optional) | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
-| `sort` | URL Query Parameter (optional) | string | Name of the property to sort by - i.e. `sort=city`<br/>You can also provide multiple names – i.e. `sort=country,city` |
-| `order` | URL Query Parameter (optional) | string | Order in which to sort by.<br/>Possible values: `asc` (default) and `desc`. <br/>Should be used in conjunction with the `sort` parameter.|
+#### URL Query parameters
 
-### Example paging
-
-:::tip
-You can use `limit` and `offset` for paging your results.
+:::note All URL query parameters below are optional
 :::
 
+| name | type | description |
+| ---- | ---- | ----------- | 
+| `class` | string | List objects by class using the class name. |
+| `limit` | integer | The maximum number of data objects to return. |
+| `offset` | integer | The offset of objects returned (the starting index of the returned objects).<br/><br/>Cannot be used with `after`.<br/>Should be used in conjunction with `limit`. |
+| `after` | string | ID of the object after which (i.e. non-inclusive ID) objects are to be retrieved.<br/><br/>Must be used with `class`<br/>Cannot be used with `offset` or `sort`.<br/>Should be used in conjunction with `limit`. |
+| `include` | string | Include additional information, such as classification info. <br/><br/>Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
+| `sort` | string | Name of the property to sort by - i.e. `sort=city`<br/><br/>You can also provide multiple names – i.e. `sort=country,city` |
+| `order` | string | Order in which to sort by.<br/><br/>Possible values: `asc` (default) and `desc`. <br/>Should be used in conjunction with `sort`.|
+
+### Paging: `offset`
+
+:::tip
+You can use `limit` and `offset` for paging results.
+:::
+
+The `offset` parameter is a flexible way to page results as it allows use with parameters such as `sort`. It is limited by the value of `QUERY_MAXIMUM_RESULTS` which sets the maximum total number of objects that can be retrieved using this parameter.
+
 Get the first 10 objects:
-```js
+```http
 GET /v1/objects?class=MyClass&limit=10
 ```
 
 Get the second batch of 10 objects:
-```js
+```http
 GET /v1/objects?class=MyClass&limit=10&offset=10
 ```
 
 Get the next batch of 10 objects:
-```js
+```http
 GET /v1/objects?class=MyClass&limit=10&offset=20
+```
+
+### Exhaustive retrieval: `after`
+
+:::tip
+You can use `class`, `limit` and `after` for retrieving an entire object set from a class.
+:::
+
+The `after` parameter retrieves objects of a class based on the order of ids. It can therefore only be applied to list queries without sorting. 
+
+It is not possible to use the `after` parameter without specifying a `class`.
+
+Setting `after=null` is the same as not setting it, and the equivalent of `offset=0`.
+
+#### Examples
+
+Get the first 10 objects of `MyClass`:
+```http
+GET /v1/objects?class=MyClass&limit=10
+```
+
+If the last object in the retrieved set above was `b1645a32-0c22-5814-8f35-58f142eadf7e`, you can retrieve the next 10 objects of `MyClass` after it as below:
+
+```http
+GET /v1/objects?class=MyClass&limit=10&after=b1645a32-0c22-5814-8f35-58f142eadf7e
 ```
 
 ### Example sorting
@@ -65,22 +98,22 @@ You can use `sort` and `order` to sort your results.
 :::
 
 Ascending sort by author_name:
-```js
+```http
 GET /v1/objects?class=Book&sort=author_name
 ```
 
 Descending sort by author_name:
-```js
+```http
 GET /v1/objects?class=Book&sort=author_name&order=desc
 ```
 
 Sort by by author_name, and then title.
-```js
+```http
 GET /v1/objects?class=Book&sort=author_name,title
 ```
 
 Sort by by author_name, and then title with order:
-```js
+```http
 GET /v1/objects?class=Book&sort=author_name,title&order=desc,asc
 ```
 
@@ -157,7 +190,7 @@ If you have a whole dataset that you plan on importing with Weaviate sending mul
 
 #### Method and URL
 
-```js
+```http
 POST /v1/objects
 ```
 
@@ -338,12 +371,12 @@ Delete an individual data object from Weaviate.
 #### Method and URL
 
 Available since `v1.14` and preferred way:
-```js
+```http
 DELETE /v1/objects/{className}/{id}
 ```
 
 Available for backward compatibility and deprecated:
-```js
+```http
 DELETE /v1/objects/{id}
 ```
 
@@ -370,7 +403,7 @@ You can validate a data object's schema and meta data.
 
 #### Method and URL
 
-```js
+```http
 POST /v1/objects/validate
 ```
 
@@ -403,12 +436,12 @@ If the schema of the object is valid, this request should return `True`/`true` i
 #### Method and URL
 
 Available since `v1.14` and preferred way:
-```js
+```http
 POST /v1/objects/{className}/{id}/references/{property_name}
 ```
 
 Available for backward compatibility and deprecated:
-```js
+```http
 POST /v1/objects/{id}/references/{property_name}
 ```
 
@@ -457,12 +490,12 @@ A `PUT` request updates *all* references of a property of a data object.
 #### Method and URL
 
 Available since `v1.14` and the preferred way:
-```js
+```http
 PUT /v1/objects/{className}/{id}/references/{property_name}
 ```
 
 Available for backward compatibility and deprecated:
-```js
+```http
 PUT /v1/objects/{id}/references/{property_name}
 ```
 
@@ -512,12 +545,12 @@ Delete the single reference that is given in the body from the list of reference
 #### Method and URL
 
 Available since `v1.14` and the preferred way:
-```js
+```http
 DELETE /v1/objects/{className}/{id}/references/{property_name}
 ```
 
 Available for backward compatibility and deprecated:
-```js
+```http
 DELETE /v1/objects/{id}/references/{property_name}
 ```
 
