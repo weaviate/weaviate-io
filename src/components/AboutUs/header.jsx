@@ -8,7 +8,7 @@ export default function AboutUsHeader() {
     <div className="container">
       <div className={styles.box}>
         <h1>
-          We create <span className={styles.header}>open source</span>,<br/>
+          We create <span className="highlight">open source</span>,<br/>
           AI-first infrastructure.
         </h1>
         <p className="text-center">
