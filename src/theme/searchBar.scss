@@ -3,6 +3,10 @@
     width: 155px;
     display: flex;
     justify-content: center;
+
+    @media screen and (max-width: 668px) {
+        width: 80px;
+    }
 }
 
 .searchButton {
@@ -19,6 +23,10 @@
     height: 100%;
     font-weight: 500;
     border: rgb(229, 229, 229, 0.5) solid 0.3px;
+
+    @media screen and (max-width: 668px) {
+        width: auto;
+    }
 }
 
 .searchPlaceholder {
@@ -30,12 +38,20 @@
     .searchIcon {
         color: #e5e5e5;
         margin-right: 3px;
+
+        @media screen and (max-width: 668px) {
+            margin-right: 8px;
+        }
     }
 }
 
 .searchPlaceholderText {
     font-size: 16px;
     color: #e5e5e5;
+
+    @media screen and (max-width: 668px) {
+        display: none;
+    }
 }
 
 .commandIconContainer {

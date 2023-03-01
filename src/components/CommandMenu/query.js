@@ -15,7 +15,7 @@ export const query = async (keyword) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({"query": `{ Get { PageChunkOpenAI( hybrid: { query: \"${keywordWithoutDobleQuotes}\"} ) { title content url } } }`})
+            body: JSON.stringify({"query": `{ Get { PageChunkOpenAI( hybrid: { query: \"${keywordWithoutDobleQuotes}\"} limit: 5 ) { title content url anchor order pageTitle typeOfItem } } }`})
         })
     
         return response.json();
@@ -26,7 +26,7 @@ export const query = async (keyword) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"query": `{ Get { PageChunkOpenAI( hybrid: { query: \"${keywordWithoutDobleQuotes}\"} ) { title content url } } }`})
+        body: JSON.stringify({"query": `{ Get { PageChunkOpenAI( hybrid: { query: \"${keywordWithoutDobleQuotes}\"} limit: 5 ) { title content url anchor order pageTitle typeOfItem } } }`})
     })
 
     return response.json();
