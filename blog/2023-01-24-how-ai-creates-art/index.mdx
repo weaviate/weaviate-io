@@ -9,12 +9,12 @@ image: ./img/hero.png
 
 ![How A.I. Creates Art](./img/hero.png)
 
-One of the major developments this past year were the advancements made in machine learning models that can create beautiful and novel images such as the ones below. Though machine learning models with the capability to create images have existed for a while, this previous year we saw a marked improvement in the quality and photo-realism of the images created by these models. 
+One of the major developments this past year were the advancements made in machine learning models that can create beautiful and novel images such as the ones below. Though machine learning models with the capability to create images have existed for a while, this previous year we saw a marked improvement in the quality and photo-realism of the images created by these models.
 
 <!-- truncate -->
 ![Perception of the world](./img/perception_of_the_world.jpg)
 
-Models like [DALL.E 2](https://openai.com/dall-e-2/), [Stable Diffusion](https://stability.ai/blog/stable-diffusion-v2-release) and others which are the technologies underlying many platforms such as [Lensa](https://prisma-ai.com/lensa) and [Midjourney](http://midjourney.com) are being used by millions of people and are quickly becoming main stream as people realize their potential. 
+Models like [DALL·E 2](https://openai.com/product/dall-e-2), [Stable Diffusion](https://github.com/Stability-AI/stablediffusion) and others which are the technologies underlying many platforms such as [Lensa](https://prisma-ai.com/lensa) and [Midjourney](http://midjourney.com) are being used by millions of people and are quickly becoming main stream as people realize their potential.
 
 These models not only have the ability to dream up photo-realistic images when prompted with text input but can also modify given images to add details, replace objects or even paint in a given artists style. See below for the Mona Lisa drip painted in the style of Jackson Pollock!
 
@@ -31,7 +31,7 @@ These are the points that we’ll expand on in this article:
 
 ## How Diffusion Models Work
 
-Diffusion models are a type of generative model - which means that they can generate data points that are similar to the data points they’ve been trained on(the training set). So when we ask Stable Diffusion to create an image it starts to dream up images that are similar to the billions of images from the internet that it was trained on - it’s important to note that it doesn’t simply copy an image from the training set(which would be no fun!) but rather creates a new image that is similar to the training set. Generative models are not limited to just generating images; they can also generate songs, written language or any other modality of data - however to make it easier for us to understand we will only consider generative models that for image data. 
+Diffusion models are a type of generative model - which means that they can generate data points that are similar to the data points they’ve been trained on(the training set). So when we ask Stable Diffusion to create an image it starts to dream up images that are similar to the billions of images from the internet that it was trained on - it’s important to note that it doesn’t simply copy an image from the training set(which would be no fun!) but rather creates a new image that is similar to the training set. Generative models are not limited to just generating images; they can also generate songs, written language or any other modality of data - however to make it easier for us to understand we will only consider generative models that for image data.
 
 The core idea behind all generative models is that they try to learn and understand what the training set “looks” like. In other words they try to learn the underlying distribution of the training set - which just means that they want to know how likely a datapoint is to be observed in the training set. For example, if you are training a generative model on images of beautiful landscapes then, for that generative model, images of trees and mountains are going to be much more common then images of someones kitchen. Furthering this line of reasoning, for that same generative model, an image of static noise would also be quite unlikely since we don’t see that in the training set. This seems like a weird point to make but it will be very important later on!
 
@@ -92,6 +92,6 @@ Here I’ve attempted to provide a general intuition of how diffusion models wor
 - [The Annotated Diffusion Model](https://huggingface.co/blog/annotated-diffusion)
 
 ## Stay Connected
-Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io). 
+Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
 Weaviate is open-source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

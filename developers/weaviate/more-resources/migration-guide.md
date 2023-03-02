@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-# Changlog for version v1.9.0
+# Changelog for version v1.9.0
 
 * no breaking changes
 

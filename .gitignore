@@ -14,6 +14,9 @@
 # Ignore Academy for now
 /developers/academy
 
+# IDEs
+.idea
+
 # Misc
 .DS_Store
 .env.local
