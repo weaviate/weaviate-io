@@ -5,6 +5,7 @@ authors: [zain, erika, connor]
 date: 2023-02-07
 tags: []
 image: ./img/hero.png
+description: "TODO"
 ---
 ![ChatGPT for Generative Search](./img/hero.png)
 
