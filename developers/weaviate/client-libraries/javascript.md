@@ -68,7 +68,7 @@ const client = weaviate.client({
   host: "weaviate-host",
   authClientSecret: new weaviate.AuthUserPasswordCredentials({
     username: "user123",
-    password: "password"
+    password: "password",
     scopes: ["offline_access"]  // optional, depends on the configuration of your identity provider (not required with WCS)
   })
 });
@@ -125,24 +125,24 @@ These headers will then be included in every request that the client makes.
 
 ## References
 
-All [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) references covered by the JS client, and explained on those reference pages in the code blocks.
+All [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) covered by the JS client have JavaScript examples in the code blocks.
 
 ## Design
 
 ### Builder pattern
 
-The JavaScript client is designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../api/rest/index.md) and the [GraphQL reference pages](../api/graphql/index.md).
+The JavaScript client is designed following the [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern). The pattern is used to build complex query objects. This means that calls (for example to retrieve data with a RESTful GET request, or using a more complex GraphQL query) are built with chained objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. Builder examples can be found in the [RESTful API reference pages](../api/rest/index.md) and the [GraphQL reference pages](../api/graphql/index.md).
 
-The code snippet above shows a simple query similar to `RESTful GET /v1/schema`. The client is initiated with requiring the package and connecting to the running instance. Then, a query is constructed with getting the `.schema` with `.getter()`. The query will be sent with the `.do()` function, this object is thus required for every function you want to build and execute. 
+The code snippet at the top of this page shows a simple query corresponding to the RESTful request `GET /v1/schema`. The client is initialized by requiring the package and connecting to a local instance. Then, a query is constructed by getting the `.schema` with `.getter()`. The query will be sent with the `.do()` call. `do()` is required for every function you want to build and execute. 
 
 ### General notes
-- All methods use ES6 Promises to deal with asynchronous code. So you need to use `.then()` at the end of the function, or have async/await support.  
-- In the case of an error, the Promise rejects with the specific error message. (If using async/await a rejected promises acts like a thrown exception).
-- Internally the client uses isomorphic-fetch to do the REST calls, so the client should work from both the browser as well as NodeJS backend applications without any required changes.
+- All methods use ES6 Promises to deal with asynchronous code, so you need to use `.then()` after function calls, or have `async`/`await` support.  
+- In the case of an error, the Promise rejects with the specific error message. (If using `async`/`await`, a rejected promises acts like a thrown exception).
+- Internally the client uses `isomorphic-fetch` to make the REST calls, so it should work from both the browser and NodeJS applications without any required changes.
 
-## Change logs
+## Changelog
 
-Check the [change logs on GitHub](https://github.com/weaviate/weaviate-javascript-client/releases) for updates on the latest `JavaScript client` changes.
+See the [change logs on GitHub](https://github.com/weaviate/weaviate-javascript-client/releases).
 
 ## More Resources
 
