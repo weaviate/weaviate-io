@@ -304,7 +304,7 @@ rough estimation of how the throughput would vary on smaller or larger
 machines. If you do not need the stated throughput, you can run with fewer CPU
 cores. If you need more throughput, you can run with more CPU cores.
 
-Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks.​ ​Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be ​[​available in Weaviate soon​](/developers/weaviate/roadmap/index.md)​.
+Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks. Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be [available in Weaviate soon](/developers/weaviate/roadmap/index.md).
 
 ## What are ef, efConstruction, and maxConnections?
 
@@ -325,8 +325,8 @@ hints to look at:
   switching the CPU type to the one used in this benchmark.
 
 * Are you using an actual dataset or random vectors? HNSW is known to perform
-  considerably worse with random vectors than with real​ world​ datasets. This is due
-  to the distribution of points in real world​ datasets compared to randomly
+  considerably worse with random vectors than with real-world datasets. This is due
+  to the distribution of points in real-world datasets compared to randomly
   generated vectors. If you cannot achieve the performance (or recall)
   outlined above with random vectors, switch to an actual dataset.
 

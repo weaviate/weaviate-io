@@ -20,7 +20,7 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 ## Built-in parameters
 
-B​uilt-in search parameters are available in all Weaviate instances and don't require any modules.​
+Built-in search parameters are available in all Weaviate instances and don't require any modules. 
 
 ### nearVector
 
@@ -269,7 +269,7 @@ This results in the following. Note that publications `International New York Ti
 
 ## Module-specific parameters
 
-Module-specific search parameters are made available in certain Weaviate modules.​
+Module-specific search parameters are made available in certain Weaviate modules. 
 
 ### nearText
 
