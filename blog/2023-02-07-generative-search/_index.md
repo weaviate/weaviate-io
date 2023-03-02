@@ -5,7 +5,7 @@ authors: [zain, erika, connor]
 date: 2023-02-07
 tags: []
 image: ./img/hero.png
-description: "TODO"
+description: "Learn how you can customize Large Language Models prompt responses to your own data by leveraging vector search engines."
 ---
 ![ChatGPT for Generative Search](./img/hero.png)
 
