@@ -86,6 +86,110 @@ The picture shows how a HNSW algorithm is used to go from a search query vector 
 
 All [distance metrics supported in Weaviate](/developers/weaviate/configuration/distances.md) are also supported with the HNSW index type.
 
+:::warning
+Please note that HNSW+PQ is an experimental feature released with Weaviate 1.18.
+:::
+
+## HNSW with Product Quantization(PQ)
+When using HNSW you can also choose to use product quantization(PQ) to compress vector representations to help reduce memory requirments. Product quantization is a technique allowing for Weaviate’s HNSW vector index to store vectors using fewer bytes. As HNSW stores vectors in memory, this allows for running larger datasets on a given amount of memory.
+
+An important point to note is that product quantization is a tradeoff between recall and memory saving. This means that configuration settings reducing memory will also reduce recall. This is similar to how HNSW can be tuned to lower latency at the cost of recall by configuring its search parameters (`ef` and `maxConnections`). Please refer to [Configuration: Indexes](../configuration/indexes.md) for more information around how to configure PQ.
+
+### What is PQ?
+
+Product quantization is an approach to reduce the memory usage of vectors stored in Weaviate. Quantization is the approach of representing a range of vectors to a finite smaller set of vectors. A familiar example for a single numeric value is rounding the number to the nearest integer.
+
+With [Product quantization](https://ieeexplore.ieee.org/document/5432202) in the context of nearest neighbour search, the vector is first split into segments (also named subspaces) and then each segment is quantized independently.
+
+So assume we have a vector of floats with 256 dimensions and 8 segments:
+
+[ 256 dimensions ]
+
+This would be first segmented and represented as follows:
+
+[ 32 ] [ 32 ] [ 32 ] [ 32 ] [ 32 ] [ 32 ] [ 32 ] [ 32 ]
+
+We then quantize each segment using a codebook. The codebook has for each segment a set of centroids which each segment is mapped to. For instance if the first segment was closest to centroid 1 it would be represented by the id 1.
+
+The number of possible centroids is set to 256, so this means that instead of storing 32 floats (128 bytes) we are now just storing 1 byte of information plus the overhead of the codebook.
+
+[ id 1 ] [ id 23 ] [ id 195 ] [ id 128 ] [ id 1 ] [ id 43 ] [ id 7 ] [ id 50 ]
+
+Distances are then calculated asymmetrically with a query vector. This means we calculate the distance as follows: `distance_pq(query_vector, quantized(store_vector))` with the goal being to keep all the information in the query vector when calculating distances.
+
+Weaviate’s HNSW implementation assumes that product quantization will occur after some data has already been loaded. The reason for this is that the centroids found in the codebook need to be trained on existing data. 
+
+:::tip
+A good recommendation is to have 10,000 to 100,000 vectors per shard loaded before enabling product quantization.
+:::
+
+### Conversion of an existing Class to use PQ
+You can convert an existing class to use product quantization by changing the schema as follows. *It is recommended to run a backup first before enabling.*
+
+```python
+client.schema.update_config("DeepImage", {
+    "vectorIndexConfig": {
+        "pq": {
+            "enabled": True,
+        }
+    }
+})
+```
+
+:::tip
+To learn more about other configuration settings for PQ refer to the documentation in [Configuration: Indexes](../configuration/indexes.md)
+:::
+
+The command will return immediately and a job will run in the background to convert an index. During this time the index will be read only. Shard status will return to `READY` after converted.
+
+```python
+client.schema.get_class_shards("DeepImage")
+
+[{'name': '1Gho094Wev7i', 'status': 'READONLY'}]
+```
+
+You can now query and write to the index as normal. The original vectors will be returned if using _additional { vector } but the distances will be slightly different due to the effects of quantization.
+
+```python
+client.query.get("DeepImage", ["i"]) \
+	.with_near_vector({"vector": vector}) \
+	.with_additional(["vector", "distance"]) \
+	.with_limit(10).do()
+
+{'data': {'Get': {'DeepImage': [{'_additional': {'distance': 0.18367815},
+     'i': 64437},
+    {'_additional': {'distance': 0.18895388}, 'i': 97342},
+    {'_additional': {'distance': 0.19454134}, 'i': 14852},
+    {'_additional': {'distance': 0.20019263}, 'i': 84393},
+    {'_additional': {'distance': 0.20580399}, 'i': 71091},
+    {'_additional': {'distance': 0.2110992}, 'i': 15182},
+    {'_additional': {'distance': 0.2117207}, 'i': 92370},
+    {'_additional': {'distance': 0.21241724}, 'i': 98583},
+    {'_additional': {'distance': 0.21241736}, 'i': 8064},
+    {'_additional': {'distance': 0.21257097}, 'i': 537}]}}}
+```
+
+As an example please refer to example below for the different parameters that can be set to further configure PQ:
+
+```python
+client.schema.update_config("DeepImage", {
+    "vectorIndexConfig": {
+        "pq": {
+            "enabled": True, # defaults to False
+            "segments": 32, # defaults to the number of dimensions
+						"encoder": {
+								"type": "kmeans"  # defaults to kmeans
+            }
+        }
+    }
+})
+```
+
+### Encoders 
+In the configuration above you can see that you can set the `encoder` object to specify how the codebook centroids are generated. Weaviate’s PQ supports using two different encoders. The default is `kmeans` which maps to the traditional approach used for creating centroid.
+
+Alternatively, there is also the `tile` encoder. This encoder is currently experimental but does have faster import times and better recall on datasets like SIFT and GIST. The `tile` encoder has an additional `distribution` parameter which controls what distribution to use when generating centroids. You can configure the encoder by setting `type` to `tile` or `kmeans` the encoder creates the codebook for product quantization. For more details around configuration please refer to [Configuration: Indexes](../configuration/indexes.md). 
+
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
