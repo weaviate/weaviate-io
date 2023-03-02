@@ -45,12 +45,12 @@
 // styles for the BlogPostItems - displayed on the blog list page
 .blogCard {
   display: grid;
-  grid-template-columns: 1fr 130px;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "title title"
-    "image image"
-    "shortText shortText"
-    "info button";
+    "title"
+    "image"
+    "shortText"
+    "info";
 }
 
 .blogCardTitle {
@@ -58,7 +58,8 @@
   h2 {
     font-family: var(--blog-heading-font-family);
     display: flex;
-    font-size: 1.5em;
+    font-size: x-large;
+
     min-height: 4em;
     margin-bottom: 5px;
     display: flex;
@@ -70,27 +71,28 @@
 
 .blogCardImage {
   grid-area: image;
+  
   img {
     width: 100%;
   }
 }
 
 .blogCardDescription {
-  font-family: var(--blog-base-font-family); 
   grid-area: shortText;
+
+  font-family: var(--blog-base-font-family);
+  // color: var(--site-font-header-color);
+  color: var(--site-base-color-shade);
   font-style: italic;
+  font-size: large;
 }
 
 .blogCardInfo {
-  font-family: var(--blog-base-font-family);
   grid-area: info;
-  display: flex;
-  align-items: center;
-}
 
-.blogCardButton {
-  grid-area: button;
+  font-family: var(--blog-base-font-family);
+  font-size: medium;
+
   display: flex;
   align-items: center;
-  justify-content: flex-end;
 }

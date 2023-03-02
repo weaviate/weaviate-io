@@ -25,7 +25,7 @@
   @media screen and (max-width: 768px) {
     --ifm-h2-font-size: 1.5rem;
   }
-  --ifm-navbar-height: 6rem;
+  --ifm-navbar-height: 4rem;
   --ifm-navbar-link-color: var(--site-base-color-shade);
   --ifm-color-primary: var(--site-accent);
 
@@ -358,8 +358,8 @@ button.close {
 }
 
 .navbar__logo {
-  width: 200px;
-  height: 4rem;
+  width: 150px;
+  height: 3rem;
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;

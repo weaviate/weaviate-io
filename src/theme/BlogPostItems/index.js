@@ -33,14 +33,6 @@ export default function BlogPostItems({
               <div className={styles.blogCardInfo}>
                 <span>{BlogPostContent.metadata.formattedDate} · {Math.round(BlogPostContent.metadata.readingTime)} min read</span>
               </div>
-              <div className={styles.blogCardButton}>
-                <ButtonContainer position="right">
-                <LinkButton
-                  link={BlogPostContent.metadata.permalink}
-                  newTab={false}
-                >Read More <i className='fas fa-book-reader'/> </LinkButton>
-                </ButtonContainer>
-              </div>
               {/* <BlogPostContent /> */}
             </div>
           </BlogPostItemComponent>
