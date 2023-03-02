@@ -48,7 +48,7 @@ Please reach out on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-g
 :::
 
 :::note
-Like what you see? Consider giving us a [⭐ on Github](https://github.com/weaviate/weaviate/stargazers).
+Like what you see? Consider giving us a [⭐ on GitHub](https://github.com/weaviate/weaviate/stargazers).
 :::
 
 ### Code examples

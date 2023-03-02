@@ -1,7 +1,7 @@
 ---
 title: Support for Hugging Face Inference API in Weaviate
 slug: hugging-face-inference-api-in-weaviate
-authors: [sebastian] 
+authors: [sebastian]
 date: 2022-09-27
 tags: []
 image: ./img/hero.png
@@ -88,7 +88,7 @@ Then you would follow these steps.
 
 ### Step 1 – initial preparation – create schema and select the hf models
 Once you have a Weaviate instance up and running.
-Define your schema (standard stuff – pick a class name, select properties, and data types). As a part of the schema definition, you also need to provide, which Hugging Face model you want to use for each schema class. 
+Define your schema (standard stuff – pick a class name, select properties, and data types). As a part of the schema definition, you also need to provide, which Hugging Face model you want to use for each schema class.
 
 
 This is done by adding a `moduleConfig` property with the `model` name, to the schema definition, like this:
@@ -97,7 +97,7 @@ This is done by adding a `moduleConfig` property with the `model` name, to the s
     "class": "Notes",
     "moduleConfig": {
         "text2vec-huggingface": {
-            "model": "sentence-transformers/all-MiniLM-L6-v2", # model name
+            "model": "sentence-transformers/all-MiniLM-L6-v2",  # model name
             ...
         }
     },
@@ -126,7 +126,7 @@ client = weaviate.Client(
 Then import the data the same way as always. And Weaviate will handle all the communication with Hugging Face.
 
 ### Step 3 – serving portions – querying data
-Once, you imported some or all of the data, you can start running queries. 
+Once, you imported some or all of the data, you can start running queries.
 (yes, you can start querying your database even during the import).
 
 Running queries also requires the same token.
@@ -166,4 +166,4 @@ Let us know if you found this article interesting or useful. We are always happy
 
 We are always working on new articles and are looking for new topics. Let us know if there is anything that you would like us to write about. 🤗
 
-Please reach out to us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [Github](https://github.com/weaviate/weaviate).
+Please reach out to us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [GitHub](https://github.com/weaviate/weaviate).

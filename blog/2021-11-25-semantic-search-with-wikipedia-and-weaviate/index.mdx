@@ -1,11 +1,11 @@
 ---
 title: Wikipedia and Weaviate
 slug: semantic-search-with-wikipedia-and-weaviate
-authors: [bob] 
+authors: [bob]
 date: 2021-11-25
 tags: []
 image: ./img/hero.jpg
-# canonical-url: https://towardsdatascience.com/semantic-search-through-wikipedia-with-weaviate-graphql-sentence-bert-and-bert-q-a-3c8a5edeacf6   
+# canonical-url: https://towardsdatascience.com/semantic-search-through-wikipedia-with-weaviate-graphql-sentence-bert-and-bert-q-a-3c8a5edeacf6
 # canonical-name: Towards Data Science
 # description: Semantic search through the complete Wikipedia with the Weaviate vector search engine
 ---
@@ -17,7 +17,7 @@ The Wikipedia dataset used is the "truthy" version of October 9th, 2021. After p
 
 <!-- truncate -->
 
-📄 The complete dataset and code is open-source and available [on Github](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate).
+📄 The complete dataset and code is open-source and available [on GitHub](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate).
 
 ![Demo GIF of Weaviate using the Wikipedia dataset](./img/weaviate-using-the-Wikipedia-dataset.gif)
 *Example semantic search queries in Weaviate's GraphQL interface — GIF by Author*
@@ -38,9 +38,9 @@ Within Weaviate we will be using a schema that determines how we want to query t
 
 First, because our use case is semantic search over Wikipedia, we will be dividing the dataset into paragraphs and use Weaviate's graph schema to link them back to the articles. Therefore we need two classes; *Article* and *Paragraph*.
 
-```graphql
+```javascript
 {
-  classed: [
+  classes: [
     {
       class: "Article",
       description: "A wikipedia article with a title",
@@ -63,7 +63,7 @@ First, because our use case is semantic search over Wikipedia, we will be dividi
 
 Next, we want to make sure that the content of the paragraphs gets vectorized properly, the vector representations that the SentenceBERT transformers will generate are used for all our semantic search queries.
 
-```graphql
+```javascript
 {
   name: "content",
   datatype: [
@@ -84,7 +84,7 @@ Next, we want to make sure that the content of the paragraphs gets vectorized pr
 
 Last, we want to make graph relations, in the dataset from step one we will distill all the graph relations between articles that we can reference like this:
 
-```graphql
+```javascript
 {
   name: "hasParagraphs"
   dataType: [
@@ -144,7 +144,7 @@ In this example, we pose a natural language question, and we will assume that th
 {
   Get {
     Paragraph(
-      ask: { 
+      ask: {
         question: "Where is the States General of The Netherlands located?"
         properties: ["content"]
       }

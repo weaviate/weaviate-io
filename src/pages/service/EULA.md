@@ -10,7 +10,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 Last updated: 19-01-2022
 
-For customers of Weaviate B.V., this agreement replaces the open source license agreement for Weaviate ("Application"), as can be found on Github.
+For customers of Weaviate B.V., this agreement replaces the open source license agreement for Weaviate ("Application"), as can be found on GitHub.
 
 Please read this End-User License Agreement ("Agreement") carefully before agreeing to the contract, downloading or using the Application. 
 

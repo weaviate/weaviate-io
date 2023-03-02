@@ -1,7 +1,7 @@
 ---
 title: Weaviate 1.15 release
 slug: weaviate-1-15-release
-authors: [connor, erika, laura, sebastian] 
+authors: [connor, erika, laura, sebastian]
 date: 2022-09-07
 tags: []
 image: ./img/hero.png
@@ -16,7 +16,7 @@ We are happy to announce the release of Weaviate 1.15, which is packed with grea
 If you like your content brief and to the point, here is the TL;DR of this release:
 1. [☁️Cloud-native backups](#cloud-native-backups) - allows you to configure your environment to create backups - of selected classes or the whole database - straight into AWS S3, GCS or local filesystem
 1. [Reduced memory usage](#reduced-memory-usage) - we found new ways to optimize memory usage, reducing RAM usage by 10-30%.
-1. [Better control over Garbage Collector](#better-control-over-garbage-collector) - with the introduction of GOMEMLIMIT we gained more control over the garbage collector, which significantly reduced the chances of OOM kills for your Weaviate setups. 
+1. [Better control over Garbage Collector](#better-control-over-garbage-collector) - with the introduction of GOMEMLIMIT we gained more control over the garbage collector, which significantly reduced the chances of OOM kills for your Weaviate setups.
 1. [Faster imports for ordered data](#faster-imports-for-ordered-data) - by extending the Binary Search Tree structure with a self-balancing Red-black tree, we were able to speed up imports from O(n) to O(log n)
 1. [More efficient filtered aggregations](#more-efficient-filtered-aggregations) - thanks to optimization to a library reading binary data, filtered aggregations are now 10-20 faster and require a lot less memory.
 1. [Two new distance metrics](#new-distance-metrics) - with the addition of Hamming and Manhattan distance metrics, you can choose the metric (or a combination of) to best suit your data and use case.
@@ -156,7 +156,7 @@ POST /v1/backups/gcs/first_backup/restore
 ### Other use cases
 It might not be immediately obvious, but you can use the above workflow to migrate your data to other environments.
 
-So, if one day you find yourself with an environment that is not set up for what you need (i.e. not enough resources). Then create a backup, and restore it in the new environment. 😉 
+So, if one day you find yourself with an environment that is not set up for what you need (i.e. not enough resources). Then create a backup, and restore it in the new environment. 😉
 
 ### Follow up
 Are you ready to set up backups for your environment?
@@ -170,7 +170,7 @@ As part of the continuous effort to make Weaviate faster, leaner and more powerf
 
 ### Thread pooling optimization
 
-First, we set our sights on parallel imports, where we introduced thread pooling to reduce memory spikes while importing data. 
+First, we set our sights on parallel imports, where we introduced thread pooling to reduce memory spikes while importing data.
 
 Previously if you had, e.g., 8 CPUs and would import from 4 client threads, each client request would run with a parallelization factor of 8 (one per CPU core). So, in the worst case, you could end up with 32 parallel imports (on a machine with "only" 8 CPUs). There is no performance gain if we have more parallelization than the available CPUs. However, each thread needs additional memory). So with 32 parallel imports, we had the worst of both worlds: High memory usage and no performance gains beyond 8.
 
@@ -201,7 +201,7 @@ Weaviate is built from the ground up in Go, which allows for building very perfo
 
 ### The problem
 
-Working with a garbage collector is very safe, and the resource cost of running GC cycles is a fairly small tradeoff. We just need to ensure that we have the right balance of frequency of GC cycles and the buffer of available memory (on top of what we have estimated for our application setup). 
+Working with a garbage collector is very safe, and the resource cost of running GC cycles is a fairly small tradeoff. We just need to ensure that we have the right balance of frequency of GC cycles and the buffer of available memory (on top of what we have estimated for our application setup).
 
 Now, increasing each of those comes with a price:
 * Increasing the frequency of GC cycles will use more CPU, which we could make better use of elsewhere.
@@ -211,7 +211,7 @@ And if we get that balance wrong, we might end up with an Out Of Memory crash.
 
 ### The solution
 
-At the beginning of August, the Go team released `Go 1.19`, which introduced `GOMEMLIMIT`. `GOMEMLIMIT` turned out to be a **game changer for high-memory applications**. 
+At the beginning of August, the Go team released `Go 1.19`, which introduced `GOMEMLIMIT`. `GOMEMLIMIT` turned out to be a **game changer for high-memory applications**.
 
 With GOMEMLIMIT we can provide a soft memory cap, which tells Go how much memory we expect the application to need. This makes the GC more relaxed when RAM is plentiful and more aggressive when memory is scarce.
 
@@ -264,7 +264,7 @@ With a full import test, we saw a **3x performance improvement** 🚀.
 
 ![More efficient filtered aggregations](./img/filtered-aggregation.png)
 
-Recently we've been working with a customer who was running multiple filtered aggregations on a large dataset. Unfortunately, the queries were slow, resulting in Out Of Memory kills in some cases. This was not good enough for what we expected of Weaviate. 
+Recently we've been working with a customer who was running multiple filtered aggregations on a large dataset. Unfortunately, the queries were slow, resulting in Out Of Memory kills in some cases. This was not good enough for what we expected of Weaviate.
 
 ### Investigation
 
@@ -297,7 +297,7 @@ On top of that, we've introduced other minor optimizations. So if you are curiou
 
 As a result, the filtered aggregations are to **10-20x faster** and require less memory.
 
-When we rerun the original test (with ten parallel aggregations), we saw the memory consumption drop to 30GB (vs 200GB). 
+When we rerun the original test (with ten parallel aggregations), we saw the memory consumption drop to 30GB (vs 200GB).
 
 <!-- TODO: add a quote from Juraj
 But don't take our word for it, this was from a test run by one of our community members…
@@ -351,7 +351,7 @@ The Summarization module allows you to summarize text data at query time.
 
 The module adds a `summary` filter under the `_additional` field, which lets you list the properties that should be summarized.
 
-For example, if we broke down this blog post into **chapters** in Weaviate, with **title** and **content** properties. 
+For example, if we broke down this blog post into **chapters** in Weaviate, with **title** and **content** properties.
 
 We could run a query to summarize the *"New distance metrics"* chapter like this:
 
@@ -393,8 +393,8 @@ Which would return the following result:
                 "property": "content",
                 "result": "Weaviate 1.15 adds two new distance metrics - Hamming
                  distance and Manhattan distance. In total, you can now choose
-                 between five various distance metrics to support your datasets. 
-                 Check out the metrics documentation page, for the full overview 
+                 between five various distance metrics to support your datasets.
+                 Check out the metrics documentation page, for the full overview
                  of all the available metrics in Weaviate."
               }
             ]
@@ -435,4 +435,4 @@ You can find the complete list and the relevant links in the [release notes](htt
 ## Enjoy
 We hope you enjoy all the new features, performance improvements, memory savings and bug fixes that made this the best Weaviate release yet!🔥
 
-Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [Github](https://github.com/weaviate/weaviate).
+Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [GitHub](https://github.com/weaviate/weaviate).

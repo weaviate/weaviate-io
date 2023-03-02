@@ -642,16 +642,16 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
       "class": "Article",
       "vectorIndexType": "hnsw",        # defaults to hnsw
       "vectorIndexConfig": {
-        "efConstruction": 100,
+        "efConstruction": 100
       },
       "moduleConfig": {
         "text2vec-contextionary": {  
           "vectorizeClassName": true
         },
-        "encryptor5000000": { "enabled": true }, # example
+        "encryptor5000000": { "enabled": true }  # example
       },
       "description": "string",
-      "vectorizer": "text2vec-contextionary", # default is configurable
+      "vectorizer": "text2vec-contextionary",  # default is configurable
       "properties": [ … ]
     }
     ```
@@ -881,12 +881,12 @@ To
     "informationGainCutoffPercentile": 30,
     "informationGainMaximumBoost": 3,
     "tfidfCutoffPercentile": 80,
-    "minimumUsableWords": 3,
+    "minimumUsableWords": 3
   },
   "filters": {
     "sourceWhere": { … },
     "trainingSetWhere": { … },
-    "targetWhere": { … },
+    "targetWhere": { … }
   }
 }
 ```
@@ -896,7 +896,7 @@ The default vectorizer module can be specified in a new environment variable so 
 
 
 # Official release notes
-Official release notes can be found on [Github](https://github.com/weaviate/weaviate/releases/tag/0.23.0). 
+Official release notes can be found on [GitHub](https://github.com/weaviate/weaviate/releases/tag/0.23.0). 
 
 
 ## More Resources

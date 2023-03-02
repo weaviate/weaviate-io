@@ -118,11 +118,11 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
       "Article": [
         {
           "title": "Opinion | John Lennon Told Them ‘Girls Don't Play Guitar.' He Was So Wrong."
-        },
+        }
       ]
   },
   "errors": null
-} 
+}
 ```
 
 ### Filter by id
@@ -144,11 +144,11 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
       "Article": [
         {
           "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
-        },
+        }
       ]
   },
   "errors": null
-} 
+}
 ```
 
 ### Filter by timestamps
@@ -172,11 +172,11 @@ import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where
       "Article": [
         {
           "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
-        },
+        }
       ]
   },
   "errors": null
-} 
+}
 ```
 
 ### Filter by property length
@@ -232,7 +232,7 @@ import GraphQLFiltersWhereLike from '/_includes/code/graphql.filters.where.like.
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28where%3A+%7B%0D%0A++++++++++path%3A+%5B%22name%22%5D%2C%0D%0A++++++++++operator%3A+Like%2C%0D%0A++++++++++valueString%3A+%22New+%2A%22%0D%0A++++++%7D%29+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
 #### Notes
-Each query using the `Like` operator iterates over the entire inverted index for that property. The search time will go up linearly with the dataset size. Be aware that there might be a point where this query is too expensive and will not work anymore. We will improve this implementation in a future release. You can leave feedback or feature requests in a [Github issue](https://github.com/weaviate/weaviate/issues). 
+Each query using the `Like` operator iterates over the entire inverted index for that property. The search time will go up linearly with the dataset size. Be aware that there might be a point where this query is too expensive and will not work anymore. We will improve this implementation in a future release. You can leave feedback or feature requests in a [GitHub issue](https://github.com/weaviate/weaviate/issues). 
 
 #### Example response
 

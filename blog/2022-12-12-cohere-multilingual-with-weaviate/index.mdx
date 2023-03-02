@@ -43,7 +43,7 @@ Enable product search in the language(s) that your users are comfortable with.
 ## Multilingual model quick test
 After learning from our friends at Cohere that the model can handle over a hundred human languages, I was eager to test it out and see what I could achieve by running a few queries in different languages.
 
-So, I’ve created a small dataset with a few objects with descriptions of animals (squirrels, horses, meerkats, etc.), musical instruments, and vehicles. The descriptions for half of the objects are in English, but the remaining objects are written in other languages like German, Italian, Swedish, Spanish etc. 
+So, I’ve created a small dataset with a few objects with descriptions of animals (squirrels, horses, meerkats, etc.), musical instruments, and vehicles. The descriptions for half of the objects are in English, but the remaining objects are written in other languages like German, Italian, Swedish, Spanish etc.
 
 Then, I took 15 minutes to create a small [Python project](https://github.com/weaviate-tutorials/cohere-multilingual-test):
 
@@ -71,11 +71,11 @@ Both queries returned the following objects. Note the guitar content is in Itali
 [{
     "enName":"Guitar",
     "name":"Chitarra",
-    "content": "La chitarra è uno strumento musicale cordofono a pizzico, che può essere suonato con i polpastrelli, con le unghie o con un plettro."
+    "content": "La chitarra è uno strumento musicale cordofono a pizzico, che può essere suonato con i polpastrelli, con le unghie o con un plettro.",
     "_additional":{
         "certainty":0.7987224459648132,
         "distance":0.4025551
-    },
+    }
 },
 {
     "enName":"Drum",
@@ -84,7 +84,7 @@ Both queries returned the following objects. Note the guitar content is in Itali
     "_additional":{
         "certainty":0.7355101704597473,
         "distance":0.52897966
-    },
+    }
 }]
 ```
 
@@ -102,22 +102,22 @@ Which returned three objects about meerkats (each in a different language) and o
     "enName": "Meerkat",
     "name": "Erdmännchen",
     "content": "Das Erdmännchen (Suricata suricatta), auch Surikate oder veraltet Scharrtier genannt, ist eine Säugetierart aus der Familie der Mangusten (Herpestidae).",
-    "_additional": { "certainty": 0.7455021142959595, "distance": 0.5089958 },
+    "_additional": { "certainty": 0.7455021142959595, "distance": 0.5089958 }
 },{
     "enName": "Meerkat",
     "name": "Surikat",
     "content": "Surikat (Suricata suricatta) är ett litet däggdjur som lever i sydvästra Afrika, i Kalahariöknen i Botswana, i Namiböknen i Namibia och Angola samt i Sydafrika.",
-    "_additional": {"certainty": 0.7168638408184052, "distance": 0.5662723},
+    "_additional": {"certainty": 0.7168638408184052, "distance": 0.5662723}
 },{
     "enName": "Meerkat",
     "name": "Suricata",
     "content": "La suricata (Suricata suricatta) es una especie de mamífero carnívoro de la familia Herpestidae que habita la región del desierto de Kalahari y el Namib en África. La suricata es una de las mangostas más pequeñas.",
-    "_additional": { "certainty": 0.7151028215885162, "distance": 0.56979436 },
+    "_additional": { "certainty": 0.7151028215885162, "distance": 0.56979436 }
 },{
     "enName": "Squirrel",
     "name": "Hörnchen",
     "content": "Die Hörnchen (Sciuridae) sind eine Familie aus der Ordnung der Nagetiere (Rodentia). Unter anderem gehören das Eurasische Eichhörnchen, das Streifenhörnchen und das europäische Ziesel zu dieser Familie.",
-    "_additional": { "certainty": 0.7129454612731934, "distance": 0.5741091 },
+    "_additional": { "certainty": 0.7129454612731934, "distance": 0.5741091 }
 }]
 ```
 
@@ -140,17 +140,17 @@ Probably the most interesting part is the [query code](https://github.com/weavia
 ```python
 def semantic_serch(query):
    client = _setup.connect_to_weaviate()
- 
+
    nearText = {
        "concepts": [query],
        "distance": 0.7,
    }
- 
+
    properties = [
        "name", "content", "enName", "link", "lang",
        "_additional {certainty distance}"
    ]
- 
+
    result = (
        client.query
        .get("Document", properties)
@@ -158,7 +158,7 @@ def semantic_serch(query):
        .with_limit(5)
        .do()
    )
- 
+
    return result['data']['Get']['Document']
 ```
 ## How does this work
@@ -208,4 +208,4 @@ Let us know if you found this article interesting or useful. We are always happy
 
 We are always working on new articles and are looking for new topics. Let us know if there is anything that you would like us to write about. 🤗
 
-Please reach out to us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [Github](https://github.com/weaviate/weaviate).
+Please reach out to us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [GitHub](https://github.com/weaviate/weaviate).
