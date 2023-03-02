@@ -20,7 +20,7 @@ The console is available on: [console.weaviate.io](https://console.weaviate.io).
 
 ## Login page
 
-When opening the [Weaviate Console](https://console.weaviate.io), you'll see two options:
+When opening the [Weaviate Console](https://console.weaviate.io), you'll see two options:
 
 1. ["Sign in with the Weaviate Cloud Services"](#weaviate-cloud-services)
 2. ["Self-hosted Weaviate"](#connect-to-a-self-hosted-weaviate)

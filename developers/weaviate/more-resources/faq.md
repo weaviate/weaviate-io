@@ -32,7 +32,7 @@ Weaviate uses a custom implementation of HNSW that overcomes certain limitations
 
 Custom HNSW implementation in Weaviate references:
 
-- [HNSW plugin (Github)](https://github.com/weaviate/weaviate/tree/master/adapters/repos/db/vector/hnsw)
+- [HNSW plugin (GitHub)](https://github.com/weaviate/weaviate/tree/master/adapters/repos/db/vector/hnsw)
 - [vector dot product ASM](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s)
 
 More information:
@@ -90,7 +90,7 @@ A: Yes, you can! Weaviate support ontology, RDF-like definitions in its schema, 
 
 ## Q: Why isn't there a text2vec-contextionary in my language?
 
-A: Because you are probably one of the first that needs one! Ping us [here on Github](https://github.com/weaviate/weaviate/issues), and we will make sure in the next iteration it will become available (unless you want it in [Silbo Gomero](https://en.wikipedia.org/wiki/Silbo_Gomero) or another language which is whistled).
+A: Because you are probably one of the first that needs one! Ping us [here on GitHub](https://github.com/weaviate/weaviate/issues), and we will make sure in the next iteration it will become available (unless you want it in [Silbo Gomero](https://en.wikipedia.org/wiki/Silbo_Gomero) or another language which is whistled).
 
 ## Q: How to deal with custom terminology?
 
@@ -130,7 +130,7 @@ A: Weaviate uses Docker images as a means to distribute releases and uses Docker
 
 ## Q: Can I request a feature in Weaviate?
 
-A: Sure (also, feel free to [issue a pull request](https://github.com/weaviate/weaviate/pulls) 😉) you can [add those requests here](https://github.com/weaviate/weaviate/issues). The only thing you need is a Github account, and while you're there, make sure to give us a star 😇.
+A: Sure (also, feel free to [issue a pull request](https://github.com/weaviate/weaviate/pulls) 😉) you can [add those requests here](https://github.com/weaviate/weaviate/issues). The only thing you need is a GitHub account, and while you're there, make sure to give us a star 😇.
 
 ## Q: Does Weaviate require NFS volumes on Kubernetes?
 
@@ -300,5 +300,5 @@ Look at the:
 
 1. [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
 1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
-1. For issues: [Github](https://github.com/weaviate/weaviate/issues). Or,
+1. For issues: [GitHub](https://github.com/weaviate/weaviate/issues). Or,
 1. Ask your question in the Slack channel: [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).

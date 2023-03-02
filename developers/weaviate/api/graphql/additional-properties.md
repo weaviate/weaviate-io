@@ -22,7 +22,7 @@ import GraphQLUnderscoreDistance from '/_includes/code/graphql.underscorepropert
 
 ## _additional property
 
-​All additional properties can be set in the reserved `_additional{}` property.​
+All additional properties can be set in the reserved `_additional{}` property.
 
 For example:
 

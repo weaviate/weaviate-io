@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-The `text2vec-huggingface` module allows you to use [Hugging Face models](https://huggingface.co/models) directly in Weaviate as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using the chosen module.
+The `text2vec-huggingface` module allows you to use [Hugging Face models](https://huggingface.co/models) directly in Weaviate as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using the chosen module.
 
 * Note: this module uses a third-party API.
 * Note: make sure to check the Inference [pricing page](https://huggingface.co/inference-api#pricing) before vectorizing large amounts of data.
@@ -19,7 +19,7 @@ The `text2vec-huggingface` module allows you to use [Hugging Face models](https:
 
 ## How to enable
 
-Request a Huggingface API Token via [their website](https://huggingface.co/settings/tokens).
+Request a Hugging Face API Token via [their website](https://huggingface.co/settings/tokens).
 
 ### Weaviate Cloud Services
 
@@ -53,7 +53,7 @@ import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.m
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
+In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
 
 For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-huggingface` using the `all-MiniLM-L6-v2` model.
 
@@ -113,21 +113,21 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 ### Support for Hugging Face Inference Endpoints
 
-The `text2vec-huggingface` module also supports [HuggingFace Inference Endpoints](https://huggingface.co/inference-endpoints), where you can deploy your own model as an endpoint. To use your own HuggingFace Inference Endpoint for vectorization with the `text2vec-huggingface` module, just pass the endpoint url in the class configuration as the `endpointURL` setting. Please note that only `feature extraction` inference endpoint types are supported.
+The `text2vec-huggingface` module also supports [Hugging Face Inference Endpoints](https://huggingface.co/inference-endpoints), where you can deploy your own model as an endpoint. To use your own Hugging Face Inference Endpoint for vectorization with the `text2vec-huggingface` module, just pass the endpoint url in the class configuration as the `endpointURL` setting. Please note that only `feature extraction` inference endpoint types are supported.
 
 ### Available settings
 
-​In the schema, on a class level, the following settings can be added:
+In the schema, on a class level, the following settings can be added:
 
-​| setting | type | description | example |
+| setting | type | description | example |
 | --- | --- | --- | --- |
-| `model` | `string` | This can be any public or private Huggingface model, [sentence similarity models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads) work best for vectorization.<br/><br/>Don't use with `queryModel` nor `passageModel`. | `"bert-base-uncased"` |
+| `model` | `string` | This can be any public or private Hugging Face model, [sentence similarity models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads) work best for vectorization.<br/><br/>Don't use with `queryModel` nor `passageModel`. | `"bert-base-uncased"` |
 | `passageModel` | `string` | DPR passage model.<br/><br/>Should be set together with `queryModel`, but without `model`. | `"sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base"` |
 | `queryModel` | `string` | DPR query model.<br/><br/>Should be set together with `passageModel`, but without `model`. | `"sentence-transformers/facebook-dpr-question_encoder-single-nq-base"` |
-| `options.waitForModel` | `boolean` | If the model is not ready, wait for it instead of receiving 503.​ | |
+| `options.waitForModel` | `boolean` | If the model is not ready, wait for it instead of receiving 503. | |
 | `options.useGPU` | `boolean` | Use GPU instead of CPU for inference.<br/>(requires Hugginface's [Startup plan](https://huggingface.co/inference-api#pricing) or higher) | |
 | `options.useCache` | `boolean` | There is a cache layer on the inference API to speedup requests we have already seen. Most models can use those results as is as models are deterministic (meaning the results will be the same anyway). However if you use a non-deterministic model, you can set this parameter to prevent the caching mechanism from being used resulting in a real new query. | | 
-| `endpointURL` | `string` | This can be any public or private Huggingface Inference URL. To find out how to deploy your own Hugging Face Inference Endpoint click [here](https://huggingface.co/inference-endpoints).<br/><br/>Note: when this variable is set, the module will ignore model settings like `model` `queryModel` and `passageModel`. | |
+| `endpointURL` | `string` | This can be any public or private Hugging Face Inference URL. To find out how to deploy your own Hugging Face Inference Endpoint click [here](https://huggingface.co/inference-endpoints).<br/><br/>Note: when this variable is set, the module will ignore model settings like `model` `queryModel` and `passageModel`. | |
 
 ## More resources
 

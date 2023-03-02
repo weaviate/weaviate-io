@@ -30,7 +30,7 @@ The UX of Weaviate's APIs is designed following the UX Honeycomb usability rules
 
 ### RESTful API and GraphQL API
 
-Weaviate has both a RESTful API and a GraphQL API. Currently, there is no feature parity between both APIs (this will be implemented later, there is an [issue](https://github.com/weaviate/weaviate/issues/1540) on Github). The RESTful APIs are mostly used for DB management and CRUD operations. The GraphQL API is mostly used to access data objects in Weaviate, whether it's a simple lookup or a combination of scalar and vector search. The APIs support the following user needs, roughly speaking:
+Weaviate has both a RESTful API and a GraphQL API. Currently, there is no feature parity between both APIs (this will be implemented later, there is an [issue](https://github.com/weaviate/weaviate/issues/1540) on GitHub). The RESTful APIs are mostly used for DB management and CRUD operations. The GraphQL API is mostly used to access data objects in Weaviate, whether it's a simple lookup or a combination of scalar and vector search. The APIs support the following user needs, roughly speaking:
 
 * **Adding, retrieving, updating and deleting data CRUD** -> RESTful API
 * **Weaviate management operations** -> RESTful API 

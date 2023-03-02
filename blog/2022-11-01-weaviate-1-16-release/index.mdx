@@ -1,7 +1,7 @@
 ---
 title: Weaviate 1.16 release
 slug: weaviate-1-16-release
-authors: [connor, jp, erika, sebastian, zain] 
+authors: [connor, jp, erika, sebastian, zain]
 date: 2022-11-01
 tags: []
 image: ./img/hero.png
@@ -29,9 +29,9 @@ Read below to learn more about each of these points in more detail.
 
 One of the core functionalities of databases are the index structures that allow us to find data objects quickly. The ability to seamlessly combine an inverted index with a vector index is part of what makes Weaviate so powerful. An inverted index maps the property value to the objects that it appears in. This is important when filtering through your database to find specific data objects.
 
-### Filtering Null Values 
+### Filtering Null Values
 When dealing with large datasets, it is very common to have objects with missing or null properties. Naturally, you might want to find the objects with missing properties and do a bit of cleaning up. With `Weaviate 1.16` we introduced the possibility to query the `null` state. This applies to both scenarios where a property is set to null, or the property is completely missing.
- 
+
 This new feature introduces changes at three different stages of working with data in Weaviate.
 
 #### Stage 1: Importing Null Value
@@ -61,20 +61,20 @@ Indexing null values is an optional feature since not everyone needs it, and it 
 
 To filter by the null state, you need to first configure your schema to handle this. The target class needs the capability to track if a property within a class is null or not. This is done by setting the `indexNullState` field to True in the `invertedIndexConfig` object.
 
-```json
+```javascript
 class_obj = {
-    "class": "FoodAllergies", 
+    "class": "FoodAllergies",
     "description": "Properties include people, their age, and allergy",
     "invertedIndexConfig": {
-        "indexNullState": True,         
+        "indexNullState": True,
     },
     "properties": [ ... ]
 }
 ```
 
-#### Stage 3: Filtering for Specific Property State 
-We've added `IsNull`, a new operator that checks if a given property is set to `null` or not. The `IsNull` operator allows you to perform queries that are filtered by the null state. 
-With `IsNull`, you can run queries that filter the results based on the null state. 
+#### Stage 3: Filtering for Specific Property State
+We've added `IsNull`, a new operator that checks if a given property is set to `null` or not. The `IsNull` operator allows you to perform queries that are filtered by the null state.
+With `IsNull`, you can run queries that filter the results based on the null state.
 
 In other words, you can use `IsNull` to find all objects that miss a specific property or find only those that have the property populated.
 
@@ -119,7 +119,7 @@ To filter by the length of an array, you need to configure your schema – with 
 
 #### len(property)
 
-We've added a new syntax - `len(property)` – to measure the length of the property. 
+We've added a new syntax - `len(property)` – to measure the length of the property.
 
 Let's look at our example again and find people based on the number of allergies they have. George and Victoria both have more than one allergy.
 
@@ -168,9 +168,9 @@ Before we give you a peek under the hood of how the new distributed backup and r
 ### A peek under the hood - The delicate dance of distributed backup and restore:
 ![The dance of distributed backup and restore](./img/backup-dance.png)
 
-Every node in Weaviate takes part in the delicate dance that allows for the backup and restore operations to take place across this distributed system. 
+Every node in Weaviate takes part in the delicate dance that allows for the backup and restore operations to take place across this distributed system.
 
-Individual nodes are responsible for carrying out their own backup and restore operations that allow their shards to be preserved. They are also responsible for maintaining and communicating information about this entire process in the case of failure. 
+Individual nodes are responsible for carrying out their own backup and restore operations that allow their shards to be preserved. They are also responsible for maintaining and communicating information about this entire process in the case of failure.
 
 Every great choreographed dance needs a conductor. And the conductor of this whole distributed backup and restore show is a node called the Coordinator - a servant leader that makes sure that all participating nodes and shards carry out their own individual backup and restore operations, and communicate back to it once these tasks are completed.
 
@@ -272,10 +272,10 @@ Check the [/v1/nodes](/developers/weaviate/api/rest/nodes) documentation to lear
 ## More powerful OIDC Auth
 ![More powerful OIDC Auth](./img/oidc.png)
 
-Security is very, very important. And let's face it - nobody wants to deal with yet another password. That's why we support OpenID Connect (OIDC) [authentication](/developers/weaviate/configuration/authentication) in Weaviate, which users experience as a convenient and secure single sign-on. 
+Security is very, very important. And let's face it - nobody wants to deal with yet another password. That's why we support OpenID Connect (OIDC) [authentication](/developers/weaviate/configuration/authentication) in Weaviate, which users experience as a convenient and secure single sign-on.
 
 ### Azure-based OIDC
-OIDC implementations can vary across authentication servers, so we are steadily adding support for major providers. From this release onwards, Weaviate works with Microsoft Azure-based OIDC authentication in addition to other popular solutions such as Keycloak or dex. This will allow Weaviate to authenticate users based on their Azure Active Directory (AD) credentials. Support for `scopes`, and `group claims` have been added in this release, which also means that you can apply group-based authorizations. 
+OIDC implementations can vary across authentication servers, so we are steadily adding support for major providers. From this release onwards, Weaviate works with Microsoft Azure-based OIDC authentication in addition to other popular solutions such as Keycloak or dex. This will allow Weaviate to authenticate users based on their Azure Active Directory (AD) credentials. Support for `scopes`, and `group claims` have been added in this release, which also means that you can apply group-based authorizations.
 
 OIDC adds resiliency to the authentication workflow, as it is robust to authentication server downtime outside of the short windows required for the client to obtain the ID token or for Weaviate to obtain the public key. While Weaviate runs without authentication by default, you can configure OIDC-based authentication schemes to provide differentiated access permissions. You can even configure Weaviate with multiple authentication schemes and allow tiered [authorizations](/developers/weaviate/configuration/authorization).
 
@@ -295,11 +295,11 @@ In the past, whenever we were working on bug fixes between releases, we would wa
 This felt like the right thing to do at the time. However, we've realized that this had one major drawback. You and everyone who relies on Weaviate's stability had to wait longer to get access to the improvements and fixes ready to go. This had to change! 🤔
 
 ### The new way
-Beginning with Weaviate `1.15`, we decided to take a different approach and give you access to the latest and greatest as soon as we had it ready. 
+Beginning with Weaviate `1.15`, we decided to take a different approach and give you access to the latest and greatest as soon as we had it ready.
 
-So, whenever we complete an important fix (or group of fixes) or introduce a significant feature improvement, we don't delay the release until other fixes are ready. 
+So, whenever we complete an important fix (or group of fixes) or introduce a significant feature improvement, we don't delay the release until other fixes are ready.
 
-During the lifetime of `v1.15`, we created **five stable releases**. So that you didn't have to wait a day longer than necessary to get access to the important improvements. 
+During the lifetime of `v1.15`, we created **five stable releases**. So that you didn't have to wait a day longer than necessary to get access to the important improvements.
 
 ![Fixes since v1.15](./img/fixes-since-1.15.png)
 
@@ -313,4 +313,4 @@ You can find the complete list and the relevant links in the [release notes](htt
 ## Enjoy
 We hope you enjoy all the new features, new operators, new modules, performance improvements, and bug fixes that made this the best Weaviate release yet!🔥
 
-Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [Github](https://github.com/weaviate/weaviate).
+Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [GitHub](https://github.com/weaviate/weaviate).

@@ -5,7 +5,7 @@ const fs = require('fs');
 const readSiteConfig = () => {
   console.log('Loading site config:');
   const config = JSON.parse(fs.readFileSync('versions-config.json'));
-  
+
   console.log(config)
   return config;
 }

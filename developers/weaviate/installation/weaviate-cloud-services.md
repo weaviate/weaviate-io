@@ -30,7 +30,7 @@ WCS can be accessed via the [console](https://console.weaviate.io).
 1. Configure the cluster:
     1. Set a unique `name` for your cluster – note: The name will become part of the URL used to access this instance.
     1. Select the `Subscription Tier`. Note: The sandbox is free, but it will expire after 30 days.
-    1. Choose your Weaviate version (we recommend always using the latest ​version).
+    1. Choose your Weaviate version (we recommend always using the latest version).
     1. Choose if you want to use authentication.
 1. Press **Create**.
 
@@ -49,7 +49,7 @@ Follow the below guide to test connection to the cluster depending on whether yo
 
 ### Test connection without authentication
 
-You can test the connection using curl; or with a [Weaviate client library](../client-libraries/index.md).​
+You can test the connection using curl; or with a [Weaviate client library](../client-libraries/index.md).
 
 ```sh
 $ curl https://some-endpoint.weaviate.network/v1/meta

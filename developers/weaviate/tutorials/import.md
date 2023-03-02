@@ -83,7 +83,7 @@ There are a couple of things to note here.
 
 One is the batch size. Some clients include this as a parameter (e.g. `batch_size` in the Python client), or it can be manually set by periodically flushing the batch. 
 
-Typically a size between 20 and 100 is a reasonable starting point, although this depends on the size of each data object. A smaller size may be preferable for larger data objects, such as if vectors are included in each object upload.
+Typically, a size between 20 and 100 is a reasonable starting point, although this depends on the size of each data object. A smaller size may be preferable for larger data objects, such as if vectors are included in each object upload.
 
 Another is that we do not provide a vector. As a `vectorizer` is specified in our schema, Weaviate will send a request to the appropriate module (`text2vec-openai` in this case) to vectorize the data, and the vector in the response will be indexed and saved into Weaviate tied to the data object.
 
