@@ -39,6 +39,8 @@ To review the syntax:
 - The `arguments` argument specifies the search criteria to be used to retrieve the objects. 
 - The `properties` argument specifies the properties of the objects to be retrieved, including any `_additional` properties.
 
+<Quiz questions={varName} />
+
 Now let's try out some `Get` queries.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Standalone `Get` queries
@@ -66,11 +68,7 @@ Take a look at this example:
 
 What results do you expect? See if you can correspond each field to the syntax. 
 
-Then, try running the query yourself.
-
-:::note Try it out yourself!
-SOME WAY OF TRYING THIS OUT
-:::
+Now, try it out yourself. This query should return something like the below:
 
 <details>
   <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
@@ -125,6 +123,8 @@ The schema contains the `JeopardyQuestion` class, with properties: `question`, `
 
 So, a query retrieving objects from the `Question` class could specify any of its properties such as `question`, `answer`, and `value`.
 
+<Quiz questions={varName} />
+
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Get` with `nearText`
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
@@ -157,9 +157,7 @@ Take a look at the query, and think about the following before you view the resp
 
 How is this different to the earlier query? What class would the results come from? How many, and which, properties would be returned? 
 
-:::note Try it out yourself!
-SOME WAY OF TRYING THIS OUT
-:::
+Now, try it out yourself. This query should return something like the below:
 
 <details>
   <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
@@ -192,7 +190,7 @@ Every vector search needs a "source" vector to form the basis of the search.
 
 Although the `nearText` parameter is not a vector, Weaviate converts the input to a vector before performing a vector search. The results are then returned in order of their similarity to the input vector, before.
 
-:::info `nearText` parameter requires a vectorizer!
+:::tip `nearText` requires a vectorizer!
 Because text object must be converted to a vector before it can be used in a vector search, the `nearText` parameter is only available when a vectorizer module has been specified for the class.
 :::
 
@@ -205,6 +203,8 @@ The `arguments` field is optional, but essential for performing meaningful searc
 This may be to specify criteria for a vector search as you see above, or using `nearVector` or `nearObject` operators. 
 
 You can also use `arguments` to specify a filter to be applied to the results, or to provide additional constraints such as the number of limits to be returned. 
+
+<Quiz questions={varName} />
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Get` with `additional` properties
 
@@ -238,9 +238,7 @@ In this example, we've built on the previous example by adding the `_additional`
 
 Again, consider what the response might look like. What would the `_additional` fields of `distance` and `id` return?
 
-:::note Try it out yourself!
-SOME WAY OF TRYING THIS OUT
-:::
+Now, try it out yourself. This query should return something like the below:
 
 <details>
   <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
@@ -283,11 +281,11 @@ Here, the `distance` and `id` properties contain the object's distance to the qu
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`_additonal` properties
 
-The `_additional` properties make available for retrieval fields than those explicitly created as class properties.
+As the name suggests, `_additional` properties are separate to those explicitly created as class properties.
 
-You will also notice that the query included the `distance` property in the `_additional` field. This represents the degree of similarity (or, in this case, the *dissimilarity*) between the input vector and the vector of the object.
+The above query included the `distance` property in the `_additional` field. This represents the degree of similarity (or, in this case, the *dissimilarity*) between the input vector and the vector of the object.
 
-:::info Vector also available through `_additional`
+:::info Vectors available through `_additional`
 
 The object vector can also be retrieved through an `_additional` field, by specifying `vector` in its sub-field. 
 
