@@ -15,12 +15,12 @@ byron:
   image_url: /img/people/icon/byron.png
 connor:
   name: Connor Shorten
-  title: Develo Advocate 
+  title: Developer Advocate 
   url: https://github.com/CShorten
   image_url: /img/people/icon/connor.jpg
 dan:
   name: Dan Dascalescu
-  title: Develo Advocate
+  title: Developer Advocate
   url: https://github.com/dandv
   image_url: /img/people/icon/dan.jpg
 dirk:
@@ -30,7 +30,7 @@ dirk:
   image_url: /img/people/icon/dirk.jpg
 erika:
   name: Erika Cardenas
-  title: Develo Advocate
+  title: Developer Advocate
   url: https://github.com/erika-cardenas
   image_url: /img/people/icon/erika.jpg
 etienne:
@@ -70,6 +70,6 @@ svitlana:
   image_url: /img/people/icon/svitlana.png
 zain:
   name: Zain Hasan
-  title: Develo Advocate
+  title: Developer Advocate
   url: https://github.com/zainhas
   image_url: /img/people/icon/zain.jpg
