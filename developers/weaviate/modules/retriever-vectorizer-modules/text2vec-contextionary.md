@@ -129,13 +129,13 @@ For example
 }
 ```
 
-### Schema note
-
-- If you are using this module and are vectorizing the class or property name, the name(s) must be a part of the `text2vec-contextionary`.
+:::note Schema note
+If you are using this module and are vectorizing the class or property name, the name(s) must be a part of the `text2vec-contextionary`.
+:::
 
 ## How to use
 
-* New GraphQL vector search parameters made available by this module can be found [here](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
+The module makes available a [`nearText`](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext) GraphQL search parameter.
 
 ### Example
 

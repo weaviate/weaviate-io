@@ -147,13 +147,12 @@ Create a new data object. The provided meta-data and schema values are validated
 
 💡 This endpoint is meant for individual object creations.
 
-If you have a whole dataset that you plan on importing with Weaviate sending multiple single requests sequentially comes at a large cost:
+If you plan on importing an entire dataset, it's much more efficient to use the [`/v1/batch`](./batch.md) endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty:
 
 1. Each sequential request would be handled by a single thread server-side while most of the server resources are idle. In addition, if you only send the second request once the first has been completed, you will wait for a lot of network overhead.
 1. It's much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing. 
 1. You do not have to do the parallelization yourself, you can use the [`/v1/batch`](./batch.md) endpoint for this. Even if you are sending batches from a single client thread, the objects within a batch will be handled by multiple server threads.
-1. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint. 
-1. Go to the [`/v1/batch`](./batch.md) endpoint.
+1. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint.
 
 #### Method and URL
 
@@ -161,18 +160,20 @@ If you have a whole dataset that you plan on importing with Weaviate sending mul
 POST /v1/objects
 ```
 
-*Note: The className is not specified through the URL, as it is part of the request body.*
+:::note
+The class name is not specified in the URL, as it is part of the request body.
+:::
 
 #### Parameters
 
-The body of the data object for a new object takes the following fields:
+The request body for a new object has the following fields:
 
 | name | type | required | description |
 | ---- | ---- | -------- |------------ |
 | `class` | string | yes | The class name as defined in the schema |
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{property_name}` | dataType | yes | The property and its value according to the set dataType |
-| `id` | v4 UUID | no | The given id of the data object |
+| `id` | v4 UUID | no | Optional id for the object |
 
 #### Example request
 
@@ -182,7 +183,7 @@ import SemanticKindCreate from '/_includes/code/semantic-kind.create.mdx';
 
 ### Create an object with geoCoordinates
 
-If you want to fill the value of a `geoCoordinates` property, you need to specify the `latitude` and `longitude` as decimal degrees in floats:
+If you want to supply a [`geoCoordinates`](/developers/weaviate/configuration/datatypes.md#datatype-geocoordinates) property, you need to specify the `latitude` and `longitude` as floating point decimal degrees:
 
 import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geocoordinates.mdx';
 
@@ -192,9 +193,10 @@ import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geoco
 
 When creating a data object, you can configure Weaviate to generate a vector with a vectorizer module, or you can provide the vector yourself. We sometimes refer to this as a "custom" vector. 
 
-You can provide a custom vector during object creation for either when:
+You can provide a custom vector during object creation either when:
 - you are not using a vectorizer for that class, or
 - you are using a vectorizer, but you wish to bypass it during the object creation stage.
+
 You can create a data object with a custom vector as follows:
 1. Set the `"vectorizer"` in the relevant class in the [data schema](../../configuration/schema-configuration.md#vectorizer). 
     - If you are not using a vectorizer at all, configure the class accordingly. To do this, you can:
@@ -204,13 +206,16 @@ You can create a data object with a custom vector as follows:
       - set the vectorizer to the same vectorizer with identical settings used to generate the custom vector
     > *Note: There is NO validation of this vector besides checking the vector length.* 
 2. Then, attach the vector in a special `"vector"` field during object creation. For example, if adding a single object, you can:
-    > *Note: You can set custom vectors for batch imports as well as single object creation.*
 
 import SemanticKindCreateVector from '/_includes/code/semantic-kind.create.vector.mdx';
 
 <SemanticKindCreateVector/>
 
-Learn [here](../graphql/filters.md#nearvector-filter) how you can search through custom vectors. 
+:::note
+You can set custom vectors for batch imports as well as single object creation.
+:::
+
+See also [how to search using custom vectors](../graphql/vector-search-parameters.md#nearvector). 
 
 ## Get a data object
 

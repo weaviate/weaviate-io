@@ -174,8 +174,9 @@ import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where
           "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
         }
       ]
-  },
-  "errors": null
+    },
+    "errors": null
+  }
 }
 ```
 
@@ -200,7 +201,9 @@ The length of properties is calculated differently depending on the type:
 ```
 Supported operators are `(not) equal` and `greater/less than (equal)` and values need to be 0 or larger.
 
-*Note: filtering by property length requires the target class to be configured to index the length. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indexpropertylength) for details* 
+:::note
+Filtering by property length requires the target class to be configured to index the length. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indexpropertylength) for details.
+:::
 
 
 ### Multiple operands
@@ -331,15 +334,19 @@ Using the `IsNull` operator allows you to do filter for objects where given prop
 }
 ```
 
-*Note: filtering by null-state requires the target class to be configured to index this. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indexnullstate) for details* 
+:::note
+Filtering by null-state requires the target class to be configured to index this. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indexnullstate) for details.
+:::
 
 # Sorting
 
-*Note: Support for sorting was added in `v1.13.0`.*
+:::info
+Support for sorting was added in `v1.13.0`.
+:::
 
 You can sort results by any primitive property, typically a `text`, `string`, `number`, or `int` property. When a query has a natural order (e.g. because of a `near<Media>` vector search), adding a sort operator will override the order.
 
-## Cost of Sorting / Architecture
+## Cost of sorting / architecture
 
 Weaviate's sorting implementation is built in a way that it does not lead to massive memory spikes; it does not need to load all objects to be sorted into memory completely. Only the property value being sorted is kept in memory.
 
@@ -372,7 +379,7 @@ import GraphQLGetSorting from '/_includes/code/graphql.get.sorting.mdx';
 
 <MoleculeGQLDemo query='%7B%0A++Get+%7B%0A++++Article%28sort%3A+%5B%7B%0A++++++path%3A+%5B%22title%22%5D%0A++++++order%3A+asc%0A++++%7D%5D%29+%7B%0A++++++title%0A++++++url%0A++++++wordCount%0A++++%7D%0A++%7D%0A%7D'/>
 
-## Limit Argument
+## Limit argument
 
 Supported by the `Get{}`, `Explore{}` and `Aggregate{}` function.
 
@@ -457,7 +464,7 @@ import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
 }
 ```
 
-### Performance and Resource Considerations & Limitations
+### Performance and resource considerations & limitations
 
 The pagination implementation is an offset-based implementation, not a cursor-based implementation. This has the following implications:
 
@@ -465,7 +472,7 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 - Due to the increasing cost of each page outlined above, there is a limit to how many objects can be retrieved using pagination. By default setting the sum of `offset` and `limit` to higher than 10,000 objects, will lead to an error. If you must retrieve more than 10,000 objects, you can increase this limit by setting the environment variable `QUERY_MAXIMUM_RESULTS=<desired-value>`. Warning: Setting this to arbitrarily high values can make the memory consumption of a single query explode and single queries can slow down the entire cluster. We recommend setting this value to the lowest possible value that does not interfere with your users' expectations.
 - The pagination setup is not stateful. If the database state has changed between retrieving two pages there is no guarantee that your pages cover all results. If no writes happened, then pagination can be used to retrieve all possible within the maximum limit. This means asking for a single page of 10,000 objects will lead to the same results overall as asking for 100 pages of 100 results. 
 
-## More Resources
+## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

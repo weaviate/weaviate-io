@@ -124,9 +124,9 @@ If you see the error message `"shard Knuw6a360eCY: resolve node name
 
 Please note that besides new features, `v1.8.0` also contains a large
 collection of bugfixes. Some of those bugs also affected how the HNSW index was
-written to disk. Therefore it cannot be ruled out that the index on disk has a
+written to disk. Therefore, it cannot be ruled out that the index on disk has a
 subpar quality compared to a freshly built index in version `v1.8.0`.
-Therefore, if you can import using a script, etc, we generally recommend starting
+As such, if you can import using a script, we generally recommend starting
 with a fresh `v1.8.0` setup and reimporting instead of migrating.
 
 ### Is downgrading possible after upgrading?
