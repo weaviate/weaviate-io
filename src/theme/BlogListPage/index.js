@@ -10,6 +10,8 @@ import BlogLayout from '@theme/BlogLayout';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
+import { MetaSEO } from '/src/theme/MetaSEO';
+
 function BlogListPageMetadata(props) {
   const {metadata} = props;
   const {
@@ -18,8 +20,10 @@ function BlogListPageMetadata(props) {
   const {blogDescription, blogTitle, permalink} = metadata;
   const isBlogOnlyMode = permalink === '/';
   const title = isBlogOnlyMode ? siteTitle : blogTitle;
+  const ogimg = `og/content/${metadata.blogTitle.toLowerCase()}.jpg`
   return (
     <>
+      <MetaSEO img={ogimg} />
       <PageMetadata title={title} description={blogDescription} />
       <SearchMetadata tag="blog_posts_list" />
     </>
