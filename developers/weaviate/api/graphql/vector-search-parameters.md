@@ -31,7 +31,7 @@ This filter allows you to find data objects in the vicinity of an input vector. 
 
 #### Variables
 
-| Variables | Mandatory | Type | Description |
+| Variables | Required | Type | Description |
 | --- | --- | --- | --- |
 | `vector` | yes | `[float]` | This variable takes a vector embedding in the form of an array of floats. The array should have the same length as the vectors in this class. |
 | `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
@@ -66,7 +66,7 @@ This filter allows you to find data objects in the vicinity of other data object
 
 #### Variables
 
-| Variables | Mandatory | Type | Description |
+| Variables | Required | Type | Description |
 | --- | --- | --- | --- |
 | `id` | yes | `UUID` | Data object identifier in the uuid format. |
 | `beacon` | yes | `url` | Data object identifier in the beacon URL format. E.g., `weaviate://<hostname>/<kind>/id`. |
@@ -84,7 +84,7 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 ## hybrid
 This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
 
-| Variables | Mandatory | Description |
+| Variables | Required | Description |
 | --- | --- | --- |
 | `hybrid` | yes | need to specify that you want to use hybrid search |
 | `query` | yes | search query |
@@ -153,7 +153,7 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
 
 ### Variables
 The `bm25` operator supports two variables:
-* `query` (mandatory) - the keyword search query
+* `query` (required) - the keyword search query
 * `properties` (optional) - array of properties (fields) to search in, defaulting to all properties in the class. Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
 
 ### Example query
@@ -207,7 +207,7 @@ You can use a group operator to combine similar concepts (aka _entity merging_).
 
 ### Variables
 
-| Variables | Mandatory | Type | Description |
+| Variables | Required | Type | Description |
 | --- | --- | --- | --- |
 | `type` | yes | `string` | You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
 | `force` | yes | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
@@ -285,7 +285,7 @@ This filter allows you to find data objects in the vicinity of the vector repres
 
 #### Variables
 
-| Variables | Mandatory | Type | Description |
+| Variables | Required | Type | Description |
 | --- | --- | --- | --- |
 | `concepts` | yes | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing) |
 | `certainty` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values.<br/>Values can be between 0 (no match) and 1 (perfect match).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `distance` variable. |
@@ -372,7 +372,7 @@ This filter allows you to return answers to questions by running the results thr
 
 #### Variables
 
-| Variables | Mandatory | Type | Description |
+| Variables | Required | Type | Description |
 | --- | --- | --- | --- |
 | `question` 	| yes	| `string` | The question to be answered. 	|
 | `certainty` 	| no 	| `float` | Desired minimal certainty or confidence of answer to the question. The higher the value, the stricter the search becomes. The lower the value, the fuzzier the search becomes. If no certainty is set, any answer that could be extracted will be returned|
