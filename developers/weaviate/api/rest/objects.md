@@ -112,7 +112,7 @@ Sort by by author_name, and then title.
 GET /v1/objects?class=Book&sort=author_name,title
 ```
 
-Sort by by author_name, and then title with order:
+Sort by author_name, and then title with order:
 ```http
 GET /v1/objects?class=Book&sort=author_name,title&order=desc,asc
 ```
@@ -191,14 +191,20 @@ If you have a whole dataset that you plan on importing with Weaviate sending mul
 #### Method and URL
 
 ```http
-POST /v1/objects
+POST /v1/objects[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 *Note: The className is not specified through the URL, as it is part of the request body.*
 
 #### Parameters
 
-The body of the data object for a new object takes the following fields:
+The URL supports an optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency) query parameter:
+
+| Name | Location | Type | Description |
+| ---- | -------- | ---- |------------ |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+
+The request body for a new object has the following fields:
 
 | name | type | required | description |
 | ---- | ---- | -------- |------------ |
@@ -253,7 +259,7 @@ Collect an individual data object.
 
 Available since `v1.14` and the preferred way:
 ```bash
-GET /v1/objects/{className}/{id}
+GET /v1/objects/{className}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -267,11 +273,12 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 
 #### Parameters
 
-| name | location | type | description |
+| Name | Location | Type | Description |
 | ---- |----------| ---- | ----------- |
-| `{className}` | URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL Query param | uuid | The uuid of the data object to retrieve. |
-| `include` | URL Query param | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector` |
+| `{className}` | path | string | The name of the class that the object belongs to. |
+| `{id}` | query param | uuid | The uuid of the data object to retrieve. |
+| `include` | query param | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`. |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` or `ALL` (default). |
 
 #### Example request
 
@@ -281,22 +288,17 @@ import SemanticKindObjectGet from '/_includes/code/semantic-kind.object.get.mdx'
 
 <SemanticKindObjectGet/>
 
-#### Example request for retrieving a data object with consistency_level=QUORUM
-
-import SemanticKindObjectGetReplication from '/_includes/code/replication.get.object.by.id.mdx';
-
-<SemanticKindObjectGetReplication/>
 
 ## Check if a data object exists without retrieving it
 
 The same endpoint above can be used with the `HEAD` HTTP method to check if a data object exists without retrieving it. Internally it skips reading the object from disk (other than checking if it is present), thus not using resources on marshalling, parsing, etc.
-Additionally, the resulting HTTP request has no body; the existence of an object is indicated solely by the status code (`204` when the object exists, `404` when it doesn't).
+Additionally, the resulting HTTP request has no body; the existence of an object is indicated solely by the status code (`204` when the object exists, `404` when it doesn't, `422` on invalid ID).
 
 #### Method and URL
 
 Available since `v1.14` and the preferred way:
 ```bash
-HEAD /v1/objects/{className}/{id}
+HEAD /v1/objects/{className}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -306,12 +308,13 @@ HEAD /v1/objects/{id}
 
 <RestObjectsCRUDClassnameNote/>
 
-#### Parameters
+#### URL parameters
 
-| name | location | type | description |
+| Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL | uuid | The uuid of the data object to retrieve. |
+| `{className}` | path | string | The name of the class that the object belongs to |
+| `{id}` | path | uuid | The uuid of the data object to retrieve |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` or `ALL` (default). |
 
 #### Example request
 
@@ -329,8 +332,8 @@ In the RESTful API, both `PUT` and `PATCH` methods are accepted. `PUT` replaces 
 
 Available since `v1.14` and the preferred way:
 ```bash
-PUT /v1/objects/{className}/{id}
-PATCH /v1/objects/{className}/{id}
+PUT /v1/objects/{className}/{id}[?consistency_level=ONE|QUORUM|ALL]
+PATCH /v1/objects/{className}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -343,18 +346,22 @@ PATCH /v1/objects/{id}
 
 #### Parameters
 
-| name | location | type | description |
+The URL has 2 required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
+
+| Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL | uuid | The uuid of the data object to update. |
+| `{className}` | path | string | The name of the class that the object belongs to |
+| `{id}` | path | uuid | The uuid of the data object to update |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
 
-The body of the data object for replacing (some) properties of an object takes the following fields:
+The request body for replacing (some) properties of an object has the following fields:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
-| `class` | string | yes | the class name as defined in the schema |
-| `properties` | array | yes | an object with the property values of the new data object |
-| `properties` > `{property_name}` | dataType | yes | the property and its value according to the set dataType |
+| `class` | string | yes | The class name as defined in the schema |
+| `id` | string | ? | Required for `PUT` to be the same id as the one passed in the URL |
+| `properties` | array | yes | An object with the property values of the new data object |
+| `properties` > `{property_name}` | dataType | yes | The property and its value according to the set dataType |
 
 #### Example request
 
@@ -372,7 +379,7 @@ Delete an individual data object from Weaviate.
 
 Available since `v1.14` and preferred way:
 ```http
-DELETE /v1/objects/{className}/{id}
+DELETE /v1/objects/{className}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -382,12 +389,13 @@ DELETE /v1/objects/{id}
 
 <RestObjectsCRUDClassnameNote/>
 
-#### Parameters
+#### URL parameters
 
-| name | location | type | description |
+| Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL | uuid | The uuid of the data object to delete. |
+| `{className}` |  path | string | The name of the class that the object belongs to |
+| `{id}` | path | uuid | The uuid of the data object to delete |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
 
 #### Example request
 
@@ -431,13 +439,17 @@ If the schema of the object is valid, this request should return `True`/`true` i
 
 ## Cross-references
 
+[Cross-references](../../configuration/datatypes.md#datatype-cross-reference) are object properties of type array, in which each element points from the source object to another object via a [beacon](../../more-resources/glossary.md).
+
 ### Add a cross-reference
+
+`POST` request that adds a reference to the array of cross-references of the given property in the source object specified by its class name and id.
 
 #### Method and URL
 
-Available since `v1.14` and preferred way:
+Available since `v1.14` and the preferred way:
 ```http
-POST /v1/objects/{className}/{id}/references/{property_name}
+POST /v1/objects/{className}/{id}/references/{property_name}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -449,13 +461,16 @@ POST /v1/objects/{id}/references/{property_name}
 
 #### Parameters
 
-| name | location | type | description |
-| ---- | -------- | ---- | ----------- |
-| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL | uuid | The uuid of the data object to add the reference to. |
-| `{property_name}` | URL | yes | The name of the cross-reference property |
+The URL includes 3 required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
 
-The body of the data object for a new data object is an object taking the following field:
+| Name | Location | Type | Description |
+| ---- | -------- | ---- | ----------- |
+| `{className}` |  path | string | The name of the class that the object belongs to, e.g. `Article` |
+| `{id}` | path | uuid | The uuid of the object to add the reference to |
+| `{property_name}` | path | string | The name of the cross-reference property, e.g. `author` |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+
+The request body is an object with the following field:
 
 | name | type | required | description |
 | ---- | ---- | -------- | ----------- |
@@ -485,13 +500,13 @@ If the addition was successful, no content will be returned.
 
 ### Update a cross-reference
 
-A `PUT` request updates *all* references of a property of a data object.
+`PUT` request that updates *all* references in a specified property of an object specified by its class name and id.
 
 #### Method and URL
 
 Available since `v1.14` and the preferred way:
 ```http
-PUT /v1/objects/{className}/{id}/references/{property_name}
+PUT /v1/objects/{className}/{id}/references/{property_name}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -503,13 +518,16 @@ PUT /v1/objects/{id}/references/{property_name}
 
 #### Parameters
 
-| name | location | type | description |
-| ---- | -------- | ---- | ----------- |
-| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL | uuid | The uuid of the data object to add the reference to. |
-| `{property_name}` | URL | yes | The name of the cross-reference property |
+The URL includes 3 required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
 
-The body of the data object for a new data object is a list of beacons:
+| Name | Location | Type | Description |
+| ---- | -------- | ---- | ----------- |
+| `{className}` | path | string | The name of the class that the object belongs to |
+| `{id}` | path | uuid | The uuid of the object to update the reference(s) of |
+| `{property_name}` | path | string | The name of the cross-reference property |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+
+The `PUT` request body is a list of beacons:
 
 | name | type | required | description |
 | ---- | ---- | -------- | ----------- |
@@ -540,13 +558,13 @@ If the update was successful, no content will be returned.
 
 ### Delete a cross-reference
 
-Delete the single reference that is given in the body from the list of references that this property of a data object has.
+Delete the single reference that is given in the body from the list of references that the specified property of a given object has, if it exists in the list. Returns `204 No Content` either way.
 
 #### Method and URL
 
 Available since `v1.14` and the preferred way:
 ```http
-DELETE /v1/objects/{className}/{id}/references/{property_name}
+DELETE /v1/objects/{className}/{id}/references/{property_name}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -558,12 +576,15 @@ DELETE /v1/objects/{id}/references/{property_name}
 
 #### Parameters
 
-| name | location | type | description |
-| ---- | -------- | ---- | ----------- |
-| `{id}` | URL | uuid | The uuid of the data object to delete the reference from. |
-| `{property_name}` | URL | yes | The name of the cross-reference property |
+The URL includes 2 required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
 
-The body of the data object for a new data object is a list of beacons:
+| Name | Location | Type | Description |
+| ---- | -------- | ---- | ----------- |
+| `{id}` | path | uuid | The uuid of the object to delete the reference from |
+| `{property_name}` | path | string | The name of the cross-reference property |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+
+The request body is a beacon object:
 
 | name | type | required | description |
 | ---- | ---- | -------- | ----------- |
