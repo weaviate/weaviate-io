@@ -121,10 +121,10 @@ The search is case-insensitive, and case matching does not confer a score advant
 ### Schema configuration
 The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases. If necessary, they can be configured in the schema per class, and can optionally be overridden per property:
 
-```json
+```yaml
 {
   "class": "string",
-  // Configuration of the sparse index
+  # Configuration of the sparse index
   "invertedIndexConfig": {
     "bm25": {
       "b": 0.75,
@@ -138,7 +138,7 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
       "dataType": [
         "string"
       ],
-      // Property-level settings override the class-level settings
+      # Property-level settings override the class-level settings
       "invertedIndexConfig": {
         "bm25": {
           "b": 0.75,
@@ -168,12 +168,12 @@ import GraphQLFiltersBM25 from '/_includes/code/graphql.filters.bm25.mdx';
 
 The `_additional` object in the GraphQL result exposes the score:
 
-```json
+```yaml
 {
   "_additional": {
     "score": "5.3201",
-    "distance": null,  // always null
-    "certainty": null  // always null
+    "distance": null,  # always null
+    "certainty": null  # always null
   }
 }
 ```
