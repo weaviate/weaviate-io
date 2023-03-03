@@ -1,6 +1,6 @@
 ---
 title: Available Weaviate Vectorizer Modules
-sidebar_position: 3
+sidebar_position: 99
 ---
 
 ### `text2vec`

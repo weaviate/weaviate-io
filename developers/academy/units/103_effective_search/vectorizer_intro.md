@@ -1,6 +1,6 @@
 ---
 title: Introduction to vectorizers
-sidebar_position: 10
+sidebar_position: 40
 ---
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Background (Why this module?)

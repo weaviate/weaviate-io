@@ -20,6 +20,12 @@ Currently, Weaviate clients are available in:
 - <i class="fa-brands fa-java"></i> Java 
 - <i class="fa-brands fa-golang"></i> Go
 
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Client capabilities
+
+import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
+
+<ClientCapabilitiesOverview />
+
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Installation
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
@@ -29,6 +35,8 @@ Install your preferred client by following the relevant instructions below:
 import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 <CodeClientInstall />
+
+<Quiz questions={clientCapabilities} />
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Getting started with the client
 
@@ -123,6 +131,8 @@ import ClientGraphqlRaw from '../../_snippets/academy.clients.graphql.raw.mdx';
 
 <ClientGraphqlRaw />
 
+<Quiz questions={clientCapabilities} />
+
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Weaviate Console
 
 You can use the [Weaviate Console](https://console.weaviate.io/) to directly query a Weaviate instance, whether it is on the cloud (e.g. WCS), or a local instance. The Console provides a graphical interface through which you can directly enter a GraphQL query and see results.
@@ -154,23 +164,43 @@ Add summary
 :::
 
 import Quiz from '/src/components/Academy/quiz.js'
-const varName = [{
-  questionText: 'questionText',
+const clientCapabilities = [{
+  questionText: 'Which of the following is not true about Weaviate clients?',
   answerOptions: [
     {
-      answerText: 'answerOne',
+      answerText: 'Weaviate clients are available for Python, JavaScript, Go and Java.',
       isCorrect: false,
-      feedback: 'feedbackOne',
+      feedback: 'Clients are currently available for each of these languages.',
     },
     {
-      answerText: 'answerTwo',
+      answerText: 'There is only a small subset of GraphQL queries that Weaviate clients cannot perform.',
       isCorrect: false,
-      feedback: 'feedbackTwo',
+      feedback: 'These clients can perform all RESTful and GraphQL requests.',
     },
     {
-      answerText: 'answerThree',
+      answerText: 'Weaviate clients come bundled with Weaviate.',
+      isCorrect: true,
+      feedback: 'The appropriate client must be installed separately for each language.',
+    },
+  ]
+}];
+const varName = [{
+  questionText: 'Weaviate clients cannot do which of the following?',
+  answerOptions: [
+    {
+      answerText: 'Perform analysis on the retrieved results.',
+      isCorrect: true,
+      feedback: 'They cannot (yet) perform any data analysis.',
+    },    
+    {
+      answerText: 'Communicate with the Weaviate REST API.',
       isCorrect: false,
-      feedback: 'feedbackThree',
+      feedback: 'They can all perform REST requests.',
+    },
+    {
+      answerText: 'Communicate with the Weaviate GraphQL API.',
+      isCorrect: false,
+      feedback: 'They can all perform GraphQL requests.',
     },
   ]
 }];

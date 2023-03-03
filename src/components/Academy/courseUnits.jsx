@@ -10,18 +10,17 @@ function Units(props) {
   let cardItems = [];
 
   for (let k in cardData) {    
-    let units = cardData[k].units.map(d => unitData[d])
+    if (k == courseName || courseName == null) {
+      let units = cardData[k].units.map(d => unitData[d])
 
-    cardItems.push(
-      <div>
-        <h3>{cardData[k].courseId}. {cardData[k].title}</h3>
-        <p>{cardData[k].body}</p> 
-        <hr/>
+      cardItems.push(
         <div>
-          <UnitCardSet cardData={units}/>
+          <div>
+            <UnitCardSet cardData={units}/>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   };
 
   return (<div>{cardItems}</div>)

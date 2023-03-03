@@ -33,6 +33,8 @@ Self-managed set ups using Docker or Kubernetes is slightly outside the scope of
 
 If you are familiar with either solutions and would prefer to install Weaviate through them, we refer you to our documentation for installation with [Docker-Compose](/developers/weaviate/installation/docker-compose.md) or [Kubernetes](/developers/weaviate/installation/kubernetes.md).
 
+<Quiz questions={instanceOptions} />
+
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Get started with WCS
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
@@ -68,11 +70,15 @@ We suggest that for convenience, you disable authentication for these tutorials.
 
 - Direct users to a web-based app / WCS button to import data
 
+<Quiz questions={wcsSetup} />
+
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Send requests to Weaviate APIs
 
-Weaviate provides REST and GraphQL API interfaces for communication. Let's take a look at some examples of sending requests to Weaviate using both interfaces.
+Weaviate provides REST and GraphQL API interfaces for communication. They serve complementary roles in communicating with Weaviate.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;REST API requests
+Let's take a look at some examples of sending requests to Weaviate using both interfaces.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;REST requests
 
 - Show how to make API calls to Weaviate
   - REST endpoints
@@ -89,6 +95,8 @@ Weaviate provides REST and GraphQL API interfaces for communication. Let's take 
 - Show that endpoints not accessible without Auth
 - Except `well-known`
 :::
+
+<Quiz questions={apiRecap} />
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
@@ -113,23 +121,73 @@ Add summary
 :::
 
 import Quiz from '/src/components/Academy/quiz.js'
-const varName = [{
-  questionText: 'questionText',
+const instanceOptions = [{
+  questionText: 'Which of the following is not true?',
   answerOptions: [
     {
-      answerText: 'answerOne',
+      answerText: 'We recommend using WCS for Weaviate Academy.',
       isCorrect: false,
-      feedback: 'feedbackOne',
+      feedback: 'WCS *is* our recommended option for running Weaviate.',
     },
     {
-      answerText: 'answerTwo',
+      answerText: 'The newest versions of Weaviate will only be available on WCS.',
       isCorrect: false,
-      feedback: 'feedbackTwo',
+      feedback: 'You can run the latest version of Weaviate anywhere, on Docker/Kubernetes or WCS.',
     },
     {
-      answerText: 'answerThree',
-      isCorrect: false,
-      feedback: 'feedbackThree',
+      answerText: 'This unit will cover Docker/Kubernetes deployment.',
+      isCorrect: true,
+      feedback: 'That topic will be discussed in a later module.',
     },
+  ]
+}];
+const wcsSetup = [{
+  questionText: 'Which of the following is necessary for a Weaviate instance to use with Weaviate Academy?',
+  answerOptions: [
+    {
+      answerText: 'A paid instance of WCS.',
+      isCorrect: false,
+      feedback: 'A free (sandbox) tier is sufficient for Weaviate Academy.',
+    },
+    {
+      answerText: 'OpenID Connect (OIDC) authentication.',
+      isCorrect: false,
+      feedback: 'You are welcome to use OIDC, but it is not necessary.',
+    },
+    {
+      answerText: 'A self-hosted Docker or Kubernetes instance.',
+      isCorrect: false,
+      feedback: 'You are welcome to use a self-hosted instance, but it is not necessary.',
+    },
+    {
+      answerText: 'None of the above are necessary.',
+      isCorrect: true,
+      feedback: 'Looks like you are ready to move on 😊.',
+    },    
+  ]
+}];
+const apiRecap = [{
+  questionText: 'Which of the following is not true about the Weaviate API?',
+  answerOptions: [
+    {
+      answerText: 'Weaviate users can use both REST and GraphQL.',
+      isCorrect: false,
+      feedback: 'They are both available for all users, and serve complementary roles in communicating with Weaviate.',
+    },
+    {
+      answerText: 'The REST API can be used to retrieve the current schema.',
+      isCorrect: false,
+      feedback: 'the `schema` endpoint is available for this purpose.',
+    },
+    {
+      answerText: 'Both GraphQL and REST APIs can be used in Weaviate to perform vector searches.',
+      isCorrect: true,
+      feedback: 'Only GraphQL is available to perform vector searches with.',
+    },
+    {
+      answerText: 'None of the above.',
+      isCorrect: false,
+      feedback: 'The truth is out there!',
+    },    
   ]
 }];

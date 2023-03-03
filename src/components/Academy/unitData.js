@@ -7,62 +7,20 @@ export const unitData = {
     badgeType: "mixed",
     learningGoals: [
       "What Weaviate is, and what it does.",
-      "How to create your own Weaviate instance.",
+      "How to create your own Weaviate instance on WCS.",
       "Weaviate clients and how to install them.",
-      "Getting a preview of Weaviate's capabilities.",
+      "Hands-on experience with Weaviate.",
     ],
     learningOutcomes: [
       "Broadly describe what Weaviate is.",
       "Outline what vector search is.",
-      "Create a Weaviate instance.",
+      "Create a Weaviate instance on WCS.",
       "Install your preferred Weaviate client.",
       "Describe some of Weaviate's capabilities.",
     ],
     owner: "jp",
     reviewer: "jp"
   },
-  inside_weaviate: {
-    title: "Inside Weaviate",
-    body: "Learn how Weaviate works.",
-    buttonType: "Click here",
-    badgeType: "theory",
-    buttonURL: "/developers/academy/units/inside_weaviate",
-    learningGoals: [
-      "What is a vector, and how it can represent meaning.",
-      "What semantic search is and how it differs to scalar search.",
-      "How vectors and deep learning models enable semantic search.",
-      "How Weaviate can perform vector searches fast.",
-    ],
-    learningOutcomes: [
-      "Explain what a vector is, and how they can represent meaning.",
-      "Contrast semantic searches with scalar search.",
-      "Describe how vector searches and semantic searches are related.",
-      "Outline how Weaviate can perform vector searches fast.",
-    ],
-    owner: "jp",
-    reviewer: "jp"    
-  },
-  setup: {
-    title: "Weaviate Cloud Service (WCS)",
-    body: "Learn about WCS, and how to get started using it for free.",
-    buttonType: "Click here",
-    badgeType: "practical",
-    buttonURL: "/developers/academy/units/set_up",
-    learningGoals: [
-      "What the Weaviate Cloud Service is.",
-      "How to create a WCS account.",
-      "How to create a Weaviate instance on WCS.",
-      "How to connect to the WCS instance.",
-    ],
-    learningOutcomes: [
-      "Create a Weaviate Cloud Service account.",
-      "Use WCS to create an instance of Weaviate",
-      "Connect to the Weaviate instance and inspect its configuration.",
-      "Import data into the Weaviate instance.",
-    ],
-    owner: "jp",
-    reviewer: "jp"
-  },   
   queries_1: {
     title: "Queries 1",
     body: "Learn how to use `Get` and `Aggregate` queries with vector searches and scalar filters.",
@@ -86,27 +44,29 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"    
   },
-  vectorizer_selection_1: {
-    title: "Vectorizer selection 1",
-    body: "How to find a good baseline vectorizer for given data and task types.",
+  effective_search: {
+    title: "Effective Vector Searches",
+    body: "Learn about vector search and how deep learning models relate to it.",
     buttonType: "Click here",
-    badgeType: "theory", 
-    buttonURL: "/developers/academy/units/vectorizer_selection_1",
+    badgeType: "mixed",
+    buttonURL: "/developers/academy/units/effective_search",
     learningGoals: [
-      "Theory and heuristics for selecting appropriate, robust vectorizers for the data type and task at hand and how to set the vectorizer appropriately in Weaviate.",
+      "What is a vector, and how it can represent meaning.",
+      "How vector search differs to scalar search.",
+      "How vectors and deep learning models enable semantic search.",
+      "Basics of vectorizer selection in Weaviate.",
+      "How to select a vectorizer in Weaviate.",
     ],
     learningOutcomes: [
-      "Describe key considerations in vectorizer selection.",
-      "List types of vectorizer modules available with Weaviate.",
-      "Identify key differences between using an inference service and a local model.",
-      "Describe situations in which a fine-tuned model may significantly outperform a pretrained model.",
-      "Select an appropriate vectorizer model for a given data and task type.",
-      "Demonstrate ability to change the default vectorizer in Weaviate.",
-      "Demonstrate ability to change the class vectorizer in Weaviate.",
+      "Explain what a vector is, and how they can represent meaning.",
+      "Compare vector search, semantic search and scalar search.",
+      "Describe broadly how deep learning models relate to vector search.",
+      "Outline why vectorizer selection is important for effective search.",
+      "Broadly outline available vectorizer types in Weaviate."
     ],
     owner: "jp",
-    reviewer: "jp"      
-  },
+    reviewer: "jp"    
+  },  
   schema_1: {
     title: "Schema 1",
     body: "Learn what role the schema plays in Weaviate, and how to define it",
@@ -147,6 +107,20 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"      
   },
+  queries_2: {
+    title: "Queries 2",
+    body: "Queries 2.",
+    buttonType: "Notify",
+    badgeType: "practical",
+    learningGoals: [
+      "TBD"
+    ],
+    learningOutcomes: [
+      "TBD",
+    ],
+    owner: "jp",
+    reviewer: "jp"       
+  },    
   crud_operations: {
     title: "CRUD operations",
     body: "How to perform object manipulation operations in Weaviate.",
@@ -183,6 +157,30 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"       
   },        
+
+
+
+  vectorizer_selection_1: {
+    title: "Vectorizer selection 1",
+    body: "How to find a good baseline vectorizer for given data and task types.",
+    buttonType: "Click here",
+    badgeType: "theory", 
+    buttonURL: "/developers/academy/units/vectorizer_selection_1",
+    learningGoals: [
+      "Theory and heuristics for selecting appropriate, robust vectorizers for the data type and task at hand and how to set the vectorizer appropriately in Weaviate.",
+    ],
+    learningOutcomes: [
+      "Describe key considerations in vectorizer selection.",
+      "List types of vectorizer modules available with Weaviate.",
+      "Identify key differences between using an inference service and a local model.",
+      "Describe situations in which a fine-tuned model may significantly outperform a pretrained model.",
+      "Select an appropriate vectorizer model for a given data and task type.",
+      "Demonstrate ability to change the default vectorizer in Weaviate.",
+      "Demonstrate ability to change the class vectorizer in Weaviate.",
+    ],
+    owner: "jp",
+    reviewer: "jp"      
+  },    
   search_theory: {
     title: "Vector search theory",
     body: "Vector search powers Weaviate - but what is it and how does it work?",
@@ -201,8 +199,8 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"  
   },    
-  queries_2: {
-    title: "Queries 2 (Advanced)",
+  queries_3: {
+    title: "Queries 3 (Advanced)",
     body: "Learn about BM25 and hybrid searches, and the `Explore` function.",
     buttonType: "Notify",
     badgeType: "practical",

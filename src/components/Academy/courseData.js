@@ -7,19 +7,21 @@ export const courseData = {
     badgeType: "course",
     isCourse: true, 
     units: [
-      "hello_weaviate", "inside_weaviate", "queries_1", 
-      "vectorizer_selection_1", "schema_1", "data_import", "crud_operations", "modules"
+      "hello_weaviate", "queries_1", "effective_search", "schema_1", 
+      "data_import", "queries_2", "crud_operations", "modules"
     ],
     learningGoals: [
-      "How to build a Weaviate instance and populate it with vectorized data, as well as how to construct queries to efficiently retrieve relevant data."
+      "TBC"
+      // "How to build a Weaviate instance and populate it with vectorized data, as well as how to construct queries to efficiently retrieve relevant data."
     ],
     learningOutcomes: [
-      "Use Weaviate Cloud Services to create an instance of Weaviate",    
-      "Use appropriate query types and syntax to look retrieve desired objects",              
-      "Outline what vector search is and suggest an appropriate vectorizer for a given scenario",
-      "Select and configure appropriate Weaviate modules for use",
-      "Demonstrate how to efficiently populate an Weaviate instance with data",
-      "Integrate learnings from this course to build an instance of Weaviate with your own data an appropriate vectorizer"
+      "TBC"
+      // "Use Weaviate Cloud Services to create an instance of Weaviate",    
+      // "Use appropriate query types and syntax to look retrieve desired objects",              
+      // "Outline what vector search is and suggest an appropriate vectorizer for a given scenario",
+      // "Select and configure appropriate Weaviate modules for use",
+      // "Demonstrate how to efficiently populate an Weaviate instance with data",
+      // "Integrate learnings from this course to build an instance of Weaviate with your own data an appropriate vectorizer"
     ]        
   },
   "zero_to_mvp_advanced": {
@@ -30,17 +32,19 @@ export const courseData = {
     badgeType: "course",
     isCourse: true,
     units: [
-      "search_theory", "queries_2", "indexing", "schema_2"
+      "vectorizer_selection_1", "search_theory", "queries_2", "indexing", "schema_2"
     ],
     learningGoals: [
-      "In-depth material on the inner workings of vector searches, as well as additional querying techniques and vectorization strategies."
+      "TBC"
+      // "In-depth material on the inner workings of vector searches, as well as additional querying techniques and vectorization strategies."
     ],
     learningOutcomes: [
-      "Outline how and why a vector search works, and contrast it to scalar searches",
-      "Differentiate BM25 and hybrid search techniques from vector search techniques and apply suitable techniques for given goals",
-      "Compare types of indexes used by Weaviate, and modify parameters to balance speed and recall",
-      "Describe when cross-references between classes may be appropriate and demonstrate how to apply them",
-      "Modify vectorization regimes to specify which properties are vectorized and in what order"
+      "TBC"
+      // "Outline how and why a vector search works, and contrast it to scalar searches",
+      // "Differentiate BM25 and hybrid search techniques from vector search techniques and apply suitable techniques for given goals",
+      // "Compare types of indexes used by Weaviate, and modify parameters to balance speed and recall",
+      // "Describe when cross-references between classes may be appropriate and demonstrate how to apply them",
+      // "Modify vectorization regimes to specify which properties are vectorized and in what order"
     ]
   },    
   "customization_with_modules": {
@@ -54,10 +58,10 @@ export const courseData = {
       "t2v_under_hood", "vectorizer_selection_2", "custom_models", "module_building"
     ],
     learningGoals: [
-      "TBD"
+      "TBC"
     ],
     learningOutcomes: [
-      "TBD"
+      "TBC"
     ]    
   },
   "to_production": {
@@ -71,10 +75,10 @@ export const courseData = {
       "backups", "auth", "scaling", "replication", "migration", "kubernetes"
     ],
     learningGoals: [
-      "TBD"
+      "TBC"
     ],
     learningOutcomes: [
-      "TBD"
+      "TBC"
     ]      
   },
   "standalone": {
