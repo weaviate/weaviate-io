@@ -6,7 +6,7 @@ image: og/contributor-guide/getting-started.jpg
 ---
 ## Introduction
 
-Git and GitHub are indispensible tools for working with open-source communities.
+Git and GitHub are indispensable tools for working with open-source communities.
 
 So we prepared a guide on using git and GitHub to help you contribute to Weaviate. If you are relatively new to working on open-source projects, you may find this section helpful.
 
@@ -24,9 +24,9 @@ There are four major GitHub repositories of Weaviate, any of which you can contr
 Generally speaking, the process to contribute using git and GitHub goes like this:
 
 - Identify the right repository to contribute to. Then:
-  - To report a bug or suggest an enhancement, [open an issue](#reporting-an-issue)
+  - To report a bug or suggest an enhancement, [open an issue](#report-an-issue)
   - To contribute to the code base or the documentation:
-    - [Fork the right repository on GitHub](#forking-the-repository)
+    - [Fork the right repository on GitHub](#fork-the-repository)
     - [Clone the forked repository](#make-clone-a-local-copy)
     - [Create a new branch and make changes](#create-a-new-branch-to-work-on)
     - [Push your changes and create a pull request](#pull-request-process)
@@ -47,7 +47,7 @@ Once you have installed git, you can run commands like `git pull`, `git commit` 
 
 [GitHub](https://github.com/) is a website and cloud-based service for collaborating using git repositories. 
 
-To be clear, you do not need a GitHub account to use Weaviate. But you will need one to contribute code or documentation to open source projects hosted on Github, which includes Weaviate.
+To be clear, you do not need a GitHub account to use Weaviate. But you will need one to contribute code or documentation to open source projects hosted on GitHub, which includes Weaviate.
 
 You can create a GitHub account [here](https://github.com/join).
 
@@ -61,7 +61,7 @@ Now, let's take a look at how we can use git and GitHub to contribute to Weaviat
 
 ## Report an issue
 
-GitHub allows creation and tracking of "issues". These are typically used to manage bugs or feature requests. To create an "issue" on GitHub, go to the the issue tab in the relevant repository, and click "New issue."
+GitHub allows creation and tracking of "issues". These are typically used to manage bugs or feature requests. To create an "issue" on GitHub, go to the issue tab in the relevant repository, and click "New issue."
 
 ![new issue](/img/contributor-guide/getting-started/new_issue.png)
 
@@ -294,8 +294,8 @@ upstream  https://github.com/weaviate/weaviate.git (push)
 
 To bring in upstream changes to your fork, you need to fetch and pull the upstream repo's branches and commits. The below are two ways that you can do this:
 
-* [Using GitHub and git CLI](#using-github-and-git-cli)
-* [Using git CLI](#using-git-cli)
+* [Using GitHub and git CLI](#fetch-upstream-with-github-and-git-cli)
+* [Using git CLI](#fetch-upstream-with-git-cli)
 
 #### Fetch upstream with GitHub and git CLI
 

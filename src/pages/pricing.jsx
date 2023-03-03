@@ -10,13 +10,15 @@ import ContactUsForm from '/src/components/ContactUsForm';
 
 export default function PricingPage() {
   return (
-    <Layout>
-      <MetaSEO img="og/wcs/_title.jpg" />
-      <PricingHeader />
-      <PricingCalculator />
-      <PricingPlan />
-      <PricingFAQ />
-      <ContactUsForm />
-    </Layout>
+    <div className="custom-page">
+      <Layout>
+        <MetaSEO img="og/wcs/_title.jpg" />
+        <PricingHeader />
+        <PricingCalculator />
+        <PricingPlan />
+        <PricingFAQ />
+        <ContactUsForm />
+      </Layout>
+    </div>
   );
 }

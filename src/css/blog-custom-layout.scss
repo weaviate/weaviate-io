@@ -1,0 +1,98 @@
+// update built-in docusarus styles for the blog list page
+.blog-list-page {
+  main {
+    margin: 0;
+  }
+
+  header, footer {
+    display: none;
+  }
+
+  .container .row main {
+    --ifm-col-width: 100%;
+  }
+
+  .page-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  @media (min-width:996px) {
+    .page-title {
+      font-size: 4rem;
+      margin-bottom: 60px;
+    }
+  }
+}
+
+// Layout to display blogs in a grid
+// for big screens - display blog previews in 2 columns
+@media (min-width:996px) {
+  .blogs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25px;
+    row-gap: 0px;
+  }
+}
+
+@media (min-width:1440px) {
+  .blogs {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// styles for the BlogPostItems - displayed on the blog list page
+.blogCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "title"
+    "image"
+    "shortText"
+    "info";
+}
+
+.blogCardTitle {
+  grid-area: title;
+  h2 {
+    font-family: var(--site-font-heading-family);
+    display: flex;
+    font-size: x-large;
+
+    min-height: 4em;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.blogCardImage {
+  grid-area: image;
+  
+  img {
+    width: 100%;
+  }
+}
+
+.blogCardDescription {
+  grid-area: shortText;
+
+  font-family: var(--site-font-base-family);
+  // color: var(--site-font-header-color);
+  color: var(--site-base-color-shade);
+  font-style: italic;
+  font-size: large;
+}
+
+.blogCardInfo {
+  grid-area: info;
+
+  font-family: var(--site-font-base-family);
+  font-size: medium;
+
+  display: flex;
+  align-items: center;
+}

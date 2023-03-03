@@ -37,7 +37,7 @@ Current contributors to Weaviate are mainly people who [make their own Weaviate 
 
 We have a [Weaviate documentation](/developers/weaviate/) and a [contributors guide](/developers/contributor-guide/). Currently, the contributors guide is very limited. Good documentation on how to get started on contributing to Weaviate is lacking. The pages that are in the current guide helps Weaviate developers who have a good amount of background knowledge and have been contributing to Weaviate before, but it is hard to get started as an unexperienced contributor. 
 
-We would like to have a contributors guide that is a complete guide that helps new contributors from the beginning until the end. This includes pages about how to get involved & onboarding, how to open a first issue on Github, how to structure Pull Requests and more. Ideally, the contributors guide will, like Weaviate's documentation, also contain tutorials with examples and perhaps even videos (can be outside the scope of this project). 
+We would like to have a contributors guide that is a complete guide that helps new contributors from the beginning until the end. This includes pages about how to get involved & onboarding, how to open a first issue on GitHub, how to structure Pull Requests and more. Ideally, the contributors guide will, like Weaviate's documentation, also contain tutorials with examples and perhaps even videos (can be outside the scope of this project). 
 
 The goal of having better contributor documentation is to lower the barrier to contribute for whoever is interested in helping Weaviate. 
 
