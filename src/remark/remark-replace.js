@@ -9,6 +9,7 @@ const readSiteConfig = () => {
   console.log(config)
   return config;
 }
+
 const siteConfig = readSiteConfig();
 
 // pattern to match: ||site.some_name|| in markdown

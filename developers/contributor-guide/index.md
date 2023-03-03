@@ -4,8 +4,7 @@ sidebar_position: 0
 image: og/contributor-guide/welcome.jpg
 # tags: ['index', 'contributor-guide']
 ---
-
-![img](/img/contributor-guide/Weaviate.jpg)
+![Contributor Guide](/img/contributor-guide/Weaviate.jpg)
 
 # Welcome
 

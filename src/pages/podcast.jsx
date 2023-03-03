@@ -7,13 +7,16 @@ import PodcastCard from '/src/components/Podcast/Card';
 
 export default function PodcastPage() {
   return (
+    <div className="podcast-page">
     <Layout
       title="Weaviate Podcasts"
       description="Welcome to Weaviate Podcasts"
+      
     >
       <MetaSEO img="og/content/podcast.jpg" />
       <PodcastHeader />
       <PodcastCard />
     </Layout>
+    </div>
   );
 }

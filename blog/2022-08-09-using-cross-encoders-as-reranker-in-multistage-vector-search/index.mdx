@@ -5,15 +5,15 @@ authors: [laura]
 date: 2022-08-09
 tags: []
 image: ./img/hero.png
-# description: "Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the vector search experience."
+description: "Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the vector search experience."
 ---
 ![Using Cross-Encoders as reranker in multistage vector search](./img/hero.png)
 
-Semantic search overcomes the shortcomings of keyword-based search. If you search for "programming for data scientists", a keyword search will find "An intro to programming for data scientists", but it won't return "Python for Machine Learning use-cases".
-
 <!-- truncate -->
 
-Semantic search engines can use machine learning to capture the context and semantics of data and search queries. Usually, machine learning models have a tradeoff between high accuracy and speed. The higher the accuracy, the more computationally expensive the model is. If we talk about search or Information Retrieval, we would like to see **accurate search results**, encompassing **wide-range queries**, whilst retaining **high speed**.
+Semantic search overcomes the shortcomings of keyword-based search. If you search for "programming for data scientists", a keyword search will find "An intro to programming for data scientists", but it won't return "Python for Machine Learning use-cases".
+
+Semantic search engines can use machine learning to capture the context and semantics of data and search queries. Usually, machine learning models have a tradeoff between high accuracy and speed. The higher the accuracy, the more computationally expensive the model is. If we talk about search or Information Retrieval, we would like to see **accurate search results**, encompassing **wide-range queries**, whilst retaining **high speed**. 
 
 In search, or semantic matching of sentences, we can see this tradeoff in *Bi-Encoder* models compared with *Cross-Encoder* models. *Bi-Encoder* models are **fast**, but **less accurate**, while *Cross-Encoders* are **more accurate**, but **slow**. Luckily, we can combine them in a search pipeline to benefit from both models!
 

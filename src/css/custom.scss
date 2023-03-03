@@ -4,36 +4,44 @@
  * work well for content-centric websites.
  */
 
+@import 'variables.scss';
+@import 'shared.scss';
+
 /* You can override the default Infima variables here. */
-
-@font-face {
-  font-family: 'FredokaOneRegular';
-  src: url('/fonts/FredokaOne-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'NiramitRegular';
-  src: url('/fonts/Niramit-Regular.ttf');
-}
-
 :root {
   --ifm-h2-font-size: 2rem;
+  --docusaurus-announcement-bar-height: 50px !important;
   @media screen and (max-width: 768px) {
     --ifm-h2-font-size: 1.5rem;
   }
-  --ifm-navbar-height: 6rem;
-  --ifm-color-primary: #fa0171;
-  --ifm-color-primary-dark: #e10166;
-  --ifm-color-primary-darker: #d40160;
-  --ifm-color-primary-darkest: #af014f;
-  --ifm-color-primary-light: #fe167e;
-  --ifm-color-primary-lighter: #fe2385;
-  --ifm-color-primary-lightest: #fe489a;
+  --ifm-navbar-height: 4.5rem;
+  --ifm-navbar-link-color: var(--site-base-color-shade);
+  --ifm-color-primary: var(--site-accent);
+
+  --ifm-font-color-base: var(--site-font-main-color);
+  --ifm-link-color: var(--site-font-link-color);
+  --ifm-heading-color: var(--site-font-header-color);
+
+  // --ifm-color-primary: #fa0171;
+  // --ifm-color-primary-dark: #e10166;
+  // --ifm-color-primary-darker: #d40160;
+  // --ifm-color-primary-darkest: #af014f;
+  // --ifm-color-primary-light: #fe167e;
+  // --ifm-color-primary-lighter: #fe2385;
+  // --ifm-color-primary-lightest: #fe489a;
   --ifm-code-font-size: 95%;
-  --ifm-heading-font-family: 'FredokaOneRegular';
-  --ifm-font-family-base: 'NiramitRegular';
+
+  // TODO: refactor this and update the new fonts across the whole site
+  --ifm-heading-font-family: var(--site-font-heading-family);
+  --ifm-font-family-base: var(--site-font-base-family);
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-heading-font-weight: 500;
+
+  // TODO: make sure this doesn't mess up anything unexpected
+  // Base color for all text
+  color: var(--site-font-main-color);
+
   h1,
   h2,
   h3,
@@ -42,6 +50,7 @@
   h6 {
     color: var(--ifm-heading-color);
     font-family: var(--ifm-heading-font-family);
+    // font-family: var(--site-font-heading-family);
     font-weight: var(--ifm-heading-font-weight);
     line-height: var(--ifm-heading-line-height);
     margin: var(--ifm-heading-margin-top) 0 var(--ifm-heading-margin-bottom) 0;
@@ -266,41 +275,27 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-footer-link-color: #ffffff;
-  --ifm-footer-background-color: #000000;
-  --ifm-heading-color: #ffffff;
-  --ifm-link-color: #00b800;
-  --ifm-font-color-base: #c8c8c8;
-  --ifm-hero-background-color: #12bf38;
-  --ifm-color-primary: #fc3988;
-  --ifm-color-primary-dark: #fc1b76;
-  --ifm-color-primary-darker: #fb0b6d;
-  --ifm-color-primary-darkest: #d50358;
-  --ifm-color-primary-light: #fc579a;
-  --ifm-color-primary-lighter: #fd67a3;
-  --ifm-color-primary-lightest: #fd94bf;
+  --ifm-hero-background-color: #12bf38; //TODO: figure out where this is used
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
-[data-theme='light'] {
-  --ifm-heading-color: #2d3197;
-  --ifm-font-color-base: #7072aa;
-  --ifm-link-color: #2d3197;
-  --ifm-navbar-link-color: #2d3197;
 
+[data-theme='light'] {
   svg {
     path {
-      fill: #2d3197;
+      fill: var(--site-base-color);
     }
   }
-  .footer__copyright {
-    color: #7072aa;
-  }
-  .footer__title {
-    color: #7072aa;
-  }
-  .footer__link-item {
-    color: #7072aa;
-  }
+}
+
+button.close {
+  color: white;
+}
+
+.footer__title {
+  color: var(--site-base-color);
+}
+.footer__copyright, .footer__link-item {
+  color: var(--site-base-color-shade);
 }
 
 /* Styling for both modes  */
@@ -326,6 +321,7 @@
 }
 
 .hero__title {
+  font-family: var(--site-font-fun-heading-family) !important;
   text-align: center;
   @media screen and (max-width: 768px) {
     font-size: 2rem;
@@ -340,13 +336,6 @@
 }
 
 /* light mode */
-
-#__docusaurus {
-  background-image: url('/img/site/background-light.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
 .footer {
   background: transparent;
   .container {
@@ -355,14 +344,20 @@
 }
 
 .navbar__logo {
-  width: 200px;
-  height: 4rem;
+  width: 125px;
+  height: 2.5rem;
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 [data-theme='light'] {
+  #__docusaurus:has(.custom-page) {
+    background-image: url('/img/site/background-light.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
   .hero__logo {
     background-image: url('/img/site/weaviate-logo-light.png');
   }
@@ -386,14 +381,13 @@
 
 /* Styling one class specially in dark mode */
 [data-theme='dark'] {
-  #__docusaurus {
+  #__docusaurus:has(div.custom-page) {
     background-image: url('/img/site/background-dark.jpg');
     background-size: cover;
     background-position: center;
   }
 
   .navbar {
-    // background: transparent;
     background: linear-gradient(
         90deg,
         rgba(0, 0, 0, 1.0) 4%,
@@ -529,8 +523,4 @@
     border: 1px solid #d1d1d1;
     background: #f7f7f7;
   }
-}
-
-.text-center {
-  text-align: center;
 }
