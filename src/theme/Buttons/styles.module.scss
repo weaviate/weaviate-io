@@ -34,12 +34,12 @@
 
 // TODO: update colours to work from variables
 .btnMain {
-  background-color: #00b800;
-  color: #fff;
+  background-color: var(--site-primary);
+  color: var(--site-light-color);
 
   &:hover {
-    background-color: #00cc00;
-    color: #fff;
+    background-color: var(--site-primary-dark);
+    color: var(--site-light-color);
   }
 
   i {
@@ -49,12 +49,12 @@
 }
 
 .btnAccent {
-  background-color: var(--ifm-color-primary);
-  color: #ffe3ec;
+  background-color: var(--site-accent);
+  color: var(--site-light-color);
 
   &:hover {
-    background-color: var(--ifm-color-primary-darkest);
-    color: #ffe3ec;
+    background-color: var(--site-accent-dark);
+    color: var(--site-light-color);
   }
 
   i {
@@ -62,22 +62,16 @@
     background-color: inherit;
   }
 }
-[data-theme='light']{
-  .btnOutlined{
-    background-color: #d8eae0;
-    border: 1px solid #00b800;
-    color: rgb(16 36 69);
-  }
-}
+
 .btnOutlined {
-  background-color: #0C1428;
-  border: 1px solid #00b800;
-  color: #ffe3ec;
+  background-color: var(--site-background);
+  border: 1px solid var(--site-primary);
+  color: var(--site-font-header-color);
 
   &:hover {
     background-color: transparent;
-  border: 1px solid #00b800;
-  color: #00b800;
+    border: 1px solid var(--site-primary);
+    color: var(--site-primary);
   }
 
   i {
