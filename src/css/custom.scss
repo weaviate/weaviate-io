@@ -8,17 +8,6 @@
 @import 'shared.scss';
 
 /* You can override the default Infima variables here. */
-
-@font-face {
-  font-family: 'FredokaOneRegular';
-  src: url('/fonts/FredokaOne-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'NiramitRegular';
-  src: url('/fonts/Niramit-Regular.ttf');
-}
-
 :root {
   --ifm-h2-font-size: 2rem;
   --docusaurus-announcement-bar-height: 50px !important;
@@ -42,10 +31,9 @@
   // --ifm-color-primary-lightest: #fe489a;
   --ifm-code-font-size: 95%;
 
-  --ifm-heading-font-family: 'FredokaOneRegular';
-  --ifm-font-family-base: 'NiramitRegular';
-  --blog-heading-font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
-  --blog-base-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  // TODO: refactor this and update the new fonts across the whole site
+  --ifm-heading-font-family: var(--site-font-heading-family);
+  --ifm-font-family-base: var(--site-font-base-family);
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-heading-font-weight: 500;
@@ -62,6 +50,7 @@
   h6 {
     color: var(--ifm-heading-color);
     font-family: var(--ifm-heading-font-family);
+    // font-family: var(--site-font-heading-family);
     font-weight: var(--ifm-heading-font-weight);
     line-height: var(--ifm-heading-line-height);
     margin: var(--ifm-heading-margin-top) 0 var(--ifm-heading-margin-bottom) 0;
@@ -332,6 +321,7 @@ button.close {
 }
 
 .hero__title {
+  font-family: var(--site-font-fun-heading-family) !important;
   text-align: center;
   @media screen and (max-width: 768px) {
     font-size: 2rem;
@@ -343,10 +333,6 @@ button.close {
   @media screen and (max-width: 768px) {
     padding: 2rem;
   }
-}
-
-.page-title {
-  font-family: var(--ifm-heading-font-family) !important;
 }
 
 /* light mode */

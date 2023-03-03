@@ -6,12 +6,12 @@
 .blog-post-page, .docs-doc-page, .podcast-page {
   // Set Fonts for Blogs and Docs - content
   // #docusaurus_skipToContent_fallback – is for the page content, which excludes the navbar
-  #docusaurus_skipToContent_fallback {
-    font-family: var(--blog-base-font-family);
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--blog-heading-font-family);
-    }
-  }
+  // #docusaurus_skipToContent_fallback {
+  //   font-family: var(--site-font-base-family);
+  //   h1, h2, h3, h4, h5, h6 {
+  //     font-family: var(--site-font-heading-family);
+  //   }
+  // }
 
   pre code {
     max-height: 700px;

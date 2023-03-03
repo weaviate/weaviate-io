@@ -56,7 +56,7 @@
 .blogCardTitle {
   grid-area: title;
   h2 {
-    font-family: var(--blog-heading-font-family);
+    font-family: var(--site-font-heading-family);
     display: flex;
     font-size: x-large;
 
@@ -80,7 +80,7 @@
 .blogCardDescription {
   grid-area: shortText;
 
-  font-family: var(--blog-base-font-family);
+  font-family: var(--site-font-base-family);
   // color: var(--site-font-header-color);
   color: var(--site-base-color-shade);
   font-style: italic;
@@ -90,7 +90,7 @@
 .blogCardInfo {
   grid-area: info;
 
-  font-family: var(--blog-base-font-family);
+  font-family: var(--site-font-base-family);
   font-size: medium;
 
   display: flex;
