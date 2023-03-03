@@ -84,6 +84,8 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 ## hybrid
 This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
 
+### Variables
+
 | Variables | Required | Description |
 | --- | --- | --- |
 | `hybrid` | yes | need to specify that you want to use hybrid search |
@@ -153,8 +155,15 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
 
 ### Variables
 The `bm25` operator supports two variables:
-* `query` (required) - the keyword search query
-* `properties` (optional) - array of properties (fields) to search in, defaulting to all properties in the class. Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
+
+| Variables | Required | Description |
+| --------- | -------- | ----------- |
+| `query`   | yes      | the keyword search query |
+| `properties` | no    | array of properties (fields) to search in, defaulting to all properties in the class| 
+
+:::info Boosting properties
+Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
+:::
 
 ### Example query
 
