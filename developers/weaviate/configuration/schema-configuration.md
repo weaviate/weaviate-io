@@ -197,18 +197,14 @@ The meaning of the individual fields in detail:
 This feature was introduced in `v1.12.0`.
 :::
 
-Properties of type `text` and `string` may contain words that are very common
-and have no meaning. In this case you may want to remove them entirely from
-indexing. This will save storage space on disk and speed up queries that
-contain stopwords, as they can be automatically removed from queries as well.
-This speed up is very notable on scored searches, such as `BM25`.
+Properties of type `text` and `string` may contain words that are very common and don't contribute to search results. Ignoring them speeds up queries that contain stopwords, as they can be automatically removed from queries as well. This speed up is very notable on scored searches, such as `BM25`.
 
 The stopword configuration uses a preset system. You can select a preset to use
 the most common stopwords for a particular language. If you need more
 fine-grained control, you can add additional stopwords or remove stopwords that
-you believe should not be part of the list. Alternatively, you can also create
-your completely custom stopword list by starting with an empty (`"none"`)
-preset and adding all your desired stopwords as additions.
+you believe should not be part of the list. Alternatively, you can create
+your custom stopword list by starting with an empty (`"none"`)
+preset and adding all your desired stopwords as additions. 
 
 ```json
   "invertedIndexConfig": {
@@ -219,6 +215,10 @@ preset and adding all your desired stopwords as additions.
     }
   }
 ```
+
+:::note
+Introduced in `v1.18`, stopwords can now be configured at runtime.
+:::
 
 This configuration allows stopwords to be configured by class. If not set, these values are set to the following defaults:
 
@@ -233,6 +233,19 @@ This configuration allows stopwords to be configured by class. If not set, these
 - If none is the selected preset, then the class' stopwords will consist entirely of the additions list.
 - If the same item is included in both additions and removals, then an error is returned
 :::
+
+As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking. 
+
+Here is an example: 
+
+`query`: “Where is the nearest fast food chain?”
+
+`stopwords`: [“where”, “is”, “the”] 
+
+Is the same as: 
+
+`query`: “Nearest fast food chain”
+
 
 ### invertedIndexConfig > indexTimestamps
 
