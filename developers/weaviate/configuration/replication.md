@@ -59,7 +59,7 @@ The data schema has a write consistency level of `ALL`, which means when you upl
 
 ## How to use: Queries
 
-When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available consistency levels are `ONE`, `QUORUM` (n/2+1) and `ALL`. Read more about consistency levels [here](../concepts/replication-architecture/consistency.md).
+When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available [consistency levels](../concepts/replication-architecture/consistency.md) are `ONE`, `QUORUM` (n/2+1) and `ALL`.
 
 The `consistency_level` can be specified at query time: 
 
