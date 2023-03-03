@@ -59,13 +59,13 @@ import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.nearte
 
 This might also look familiar, as it was used in the [Quickstart tutorial](../quickstart/end-to-end.md). But let's break it down a little.
 
-Here, we are using a `nearText` parameter. What we are doing is to provide Weaviate with a query `concept` of `famous scientist`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example) and uses that vector as the basis for a vector search.
+Here, we are using a `nearText` parameter. What we are doing is to provide Weaviate with a query `concept` of `biology`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example) and uses that vector as the basis for a vector search.
 
 Also note here that we pass the API key in the header. This is required as the inference API is used to vectorize the input query.
 
 Additionally, we use the `limit` argument to only fetch a maximum of two (2) objects. 
 
-If you run this query, you should see the entries on *"Albert Einstein"* and *"hot air balloons"* returned by Weaviate.
+If you run this query, you should see the entries on *"DNA"* and *"species"* returned by Weaviate.
 
 ### `Get` with `nearVector`
 
@@ -196,7 +196,7 @@ import CodeQueryWhere2 from '/_includes/code/quickstart.query.where.2.mdx'
 
 <CodeQueryWhere2 />
 
-This query asks Weaviate for **Question** objects that are closest to "famous scientist", but within the category of `HISTORY`. You should see a result like this:
+This query asks Weaviate for **Question** objects that are closest to "biology", but within the category of `ANIMALS`. You should see a result like this:
 
 ```json
 {
