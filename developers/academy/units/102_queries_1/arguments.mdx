@@ -1,5 +1,5 @@
 ---
-title: More about arguments
+title: More on search arguments
 sidebar_position: 50
 ---
 
@@ -36,8 +36,6 @@ Some of the available arguments are:
 
 But we don't need to cover them all at this moment. For now, let's explore a few more of the most commonly used, powerful arguments.
 
-<Quiz questions={varName} />
-
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Filter data with `where`
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
@@ -51,25 +49,17 @@ We ran a example query like this earlier:
 <details>
   <summary>See original query</summary>
 
-```graphql
-{
-  Get {
-    JeopardyQuestion (
-      limit: 2
-      nearText: {
-        concepts: ["Space travel in real life"],
-      }        
-    ) {
-      question 
-      answer 
-      value
-      _additional {
-        distance
-        id
-      }      
-    }
-  }
-}
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).do()
+
+print(json.dumps(response, indent=2))
 ```
 
 </details>
@@ -86,21 +76,19 @@ Which returned these answers:
       "JeopardyQuestion": [
         {
           "_additional": {
-            "distance": 0.15368003,
-            "id": "ddcc3f06-5410-5944-85c4-3cb56ab27088"
-          },
-          "answer": "space shuttles",
-          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane",
-          "value": 200
-        },
-        {
-          "_additional": {
-            "distance": 0.17277694,
+            "distance": 0.1791926,
             "id": "b1645a32-0c22-5814-8f35-58f142eadf7e"
           },
           "answer": "escaping the Earth's gravity (and go off into outer space, on your way to the moon, for instance)",
-          "question": "It takes approximately 24,840 MPH to achieve this",
-          "value": 0
+          "question": "It takes approximately 24,840 MPH to achieve this"
+        },
+        {
+          "_additional": {
+            "distance": 0.18123823,
+            "id": "ef263438-b152-5540-97f7-99f4076bd124"
+          },
+          "answer": "the Milky Way",
+          "question": "This is the name of our own galaxy"
         }
       ]
     }
@@ -112,13 +100,39 @@ Which returned these answers:
 
 So let's extend our query to now include a `where` argument that uses a `Like` operator.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).with_where({
+    "path": ["question"],    
+    "operator": "Like",  
+    "valueText": "*rocket*"
+}).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
 ```graphql
 {
   Get {
     JeopardyQuestion (
       limit: 2
       nearText: {
-        concepts: ["Space travel in real life"],
+        concepts: ["Intergalactic travel"],
       }
       where: {
         path: ["question"],    
@@ -128,7 +142,6 @@ So let's extend our query to now include a `where` argument that uses a `Like` o
     ) {
       question 
       answer 
-      value
       _additional {
         distance
         id
@@ -137,6 +150,9 @@ So let's extend our query to now include a `where` argument that uses a `Like` o
   }
 }
 ```
+
+</TabItem>
+</Tabs>
 
 Can you guess how you would expect the earlier response to change, if at all?
 
@@ -152,21 +168,19 @@ Here is the actual response:
       "JeopardyQuestion": [
         {
           "_additional": {
-            "distance": 0.15368003,
+            "distance": 0.18400955,
             "id": "ddcc3f06-5410-5944-85c4-3cb56ab27088"
           },
           "answer": "space shuttles",
-          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane",
-          "value": 200
+          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane"
         },
         {
           "_additional": {
-            "distance": 0.21451926,
+            "distance": 0.2267003,
             "id": "36ffe6ca-9b73-5a54-80eb-a93f01822956"
           },
           "answer": "Robert Goddard",
-          "question": "He's been called the \"Father of Modern Rocketry\"",
-          "value": 400
+          "question": "He's been called the \"Father of Modern Rocketry\""
         }
       ]
     }
@@ -179,7 +193,7 @@ Here is the actual response:
 <details>
   <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
 
-Observe how the results have changed. The second entry from the earlier result set (about *gravity*) have been removed as it does not contain the text `rocket` in the `question` property. 
+Observe that the results have changed. The previous results have been removed as they do not contain the text `rocket` in the `question` property. 
 
 This approach of combining a vector search with a filter is a powerful way to find objects that are similar to a given input, but also meet additional criteria as you see. And while filtering may remove some objects which might otherwise be "closer" to the query vector than the remaining ones, it provides a powerful strategy to find the most relevant objects by removing false positive.
 
@@ -187,23 +201,53 @@ This approach of combining a vector search with a filter is a powerful way to fi
 
 We can apply the query to filter the data in any number of ways. For example, consider the below query:
 
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer", "points"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).with_where({
+    "path": ["points"],    
+    "operator": "GreaterThan",  
+    "valueInt": 200
+}).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+<!-- GraphQL code goes here -->
+```
+
+</TabItem>
+</Tabs>
+
 ```graphql
 {
   Get {
     JeopardyQuestion (
       limit: 2
       nearText: {
-        concepts: ["Space travel in real life"],
+        concepts: ["Intergalactic travel"],
       }
       where: {
-        path: ["value"],    
+        path: ["points"],    
         operator: GreaterThan,  
         valueInt: 200
       }
     ) {
       question 
       answer 
-      value
+      points
       _additional {
         distance
         id
@@ -225,21 +269,21 @@ How do you expect that this query will be different to the earlier queries?
       "JeopardyQuestion": [
         {
           "_additional": {
-            "distance": 0.17798066,
-            "id": "b988a207-2a18-50b2-b9e3-7de19ea692b7"
+            "distance": 0.18251508,
+            "id": "15f06117-012c-506d-b5c5-24df2e750f35"
           },
-          "answer": "Alan Shepard",
-          "question": "He was the first American in space",
-          "value": 500
+          "answer": "the Milky Way",
+          "points": 400,          
+          "question": "Into the 20th Century it was thought the universe was one big galaxy--this one"
         },
         {
           "_additional": {
-            "distance": 0.18319404,
-            "id": "03c57191-0a63-5b76-ae67-bf6d09a5de2d"
+            "distance": 0.19289112,
+            "id": "584a6c68-0ebe-561f-b32a-3a735eadf02e"
           },
-          "answer": "Mir here (or Mir near)",
-          "question": "2-word phrase the photographer on Discovery could have said while <a href=\"http://www.j-archive.com/media/2010-05-18_DJ_14.jpg\" target=\"_blank\">close</a> to the Russian space station in 1998",
-          "value": 800
+          "answer": "Asteroid",
+          "points": 400,          
+          "question": "A 1991 photo of Gaspra taken by the Galileo probe was the first close-up of one of these minor planets"
         }
       ]
     }
@@ -252,7 +296,7 @@ How do you expect that this query will be different to the earlier queries?
 <details>
   <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
 
-This query has been modified to only return `JeopardyQuestion` objects with a `value` greater than 200. 
+This query has been modified to only return `JeopardyQuestion` objects with a `points` value greater than 200. 
 
 Accordingly, the returned data set is very different.
 
@@ -260,7 +304,40 @@ Accordingly, the returned data set is very different.
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Multiple operands example
 
+The query syntax can extend to beyond a single operand to take advantage of multiple conditions:
 
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer", "points"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).with_where({
+    "operator": "And",
+    "operands": [
+        {
+            "path": ["question"],    
+            "operator": "Like",  
+            "valueText": "*rocket*"            
+        },
+        {
+            "path": ["points"],    
+            "operator": "GreaterThan",  
+            "valueInt": 200            
+        }
+    ]
+}).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
 
 ```graphql
 {
@@ -268,7 +345,7 @@ Accordingly, the returned data set is very different.
     JeopardyQuestion (
       limit: 2
       nearText: {
-        concepts: ["Space travel in real life"],
+        concepts: ["Intergalactic travel"],
       }
       where: {
         operator: And, 
@@ -279,8 +356,8 @@ Accordingly, the returned data set is very different.
           valueText: "*rocket*"
         }
         {
-          path: ["value"],    
-          operator: LessThan,  
+          path: ["points"],    
+          operator: GreaterThan,  
           valueInt: 400        
         },        
         ]     
@@ -289,7 +366,7 @@ Accordingly, the returned data set is very different.
     ) {
       question 
       answer 
-      value
+      points
       _additional {
         distance
         id
@@ -299,7 +376,10 @@ Accordingly, the returned data set is very different.
 }
 ```
 
-Take a look at the argument under `where`. What limitations do you expect in the results?
+</TabItem>
+</Tabs>
+
+Take a look at the `where` argument (i.e. `.with_where`). What limitations do you expect in the results?
 
 <details>
   <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
@@ -311,21 +391,21 @@ Take a look at the argument under `where`. What limitations do you expect in the
       "JeopardyQuestion": [
         {
           "_additional": {
-            "distance": 0.15372223,
-            "id": "ddcc3f06-5410-5944-85c4-3cb56ab27088"
+            "distance": 0.2267003,
+            "id": "a488fbe5-c2c6-50ad-8938-4b9f20dc56d1"
           },
-          "answer": "space shuttles",
-          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane",
-          "value": 200
+          "answer": "Robert Goddard",
+          "points": 400,
+          "question": "He's been called the \"Father of Modern Rocketry\""
         },
         {
           "_additional": {
-            "distance": 0.2411471,
-            "id": "5a16f15a-9d9e-50a4-9afa-53a51f73b0cf"
+            "distance": 0.24946856,
+            "id": "c00decd4-4cf1-5b03-a789-a57077e082fb"
           },
-          "answer": "Liquid oxygen",
-          "question": "Common fuels in rockets include liquid hydrogen & LOX, which stands for this",
-          "value": 300
+          "answer": "Huntsville",
+          "points": 1000,
+          "question": "A campus for the University of Alabama is here, nicknamed \"Rocket City, U.S.A.\""
         }
       ]
     }
@@ -338,37 +418,114 @@ Take a look at the argument under `where`. What limitations do you expect in the
 <details>
   <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
 
-This query has been modified to only return `JeopardyQuestion` objects with a `value` less than than 400, AND include the text `rocket` in the `question` field. 
+This query has been modified to only return `JeopardyQuestion` objects with a `points` value great than than 400, AND include the text `rocket` in the `question` field. 
 
 </details>
 
-Take a look at the argument under `where`. What limitations do you expect in the results?
+:::tip Nested filters
+You can nest `where` filters as well by nesting each item within `operands`. Try it yourself, or take a look at this example:
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`Aggreagte` with `where`
+<details>
+  <summary>
+    Nested where filter example
+  </summary>
 
-Filters work similarly with `Aggregate` queries as they do with `Get` queries, providing you with a way to limit the results of your query. 
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
 
-Take a look at the below example: 
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer", "points"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).with_where({
+    "operator": "And",
+    "operands": [
+        {
+            "path": ["question"],    
+            "operator": "Like",  
+            "valueText": "*rocket*"            
+        },
+        {
+            "operator": "Or",
+            "operands": [
+                {
+                    "path": ["points"],    
+                    "operator": "Equal",  
+                    "valueInt": 200             
+                },
+                {
+                    "path": ["points"],    
+                    "operator": "Equal",  
+                    "valueInt": 1000       
+                }                
+            ]
+        }
+    ]
+}).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
 
 ```graphql
 {
-  Aggregate {
+  Get {
     JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Intergalactic travel"],
+      }
       where: {
-        path: ["question"],    
-        operator: Like,  
-        valueText: "*rocket*"   
+        operator: And, 
+        operands: [
+        {
+          path: ["question"],    
+          operator: Like,  
+          valueText: "*rocket*"
+        }
+        {
+          operator: Or,
+          operands: [
+          {
+              path: ["points"],    
+              operator: Equal,  
+              valueInt: 200            
+          },
+          {
+              path: ["points"],    
+              operator: Equal,  
+              valueInt: 1000            
+          }            
+          ]      
+        },        
+        ]     
+
       }
     ) {
-      meta {
-        count
+      question 
+      answer 
+      points
+      _additional {
+        distance
+        id
       }      
     }
   }
 }
 ```
 
-Which reduces the result set by filtering them by the question's `value` property.
+</TabItem>
+</Tabs>
+
+</details>
+
+it should produce a result like this:
 
 <details>
   <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
@@ -376,12 +533,25 @@ Which reduces the result set by filtering them by the question's `value` propert
 ```json
 {
   "data": {
-    "Aggregate": {
+    "Get": {
       "JeopardyQuestion": [
         {
-          "meta": {
-            "count": 10
-          }
+          "_additional": {
+            "distance": 0.18400955,
+            "id": "48fe1f8f-8e09-5aee-afe9-1728ab2fe8a0"
+          },
+          "answer": "space shuttles",
+          "points": 200,
+          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane"
+        },
+        {
+          "_additional": {
+            "distance": 0.24946856,
+            "id": "c00decd4-4cf1-5b03-a789-a57077e082fb"
+          },
+          "answer": "Huntsville",
+          "points": 1000,
+          "question": "A campus for the University of Alabama is here, nicknamed \"Rocket City, U.S.A.\""
         }
       ]
     }
@@ -391,14 +561,14 @@ Which reduces the result set by filtering them by the question's `value` propert
 
 </details>
 
-<details>
-  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+:::
 
-The query uses the `where` filter to limit the count to objects which include the string "rocket", reducing the results set to a very small number.
+You can apply these filters to an `Aggregate` query also. Try it yourself.
 
-</details>
-
-<Quiz questions={varName} />
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try these: 
+- adding a `where` filter to an `Aggregation` query, following the above pattern.
+:::
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vector search parameters
 
@@ -418,6 +588,25 @@ Both `nearVector` and `nearObject` directly provides Weaviate with a source vect
 
 In case of `nearVector`, the query must include a source vector based on which similarity will be measured. An example query might look like:
 
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer", "points"]
+).with_limit(2).with_near_vector(
+    {"vector": <VECTOR>}
+).with_additional(
+    ["distance", "id"]
+).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
 ```graphql
 {
   Get {
@@ -429,7 +618,7 @@ In case of `nearVector`, the query must include a source vector based on which s
     ) {
       question 
       answer 
-      value
+      points
       _additional {
         distance
         id
@@ -439,9 +628,39 @@ In case of `nearVector`, the query must include a source vector based on which s
 }
 ```
 
+</TabItem>
+</Tabs>
+
 Where `<QUERY_VECTOR>` is a string containing the vector as an array (e.g. `"[0.016475919634103775, -0.005134709179401398, -0.00508853979408741, ...]"`).
 
 In case of `nearObject`, the query must include an object ID, whose vector Weaviate will retrieve as the source vector in the search. An example query might look like:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer", "points"]
+).with_limit(2).with_near_object(
+    {"id": "48fe1f8f-8e09-5aee-afe9-1728ab2fe8a0"}
+).with_additional(
+    ["distance", "id"]
+).do()
+
+print(json.dumps(response, indent=2))
+
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+<!-- GraphQL code goes here -->
+```
+
+</TabItem>
+</Tabs>
 
 ```graphql
 {
@@ -449,12 +668,12 @@ In case of `nearObject`, the query must include an object ID, whose vector Weavi
     JeopardyQuestion (
       limit: 2
       nearObject: {
-        id: "03c57191-0a63-5b76-ae67-bf6d09a5de2d"
+        id: "48fe1f8f-8e09-5aee-afe9-1728ab2fe8a0"
       }
     ) {
       question 
       answer 
-      value
+      points
       _additional {
         distance
         id
@@ -472,63 +691,15 @@ You might use a `nearVector` query when you are using your own vectorizer, or ha
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Distance thresholds
 
-As you saw previously, vector search evaluate objects based on degrees of similarity, and as a result does not exclude any of the results.
+You've seen how to limit the search space to exclude irrelevant objects using a `limit` argument or `distance`. You can also use `certainty` instead of `distance`.
 
-Accordingly, it is desirable to limit the search space to exclude irrelevant objects. This can be done using a `limit` argument or distance. 
-
-You have seen that the `limit` argument specifies the number of results. On the other hand, a threshold value such as `distance` or `certainty` specify the maximum distance (or, looked from the other direction, minimum similarity) required for objects being retrieved.
-
-Specifying a `distance` threshold can be done like so:
-
-```graphql
-{
-  Aggregate {
-    JeopardyQuestion (
-      nearText: {
-        concepts: ["Space travel in real life"],
-        distance: 0.2,
-      }
-    ) {
-      meta {
-        count
-      }    
-    }
-  }
-}
-```
-
-Think about how you expect the results to look before viewing the expected JSON output.
-
-<details>
-  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
-
-```json
-{
-  "data": {
-    "Aggregate": {
-      "JeopardyQuestion": [
-        {
-          "meta": {
-            "count": 25
-          }
-        }
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details>
-  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
-
-The query only aggregates outputs from those within `0.2` of similarity, which results in a limited search space.
-
-</details>
+A threshold value such as `distance` or `certainty` specify the maximum distance (or, looked from the other direction, minimum similarity) required for objects being retrieved.
 
 :::note Exercise: Threshold distances
-Try changing the query text, and `distance` threshold to higher, or lower, values to see what happens. How many results do you get back? How many of the results seem "relevant"?
+Try changing the one of the above queries to:
+- Use a `certainty` threshold rather than `distance`.
+- Return `certainty` as well as `distance`.
+Do they behave as you expected? 
 :::
 
 In this context, `distance` measures the degree of difference. You might also see `certainty` used in some contexts. This is the opposite of `distance`, where higher values imply larger differences in meaning. 
@@ -538,7 +709,6 @@ We will cover later on what these values mean, exactly, and where they come form
 - `distance` is a measure of dissimilarity (lower is more similar), and
 - `certainty` is a measure of similarity (higher is more similar)
 
-<Quiz questions={varName} />
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 

@@ -21,6 +21,22 @@ In Weaviate, these operations are performed using the `Get` function.
 
 The syntax of a `Get` function is as follows:
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    <Class>, 
+    [<properties>]
+).<arguments>.do()
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
 ```graphql
 {
   Get {
@@ -33,13 +49,14 @@ The syntax of a `Get` function is as follows:
 }
 ```
 
+</TabItem>
+</Tabs>
+
 To review the syntax:
 
 - The `Class` field specifies the name of the class of objects to be retrieved. 
 - The `arguments` argument specifies the search criteria to be used to retrieve the objects. 
 - The `properties` argument specifies the properties of the objects to be retrieved, including any `_additional` properties.
-
-<Quiz questions={varName} />
 
 Now let's try out some `Get` queries.
 
@@ -53,6 +70,21 @@ It is possible to query Weaviate with the `Get` function without any vector sear
 
 Take a look at this example:
 
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer"]
+).with_limit(2).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
 ```graphql
 {
   Get {
@@ -65,6 +97,9 @@ Take a look at this example:
   }
 }
 ```
+
+</TabItem>
+</Tabs>
 
 What results do you expect? See if you can correspond each field to the syntax. 
 
@@ -97,11 +132,13 @@ Now, try it out yourself. This query should return something like the below:
 <details>
   <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
 
-In this case, Weaviate will return two objects due to the `limit:2` argument. Without this limit, Weaviate would return a maximum number according to its configuration.
+In this case, Weaviate will return two objects due to the `.with_limit(2)` argument. Without this limit, Weaviate would return a maximum number according to its configuration.
 
+:::tip Is this query useful?
 As this does not apply any user-specific criteria to the search, the specific results will likely not be very useful. 
 
 However, this may be a viable method for "sanity" checks, such as checking that you can connect to a Weaviate instance, or that at least some objects have been imported successfully.
+:::
 
 </details>
 
@@ -111,19 +148,34 @@ In the above example, we specify a `Class` of `JeopardyQuestion` and `properties
 
 That is possible because those are available as defined in the schema, as shown below:
 
+<details>
+  <summary>How to I see the schema?</summary>
+
+You can fetch the schema like this - try it out!
+
+```python
+client.schema.get()
+```
+
+</details>
+
 import ShortSchema from './_snippets/academy.queries.schema.short.mdx';
 
 <ShortSchema/>
 
 The `Class` and `properties` fields must correspond to collections of objects that have been defined in the Weaviate schema.
 
-The `Class` must be the name of a data object class, and the `properties` a list of properties to be retrieved.
+The `Class` must be the name of a data object collection, and the `properties` a list of properties to be retrieved.
 
-The schema contains the `JeopardyQuestion` class, with properties: `question`, `answer` and `value`.
+The schema contains the `JeopardyQuestion` class, with properties: `question`, `answer` and `points`.
 
-So, a query retrieving objects from the `Question` class could specify any of its properties such as `question`, `answer`, and `value`.
+So, a query retrieving objects from the `Question` class could specify any of its properties such as `question`, `answer`, and `points`.
 
-<Quiz questions={varName} />
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out the above query again, with these changes.
+- Can you get the `points` property as well?
+- What happens if you don't specify any properties?
+:::
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Get` with `nearText`
 
@@ -137,13 +189,30 @@ This parameter is passed as an argument in the GraphQL query like below, where t
 
 Here is an example:
 
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
 ```graphql
 {
   Get {
     JeopardyQuestion (
       limit: 2
       nearText: {
-        concepts: ["Space travel in real life"],
+        concepts: ["Intergalactic travel"],
       }
     ) {
       question 
@@ -152,6 +221,9 @@ Here is an example:
   }
 }
 ```
+
+</TabItem>
+</Tabs>
 
 Take a look at the query, and think about the following before you view the response. 
 
@@ -168,12 +240,12 @@ Now, try it out yourself. This query should return something like the below:
     "Get": {
       "JeopardyQuestion": [
         {
-          "answer": "space shuttles",
-          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane"
-        },
-        {
           "answer": "escaping the Earth's gravity (and go off into outer space, on your way to the moon, for instance)",
           "question": "It takes approximately 24,840 MPH to achieve this"
+        },
+        {
+          "answer": "the Milky Way",
+          "question": "This is the name of our own galaxy"
         }
       ]
     }
@@ -186,9 +258,7 @@ Now, try it out yourself. This query should return something like the below:
 <details>
   <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
 
-Every vector search needs a "source" vector to form the basis of the search.
-
-Although the `nearText` parameter is not a vector, Weaviate converts the input to a vector before performing a vector search. The results are then returned in order of their similarity to the input vector, before.
+Under the hood, Weaviate converts the input text to a vector before performing a vector similarity search. The results are then returned in order of their similarity to the input.
 
 :::tip `nearText` requires a vectorizer!
 Because text object must be converted to a vector before it can be used in a vector search, the `nearText` parameter is only available when a vectorizer module has been specified for the class.
@@ -196,25 +266,48 @@ Because text object must be converted to a vector before it can be used in a vec
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`arguments`
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`near<Media>`
 
-The `arguments` field is optional, but essential for performing meaningful searches. It specifies the search criteria to be used to retrieve the objects. 
+The `near<Media>` field is a core tool in Weaviate that enables similarity searches by comparing vector representations of objects. (If you are not sure what that means - we will cover this in the next unit!)
 
-This may be to specify criteria for a vector search as you see above, or using `nearVector` or `nearObject` operators. 
+There are also `nearObject` and `nearVector` arguments that you can use to specify the source vector. 
 
-You can also use `arguments` to specify a filter to be applied to the results, or to provide additional constraints such as the number of limits to be returned. 
+In all cases, these arguments do one job which is to provide a "source" vector to form the basis of vector comparisons.
 
-<Quiz questions={varName} />
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out the above query again, with these changes. 
+- Can you get the `points` property as well? 
+- What happens if you don't specify any properties? 
+:::
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Get` with `additional` properties
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-The `additional` field allows us to retrieve additional properties that are not defined in the schema.
+You can retrieve additional properties that are not defined in the schema. These properties may be inherent to the object, or relate to the query performed.
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
 
-In this example, we've built on the previous example by adding the `_additional` field to the `Get` query with sub-fields. 
+In this example, we've built on the previous example to add the `.with_additional` method. 
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
 
 ```graphql
 {
@@ -222,21 +315,24 @@ In this example, we've built on the previous example by adding the `_additional`
     JeopardyQuestion (
       limit: 2
       nearText: {
-        concepts: ["Space travel in real life"],
+        concepts: ["Intergalactic travel"],
       }
     ) {
       question 
-      answer 
+      answer     
       _additional {
         distance
         id
-      }      
+      }        
     }
   }
 }
 ```
 
-Again, consider what the response might look like. What would the `_additional` fields of `distance` and `id` return?
+</TabItem>
+</Tabs>
+
+Again, consider what the response might look like. What would have changed in the response?
 
 Now, try it out yourself. This query should return something like the below:
 
@@ -250,19 +346,19 @@ Now, try it out yourself. This query should return something like the below:
       "JeopardyQuestion": [
         {
           "_additional": {
-            "distance": 0.15368003,
-            "id": "ddcc3f06-5410-5944-85c4-3cb56ab27088"
-          },
-          "answer": "space shuttles",
-          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane"
-        },
-        {
-          "_additional": {
-            "distance": 0.17277694,
+            "distance": 0.1791926,
             "id": "b1645a32-0c22-5814-8f35-58f142eadf7e"
           },
           "answer": "escaping the Earth's gravity (and go off into outer space, on your way to the moon, for instance)",
           "question": "It takes approximately 24,840 MPH to achieve this"
+        },
+        {
+          "_additional": {
+            "distance": 0.18123823,
+            "id": "ef263438-b152-5540-97f7-99f4076bd124"
+          },
+          "answer": "the Milky Way",
+          "question": "This is the name of our own galaxy"
         }
       ]
     }
@@ -293,7 +389,11 @@ Note that the returned vector in many cases will be a very long list of numbers.
 
 :::
 
-<Quiz questions={varName} />
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out the above query again, with these changes.
+- Can you get the `vector` property as well?
+- Earlier, providing an empty list as the main properties under the `.get()` method will have caused an error. What happens if you try it again, now that you are requesting additional properties?
+:::
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
@@ -317,6 +417,26 @@ Add summary
 :::
 
 import Quiz from '/src/components/Academy/quiz.js'
+const nearText = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
 const varName = [{
   questionText: 'questionText',
   answerOptions: [

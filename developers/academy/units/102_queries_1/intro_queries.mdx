@@ -5,71 +5,19 @@ sidebar_position: 10
 
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Weaviate APIs
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Running Weaviate queries
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-We will primarily be using the **Weaviate Python client** in this module to perform queries. But we will discuss a little bit of GraphQL too, as it forms the basis for those Python queries.
+In this unit, we will focus on various strategies to query Weaviate to retrieve information.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Uses in Weaviate
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;With the Python client
 
-Weaviate provides both REST and GraphQL API interfaces. They work together to provide a rich API for its users.
+Although Weaviate uses GraphQL under the hood for queries, you will not need to directly enter GraphQL in this unit. Instead, we will be using the Python client to perform and learn about queries.
 
-The **REST API** is used to interact with Weaviate for CRUD (Create, Read, Update and Delete) operations and to obtain metadata about the database. 
+But note that we also show raw GraphQL queries as well as the Python code in this unit to help learn the underlying query structures.
 
-The **GraphQL API** is used to interact with Weaviate for data searches. More specifically, it can be used to retrieve data objects, aggregate information, and explore vector spaces.
-
-In this unit, we will focus on various strategies to query Weaviate using GraphQL to retrieve information.
-
-<details>
-  <summary>What is REST?</summary>
-
-REST is an acronym for **RE**presentational **S**tate **T**ransfer. 
-
-A REST API provides multiple endpoints, each with its own URL, that can be used to interact with the API. 
-
-The endpoints are organized into a hierarchy, with each endpoint representing a resource. The client can then request information about these resources by sending a request to the server.
-
-</details>
-
-<details>
-  <summary>What is GraphQL?</summary>
-
-GraphQL is a query language for APIs. 
-
-First released by Facebook in 2015, it is now maintained by the GraphQL Foundation. 
-
-GraphQL is a specification for a query language that can be used to request information from a server. GraphQL is a **strongly typed** language, which means that the client must specify the type of data that it wants to receive.
-
-</details>
-
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;GraphQL syntax
-
-Broadly, a GraphQL query will take this form:
-
-```graphql
-{
-  <Function> {
-    <Class> (<Arguments>) {
-      <properties>
-    }
-  }
-}
-```
-
-Where:
-- `<Function>` is the action,
-- `<Class>` is the target data collection,
-- `<Arguments>` specifies any options, and
-- `<properties>` describes the data to be retrieved.
-
-So keep these terms in mind when they appear in explanations.
-
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;GraphQL & Python
-
-We will be using the Python client in this unit to perform queries. So, you will not need to directly enter GraphQL. 
-
-So when we show a query such as this:
+So please be aware that when we show a query such as this:
 
 ```python
 response = client.query.get(
@@ -123,43 +71,66 @@ This tab will show GraphQL code.
 </TabItem>
 </Tabs>
 
-<Quiz questions={varName} />
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Raw GraphQL queries
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Running GraphQL queries
+Note that you can run raw GraphQL queries directly with the Weaviate Python client, or with the [Weaviate Console](https://console.weaviate.io/). 
 
-<img src={imageUrl} alt="Image alt" width="75%"/>
+In Python, you can run a GraphQL query directly with:
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;With a Weaviate client
+```python
+query = '''
+{
+  Get {
+    JeopardyQuestion (
+      nearText: {
+        concepts: ["intergalactic travel"]
+        }
+      limit: 2
+    ) {
+      question
+      answer
+    }
+  }
+}
+'''
 
-Weaviate client libraries simplify the use of GraphQL syntax by abstracting it to syntax of the client's language. They also include functions to use raw GraphQL queries directly.
+response = client.query.raw(query)
+print(json.dumps(response, indent=2))
+```
 
-To help learn the underlying query structures, we show raw GraphQL queries in this unit, as well as the Python code.
-
-import ClientGraphqlRaw from '../../_snippets/academy.clients.graphql.raw.mdx';
-
-<ClientGraphqlRaw />
-
-However, as we progress you will see more code examples using the client libraries as we do in the documentation.
-
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;With the Weaviate Console
-
-<img src={imageUrl} alt="Image alt" width="75%"/>
-
-Or you can do so on the [Weaviate Console](https://console.weaviate.io/), by logging in and connecting to your Weaviate instance.
-
-:::warning TODO
-Add steps for using GraphQL client if applicable to setup
-:::
+Or, the Weaviate Console provides a graphical interface that you can connect to your Weaviate instance and run queries.
 
 <!-- TODO - show specific steps to do this when WCS launches -->
 
-<Quiz questions={varName} />
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;GraphQL syntax
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;GraphQL functions
+You will see terms such as `Function`, `Class`, `properties` and `Argument` in this units. They come from Weaviate's GraphQL syntax, which takes this form:
+
+```graphql
+{
+  <Function> {
+    <Class> (<Arguments>) {
+      <properties>
+    }
+  }
+}
+```
+
+Where:
+- `<Function>` is the action,
+- `<Class>` is the target data collection,
+- `<Arguments>` specifies any options, and
+- `<properties>` describes the data to be retrieved.
+
+So keep these terms in mind.
+
+<Quiz questions={queryMethods} />
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Query functions
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-You can use `Get`, `Aggregate` or `Explore` GraphQL functions in Weaviate.
+The primary query functions in Weaviate are `Get`, `Aggregate` or `Explore`.
 
 These three functions are used to `Get` objects, `Aggregate` information and `Explore` vector spaces. 
 
@@ -171,6 +142,21 @@ The `Get` function is used in Weaviate to retrieve data objects. For many use ca
 
 Take a look at the following:
 
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer"]
+).with_limit(1).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
 ```graphql
 {
   Get {
@@ -181,8 +167,10 @@ Take a look at the following:
   }
 }
 ```
+</TabItem>
+</Tabs>
 
-This query applies the `Get` function to the `JeopardyQuestion` class, with an argument `limit: 1` which limits the number of returned objects to a maximum of 1. 
+This is a `Get` query to `JeopardyQuestion` class, with a limit of maximum `1` returned object, with the object's `["question", "answer"]` properties. 
 
 It should produce a response like the following:
 
@@ -207,15 +195,39 @@ You can see that the response includes a data object from the `JeopardyQuestion`
 
 Whereas `Get` returns objects, `Aggregate` returns summary statistics or aggregates from the result set. 
 
-As such you can use `Aggregate` to obtain summary values such as counts, sums, means and so on from groups of objects. 
+As such you can use `Aggregate` to obtain summary values such as counts, sums, means and so on from groups of objects. Take a look at the following:
 
-For example, the following query will produce the maximum, minimum and mean of the `value` property in the `JeopardyQuestion` class.
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.aggregate(
+    "JeopardyQuestion", 
+).with_near_text(
+    {"concepts": ["Animals in movies"]}
+).with_object_limit(
+    10
+).with_meta_count().with_fields("value {maximum minimum mean}").do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
 
 ```graphql
 {
   Aggregate {
-    JeopardyQuestion (limit: 100) {
-      value {
+    JeopardyQuestion (
+      objectLimit: 10
+      nearText: {
+        concepts: ["Animals in movies"]
+      }
+    ) {
+      meta {
+        count
+      }
+      points {
         maximum
         minimum
         mean
@@ -225,6 +237,11 @@ For example, the following query will produce the maximum, minimum and mean of t
 }
 ```
 
+</TabItem>
+</Tabs>
+
+The previous query will grab 10 closest objects to the query text in `JeopardyQuestion` class, and return the maximum, minimum and mean `value` as well as the count.
+
 It should produce a response like the following:
 
 ```json
@@ -233,9 +250,12 @@ It should produce a response like the following:
     "Aggregate": {
       "JeopardyQuestion": [
         {
-          "value": {
-            "maximum": 10000,
-            "mean": 632.41,
+          "meta": {
+            "count": 10
+          },
+          "points": {
+            "maximum": 1000,
+            "mean": 320,
             "minimum": 0
           }
         }
@@ -245,7 +265,7 @@ It should produce a response like the following:
 }
 ```
 
-Notice that even though the query related to a maximum of 100 objects, the result was *one* set of aggregated values.
+Notice that even though the query related to a maximum of 10 objects, the result was *one* set of aggregated values.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Explore` vector spaces
 
@@ -253,11 +273,11 @@ Notice that even though the query related to a maximum of 100 objects, the resul
 
 This means that you can use `Explore` to find objects that are similar to a given object or vector, regardless of the class of the object. As such, `Explore` is very useful when you may not be sure of what class to search for.
 
-In relation to our Quiz dataset, a query using the `Explore` function would return a set of objects from both the `JeopardyQuestion` and `Category` classes.
+In relation to our dataset, a query using the `Explore` function would return a set of objects from both the `JeopardyQuestion` and `Category` classes.
 
 We will explore the `Explore` function in more detail in a separate, following unit.
 
-<Quiz questions={varName} />
+<Quiz questions={functionExplanations} />
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
@@ -279,23 +299,48 @@ Add summary
 :::
 
 import Quiz from '/src/components/Academy/quiz.js'
-const varName = [{
-  questionText: 'questionText',
+const queryMethods = [{
+  questionText: 'Which of these is not a valid way of running queries with Weaviate?',
   answerOptions: [
     {
-      answerText: 'answerOne',
-      isCorrect: false,
-      feedback: 'feedbackOne',
+      answerText: 'Sending a HTTP GET request.',
+      isCorrect: true,
+      feedback: 'In Weaviate, the REST interface is not used for queries.',
     },
     {
-      answerText: 'answerTwo',
+      answerText: 'Using the Weaviate Console.',
       isCorrect: false,
-      feedback: 'feedbackTwo',
+      feedback: 'You can use the Weaviate Console to directly enter GraphQL queries',
     },
     {
-      answerText: 'answerThree',
+      answerText: 'With the Weaviate Python client.',
       isCorrect: false,
-      feedback: 'feedbackThree',
+      feedback: 'In fact, you can send raw GraphQL queries or use native Python methods to perform queries with the Python client.',
     },
+  ]
+}];
+const functionExplanations = [{
+  questionText: 'Which of the following are correct?',
+  answerOptions: [
+    {
+      answerText: 'You can use the Get function to retrieve summary information about a group of objects.',
+      isCorrect: false,
+      feedback: 'The Get function is used to retrieve individual objects.',
+    },
+    {
+      answerText: 'The Aggregate function will return objects from Weaviate.',
+      isCorrect: false,
+      feedback: 'The Aggregate function will return summary, or aggregated, information about retrieved objects.',
+    },
+    {
+      answerText: 'The Get function can retrieve objects from multiple classes in one query.',
+      isCorrect: false,
+      feedback: 'Each Get query can only search one class of objects.',
+    },        
+    {
+      answerText: 'None of the above.',
+      isCorrect: true,
+      feedback: 'All of the above are false!',
+    },          
   ]
 }];

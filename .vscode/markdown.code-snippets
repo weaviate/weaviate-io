@@ -193,4 +193,41 @@
 			"### <i class=\"fa-solid fa-code\"></i>&nbsp;&nbsp;Practical subhead"
 		]
 	},
+	"Academy-exercise-admonition": {
+		"prefix": "docusaurus-academy-exercise-admonition",
+		"scope": "markdown",
+		"body": [
+			":::note <i class=\"fa-solid fa-square-terminal\"></i> Exercise",
+			"Try out the above query again, with these changes.",
+			"- xxx",
+			"- xxx",
+			":::"
+		]
+	},	
+	"Academy-Python-GQL-code": {
+		"prefix": "docusaurus-academy-python-tabs-code",
+        "scope": "markdown",
+		"body": [
+			"import Tabs from '@theme/Tabs';",
+			"import TabItem from '@theme/TabItem';",
+			"",
+			"<Tabs groupId=\"languages\">",
+			"<TabItem value=\"py\" label=\"Python\">",
+			"",
+			"```python",
+			"<!-- Python code goes here -->",
+			"```",
+			"",
+			"</TabItem>",
+			"<TabItem value=\"graphql\" label=\"GraphQL\">",
+			"",
+			"```graphql",
+			"<!-- GraphQL code goes here -->",
+			"```",
+			"",
+			"</TabItem>",
+			"</Tabs>"
+		],
+		"description": "Adds the tabs section for Academy python/graphql code examples"
+	},	
 }
