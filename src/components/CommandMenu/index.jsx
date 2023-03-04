@@ -3,12 +3,23 @@ import CommandPalette, { getItemIndex, useHandleOpenCommandPalette } from "react
 import "./cmdk.css";
 import { useState } from "react";
 import { query } from "./query";
+import { debounceTime, tap, distinctUntilChanged } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 
 export default function CommandMenu({open, setOpen}) {
     const [page, setPage] = useState("root");
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
+    const [onSearch$] = useState(()=>new Subject());
+
+    useEffect(() => {
+      onSearch$.pipe(
+        debounceTime(270),
+        distinctUntilChanged(),
+        tap(a => handleQuery(a))
+      ).subscribe();
+    }, [])
 
     const getIcon = (type) => {
       if(type === 'docs'){
@@ -20,9 +31,8 @@ export default function CommandMenu({open, setOpen}) {
       }
     }
 
-    console.log(filteredItems)
-    const handleQuery = () => {
-      query(search).then(res => {
+    const handleQuery = (a) => {
+      query(a).then(res => {
         const data = res.data.Get.PageChunkOpenAI
         const resultFormated = data.map((item, index) => {
           return {
@@ -70,7 +80,7 @@ export default function CommandMenu({open, setOpen}) {
 
     useEffect(() => {
         if(search){
-          handleQuery()
+          onSearch$.next(search);
         }
     },[search])
 
@@ -78,8 +88,8 @@ export default function CommandMenu({open, setOpen}) {
 
     const renderFooter = () => {
       return (
-        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-          <p>powered by </p> <p className="hero__logo" style={{height: 34, width: 34, marginLeft: 5, marginRight: 5}} /> <p>  Weaviate</p>
+        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end'}}>
+          <p style={{fontSize: 15}}>Powered by </p> <p className="navbar__logo" style={{height: 35, marginLeft: -10, marginTop: 10, marginBottom: 10}}  />
         </div>
       )
     }
