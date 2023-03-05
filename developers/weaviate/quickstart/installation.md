@@ -111,15 +111,15 @@ Please be patient as we update our Java and Go code examples. They will be ready
 
 ### Running Weaviate with Docker
 
-If you prefer to use Docker, follow these steps:
+If you prefer to use Docker instead of WCS, follow these steps:
 
 <details>
-  <summary>Steps for using Docker</summary>
+  <summary>How to use Docker for this tutorial</summary>
 
 1. Get a `docker-compose.yml` configuration file by going to the [Weaviate configurator](../installation/docker-compose.md)
     1. Select "With Modules" when asked "Standalone or Modules", and
     1. Select the module for your preferred inference API (e.g. `text2vec-openai` for OpenAI, or `text2vec-cohere` for Cohere).
-    1. You can say no to any other modules.
+    1. You can say no to all other modules.
 1. Spin up Weaviate with Docker
     ```js
     docker-compose up -d
