@@ -12,7 +12,7 @@
 .cache-loader
 
 # Ignore Academy for now
-/developers/academy
+# /developers/academy
 
 # IDEs
 .idea
