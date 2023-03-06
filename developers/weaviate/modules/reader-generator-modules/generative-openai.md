@@ -137,9 +137,9 @@ Currently, you can't provide your OpenAI key in the Weaviate console. That means
 
 ### Example of properties in the prompt 
 
-​When piping the results to the prompt, at least one field returned by the query must be added to the prompt. If you don't add any fields, Weaviate will throw an error.
+When piping the results to the prompt, at least one field returned by the query must be added to the prompt. If you don't add any fields, Weaviate will throw an error.
 
-​For example, assume your schema looks like this:
+For example, assume your schema looks like this:
 
 ```graphql
 {

@@ -17,23 +17,25 @@ import HomepageTestimonials from '/src/components/Home/Testimonials';
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title="Welcome"
-      description="Welcome to Weaviate"
-    >
-      <MetaSEO img="og/website/home.jpg" />
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-        <HomepageTestimonials />
-        <HomepageWhatYouCanDo />
-        <HomepageIntegrations />
-        <HomepageLearn />
-        <HomepageJoinCommunity />
-        <HomepageReady />
-        <HomepageNewsletter />
-        <HomepageCompany />
-      </main>
-    </Layout>
+    <div className="custom-page">
+      <Layout
+        title="Welcome"
+        description="Welcome to Weaviate"
+      >
+        <MetaSEO img="og/website/home.jpg" />
+        <HomepageHeader />
+        <main>
+          <HomepageFeatures />
+          <HomepageTestimonials />
+          <HomepageWhatYouCanDo />
+          <HomepageIntegrations />
+          <HomepageLearn />
+          <HomepageJoinCommunity />
+          <HomepageReady />
+          <HomepageNewsletter />
+          <HomepageCompany />
+        </main>
+      </Layout>
+    </div>
   );
 }

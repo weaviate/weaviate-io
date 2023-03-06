@@ -53,9 +53,7 @@ result = (
   client.query
   .get("Publication", ["name"])
   # highlight-start
-  .with_additional(
-    "generate(groupedResult:{ task: " + generateTask + " }) { groupedResult }"
-  )
+  with_generate(grouped_task=generateTask)
   # highlight-end
   .with_near_text({
     "concepts": ["magazine or newspaper about finance"]

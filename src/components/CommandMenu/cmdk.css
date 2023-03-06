@@ -9,6 +9,23 @@
     color: rgb(255 255 255) !important
 }
 
+.command-palette p {
+    color: rgb(255 255 255) !important
+}
+
+.command-palette svg {
+    color: rgb(255 255 255) !important
+}
+
+.command-palette svg {
+    fill: rgb(255 255 255) !important;
+    color: '#fff'
+}
+
+[data-theme=light] .command-palette svg path {
+    fill: #fff;
+}
+
 .logo {
     background-image: url('../../../static/img/site/weaviate-nav-logo-dark.svg');
     width: 200px;
@@ -16,6 +33,10 @@
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.command-palette-list-item svg {
+    color: #fff !important;
 }
 
 
@@ -38,5 +59,9 @@
 
     .logo {
         background-image: url('../../../static/img/site/weaviate-nav-logo-light.svg');
+    }
+
+    .command-palette svg path {
+        fill: #2d3197 !important;
     }
   }

@@ -17,7 +17,7 @@ You can find the following performance benchmarks:
 
 ## Benchmark code
 
-The code for the benchmarks can be found in [this repo](https://github.com/weaviate/weaviate-benchmarking) on Github.
+The code for the benchmarks can be found in [this GitHub repo](https://github.com/weaviate/weaviate-benchmarking).
 
 ## Weaviate benchmark podcast
 

@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import CommandPalette, { getItemIndex, useHandleOpenCommandPalette } from "react-cmdk";
-import "./cmdk.css";
-import { useState } from "react";
-import { query } from "./query";
+import React, { useEffect } from 'react';
+import CommandPalette, { getItemIndex, useHandleOpenCommandPalette } from 'react-cmdk';
+import './cmdk.css';
+import { useState } from 'react';
+import { query } from './query';
 import { debounceTime, tap, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 
 export default function CommandMenu({open, setOpen}) {
-    const [page, setPage] = useState("root");
+    const [page, setPage] = useState('root');
     const [search, setSearch] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
     const [onSearch$] = useState(()=>new Subject());
@@ -17,7 +17,7 @@ export default function CommandMenu({open, setOpen}) {
       onSearch$.pipe(
         debounceTime(270),
         distinctUntilChanged(),
-        tap(a => handleQuery(a))
+        tap(a => handleQuery(a)),
       ).subscribe();
     }, [])
 
@@ -31,13 +31,20 @@ export default function CommandMenu({open, setOpen}) {
       }
     }
 
+    const addPage = (pageTitle, title) => {
+      if(pageTitle != title){
+        return pageTitle + ' • ' + title
+      }
+      return title
+    }
+
     const handleQuery = (a) => {
       query(a).then(res => {
         const data = res.data.Get.PageChunkOpenAI
         const resultFormated = data.map((item, index) => {
           return {
               id: index,
-              children: item.title,
+              children: addPage(item.pageTitle, item.title),
               icon: getIcon(item.typeOfItem),
               href: item.url + '#' + item.anchor,
               type: item.typeOfItem
@@ -103,7 +110,7 @@ export default function CommandMenu({open, setOpen}) {
       page={page}
       footer={renderFooter()}
     >
-      <CommandPalette.Page id="root">
+      <CommandPalette.Page id='root'>
         {filteredItems.length ? (
           filteredItems.map((list) => (
             <CommandPalette.List key={list.id} heading={list.heading}>

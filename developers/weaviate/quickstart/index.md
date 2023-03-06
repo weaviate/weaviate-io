@@ -14,7 +14,10 @@ Welcome to the **Quickstart tutorial** for Weaviate! Here, you will learn how to
 
 ### Data
 
-We will start with this (tiny) dataset consisting of questions from the popular quiz show "Jeopardy!":
+We will start with a (tiny) dataset consisting of questions from the popular quiz show "Jeopardy!". 
+
+<details>
+  <summary>Take a look at the dataset</summary>
 
 |    | Category   | Question                                                                                                          | Answer                  |
 |---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------|
@@ -28,6 +31,8 @@ We will start with this (tiny) dataset consisting of questions from the popular 
 |  7 | SCIENCE    | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance              | DNA                     |
 |  8 | SCIENCE    | Changes in the tropospheric layer of this are what gives us weather                                               | the atmosphere          |
 |  9 | SCIENCE    | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it                                      | Sound barrier           |
+
+</details>
 
 ### Agenda
 
@@ -57,13 +62,15 @@ But don't worry too much even if you are uncomfortable with any of these. This t
 You will be creating your own instance of Weaviate in this tutorial, and using an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs). 
 
 To follow along with the tutorial, we recommend you create accounts with:
-1. A [Weaviate Cloud Services (WCS)](https://console.weaviate.io/) account, and
-1. An account with an inference API provider such as:
+1. [Weaviate Cloud Services (WCS)](https://console.weaviate.io/), and
+1. An inference API provider such as:
     1. [OpenAI](https://platform.openai.com/docs/guides/embeddings),
     1. [Cohere](https://docs.cohere.ai/reference/embed), or
     1. [Hugging Face](https://huggingface.co/docs/api-inference/index).
 
-The free tiers for any of them will be sufficient for you to follow along. 
+:::tip Use free tiers of these accounts
+The free tiers for any of them should be sufficient for you to follow along. 
+:::
 
 :::info Is something broken?
 We want you to have the best experience possible here. So if you find that something here doesn't work, or doesn't make sense, please let us know! You can:

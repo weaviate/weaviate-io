@@ -10,14 +10,14 @@ import Badges from '/_includes/badges.mdx';
 
 ## In short
 
-* The Summarization (SUM) module is a Weaviate module that summarizes whole paragraps into a short text.
-* The module depends on a SUM Transformers model that should be running with Weaviate. There are pre-built models available, but you can also attach another HuggingFace Transformer or custom SUM model.
+* The Summarization (`sum-transformers`) module is a Weaviate module that summarizes whole paragraphs into a short text.
+* The module containerizes a summarization-focussed transformers model for Weaviate to connect to. We make pre-built models available here, but you can also attach another transformer model from Hugging Face or even a custom model.
 * The module adds a `summary {}` filter to the GraphQL `_additional {}` field.
 * The module returns the results in the GraphQL `_additional { summary {} }` field. 
 
 ## Introduction
 
-The Summarization module is a Weaviate module that is used to summarize Weaviate text objects at query time.
+As the name indicates, the summarization module can produce a summary of Weaviate text objects at query time.
 
 **For example**, it allows us to run a query on our data in Weaviate, which can take a text like this:
 
@@ -27,22 +27,24 @@ and transform it to a short sentence like this:
 
 > <em>"The Eiffel Tower is a landmark in Paris, France."</em>
 
-> Note, for maximum performance of your queries, transformer-based models should run with GPUs.
-> 
-> CPUs can be used, however, this will significantly slow down your queries. 
+:::note GPUs preferred
+For maximum performance of your queries, transformer-based models should run with GPUs. 
+CPUs can be used, however, this will significantly slow down your queries. 
+:::
 
 ### Available modules
 
-Here is the current list of available SUM modules - sourced from [Huggingface](https://huggingface.co/):
+Here is the current list of available `SUM` modules - sourced from [Hugging Face](https://huggingface.co/):
 * [`bart-large-cnn`](https://huggingface.co/facebook/bart-large-cnn)
-<!-- TODO: include when/if the build completes -->
-<!-- * [`pegasus-xsum`](https://huggingface.co/google/pegasus-xsum) -->
+* [`pegasus-xsum`](https://huggingface.co/google/pegasus-xsum)
 
 ## How to enable (module configuration)
 
 ### Docker-compose
 
-The SUM module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `sum-transformers` module (`facebook-bart-large-cnn`) in combination with the `text2vec-contextionary`:
+The `sum-transformers` module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. 
+
+An example Docker-compose file for using the `sum-transformers` module (with the `facebook-bart-large-cnn` model) in combination with the `text2vec-contextionary` vectorizer module is below:
 
 ```yaml
 ---
@@ -80,7 +82,8 @@ services:
     ports:
     - 9999:9999
   sum-transformers:
-    image: semitechnologies/sum-transformers:facebook-bart-large-cnn-1.0.0
+    image: semitechnologies/sum-transformers:facebook-bart-large-cnn-1.2.0  
+    # image: semitechnologies/sum-transformers:google-pegasus-xsum-1.2.0  # Could be used instead
 ...
 ```
 
@@ -89,7 +92,7 @@ Variable explanations:
 
 ## How to use (GraphQL)
 
-To make use of the modules capabilities, simply extend your query with the following new `_additional` property:
+To make use of the modules capabilities, extend your query with the following new `_additional` property:
 
 ### GraphQL Token
 
@@ -100,6 +103,7 @@ This module adds a search filter to the GraphQL `_additional` field in queries: 
 | `properties` 	| list of strings 	| yes 	| `["description"]` 	| The properties of the queries Class which contains text (`text` or `string` Datatype). You must provide at least one property	|
 
 ### Example query
+
 import CodeSumTransformer from '/_includes/code/sum-transformers-module.mdx';
 
 <CodeSumTransformer />
@@ -144,9 +148,10 @@ The answer is contained in a new GraphQL `_additional` property called `summary`
 
 ## Use another Summarization module from HuggingFace
 
-You can build a Docker image which supports any summarization model from the [Huggingface model hub](https://huggingface.co/models?pipeline_tag=summarization) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`google/pegasus-pubmed` model](https://huggingface.co/google/pegasus-pubmed). 
+You can build a Docker image which supports any summarization model from the [Hugging Face Model Hub](https://huggingface.co/models?pipeline_tag=summarization) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`google/pegasus-pubmed` model](https://huggingface.co/google/pegasus-pubmed). 
 
 #### Step 1: Create a `Dockerfile`
+
 Create a new `Dockerfile`. We will name it `my-model.Dockerfile`. Add the following lines to it: 
 ```
 FROM semitechnologies/sum-transformers:custom
@@ -155,32 +160,40 @@ RUN MODEL_NAME=google/pegasus-pubmed ./download.py
 ```
 
 #### Step 2: Build and tag your Dockerfile.
+
 We will tag our Dockerfile as `google-pegasus-pubmed`:
 ```
 docker build -f my-model.Dockerfile -t google-pegasus-pubmed .
 ```
 
-#### Step 3: That's it!
+#### Step 3: Use the image with Weaviate
+
 You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `google-pegasus-pubmed`.
 
 
 ## How it works (under the hood)
 
-The code for the application in this repo works well with models that take in a text input like:
+The `sum-transformers` module uses transformer-based summarizer models. They are abstractive, in that they generate new text from the input text, rather than to extract particular sentences. For example, a model may take text like this:
 
-> <em>But, similar to finding a bathing suit that fits in all the right places, discovering a new pair of perfectly cut and comfortable jeans can be thrilling. The Gap jeans are as classic as they come and they give me that figure-hugging fit without cutting off my circulation. At the moment, there are TikTok videos circulating about these jeans, making me one member of an ever-growing fan club. While good jeans are priceless, these bonafide confidence boosters are also now on sale for $63. Trust me, there's no time like the present to break up with those all day, every day sweatpants and slip on some hero denim.</em>
+<details>
+  <summary>See original text</summary>
 
-then summarize it and return information in JSON format like this:
+> *The Loch Ness Monster (Scottish Gaelic: Uilebheist Loch Nis), affectionately known as Nessie, is a creature in Scottish folklore that is said to inhabit Loch Ness in the Scottish Highlands. It is often described as large, long-necked, and with one or more humps protruding from the water. Popular interest and belief in the creature has varied since it was brought to worldwide attention in 1933. Evidence of its existence is anecdotal, with a number of disputed photographs and sonar readings.*
+> *The scientific community explains alleged sightings of the Loch Ness Monster as hoaxes, wishful thinking, and the misidentification of mundane objects. The pseudoscience and subculture of cryptozoology has placed particular emphasis on the creature.*
 
-```json
-[
-  {
-    "result": "Finding the perfect pair of jeans can be a challenge."
-  }
-]
-```
+</details>
 
-The Weaviate SUM Module then takes this output and processes this to GraphQL output.
+And summarize it to produce a text like:
+
+> *The Loch Ness Monster is said to be a large, long-necked creature. Popular belief in the creature has varied since it was brought to worldwide attention in 1933. Evidence of its existence is disputed, with a number of disputed photographs and sonar readings. The pseudoscience and subculture of cryptozoology has placed particular emphasis on the creature.*
+
+Note that much of output does not copy the input verbatim, but is *based on* it. The `sum-transformers` module then delivers this output in the response.
+
+:::note Input length
+Note that like many other language models, summarizer models can only process a limited amount of text. The `sum-transformers` module will be limited to the maximum length of the model it is using. For example, the `facebook/bart-large-cnn` model can only process 1024 tokens.
+
+On the other hand, be aware that providing an input of insufficient length and detail may cause the transformer model to [hallucinate](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)). 
+:::
 
 ## More resources
 
