@@ -109,7 +109,6 @@ Result<GraphQLResponse> result = client.graphQL().get()
 ```bash
 $ echo '{
   "query": "{
-    {
       Get {
         Article(
           bm25: {query: "how to fish", properties: ["title"]}
@@ -117,7 +116,6 @@ $ echo '{
         ){
           summary
           title
-        }
       }
     }
   }"

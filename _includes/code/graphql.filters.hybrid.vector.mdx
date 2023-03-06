@@ -90,7 +90,6 @@ Result<GraphQLResponse> result = client.graphQL().get().withClassName("Article")
 ```bash
 $ echo '{ 
   "query": "{
-    {
       Get {
         Article(
           hybrid: {
@@ -102,7 +101,6 @@ $ echo '{
           title
           summary
           _additional {score}
-        }
       }
     }
   }"

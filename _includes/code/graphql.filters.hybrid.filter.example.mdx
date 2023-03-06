@@ -107,17 +107,15 @@ Result<GraphQLResponse> result = client.graphQL().get()
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
-    {
       Get {
         Article (
-          hybrid: {query: "How to catch an Alaskan Pollock", alpha: 0.5}
-          where: {path: ["wordCount"], operator: LessThan, valueInt: 1000}
+          hybrid: {query: \"How to catch an Alaskan Pollock\", alpha: 0.5}
+          where: {path: [\"wordCount\"], operator: LessThan, valueInt: 1000}
         ){
           title
           summary
-        }
       }
     }
   }"
