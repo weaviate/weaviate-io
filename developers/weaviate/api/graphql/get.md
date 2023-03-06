@@ -79,7 +79,7 @@ For every Get{} request you can get additional information about the returned da
 
 To combine `Get { }` with a vector search argument, here is an overview of the supported arguments and links to their detailed documentation:
 
-| Argument | Description | Required Modules (at least one of) | Learn More |
+| Argument | Description | Required modules (at least one of) | Learn more |
 | --- | --- | --- | --- |
 | `nearObject` | Find the nearest neighbors of an object referenced by its id | *none - works out of the box* | [Learn more](./vector-search-parameters.md#nearobject) |
 | `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](./vector-search-parameters.md#nearvector) |

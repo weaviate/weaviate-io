@@ -12,7 +12,7 @@ client = weaviate.Client("https://some-endpoint.weaviate.network/")
 
 add_prop = {
   "dataType": [
-      "Author" # <== note how the name of the class is the cross-reference
+    "Author" # <== note how the name of the class is the cross-reference
   ],
   "name": "has"
 }
@@ -34,9 +34,9 @@ print(json.dumps(schema, indent=4))
 const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',
-  });
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network/',
+});
 
 const className = 'Publication';
 const prop = {
@@ -57,7 +57,7 @@ client.schema
   });
 
 // get and print the schema
-  client
+client
     .schema
     .getter()
     .do()

@@ -99,13 +99,13 @@ The response of a `GET` query of a data object will give you information about a
 
 ### Object fields
 
-| field name | datatype | required `include` or `additional` field |  description |
-| ---------- | -------- | ---------------------------------------- | ------------ |
-| `class` | string | none | The class name |
-| `creationTimeUnix` | unix timestamp | none | The time stamp of creation of the data object |
-| `id` | uuid | none | The uuid of the data object |
-| `lastUpdateTimeUnix` | unix timestamp | none | the time stamp when the data object was last updated |
-| `properties` > `{property_name}` | dataType | none | The name and value of an individual property |
+| Field name | Data type | Required `include` or `additional` field | Description |
+| ---------- | --------- | ---------------------------------------- | ----------- |
+| `class` | string | none | The class name. |
+| `creationTimeUnix` | unix timestamp | none | The time stamp of creation of the data object. |
+| `id` | uuid | none | The uuid of the data object. |
+| `lastUpdateTimeUnix` | unix timestamp | none | The time stamp when the data object was last updated. |
+| `properties` > `{property_name}` | dataType | none | The name and value of an individual property. |
 | `properties` > `{cref_property_name}` > `classification` > `closestLosingDistance` | float | `classification` | The lowest distance of a neighbor in the losing group. Optional. If `k` equals the size of the winning group, there is no losing group. |
 | `properties` > `{cref_property_name}` > `classification` > `closestOverallDistance` | float | `classification` | The lowest distance of any neighbor, regardless of whether they were in the winning or losing. |
 | `properties` > `{cref_property_name}` > `classification` > `closestWinningDistance` | float | `classification` | Closest distance of a neighbor from the winning group. |
@@ -114,24 +114,24 @@ The response of a `GET` query of a data object will give you information about a
 | `properties` > `{cref_property_name}` > `classification` > `meanWinningDistance` | float | `classification` | The mean distance of the winning group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
 | `properties` > `{cref_property_name}` > `classification` > `overallCount` | integer | `classification` | Overall neighbors checked as part of the classification. In most cases this will equal `k`, but could be lower than `k` - for example if not enough data was present. |
 | `properties` > `{cref_property_name}` > `classification` > `winningCount` | integer | `classification` | Size of the winning group, a number between 1 and `k`. |
-| `vector` | list of floats | `vector` | the long vector of the location of the object in the 300 dimensional space | 
-| `classification` > `basedOn` | string |  `classification` | the property name where the classification was based on |
-| `classification` > `classifiedFields` | string |  `classification` | the classified property |
-| `classification` > `completed` | timestamp |  `classification` | the time of classification completion |
-| `classification` > `id` | uuid |  `classification` | the classification id |
-| `classification` > `scope` | list of strings |  `classification` | the initial fields to classify |
-| `featureProjection` > `vector` | list of floats |  `featureProjection` | the 2D or 3D vector coordinates of the feature projection |
+| `vector` | list of floats | `vector` | The long vector of the location of the object in the 300-dimensional space. | 
+| `classification` > `basedOn` | string |  `classification` | The property name where the classification was based on. |
+| `classification` > `classifiedFields` | string |  `classification` | The classified property. |
+| `classification` > `completed` | timestamp |  `classification` | The time of classification completion. |
+| `classification` > `id` | uuid |  `classification` | The classification id. |
+| `classification` > `scope` | list of strings |  `classification` | The initial fields to classify. |
+| `featureProjection` > `vector` | list of floats |  `featureProjection` | The 2D or 3D vector coordinates of the feature projection. |
 
 ### Status codes and error cases
 
 | Cause | Description | Result |
 | ----- | ----------- | ------ |
 | No objects present | No `?class` is provided. There are no objects present in the entire Weaviate instance. | `200 OK` - No error |
-| Valid class, no objects present | `?class` is provided, class exists. There are no objects present for this class | `200 OK` - No error |
-| Invalid class | `?class` is provided, class does not exist | `404 Not Found` |
-| Validation | Otherwise invalid user request | `422 Unprocessable Entity` |
-| Authorization | Not allowed to view resource | `403 Forbidden` | 
-| Server-Side error | Correct user input, but request failed for another reason | `500 Internal Server Error` - contains detailed error message |
+| Valid class, no objects present | `?class` is provided, class exists. There are no objects present for this class. | `200 OK` - No error |
+| Invalid class | `?class` is provided, class does not exist. | `404 Not Found` |
+| Validation | Otherwise invalid user request. | `422 Unprocessable Entity` |
+| Authorization | Not allowed to view resource. | `403 Forbidden` | 
+| Server-Side error | Correct user input, but request failed for another reason. | `500 Internal Server Error` - contains detailed error message |
 
 #### Example request
 
@@ -145,7 +145,9 @@ Create a new data object. The provided meta-data and schema values are validated
 
 ### Performance
 
-💡 This endpoint is meant for individual object creations.
+:::tip
+This endpoint is meant for individual object creations.
+:::
 
 If you plan on importing an entire dataset, it's much more efficient to use the [`/v1/batch`](./batch.md) endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty:
 
@@ -168,7 +170,7 @@ The class name is not specified in the URL, as it is part of the request body.
 
 The request body for a new object has the following fields:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- |------------ |
 | `class` | string | yes | The class name as defined in the schema |
 | `properties` | array | yes | An object with the property values of the new data object |
@@ -237,17 +239,17 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 
 <RestObjectsCRUDClassnameNote/>
 
-#### Parameters
+### URL parameters
 
-| name | location | type | description |
+| Name | Location | Type | Description |
 | ---- |----------| ---- | ----------- |
-| `{className}` | URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL Query param | uuid | The uuid of the data object to retrieve. |
-| `include` | URL Query param | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector` |
+| `{className}` | path | string | The name of the class that the object belongs to. |
+| `{id}` | query param | uuid | The uuid of the data object to retrieve. |
+| `include` | query param | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`. |
 
 #### Example request
 
-See [here](#response-fields) the explanation of the response fields.
+The [response fields](#response-fields) are explained in the corresponding section above.
 
 import SemanticKindObjectGet from '/_includes/code/semantic-kind.object.get.mdx';
 
@@ -278,12 +280,12 @@ HEAD /v1/objects/{id}
 
 <RestObjectsCRUDClassnameNote/>
 
-#### Parameters
+#### URL parameters
 
-| name | location | type | description |
+| Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL | uuid | The uuid of the data object to retrieve. |
+| `{className}` | path | string | The name of the class that the object belongs to |
+| `{id}` | path | uuid | The uuid of the data object to retrieve |
 
 #### Example request
 
@@ -315,18 +317,20 @@ PATCH /v1/objects/{id}
 
 #### Parameters
 
-| name | location | type | description |
+The URL must contain the following parameters:
+
+| Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL | uuid | The uuid of the data object to update. |
+| `{className}` | path | string | The name of the class that the object belongs to |
+| `{id}` | path | uuid | The uuid of the data object to update |
 
-The body of the data object for replacing (some) properties of an object takes the following fields:
+The request body for replacing (some) properties of an object has the following fields:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
-| `class` | string | yes | the class name as defined in the schema |
-| `properties` | array | yes | an object with the property values of the new data object |
-| `properties` > `{property_name}` | dataType | yes | the property and its value according to the set dataType |
+| `class` | string | yes | The class name as defined in the schema |
+| `properties` | array | yes | An object with the property values of the new data object |
+| `properties` > `{property_name}` | dataType | yes | The property and its value according to the set dataType |
 
 #### Example request
 
@@ -342,7 +346,7 @@ Delete an individual data object from Weaviate.
 
 #### Method and URL
 
-Available since `v1.14` and preferred way:
+Available since `v1.14` and the preferred way:
 ```js
 DELETE /v1/objects/{className}/{id}
 ```
@@ -354,12 +358,12 @@ DELETE /v1/objects/{id}
 
 <RestObjectsCRUDClassnameNote/>
 
-#### Parameters
+#### URL parameters
 
-| name | location | type | description |
+| Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL | uuid | The uuid of the data object to delete. |
+| `{className}` |  path | string | The name of the class that the object belongs to |
+| `{id}` | path | uuid | The uuid of the data object to delete |
 
 #### Example request
 
@@ -371,7 +375,7 @@ If the deletion was successful, no content will be returned.
 
 ## Validate a data object
 
-You can validate a data object's schema and meta data. 
+You can validate an object's schema and metadata without creating it. If the schema of the object is valid, the request should return `True`/`true` in case of the clients, and nothing with a plain RESTful request. Otherwise, an error object will be returned.
 
 #### Method and URL
 
@@ -379,19 +383,20 @@ You can validate a data object's schema and meta data.
 POST /v1/objects/validate
 ```
 
-*Note: As with creating an object, the className is not specified through the
-URL, as it is part of the request body.*
+:::note
+As with creating an object, the class name is not specified through the URL, as it is part of the request body.
+:::
 
 #### Parameters
 
-The body of the data object for a new data object is an object taking the following field:
+The request body for validating an object has the following fields:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
 | `class` | string | yes | The class name as defined in the schema |
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{property_name}` | dataType | yes | The property and its value according to the set dataType |
-| `id` | v4 uuid | no<sup>*</sup> | The id of the data object. <sup>*</sup>An ID is required by the clients. |
+| `id` | v4 uuid | no<sup>*</sup> | The id of the data object.<br/><sup>*An ID is required by the clients.</sup> |
 
 #### Example request
 
@@ -399,15 +404,18 @@ import SemanticKindValidate from '/_includes/code/semantic-kind.validate.mdx';
 
 <SemanticKindValidate/>
 
-If the schema of the object is valid, this request should return `True`/`true` in case of the clients and nothing with a plain RESTful request. 
 
 ## Cross-references
 
+[Cross-references](../../configuration/datatypes.md#datatype-cross-reference) are object properties of type array, in which each element points from the source object to another object via a [beacon](../../more-resources/glossary.md).
+
 ### Add a cross-reference
+
+`POST` request that adds a reference to the array of cross-references specified by the property name in the source object specified by its class name and id.
 
 #### Method and URL
 
-Available since `v1.14` and preferred way:
+Available since `v1.14` and the preferred way:
 ```js
 POST /v1/objects/{className}/{id}/references/{property_name}
 ```
@@ -421,17 +429,19 @@ POST /v1/objects/{id}/references/{property_name}
 
 #### Parameters
 
-| name | location | type | description |
+The URL must contain the following parameters:
+
+| Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL | uuid | The uuid of the data object to add the reference to. |
-| `{property_name}` | URL | yes | The name of the cross-reference property |
+| `{className}` |  path | string | The name of the class that the object belongs to, e.g. `Article` |
+| `{id}` | path | uuid | The uuid of the object to add the reference to |
+| `{property_name}` | path | string | The name of the cross-reference property, e.g. `author` |
 
-The body of the data object for a new data object is an object taking the following field:
+The request body is an object with the following field:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
-| `beacon` | Weaviate Beacon | yes | the beacon URL of the reference, in the format of `weaviate://localhost/<ClassName>/<id>` |
+| `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, in the format `weaviate://localhost/<ClassName>/<id>` |
 
 :::caution
 In the beacon format, you need to always use `localhost` as the host,
@@ -457,7 +467,7 @@ If the addition was successful, no content will be returned.
 
 ### Update a cross-reference
 
-A `PUT` request updates *all* references of a property of a data object.
+`PUT` request that updates *all* references in a specified property of an object specified by its class name and id.
 
 #### Method and URL
 
@@ -475,17 +485,19 @@ PUT /v1/objects/{id}/references/{property_name}
 
 #### Parameters
 
-| name | location | type | description |
+The URL must contain the following parameters:
+
+| Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` |  URL Path | string | The name of the class that the object belongs to. |
-| `{id}` | URL | uuid | The uuid of the data object to add the reference to. |
-| `{property_name}` | URL | yes | The name of the cross-reference property |
+| `{className}` | path | string | The name of the class that the object belongs to |
+| `{id}` | path | uuid | The uuid of the object to update the reference(s) of |
+| `{property_name}` | path | string | The name of the cross-reference property |
 
-The body of the data object for a new data object is a list of beacons:
+The `PUT` request body is a list of beacons:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
-| `beacon` | Weaviate Beacon | yes | the beacon URL of the reference, in the format of `weaviate://localhost/<ClassName>/<id>` |
+| `beacon` | Weaviate Beacon array | yes | Array of beacons in the format `weaviate://localhost/<ClassName>/<id>` |
 
 :::caution
 In the beacon format, you need to always use `localhost` as the host,
@@ -512,7 +524,7 @@ If the update was successful, no content will be returned.
 
 ### Delete a cross-reference
 
-Delete the single reference that is given in the body from the list of references that this property of a data object has.
+Delete the single reference that is given in the body from the list of references that the specified property of a given object has, if it exists in the list. Returns 204 No Content either way.
 
 #### Method and URL
 
@@ -530,14 +542,16 @@ DELETE /v1/objects/{id}/references/{property_name}
 
 #### Parameters
 
-| name | location | type | description |
+The URL must contain the following parameters:
+
+| Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{id}` | URL | uuid | The uuid of the data object to delete the reference from. |
-| `{property_name}` | URL | yes | The name of the cross-reference property |
+| `{id}` | path | uuid | The uuid of the object to delete the reference from |
+| `{property_name}` | path | string | The name of the cross-reference property |
 
-The body of the data object for a new data object is a list of beacons:
+The request body is a beacon object:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, formatted as `weaviate://localhost/<ClassName>/<id>` |
 
