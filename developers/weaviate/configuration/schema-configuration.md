@@ -216,10 +216,6 @@ preset and adding all your desired stopwords as additions.
   }
 ```
 
-:::note
-Introduced in `v1.18`, stopwords can be configured at runtime.
-:::
-
 This configuration allows stopwords to be configured by class. If not set, these values are set to the following defaults:
 
 | Parameter | Default value | Acceptable values |
@@ -236,16 +232,26 @@ This configuration allows stopwords to be configured by class. If not set, these
 
 As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking. 
 
-Here is an example: 
+Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest/schema#parameters-2) the list of stopwords after your data has been indexed. 
 
-`query`: "Where is the nearest fast food chain?"
+Below is an example request on how to update the list of stopwords:
 
-`stopwords`: ["where", "is", "the"] 
+```python
+import weaviate
 
-Is the same as: 
+client = weaviate.Client("http://localhost:8080")
 
-`query`: "Nearest fast food chain"
+class_obj = {
+    "invertedIndexConfig": {
+        "stopwords": { 
+            "preset": "en",
+            "additions": ["where", "is", "the"]                                         
+        }
+    }
+}
 
+client.schema.update_config("Article", class_obj)
+```
 
 ### invertedIndexConfig > indexTimestamps
 
