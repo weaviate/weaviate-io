@@ -17,7 +17,7 @@ export default function CommandMenu({open, setOpen}) {
       onSearch$.pipe(
         debounceTime(270),
         distinctUntilChanged(),
-        tap(a => handleQuery(a))
+        tap(a => handleQuery(a)),
       ).subscribe();
     }, [])
 
@@ -31,13 +31,23 @@ export default function CommandMenu({open, setOpen}) {
       }
     }
 
+    const addPage = (pageTitle, title) => {
+      
+      if(pageTitle != title){
+        return pageTitle + ' • ' + title
+      }
+
+
+      return title
+    }
+
     const handleQuery = (a) => {
       query(a).then(res => {
         const data = res.data.Get.PageChunkOpenAI
         const resultFormated = data.map((item, index) => {
           return {
               id: index,
-              children: item.title,
+              children: addPage(item.pageTitle, item.title),
               icon: getIcon(item.typeOfItem),
               href: item.url + '#' + item.anchor,
               type: item.typeOfItem
