@@ -14,7 +14,7 @@ export default function CompanyValues() {
     <div className="container" id="our_company_values">
       <div className={styles.box}>
         <h1>
-          Values that <span className={styles.header}>define us</span>
+          Values that <span className="highlight">define us</span>
         </h1>
         <p className="text-center">
           Our values are the foundation of our culture.<br/>

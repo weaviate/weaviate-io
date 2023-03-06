@@ -30,9 +30,9 @@ const config = {
         [
             '@docusaurus/plugin-content-blog',
             {
-                blogTitle: 'Weaviate Playbook',
+                blogTitle: 'Playbook',
                 blogDescription: 'Learn How we run Weaviate as a Company',
-                blogSidebarCount: 12,
+                blogSidebarCount: 0,
                 postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Playbook',
 
@@ -101,12 +101,14 @@ const config = {
                     remarkPlugins: [remarkReplace],
                 },
                 blog: {
+                    blogTitle: 'Blog',
                     showReadingTime: true,
                     authorsMapPath: '../authors.yml',
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
-                    blogSidebarCount: 12,
-                    postsPerPage: 6,
+                    blogSidebarCount: 0,
+                    postsPerPage: 12,
+                    blogSidebarTitle: 'Weaviate Blog',
                 },
                 theme: {
                     customCss: [
@@ -126,11 +128,9 @@ const config = {
             announcementBar: {
                 id: 'announcement-bar',
                 content:
-                    // 'We are excited to announce our new generative search module! <a target="_blank" rel="noopener noreferrer" href="https://www.prnewswire.com/news-releases/weaviate-releases-a-generative-search-module-301740697.html">press release</a> - <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/modules/reader-generator-modules/qna-openai">documentation</a>',
                     'We are excited to announce the first generative search module for Weaviate! <a target="_blank" rel="noopener noreferrer" href="https://www.prnewswire.com/news-releases/weaviate-releases-a-generative-search-module-301740697.html">press release</a> - <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/modules/reader-generator-modules/generative-openai">documentation</a>',
-                // backgroundColor: '#00b800',
-                backgroundColor: '#2d3197',
-                textColor: '#fff',
+                backgroundColor: '#1C1468',
+                textColor: '#F5F5F5',
                 isCloseable: true,
             },
             navbar: {
@@ -184,23 +184,9 @@ const config = {
                         ],
                     },
                     {
-                        type: 'dropdown',
-                        label: 'Content',
+                        label: 'Blog',
+                        to: '/blog',
                         position: 'right',
-                        items: [
-                            {
-                                label: 'Blog',
-                                to: '/blog',
-                            },
-                            {
-                                label: 'Podcast',
-                                to: '/podcast',
-                            },
-                            {
-                                label: 'Newsletter',
-                                href: 'https://newsletter.weaviate.io',
-                            },
-                        ],
                     },
                     {
                         type: 'dropdown',
@@ -235,35 +221,43 @@ const config = {
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-slack',
+                        className: 'fab fa-lg fa-slack',
                     },
                     {
                         to: 'https://github.com/weaviate/weaviate',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-github',
+                        className: 'fab fa-lg fa-github',
                     },
                     {
                         to: 'https://twitter.com/weaviate_io',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-twitter',
+                        className: 'fab fa-lg fa-twitter',
                     },
                     {
-                        to: 'https://www.youtube.com/@Weaviate/playlists',
+                        to: 'https://newsletter.weaviate.io',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-youtube',
+                        className: 'fas fa-lg fa-envelope',
+                    },
+                    {
+                        to: '/podcast',
+                        // to: 'https://www.youtube.com/@Weaviate/playlists',
+                        label: ' ',
+                        position: 'right',
+                        // target: '_blank',
+                        className: 'fas fa-lg fa-microphone',
                     },
                     {
                         to: 'https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-spotify',
+                        className: 'fab fa-lg fa-spotify',
                     },
                 ],
             },
@@ -271,15 +265,6 @@ const config = {
             footer: {
                 style: 'dark',
                 links: [
-                    // {
-                    //   title: 'Docs',
-                    //   items: [
-                    //     {
-                    //       label: 'Getting Started',
-                    //       to: '/developers/weaviate/quickstart',
-                    //     },
-                    //   ],
-                    // },
                     {
                         title: 'Community',
                         items: [
@@ -349,7 +334,7 @@ const config = {
             colorMode: {
                 defaultMode: 'dark',
                 disableSwitch: false,
-                respectPrefersColorScheme: false,
+                respectPrefersColorScheme: true,
             },
             prism: {
                 theme: lightCodeTheme,

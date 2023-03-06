@@ -56,9 +56,7 @@ result = (
   client.query
   .get("Article", ["title", "summary"])
   # highlight-start
-  .with_additional(
-    "generate(singleResult:{ prompt: " + generatePrompt + " }) { singleResult }"
-  )
+  .with_generate(single_prompt=generatePrompt)
   # highlight-end
   .with_near_text({
     "concepts": ["Italian food"]

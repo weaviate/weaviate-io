@@ -19,7 +19,7 @@ This section shows you available options for running Weaviate, and how to instal
 
 ## Options for running Weaviate
 
-​Weaviate versions on the Weaviate Cloud Services (WCS) and Weaviate open source are identical, with the only difference that the WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
+Weaviate versions on the Weaviate Cloud Services (WCS) and Weaviate open source are identical, with the only difference that the WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
 
 You have three options to run Weaviate, all come with their own installation guides. 
 

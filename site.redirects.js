@@ -287,13 +287,10 @@ const siteRedirects = {
         },
 
         // GSOC and GSOD redirects
+        // Hidden as not participating in 2023
         {
-            to: '/google-summer/gsod-summary-22',
-            from: '/resources/gsod-summary'
-        },
-        {
-            to: '/google-summer',
-            from: ['/resources/gsod','/resources/gsoc']
+            to: '/',
+            from: ['/resources/gsod','/resources/gsoc', '/google-summer/gsoc-23', '/google-summer/', '/resources/gsod-summary']
         },
 
         // moved/renamed pages

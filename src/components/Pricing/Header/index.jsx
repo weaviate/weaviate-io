@@ -8,12 +8,12 @@ export default function PricingHeader() {
     <div className="container">
       <div className={styles.box}>
         <h1>
-          <span className={styles.header}>Weaviate</span> Cloud Services
+          <span className="highlight">Weaviate</span> Cloud Services
         </h1>
         <p>
-          Start for <span className={styles.header}>free</span> and{' '}
-          <span className={styles.header}>pay as you go</span> per{' '}
-          <span className={styles.header}>vector dimension</span> stored and
+          Start for <span className="highlight">free</span> and{' '}
+          <span className="highlight">pay as you go</span> per{' '}
+          <span className="highlight">vector dimension</span> stored and
           queried
         </p>
         <p>
@@ -21,8 +21,8 @@ export default function PricingHeader() {
           so your DBs may scale seamlessly
         </p>
         <p>
-          Starting from <span className={styles.header}>$0.05</span> per{' '}
-          <span className={styles.header}>1 million vector dimensions</span>
+          Starting from <span className="highlight">$0.05</span> per{' '}
+          <span className="highlight">1 million vector dimensions</span>
         </p>
       </div>
       <div className="container">

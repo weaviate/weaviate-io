@@ -29,7 +29,7 @@ The `text2vec-transformers` module is not available on the WCS.
 You have three options to select your desired model:
 
 1. **Use [any of our pre-built transformers model containers](#pre-built-images).** The models selected in [this list](#pre-built-images) have proven to work well with semantic search in the past. These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/weaviate/weaviate/issues)).
-2. **Use any model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publically-available-huggingface-model). The `text2vec-transformers` module supports any PyTorch or Tensorflow transformer model. 
+2. **Use any model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publicly-available-hugging-face-model). The `text2vec-transformers` module supports any PyTorch or Tensorflow transformer model. 
 3. **Use any private or local PyTorch or Tensorflow transformer model.** [Click here to learn how](#option-3-custom-build-with-a-private-or-local-model). If you have your own transformer model in a registry or on a local disk, you can use this with Weaviate.
 
 ### Option 1: Use a pre-built transformer model container
@@ -93,7 +93,7 @@ You can now use Weaviate normally and all vectorization during import and search
 ### Pre-built images
 
 You can download a selection of pre-built images directly from Dockerhub. We
-have chosen publically available models that in our opinion are well suited for
+have chosen publicly available models that in our opinion are well suited for
 semantic search. 
 
 The pre-built models include:
@@ -126,9 +126,9 @@ to version `1.0.0`, you can use
 Your favorite model is not included? [Open an issue](https://github.com/weaviate/weaviate/issues) to include it or build
 a custom image as outlined below.
 
-### Option 2: Use any publically available Huggingface Model
+### Option 2: Use any publicly available Hugging Face model
 
-You can build a Docker image which supports any model from the [Huggingface model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`distilroberta-base` model](https://huggingface.co/distilroberta-base). 
+You can build a Docker image which supports any model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`distilroberta-base` model](https://huggingface.co/distilroberta-base). 
 
 #### Step 1: Create a `Dockerfile`
 Create a new `Dockerfile`. We will name it `distilroberta.Dockerfile`. Add the following lines to it: 
@@ -150,7 +150,7 @@ You can now push your image to your favorite registry or reference it locally in
 ### Option 3: Custom build with a private or local model
 
 You can build a Docker image which supports any model which is compatible with
-Huggingface's `AutoModel` and `AutoTokenzier`.
+Hugging Face's `AutoModel` and `AutoTokenzier`.
 
 In the following example, we are going to build a custom image for a non-public
 model which we have locally stored at `./my-model`.
@@ -192,7 +192,7 @@ Then you can send REST requests to it directly, e.g. `curl localhost:9090/vector
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
+In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
 
 For example:
 

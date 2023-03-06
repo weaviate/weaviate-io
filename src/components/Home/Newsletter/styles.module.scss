@@ -31,6 +31,10 @@
     @media screen and (max-width: 678px) {
       align-items: center;
     }
+    span {
+      color: var(--site-base-color);
+      font-size: large;
+    }
   }
   .iframe {
     flex: 2;
