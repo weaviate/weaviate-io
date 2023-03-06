@@ -1,4 +1,4 @@
-const url = 'https://search.weaviate.io/v1/graphql'
+const url = 'https://search.weaviate.io/v1/graphql';
 
 export const query = async (keyword) => {
     const result = extractAllText(keyword)
@@ -15,8 +15,8 @@ export const query = async (keyword) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({"query": `{ Get { PageChunkOpenAI( hybrid: { query: \"${keywordWithoutDobleQuotes}\"} limit: 5 ) { title content url anchor order pageTitle typeOfItem } } }`})
-        })
+            body: JSON.stringify({'query': `{ Get { PageChunkOpenAI( hybrid: { query: \"${keywordWithoutDobleQuotes}\"} limit: 5 ) { title content url anchor order pageTitle typeOfItem } } }`})
+        });
     
         return response.json();
     }
@@ -26,8 +26,8 @@ export const query = async (keyword) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"query": `{ Get { PageChunkOpenAI( hybrid: { query: \"${keywordWithoutDobleQuotes}\"} limit: 5 ) { title content url anchor order pageTitle typeOfItem } } }`})
-    })
+        body: JSON.stringify({'query': `{ Get { PageChunkOpenAI( hybrid: { query: \"${keywordWithoutDobleQuotes}\"} limit: 5 ) { title content url anchor order pageTitle typeOfItem } } }`})
+    });
 
     return response.json();
 }
@@ -40,6 +40,6 @@ function extractAllText(str){
     while (current = re.exec(str)) {
         result.push(current.pop());
     }
-    return result.length > 0 && result
+    return result.length > 0 && result;
 }
   
