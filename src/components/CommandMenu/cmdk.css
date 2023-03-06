@@ -9,6 +9,15 @@
     color: rgb(255 255 255) !important
 }
 
+.logo {
+    background-image: url('../../../static/img/site/weaviate-nav-logo-dark.svg');
+    width: 200px;
+    height: 4rem;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 
 @media (prefers-color-scheme: light) {
     .command-palette span {
@@ -27,7 +36,7 @@
         color: #2d3197 !important
     }
 
-    .navbar__logo {
-        background-image: url('/img/site/weaviate-nav-logo-light.svg') !important;
+    .logo {
+        background-image: url('../../../static/img/site/weaviate-nav-logo-light.svg');
     }
   }

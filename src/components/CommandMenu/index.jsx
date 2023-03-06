@@ -89,7 +89,7 @@ export default function CommandMenu({open, setOpen}) {
     const renderFooter = () => {
       return (
         <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end'}}>
-          <p style={{fontSize: 15}}>Powered by </p> <p className="navbar__logo" style={{height: 35, marginLeft: -10, marginTop: 10, marginBottom: 10}}  />
+          <p style={{fontSize: 15}}>Powered by </p> <p className="logo" style={{height: 35, marginLeft: -10, marginTop: 10, marginBottom: 10}}  />
         </div>
       )
     }
@@ -109,6 +109,7 @@ export default function CommandMenu({open, setOpen}) {
             <CommandPalette.List key={list.id} heading={list.heading}>
               {list.items.map(({ id, ...rest }) => (
                 <CommandPalette.ListItem
+                  showType={false}
                   key={id}
                   index={getItemIndex(filteredItems, id)}
                   {...rest}
