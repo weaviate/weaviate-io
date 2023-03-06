@@ -14,12 +14,12 @@ data_object = (
   client.data_object.get_by_id(
     uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
     class_name="MyClass",
-    consistency_level=ConsistencyLevel.QUORUM,
+    consistency_level=ConsistencyLevel.ONE,
   )
 )
 
 # The parameter "consistency_level" can be one of ConsistencyLevel.ALL,
-# ConsistencyLevel.QUORUM, or ConsistencyLevel.ONE. Determines how many
+# ConsistencyLevel.QUORUM (default), or ConsistencyLevel.ONE. Determines how many
 # replicas must acknowledge a request before it is considered successful.
 
 print(data_object)
@@ -41,7 +41,7 @@ client
     .getterById()
     .withClassName('MyClass')
     .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
-    .withConsistencyLevel(weaviate.replication.ConsistencyLevel.QUORUM)
+    .withConsistencyLevel(weaviate.replication.ConsistencyLevel.ONE)  // default QUORUM
     .do()
     .then(res => {
         console.log(res)
@@ -52,7 +52,7 @@ client
 
 // The parameter passed to `withConsistencyLevel` can be one of:
 // * weaviate.replication.ConsistencyLevel.ALL,
-// * weaviate.replication.ConsistencyLevel.QUORUM, or
+// * weaviate.replication.ConsistencyLevel.QUORUM (default), or
 // * weaviate.replication.ConsistencyLevel.ONE.
 //
 // It determines how many replicas must acknowledge a request
@@ -70,7 +70,7 @@ import (
     "context"
     "fmt"
 
-    "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"
+    "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"  // for consistency levels
     "github.com/weaviate/weaviate-go-client/v4/weaviate"
 )
 
@@ -84,7 +84,7 @@ func main() {
     data, err := client.Data().ObjectsGetter().
         WithClassName("MyClass").
         WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
-        WithConsistencyLevel(replication.ConsistencyLevel.QUORUM).
+        WithConsistencyLevel(replication.ConsistencyLevel.ONE).  // default QUORUM
         Do(context.Background())
 
     if err != nil {
@@ -94,9 +94,9 @@ func main() {
 }
 
 // The parameter passed to "WithConsistencyLevel" can be one of:
-// * weaviate.replication.ConsistencyLevel.ALL,
-// * weaviate.replication.ConsistencyLevel.QUORUM, or
-// * weaviate.replication.ConsistencyLevel.ONE.
+// * replication.ConsistencyLevel.ALL,
+// * replication.ConsistencyLevel.QUORUM (default), or
+// * replication.ConsistencyLevel.ONE.
 //
 // It determines how many replicas must acknowledge a request
 // before it is considered successful.
@@ -124,7 +124,7 @@ public class App {
     Result<List<WeaviateObject>> result = client.data().objectsGetter()
       .withClassName("MyClass")
       .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-      .withConsistencyLevel(ConsistencyLevel.QUORUM)
+      .withConsistencyLevel(ConsistencyLevel.ONE)  // default QUORUM
       .run();
 
     if (result.hasErrors()) {
@@ -136,9 +136,9 @@ public class App {
 }
 
 // The parameter passed to `withConsistencyLevel` can be one of:
-// * weaviate.replication.ConsistencyLevel.ALL,
-// * weaviate.replication.ConsistencyLevel.QUORUM, or
-// * weaviate.replication.ConsistencyLevel.ONE.
+// * ConsistencyLevel.ALL,
+// * ConsistencyLevel.QUORUM (default), or
+// * ConsistencyLevel.ONE.
 //
 // It determines how many replicas must acknowledge a request
 // before it is considered successful.
@@ -151,9 +151,9 @@ public class App {
 ```bash
 $ curl http://localhost:8080/v1/objects/MyClass/36ddd591-2dee-4e7e-a3cc-eb86d30a4303?consistency_level=QUORUM
 
-# The parameter "consistency_level" can be one of ALL, QUORUM, or ONE. Determines how many
+# The parameter "consistency_level" can be one of ALL, QUORUM (default), or ONE. Determines how many
 # replicas must acknowledge a request before it is considered successful.
-# curl /v1/objects/{className}/{id}?consistency_level=ALL
+# curl /v1/objects/{ClassName}/{id}?consistency_level=ONE
 ```
 
 </TabItem>

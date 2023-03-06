@@ -20,7 +20,7 @@ data_uuid = client.data_object.create(
   data_obj,
   "Author",
   uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",  # optional; if not provided, one will be generated
-  consistency_level=weaviate.data.replication.ConsistencyLevel.QUORUM,  # default ALL
+  consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 ```
 
@@ -45,7 +45,7 @@ client.data
           'beacon': 'weaviate://localhost/f81bfe5e-16ba-4615-a516-46c2ae2e5a80'
         }]
       })
-      .withConsistencyLevel(weaviate.replication.ConsistencyLevel.QUORUM)
+      .withConsistencyLevel(weaviate.replication.ConsistencyLevel.ALL)  // default QUORUM
       .do()
       .then(res => {
           console.log(res)
@@ -66,7 +66,7 @@ import (
   "fmt"
 
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"  // for consistency levels
 )
 
 func main() {
@@ -87,7 +87,7 @@ func main() {
     WithClassName("Author").
     WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
     WithProperties(dataSchema).
-    WithConsistencyLevel(replication.ConsistencyLevel.QUORUM).
+    WithConsistencyLevel(replication.ConsistencyLevel.ALL).  // default QUORUM
     Do(context.Background())
 
   if err != nil {
@@ -126,7 +126,7 @@ public class App {
       .withClassName("Author")
       .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
       .withProperties(dataSchema)
-      .withConsistencyLevel(ConsistencyLevel.QUORUM)
+      .withConsistencyLevel(ConsistencyLevel.ALL)  // default QUORUM
       .run();
 
     if (result.hasErrors()) {
@@ -155,7 +155,7 @@ $ curl \
       },
       "id": "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"
     }' \
-    http://localhost:8080/v1/objects?consistency_level=QUORUM
+    http://localhost:8080/v1/objects?consistency_level=ALL
 ```
 
 </TabItem>

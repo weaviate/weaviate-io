@@ -51,7 +51,7 @@ import (
   "context"
 
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"  // for consistency levels
 )
 
 func main() {
@@ -64,7 +64,7 @@ func main() {
   err := client.Data().Deleter().
     WithClassName("MyClass").
     WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
-    WithConsistencyLevel(replication.ConsistencyLevel.QUORUM).
+    WithConsistencyLevel(replication.ConsistencyLevel.ALL).  // default QUORUM
     Do(context.Background())
 
   if err != nil {
@@ -92,7 +92,7 @@ public class App {
     Result<Boolean> result = client.data().deleter()
       .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
       .withClassName("MyClass")
-      .withConsistencyLevel(ConsistencyLevel.QUORUM)
+      .withConsistencyLevel(ConsistencyLevel.ALL)  // default QUORUM
       .run();
 
     if (result.hasErrors()) {

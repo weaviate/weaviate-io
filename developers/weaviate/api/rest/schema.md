@@ -284,7 +284,7 @@ Retrieves the configuration of a single class in the schema.
 ### Method and URL
 
 ```js
-GET /v1/schema/{className}
+GET /v1/schema/{ClassName}
 ```
 
 ### Example request
@@ -319,7 +319,7 @@ import CodeSchemaDelete from '/_includes/code/schema.things.delete.mdx';
 
 Update settings of an existing schema class. 
 
-Use this endpoint to alter an existing class in the schema. Note that not all settings are mutable. If an error about immutable fields is returned and you still need to update this particular setting, you will have to delete the class (and the underlying data) and recreate. This endpoint cannot be used to modify properties. Instead, use [`POST /v1/schema/{className}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as the `vectorIndexConfig`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
+Use this endpoint to alter an existing class in the schema. Note that not all settings are mutable. If an error about immutable fields is returned and you still need to update this particular setting, you will have to delete the class (and the underlying data) and recreate. This endpoint cannot be used to modify properties. Instead, use [`POST /v1/schema/{ClassName}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as the `vectorIndexConfig`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
 
 You should attach a body to this PUT request with the **entire** new configuration of the class. 
 

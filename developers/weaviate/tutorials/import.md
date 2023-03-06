@@ -95,7 +95,7 @@ You may have noticed that we do not provide a vector. As a `vectorizer` is speci
 
 ### Bring your own vector
 
-If you wish to upload your own vector, you can do so with Weaviate. Refer to the [`batch` data object API documentation](../api/rest/batch.md#batch-data-objects). The object parameters correspond to those of the [individual objects](../api/rest/objects.md#object-fields).
+If you wish to upload your own vector, you can do so with Weaviate. Refer to the [`batch` data object API documentation](../api/rest/batch.md#batch-create-objects). The object parameters correspond to those of the [individual objects](../api/rest/objects.md#object-fields).
 
 You can even manually upload existing vectors and use a vectorizer module for vectorizing queries.
 

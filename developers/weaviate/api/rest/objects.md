@@ -23,7 +23,7 @@ GET /v1/objects
 With optional query params:
 
 ```http
-GET /v1/objects?class={className}&limit={limit}&include={include}
+GET /v1/objects?class={ClassName}&limit={limit}&include={include}
 ```
 
 ### Parameters
@@ -33,7 +33,7 @@ GET /v1/objects?class={className}&limit={limit}&include={include}
 :::note All URL query parameters below are optional
 :::
 
-| name | type | description |
+| Name | Type | Description |
 | ---- | ---- | ----------- | 
 | `class` | string | List objects by class using the class name. |
 | `limit` | integer | The maximum number of data objects to return. |
@@ -138,15 +138,15 @@ The response of a `GET` query of a data object will give you information about a
 | `creationTimeUnix` | unix timestamp | none | The time stamp of creation of the data object |
 | `id` | uuid | none | The uuid of the data object |
 | `lastUpdateTimeUnix` | unix timestamp | none | the time stamp when the data object was last updated |
-| `properties` > `{property_name}` | dataType | none | The name and value of an individual property |
-| `properties` > `{cref_property_name}` > `classification` > `closestLosingDistance` | float | `classification` | The lowest distance of a neighbor in the losing group. Optional. If `k` equals the size of the winning group, there is no losing group. |
-| `properties` > `{cref_property_name}` > `classification` > `closestOverallDistance` | float | `classification` | The lowest distance of any neighbor, regardless of whether they were in the winning or losing. |
-| `properties` > `{cref_property_name}` > `classification` > `closestWinningDistance` | float | `classification` | Closest distance of a neighbor from the winning group. |
-| `properties` > `{cref_property_name}` > `classification` > `losingCount` | integer | `classification` | Size of the losing group, can be 0 if the winning group size equals `k`. |
-| `properties` > `{cref_property_name}` > `classification` > `meanLosingDistance` | float | `classification` | The mean distance of the losing group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
-| `properties` > `{cref_property_name}` > `classification` > `meanWinningDistance` | float | `classification` | The mean distance of the winning group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
-| `properties` > `{cref_property_name}` > `classification` > `overallCount` | integer | `classification` | Overall neighbors checked as part of the classification. In most cases this will equal `k`, but could be lower than `k` - for example if not enough data was present. |
-| `properties` > `{cref_property_name}` > `classification` > `winningCount` | integer | `classification` | Size of the winning group, a number between 1 and `k`. |
+| `properties` > `{propertyName}` | dataType | none | The name and value of an individual property |
+| `properties` > `{crefPropertyName}` > `classification` > `closestLosingDistance` | float | `classification` | The lowest distance of a neighbor in the losing group. Optional. If `k` equals the size of the winning group, there is no losing group. |
+| `properties` > `{crefPropertyName}` > `classification` > `closestOverallDistance` | float | `classification` | The lowest distance of any neighbor, regardless of whether they were in the winning or losing. |
+| `properties` > `{crefPropertyName}` > `classification` > `closestWinningDistance` | float | `classification` | Closest distance of a neighbor from the winning group. |
+| `properties` > `{crefPropertyName}` > `classification` > `losingCount` | integer | `classification` | Size of the losing group, can be 0 if the winning group size equals `k`. |
+| `properties` > `{crefPropertyName}` > `classification` > `meanLosingDistance` | float | `classification` | The mean distance of the losing group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
+| `properties` > `{crefPropertyName}` > `classification` > `meanWinningDistance` | float | `classification` | The mean distance of the winning group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
+| `properties` > `{crefPropertyName}` > `classification` > `overallCount` | integer | `classification` | Overall neighbors checked as part of the classification. In most cases this will equal `k`, but could be lower than `k` - for example if not enough data was present. |
+| `properties` > `{crefPropertyName}` > `classification` > `winningCount` | integer | `classification` | Size of the winning group, a number between 1 and `k`. |
 | `vector` | list of floats | `vector` | the long vector of the location of the object in the 300 dimensional space | 
 | `classification` > `basedOn` | string |  `classification` | the property name where the classification was based on |
 | `classification` > `classifiedFields` | string |  `classification` | the classified property |
@@ -203,15 +203,15 @@ The URL supports an optional [consistency level](../../concepts/replication-arch
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- |------------ |
-| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
 
 The request body for a new object has the following fields:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- |------------ |
 | `class` | string | yes | The class name as defined in the schema |
 | `properties` | array | yes | An object with the property values of the new data object |
-| `properties` > `{property_name}` | dataType | yes | The property and its value according to the set dataType |
+| `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `id` | v4 UUID | no | Optional id for the object |
 
 #### Example request
@@ -264,7 +264,7 @@ Collect an individual data object.
 
 Available since `v1.14` and the preferred way:
 ```bash
-GET /v1/objects/{className}/{id}[?consistency_level=ONE|QUORUM|ALL]
+GET /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -280,10 +280,10 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 
 | Name | Location | Type | Description |
 | ---- |----------| ---- | ----------- |
-| `{className}` | path | string | The name of the class that the object belongs to. |
+| `{ClassName}` | path | string | The name of the class that the object belongs to. |
 | `{id}` | query param | uuid | The uuid of the data object to retrieve. |
 | `include` | query param | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`. |
-| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
 
 #### Example request
 
@@ -303,7 +303,7 @@ Additionally, the resulting HTTP request has no body; the existence of an object
 
 Available since `v1.14` and the preferred way:
 ```bash
-HEAD /v1/objects/{className}/{id}[?consistency_level=ONE|QUORUM|ALL]
+HEAD /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -317,9 +317,9 @@ HEAD /v1/objects/{id}
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` | path | string | The name of the class that the object belongs to |
+| `{ClassName}` | path | string | The name of the class that the object belongs to |
 | `{id}` | path | uuid | The uuid of the data object to retrieve |
-| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
 
 #### Example request
 
@@ -337,8 +337,8 @@ In the RESTful API, both `PUT` and `PATCH` methods are accepted. `PUT` replaces 
 
 Available since `v1.14` and the preferred way:
 ```bash
-PUT /v1/objects/{className}/{id}[?consistency_level=ONE|QUORUM|ALL]
-PATCH /v1/objects/{className}/{id}[?consistency_level=ONE|QUORUM|ALL]
+PUT /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
+PATCH /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -355,9 +355,9 @@ The URL has 2 required path parameters and supports an optional query parameter 
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` | path | string | The name of the class that the object belongs to |
+| `{ClassName}` | path | string | The name of the class that the object belongs to |
 | `{id}` | path | uuid | The uuid of the data object to update |
-| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
 
 The request body for replacing (some) properties of an object has the following fields:
 
@@ -366,7 +366,7 @@ The request body for replacing (some) properties of an object has the following 
 | `class` | string | yes | The class name as defined in the schema |
 | `id` | string | ? | Required for `PUT` to be the same id as the one passed in the URL |
 | `properties` | array | yes | An object with the property values of the new data object |
-| `properties` > `{property_name}` | dataType | yes | The property and its value according to the set dataType |
+| `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 
 #### Example request
 
@@ -384,7 +384,7 @@ Delete an individual data object from Weaviate.
 
 Available since `v1.14` and preferred way:
 ```http
-DELETE /v1/objects/{className}/{id}[?consistency_level=ONE|QUORUM|ALL]
+DELETE /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
@@ -398,9 +398,9 @@ DELETE /v1/objects/{id}
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` |  path | string | The name of the class that the object belongs to |
+| `{ClassName}` |  path | string | The name of the class that the object belongs to |
 | `{id}` | path | uuid | The uuid of the data object to delete |
-| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
 
 #### Example request
 
@@ -431,7 +431,7 @@ The body of the data object for a new data object is an object taking the follow
 | ---- | ---- | -------- | ----------- |
 | `class` | string | yes | The class name as defined in the schema |
 | `properties` | array | yes | An object with the property values of the new data object |
-| `properties` > `{property_name}` | dataType | yes | The property and its value according to the set dataType |
+| `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `id` | v4 uuid | no<sup>*</sup> | The id of the data object. <sup>*</sup>An ID is required by the clients. |
 
 #### Example request
@@ -454,12 +454,12 @@ If the schema of the object is valid, this request should return `True`/`true` i
 
 Available since `v1.14` and the preferred way:
 ```http
-POST /v1/objects/{className}/{id}/references/{property_name}[?consistency_level=ONE|QUORUM|ALL]
+POST /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
 ```http
-POST /v1/objects/{id}/references/{property_name}
+POST /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
@@ -470,16 +470,16 @@ The URL includes 3 required path parameters and supports an optional query param
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` |  path | string | The name of the class that the object belongs to, e.g. `Article` |
+| `{ClassName}` |  path | string | The name of the class that the object belongs to, e.g. `Article` |
 | `{id}` | path | uuid | The uuid of the object to add the reference to |
-| `{property_name}` | path | string | The name of the cross-reference property, e.g. `author` |
-| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+| `{propertyName}` | path | string | The name of the cross-reference property, e.g. `author` |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
 
 The request body is an object with the following field:
 
 | name | type | required | description |
 | ---- | ---- | -------- | ----------- |
-| `beacon` | Weaviate Beacon | yes | the beacon URL of the reference, in the format of `weaviate://localhost/<ClassName>/<id>` |
+| `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, formatted as `weaviate://localhost/<ClassName>/<id>` |
 
 :::caution
 In the beacon format, you need to always use `localhost` as the host,
@@ -511,12 +511,12 @@ If the addition was successful, no content will be returned.
 
 Available since `v1.14` and the preferred way:
 ```http
-PUT /v1/objects/{className}/{id}/references/{property_name}[?consistency_level=ONE|QUORUM|ALL]
+PUT /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
 ```http
-PUT /v1/objects/{id}/references/{property_name}
+PUT /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
@@ -527,10 +527,10 @@ The URL includes 3 required path parameters and supports an optional query param
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{className}` | path | string | The name of the class that the object belongs to |
+| `{ClassName}` | path | string | The name of the class that the object belongs to |
 | `{id}` | path | uuid | The uuid of the object to update the reference(s) of |
-| `{property_name}` | path | string | The name of the cross-reference property |
-| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+| `{propertyName}` | path | string | The name of the cross-reference property |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
 
 The `PUT` request body is a list of beacons:
 
@@ -569,12 +569,12 @@ Delete the single reference that is given in the body from the list of reference
 
 Available since `v1.14` and the preferred way:
 ```http
-DELETE /v1/objects/{className}/{id}/references/{property_name}[?consistency_level=ONE|QUORUM|ALL]
+DELETE /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 Available for backward compatibility and deprecated:
 ```http
-DELETE /v1/objects/{id}/references/{property_name}
+DELETE /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
@@ -586,8 +586,8 @@ The URL includes 2 required path parameters and supports an optional query param
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
 | `{id}` | path | uuid | The uuid of the object to delete the reference from |
-| `{property_name}` | path | string | The name of the cross-reference property |
-| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` or `ALL` (default). |
+| `{propertyName}` | path | string | The name of the cross-reference property |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
 
 The request body is a beacon object:
 

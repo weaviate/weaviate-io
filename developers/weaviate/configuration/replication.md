@@ -64,8 +64,8 @@ When you add (write) or query (read) data, one or more replica nodes in the clus
 The `consistency_level` can be specified at query time: 
 
 ```bash
-# Get one object by ID, with consistency_level QUORUM
-$ curl /v1/objects/{className}/{id}?consistency_level=QUORUM
+# Get an object by ID, with consistency level ONE
+$ curl /v1/objects/{ClassName}/{id}?consistency_level=ONE
 ```
 
 :::caution Note:
