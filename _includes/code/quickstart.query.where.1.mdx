@@ -25,7 +25,7 @@ client = weaviate.Client(
 where_filter = {
     "path": ["category"],
     "operator": "Equal",
-    "valueString": "ANIMALS",
+    "valueText": "ANIMALS",
 }
 
 result = (
@@ -53,17 +53,18 @@ const client = weaviate.client({
 const where_filter = {
     "path": ["category"],
     "operator": "Equal",
-    "valueString": "ANIMALS",
+    "valueText": "ANIMALS",
 }
 
 client.graphql
     .get()
     .withClassName('Question')
     .withFields('question answer category')
+    .withNearText({concepts: ["biology"]})
     .withWhere(where_filter)
     .do()
     .then(res => {
-        console.log(res)
+        console.log(JSON.stringify(res, null, 2))
     })
     .catch(err => {
         console.error(err)
