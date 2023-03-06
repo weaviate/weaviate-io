@@ -1,17 +1,17 @@
 ---
 title: Using Cross-Encoders as reranker in multistage vector search
 slug: cross-encoders-as-reranker
-authors: [laura] 
+authors: [laura]
 date: 2022-08-09
 tags: []
 image: ./img/hero.png
-# description: "Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the vector search experience."
+description: "Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the vector search experience."
 ---
 ![Using Cross-Encoders as reranker in multistage vector search](./img/hero.png)
 
-Semantic search overcomes the shortcomings of keyword-based search. If you search for "programming for data scientists", a keyword search will find "An intro to programming for data scientists", but it won't return "Python for Machine Learning use-cases".
-
 <!-- truncate -->
+
+Semantic search overcomes the shortcomings of keyword-based search. If you search for "programming for data scientists", a keyword search will find "An intro to programming for data scientists", but it won't return "Python for Machine Learning use-cases".
 
 Semantic search engines can use machine learning to capture the context and semantics of data and search queries. Usually, machine learning models have a tradeoff between high accuracy and speed. The higher the accuracy, the more computationally expensive the model is. If we talk about search or Information Retrieval, we would like to see **accurate search results**, encompassing **wide-range queries**, whilst retaining **high speed**. 
 
@@ -21,7 +21,7 @@ In this article, you will learn about these two machine learning models, and why
 
 ## Bi-Encoder models
 
-Vector search engines like [Weaviate](/developers/weaviate/) use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector search engine can then perform a similarity search to retrieve the vectors closest to the query embedding. 
+Vector search engines like [Weaviate](/developers/weaviate/) use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector search engine can then perform a similarity search to retrieve the vectors closest to the query embedding.
 
 The models that compute **dense vector embeddings for data** (which later can be used for **search queries**) are so-called *Bi-Encoder models*. Data vectors and query vectors can be compared by computing the similarity (for example cosine similarity) between vectors. All data items in the database can be represented by a vector embedding using a Bi-Encoder model.
 
@@ -78,4 +78,4 @@ Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) a
 
 You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
-Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.
+Weaviate is open source, and you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there!

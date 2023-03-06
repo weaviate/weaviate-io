@@ -15,7 +15,7 @@ byron:
   image_url: /img/people/icon/byron.png
 connor:
   name: Connor Shorten
-  title: Developer Advocate / Researcher 
+  title: Developer Advocate 
   url: https://github.com/CShorten
   image_url: /img/people/icon/connor.jpg
 dan:
@@ -45,12 +45,12 @@ jessie:
   image_url: /img/people/icon/jessie.png
 jp:
   name: Joon-Pil (JP) Hwang
-  title: Technical Curriculum Developer
+  title: Educator
   url: https://github.com/databyjp
   image_url: /img/people/icon/jp.jpg
 laura:
   name: Laura Ham
-  title: Developer Advocate / Researcher
+  title: Developer Advocate
   url: https://github.com/laura-ham
   image_url: /img/people/icon/laura.jpg
 sebastian:

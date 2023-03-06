@@ -9,7 +9,7 @@ Know that **deleting a class will also delete all associated objects**!
 
 Do not do this to a production database, or anywhere where you do not wish to delete your data. 
 
-Run this code to delete the relevant class and get an output confirming it;
+Run this code to delete the relevant class.
 :::
 
 import Tabs from '@theme/Tabs';
@@ -32,10 +32,7 @@ import json
 client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
 
 # delete class "YourClassName" - THIS WILL DELETE ALL DATA IN THIS CLASS
-client.schema.delete_class("YourClassName")  # Replace with your class name
-
-schema = client.schema.get()
-print(json.dumps(schema, indent=4))
+client.schema.delete_class("YourClassName")  # Replace with your class name - e.g. "Question"
 ```
 
 </TabItem>
@@ -55,18 +52,9 @@ client.schema
   .classDeleter()
   .withClassName(className)
   .do()
-  .then(
-    client
-      .schema
-      .getter()
-      .do()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.error(err)
-      })
-  )
+  .then(res => {
+    console.log(res);
+  })
   .catch(err => {
     console.error(err)
   });

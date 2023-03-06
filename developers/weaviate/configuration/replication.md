@@ -61,16 +61,16 @@ The data schema has a write consistency level of `ALL`, which means when you upl
 
 When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available [consistency levels](../concepts/replication-architecture/consistency.md) are `ONE`, `QUORUM` (replication_factor / 2 + 1) and `ALL`.
 
-The `consistency_level` can be specified at query time. 
-
-:::caution Note:
-In v1.17, only read queries that get data by ID have a tunable consistency level. All other queries have a consistency level of `ALL`. Starting with v1.18, all write and read queries are tunable to either `ONE`, `QUORUM` or `ALL`.
-:::
+The `consistency_level` can be specified at query time: 
 
 ```bash
-# Get object by ID with consistency level QUORUM
+# Get one object by ID, with consistency_level QUORUM
 $ curl /v1/objects/{className}/{id}?consistency_level=QUORUM
 ```
+
+:::caution Note:
+In v1.17, only [read queries that get data by ID](../api/rest/objects.md#get-a-data-object) have a tunable consistency level. All other object-specific REST endpoints (read or write) use the consistency level `ALL`. Starting with v1.18, all write and read queries are tunable to either `ONE`, `QUORUM` or `ALL`. GraphQL endpoints use the consistency level `ONE` (in both versions).
+:::
 
 import QueryReplication from '/_includes/code/replication.get.object.by.id.mdx';
 

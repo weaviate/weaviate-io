@@ -66,8 +66,12 @@ client.graphql
   .withNearText({concepts: ["biology"]})
   .withLimit(2)
   .do()
-  .then(console.log)
-  .catch(console.error);
+  .then(res => {
+    console.log(JSON.stringify(res, null, 2))
+  })
+  .catch(err => {
+    console.error(err)
+  });
 ```
 
 </TabItem>

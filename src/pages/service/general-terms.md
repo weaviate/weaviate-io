@@ -44,7 +44,7 @@ Please read this Agreement carefully before purchasing and/or using our software
 
 5.3 We do not warrant that the Solutions will operate error-free or uninterrupted. To the extent permitted by law, we specifically exclude and disclaims all other warranties, whether express, implied or statutory, including implied warranties of merchantability. In relation to clause [5.1], your exclusive remedy will be re-performance or re-delivery of the defective Solution, or if we cannot substantially correct a breach within a reasonable time and manner, termination of the relevant Solution, in which case you will be entitled to a pro rata refund of the Fees paid for the defective solution up until the date of termination.
 
-5.4. ​We guarantee that the ​Weaviate does not infringe the intellectual property rights of third parties. ​We shall indemnify you against, and hold you harmless from, all third-party claims for infringement of any intellectual property rights of that third party in relation to the Agreement and Services.
+5.4. We guarantee that Weaviate does not infringe the intellectual property rights of third parties. We shall indemnify you against, and hold you harmless from, all third-party claims for infringement of any intellectual property rights of that third party in relation to the Agreement and Services.
 
 ### 6. CONFIDENTIALITY
 

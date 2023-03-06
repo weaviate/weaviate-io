@@ -5,13 +5,13 @@ authors: [connor]
 date: 2022-11-23
 tags: []
 image: ./img/hero.png
-# description: "This blog post presents Ref2Vec, a new Weaviate module to use Cross-References for Recommendation!"
+description: "Weaviate introduces Ref2Vec, a new module that utilises Cross-References for Recommendation!"
 ---
 ![Ref2vec-centroid](./img/hero.png)
 
-Weaviate 1.16 introduced the [Ref2Vec](/developers/weaviate/modules/retriever-vectorizer-modules/ref2vec-centroid) module. In this article, we give you an overview of what Ref2Vec is and some examples in which it can add value such as recommendations or representing long objects.
-
 <!-- truncate -->
+
+Weaviate 1.16 introduced the [Ref2Vec](/developers/weaviate/modules/retriever-vectorizer-modules/ref2vec-centroid) module. In this article, we give you an overview of what Ref2Vec is and some examples in which it can add value such as recommendations or representing long objects.
 
 ## What is Ref2Vec?
 The name Ref2Vec is short for reference-to-vector, and it offers the ability to vectorize a data object with its cross-references to other objects. The Ref2Vec module currently holds the name ref2vec-**centroid** because it uses the average, or centroid vector, of the cross-referenced vectors to represent the **referencing** object. The benefit of this approach is that the referencing object can be characterized from its actions and relationships as well as refined over time. 

@@ -1,0 +1,56 @@
+//********************* Shared colour variables *********************
+:root {
+  --site-light-color: #ffe3ec;
+}
+
+//********************* Themed colour variables *********************
+[data-theme='light'] {
+  --site-base-color: #1C1468;
+  --site-base-color-shade: #2C3854;
+
+  --site-primary: #00A142;
+  --site-primary-dark: #00C342;
+  --site-accent: #fc3988;
+  --site-accent-dark: #fb0b6d;
+
+  --site-background: #F5F5F5;
+
+  --site-font-main-color: #1C1468;
+  --site-font-header-color: #2C3854;
+  --site-font-accent-color: #00A142;
+  --site-font-link-color: #00A142;
+}
+[data-theme='dark'] {
+  --site-base-color: #F7F9FD;
+  --site-base-color-shade: #F5F5F5;
+
+  --site-primary: #00C342;
+  --site-primary-dark: #00A142;
+  --site-accent: #fc3988;
+  --site-accent-dark: #fb0b6d;
+
+  --site-background: #0C1428;
+
+  --site-font-main-color: #C3C5D8;
+  --site-font-header-color: #F7F9FD;
+  --site-font-accent-color: #00C342;
+  --site-font-link-color: #00C342;
+}
+
+//********************* FONTS *********************
+@font-face {
+  font-family: 'FredokaOneRegular';
+  src: url('/fonts/FredokaOne-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'NiramitRegular';
+  src: url('/fonts/Niramit-Regular.ttf');
+}
+
+:root {
+  --site-font-base-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
+  --site-font-heading-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  --site-font-fun-heading-family: 'FredokaOneRegular';
+  --site-font-fun-base-family: 'NiramitRegular';
+}

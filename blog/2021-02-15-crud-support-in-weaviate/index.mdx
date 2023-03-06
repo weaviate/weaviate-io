@@ -7,13 +7,13 @@ tags: []
 image: ./img/hero.png
 # canonical-url: https://db-engines.com/en/blog_post/87
 # canonical-name: DB Engines
-# description: "How the vector search engine Weaviate overcomes the limitations of popular Approximate Nearest Neighbor (ANN) libraries."
+description: "How the vector database Weaviate overcomes the limitations of popular Approximate Nearest Neighbor (ANN) libraries."
 ---
 ![Weaviate, an ANN Database with CRUD support](./img/hero.png)
 
-With the rising popularity of machine learning models, the demand for vector similarity search solutions has also increased dramatically. Machine learning models typically output vectors and common search queries involve finding the closest set of related vectors. For example, for a text-based vector search the search query "landmarks in Paris" would be encoded to a vector, it is then the job of the search engine to find the documents with the vector closest to this query. This might be a document with the title "Eiffel Tower" whose vector matched the search vector most closely.
-
 <!-- truncate -->
+
+With the rising popularity of machine learning models, the demand for vector similarity search solutions has also increased dramatically. Machine learning models typically output vectors and common search queries involve finding the closest set of related vectors. For example, for a text-based vector search the search query "landmarks in Paris" would be encoded to a vector, it is then the job of the search engine to find the documents with the vector closest to this query. This might be a document with the title "Eiffel Tower" whose vector matched the search vector most closely.
 
 Such a vector similarity comparison is computationally trivial if there are very few, say less than 10,000 objects to be searched through. That is not a very realistic situation, however. The amount of unstructured data that companies and users need to search through is massive. The number of objects is often in the high millions or even billions of data points. A primitive brute-force comparison can no longer return results in an acceptable time frame.
 

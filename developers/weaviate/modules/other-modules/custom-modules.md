@@ -115,7 +115,7 @@ Implementing a fully new module with both part 1 and 2 is a lot more flexible, b
 
 Detailed instructions are described in the [contributor guide](/developers/contributor-guide/weaviate-modules/how-to-build-a-new-module)
 
-If you choose to build a completely new module including a Weaviate Go interface, you can contact us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or through an [issue on Github](https://github.com/weaviate/weaviate/issues) so we help you get started.
+If you choose to build a completely new module including a Weaviate Go interface, you can contact us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or through an [issue on GitHub](https://github.com/weaviate/weaviate/issues), so we can help you get started.
 
 ## Important notes
 - The length of the vectors your vectorizer has influences later usage, for example if you're exploring your data by vector with the GraphQL explore filter, the length of this vector should match with the vector length of the data points. 
