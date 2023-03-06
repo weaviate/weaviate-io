@@ -32,12 +32,9 @@ export default function CommandMenu({open, setOpen}) {
     }
 
     const addPage = (pageTitle, title) => {
-      
       if(pageTitle != title){
         return pageTitle + ' • ' + title
       }
-
-
       return title
     }
 
