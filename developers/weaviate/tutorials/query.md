@@ -18,22 +18,21 @@ By the end of this section, you will have performed vector and scalar searches s
 
 We recommend you complete the [Quickstart tutorial](../quickstart/index.md) first. 
 
-Before you start this tutorial, you should follow the steps in the tutorials to have:
+Before you start this tutorial, you should follow the steps in the Quickstart to have:
 
-At this point, you should have: 
 - An instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.io)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
 - Installed your preferred Weaviate client library,
 - Set up a `Question` class in your schema, and
 - Imported the `jeopardy_tiny.json` data.
 
-:::note GraphQL
+## Object retrieval with `Get`
+
+:::tip GraphQL
 Weaviate's queries are built using GraphQL. If this is new to you, don't worry. We will take it step-by-step and build up from the basics. Also, in many cases, the GraphQL syntax is abstracted by the client.
-:::
 
 You can query Weaviate using one or a combination of a semantic (i.e. vector) search and a lexical (i.e. scalar) search. As you've seen, a vector search allows for similarity-based searches, while scalar searches allow filtering by exact matches. 
-
-## Object retrieval with `Get`
+:::
 
 First, we will start by making queries to Weaviate to retrieve **Question** objects that we imported earlier.
 
@@ -92,6 +91,8 @@ result = (
     .with_limit(2)
     .do()
 )
+
+print(json.dumps(result, indent=4))
 ```
 
 And it should return the same results as above. 
@@ -275,10 +276,10 @@ As you can see, the `Aggregate` function can return handy aggregated, or metadat
 
 ## Suggested reading
 
-- [Schemas in detail](./schema.md)
-- [Import in detail](./import.md)
-- [Introduction to modules](./modules.md)
-- [Introduction to Weaviate Console](./console.md)
+- [Tutorial: Schemas in detail](./schema.md)
+- [Tutorial: Import in detail](./import.md)
+- [Tutorial: Introduction to modules](./modules.md)
+- [Tutorial: Introduction to Weaviate Console](./console.md)
 
 ## Notes
 

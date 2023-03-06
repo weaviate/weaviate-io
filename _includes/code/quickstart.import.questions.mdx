@@ -28,7 +28,7 @@ with client.batch as batch:
     batch.batch_size=100
     # Batch import all Questions
     for i, d in enumerate(data):
-        print(f"importing question: {i+1}")
+        # print(f"importing question: {i+1}")  # To see imports
 
         properties = {
             "answer": d["Answer"],
@@ -50,11 +50,6 @@ const client = weaviate.client({
     host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
     headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
   }); 
-
-let classObj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
-}
 
 async function getJsonData() {
     const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json');

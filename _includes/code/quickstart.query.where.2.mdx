@@ -63,15 +63,16 @@ const where_filter = {
 client.graphql
     .get()
     .withClassName('Question')
-    .withFields('question answer category')
+    .withFields('question answer category _additional { id certainty }')
     .withNearText({concepts: ["biology"]})
     .withWhere(where_filter)
+    .withLimit(2)
     .do()
     .then(res => {
-        console.log(res)
+    console.log(JSON.stringify(res, null, 2))
     })
     .catch(err => {
-        console.error(err)
+    console.error(err)
     });
 ```
 

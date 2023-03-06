@@ -35,11 +35,11 @@ We will use the below dataset. We suggest that you download it to your working d
 
 As mentioned in the [schema tutorial](./schema.md), the `schema` specifies the data structure for Weaviate. 
 
-So conversely, the data must be imported by matching properties of the relevant class, which in this case is the **Question** class defined in the previous section.
+So the data import must map properties of each record to those of the relevant class in the schema. In this case, the relevant class is **Question** as defined in the previous section.
 
 ### Data object structure
 
-The syntax of a data object is as follows:
+Each Weaviate data object is structured as below:
 
 ```json
 {
@@ -51,7 +51,9 @@ The syntax of a data object is as follows:
 }
 ```
 
-Most commonly, Weaviate users import data through a Weaviate client library. But it's worth noting that data is ultimately added through the RESTful API, either through the [`objects` endpoint](../api/rest/objects.md) or the [`batch` endpoint](../api/rest/batch.md). 
+Most commonly, Weaviate users import data through a Weaviate client library. 
+
+It is worth noting, however, that data is ultimately added through the RESTful API, either through the [`objects` endpoint](../api/rest/objects.md) or the [`batch` endpoint](../api/rest/batch.md). 
 
 As the names suggest, the use of these endpoints depend on whether objects are being imported as batches or individually.
 
@@ -59,11 +61,11 @@ As the names suggest, the use of these endpoints depend on whether objects are b
 
 For importing data, we **strongly suggest that you use batch imports** unless you have a specific reason not to. Batch imports can greatly improve performance by sending multiple objects in a single request.
 
-We note that batch imports are carried out through the [`batch` REST endpoint](https://weaviate.io/developers/weaviate/api/rest/batch).
+We note that batch imports are carried out through the [`batch` REST endpoint](../api/rest/batch.md).
 
 ### Batch import process
 
-An import process generally looks like this:
+A batch import process generally looks like this:
 
 1. Connect to your Weaviate instance
 1. Load objects from the data file
@@ -81,11 +83,15 @@ import CodeImportQuestions from '/_includes/code/quickstart.import.questions.mdx
 
 There are a couple of things to note here. 
 
-One is the batch size. Some clients include this as a parameter (e.g. `batch_size` in the Python client), or it can be manually set by periodically flushing the batch. 
+#### Batch size
+
+Some clients include this as a parameter (e.g. `batch_size` in the Python client), or it can be manually set by periodically flushing the batch. 
 
 Typically, a size between 20 and 100 is a reasonable starting point, although this depends on the size of each data object. A smaller size may be preferable for larger data objects, such as if vectors are included in each object upload.
 
-Another is that we do not provide a vector. As a `vectorizer` is specified in our schema, Weaviate will send a request to the appropriate module (`text2vec-openai` in this case) to vectorize the data, and the vector in the response will be indexed and saved into Weaviate tied to the data object.
+#### Where are the vectors?
+
+You may have noticed that we do not provide a vector. As a `vectorizer` is specified in our schema, Weaviate will send a request to the appropriate module (`text2vec-openai` in this case) to vectorize the data, and the vector in the response will be indexed and saved as a part of the data object.
 
 ### Bring your own vector
 
@@ -124,7 +130,7 @@ The result should look something like this:
 When importing large datasets, it may be worth planning out an optimized import strategy. Here are a few things to keep in mind.
 
 1. The most likely bottleneck is the import script. Accordingly, aim to max out all the CPUs available. 
-    1. Use `htop` when importing to see if all CPUs are maxed out.
+  1. Use `htop` when importing to see if all CPUs are maxed out.
 1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
 1. For Kubernetes, fewer large machines are faster than more small machines. Just because of network latency.
 
@@ -132,19 +138,17 @@ Our rules of thumb are:
 * You should always use batch import.
 * As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
 * Process error messages.
-* Some clients (especially Python) have some built-in logic to efficiently control batch importing.
+* Some clients (e.g. Python) have some built-in logic to efficiently control batch importing.
 
 ### Error handling
 
-:::info `200` status code != 100% batch success
-A `200` status code for the batch request does not mean that all batch items have been added/created!
+We recommend that you implement error handling at an object level such as the [example laid out here](../api/rest/batch.md#error-handling).
+
+:::tip `200` status code != 100% batch success
+It is important to note that an HTTP `200` status code only indicates that the **request** has been successfully sent to Weaviate. In other words, there were no issues with the connection or processing of the batch and no malformed request. 
+
+A request with a `200` response may still include object level errors, which is why error handling is critical.
 :::
-
-An HTTP `200` status code does not mean that all individual data object imports have been successful. 
-
-Here, the `200` status code simply refers to the success of the **request** itself. In other words, the request was successfully sent to Weaviate, and there were no issues with the connection or processing of the batch and no malformed request.
-
-Accordingly, we recommend that you implement error handling at an object level such as the [example laid out here](../api/rest/batch.md#error-handling)
 
 ## Recap
 
@@ -154,10 +158,10 @@ Accordingly, we recommend that you implement error handling at an object level s
 
 ## Suggested reading
 
-- [Schemas in detail](./schema.md)
-- [Queries in detail](./query.md)
-- [Introduction to modules](./modules.md)
-- [Introduction to Weaviate Console](./console.md)
+- [Tutorial: Schemas in detail](./schema.md)
+- [Tutorial: Queries in detail](./query.md)
+- [Tutorial: Introduction to modules](./modules.md)
+- [Tutorial: Introduction to Weaviate Console](./console.md)
 
 ### Other object operations
 
