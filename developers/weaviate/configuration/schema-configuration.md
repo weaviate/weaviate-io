@@ -217,7 +217,7 @@ preset and adding all your desired stopwords as additions.
 ```
 
 :::note
-Introduced in `v1.18`, stopwords can now be configured at runtime.
+Introduced in `v1.18`, stopwords can be configured at runtime.
 :::
 
 This configuration allows stopwords to be configured by class. If not set, these values are set to the following defaults:
@@ -238,13 +238,13 @@ As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopword
 
 Here is an example: 
 
-`query`: “Where is the nearest fast food chain?”
+`query`: "Where is the nearest fast food chain?"
 
-`stopwords`: [“where”, “is”, “the”] 
+`stopwords`: ["where", "is", "the"] 
 
 Is the same as: 
 
-`query`: “Nearest fast food chain”
+`query`: "Nearest fast food chain"
 
 
 ### invertedIndexConfig > indexTimestamps
