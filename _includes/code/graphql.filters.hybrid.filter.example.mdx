@@ -9,7 +9,9 @@ import TabItem from '@theme/TabItem';
   Get {
     Article (
       hybrid: {query: "how to fish", alpha: 0.5}
+    # highlight-start
       where: {path: ["wordCount"], operator: LessThan, valueInt: 1000}
+    # highlight-end
     ){
       title
       summary
@@ -22,12 +24,13 @@ import TabItem from '@theme/TabItem';
 <TabItem value="py" label="Python">
 
 ```python
+# highlight-start
 where_filter = {
   "path": ["wordCount"],
   "operator": "LessThan",
   "valueInt": "1000"
 }
-
+# highlight-end
 query_result = (
   client.query
   .get("Article", ["title", "summary"])
@@ -49,11 +52,13 @@ client.graphql
       query: 'How to catch Alaskan Pollock',
       alpha: 0.5
   })
+  // highlight-start
   .withWhere({
     operator: 'LessThan',
     path: ['wordCount'],
     valueInt: 1000,
   })
+  // highlight-end
   .do()
   .then(console.log)
   .catch(console.error);
@@ -63,11 +68,12 @@ client.graphql
 <TabItem value="go" label="Go">
 
 ```go
+// highlight-start
 where := filters.Where().
 WithPath([]string{"content"}).
   WithOperator(filters.Equal).
   WithValueString("Alaskan")  // All results must have "Alaskan" in the content property
-
+// highlight-end
 
 name = graphql.Field{Name: "summary"} 
 
@@ -84,11 +90,13 @@ articles := get["Article"].([]interface{})
 ```java
 Field title = Field.builder().name("title" "summary").build();
 
+// highlight-start
 WhereFilter where = WhereFilter.builder()
   .path(new String[]{ "wordCount" })
   .operator(Operator.LessThan)
   .valueInt(1000)
   .build();
+// highlight-end
 
 HybridFilter hybridFilter = HybridFilter.builder()
   .query("How to catch an Alaskan Pollock.")
@@ -112,7 +120,9 @@ echo '{
       Get {
         Article (
           hybrid: {query: \"How to catch an Alaskan Pollock\", alpha: 0.5}
+          # highlight-start
           where: {path: [\"wordCount\"], operator: LessThan, valueInt: 1000}
+          # highlight-end
         ){
           title
           summary

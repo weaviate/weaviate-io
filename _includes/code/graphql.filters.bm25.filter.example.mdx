@@ -9,7 +9,9 @@ import TabItem from '@theme/TabItem';
   Get {
     Article (
       bm25: {query: "how to fish", properties: ["title"]}
+    # highlight-start
       where: {path: ["wordCount"], operator: LessThan, valueInt: 1000}
+    # highlight-end
     ){
       summary
       title
@@ -22,11 +24,13 @@ import TabItem from '@theme/TabItem';
 <TabItem value="py" label="Python">
 
 ```python
+# highlight-start
 where_filter = {
   "path": ["wordCount"],
   "operator": "LessThan",
   "valueInt": "1000"
 }
+# highlight-end
 
 query_result = (
   client.query
@@ -48,11 +52,13 @@ client.graphql
   .withBm25({
       query: 'how to fish',
   })
+  // highlight-start
   .withWhere({
     operator: 'LessThan',
     path: ['wordCount'],
     valueInt: 1000,
   })
+  // highlight-end
   .do()
   .then(console.log)
   .catch(console.error);
@@ -64,10 +70,12 @@ client.graphql
 ```go
 resultSet, gqlErr := client.GraphQL().Get().WithClassName("Article").WithHybrid(hybrid).WithWhere(where).WithFields(name).Do(context.Background())
 
+// highlight-start
 where := filters.Where().
 WithPath([]string{"wordCount"}).
 				WithOperator(filters.LessThan).
 				WithValueInt(1000)  
+// highlight-end
 
 name = graphql.Field{Name: "summary"} // the output field
 
@@ -84,11 +92,13 @@ articles := get["Article"].([]interface{})
 ```java
 Field title = Field.builder().name("title" "summary").build();
 
+// highlight-start
 WhereFilter where = WhereFilter.builder()
   .path(new String[]{ "wordCount" })
   .operator(Operator.LessThan)
   .valueInt(1000)
   .build();
+// highlight-end
 
 Bm25Argument bm25 = client.graphQL().arguments().Bm25ArgBuilder()
   .query("how to fish")
@@ -112,7 +122,9 @@ $ echo '{
       Get {
         Article(
           bm25: {query: "how to fish", properties: ["title"]}
+          # highlight-start
           where: { path: ["wordCount"], operator: LessThan, valueInt: 1000 }
+          # highlight-end
         ){
           summary
           title
