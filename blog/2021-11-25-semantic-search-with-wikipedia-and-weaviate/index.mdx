@@ -17,7 +17,7 @@ To conduct semantic search queries on a large scale, one needs a vector search e
 
 The Wikipedia dataset used is the "truthy" version of October 9th, 2021. After processing it contains 11.348.257 articles, 27.377.159 paragraphs, and 125.447.595 graph cross-references. Although a bigger machine (see below) is needed for importing the data, the serving is done on a 12 CPU, 100 GB RAM, 250Gb SSD Google Cloud VM with 1 x NVIDIA Tesla P4. The ML-models used are [multi-qa-MiniLM-L6-cos-v1](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1) and [bert-large-uncased-whole-word-masking-finetuned-squad](https://huggingface.co/bert-large-uncased-whole-word-masking-finetuned-squad) both are available as [pre-built modules](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers#pre-built-images) in Weaviate.
 
-📄 The complete dataset and code is open-source and available [on Github](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate).
+📄 The complete dataset and code is open-source and available [on GitHub](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate).
 
 ![Demo GIF of Weaviate using the Wikipedia dataset](./img/weaviate-using-the-Wikipedia-dataset.gif)
 *Example semantic search queries in Weaviate's GraphQL interface — GIF by Author*

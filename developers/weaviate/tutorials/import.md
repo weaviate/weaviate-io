@@ -131,7 +131,7 @@ When importing large datasets, it may be worth planning out an optimized import 
 
 1. The most likely bottleneck is the import script. Accordingly, aim to max out all the CPUs available. 
   1. Use `htop` when importing to see if all CPUs are maxed out.
-1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
+1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
 1. For Kubernetes, fewer large machines are faster than more small machines. Just because of network latency.
 
 Our rules of thumb are:
@@ -142,12 +142,12 @@ Our rules of thumb are:
 
 ### Error handling
 
-We recommend that you implement error handling at an object level such as the [example laid out here](../api/rest/batch.md#error-handling).
+We recommend that you implement error handling at an object level, such as in [this example](../api/rest/batch.md#error-handling).
 
 :::tip `200` status code != 100% batch success
 It is important to note that an HTTP `200` status code only indicates that the **request** has been successfully sent to Weaviate. In other words, there were no issues with the connection or processing of the batch and no malformed request. 
 
-A request with a `200` response may still include object level errors, which is why error handling is critical.
+A request with a `200` response may still include object-level errors, which is why error handling is critical.
 :::
 
 ## Recap

@@ -82,7 +82,7 @@ This filter allows you to find data objects in the vicinity of other data object
 ### Variables
 
 | Variables | Required | Type | Description |
-| --- | --- | --- | --- |
+| --------- | -------- | ---- | ----------- |
 | `id` | yes | `UUID` | Data object identifier in the uuid format. |
 | `beacon` | yes | `url` | Data object identifier in the beacon URL format. E.g., `weaviate://<hostname>/<kind>/id`. |
 | `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
@@ -96,7 +96,7 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get%7B%0D%0A++++Article%28%0D%0A++++++nearObject%3A+%7B%0D%0A++++++++beacon%3A+%22weaviate%3A%2F%2Flocalhost%2Fe5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf%22%2C+%0D%0A++++++++certainty%3A+0.7%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
-## Hybrid
+## hybrid
 This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
 
 ### Variables
@@ -131,7 +131,7 @@ import GraphQLFiltersHybridVector from '/_includes/code/graphql.filters.hybrid.v
 <GraphQLFiltersHybridVector/>
 
 ### Hybrid with Where Filter 
-Introduced in `v1.18`, you can now use `where` filters with `hybrid`. 
+Starting with `v1.18`, you can use [`where` filters](../graphql/filters.md#where-filter) with `hybrid`. 
 
 import GraphQLFiltersHybridFilterExample from '/_includes/code/graphql.filters.hybrid.filter.example.mdx';
 
@@ -232,20 +232,20 @@ The `_additional` object in the GraphQL result exposes the score:
 ```
 
 ### BM25 with Where Filter 
-Introduced in `v1.18`, you can now use `where` filters with `bm25`. 
+Introduced in `v1.18`, you can now use [`where` filters](../graphql/filters.md#where-filter) with `bm25`. 
 
 import GraphQLFiltersBM25FilterExample from '/_includes/code/graphql.filters.bm25.filter.example.mdx';
 
 <GraphQLFiltersBM25FilterExample/>
 
-## Group
+## group
 
 You can use a group operator to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
 
 ### Variables
 
 | Variables | Required | Type | Description |
-| --- | --- | --- | --- |
+| --------- | -------- | ---- | ----------- |
 | `type` | yes | `string` | You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
 | `force` | yes | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
 

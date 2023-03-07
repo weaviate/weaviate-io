@@ -26,7 +26,7 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 ## DataType: string vs. text
 
-There are two data types dedicated to saving textual information: string and text. `string` values are indexed as one token, whereas `text` values are indexed after applying tokenization. `"jane.doe@foobar.com"` as string would be indexed as `"jane.doe@foobar.com"` and also only match that in a GraphQL where filter, whereas as text it would be indexed as `['jane', 'doe', 'foobar', 'com']` and also match the individual words.
+There are two data types dedicated to saving textual information: string and text. `string` values are indexed as one token, whereas `text` values are indexed after applying tokenization. `"jane.doe@foobar.com"` as string would be indexed as `"jane.doe@foobar.com"` and also only match that in a [GraphQL where filter](../api/graphql/filters.md#where-filter), whereas as text it would be indexed as `['jane', 'doe', 'foobar', 'com']` and also match the individual words.
 
 ## DataType: date
 
