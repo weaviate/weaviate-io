@@ -26,7 +26,8 @@ Read below to learn more about each of these points in more detail.
 
 ## Faster Filtering with Roaring Bitmaps
 
-![roaring bitmaps](./img/roaring-bitmaps.png)
+![roaring bitmaps](./img/roaring-bitmaps.png#gh-light-mode-only)
+![roaring bitmaps](./img/roaring-bitmaps-dark.png#gh-dark-mode-only)
 
 This release introduces a compact, modern data structure to Weaviate called [“Roaring bitmaps”](http://roaringbitmap.org/about/) that will replace the internals of the inverted index. The new Roaring bitmap indexing dramatically speeds up filtered searches, and we’ve seen it provide up to 1000(!) times faster performance in some cases. 
 
@@ -49,7 +50,8 @@ If you are already dealing with a large dataset, this will likely improve your p
 
 ## HNSW-PQ
 
-![hnsw-pq](./img/hnsw-pq.png)
+![hnsw-pq](./img/hnsw-pq.png#gh-light-mode-only)
+![hnsw-pq](./img/hnsw-pq-dark.png#gh-dark-mode-only)
 
 Weaviate is a very performant and robust vector database but it does require RAM to perform well and with `1.18` we are introducing a new feature that aims to give users the same performance they have come to expect from Weaviate but at a fraction of the previous RAM requirements! Currently, the two big RAM costs of Weaviate come, firstly, from needing to store neighborhood graphs which allow us to conduct approximate nearest neighbors search algorithms like HNSW, and secondly from having to store the entire vectors themselves in memory. 
 
@@ -57,7 +59,8 @@ With Weaviate `1.18` we are alleviating these high RAM requirements by now allow
 
 More specifically, in `1.18` we implemented the solution proposed in [DiskANN](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf) whereby we combined our HNSW indexing with vectors that have been compressed using product quantization(PQ). PQ is a lossy compression algorithm that allows us to significantly reduce vector representation size at the cost of a bit of recall. But how does it actually work, you ask !?
 
-![pq compression](./img/pq-compression.png)
+![pq compression](./img/pq-compression.png#gh-light-mode-only)
+![pq compression](./img/pq-compression-dark.png#gh-dark-mode-only)
 
 A simple way of understanding how PQ compression works is as follows: Imagine every vector you want to store is a unique house address. A unique house address allows you to precisely locate where someone lives including country, state, neighborhood, street number, and even the house number details. The price you pay for this pin-point accuracy is that each address takes up more storage space. Now, imagine instead of storing a unique address for each house we store just the neighborhood name the house is located in. With this representation, you can no longer precisely differentiate between houses that are all in the same neighborhood but you know approximately where the houses are. The advantage however is that you require less memory to store the neighborhood data - this is why it’s a lossy algorithm, we lose information as a result of the compression. You trade accuracy for storage space. Want to save more space? Zoom out further and represent each house instead with the state it’s located in. Require more recall? Zoom in and represent the address on a more accurate scale.
 
@@ -65,7 +68,8 @@ Similarly in PQ compression instead of storing the exact vectors we replace them
 
 ## Improvements to BM25 and Hybrid Search
 
-![wand](./img/wand.png)
+![wand](./img/wand.png#gh-light-mode-only)
+![wand](./img/wand-dark.png#gh-dark-mode-only)
 
 In Weaviate `1.17` we introduced BM25, which  was great for small to medium-scale use cases. However, the initial implementation was not optimal for large-scale use cases due to high query-time latencies. We have identified and implemented a solution to this problem, the WAND algorithm!
 
@@ -152,7 +156,8 @@ For more detailed information on the patch releases, you can check out the [rele
 
 ## Replication 
 
-![replication](./img/replication.png)
+![replication](./img/replication.png#gh-light-mode-only)
+![replication](./img/replication-dark.png#gh-dark-mode-only)
 
 Weaviate version 1.18 introduces two new [replication](/developers/weaviate/concepts/replication-architecture) features: [tunable consistency](#tunable-consistency) for all read and write operations, and [repair-on-read](#repair-on-read).
 
@@ -188,7 +193,8 @@ Consider a scenario in which a request to delete objects was only handled by a s
 
 ## Cursor API
 
-![cursor api](./img/cursor-api.png)
+![cursor api](./img/cursor-api.png#gh-light-mode-only)
+![cursor api](./img/cursor-api-dark.png#gh-dark-mode-only)
 
 We have added an object ID-based `after` cursor to both the REST and GraphQL APIs in this release. This enhancement makes it easy for you to systemically retrieve all objects in a class from Weaviate. 
 
@@ -228,7 +234,8 @@ All parameters here are the same as in the above REST request example, and the o
 
 ## Azure Storage backup module
 
-![backups](./img/backups.png)
+![backups](./img/backups.png#gh-light-mode-only)
+![backups](./img/backups-dark.png#gh-dark-mode-only)
 
 This releases extends our cloud-native backup capabilities ([added in the 1.15 release](https://weaviate.io/blog/weaviate-1-15-release#cloud-native-backups)) further by introducing the `backup-azure` module. 
 
