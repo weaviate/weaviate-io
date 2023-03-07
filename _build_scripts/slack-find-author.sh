@@ -13,6 +13,7 @@ git_slack_map=(
     ["Erika Cardenas"]="<@U03RSSRAMLN>"
     ["Etienne Dilocker"]="<@UCZDBEZ5F>"
     ["hsm207"]="<@U04C2EATF6K>" #Shukri
+    ["Igor Lamas"]="<@U04MGB80F45>"
     ["John Trengrove"]="<@U03KPAE8Y7K>"
     ["JP Hwang"]="<@U0441J6PYGN>"
     ["Ken MacInnis"]="<@U048YRPG5J7>"
