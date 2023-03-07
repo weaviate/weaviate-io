@@ -105,12 +105,7 @@ Check out the documentation for more information on how to add filters to [BM25]
 ### Stopword Removal 
 In `1.17`, stopwords were not indexed, which led to zero results if you were searching for "the" or “us.” Now with `1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking. 
 
-Here is an example:
-query: “Where is the nearest fast food chain?”
-stopwords: [“where”, “is”, “the”] 
-
-Is the same as: 
-query: “Nearest fast food chain?”
+For example, take the query: "Where is the nearest fast food chain?" This query has the following stopwords: [“where”, “is”, “the”]. The query is then treated the same as: "Nearest fast food chain".
 
 Stopwords can now be configured at runtime, whereas previously this could only be done at import time. You can update your class after your data has been indexed by using the RESTful API.  
 
