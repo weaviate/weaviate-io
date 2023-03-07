@@ -117,7 +117,7 @@ This makes it easy to use the same module in different setups. For example, you 
 | `GOOGLE_APPLICATION_CREDENTIALS` | `/your/google/credentials.json` | The path to the secret GCP service account or workload identity file. |
 | `GCP_PROJECT` | `my-gcp-project` | Optional. If you use a service account with `GOOGLE_APPLICATION_CREDENTIALS` the service account will already contain a Google project. You can use this variable to explicitly set a project if you are using user credentials which may have access to more than one project. |
 
-### Microsoft Azure
+### Azure Storage
 
 Use the `backup-azure` module to enable backing up to and restoring from any Microsoft Azure Storage container.
 
@@ -154,7 +154,7 @@ Both options can be implemented using environment variables as follows:
 | Environment variable | Required | Description |
 | --- | --- | --- |
 | `AZURE_STORAGE_CONNECTION_STRING` | yes (*see note) | A string that includes the authorization information required ([Azure documentation](https://learn.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string)). <br/><br/> This variable is checked and used first before `AZURE_STORAGE_ACCOUNT`. |
-| `AZURE_STORAGE_ACCOUNT` | yes (*see note) | The name of your Azure Storage account. <br/><br/>For anonymous access, specify `""`. |
+| `AZURE_STORAGE_ACCOUNT` | yes (*see note) | The name of your Azure Storage account. |
 | `AZURE_STORAGE_KEY` | no | An access key for your Azure Storage account. <br/><br/>For anonymous access, specify `""`. |
 
 If both of `AZURE_STORAGE_CONNECTION_STRING` and `AZURE_STORAGE_ACCOUNT` are provided, Weaviate will use `AZURE_STORAGE_CONNECTION_STRING` to authenticate.
