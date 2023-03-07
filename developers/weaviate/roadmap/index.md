@@ -18,14 +18,16 @@ If you find any of the issues of interest, follow the link and upvote <i classNa
 
 Please feel free to engage with us about the roadmap on [Weaviate's GitHub](https://github.com/weaviate/weaviate) or on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
 
-
-## Planned for Weaviate 1.18
-
-<Roadmap label="planned-1.18"/>
-
 ## Planned for Weaviate 1.19
 
 <Roadmap label="planned-1.19"/>
+
+<!-- READY for when 1.20 issues will get tagged -->
+<!--
+## Planned for Weaviate 1.20
+
+<Roadmap label="planned-1.20"/> 
+-->
 
 ## Backlog
 
