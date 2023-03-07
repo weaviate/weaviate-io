@@ -208,7 +208,11 @@ A: The UUID must be presented as a string matching the [Canonical Textual repres
 
 ## Q: What is the best way to iterate through objects? Can I do paginated API calls? 
 
-A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's](/developers/weaviate/api/graphql/filters.md#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
+A: Yes, Weaviate supports cursor-based iteration as well as pagination through a result set.
+
+To iterate through all objects, you can use the `after` parameter with both [REST](../api/rest/objects.md#exhaustive-retrieval-after) and [GraphQL](../api/graphql/filters.md#cursor-with-after).
+
+For pagination through a result set, you can use the `offset` and `limit` parameters for GraphQL API calls. Take a look at [this page](../api/graphql/filters.md#pagination-with-offset) which describes how to use these parameters, including tips on performance and limitations.
 
 ## Q: What happens when the weaviate docker container restarts? Is my data in the weaviate database lost?
 

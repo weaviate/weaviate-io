@@ -1,0 +1,24 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(
+      limit: 5,
+      after: "00314096-d170-3038-8413-560add0fda2b"
+    ) {
+      title
+      _additional {
+        id
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

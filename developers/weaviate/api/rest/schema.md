@@ -260,8 +260,8 @@ Learn more about the schema configuration [here](/developers/weaviate/configurat
 | `properties` > `name` | body | string | The name of the property. Multiple words should be concatenated in camelCase, e.g. `nameOfAuthor`. |
 | `properties` > `indexInverted` | body | boolean | Should the data stored in this property be indexed? Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
 | `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. Learn more about [property tokenization](/developers/weaviate/configuration/schema-configuration.md#property-tokenization).|
-| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). |
-| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps). |
+| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on querying (stopwords are still indexed).<br/> Since `v1.18`, stopwords can be configured at runtime.<br/>See [more details here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). |
+| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix`.<br/>See [more details here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps). |
 | `replicationConfig` > `factor` | body | int | The replication factor, aka the number of copies in a replicated Weaviate setup. |
 
 ### Example request for creating a class
@@ -284,7 +284,7 @@ Retrieves the configuration of a single class in the schema.
 ### Method and URL
 
 ```js
-GET /v1/schema/{className}
+GET /v1/schema/{ClassName}
 ```
 
 ### Example request
@@ -319,7 +319,7 @@ import CodeSchemaDelete from '/_includes/code/schema.things.delete.mdx';
 
 Update settings of an existing schema class. 
 
-Use this endpoint to alter an existing class in the schema. Note that not all settings are mutable. If an error about immutable fields is returned and you still need to update this particular setting, you will have to delete the class (and the underlying data) and recreate. This endpoint cannot be used to modify properties. Instead, use [`POST /v1/schema/{className}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as the `vectorIndexConfig`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
+Use this endpoint to alter an existing class in the schema. Note that not all settings are mutable. If an error about immutable fields is returned and you still need to update this particular setting, you will have to delete the class (and the underlying data) and recreate. This endpoint cannot be used to modify properties. Instead, use [`POST /v1/schema/{ClassName}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as the `vectorIndexConfig`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
 
 You should attach a body to this PUT request with the **entire** new configuration of the class. 
 
@@ -355,7 +355,7 @@ Parameters in the PUT body:
 | `properties` > `name` | body | string | The name of the property. Multiple words should be concatenated in camelCase, e.g. `nameOfAuthor`. |
 | `properties` > `indexInverted` | body | boolean | Should the data stored in this property be indexed? Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
 | `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. Learn more about [property tokenization](/developers/weaviate/configuration/schema-configuration.md#property-tokenization). |
-| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on inverted indexing and querying. See [more details here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). |
+| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored when querying (stopwords are still indexed).<br/> Since`v1.18`, stopwords can be configured at runtime.<br/>See [more details here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). |
 | `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps). |
 
 

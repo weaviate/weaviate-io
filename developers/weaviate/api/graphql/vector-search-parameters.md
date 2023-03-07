@@ -96,7 +96,7 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get%7B%0D%0A++++Article%28%0D%0A++++++nearObject%3A+%7B%0D%0A++++++++beacon%3A+%22weaviate%3A%2F%2Flocalhost%2Fe5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf%22%2C+%0D%0A++++++++certainty%3A+0.7%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
-## hybrid
+## Hybrid
 This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
 
 ### Variables
@@ -130,7 +130,14 @@ import GraphQLFiltersHybridVector from '/_includes/code/graphql.filters.hybrid.v
 
 <GraphQLFiltersHybridVector/>
 
-## bm25
+### Hybrid with Where Filter 
+Introduced in `v1.18`, you can now use `where` filters with `hybrid`. 
+
+import GraphQLFiltersHybridFilterExample from '/_includes/code/graphql.filters.hybrid.filter.example.mdx';
+
+<GraphQLFiltersHybridFilterExample/>
+
+## BM25
 The `bm25` operator performs a keyword (sparse vector) search, and uses the BM25F ranking function to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
 
 The search is case-insensitive, and case matching does not confer a score advantage. Stop words are removed. [Stemming is not supported yet](https://github.com/weaviate/weaviate/issues/2439).
@@ -224,8 +231,14 @@ The `_additional` object in the GraphQL result exposes the score:
 }
 ```
 
+### BM25 with Where Filter 
+Introduced in `v1.18`, you can now use `where` filters with `bm25`. 
 
-## group
+import GraphQLFiltersBM25FilterExample from '/_includes/code/graphql.filters.bm25.filter.example.mdx';
+
+<GraphQLFiltersBM25FilterExample/>
+
+## Group
 
 You can use a group operator to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
 

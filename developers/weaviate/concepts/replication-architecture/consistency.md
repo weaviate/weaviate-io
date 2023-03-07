@@ -50,7 +50,7 @@ Eventual consistency is chosen over strong consistency, to ensure high availabil
 Adding or changing data objects are **write** operations.  
 
 :::note
-Write operations are tunable starting with Weaviate v1.18, to `ONE`, `QUORUM` or `ALL` (default). In v1.17, write operations are always set to `ALL` (highest consistency).
+Write operations are tunable starting with Weaviate v1.18, to `ONE`, `QUORUM` (default) or `ALL`. In v1.17, write operations are always set to `ALL` (highest consistency).
 :::
 
 The main reason for introducing configurable write consistency in v1.18 is because that is also when automatic repairs are introduced. A write will always be written to n (replication factor) nodes, regardless of the chosen consistency level. The coordinator node however waits for acknowledgements from `ONE`, `QUORUM` or `ALL` nodes before it returns. To guarantee that a write is applied everywhere without the availability of repairs on read requests, write consistency is set to `ALL` for now. Possible settings in v1.18+ are:
@@ -75,13 +75,14 @@ The main reason for introducing configurable write consistency in v1.18 is becau
 
 ### Tunable read consistency
 
-Read operations are GET queries to data objects in Weaviate. Like write, read consistency is tunable, to `ONE`, `QUORUM` or `ALL` (default).
+Read operations are GET requests to data objects in Weaviate. Like write, read consistency is tunable, to `ONE`, `QUORUM` (default) or `ALL`.
 
 :::note
-Prior to `v1.18`, read consistency was tunable only for requests that [obtained an object by id](../../api/rest/objects.md#get-a-data-object), and all other read requests had a read consistency of `ALL`.
+Prior to `v1.18`, read consistency was tunable only for requests that [obtained an object by id](../../api/rest/objects.md#get-a-data-object), and all other read requests had a consistency of `ALL`.
 :::
 
-Possible read consistency levels are:
+Starting with `v1.18`, the following consistency levels are applicable to most read operations:
+
 * **ONE** - a read response must be returned by at least one replica. This is the fastest (most available), but least consistent option. 
 * **QUORUM** - a response must be returned by `QUORUM` amount of replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
 * **ALL** - a read response must be returned by all replicas. The read operation will fail if at least one replica fails to respond. This is the most consistent, but 'slowest' (least available) option.
@@ -108,7 +109,13 @@ Examples:
 
 Repairs can be executed by Weaviate in case of a discovered inconsistency. A scenario where a repair could be necessary is the following: The user writes with a consistency level of `ONE`. The node dies before it can contact some of the other nodes. The node comes back up with the latest data. Some other nodes may now be out of sync and need to be repaired.
 
-Repairs can happen in the background, for example when a read operation is done. Repairs (and more information about them) will be available starting with v1.18 (Q1 2023).
+Repairs happen in the background, for example when a read operation is done ("repair-on-read"), using a "last write wins" policy for conflict resolution.
+
+When the replication coordinator node receives different versions of objects for a read request from the nodes in the replica set, that means that at least one node has old (stale) objects. The repair-on-read feature means that the coordinator node will update the affected node(s) with the latest version of the object(s). If a node was lacking an object entirely (e.g. because a create request was only handled by a subset of the nodes due to a network partition), the object will be replicated on that node.
+
+Consider a scenario in which a request to delete objects was only handled by a subset of nodes in the replica set. On the next read that involves such a deleted object, the replication coordinator may determine that some nodes are missing that object - i.e. it doesn’t exist on all replicas. `v1.18` introduces changes that enable the replication coordinator to determine the reason why an object was not found (i.e. it was deleted, or it never existed), along with the object itself. Thus, the coordinator can determine if the object:
+* never existed in the first place (so it should be propagated to the other nodes), or
+* was deleted from some replicas but still exists on others. In this latter case, the coordinator returns an error because it doesn’t know if the object has been created again after it was deleted, which would lead to propagating the deletion to cause data loss.
 
 
 ## More resources

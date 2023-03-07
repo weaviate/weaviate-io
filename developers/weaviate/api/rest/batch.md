@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## Batch data objects
+## Batch create objects
 
 For sending data objects to Weaviate in bulk.
 
@@ -29,16 +29,22 @@ A few points to bear in mind:
 ### Method and URL
 
 ```js
-POST /v1/batch/objects
+POST /v1/batch/objects[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 ### Parameters
 
-The body requires the following field:
+The URL supports an optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency) query parameter:
+
+| Name | Location | Type | Description |
+| ---- | -------- | ---- |------------ |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+
+The POST body requires the following field:
 
 | Name | Type | Required | Description |
-| ---- | ---- | -------- | ----------- |
-| `objects` | list of data objects | yes | A list of data objects, which correspond to the data [object body](./objects.md#parameters-1) |
+| ---- | ---- | ---- | ---- |
+| `objects` | array of data objects | yes | Array of [objects](./objects.md#parameters-1) |
 
 ### Example request
 
@@ -46,18 +52,14 @@ import BatchObjects from '/_includes/code/batch.objects.mdx';
 
 <BatchObjects/>
 
-## Batching objects with the Python client
+## Batch create objects with the Python Client
 
-Specific documentation for the Python client
+Specific documentation for the Python client can be found at [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.batch.html). Learn more about different types of batching and tip&tricks on the [Weaviate Python client page](/developers/weaviate/client-libraries/python.md).
 
-### Additional documentation
 
-* Additional documentation can be found at [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.batch.html).
-* Learn more about different types of batching and tip&tricks on the [Weaviate Python client page](/developers/weaviate/client-libraries/python.md).
+## Batch create references
 
-## Batch references
-
-For batching cross-references between data objects in bulk.
+For batch adding cross-references between data objects in bulk.
 
 ### Method and URL
 
@@ -67,12 +69,18 @@ POST /v1/batch/references
 
 ### Parameters
 
-The body of the data object for a new object is a list of objects containing:
+The URL supports an optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency) query parameter:
+
+| Name | Location | Type | Description |
+| ---- | -------- | ---- |------------ |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+
+The POST body is an array of elements with the following fields:
 
 | Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
-| `from` | Weaviate Beacon (long-form) | yes | The beacon, formatted as `weaviate://localhost/{Classname}/{id}/{cref_property_name}` |
-| `to` | Weaviate Beacon (regular) | yes | The beacon, formatted as `weaviate://localhost/{className}/{id}` |
+| `from` | Weaviate Beacon (long-form) | yes | The beacon, with the cross-reference property name at the end: `weaviate://localhost/{ClassName}/{id}/{crefPropertyName}` |
+| `to` | Weaviate Beacon (regular) | yes | The beacon, formatted as `weaviate://localhost/{ClassName}/{id}` |
 
 :::caution
 In the beacon format, you need to always use `localhost` as the host,
@@ -100,48 +108,55 @@ import BatchReferences from '/_includes/code/batch.references.mdx';
 
 For detailed information and instructions of batching in Python, see the [weaviate.batch.Batch](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.batch.html#weaviate.batch.Batch) documentation.
 
-## Batch delete by query
+## Batch delete
 
-You can use the `/v1/batch/objects` endpoint with the HTTP verb `DELETE` to delete all objects that match a particular expression. To determine if an object is a match [a where-Filter is used](../graphql/filters.md#where-filter). The request body takes a single filter, but will delete all objects matched. It returns the number of matched objects as well as any potential errors. Note that there is a limit to how many objects can be deleted using this filter at once, which is explained below.
+You can use the HTTP verb `DELETE` on the `/v1/batch/objects` endpoint to delete all objects that match a particular expression. To determine if an object is a match, [a where-Filter is used](../graphql/filters.md#where-filter). The request body takes a single filter, but will delete all objects matched. It returns the number of matched objects as well as any potential errors. Note that there is a limit to how many objects can be deleted at once using this filter, which is explained below.
 
 ### Maximum number of deletes per query
 
-There is an upper limit to how many objects can be deleted using a single query. This protects against unexpected memory surges and very long-running requests which would be prone to client-side timeouts or network interruptions. If a filter matches many objects, only the first `n` elements are deleted. You can configure `n` by setting `QUERY_MAXIMUM_RESULTS` in Weaviate's config. The default value is 10,000. Objects are deleted in the same order that they would be returned using the same filter in a Get query. To delete more objects than the limit, run the same query multiple times, until no objects are matched anymore.
+There is an upper limit to how many objects can be deleted using a single query. This protects against unexpected memory surges and very-long-running requests which would be prone to client-side timeouts or network interruptions. If a filter matches many objects, only the first `n` elements are deleted. You can configure `n` by setting `QUERY_MAXIMUM_RESULTS` in Weaviate's config. The default value is 10,000. Objects are deleted in the same order that they would be returned using the same filter in a Get query. To delete more objects than the limit, run the same query multiple times, until no objects are matched anymore.
+
 
 ### Dry-run before deletion
 
-You can use the dry-run option to see which objects would be deleted using your specified filter without deleting any objects yet. Depending on the verbosity set, you will either receive the total count of affected objects or a list of the affected IDs.
+You can use the dry-run option to see which objects would be deleted using your specified filter, without deleting any objects yet. Depending on the configured verbosity, you will either receive the total count of affected objects, or a list of the affected IDs.
 
 ### Method and URL
 
 ```js
-DELETE /v1/batch/objects
+DELETE /v1/batch/objects[?consistency_level=ONE|QUORUM|ALL]
 ```
 
 ### Parameters
 
-The body requires the following field:
+The URL supports an optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency) query parameter:
+
+| Name | Location | Type | Description |
+| ---- | -------- | ---- |------------ |
+| `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+
+The body requires the following fields:
 
 | Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
-| `match` | object | yes | An object outlining how to find the objects to be deleted. See an example below. |
-| `output` | string | no | Optional, controls the verbosity of the output. See possible values below. Defaults to `"minimal"`. |
-| `dryRun` | bool | no | Optional. If true, objects will not be deleted yet, but merely listed. Defaults to `false`. |
+| `match` | object | yes | Object outlining how to find the objects to be deleted (see example below) |
+| `output` | string | no | Optional verbosity level, `minimal` (default) or `verbose` |
+| `dryRun` | bool | no | If true, objects will not be deleted yet, but merely listed. Defaults to `false`. |
 
 #### A request body in detail
 
 ```yaml
 {
   "match": {
-    "class": "<ClassName>", # required
+    "class": "<ClassName>",  # required
     "where": { /* where filter object */ },  # required
   },
-  "output": "<output verbosity>",  # Optional, one of "minimal", "verbose". Defaults to "minimal".
-  "dryRun": <bool>  # Optional, if true, objects will not be deleted yet, but merely listed. Defaults to "false".
+  "output": "<output verbosity>",  # Optional, one of "minimal" or "verbose". Defaults to "minimal".
+  "dryRun": <bool>  # Optional. If true, objects will not be deleted yet, but merely listed. Defaults to "false".
 }
 ```
 
-Possible values for `output`
+Possible values for `output`:
 
 | Value | Effect |
 | ----- | ------ |
@@ -164,12 +179,12 @@ Possible values for `output`
     "limit": "<int>",              # the most amount of objects that can be deleted in a single query, matches QUERY_MAXIMUM_RESULTS
     "successful": "<int>",         # how many objects were successfully deleted in this round
     "failed": "<int>",             # how many objects should have been deleted but could not be deleted
-    "objects": [{                  # one JSON object per Weaviate object
+    "objects": [{                  # one JSON object per weaviate object
       "id": "<id>",                # this successfully deleted object would be omitted with output=minimal
       "status": "SUCCESS",         # possible status values are: "SUCCESS", "FAILED", "DRYRUN"
       "error": null
     }, {
-      "id": "<id>",                # this error'd object will always be listed, even with output=minimal
+      "id": "<id>",                # this error object will always be listed, even with output=minimal
       "status": "FAILED",
       "errors": {
          "error": [{
@@ -192,9 +207,9 @@ import BatchDeleteObjects from '/_includes/code/batch.delete.objects.mdx';
 
 When sending a batch request to your Weaviate instance, it could be the case that an error occurs. This can be caused by several reasons, for example that the connection to Weaviate is lost or that there is a mistake in a single data object that you are trying to add.
 
-You can check if an error and what kind has occurred. 
+You can check if an error occurred, and of what kind. 
 
-A batch request will always return an HTTP `200` status code when the batch request was successful. That means that the batch was successfully sent to Weaviate, and there were no issues with the connection or processing of the batch and no malformed request (`4xx` status code). However, with a `200` status code, there might still be individual failures of the data objects which are not contained in the response. Thus, a `200` status code does not guarantee that each batch item is added/created. An example of an error on an individual data object that might be unnoticed by sending a batch request without checking the individual results is this: adding an object to the batch that is in conflict with the schema (for example a non-existing class name).
+A batch request will always return an HTTP `200` status code when the batch request was successful. That means that the batch was successfully sent to Weaviate, and there were no issues with the connection or processing of the batch, and the request was not malformed (`4xx` status code). However, with a `200` status code, there might still be individual failures of the data objects which are not contained in the response. Thus, a `200` status code does not guarantee that each batch item has been added/created. An example of an error on an individual data object that might be unnoticed by sending a batch request without checking the individual results is this: adding an object to the batch that is in conflict with the schema (for example a non-existing class name).
 
 The following Python code can be used to handle errors on individual data objects in the batch. 
 

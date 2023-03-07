@@ -25,7 +25,7 @@ For more about how replication is designed and built in Weaviate, see the [Repli
 Replication is enabled per data class in the [data schema](./schema-configuration.md). This means you can set different replication factors per class in your dataset. To enable replication on a class (this is disabled by default), the replication factor has to be set. In a class in the schema, this looks like the following: `"replicationConfig": {"factor": 3"}` can be specified per class in the schema object.
 
 
-```json
+```yaml
 {
   "class": "ExampleClass",                        
   "properties": [                           
@@ -37,7 +37,7 @@ Replication is enabled per data class in the [data schema](./schema-configuratio
     }
   ],
   "replicationConfig": {
-    "factor": 3   // Integer, default 1. How many copies of this class will be stored.
+    "factor": 3   # Integer, default 1. How many copies of this class will be stored.
   }
 }
 ```
@@ -59,13 +59,13 @@ The data schema has a write consistency level of `ALL`, which means when you upl
 
 ## How to use: Queries
 
-When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available [consistency levels](../concepts/replication-architecture/consistency.md) are `ONE`, `QUORUM` (n/2+1) and `ALL`.
+When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available [consistency levels](../concepts/replication-architecture/consistency.md) are `ONE`, `QUORUM` (replication_factor / 2 + 1) and `ALL`.
 
 The `consistency_level` can be specified at query time: 
 
 ```bash
-# Get one object by ID, with consistency_level QUORUM
-$ curl /v1/objects/{className}/{id}?consistency_level=QUORUM
+# Get an object by ID, with consistency level ONE
+$ curl /v1/objects/{ClassName}/{id}?consistency_level=ONE
 ```
 
 :::caution Note:

@@ -2,6 +2,144 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+# Optionally set the consistency level
+client.batch.consistency_level = weaviate.data.replication.ConsistencyLevel.ALL  # default QUORUM
+result = client.batch.delete_objects(
+  class_name="Author",
+  # same where operator as in the GraphQL API
+  where={
+    "operator": "Equal",
+    "path": ["name"],
+    "valueText": "Jane"
+  },
+  output="verbose",
+  dry_run=False
+)
+
+print(result)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-client');
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.batch
+  .objectsBatchDeleter()
+  .withClassName('Article')
+  .withOutput('verbose')
+  .withDryRun(false)
+  .withWhere({
+    operator: 'GreaterThan',
+    path: ['_creationTimeUnix'],
+    valueString: '1651514874263',
+  })
+  .withConsistencyLevel(weaviate.replication.ConsistencyLevel.ALL)  // default QUORUM
+  .do()
+  .then(console.log)
+  .catch(console.error);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"  // for consistency levels
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+
+  where := filters.Where().
+    WithOperator(filters.GreaterThan).
+    WithPath([]string{"_creationTimeUnix"}).
+    WithValueString("1651514874263")
+
+  result, err := client.Batch().ObjectsBatchDeleter().
+    WithClassName("Article").
+    WithOutput("verbose").
+    WithDryRun(false).
+    WithWhere(where).
+    WithConsistencyLevel(replication.ConsistencyLevel.ALL).  // default QUORUM
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package technology.semi.weaviate;
+
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.batch.model.BatchDeleteOutput;
+import technology.semi.weaviate.client.v1.batch.model.BatchDeleteResponse;
+import technology.semi.weaviate.client.v1.filters.Operator;
+import technology.semi.weaviate.client.v1.filters.WhereFilter;
+import technology.semi.weaviate.client.v1.data.replication.model.ConsistencyLevel;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    WhereFilter where = WhereFilter.builder()
+      .operator(Operator.GreaterThan)
+      .path(new String[]{ "_creationTimeUnix" })
+      .valueString("1651514874263")
+      .build();
+
+    Result<BatchDeleteResponse> result = client.batch().objectsBatchDeleter()
+      .withClassName("Article")
+      .withOutput(BatchDeleteOutput.VERBOSE)
+      .withDryRun(false)
+      .withWhere(where)
+      .withConsistencyLevel(ConsistencyLevel.ALL)  // default QUORUM
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
 <TabItem value="curl" label="Curl">
 
 ```bash
@@ -20,138 +158,7 @@ $ curl \
   "output": "verbose",
   "dryRun": false
 }' \
-http://localhost:8080/v1/batch/objects
-```
-
-</TabItem>
-<TabItem value="py" label="Python">
-
-```python
-import weaviate
-
-client = weaviate.Client("http://localhost:8080")
-
-result = client.batch.delete_objects(
-	class_name="Author",
-	# same where operator as in the GraphQL API
-	where={
-		"operator": "Equal",
-		"path": ["name"],
-		"valueText": "Jane"
-	},
-	output="verbose",
-	dry_run=False,
-)
-
-print(result)
-```
-
-</TabItem>
-<TabItem value="js" label="JavaScript">
-
-```js
-const weaviate = require('weaviate-client');
-
-const client = weaviate.client({
-	scheme: 'http',
-	host: 'localhost:8080',
-});
-
-client.batch
-	.objectsBatchDeleter()
-	.withClassName('Article')
-	.withOutput('verbose')
-	.withDryRun(false)
-	.withWhere({
-	  operator: 'GreaterThan',
-	  path: ['_creationTimeUnix'],
-	  valueString: '1651514874263',
-	})
-	.do()
-	.then(console.log)
-	.catch(console.error);
-```
-
-</TabItem>
-<TabItem value="go" label="Go">
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
-)
-
-func main() {
-	cfg := weaviate.Config{
-		Host:   "localhost:8080",
-		Scheme: "http",
-	}
-	client := weaviate.New(cfg)
-
-	where := filters.Where().
-		WithOperator(filters.GreaterThan).
-		WithPath([]string{"_creationTimeUnix"}).
-		WithValueString("1651514874263")
-
-	result, err := client.Batch().ObjectsBatchDeleter().
-		WithClassName("Article").
-		WithOutput("verbose").
-		WithDryRun(false).
-		WithWhere(where).
-		Do(context.Background())
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Printf("%v", result)
-}
-```
-
-</TabItem>
-<TabItem value="java" label="Java">
-
-```java
-package technology.semi.weaviate;
-
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.batch.model.BatchDeleteOutput;
-import technology.semi.weaviate.client.v1.batch.model.BatchDeleteResponse;
-import technology.semi.weaviate.client.v1.filters.Operator;
-import technology.semi.weaviate.client.v1.filters.WhereFilter;
-
-public class App {
-  public static void main(String[] args) {
-    Config config = new Config("http", "localhost:8080");
-    WeaviateClient client = new WeaviateClient(config);
-
-    WhereFilter where = WhereFilter.builder()
-            .operator(Operator.GreaterThan)
-            .path(new String[]{ "_creationTimeUnix" })
-            .valueString("1651514874263")
-            .build();
-
-    Result<BatchDeleteResponse> result = client.batch().objectsBatchDeleter()
-            .withClassName("Article")
-            .withOutput(BatchDeleteOutput.VERBOSE)
-            .withDryRun(false)
-            .withWhere(where)
-            .run();
-
-    if (result.hasErrors()) {
-      System.out.println(result.getError());
-      return;
-    }
-    System.out.println(result.getResult());
-  }
-}
+http://localhost:8080/v1/batch/objects?consistency_level=ALL
 ```
 
 </TabItem>

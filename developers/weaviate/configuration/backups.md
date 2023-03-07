@@ -16,7 +16,7 @@ import Badges from '/_includes/badges.mdx';
 
 Weaviate's Backup feature is designed to feel very easy to use and work natively with cloud technology. Most notably, it allows:
 
-* Seamless integration with widely-used cloud blob storage, such as AWS S3 or GCS
+* Seamless integration with widely-used cloud blob storage, such as AWS S3, GCS or Azure
 * Backup and Restore between different storage providers
 * Single-command backup and restore from the REST API
 * Choice of backing up an entire instance, or selected classes only
@@ -29,9 +29,9 @@ _The backup functionality was introduced in Weaviate `v1.15`, but for single-nod
 
 ## Configuration
 
-In order to perform backups, a backup provider module must be activated. Multiple backup providers can be active at the same time. Currently `backup-s3`, `backup-gcs`, and `backup-filesystem` modules are available for S3, GCS or filesystem backups.
+In order to perform backups, a backup provider module must be activated. Multiple backup providers can be active at the same time. Currently `backup-s3`, `backup-gcs`, `backup-azure`, and `backup-filesystem` modules are available for S3, GCS, Azure or filesystem backups respectively.
 
-Built on Weaviate's [module system](/developers/weaviate/configuration/modules.md), additional providers can be added in the future.
+As it is built on Weaviate's [module system](/developers/weaviate/configuration/modules.md), additional providers can be added in the future.
 
 All service-discovery and authentication-related configuration is set using
 environment variables.
@@ -46,22 +46,21 @@ To enable the module set the following environment variable:
 ENABLE_MODULES=backup-s3
 ```
 
-Modules are comma-separated, for example to combine the module with the
-`text2vec-transformers` module, set:
+Modules are comma-separated. So, to combine the module with the `text2vec-transformers` module, set:
 
 ```
 ENABLE_MODULES=backup-s3,text2vec-transformers
 ```
 
 #### S3 Configuration (vendor-agnostic)
-In addition to activating the module, you need to provide configuration. This configuration applies to any S3-compatible backend.
+In addition to enabling the module, you need to configure it using environment variables. This configuration applies to any S3-compatible backend.
 
 | Environment variable | Required | Description |
 | --- | --- | --- |
 | `BACKUP_S3_BUCKET` | yes | The name of the S3 bucket for all backups. |
-| `BACKUP_S3_PATH` | no | The root path inside your bucket that all your backups will be copied into and retrieved from. Optional, defaults to `""` which means that the backups will be stored in the bucket root instead of a sub-folder. |
-| `BACKUP_S3_ENDPOINT` | no | The S3 endpoint to be used. Optional, defaults to `"s3.amazonaws.com"`. |
-| `BACKUP_S3_USE_SSL` | no | Whether the connection should be secured with SSL/TLS. Optional, defaults to `"true"`. |
+| `BACKUP_S3_PATH` | no | The root path inside your bucket that all your backups will be copied into and retrieved from. <br/><br/>Optional, defaults to `""` which means that the backups will be stored in the bucket root instead of a sub-folder. |
+| `BACKUP_S3_ENDPOINT` | no | The S3 endpoint to be used. <br/><br/>Optional, defaults to `"s3.amazonaws.com"`. |
+| `BACKUP_S3_USE_SSL` | no | Whether the connection should be secured with SSL/TLS. <br/><br/>Optional, defaults to `"true"`. |
 
 #### S3 Configuration (AWS-specific)
 
@@ -82,7 +81,7 @@ The backup module will first try to authenticate itself using AWS IAM. If the au
 
 ### GCS (Google Cloud Storage)
 
-Use the `backup-gcs` module to enable backing up to and restoring from any Google Cloud Storage.
+Use the `backup-gcs` module to enable backing up to and restoring from any Google Cloud Storage bucket.
 
 To enable the module set the following environment variable:
 
@@ -90,18 +89,20 @@ To enable the module set the following environment variable:
 ENABLE_MODULES=backup-gcs
 ```
 
-Modules are comma-separated, for example to combine the module with the `text2vec-transformers` module, set:
+Modules are comma-separated. So, to combine the module with the `text2vec-transformers` module, set:
 
 ```
 ENABLE_MODULES=backup-gcs,text2vec-transformers
 ```
 
-In addition to activating the module, you need to provide configuration:
+In addition to enabling the module, you need to configure it using environment variables. There are bucket-related variables, as well as credential-related variables.
+
+#### GCS bucket-related variables
 
 | Environment variable | Required | Description |
 | --- | --- | --- |
 | `BACKUP_GCS_BUCKET` | yes | The name of the GCS bucket for all backups. |
-| `BACKUP_GCS_PATH` | no | The root path inside your bucket that all your backups will be copied into and retrieved from. Optional, defaults to `""` which means that the backups will be stored in the bucket root instead of a sub-folder. |
+| `BACKUP_GCS_PATH` | no | The root path inside your bucket that all your backups will be copied into and retrieved from. <br/><br/>Optional, defaults to `""` which means that the backups will be stored in the bucket root instead of a sub-folder. |
 
 #### Google Application Default Credentials
 
@@ -116,6 +117,51 @@ This makes it easy to use the same module in different setups. For example, you 
 | `GOOGLE_APPLICATION_CREDENTIALS` | `/your/google/credentials.json` | The path to the secret GCP service account or workload identity file. |
 | `GCP_PROJECT` | `my-gcp-project` | Optional. If you use a service account with `GOOGLE_APPLICATION_CREDENTIALS` the service account will already contain a Google project. You can use this variable to explicitly set a project if you are using user credentials which may have access to more than one project. |
 
+### Azure Storage
+
+Use the `backup-azure` module to enable backing up to and restoring from any Microsoft Azure Storage container.
+
+To enable the module set the following environment variable:
+
+```
+ENABLE_MODULES=backup-azure
+```
+
+Modules are comma-separated. So, to combine the module with the `text2vec-transformers` module, set:
+
+```
+ENABLE_MODULES=backup-azure,text2vec-transformers
+```
+
+In addition to enabling the module, you need to configure it using environment variables. There are container-related variables, as well as credential-related variables.
+
+#### Azure container-related variables
+
+| Environment variable | Required | Description |
+| --- | --- | --- |
+| `BACKUP_AZURE_CONTAINER` | yes | The name of the Azure container for all backups. |
+| `BACKUP_AZURE_PATH` | no | The root path inside your container that all your backups will be copied into and retrieved from. <br/><br/>Optional, defaults to `""` which means that the backups will be stored in the container root instead of a sub-folder. |
+
+#### Azure Credentials
+
+There are two different ways to authenticate against Azure with `backup-azure`. You can use either:
+
+1. An Azure Storage connection string, or
+1. An Azure Storage account name and key. 
+
+Both options can be implemented using environment variables as follows:
+
+| Environment variable | Required | Description |
+| --- | --- | --- |
+| `AZURE_STORAGE_CONNECTION_STRING` | yes (*see note) | A string that includes the authorization information required ([Azure documentation](https://learn.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string)). <br/><br/> This variable is checked and used first before `AZURE_STORAGE_ACCOUNT`. |
+| `AZURE_STORAGE_ACCOUNT` | yes (*see note) | The name of your Azure Storage account. |
+| `AZURE_STORAGE_KEY` | no | An access key for your Azure Storage account. <br/><br/>For anonymous access, specify `""`. |
+
+If both of `AZURE_STORAGE_CONNECTION_STRING` and `AZURE_STORAGE_ACCOUNT` are provided, Weaviate will use `AZURE_STORAGE_CONNECTION_STRING` to authenticate.
+
+:::note At least one credential option is required
+At least one of `AZURE_STORAGE_CONNECTION_STRING` or `AZURE_STORAGE_ACCOUNT` must be present.
+:::
 
 ### Filesystem
 
@@ -133,13 +179,13 @@ To allow backups to the local filesystem, enable the `backup-filesystem` module 
 ENABLE_MODULES=backup-filesystem
 ```
 
-Modules are comma-separated. For example, to combine the module with the `text2vec-transformers` module, set:
+Modules are comma-separated. So, to combine the module with the `text2vec-transformers` module, set:
 
 ```
 ENABLE_MODULES=backup-filesystem,text2vec-transformers
 ```
 
-In addition to activating the module, you need to provide configuration:
+In addition to enabling the module, you need to configure it using environment variables:
 
 | Environment variable | Required | Description |
 | --- | --- | --- |

@@ -16,8 +16,9 @@ updated_schema = {
 # Update only the properties in variable "updated_schema"
 client.data_object.update(
     updated_schema,
-    "Author",
+    class_name="Author",
     "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"
+    consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 
 # Replaces the whole data object with the "updated_schema"
@@ -25,6 +26,7 @@ client.data_object.replace(
     updated_schema,
     "Author",
     "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"
+    consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 ```
 
@@ -56,6 +58,7 @@ client.data
             .withId(id)
             .withClassName(thingClassName)
             .withProperties(schema)
+            .withConsistencyLevel(weaviate.replication.ConsistencyLevel.ALL)  // default QUORUM
             .do();
         })
     .then(res => {
@@ -76,6 +79,7 @@ import (
     "context"
 
     "github.com/weaviate/weaviate-go-client/v4/weaviate"
+    "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"  // for consistency levels
 )
 
 func main() {
@@ -93,6 +97,7 @@ func main() {
         WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
         WithClassName("Author").
         WithProperties(dataSchema).
+        WithConsistencyLevel(replication.ConsistencyLevel.ALL).  // default QUORUM
         Do(context.Background())
 
     if err != nil {
@@ -112,6 +117,7 @@ import java.util.Map;
 import technology.semi.weaviate.client.Config;
 import technology.semi.weaviate.client.WeaviateClient;
 import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.data.replication.model.ConsistencyLevel;
 
 public class App {
   public static void main(String[] args) {
@@ -125,6 +131,7 @@ public class App {
       .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
       .withClassName("Author")
       .withProperties(properties)
+      .withConsistencyLevel(ConsistencyLevel.ALL)  // default QUORUM
       .run();
 
     if (result.hasErrors()) {
@@ -150,7 +157,7 @@ $ curl \
           "name": "J. Kantor"
       }
   }' \
-    http://localhost:8080/v1/objects/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303
+    http://localhost:8080/v1/objects/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303?consistency_level=ALL
 ```
 
 </TabItem>

@@ -31,10 +31,7 @@ Some authors make a distinction between "pre-filtering" and "single-stage filter
 
 ## Efficient Pre-Filtered Searches in Weaviate
 
-In the section about Storage, [we have described in detail which parts make up a
-shard in Weaviate](./storage.md). Most notably, each shard contains an
-inverted index right next to the HNSW index. This allows for efficient
-pre-filtering. The process is as follows:
+In the section about Storage, [we have described in detail which parts make up a shard in Weaviate](./storage.md). Most notably, each shard contains an inverted index right next to the HNSW index. This allows for efficient pre-filtering. The process is as follows:
 
 1. An inverted index (similar to a traditional search engine) is used to create an allow-list of eligible candidates. This list is essentially a list of `uint64` ids, so it can grow very large without sacrificing efficiency.
 2. A vector search is performed where the allow-list is passed to the HNSW index. The index will move along any node's edges normally, but will only add ids to the result set that are present on the allow list. The exit conditions for the search are the same as for an unfiltered search: The search will stop when the desired limit is reached and additional candidates no longer improve the result quality.
@@ -60,6 +57,12 @@ As a comparison, with pure HNSW - without the cutoff - the same filters would lo
 ![Prefiltering with pure HNSW](./img/prefiltering-pure-hnsw-without-cutoff.png "Prefiltering without cutoff, i.e. pure HNSW")
 
 The cutoff value can be configured as [part of the `vectorIndexConfig` settings in the schema](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) for each class separately.
+
+<!-- TODO - replace figures with updated post-roaring bitmaps figures -->
+
+:::note performance improvements from roaring bitmaps
+From `v1.18.0` onwards, Weaviate implements 'Roaring bitmaps' for the inverted index which decreased filtering times, especially for large allow lists. In terms of the above graphs, the *blue* areas will be reduced the most, especially towards the left of the figures.
+::: 
 
 ## Cachable Filters
 
@@ -102,9 +105,11 @@ The two semantic queries have very little relation and most likely there will be
 
 ## Performance of vector searches with cached filters
 
-The following was run single-threaded (i.e. you can add more CPU threads to increase throughput) on a dataset of 1M objects with random vectors of 384d with a warm filter cache.
+The following was run single-threaded (i.e. you can add more CPU threads to increase throughput) on a dataset of 1M objects with random vectors of 384d with a warm filter cache (pre-`Roaring bitmap` implementation).
 
 Please note that each search uses a completely unique (random) search vector, meaning that only the filter portion is cached, but not the vector search portion, i.e. on `count=100`, 100 unique query vectors were used with the same filter.
+
+<!-- TODO - replace table with updated post-roaring bitmaps figures -->
 
 [![Performance of filtered vector search with caching](./img/filtered-vector-search-with-caches-performance.png "Performance of filtered vector searches with 1M 384d objects")](./img/filtered-vector-search-with-caches-performance.png)
 
