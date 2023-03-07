@@ -26,7 +26,7 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 ## DataType: string vs. text
 
-There are two datatypes dedicated to saving textual information: string and text. `string` values are indexed as one token, whereas `text` values are indexed after applying tokenization. `"jane.doe@foobar.com"` as string would be indexed as `"jane.doe@foobar.com"` and also only match that in a GraphQL where filter, whereas as text it would be indexed as `['jane', 'doe', 'foobar', 'com']` and also match the individual words.
+There are two data types dedicated to saving textual information: string and text. `string` values are indexed as one token, whereas `text` values are indexed after applying tokenization. `"jane.doe@foobar.com"` as string would be indexed as `"jane.doe@foobar.com"` and also only match that in a GraphQL where filter, whereas as text it would be indexed as `['jane', 'doe', 'foobar', 'com']` and also match the individual words.
 
 ## DataType: date
 
@@ -61,7 +61,7 @@ An example of how geo coordinates are used in a data object:
 
 There is a special, primitive data type `phoneNumber`. When a phone number is added to this field, the input will be normalized and validated, unlike the single fields as `number` and `string`. The data field is an object, as opposed to a flat type similar to `geoCoordinates`. The object has multiple fields:
 
-```json
+```yaml
 {
   "phoneNumber": {
     "input": "020 1234567",                       // Required. Raw input in string format
@@ -129,12 +129,13 @@ $ curl \
 
 ## DataType: cross-reference
 
-The `cross-reference` type is the graph element of Weaviate: you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list of are names of classes that exist elsewhere in the schema. For example:
+The [`cross-reference`](../more-resources/glossary.md) type is the graph element of Weaviate: you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list of are names of classes that exist elsewhere in the schema. For example:
 
 ```json
 {
   "properties": [
     {
+      "name": "hasWritten",
       "dataType": [
         "Article",
         "Blog"
@@ -145,13 +146,14 @@ The `cross-reference` type is the graph element of Weaviate: you can create a li
 ```
 
 ### Number of linked instances
-The `cross-reference` type objects are `arrays` by default. This allows you to link to any number `(0..n)` of instances of a given class.
+
+The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given class (including zero).
 
 In the above example, our objects can be linked to:
 * **0** Articles and **1** Blog
 * **1** Article and **3** Blogs
 * **2** Articles and **5** Blogs
-* etc
+* etc.
 
 ## More Resources
 

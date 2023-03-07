@@ -14,15 +14,17 @@ For sending data objects to Weaviate in bulk.
 
 ### Performance
 
-💡 Import speeds, especially for large datasets, will drastically improve when using the batching endpoint. 
+:::tip
+Import speeds, especially for large datasets, will drastically improve when using the batching endpoint.
+:::
 
 A few points to bear in mind:
 
-1. If you use a vectorizer that improves with GPU support, make sure to enable it if possible, it will drastically improve import.
+1. If you use a vectorizer that improves with GPU support, make sure to enable it if possible, as it will drastically improve import.
 1. Avoid duplicate vectors for multiple data objects.
-1. Handle your errors, if you ignore them, it might lead to significant delays on import.
-1. If import slows down after a particular number of objects (e.g. 2M), check to see if the [`vectorCacheMaxObjects`](../../configuration/indexes.md#how-to-configure-hnsw) in your schema is larger than the number of objects. Also, see [this example](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/blob/d4711f2bdc75afd503ff70092c3c5303f9dd1b3b/step-2/import.py#L58-L59).
-1. There are ways to improve your setup when using vectorizers. Like in the Wikipedia demo dataset. We will keep publishing about this, sign up for our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep up to date.
+1. Handle your errors. If you ignore them, it might lead to significant delays on import.
+1. If your import slows down after a particular number of objects (e.g. 2M), check to see if the [`vectorCacheMaxObjects`](../../configuration/indexes.md#how-to-configure-hnsw) in your schema is larger than the number of objects. Also, see [this example](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/blob/d4711f2bdc75afd503ff70092c3c5303f9dd1b3b/step-2/import.py#L58-L59).
+1. There are ways to improve your setup when using vectorizers, as we've shown in the Wikipedia demo dataset. Sign up for our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep up-to-date as we publish more on this topic.
 
 ### Method and URL
 
@@ -54,6 +56,7 @@ import BatchObjects from '/_includes/code/batch.objects.mdx';
 
 Specific documentation for the Python client can be found at [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.batch.html). Learn more about different types of batching and tip&tricks on the [Weaviate Python client page](/developers/weaviate/client-libraries/python.md).
 
+
 ## Batch create references
 
 For batch adding cross-references between data objects in bulk.
@@ -79,18 +82,22 @@ The POST body is an array of elements with the following fields:
 | `from` | Weaviate Beacon (long-form) | yes | The beacon, with the cross-reference property name at the end: `weaviate://localhost/{ClassName}/{id}/{crefPropertyName}` |
 | `to` | Weaviate Beacon (regular) | yes | The beacon, formatted as `weaviate://localhost/{ClassName}/{id}` |
 
-*Note: In the beacon format, you need to always use `localhost` as the host,
+:::caution
+In the beacon format, you need to always use `localhost` as the host,
 rather than the actual hostname. `localhost` refers to the fact that the
 beacon's target is on the same Weaviate instance, as opposed to a foreign
-instance.*
+instance.
+:::
 
-*Note: For backward compatibility, you can omit the class name in the
+:::note
+For backward compatibility, you can omit the class name in the
 short-form beacon format that is used for `to`. You can specify it as
 `weaviate://localhost/{id}`. This is, however, considered deprecated and will be
 removed with a future release, as duplicate IDs across classes could mean that
 this beacon is not uniquely identifiable. For the long-form beacon - used as part
 of `from` - you always need to specify the full beacon, including the reference
-property name.*
+property name.
+:::
 
 ### Example request
 
@@ -99,7 +106,7 @@ import BatchReferences from '/_includes/code/batch.references.mdx';
 <BatchReferences/>
 
 
-For detailed information and instructions of batching in Python, click [here](https://weaviate-python-client.readthedocs.io/en/v3.0.0/weaviate.batch.html#weaviate.batch.Batch).
+For detailed information and instructions of batching in Python, see the [weaviate.batch.Batch](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.batch.html#weaviate.batch.Batch) documentation.
 
 ## Batch delete
 
@@ -108,6 +115,7 @@ You can use the HTTP verb `DELETE` on the `/v1/batch/objects` endpoint to delete
 ### Maximum number of deletes per query
 
 There is an upper limit to how many objects can be deleted using a single query. This protects against unexpected memory surges and very-long-running requests which would be prone to client-side timeouts or network interruptions. If a filter matches many objects, only the first `n` elements are deleted. You can configure `n` by setting `QUERY_MAXIMUM_RESULTS` in Weaviate's config. The default value is 10,000. Objects are deleted in the same order that they would be returned using the same filter in a Get query. To delete more objects than the limit, run the same query multiple times, until no objects are matched anymore.
+
 
 ### Dry-run before deletion
 
@@ -171,7 +179,7 @@ Possible values for `output`:
     "limit": "<int>",              # the most amount of objects that can be deleted in a single query, matches QUERY_MAXIMUM_RESULTS
     "successful": "<int>",         # how many objects were successfully deleted in this round
     "failed": "<int>",             # how many objects should have been deleted but could not be deleted
-    "objects": [{                  # one json object per weaviate object
+    "objects": [{                  # one JSON object per weaviate object
       "id": "<id>",                # this successfully deleted object would be omitted with output=minimal
       "status": "SUCCESS",         # possible status values are: "SUCCESS", "FAILED", "DRYRUN"
       "error": null

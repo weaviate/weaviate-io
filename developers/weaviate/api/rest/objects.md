@@ -132,13 +132,13 @@ The response of a `GET` query of a data object will give you information about a
 
 ### Object fields
 
-| field name | datatype | required `include` or `additional` field |  description |
-| ---------- | -------- | ---------------------------------------- | ------------ |
-| `class` | string | none | The class name |
-| `creationTimeUnix` | unix timestamp | none | The time stamp of creation of the data object |
-| `id` | uuid | none | The uuid of the data object |
-| `lastUpdateTimeUnix` | unix timestamp | none | the time stamp when the data object was last updated |
-| `properties` > `{propertyName}` | dataType | none | The name and value of an individual property |
+| Field name | Data type | Required `include` or `additional` field | Description |
+| ---------- | --------- | ---------------------------------------- | ----------- |
+| `class` | string | none | The class name. |
+| `creationTimeUnix` | unix timestamp | none | The time stamp of creation of the data object. |
+| `id` | uuid | none | The uuid of the data object. |
+| `lastUpdateTimeUnix` | unix timestamp | none | The time stamp when the data object was last updated. |
+| `properties` > `{propertyName}` | dataType | none | The name and value of an individual property. |
 | `properties` > `{crefPropertyName}` > `classification` > `closestLosingDistance` | float | `classification` | The lowest distance of a neighbor in the losing group. Optional. If `k` equals the size of the winning group, there is no losing group. |
 | `properties` > `{crefPropertyName}` > `classification` > `closestOverallDistance` | float | `classification` | The lowest distance of any neighbor, regardless of whether they were in the winning or losing. |
 | `properties` > `{crefPropertyName}` > `classification` > `closestWinningDistance` | float | `classification` | Closest distance of a neighbor from the winning group. |
@@ -147,24 +147,24 @@ The response of a `GET` query of a data object will give you information about a
 | `properties` > `{crefPropertyName}` > `classification` > `meanWinningDistance` | float | `classification` | The mean distance of the winning group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
 | `properties` > `{crefPropertyName}` > `classification` > `overallCount` | integer | `classification` | Overall neighbors checked as part of the classification. In most cases this will equal `k`, but could be lower than `k` - for example if not enough data was present. |
 | `properties` > `{crefPropertyName}` > `classification` > `winningCount` | integer | `classification` | Size of the winning group, a number between 1 and `k`. |
-| `vector` | list of floats | `vector` | the long vector of the location of the object in the 300 dimensional space | 
-| `classification` > `basedOn` | string |  `classification` | the property name where the classification was based on |
-| `classification` > `classifiedFields` | string |  `classification` | the classified property |
-| `classification` > `completed` | timestamp |  `classification` | the time of classification completion |
-| `classification` > `id` | uuid |  `classification` | the classification id |
-| `classification` > `scope` | list of strings |  `classification` | the initial fields to classify |
-| `featureProjection` > `vector` | list of floats |  `featureProjection` | the 2D or 3D vector coordinates of the feature projection |
+| `vector` | list of floats | `vector` | The long vector of the location of the object in the 300 dimensional space. | 
+| `classification` > `basedOn` | string |  `classification` | The property name where the classification was based on. |
+| `classification` > `classifiedFields` | string |  `classification` | The classified property. |
+| `classification` > `completed` | timestamp |  `classification` | The time of classification completion. |
+| `classification` > `id` | uuid |  `classification` | The classification id. |
+| `classification` > `scope` | list of strings |  `classification` | The initial fields to classify. |
+| `featureProjection` > `vector` | list of floats |  `featureProjection` | The 2D or 3D vector coordinates of the feature projection. |
 
 ### Status codes and error cases
 
 | Cause | Description | Result |
 | ----- | ----------- | ------ |
 | No objects present | No `?class` is provided. There are no objects present in the entire Weaviate instance. | `200 OK` - No error |
-| Valid class, no objects present | `?class` is provided, class exists. There are no objects present for this class | `200 OK` - No error |
-| Invalid class | `?class` is provided, class does not exist | `404 Not Found` |
-| Validation | Otherwise invalid user request | `422 Unprocessable Entity` |
-| Authorization | Not allowed to view resource | `403 Forbidden` | 
-| Server-Side error | Correct user input, but request failed for another reason | `500 Internal Server Error` - contains detailed error message |
+| Valid class, no objects present | `?class` is provided, class exists. There are no objects present for this class. | `200 OK` - No error |
+| Invalid class | `?class` is provided, class does not exist. | `404 Not Found` |
+| Validation | Otherwise invalid user request. | `422 Unprocessable Entity` |
+| Authorization | Not allowed to view resource. | `403 Forbidden` | 
+| Server-Side error | Correct user input, but request failed for another reason. | `500 Internal Server Error` - contains detailed error message |
 
 #### Example request
 
@@ -178,7 +178,9 @@ Create a new data object. The provided meta-data and schema values are validated
 
 ### Performance
 
-💡 This endpoint is meant for individual object creations.
+:::tip
+This endpoint is meant for individual object creations.
+:::
 
 If you plan on importing an entire dataset, it's much more efficient to use the [`/v1/batch`](./batch.md) endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty:
 
@@ -276,7 +278,7 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 
 <RestObjectsCRUDClassnameNote/>
 
-#### Parameters
+### URL parameters
 
 | Name | Location | Type | Description |
 | ---- |----------| ---- | ----------- |
@@ -287,7 +289,7 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 
 #### Example request
 
-See [here](#response-fields) the explanation of the response fields.
+The [response fields](#response-fields) are explained in the corresponding section above.
 
 import SemanticKindObjectGet from '/_includes/code/semantic-kind.object.get.mdx';
 
@@ -351,7 +353,7 @@ PATCH /v1/objects/{id}
 
 #### Parameters
 
-The URL has 2 required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
+The URL has two required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
@@ -412,7 +414,7 @@ If the deletion was successful, no content will be returned.
 
 ## Validate a data object
 
-You can validate a data object's schema and meta data. 
+You can validate an object's schema and metadata without creating it. If the schema of the object is valid, the request should return `True`/`true` in case of the clients, and nothing with a plain RESTful request. Otherwise, an error object will be returned.
 
 #### Method and URL
 
@@ -420,19 +422,21 @@ You can validate a data object's schema and meta data.
 POST /v1/objects/validate
 ```
 
-*Note: As with creating an object, the className is not specified through the
-URL, as it is part of the request body.*
+:::note
+As with creating an object, the class name is not specified through the URL, as it is part of the request body.
+:::
 
 #### Parameters
 
-The body of the data object for a new data object is an object taking the following field:
+The request body for validating an object has the following fields:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
 | `class` | string | yes | The class name as defined in the schema |
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
-| `id` | v4 uuid | no<sup>*</sup> | The id of the data object. <sup>*</sup>An ID is required by the clients. |
+| `id` | v4 uuid | no<sup>*</sup> | The id of the data object.<br/><sup>*An ID is required by the clients.</sup> |
+
 
 #### Example request
 
@@ -440,7 +444,6 @@ import SemanticKindValidate from '/_includes/code/semantic-kind.validate.mdx';
 
 <SemanticKindValidate/>
 
-If the schema of the object is valid, this request should return `True`/`true` in case of the clients and nothing with a plain RESTful request. 
 
 ## Cross-references
 
@@ -453,6 +456,7 @@ If the schema of the object is valid, this request should return `True`/`true` i
 #### Method and URL
 
 Available since `v1.14` and the preferred way:
+
 ```http
 POST /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
@@ -466,7 +470,7 @@ POST /v1/objects/{id}/references/{propertyName}
 
 #### Parameters
 
-The URL includes 3 required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
+The URL includes three required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
@@ -477,9 +481,9 @@ The URL includes 3 required path parameters and supports an optional query param
 
 The request body is an object with the following field:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
-| `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, formatted as `weaviate://localhost/<ClassName>/<id>` |
+| `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, in the format `weaviate://localhost/<ClassName>/<id>` |
 
 :::caution
 In the beacon format, you need to always use `localhost` as the host,
@@ -523,7 +527,7 @@ PUT /v1/objects/{id}/references/{propertyName}
 
 #### Parameters
 
-The URL includes 3 required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
+The URL includes three required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
@@ -534,9 +538,9 @@ The URL includes 3 required path parameters and supports an optional query param
 
 The `PUT` request body is a list of beacons:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
-| `beacon` | Weaviate Beacon | yes | the beacon URL of the reference, in the format of `weaviate://localhost/<ClassName>/<id>` |
+| `beacon` | Weaviate Beacon array | yes | Array of beacons in the format `weaviate://localhost/<ClassName>/<id>` |
 
 :::caution
 In the beacon format, you need to always use `localhost` as the host,
@@ -581,7 +585,7 @@ DELETE /v1/objects/{id}/references/{propertyName}
 
 #### Parameters
 
-The URL includes 2 required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
+The URL includes two required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
@@ -591,7 +595,7 @@ The URL includes 2 required path parameters and supports an optional query param
 
 The request body is a beacon object:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, formatted as `weaviate://localhost/<ClassName>/<id>` |
 

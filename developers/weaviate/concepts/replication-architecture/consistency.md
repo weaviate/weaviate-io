@@ -33,7 +33,7 @@ A clean (without fails) execution has two phases:
 
 ## Data objects 
 
-Data objects in Weaviate have **eventual consistency**, which means that all nodes will eventually contain the most updated data if the data is not updated for a while. It might happen that after a data update, not all nodes are updated yet, but there is a guarantee that all nodes will be up to date after some time. Eventual consistency provides BASE semantics: 
+Data objects in Weaviate have **eventual consistency**, which means that all nodes will eventually contain the most updated data if the data is not updated for a while. It might happen that after a data update, not all nodes are updated yet, but there is a guarantee that all nodes will be up-to-date after some time. Eventual consistency provides BASE semantics: 
 
 * **Basically available**: reading and writing operations are as available as possible
 * **Soft-state**: there are no consistency guarantees since updates might not yet have converged
@@ -82,6 +82,7 @@ Prior to `v1.18`, read consistency was tunable only for requests that [obtained 
 :::
 
 Starting with `v1.18`, the following consistency levels are applicable to most read operations:
+
 * **ONE** - a read response must be returned by at least one replica. This is the fastest (most available), but least consistent option. 
 * **QUORUM** - a response must be returned by `QUORUM` amount of replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
 * **ALL** - a read response must be returned by all replicas. The read operation will fail if at least one replica fails to respond. This is the most consistent, but 'slowest' (least available) option.
@@ -103,7 +104,7 @@ Examples:
 
   <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-ALL.png" alt="Write consistency ALL" width="60%"/></p>
 
-  
+
 ## Repairs
 
 Repairs can be executed by Weaviate in case of a discovered inconsistency. A scenario where a repair could be necessary is the following: The user writes with a consistency level of `ONE`. The node dies before it can contact some of the other nodes. The node comes back up with the latest data. Some other nodes may now be out of sync and need to be repaired.
@@ -117,7 +118,7 @@ Consider a scenario in which a request to delete objects was only handled by a s
 * was deleted from some replicas but still exists on others. In this latter case, the coordinator returns an error because it doesn’t know if the object has been created again after it was deleted, which would lead to propagating the deletion to cause data loss.
 
 
-## More Resources
+## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

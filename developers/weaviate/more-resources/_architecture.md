@@ -15,26 +15,26 @@ import Badges from '/_includes/badges.mdx';
 The following are some bullet points, that need to be converted to proper text.
 I tried to be quite detailed, if there are details in there that should not be
 published, feel free to remove them, as long as the general message still makes
-sense. Simiarly all bullet points are brutally honest, for some there might be
+sense. Similarly, all bullet points are brutally honest, for some there might be
 a more marketing-suited way of saying the same things. Feel free to adopt.
 
 ## 0.22.x ("Third-party setup")
 
-### 10,000 feet few
-* The "Core" Weaviate application (not to be confused with the Weviate Stack)
-  itself is statelss and stores its data in third-party databases
+### 10,000 feet view
+* The "Core" Weaviate application (not to be confused with the Weaviate Stack)
+  itself is stateless and stores its data in third-party databases
 * The two databases used are `etcd` and `Elasticsearch`. 
 * `Etcd` has mostly historic reasons and is currently used to store
   configuration, the schema and contextionary extensions
 * `Elasticsearch` stores all data objects and provides search functionalities
-* The "Core" Weaviate application handles converting text-to-vector, enrichting
-  the schema in dataobjects, building and resolving of cross-references,
+* The "Core" Weaviate application handles converting text-to-vector, enriching
+  the schema in data objects, building and resolving of cross-references,
   validation and the APIs
 
 ### Vector Search
 * When a vector search happens, Core uses the Contextionary to convert the
   query text to a vector and passes it to Elasticsearch. 
-* Elasticsearch does a consine similarity comparison using the OSS plugin
+* Elasticsearch does a cosine similarity comparison using the OSS plugin
   `lior-k/fast-elasticsearch-vector-scoring`
 * This is a primitive, exhaustive approach, in other words, the query vector is
   compared to every other vector in the index with O(n) time complexity
@@ -50,7 +50,7 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
 * Etcd can be scaled horizontally, but it is unlikely that etcd will become the
   bottleneck in the stack.
 * The contextionary container (only present when the "Semantic Search
-  Extension" is enbaled), converts text to vectors, both on import, as well as
+  Extension" is enabled), converts text to vectors, both on import, as well as
   at query time.
 * During an import load typically peaks in both the contextionary containers,
   as well as in the Elasticsearch containers. They are usually the first
@@ -60,7 +60,7 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
 
 ## 1.0.0 ("Standalone")
 
-### 10,000 feet few
+### 10,000 feet view
 * The "Core" Weaviate application handles all persistence, no third-party
   databases are involved.
 * Weaviate's persistence layer is built to be vector-native. At the same time
@@ -167,9 +167,8 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
   which will become the standard in 1.0.0, standalone mode is **not a preview
   of 1.0.0**. In other words, the switch to 1.0.0 will probably contain
   breaking changes which are not currently reflected in 0.22.x standalone mode
-* As of 0.22.16, standalone mode is not feature complete, the limitations can
-  be seen in [link to limitations page in contributor docs]
-* Instead standalone mode in 0.22.x is meant as a preview to see what Weaviate
+* As of 0.22.16, standalone mode is not feature complete.
+* Instead, standalone mode in 0.22.x is meant as a preview to see what Weaviate
   will be like once it no longer depends on third-party DBs for its persistence
 * As of 0.22.16, standalone mode currently still requires `etcd` in the stack.
   This has no technical reasons, a replacement for the data currently stored

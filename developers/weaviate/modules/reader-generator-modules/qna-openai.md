@@ -111,8 +111,8 @@ This module adds a search parameter to GraphQL `Get{...}` queries: `ask{}`. This
 
 | Field | Data Type | Required | Example value | Description |
 |- |- |- |- |- |
-| `question`  | string | yes | `"What is the name of the Dutch king?"`  | The question to be answered. |
-| `properties`  | list of strings | no | `["summary"]`  | The properties of the queries Class which contains text. If no properties are set, all are considered. |
+| `question`  | string | yes | `"What is the name of the Dutch king?"` | The question to be answered. |
+| `properties`  | list of strings | no | `["summary"]` | The properties of the queries Class which contains text. If no properties are set, all are considered. |
 
 Notes:
 
