@@ -98,23 +98,26 @@ semantic search.
 
 The pre-built models include:
 
-|Model Name|Description|Image Name|
-|---|---|---|
-|sentence-transformers/paraphrase-MiniLM-L6-v2 (English, 384d)|New! Sentence-Transformer recommendation for best accuracy/speed trade-off. The lower dimensionality also reduces memory requirements of larger datasets in Weaviate.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-MiniLM-L6-v2|
-|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 (Multilingual, 384d)|New! Sentence-Transformer recommendation for best accuracy/speed trade-off for a multi-lingual model. The lower dimensionality also reduces memory requirements of larger datasets in Weaviate.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-MiniLM-L12-v2|
-|sentence-transformers/paraphrase-mpnet-base-v2 (English, 768d)|New! Currently the highest overall score (across all benchmarks) on sentence-transformers benchmarks.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-mpnet-base-v2|
-|sentence-transformers/paraphrase-multilingual-mpnet-base-v2 (Multilingual, 768d)|New! Currently the highest overall score for a multi-lingual model (across all benchmarks) on sentence-transformers benchmarks.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-mpnet-base-v2|
-|sentence-transformers/sentence-transformers/msmarco-distilbert-base-v3 (English, 768d)|New! Successor to the widely popular msmarco v2 models. For Question-Answer style queries (given a search query, find the right passages). Our recommendation to be used in combination with the qna-transformers (Answer extraction) module.|semitechnologies/transformers-inference:sentence-transformers-msmarco-distilbert-base-v3|
-|sentence-transformers/stsb-mpnet-base-v2 (English, 768d)|New! Highest STSb score on sentence-transformers benchmarks.|semitechnologies/transformers-inference:sentence-transformers-stsb-mpnet-base-v2|
-|sentence-transformers/nli-mpnet-base-v2 (English, 768d)|New! Highest Twitter Paraphrases score on sentence-transformers benchmarks.|semitechnologies/transformers-inference:sentence-transformers-nli-mpnet-base-v2|
-|sentence-transformers/stsb-distilbert-base (English)|Deprecated. Only use for compatibility, prefer newer model if possible.|semitechnologies/transformers-inference:sentence-transformers-stsb-distilbert-base|
-|sentence-transformers/quora-distilbert-base (English)||semitechnologies/transformers-inference:sentence-transformers-quora-distilbert-base|
-|sentence-transformers/paraphrase-distilroberta-base-v1 (English)|Deprecated. Only use for compatibility, prefer newer model if possible.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-distilroberta-base-v1|
-|kiri-ai/distiluse-base-multilingual-cased-et (Multilingual)||semitechnologies/transformers-inference:kiri-ai-distiluse-base-multilingual-cased-et|
-|sentence-transformers/msmarco-distilroberta-base-v2 (English)|Deprecated. Only use for compatibility, prefer newer model if possible.|semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2|
-|sentence-transformers/msmarco-distilbert-base-v2 (English)||semitechnologies/transformers-inference:sentence-transformers-msmarco-distilbert-base-v2|
-|sentence-transformers/stsb-xlm-r-multilingual (Multilingual)|Deprecated. Only use for compatibility, prefer newer model if possible.|semitechnologies/transformers-inference:sentence-transformers-stsb-xlm-r-multilingual|
-|sentence-transformers/paraphrase-xlm-r-multilingual-v1 (Multilingual)|Deprecated. Only use for compatibility, prefer newer model if possible.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-xlm-r-multilingual-v1|
+|Model Name|Image Name|
+|---|---|
+|`distilbert-base-uncased` ([Info](https://huggingface.co/distilbert-base-uncased))|`semitechnologies/transformers-inference:distilbert-base-uncased`|
+|`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` ([Info](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2))|`semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-MiniLM-L12-v2`|
+|`sentence-transformers/multi-qa-MiniLM-L6-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1`|
+|`sentence-transformers/multi-qa-mpnet-base-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-mpnet-base-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-mpnet-base-cos-v1`|
+|`sentence-transformers/all-mpnet-base-v2` ([Info](https://huggingface.co/sentence-transformers/all-mpnet-base-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-mpnet-base-v2`|
+|`sentence-transformers/all-MiniLM-L12-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L12-v2`|
+|`sentence-transformers/paraphrase-multilingual-mpnet-base-v2` ([Info](https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2))|`semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-mpnet-base-v2`|
+|`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2`|
+|`sentence-transformers/multi-qa-distilbert-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-distilbert-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-distilbert-cos-v1`|
+|`sentence-transformers/gtr-t5-base` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-base))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-base`|
+|`sentence-transformers/gtr-t5-large` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-large))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-large`|
+|`google/flan-t5-base` ([Info](https://huggingface.co/google/flan-t5-base))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-base`|
+|`google/flan-t5-large` ([Info](https://huggingface.co/google/flan-t5-large))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-large`|
+|DPR Models|
+|`facebook/dpr-ctx_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-ctx_encoder-single-nq-base))|`semitechnologies/transformers-inference:facebook-dpr-ctx_encoder-single-nq-base`|
+|`facebook/dpr-question_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-question_encoder-single-nq-base))|`semitechnologies/transformers-inference:facebook-dpr-question_encoder-single-nq-base`|
+|`vblagoje/dpr-ctx_encoder-single-lfqa-wiki` ([Info](https://huggingface.co/vblagoje/dpr-ctx_encoder-single-lfqa-wiki))|`semitechnologies/transformers-inference:vblagoje-dpr-ctx_encoder-single-lfqa-wiki`|
+|`vblagoje/dpr-question_encoder-single-lfqa-wiki` ([Info](https://huggingface.co/vblagoje/dpr-question_encoder-single-lfqa-wiki))|`semitechnologies/transformers-inference:vblagoje-dpr-question_encoder-single-lfqa-wiki`|
 
 The above image names always point to the latest version of the inference
 container including the model. You can also make that explicit by appending
