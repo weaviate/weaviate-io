@@ -107,8 +107,7 @@ Examples:
 
 ### Tunable consistency strategies
 
-Depending on the desired tradeoff between consistency and speed, here are three common consistency level pairing for write / read operations:
-
+Depending on the desired tradeoff between consistency and speed, below are three common consistency level pairings for write / read operations. These are _minimum_ requirements that guarantee eventually consistent data:
 * `QUORUM` / `QUORUM` => balanced write and read latency
 * `ONE` / `ALL` => fast write and slow read (optimized for write)
 * `ALL` / `ONE` => slow write and fast read (optimized for read)
