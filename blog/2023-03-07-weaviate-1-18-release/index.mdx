@@ -5,7 +5,7 @@ authors: [jp, erika, zain, dan]
 date: 2023-03-07
 tags: []
 image: ./img/hero.png
-description: "Weaviate 1.18 introduces Roaring Bitmaps,   Learn all about it."
+description: "Weaviate 1.18 introduces Faster Filtering through Bitmap Indexing, HNSW-PQ, Cursor API, and more! Learn all about it."
 ---
 ![Weaviate 1.18](./img/hero.png)
 
@@ -16,7 +16,7 @@ We are happy to announce the release of Weaviate `1.18`, which brings a set of g
 If you like your content brief and to the point, here is the TL;DR of this release:
 
 1. [Faster Filtering with Roaring Bitmaps](#faster-filtering-with-roaring-bitmaps) – modern data structure that dramatically boosts the speed for filtered searches
-1. [Vector Indexing](#vector-indexing) – enables great performance at a fraction of the previous RAM requirements
+1. [HNSW-PQ](#hnsw-pq) – enables great performance at a fraction of the previous RAM requirements
 1. [Improvements to BM25 and Hybrid Search](#improvements-to-bm25-and-hybrid-search) – faster scoring with the WAND implementation and added filter support
 1. [Replication](#replication) – two new replication features: tunable consistency for all read and write operations, and repair on read
 1. [Cursor API](#cursor-api) – simple way to export every object from Weaviate
@@ -47,9 +47,9 @@ We note that the current implementation is not yet applicable to filtering `text
 
 If you are already dealing with a large dataset, this will likely improve your performance significantly. And if you are dealing with a growing dataset, you can be assured that Weaviate will stay performant even as your dataset grows.
 
-## Vector Indexing
+## HNSW-PQ
 
-![vector indexing](./img/vector-indexing.png)
+![hnsw-pq](./img/hnsw-pq.png)
 
 Weaviate is a very performant and robust vector database but it does require RAM to perform well and with `1.18` we are introducing a new feature that aims to give users the same performance they have come to expect from Weaviate but at a fraction of the previous RAM requirements! Currently, the two big RAM costs of Weaviate come, firstly, from needing to store neighborhood graphs which allow us to conduct approximate nearest neighbors search algorithms like HNSW, and secondly from having to store the entire vectors themselves in memory. 
 
