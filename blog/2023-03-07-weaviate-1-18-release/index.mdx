@@ -20,7 +20,7 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 1. [Improvements to BM25 and Hybrid Search](#improvements-to-bm25-and-hybrid-search) – faster scoring with the WAND implementation and added filter support
 1. [Replication](#replication) – two new replication features: tunable consistency for all read and write operations, and repair on read
 1. [Cursor API](#cursor-api) – simple way to export every object from Weaviate
-1. [Azure Storage backup module](#azure-storage-backup-module) – extends our cloud-native backup capabilities further by introducing the `backup-azure` module. 
+1. [Azure Storage backup module](#azure-storage-backup-module) – extends our cloud-native backup capabilities further by introducing the `backup-azure` module.
 
 Read below to learn more about each of these points in more detail.
 
@@ -29,7 +29,7 @@ Read below to learn more about each of these points in more detail.
 ![roaring bitmaps](./img/roaring-bitmaps.png#gh-light-mode-only)
 ![roaring bitmaps](./img/roaring-bitmaps-dark.png#gh-dark-mode-only)
 
-This release introduces a compact, modern data structure to Weaviate called [“Roaring bitmaps”](http://roaringbitmap.org/about/) that will replace the internals of the inverted index. The new Roaring bitmap indexing dramatically speeds up filtered searches, and we’ve seen it provide up to 1000(!) times faster performance in some cases. 
+This release introduces a compact, modern data structure to Weaviate called [“Roaring bitmaps”](http://roaringbitmap.org/about/) that will replace the internals of the inverted index. The new Roaring bitmap indexing dramatically speeds up filtered searches, and we’ve seen it provide up to 1000(!) times faster performance in some cases.
 
 ### Motivation
 At Weaviate, we've been on a journey to keep up with the growing needs of our users. As more and more vectors are added to Weaviate instances, the "allow list" of pre-filtered items can reach tens, or hundreds of millions of objects. This can result in long retrieval times that are far from ideal from a user perspective. The introduction of Roaring Bitmaps is another step that will help us and our users scale to the next level.
@@ -42,7 +42,7 @@ The extra efficiencies are due to various strategies that Roaring Bitmaps employ
 Weaviate version `1.18` and onwards will include this feature, and our team will be maintaining our underlying Roaring Bitmap library to address any issues and make improvements as needed.
 
 ### What this means for you
-From your perspective, the only visible change will be the a one-time process to create the new index. Once your Weaviate instance creates the Roaring Bitmap index, it will operate in the background to speed up your work. 
+From your perspective, the only visible change will be the a one-time process to create the new index. Once your Weaviate instance creates the Roaring Bitmap index, it will operate in the background to speed up your work.
 
 We note that the current implementation is not yet applicable to filtering `text` and `string` datatypes, which is an area that we aim to tackle in the future.
 
@@ -53,11 +53,11 @@ If you are already dealing with a large dataset, this will likely improve your p
 ![hnsw-pq](./img/hnsw-pq.png#gh-light-mode-only)
 ![hnsw-pq](./img/hnsw-pq-dark.png#gh-dark-mode-only)
 
-Weaviate is a very performant and robust vector database but it does require RAM to perform well and with `1.18` we are introducing a new feature that aims to give users the same performance they have come to expect from Weaviate but at a fraction of the previous RAM requirements! Currently, the two big RAM costs of Weaviate come, firstly, from needing to store neighborhood graphs which allow us to conduct approximate nearest neighbors search algorithms like HNSW, and secondly from having to store the entire vectors themselves in memory. 
+Weaviate is a very performant and robust vector database but it does require RAM to perform well and with `1.18` we are introducing a new feature that aims to give users the same performance they have come to expect from Weaviate but at a fraction of the previous RAM requirements! Currently, the two big RAM costs of Weaviate come, firstly, from needing to store neighborhood graphs which allow us to conduct approximate nearest neighbors search algorithms like HNSW, and secondly from having to store the entire vectors themselves in memory.
 
 ### Introduction of Product Quantization
 
-With Weaviate `1.18` we are alleviating these high RAM requirements by now allowing users to keep a compressed representation of the vectors in memory. This allows users to maintain a similar performance but at a fraction of the RAM requirements of previous versions. 
+With Weaviate `1.18` we are alleviating these high RAM requirements by now allowing users to keep a compressed representation of the vectors in memory. This allows users to maintain a similar performance but at a fraction of the RAM requirements of previous versions.
 
 More specifically, in `1.18` we implemented the solution proposed in [DiskANN](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf) whereby we combined our HNSW indexing with vectors that have been compressed using product quantization (PQ). PQ is a lossy compression algorithm that allows us to significantly reduce vector representation size at the cost of a bit of recall. But how does it actually work, you ask !?
 
@@ -84,7 +84,7 @@ To use WAND for your application, upgrade your Weaviate instance to `1.18`. No o
 ### Filters for BM25 and Hybrid Search
 The `where` filter allows you to narrow down your data based on specified conditions. [Vector search parameters](/developers/weaviate/api/graphql/vector-search-parameters) are applied to GraphQL queries on the class level. We have added `where` filters to BM25 and hybrid search!
 
-The implementation is the same as how you would add a filter to any other vector search parameter. To begin using filters with BM25 and hybrid, simply upgrade your Weaviate instance to `1.18`. 
+The implementation is the same as how you would add a filter to any other vector search parameter. To begin using filters with BM25 and hybrid, simply upgrade your Weaviate instance to `1.18`.
 
 An example of adding a filter to your hybrid search looks like this:
 
@@ -104,14 +104,14 @@ An example of adding a filter to your hybrid search looks like this:
 
 ```
 
-Check out the documentation for more information on how to add filters to [BM25](/developers/weaviate/api/graphql/vector-search-parameters#bm25-with-where-filter) and [hybrid](/developers/weaviate/api/graphql/vector-search-parameters#hybrid-with-where-filter). 
+Check out the documentation for more information on how to add filters to [BM25](/developers/weaviate/api/graphql/vector-search-parameters#bm25-with-where-filter) and [hybrid](/developers/weaviate/api/graphql/vector-search-parameters#hybrid-with-where-filter).
 
-### Stopword Removal 
-In `1.17`, stopwords were not indexed, which led to zero results if you were searching for "the" or “us.” Now with `1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking. 
+### Stopword Removal
+In `1.17`, stopwords were not indexed, which led to zero results if you were searching for "the" or “us.” Now with `1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking.
 
 For example, take the query: "Where is the nearest fast food chain?" This query has the following stopwords: [“where”, “is”, “the”]. The query is then treated the same as: "Nearest fast food chain".
 
-Stopwords can now be configured at runtime, whereas previously this could only be done at import time. You can update your class after your data has been indexed by using the RESTful API.  
+Stopwords can now be configured at runtime, whereas previously this could only be done at import time. You can update your class after your data has been indexed by using the RESTful API.
 
 Below is an example request for updating the list of stopwords:
 
@@ -122,9 +122,9 @@ client = weaviate.Client("http://localhost:8080")
 
 class_obj = {
     "invertedIndexConfig": {
-        "stopwords": { 
+        "stopwords": {
             "preset": "en",
-            "additions": ["where", "is", "the"]                                         
+            "additions": ["where", "is", "the"]
         }
     }
 }
@@ -137,13 +137,13 @@ For more information on how to update a class using the RESTful API, check out t
 ### Ongoing Fixes and Improvements
 Although [BM25](/developers/weaviate/api/graphql/vector-search-parameters#bm25) and [Hybrid Search](/developers/weaviate/api/graphql/vector-search-parameters#hybrid) were released in Weaviate `1.17`, we continued to make fixes and improvements. Here are a list of the patch releases related to BM25/Hybrid:
 
-* `1.17.1`: 
+* `1.17.1`:
   * Fix BM25/Hybrid over-fetching issue
     * This patch corrected hybrid search from returning too many results
 
-* `1.17.2`: 
+* `1.17.2`:
   * Resolve hybrid search cross-references
-    * Enhance the `Get{ }` query hybrid searches by resolving the cross-references found in the result set. 
+    * Enhance the `Get{ }` query hybrid searches by resolving the cross-references found in the result set.
   * Use different tokenization for text and string
     * This patch ensures the correct tokenization is used for each property
 
@@ -151,9 +151,9 @@ Although [BM25](/developers/weaviate/api/graphql/vector-search-parameters#bm25) 
   * Fixes searching in multi-node setups where sometimes empty results were returned.
   * Fixes wrong scores when one of the searched properties was empty.
 
-For more detailed information on the patch releases, you can check out the [release notes](https://github.com/weaviate/weaviate/releases) for `1.17.1`, `1.17.2`, and `1.17.4`. 
+For more detailed information on the patch releases, you can check out the [release notes](https://github.com/weaviate/weaviate/releases) for `1.17.1`, `1.17.2`, and `1.17.4`.
 
-## Replication 
+## Replication
 
 ![replication](./img/replication.png#gh-light-mode-only)
 ![replication](./img/replication-dark.png#gh-dark-mode-only)
@@ -166,7 +166,7 @@ As a distributed database subject to the [CAP theorem](/developers/weaviate/conc
 * `QUORUM` - reads/writes succeed after a majority of nodes (`replication_factor/2 + 1`) respond
 * `ALL` - all replicas must respond
 
-Depending on the desired tradeoff between consistency and speed, here are three common consistency level pairing for write / read operations:
+Depending on the desired tradeoff between consistency and speed, below are three common consistency level pairings for write / read operations. These are _minimum_ requirements that guarantee eventually consistent data:
 * `QUORUM` / `QUORUM` => balanced write and read latency
 * `ONE` / `ALL` => fast write and slow read (optimized for write)
 * `ALL` / `ONE` => slow write and fast read (optimized for read)
@@ -194,7 +194,7 @@ Consider a scenario in which a request to delete objects was only handled by a s
 ![cursor api](./img/cursor-api.png#gh-light-mode-only)
 ![cursor api](./img/cursor-api-dark.png#gh-dark-mode-only)
 
-We have added an object ID-based `after` cursor to both the REST and GraphQL APIs in this release. This enhancement makes it easy for you to systemically retrieve all objects in a class from Weaviate. 
+We have added an object ID-based `after` cursor to both the REST and GraphQL APIs in this release. This enhancement makes it easy for you to systemically retrieve all objects in a class from Weaviate.
 
 ### How to use
 To use this with the `objects` REST endpoint, provide an object uuid with the `after` parameter in the GET request. The syntax looks like this:
@@ -204,7 +204,7 @@ To use this with the `objects` REST endpoint, provide an object uuid with the `a
 Where:
 
 - `<WEAVIATE_INSTANCE>` is Weaviate URL (e.g. `https://yoursandbox.weaviate.io`),
-- `<CLASS_NAME>` is the class (e.g. `Article`) being retrieved (this MUST be set), 
+- `<CLASS_NAME>` is the class (e.g. `Article`) being retrieved (this MUST be set),
 - `<N_OBJECTS>` are the number of objects to be retrieved in that request, and
 - `<UUID>` is the last object ID retrieved (e.g. `f81bfe5e-16ba-4615-a516-46c2ae2e5a80`) (optional; without it, the results will be from the first object).
 
@@ -226,9 +226,9 @@ Or, you can use this with the `GET` function with a GraphQL query.
 All parameters here are the same as in the above REST request example, and the only additional parameter is `<PROPERTIES>` to specify the properties to be retrieved.
 
 ### Notes
-- The `after` cursor relies on the order of object IDs as stored in Weaviate. Accordingly, it is not applicable to any queries involving a search or a filter. In other words, if the query involves operators such as `where`, `near<Media>`, `bm25`, `hybrid`, etc., `after` cannot be used. You should use the  [`offset` parameter](/developers/weaviate/api/graphql/filters#offset-argument-pagination) for these. 
+- The `after` cursor relies on the order of object IDs as stored in Weaviate. Accordingly, it is not applicable to any queries involving a search or a filter. In other words, if the query involves operators such as `where`, `near<Media>`, `bm25`, `hybrid`, etc., `after` cannot be used. You should use the  [`offset` parameter](/developers/weaviate/api/graphql/filters#offset-argument-pagination) for these.
 - The `after` cursor cannot be used in conjunction with `offset`.
-- The `after` cursor is available on both single-shard and multi-shard set-ups.  
+- The `after` cursor is available on both single-shard and multi-shard set-ups.
 
 Learn about the Cursor API in the [documentation](/developers/weaviate/api/graphql/filters#cursor-with-after).
 
@@ -240,13 +240,13 @@ Learn about the Cursor API in the [documentation](/developers/weaviate/api/graph
 This releases extends our cloud-native backup capabilities ([added in the 1.15 release](/blog/weaviate-1-15-release#cloud-native-backups)) further by introducing the `backup-azure` module. 
 
 ### Backup options
-Now Weaviate users can enjoy even more choice for cloud-native backup providers with Azure Storage joining the ranks of S3-compatible storage as well as Google Cloud Storage. This new module will be especially convenient for our users who are in the Azure ecosystem already. 
+Now Weaviate users can enjoy even more choice for cloud-native backup providers with Azure Storage joining the ranks of S3-compatible storage as well as Google Cloud Storage. This new module will be especially convenient for our users who are in the Azure ecosystem already.
 
 ### Supported authentication methods
-The module supports Azure’s Storage Connections strings, as well as name-and-key based authentication into the storage box. Please refer to [our documentation here](/developers/weaviate/configuration/backups#azure-storage) for information on how to configure it. 
+The module supports Azure’s Storage Connections strings, as well as name-and-key based authentication into the storage box. Please refer to [our documentation here](/developers/weaviate/configuration/backups#azure-storage) for information on how to configure it.
 
 
 ## Stay Connected
-Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io). 
+Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
 Weaviate is open-source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

@@ -105,6 +105,14 @@ Examples:
   <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-ALL.png" alt="Write consistency ALL" width="60%"/></p>
 
 
+### Tunable consistency strategies
+
+Depending on the desired tradeoff between consistency and speed, below are three common consistency level pairings for write / read operations. These are _minimum_ requirements that guarantee eventually consistent data:
+* `QUORUM` / `QUORUM` => balanced write and read latency
+* `ONE` / `ALL` => fast write and slow read (optimized for write)
+* `ALL` / `ONE` => slow write and fast read (optimized for read)
+
+
 ## Repairs
 
 Repairs can be executed by Weaviate in case of a discovered inconsistency. A scenario where a repair could be necessary is the following: The user writes with a consistency level of `ONE`. The node dies before it can contact some of the other nodes. The node comes back up with the latest data. Some other nodes may now be out of sync and need to be repaired.
@@ -117,6 +125,9 @@ Consider a scenario in which a request to delete objects was only handled by a s
 * never existed in the first place (so it should be propagated to the other nodes), or
 * was deleted from some replicas but still exists on others. In this latter case, the coordinator returns an error because it doesn’t know if the object has been created again after it was deleted, which would lead to propagating the deletion to cause data loss.
 
+An object that never existed will be propagated to the other nodes only if the object was queried with a _high enough_ consistency level, vs. the write consistency that was used to write the object:
+* if write was `QUORUM`, the read consistency level can be >= `QUORUM`
+* if the write was `ONE`, the object must be read with `ALL` to guarantee repair. This is because if only `ONE` node received the write request, then a `QUORUM` read request might only hit nodes that don't have the object, while an `ALL` request will reach that node as well.
 
 ## More resources
 
