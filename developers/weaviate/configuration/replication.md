@@ -12,17 +12,13 @@ import Badges from '/_includes/badges.mdx';
 - [Concepts: Replication Architecture](../concepts/replication-architecture/index.md)
 :::
 
-Weaviate instances can be replicated to increase availability, read throughput and enable zero downtime upgrades. On this page, you will learn how to set replication for your Weaviate instance.
-
-:::caution Note:
-Starting with v1.17, you can set the Replication Factor per class in the schema. Consistency levels are tunable in queries, which will be available from v1.18 (except for [read consistency for objects by ID](../concepts/replication-architecture/consistency.md#tunable-read-consistency), which is tunable from v1.17). 
-:::
+Weaviate instances can be replicated to increase availability and read throughput, and to enable zero-downtime upgrades. On this page, you will learn how to set replication for your Weaviate instance.
 
 For more about how replication is designed and built in Weaviate, see the [Replication Architecture](../concepts/replication-architecture/index.md) pages.
 
 ## How to configure: Schema
 
-Replication is enabled per data class in the [data schema](./schema-configuration.md). This means you can set different replication factors per class in your dataset. To enable replication on a class (this is disabled by default), the replication factor has to be set. In a class in the schema, this looks like the following: `"replicationConfig": {"factor": 3"}` can be specified per class in the schema object.
+Replication is disabled by default and can be enabled per data class in the [schema](./schema-configuration.md). This means you can set different replication factors per class in your dataset. To enable replication on a class, the replication factor has to be set, which looks like the following:
 
 
 ```yaml
@@ -36,9 +32,11 @@ Replication is enabled per data class in the [data schema](./schema-configuratio
       ]
     }
   ],
+  # highlight-start
   "replicationConfig": {
     "factor": 3   # Integer, default 1. How many copies of this class will be stored.
   }
+  # highlight-end
 }
 ```
 
@@ -54,7 +52,7 @@ When you set this replication factor in the data schema before you add data, you
 Changing the replication factor after adding data is an **experimental feature** as of v1.17 and will become more stable in the future.
 :::
 
-The data schema has a write consistency level of `ALL`, which means when you upload or update a schema, this will be sent to `ALL` nodes (via a coordinator node). The coordinator node waits for a successful acknowledgement from `ALL` nodes before sending a success message back to the client. This ensures a highly consistent schema in your distributed Weaviate setup.
+The data schema has a [write consistency level](../concepts/replication-architecture/consistency.md#tunable-write-consistency) of `ALL`, which means when you upload or update a schema, this will be sent to `ALL` nodes (via a coordinator node). The coordinator node waits for a successful acknowledgement from `ALL` nodes before sending a success message back to the client. This ensures a highly consistent schema in your distributed Weaviate setup.
 
 
 ## How to use: Queries
@@ -68,8 +66,8 @@ The `consistency_level` can be specified at query time:
 $ curl /v1/objects/{ClassName}/{id}?consistency_level=ONE
 ```
 
-:::caution Note:
-In v1.17, only [read queries that get data by ID](../api/rest/objects.md#get-a-data-object) have a tunable consistency level. All other object-specific REST endpoints (read or write) use the consistency level `ALL`. Starting with v1.18, all write and read queries are tunable to either `ONE`, `QUORUM` or `ALL`. GraphQL endpoints use the consistency level `ONE` (in both versions).
+:::note
+In v1.17, only [read queries that get data by ID](../api/rest/objects.md#get-a-data-object) had a tunable consistency level. All other object-specific REST endpoints (read or write) used the consistency level `ALL`. Starting with v1.18, all write and read queries are tunable to either `ONE`, `QUORUM` (default) or `ALL`. GraphQL endpoints use the consistency level `ONE` (in both versions).
 :::
 
 import QueryReplication from '/_includes/code/replication.get.object.by.id.mdx';
