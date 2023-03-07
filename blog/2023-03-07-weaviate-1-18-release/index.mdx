@@ -225,7 +225,7 @@ Or, you can use the cursor API with the `GET` function in a GraphQL query.
 All parameters here are the same as in the above REST request example, and the only additional parameter is `<PROPERTIES>` to specify the properties to be retrieved.
 
 ### Notes
-- The `after` cursor relies on the order of object IDs as stored in Weaviate. Accordingly, it is not applicable to any queries involving a search or a filter. In other words, if the query involves operators such as `where`, `near<Media>`, `bm25`, `hybrid`, etc., `after` cannot be used. You should use the  [`offset` parameter](/developers/weaviate/api/graphql/filters##pagination-with-offset) for these.
+- The `after` cursor relies on the order of object IDs as stored in Weaviate. Accordingly, it is not applicable to any queries involving a search or a filter. In other words, if the query involves operators such as `where`, `near<Media>`, `bm25`, `hybrid`, etc., `after` cannot be used. You should use the  [`offset` parameter](/developers/weaviate/api/graphql/filters#pagination-with-offset) for these.
 - The `after` cursor cannot be used in conjunction with `offset`.
 - The `after` cursor is available on both single-shard and multi-shard set-ups.
 
