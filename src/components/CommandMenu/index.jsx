@@ -3,6 +3,7 @@ import CommandPalette, { getItemIndex, useHandleOpenCommandPalette } from 'react
 import './cmdk.css';
 import { useState } from 'react';
 import { query } from './query';
+import { captureSiteSearchAnalytics } from '../../analytics';
 import { debounceTime, tap, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -17,7 +18,8 @@ export default function CommandMenu({open, setOpen}) {
       onSearch$.pipe(
         debounceTime(270),
         distinctUntilChanged(),
-        tap(a => handleQuery(a)),
+        tap(handleQuery),
+        tap(captureSiteSearchAnalytics),
       ).subscribe();
     }, [])
 
