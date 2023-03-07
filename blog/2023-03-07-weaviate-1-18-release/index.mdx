@@ -68,7 +68,7 @@ More specifically, in `1.18` we implemented the solution proposed in [DiskANN](h
 
 To understand how PQ compression works, imagine every vector you want to store is a unique house address. A unique house address allows you to precisely locate where someone lives including country, state, neighborhood, street number, and even the house number details. The price you pay for this pin-point accuracy is that each address takes up more storage space. Now, imagine instead of storing a unique address for each house we store just the neighborhood name the house is located in. With this representation, you can no longer precisely differentiate between houses that are all in the same neighborhood but you know approximately where the houses are. The advantage however is that you require less memory to store the neighborhood data - this is why it’s a lossy algorithm, we lose information as a result of the compression. You trade accuracy for storage space. Want to save more space? Zoom out further and represent each house instead with the state it’s located in. Require more recall? Zoom in and represent the address on a more accurate scale.
 
-Similarly in PQ compression instead of storing the exact vectors we replace them in memory with a code that represents the general region in which the vector can be found. Now imagine you conduct this compression for millions or even billions of vectors and the memory savings become quite significant. Using these PQ compressed vectors stored in RAM we now start our search from our root graph quickly conducting broad searches over PQ compressed vector representations to filter out the best nearest neighbor candidates in memory and then drill down by exploring these best candidates when needed. Read more about HNSW+PQ in the documentation [here](https://weaviate.io/developers/weaviate/concepts/vector-index#hnsw-with-product-quantizationpq).
+Similarly in PQ compression instead of storing the exact vectors we replace them in memory with a code that represents the general region in which the vector can be found. Now imagine you conduct this compression for millions or even billions of vectors and the memory savings become quite significant. Using these PQ compressed vectors stored in RAM we now start our search from our root graph quickly conducting broad searches over PQ compressed vector representations to filter out the best nearest neighbor candidates in memory and then drill down by exploring these best candidates when needed. Read more about HNSW+PQ in the documentation [here](/developers/weaviate/concepts/vector-index#hnsw-with-product-quantizationpq).
 
 ## Improvements to BM25 and Hybrid Search
 
@@ -173,7 +173,6 @@ Depending on the desired tradeoff between consistency and speed, here are three 
 
 Read operations with the consistency level set to `QUORUM` or `ALL` return the most recent objects out of those returned by the majority of nodes, based on timestamps.
 
-
 Version `1.17` supported tunable consistency for [fetching by id](/developers/weaviate/api/rest/objects#get-a-data-object). Weaviate `1.18` adds tunable consistency support for all read and write REST operations, including [batching](/developers/weaviate/api/rest/batch) and [cross-references](/developers/weaviate/api/rest/objects#cross-references). GraphQL queries do not support tunable consistency yet.
 
 This version also ships with an optimization for fetching multiple objects: the coordinator node only waits to receive a full result set from one of the nodes, and verifies it has the correct objects using digest responses sent by the other nodes. Since Weaviate uses a leaderless setup, the coordinator itself sends a response, which most often will arrive before the full responses sent by the other nodes, but the digests will confirm it is the correct result set.
@@ -231,12 +230,14 @@ All parameters here are the same as in the above REST request example, and the o
 - The `after` cursor cannot be used in conjunction with `offset`.
 - The `after` cursor is available on both single-shard and multi-shard set-ups.  
 
+Learn about the Cursor API in the [documentation](/developers/weaviate/api/graphql/filters#cursor-with-after).
+
 ## Azure Storage backup module
 
 ![backups](./img/backups.png#gh-light-mode-only)
 ![backups](./img/backups-dark.png#gh-dark-mode-only)
 
-This releases extends our cloud-native backup capabilities ([added in the 1.15 release](https://weaviate.io/blog/weaviate-1-15-release#cloud-native-backups)) further by introducing the `backup-azure` module. 
+This releases extends our cloud-native backup capabilities ([added in the 1.15 release](/blog/weaviate-1-15-release#cloud-native-backups)) further by introducing the `backup-azure` module. 
 
 ### Backup options
 Now Weaviate users can enjoy even more choice for cloud-native backup providers with Azure Storage joining the ranks of S3-compatible storage as well as Google Cloud Storage. This new module will be especially convenient for our users who are in the Azure ecosystem already. 
