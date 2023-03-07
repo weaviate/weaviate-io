@@ -1,7 +1,9 @@
 .searchBox {
+    // hide the searchbox for now
+    display: none;
+    // display: flex;
     height: 37px;
     width: 155px;
-    display: flex;
     justify-content: center;
 
     @media screen and (max-width: 668px) {

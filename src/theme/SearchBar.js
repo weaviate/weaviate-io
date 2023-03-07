@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import SearchBar from '@theme-original/SearchBar';
 import './searchBar.scss';
 import CommandMenu from '../components/CommandMenu';
 
