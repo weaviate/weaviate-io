@@ -18,7 +18,7 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 1. [Faster Filtering with Roaring Bitmaps](#faster-filtering-with-roaring-bitmaps) – modern data structure that dramatically boosts the speed for filtered searches
 1. [HNSW-PQ](#hnsw-pq) – enables great performance at a fraction of the previous RAM requirements
 1. [Improvements to BM25 and Hybrid Search](#improvements-to-bm25-and-hybrid-search) – faster scoring with the WAND implementation and added filter support
-1. [Replication](#replication) – two new replication features: tunable consistency for all read and write operations, and repair on read
+1. [Replication](#replication) – two new replication features: tunable consistency for all read and write REST operations, and repair on read
 1. [Cursor API](#cursor-api) – simple way to export every object from Weaviate
 1. [Azure Storage backup module](#azure-storage-backup-module) – extends our cloud-native backup capabilities further by introducing the `backup-azure` module.
 
@@ -158,7 +158,7 @@ For more detailed information on the patch releases, you can check out the [rele
 ![replication](./img/replication.png#gh-light-mode-only)
 ![replication](./img/replication-dark.png#gh-dark-mode-only)
 
-Weaviate version 1.18 introduces two new [replication](/developers/weaviate/concepts/replication-architecture) features: [tunable consistency](#tunable-consistency) for all read and write operations, and [repair-on-read](#repair-on-read).
+Weaviate version 1.18 introduces two new [replication](/developers/weaviate/concepts/replication-architecture) features: [tunable consistency](#tunable-consistency) for all read and write REST endpoints, and [repair-on-read](#repair-on-read).
 
 ### Tunable consistency
 As a distributed database subject to the [CAP theorem](/developers/weaviate/concepts/replication-architecture/consistency), Weaviate favors availability over consistency for data, and is strictly consistent when it comes to schema operations. **Tunable consistency** allows you to decide between three levels of consistency vs. availability:
@@ -237,7 +237,7 @@ Learn about the Cursor API in the [documentation](/developers/weaviate/api/graph
 ![backups](./img/backups.png#gh-light-mode-only)
 ![backups](./img/backups-dark.png#gh-dark-mode-only)
 
-This releases extends our cloud-native backup capabilities ([added in the 1.15 release](/blog/weaviate-1-15-release#cloud-native-backups)) further by introducing the `backup-azure` module. 
+This releases extends our cloud-native backup capabilities ([added in the 1.15 release](/blog/weaviate-1-15-release#cloud-native-backups)) further by introducing the `backup-azure` module.
 
 ### Backup options
 Now Weaviate users can enjoy even more choice for cloud-native backup providers with Azure Storage joining the ranks of S3-compatible storage as well as Google Cloud Storage. This new module will be especially convenient for our users who are in the Azure ecosystem already.
