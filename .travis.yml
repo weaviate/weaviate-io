@@ -6,6 +6,15 @@ node_js:
 #     - main
 cache:
   yarn: true
+before_cache:
+  - echo "---BEFORE CACHE---"
+  # Don't store .cache/webpack on the main branch
+  # This is to make sure the version-config.json gets updated properly
+  - |
+    if [ $TRAVIS_BRANCH = "main" ]; then
+      rm -vrf node_modules/.cache/webpack
+    fi
+
 install:
   - yarn install
 script:
