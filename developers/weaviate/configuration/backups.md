@@ -102,6 +102,7 @@ In addition to enabling the module, you need to configure it using environment v
 | Environment variable | Required | Description |
 | --- | --- | --- |
 | `BACKUP_GCS_BUCKET` | yes | The name of the GCS bucket for all backups. |
+| `BACKUP_GCS_USE_AUTH` | no | Whether or not credentials will be used for authentication. Defaults to `true`. A case for `false` would be for use with a local GCS emulator. |
 | `BACKUP_GCS_PATH` | no | The root path inside your bucket that all your backups will be copied into and retrieved from. <br/><br/>Optional, defaults to `""` which means that the backups will be stored in the bucket root instead of a sub-folder. |
 
 #### Google Application Default Credentials
