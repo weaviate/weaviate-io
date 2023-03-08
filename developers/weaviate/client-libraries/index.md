@@ -11,10 +11,10 @@ import Badges from '/_includes/badges.mdx';
 ## Overview
 You can interact with Weaviate by using the GraphQL or RESTful API directly, or with one of the available client libraries.
 
-Currently Weaviate supports:
+Currently, Weaviate supports:
 
 - [Python](/developers/weaviate/client-libraries/python.md)
-- [Javascript](/developers/weaviate/client-libraries/javascript.md)
+- [JavaScript](/developers/weaviate/client-libraries/javascript.md)
 - [Go](/developers/weaviate/client-libraries/go.md)
 - [Java](/developers/weaviate/client-libraries/java.md)
 
