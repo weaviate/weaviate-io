@@ -86,7 +86,7 @@ Here is an example of how to run a hybrid search query in GraphQL:
 Similar to how you use `nearText`, `hybrid` is passed as an argument to a Weaviate class object. `hybrid` has two parameters: `query` and `alpha`. `query` is fairly straightforward, whereas `alpha` is a new idea. `alpha` describes the weighting between dense and sparse search methods. An alpha closer to 0 weighs sparse search more than dense, and an alpha closer to 1 weighs dense search more than sparse. Additionally, if alpha is set to 0, it only uses sparse search, and if alpha equals 1, then it uses dense search only.
 
 ### What's next in Hybrid
-Work on hybrid search is not over! We will continue to make improvements and introduce new features in the future. For example, there is already something in the [backlog](https://github.com/weaviate/weaviate/issues/2393) to add where filters to hybrid search (give it a thumbs up while you're there). 🙂
+Work on hybrid search is not over! We will continue to make improvements and introduce new features in the future. For example, there is already something in the [backlog](https://github.com/weaviate/weaviate/issues/2393) to add [`where` filters](/developers/weaviate/api/graphql/filters#where-filter) to hybrid search (give it a thumbs up while you're there). 🙂
 
 ### Learn More
 The hybrid operator is available through GraphQL, REST and all Weaviate client languages. Check out the [documentation](/developers/weaviate/api/graphql/vector-search-parameters#hybrid) for more information and learn how to write the query in the other client programming languages.

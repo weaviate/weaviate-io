@@ -68,7 +68,7 @@ More specifically, in `1.18` we implemented the solution proposed in [DiskANN](h
 
 To understand how PQ compression works, imagine every vector you want to store is a unique house address. A unique house address allows you to precisely locate where someone lives including country, state, neighborhood, street number, and even the house number details. The price you pay for this pin-point accuracy is that each address takes up more storage space. Now, imagine instead of storing a unique address for each house we store just the neighborhood name the house is located in. With this representation, you can no longer precisely differentiate between houses that are all in the same neighborhood but you know approximately where the houses are. The advantage however is that you require less memory to store the neighborhood data - this is why it’s a lossy algorithm, we lose information as a result of the compression. You trade accuracy for storage space. Want to save more space? Zoom out further and represent each house instead with the state it’s located in. Require more recall? Zoom in and represent the address on a more accurate scale.
 
-Similarly in PQ compression instead of storing the exact vectors we replace them in memory with a code that represents the general region in which the vector can be found. Now imagine you conduct this compression for millions or even billions of vectors and the memory savings become quite significant. Using these PQ compressed vectors stored in RAM we now start our search from our root graph quickly conducting broad searches over PQ compressed vector representations to filter out the best nearest neighbor candidates in memory and then drill down by exploring these best candidates when needed. Read more about HNSW+PQ in the documentation [here](/developers/weaviate/concepts/vector-index#hnsw-with-product-quantizationpq).
+Similarly in PQ compression instead of storing the exact vectors, we replace them in memory with a code that represents the general region in which the vector can be found. Now imagine you conduct this compression for millions or even billions of vectors and the memory savings become quite significant. Using these PQ compressed vectors stored in RAM we now start our search from our root graph quickly conducting broad searches over PQ compressed vector representations to filter out the best nearest neighbor candidates in memory and then drill down by exploring these best candidates when needed. Read more about HNSW+PQ in the documentation [here](/developers/weaviate/concepts/vector-index#hnsw-with-product-quantizationpq).
 
 ## Improvements to BM25 and Hybrid Search
 
@@ -82,7 +82,7 @@ The [WAND](https://www.researchgate.net/publication/221613425_Efficient_query_ev
 To use WAND for your application, upgrade your Weaviate instance to `1.18`. No other changes are necessary for you to see the speed up.
 
 ### Filters for BM25 and Hybrid Search
-The `where` filter allows you to narrow down your data based on specified conditions. [Vector search parameters](/developers/weaviate/api/graphql/vector-search-parameters) are applied to GraphQL queries on the class level. We have added `where` filters to BM25 and hybrid search!
+The [`where` filter](/developers/weaviate/api/graphql/filters#where-filter) allows you to narrow down your data based on specified conditions. [Vector search parameters](/developers/weaviate/api/graphql/vector-search-parameters) are applied to GraphQL queries on the class level. We have added `where` filters to BM25 and hybrid search!
 
 The implementation is the same as how you would add a filter to any other vector search parameter. To begin using filters with BM25 and hybrid, simply upgrade your Weaviate instance to `1.18`.
 
@@ -182,7 +182,6 @@ Weaviate `1.18` introduces a **repair-on-read** feature that uses the "last writ
 
 When the replication coordinator node receives different versions of objects for a read request from the nodes in the replica set, that means that at least one node has old (stale) objects. The repair-on-read feature means that the coordinator node will update the affected node(s) with the latest version of the object(s). If a node was lacking an object entirely (e.g. because a create request was only handled by a subset of the nodes due to a network partition), the object will be replicated on that node.
 
-
 Consider a scenario in which a request to delete objects was only handled by a subset of nodes in the replica set. On the next read that involves such a deleted object, the replication coordinator may determine that some nodes are missing that object - i.e. it doesn’t exist on all replicas. `v1.18` introduces changes that enable the replication coordinator to determine the reason why an object was not found (i.e. it was deleted, or it never existed), along with the object itself. Thus, the coordinator can determine if the object:
 
 * never existed in the first place (so it should be propagated to the other nodes), or
@@ -194,21 +193,21 @@ Consider a scenario in which a request to delete objects was only handled by a s
 ![cursor api](./img/cursor-api.png#gh-light-mode-only)
 ![cursor api](./img/cursor-api-dark.png#gh-dark-mode-only)
 
-We have added an object ID-based `after` cursor to both the REST and GraphQL APIs in this release. This enhancement makes it easy for you to systemically retrieve all objects in a class from Weaviate.
+We have added an object ID-based `after` cursor to both the REST and GraphQL APIs in this release. This enhancement makes it easy for you to systematically retrieve all objects in a class from Weaviate.
 
 ### How to use
-To use this with the `objects` REST endpoint, provide an object uuid with the `after` parameter in the GET request. The syntax looks like this:
+To use cursors with the `objects` REST endpoint, provide an object uuid via the `after` parameter in the GET request. The syntax looks like this:
 
 `<WEAVIATE_INSTANCE>/v1/objects?class=<CLASS_NAME>&limit=<N_OBJECTS>&after=<UUID>`
 
 Where:
 
-- `<WEAVIATE_INSTANCE>` is Weaviate URL (e.g. `https://yoursandbox.weaviate.io`),
+- `<WEAVIATE_INSTANCE>` is the Weaviate URL (e.g. `https://yoursandbox.weaviate.io`),
 - `<CLASS_NAME>` is the class (e.g. `Article`) being retrieved (this MUST be set),
-- `<N_OBJECTS>` are the number of objects to be retrieved in that request, and
+- `<N_OBJECTS>` is the number of objects to be retrieved in that request, and
 - `<UUID>` is the last object ID retrieved (e.g. `f81bfe5e-16ba-4615-a516-46c2ae2e5a80`) (optional; without it, the results will be from the first object).
 
-Or, you can use this with the `GET` function with a GraphQL query.
+Or, you can use the cursor API with the `GET` function in a GraphQL query.
 
 ```graphql
 {
@@ -226,7 +225,7 @@ Or, you can use this with the `GET` function with a GraphQL query.
 All parameters here are the same as in the above REST request example, and the only additional parameter is `<PROPERTIES>` to specify the properties to be retrieved.
 
 ### Notes
-- The `after` cursor relies on the order of object IDs as stored in Weaviate. Accordingly, it is not applicable to any queries involving a search or a filter. In other words, if the query involves operators such as `where`, `near<Media>`, `bm25`, `hybrid`, etc., `after` cannot be used. You should use the  [`offset` parameter](/developers/weaviate/api/graphql/filters#offset-argument-pagination) for these.
+- The `after` cursor relies on the order of object IDs as stored in Weaviate. Accordingly, it is not applicable to any queries involving a search or a filter. In other words, if the query involves operators such as `where`, `near<Media>`, `bm25`, `hybrid`, etc., `after` cannot be used. You should use the  [`offset` parameter](/developers/weaviate/api/graphql/filters#pagination-with-offset) for these.
 - The `after` cursor cannot be used in conjunction with `offset`.
 - The `after` cursor is available on both single-shard and multi-shard set-ups.
 
