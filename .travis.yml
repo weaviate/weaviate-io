@@ -10,9 +10,13 @@ before_cache:
   - echo "---BEFORE CACHE---"
   - echo "${TRAVIS_PULL_REQUEST}"
   - echo "${TRAVIS_BRANCH}"
-  - ls node_modules/.cache
+  # Don't cache webpack for the main branch
+  # This is to make sure the version-config.json gets updated properly
   - rm -vrf node_modules/.cache/webpack
-  - ls node_modules/.cache
+  # - |
+  #   if [ $TRAVIS_BRANCH = "main" ]; then
+  #     rm -vrf node_modules/.cache/webpack
+  #   fi
 
 install:
   - yarn install
@@ -23,25 +27,18 @@ script:
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then
       yarn build
       # Deploy draft to Netlify
-      # source _build_scripts/publish-draft-to-netlify.sh
+      source _build_scripts/publish-draft-to-netlify.sh
     else
       # for PRs - build a dev version - with trailing slash for links
       yarn build-dev
     fi
 
-  # Remove node_modules cache between each build 
-  # - |
-  #   if [ $TRAVIS_BRANCH = "main" ]; then
-
-  #   fi
-
-
   # Send Slack Message
-  # - |
-  #   if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
-  #     source _build_scripts/slack-find-author.sh
-  #     source _build_scripts/slack-netlify-message.sh
-  #   fi
+  - |
+    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ $TRAVIS_BRANCH != "main" ]; then
+      source _build_scripts/slack-find-author.sh
+      source _build_scripts/slack-netlify-message.sh
+    fi
 
   # Link Validation
   # - |
