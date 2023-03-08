@@ -23,8 +23,8 @@ const interpolate = (value, vfile) => {
       console.warn('\x1b[33m%s', vfile.path, '\x1b[0m');
       console.warn(`Couldn't find`, '\x1b[31m', `||site.${name}||`, '\x1b[0m');
     }
-    console.log(`${name}: ${siteConfig[name]}`)
-    return siteConfig[name]
+
+    return siteConfig[name];
   })
 }
 
