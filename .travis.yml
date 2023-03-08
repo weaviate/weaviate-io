@@ -8,8 +8,10 @@ cache:
   yarn: true
 before_cache:
   - echo "---BEFORE CACHE---"
-  - echo ${TRAVIS_PULL_REQUEST}"
+  - echo "${TRAVIS_PULL_REQUEST}"
   - echo "${TRAVIS_BRANCH}"
+  - ls node_modules/.cache
+  - rm -vrf node_modules/.cache/webpack
   - ls node_modules/.cache
 
 install:
