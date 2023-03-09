@@ -46,14 +46,14 @@ client  = weaviate.Client(
 
 # highlight-start
 # instruction for the generative module
-generateTask = '"Explain why these magazines or newspapers are about finance"'
+generateTask = "Explain why these magazines or newspapers are about finance"
 # highlight-end
 
 result = (
   client.query
   .get("Publication", ["name"])
   # highlight-start
-  with_generate(grouped_task=generateTask)
+  .with_generate(grouped_task=generateTask)
   # highlight-end
   .with_near_text({
     "concepts": ["magazine or newspaper about finance"]
@@ -78,7 +78,7 @@ const client = weaviate.client({
 
 // highlight-start
 // instruction for the generative module
-const generateTask = '"Explain why these magazines or newspapers are about finance"';
+const generateTask = 'Explain why these magazines or newspapers are about finance';
 // highlight-end
 
 client.graphql
