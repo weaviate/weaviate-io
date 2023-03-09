@@ -29,9 +29,9 @@ When opening the [Weaviate Console](https://console.weaviate.io), you'll see two
 
 Weaviate Cloud Services allow you to create Weaviate instances as SaaS instances on our infrastructure. There is no difference between locally run Weaviate instances or Weaviate SaaS instances other than that the latter ones are managed by us.
 
-:::note
-Sandboxes are free Weaviate instances! You can create them for small test use cases if you don't want to run Weaviate locally.
-:::
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/>
 
 ## Connect to a self-hosted Weaviate
 
