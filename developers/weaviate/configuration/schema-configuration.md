@@ -361,24 +361,28 @@ Author
 This feature was introduced in `v1.12.0`.
 :::
 
-Properties of type `text` and `string` use tokenization when indexing and
-searching through the inverted index. Text is always tokenized at the `word`
-level, meaning that words will be split when a non-alphanumeric character
-appears. For example, the string `"hello (beautiful) world"`, would be split
-into the tokens `"hello", "beautiful", "world"`. Each token will be indexed
-separately in the inverted index. This means that a search for any of the three
-tokens would return this object. 
+Properties with `text` and `string` exhibit different tokenization behavior when indexing and
+searching through the inverted index. 
 
-Sometimes there are situations when exact string matching across the whole field
-is desired. In this case, you can use a property of type `string` and set the
-`"tokenization"` setting to `"field"`. This means the whole field will be
-indexed as one. For example the value `"hello (beautiful) world"` would be
-indexed as a single token. This means searching for `"hello"` or `"world"`
-would not return the object mentioned above, but only the exact string `"hello
-(beautiful) world"` will match.
+#### Tokenization with `text`
 
-If no values are provided, properties of type `text` and `string` default to
-`"word"` level tokenization for backward-compatibility.
+`text` properties are always tokenized, and by all non-alphanumerical characters. Tokens are then lowercased before being indexed. For example, a `text` property value `Hello, (beautiful) world`, would be indexed by tokens `hello`, `beautiful`, and `world`. 
+
+Each of these tokens will be indexed separately in the inverted index. This means that a search for any of the three tokens with the `Equal` operator under `valueText` would return this object regardless of the case. 
+
+#### Tokenization with `string`
+
+`string` properties allow the user to set whether it should be tokenized, by setting the `tokenization` class property.
+
+If `tokenization` for a `string` property is set to `word`, the field will be tokenized. The tokenization behavior for `string` is different from `text`, however, as `string` values are only tokenized by white spaces, and casing is not altered.
+
+So, a `string` property value `Hello, (beautiful) world` with `tokenization` set as `word` would be split into the tokens `Hello,`, `(beautiful)`, and `world`. In this case, the `Equal` operator would need the exact match including non-alphanumerics and case (e.g. `Hello,`, not `hello`) to retrieve this object. 
+
+`string` properties can also be indexed as the entire value, by setting `tokenization` as `field`. In such a case the `Equal` operator would require the value `Hello, (beautiful) world` before returning the object as a match.
+
+#### Default behavior
+
+`text` and `string` properties default to `word` level tokenization for backward-compatibility.
 
 ## Configure semantic indexing
 

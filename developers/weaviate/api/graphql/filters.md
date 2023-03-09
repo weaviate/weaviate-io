@@ -87,9 +87,10 @@ the path selector for `name` will be `["inPublication", "Publication", "name"]`
 ```
 
 #### Filter behavior of multi-word queries in `Equal` operator
-The behavior for the `Equal` operator on multi-word string and text properties in `where` filters is as follows. Multi-word queries are broken up into single word segments. An object must contain all segments. How words are broken up depends on the datatype. For `string` properties only spaces defined word boundaries. For `text` properties all non-alphanumeric properties are considered word boundaries. E.g. for `text`: `my email is alice@example.com` is split into `["my", "email", "is", "alice" "example", "com"]`, whereas the same query string on a `string` property would be broken into `["my", "email", "is", "alice@example.com"]`.
 
-Starting with `v1.12.0` you can [configure tokenization of `string` types](/developers/weaviate/configuration/schema-configuration.md#property-tokenization) to take the whole field into account instead of individual words.
+The behavior for the `Equal` operator on multi-word textual properties in `where` filters depends on the property type (`string` or `text`), and the `tokenization` property.
+
+Refer to [this section](../../configuration/schema-configuration.md#property-tokenization) on the difference between the two types.
 
 #### Stopwords in `text`/`string` filter values
 
