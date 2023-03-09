@@ -186,7 +186,7 @@ A: Yes, it is possible to reference to one or more objects (Class -> one or more
 
 ## Q: What is the different between `text` and `string` and `valueText` and `valueString`?
 
-A: In general `value<Text|String>` should always match the data type in your schema. `text` and `string` exhibit different tokenization behavior. Read more in [this section](./schema-configuration.md#property-tokenization) on the differences.
+A: In general `value<Text|String>` should always match the data type in your schema. `text` and `string` exhibit different tokenization behavior. Read more in [this section](../configuration/schema-configuration.md#property-tokenization) on the differences.
 
 ## Q: If I run a cluster (multiple instances) of Weaviate, do all the instances have to share a filesystem(PERSISTENCE_DATA_PATH)?
 
