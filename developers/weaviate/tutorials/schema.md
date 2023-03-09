@@ -213,7 +213,7 @@ Some of it is what we specified, such as the class name (`class`), and `properti
 
 And depending on your needs, you might want to change any number of these. For example, you might change:
 
-- `dataType` to modify the type of data being saved. Above, classes with dataType `text` will be indexed after tokenization, whereas `string` classes will not be ([read more](../configuration/datatypes.md#datatype-string-vs-text)).
+- `dataType` to modify the type of data being saved. For example, classes with dataType `text` will be tokenized differently to those with `string` dataType ([read more](../configuration/schema-configuration.md#property-tokenization)).
 - `moduleConfig` to modify how each module behaves. In this case, you could change the model and/or version for the OpenAI inference API, and the vectorization behavior such as whether the class name is used for vectorization.
 - `properties` / `moduleConfig` to further modify module behavior at a class data property level. You might choose to skip a particular property being included for vectorization.
 - `invertedIndexConfig` to add or remove particular stopwords, or change BM25 indexing constants.
