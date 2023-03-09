@@ -22,7 +22,7 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 ### Filter structure
 
-Supported by the `Get{}` and `Aggregate{}` function.
+Supported by the [`Get{}`](./get.md) and [`Aggregate{}`](./aggregate.md) functions.
 
 The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebraic_structure), which takes the following arguments:
 
@@ -40,25 +40,24 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
   - `WithinGeoRange`
   - `IsNull`
 - `Operands`: Is a list of `Operator` objects of this same structure, only used if the parent `Operator` is set to `And` or `Or`.
-- `Path`: Is a list of strings in Xpath style, indicating the property name of the class.
-   If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings.
-    for a schema structure like:
-```
-{
-  "inPublication": {
-    "Publication": {
-      "name": "Wired"
-    }
-  }
-}
-```
-the path selector for `name` will be `["inPublication", "Publication", "name"]` 
-- `valueInt`: The integer value where the `Path`'s last property name should be compared to.
-- `valueBoolean`: The boolean value that the `Path`'s last property name should be compared to.
-- `valueString`: The string value that the `Path`'s last property name should be compared to.
-- `valueText`: The text value that the `Path`'s last property name should be compared to.
-- `valueNumber`: The number (float) value that the `Path`'s last property name should be compared to.
-- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339)) value that the `Path`'s last property name should be compared to.
+- `Path`: Is a list of strings in [XPath](https://en.wikipedia.org/wiki/XPath#Abbreviated_syntax) style, indicating the property name of the class.
+   If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings. For a schema structure like:
+ ```json
+ {
+   "inPublication": {
+     "Publication": {
+       "name": "Wired"
+     }
+   }
+ }
+ ```
+the path selector for `name` will be `["inPublication", "Publication", "name"]`.
+- `valueInt`: The integer value that the last property in the `Path` selector should be compared to.
+- `valueBoolean`: The boolean value that the last property in `Path` should be compared to.
+- `valueString`: The string value that the last property in `Path` should be compared to.
+- `valueText`: The text value that the last property in `Path` should be compared to.
+- `valueNumber`: The number (float) value that the last property in `Path` should be compared to.
+- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339)) value that the last property  in `Path` should be compared to.
 
 ```graphql
 {
@@ -120,6 +119,7 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
           "title": "Opinion | John Lennon Told Them ‘Girls Don't Play Guitar.' He Was So Wrong."
         }
       ]
+    }
   },
   "errors": null
 }
@@ -146,6 +146,7 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
           "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
         }
       ]
+    }
   },
   "errors": null
 }
@@ -174,9 +175,9 @@ import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where
           "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
         }
       ]
-    },
-    "errors": null
-  }
+    }
+  },
+  "errors": null
 }
 ```
 
