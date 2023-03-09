@@ -53,7 +53,7 @@ And once you're done with these - you can move on to our more [in-depth tutorial
 
 ### Assumed knowledge
 
-The tutorial assumes that you are somewhat familiar with databases and vector embeddings. 
+The tutorial assumes that you are somewhat familiar with databases and [vector embeddings](/blog/vector-embeddings-explained). 
 
 But don't worry too much even if you are uncomfortable with any of these. This tutorial is about getting you started **doing things with Weaviate**. It is structured so that you should be able to follow along even if some of the concepts are unfamiliar. And you can always revisit some of these ideas in the documentation. 
 
