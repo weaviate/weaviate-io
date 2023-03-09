@@ -24,7 +24,7 @@ The strength of consistency can be determined by applying the following conditio
 
 The data schema in Weaviate is **strongly consistent**. Once you use Weaviate, the data schema is rarely changed. From a user's perspective, it is acceptable that the latency for updating a schema is a bit higher than querying and updating data. By a 'slow' schema update, Weaviate can ensure consistency because it disallows multiple schema changes at the same time. 
 
-A schema update is done via a [Distributed Transaction](https://en.wikipedia.org/wiki/Distributed_transaction) algorithm**.** This is a set of operations that is done across databases on different nodes in the distributed network. Weaviate uses a [two-phase commit (2PC)](https://en.wikipedia.org/wiki/Two-phase_commit_protocol) protocol, which updates schema in a short period of time (milliseconds). 
+A schema update is done via a [Distributed Transaction](https://en.wikipedia.org/wiki/Distributed_transaction) algorithm. This is a set of operations that is done across databases on different nodes in the distributed network. Weaviate uses a [two-phase commit (2PC)](https://en.wikipedia.org/wiki/Two-phase_commit_protocol) protocol, which replicates the schema updates in a short period of time (milliseconds).
 
 A clean (without fails) execution has two phases:
 1. The commit-request phase (or voting phase), in which a coordinator node asks each node whether they are able to receive and process the update.
@@ -33,7 +33,9 @@ A clean (without fails) execution has two phases:
 
 ## Data objects 
 
-Data objects in Weaviate have **eventual consistency**, which means that all nodes will eventually contain the most updated data if the data is not updated for a while. It might happen that after a data update, not all nodes are updated yet, but there is a guarantee that all nodes will be up-to-date after some time. Eventual consistency provides BASE semantics: 
+Data objects in Weaviate have **eventual consistency**, which means that all nodes will eventually contain the most updated data if the data is not updated for a while. It might happen that after a data update, not all nodes are updated yet, but there is a guarantee that all nodes will be up-to-date after some time. Weaviate uses two-phase commits for objects as well, adjusted for the consistency level. For example for a `QUORUM` write (see below), if there are 5 nodes, 3 requests will be sent out, each of them using a 2-phase commit under the hood.
+
+Eventual consistency provides BASE semantics: 
 
 * **Basically available**: reading and writing operations are as available as possible
 * **Soft-state**: there are no consistency guarantees since updates might not yet have converged
