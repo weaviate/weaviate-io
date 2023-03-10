@@ -22,9 +22,9 @@ Before you start this tutorial, you should follow the steps in the tutorials to 
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
 - Installed your preferred Weaviate client library. 
 
-If you have completed the entire Quickstart tutorial, your Weaviate instance will contain data objects and a schema. 
+If you have completed the entire Quickstart tutorial, your Weaviate instance will contain data objects and a schema. **We recommend deleting the `Question` class before starting this section.** See below for details on how to do so:
 
-**We recommend deleting it the `Question` class before starting this section.**
+### Deleting classes
 
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
@@ -71,8 +71,12 @@ Here are some key considerations about classes:
 Each Weaviate class:
 - Is always written with a capital letter first. This is to distinguish them from generic names for cross-referencing.
 - Constitutes a distinct vector space. A search in Weaviate is always restricted to a class. 
-- Can have its own vectorizer. (e.g. one class can have a `text2vec-openai` vectorizer, and another might have `multi2vec-clip` vectorizer, or `none` if providing your own vectors).
+- Can have its own vectorizer. (e.g. one class can have a `text2vec-openai` vectorizer, and another might have `multi2vec-clip` vectorizer, or `none` if you do not intend on using a vectorizer).
 - Has `property` values, where each `property` specifies the data type to store.
+
+:::info Can I specify my own vectors?
+Yes! You can bring your own vectors and pass them to Weaviate directly. See [this reference](../api/rest/objects.md#create-a-data-object-with-a-custom-vector) for more information.
+:::
 
 ### Create a basic class
 
