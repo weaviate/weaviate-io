@@ -5,8 +5,9 @@ import ToggleSwitch from '/src/components/ToggleSwitch';
 // import Slider from 'react-rangeslider';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { useParams } from 'react-router';
 
-export default function PricingCalculator() {
+export default function PricingCalculator({props}) {
   const [embeddingSize, setEmbeddingSize] = useState(128);
   const [amountOfDataObjs, setAmountOfDataObjs] = useState(100000);
   const [queriesPerMonth, setQueriesPerMonth] = useState(100000);
@@ -32,6 +33,15 @@ export default function PricingCalculator() {
     amountOfDataObjs,
     queriesPerMonth,
   ]);
+
+  useEffect(() => {
+    const params =  new URLSearchParams(window.location.search)
+    if(params.get('sla')) setSlaTier(params.get('sla'));
+    if(params.get('dimensions')) setEmbeddingSize(params.get('dimensions'));
+    if(params.get('object_count')) setAmountOfDataObjs(params.get('object_count'));
+    if(params.get('monthly_queries')) setQueriesPerMonth(params.get('monthly_queries'));
+    if(params.get('high_availability')) setHighAvailability(params.get('high_availability') === 'true' ? true : false);
+  },[])
 
   const handleLabel = (value) => {
     let valueFormated = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -60,6 +70,19 @@ export default function PricingCalculator() {
   const onHighAvailabilityChange = (checked) => {
     setHighAvailability(checked);
   };
+
+  const redirectWithPrice = async () => {
+    const data = {
+      long_url: `https://weaviate.io/pricing?dimensions=${embeddingSize}&object_count=${amountOfDataObjs}&monthly_queries=${queriesPerMonth}&sla=${slaTier}&high_availability=${highAvailability ? 'true' : 'false'}`,
+      domain: "link.weaviate.io"
+    }
+    await fetch('https://us-central1-semi-production.cloudfunctions.net/create-bitly', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
+    .then(res => console.log('success'))
+    .catch(err => console.log('error',err))
+  }
 
   return (
     <div className="pricingCalculator">
@@ -91,7 +114,7 @@ export default function PricingCalculator() {
               <input
                 className='labelResult'
                 type="text"
-                maxlength='11'
+                maxLength='11'
                 placeholder={handleLabel(embeddingSize)}
                 name="embeddingSize"
                 value={handleLabel(embeddingSize)}
@@ -116,7 +139,7 @@ export default function PricingCalculator() {
               <input
                 className='labelResult'
                 type="text"
-                maxlength='11'
+                maxLength='11'
                 placeholder={handleLabel(amountOfDataObjs)}
                 name="amountOfDataObjs"
                 value={handleLabel(amountOfDataObjs)}
@@ -140,7 +163,7 @@ export default function PricingCalculator() {
                 className='labelResult'
                 name="queriesPerMonth"
                 type="text"
-                maxlength='11'
+                maxLength='11'
                 placeholder={handleLabel(queriesPerMonth)}
                 value={handleLabel(queriesPerMonth)}
                 onChange={handleChangeQueriesPerMonth}
@@ -149,13 +172,13 @@ export default function PricingCalculator() {
           </div>
           <div className="selectContainer">
             <label>SLA Tier:</label>
-            <div class="select">
+            <div className="select">
               <select value={slaTier} onChange={(event) => setSlaTier(event.target.value)}>
                 <option value="standard">Standard</option>
                 <option value="enterprise">Enterprise</option>
                 <option value="businessCritical">Business Critical</option>
               </select>
-              <span class="focus"></span>
+              <span className="focus"></span>
             </div>
           </div>
           <div className="priceBox">
@@ -186,6 +209,11 @@ export default function PricingCalculator() {
             </div>
           </div>
         </div>
+        <div className={'buttons'}>
+            <div className={'buttonOutline'} onClick={redirectWithPrice}>
+              Share this pricing
+            </div>
+          </div>
       </div>
     </div>
   );

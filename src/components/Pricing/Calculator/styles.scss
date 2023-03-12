@@ -158,7 +158,7 @@ select {
     grid-area: select;
     color: #fff;
   }
-  
+
   min-width: 15ch;
   max-width: 30ch;
   border: 1px solid #fff;
@@ -227,7 +227,7 @@ label {
       background-color: #00b7e2;
     }
   }
-  
+
   select,
   &::after {
     grid-area: select;
@@ -263,5 +263,41 @@ select option {
 
   .rc-slider-rail {
     height: 7px;
+  }
+}
+
+
+.buttons {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+  }
+
+  div {
+    height: 45px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .buttonOutline {
+    outline: 1px solid #20e220;
+    font-weight: bold;
+  }
+}
+
+
+[data-theme='light'] {
+
+  .buttonOutline {
+    color: rgba(46, 49, 143);
   }
 }
