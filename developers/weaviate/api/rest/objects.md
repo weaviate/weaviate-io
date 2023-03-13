@@ -215,6 +215,7 @@ The request body for a new object has the following fields:
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `id` | v4 UUID | no | Optional id for the object |
+| `vector` | `[float]` | no | Optional [custom vector](#create-a-data-object-with-a-custom-vector) |
 
 #### Example request
 
