@@ -18,12 +18,12 @@ In this post, we will pull back the curtains and go behind the scenes to show yo
 If you are:
 
 * Interested in ingesting a large dataset or corpus into Weaviate
-* Wondering how to use Apache Spark (or pyspark) with Weaviate, or 
-* Wondering what it took for us to get a dataset that big into Weaviate, 
+* Wondering how to use Apache Spark (or pyspark) with Weaviate, or
+* Wondering what it took for us to get a dataset that big into Weaviate,
 
 This article will answer at least some of those questions.
 
-We note that our goal was to import 1B objects into Weaviate to see how the system behaves. Currently for large datasets RAM is the most likely bottleneck, so we used node sizes that were larger than needed, to be on the safe side. 
+We note that our goal was to import 1B objects into Weaviate to see how the system behaves. Currently, for large datasets RAM is the most likely bottleneck, so we used node sizes that were larger than needed, to be on the safe side.
 
 Now let’s get to the details of the setup!
 
@@ -45,10 +45,10 @@ We deployed 6 instances of Weaviate (one on each GKE node with automatic shardin
 
 To import the dataset into Weaviate, we used the [Spark Connector](https://github.com/weaviate/weaviate-spark-connector) instead of one of our client libraries. The massive size of this dataset led to the use of the Spark dataframe, and the Spark connector can efficiently populate Weaviate from a Spark dataframe. Another time-saving feature is that the connector is able to automatically infer the correct datatype for your Weaviate class schema based on the Spark DataType. (We have a podcast speaking with the creator of the Spark connector coming up soon on our [YouTube channel](https://www.youtube.com/@Weaviate) so keep your eyes and ears peeled for that!)
 
-We used a single 64 GiB Google Cloud Platform(GCP) n2 instance to run Spark. The steps below can be followed to import data from the Sphere dataset. You can refer to this [tutorial](/developers/weaviate/tutorials/spark-connector) for details on the import code. 
+We used a single 64 GiB Google Cloud Platform(GCP) n2 instance to run Spark. The steps below can be followed to import data from the Sphere dataset. You can refer to this [tutorial](/developers/weaviate/tutorials/spark-connector) for details on the import code.
 
-> If you are following along, make sure to modify the code to import only as much of the Sphere dataset as you dare, as it might potentially become a very expensive exercise! 
-First, using the `pyspark` library, you can instantiate a connection, called a `SparkSession`: 
+> If you are following along, make sure to modify the code to import only as much of the Sphere dataset as you dare, as it might potentially become a very expensive exercise!
+First, using the `pyspark` library, you can instantiate a connection, called a `SparkSession`:
 
 ```python
 spark = (
@@ -107,15 +107,15 @@ With the setup above our main goal was to look at system performance while impor
 ## Import Performance Metrics
 ![Magnifying Glass](./img/magnifying-glass.png)
 
-In this section let’s take a look at a few stats related to the Sphere import run. This will give you an idea of the Weaviate cluster’s performance over the course of this massive import process. 
+In this section let’s take a look at a few stats related to the Sphere import run. This will give you an idea of the Weaviate cluster’s performance over the course of this massive import process.
 
-Let’s start off with a bird’s eye view of the whole run. As mentioned above, the entire process took approximately 48 hours and on a high level the system performed very well. The graph beneath the text show the number of vectors imported over time: 
+Let’s start off with a bird’s eye view of the whole run. As mentioned above, the entire process took approximately 48 hours and on a high level the system performed very well. The graph beneath the text show the number of vectors imported over time:
 
 ![Number of vectors imported](./img/number-of-vectors-imported.png)
 
 As can be seen the slope, indicating import speed, is almost linear. meaning that we see pretty much no slow down in the import times regardless of the quantity of objects already imported. Note here that the line is not completely straight due to the fact that time complexity of the HNSW index is roughly logarithmic and not linear.
 
-To remind ourselves of the scale of data that we’re dealing with, take a look at the bar chart below. It shows the size of the LSM stores. 
+To remind ourselves of the scale of data that we’re dealing with, take a look at the bar chart below. It shows the size of the LSM stores.
 
 ![LSM stores](./img/LSM-stores.png)
 
@@ -127,10 +127,10 @@ Now we’ll zoom in and look at performance over a window of 15 minutes of batch
 
 As seen in the time window above we get great consistent performance and generally the batch latency is low, keeping under a second for the most part. With last week’s v1.17 release, large dataset imports are made even faster by enabling the memtable to adjust size dynamically and additional fixes also remove the occasional latency spikes.
 
-And that’s all folks! Here we provided all the details of the hardware setup, the usage of the spark connector and system performance during the Sphere dataset import run. Hope you had as much fun reading this as I did putting it together! As I alluded to earlier if this work excites you then you’ll be glad to know that we’ve got a lot more updates along this line of work cooking in the Weaviate kitchen🧑‍🍳.
+And that’s all folks! Here we provided all the details of the hardware setup, the usage of the Spark connector and system performance during the Sphere dataset import run. Hope you had as much fun reading this as I did putting it together! As I alluded to earlier if this work excites you then you’ll be glad to know that we’ve got a lot more updates along this line of work cooking in the Weaviate kitchen🧑‍🍳.
 
 
 ## Stay Connected
-Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io). 
+Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
 
 Weaviate is open-source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.
