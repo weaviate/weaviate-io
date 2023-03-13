@@ -91,7 +91,7 @@ You can build a Docker image which supports any model from the [Hugging Face mod
 #### Step 1: Create a `Dockerfile`
 Create a new `Dockerfile`. We will name it `clip.Dockerfile`. Add the following lines to it: 
 ```
-FROM semitechnologies/transformers-inference:custom
+FROM semitechnologies/multi2vec-clip:custom
 RUN CLIP_MODEL_NAME=clip-ViT-B-32 TEXT_MODEL_NAME=clip-ViT-B-32 ./download.py
 ```
 
