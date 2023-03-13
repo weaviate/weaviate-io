@@ -22,7 +22,7 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 ### Filter structure
 
-Supported by the `Get{}` and `Aggregate{}` function.
+Supported by the [`Get{}`](./get.md) and [`Aggregate{}`](./aggregate.md) functions.
 
 The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebraic_structure), which takes the following arguments:
 
@@ -40,25 +40,24 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
   - `WithinGeoRange`
   - `IsNull`
 - `Operands`: Is a list of `Operator` objects of this same structure, only used if the parent `Operator` is set to `And` or `Or`.
-- `Path`: Is a list of strings in Xpath style, indicating the property name of the class.
-   If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings.
-    for a schema structure like:
-```
-{
-  "inPublication": {
-    "Publication": {
-      "name": "Wired"
-    }
-  }
-}
-```
-the path selector for `name` will be `["inPublication", "Publication", "name"]` 
-- `valueInt`: The integer value where the `Path`'s last property name should be compared to.
-- `valueBoolean`: The boolean value that the `Path`'s last property name should be compared to.
-- `valueString`: The string value that the `Path`'s last property name should be compared to.
-- `valueText`: The text value that the `Path`'s last property name should be compared to.
-- `valueNumber`: The number (float) value that the `Path`'s last property name should be compared to.
-- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339)) value that the `Path`'s last property name should be compared to.
+- `Path`: Is a list of strings in [XPath](https://en.wikipedia.org/wiki/XPath#Abbreviated_syntax) style, indicating the property name of the class.
+  If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings. For a schema structure like:
+ ```json
+ {
+   "inPublication": {
+     "Publication": {
+       "name": "Wired"
+     }
+   }
+ }
+ ```
+the path selector for `name` will be `["inPublication", "Publication", "name"]`.
+- `valueInt`: The integer value that the last property in the `Path` selector should be compared to.
+- `valueBoolean`: The boolean value that the last property in `Path` should be compared to.
+- `valueString`: The string value that the last property in `Path` should be compared to.
+- `valueText`: The text value that the last property in `Path` should be compared to.
+- `valueNumber`: The number (float) value that the last property in `Path` should be compared to.
+- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339)) value that the last property  in `Path` should be compared to.
 
 ```graphql
 {
@@ -94,7 +93,7 @@ Refer to [this section](../../configuration/schema-configuration.md#property-tok
 
 #### Stopwords in `text`/`string` filter values
 
-Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists). 
+Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists).
 
 ### Single operand
 
@@ -121,6 +120,7 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
           "title": "Opinion | John Lennon Told Them ‘Girls Don't Play Guitar.' He Was So Wrong."
         }
       ]
+    }
   },
   "errors": null
 }
@@ -147,6 +147,7 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
           "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
         }
       ]
+    }
   },
   "errors": null
 }
@@ -156,7 +157,9 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
 
 Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
 
-*Note: filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps) for details* 
+:::info
+Filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps) for details.
+:::
 
 import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where.timestamps.mdx';
 
@@ -175,9 +178,9 @@ import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where
           "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
         }
       ]
-    },
-    "errors": null
-  }
+    }
+  },
+  "errors": null
 }
 ```
 
@@ -186,7 +189,7 @@ import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where
 Filtering can be performed with the length of properties.
 
 The length of properties is calculated differently depending on the type:
-- array types: the number of entries in the array is used, where null (property not present) and empty arrays both have the length 0. 
+- array types: the number of entries in the array is used, where null (property not present) and empty arrays both have the length 0.
 - strings and texts: the number of characters, unicode characters such as 世 count as one character.
 - numbers, booleans, geo-coordinates, phone-numbers and data-blobs are not supported.
 
@@ -211,7 +214,11 @@ Filtering by property length requires the target class to be configured to index
 
 You can set multiple operands by providing an array.
 
-For example, these filters select based on the class Article with a wordCount higher than 1000 and who are published before January 1st 2020. Note that you can filter a date and time just similar to numbers, with the `valueDate` given as `string`. Note that the `valueDate` should be formatted according to standard [RFC3339](https://www.rfc-editor.org/rfc/rfc3339).
+For example, these filters select based on the class Article with a wordCount higher than 1000 and who are published before January 1st 2020.
+
+:::tip
+You can filter datetimes similarly to numbers, with the `valueDate` given as `string` in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) format.
+:::
 
 import GraphQLFiltersWhereOperands from '/_includes/code/graphql.filters.where.operands.mdx';
 
@@ -236,7 +243,7 @@ import GraphQLFiltersWhereLike from '/_includes/code/graphql.filters.where.like.
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28where%3A+%7B%0D%0A++++++++++path%3A+%5B%22name%22%5D%2C%0D%0A++++++++++operator%3A+Like%2C%0D%0A++++++++++valueString%3A+%22New+%2A%22%0D%0A++++++%7D%29+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
 #### Notes
-Each query using the `Like` operator iterates over the entire inverted index for that property. The search time will go up linearly with the dataset size. Be aware that there might be a point where this query is too expensive and will not work anymore. We will improve this implementation in a future release. You can leave feedback or feature requests in a [GitHub issue](https://github.com/weaviate/weaviate/issues). 
+Each query using the `Like` operator iterates over the entire inverted index for that property. The search time will go up linearly with the dataset size. Be aware that there might be a point where this query is too expensive and will not work anymore. We will improve this implementation in a future release. You can leave feedback or feature requests in a [GitHub issue](https://github.com/weaviate/weaviate/issues).
 
 #### Example response
 
@@ -471,13 +478,13 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 
 - The cost of retrieving one further page is higher than that of the last. Effectively when searching for search results 91-100, Weaviate will internally retrieve 100 search results and discard results 0-90 before serving them to the user. This effect is amplified if running in a multi-shard setup, where each shard would retrieve 100 results, then the results aggregated and ultimately cut off. So in a 10-shard setup asking for results 91-100 Weaviate will effectively have to retrieve 1000 results (100 per shard) and discard 990 of them before serving. This means, high page numbers lead to longer response times and more load on the machine/cluster.
 - Due to the increasing cost of each page outlined above, there is a limit to how many objects can be retrieved using pagination. By default setting the sum of `offset` and `limit` to higher than 10,000 objects, will lead to an error. If you must retrieve more than 10,000 objects, you can increase this limit by setting the environment variable `QUERY_MAXIMUM_RESULTS=<desired-value>`. Warning: Setting this to arbitrarily high values can make the memory consumption of a single query explode and single queries can slow down the entire cluster. We recommend setting this value to the lowest possible value that does not interfere with your users' expectations.
-- The pagination setup is not stateful. If the database state has changed between retrieving two pages there is no guarantee that your pages cover all results. If no writes happened, then pagination can be used to retrieve all possible within the maximum limit. This means asking for a single page of 10,000 objects will lead to the same results overall as asking for 100 pages of 100 results. 
+- The pagination setup is not stateful. If the database state has changed between retrieving two pages there is no guarantee that your pages cover all results. If no writes happened, then pagination can be used to retrieve all possible within the maximum limit. This means asking for a single page of 10,000 objects will lead to the same results overall as asking for 100 pages of 100 results.
 
 ## Cursor with `after`
 
 From version `1.18`, the `after` parameter can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
 
-The `after` parameter relies on the order of ids. It can therefore only be applied to list queries without any search operators. In other words, `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, etc. 
+The `after` parameter relies on the order of ids. It can therefore only be applied to list queries without any search operators. In other words, `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, etc.
 
 For those cases, use pagination with `offset`.
 

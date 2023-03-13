@@ -60,7 +60,7 @@ The cutoff value can be configured as [part of the `vectorIndexConfig` settings 
 
 <!-- TODO - replace figures with updated post-roaring bitmaps figures -->
 
-:::note performance improvements from roaring bitmaps
+:::note Performance improvements from roaring bitmaps
 From `v1.18.0` onwards, Weaviate implements 'Roaring bitmaps' for the inverted index which decreased filtering times, especially for large allow lists. In terms of the above graphs, the *blue* areas will be reduced the most, especially towards the left of the figures.
 ::: 
 
