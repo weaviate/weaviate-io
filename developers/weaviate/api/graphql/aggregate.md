@@ -110,6 +110,13 @@ The above query will result in something like the following:
 }
 ```
 
+import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
+
+:::tip `meta` count will return the query object count
+As such, this `Aggregate` GraphQL query will retrieve the total object count in a class.
+
+<HowToGetObjectCount/>
+:::
 
 ### GroupBy Argument
 You can use a groupBy argument to get meta information about groups of data objects.
