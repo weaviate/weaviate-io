@@ -12,6 +12,14 @@ import Badges from '/_includes/badges.mdx';
 
 Lists all data objects in reverse order of creation. The data will be returned as an array of objects.
 
+import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
+
+:::tip After a class object count?
+A: This `Aggregate` GraphQL query will retrieve the total object count in a class.
+
+<HowToGetObjectCount/>
+:::
+
 #### Method and URL
 
 Without any restrictions (across classes, default limit = 100):
@@ -26,11 +34,9 @@ With optional query params:
 GET /v1/objects?class={ClassName}&limit={limit}&include={include}
 ```
 
-### Parameters
+#### Parameters
 
-#### URL Query parameters
-
-:::note All URL query parameters below are optional
+:::note All parameters below are optional URL query parameters
 :::
 
 | Name | Type | Description |
@@ -176,13 +182,13 @@ import SemanticKindGet from '/_includes/code/semantic-kind.get.mdx';
 
 Create a new data object. The provided meta-data and schema values are validated.
 
-### Performance
+### `objects` vs `batch`
 
 :::tip
-This endpoint is meant for individual object creations.
+The `objects` endpoint is meant for individual object creations.
 :::
 
-If you plan on importing an entire dataset, it's much more efficient to use the [`/v1/batch`](./batch.md) endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty:
+If you plan on importing a large number of objects, it's much more efficient to use the [`/v1/batch`](./batch.md) endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty:
 
 1. Each sequential request would be handled by a single thread server-side while most of the server resources are idle. In addition, if you only send the second request once the first has been completed, you will wait for a lot of network overhead.
 1. It's much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing. 
@@ -222,7 +228,7 @@ import SemanticKindCreate from '/_includes/code/semantic-kind.create.mdx';
 
 <SemanticKindCreate/>
 
-### Create an object with geoCoordinates
+### With geoCoordinates
 
 If you want to supply a [`geoCoordinates`](/developers/weaviate/configuration/datatypes.md#datatype-geocoordinates) property, you need to specify the `latitude` and `longitude` as floating point decimal degrees:
 
@@ -230,7 +236,7 @@ import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geoco
 
 <SemanticKindCreateCoords/>
 
-### Create a data object with a custom vector
+### With a custom vector
 
 When creating a data object, you can configure Weaviate to generate a vector with a vectorizer module, or you can provide the vector yourself. We sometimes refer to this as a "custom" vector. 
 
@@ -278,7 +284,7 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 
 <RestObjectsCRUDClassnameNote/>
 
-### URL parameters
+#### URL parameters
 
 | Name | Location | Type | Description |
 | ---- |----------| ---- | ----------- |
@@ -296,7 +302,7 @@ import SemanticKindObjectGet from '/_includes/code/semantic-kind.object.get.mdx'
 <SemanticKindObjectGet/>
 
 
-## Check if a data object exists without retrieving it
+## Check if a data object exists
 
 The same endpoint above can be used with the `HEAD` HTTP method to check if a data object exists without retrieving it. Internally it skips reading the object from disk (other than checking if it is present), thus not using resources on marshalling, parsing, etc.
 Additionally, the resulting HTTP request has no body; the existence of an object is indicated solely by the status code (`204` when the object exists, `404` when it doesn't, `422` on invalid ID).
