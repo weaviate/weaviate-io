@@ -351,6 +351,10 @@ PATCH /v1/objects/{id}
 
 <RestObjectsCRUDClassnameNote/>
 
+:::info Vector inference at object update
+Where Weaviate is configured with a vectorizer, it will only obtain a new vector if an object update changes the underlying text to be vectorized.
+:::
+
 #### Parameters
 
 The URL has two required path parameters and supports an optional query parameter for the [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency):

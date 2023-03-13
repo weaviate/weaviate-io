@@ -41,11 +41,11 @@ When you're connected, you can use the [GraphiQL](#graphiql) interface to intera
 
 ## GraphiQL
 
-GraphiQL is a graphical interface that allows you to manually write GraphQL queries. Within Weaviate we use it a lot, the auto-fill functionality allows you to easily navigate through your own dataset. Curious? Try out the console [right now](https://link.semi.technology/3J8aB73) with the Wikipedia dataset.
+GraphiQL is a graphical interface that allows you to manually write GraphQL queries. Within Weaviate we use it a lot, the auto-fill functionality allows you to easily navigate through your own dataset. Curious? Try out the console [right now](https://link.weaviate.io/3ThS9hG) with the news publication dataset.
 
 ## Try out the console
 
-1. Go to: [https://link.semi.technology/3CUuDgQ](https://link.semi.technology/3CUuDgQ)
+1. Go to: [this link](https://link.weaviate.io/3ThS9hG)
 2. Start querying :)
 
 ## Try out the console with your own instance

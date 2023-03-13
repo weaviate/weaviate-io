@@ -100,9 +100,22 @@ Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful AP
 
 </details>
 
+<hr />
+
+### Deleting classes
+
+<details>
+  <summary>
+    See how you can delete classes.
+  </summary>
+
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <CautionSchemaDeleteClass />
+
+</details>
+
+<hr />
 
 ### Provide the API key
 

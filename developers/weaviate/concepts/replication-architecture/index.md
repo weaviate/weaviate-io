@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 - [Configuration: Replication](../../configuration/replication.md)
 :::
 
-Weaviate release v1.17 introduces replication. When used in a cluster with multiple server nodes, Weaviate can now automatically replicate data across nodes in the background. This enables a variety of [use cases](./motivation.md). For example, if a node goes down, another node can shoulder the load without loss of availability or data. Database replication improves reliability, scalability, and/or performance. The user can control trade-offs between consistency and availability through [tunable consistency](./consistency.md). Weaviate has a leaderless replication design, so there is no distinction between primary and secondary nodes thereby removing all single points of failures.
+Weaviate release v1.17 introduces replication. When used in a cluster with multiple server nodes, Weaviate can now automatically replicate data across nodes in the background. This enables a variety of [use cases](./motivation.md). For example, if a node goes down, another node can shoulder the load without loss of availability or data. Database replication improves reliability, scalability, and/or performance. The user can control trade-offs between consistency and availability through [tunable consistency](./consistency.md). Weaviate has a leaderless replication design, so there is no distinction between primary and secondary nodes, thereby removing all single points of failures.
 
 In this Replication Architecture series, you will find information about:
 

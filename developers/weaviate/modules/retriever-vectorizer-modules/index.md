@@ -28,3 +28,7 @@ Unless specified otherwise, the default behavior is to:
 - Prepend the class name to the value
 - Join properties with spaces, and
 - Convert the produced string to lowercase
+
+:::info Vector inference at object update
+Where Weaviate is configured with a vectorizer, it will only obtain a new vector if an object update changes the underlying text to be vectorized.
+:::
