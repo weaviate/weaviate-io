@@ -151,7 +151,7 @@ A: This is a very difficult to answer 100% correctly, because there are several 
 Taking the above in mind: we can carefully say: If throughput is the problem, increase CPU, if response time is the problem increase mem. However, note that the latter only adds value if there are more things that can be cached. If you have enough mem to cache your entire disk state (or at least the parts that are relevant for most queries), additional memory won't add any additional benefit.
 If we are talking about imports on the other hand, they are almost always CPU-bound because of the cost of creating the HNSW index. So, if you can resize between import and query, my recommendation would be roughly prefer CPUs while importing and then gradually replace CPU with memory at query time - until you see no more benefits. (This assumes that there is a separation between importing and querying which might not always be the case in real life).
 
-## Q: With relation to "filtered vector search": Since this is a two-phase pipeline, how big can that list of IDs get? Do you know how that size might affect query performance?
+## Q: Regarding "filtered vector search": Since this is a two-phase pipeline, how big can that list of IDs get? Do you know how that size might affect query performance?
 
 A: Essentially the list ids uses the internal doc id which is a `uint64` or 8 bytes per ID. The list can grow as long as you have memory available. So for example with 2GB of free memory, it could hold 250M ids, with 20GB it could hold 2.5B ids, etc.
 
@@ -214,14 +214,14 @@ To iterate through all objects, you can use the `after` parameter with both [RES
 
 For pagination through a result set, you can use the `offset` and `limit` parameters for GraphQL API calls. Take a look at [this page](../api/graphql/filters.md#pagination-with-offset) which describes how to use these parameters, including tips on performance and limitations.
 
-## Q: What happens when the weaviate docker container restarts? Is my data in the weaviate database lost?
+## Q: What happens when the Weaviate Docker container restarts? Is my data in the weaviate database lost?
 
 A: There are three levels:
 1. You have no volume configured (the default in our `docker-compose` files), if the container restarts (e.g. due to a crash, or because of `docker stop/start`) your data is kept
 2. You have no volume configured (the default in our `docker-compose` files), if the container is removed (e.g. from `docker-compose down` or `docker rm`) your data is gone
 3. If a volume is configured, your data is persisted regardless of what happens to the container. They can be completely removed or replaced, next time they start up with a volume, all your data will be there
 
-## Q: If I do not specify an UUID during adding data objects, will weaviate create one automatically?
+## Q: If I do not specify a UUID during adding data objects, will Weaviate create one automatically?
 
 A: Yes, a UUID will be created if not specified. 
 
