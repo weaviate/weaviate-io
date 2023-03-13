@@ -8,7 +8,7 @@ const siteRedirects = require('./site.redirects');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'Weaviate - vector search engine',
+    title: 'Weaviate - vector database',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
     url: 'https://weaviate.io',

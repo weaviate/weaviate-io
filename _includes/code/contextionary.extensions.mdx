@@ -9,7 +9,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-client.contextionary.extend("weaviate", "Open source cloud native real time vector search engine", 1.0)
+client.contextionary.extend("weaviate", "Open source cloud native real time vector database", 1.0)
 ```
 
 </TabItem>
@@ -26,7 +26,7 @@ const client = weaviate.client({
 client.c11y
       .extensionCreator()
       .withConcept('weaviate')
-      .withDefinition('Open source cloud native real time vector search engine')
+      .withDefinition('Open source cloud native real time vector database')
       .withWeight(1)
       .do()
       .then(res => {
@@ -58,7 +58,7 @@ func main() {
 
   err := client.C11y().ExtensionCreator().
     WithConcept("weaviate").
-    WithDefinition("Open source cloud native real time vector search engine").
+    WithDefinition("Open source cloud native real time vector database").
     WithWeight(1.0).
     Do(context.Background())
 
@@ -85,7 +85,7 @@ public class App {
 
     Result<Boolean> result = client.c11y().extensionCreator()
       .withConcept("weaviate")
-      .withDefinition("Open source cloud native real time vector search engine")
+      .withDefinition("Open source cloud native real time vector database")
       .withWeight(1.0f)
       .run();
 
@@ -107,7 +107,7 @@ $ curl \
   -H 'Content-Type: application/json' \
   -d '{
     "concept": "weaviate",
-    "definition": "Open source cloud native real time vector search engine",
+    "definition": "Open source cloud native real time vector database",
     "weight": 1
   }' \
   http://localhost:8080/v1/modules/text2vec-contextionary/extensions

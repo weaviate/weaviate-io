@@ -5,13 +5,13 @@ authors: [sebastian]
 date: 2022-09-27
 tags: []
 image: ./img/hero.png
-description: "Running ML Model Inference in production is hard. You can use Weaviate – a vector search engine – with Hugging Face Inference module to delegate the heavy lifting."
+description: "Running ML Model Inference in production is hard. You can use Weaviate – a vector database – with Hugging Face Inference module to delegate the heavy lifting."
 ---
 ![Support for Hugging Face Inference API in Weaviate](./img/hero.png)
 
 <!-- truncate -->
 
-Vector Search engines use Machine Learning models to offer incredible functionality to operate on your data. We are looking at anything from **summarizers** (that can summarize any text into a short) sentence), through **auto-labelers** (that can classify your data tokens), to **transformers** and **vectorizers** (that can convert any data – text, image, audio, etc. – into vectors and use that for context-based queries) and many more use cases.
+Vector databases use Machine Learning models to offer incredible functionality to operate on your data. We are looking at anything from **summarizers** (that can summarize any text into a short) sentence), through **auto-labelers** (that can classify your data tokens), to **transformers** and **vectorizers** (that can convert any data – text, image, audio, etc. – into vectors and use that for context-based queries) and many more use cases.
 
 All of these use cases require `Machine Learning model inference` – a process of running data through an ML model and calculating an output (e.g. take a paragraph, and summarize into to a short sentence) – which is a compute-heavy process.
 
@@ -28,7 +28,7 @@ The good neews is, there are companies – like Hugging Face, OpenAI, and Cohere
 let them do it for you."
 
 ## Support for Hugging Face Inference API in Weaviate
-Starting from Weaviate `v1.15`, Weaviate includes a Hugging Face module, which provides support for Hugging Face Inference straight from the Vector Search engine.
+Starting from Weaviate `v1.15`, Weaviate includes a Hugging Face module, which provides support for Hugging Face Inference straight from the vector database.
 
 The Hugging Face module, allows you to use the [Hugging Face Inference service](https://huggingface.co/inference-api#pricing) with sentence similarity models, to vectorize and query your data, straight from Weaviate. No need to run the Inference API yourself.
 
