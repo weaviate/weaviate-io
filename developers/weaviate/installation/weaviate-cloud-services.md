@@ -10,13 +10,16 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-
 Weaviate Cloud Services (WCS) is a managed SaaS service that requires no maintenance at your end. Accordingly, it may be the easiest way to run Weaviate.
 
 WCS can be accessed via the [console](https://console.weaviate.io).
 
 * You can learn more about the console in [this guide](../tutorials/console.md).
-* You can create free-tier sandboxes and [sign up](https://console.weaviate.io) for the private beta of our production SaaS.
+* You can [sign up here](https://console.weaviate.io) and create a sandbox instance.
+
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/>
 
 ## Sign in
 
@@ -29,7 +32,7 @@ WCS can be accessed via the [console](https://console.weaviate.io).
 1. Press the "Create a Weaviate Cluster" button.
 1. Configure the cluster:
     1. Set a unique `name` for your cluster – note: The name will become part of the URL used to access this instance.
-    1. Select the `Subscription Tier`. Note: The sandbox is free, but it will expire after 30 days.
+    1. Select the `Subscription Tier`. 
     1. Choose your Weaviate version (we recommend always using the latest version).
     1. Choose if you want to use authentication.
 1. Press **Create**.

@@ -21,6 +21,10 @@ We will use the free sandbox tier from _Weaviate Cloud Services_ (WCS) for this 
 
 WCS is a managed SaaS service that requires no maintenance at your end. As it is the fastest 🚀 way to create a new Weaviate instance, let's spin up an instance with it for use throughout this tutorial. 
 
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/>
+
 :::info Prefer a local instance?
 If you prefer a local instance of Weaviate, we recommend getting started with Docker. Please refer to [the separate section below](#running-weaviate-with-docker) to follow along.
 :::
@@ -111,11 +115,15 @@ Please be patient as we update our Java and Go code examples. They will be ready
 
 ### Running Weaviate with Docker
 
-To set up Weaviate with Docker, follow these two steps:
+If you prefer to use Docker instead of WCS, follow these steps:
+
+<details>
+  <summary>How to use Docker for this tutorial</summary>
 
 1. Get a `docker-compose.yml` configuration file by going to the [Weaviate configurator](../installation/docker-compose.md)
     1. Select "With Modules" when asked "Standalone or Modules", and
-    1. Select the module for your preferred inference API (e.g. `text2vec-openai` for OpenAI, or `text2vec-cohere` for Cohere)
+    1. Select the module for your preferred inference API (e.g. `text2vec-openai` for OpenAI, or `text2vec-cohere` for Cohere).
+    1. You can say no to all other modules.
 1. Spin up Weaviate with Docker
     ```js
     docker-compose up -d
@@ -124,6 +132,8 @@ To set up Weaviate with Docker, follow these two steps:
 Then you can continue with the tutorial.
 
 If you are running Weaviate with Docker, keep in mind that the address for Weaviate will change from the WCS address to your local address (and port) such as `http://localhost:8080`.
+
+</details>
 
 ### More on deployment options
 

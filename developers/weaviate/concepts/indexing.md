@@ -57,6 +57,7 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
             "vectorIndexConfig": { // <== the vector index settings
                 "skip": false,
                 "cleanupIntervalSeconds": 300,
+                "pq": {"enabled": False,}
                 "maxConnections": 64,
                 "efConstruction": 128,
                 "ef": -1,

@@ -151,7 +151,7 @@ A: This is a very difficult to answer 100% correctly, because there are several 
 Taking the above in mind: we can carefully say: If throughput is the problem, increase CPU, if response time is the problem increase mem. However, note that the latter only adds value if there are more things that can be cached. If you have enough mem to cache your entire disk state (or at least the parts that are relevant for most queries), additional memory won't add any additional benefit.
 If we are talking about imports on the other hand, they are almost always CPU-bound because of the cost of creating the HNSW index. So, if you can resize between import and query, my recommendation would be roughly prefer CPUs while importing and then gradually replace CPU with memory at query time - until you see no more benefits. (This assumes that there is a separation between importing and querying which might not always be the case in real life).
 
-## Q: With relation to "filtered vector search": Since this is a two-phase pipeline, how big can that list of IDs get? Do you know how that size might affect query performance?
+## Q: Regarding "filtered vector search": Since this is a two-phase pipeline, how big can that list of IDs get? Do you know how that size might affect query performance?
 
 A: Essentially the list ids uses the internal doc id which is a `uint64` or 8 bytes per ID. The list can grow as long as you have memory available. So for example with 2GB of free memory, it could hold 250M ids, with 20GB it could hold 2.5B ids, etc.
 
@@ -186,7 +186,7 @@ A: Yes, it is possible to reference to one or more objects (Class -> one or more
 
 ## Q: What is the different between `text` and `string` and `valueText` and `valueString`?
 
-A: In general `value<Text|String>` should always match the data type in your schema. `text` is tokenized into basically just letters and numbers, whereas `string` is not tokenized. So if you want to have exact matches like email addresses use `string` and `valueString` because `text`/`valueText` would also match e.g. `jane doe` for `jane@doe.com`.
+A: In general `value<Text|String>` should always match the data type in your schema. `text` and `string` exhibit different tokenization behavior. Read more in [this section](../configuration/schema-configuration.md#property-tokenization) on the differences.
 
 ## Q: If I run a cluster (multiple instances) of Weaviate, do all the instances have to share a filesystem(PERSISTENCE_DATA_PATH)?
 
@@ -208,16 +208,20 @@ A: The UUID must be presented as a string matching the [Canonical Textual repres
 
 ## Q: What is the best way to iterate through objects? Can I do paginated API calls? 
 
-A: Yes, pagination is supported. You can use the `offset` and `limit` parameters for GraphQL API calls. [Here's](/developers/weaviate/api/graphql/filters.md#offset-filter-pagination) described how to use these parameters, including tips on performance and limitations.
+A: Yes, Weaviate supports cursor-based iteration as well as pagination through a result set.
 
-## Q: What happens when the weaviate docker container restarts? Is my data in the weaviate database lost?
+To iterate through all objects, you can use the `after` parameter with both [REST](../api/rest/objects.md#exhaustive-retrieval-after) and [GraphQL](../api/graphql/filters.md#cursor-with-after).
+
+For pagination through a result set, you can use the `offset` and `limit` parameters for GraphQL API calls. Take a look at [this page](../api/graphql/filters.md#pagination-with-offset) which describes how to use these parameters, including tips on performance and limitations.
+
+## Q: What happens when the Weaviate Docker container restarts? Is my data in the weaviate database lost?
 
 A: There are three levels:
 1. You have no volume configured (the default in our `docker-compose` files), if the container restarts (e.g. due to a crash, or because of `docker stop/start`) your data is kept
 2. You have no volume configured (the default in our `docker-compose` files), if the container is removed (e.g. from `docker-compose down` or `docker rm`) your data is gone
 3. If a volume is configured, your data is persisted regardless of what happens to the container. They can be completely removed or replaced, next time they start up with a volume, all your data will be there
 
-## Q: If I do not specify an UUID during adding data objects, will weaviate create one automatically?
+## Q: If I do not specify a UUID during adding data objects, will Weaviate create one automatically?
 
 A: Yes, a UUID will be created if not specified. 
 

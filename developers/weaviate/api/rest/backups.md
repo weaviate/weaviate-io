@@ -31,7 +31,7 @@ POST /v1/backups/{backend}
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, `azure`, or `filesystem`. |
 
 ##### Request Body
 
@@ -68,7 +68,7 @@ GET /v1/backups/{backend}/{backup_id}
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, `azure`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
 The response contains a `"status"` field. If the status is `SUCCESS`, the
@@ -101,7 +101,7 @@ POST /v1/backups/{backend}/{backup_id}/restore
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, `azure`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
 ##### Request Body
@@ -137,7 +137,7 @@ GET /v1/backups/{backend}/{backup_id}/restore
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, `azure`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the requests to create and restore the backup. |
 
 The response contains a `"status"` field. If the status is `SUCCESS`, the
@@ -149,4 +149,4 @@ import BackupStatusRestore from '/_includes/code/backup.status.restore.mdx';
 
 # Learn more about Backups
 
-Discover more about [Backups Configuration](/developers/weaviate/configuration/backups.md#configuration), including Backups to [S3](/developers/weaviate/configuration/backups.md#s3-aws-or-s3-compatible) or [GCS](/developers/weaviate/configuration/backups.md#gcs-google-cloud-storage), [Technical Considerations of Backups](/developers/weaviate/configuration/backups.md#technical-considerations), as well as [additional use cases](/developers/weaviate/configuration/backups.md#other-use-cases).
+Discover more about [Backups Configuration](/developers/weaviate/configuration/backups.md#configuration), including Backups to [S3](/developers/weaviate/configuration/backups.md#s3-aws-or-s3-compatible), [GCS](/developers/weaviate/configuration/backups.md#gcs-google-cloud-storage), or [Azure](/developers/weaviate/configuration/backups.md#azure-storage), [Technical Considerations of Backups](/developers/weaviate/configuration/backups.md#technical-considerations), as well as [additional use cases](/developers/weaviate/configuration/backups.md#other-use-cases).
