@@ -345,7 +345,7 @@ import GraphQLFiltersNearText from '/_includes/code/graphql.filters.nearText.mdx
 
 ### Example II
 
-You can also bias results toward other data objects' vector representations. For example, in this dataset, we have an ambiguous query on our news article dataset, which we bias towards an article called: ["Tohoku: A Japan destination for all seasons."](https://link.semi.technology/3Czhg9p)
+You can also bias results toward other data objects' vector representations. For example, in this dataset, we have an ambiguous query on our news article dataset, which we bias towards an article called: ["Tohoku: A Japan destination for all seasons."](https://link.weaviate.io/3l8T738)
 
 import GraphQLFiltersNearText2Obj from '/_includes/code/graphql.filters.nearText.2obj.mdx';
 
