@@ -11,7 +11,7 @@ import { DownloadButton } from '/src/theme/Buttons';
 
 ## Overview
 
-In this section, we will explore data import, including details of the batch import process. We will discuss points such as how are vectors imported, what a batch import is, how to manage errors, and some advice on optimization.
+In this section, we will explore data import, including details of the batch import process. We will discuss points such as how vectors are imported, what a batch import is, how to manage errors, and some advice on optimization.
 
 ## Prerequisites 
 
@@ -25,7 +25,7 @@ Before you start this tutorial, you should follow the steps in the tutorials to 
 - Set up a `Question` class in your schema. 
     - You can follow the Quickstart guide, or the [schema tutorial](./schema.md) to construct the Question class if you have not already.
 
-We will use the below dataset. We suggest that you download it to your working directory.
+We will use the dataset below. We suggest that you download it to your working directory.
 
 <p>
   <DownloadButton link="https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json">Download jeopardy_tiny.json</DownloadButton>
@@ -39,7 +39,7 @@ So the data import must map properties of each record to those of the relevant c
 
 ### Data object structure
 
-Each Weaviate data object is structured as below:
+Each Weaviate data object is structured as follows:
 
 ```json
 {
@@ -93,15 +93,15 @@ Typically, a size between 20 and 100 is a reasonable starting point, although th
 
 You may have noticed that we do not provide a vector. As a `vectorizer` is specified in our schema, Weaviate will send a request to the appropriate module (`text2vec-openai` in this case) to vectorize the data, and the vector in the response will be indexed and saved as a part of the data object.
 
-### Bring your own vector
+### Bring your own vectors
 
-If you wish to upload your own vector, you can do so with Weaviate. Refer to the [`batch` data object API documentation](../api/rest/batch.md#batch-create-objects). The object parameters correspond to those of the [individual objects](../api/rest/objects.md#object-fields).
+If you wish to upload your own vectors, you can do so with Weaviate. Refer to the [`batch` data object API documentation](../api/rest/batch.md#batch-create-objects). The object fields correspond to those of the [individual objects](../api/rest/objects.md#parameters-1).
 
-You can even manually upload existing vectors and use a vectorizer module for vectorizing queries.
+You can also manually upload existing vectors and use a vectorizer module for vectorizing queries.
 
 ## Confirm data import
 
-You can quickly check the imported object by opening – `weaviate-endpoint/v1/objects` in a browser, like this (replace with your endpoint):
+You can quickly check the imported object by opening `<weaviate-endpoint>/v1/objects` in a browser, like this (replace with your endpoint):
 
 ```
 https://some-endpoint.semi.network/v1/objects
@@ -132,7 +132,7 @@ When importing large datasets, it may be worth planning out an optimized import 
 1. The most likely bottleneck is the import script. Accordingly, aim to max out all the CPUs available. 
   1. Use `htop` when importing to see if all CPUs are maxed out.
 1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
-1. For Kubernetes, fewer large machines are faster than more small machines. Just because of network latency.
+1. For Kubernetes, fewer large machines are faster than more small machines (due to network latency).
 
 Our rules of thumb are:
 * You should always use batch import.
