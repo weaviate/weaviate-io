@@ -153,7 +153,14 @@ const config = {
                             {
                                 label: 'Try Now',
                                 href: 'https://console.weaviate.io/',
+                            }, 
+                            {
+                                label: 'Documentation',
+                                docId: 'wcs/index',
+                                sidebarid: 'wcsSidebar',
+                                type: 'doc',
                             },
+                                               
                         ],
                     },
                     {
