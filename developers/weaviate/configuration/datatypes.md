@@ -32,7 +32,7 @@ Refer to [this section](./schema-configuration.md#property-tokenization) on the 
 
 ## DataType: date
 
-Weaviate requires an [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) formatted date that includes the time and the offset.
+Weaviate requires an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) formatted date that includes the time and the offset.
 
 For example:
 
