@@ -85,7 +85,7 @@ An example of a complete class object including properties:
     {
       "name": "string",                     // The name of the property
       "description": "string",              // A description for your reference
-      "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes
+      "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple data types, hence the array syntax.
         "string"
       ],
       "moduleConfig": {                     // Module-specific settings
@@ -101,8 +101,8 @@ An example of a complete class object including properties:
     "stopwords": { 
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
-    "indexTimestamps": false,                 // Optional, maintains inverted indices for each object by its internal timestamps
-    "indexNullState": false,                 // Optional, maintains inverted indices for each property regarding its null state
+    "indexTimestamps": false,               // Optional, maintains inverted indices for each object by its internal timestamps
+    "indexNullState": false,                // Optional, maintains inverted indices for each property regarding its null state
     "indexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
   },
   "shardingConfig": {
@@ -392,28 +392,24 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 Only for `text2vec-*` modules
 :::
 
-In the schema you can define advanced settings for how data is stored and used by Weaviate. 
+Weaviate creates one vector per object by concatenating together the class name, followed by the [`string` and `text` properties](#property-tokenization) of the object sorted by the property name, then lowercasing and vectorizing the resulting string. For the precise sequence and how to configure the vectorization details, see [Tweaking text2vec vectorization](/blog/2023-01-10-pulling-back-the-curtains-on-text2vec/index.mdx#tweaking-text2vec-vectorization-in-weaviate). 
 
-In some cases, you want to be able to configure specific parts of the schema to optimize indexing.
+For example, this data object,
 
-For example, a data object with the following schema:
-
-```yaml
-Article:
-  title: Cows lose their jobs as milk prices drop
-  summary: As his 100 diary cows lumbered over for their Monday...
+```js
+Article = {
+  summery: "Cows lose their jobs as milk prices drop",
+  text: "As his 100 diary cows lumbered over for their Monday..."
+}
 ```
 
-which will be vectorized as:
+will be vectorized as:
 
 ```md
-article cows lose their
-jobs as milk prices drop summary
-as his diary cows lumbered
-over for their monday
+article cows lose their jobs as milk prices drop summary as his diary cows lumbered over for their monday...
 ```
 
-By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can configure the indexing.
+By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can configure the indexing. <!-- TODO: clarify -->
 
 ### Datatypes
 
