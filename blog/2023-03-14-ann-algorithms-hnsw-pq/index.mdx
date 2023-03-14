@@ -13,7 +13,7 @@ description: "Implementing HNSW + Product Quantization (PQ) vector compression i
 
 Weaviate is already a very performant and robust vector database and with the recent release of  v1.18 we are now bringing vector compression algorithms to Weaviate users everywhere. The main goal of this new feature is to offer similar performance at a fraction of the memory requirements and cost. In this blog we expand on the details behind this delicate balance between recall performance and memory management.
 
-In our previous blog [Vamana vs. HNSW - Exploring ANN algorithms Part 1](/blog/ANN-algorithms-Vamana-vs-HNSW), we explained the challenges and benefits of the Vamana and HNSW indexing algorithms. However, we did not explain the underlying motivation of moving vectors to disk. In this post we explore: 
+In our previous blog [Vamana vs. HNSW - Exploring ANN algorithms Part 1](/blog/ann-algorithms-vamana-vs-hnsw), we explained the challenges and benefits of the Vamana and HNSW indexing algorithms. However, we did not explain the underlying motivation of moving vectors to disk. In this post we explore: 
 
 - What kind of information we need to move to disk
 - The challenges of moving data to disk
@@ -235,7 +235,6 @@ We show a simple test below to drive home the importance of compressing data and
 ## Conclusions
 
 In this post we explore the journey and details behind the HNSW+PQ feature released in Weaviate v1.18. Though we still have a ways to go on this journey, as noted earlier, but what we've accomplished thus far can add loads of value to Weaviate users. This solution already allows for significant savings in terms of memory. When compressing vectors ranging from 100 to 1000 dimensions you can save half to three fourths of the memory you would normally need to run HNSW. This saving comes with a little cost in recall or latency. The indexing time is also larger but to address this we've cooked up a second encoder, developed specially by Weaviate, based on the distribution of the data that will reduce the indexing time significantly. Keep your eyes peeled for more details on this soon on [our blog](/blog)! We will share our insights as we go. 😀
-
 
 ## What's next
 Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
