@@ -117,7 +117,7 @@ The vectorizer (`"vectorizer": "..."`) can be specified per class in the schema 
 
 #### Weaviate without a vectorizer
 
-You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This may be useful in case you wish to upload your own vectors from a custom model ([see how here](../api/rest/objects.md#create-a-data-object-with-a-custom-vector)), or wish to create a class without any vectors.
+You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This may be useful in case you wish to upload your own vectors from a custom model ([see how here](../api/rest/objects.md#with-a-custom-vector)), or wish to create a class without any vectors.
 
 __Configure semantic indexing__
 
