@@ -221,7 +221,7 @@ The request body for a new object has the following fields:
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `id` | v4 UUID | no | Optional id for the object |
-| `vector` | `[float]` | no | Optional [custom vector](#create-a-data-object-with-a-custom-vector) |
+| `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
 
 #### Example request
 
@@ -380,7 +380,7 @@ The request body for replacing (some) properties of an object has the following 
 | `id` | string | ? | Required for `PUT` to be the same id as the one passed in the URL |
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
-| `vector` | `[float]` | no | Optional [custom vector](#create-a-data-object-with-a-custom-vector) |
+| `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
 
 #### Example request
 

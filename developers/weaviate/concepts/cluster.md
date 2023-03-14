@@ -90,7 +90,7 @@ The groundwork to be able to re-shard has been laid by using Weaviate's Virtual 
 
 Nodes in a cluster use a gossip-like protocol through [Hashicorp's Memberlist](https://github.com/hashicorp/memberlist) to communicate node state and failure scenarios.
 
-Weaviate - especially when running as a cluster - is optimized to run on Kubernetes. The [Weaviate Helm chart](/developers/weaviate/quickstart/installation.md#kubernetes-k8s) makes use of a `StatefulSet` and a headless `Service` that automatically configures node discovery. All you have to do is specify the desired node count.
+Weaviate - especially when running as a cluster - is optimized to run on Kubernetes. The [Weaviate Helm chart](/developers/weaviate/installation/kubernetes.md#weaviate-helm-chart) makes use of a `StatefulSet` and a headless `Service` that automatically configures node discovery. All you have to do is specify the desired node count.
 
 ## Node affinity of shards and/or replication shards
 

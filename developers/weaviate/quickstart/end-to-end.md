@@ -150,7 +150,7 @@ import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoe
 And that should have populated Weaviate with the data, including corresponding vectors!
 
 :::info Can I specify my own vectors?
-Yes! You can bring your own vectors and pass them to Weaviate directly. See [this reference](../api/rest/objects.md#create-a-data-object-with-a-custom-vector) for more information.
+Yes! You can bring your own vectors and pass them to Weaviate directly. See [this reference](../api/rest/objects.md#with-a-custom-vector) for more information.
 :::
 
 Note again that we did not provide any vectors to Weaviate. That's all managed by Weaviate, which calls the inference API for you and obtains a vector corresponding to your object at import time. 

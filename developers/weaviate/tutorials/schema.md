@@ -75,7 +75,7 @@ Each Weaviate class:
 - Has `property` values, where each `property` specifies the data type to store.
 
 :::info Can I specify my own vectors?
-Yes! You can bring your own vectors and pass them to Weaviate directly. See [this reference](../api/rest/objects.md#create-a-data-object-with-a-custom-vector) for more information.
+Yes! You can bring your own vectors and pass them to Weaviate directly. See [this reference](../api/rest/objects.md#with-a-custom-vector) for more information.
 :::
 
 ### Create a basic class
