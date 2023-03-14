@@ -164,11 +164,13 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/meta`. T
 
 Before:
 ```java
+package technology.semi.weaviate;
 import technology.semi.weaviate.client.*;
 ```
 
 After:
 ```java
+package io.weaviate;
 import io.weaviate.client.*;
 ```
 
