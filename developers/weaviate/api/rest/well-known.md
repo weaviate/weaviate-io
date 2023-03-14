@@ -9,7 +9,7 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 ## OpenID Configuration
-The RESTful API discovery gives information if [OpenID Connect (OIDC)](/developers/weaviate/configuration/authentication.md#openid-connect-oidc) authentication is enabled. The endpoint redirects to the token issued if one is configured.
+The RESTful API discovery gives information if [OpenID Connect (OIDC)](/developers/weaviate/configuration/authentication.md) authentication is enabled. The endpoint redirects to the token issued if one is configured.
 
 #### Usage
 
