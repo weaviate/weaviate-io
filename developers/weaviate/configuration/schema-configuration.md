@@ -27,11 +27,11 @@ The RESTful endpoint `/v1/schema` can be used for schema-related operations. Lea
 
 ## Data objects and structure
 
-Data objects in Weaviate always belongs to a Class, and has one or more Properties.
+Each data object in Weaviate always belongs to a Class, and has one or more Properties.
 
 ### Auto-schema
 
-If you don't create a schema manually before adding data, a schema will be generated automatically (available from Weaviate version v1.5.0). This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
+If you don't create a schema manually before adding data, a schema will be generated automatically (starting with Weaviate version v1.5.0). This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
 
 It has the following characteristics:
 
@@ -118,10 +118,6 @@ The vectorizer (`"vectorizer": "..."`) can be specified per class in the schema 
 #### Weaviate without a vectorizer
 
 You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This may be useful in case you wish to upload your own vectors from a custom model ([see how here](../api/rest/objects.md#create-a-data-object-with-a-custom-vector)), or wish to create a class without any vectors.
-
-__Configure semantic indexing__
-
-With the [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing) how this works.
 
 ### vectorIndexType
 
