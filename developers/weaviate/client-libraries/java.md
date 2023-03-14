@@ -17,7 +17,7 @@ To get the latest stable version of the Java client library, add this dependency
 
 ```xml
 <dependency>
-  <groupId>technology.semi.weaviate</groupId>
+  <groupId>io.weaviate</groupId>
   <artifactId>client</artifactId>
   <version>3.6.2</version>  <!-- Check latest version -->
 </dependency>
@@ -28,10 +28,10 @@ This API client is compatible with Java 8 and beyond.
 You can use the client in your project as follows:
 
 ```clike
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.misc.model.Meta;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.misc.model.Meta;
 
 public class App {
   public static void main(String[] args) {
@@ -68,8 +68,8 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 <ClientAuthFlowResourceOwnerPassword />
 
 ```java
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateAuthClient;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateAuthClient;
 
 Config config = new Config("http", "weaviate.example.com:8080");
 WeaviateAuthClient.clientPassword(
@@ -87,8 +87,8 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 <ClientAuthFlowClientCredentials />
 
 ```java
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateAuthClient;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateAuthClient;
 
 Config config = new Config("http", "weaviate.example.com:8080");
 WeaviateAuthClient.clientCredentials(
@@ -105,8 +105,8 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 <ClientAuthBearerToken />
 
 ```java
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateAuthClient;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateAuthClient;
 
 Config config = new Config("http", "weaviate.example.com:8080");
 WeaviateAuthClient.bearerToken(
@@ -122,8 +122,8 @@ WeaviateAuthClient.bearerToken(
 You can pass custom headers to the client, which are added at initialization:
 
 ```java
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
 
 public class App {
   public static void main(String[] args) {
@@ -156,8 +156,8 @@ The code snippet above shows a simple query similar to `RESTful GET /v1/meta`. T
 
 Before:
 ```java
-// import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
-// import technology.semi.weaviate.client.v1.graphql.query.fields.Fields;
+// import io.weaviate.client.v1.graphql.query.fields.Field;
+// import io.weaviate.client.v1.graphql.query.fields.Fields;
 
 Fields fields = Fields.builder().fields(new Field[]{name, description}).build();
 client.graphQL().aggregate().withFields(fields)...
@@ -172,8 +172,8 @@ client.graphQL().aggregate().withFields(name, description)...
 
 Before:
 ```java
-// import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
-// import technology.semi.weaviate.client.v1.graphql.query.fields.Fields;
+// import io.weaviate.client.v1.graphql.query.fields.Field;
+// import io.weaviate.client.v1.graphql.query.fields.Fields;
 
 Fields fields = Fields.builder().fields(new Field[]{name, description}).build();
 client.graphQL().get().withFields(fields)...
@@ -193,7 +193,7 @@ client.graphQL().get().withNearVector(new Float[]{ 0f, 1f, 0.8f })...
 
 After:
 ```java
-// import technology.semi.weaviate.client.v1.graphql.query.argument.NearVectorArgument;
+// import io.weaviate.client.v1.graphql.query.argument.NearVectorArgument;
 
 NearVectorArgument nearVector = NearVectorArgument.builder().vector(new Float[]{ 0f, 1f, 0.8f }).certainty(0.8f).build();
 client.graphQL().get().withNearVector(nearVector)...
@@ -207,9 +207,9 @@ With `batch delete` feature, unified `filters.WhereFilter` implementation is int
 
 Before:
 ```java
-// import technology.semi.weaviate.client.v1.graphql.query.argument.GeoCoordinatesParameter;
-// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereArgument;
-// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereOperator;
+// import io.weaviate.client.v1.graphql.query.argument.GeoCoordinatesParameter;
+// import io.weaviate.client.v1.graphql.query.argument.WhereArgument;
+// import io.weaviate.client.v1.graphql.query.argument.WhereOperator;
 
 GeoCoordinatesParameter geo = GeoCoordinatesParameter.builder()
     .latitude(50.51f)
@@ -227,8 +227,8 @@ client.graphQL().aggregate().withWhere(where)...
 
 After:
 ```java
-// import technology.semi.weaviate.client.v1.filters.Operator;
-// import technology.semi.weaviate.client.v1.filters.WhereFilter;
+// import io.weaviate.client.v1.filters.Operator;
+// import io.weaviate.client.v1.filters.WhereFilter;
 
 WhereFilter where = WhereFilter.builder()
     .valueGeoRange(WhereFilter.GeoRange.builder()
@@ -252,8 +252,8 @@ client.graphQL().aggregate().withWhere(where)...
 
 Before:
 ```java
-// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereArgument;
-// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereOperator;
+// import io.weaviate.client.v1.graphql.query.argument.WhereArgument;
+// import io.weaviate.client.v1.graphql.query.argument.WhereOperator;
 
 WhereArgument where = WhereArgument.builder()
     .valueString("txt")
@@ -266,8 +266,8 @@ client.graphQL().aggregate().withWhere(where)...
 
 After:
 ```java
-// import technology.semi.weaviate.client.v1.filters.Operator;
-// import technology.semi.weaviate.client.v1.filters.WhereFilter;
+// import io.weaviate.client.v1.filters.Operator;
+// import io.weaviate.client.v1.filters.WhereFilter;
 
 WhereFilter where = WhereFilter.builder()
     .valueString("txt")
@@ -280,9 +280,9 @@ client.graphQL().aggregate().withWhere(where)...
 
 Before:
 ```java
-// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereArgument;
-// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereFilter;
-// import technology.semi.weaviate.client.v1.graphql.query.argument.WhereOperator;
+// import io.weaviate.client.v1.graphql.query.argument.WhereArgument;
+// import io.weaviate.client.v1.graphql.query.argument.WhereFilter;
+// import io.weaviate.client.v1.graphql.query.argument.WhereOperator;
 
 WhereArgument where = WhereArgument.builder()
     .operands(new WhereFilter[]{
@@ -305,8 +305,8 @@ client.graphQL().aggregate().withWhere(where)...
 
 After:
 ```java
-// import technology.semi.weaviate.client.v1.filters.Operator;
-// import technology.semi.weaviate.client.v1.filters.WhereFilter;
+// import io.weaviate.client.v1.filters.Operator;
+// import io.weaviate.client.v1.filters.WhereFilter;
 
 WhereFilter where = WhereFilter.builder()
     .operands(new WhereFilter[]{
@@ -331,11 +331,11 @@ client.graphQL().aggregate().withWhere(where)...
 
 Before:
 ```java
-// import technology.semi.weaviate.client.v1.classifications.model.GeoCoordinates;
-// import technology.semi.weaviate.client.v1.classifications.model.Operator;
-// import technology.semi.weaviate.client.v1.classifications.model.WhereFilter;
-// import technology.semi.weaviate.client.v1.classifications.model.WhereFilterGeoRange;
-// import technology.semi.weaviate.client.v1.classifications.model.WhereFilterGeoRangeDistance;
+// import io.weaviate.client.v1.classifications.model.GeoCoordinates;
+// import io.weaviate.client.v1.classifications.model.Operator;
+// import io.weaviate.client.v1.classifications.model.WhereFilter;
+// import io.weaviate.client.v1.classifications.model.WhereFilterGeoRange;
+// import io.weaviate.client.v1.classifications.model.WhereFilterGeoRangeDistance;
 
 WhereFilter where = WhereFilter.builder()
     .valueGeoRange(WhereFilterGeoRange.builder()
@@ -356,8 +356,8 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 
 After:
 ```java
-// import technology.semi.weaviate.client.v1.filters.Operator;
-// import technology.semi.weaviate.client.v1.filters.WhereFilter;
+// import io.weaviate.client.v1.filters.Operator;
+// import io.weaviate.client.v1.filters.WhereFilter;
 
 WhereFilter where = WhereFilter.builder()
     .valueGeoRange(WhereFilter.GeoRange.builder()
