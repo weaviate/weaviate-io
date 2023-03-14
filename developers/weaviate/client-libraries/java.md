@@ -19,7 +19,7 @@ To get the latest stable version of the Java client library, add this dependency
 <dependency>
   <groupId>io.weaviate</groupId>
   <artifactId>client</artifactId>
-  <version>3.6.2</version>  <!-- Check latest version -->
+  <version>4.0.0</version>  <!-- Check latest version -->
 </dependency>
 ```
 
@@ -27,7 +27,9 @@ This API client is compatible with Java 8 and beyond.
 
 You can use the client in your project as follows:
 
-```clike
+```java
+package io.weaviate;
+
 import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateClient;
 import io.weaviate.client.base.Result;
@@ -149,6 +151,20 @@ The Java client functions are designed with a 'Builder pattern'. A pattern is us
 The code snippet above shows a simple query similar to `RESTful GET /v1/meta`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by using the `.metaGetter()` on `.misc()`. The query will be sent with the `.run()` function, this object is thus required for every function you want to build and execute. 
 
 ## Migration Guides
+
+### From `3.x.x` to `4.0.0`
+
+#### Moved from `technology.semi.weaviate` to `io.weaviate` package
+
+Before:
+```java
+import technology.semi.weaviate.client.*;
+```
+
+After:
+```java
+import io.weaviate.client.*;
+```
 
 ### From `2.4.0` to `3.0.0`
 
