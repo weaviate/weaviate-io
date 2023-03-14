@@ -117,7 +117,7 @@ import HowToAddData from '/_includes/code/howto.customvectors.adddata.mdx';
 <!-- TODO - Should write a standard snippet about querying data objects (w/ vectors in results) -->
 Your instance of Weaviate should now include those data objects, including our own vectors which we assigned above.
 
-Check the [API reference](../api/rest/objects.md#create-a-data-object-with-custom-vectors) for more information around creating objects.
+Check the [API reference](../api/rest/objects.md#with-a-custom-vector) for more information around creating objects.
 
 ## Query and search through data
 
