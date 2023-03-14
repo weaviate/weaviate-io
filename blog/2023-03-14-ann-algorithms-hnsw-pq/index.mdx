@@ -39,7 +39,7 @@ Additionally, a graph representation of neighborhoods is built when indexing. Th
 | Gist        | 960        | 1,000,000 | 3840                         |
 | DeepImage96 | 96         | 9,990,000 | 3836.16                      |
 
-***Table 1**: Description of datasets.*
+**Table 1**: *Description of datasets.*
 
 Increasing the number of objects vs. storing longer dimensional vectors has an equivalent effect on the overall memory required to store the vectors. As an example consider the Gist dataset, which contains 1,000,000 vectors, each with 960 dimensions. This would mean we need roughly 500 MB for the graph but nearly ten times more memory for the vectors. On the other hand, a database such as DeepImage96 would have 96 dimensions but almost 10,000,000 vectors, meaning, that we would need around 10 GB to hold the vectors and the graph, ~5 GB for each.
 
@@ -60,10 +60,10 @@ Once we have the data compressed, we still need to be able to calculate distance
 Notice the delta($\delta$) term in the explanation. This delta refers to the error we introduce due to the compression - we are using a lossy compression process. As we mentioned before, we are lowering the accuracy of our data, meaning the distance we calculate is a bit distorted; this distortion is exactly what we represent using delta. We don’t aim to calculate such an error, nor to try to correct it. We should however acknowledge it and try to keep it low.
 
 ![comp1](./img/image1.jpg)
-***Fig. 1**: Suppose we have vectors x and y represented in their original space. We apply a compression function $C$ to obtain a shorter representation of $x$ ($x’$) and $y$ ($y’$) on a compressed space but would require a decompression function $C’$ from the compressed space into the original space to be able to use the original distance function. In this case we would obtain $x’’$ and $y’’$ from $x’$ and $y’$ respectively and apply the distance on the approximations of the original $x$ and $y$ so $d(x,y)=d(x'',y'') + \delta$ where $\delta$ is the distortion added to the distance calculation due of the reconstruction of the original vectors. The compression/decompression mechanisms should be such that the distortion is minimized.*
+**Fig. 1**: *Suppose we have vectors x and y represented in their original space. We apply a compression function $C$ to obtain a shorter representation of $x$ ($x’$) and $y$ ($y’$) on a compressed space but would require a decompression function $C’$ from the compressed space into the original space to be able to use the original distance function. In this case we would obtain $x’’$ and $y’’$ from $x’$ and $y’$ respectively and apply the distance on the approximations of the original $x$ and $y$ so $d(x,y)=d(x'',y'') + \delta$ where $\delta$ is the distortion added to the distance calculation due of the reconstruction of the original vectors. The compression/decompression mechanisms should be such that the distortion is minimized.*
 
 ![comp2](./img/image2.jpg)
-***Fig. 2**: Suppose we have vectors x and y represented in their original space. We apply a compression function $C$ to obtain a shorter representation of $x$ ($x’$) and $y$ ($y’$) on a compressed space. This saves storage space but would require a new distance function $d’$ to operate directly on the compressed space so $d(x,y) = d'(x',y') + \delta $ where $\delta$ is the distortion of the distance. We also need the new distance to be such that the distortion is minimized.*
+**Fig. 2**: *Suppose we have vectors x and y represented in their original space. We apply a compression function $C$ to obtain a shorter representation of $x$ ($x’$) and $y$ ($y’$) on a compressed space. This saves storage space but would require a new distance function $d’$ to operate directly on the compressed space so $d(x,y) = d'(x',y') + \delta $ where $\delta$ is the distortion of the distance. We also need the new distance to be such that the distortion is minimized.*
 
 The second approach might be better in terms of performance since it does not require the decompression step. The main problem is that we might need to define a new distance function for each encoding compression function. This solution looks harder to maintain in the long run. The first approach seems more feasible and thus we will explore it next.
 
@@ -82,7 +82,7 @@ The main intuition behind Product Quantization is that it adds the concept of se
 The compression is carried out by using predefined centers, which we will explain shortly. If we aim to compress each segment down to 8 bits (one byte) of memory, we might have 256 (total combinations with 8 bits) predefined centers per segment. When compressing a vector we would go segment-by-segment assigning a byte representing the index of the predefined center. The segmentation and compression process is demonstrated in Figure 3 below.
 
 ![pq](./img/image3.jpg)
-***Fig. 3**: We are compressing a 128 dimensions vector into a 32 bytes compressed vector. For this, we define 32 segments meaning the first segment is composed of the four first dimensions, the second segment goes from dimension 5th to 8th and so on. Then for each segment we need a compression function taking as an input a four dimensional vector and producing as an output a byte representing the index of the center which best matches the input. The decompression function is straightforward, given a byte, we reconstruct the segment by returning the center at the index encoded by the input.*
+**Fig. 3**: *We are compressing a 128 dimensions vector into a 32 bytes compressed vector. For this, we define 32 segments meaning the first segment is composed of the four first dimensions, the second segment goes from dimension 5th to 8th and so on. Then for each segment we need a compression function taking as an input a four dimensional vector and producing as an output a byte representing the index of the center which best matches the input. The decompression function is straightforward, given a byte, we reconstruct the segment by returning the center at the index encoded by the input.*
 
 A straightforward encoding/compression function uses KMean’s to generate the centers, each of which can be represented using an id/code and then each incoming vector segment can be assigned the id/code for the center closest to it.
  
@@ -108,10 +108,10 @@ We also offer the flexibility of choosing the amount of centroids to use with KM
 First, we show results on Sift1M. We vary the amount of centroids starting with 256 and increase the number until it performs poorly compared to the next curve. Notice that similar recall/latency results with less segments still mean better compression rate.
 
 ![res1](./img/image5.png)
-***Fig. 4**: Time (min) to fit the Product Quantizer with 200,000 vectors and to encode 1,000,000 vectors, all compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 8 dimensions per segment. The points in the curve are obtained varying the amount of centroids.*
+**Fig. 4**: *Time (min) to fit the Product Quantizer with 200,000 vectors and to encode 1,000,000 vectors, all compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 8 dimensions per segment. The points in the curve are obtained varying the amount of centroids.*
 
 ![res2](./img/image6.png)
-***Fig. 5**: Average time (microseconds) to calculate distances from query vectors to all 1,000,000 vectors compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 8 dimensions per segment. The points in the curve are obtained varying the amount of centroids. The “base” curve refers to the fixed average time to calculate distances between uncompressed vectors.*
+**Fig. 5**: *Average time (microseconds) to calculate distances from query vectors to all 1,000,000 vectors compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 8 dimensions per segment. The points in the curve are obtained varying the amount of centroids. The “base” curve refers to the fixed average time to calculate distances between uncompressed vectors.*
 
 Notice some important findings from the experiments. Latency could vary significantly depending on the settings we use. We could reduce latency by paying some penalty in the distortion of the distances (observed in the recall drop) or we could aim for more accurate results with a higher latency penalty.
 
@@ -120,20 +120,20 @@ Notice some important findings from the experiments. Latency could vary signific
 Next we show the results on DeepImage96. We see a similar profile compared to Sift1M. Latency is nearly 10 times slower but this is due to the fact that we have nearly 10 times more vectors.
 
 ![res3](./img/image7.png)
-***Fig. 6**: Time (min) to fit the Product Quantizer with 200,000 vectors and to encode 9,990,000 vectors, all compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 6 dimensions per segment. The points in the curve are obtained varying the amount of centroids.*
+**Fig. 6**: *Time (min) to fit the Product Quantizer with 200,000 vectors and to encode 9,990,000 vectors, all compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 6 dimensions per segment. The points in the curve are obtained varying the amount of centroids.*
 
 ![res4](./img/image8.png)
-***Fig. 7**: Average time (microseconds) to calculate distances from query vectors to all 9,990,000 vectors compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 6 dimensions per segment. The points in the curve are obtained varying the amount of centroids. The “base” curve refers to the fixed average time to calculate distances between uncompressed vectors.*
+**Fig. 7**: *Average time (microseconds) to calculate distances from query vectors to all 9,990,000 vectors compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 6 dimensions per segment. The points in the curve are obtained varying the amount of centroids. The “base” curve refers to the fixed average time to calculate distances between uncompressed vectors.*
 
 ### Gist
 
 Finally, we show results on the Gist database using the 1,000,000 vectors. We see a similar profile compared to Sift1M again. Latency is nearly 10 times slower but this time it is due to the fact that we have nearly 10 times more dimensions per vectors.
 
 ![res5](./img/image9.png)
-***Fig. 8**: Time (min) to fit the Product Quantizer with 200,000 vectors and to encode 1,000,000 vectors, all compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 6 dimensions per segment. The points in the curve are obtained varying the amount of centroids.*
+**Fig. 8**: *Time (min) to fit the Product Quantizer with 200,000 vectors and to encode 1,000,000 vectors, all compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 6 dimensions per segment. The points in the curve are obtained varying the amount of centroids.*
 
 ![res6](./img/image10.png)
-***Fig. 9**: Average time (microseconds) to calculate distances from query vectors to all 1,000,000 vectors compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 6 dimensions per segment. The points in the curve are obtained varying the amount of centroids. The “base” curve refers to the fixed average time to calculate distances between uncompressed vectors.*
+**Fig. 9**: *Average time (microseconds) to calculate distances from query vectors to all 1,000,000 vectors compared to the recall achieved. The different curves are obtained varying the segment length (shown in the legend) from 1 to 6 dimensions per segment. The points in the curve are obtained varying the amount of centroids. The “base” curve refers to the fixed average time to calculate distances between uncompressed vectors.*
 
 As we should expect, Product Quantization is very useful for saving memory. It comes at a cost though. The most expensive part is fitting the KMeans clustering algorithm. To remedy this we could use a different encoder based on the distribution of the data, however that is a topic we shall save for later!
 
@@ -149,7 +149,7 @@ A final word on performance, not all applications require a high recall. Sometim
 | Gist      | 48       | 256       | x80         | Compressed   | 221 (x17.5)  |
 |           |          |           |             | Uncompressed | 3889         |
 
-***Tab. 2**: Brute force search latency with high compression ratio.*
+**Tab. 2**: *Brute force search latency with high compression ratio.*
 
 ## HNSW+PQ
 
@@ -164,7 +164,7 @@ If we compress too soon, when too little data is present in uncompressed form, t
 Figure 10 shows a profile of the memory used while loading Sift1M. Notice the first peak in memory at the beginning. This was the memory used for loading the first fifth of the data plus compressing the data. We then wait for the garbage collection cycle to claim the memory back after which we send the remaining data to the server. Note that the peaks in the middle are due to memory not being freed by the garbage collection process immediately. At the end you see the actual memory used after the garbage collection process clean everything up.
 
 ![graf](./img/image11.png)
-***Fig. 10**: Heap usage while loading the data into the Weaviate server. Memory does not grow smoothly. Instead there is a higher peak at the beginning before the vectors are compressed.*
+**Fig. 10**: *Heap usage while loading the data into the Weaviate server. Memory does not grow smoothly. Instead there is a higher peak at the beginning before the vectors are compressed.*
 
 Lets focus the comparison in three directions: 
 - How much longer does it take to index compressed data?
@@ -180,16 +180,16 @@ All experiments were performed adding 200,000 vectors using uncompressed behavio
 We do not include the same charts for DeepImage but results are similar to those obtained over Sift1M.
 
 ![perf1](./img/image12.png)
-***Fig. 11**: The chart shows Recall (vertical axis) Vs Latency (in microseconds, on the horizontal axis). For this experiment we have added 200,000 vectors using the normal HNSW algorithm, then we switched to compressed and added the remaining 800,000 vectors.*
+**Fig. 11**: *The chart shows Recall (vertical axis) Vs Latency (in microseconds, on the horizontal axis). For this experiment we have added 200,000 vectors using the normal HNSW algorithm, then we switched to compressed and added the remaining 800,000 vectors.*
 
 ![perf2](./img/image13.png)
-***Fig. 12**: The chart shows Recall (vertical axis) Vs Indexing time (in minutes, on the horizontal axis). For this experiment we have added 200,000 vectors using the normal HNSW algorithm, then we switched to compressed and added the remaining 800,000 vectors.*
+**Fig. 12**: *The chart shows Recall (vertical axis) Vs Indexing time (in minutes, on the horizontal axis). For this experiment we have added 200,000 vectors using the normal HNSW algorithm, then we switched to compressed and added the remaining 800,000 vectors.*
 
 ![perf3](./img/image14.png)
-***Fig. 13**: The chart shows Recall (vertical axis) Vs Latency (in microseconds, on the horizontal axis). For this experiment we have added 200,000 vectors using the normal HNSW algorithm, then we switched to compressed and added the remaining 800,000 vectors.*
+**Fig. 13**: *The chart shows Recall (vertical axis) Vs Latency (in microseconds, on the horizontal axis). For this experiment we have added 200,000 vectors using the normal HNSW algorithm, then we switched to compressed and added the remaining 800,000 vectors.*
 
 ![perf4](./img/image15.png)
-***Fig. 14**: The chart shows Recall (vertical axis) Vs Indexing time (in minutes, on the horizontal axis). For this experiment we have added 200,000 vectors using the normal HNSW algorithm, then we switched to compressed and added the remaining 800,000 vectors.*
+**Fig. 14**: *The chart shows Recall (vertical axis) Vs Indexing time (in minutes, on the horizontal axis). For this experiment we have added 200,000 vectors using the normal HNSW algorithm, then we switched to compressed and added the remaining 800,000 vectors.*
 
 ### Memory compression results
 
@@ -198,7 +198,7 @@ Keep in mind that the whole graph built by HNSW is still hosted in memory. As we
 A final remark. Notice how the compression rate is better on Gist. The reason for this is the fact that we have larger vectors. This means that the memory dedicated to vectors is larger than the memory dedicated to the graph and since we only compress vectors, then the larger the vectors the higher the compression rate. Having even larger vectors such as OpenAI embeddings (1536 dimensions) would reach even better compression rates.
 
 ![perf5](./img/image16.png)
-***Fig.15**: The charts show heap usage. Top down it shows Sift1M, DeepImage and Gist. Charts to the left show Recall (vertical axis) Vs Heap usage (horizontal axis). Charts to the right show Heap usage (horizontal axis) Vs the different parameter sets. Parameter sets to achieve a larger graph (also producing a more accurate search) are charted from top down.*
+**Fig.15**: *The charts show heap usage. Top down it shows Sift1M, DeepImage and Gist. Charts to the left show Recall (vertical axis) Vs Heap usage (horizontal axis). Charts to the right show Heap usage (horizontal axis) Vs the different parameter sets. Parameter sets to achieve a larger graph (also producing a more accurate search) are charted from top down.*
 
 Let’s sumamrize what we see in the above charts. We could index our data using high or low parameters set. Additionally, we could aim for different levels of compression. The fact that the graph is still in memory makes it hard to see the difference between those different levels of compression. The more we compress the lower the recall we would expect. Let us discuss the lowest level of compression along with some expectations.
 
@@ -226,7 +226,7 @@ A summary is shown in Table 3 below.
 | Gist High params      | Uncompressed | 0.99628       | 15539                     | 5103                         |
 |                       | Compressed   | 0.95455       | 37402           (x2.40)   | 2129               (41.72%)  |
 
-***Tab. 3**: Summary of the previously presented results. We show results for the shortest and largest parameter sets for uncompressed and compressed versions. Additionally we show the speed down rate in latency and the percentage of memory, compared to uncompressed, needed to operate under compressed options.*
+**Tab. 3**: *Summary of the previously presented results. We show results for the shortest and largest parameter sets for uncompressed and compressed versions. Additionally we show the speed down rate in latency and the percentage of memory, compared to uncompressed, needed to operate under compressed options.*
 
 We would like to give you an extra bonus row from the above table. [Sphere](https://github.com/facebookresearch/sphere) is an open-source dataset recently released by Meta. It collects 768 dimensions and nearly a billion objects. Only hosting the vectors in memory would take 3.1 TB. To work with data of this size, either you need to spend more to provision expensive resources, or you can sacrifice a bit on recall and latency and save drastically on resources. 
 
@@ -237,7 +237,7 @@ We show a simple test below to drive home the importance of compressing data and
 | 10M vectors from Sphere | Uncompressed        | 119                                                  | 32.54                                 | 28.66                           |
 |                         | Compressed (4-to-1) | 273                                          (x2.29) | 10.57                        (32.48%) | 7.16                (24.98%)    |
 
-***Tab. 4**: Summary of latency and memory requirements on the 10M Sphere subset. Additionally we show the speed down rate in latency and the percentage of memory, compared to uncompressed, needed to operate under compressed options.*
+**Tab. 4**: *Summary of latency and memory requirements on the 10M Sphere subset. Additionally we show the speed down rate in latency and the percentage of memory, compared to uncompressed, needed to operate under compressed options.*
 
 ## Conclusions
 
