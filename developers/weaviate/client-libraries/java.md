@@ -12,6 +12,12 @@ import Badges from '/_includes/badges.mdx';
 The current Java client version is `v||site.java_client_version||`.
 :::
 
+:::info Breaking changes introduced in v4
+The `package` and `import` paths have been updated from `technology.semi.weaviate` to `io.weaviate`.
+
+See the [Migration Guide](#from-3xx-to-400) for more info.  
+:::
+
 ## Installation and setup
 To get the latest stable version of the Java client library, add this dependency to your project:
 
