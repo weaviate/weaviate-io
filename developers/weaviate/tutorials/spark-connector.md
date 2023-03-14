@@ -70,7 +70,7 @@ You can also verify the local Spark Session is running by executing:
 spark
 ```
 
-## Reading Data into Spark
+## Reading data into Spark
 
 For this tutorial we will read in a subset of the Sphere dataset, containing 100k lines, into the Spark Session that was just started. 
 
