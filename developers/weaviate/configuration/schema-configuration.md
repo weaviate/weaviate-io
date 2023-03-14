@@ -392,7 +392,7 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 Only for `text2vec-*` modules
 :::
 
-Weaviate creates one vector per object by concatenating together the class name, followed by the [`string` and `text` properties](#property-tokenization) of the object sorted by the property name, then lowercasing and vectorizing the resulting string. For the precise sequence and how to configure the vectorization details, see [Tweaking text2vec vectorization](/blog/2023-01-10-pulling-back-the-curtains-on-text2vec/#tweaking-text2vec-vectorization-in-weaviate).
+Weaviate creates one vector per object by concatenating together the class name, followed by the [`string` and `text` properties](#property-tokenization) of the object sorted by the property name, then lowercasing and vectorizing the resulting string. For the precise sequence and how to configure the vectorization details, see [Tweaking text2vec vectorization](/blog/pulling-back-the-curtains-on-text2vec/#tweaking-text2vec-vectorization-in-weaviate).
 
 For example, this data object,
 
