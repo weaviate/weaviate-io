@@ -20,8 +20,6 @@ In our previous blog [Vamana vs. HNSW - Exploring ANN algorithms Part 1](/blog/A
 - What the implications of moving information to disk are 
 - Introduce and test a full first solution offered by the new HNSW+PQ feature in Weaviate v1.18
 
-
-
 ## What Information to Move to disk
 
 When indexing, there exist two big chunks of information that utilize massive amounts of memory: vectors and neighborhood graphs.
@@ -32,12 +30,11 @@ Additionally, a graph representation of neighborhoods is built when indexing. Th
 
 1 GB doesn't sound too bad! Why should we go through the trouble of compressing the vectors at all then!? Sift1M is a rather small dataset. Have a look at some of the other experimental datasets listed in Table 1 below; these are much bigger and this is where the memory requirements can begin to get out of hand. Furthermore, you might be using Weaviate with your own data which might be even bigger than the datasets we report on below. If we extrapolate out, consider how big these memory requirements could grow as you add more objects or represent these objects with long vector embeddings.
 
-
 | DataSet     | Dimensions | Vectors   | Size in memory (MB) |
-|-------------|------------|-----------|------------------------------|
-| Sift1M      | 128        | 1,000,000 | 512                          |
-| Gist        | 960        | 1,000,000 | 3840                         |
-| DeepImage96 | 96         | 9,990,000 | 3836.16                      |
+|-------------|------------|-----------|---------------------|
+| Sift1M      | 128        | 1,000,000 | 512                 |
+| Gist        | 960        | 1,000,000 | 3840                |
+| DeepImage96 | 96         | 9,990,000 | 3836.16             |
 
 **Table 1**: *Description of datasets.*
 
@@ -71,7 +68,6 @@ In addition to the above mentioned problem, we also need the new functions to op
 
 For these reasons we need to select the compression mechanism very carefully! There already exist many compression mechanisms, of which a very popular one is Product Quantization(PQ). This is the compression algorithm we chose to implement in Weaviate with v1.18. Let's explore how PQ works.
 
-
 ## Product Quantization
 ![ann](./img/Ann.png)
 
@@ -89,7 +85,6 @@ A straightforward encoding/compression function uses KMeans to generate the cent
 Putting all of this together, the final algorithm would work as follows: Given a set of N vectors, we segment each of them producing smaller dimensional vectors, then apply KMeans clustering per segment over the complete data and find 256 centroids that will be used as predefined centers. When compressing a vector we find the closest centroid per segment and return an array of bytes with the indexes of the centroids per segment. When decompressing a vector, we concatenate the centroids encoded by each byte on the array.
 
 The explanation above is a simplification of the complete algorithm, as we also need to be concerned about performance for which we need to address duplication of calculations, synchronization in multithreading and so on. However what we have covered above should be sufficient to understand what you can accomplish using the PQ feature released in v1.18. Let's see some of the results HNSW implemented with PQ in Weaviate can accomplish next! If you're interested in learning more about PQ you can refer to the documentation [here](/developers/weaviate/concepts/vector-index#hnsw-with-product-quantizationpq). If you want to learn how to configure Weaviate to use PQ refer to the docs [here](/developers/weaviate/configuration/indexes#how-to-configure-hnsw).
-
 
 ## KMeans encoding results
 
@@ -138,7 +133,6 @@ Finally, we show results on the Gist database using the 1,000,000 vectors. We se
 As we should expect, Product Quantization is very useful for saving memory. It comes at a cost though. The most expensive part is fitting the KMeans clustering algorithm. To remedy this we could use a different encoder based on the distribution of the data, however that is a topic we shall save for later!
 
 A final word on performance, not all applications require a high recall. Sometimes, it's enough to output relevant data really fast. In such cases we care about latency alot more than recall. Compressing, not only saves memory but also time. As an example, consider brute force where we compress very aggressively. This would mean we do not need memory at all for indexing data and very little memory for holding the vectors. The main metric of concern in this setting is the latency with which we can obtain our replies. Product Quantization not only helps with reducing memory requirements in this case but also with cutting down on latency. The following table compares improvement in latency that can be achieved using PQ aggressively.
-
 
 | Dataset   | Segments | Centroids | Compression |              | Latency (ms) |
 |-----------|----------|-----------|-------------|--------------|--------------|
@@ -210,8 +204,7 @@ For Gist we would require roughly 4218 MB to 5103 MB of memory to index our data
 
 A summary is shown in Table 3 below.
 
-
-|                       |              | Recall100@100 | Latency ($\mu s$)       | Memory required (MB)         |
+|                       |              | Recall100@100 | Latency ($\mu s$)         | Memory required (MB)         |
 |-----------------------|--------------|---------------|---------------------------|------------------------------|
 | Sift1M Low params     | Uncompressed | 0.91561       | 293                       | 1277                         |
 |                       | Compressed   | 0.91361       | 401               (x1.36) | 610                 (47.76%) |
@@ -232,10 +225,10 @@ We would like to give you an extra bonus row from the above table. [Sphere](http
 
 We show a simple test below to drive home the importance of compressing data and eventually moving graphs also to disk. The test was run over 10 million objects only. A final note on the numbers. While all the experiments above have been carried out directly on the algorithm, the table below is constructed using data collected from interactions with the Weaviate server. This means the latency is calculated end to end (with all the overhead on communication from clients).
 
-|                         |                     | Latency (ms)                               | Memory required (GB)                  | Memory to host the vectors (GB) |
-|-------------------------|---------------------|------------------------------------------------------|---------------------------------------|---------------------------------|
-| 10M vectors from Sphere | Uncompressed        | 119                                                  | 32.54                                 | 28.66                           |
-|                         | Compressed (4-to-1) | 273                                          (x2.29) | 10.57                        (32.48%) | 7.16                (24.98%)    |
+|                         |                         | Latency (ms) | Memory required (GB) | Memory to host the vectors (GB) |
+|-------------------------|-------------------------|--------------|----------------------|---------------------------------|
+| 10M vectors from Sphere | Uncompressed            | 119          | 32.54                | 28.66                           |
+|                         | Compressed<br/>(4-to-1) | 273 (x2.29)  | 10.57 (32.48%)       | 7.16 (24.98%)                   |
 
 **Tab. 4**: *Summary of latency and memory requirements on the 10M Sphere subset. Additionally we show the speed down rate in latency and the percentage of memory, compared to uncompressed, needed to operate under compressed options.*
 
