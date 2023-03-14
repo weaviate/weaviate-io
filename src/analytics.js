@@ -1,9 +1,9 @@
 export const analyticsSiteSearched = (searchTerm) =>
-    plausible('site-search', {
+    plausible('Site Search', {
         props: { searchTerm }
     })
 
 export const analyticsSiteSearchSelected = (searchTerm, uri) =>
-    plausible('site-search-selected', {
+    plausible('Site Search Selected', {
         props: { searchTerm, uri }
     })
