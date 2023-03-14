@@ -338,8 +338,7 @@ hints to look at:
   it could then be that your benchmark is bottlenecked by those disks.
 
 * Are you using more than 2 million vectors? If yes, make sure to set the
-  [vector cache large
-  enough](/developers/weaviate/concepts/resources.md#imports-slowed-down-after-crossing-2m-objects---what-can-i-do)
+  [vector cache large enough](/developers/weaviate/concepts/resources.md#vector-cache)
   for maximum performance.
 
 ## Where can I find the scripts to run this benchmark myself?
