@@ -57,7 +57,7 @@ the path selector for `name` will be `["inPublication", "Publication", "name"]`.
 - `valueString`: The string value that the last property in `Path` should be compared to.
 - `valueText`: The text value that the last property in `Path` should be compared to.
 - `valueNumber`: The number (float) value that the last property in `Path` should be compared to.
-- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339)) value that the last property  in `Path` should be compared to.
+- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/)) value that the last property  in `Path` should be compared to.
 
 ```graphql
 {
@@ -155,7 +155,7 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
 
 ### Filter by timestamps
 
-Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
+Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
 
 :::info
 Filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps) for details.
@@ -217,7 +217,7 @@ You can set multiple operands by providing an array.
 For example, these filters select based on the class Article with a wordCount higher than 1000 and who are published before January 1st 2020.
 
 :::tip
-You can filter datetimes similarly to numbers, with the `valueDate` given as `string` in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) format.
+You can filter datetimes similarly to numbers, with the `valueDate` given as `string` in [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) format.
 :::
 
 import GraphQLFiltersWhereOperands from '/_includes/code/graphql.filters.where.operands.mdx';
