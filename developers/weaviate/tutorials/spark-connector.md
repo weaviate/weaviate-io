@@ -94,7 +94,7 @@ df.limit(3).toPandas().head()
 Prior to this step make sure your weaviate instance is running at `http://localhost:8080`. You can refer to the [Quickstart tutorial](../quickstart/index.md) for instructions on how to set that up.
 :::
 
-To quickly get a weaviate instance running you can run the line of code below to get a docker file:
+To quickly get a Weaviate instance running you can run the line of code below to get a docker file:
 
 ```bash
 curl -o docker-compose.yml "https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version=v||site.weaviate_version||"
