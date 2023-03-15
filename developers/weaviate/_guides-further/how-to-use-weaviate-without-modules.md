@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 <!-- TODO: Finish this page! -->
 <!-- :::caution Under construction.
-Migrated from "How to use weaviate without modules" tutorial from Weaviate Docs Classic
+Migrated from "How to use Weaviate without modules" tutorial from Weaviate Docs Classic
 ::: -->
 
 ## Overview

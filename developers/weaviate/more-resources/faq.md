@@ -218,7 +218,7 @@ To iterate through all objects, you can use the `after` parameter with both [RES
 
 For pagination through a result set, you can use the `offset` and `limit` parameters for GraphQL API calls. Take a look at [this page](../api/graphql/filters.md#pagination-with-offset) which describes how to use these parameters, including tips on performance and limitations.
 
-## Q: What happens when the Weaviate Docker container restarts? Is my data in the weaviate database lost?
+## Q: What happens when the Weaviate Docker container restarts? Is my data in the Weaviate database lost?
 
 A: There are three levels:
 1. You have no volume configured (the default in our `docker-compose` files), if the container restarts (e.g. due to a crash, or because of `docker stop/start`) your data is kept

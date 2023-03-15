@@ -24,7 +24,7 @@ OIDC authentication can be confusing, because it involves three parties.
 1. An **identity provider (a.k.a token issuer)** (e.g. Okta, Microsoft, or WCS) that authenticates the user and issues tokens.
 1. A **resource** (in this case, Weaviate) who validates the tokens to rely on the identity provider's authentication.
 
-A Weaviate instance is a resource, Weaviate Cloud Service (WCS) may be an identity provider, and the Weaviate client may act on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication. 
+A Weaviate instance is a resource, Weaviate Cloud Services (WCS) may be an identity provider, and the Weaviate client may act on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication. 
 
 <details>
   <summary>
@@ -114,15 +114,15 @@ services:
       AUTHENTICATION_OIDC_ISSUER: 'http://my-token-issuer/auth/realms/my-weaviate-usecase'
 
       # client_id (required unless skip_client_id_check is set to true) tells 
-      # weaviate to check for a particular OAuth 2.0 client_id in the audience claim.
+      # Weaviate to check for a particular OAuth 2.0 client_id in the audience claim.
       # This is to prevent that a token which was signed by the correct issuer
-      # but never intended to be used with weaviate can be used for authentication.
+      # but never intended to be used with Weaviate can be used for authentication.
       #
       # For more information on what clients are in OAuth 2.0, see
       # https://tools.ietf.org/html/rfc6749#section-1.1
       AUTHENTICATION_OIDC_CLIENT_ID: 'my-weaviate-client'
 
-      # username_claim (required) tells weaviate which claim in the token to use for extracting
+      # username_claim (required) tells Weaviate which claim in the token to use for extracting
       # the username. The username will be passed to the authorization plugin.
       AUTHENTICATION_OIDC_USERNAME_CLAIM: 'email'
 
