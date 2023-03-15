@@ -8,7 +8,7 @@ import ContactUsForm from '../components/ContactUsForm';
 import HybridBusinessCritical from '../components/Pricing/HybridBusinessCritical';
 
 export default function PricingPage() {
-  const [selectedType, setSelectedType] = useState('hybrid');
+  const [selectedType, setSelectedType] = useState('saas');
 
   return (
     <div className="custom-page">

@@ -6,10 +6,8 @@ export default function PricingHeader({ selectedType, handleSelected }) {
   return (
     <div className="container">
       <div className={styles.box}>
-        <h1>
-          <span className={styles.textGradient}>Weaviate</span>
-        </h1>
-        <h1>Cloud Services</h1>
+        <h1><span className={styles.textGradient}>Weaviate</span> Cloud Services</h1>
+        <h3>The power of the open-source vector database, fully managed</h3>
         <p>
           Start for free and only pay for the vector dimensions you store and
           query. Upgrade to one of our unlimited capacity plans starting at
@@ -27,12 +25,10 @@ export default function PricingHeader({ selectedType, handleSelected }) {
             <div className={styles.btn} onClick={() => handleSelected('saas')}>
               <div className={styles.saasPng} />
               <h1 className={styles.test}>SaaS</h1>
-              <p>We manage everything in our cloud​</p>
-              <p>&nbsp;</p>
+              <p>We manage everything in the​</p>
+              <p>Weaviate Cloud</p>
               <div className={styles.logos}>
                 <span className={styles.google} />
-                <span className={styles.aws} />
-                <span className={styles.azure} />
               </div>
             </div>
           </div>
@@ -47,7 +43,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
             >
               <div className={styles.hybridPng} />
               <h1 className={styles.test}>Hybrid SaaS</h1>
-              <p>We manage the dataplane</p>
+              <p>We manage the data plane</p>
               <p>inside your customer-managed VPC</p>
               <div className={styles.logos}>
                 <span className={styles.google} />
