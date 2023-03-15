@@ -22,7 +22,7 @@ A: This `Aggregate` GraphQL query will retrieve the total object count in a clas
 
 #### Method and URL
 
-Without any restrictions (across classes, default limit = 100):
+Without any restrictions (across classes, default limit = 25):
 
 ```http
 GET /v1/objects
@@ -42,7 +42,7 @@ GET /v1/objects?class={ClassName}&limit={limit}&include={include}
 | Name | Type | Description |
 | ---- | ---- | ----------- | 
 | `class` | string | List objects by class using the class name. |
-| `limit` | integer | The maximum number of data objects to return. |
+| `limit` | integer | The maximum number of data objects to return. Default 25. |
 | `offset` | integer | The offset of objects returned (the starting index of the returned objects).<br/><br/>Cannot be used with `after`.<br/>Should be used in conjunction with `limit`. |
 | `after` | string | ID of the object after which (i.e. non-inclusive ID) objects are to be retrieved.<br/><br/>Must be used with `class`<br/>Cannot be used with `offset` or `sort`.<br/>Should be used in conjunction with `limit`. |
 | `include` | string | Include additional information, such as classification info. <br/><br/>Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
