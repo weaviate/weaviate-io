@@ -17,7 +17,7 @@ Weaviate is an open-source vector database. But what does that mean? Let's unpac
 
 Weaviate is a fantastic tool for retrieving the information you need, quickly and accurately. It does this by being an amazing **vector database**.
 
-A vector database can store and retrieves information based on similarity. This is different to traditional databases and retrieval strategies, for example those that rely on SQL.
+A vector database can catalog, store and retrieve information based on similarity. This is different to traditional databases and retrieval strategies, for example those that rely on SQL.
 
 #### How traditional searches work
 
@@ -65,7 +65,9 @@ So, you could perform a query like this in Weaviate:
 
 And it would return a list of books that are *ranked by their similarity* to the query - the idea of "birds". 
 
-Weaviate can help you to do this, and actually a lot more. Another way to think about Weaviate is that it supercharges the way you use information. 
+What's more, Weaviate "indexes" the data based on their similarity, making this type of data retrieval lightning-fast.
+
+Weaviate can help you to do all this, and actually a lot more. Another way to think about Weaviate is that it supercharges the way you use information.
 
 :::info Vector vs semantic search
 A vector search is also referred to as a "semantic search" because it returns results based on the similarity of meaning (therefore "semantic").
@@ -83,7 +85,7 @@ It also means that your knowledge about Weaviate is fungible, between local, clo
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Information, made dynamic
 
-We are used to thinking of information as static, like a book. But modern AI and language models allow us to do much more than that. With Weaviate, you can not only identify and retrieve your existing information but easily build on top of it. Take a look at these examples:
+We are used to thinking of information as static, like a book. But with Weaviate and modern AI-driven language models, we can do much more than just retrieve static information but easily build on top of it. Take a look at these examples:
 
 #### Question answering
 
@@ -250,7 +252,7 @@ As we've mentioned, vector searches are similarity-based, but what does that act
 
 This is a relatively simple idea that is actually incredibly interesting and intricate once we start to dive into the details. 
 
-But for now, you should know that machine learning (ML) models are key to this whole process, and it is important to select the right model for the job. We will cover this in more detail later on. 
+But for now, you should know that machine learning (ML) models are key to this whole process. Similar models to those that allows clever text generation from prompts power vector searches. Instead of generating new text, here these models capture "meaning" of pieces of text or other media. We will cover this in more detail later on.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Indexing data
 
