@@ -27,16 +27,17 @@
   height: min-content;
   border-radius: 15px;
   padding: 20px;
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
   display: flex;
-  border: 1px solid;  
+  border: 2px solid #6b9fd6;
   justify-content: space-evenly;
 }
 
 .feedback-section {
   width: 100%;
-  position: relative;  
+  position: relative;
   align-items: center;
+  font-weight: 500;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */
@@ -53,10 +54,18 @@
   font-size: 28px;
 }
 
+.question-count {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
 .question-text {
   margin-bottom: 12px;
   margin-right: 10px;
   white-space: pre-line;
+  font-size: 1.1rem;
+  line-height: 1.4;
 }
 
 /* ANSWERS/RIGHT SECTION */
@@ -76,10 +85,9 @@
   margin: 5px;
   justify-content: center;
   align-items: center;
-  border: 1px solid;
+  border: 2px solid #6b9fd6;
   cursor: pointer;
-  background-color: aliceblue;
-  color: black;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .code_answer {
@@ -95,10 +103,11 @@
   background-color: #ff3333;
 }
 
-button:hover {
-  background-color: #acb7e0;
+.quiz-button:hover {
+  background-color: #2c2c2c;
+  color: #ffffff;
 }
 
-button:focus {
+.quiz-button:focus {
   outline: none;
 }
