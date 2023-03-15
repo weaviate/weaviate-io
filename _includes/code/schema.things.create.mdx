@@ -14,18 +14,14 @@ class_obj = {
     "description": "A written text, for example a news article or blog post",
     "properties": [
         {
-        "dataType": [
-            "string"
-        ],
-        "description": "Title of the article",
-        "name": "title",
+            "dataType": ["string"],
+            "description": "Title of the article",
+            "name": "title",
         },
         {
-        "dataType": [
-            "text"
-        ],
-        "description": "The content of the article",
-        "name": "content"
+            "dataType": ["text"],
+            "description": "The content of the article",
+            "name": "content"
         }
     ]
 }
@@ -45,27 +41,23 @@ const client = weaviate.client({
 });
 
 let classObj = {
-    'class': 'Article',
-    'description': 'A written text, for example a news article or blog post',
-    'vectorizeClassName': true,
-    'properties': [
-        {
-        'dataType': [
-            'string'
-        ],
-        'description': 'Title of the article',
-        'name': 'title',
-        'vectorizePropertyName': true,
-        'index': true
-        },
-        {
-        'dataType': [
-            'text'
-        ],
-        'description': 'The content of the article',
-        'name': 'content'
-        }
-    ]
+  'class': 'Article',
+  'description': 'A written text, for example a news article or blog post',
+  'vectorizeClassName': true,
+  'properties': [
+    {
+      'name': 'title',
+      'dataType': [ 'string' ],
+      'description': 'Title of the article',
+      'vectorizePropertyName': true,
+      'index': true
+    },
+    {
+      'name': 'content',
+      'dataType': [ 'text' ],
+      'description': 'The content of the article'
+    }
+  ]
 }
 
 client
