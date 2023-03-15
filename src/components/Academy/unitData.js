@@ -42,31 +42,32 @@ export const unitData = {
       "Add filters to queries such as by themselves and in combination."
     ],
     owner: "jp",
-    reviewer: "jp"    
+    reviewer: "jp"
   },
-  effective_search: {
-    title: "Effective Vector Searches",
-    body: "Learn about vector search and how deep learning models relate to it.",
+  vectorization_essentials: {
+    title: "Vectorization Essentials",
+    body: "Learn about vectors including how to create and use them.",
     buttonType: "Click here",
     badgeType: "mixed",
-    buttonURL: "/developers/academy/units/effective_search",
+    buttonURL: "/developers/academy/units/vectorization_essentials",
     learningGoals: [
-      "What is a vector, and how it can represent meaning.",
-      "How vector search differs to scalar search.",
+      "What a vector is, and how it can represent meaning.",
       "How vectors and deep learning models enable semantic search.",
-      "Basics of vectorizer selection in Weaviate.",
-      "How to select a vectorizer in Weaviate.",
+      "How Weaviate converts data into vectors.",
+      "Weaviate's text vectorization process.",
+      "Basics of vectorizer selection for Weaviate.",
     ],
     learningOutcomes: [
-      "Explain what a vector is, and how they can represent meaning.",
-      "Compare vector search, semantic search and scalar search.",
-      "Describe broadly how deep learning models relate to vector search.",
+      "Explain what a vector is and its role in representing meaning.",
+      "Describe the use of vectors and deep learning models in semantic search.",
+      "Broadly explain the process by which Weaviate converts data into vectors.",
+      "Understand the fundamental concepts of text vectorization.",
       "Outline why vectorizer selection is important for effective search.",
-      "Broadly outline available vectorizer types in Weaviate."
+      "Broadly outline available vectorizer types in Weaviate.",
     ],
     owner: "jp",
-    reviewer: "jp"    
-  },  
+    reviewer: "jp"
+  },
   schema_1: {
     title: "Schema 1",
     body: "Learn what role the schema plays in Weaviate, and how to define it",
@@ -84,13 +85,13 @@ export const unitData = {
       "Use upload, retrieve and change operations to a data schema in Weaviate."
     ],
     owner: "jp",
-    reviewer: "jp"      
+    reviewer: "jp"
   },
   data_import: {
     title: "Data import",
     body: "How to efficiently import data into Weaviate.",
     buttonType: "Click here",
-    badgeType: "practical",   
+    badgeType: "practical",
     buttonURL: "/developers/academy/units/data_import",
     learningGoals: [
       "The ability to populate Weaviate with data, including an understanding of suggested best practices such as batching, error diagnoses and handling.",
@@ -105,7 +106,7 @@ export const unitData = {
       "Identify object-level import errors and implement error handling through the Weaviate client.",
     ],
     owner: "jp",
-    reviewer: "jp"      
+    reviewer: "jp"
   },
   queries_2: {
     title: "Queries 2",
@@ -119,8 +120,8 @@ export const unitData = {
       "TBD",
     ],
     owner: "jp",
-    reviewer: "jp"       
-  },    
+    reviewer: "jp"
+  },
   crud_operations: {
     title: "CRUD operations",
     body: "How to perform object manipulation operations in Weaviate.",
@@ -137,7 +138,7 @@ export const unitData = {
       "Use the RESTful objects endpoint (HEAD) to check and validate if data objects exists without retrieving it."
     ],
     owner: "jp",
-    reviewer: "jp"        
+    reviewer: "jp"
   },
   modules: {
     title: "Modules",
@@ -146,7 +147,7 @@ export const unitData = {
     buttonURL: "/developers/academy/units/modules",
     badgeType: "mixed",
     learningGoals: [
-      "Learn that Weaviate is fully modularized", 
+      "Learn that Weaviate is fully modularized",
       "Learn what modules are, how to choose, enable and use them.",
       "Learn the difference between vectorization modules and reader/generator modules"
     ],
@@ -155,8 +156,8 @@ export const unitData = {
       "Select the right modules for your use case, and enable them for your Weaviate instance."
     ],
     owner: "jp",
-    reviewer: "jp"       
-  },        
+    reviewer: "jp"
+  },
 
 
 
@@ -164,7 +165,7 @@ export const unitData = {
     title: "Vectorizer selection 1",
     body: "How to find a good baseline vectorizer for given data and task types.",
     buttonType: "Click here",
-    badgeType: "theory", 
+    badgeType: "theory",
     buttonURL: "/developers/academy/units/vectorizer_selection_1",
     learningGoals: [
       "Theory and heuristics for selecting appropriate, robust vectorizers for the data type and task at hand and how to set the vectorizer appropriately in Weaviate.",
@@ -179,8 +180,8 @@ export const unitData = {
       "Demonstrate ability to change the class vectorizer in Weaviate.",
     ],
     owner: "jp",
-    reviewer: "jp"      
-  },    
+    reviewer: "jp"
+  },
   search_theory: {
     title: "Vector search theory",
     body: "Vector search powers Weaviate - but what is it and how does it work?",
@@ -197,8 +198,8 @@ export const unitData = {
       "Understand how vectors can be calculated from e.g. machine learning models."
     ],
     owner: "jp",
-    reviewer: "jp"  
-  },    
+    reviewer: "jp"
+  },
   queries_3: {
     title: "Queries 3 (Advanced)",
     body: "Learn about BM25 and hybrid searches, and the `Explore` function.",
@@ -209,15 +210,15 @@ export const unitData = {
       "Learn how to use module-specific query functions and parameters."
     ],
     learningOutcomes: [
-      "Formulate search queries using BM25.", 
+      "Formulate search queries using BM25.",
       "Construct hybrid search queries using a combination of vector search and BM25.",
       "Use variables in hybrid search to tweak the query to the use case.",
       "Construct GraphQL Explore queries for data exploration",
       "Construct GraphQL queries with module-specific filters, functions and parameters.",
     ],
     owner: "jp",
-    reviewer: "jp"       
-  },  
+    reviewer: "jp"
+  },
   indexing: {
     title: "Indexing (Advanced)",
     buttonType: "Notify",
@@ -233,7 +234,7 @@ export const unitData = {
       "Understand and use configuration parameters of HNSW to balance speed and recall."
     ],
     owner: "jp",
-    reviewer: "jp"       
+    reviewer: "jp"
   },
   schema_2: {
     title: "Schema 2 (Advanced)",
@@ -268,20 +269,20 @@ export const unitData = {
       "Formulate a vectorization strategy and defend its reasoning given a data object and a goal."
     ],
     owner: "jp",
-    reviewer: "jp"       
-  },  
+    reviewer: "jp"
+  },
   vectorizer_selection_2: {
     title: "Vectorizer selection 2",
     body: "Get into the weeds in model selection: how to look for a model that best suits your use case.",
     buttonType: "Notify",
-    badgeType: "theory", 
+    badgeType: "theory",
     learningGoals: [
       ""
     ],
     learningOutcomes: [
       ""
     ]
-  },    
+  },
   custom_models: {
     title: "Custom models with Weaviate",
     body: "How you can combine your custom vectorizer model with Weaviate.",
@@ -320,7 +321,7 @@ export const unitData = {
     ],
     owner: "jp",
     reviewer: "jp"
-  },  
+  },
   auth: {
     title: "Authentication & Authorization",
     body: "Identify users and control access with OpenID Connect (OIDC).",
@@ -336,13 +337,13 @@ export const unitData = {
       "Implement authorization with Weaviate based on OIDC authentication."
     ],
     owner: "jp",
-    reviewer: "jp"    
+    reviewer: "jp"
   },
   scaling: {
     title: "Scaling",
     body: "What to expect and consider when scaling Weaviate to production.",
     buttonType: "Notify",
-    badgeType: "theory",  
+    badgeType: "theory",
     learningGoals: [
       ""
     ],
@@ -378,9 +379,9 @@ export const unitData = {
     learningOutcomes: [
       ""
     ]
-  }, 
+  },
   kubernetes: {
-    title: "Weaviate and Kubernetes",  
+    title: "Weaviate and Kubernetes",
     body: "How to run Weaviate on Kubernetes, and best practice tips.",
     buttonType: "Notify",
     badgeType: "practical",
@@ -390,7 +391,7 @@ export const unitData = {
     learningOutcomes: [
       ""
     ]
-  },       
+  },
   clients: {
     title: "Weaviate Clients",
     body: "An overview: what's available, where to find them, and their capabilities.",
@@ -401,12 +402,12 @@ export const unitData = {
     ],
     learningOutcomes: [
       "Understand where to find which Weaviate clients are available.",
-      "Understand the capabilities of the Weaviate clients.", 
+      "Understand the capabilities of the Weaviate clients.",
       "Use a client to interact with Weaviate's API endpoints."
     ],
     owner: "jp",
     reviewer: "jp"
-  },       
+  },
   docker: {
     title: "Weaviate with Docker",
     body: "How to run Weaviate on Docker, and best practice tips.",
@@ -418,7 +419,7 @@ export const unitData = {
     learningOutcomes: [
       ""
     ]
-  },  
+  },
   reader_generator: {
     title: "Reader and Generator modules",
     body: "Overview of question-answering, summarization and named entity recognition modules.",
@@ -446,13 +447,13 @@ export const unitData = {
     ],
     learningOutcomes: [
       "Select an appropriate module for vectorizing non-text data given the data type and use case.",
-      "Construct a schema for non-text data types such as images.",  
-      "Use Weaviate to catalog text and non-text data in the same vector space.",    
+      "Construct a schema for non-text data types such as images.",
+      "Use Weaviate to catalog text and non-text data in the same vector space.",
       "Implement a Weaviate instance with vectorized non-text data.",
     ],
     owner: "jp",
-    reviewer: "jp"    
-  },    
+    reviewer: "jp"
+  },
   vectorizer_text_overview: {
     title: "Text vectorizers: An overview",
     body: "An overview of models - from bag-of-words to word2vec and all the way to transformers.",
@@ -467,8 +468,8 @@ export const unitData = {
       "Distinguish key differences between each model types as well as key limitations or challenges for each model type.",
     ],
     owner: "jp",
-    reviewer: "jp"      
-  },      
+    reviewer: "jp"
+  },
   // {
   //   title: "Placeholder",
   //   body: "Something something dark side",
@@ -479,6 +480,6 @@ export const unitData = {
     // ],
     // learningOutcomes: [
     //   "TBC"
-    // ]     
-  // },    
+    // ]
+  // },
 };
