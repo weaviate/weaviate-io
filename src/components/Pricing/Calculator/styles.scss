@@ -8,20 +8,41 @@
   }
 }
 
-.slider {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 15px;
-  align-items: center;
-  margin-bottom: 20px;
-
-  .label {
-    width: 140px;
-  }
+.sliderArea {
+  max-width: 85%;
+  margin: auto;
+  background-color: rgba(46, 49, 143, 0.5);
+  border-radius: 0.75rem;
+  padding: 3.5rem 6rem;
 
   @media screen and (max-width: 668px) {
-    flex-direction: column;
+    padding: 2rem 3rem;
+  }
+}
+
+.slider {
+  display: grid;
+  grid-template-columns: 2fr 4fr 50px;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 40px;
+
+  @media screen and (max-width: 668px) {
+    // flex-direction: column;
+    grid-template-columns: 1fr;
+    margin-bottom: 20px;
+  }
+}
+
+.selectContainer {
+  display: grid;
+  grid-template-columns: 2fr 4fr 60px;
+  gap: 1rem;
+  margin-bottom: 40px;
+  @media screen and (max-width: 668px) {
+    // flex-direction: column;
+    grid-template-columns: 1fr;
+    margin-bottom: 20px;
   }
 }
 
@@ -100,11 +121,11 @@
 }
 
 .value {
+  margin: auto;
   input {
-    width: 140px;
     appearance: none;
     padding: 1rem;
-    border: 1px solid #01b0db;
+    border: transparent;
     background-color: transparent;
     border-radius: 12px;
     padding: 0.8125rem 1.25rem;
@@ -114,26 +135,152 @@
   }
 }
 
+::placeholder {
+  color: #ffffff;
+  background: transparent;
+}
+
 .highAva {
-  margin-top: 40px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
 }
-.priceBox {
+
+.switchContainer {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
-    gap: 30px;
+  align-items: center;
+}
+
+.priceBox {
+  display: grid;
+  grid-template-columns: 3fr 5fr 2fr;
+  gap: 1rem;
+  margin-bottom: 40px;
+  align-items: center;
+  @media screen and (max-width: 668px) {
+    // flex-direction: column;
+    grid-template-columns: 1fr;
+    margin-bottom: 20px;
   }
   .price {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+
+    span {
+      margin-bottom: 10px;
+    }
+
+    .priceFormat {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .test {
+      font-size: 40px;
+      color: var(--ifm-heading-color);
+      font-family: var(--ifm-heading-font-family);
+      font-weight: var(--ifm-heading-font-weight);
+      line-height: var(--ifm-heading-line-height);
+      margin: var(--ifm-heading-margin-top) 0 var(--ifm-heading-margin-bottom) 0;
+    }
+  }
+}
+
+select {
+  // A reset of styles, including removing the default dropdown arrow
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+
+  // Stack above custom arrow
+  z-index: 1;
+
+  // Remove dropdown arrow in IE10 & IE11
+  // @link https://www.filamentgroup.com/lab/select-css.html
+  &::-ms-expand {
+    display: none;
+  }
+
+  // Remove focus outline, will add on alternate element
+  outline: none;
+}
+
+.select {
+  display: grid;
+  grid-template-areas: 'select';
+  align-items: center;
+  position: relative;
+
+  select,
+  &::after {
+    grid-area: select;
+  }
+
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid #fff;
+  border-radius: 0.25em;
+  padding: 0.35em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: transparent;
+
+  &::after {
+    content: '';
+    justify-self: end;
+    width: 0.8em;
+    height: 0.5em;
+    background-color: #00b800;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  }
+}
+
+select:focus + .focus {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 2px solid #f9f9f9;
+  border-radius: inherit;
+}
+label {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.select + label {
+  margin-top: 2rem;
+}
+
+[data-theme='light'] {
+  .sliderArea {
+    background-color: #f9f9f9;
+  }
+
+  .select {
+    border: 1px solid #00b7e2;
+
+    &::after {
+      background-color: #00b7e2;
+    }
+  }
+
+  ::placeholder {
+    color: rgba(46, 49, 143);
+    background: transparent;
   }
 }
