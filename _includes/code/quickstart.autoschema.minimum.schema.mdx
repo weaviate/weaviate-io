@@ -112,14 +112,14 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
-    "class": "Question",
-    "vectorizer": "text2vec-openai"
+echo '{
+  "class": "Question",
+  "vectorizer": "text2vec-openai"
 }' | curl \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d @- \
-    https://some-endpoint.weaviate.network/v1/schema
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d @- \
+  https://some-endpoint.weaviate.network/v1/schema
 ```
 
 </TabItem>

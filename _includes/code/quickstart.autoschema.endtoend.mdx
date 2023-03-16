@@ -15,7 +15,7 @@ client = weaviate.Client(
     }
 )
 
-# ===== add schema ===== 
+# ===== add schema =====
 class_obj = {
     "class": "Question",
     "vectorizer": "text2vec-openai"
@@ -23,8 +23,8 @@ class_obj = {
 
 client.schema.create_class(class_obj)
 
-# ===== import data ===== 
-# Load data 
+# ===== import data =====
+# Load data
 import requests
 url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json'
 resp = requests.get(url)
@@ -56,7 +56,7 @@ const client = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
     headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
-  }); 
+  });
 
 let classObj = {
     "class": "Question",
@@ -115,7 +115,7 @@ async function importQuestions() {
       .catch(err => {
         console.error(err)
       });
-      
+
       // restart the batch queue
       counter = 0;
       batcher = client.batch.objectsBatcher();
@@ -133,7 +133,7 @@ async function importQuestions() {
   });
 }
 
-importQuestions(); 
+importQuestions();
 ```
 
 </TabItem>
@@ -159,8 +159,8 @@ func main() {
     client := weaviate.New(cfg)
 
     classObj := &models.Class{
-        Class:      "Question", 
-        Vectorizer: "text2vec-openai", 
+        Class:      "Question",
+        Vectorizer: "text2vec-openai",
     }
 
     // add the schema
@@ -197,7 +197,7 @@ public class App {
       .className("Question")
       .vectorizer("text2vec-openai")
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {
@@ -209,18 +209,69 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
--X POST \
--H "Content-Type: application/json" \
--d '{
-    "class": "Question",
-    "vectorizer": "text2vec-openai",
-}' \
-https://some-endpoint.weaviate.network/v1/schema
+# Replace with your endpoints
+SCHEMA_API_URL="https://some-endpoint.weaviate.network/v1/schema"
+BATCH_API_URL="http://some-endpoint.weaviate.network/v1/batch/objects"
+# Replace with your Inference API token
+OPENAI_API_TOKEN="<OpenAI-API-Token>"
+BATCH_SIZE=100
+
+# Create the schema
+echo '{
+  "class": "Question",
+  "vectorizer": "text2vec-openai"
+}' | curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d @- \
+  $SCHEMA_API_URL
+
+# Read the JSON file and loop through its entries
+lines_processed=0
+batch_data="{\"objects\": ["
+
+cat jeopardy_tiny.json | jq -c '.[]' | while read line; do
+  # Concatenate lines
+  line=$(echo "$line" | jq "{class: \"Question\", properties: {answer: .Answer, question: .Question, category: .Category}}")
+  if [ $lines_processed -eq 0 ]; then
+    batch_data+=$line
+  else
+    batch_data+=",$line"
+  fi
+
+  lines_processed=$((lines_processed + 1))
+
+  # If the batch is full, send it to the API using curl
+  if [ $lines_processed -eq $BATCH_SIZE ]; then
+    batch_data+="]}"
+
+    curl -X POST "$BATCH_API_URL" \
+         -H "Content-Type: application/json" \
+         -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
+         -d "$batch_data"
+    echo "" # Print a newline for better output formatting
+
+    # Reset the batch data and counter
+    lines_processed=0
+    batch_data="{\"objects\": ["
+  fi
+done
+
+# Send the remaining data (if any) to the API using curl
+if [ $lines_processed -ne 0 ]; then
+  batch_data+="]}"
+
+  curl -X POST "$BATCH_API_URL" \
+       -H "Content-Type: application/json" \
+       -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
+       -d "$batch_data"
+  echo "" # Print a newline for better output formatting
+fi
+
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

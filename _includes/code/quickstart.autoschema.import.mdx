@@ -150,11 +150,12 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-#!/bin/bash
-
+# Replace with your endpoint
 API_URL="http://some-endpoint.weaviate.network/v1/batch/objects"
-API_TOKEN="<OpenAI-API-Token>"
-BATCH_SIZE=5
+# Replace with your Inference API token
+OPENAI_API_TOKEN="<OpenAI-API-Token>"
+# Set batch size
+BATCH_SIZE=100
 
 # Read the JSON file and loop through its entries
 lines_processed=0
@@ -177,7 +178,7 @@ cat jeopardy_tiny.json | jq -c '.[]' | while read line; do
 
     curl -X POST "$API_URL" \
          -H "Content-Type: application/json" \
-         -H "X-OpenAI-Api-Key: $API_TOKEN" \
+         -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
          -d "$batch_data"
     echo "" # Print a newline for better output formatting
 
@@ -193,7 +194,7 @@ if [ $lines_processed -ne 0 ]; then
 
   curl -X POST "$API_URL" \
        -H "Content-Type: application/json" \
-       -H "X-OpenAI-Api-Key: $API_TOKEN" \
+       -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
        -d "$batch_data"
   echo "" # Print a newline for better output formatting
 fi
