@@ -53,8 +53,9 @@ export default function CommandMenu({open, setOpen}) {
     // get the result url from the even
     const selectedResultURI = event.target.baseURI;
 
+    const selectedTitle = event.target.innerText;
     // capture analytics for the selected search result
-    analyticsSiteSearchSelected(searchTerm, selectedResultURI)
+    analyticsSiteSearchSelected(searchTerm, selectedResultURI, selectedTitle)
   }
     
   const handleQuery = (searchTerm) => {
