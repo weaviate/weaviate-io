@@ -72,7 +72,7 @@
 
 .rangeslider-horizontal .rangeslider__fill {
   height: 100%;
-  background-color: #01b0db;
+  background-color: #2e318f;
   border-radius: 10px;
   top: 0;
 }
@@ -92,11 +92,11 @@
 }
 
 .rangeslider .rangeslider__handle {
-  background: #01b0db;
+  background: #2e318f;
   cursor: pointer;
   display: inline-block;
   position: absolute;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 40%), 0 -1px 3px rgb(0 0 0 / 40%);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px, rgba(0, 0, 0, 0.23) 0px 2px 4px;
 }
 
 [data-theme='dark'] {
@@ -272,10 +272,10 @@ label {
   }
 
   .select {
-    border: 1px solid #00b7e2;
+    border: 1px solid #2e318f;
 
     &::after {
-      background-color: #00b7e2;
+      background-color: #2e318f;
     }
   }
 
