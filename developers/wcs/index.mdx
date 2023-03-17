@@ -6,7 +6,7 @@ image: og/docs/introduction.jpg  # TODO - do we need a new WCS OG image?
 
 ## Introduction
 
-Welcome to the documentation for **Weaviate Cloud Service** (WCS).
+Welcome to the documentation for **Weaviate Cloud Services** (WCS).
 
 :::tip Looking for Weaviate docs?
 Documentation for Weaviate in general [can be found here](/developers/weaviate/index.md).
@@ -14,25 +14,47 @@ Documentation for Weaviate in general [can be found here](/developers/weaviate/i
 
 ## About WCS
 
-WCS, or Weaviate Cloud Services, is a SaaS (software-as-a-service) solution for providing managed Weaviate instances to you, our users.
+### What is WCS?
 
-The Weaviate "core" software library is the same regardless of whether you run Weaviate as a self-deployed solution, or through WCS. 
+WCS, or Weaviate Cloud Services, is a SaaS (software-as-a-service) solution for providing managed Weaviate instances to you, our users.
 
 Through WCS, we aim provide you with the most convenient experience possible with Weaviate. We do this by reflecting in WCS the best practices for running Weaviate on the cloud, and managing the underlying infrastructure so you can focus on using Weaviate to add value to your work.
 
 ### Capabilities
 
-Each WCS instance is: 
+WCS instances come pre-configured in order to reduce the work and time required for you to get up and running.
+
+Each WCS instance is:
 - Automatically created with the latest version of Weaviate.
-- Pre-configured with the `text2vec-cohere', 'text2vec-huggingface', 'text2vec-openai', 'qna-openai' and 'generative-openai' modules.
-- User-configurable to use authentication for security.
-- (QUESTION) Can a user modify any of the configuration e.g. env variables?
+- Pre-configured with the `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, `qna-openai` and `generative-openai` modules.
+- Configured with authentication for security (optional for the sandbox).
 
-### Infrastructure
+:::note Is Weaviate in WCS the same as the open-source version?
+The Weaviate "core" software library is the same regardless of whether you run Weaviate as a self-deployed solution, or through WCS.
+:::
 
-WCS is available on AWS, Azure and GCP infrastructure.
-- (QUESTION) I saw that the user can choose the region. Can a user choose the infrastructure?
+<details>
+  <summary>Is it possible to modify WCS instances' configurations?</summary>
 
-## Get started
+For the moment, all WCS instances are pre-configured and are not able to be changed by the user, although this is planned for the future.
 
-[Visit this page](./use/creation.mdx) to get started with WCS by creating a Weaviate instance. 
+If you require a particular module or configuration that is different to one used by WCS instances, please [reach out to us on Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to have a chat, or try a self-deployment option with [Docker](/developers/weaviate/installation/docker-compose.md) or [Kubernetes](/developers/weaviate/installation/kubernetes.md).
+
+</details>
+
+## What next?
+
+The following pages should help you to get started with WCS:
+
+- WCS [pricing page](/pricing)
+- Weaviate [Quickstart tutorial for WCS](./user/quickstart.mdx)
+- User guides for:
+    - [Creating a WCS instance](./user/creation.mdx)
+    - [Authentication](./user/authentication.mdx)
+    - [WCS Console](./user/authentication.mdx)
+
+## More resources
+
+import WCSDocsMoreResources from '/_includes/wcs-more-resources-docs.md';
+
+<WCSDocsMoreResources />
