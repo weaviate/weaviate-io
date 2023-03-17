@@ -6,6 +6,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
 const siteRedirects = require('./site.redirects');
 
+// Math equation plugins
+const math = require('remark-math');
+const katex = require('rehype-katex');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'Weaviate - vector search engine',
@@ -70,11 +74,18 @@ const config = {
     ],
 
     stylesheets: [
-        //Add Font Awesome stylesheets
+        // Add Font Awesome stylesheets
         '/fonts/font-awesome/fontawesome.css',
         '/fonts/font-awesome/solid.css',
         '/fonts/font-awesome/regular.css',
-        '/fonts/font-awesome/brands.css'
+        '/fonts/font-awesome/brands.css',
+
+        { // styles for math equations
+            href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+            type: 'text/css',
+            integrity: 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+            crossorigin: 'anonymous',
+        },
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -98,7 +109,8 @@ const config = {
                     // TODO: Update to 'main' for release
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
-                    remarkPlugins: [remarkReplace],
+                    remarkPlugins: [remarkReplace, math],
+                    rehypePlugins: [katex]
                 },
                 blog: {
                     blogTitle: 'Blog',
@@ -109,6 +121,8 @@ const config = {
                     blogSidebarCount: 0,
                     postsPerPage: 12,
                     blogSidebarTitle: 'Weaviate Blog',
+                    remarkPlugins: [math],
+                    rehypePlugins: [katex]
                 },
                 theme: {
                     customCss: [
