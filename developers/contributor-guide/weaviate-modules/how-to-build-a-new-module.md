@@ -129,7 +129,7 @@ During development of the new Module, you can run Weaviate locally. Make sure to
     3. Add the service to `tools/dev/run_dev_server.sh` ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/tools/dev/run_dev_server.sh#L77-L92)). This is the docker-compose setup for running the development server. You should define the modules that you want to run with your new dev setup: where they are running and their configuration. It also includes the command to run Weaviate, you can copy this. 
     4. And add the service to `docker-compose.yml`([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/docker-compose.yml#L37-L40)). The inference container (part 2) should be running on the defined port.
 
-Inside the weaviate project folder, run 
+Inside the Weaviate project folder, run 
 
 ```bash
 $ tools/dev/restart_dev_environment.sh --<SERVICE-NAME>

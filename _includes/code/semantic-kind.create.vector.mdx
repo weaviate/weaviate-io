@@ -14,8 +14,8 @@ data_obj = {
 }
 
 data_uuid = client.data_object.create(
-  data_obj, 
-  "YourClass", 
+  data_obj,
+  "YourClass",
   uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a0923", # optional, if not provided, one is going to be generated
   vector = [0.3, 0.2, 0.1, .... 0.9], # supported types are `list`, `numpy.ndarray`, `torch.Tensor` and `tf.Tensor`. Make sure the length matches with your Weaviate settings.
 )
@@ -98,14 +98,14 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.HashMap;
 import java.util.Map;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.data.model.WeaviateObject;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.data.model.WeaviateObject;
 
 public class App {
   public static void main(String[] args) {
@@ -145,9 +145,9 @@ $ curl \
     -H "Content-Type: application/json" \
     -d '{
       "class": "YourClass",
-      "vector": [0.3, 0.2, 0.1, .... 0.9],
+      "vector": [0.3, -0.012, 0.071, ..., -0.09],
       "properties": {
-          "foo": "bar",
+          "foo": "bar"
       }
   }' \
     http://localhost:8080/v1/objects

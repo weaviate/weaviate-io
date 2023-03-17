@@ -84,7 +84,7 @@ See [Backups](./backups.md).
 
 ## Kubernetes
 
-For Kubernetes setup, the only thing to bear in mind is that Weaviate needs a `PersistentVolumes` through `PersistentVolumeClaims` ([more info](/developers/weaviate/quickstart/installation.md#requirements)) but the Helm chart is already configured to store the data on an external volume.
+For Kubernetes setup, the only thing to bear in mind is that Weaviate needs a `PersistentVolumes` through `PersistentVolumeClaims` ([more info](/developers/weaviate/installation/kubernetes.md#requirements)) but the Helm chart is already configured to store the data on an external volume.
 
 ## Disk Pressure Warnings and Limits
 

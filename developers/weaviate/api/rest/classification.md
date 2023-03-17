@@ -194,7 +194,7 @@ After the classification is completed, the concerning reference properties data 
 
 Zero-shot classification is an unsupervised classification method, meaning you don't need any training data. Zero-shot allows you to classify data which wasn't seen before to build the classifier. This type of classification is perfect if you want to label data objects with classes, but you don't have or don't want to use training data. It picks the label objects that have the lowest distance to the source objects. The link is made using cross-references, similar to existing classifications in Weaviate.
 
-Weaviate's zero-shot classification measures how similar (how close) a data item is to a potential target item (a class or label). More specifically, Weaviate uses `vector search and similarity` algorithms to classify data objects with other data objects. Internally, Weaviate performs a `nearVector` search (which you can also [perform manually with GraphQL](../graphql/filters.md#nearvector-filter)), and takes the closes result out of a given set of options (data objects) to classify. 
+Weaviate's zero-shot classification measures how similar (how close) a data item is to a potential target item (a class or label). More specifically, Weaviate uses `vector search and similarity` algorithms to classify data objects with other data objects. Internally, Weaviate performs a `nearVector` search (which you can also [perform manually with GraphQL](../graphql/vector-search-parameters.md#nearvector)), and takes the closes result out of a given set of options (data objects) to classify. 
 
 Zero-shot classification works with all (text/image/..) vectorizers (or no vectorizer, as long as you have vectors stored in Weaviate). 
 

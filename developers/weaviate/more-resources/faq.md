@@ -8,17 +8,13 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-<!-- IMPORTANT                                     -->
-<!-- WHEN ADDING ANSWERS TO THIS OVERVIEW          -->
-<!-- ALSO INCLUDE THEM INTO THE _data/faq.yml FILE -->
-
 ## Q: Why would I use Weaviate as my vector search engine?
 
 A: Our goal is three-folded. Firstly, we want to make it as easy as possible for others to create their own semantic systems or vector search engines (hence, our APIs are GraphQL based). Secondly, we have a strong focus on the semantic element (the "knowledge" in "vector search engine," if you will). Our ultimate goal is to have Weaviate help you manage, index, and "understand" your data so that you can build newer, better, and faster applications. And thirdly, we want you to be able to run it everywhere. This is the reason why Weaviate comes containerized.
 
 ## Q: Do you offer Weaviate as a managed service?
 
-A: Yes, it is called the [Weaviate Console](/pricing).
+A: Yes, we do - check out [Weaviate Cloud Services](/pricing).
 
 ## Q: How to configure the size of your instance?
 
@@ -206,6 +202,14 @@ A: You can create multiple classes in the Weaviate schema, where one class will 
 
 A: The UUID must be presented as a string matching the [Canonical Textual representation](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format). If you don't specify a UUID, Weaviate will generate a `v4` i.e. a random UUID. If you generate them yourself you could either use random ones or deterministically determine them based on some fields that you have. For this you'll need to use [`v3` or `v5`](https://en.wikipedia.org/wiki/Universally_unique_identifier#Versions_3_and_5_(namespace_name-based)). There are plenty of python packages available to do this.
 
+## Q: How can I retrieve the total object count in a class?
+
+import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
+
+A: The below `Aggregate` GraphQL query will retrieve the total object count in a class.
+
+<HowToGetObjectCount/>
+
 ## Q: What is the best way to iterate through objects? Can I do paginated API calls? 
 
 A: Yes, Weaviate supports cursor-based iteration as well as pagination through a result set.
@@ -214,7 +218,7 @@ To iterate through all objects, you can use the `after` parameter with both [RES
 
 For pagination through a result set, you can use the `offset` and `limit` parameters for GraphQL API calls. Take a look at [this page](../api/graphql/filters.md#pagination-with-offset) which describes how to use these parameters, including tips on performance and limitations.
 
-## Q: What happens when the Weaviate Docker container restarts? Is my data in the weaviate database lost?
+## Q: What happens when the Weaviate Docker container restarts? Is my data in the Weaviate database lost?
 
 A: There are three levels:
 1. You have no volume configured (the default in our `docker-compose` files), if the container restarts (e.g. due to a crash, or because of `docker stop/start`) your data is kept

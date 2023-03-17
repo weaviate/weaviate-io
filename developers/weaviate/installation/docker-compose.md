@@ -68,7 +68,7 @@ services:
 
 ## Weaviate with the `text2vec-transformers` module
 
-An example docker-compose setup file with the transformers model [`sentence-transformers/msmarco-distilroberta-base-v2`](https://huggingface.co/sentence-transformers/msmarco-distilroberta-base-v2) is: 
+An example docker-compose setup file with the transformers model [`sentence-transformers/msmarco-distilroberta-base-v2`](https://huggingface.co/sentence-transformers/msmarco-distilroberta-base-v2) is:
 
 ```yaml
 version: '3.4'
@@ -106,7 +106,7 @@ The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
 
 ## Attaching to the log output of Weaviate only
 
-The output of `docker-compose up` is quite verbose as it attaches to the logs of all containers. 
+The output of `docker-compose up` is quite verbose as it attaches to the logs of all containers.
 
 You can attach the logs only to Weaviate itself, for example, by running the following command instead of `docker-compose up`:
 
@@ -117,7 +117,7 @@ $ docker-compose up -d && docker-compose logs -f weaviate
 
 Alternatively you can run docker-compose entirely detached with `docker-compose up -d` _and_ then poll `{bindaddress}:{port}/v1/meta` until you receive a status `200 OK`.
 
-<!-- TODO: 
+<!-- TODO:
 1. Check that all environment variables are also applicable for the kubernetes setup and associated values.yml config file.
 2. Take this section out and into References; potentially consolidate with others as they are strewn around the docs. (E.g. backup env variables are not included here.) -->
 ## Environment variables
@@ -133,7 +133,8 @@ An overview of environment variables in the docker-compose file:
   | <code>ENABLE<wbr />_MODULES</code> | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
   | <code>TRANSFORMERS<wbr />_INFERENCE<wbr />_API</code> | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
   | <code>DEFAULT<wbr />_VECTORIZER<wbr />_MODULE</code> | Default vectorizer module - will be overridden by any class-level value defined in the schema | `string` | `text2vec-contextionary` |
-  | <code>QUERY<wbr />_MAXIMUM<wbr />_RESULTS</code> | Sets the maximum total number of objects that can be retrieved using this parameter. | `string - number` | `10000` |
+  | <code>QUERY<wbr />_MAXIMUM<wbr />_RESULTS</code> | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
+  | <code>QUERY<wbr />_DEFAULTS<wbr />_LIMIT</code> | Sets the default number of objects to be returned in a query. | `string - number` | `25` |
   | <code>AUTHENTICATION<wbr/>_ANONYMOUS<wbr/>_ACCESS<wbr/>_ENABLED</code> | Allow users to interact with weaviate without auth | `string - true/false` | `true` |
   | <code>AUTHENTICATION<wbr />_OIDC<wbr />_ENABLED</code> | Enable OIDC Auth | `string - true/false` | `false` |
   | <code>AUTHENTICATION<wbr />_OIDC<wbr />_ISSUER</code> | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
