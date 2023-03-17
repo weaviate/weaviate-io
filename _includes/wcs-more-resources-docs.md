@@ -1,12 +1,16 @@
 ### Support & Troubleshooting
 
-- (QUESTION): What should users do if they have issues?
+:::warning TODO
+What should users do if they have issues?
+:::
 
 ### Service status
 
 #### WCS status page
 
-- (QUESTION): Is there a WCS status page?
+:::warning TODO
+Add a WCS status page if there is one
+:::
 
 #### Inference API status pages
 

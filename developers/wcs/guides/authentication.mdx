@@ -1,19 +1,75 @@
 ---
 title: Authentication
-sidebar_position: 20
+sidebar_position: 15
 image: og/docs/introduction.jpg  # TODO - do we need a new WCS OG image?
 ---
 
 ## Overview
 
-- Lay out authentication options with OIDC + API keys
-- Explain what authorization options the users have available (might be only single tier for now)
-- (QUESTION): Will the users be able to allow anonymous or tiered access with WCS?
+For ensure security in a production environment, WCS instances of Weaviate come pre-configured with authentication enabled (except for sandbox instances, where it is optional).
 
-### OIDC access
+You can authenticate into a WCS instance through the account owner's WCS username and password, or an API key. There is no difference between the two in terms of the available permissions, so it is up to you to choose one that is most appropriate to your workflow.
 
-- Steps to log in with OIDC
+:::tip Recommendation: Use the API key
+In general, we recommend authenticating with the API key so that your WCS account username and password remains secure.
+:::
 
-### API key access
+## Instructions
 
-- Steps to log in with the API key
+### Authentication with an API key
+
+To authenticate with Weaviate with an API key, each request header should include:
+
+```json
+Authorization: Bearer {Bearer}
+```
+
+Where `{Bearer}` is the API key.
+
+This can be further abstracted using a Weaviate client, as shown in the code examples below:
+
+:::warning TODO
+Complete code examples
+:::
+
+import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
+
+<WCSAuthenticationApiKey/>
+
+### Authentication with WCS username and password
+
+To authenticate with Weaviate with your WCS username and password, you must obtain an OpenID Connect (OIDC) token, which needs to be then added to each request header as below:
+
+```json
+Authorization: Bearer {Bearer}
+```
+
+As the token will periodically expire, new tokens must be obtained.
+
+To automate this workflow, we strongly recommend that you use your preferred Weaviate client library for username and password authentication. The relevant code examples for authentication are below:
+
+:::warning TODO
+Complete code examples
+:::
+
+import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
+
+<WCSAuthenticationUserPass/>
+
+## Read more
+
+If you are interested, you can read more about authentication below:
+
+- Authentication with Weaviate clients:
+    - [Python](/developers/weaviate/client-libraries/python.md#authentication)
+    - [JavaScript](/developers/weaviate/client-libraries/javascript.md#authentication)
+    - [Go](/developers/weaviate/client-libraries/go.md#authentication)
+    - [Java](/developers/weaviate/client-libraries/java.md#authentication)
+- [About OIDC](https://openid.net/connect/).
+- [About KeyCloak](https://www.keycloak.org/), the OIDC token issuer server used with WCS.
+
+## More resources
+
+import WCSDocsMoreResources from '/_includes/wcs-more-resources-docs.md';
+
+<WCSDocsMoreResources />
