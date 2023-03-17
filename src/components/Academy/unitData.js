@@ -333,7 +333,7 @@ export const unitData = {
     learningOutcomes: [
       "Describe the principles behind token-based security such as OIDC / OAuth.",
       "Differentiate between an ID token and access token",
-      "Implement OIDC-based authentication with Weaviate using Weaviate Cloud Service as the identity provider.",
+      "Implement OIDC-based authentication with Weaviate using Weaviate Cloud Services as the identity provider.",
       "Implement authorization with Weaviate based on OIDC authentication."
     ],
     owner: "jp",
