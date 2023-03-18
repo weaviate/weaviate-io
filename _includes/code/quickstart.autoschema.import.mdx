@@ -53,7 +53,7 @@ async function importQuestions() {
       .catch(err => {
         console.error(err)
       });
-      
+
       // restart the batch queue
       counter = 0;
       batcher = client.batch.objectsBatcher();
@@ -71,45 +71,52 @@ async function importQuestions() {
   });
 }
 
-importQuestions(); 
+importQuestions();
 ```
 
 </TabItem>
-{/* <TabItem value="go" label="Go">
+<TabItem value="go" label="Go">
 
 ```go
-package main
+// Retrieve the data
+data, err := http.DefaultClient.Get("https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json")
+if err != nil {
+  panic(err)
+}
+defer data.Body.Close()
 
-import (
-	"context"
-	"fmt"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate/entities/models"
+// Decode the data
+var items []map[string]string
+if err := json.NewDecoder(data.Body).Decode(&items); err != nil {
+  panic(err)
+}
 
-)
+// convert items into a slice of models.Object
+objects := make([]*models.Object, len(items))
+for i := range items {
+  objects[i] = &models.Object{
+    Class: className,
+    Properties: map[string]any{
+      "category": items[i]["Category"],
+      "question": items[i]["Question"],
+      "answer":   items[i]["Answer"],
+    },
+  }
+}
 
-func main() {
-    cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",
-        Scheme: "https",
-    }
-
-    client := weaviate.New(cfg)
-
-    classObj := &models.Class{
-        Class:      "Question", 
-        Vectorizer: "text2vec-openai",
-    }
-
-    // add the schema
-    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-    if err != nil {
-        panic(err)
-    }
+// batch write items
+batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(ctx)
+if err != nil {
+  panic(err)
+}
+for _, res := range batchRes {
+  if res.Result.Errors != nil {
+    panic("batch load failed: %v", res.Result.Errors.Error)
+  }
 }
 ```
 
-</TabItem> */}
+</TabItem>
 {/* <TabItem value="java" label="Java">
 
 ```java
@@ -135,7 +142,7 @@ public class App {
       .className("Question")
       .vectorizer("text2vec-openai")
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {

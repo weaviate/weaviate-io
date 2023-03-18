@@ -21,45 +21,22 @@ const weaviate = require("weaviate-client");
 const client = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
-  }); 
+  });
 ```
 
 </TabItem>
-{/* <TabItem value="go" label="Go">
+<TabItem value="go" label="Go">
 
 ```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate/entities/models"
-
-)
-
-func main() {
-    cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
-        Scheme: "https",
-    }
-
-    client := weaviate.New(cfg)
-
-    classObj := &models.Class{
-        Class:      "Question", 
-        Vectorizer: "text2vec-openai",
-    }
-
-    // add the schema
-    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-    if err != nil {
-        panic(err)
-    }
+cfg := weaviate.Config{
+    Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
+    Scheme: "https",
 }
+
+client := weaviate.New(cfg)
 ```
 
-</TabItem> */}
+</TabItem>
 {/* <TabItem value="java" label="Java">
 
 ```java
@@ -85,7 +62,7 @@ public class App {
       .className("Question")
       .vectorizer("text2vec-openai")
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {

@@ -74,7 +74,7 @@ client.graphql
 ```
 
 </TabItem>
-{/* <TabItem value="go" label="Go">
+<TabItem value="go" label="Go">
 
 ```go
 package main
@@ -91,36 +91,37 @@ func main() {
   cfg := weaviate.Config{
     Host:    "some-endpoint.weaviate.network/",  // Replace with your endpoint
     Scheme:  "https",
-    Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"},
+    Headers: map[string]string{
+      "X-OpenAI-Api-Key": "<THE-KEY>",
+    },
   }
   client := weaviate.New(cfg)
 
-  className := "Question"
+	fields := []graphql.Field{
+		graphql.Field{Name: "question"},
+		graphql.Field{Name: "answer"},
+		graphql.Field{Name: "category"},
+	}
 
-  question := graphql.Field{Name: "question"}
-  answer := graphql.Field{Name: "answer"}
+	nearText := client.GraphQL().
+		NearTextArgBuilder().
+		WithConcepts([]string{"biology"})
 
-  concepts := []string{"biology"}
-  nearText := client.GraphQL().NearTextArgBuilder().
-    WithConcepts(concepts).
-
-  ctx := context.Background()
-
-  result, err := client.GraphQL().Get().
-    WithClassName(className).
-    WithFields(question, answer).
-    WithNearText(nearText).
-    WithLimit(2).
-    Do(ctx)
-
-  if err != nil {
+	result, err := client.GraphQL().Get().
+		WithClassName(className).
+		WithFields(fields...).
+		WithNearText(nearText).
+		WithLimit(2).
+		Do(context.Background())
+	if err != nil {
     panic(err)
   }
+
   fmt.Printf("%v", result)
 }
 ```
 
-</TabItem> */}
+</TabItem>
 {/* <TabItem value="java" label="Java">
 
 ```java
@@ -160,7 +161,7 @@ public class App {
       .build();
 
     Field question = Field.builder().name("question").build();
-    Field answer = Field.builder().name("answer").build();    
+    Field answer = Field.builder().name("answer").build();
 
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName("Question")
