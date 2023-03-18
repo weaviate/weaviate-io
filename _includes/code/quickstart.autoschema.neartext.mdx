@@ -88,14 +88,14 @@ import (
 )
 
 func main() {
-  cfg := weaviate.Config{
-    Host:    "some-endpoint.weaviate.network/",  // Replace with your endpoint
-    Scheme:  "https",
-    Headers: map[string]string{
-      "X-OpenAI-Api-Key": "<THE-KEY>",
-    },
-  }
-  client := weaviate.New(cfg)
+	cfg := weaviate.Config{
+		Host:    "some-endpoint.weaviate.network/",  // Replace with your endpoint
+		Scheme:  "https",
+		Headers: map[string]string{
+			"X-OpenAI-Api-Key": "<THE-KEY>",
+		},
+	}
+	client := weaviate.New(cfg)
 
 	fields := []graphql.Field{
 		graphql.Field{Name: "question"},
@@ -114,10 +114,10 @@ func main() {
 		WithLimit(2).
 		Do(context.Background())
 	if err != nil {
-    panic(err)
-  }
+		panic(err)
+	}
 
-  fmt.Printf("%v", result)
+	fmt.Printf("%v", result)
 }
 ```
 
