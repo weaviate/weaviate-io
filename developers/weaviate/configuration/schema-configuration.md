@@ -27,11 +27,11 @@ The RESTful endpoint `/v1/schema` can be used for schema-related operations. Lea
 
 ## Data objects and structure
 
-Data objects in Weaviate always belongs to a Class, and has one or more Properties.
+Each data object in Weaviate always belongs to a Class, and has one or more Properties.
 
 ### Auto-schema
 
-If you don't create a schema manually before adding data, a schema will be generated automatically (available from Weaviate version v1.5.0). This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
+If you don't create a schema manually before adding data, a schema will be generated automatically (starting with Weaviate version v1.5.0). This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
 
 It has the following characteristics:
 
@@ -85,7 +85,7 @@ An example of a complete class object including properties:
     {
       "name": "string",                     // The name of the property
       "description": "string",              // A description for your reference
-      "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes
+      "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple data types, hence the array syntax.
         "string"
       ],
       "moduleConfig": {                     // Module-specific settings
@@ -101,8 +101,8 @@ An example of a complete class object including properties:
     "stopwords": { 
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
-    "indexTimestamps": false,                 // Optional, maintains inverted indices for each object by its internal timestamps
-    "indexNullState": false,                 // Optional, maintains inverted indices for each property regarding its null state
+    "indexTimestamps": false,               // Optional, maintains inverted indices for each object by its internal timestamps
+    "indexNullState": false,                // Optional, maintains inverted indices for each property regarding its null state
     "indexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
   },
   "shardingConfig": {
@@ -118,10 +118,6 @@ The vectorizer (`"vectorizer": "..."`) can be specified per class in the schema 
 #### Weaviate without a vectorizer
 
 You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This may be useful in case you wish to upload your own vectors from a custom model ([see how here](../api/rest/objects.md#with-a-custom-vector)), or wish to create a class without any vectors.
-
-__Configure semantic indexing__
-
-With the [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing) how this works.
 
 ### vectorIndexType
 
@@ -392,28 +388,24 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 Only for `text2vec-*` modules
 :::
 
-In the schema you can define advanced settings for how data is stored and used by Weaviate. 
+Weaviate creates one vector per object by concatenating together the class name, followed by the [`string` and `text` properties](#property-tokenization) of the object sorted by the property name, then lowercasing and vectorizing the resulting string. For the precise sequence and how to configure the vectorization details, see [Tweaking text2vec vectorization](/blog/pulling-back-the-curtains-on-text2vec/#tweaking-text2vec-vectorization-in-weaviate).
 
-In some cases, you want to be able to configure specific parts of the schema to optimize indexing.
+For example, this data object,
 
-For example, a data object with the following schema:
-
-```yaml
-Article:
-  title: Cows lose their jobs as milk prices drop
-  summary: As his 100 diary cows lumbered over for their Monday...
+```js
+Article = {
+  summery: "Cows lose their jobs as milk prices drop",
+  text: "As his 100 diary cows lumbered over for their Monday..."
+}
 ```
 
-which will be vectorized as:
+will be vectorized as:
 
 ```md
-article cows lose their
-jobs as milk prices drop summary
-as his diary cows lumbered
-over for their monday
+article cows lose their jobs as milk prices drop summary as his diary cows lumbered over for their monday...
 ```
 
-By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can configure the indexing.
+By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can configure the indexing. <!-- TODO: clarify -->
 
 ### Datatypes
 
