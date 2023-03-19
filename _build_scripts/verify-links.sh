@@ -25,7 +25,7 @@ URL_IGNORES: ${URL_IGNORES}|${DOCUSAURUS_IGNORES}
 --retry-errors-count 4 \
 --retry-errors-jitter 4
 
-# USE search/replace to test validity of links on Nelify, as they might not yet exist on weaviate.io
+# Use search/replace to test validity of links on Netlify, as they might not yet exist on weaviate.io
 
 echo "**************************************
 Link Verification Complete
