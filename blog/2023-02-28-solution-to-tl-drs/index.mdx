@@ -5,7 +5,7 @@ authors: [jp]
 date: 2023-02-28
 tags: []
 image: ./img/hero.png
-description: Did you know that Weaviate can summarize information during retrieval? Learn how you can summarize your data to tackle the problem of information overload. 
+description: Did you know that Weaviate can summarize information during retrieval? Learn how you can summarize your data to tackle the problem of information overload.
 ---
 
 ![The solution to TL;DRs - Weaviate's summarizer module](./img/hero.png)
@@ -14,13 +14,13 @@ description: Did you know that Weaviate can summarize information during retriev
 
 How often do you find yourself facing a wall of text in an email, a report, or a paper, and letting out a sigh? Nobody enjoys hacking their way through boring, dense prose. Especially if it's just to see if the information is even relevant.
 
-In this day and age, this is a more common problem than ever. For a while now, the bottleneck in knowledge work has been our rate of information discovery and consumption. So how do we solve this problem? 
+In this day and age, this is a more common problem than ever. For a while now, the bottleneck in knowledge work has been our rate of information discovery and consumption. So how do we solve this problem?
 
 <!-- truncate -->
 
-You probably already know that Weaviate, as a vector search engine, can help with information cataloging and discovery. But did you know that Weaviate can also summarize information during retrieval? 
+You probably already know that Weaviate, as a vector search engine, can help with information cataloging and discovery. But did you know that Weaviate can also summarize information during retrieval?
 
-Our summarizer module ([`sum-transformers`](/developers/weaviate/modules/reader-generator-modules/sum-transformers)) can be added to a Weaviate instance to do exactly that. 
+Our summarizer module ([`sum-transformers`](/developers/weaviate/modules/reader-generator-modules/sum-transformers)) can be added to a Weaviate instance to do exactly that.
 
 And as a bonus, we will also show you how to use our new generative module (`generative-openai`) to do the same thing as well.
 
@@ -62,7 +62,7 @@ Sir Lewis Carl Davidson Hamilton   (born 7 January 1985) is a British racing dri
 
 Born and raised in Stevenage, Hertfordshire, Hamilton joined the McLaren young driver programme in 1998 at the age of 13, becoming the youngest racing driver ever to be contracted by a Formula One team. This led to a Formula One drive with McLaren for six years from 2007 to 2012, making Hamilton the first black driver to race in the series. In his inaugural season, Hamilton set numerous records as he finished runner-up to Kimi Räikkönen by one point. The following season, he won his maiden title in dramatic fashion—making a crucial overtake at the last corner on the last lap of the last race of the season—to become the then-youngest Formula One World Champion in history.  After six years with McLaren, Hamilton signed with Mercedes in 2013.
 
-Changes to the regulations for 2014 mandating the use of turbo-hybrid engines saw the start of a highly successful period for Hamilton, during which he won six further drivers' titles. Consecutive titles came in 2014 and 2015 during an intense rivalry with teammate Nico Rosberg. Following Rosberg's retirement in 2016, Ferrari's Sebastian Vettel became Hamilton's closest rival in two championship battles, in which Hamilton twice overturned mid-season point deficits to claim consecutive titles again in 2017 and 2018. His third and fourth consecutive titles followed in 2019 and 2020 to equal Schumacher's record of seven drivers' titles. Hamilton achieved his 100th pole position and race win during the 2021 season. 
+Changes to the regulations for 2014 mandating the use of turbo-hybrid engines saw the start of a highly successful period for Hamilton, during which he won six further drivers' titles. Consecutive titles came in 2014 and 2015 during an intense rivalry with teammate Nico Rosberg. Following Rosberg's retirement in 2016, Ferrari's Sebastian Vettel became Hamilton's closest rival in two championship battles, in which Hamilton twice overturned mid-season point deficits to claim consecutive titles again in 2017 and 2018. His third and fourth consecutive titles followed in 2019 and 2020 to equal Schumacher's record of seven drivers' titles. Hamilton achieved his 100th pole position and race win during the 2021 season.
 
 Hamilton has been credited with furthering Formula One's global following by appealing to a broader audience outside the sport, in part due to his high-profile lifestyle, environmental and social activism, and exploits in music and fashion. He has also become a prominent advocate in support of activism to combat racism and push for increased diversity in motorsport. Hamilton was the highest-paid Formula One driver from 2013 to 2021, and was ranked as one of the world's highest-paid athletes by Forbes of twenty-tens decade and 2021. He was also listed in the 2020 issue of Time as one of the 100 most influential people globally, and was knighted in the 2021 New Year Honours. Hamilton was granted honorary Brazilian citizenship in 2022.
 
@@ -104,9 +104,9 @@ Some researchers argue that bitmap indexes are also useful for moderate or even 
 
 </details>
 
-If you examine these summaries, you will notice that these sentences are not lifted verbatim from the original text. Instead, what is produced is an *abstractive* summary, which is newly produced based on the original text. 
+If you examine these summaries, you will notice that these sentences are not lifted verbatim from the original text. Instead, what is produced is an *abstractive* summary, which is newly produced based on the original text.
 
-The summarization module achieves this at query time by passing on the text that is retrieved from Weaviate to a language model that is trained specifically for summarization. 
+The summarization module achieves this at query time by passing on the text that is retrieved from Weaviate to a language model that is trained specifically for summarization.
 
 This means that you can set up your Weaviate instance to not only retrieve the most relevant query results for you but take the next step and add an overview of each retrieved object.
 
@@ -175,14 +175,14 @@ The required steps to make use of this module are as follows:
     ```graphql
     _additional { summary ( properties: ["<FIELD_TO_BE_SUMMARIZED>"]) { property result } }
     ```
-    
+
 1. Parse the results!
 
 That's all there is to it. Let's take a look at each step in more detail.
 
 ### Configuration (`docker-compose.yml`) file
 
-The `sum-transformers` module is to be used in addition to the usual vectorizer module, such as `text2vec-transformers`, or inference-API-based ones such as `text2vec-openai/cohere/huggingface`. 
+The `sum-transformers` module is to be used in addition to the usual vectorizer module, such as `text2vec-transformers`, or inference-API-based ones such as `text2vec-openai/cohere/huggingface`.
 
 Accordingly, the relevant lines are:
 
@@ -256,14 +256,14 @@ services:
 With these variables specified, an instance of Weaviate can be spun up with the summarizer module enabled. Next, it's a matter of making queries:
 
 :::note For WCS - use `generative-openai`
-At the time of writing, Weaviate Cloud Services (WCS) instances do not support the `sum-transformers` module. 
+At the time of writing, Weaviate Cloud Services (WCS) instances do not support the `sum-transformers` module.
 
 However, you can perform summarizations with the `generative-openai` module, by providing a specific prompt. Take a look below 😉.
 :::
 
 ### Results with summaries
 
-Summaries are available at query time. In other words, they are not pre-determined but generated from the results retrieved by the `sum-transformers` model. 
+Summaries are available at query time. In other words, they are not pre-determined but generated from the results retrieved by the `sum-transformers` model.
 
 This can be triggered as an `additional` property, with a GraphQL query syntax like so:
 
@@ -277,14 +277,14 @@ This can be triggered as an `additional` property, with a GraphQL query syntax l
         ) {
           property
           result
-        }        
-      }          
+        }
+      }
     }
   }
 }
 ```
 
-Where the `_additional { summary ... }` instructs Weaviate to carry out the summarization. 
+Where the `_additional { summary ... }` instructs Weaviate to carry out the summarization.
 
 In this syntax, `properties` specifies the fields to be summarized, where each summary will include a `property` that echoes the field name, and `result` is the summarized text output.
 
@@ -323,9 +323,9 @@ Note that in this example, `Article` was the class name, `wiki_summary` was the 
     Article (
       limit: 1
       where: {
-        path: ["title"],    
-        operator: Like,  
-        valueText: "loch ness"        
+        path: ["title"],
+        operator: Like,
+        valueText: "loch ness"
       }
       ) {
       title
@@ -335,8 +335,8 @@ Note that in this example, `Article` was the class name, `wiki_summary` was the 
         ) {
           property
           result
-        }        
-      }          
+        }
+      }
     }
   }
 }
@@ -348,7 +348,7 @@ Grabbing these results is relatively straightforward. But as with many tasks tha
 
 ### Alternative: `generative-openai`
 
-You might have heard of our new [`generative-openai` module](/developers/weaviate/modules/reader-generator-modules/generative-openai) already. It can take your results, and provide a prompt to a generative model to get back a response. 
+You might have heard of our new [`generative-openai` module](/developers/weaviate/modules/reader-generator-modules/generative-openai) already. It can take your results, and provide a prompt to a generative model to get back a response.
 
 So, this module can also be used to generate summaries by prompting it directly to do so. Below is one such example:
 
@@ -397,13 +397,13 @@ From the original text below:
 
 </details>
 
-While this is not a custom-trained summarization model, this may be a great alternative solution where `sum-transformers` module cannot be used, or where you may wish to leverage flexible, large language models that are only available through APIs. 
+While this is not a custom-trained summarization model, this may be a great alternative solution where `sum-transformers` module cannot be used, or where you may wish to leverage flexible, large language models that are only available through APIs.
 
 ## Best practice notes
 
 ### GPU usage
 
-The `sum-transformers` module is configured to spin up a Docker container on your system to carry out the inference (i.e. summarization) task. While inference tasks are far less resource intensive than training, they are still non-trivial. 
+The `sum-transformers` module is configured to spin up a Docker container on your system to carry out the inference (i.e. summarization) task. While inference tasks are far less resource intensive than training, they are still non-trivial.
 
 It will run much faster on systems that support GPU acceleration with CUDA. CPUs may be fine for occasional or private, evaluation use, but for any kind of deployment, we highly recommend utilizing GPU acceleration.
 
@@ -411,33 +411,33 @@ It will run much faster on systems that support GPU acceleration with CUDA. CPUs
 
 Currently, the `sum-transformers` module uses the `bart-large-cnn` model under the hood by default, with an option for the `pegasus-xsum` model. Both of these are well-known, high-performance models trained by Facebook and Google respectively.
 
-In addition to these two models, however, you can use any model from the Hugging Face Hub (or your own) by following [this guide](/developers/weaviate/modules/reader-generator-modules/sum-transformers#use-another-summarization-module-from-huggingface). 
+In addition to these two models, however, you can use any model from the Hugging Face Hub (or your own) by following [this guide](/developers/weaviate/modules/reader-generator-modules/sum-transformers#use-another-summarization-module-from-hugging-face).
 
-Even when looking only at language models that are trained for summarization tasks, there is still a wide range of choices in terms of sheer numbers, which vary in the target domain (e.g. medical, legal, scientific, etc.) and size (number of parameters, i.e. speed). If you have specific needs, we recommend investigating other models. 
+Even when looking only at language models that are trained for summarization tasks, there is still a wide range of choices in terms of sheer numbers, which vary in the target domain (e.g. medical, legal, scientific, etc.) and size (number of parameters, i.e. speed). If you have specific needs, we recommend investigating other models.
 
-### Avoid too long an input 
+### Avoid too long an input
 
-All transformer models have a maximum input length size. For example, `bart-large-cnn` has a maximum limit of 1024 tokens, where each token is part of a word (i.e. a few characters). 
+All transformer models have a maximum input length size. For example, `bart-large-cnn` has a maximum limit of 1024 tokens, where each token is part of a word (i.e. a few characters).
 
-Inputting too long a text into the summarizer module will cause it to throw an error. Accordingly, if you envisage generating summaries using `sum-transformers`, we recommend considering chunking your data at import time to make sure that the content of each field is shorter than the maximum length. 
+Inputting too long a text into the summarizer module will cause it to throw an error. Accordingly, if you envisage generating summaries using `sum-transformers`, we recommend considering chunking your data at import time to make sure that the content of each field is shorter than the maximum length.
 
 ### But also... not too short
 
 The [Goldilocks Principle](https://en.wikipedia.org/wiki/Goldilocks_principle) also applies here, where too short an input may cause the summarizer model to misbehave (i.e. [hallucinate](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence))).
 
-When fed insufficient input, the model may "pad" the output with tokens that have very little grounding in the truth. Generally speaking, an input length that is shorter than a typical "summary" output length by the model is inadvisable. 
+When fed insufficient input, the model may "pad" the output with tokens that have very little grounding in the truth. Generally speaking, an input length that is shorter than a typical "summary" output length by the model is inadvisable.
 
 ## Do more with less
 
-All in all, summarizing your data with Weaviate can be another valuable tool in your toolkit to reduce TL;DRs in our lives. By combining the power of vector search with summarization capabilities, Weaviate offers a practical, easy solution to the problem of information overload. 
+All in all, summarizing your data with Weaviate can be another valuable tool in your toolkit to reduce TL;DRs in our lives. By combining the power of vector search with summarization capabilities, Weaviate offers a practical, easy solution to the problem of information overload.
 
 So instead of slashing your way through thickets of prose to look for the information you need, work smarter! Whether it's with `generate-openai` or `sum-transformers` - let Weaviate lift you up to give you a bird's eye view of the whole landscape.
 
 ## Bonus: TL;DR version (edited):
 
-Weaviate can also summarize information during retrieval through the use of its summarizer module, `sum-transformers`. 
+Weaviate can also summarize information during retrieval through the use of its summarizer module, `sum-transformers`.
 
-This module can shorten a piece of text into a pithy, to-the-point summary by passing the text retrieved from Weaviate to a language model trained specifically for summarization. 
+This module can shorten a piece of text into a pithy, to-the-point summary by passing the text retrieved from Weaviate to a language model trained specifically for summarization.
 
 By using Weaviate to summarize your data, you can reduce the amount of too long; did not read (TL;DR) content in your life and reduce the problem of information overload. The `sum-transformers` module uses the `bart-large-cnn` model by default, with an option for the `pegasus-xsum` model, but any model from Hugging Face Hub can be used.
 

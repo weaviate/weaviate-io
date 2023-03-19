@@ -13,5 +13,6 @@
     },
     "files.associations": {
         "*.mdx": "markdown"
-    }
+    },
+    "files.trimTrailingWhitespace": true
 }

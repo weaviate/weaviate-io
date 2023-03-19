@@ -1,11 +1,11 @@
-If your Weaviate instance contains data where you would like it to be empty, or you can manually delete the unwanted class(es).
+If your Weaviate instance contains data you want removed, you can manually delete the unwanted class(es).
 
 :::caution Deleting a class == Deleting its objects
 Know that **deleting a class will also delete all associated objects**!
 
-Do not do this to a production database, or anywhere where you do not wish to delete your data. 
+Do not do this to a production database, or anywhere where you do not wish to delete your data.
 
-Run this code to delete the relevant class.
+Run the code below to delete the relevant class and its objects.
 :::
 
 import Tabs from '@theme/Tabs';
@@ -23,7 +23,6 @@ import TabItem from '@theme/TabItem';
 
 ```python
 import weaviate
-import json
 
 client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
 
@@ -40,7 +39,7 @@ const weaviate = require('weaviate-client');
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
-}); 
+});
 
 var className = 'YourClassName';  // Replace with your class name
 
