@@ -72,13 +72,13 @@ Get the next batch of 10 objects:
 GET /v1/objects?class=MyClass&limit=10&offset=20
 ```
 
-### Exhaustive retrieval: `after`
+### Exhaustive retrieval using a cursor: `after`
 
 :::tip
 You can use `class`, `limit` and `after` for retrieving an entire object set from a class.
 :::
 
-The `after` parameter retrieves objects of a class based on the order of ids. It can therefore only be applied to list queries without sorting. 
+The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. It can therefore only be applied to list queries without sorting. You can pass the last id you retrieved as a cursor to start the next page.
 
 It is not possible to use the `after` parameter without specifying a `class`.
 
