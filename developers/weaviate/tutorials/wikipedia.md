@@ -98,7 +98,7 @@ import CreateSchema from '/_includes/code/tutorials.wikipedia.schema.mdx';
 
 <CreateSchema />
 
-To quickly check that the schema was created correctly, you can navigate to `<weaviate-endpoint>/v1/schema`. For example in the Docker installation scenario, go to <http://localhost:8080/v1/schema> or run,
+To quickly check that the schema was created correctly, you can navigate to `<weaviate-endpoint>/v1/schema`. For example in the Docker installation scenario, go to `http://localhost:8080/v1/schema` or run,
 
 ```bash
 curl -s http://localhost:8080/v1/schema | jq
