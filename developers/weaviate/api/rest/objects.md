@@ -22,7 +22,7 @@ A: This `Aggregate` GraphQL query will retrieve the total object count in a clas
 
 #### Method and URL
 
-Without any restrictions (across classes, default limit = 100):
+Without any restrictions (across classes, default limit = 25):
 
 ```http
 GET /v1/objects
@@ -42,7 +42,7 @@ GET /v1/objects?class={ClassName}&limit={limit}&include={include}
 | Name | Type | Description |
 | ---- | ---- | ----------- | 
 | `class` | string | List objects by class using the class name. |
-| `limit` | integer | The maximum number of data objects to return. |
+| `limit` | integer | The maximum number of data objects to return. Default 25. |
 | `offset` | integer | The offset of objects returned (the starting index of the returned objects).<br/><br/>Cannot be used with `after`.<br/>Should be used in conjunction with `limit`. |
 | `after` | string | ID of the object after which (i.e. non-inclusive ID) objects are to be retrieved.<br/><br/>Must be used with `class`<br/>Cannot be used with `offset` or `sort`.<br/>Should be used in conjunction with `limit`. |
 | `include` | string | Include additional information, such as classification info. <br/><br/>Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
@@ -72,13 +72,13 @@ Get the next batch of 10 objects:
 GET /v1/objects?class=MyClass&limit=10&offset=20
 ```
 
-### Exhaustive retrieval: `after`
+### Exhaustive retrieval using a cursor: `after`
 
 :::tip
 You can use `class`, `limit` and `after` for retrieving an entire object set from a class.
 :::
 
-The `after` parameter retrieves objects of a class based on the order of ids. It can therefore only be applied to list queries without sorting. 
+The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. It can therefore only be applied to list queries without sorting. You can pass the last id you retrieved as a cursor to start the next page.
 
 It is not possible to use the `after` parameter without specifying a `class`.
 
@@ -221,6 +221,7 @@ The request body for a new object has the following fields:
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `id` | v4 UUID | no | Optional id for the object |
+| `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
 
 #### Example request
 
@@ -379,6 +380,7 @@ The request body for replacing (some) properties of an object has the following 
 | `id` | string | ? | Required for `PUT` to be the same id as the one passed in the URL |
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
+| `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
 
 #### Example request
 

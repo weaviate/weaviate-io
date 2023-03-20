@@ -11,27 +11,27 @@ description: "Vector search on disks: How does Vamana compare to HNSW?"
 
 <!-- truncate -->
 
-Vector Search engines must be able to search through a vast number of vectors at speed. This is a huge technical challenge that is only becoming more difficult over time as the vector dimensions and dataset sizes increase.
+Vector databases must be able to search through a vast number of vectors at speed. This is a huge technical challenge that is only becoming more difficult over time as the vector dimensions and dataset sizes increase.
 
 Like many others, our current prevailing solution is to use Approximate Nearest Neighbor (ANN) algorithms to power Weaviate. But the key question is - which ones to use? There are many different ANN algorithms, each with different advantages and limitations.
 
 ### Large Scale
 When we talk about a vast number of objects, today we often see use cases with hundreds of millions of vectors, but it won't take long until billions, or even trillions, will be a pretty standard use case.
 
-To get vector search engines to that kind of scale, we need to constantly evolve and look for more efficient solutions. A big part of this search is to explore ANN algorithms that would let us go beyond the available RAM (which is a bit of a bottleneck) without sacrificing the performance and the UX.
+To get vector databases to that kind of scale, we need to constantly evolve and look for more efficient solutions. A big part of this search is to explore ANN algorithms that would let us go beyond the available RAM (which is a bit of a bottleneck) without sacrificing the performance and the UX.
 
 ### What to expect
 In this series of blog posts, we will take you on a journey with us as we research and implement new ANN algorithms in our quest to reach the 1T goal. 
 
 In this article, we will cover the need for disk-based solutions, explore Vamana (how it works and contrast it against HNSW), and present the result of Vamana implementation.
 
-> If you are new to vector search engines and ANN, I recommend you to read "[Why is Vector Search so fast?](/blog/why-is-vector-search-so-fast)"<br/>
-> The article explains what vector search engines are and how they work.
+> If you are new to vector databases and ANN, I recommend you to read "[Why is Vector Search so Fast?](/blog/why-is-vector-search-so-fast)"<br/>
+> The article explains what vector databases are and how they work.
 
 ## Need for approximation
 In order for a vector database to efficiently search through a vast number of vectors, the database needs to be smart about it. A brute-force approach would calculate the distance between the query vector and every data vector in the queried collection, but this is computationally very expensive. For a database with millions of objects and thousands of high-dimensional vectors, this would take far too long.
 
-[Weaviate](/developers/weaviate/), an open-source vector search engine written in Go, can serve thousands of queries per second. Running Weaviate on [Sift1M](https://www.tensorflow.org/datasets/catalog/sift1m) (a 128-dimensional representation of objects) lets you serve queries in single-digit milliseconds. But how is this possible?
+[Weaviate](/developers/weaviate/), an open-source vector database written in Go, can serve thousands of queries per second. Running Weaviate on [Sift1M](https://www.tensorflow.org/datasets/catalog/sift1m) (a 128-dimensional representation of objects) lets you serve queries in single-digit milliseconds. But how is this possible?
 
 ![SIFT1M Benchmark example](./img/SIFT1M-benchmark.png)
 *See the [benchmark](/developers/weaviate/benchmarks/ann) page for more stats.*

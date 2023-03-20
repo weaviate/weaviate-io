@@ -301,7 +301,7 @@ To bring in upstream changes to your fork, you need to fetch and pull the upstre
 
 * The first step is to incorporate any upstream changes to your forked repository. Head over to the forked GitHub repository, and under `Fetch Upstream`, click `Fetch and merge`. 
 
-* The next step is to bring those changes to the local repository. If you have made any changes, make sure to commit them locally. Then check out the `main` (or `master` for weaviate) branch like so:
+* The next step is to bring those changes to the local repository. If you have made any changes, make sure to commit them locally. Then check out the `main` (or `master` for Weaviate) branch like so:
 
 ```shell
 git checkout main

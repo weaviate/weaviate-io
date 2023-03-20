@@ -31,11 +31,11 @@ Many of you might primarily know Weaviate as a vector database and search engine
 
 With Ref2Vec, this task is made easier by representing a user's interests by drawing a graph of cross-references from the user to objects the user has engaged with. This gives Weaviate unique points of reference for each user that can be used to rank the search results.
 
-In Weaviate, Classes represent data objects such as Users, Products, or Brands. The vector for an instance of a Class, such as a Product is obtained from a Machine Learning model's inference of (typically) an image or text description of the Product. Additionally, Weaviate's cross-references enable relations between Classes, such as Users that "liked" a Product. For example, User, Product, and Brand objects may each have a vector representation, symbolic properties like name or price, and relations as shown below.
+In Weaviate, Classes represent data objects such as Users, Products, or Brands. The vector for an instance of a Class, such as a Product, is obtained from a Machine Learning model's inference of (typically) an image or text description of the Product. Additionally, Weaviate's cross-references enable relations between Classes, such as Users that "liked" a Product. For example, User, Product, and Brand objects may each have a vector representation, symbolic properties like name or price, and relations as shown below.
 
 ![Cross-reference](./img/Weaviate-Ref2Vec_1.png)
 
-Ref2Vec gives Weaviate another way to vectorise a class, such as the User class, based on their relationships to other classes. This allows Weaviate to quickly create up-to-date representations of users based on their relationships such as recent interactions. If a user clicks on 3 shoe images on an e-commerce store, it is a safe bet that they want to see more shoes. Ref2Vec captures this intuition by calculating vectors that aggregate each User's interaction with another class.
+Ref2Vec gives Weaviate another way to vectorize a class, such as the User class, based on their relationships to other classes. This allows Weaviate to quickly create up-to-date representations of users based on their relationships such as recent interactions. If a user clicks on 3 shoe images on an e-commerce store, it is a safe bet that they want to see more shoes. Ref2Vec captures this intuition by calculating vectors that aggregate each User's interaction with another class.
 
 The below animation visualizes a real example of this in e-Commerce images. The demo is organized such that user interactions are outlined with a green box and moved to the top-left of the grid. The nearest neighbors to the ref2vec-centroid are then arranged from left-to-right top-down.
 
@@ -57,7 +57,7 @@ With Ref2Vec, you can use Weaviate to provide Recommendation with "user-as-query
       nearObject: {
         id: "8abc5-4d5..." # id for the User object with vector defined by ref2vec-centroid
       }
-    ){
+    ) {
       product_name
       price
     }
@@ -69,10 +69,11 @@ This short query encapsulates the power of Ref2Vec. Although all the query does 
 
 Whether your goal is to construct a Home Feed interface for users or to pair with search queries, Ref2Vec provides a strong foundation to enable Recommendation with fairly low overhead. For example, it can achieve personalized re-ranking, also known as a session-based recommendation, without persisting user data over a long sequence of interactions. A new user could have personalization available after a few interactions on the app which will help them quickly settle in and feel at home, helping to overcome what is known as the cold-start problem.
 
-## Representing Long Objects
+## Representing long objects
+
 One of the most outstanding problems in Search technology is finding suitable representations for long objects. In this sense, "long" is used to describe text documents that significantly exceed the 512 token input limit on Deep Transformer Neural Networks. This problem is a large part of what motivates our interest in Hybrid Search techniques that combine the flexibility of Vector Search with the sparse BM25 word counting algorithm well suited for >512 token text sequences. We think Ref2Vec can also help address this challenge.
 
-To be clear, Weaviate already offers a solution to represent long documents with Cross-References! As an example, the Wikipedia Demo breaks the long Wikipedia articles into a (Paragraph, inArticle, Article) data schema in which each Paragraph contains less than 512 tokens of text. This allows us to combine the title of the Article with the vector search in the Paragraph vectors in Weaviate with the following query:
+To be clear, Weaviate already offers a solution to represent long documents with Cross-References! As an example, [the Wikipedia Demo](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate) breaks the long Wikipedia articles into a (Paragraph, inArticle, Article) data schema in which each Paragraph contains less than 512 tokens of text. This allows us to combine the title of the Article with the vector search in the Paragraph vectors in Weaviate with the following query:
 
 ```graphql
 {
@@ -86,11 +87,12 @@ To be clear, Weaviate already offers a solution to represent long documents with
         path: ["inArticle", "Article", "title"]
         valueString: "Barack Obama"
       }
-   ){
+    ) {
       content
       order
       title
-   }
+    }
+  }
 }
 ```
 

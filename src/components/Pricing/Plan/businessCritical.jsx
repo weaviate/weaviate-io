@@ -15,46 +15,40 @@ export default function PricingBusinessCritical() {
       </div>
       <div className={styles.features}>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIcon}></div>
           <span>
-            $0.175 per 1M vector dimensions stored or queried per month
+            $0.175 per 1M vector dimensions stored <br /> or queried per month
           </span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
-          <span>AWS, Azure, GCP</span>
+          <div className={styles.checkIcon}></div> <span>AWS, Azure, GCP</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIcon}></div>
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
-          <span>Always on</span>
+          <div className={styles.checkIcon}></div> <span>Always on</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
-          <span>Monitoring</span>
+          <div className={styles.checkIcon}></div> <span>Monitoring</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIcon}></div>
           <span>Weaviate Internal Slack or Teams / Email</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIcon}></div>
           <span>
-            Severity 1 - max 1h <br />
-            Severity 2 - max 4h <br />
-            Severity 3 - max 1bd
+            Severity 1 - max 1h <br /> Severity 2 - max 4h <br /> Severity 3 -
+            max 1bd
           </span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
-          <span>Multi AZ</span>
+          <div className={styles.checkIcon}></div> <span>Multi AZ</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
-          <span>HA optional</span>
+          <div className={styles.checkIcon}></div> <span>HA optional</span>
         </li>
       </div>
     </div>

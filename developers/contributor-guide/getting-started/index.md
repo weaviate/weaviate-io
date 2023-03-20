@@ -7,7 +7,7 @@ image: og/contributor-guide/getting-started.jpg
 
 ## Introduction
 
-Welcome! Working with Weaviate, many of us in the team and the community are exposed to a suite of interesting technologies. They include not only vector search engines, but also Docker, Kubernetes, GraphQL, REST and clients in various languages. 
+Welcome! Working with Weaviate, many of us in the team and the community are exposed to a suite of interesting technologies. They include not only vector databases, but also Docker, Kubernetes, GraphQL, REST and clients in various languages. 
 
 This means that is a wide set of opportunities for you to learn about and contribute to! If you are not sure where, we suggest finding something that overlaps with your interests
      

@@ -146,7 +146,7 @@ The answer is contained in a new GraphQL `_additional` property called `summary`
 }
 ```
 
-## Use another Summarization module from HuggingFace
+## Use another Summarization module from Hugging Face
 
 You can build a Docker image which supports any summarization model from the [Hugging Face Model Hub](https://huggingface.co/models?pipeline_tag=summarization) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`google/pegasus-pubmed` model](https://huggingface.co/google/pegasus-pubmed). 
 

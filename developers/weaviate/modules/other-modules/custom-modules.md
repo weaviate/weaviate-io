@@ -61,7 +61,7 @@ Let's take a more detailed example of how you configure Weaviate to use a specif
    * Provides a service that can do model inference.
    * Implements an API that is in contract with A (not with Weaviate itself). 
 
-Note that this is just one example, and variations are possible as long as both part 1 and 2 are present where 1 contains the connection to Weaviate in Go and 2 contains that inference model that part 1 uses. It would also be possible to amend, for example, the Weaviate `text2vec-transformers` module (part 1) to use the Huggingface API or some other third-party hosted inference service, instead of it's own container (now in part 2) that it brings. 
+Note that this is just one example, and variations are possible as long as both part 1 and 2 are present where 1 contains the connection to Weaviate in Go and 2 contains that inference model that part 1 uses. It would also be possible to amend, for example, the Weaviate `text2vec-transformers` module (part 1) to use the Hugging Face API or some other third-party hosted inference service, instead of its own container (now in part 2) that it brings. 
 
 A module completely controls the communication with any container or service it depends on. So, for example, in the `text2vec-transformers` module, the API of the inference container is a REST API. But for the `text2vec-contextionary` module has a gRPC, rather than a REST API or another protocol. 
 

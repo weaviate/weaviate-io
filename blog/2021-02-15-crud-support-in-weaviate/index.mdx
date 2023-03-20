@@ -1,7 +1,7 @@
 ---
-title: Weaviate, an ANN Database with CRUD support
+title: Weaviate, a vector database with ANN Index and CRUD support
 slug: crud-support-in-weaviate
-authors: [etienne] 
+authors: [etienne]
 date: 2021-02-15
 tags: []
 image: ./img/hero.png
@@ -13,13 +13,13 @@ description: "How the vector database Weaviate overcomes the limitations of popu
 
 <!-- truncate -->
 
-With the rising popularity of machine learning models, the demand for vector similarity search solutions has also increased dramatically. Machine learning models typically output vectors and common search queries involve finding the closest set of related vectors. For example, for a text-based vector search the search query "landmarks in Paris" would be encoded to a vector, it is then the job of the search engine to find the documents with the vector closest to this query. This might be a document with the title "Eiffel Tower" whose vector matched the search vector most closely.
+With the rising popularity of machine learning models, the demand for vector similarity search solutions has also increased dramatically. Machine learning models typically output vectors and common search queries involve finding the closest set of related vectors. For example, for a text-based vector search the search query "landmarks in Paris" would be encoded to a vector, it is then the job of the vector database to find the documents with the vector closest to this query. This might be a document with the title "Eiffel Tower" whose vector matched the search vector most closely.
 
 Such a vector similarity comparison is computationally trivial if there are very few, say less than 10,000 objects to be searched through. That is not a very realistic situation, however. The amount of unstructured data that companies and users need to search through is massive. The number of objects is often in the high millions or even billions of data points. A primitive brute-force comparison can no longer return results in an acceptable time frame.
 
 This led to the rise of Approximate Nearest Neighbor (ANN) models. You might have heard of Spotify's Annoy, Facebook's faiss, or Google's ScaNN. What they all have in common is that they make a conscious trade-off between accuracy (precision, recall) and retrieval speed. This has enabled users to retrieve the 5, 10, or 100 closest vectors within a few milliseconds — even out of a billion objects.
 
-However, there is yet another trade-off engineers have to make when using ANN models. Many of the common ANN libraries fall short of some of the features we are used to when working with traditional databases and search engines. Imagine you were using a MySQL database, but after you imported your data it would be read-only for the rest of time. That's not how it works, right? So why should it work like this for vector searching? In this article, I'm going to introduce you to Weaviate, a vector-first search engine that removes many of the limitations imposed by ANN libraries.
+However, there is yet another trade-off engineers have to make when using ANN models. Many of the common ANN libraries fall short of some of the features we are used to when working with traditional databases and search engines. Imagine you were using a MySQL database, but after you imported your data it would be read-only for the rest of time. That's not how it works, right? So why should it work like this for vector searching? In this article, I'm going to introduce you to Weaviate, a vector database that removes many of the limitations imposed by ANN libraries.
 
 ## Overview
 In this article we will cover:
@@ -30,7 +30,7 @@ In this article we will cover:
 * a glimpse of how Weaviate works under the hood
 
 ## What is Weaviate?
-Before we dive deeper into how Weaviate removes the limitations you might expect from existing ANN solutions, let's quickly take a look at what Weaviate is. Weaviate is a cloud-native, modular, real-time vector search engine built to scale your machine learning models. Oh, it's also open-source, by the way. Because of its modularity, Weaviate can cover a wide variety of bases. By default, Weaviate is agnostic of how you came up with your vectors. This means teams with experience in data science and machine learning can simply keep using their finely-tuned ML models and import their data objects alongside their existing vector positions. At the same time, Weaviate comes with optional modules for text, images, and other media types. Those modules can do the vectorization for you. Thus, if you are new to the world of machine learning you can import your objects just as you would with a traditional search engine and let Weaviate handle the vectorization. This brings the benefits of vector searching to the masses — even without an ML background. The ability to combine modules also allows for relations between e.g. a text object and a corresponding image object. As this article will show, Weaviate is also not restricted by some of the limitations of popular ANN libraries.
+Before we dive deeper into how Weaviate removes the limitations you might expect from existing ANN solutions, let's quickly take a look at what Weaviate is. Weaviate is a cloud-native, modular, real-time vector database built to scale your machine learning models. Oh, it's also open-source, by the way. Because of its modularity, Weaviate can cover a wide variety of bases. By default, Weaviate is agnostic of how you came up with your vectors. This means teams with experience in data science and machine learning can simply keep using their finely-tuned ML models and import their data objects alongside their existing vector positions. At the same time, Weaviate comes with optional modules for text, images, and other media types. Those modules can do the vectorization for you. Thus, if you are new to the world of machine learning you can import your objects just as you would with a traditional database and let Weaviate handle the vectorization. This brings the benefits of vector searching to the masses — even without an ML background. The ability to combine modules also allows for relations between e.g. a text object and a corresponding image object. As this article will show, Weaviate is also not restricted by some of the limitations of popular ANN libraries.
 
 ## When do you call a database a database?
 If you were to ask one hundred engineers what defines a database you will most likely get as many different answers. We might take the following points for granted in the world of SQL and NoSQL databases, yet they are anything but ubiquitous in the context of vector searches.
@@ -53,7 +53,7 @@ The persistence strategy of the above models is typically snapshotting. So while
 
 ## Weaviate overcomes the limitations of ANN libraries
 
-One of the goals in designing Weaviate was to combine the speed and large-scale capabilities of ANN models with all the functionality we enjoy about databases. Thus, any object imported into Weaviate can immediately be queried — whether through a lookup by its id, a keyword-search using the inverted index, or a vector search. This makes Weaviate a real-time vector search engine. And because Weaviate also uses an ANN model under the hood, the vector search is going to be just as fast as with a library.
+One of the goals in designing Weaviate was to combine the speed and large-scale capabilities of ANN models with all the functionality we enjoy about databases. Thus, any object imported into Weaviate can immediately be queried — whether through a lookup by its id, a keyword search using the inverted index, or a vector search. This makes Weaviate a real-time vector database. And because Weaviate also uses an ANN model under the hood, the vector search will be as fast as with a vector library.
 
 Additionally, objects can be updated or deleted at will and new objects can be added at any time — even while querying. This means Weaviate supports both full CRUD capabilities, as well as mutability of its indices. Last but not least, every single write is persisted, if your machine crashes or Weaviate is otherwise forced to interrupt its operations, it will simply continue where you left off after restarting. There is no scenario where you import for hours on end only to lose all progress due to a crash at the last minute.
 

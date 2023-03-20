@@ -11,7 +11,7 @@ Read more about the program and [apply below](#how-to-register).
 
 ## About Weaviate
 
-Weaviate is an open-source vector search engine that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. Read more about Weaviate [here](/developers/weaviate/).
+Weaviate is an open-source vector database that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. Read more about Weaviate [here](/developers/weaviate/).
 
 ## How to register
 
@@ -184,7 +184,7 @@ Your focus should be on building a fast and efficient import process that delive
 
 ### 5. Build a new Weaviate module
 
-**Project Description:** Weaviate is a modularized vector search engine that can be extended with various modules. For example, modules can be added to *vectorize* data or provide additional functionalities such as *question answering*.
+**Project Description:** Weaviate is a modularized vector database that can be extended with various modules. For example, modules can be added to *vectorize* data or provide additional functionalities such as *question answering*.
 
 In this project, you will contribute to the growing library of Weaviate [modules](/developers/weaviate/modules/) by developing a new module. We have some suggestions in mind, like a module that can handle audio vectorization, but we're also open to your unique ideas.
 

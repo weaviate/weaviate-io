@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-The `text2vec-cohere` module allows you to use the [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) directly in the Weaviate vector search engine as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using Cohere's models.
+The `text2vec-cohere` module allows you to use the [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) directly in the Weaviate vector database as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using Cohere's models.
 
 :::note
 * This module uses a third-party API and may incur costs.
@@ -45,7 +45,7 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       DEFAULT_VECTORIZER_MODULE: text2vec-cohere
       ENABLE_MODULES: text2vec-cohere
-      COHERE_APIKEY: sk-foobar # request a key on cohere.ai, setting this parameter is optional, you can also provide the API key on runtime
+      COHERE_APIKEY: sk-foobar # request a key on cohere.ai, setting this parameter is optional, you can also provide the API key at runtime
       CLUSTER_HOSTNAME: 'node1'
 ...
 ```
