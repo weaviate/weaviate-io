@@ -43,7 +43,7 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
 * A structured search uses the default ES/Lucene inverted indices
 
 ### Other
-* One weaviate schema class maps to one Elasticsearch index
+* One Weaviate schema class maps to one Elasticsearch index
 * By default, 3 Elasticsearch shards are created for one index
 * Weaviate Core is stateless, so it can be horizontally scaled at will
 * Elasticsearch can be scaled horizontally

@@ -1,7 +1,7 @@
 ---
 title: Docker and Containers with Weaviate
 slug: docker-and-containers-with-weaviate
-authors: [etienne] 
+authors: [etienne]
 date: 2021-05-19
 tags: []
 image: ./img/hero.png
@@ -37,7 +37,7 @@ Because one container contains only a single app, we need a way to "tie many con
 There are many arguments for or against containerization, we have decided to go with Docker & Docker-Compose in the Weaviate stack for the following reasons:
 
 * **Portability**: Whether you're running on Windows, Linux, macOS or yet another OS, Weaviate is only compiled for a single Linux distribution. The Docker container makes sure that from Weaviate's perspective it's always running on a well-known Linux — even if your Host machine is running a completely different OS.
-* **Isolation & Predictability**: Weaviate is a compiled binary that has zero runtime dependencies, but if you use Weaviate modules which rely on third-party tools, such as Huggingface Transformers, PyTorch or Tensorflow, they have a set of runtime dependencies. Thanks to containers, all runtime dependencies (Python version, python packages, OS libraries, etc.) are guaranteed to be present and at the right version in each container.
+* **Isolation & Predictability**: Weaviate is a compiled binary that has zero runtime dependencies, but if you use Weaviate modules which rely on third-party tools, such as Hugging Face Transformers, PyTorch or Tensorflow, they have a set of runtime dependencies. Thanks to containers, all runtime dependencies (Python version, python packages, OS libraries, etc.) are guaranteed to be present and at the right version in each container.
 * **Distribution via Docker Hub**: Docker Hub makes it very easy to distribute public images. With a single `docker pull semitechnologies/weaviate:latest` command you can always obtain the latest version — without any prior configuration. Additionally, each container can have an exact version number, making it easy to switch between versions or upgrade your setup. Instead of a lengthy and risky update process, you can simply exchange the entire container for that of a newer version.
 
 ## What do I need to install before running Weaviate?
@@ -93,7 +93,7 @@ Weaviate implements a readiness check at `GET /v1/.well-known/ready`. It will re
 To check for the readiness programmatically you can use `curl` in this simple `bash` loop:
 
 ```bash
-until curl --fail -s localhost:8080/v1/.well-known/ready; do  
+until curl --fail -s localhost:8080/v1/.well-known/ready; do
   sleep 1
 done
 ```
