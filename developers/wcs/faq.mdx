@@ -1,41 +1,39 @@
 ---
-title: Tips & FAQs
+title: FAQs
 sidebar_position: 50
 image: og/wcs/tips_faqs.jpg
 ---
 
-## Tips
-
-:::warning TODO
-Add various snippets and tips unless they deserve their own page
-
-- If appropriate, show how to use the cursor API to back up data & restore data.
-:::
-
 ## Frequently asked questions
 
-:::warning TODO
-Add various faqs unless they deserve their own page
+### Accounts
 
-- How might a user migrate from a self-managed instance to WCS?
-- Can WCS instances get upgraded?
-    - How might this happen?
-- Is the data backed up by default?
-    - Where to?
-    - How often?
-    - Can a user trigger/configure this manually?
-- Accounts questions if appropriate
-    - Can users change their username?
-    - Can users change their password?
-    - Can users reset or revoke their API key?
-    - Can users have multiple API keys?
-- Billings questions if appropriate
-    - How do users provide / change billing details?
-    - When will they be billed?
-    - Can they set a billing upper limit?
-    - Can they set a billing alert?
+Q: Can I reset or change my account password?
+A: Yes, you can do so on the WCS login page by clicking "Forgot Password".
 
-:::
+### Instance management
+
+Q: Are WCS clusters backed up?
+A: We do automated daily backups, and additionally whenever a Weaviate version is updated on the cluster.
+
+Q: Can WCS clusters be updated to newer versions of Weaviate?
+A: Yes. Once a new version is enabled on WCS, you will see a button next to the Weaviate version display on the cluster details to trigger the update.
+
+Q: Are WCS clusters' resources automatically scaled?
+A: Not currently. At the moment, we provision each instance for “most common” usage scenarios.
+
+Q: What do I do if I prefer a heavier-load WCS instance?
+A: If you feel that your use case requires a customized hardware provisioning, please reach out to us first. We can then work with you to evaluate and potentially create a managed cluster.
+
+### Infrastructure
+
+Q: What infrastructure does WCS run on?
+A: Currently it runs on GCP, with plans to add AWS and Azure in the near future.
+
+### Others
+
+Q: Why can't I see my old WCS sandbox?
+A: If you created a sandbox on our legacy system at `console.weaviate.io`, it will be visible [through here](https://console.weaviate.io/) but not on the new system.
 
 ## More resources
 

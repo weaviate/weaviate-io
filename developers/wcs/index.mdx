@@ -22,13 +22,16 @@ Through WCS, we aim provide you with the most convenient experience possible wit
 
 ### Capabilities
 
-Because configuring the open-source instance of Weaviate can be challenging for many, WCS instances of Weaviate come pre-configured. This is designed ot reduce the work and time required for you to get up and running.
+Because configuring the open-source instance of Weaviate can be challenging for many, WCS instances of Weaviate come pre-configured. This is designed to reduce the work and time required for you to get up and running.
 
-:::info <i class="fa-solid fa-screwdriver-wrench"></i> What does the pre-configuration look like?
+:::info <i class="fa-solid fa-screwdriver-wrench"></i> How are WCS instances configured?
 Each WCS instance is:
-- Automatically created with the latest version of Weaviate.
+- Automatically created with the latest available version of Weaviate.
+- Upgradeable to later versions of Weaviate as they are released.
 - Pre-configured with the `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, `qna-openai` and `generative-openai` modules.
 - Configured with authentication for security (optional for the sandbox).
+    - We recommend using a Weaviate client library for the most convenient experience with authentication.
+- Accessible through the Weaviate Console.
 :::
 
 <details>

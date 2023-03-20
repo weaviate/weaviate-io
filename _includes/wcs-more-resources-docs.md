@@ -1,16 +1,10 @@
 ### Support & Troubleshooting
 
-:::warning TODO
-What should users do if they have issues?
-:::
+All Weaviate users are welcome to join our community [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
 
-### Service status
+Additionally, paid customers can also contact support via channels provided during cluster creation and/or on-boarding.
 
-#### WCS status page
-
-:::warning TODO
-Add a WCS status page if there is one
-:::
+For general contact details please see [this page](https://console.weaviate.cloud/contact).
 
 #### Inference API status pages
 
