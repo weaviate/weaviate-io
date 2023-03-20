@@ -1,0 +1,1 @@
+Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [GitHub](https://github.com/weaviate/weaviate).
