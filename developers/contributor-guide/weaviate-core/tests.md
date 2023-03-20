@@ -111,7 +111,7 @@ lower the coverage.
 There are various ways to interact with the Weaviate API. You can send HTTP
 requests directly or you could use a client, such as the [python
 client](/developers/weaviate/client-libraries/python.md) to interact with
-Weaviate. In the weaviate core repository we have chosen not to use any of our
+Weaviate. In the Weaviate core repository we have chosen not to use any of our
 own clients. This has the goal to minimize dependencies and allow independent
 development by different teams.
 
@@ -231,7 +231,7 @@ $ test/run.sh --benchmark-only
 
 Their output is the runtime of the benchmarks. It prints the results and additionally writes them into a file.
 
-To run these benchmarks `git lfs` must be installed and initialized by running the following in the weaviate repository:
+To run these benchmarks `git lfs` must be installed and initialized by running the following in the Weaviate repository:
 ```sh
 $ git lfs install
 ```

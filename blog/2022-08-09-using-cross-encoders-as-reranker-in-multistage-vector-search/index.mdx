@@ -54,7 +54,7 @@ We can combine the two methods to benefit from the strong points of both models!
 
 *Figure 4 - Fisherman as multistage search*
 
-Catching fish with the big net represents how Bi-Encoders work. Bi-Encoders are fast, but are not as accurate as the expensive fisherman aka the Cross-Encoder. Cross-Encoders are time consuming, like the fisherman who would need to limit the number of fishing rounds they could do. So we can chain those two methods behind each other (see Figure 5). First, you use a Bi-Encoder to retrieve a *list of result candidates*, then you use a Cross-Encoder on this list of candidates to pick out (or rerank) the most relevant results. This way, you benefit from the efficient retrieval method using Bi-Encoders and the high accuracy of the Cross-Encoder, so you can use this on large scale datasets!
+Catching fish with the big net represents how Bi-Encoders work. Bi-Encoders are fast, but are not as accurate as the expensive fisherman aka the Cross-Encoder. Cross-Encoders are time-consuming, like the fisherman who would need to limit the number of fishing rounds they could do. So we can chain those two methods behind each other (see Figure 5). First, you use a Bi-Encoder to retrieve a *list of result candidates*, then you use a Cross-Encoder on this list of candidates to pick out (or rerank) the most relevant results. This way, you benefit from the efficient retrieval method using Bi-Encoders and the high accuracy of the Cross-Encoder, so you can use this on large scale datasets!
 
 ![Multistage search pipeline](./img/weaviate-pipeline-long.png)
 
