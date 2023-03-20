@@ -5,6 +5,8 @@ image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'class']
 ---
 import Badges from '/_includes/badges.mdx';
+import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
+import BeaconsBackCompatOmitClassname from '/_includes/beacons-backcompat-omit-class.md'
 
 <Badges/>
 
@@ -40,7 +42,7 @@ GET /v1/objects?class={ClassName}&limit={limit}&include={include}
 :::
 
 | Name | Type | Description |
-| ---- | ---- | ----------- | 
+| ---- | ---- | ----------- |
 | `class` | string | List objects by class using the class name. |
 | `limit` | integer | The maximum number of data objects to return. Default 25. |
 | `offset` | integer | The offset of objects returned (the starting index of the returned objects).<br/><br/>Cannot be used with `after`.<br/>Should be used in conjunction with `limit`. |
@@ -497,19 +499,9 @@ The request body is an object with the following field:
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, in the format `weaviate://localhost/<ClassName>/<id>` |
 
-:::caution
-In the beacon format, you need to always use `localhost` as the host,
-rather than the actual hostname. `localhost` refers to the fact that the
-beacon's target is on the same Weaviate instance, as opposed to a foreign
-instance.
-:::
+<BeaconsRequireLocalhost />
 
-:::note
-For backward compatibility, you can omit the class name in the beacon
-format and specify it as `weaviate://localhost/<id>`. This is, however,
-considered deprecated and will be removed with a future release, as duplicate
-IDs across classes could mean that this beacon is not uniquely identifiable.
-:::
+<BeaconsBackCompatOmitClassname />
 
 #### Example request
 
@@ -554,19 +546,9 @@ The `PUT` request body is a list of beacons:
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon array | yes | Array of beacons in the format `weaviate://localhost/<ClassName>/<id>` |
 
-:::caution
-In the beacon format, you need to always use `localhost` as the host,
-rather than the actual hostname. `localhost` refers to the fact that the
-beacon's target is on the same Weaviate instance, as opposed to a foreign
-instance.
-:::
+<BeaconsRequireLocalhost /> 
 
-:::note
-For backward compatibility, you can omit the class name in the beacon
-format and specify it as `weaviate://localhost/<id>`. This is, however,
-considered deprecated and will be removed with a future release, as duplicate
-IDs across classes could mean that this beacon is not uniquely identifiable.
-:::
+<BeaconsBackCompatOmitClassname />
 
 #### Example request
 
@@ -611,12 +593,7 @@ The request body is a beacon object:
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, formatted as `weaviate://localhost/<ClassName>/<id>` |
 
-:::caution
-In the beacon format, you need to always use `localhost` as the host,
-rather than the actual hostname. `localhost` refers to the fact that the
-beacon's target is on the same Weaviate instance, as opposed to a foreign
-instance.
-:::
+<BeaconsRequireLocalhost />
 
 :::note
 For backward compatibility, beacons generally support an older,

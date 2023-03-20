@@ -13,7 +13,7 @@ description: "Semantic search on Wikipedia dataset with Weaviate – vector data
 
 <!-- truncate -->
 
-To conduct semantic search queries on a large scale, one needs a vector search engine to search through the large number of vector representations that represent the data. To show you how this can be done, [we have open-sourced the complete English language Wikipedia corpus](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate) backup in Weaviate. In this article, I will outline how we've created the dataset, show you how you can run the dataset yourself, and present search strategies on how to implement similar vector and semantic search solutions in your own projects and how to bring them to production.
+To conduct semantic search queries on a large scale, one needs a vector database to search through the large number of vector representations that represent the data. To show you how this can be done, [we have open-sourced the complete English language Wikipedia corpus](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate) backup in Weaviate. In this article, I will outline how we've created the dataset, show you how you can run the dataset yourself, and present search strategies on how to implement similar vector and semantic search solutions in your own projects and how to bring them to production.
 
 The Wikipedia dataset used is the "truthy" version of October 9th, 2021. After processing it contains 11.348.257 articles, 27.377.159 paragraphs, and 125.447.595 graph cross-references. Although a bigger machine (see below) is needed for importing the data, the serving is done on a 12 CPU, 100 GB RAM, 250Gb SSD Google Cloud VM with 1 x NVIDIA Tesla P4. The ML-models used are [multi-qa-MiniLM-L6-cos-v1](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1) and [bert-large-uncased-whole-word-masking-finetuned-squad](https://huggingface.co/bert-large-uncased-whole-word-masking-finetuned-squad) both are available as [pre-built modules](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers#pre-built-images) in Weaviate.
 
@@ -272,10 +272,10 @@ The demo dataset runs on a Docker setup on a single machine, you can easily spin
 To bring semantic search solutions to production, you need three things:
 
 1. Data
-1. ML models
-1. Vector search engine
+1. ML-Models
+1. Vector database
 
-In this article, we have shown how you can bring the complete Wikipedia corpus (data) using open-source ML-models (Sentence-BERT) and a vector search engine (Weaviate) to production.
+In this article, we have shown how you can bring the complete Wikipedia corpus (data) using open-source ML-models (Sentence-BERT) and a vector database (Weaviate) to production.
 
 ## What next
 Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
