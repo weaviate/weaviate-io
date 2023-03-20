@@ -65,7 +65,7 @@ Note that these tags are a part of Hugging Face’s **model cards**, an impressi
 />
 
 ### Private models
-A large part of the beauty of Weaviate's integration with Hugging Face is that **anyone** can upload their models to Hugging Face and use them in Weaviate's vector search engine. For example, I am doing research on COVID-19 literature, so I have fine-tuned a model on CORD-19 title to abstract matching and uploaded it to [CShorten/CORD-19-Title-Abstracts](https://huggingface.co/CShorten/CORD-19-Title-Abstracts-1-more-epoch).
+A large part of the beauty of Weaviate's integration with Hugging Face is that **anyone** can upload their models to Hugging Face and use them in Weaviate's vector database. For example, I am doing research on COVID-19 literature, so I have fine-tuned a model on CORD-19 title to abstract matching and uploaded it to [CShorten/CORD-19-Title-Abstracts](https://huggingface.co/CShorten/CORD-19-Title-Abstracts-1-more-epoch).
 
 ### Domain recap
 As a quick recap, **Domain** largely describes the high-level notion of **what** the dataset is about. In addition to Domain, there are many **Tasks** used to produce vector embeddings. Unlike language models, in which most models use the training task of "predict the masked out token", embedding models are trained in a much broader set of ways. For example, **Duplicate Question Detection** might perform better with a different model than one trained with **Question Answering**.
@@ -127,10 +127,10 @@ So with respect to **Scale**, we generally want as much data as possible. But if
 ## Modality
 Modality is one of the most exciting emerging trends in Deep Learning that would be a shame to leave out of this discussion. Models such as DALL-E, which generates unbelievable images from text prompts, or CLIP, that searches through massive scales of images with natural language interfaces, have captured our imagination about the future of Deep Learning. Readers may be happy to know that [the Sentence Transformer library has support for CLIP models](https://huggingface.co/sentence-transformers/clip-ViT-B-32).
 
-Deep Learning research has mainly been focused on Text, Image, and Image-Text modality combinations, but this space is **quickly emerging** with successes in Video, Audio, Proteins, Chemicals, and many more. I am particularly captivated by Text-Code multimodal spaces and the opportunities of this modality combination plugged into the features of Weaviate's Vector Search Engine.
+Deep Learning research has mainly been focused on Text, Image, and Image-Text modality combinations, but this space is **quickly emerging** with successes in Video, Audio, Proteins, Chemicals, and many more. I am particularly captivated by Text-Code multimodal spaces and the opportunities of this modality combination plugged into the features of Weaviate's vector database.
 
 ## Conclusion
-To recap, the HuggingFace Sentence Transformer checkpoints mostly differ in the **data** they were trained on. Picking the model that best aligns with your use case is a matter of identifying the most similar Domain and Task, while mostly welcoming additional scale in the dataset size. Most applications of the Weaviate Vector Search Engine that involve Sentence Transformers are mostly concerned with **Modalities** of Text, Image, or Image-Text space, but the number of these categories seems likely to explode in the near future.
+To recap, the HuggingFace Sentence Transformer checkpoints mostly differ in the **data** they were trained on. Picking the model that best aligns with your use case is a matter of identifying the most similar Domain and Task, while mostly welcoming additional scale in the dataset size. Most applications of Weaviate that involve Sentence Transformers are mostly concerned with **Modalities** of Text, Image, or Image-Text space, but the number of these categories seems likely to explode in the near future.
 
 ## What's next
 Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.

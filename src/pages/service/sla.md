@@ -24,7 +24,7 @@ This agreement begins on [date] and will run for a period of [number] months. It
 
 ### Services covered 
 
-This SLA covers only those services provided by Vendor to the client for the purpose of data analysis. Vendor provides Weaviate - a vector search engine. This SLA contemplates only those above-named services and makes no guarantees or representations as to the provision or availability of any other service that may be provided by Vendor as an ancillary benefit to its clients. 
+This SLA covers only those services provided by Vendor to the client for the purpose of data analysis. Vendor provides Weaviate - a vector database. This SLA contemplates only those above-named services and makes no guarantees or representations as to the provision or availability of any other service that may be provided by Vendor as an ancillary benefit to its clients. 
 
 Exclusions 
 This SLA is written in good faith. Vendor will always do everything possible to rectify every issue in a timely manner. However, there are exclusions. This SLA does not apply to: 

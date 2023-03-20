@@ -8,11 +8,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## General
+## Q: Why would I use Weaviate as my vector database?
 
-#### Q: Why would I use Weaviate as my vector search engine?
-
-A: Our goal is three-folded. Firstly, we want to make it as easy as possible for others to create their own semantic systems or vector search engines (hence, our APIs are GraphQL based). Secondly, we have a strong focus on the semantic element (the "knowledge" in "vector search engine," if you will). Our ultimate goal is to have Weaviate help you manage, index, and "understand" your data so that you can build newer, better, and faster applications. And thirdly, we want you to be able to run it everywhere. This is the reason why Weaviate comes containerized.
+A: Our goal is three-folded. Firstly, we want to make it as easy as possible for others to create their own semantic systems or vector search engines (hence, our APIs are GraphQL based). Secondly, we have a strong focus on the semantic element (the "knowledge" in "vector databases," if you will). Our ultimate goal is to have Weaviate help you manage, index, and "understand" your data so that you can build newer, better, and faster applications. And thirdly, we want you to be able to run it everywhere. This is the reason why Weaviate comes containerized.
 
 #### Q: What is the difference between Weaviate and for example Elasticsearch?
 

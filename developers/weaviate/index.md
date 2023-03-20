@@ -11,7 +11,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Welcome to the documentation for **Weaviate**, an open source vector search engine.
+Welcome to the documentation for **Weaviate**, an open source vector database.
 
 ### About the docs
 The majority of the content is categorized into one of three categories based on its focus:
@@ -65,17 +65,17 @@ This page is an introduction to Weaviate. We present a very high-level overview 
 
 ## What is Weaviate?
 
-Weaviate is an open source vector search engine that stores both objects and vectors. This allows for combining vector search with structured filtering.
+Weaviate is an open source vector database that stores both objects and vectors. This allows for combining vector search with structured filtering.
 
 **Weaviate in a nutshell**: 
 
-* Weaviate is an open source vector search engine.
+* Weaviate is an open source vector database.
 * Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](./concepts/vector-index.md).
 * Weaviate can be used stand-alone (aka _bring your vectors_) or with a variety of [modules](./modules/index.md) that can do the vectorization for you and extend the core capabilities.
 * Weaviate has a [GraphQL-API](./api/graphql/index.md) to access your data easily.
 * Weaviate is fast (check our [open source benchmarks](./benchmarks/index.md)).
 
-**Weaviate in detail**: Weaviate is a low-latency vector search engine with out-of-the-box support for different media types (text, images, etc.). It offers Semantic Search, Question-Answer Extraction, Classification, Customizable Models (PyTorch/TensorFlow/Keras), etc. Built from scratch in Go, Weaviate stores both objects and vectors, allowing for combining vector search with structured filtering and the fault tolerance of a cloud-native database. It is all accessible through GraphQL, REST, and various client-side programming languages.
+**Weaviate in detail**: Weaviate is a low-latency vector database with out-of-the-box support for different media types (text, images, etc.). It offers Semantic Search, Question-Answer Extraction, Classification, Customizable Models (PyTorch/TensorFlow/Keras), etc. Built from scratch in Go, Weaviate stores both objects and vectors, allowing for combining vector search with structured filtering and the fault tolerance of a cloud-native database. It is all accessible through GraphQL, REST, and various client-side programming languages.
 
 ### Weaviate helps
 
@@ -134,13 +134,13 @@ Weaviate's [vector indexing mechanism is modular](./concepts/vector-index.md), a
 
 Weaviate modules are used to extend Weaviate's capabilities and are optional. There are Weaviate modules that automatically vectorize your content (i.e., `*2vec`) or extend Weaviate's capabilities (often related to the type of vectors you have.) You can also create your own modules. Click [here](./concepts/modules.md) to learn more about them.
 
-## What is a vector search engine?
+## What is a vector database?
 
 If you work with data, you probably work with search engine technology. The best search engines are amazing pieces of software, but because of their core architecture, they come with limitations when it comes to finding the data you are looking for.
 
 Take for example the data object: `{ "data": "The Eiffel Tower is a wrought iron lattice tower on the Champ de Mars in Paris." }`
 
-Storing this in a traditional search engine might leverage inverted indices to index the data. This means that to retrieve the data, you need to search for "Eiffel Tower", "wrought iron lattice", or other exact phrases, to find it. But what if you have vast amounts of data, and you want the document about the Eiffel Tower, but you search for "landmarks in France"? Traditional search engines can't help you there, so this is where vector search engines show their superiority.
+Storing this in a traditional search engine might leverage inverted indices to index the data. This means that to retrieve the data, you need to search for "Eiffel Tower", "wrought iron lattice", or other exact phrases, to find it. But what if you have vast amounts of data, and you want the document about the Eiffel Tower, but you search for "landmarks in France"? Traditional search engines can't help you there, so this is where vector databases show their superiority.
 
 Weaviate uses vector indexing mechanisms at its core to represent the data. The vectorization modules (e.g., the NLP module) vectorize the above-mentioned data object in a vector-space where the data object sits _near_ the text "landmarks in France". This means that Weaviate can't find a 100% match, but it will find a very close one, and return the result.
 

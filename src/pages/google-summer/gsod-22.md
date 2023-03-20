@@ -15,12 +15,12 @@ Technical writers interested in working on this project should send an email to 
 
 ## **About Weaviate**
 
-Weaviate is an open-source vector search engine that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. SeMI Technologies is the company behind Weaviate, and has been working on this project for around 3 years now.
+Weaviate is an open-source vector database that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. SeMI Technologies is the company behind Weaviate, and has been working on this project for around 3 years now.
 
 Weaviate is a unique open-source project in the vector search world. The community is growing rapidly, and we see that the number of community contribution is increasing. 
 
 ### **The problem that Weaviate solves**
-In machine learning, e.g. recommendation tools or data classification, data is often represented as high-dimensional vectors. These vectors are stored in so-called vector databases. With vector databases you can efficiently run searching, ranking and recommendation algorithms. Therefore, vector databases became the backbone of ML deployments in industry. Weaviate is a such a vector database & search engine that enables combining vector search with structured filtering. Weaviate can be used with out-of-the-box or custom trained ML models to do semantic search, one-shot classification, question answering, NER, multi-modal search, and much more, on a large scale.
+In machine learning, e.g. recommendation tools or data classification, data is often represented as high-dimensional vectors. These vectors are stored in so-called vector databases. With vector databases you can efficiently run searching, ranking and recommendation algorithms. Therefore, vector databases became the backbone of ML deployments in industry. Weaviate is a vector database that enables combining vector search with structured filtering. Weaviate can be used with out-of-the-box or custom trained ML models to do semantic search, one-shot classification, question answering, NER, multi-modal search, and much more, on a large scale.
 
 Read more about Weaviate [here](/developers/weaviate/). 
 
