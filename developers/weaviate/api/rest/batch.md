@@ -5,6 +5,7 @@ image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'batching']
 ---
 import Badges from '/_includes/badges.mdx';
+import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
 
 <Badges/>
 
@@ -48,6 +49,8 @@ The POST body requires the following field:
 
 ### Example request
 
+<BeaconsRequireLocalhost />
+
 import BatchObjects from '/_includes/code/batch.objects.mdx';
 
 <BatchObjects/>
@@ -82,12 +85,7 @@ The POST body is an array of elements with the following fields:
 | `from` | Weaviate Beacon (long-form) | yes | The beacon, with the cross-reference property name at the end: `weaviate://localhost/{ClassName}/{id}/{crefPropertyName}` |
 | `to` | Weaviate Beacon (regular) | yes | The beacon, formatted as `weaviate://localhost/{ClassName}/{id}` |
 
-:::caution
-In the beacon format, you need to always use `localhost` as the host,
-rather than the actual hostname. `localhost` refers to the fact that the
-beacon's target is on the same Weaviate instance, as opposed to a foreign
-instance.
-:::
+<BeaconsRequireLocalhost /> 
 
 :::note
 For backward compatibility, you can omit the class name in the
