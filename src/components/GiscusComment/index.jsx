@@ -1,10 +1,11 @@
 import React from 'react';
 import Giscus from "@giscus/react";
 import { useColorMode } from '@docusaurus/theme-common';
+import { useDoc } from '@docusaurus/theme-common/internal';
 
-export default function GiscusComment(props) {
+export default function GiscusComment() {
   const { colorMode } = useColorMode();
-  console.log(props);
+  const { frontMatter } = useDoc();
 
   return (
       <Giscus
@@ -12,8 +13,8 @@ export default function GiscusComment(props) {
         repoId="R_kgDOG2Daiw"
         category="Docs/blog comments"
         categoryId="DIC_kwDOG2Dai84CVAeq"
-        mapping="path"                       // Only one that doesn't fetch attributes from the previously navigated-to page?
-        term="Welcome to @giscus/react component!"
+        mapping="specific"
+        term={frontMatter.title}
         strict="0"
         reactionsEnabled="1"
         emitMetadata="0"
@@ -21,7 +22,7 @@ export default function GiscusComment(props) {
         theme={colorMode}
         lang="en"
         crossorigin="anonymous"
-        async
+        loading="eager"
       />
   );
 }
