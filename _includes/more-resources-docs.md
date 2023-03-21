@@ -5,3 +5,7 @@ If you can't find the answer to your question here, please look at the:
 1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
 1. For issues: [GitHub](https://github.com/weaviate/weaviate/issues). Or,
 1. Ask your question in the Slack channel: [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
+
+import GiscusComment from '/src/components/GiscusComment';
+
+<GiscusComment />
