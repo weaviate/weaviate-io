@@ -96,7 +96,7 @@ For example, the following schema configuration will set Weaviate to vectorize t
 
 ## How to use
 
-* If the OpenAI API key is not set in the `text2vec-huggingface` module, you can set the API key at query time by adding the following to the HTTP header: `X-Huggingface-Api-Key: <huggingface-api-key>`.
+* If the Hugging Face API key is not set in the `text2vec-huggingface` module, you can set the API key at query time by adding the following to the HTTP header: `X-Huggingface-Api-Key: <huggingface-api-key>`.
 * Using this module will enable [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
 
 ### Example
@@ -126,7 +126,7 @@ In the schema, on a class level, the following settings can be added:
 | `queryModel` | `string` | DPR query model.<br/><br/>Should be set together with `passageModel`, but without `model`. | `"sentence-transformers/facebook-dpr-question_encoder-single-nq-base"` |
 | `options.waitForModel` | `boolean` | If the model is not ready, wait for it instead of receiving 503. | |
 | `options.useGPU` | `boolean` | Use GPU instead of CPU for inference.<br/>(requires Hugginface's [Startup plan](https://huggingface.co/inference-api#pricing) or higher) | |
-| `options.useCache` | `boolean` | There is a cache layer on the inference API to speedup requests we have already seen. Most models can use those results as is as models are deterministic (meaning the results will be the same anyway). However if you use a non-deterministic model, you can set this parameter to prevent the caching mechanism from being used resulting in a real new query. | | 
+| `options.useCache` | `boolean` | There is a cache layer on the inference API to speedup requests we have already seen. Most models can use those results as is as models are deterministic (meaning the results will be the same anyway). However if you use a non-deterministic model, you can set this parameter to prevent the caching mechanism from being used resulting in a real new query. | |
 | `endpointURL` | `string` | This can be any public or private Hugging Face Inference URL. To find out how to deploy your own Hugging Face Inference Endpoint click [here](https://huggingface.co/inference-endpoints).<br/><br/>Note: when this variable is set, the module will ignore model settings like `model` `queryModel` and `passageModel`. | |
 
 ## More resources
