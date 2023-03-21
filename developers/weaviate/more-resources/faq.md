@@ -40,7 +40,7 @@ More information:
 - [Weaviate, an ANN Database with CRUD support – DB-Engines.com](https://db-engines.com/en/blog_post/87) ⬅️ best resource on the topic
 - [Weaviate's HNSW implementation in the docs](/developers/weaviate/concepts/vector-index.md#hnsw)
 
-_Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here](/developers/weaviate/vector-index/)_
+_Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here](/developers/weaviate/concepts/vector-index.md)_
 
 ## Q: Are all ANN algorithms potential candidates to become an indexation plugin in Weaviate?
 
