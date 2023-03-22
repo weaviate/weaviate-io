@@ -26,15 +26,12 @@ export default function PricingPlan() {
         <PricingSandBox />
       </div>
       <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="#contact-sales">
-          Register for private beta
-        </Link>
-        <Link
-          className={styles.buttonOutline}
-          to="https://console.weaviate.io/"
-        >
-          Create a Free Sandbox
-        </Link>
+        <div className={styles.buttonGradient}>
+          <a href={'#register'} className={styles.labelColor}>Register for Private Beta</a>
+        </div>
+        <div className={styles.buttonOutline}>
+          <Link className={styles.labelColorSecond} to={'https://console.weaviate.io/'}>Create a Free Sandbox</Link>
+        </div>
       </div>
     </div>
   );

@@ -1,10 +1,9 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
 
 export default function HybridBusinessCritical() {
   return (
-    <div className="container">
+    <div className='container'>
       <div className={styles.header}>
         <h2>Weaviate Cloud Services Hybrid Saas</h2>
         <p>
@@ -21,11 +20,12 @@ export default function HybridBusinessCritical() {
           <div className={styles.features}>
             <li>
               <div className={styles.checkIcon}></div>
-              <span>custom pricing</span>
+              <span>
+                $0.175 per 1M vector dimensions stored <br /> or queried per month
+              </span>
             </li>
             <li>
-              <div className={styles.checkIcon}></div>{' '}
-              <span>AWS, Azure, GCP</span>
+             <div className={styles.checkIcon}></div> <span>AWS, Azure, GCP</span>
             </li>
             <li>
               <div className={styles.checkIcon}></div>
@@ -36,8 +36,8 @@ export default function HybridBusinessCritical() {
             <li>
               <div className={styles.checkIcon}></div>
               <span>
-                Severity 1 - max 1h <br /> Severity 2 - max 4h <br /> Severity 3
-                - max 1bd
+                Severity 1 - max 1h <br /> Severity 2 - max 4h <br /> Severity 3 -
+                max 1bd
               </span>
             </li>
             <li>
@@ -62,9 +62,11 @@ export default function HybridBusinessCritical() {
         </div>
       </div>
       <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="#contact-sales">
-          Register for private beta
-        </Link>
+        <a href="mailto:hello@weaviate.io">
+          <div className={styles.buttonGradient}>
+              Contact us for more info
+          </div>
+        </a>
       </div>
     </div>
   );

@@ -18,7 +18,8 @@
       font-size: 1rem;
     }
   }
-  @media screen and (max-width: 768px) {
+    @media screen and (max-width: 768px) {
+    padding: 1.5rem 2rem;
     max-width: 100%;
   }
   .formWrapper {
@@ -48,6 +49,7 @@
     display: flex;
     flex-direction: column;
     .select {
+      color: black;
       appearance: none;
       margin-top: 1rem;
       display: flex;
@@ -61,6 +63,13 @@
       }
     }
   }
+
+  select option {
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }
+
   .actionBtn {
     display: flex;
     margin-top: 3rem;
@@ -73,17 +82,14 @@
       border: none;
       padding: 1rem;
       border-radius: 0.25rem;
-      background-image: linear-gradient(
-        45deg,
-        rgba(46, 49, 143) 60%,
-        rgba(46, 49, 143)
-      );
+      background-image: linear-gradient(45deg, rgba(46, 49, 143) 60%, rgba(46, 49, 143));
       color: #fff;
       font-weight: bold;
       font-size: 16px;
     }
   }
 }
+
 [data-theme='dark'] {
   .form {
     background-color: rgba(46, 49, 143, 0.5);
@@ -93,6 +99,7 @@
     }
     .select {
       border: 1px solid #aeacac;
+      color: #fff;
     }
   }
   .actionBtn {
@@ -103,7 +110,7 @@
     }
   }
   .hybridPng {
-    background-image: url('../../../static/img/site/hybrid-saas.png');
+    background-image: url('/img/site/hybrid-saas.png');
   }
 }
 
@@ -113,8 +120,9 @@
   height: 100px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../../../static/img/site/hybrid-saas-light.png');
+  background-image: url('/img/site/hybrid-saas-light.png');
 }
+
 
 .buttons {
   margin-top: 70px;
