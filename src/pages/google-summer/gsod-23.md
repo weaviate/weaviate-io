@@ -56,6 +56,7 @@ Specific project tasks include:
 * Develop guidelines and best practices for writing tests.
 * Compose clear and concise documentation explaining how to conduct such tests.
 * Update existing code examples by applying the newly established testing methodology.
+* Work with the Weaviate team to develop 2-3 new tutorials based on existing code examples, including implementing tests to follow the newly established testing methodology.
 
 :::note Support provided
 The technical writer is not expected to complete the tasks mentioned above by themselves, particularly those requiring potentially challenging programming work such as implementing code for tests.
@@ -91,20 +92,19 @@ The project will start in April 2023 and end in November 2023. The first month w
 ### Project budget
 
 * Technical writer: $6000
-* Volunteer stipend: $500
-* Videos to support documentation/tutorials & to share to community: $500
-* Total: $7000
+* Total: $6000
 
 ### What skills would a technical writer need to work on this project?
 
 Must have:
 * Familiarity with Git + GitHub (or willingness to learn).
+* Familiarity with command line environments - e.g. using the shell, bash/zsh profiles, and environment variables.
+* Proficiency with at least one of (Python, JavaScript, Java or Go).
 * The ability to work with a team and openness to feedback.
 * A positive attitude and enthusiasm for learning.
 
 Nice to have:
 * Familiarity with writing in Markdown (or willingness to work through markdown tutorials).
-* Proficiency with at least one of (Python, JavaScript, Java or Go).
 * Familiarity with the concept of software testing.
 * Familiarity with Weaviate, natural language processing or deep learning.
 
