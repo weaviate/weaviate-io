@@ -1,13 +1,11 @@
-import Link from '@docusaurus/Link';
 import React from 'react';
-import styles from './styles.module.scss';
 import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 
 export default function PodcastHeader() {
   return (
     <div className="container">
-      <h1>
-        Weaviate <span className={styles.header}>Podcast</span>
+      <h1 className="page-title">
+        Weaviate <span className="highlight">Podcast</span>
       </h1>
       <p>
         Join Connor Shorten as he interviews Weaviate community users, leading
@@ -24,6 +22,11 @@ export default function PodcastHeader() {
           link="https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7"
         >
           Open in Spotify <i className="fab fa-spotify"></i>
+        </LinkButton>
+        <LinkButton
+          color="outlined" link="https://anchor.fm/s/cffc3468/podcast/rss"
+        >
+          Weaviate RSS feed <i className="fa-solid fa-square-rss"></i>
         </LinkButton>
       </ButtonContainer>
     </div>

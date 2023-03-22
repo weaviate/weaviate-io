@@ -1,7 +1,7 @@
 ---
 title: text2vec-cohere
 sidebar_position: 1
-image: og/docs/modules.jpg
+image: og/docs/modules/text2vec-cohere.jpg
 # tags: ['text2vec', 'text2vec-cohere', 'cohere']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -10,17 +10,19 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-The `text2vec-cohere` module allows you to use the [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) directly in the Weaviate vector search engine as a vectorization module. ​When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using Cohere's models.
+The `text2vec-cohere` module allows you to use the [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) directly in the Weaviate vector database as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using Cohere's models.
 
-* Note: this module uses a third-party API and may incur costs.
-* Note: make sure to check the Cohere [pricing page](https://cohere.ai/pricing) before vectorizing large amounts of data.
-* Note: Weaviate automatically parallelizes requests to the Cohere-API when using the batch endpoint, see the previous note.
+:::note
+* This module uses a third-party API and may incur costs.
+* Make sure to check the Cohere [pricing page](https://cohere.ai/pricing) before vectorizing large amounts of data.
+* Weaviate automatically parallelizes requests to the Cohere-API when using the batch endpoint.
+:::
 
 ## How to enable
 
 Request a Cohere API-key via [their dashboard](https://dashboard.cohere.ai/welcome/login).
 
-### Weaviate Cloud Service
+### Weaviate Cloud Services
 
 This module is enabled by default on the WCS.
 
@@ -43,20 +45,24 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       DEFAULT_VECTORIZER_MODULE: text2vec-cohere
       ENABLE_MODULES: text2vec-cohere
-      COHERE_APIKEY: sk-foobar # request a key on cohere.ai, setting this parameter is optional, you can also provide the API key on runtime
+      COHERE_APIKEY: sk-foobar # request a key on cohere.ai, setting this parameter is optional, you can also provide the API key at runtime
       CLUSTER_HOSTNAME: 'node1'
 ...
 ```
 
-* Note: you can also use the [Weaviate configuration tool](../../installation/docker-compose.md#configurator) to create a Weaviate setup with this module.
+import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.mdx';
+
+<T2VInferenceYamlNotes apiname="COHERE_APIKEY"/>
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](../../tutorials/schema.md) first.
+In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
 
 The following schema configuration tells Weaviate to vectorize the `Document` class with `text2vec-cohere`, using the `multilingual-22-12` model and without input truncation by the Cohere API.
 
-> The multilingual models use dot product, and the English model uses cosine. Make sure to set this accordingly in your Weaviate schema. You can see supported distance metrics [here](../../configuration/distances.md).
+:::info
+The multilingual models use dot product, and the English model uses cosine. Make sure to set this accordingly in your Weaviate schema. You can see supported distance metrics [here](../../configuration/distances.md).
+:::
 
 ```json
 {
@@ -97,7 +103,7 @@ The following schema configuration tells Weaviate to vectorize the `Document` cl
 ## How to use
 
 * If the Cohere API key is not set in the `text2vec-cohere` module, you can set the API key at query time by adding the following to the HTTP header: `X-Cohere-Api-Key: <cohere-api-key>`.
-* Using this module will enable GraphQL vector search parameters in Weaviate. They can be found [here](../../api/graphql/vector-search-parameters.md#neartext).
+* Using this module will enable [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
 
 ### Example
 

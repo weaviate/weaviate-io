@@ -3,18 +3,21 @@ const fs = require('fs');
 
 // Read file config, which contains weaviate_version, etc.
 const readSiteConfig = () => {
-  const data = fs.readFileSync('versions-config.json');
-  return JSON.parse(data);
+  console.log('Loading site config:');
+  const config = JSON.parse(fs.readFileSync('versions-config.json'));
+
+  console.log(config)
+  return config;
 }
 
 const siteConfig = readSiteConfig();
-console.log(siteConfig);
 
-// pattern to match: ||site.some_name||
-const pattern = /[|]{2}[ ]*site\.([a-z_]*)[ ]*[|]{2}/
+// pattern to match: ||site.some_name|| in markdown
+const pattern = /[|]{2}[ ]*site\.([a-z_]*)[ ]*[|]{2}/g
+
 const interpolate = (value, vfile) => {
   // replace the pattern with config variables
-  return value.replace(pattern, (_, name) => {
+  return value.replaceAll(pattern, (_, name) => {
     // display a warning if config variable is missing
     if (siteConfig[name] == undefined) {
       console.warn('\x1b[33m%s', vfile.path, '\x1b[0m');

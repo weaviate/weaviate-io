@@ -34,7 +34,7 @@ client = weaviate.Client("http://localhost:8080")
 
 result = (
   client.query
-  .get("Article", ["title", "_additional {summary ( properties: ["summary"]) { property result }}"])
+  .get("Article", ["title", "_additional { summary ( properties: [\"summary\"]) { property result } }"])
   .do()
 )
 
@@ -55,7 +55,7 @@ const client = weaviate.client({
 client.graphql
       .get()
       .withClassName('Article')
-      .withFields('title _additional {summary ( properties: [\'summary\']) { property result } }')
+      .withFields('title _additional { summary ( properties: [\'summary\']) { property result } }')
       .do()
       .then(res => {
         console.log(res)
@@ -113,13 +113,13 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
-import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.fields.Field;
 
 public class App {
   public static void main(String[] args) {

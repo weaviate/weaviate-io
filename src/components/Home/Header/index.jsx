@@ -12,7 +12,7 @@ export default function HomepageHeader() {
           Weaviate
         </h1>
         <p className="hero__subtitle">
-          Weaviate is an open-source vector search engine.<br/>It allows you to store data objects and vector embeddings from your favorite ML-models,<br/>and scale seamlessly into billions of data objects.
+          Weaviate is an open-source vector database.<br/>It allows you to store data objects and vector embeddings from your favorite ML-models,<br/>and scale seamlessly into billions of data objects.
         </p>
         <ButtonContainer>
           <LinkButton link="/developers/weaviate/quickstart" newTab={false}>Get Started Now</LinkButton>

@@ -1,8 +1,8 @@
 ---
 title: Custom modules
 sidebar_position: 9
-image: og/docs/modules.jpg
-# tags: ['modules', 'custom modules']
+image: og/docs/modules/custom-modules.jpg
+# tags: ['modules', 'other modules', 'custom modules']
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -61,7 +61,7 @@ Let's take a more detailed example of how you configure Weaviate to use a specif
    * Provides a service that can do model inference.
    * Implements an API that is in contract with A (not with Weaviate itself). 
 
-Note that this is just one example, and variations are possible as long as both part 1 and 2 are present where 1 contains the connection to Weaviate in Go and 2 contains that inference model that part 1 uses. It would also be possible to amend, for example, the Weaviate `text2vec-transformers` module (part 1) to use the Huggingface API or some other third-party hosted inference service, instead of it's own container (now in part 2) that it brings. 
+Note that this is just one example, and variations are possible as long as both part 1 and 2 are present where 1 contains the connection to Weaviate in Go and 2 contains that inference model that part 1 uses. It would also be possible to amend, for example, the Weaviate `text2vec-transformers` module (part 1) to use the Hugging Face API or some other third-party hosted inference service, instead of its own container (now in part 2) that it brings. 
 
 A module completely controls the communication with any container or service it depends on. So, for example, in the `text2vec-transformers` module, the API of the inference container is a REST API. But for the `text2vec-contextionary` module has a gRPC, rather than a REST API or another protocol. 
 
@@ -115,7 +115,7 @@ Implementing a fully new module with both part 1 and 2 is a lot more flexible, b
 
 Detailed instructions are described in the [contributor guide](/developers/contributor-guide/weaviate-modules/how-to-build-a-new-module)
 
-If you choose to build a completely new module including a Weaviate Go interface, you can contact us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or through an [issue on Github](https://github.com/weaviate/weaviate/issues) so we help you get started.
+If you choose to build a completely new module including a Weaviate Go interface, you can contact us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or through an [issue on GitHub](https://github.com/weaviate/weaviate/issues), so we can help you get started.
 
 ## Important notes
 - The length of the vectors your vectorizer has influences later usage, for example if you're exploring your data by vector with the GraphQL explore filter, the length of this vector should match with the vector length of the data points. 

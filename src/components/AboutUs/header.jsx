@@ -8,14 +8,14 @@ export default function AboutUsHeader() {
     <div className="container">
       <div className={styles.box}>
         <h1>
-          We create <span className={styles.header}>open source</span>,<br/>
+          We create <span className="highlight">open source</span>,<br/>
           AI-first infrastructure.
         </h1>
         <p className="text-center">
           We believe that the next wave of software infrastructure is AI-first and that a strong open-source community is a basis for creating high-quality software.
         </p>
         <p className="text-center">
-          Our flagship product is the vector search engine Weaviate.
+          Our flagship product is the vector database Weaviate.
         </p>
       </div>
 

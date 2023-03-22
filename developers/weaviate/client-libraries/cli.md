@@ -8,6 +8,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::note Weaviate CLI version
+The current Weaviate CLI version is `v||site.weaviate_cli_version||`.
+:::
+
 ## Installation
 
 The Weaviate CLI is available on [Pypi.org](https://pypi.org/project/weaviate-cli/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher.

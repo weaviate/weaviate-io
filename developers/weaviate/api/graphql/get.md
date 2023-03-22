@@ -36,6 +36,10 @@ The above query will result in something like the following:
 }
 ```
 
+:::info Get query without arguments
+The order of object retrieval is not guaranteed in a `Get` query without any search parameters or filters. Accordingly, such a `Get` query is not suitable for any substantive object retrieval strategy.
+:::
+
 ## Query beacon references
 
 If you've set a beacon reference in the schema, you can query it as follows:
@@ -75,11 +79,11 @@ For every Get{} request you can get additional information about the returned da
 
 To combine `Get { }` with a vector search argument, here is an overview of the supported arguments and links to their detailed documentation:
 
-| Argument | Description | Required Modules (at least one of) | Learn More |
+| Argument | Description | Required modules (at least one of) | Learn more |
 | --- | --- | --- | --- |
 | `nearObject` | Find the nearest neighbors of an object referenced by its id | *none - works out of the box* | [Learn more](./vector-search-parameters.md#nearobject) |
 | `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](./vector-search-parameters.md#nearvector) |
-| `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface`, `text2vec-cohere` | [Transformers](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#how-to-use), [Contextionary](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#how-to-use), [OpenAI](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md#how-to-use), [CLIP](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#how-to-use), [Huggingface](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md#how-to-use), [Cohere](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere.md#how-to-use) |
+| `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface`, `text2vec-cohere` | [Transformers](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#how-to-use), [Contextionary](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#how-to-use), [OpenAI](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md#how-to-use), [CLIP](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#how-to-use), [Hugging Face](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md#how-to-use), [Cohere](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere.md#how-to-use) |
 | `nearImage` | Vectorize an image and perform a vector search based on it | `multi2vec-clip`, `img2vec-neural` | [CLIP](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#neartext), [Img2Vec](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) |
 | `hybrid` | Combine dense and sparse vectors to deliver best of both search methods |   *none - works out of the box* | [Learn more](../graphql/vector-search-parameters.md#hybrid) |
 | `bm25`   | Keyword search with BM25F ranking  | *none - works out of the box* | [Learn more](../graphql/vector-search-parameters.md#bm25) |

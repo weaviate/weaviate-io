@@ -15,11 +15,15 @@ import weaviateClusterImg from './img/weaviate-cluster.jpg';
 
 Here, you will create a new Weaviate instance for use throughout this tutorial.
 
-## Weaviate Cloud Service
+## Weaviate Cloud Services
 
-We will use the free sandbox tier from _Weaviate Cloud Service_ (WCS) for this tutorial.
+We will use the free sandbox tier from _Weaviate Cloud Services_ (WCS) for this tutorial.
 
 WCS is a managed SaaS service that requires no maintenance at your end. As it is the fastest 🚀 way to create a new Weaviate instance, let's spin up an instance with it for use throughout this tutorial. 
+
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/>
 
 :::info Prefer a local instance?
 If you prefer a local instance of Weaviate, we recommend getting started with Docker. Please refer to [the separate section below](#running-weaviate-with-docker) to follow along.
@@ -53,7 +57,19 @@ To create a new Weaviate Cluster:
 Your selections should look like this:
 <img src={WCSScreenshotImg} width="90%" alt="Cluster configuration"/>
 
-This will start the process to create a new cluster, and you should see a progress indicator. After a short while, you should see a green tick ✔️ - indicating that the cluster is ready.
+This will start the process to create a new cluster, and you should see a progress indicator. Cluster creation should take a minute or two, and you should see a green tick ✔️ when it's done - indicating that the cluster is ready.
+
+(In the meantime, you can start installing a client library - or grab a hot drink 😉.)
+
+:::tip Authenticating with WCS + Weaviate client
+If you do enable OIDC in WCS for added security, the easiest way to authenticate as a user is to use the Weaviate client library.
+
+Consult the `WCS authentication` section for your preferred client library and use the "Resource Owner Password Flow" method, by passing on the `username` and `password` you used to sign in to WCS. See the docs below:
+- [Python](../client-libraries/python.md#wcs-authentication)
+- [JavaScript](../client-libraries/javascript.md#wcs-authentication)
+- [Go](../client-libraries/go.md#wcs-authentication)
+- [Java](../client-libraries/java.md#wcs-authentication)
+:::
 
 ### Connect to Weaviate
 
@@ -85,8 +101,8 @@ Please be patient as we update our Java and Go code examples. They will be ready
 
 ## Recap
 
-* You have a working instance of Weaviate in Weaviate Cloud Service (WCS).
-* Weaviate Cloud Service (WCS) is a managed Weaviate SaaS.
+* You have a working instance of Weaviate in Weaviate Cloud Services (WCS).
+* Weaviate Cloud Services (WCS) is a managed Weaviate SaaS.
 * You have installed a client library in your preferred language.
 
 ## Next
@@ -99,11 +115,15 @@ Please be patient as we update our Java and Go code examples. They will be ready
 
 ### Running Weaviate with Docker
 
-To set up Weaviate with Docker, follow these two steps:
+If you prefer to use Docker instead of WCS, follow these steps:
+
+<details>
+  <summary>How to use Docker for this tutorial</summary>
 
 1. Get a `docker-compose.yml` configuration file by going to the [Weaviate configurator](../installation/docker-compose.md)
     1. Select "With Modules" when asked "Standalone or Modules", and
-    1. Select the module for your preferred inference API (e.g. `text2vec-openai` for OpenAI, or `text2vec-cohere` for Cohere)
+    1. Select the module for your preferred inference API (e.g. `text2vec-openai` for OpenAI, or `text2vec-cohere` for Cohere).
+    1. You can say no to all other modules.
 1. Spin up Weaviate with Docker
     ```js
     docker-compose up -d
@@ -112,6 +132,8 @@ To set up Weaviate with Docker, follow these two steps:
 Then you can continue with the tutorial.
 
 If you are running Weaviate with Docker, keep in mind that the address for Weaviate will change from the WCS address to your local address (and port) such as `http://localhost:8080`.
+
+</details>
 
 ### More on deployment options
 

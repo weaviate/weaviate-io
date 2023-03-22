@@ -20,24 +20,39 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 ## Built-in parameters
 
-B​uilt-in search parameters are available in all Weaviate instances and don't require any modules.​
+Built-in search parameters are available in all Weaviate instances and don't require any modules.
 
-### nearVector
+Weaviate provides the following built-in parameters:
+* [nearVector](#nearvector)
+* [nearObject](#nearobject)
+* [hybrid](#hybrid)
+* [bm25](#bm25)
+* [group](#group)
+
+## Module-specific parameters
+
+Module-specific search parameters are made available in certain Weaviate modules.
+
+By adding relevant modules, you can use the following parameters:
+* [nearText](#neartext)
+* [ask](#ask)
+
+## nearVector
 
 This filter allows you to find data objects in the vicinity of an input vector. It's supported by the `Get{}` function.
 
 * Note: this argument is different from the [GraphQL `Explore{}` function](./explore.md)
 * Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md) filter
 
-#### Variables
+### Variables
 
-| Variables | Mandatory | Type | Description |
+| Variables | Required | Type | Description |
 | --- | --- | --- | --- |
 | `vector` | yes | `[float]` | This variable takes a vector embedding in the form of an array of floats. The array should have the same length as the vectors in this class. |
 | `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
-| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
+| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors).. Can't be used together with the `distance` variable. |
 
-#### Example
+### Example
 
 import GraphQLFiltersNearVector from '/_includes/code/graphql.filters.nearVector.mdx';
 
@@ -55,7 +70,7 @@ represents a perfect opposite (cosine distance of 2) and 1 represents vectors
 with an identical angle (cosine distance of 0). Certainty is not available on
 non-cosine distance metrics.
 
-### nearObject
+## nearObject
 
 This filter allows you to find data objects in the vicinity of other data objects by UUID. It's supported by the `Get{}` function.
 
@@ -64,16 +79,16 @@ This filter allows you to find data objects in the vicinity of other data object
 * Note that the first result will always be the object in the filter itself.
 * Near object search can also be combined with `text2vec` modules.
 
-#### Variables
+### Variables
 
-| Variables | Mandatory | Type | Description |
-| --- | --- | --- | --- |
+| Variables | Required | Type | Description |
+| --------- | -------- | ---- | ----------- |
 | `id` | yes | `UUID` | Data object identifier in the uuid format. |
 | `beacon` | yes | `url` | Data object identifier in the beacon URL format. E.g., `weaviate://<hostname>/<kind>/id`. |
 | `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
-| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).. Can't be used together with the `distance` variable. |
+| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors).. Can't be used together with the `distance` variable. |
 
-#### Example
+### Example
 
 import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject.mdx';
 
@@ -84,7 +99,9 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 ## hybrid
 This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
 
-| Variables | Mandatory | Description |
+### Variables
+
+| Variables | Required | Description |
 | --- | --- | --- |
 | `hybrid` | yes | need to specify that you want to use hybrid search |
 | `query` | yes | search query |
@@ -113,7 +130,14 @@ import GraphQLFiltersHybridVector from '/_includes/code/graphql.filters.hybrid.v
 
 <GraphQLFiltersHybridVector/>
 
-## bm25
+### Hybrid with Where Filter 
+Starting with `v1.18`, you can use [`where` filters](../graphql/filters.md#where-filter) with `hybrid`. 
+
+import GraphQLFiltersHybridFilterExample from '/_includes/code/graphql.filters.hybrid.filter.example.mdx';
+
+<GraphQLFiltersHybridFilterExample/>
+
+## BM25
 The `bm25` operator performs a keyword (sparse vector) search, and uses the BM25F ranking function to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
 
 The search is case-insensitive, and case matching does not confer a score advantage. Stop words are removed. [Stemming is not supported yet](https://github.com/weaviate/weaviate/issues/2439).
@@ -121,10 +145,10 @@ The search is case-insensitive, and case matching does not confer a score advant
 ### Schema configuration
 The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases. If necessary, they can be configured in the schema per class, and can optionally be overridden per property:
 
-```json
+```yaml
 {
   "class": "string",
-  // Configuration of the sparse index
+  # Configuration of the sparse index
   "invertedIndexConfig": {
     "bm25": {
       "b": 0.75,
@@ -138,7 +162,7 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
       "dataType": [
         "string"
       ],
-      // Property-level settings override the class-level settings
+      # Property-level settings override the class-level settings
       "invertedIndexConfig": {
         "bm25": {
           "b": 0.75,
@@ -152,9 +176,16 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
 ```
 
 ### Variables
-The `bm25` operator supports two variables:
-* `query` (mandatory) - the keyword search query
-* `properties` (optional) - array of properties (fields) to search in, defaulting to all properties in the class. Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "description"]`.
+The `bm25` operator supports the following variables:
+
+| Variables | Required | Description |
+| --------- | -------- | ----------- |
+| `query`   | yes      | the keyword search query |
+| `properties` | no    | array of properties (fields) to search in, defaulting to all properties in the class| 
+
+:::info Boosting properties
+Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
+:::
 
 ### Example query
 
@@ -168,12 +199,12 @@ import GraphQLFiltersBM25 from '/_includes/code/graphql.filters.bm25.mdx';
 
 The `_additional` object in the GraphQL result exposes the score:
 
-```json
+```yaml
 {
   "_additional": {
     "score": "5.3201",
-    "distance": null,  // always null
-    "certainty": null  // always null
+    "distance": null,  # always null
+    "certainty": null  # always null
   }
 }
 ```
@@ -200,6 +231,12 @@ The `_additional` object in the GraphQL result exposes the score:
 }
 ```
 
+### BM25 with Where Filter 
+Introduced in `v1.18`, you can now use [`where` filters](../graphql/filters.md#where-filter) with `bm25`. 
+
+import GraphQLFiltersBM25FilterExample from '/_includes/code/graphql.filters.bm25.filter.example.mdx';
+
+<GraphQLFiltersBM25FilterExample/>
 
 ## group
 
@@ -207,8 +244,8 @@ You can use a group operator to combine similar concepts (aka _entity merging_).
 
 ### Variables
 
-| Variables | Mandatory | Type | Description |
-| --- | --- | --- | --- |
+| Variables | Required | Type | Description |
+| --------- | -------- | ---- | ----------- |
 | `type` | yes | `string` | You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
 | `force` | yes | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
 
@@ -267,11 +304,7 @@ This results in the following. Note that publications `International New York Ti
 }
 ```
 
-## Module-specific parameters
-
-Module-specific search parameters are made available in certain Weaviate modules.​
-
-### nearText
+## nearText
 
 Enabled by the modules: 
 - [text2vec-openai](../../modules/retriever-vectorizer-modules/text2vec-openai.md), 
@@ -283,24 +316,24 @@ Enabled by the modules:
 
 This filter allows you to find data objects in the vicinity of the vector representation of a single or multiple concepts. It's supported by the `Get{}` function.
 
-#### Variables
+### Variables
 
-| Variables | Mandatory | Type | Description |
+| Variables | Required | Type | Description |
 | --- | --- | --- | --- |
-| `concepts` | yes | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing) |
+| `concepts` | yes | `[string]` | An array of strings that can be natural language queries, or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing). |
 | `certainty` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values.<br/>Values can be between 0 (no match) and 1 (perfect match).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `distance` variable. |
 | `distance` | no | `float` | Normalized Distance between the result item and the search vector.<br/>The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `certainty` variable.|
 | `autocorrect` | no | `boolean` | Autocorrect input text values |
 | `moveTo` | no | `object{}` | Move your search term closer to another vector described by keywords |
-| `moveTo{concepts}`| no | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
-| `moveTo{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space | 
-| `moveTo{force}`| no | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible | 
+| `moveTo{concepts}`| no | `[string]` | An array of strings - natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
+| `moveTo{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space. | 
+| `moveTo{force}`| no | `float` | The force to apply to a particular movement. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. | 
 | `moveAwayFrom` | no | `object{}` | Move your search term away from another vector described by keywords |
-| `moveAwayFrom{concepts}`| no | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
-| `moveAwayFrom{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space | 
-| `moveAwayFrom{force}`| no | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible | 
+| `moveAwayFrom{concepts}`| no | `[string]` | An array of strings - natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
+| `moveAwayFrom{objects}`| no | `[UUID]` | Object IDs to move the results from. This is used to "bias" NLP search results into a certain direction in vector space. | 
+| `moveAwayFrom{force}`| no | `float` | The force to apply to a particular movement. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
 
-#### Example I
+### Example I
 
 This example shows a basic overview of using the `nearText` filter.
 
@@ -310,9 +343,9 @@ import GraphQLFiltersNearText from '/_includes/code/graphql.filters.nearText.mdx
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get%7B%0D%0A++++Publication%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveAwayFrom%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++++force%3A+0.45%0D%0A++++++++%7D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++name%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
-#### Example II
+### Example II
 
-You can also bias results toward other data objects' vector representations. For example, in this dataset, we have an ambiguous query on our news article dataset, which we bias towards an article called: ["Tohoku: A Japan destination for all seasons."](https://link.semi.technology/3Czhg9p)
+You can also bias results toward other data objects' vector representations. For example, in this dataset, we have an ambiguous query on our news article dataset, which we bias towards an article called: ["Tohoku: A Japan destination for all seasons."](https://link.weaviate.io/3l8T738)
 
 import GraphQLFiltersNearText2Obj from '/_includes/code/graphql.filters.nearText.2obj.mdx';
 
@@ -349,6 +382,7 @@ A practical example would be: `concepts: ["beatles", "John Lennon"]`
 The semantic path returns an array of concepts from the query to the data object. This allows you to see which steps Weaviate took and how the query and data object are interpreted. 
 
 | Property | Description |
+| --- | --- |
 | `concept` | the concept that is found in this step. |
 | `distanceToNext` | the distance to the next step (null for the last step). |
 | `distanceToPrevious` | this distance to the previous step (null for the first step). |
@@ -363,22 +397,22 @@ import GraphQLUnderscoreSemanticpath from '/_includes/code/graphql.underscorepro
 
 <GraphQLUnderscoreSemanticpath/>
 
-### Ask
+## ask
 
 Enabled by the module: [Question Answering](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md).
 
 This filter allows you to return answers to questions by running the results through a Q&A model.
 
-#### Variables
+### Variables
 
-| Variables | Mandatory | Type | Description |
+| Variables | Required | Type | Description |
 | --- | --- | --- | --- |
 | `question` 	| yes	| `string` | The question to be answered. 	|
 | `certainty` 	| no 	| `float` | Desired minimal certainty or confidence of answer to the question. The higher the value, the stricter the search becomes. The lower the value, the fuzzier the search becomes. If no certainty is set, any answer that could be extracted will be returned|
 | `properties` 	| no 	| `[string]` | The properties of the queries Class which contains text. If no properties are set, all are considered.	|
 | `rerank` 	| no 	| `boolean`	| If enabled, the qna module will rerank the result based on the answer score. For example, if the 3rd result - as determined by the previous (semantic) search contained the most likely answer, result 3 will be pushed to position 1, etc. *Not supported prior to v1.10.0* |
 
-#### Example
+### Example
 
 import QNATransformersAsk from '/_includes/code/qna-transformers.ask.mdx';
 
@@ -386,7 +420,7 @@ import QNATransformersAsk from '/_includes/code/qna-transformers.ask.mdx';
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++ask%3A+%7B%0D%0A++++++++question%3A+%22Who+is+the+king+of+the+Netherlands%3F%22%2C%0D%0A++++++++properties%3A+%5B%22summary%22%5D%0D%0A++++++%7D%2C+%0D%0A++++++limit%3A1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++certainty%0D%0A++++++++++property%0D%0A++++++++++result%0D%0A++++++++++startPosition%0D%0A++++++++++endPosition%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
-#### Additional information
+### Additional information
 
 The `_additional{}` property is extended with the answer and a certainty of the answer.
 

@@ -1,7 +1,7 @@
 ---
 title: text2vec-contextionary
 sidebar_position: 4
-image: og/docs/modules.jpg
+image: og/docs/modules/text2vec-contextionary.jpg
 # tags: ['text2vec', 'text2vec-contextionary', 'contextionary']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -40,13 +40,13 @@ When a new class object is created, it will be added to a Weaviate.
 
 ## How to enable
 
-### Weaviate Cloud Service
+### Weaviate Cloud Services
 
 The `text2vec-contextionary` module is not available on the WCS.
 
 ### Weaviate open source
 
-Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. The service can be added like this:
+You can find an example Docker Compose file below, which will spin up Weaviate with the `text2vec-contextionary` module.
 
 ```yaml
 ---
@@ -93,7 +93,7 @@ Variable explanations:
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](../../tutorials/schema.md) first.
+In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
 
 For example
 
@@ -129,13 +129,13 @@ For example
 }
 ```
 
-### Schema note
-
-- If you are using this module and are vectorizing the class or property name, the name(s) must be a part of the `text2vec-contextionary`.
+:::note Schema note
+If you are using this module and are vectorizing the class or property name, the name(s) must be a part of the `text2vec-contextionary`.
+:::
 
 ## How to use
 
-* New GraphQL vector search parameters made available by this module can be found [here](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
+The module makes available a [`nearText`](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext) GraphQL search parameter.
 
 ### Example
 
@@ -286,42 +286,23 @@ Note that stopwords are automatically removed from camelCased and CamelCased nam
 
 ### What stopwords are and why they matter
 
-Stopwords are words that don't add semantic meaning to your concepts and are
-extremely common in texts across different contexts. For example, the sentence
-"a car is parked on the street" contains the following stopwords: "a", "is",
-"on", "the". If we look at the sentence "a banana is lying on
-the table", you would find the exact same stop words. So in those two sentences,
-over 50% of the words overlap. Therefore they would be considered somewhat
-similar (based on the overall vector position).
+Stopwords are words that don't add semantic meaning to your concepts and are extremely common in texts across different contexts. For example, the sentence "a car is parked on the street" contains the following stopwords: "a", "is", "on", "the". If we look at the sentence "a banana is lying on the table", you would find the exact same stop words. So in those two sentences, over 50% of the words overlap. Therefore they would be considered somewhat similar (based on the overall vector position).
 
-However, if we remove stopwords from both sentences, they become "car parked
-street" and "banana lying table". Suddenly there are 0% identical words in the
-sentences, so it becomes easier to perform vector comparisons. Note at this
-point we cannot say whether both sentences are related or not. For this we'd
-need to know how close the vector position of the sentence "car parked street"
-is to the vector position of "banana lying table". But we do know that the
-result can now be calculated with a lot less noise.
+However, if we remove stopwords from both sentences, they become "car parked street" and "banana lying table". Suddenly there are 0% identical words in the sentences, so it becomes easier to perform vector comparisons. Note at this point we cannot say whether both sentences are related or not. For this we'd need to know how close the vector position of the sentence "car parked street" is to the vector position of "banana lying table". But we do know that the result can now be calculated with a lot less noise.
 
 ### Behavior around stop words
 
-Stopwords are useful for humans, so we don't want to encourage you to leave
-them out completely. Instead Weaviate will remove them whenever your schema
-information is translated to vector positions.
+Stopwords are useful for humans, so we don't want to encourage you to leave them out completely. Instead Weaviate will remove them whenever your schema information is translated to vector positions.
 
-In most cases you won't even notice that this happens in the background,
-however, there are a few edge cases that might cause a validation error:
+In most cases you won't even notice that this happens in the background, however, there are a few edge cases that might cause a validation error:
 
-* If your camelCased class or property name consists **only** of stopwords,
-  validation will fail. Example: `TheInA` is not a valid class name, however,
-  `TheCarInAField` is (and would internally be represented as `CarField`).
+* If your camelCased class or property name consists **only** of stopwords, validation will fail. Example: `TheInA` is not a valid class name, however, `TheCarInAField` is (and would internally be represented as `CarField`).
 
-* If your keyword list contains stop words, they will be removed. However, if
-  every single keyword is a stop word, validation will fail.
+* If your keyword list contains stop words, they will be removed. However, if every single keyword is a stop word, validation will fail.
 
 ### How does Weaviate decide whether a word is a stop word or not?
 
-The list of stopwords is derived from the Contextionary version used and is
-published alongside the Contextionary files.
+The list of stopwords is derived from the Contextionary version used and is published alongside the Contextionary files.
 
 ## Compound splitting
 

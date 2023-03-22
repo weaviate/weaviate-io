@@ -5,13 +5,13 @@ authors: [erika]
 date: 2023-01-03
 tags: []
 image: ./img/hero.png
+description: "Learn about the new hybrid search feature that enables you to combine dense and sparse vectors to deliver the best of both search methods."
 ---
-
 ![Hybrid search](./img/hero.png)
 
-Hybrid search is a technique that **combines** multiple search algorithms to improve the accuracy and relevance of search results. It uses the best features of both keyword-based search algorithms with vector search techniques. By leveraging the strengths of different algorithms, it provides a more effective search experience for users.
-
 <!-- truncate -->
+
+Hybrid search is a technique that **combines** multiple search algorithms to improve the accuracy and relevance of search results. It uses the best features of both keyword-based search algorithms with vector search techniques. By leveraging the strengths of different algorithms, it provides a more effective search experience for users.
 
 The [Hybrid search](/developers/weaviate/api/graphql/vector-search-parameters#hybrid) feature was introduced in Weaviate 1.17. It uses sparse and dense vectors to represent the meaning and context of search queries and documents.
 
@@ -22,7 +22,7 @@ Sparse and dense vectors are calculated with distinct algorithms. Sparse vectors
 
 Note, the current implementation of hybrid search in Weaviate uses BM25/BM25F and vector search. 
 
-If you’re interested to learn about how dense vector indexes are built and optimized in Weaviate, check out this [article](/blog/Why-is-Vector-Search-so-fast). 
+If you’re interested to learn about how dense vector indexes are built and optimized in Weaviate, check out this [article](/blog/why-is-vector-search-so-fast). 
 
 ### BM25
 BM25 builds on the keyword scoring method [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) (Term-Frequency Inverse-Document Frequency) by taking the [Binary Independence Model](https://en.wikipedia.org/wiki/Binary_Independence_Model) from the IDF calculation and adding a normalization penalty that weighs a document’s length relative to the average length of all the documents in the database. 
@@ -38,7 +38,7 @@ BM25F was also implemented in Weaviate `1.17`. BM25F is a variant of BM25 that a
 ### Dense Vectors 
 Dense vectors represent information stored in a database; this includes text, images, and other types of data. These embeddings are generated from machine learning models that convert data to vectors. The vectors are densely packed with information and are mostly made up of non-zero values. The meaning of each value in the vector depends on the machine learning model that you used. 
 
-Vector search engines, like [Weaviate](/developers/weaviate/), store these embeddings and calculate the distance between the two vectors. [Distance metrics](/blog/Distance-Metrics-in-Vector-Search) show how similar or dissimilar two vector embeddings are. The search query is converted to a vector, similar to the data vectors, and the distance value determines how close the vectors are. 
+Vector databases, like [Weaviate](/developers/weaviate/), store these embeddings and calculate the distance between the two vectors. [Distance metrics](/blog/distance-metrics-in-vector-search) show how similar or dissimilar two vector embeddings are. The search query is converted to a vector, similar to the data vectors, and the distance value determines how close the vectors are. 
 
 ![Hybrid Search](./img/hybrid-search-explained.png)
 
@@ -77,7 +77,7 @@ There are five parameters needed to run the hybrid search query (some are option
 * `vector` (optional): optional to supply your own vector 
 * `score`(optional): additional information on how much the sparse and dense method contributed to the result
 
-With just a few lines of code, you can start using hybrid search. You can run a test query in the [Weaviate console](https://link.semi.technology/3IhrVbB) using GraphQL. The query is, “Fisherman that catches salmon” (similar to the example above). When we set the alpha to 0.5 it is equally weighing the dense and sparse vector results. 
+With just a few lines of code, you can start using hybrid search. You can run a test query in the [Weaviate console](https://link.weaviate.io/3JyBYZR) using GraphQL. The query is, “Fisherman that catches salmon” (similar to the example above). When we set the alpha to 0.5 it is equally weighing the dense and sparse vector results. 
 
 ```
 {

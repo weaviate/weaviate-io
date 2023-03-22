@@ -1,7 +1,7 @@
 ---
 title: text2vec-transformers
 sidebar_position: 3
-image: og/docs/modules.jpg
+image: og/docs/modules/text2vec-transformers.jpg
 # tags: ['text2vec', 'text2vec-transformers']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -10,15 +10,17 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-The `text2vec-transformers` module allows you to use a pre-trained language transformer model as a Weaviate vectorization module. Transformer models differ from the Contextionary as they allow you to plug in a pretrained NLP module specific to your use case. This means models like `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. can be used out-of-the box with Weaviate.
+The `text2vec-transformers` module allows you to run your own inference container with a pre-trained language transformer model as a Weaviate vectorization module. Note that this is in contrast to an API-based module such as [`text2vec-openai`](./text2vec-openai.md), [`text2vec-cohere`](./text2vec-cohere.md) and [`text2vec-huggingface`](./text2vec-huggingface.md) which use an external API to vectorize your data.
 
-To use transformers with Weaviate, the `text2vec-transformers` module needs to be enabled. The models are encapsulated in Docker containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled serves, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.
+With the `text2vec-transformers` module, you can use one of any number of pretrained NLP models specific to your use case. This means models like `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. can be used out-of-the box with Weaviate.
 
-To choose your specific model, you simply need to select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile.
+The models are encapsulated in Docker containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled servers, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.
+
+To choose your specific model, select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile.
 
 ## How to enable
 
-### Weaviate Cloud Service
+### Weaviate Cloud Services
 
 The `text2vec-transformers` module is not available on the WCS.
 
@@ -27,7 +29,7 @@ The `text2vec-transformers` module is not available on the WCS.
 You have three options to select your desired model:
 
 1. **Use [any of our pre-built transformers model containers](#pre-built-images).** The models selected in [this list](#pre-built-images) have proven to work well with semantic search in the past. These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/weaviate/weaviate/issues)).
-2. **Use any model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publically-available-huggingface-model). The `text2vec-transformers` module supports any PyTorch or Tensorflow transformer model. 
+2. **Use any model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publicly-available-hugging-face-model). The `text2vec-transformers` module supports any PyTorch or Tensorflow transformer model.
 3. **Use any private or local PyTorch or Tensorflow transformer model.** [Click here to learn how](#option-3-custom-build-with-a-private-or-local-model). If you have your own transformer model in a registry or on a local disk, you can use this with Weaviate.
 
 ### Option 1: Use a pre-built transformer model container
@@ -82,7 +84,7 @@ docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-tra
 Use a CUDA-enabled machine for optimal performance. Alternatively, include this container in the same `docker-compose.yml` as Weaviate.
 :::
 
-#### Step 3: Tell Weaviate where to find the inference 
+#### Step 3: Tell Weaviate where to find the inference
 
 Set the Weaviate environment variable `TRANSFORMERS_INFERENCE_API` to identify where your inference container is running, for example if Weaviate is running outside of Docker use `TRANSFORMERS_INFERENCE_API="http://localhost:8000"`. Alternatively if Weaviate is part of the same Docker network, e.g. because they are part of the same `docker-compose.yml` file, you can use Docker networking/DNS, such as `TRANSFORMERS_INFERENCE_API=http://t2v-transformers:8080`.
 
@@ -91,28 +93,31 @@ You can now use Weaviate normally and all vectorization during import and search
 ### Pre-built images
 
 You can download a selection of pre-built images directly from Dockerhub. We
-have chosen publically available models that in our opinion are well suited for
-semantic search. 
+have chosen publicly available models that in our opinion are well suited for
+semantic search.
 
 The pre-built models include:
 
-|Model Name|Description|Image Name|
-|---|---|---|
-|sentence-transformers/paraphrase-MiniLM-L6-v2 (English, 384d)|New! Sentence-Transformer recommendation for best accuracy/speed trade-off. The lower dimensionality also reduces memory requirements of larger datasets in Weaviate.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-MiniLM-L6-v2|
-|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 (Multilingual, 384d)|New! Sentence-Transformer recommendation for best accuracy/speed trade-off for a multi-lingual model. The lower dimensionality also reduces memory requirements of larger datasets in Weaviate.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-MiniLM-L12-v2|
-|sentence-transformers/paraphrase-mpnet-base-v2 (English, 768d)|New! Currently the highest overall score (across all benchmarks) on sentence-transformers benchmarks.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-mpnet-base-v2|
-|sentence-transformers/paraphrase-multilingual-mpnet-base-v2 (Multilingual, 768d)|New! Currently the highest overall score for a multi-lingual model (across all benchmarks) on sentence-transformers benchmarks.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-mpnet-base-v2|
-|sentence-transformers/sentence-transformers/msmarco-distilbert-base-v3 (English, 768d)|New! Successor to the widely popular msmarco v2 models. For Question-Answer style queries (given a search query, find the right passages). Our recommendation to be used in combination with the qna-transformers (Answer extraction) module.|semitechnologies/transformers-inference:sentence-transformers-msmarco-distilbert-base-v3|
-|sentence-transformers/stsb-mpnet-base-v2 (English, 768d)|New! Highest STSb score on sentence-transformers benchmarks.|semitechnologies/transformers-inference:sentence-transformers-stsb-mpnet-base-v2|
-|sentence-transformers/nli-mpnet-base-v2 (English, 768d)|New! Highest Twitter Paraphrases score on sentence-transformers benchmarks.|semitechnologies/transformers-inference:sentence-transformers-nli-mpnet-base-v2|
-|sentence-transformers/stsb-distilbert-base (English)|Deprecated. Only use for compatibility, prefer newer model if possible.|semitechnologies/transformers-inference:sentence-transformers-stsb-distilbert-base|
-|sentence-transformers/quora-distilbert-base (English)||semitechnologies/transformers-inference:sentence-transformers-quora-distilbert-base|
-|sentence-transformers/paraphrase-distilroberta-base-v1 (English)|Deprecated. Only use for compatibility, prefer newer model if possible.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-distilroberta-base-v1|
-|kiri-ai/distiluse-base-multilingual-cased-et (Multilingual)||semitechnologies/transformers-inference:kiri-ai-distiluse-base-multilingual-cased-et|
-|sentence-transformers/msmarco-distilroberta-base-v2 (English)|Deprecated. Only use for compatibility, prefer newer model if possible.|semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2|
-|sentence-transformers/msmarco-distilbert-base-v2 (English)||semitechnologies/transformers-inference:sentence-transformers-msmarco-distilbert-base-v2|
-|sentence-transformers/stsb-xlm-r-multilingual (Multilingual)|Deprecated. Only use for compatibility, prefer newer model if possible.|semitechnologies/transformers-inference:sentence-transformers-stsb-xlm-r-multilingual|
-|sentence-transformers/paraphrase-xlm-r-multilingual-v1 (Multilingual)|Deprecated. Only use for compatibility, prefer newer model if possible.|semitechnologies/transformers-inference:sentence-transformers-paraphrase-xlm-r-multilingual-v1|
+|Model Name|Image Name|
+|---|---|
+|`distilbert-base-uncased` ([Info](https://huggingface.co/distilbert-base-uncased))|`semitechnologies/transformers-inference:distilbert-base-uncased`|
+|`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` ([Info](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2))|`semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-MiniLM-L12-v2`|
+|`sentence-transformers/multi-qa-MiniLM-L6-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1`|
+|`sentence-transformers/multi-qa-mpnet-base-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-mpnet-base-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-mpnet-base-cos-v1`|
+|`sentence-transformers/all-mpnet-base-v2` ([Info](https://huggingface.co/sentence-transformers/all-mpnet-base-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-mpnet-base-v2`|
+|`sentence-transformers/all-MiniLM-L12-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L12-v2`|
+|`sentence-transformers/paraphrase-multilingual-mpnet-base-v2` ([Info](https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2))|`semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-mpnet-base-v2`|
+|`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2`|
+|`sentence-transformers/multi-qa-distilbert-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-distilbert-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-distilbert-cos-v1`|
+|`sentence-transformers/gtr-t5-base` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-base))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-base`|
+|`sentence-transformers/gtr-t5-large` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-large))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-large`|
+|`google/flan-t5-base` ([Info](https://huggingface.co/google/flan-t5-base))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-base`|
+|`google/flan-t5-large` ([Info](https://huggingface.co/google/flan-t5-large))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-large`|
+|DPR Models|
+|`facebook/dpr-ctx_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-ctx_encoder-single-nq-base))|`semitechnologies/transformers-inference:facebook-dpr-ctx_encoder-single-nq-base`|
+|`facebook/dpr-question_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-question_encoder-single-nq-base))|`semitechnologies/transformers-inference:facebook-dpr-question_encoder-single-nq-base`|
+|`vblagoje/dpr-ctx_encoder-single-lfqa-wiki` ([Info](https://huggingface.co/vblagoje/dpr-ctx_encoder-single-lfqa-wiki))|`semitechnologies/transformers-inference:vblagoje-dpr-ctx_encoder-single-lfqa-wiki`|
+|`vblagoje/dpr-question_encoder-single-lfqa-wiki` ([Info](https://huggingface.co/vblagoje/dpr-question_encoder-single-lfqa-wiki))|`semitechnologies/transformers-inference:vblagoje-dpr-question_encoder-single-lfqa-wiki`|
 
 The above image names always point to the latest version of the inference
 container including the model. You can also make that explicit by appending
@@ -124,12 +129,12 @@ to version `1.0.0`, you can use
 Your favorite model is not included? [Open an issue](https://github.com/weaviate/weaviate/issues) to include it or build
 a custom image as outlined below.
 
-### Option 2: Use any publically available Huggingface Model
+### Option 2: Use any publicly available Hugging Face model
 
-You can build a Docker image which supports any model from the [Huggingface model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`distilroberta-base` model](https://huggingface.co/distilroberta-base). 
+You can build a Docker image which supports any model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`distilroberta-base` model](https://huggingface.co/distilroberta-base).
 
 #### Step 1: Create a `Dockerfile`
-Create a new `Dockerfile`. We will name it `distilroberta.Dockerfile`. Add the following lines to it: 
+Create a new `Dockerfile`. We will name it `distilroberta.Dockerfile`. Add the following lines to it:
 ```
 FROM semitechnologies/transformers-inference:custom
 RUN MODEL_NAME=distilroberta-base ./download.py
@@ -148,7 +153,7 @@ You can now push your image to your favorite registry or reference it locally in
 ### Option 3: Custom build with a private or local model
 
 You can build a Docker image which supports any model which is compatible with
-Huggingface's `AutoModel` and `AutoTokenzier`.
+Hugging Face's `AutoModel` and `AutoTokenzier`.
 
 In the following example, we are going to build a custom image for a non-public
 model which we have locally stored at `./my-model`.
@@ -184,13 +189,17 @@ ports:
   - "9090:8080"
 ```
 
-to your `text2vec-transformers`. 
+to your `text2vec-transformers`.
 
-Then you can send REST requests to it directly, e.g. `curl localhost:9090/vectors -d '{"text": "foo bar"}'` and it will print the created vector directly. 
+Then you can send REST requests to it directly, e.g.:
+```shell
+curl localhost:9090/vectors -H 'Content-Type: application/json' -d '{"text": "foo bar"}
+```
+and it will print the created vector directly.
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](../../tutorials/schema.md) first.
+In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
 
 For example:
 

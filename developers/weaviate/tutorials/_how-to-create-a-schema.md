@@ -62,7 +62,7 @@ Classes always start with a capital letter. Properties always begin with a small
 
 Let's define the class `Publication` with the properties `name`, `hasArticles` and `headquartersGeoLocation` in JSON format. `name` will be the name of the `Publication`, in string format. `hasArticles` will be a reference to Article objects. We need to define the class `Articles` in the same schema to make sure the reference is possible. `headquartersGeoLocation` will be of the special dataType `geoCoordinates`.
 
-Note that the property `"title"` of the class `"Article"` has dataType `"string"`, while the property `"content"` is of dataType `"text"`. `string` values are indexed as one token, whereas `text` values are indexed after applying tokenization. `"jane.doe@foobar.com"` as string would be indexed as `"jane.doe@foobar.com"` and also only match that in a GraphQL where filter, whereas as text it would be indexed as `['jane', 'doe', 'foobar', 'com']` and also match the individual words.
+Note that the property `"title"` of the class `"Article"` has dataType `"string"`, while the property `"content"` is of dataType `"text"`. `string` values and `text` values are tokenized differently to each other. 
 
 ```json
 {
@@ -274,7 +274,7 @@ import HowtoSchemaCreate from '/_includes/code/howto.schema.create.mdx';
 
 **2. Add reference properties to the existing classes.**
 
-   There are three classes in your Weaviate schema now, but we did not link them to each other with cross references yet. Let's add the reference between `Publication` and `Articles` in the property `hasArticles` like this:
+   There are three classes in your Weaviate schema now, but we did not link them to each other with cross-references yet. Let's add the reference between `Publication` and `Articles` in the property `hasArticles` like this:
 
 import HowtoSchemaPropertyAdd from '/_includes/code/howto.schema.property.add.mdx';
 

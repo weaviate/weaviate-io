@@ -10,16 +10,16 @@ import Badges from '/_includes/badges.mdx';
 
 ## RESTful API
 
-Weaviate has a basic RESTful API which will be used to offer CRUD support on all data objects. The clients automatically determine if they should call the RESTful or GraphQL-API. You can also choose to call the APIs themselves.
+Weaviate has a basic RESTful API which offers CRUD support on all data objects. The clients automatically determine if they should call the RESTful or GraphQL API. You can also choose to call the APIs themselves.
 
 <!-- TODO: Should we remove the swagger links -->
 ### Open API specs
 
 The Open API specs for the current Weaviate version number can be found [here](https://app.swaggerhub.com/apis/semi-technologies/weaviate/v||site.weaviate_version||).
 
-## All references
+## References
 
-All references have their individual subpages, click on one of the references below for more information.
+Each endpoint has its individual page:
 
 - [/v1/schema](./schema.md)
 - [/v1/objects](./objects.md)

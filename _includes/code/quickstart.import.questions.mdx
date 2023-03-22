@@ -28,7 +28,7 @@ with client.batch as batch:
     batch.batch_size=100
     # Batch import all Questions
     for i, d in enumerate(data):
-        print(f"importing question: {i+1}")
+        # print(f"importing question: {i+1}")  # To see imports
 
         properties = {
             "answer": d["Answer"],
@@ -50,11 +50,6 @@ const client = weaviate.client({
     host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
     headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
   }); 
-
-let classObj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
-}
 
 async function getJsonData() {
     const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json');
@@ -146,15 +141,15 @@ func main() {
 
 ```java
 
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.ArrayList;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.schema.model.DataType;
-import technology.semi.weaviate.client.v1.schema.model.Property;
-import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {

@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-# Changlog for version v1.9.0
+# Changelog for version v1.9.0
 
 * no breaking changes
 
@@ -124,9 +124,9 @@ If you see the error message `"shard Knuw6a360eCY: resolve node name
 
 Please note that besides new features, `v1.8.0` also contains a large
 collection of bugfixes. Some of those bugs also affected how the HNSW index was
-written to disk. Therefore it cannot be ruled out that the index on disk has a
+written to disk. Therefore, it cannot be ruled out that the index on disk has a
 subpar quality compared to a freshly built index in version `v1.8.0`.
-Therefore, if you can import using a script, etc, we generally recommend starting
+As such, if you can import using a script, we generally recommend starting
 with a fresh `v1.8.0` setup and reimporting instead of migrating.
 
 ### Is downgrading possible after upgrading?
@@ -361,7 +361,7 @@ Weaviate version 1.0.0 was released on 12 January 2021, and consists of the majo
 
 Weaviate release 1.0.0 from 0.23.2 comes with a significant amount of breaking changes in the data schema, API and clients. Here is an overview of all (breaking) changes. 
 
-For client library specific changes, take a look at the change logs of the specific client ([Go](/developers/weaviate/client-libraries/go.md#v20x), [Python](/developers/weaviate/client-libraries/python.md#20x), [JavaScript](/developers/weaviate/client-libraries/javascript.md#v200) and the [CLI](/developers/weaviate/client-libraries/cli.md#200)).
+For client library specific changes, take a look at the change logs of the specific client ([Go](/developers/weaviate/client-libraries/go.md#change-logs), [Python](/developers/weaviate/client-libraries/python.md#change-logs), [JavaScript](/developers/weaviate/client-libraries/javascript.md#changelog) and the [CLI](/developers/weaviate/client-libraries/cli.md#change-logs)).
 
 Moreover, a new version of the Console is released. Visit the Console documentation for more information. 
 
@@ -642,16 +642,16 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
       "class": "Article",
       "vectorIndexType": "hnsw",        # defaults to hnsw
       "vectorIndexConfig": {
-        "efConstruction": 100,
+        "efConstruction": 100
       },
       "moduleConfig": {
         "text2vec-contextionary": {  
           "vectorizeClassName": true
         },
-        "encryptor5000000": { "enabled": true }, # example
+        "encryptor5000000": { "enabled": true }  # example
       },
       "description": "string",
-      "vectorizer": "text2vec-contextionary", # default is configurable
+      "vectorizer": "text2vec-contextionary",  # default is configurable
       "properties": [ … ]
     }
     ```
@@ -881,12 +881,12 @@ To
     "informationGainCutoffPercentile": 30,
     "informationGainMaximumBoost": 3,
     "tfidfCutoffPercentile": 80,
-    "minimumUsableWords": 3,
+    "minimumUsableWords": 3
   },
   "filters": {
     "sourceWhere": { … },
     "trainingSetWhere": { … },
-    "targetWhere": { … },
+    "targetWhere": { … }
   }
 }
 ```
@@ -896,7 +896,7 @@ The default vectorizer module can be specified in a new environment variable so 
 
 
 # Official release notes
-Official release notes can be found on [Github](https://github.com/weaviate/weaviate/releases/tag/0.23.0). 
+Official release notes can be found on [GitHub](https://github.com/weaviate/weaviate/releases/tag/0.23.0). 
 
 
 ## More Resources

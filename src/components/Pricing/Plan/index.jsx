@@ -2,7 +2,7 @@ import Link from '@docusaurus/Link';
 import React from 'react';
 import PricingBusinessCritical from './businessCritical';
 import PricingEnterprise from './enterprise';
-import PricingSandbox from './sandbox';
+import PricingSandBox from './sandbox';
 import PricingStandard from './standard';
 import styles from './styles.module.scss';
 

@@ -49,12 +49,12 @@ The inference model is a service that provides at least four API endpoints:
 3. `GET /meta` -> which should respond meta information about the inference model
 4. `POST /<foo>` (at least 1) -> which is the endpoint that the Weaviate Module uses for inference. For a vectorizer this might for example be `POST /vectors`, which takes a JSON body with the data to vectorize. A vector will be returned (in JSON format). The Question Answering model, on the other hand, has an endpoint `POST /answers`, which takes a JSON body with the text to tokenize and returns a list of tokens found in the text (also formatted as JSON).
 
-You can always ask us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Github](https://github.com/weaviate/weaviate/issues) to get help with the design.
+You can always ask us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [GitHub](https://github.com/weaviate/weaviate/issues) to get help with the design.
 
 # How to build a custom module - guidelines
 
 Once you are happy with the design, you can [fork the latest Weaviate version](https://github.com/weaviate/weaviate) and make a new branch from master.
-Ideally, you create an [issue on Github](https://github.com/weaviate/weaviate/issues) with the module. Now you can refer to this issue in you commits, as well as ask for feedback from us and the community.
+Ideally, you create an [issue on GitHub](https://github.com/weaviate/weaviate/issues) with the module. Now you can refer to this issue in you commits, as well as ask for feedback from us and the community.
 
 These guidelines follow the example of the [QnA module](https://github.com/weaviate/weaviate/tree/master/modules/qna-transformers). This is a module with an additional feature, no vectorization module. It adds information in the GraphQL `_additional` field by examining the data in Weaviate. 
 
@@ -129,7 +129,7 @@ During development of the new Module, you can run Weaviate locally. Make sure to
     3. Add the service to `tools/dev/run_dev_server.sh` ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/tools/dev/run_dev_server.sh#L77-L92)). This is the docker-compose setup for running the development server. You should define the modules that you want to run with your new dev setup: where they are running and their configuration. It also includes the command to run Weaviate, you can copy this. 
     4. And add the service to `docker-compose.yml`([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/docker-compose.yml#L37-L40)). The inference container (part 2) should be running on the defined port.
 
-Inside the weaviate project folder, run 
+Inside the Weaviate project folder, run 
 
 ```bash
 $ tools/dev/restart_dev_environment.sh --<SERVICE-NAME>

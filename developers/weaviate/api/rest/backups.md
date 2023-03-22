@@ -31,7 +31,7 @@ POST /v1/backups/{backend}
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, `azure`, or `filesystem`. |
 
 ##### Request Body
 
@@ -54,7 +54,7 @@ While you are waiting for a backup to complete, [Weaviate stays fully usable](/d
 
 #### Asynchronous Status Checking
 
-All client implentations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
+All client implementations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
 
 If you set the "wait for completion" option to false, you can also check the status yourself using the Backup Creation Status API.
 
@@ -68,7 +68,7 @@ GET /v1/backups/{backend}/{backup_id}
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, `azure`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
 The response contains a `"status"` field. If the status is `SUCCESS`, the
@@ -85,7 +85,9 @@ between source and target are identical. The backup does not need to be created
 on the same instance. Once a backup backend is configured, you can restore a
 backup with a single HTTP request.
 
-Note that a restore fails if any of the classes already exist on this instance.
+There are two important conditions to note, which can cause a restore to fail:
+- If any of the classes already exist on the target restoration node(s).
+- If the node names of the backed-up class' node(s) do not match those of the target restoration node(s).
 
 #### Method and URL
 
@@ -99,7 +101,7 @@ POST /v1/backups/{backend}/{backup_id}/restore
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, `azure`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
 ##### Request Body
@@ -121,7 +123,7 @@ import BackupRestore from '/_includes/code/backup.restore.mdx';
 
 #### Asynchronous Status Checking
 
-All client implentations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
+All client implementations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
 
 If you set the "wait for completion" option to false, you can also check the status yourself using the Backup Restore Status API.
 
@@ -135,7 +137,7 @@ GET /v1/backups/{backend}/{backup_id}/restore
 
 | name | type | required | description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcp`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, `azure`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the requests to create and restore the backup. |
 
 The response contains a `"status"` field. If the status is `SUCCESS`, the
@@ -147,4 +149,4 @@ import BackupStatusRestore from '/_includes/code/backup.status.restore.mdx';
 
 # Learn more about Backups
 
-Discover more about [Backups Configuration](/developers/weaviate/configuration/backups.md#configuration), inlcuding Backups to [S3](/developers/weaviate/configuration/backups.md#s3-aws-or-s3-compatible) or [GCS](/developers/weaviate/configuration/backups.md#gcs-google-cloud-storage), [Technical Considerations of Backups](/developers/weaviate/configuration/backups.md#technical-considerations), as well as [additional use cases](/developers/weaviate/configuration/backups.md#other-use-cases).
+Discover more about [Backups Configuration](/developers/weaviate/configuration/backups.md#configuration), including Backups to [S3](/developers/weaviate/configuration/backups.md#s3-aws-or-s3-compatible), [GCS](/developers/weaviate/configuration/backups.md#gcs-google-cloud-storage), or [Azure](/developers/weaviate/configuration/backups.md#azure-storage), [Technical Considerations of Backups](/developers/weaviate/configuration/backups.md#technical-considerations), as well as [additional use cases](/developers/weaviate/configuration/backups.md#other-use-cases).

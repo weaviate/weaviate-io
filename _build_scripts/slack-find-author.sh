@@ -13,6 +13,7 @@ git_slack_map=(
     ["Erika Cardenas"]="<@U03RSSRAMLN>"
     ["Etienne Dilocker"]="<@UCZDBEZ5F>"
     ["hsm207"]="<@U04C2EATF6K>" #Shukri
+    ["Igor Lamas"]="<@U04MGB80F45>"
     ["John Trengrove"]="<@U03KPAE8Y7K>"
     ["JP Hwang"]="<@U0441J6PYGN>"
     ["Ken MacInnis"]="<@U048YRPG5J7>"
@@ -24,6 +25,7 @@ git_slack_map=(
     ["Sebastian Witalec"]="<@U03DENV56CR>"
     ["Stefan Bogdan"]="<@U01DPKTVA93>"
     ["Svitlana"]="<@U03DQTXFDHS>"
+    ["svitlana-sm"]="<@U03DQTXFDHS>"
     ["Wera"]="<@U043TKSEU5V>"
     ["Zain Hasan"]="<@U043TKSJQF9>"
 )

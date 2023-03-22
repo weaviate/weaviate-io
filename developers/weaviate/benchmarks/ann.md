@@ -304,7 +304,7 @@ rough estimation of how the throughput would vary on smaller or larger
 machines. If you do not need the stated throughput, you can run with fewer CPU
 cores. If you need more throughput, you can run with more CPU cores.
 
-Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks.​ ​Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be ​[​available in Weaviate soon​](/developers/weaviate/roadmap/index.md)​.
+Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks. Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be [available in Weaviate soon](/developers/weaviate/roadmap/index.md).
 
 ## What are ef, efConstruction, and maxConnections?
 
@@ -325,8 +325,8 @@ hints to look at:
   switching the CPU type to the one used in this benchmark.
 
 * Are you using an actual dataset or random vectors? HNSW is known to perform
-  considerably worse with random vectors than with real​ world​ datasets. This is due
-  to the distribution of points in real world​ datasets compared to randomly
+  considerably worse with random vectors than with real-world datasets. This is due
+  to the distribution of points in real-world datasets compared to randomly
   generated vectors. If you cannot achieve the performance (or recall)
   outlined above with random vectors, switch to an actual dataset.
 
@@ -338,59 +338,9 @@ hints to look at:
   it could then be that your benchmark is bottlenecked by those disks.
 
 * Are you using more than 2 million vectors? If yes, make sure to set the
-  [vector cache large
-  enough](/developers/weaviate/concepts/resources.md#imports-slowed-down-after-crossing-2m-objects---what-can-i-do)
+  [vector cache large enough](/developers/weaviate/concepts/resources.md#vector-cache)
   for maximum performance.
 
 ## Where can I find the scripts to run this benchmark myself?
 
 The [repository is located here](https://github.com/weaviate/weaviate-benchmarking).
-
-<!-- <style type="text/css">
-
-  .highlighted-config-label {
-    font-size:1em;
-    text-align: center;
-  }
-
-  .highlighted-config-value {
-    font-size:2em;
-    text-align: center;
-  }
-
-
-  .highlighted-result {
-    background: #ffe6f1;
-    text-align: center;
-    color: #fa0171;
-  }
-
-  .highlighted-results-label{
-    font-weight: bold;
-    font-size:0.9em;
-    text-align: center;
-  }
-
-  .highlighted-results-value {
-    font-size: 1.75em;
-    text-align: center;
-    line-height: 200%;
-  }
-
-  @media all and (max-width: 1200px) {
-    .highlighted-config-value {
-      font-size:1em;
-      font-weight: bold;
-    }
-    .highlighted-config-label {
-      font-size:0.4em;
-    }
-    .highlighted-results-value {
-      font-size: 1.4em;
-    }
-    .highlighted-results-label {
-      font-size:0.5em;
-    }
-  }
-
-</style> -->

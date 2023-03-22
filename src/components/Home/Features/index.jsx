@@ -28,7 +28,7 @@ export default function HomePage() {
           <p className={styles.icon1}></p>
           <h4 className={styles.title}>Vector Search</h4>
           <p className={styles.subTitle}>
-            Regardless if you bring your own vectors or use one of the vectorization modules, you can index billions of data objects to search through.
+            Whether you bring your own vectors or use one of the vectorization modules, you can index billions of data objects to search through.
           </p>
         </div>
         <div className={styles.box}>

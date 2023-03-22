@@ -2,10 +2,8 @@ import React from 'react';
 import './styles.scss';
 import { useState, useEffect } from 'react';
 import ToggleSwitch from '/src/components/ToggleSwitch';
-// import Slider from 'react-rangeslider';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useParams } from 'react-router';
 
 export default function PricingCalculator({props}) {
   const [embeddingSize, setEmbeddingSize] = useState(128);
@@ -91,8 +89,8 @@ export default function PricingCalculator({props}) {
           <h2>Pay as you grow</h2>
           <p>
             Our pricing is built around vector dimensions stored and queried,
-            and different SLA-tiers have <br />  different prices per dimension. The
-            exact calculation can be found in the FAQ below. <br /> (not
+            and different SLA-tiers have <br /> different prices per dimension.
+            The exact calculation can be found in the FAQ below. <br /> (not
             inclusive of discounts and taxes).
           </p>
         </div>

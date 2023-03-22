@@ -10,7 +10,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 Last updated: 19-01-2022
 
-For customers of Weaviate B.V., this agreement replaces the open source license agreement for Weaviate ("Application"), as can be found on Github.
+For customers of Weaviate B.V., this agreement replaces the open source license agreement for Weaviate ("Application"), as can be found on GitHub.
 
 Please read this End-User License Agreement ("Agreement") carefully before agreeing to the contract, downloading or using the Application. 
 
@@ -28,9 +28,9 @@ You agree not to, and you will not permit others to:
 
 a) license, sell, rent, lease, assign, distribute, transmit, host, outsource, disclose or otherwise commercially exploit the Application or make the Application available to any third party.
 
-### Modifications to Weaviate Cloud Service
+### Modifications to Weaviate Cloud Services
 
-Regarding the Weaviate Cloud Service (Weaviate SaaS), Weaviate B.V. reserves the right to modify, suspend or discontinue, temporarily or permanently, the Application or any service to which it connects, with or without notice and without liability to you.
+Regarding the Weaviate Cloud Services (Weaviate SaaS), Weaviate B.V. reserves the right to modify, suspend or discontinue, temporarily or permanently, the Application or any service to which it connects, with or without notice and without liability to you.
 
 ### Term and Termination
 

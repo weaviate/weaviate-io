@@ -14,7 +14,7 @@ Here are some ideas and tips on how:
 
 You could contribute by writing a blog post, or tutorial relating to Weaviate. 
 
-It could be about anything from your Weaviate journey, concepts you've learnt and used with Weaviate like vector search engines, or guides on how to integrate Weaviate with something. 
+It could be about anything from your Weaviate journey, concepts you've learnt and used with Weaviate like vector databases, or guides on how to integrate Weaviate with something. 
 
 It can be hosted anywhere. It could be at a well-known platform such as Medium, Dev.to, or HashNode, or somewhere smaller like your own blog.
 

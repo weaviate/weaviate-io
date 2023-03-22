@@ -127,7 +127,7 @@ _Note: run this from the same directory where the Weaviate Docker Compose files 
 
 {% raw %}
 ```bash
-# This gets the weaviate container name and because the docker uses only lowercase we need to do it too (Can be found manually if 'tr' does not work for you)
+# This gets the Weaviate container name and because the docker uses only lowercase we need to do it too (Can be found manually if 'tr' does not work for you)
 $ export WEAVIATE_ID=$(echo ${PWD##*/}_weaviate_1 | tr "[:upper:]" "[:lower:]")
 # WEAVIATE ORIGIN (e.g., http://localhost:8080), note the paragraph "basics" for setting the local IP
 $ export WEAVIATE_ORIGIN="http://$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $WEAVIATE_ID):8080"

@@ -132,7 +132,7 @@ Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Unive
 In some cases we need to link data objects with each other.
 
 For example: *"Paul Krugman writes for the New York Times"*.<br/>
-To represent this relationship between the `Author` and the `Publication`, we need to cross reference the objects.
+To represent this relationship between the `Author` and the `Publication`, we need to cross-reference the objects.
 
 Let's say we have a *New York Times* object, like this:
 

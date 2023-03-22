@@ -19,15 +19,15 @@ import DocsConfigGen from '/_includes/docs-config-gen.mdx';
 
 <DocsConfigGen />
 
-## How to customize
+## Example configurations
 
 :::note
 If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079).
 :::
 
-To start Weaviate with docker-compose, you need a docker-compose configuration file, typically called `docker-compose.yml`. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional [environment variables](#environment-variables) can be set in this file, which regulate your Weaviate setup, authentication and authorization, module settings, and data storage settings.
+To start Weaviate with docker-compose, you need a docker-compose configuration file, typically called `docker-compose.yml`. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional [environment variables](#environment-variables) can be set in this file, which control your Weaviate setup, authentication and authorization, module settings, and data storage settings.
 
-## Persistent volume
+### Persistent volume
 
 It's recommended to set a persistent volume to avoid data loss and improve reading and writing speeds.
 
@@ -43,7 +43,7 @@ services:
 
 Make sure to run `$ docker-compose down` when shutting down, this writes all the files from memory to disk.
 
-## Weaviate without any modules
+### Weaviate without any modules
 
 An example docker-compose setup for Weaviate without any modules can be found
 below. In this case, no model inference is performed at either import or search
@@ -66,9 +66,9 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-## Weaviate with the `text2vec-transformers` module
+### Weaviate with the `text2vec-transformers` module
 
-An example docker-compose setup file with the transformers model [`sentence-transformers/msmarco-distilroberta-base-v2`](https://huggingface.co/sentence-transformers/msmarco-distilroberta-base-v2) is: 
+An example docker-compose setup file with the transformers model [`sentence-transformers/msmarco-distilroberta-base-v2`](https://huggingface.co/sentence-transformers/msmarco-distilroberta-base-v2) is:
 
 ```yaml
 version: '3.4'
@@ -104,9 +104,137 @@ page](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transfo
 
 The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
 
-## Attaching to the log output of Weaviate only
+## Multi-node setup
 
-The output of `docker-compose up` is quite verbose as it attaches to the logs of all containers. 
+You can create a multi-node setup with Weaviate using Docker-Compose. To do so, you need to:
+- Set up one node as a "founding" member, and configure the other nodes in the cluster to join it using the `CLUSTER_JOIN` variable.
+- Configure `CLUSTER_GOSSIP_BIND_PORT` and `CLUSTER_GOSSIP_BIND_PORT` for each node.
+- Optionally, you can set the hostname for each node using `CLUSTER_HOSTNAME`.
+
+So, the configuration file will include environment variables for the "founding" member that looks like the below:
+
+```yaml
+  weaviate-node-1:  # Founding member service name
+    ...  # truncated for brevity
+    environment:
+      CLUSTER_HOSTNAME: 'node1'
+      CLUSTER_GOSSIP_BIND_PORT: '7100'
+      CLUSTER_DATA_BIND_PORT: '7101'
+```
+
+And the other members' configurations may look like this:
+
+```yaml
+  weaviate-node-2:
+    ...  # truncated for brevity
+    environment:
+      CLUSTER_HOSTNAME: 'node2'
+      CLUSTER_GOSSIP_BIND_PORT: '7102'
+      CLUSTER_DATA_BIND_PORT: '7103'
+      CLUSTER_JOIN: 'weaviate-node-1:7100'  # This must be the service name of the "founding" member node.
+```
+
+We provide an example `docker-compose.yml` below:
+
+<details>
+  <summary>An example multi-node Docker-Compose file</summary>
+
+```yaml
+services:
+  weaviate-node-1:
+    init: true
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8080:8080
+    - 6060:6060
+    restart: on-failure:0
+    volumes:
+      - ./data-node-1:/var/lib/weaviate
+    environment:
+      LOG_LEVEL: 'debug'
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      CLUSTER_HOSTNAME: 'node1'
+      CLUSTER_GOSSIP_BIND_PORT: '7100'
+      CLUSTER_DATA_BIND_PORT: '7101'
+
+  weaviate-node-2:
+    init: true
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8081:8080
+    - 6061:6060
+    restart: on-failure:0
+    volumes:
+      - ./data-node-2:/var/lib/weaviate
+    environment:
+      LOG_LEVEL: 'debug'
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      CLUSTER_HOSTNAME: 'node2'
+      CLUSTER_GOSSIP_BIND_PORT: '7102'
+      CLUSTER_DATA_BIND_PORT: '7103'
+      CLUSTER_JOIN: 'weaviate-node-1:7100'
+```
+
+</details>
+
+:::note Port number conventions
+It is a Weaviate convention to set the `CLUSTER_DATA_BIND_PORT` to 1 higher than `CLUSTER_GOSSIP_BIND_PORT`.
+:::
+
+[Read more about horizontal replication in Weaviate.](../concepts/cluster.md)
+
+## Environment variables
+
+An overview of environment variables in the docker-compose file:
+
+| Variable | Description | Type | Example Value |
+  | --- | --- | --- | --- |
+  | `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/gomemlimit-a-game-changer-for-high-memory-applications). | `string - memory limit in SI uints` | `4096MiB` |
+  | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
+  | <code>CONTEXTIONARY<wbr />_URL</code> | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
+  | <code>PERSISTENCE<wbr />_DATA<wbr />_PATH</code> | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
+  | <code>ENABLE<wbr />_MODULES</code> | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
+  | <code>TRANSFORMERS<wbr />_INFERENCE<wbr />_API</code> | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
+  | <code>DEFAULT<wbr />_VECTORIZER<wbr />_MODULE</code> | Default vectorizer module - will be overridden by any class-level value defined in the schema | `string` | `text2vec-contextionary` |
+  | <code>QUERY<wbr />_MAXIMUM<wbr />_RESULTS</code> | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
+  | <code>QUERY<wbr />_DEFAULTS<wbr />_LIMIT</code> | Sets the default number of objects to be returned in a query. | `string - number` | `25` |
+  | <code>AUTHENTICATION<wbr/>_ANONYMOUS<wbr/>_ACCESS<wbr/>_ENABLED</code> | Allow users to interact with weaviate without auth | `string - true/false` | `true` |
+  | <code>AUTHENTICATION<wbr />_OIDC<wbr />_ENABLED</code> | Enable OIDC Auth | `string - true/false` | `false` |
+  | <code>AUTHENTICATION<wbr />_OIDC<wbr />_ISSUER</code> | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
+  | <code>AUTHENTICATION<wbr />_OIDC<wbr />_CLIENT<wbr />_ID</code> | OIDC Client ID | `string` | `my-client-id` |
+  | <code>AUTHENTICATION<wbr />_OIDC<wbr />_USERNAME<wbr />_CLAIM</code> | OIDC Username Claim | `string` | `email` |
+  | <code>AUTHENTICATION<wbr />_OIDC<wbr />_GROUPS<wbr />_CLAIM</code> | OIDC Groups Claim | `string` | `groups` |
+  | <code>AUTHORIZATION<wbr />_ADMINLIST<wbr />_ENABLED</code> | Enable AdminList Authorization mode | `string - true/false` | `true` |
+  | <code>AUTHORIZATION<wbr />_ADMINLIST<wbr />_USERS</code> | Users with admin permission| `string - comma-separated list` | <code>jane<wbr />@example.com,<wbr />john<wbr />@example.com</code> |
+  | <code>AUTHORIZATION<wbr />_ADMINLIST<wbr />_READONLY<wbr />_USERS</code> | Users with read-only permission| `string - comma-separated list` | <code>alice<wbr />@example.com,<wbr />dave<wbr />@example.com</code> |
+| <code>DISK<wbr />_USE<wbr />_WARNING<wbr />_PERCENTAGE</code> |  If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `80` |
+| <code>DISK<wbr />_USE<wbr />_READONLY<wbr />_PERCENTAGE</code>  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `90` |
+| <code>PROMETHEUS<wbr />_MONITORING<wbr />_ENABLED</code>  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `string - true/false` | `false` |
+| `BACKUP_*` | Various configuration variables for backup provider modules. They are outlined in detail on the [Backups page](/developers/weaviate/configuration/backups.md). | |
+
+## Shell attachment options
+
+The output of `docker-compose up` is quite verbose as it attaches to the logs of all containers.
 
 You can attach the logs only to Weaviate itself, for example, by running the following command instead of `docker-compose up`:
 
@@ -117,35 +245,9 @@ $ docker-compose up -d && docker-compose logs -f weaviate
 
 Alternatively you can run docker-compose entirely detached with `docker-compose up -d` _and_ then poll `{bindaddress}:{port}/v1/meta` until you receive a status `200 OK`.
 
-<!-- TODO: 
+<!-- TODO:
 1. Check that all environment variables are also applicable for the kubernetes setup and associated values.yml config file.
 2. Take this section out and into References; potentially consolidate with others as they are strewn around the docs. (E.g. backup env variables are not included here.) -->
-## Environment variables
-
-An overview of environment variables in the docker-compose file:
-
-| Variable | Description | Type | Example Value |
-  | --- | --- | --- | --- |
-  | `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/GOMEMLIMIT-a-Game-Changer-for-High-Memory-Applications). | `string - memory limit in SI uints` | `4096MiB` |
-  | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
-  | <code>CONTEXTIONARY_<wbr />URL</code> | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
-  | <code>PERSISTENCE_<wbr />DATA_<wbr />PATH</code> | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
-  | <code>ENABLE_<wbr />MODULES</code> | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
-  | <code>TRANSFORMERS_<wbr />INFERENCE_<wbr />API</code> | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
-  | <code>DEFAULT_<wbr />VECTORIZER_<wbr />MODULE</code> | Default vectorizer module, so this doesn't need to be defined per class in the schema | `string` | `text2vec-contextionary` |
-  | <code>AUTHENTICATION_<wbr />ANONYMOUS_<wbr />ACCESS_<wbr />ENABLED</code> | Allow users to interact with weaviate without auth | `string - true/false` | `true` |
-  | <code>AUTHENTICATION_<wbr />OIDC_<wbr />ENABLED</code> | Enable OIDC Auth | `string - true/false` | `false` |
-  | <code>AUTHENTICATION_<wbr />OIDC_<wbr />ISSUER</code> | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
-  | <code>AUTHENTICATION_<wbr />OIDC_<wbr />CLIENT_<wbr />ID</code> | OIDC Client ID | `string` | `my-client-id` |
-  | <code>AUTHENTICATION_<wbr />OIDC_<wbr />USERNAME_<wbr />CLAIM</code> | OIDC Username Claim | `string` | `email` |
-  | <code>AUTHENTICATION_<wbr />OIDC_<wbr />GROUPS_<wbr />CLAIM</code> | OIDC Groups Claim | `string` | `groups` |
-  | <code>AUTHORIZATION_<wbr />ADMINLIST_<wbr />ENABLED</code> | Enable AdminList Authorization mode | `string - true/false` | `true` |
-  | <code>AUTHORIZATION_<wbr />ADMINLIST_<wbr />USERS</code> | Users with admin permission| `string - comma-separated list` | <code>jane@example.com,<wbr />john@example.com</code> |
-  | <code>AUTHORIZATION_<wbr />ADMINLIST_<wbr />READONLY_<wbr />USERS</code> | Users with read-only permission| `string - comma-separated list` | <code>alice@example.com,<wbr />dave@example.com</code> |
-| <code>DISK_<wbr />USE_<wbr />WARNING_<wbr />PERCENTAGE</code> |  If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `80` |
-| <code>DISK_<wbr />USE_<wbr />READONLY_<wbr />PERCENTAGE</code>  | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `90` |
-| <code>PROMETHEUS_<wbr />MONITORING_<wbr />ENABLED</code>  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `string - true/false` | `false` |
-| `BACKUP_*` | Various configuration variables for backup provider modules. They are outlined in detail on the [Backups page](/developers/weaviate/configuration/backups.md). | |
 
 ## More Resources
 

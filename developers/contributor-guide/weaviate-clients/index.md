@@ -29,10 +29,10 @@ These clients, and all future clients are and will be developed according to the
 As a rule of thumb it is more important that a client feels native to
 developers used to a specific language than it is to have all clients exaclty
 identical. When developers make their first contact with a Weaviate client,
-they should think "This feels like proper Java [Go/Pytho/Javascript...]", as
+they should think "This feels like proper Java [Go/Python/JavaScript...]", as
 opposed to "I guess it was designed like this to be consistent with other
-language clients". Therefore you should design a client in a way that it feels
-native to those with experience in the langauge.
+language clients". Therefore you should design clients in a way that feels
+native to those with experience in that language.
 
 This can also mean that specific patterns deviate from one client to another.
 For example, python has keyword arguments next to positional arguments. This
@@ -58,12 +58,12 @@ Tests](../weaviate-core/tests.md#unit-tests) as they make sense, e.g. for
 edge cases or language-speficic sources of error. As a rule of thumb, a
 dynamically typed language will probably require more unit-level testing than a
 statically typed one. Note, however, that we can only use Journey tests
-involving an actual Weavaite instance to verify if a client is 100% compatible
+involving an actual Weaviate instance to verify if a client is 100% compatible
 with Weaviate in general and a specific Weaviate version.
 
 For inspiration of how to write great tests for your client, take a look at the
-tests of the Javascript client
-([Example](https://github.com/weaviate/weaviate-javascript-client/blob/master/data/journey.test.js))
+tests of the JavaScript client
+([Example](https://github.com/weaviate/weaviate-javascript-client/blob/main/data/journey.test.ts))
 or Go client
 ([Example](https://github.com/weaviate/weaviate-go-client/tree/master/test)).
 

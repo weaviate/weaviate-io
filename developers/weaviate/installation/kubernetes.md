@@ -32,18 +32,18 @@ $ kubectl get pods
 
 ## Obtain the Helm Chart
 
-Get the Helm chart and `values.yml` configuration file.
+Add the Weaviate helm repo that contains the Weaviate helm chart
 
 ```bash
-# Set the Weaviate chart version
-export CHART_VERSION="v||site.helm_version||"
-# Download the Weaviate Helm chart
-wget https://github.com/weaviate/weaviate-helm/releases/download/$CHART_VERSION/weaviate.tgz
-# Download an example values.yml (with the default configuration)
-wget https://raw.githubusercontent.com/weaviate/weaviate-helm/$CHART_VERSION/weaviate/values.yaml
+helm repo add weaviate https://weaviate.github.io/weaviate-helm
 ```
 
-## Adjust the configuration in the values.yml (Optional)
+Get the default `values.yaml` configuration file from the Weaviate helm chart:
+```bash
+helm show values weaviate/weaviate > values.yaml
+```
+
+## Adjust the configuration in the values.yaml (Optional)
 
 _Note: You can skip this step and run with all default values. In any case,
 make sure that you set the correct Weaviate version. This may either be through
@@ -76,17 +76,13 @@ You can deploy the helm charts as follows:
 # Create a Weaviate namespace
 $ kubectl create namespace weaviate
 
-# set the desired Weaviate version
-export WEAVIATE_VERSION="||site.weaviate_version||"
-
 # Deploy
-$ helm upgrade \
+$ helm install \
   "weaviate" \
-  weaviate.tgz \
+  weaviate/weaviate \
   --install \
   --namespace "weaviate" \
-  --values ./values.yaml \
-  --set "image.tag=$WEAVIATE_VERSION"
+  --values ./values.yml
 ```
 
 The above assumes that you have permissions to create a new namespace. If you

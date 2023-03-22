@@ -39,27 +39,20 @@ const client = weaviate.client({
 });
 
 let classObj = {
-    'class': 'Article',
-    'properties': [
+    class: 'Article',
+    properties: [
         {
-            'dataType': [
+            dataType: [
                 'string'
             ],
-            'description': 'Title of the article',
-            'name': 'title',
-            'indexInverted': true,
-            'moduleConfig': {
-                'text2vec-contextionary': {
-                  'skip': false,                   
-                  'vectorizePropertyName': false
-                }
-              }
+            description: 'Title of the article',
+            name: 'title'
         }
     ],
-    'replicationConfig': {
-      'factor': 3
+    replicationConfig: {
+      factor: 3
     }
-}
+};
 
 client
   .schema
@@ -118,16 +111,16 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.ArrayList;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.schema.model.DataType;
-import technology.semi.weaviate.client.v1.schema.model.Property;
-import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
-import technology.semi.weaviate.client.v1.misc.model.ReplicationConfig;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+import io.weaviate.client.v1.misc.model.ReplicationConfig;
 
 public class App {
   public static void main(String[] args) {
@@ -174,14 +167,7 @@ $ curl \
                 "string"
             ],
             "description": "Title of the article",
-            "name": "title",
-            "indexInverted": true,
-            "moduleConfig": {
-                "text2vec-contextionary": {
-                  "skip": false,                   
-                  "vectorizePropertyName": true
-                }
-              }
+            "name": "title"
         },
     ],
     "replicationConfig": {

@@ -81,11 +81,11 @@ If you don't want to vectorize a property at all, you can simply skip it.
 ## Example
 
 <!-- TODO: Update this to the new domain -->
-If you [look at the schema](https://demo.dataset.playground.semi.technology/v1/schema) of the article demo dataset, ​you can see a complete example.
+If you [look at the schema](https://demo.dataset.playground.semi.technology/v1/schema) of the article demo dataset, you can see a complete example.
 
 Let's take a look at the schema item for the Article class. Look for the `"moduleConfig"` entries on the class and on the property level.
 
-You will see that the class and property names are not indexed, but the article _itself_ is. So if you now retrieve a single article (like you can do [here](https://link.semi.technology/3AGybFr)), you know that the vector comes from the transformers module.
+You will see that the class and property names are not indexed, but the article _itself_ is. So if you now retrieve a single article (like you can do [here](https://link.weaviate.io/3FeIwKU)), you know that the vector comes from the transformers module.
 
 ```json
 {

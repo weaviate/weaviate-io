@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 
 Here you can learn how to use the Weaviate console.
 
-The Weaviate console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Service (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
+The Weaviate console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Services (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 
 :::tip
 The console is available on: [console.weaviate.io](https://console.weaviate.io).
@@ -20,18 +20,18 @@ The console is available on: [console.weaviate.io](https://console.weaviate.io).
 
 ## Login page
 
-When opening the [Weaviate Console](https://console.weaviate.io), you'll see two options:
+When opening the [Weaviate Console](https://console.weaviate.io), you'll see two options:
 
-1. ["Sign in with the Weaviate Cloud Service"](#the-weaviate-cloud-service)
+1. ["Sign in with the Weaviate Cloud Services"](#weaviate-cloud-services)
 2. ["Self-hosted Weaviate"](#connect-to-a-self-hosted-weaviate)
 
-## The Weaviate Cloud Service
+## Weaviate Cloud Services
 
-The Weaviate Cloud Service allows you to create Weaviate instances as SaaS instances on our infrastructure. There is no difference between locally run Weaviate instances or Weaviate SaaS instances other than that the latter ones are managed by us.
+Weaviate Cloud Services allow you to create Weaviate instances as SaaS instances on our infrastructure. There is no difference between locally run Weaviate instances or Weaviate SaaS instances other than that the latter ones are managed by us.
 
-:::note
-Sandboxes are free Weaviate instances! You can create them for small test use cases if you don't want to run Weaviate locally.
-:::
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/>
 
 ## Connect to a self-hosted Weaviate
 
@@ -41,11 +41,11 @@ When you're connected, you can use the [GraphiQL](#graphiql) interface to intera
 
 ## GraphiQL
 
-GraphiQL is a graphical interface that allows you to manually write GraphQL queries. Within Weaviate we use it a lot, the auto-fill functionality allows you to easily navigate through your own dataset. Curious? Try out the console [right now](https://link.semi.technology/3J8aB73) with the Wikipedia dataset.
+[GraphiQL](https://github.com/graphql/graphiql) is a graphical interface that allows you to write GraphQL queries interactively, with autocompletion and inline documentation. Curious? Try out the console [right now](https://link.weaviate.io/3ThS9hG) with the news publication dataset.
 
 ## Try out the console
 
-1. Go to: [https://link.semi.technology/3CUuDgQ](https://link.semi.technology/3CUuDgQ)
+1. Go to: [this link](https://link.weaviate.io/3ThS9hG)
 2. Start querying :)
 
 ## Try out the console with your own instance
@@ -61,7 +61,7 @@ The console might ask to downgrade to HTTP. This is done to avoid [CORS](https:/
 ## Recap
 
 * You can use the Weaviate Console to connect to any Weaviate instance.
-* You can use the Weaviate Console to connect to the Weaviate Cloud Service to create managed Weaviate instances.
+* You can use the Weaviate Console to connect to the Weaviate Cloud Services to create managed Weaviate instances.
 * Because Weaviate uses GraphQL, you can easily query it with the console's GraphiQL integration.
 
 ## What next?
@@ -72,9 +72,6 @@ The console might ask to downgrade to HTTP. This is done to avoid [CORS](https:/
 - [Concepts](../concepts/index.md)
 - [Roadmap](../roadmap/index.md)
 
-## Legend
-
-* [GraphiQL](https://github.com/graphql/graphiql)
 
 ## More Resources
 

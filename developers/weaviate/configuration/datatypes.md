@@ -18,34 +18,21 @@ import Badges from '/_includes/badges.mdx';
 
 When creating a property, Weaviate needs to know what type of data you will give it. Weaviate accepts the following types:
 
-| Weaviate Type | Exact Data Type | Formatting |
-| ---------|--------|-----------|
-| string   | string | `"string"` |
-| string[]   | list of strings | `["string", "second string"]` |
-| int      | int64 (*) | `0` |
-| int[]      | list of int64 (*) | `[0, 1]` |
-| boolean  | boolean | `true`/`false` |
-| boolean[]  | list of booleans | `[true, false]` |
-| number   | float64 | `0.0` |
-| number[]   | list of float64 | `[0.0, 1.1]` |
-| date     | string | [more info](#datatype-date) |
-| date[]     | list of string | [more info](#datatype-date) |
-| text     | text   | `string` |
-| text[]     | list of texts   | `["string one", "string two"]` |
-| geoCoordinates | string | [more info](#datatype-geocoordinates) |
-| phoneNumber | string | [more info](#datatype-phonenumber) |
-| blob | base64 encoded string | [more info](#datatype-blob) |
-| *cross reference* | string | [more info](#datatype-cross-reference) |
+import DataTypes from '/_includes/datatypes.mdx';
+
+<DataTypes />
 
 (*) Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
 
 ## DataType: string vs. text
 
-There are two datatypes dedicated to saving textual information: string and text. `string` values are indexed as one token, whereas `text` values are indexed after applying tokenization. `"jane.doe@foobar.com"` as string would be indexed as `"jane.doe@foobar.com"` and also only match that in a GraphQL where filter, whereas as text it would be indexed as `['jane', 'doe', 'foobar', 'com']` and also match the individual words.
+There are two data types dedicated to saving textual information: `string` and `text`. They exhibit slightly different tokenization behavior, and `string` also optionally allows the property to be indexed without tokenization. 
+
+Refer to [this section](./schema-configuration.md#property-tokenization) on the difference between the two types.
 
 ## DataType: date
 
-Weaviate requires an [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) formatted date that includes the time and the offset.
+Weaviate requires an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) formatted date that includes the time and the offset.
 
 For example:
 
@@ -76,7 +63,7 @@ An example of how geo coordinates are used in a data object:
 
 There is a special, primitive data type `phoneNumber`. When a phone number is added to this field, the input will be normalized and validated, unlike the single fields as `number` and `string`. The data field is an object, as opposed to a flat type similar to `geoCoordinates`. The object has multiple fields:
 
-```json
+```yaml
 {
   "phoneNumber": {
     "input": "020 1234567",                       // Required. Raw input in string format
@@ -142,14 +129,15 @@ $ curl \
     http://localhost:8080/v1/objects
 ```
 
-## DataType: cross reference
+## DataType: cross-reference
 
-The `cross-reference` type is the graph element of Weaviate, you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list of are names of classes that exist elsewhere in the schema. For example:
+The [`cross-reference`](../more-resources/glossary.md) type is the graph element of Weaviate: you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list of are names of classes that exist elsewhere in the schema. For example:
 
 ```json
 {
   "properties": [
     {
+      "name": "hasWritten",
       "dataType": [
         "Article",
         "Blog"
@@ -160,13 +148,14 @@ The `cross-reference` type is the graph element of Weaviate, you can create a li
 ```
 
 ### Number of linked instances
-The `cross-reference` type objects are `arrays` by default. This allows you to link to any number `(0..n)` of instances of a given class.
+
+The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given class (including zero).
 
 In the above example, our objects can be linked to:
 * **0** Articles and **1** Blog
 * **1** Article and **3** Blogs
 * **2** Articles and **5** Blogs
-* etc
+* etc.
 
 ## More Resources
 

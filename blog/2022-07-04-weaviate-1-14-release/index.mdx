@@ -1,20 +1,20 @@
 ---
 title: Weaviate 1.14 release
 slug: weaviate-1-14-release
-authors: [connor, etienne, laura, sebastian] 
+authors: [connor, etienne, laura, sebastian]
 date: 2022-07-06
 tags: []
 image: ./img/hero.png
-# description: "Learn, what is new in Weaviate 1.14, the most reliable and observable Weaviate release yet!"
+description: "Learn what is new in Weaviate 1.14, the most reliable and observable Weaviate release yet!"
 ---
 ![Weaviate 1.14 release](./img/hero.png)
 
-## What is new
-We are excited to announce the release of Weaviate 1.14, the most reliable and observable Weaviate release yet. 
-
 <!-- truncate -->
 
-> Later this week, we will release Weaviate v1.14, possibly the most boring release so far.😱 Yet I&#39;m incredibly excited about it and so should you. Why? <br/>
+## What is new
+We are excited to announce the release of Weaviate 1.14, the most reliable and observable Weaviate release yet.
+
+> Later this week, we will release Weaviate v1.14, possibly the most boring release so far.😱 Yet I'm incredibly excited about it and so should you. Why? <br/>
 > (1/9)<i className="fas fa-reel"></i><br/>
 > [See <i className="fab fa-twitter"></i> by @etiennedi](https://twitter.com/etiennedi/status/1544689150217027584?ref_src=twsrc%5Etfw)
 
@@ -201,12 +201,12 @@ If you wanted to retrieve, modify or delete a data object by its ID, you would j
 ### Endpoint changes
 This issue is now fixed with a **change to the API endpoints**. To get, modify and delete a data object, you now need to provide both the ID and the class name.
 
-The following object functions are changed: **GET**, **HEAD**, **PUT**, **PATCH** and **DELETE**. 
+The following object functions are changed: **GET**, **HEAD**, **PUT**, **PATCH** and **DELETE**.
 
 #### Object change
 New
 ```
-/v1/objects/{className}/{id}
+/v1/objects/{ClassName}/{id}
 ```
 Deprecated
 ```
@@ -216,7 +216,7 @@ Deprecated
 #### References change
 New
 ```
-v1/objects/{className}/{id}/references/{propertyName}
+v1/objects/{ClassName}/{id}/references/{propertyName}
 ```
 Deprecated
 ```
@@ -251,4 +251,4 @@ Here is a little guide on [how to write great bug reports](/developers/weaviate/
 ## Enjoy
 We hope you enjoy the most reliable and observable Weaviate release yet!
 
-Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [Github](https://github.com/weaviate/weaviate).
+Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [GitHub](https://github.com/weaviate/weaviate).
