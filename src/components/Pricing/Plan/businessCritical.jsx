@@ -17,7 +17,7 @@ export default function PricingBusinessCritical() {
         <li>
           <div className={styles.checkIcon}></div>
           <span>
-            $0.175 per 1M vector dimensions stored <br /> or queried per month
+            $0.175 per 1M vector  dimensions <br /> stored or queried per month
           </span>
         </li>
         <li>

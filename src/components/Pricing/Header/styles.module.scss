@@ -2,14 +2,15 @@
   color: var(--ifm-link-color);
 }
 p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-size: 1.1rem;
   margin: 0;
+  margin-bottom: -0.2em;
 }
 .box {
   text-align: center;
   margin: auto;
   width: 85%;
+  margin-bottom: -1.5rem;
 }
 
 .buttons {
@@ -28,11 +29,6 @@ p {
 }
 
 [data-theme='dark'] {
-  .logos {
-    .aws {
-      background-image: url('../../../../static/img/site/aws.png');
-    }
-  }
   .textGradient {
     background: -webkit-linear-gradient(45deg, #20e220 60%, #ffff00);
     -webkit-background-clip: text;
@@ -47,10 +43,14 @@ p {
     }
   }
   .saasPng {
-    background-image: url('../../../../static/img/site/saas.png');
+    background-image: url('/img/site/saas.png');
   }
   .hybridPng {
-    background-image: url('../../../../static/img/site/hybrid-saas.png');
+    background-image: url('/img/site/hybrid-saas.png');
+  }
+
+  .opacity {
+    box-shadow: none;
   }
 }
 
@@ -60,7 +60,7 @@ p {
   height: 100px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/saas-light.png');
+  background-image: url('/img/site/saas-light.png');
 }
 
 .hybridPng {
@@ -69,54 +69,22 @@ p {
   height: 100px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/hybrid-saas-light.png');
-}
-
-.logos {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 10px;
-  padding: 1rem;
-  .google {
-    display: flex;
-    width: 40px;
-    height: 40px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url('../../../../static/img/site/google_cloud-icon.svg');
-  }
-  .aws {
-    display: flex;
-    width: 40px;
-    height: 40px;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url('../../../../static/img/site/aws-dark.png');
-  }
-  .azure {
-    display: flex;
-    width: 40px;
-    height: 40px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url('../../../../static/img/site/azure.png');
-  }
+  background-image: url('/img/site/hybrid-saas-light.png');
 }
 
 .border {
-  min-height: 280px;
-  width: 38%;
+  width: 35%;
 
   @media screen and (max-width: 680px) {
     min-height: 150px;
-    width: 95%;
+    width: 100%;
   }
+}
+
+.opacity {
+  opacity: 0.6;
+  box-shadow: 0px 0px 10px 10px rgb(0, 153, 139, 0.1);
+  border-radius: 0.75rem;
 }
 
 .outline {
@@ -125,16 +93,17 @@ p {
 }
 
 .btn {
-  box-shadow: 0px 0px 10px 10px rgb(233, 233, 233);
   border-radius: 0.75rem;
   background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 280px;
-  padding: 5px;
+  min-height: 260px;
   cursor: pointer;
+  padding: 0 1.2rem 0.5rem;
+  overflow: hidden;
+  text-align: center;
 
   &:hover {
     text-decoration: none;
@@ -142,7 +111,7 @@ p {
 }
 
 .textGradient {
-  background: -webkit-linear-gradient(45deg, #20e220 60%, #00b7e2);
+  background: -webkit-linear-gradient(45deg, #20e220 60%, #00b7e2 );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

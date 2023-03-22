@@ -7,6 +7,9 @@
     auto-fill,
     minmax(var(--auto-grid-min-size), 1fr)
   );
+  @media screen and (max-width: 860px) {
+    grid-template-columns: 1fr
+  }
   grid-gap: 2rem;
   p {
     font-size: 1rem;
@@ -46,7 +49,9 @@
   }
 }
 
+
 [data-theme='light'] {
+
   .buttonOutline {
     color: rgba(46, 49, 143);
   }

@@ -17,7 +17,7 @@ export default function PricingStandard() {
         <li>
           <div className={styles.checkIcon}></div>
           <span>
-            $0.050 per 1M vector dimensions stored <br /> or queried per month
+            $0.050 per 1M vector dimensions <br /> stored or queried per month
           </span>
         </li>
         <li>
@@ -41,8 +41,7 @@ export default function PricingStandard() {
         <li>
           <div className={styles.checkIcon}></div>
           <span>
-            Severity 1 - max 1h Severity <br /> 2 max 4h Severity <br /> 3
-            Severity 3 max 1bd
+            Severity 1 - max 1h Severity <br /> 2 max 4h Severity <br /> 3 Severity 3 max 1bd
           </span>
         </li>
         <li>

@@ -1,13 +1,14 @@
 import React from 'react';
 import './styles.scss';
 import { useState, useEffect } from 'react';
-import ToggleSwitch from '../../ToggleSwitch';
-import Slider from 'react-rangeslider';
+import ToggleSwitch from '/src/components/ToggleSwitch';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
-export default function PricingCalculator() {
-  const [embeddingSize, setEmbeddingSize] = useState(100);
-  const [amountOfDataObjs, setAmountOfDataObjs] = useState(0);
-  const [queriesPerMonth, setQueriesPerMonth] = useState(0);
+export default function PricingCalculator({props}) {
+  const [embeddingSize, setEmbeddingSize] = useState(128);
+  const [amountOfDataObjs, setAmountOfDataObjs] = useState(100000);
+  const [queriesPerMonth, setQueriesPerMonth] = useState(100000);
   const [slaTier, setSlaTier] = useState('standard');
   const [highAvailability, setHighAvailability] = useState(false);
   const [price, setPrice] = useState({});
@@ -31,9 +32,55 @@ export default function PricingCalculator() {
     queriesPerMonth,
   ]);
 
+  useEffect(() => {
+    const params =  new URLSearchParams(window.location.search)
+    if(params.get('sla')) setSlaTier(params.get('sla'));
+    if(params.get('dimensions')) setEmbeddingSize(params.get('dimensions'));
+    if(params.get('object_count')) setAmountOfDataObjs(params.get('object_count'));
+    if(params.get('monthly_queries')) setQueriesPerMonth(params.get('monthly_queries'));
+    if(params.get('high_availability')) setHighAvailability(params.get('high_availability') === 'true' ? true : false);
+  },[])
+
+  const handleLabel = (value) => {
+    let valueFormated = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    return valueFormated;
+  }
+
+  const handleChangeEmbeddingSize = (e) => {
+    let clearValue = e.target.value.replace('.','').replace(',','');
+    clearValue = clearValue.replace('.','').replace(',','');
+    setEmbeddingSize(clearValue)
+  };
+
+  const handleChangeAmountOfDataObjs = (e) => {
+    let clearValue = e.target.value.replace('.','').replace(',','');
+    clearValue = clearValue.replace('.','').replace(',','');
+    setAmountOfDataObjs(clearValue)
+  };
+
+  const handleChangeQueriesPerMonth = (e) => {
+    let clearValue = e.target.value.replace('.','').replace(',','');
+    clearValue = clearValue.replace('.','').replace(',','');
+    setQueriesPerMonth(clearValue)
+  };
+
+
   const onHighAvailabilityChange = (checked) => {
     setHighAvailability(checked);
   };
+
+  const redirectWithPrice = async () => {
+    const data = {
+      long_url: `https://weaviate.io/pricing?dimensions=${embeddingSize}&object_count=${amountOfDataObjs}&monthly_queries=${queriesPerMonth}&sla=${slaTier}&high_availability=${highAvailability ? 'true' : 'false'}`,
+      domain: "link.weaviate.io"
+    }
+    await fetch('https://us-central1-semi-production.cloudfunctions.net/create-bitly', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
+    .then(res => console.log('success'))
+    .catch(err => console.log('error',err))
+  }
 
   return (
     <div className="pricingCalculator">
@@ -63,11 +110,13 @@ export default function PricingCalculator() {
             />
             <div className="value">
               <input
+                className='labelResult'
                 type="text"
-                placeholder={embeddingSize}
+                maxLength='11'
+                placeholder={handleLabel(embeddingSize)}
                 name="embeddingSize"
-                value={embeddingSize.valueAsNumber}
-                onChange={(e) => parseInt(setEmbeddingSize(e.target.value))}
+                value={handleLabel(embeddingSize)}
+                onChange={handleChangeEmbeddingSize}
               />
             </div>
           </div>
@@ -86,11 +135,13 @@ export default function PricingCalculator() {
             />
             <div className="value">
               <input
+                className='labelResult'
                 type="text"
-                placeholder={amountOfDataObjs}
+                maxLength='11'
+                placeholder={handleLabel(amountOfDataObjs)}
                 name="amountOfDataObjs"
-                value={amountOfDataObjs.valueAsNumber}
-                onChange={(e) => parseInt(setAmountOfDataObjs(e.target.value))}
+                value={handleLabel(amountOfDataObjs)}
+                onChange={handleChangeAmountOfDataObjs}
               />
             </div>
           </div>
@@ -103,27 +154,24 @@ export default function PricingCalculator() {
               min={0}
               max={250000000}
               value={queriesPerMonth}
-              onChange={(queriesPerMonth) =>
-                setQueriesPerMonth(queriesPerMonth)
-              }
+              onChange={(queriesPerMonth) => setQueriesPerMonth(queriesPerMonth)}
             />
             <div className="value">
               <input
+                className='labelResult'
                 name="queriesPerMonth"
                 type="text"
-                placeholder={queriesPerMonth}
-                value={queriesPerMonth.valueAsNumber}
-                onChange={(e) => parseInt(setQueriesPerMonth(e.target.value))}
+                maxLength='11'
+                placeholder={handleLabel(queriesPerMonth)}
+                value={handleLabel(queriesPerMonth)}
+                onChange={handleChangeQueriesPerMonth}
               />
             </div>
           </div>
           <div className="selectContainer">
             <label>SLA Tier:</label>
             <div className="select">
-              <select
-                value={slaTier}
-                onChange={(event) => setSlaTier(event.target.value)}
-              >
+              <select value={slaTier} onChange={(event) => setSlaTier(event.target.value)}>
                 <option value="standard">Standard</option>
                 <option value="enterprise">Enterprise</option>
                 <option value="businessCritical">Business Critical</option>
@@ -135,7 +183,7 @@ export default function PricingCalculator() {
             <div className="highAva">
               <label htmlFor="highAvailability">High Availability:</label>{' '}
             </div>
-            <div className="switchContainer">
+            <div className='switchContainer'>
               <ToggleSwitch
                 id="highAvailability"
                 checked={highAvailability}
@@ -146,10 +194,8 @@ export default function PricingCalculator() {
               {price.error === false && (
                 <>
                   <span>Your estimated price</span>{' '}
-                  <div className="priceFormat">
-                    <p>
-                      $ <span className="test">{price.priceStr}</span> /mo
-                    </p>
+                  <div className='priceFormat'>
+                    <p>$ <span className='test'>{price.priceStr}</span> /mo</p>
                   </div>
                 </>
               )}
@@ -161,6 +207,11 @@ export default function PricingCalculator() {
             </div>
           </div>
         </div>
+        <div className={'buttons'}>
+            <div className={'buttonOutline'} onClick={redirectWithPrice}>
+              Share this pricing
+            </div>
+          </div>
       </div>
     </div>
   );
