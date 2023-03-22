@@ -11,7 +11,7 @@ Season of Docs gives technical writers the opportunity to gain experience in ope
 
 This page contains Weaviate's proposal for Season of Docs 2023. If our proposal is accepted by Google, we will initially look within Weaviate's user community to identify those with technical writing skills to help with the projects described below.
 
-## Proposal title: Help automate our code examples
+## Proposal title: Help us build tests for our code examples
 
 ### About Weaviate
 Weaviate (current version v1.18.1, first release 2019) is an open-source vector database that enables users to harness the power of modern machine learning models, such as language models.
