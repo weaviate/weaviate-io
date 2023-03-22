@@ -23,7 +23,7 @@ export default function PricingPlan() {
           <PricingEnterprise />
           <PricingBusinessCritical />
         </div>
-        <PricingSandbox />
+        <PricingSandBox />
       </div>
       <div className={styles.buttons}>
         <div className={styles.buttonGradient}>
