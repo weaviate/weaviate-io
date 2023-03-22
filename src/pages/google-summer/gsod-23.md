@@ -20,16 +20,16 @@ Weaviate stores data objects and vector embeddings from ML-models, helping our u
 
 Read more about Weaviate [here](/developers/weaviate/).
 
-### Users and contributors
+### About our users and contributors
 Weaviate caters to industry-agnostic data challenges, attracting users from diverse fields.
 
 Weaviate has been applied in areas such as product search and categorization in e-commerce, video captioning, knowledge bases, image-text search, and scientific paper analysis. It has also been utilized to extend the capabilities of large language models by providing them with grounded data through Weaviate to build platforms for tasks such as analyzing code bases.
 
 Current contributors to Weaviate include developers and data scientists, who have for example contributed to use a new type of ML model with Weaviate. User contributions to our documentation and supplementary documentation through personal blogs and platforms have also been valuable.
 
-### About the project
+## About the project
 
-#### The project's problem
+### The problem
 
 We have a [Weaviate documentation](/developers/weaviate/) site that is itself maintained as an open-source project ([GitHub](https://github.com/weaviate/weaviate-io)).
 
@@ -39,7 +39,7 @@ One key challenge for us is keeping our documentation up-to-date with the fast-p
 
 To address this, we seek to develop processes for testing our code examples in our documentation, which will immensely improve the quality and consistency of our code examples.
 
-#### The project's scope
+### Project scope
 
 In this project, the technical writer will collaborate with the Documentation team to:
 
@@ -47,30 +47,23 @@ In this project, the technical writer will collaborate with the Documentation te
 
 Specific project tasks include:
 
-* Review the Weaviate documentation to catalog aspects of existing code examples, encompassing:
-    * The programming languages used, and
+* Review the documentation to catalog:
     * The data sets being queried.
 * Coordinate with the Weaviate team to establish a testing strategy, which includes:
     * Reviewing and consolidating the datasets used for example code,
-    * Specifying (and potentially creating) Weaviate instances to be used for testing,
-    * Developing a workflow including suitable testing triggers, such as a pre-commit hook or a continuous integration action.
-* Develop guidelines and best practices for writing tests to ensure consistency and maintainability throughout the documentation.
+    * Building Weaviate instances to be used for testing,
+    * Developing a workflow including suitable testing triggers (e.g a pre-commit hook or continuous integration action).
+* Develop guidelines and best practices for writing tests.
 * Compose clear and concise documentation explaining how to conduct such tests.
-* Update the existing code examples in the Weaviate documentation by applying the newly established testing methodology, guaranteeing that they are up-to-date, accurate, and functional.
+* Update existing code examples by applying the newly established testing methodology.
 
 :::note Support provided
 The technical writer is not expected to complete the tasks mentioned above by themselves, particularly those requiring potentially challenging programming work such as implementing code for tests.
 
 Instead, they will collaborate with the Weaviate team to outline the tests and subsequently document the guidelines and processes for utilizing these tests in the future.
-
-They will also be supported along the way, by being provided with guidance and collaboration throughout the process.
 :::
 
-#### Measuring your project’s success
-
-A successful completion will lead to benefits such as immediate identification and therefore opportunities to reduce errors. In the medium term, this will also lead to faster turnaround for issue resolution and identification of out-of-date code examples, for example using deprecated patterns.
-
-This will benefit the Weaviate team at large, as well as our users who can have further confidence in our code.
+### Measuring the project success
 
 To measure the project success, we will track:
 * Test coverage,
@@ -82,7 +75,9 @@ More specifically, we seek:
 * A 50% reduction in the number of reported issues related to code examples in the documentation within three months of implementing the testing methodology.
 * Adoption of the newly developed guidelines and best practices for writing tests by the Documentation team, aiming for 100% compliance within two months of their introduction.
 
-#### Timeline
+A successful completion will benefit the Weaviate team and the user base by immediate identification and therefore opportunities to reduce errors. In the medium term, this will also lead to faster turnaround for issue resolution and identification of out-of-date code examples, for example using deprecated patterns.
+
+### Timeline
 
 The project will start in April 2023 and end in November 2023. The first month will be spend on hiring the technical writer and May will be dedicated to orientation.
 
@@ -93,14 +88,14 @@ The project will start in April 2023 and end in November 2023. The first month w
 * October: Gather feedback from community and incorporate feedback in docs
 * November: Complete the project
 
-#### Project budget
+### Project budget
 
 * Technical writer: $6000
 * Volunteer stipend: $500
 * Videos to support documentation/tutorials & to share to community: $500
 * Total: $7000
 
-#### What skills would a technical writer need to work on this project?
+### What skills would a technical writer need to work on this project?
 
 Must have:
 * Familiarity with Git + GitHub (or willingness to learn).
@@ -113,7 +108,7 @@ Nice to have:
 * Familiarity with the concept of software testing.
 * Familiarity with Weaviate, natural language processing or deep learning.
 
-#### Volunteers & Mentors
+### Volunteers & Mentors
 
 * [JP Hwang](https://www.linkedin.com/in/jp-hwang/) as mentor from Weaviate
 * TBD
