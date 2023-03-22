@@ -14,8 +14,8 @@ export default function PricingFAQ() {
 
       <div className={styles.boxGrid}>
         {faq.map((item, index) => {
-          if(!more && index > 1){
-            return
+          if (!more && index > 1) {
+            return;
           }
           return (
             <div key={item.question} className={styles.box}>
@@ -38,16 +38,10 @@ export default function PricingFAQ() {
           );
         })}
       </div>
-      {!more ? (
+      {!more && (
         <div className={styles.buttons}>
           <div className={styles.buttonOutline} onClick={() => setMore(true)}>
             Load more
-          </div>
-        </div>
-      ) : (
-        <div className={styles.buttons}>
-          <div className={styles.buttonOutline} onClick={() => setMore(false)}>
-            Show less
           </div>
         </div>
       )}

@@ -80,7 +80,7 @@ export default function ContactUsForm() {
           />
         </div>
         <div className={styles.selectWrapper}>
-          <label htmlFor="foundHow">How did you hear about Weaviate?</label>
+          <label htmlFor="foundHow">Choose:</label>
 
           <select
             value={selected}
