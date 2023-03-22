@@ -1,82 +1,88 @@
 ---
 title: Google Season of Docs 2023
-og: /img/og/google-summmer/gsod.jpg
+image: /img/og/google-summmer/gsod.jpg
 ---
 
-# Google Season of Docs 2023 - Proposal
+## Google Season of Docs 2023 - Proposal
 
-This is a technical writing proposal for participating in [Google Season of Docs 2023](https://developers.google.com/season-of-docs). Season of Docs gives technical writers the opportunity to gain experience in open source by contributing to documentation.
+This is a technical writing proposal for participating in [Google Season of Docs 2023](https://developers.google.com/season-of-docs).
 
-This page contains Weaviate's proposal to participate in Season of Docs 2023. If our proposal is accepted by Google, we will initially look within Weaviate's user community to identify those with technical writing skills to help with the projects described below.
+Season of Docs gives technical writers the opportunity to gain experience in open source by contributing to documentation.
 
-Technical writers interested in working on this project should send an email to careers AT weaviate.io, **before May 1st**. Please include links to your technical writing work or portfolio/résumé/CV.
+This page contains Weaviate's proposal for Season of Docs 2023. If our proposal is accepted by Google, we will initially look within Weaviate's user community to identify those with technical writing skills to help with the projects described below.
 
-# **Proposal Title - Help automate our code examples**
+## Proposal title: Help automate our code examples
 
-## **About Weaviate**
-Weaviate is an open-source vector database. It allows our users to extend what they can do with modern machine learning models such as language models.
+### About Weaviate
+Weaviate (current version v1.18.1, first release 2019) is an open-source vector database that enables users to harness the power of modern machine learning models, such as language models.
 
-Weaviate can store data objects and vector embeddings from ML-models, and scale seamlessly into billions of data objects. Beyond search, Weaviate's next-gen vector database can power a wide range of innovative apps, including vector and hybrid searches, as well as using a generative model in combination with Weaviate.
-
-Over the course of the last few years, we have seen our community grow rapidly, including community members as well as community contribution.
-
-### **The problem that Weaviate solves**
-Machine learning models such as language models represent data as high-dimensional vectors, also called embeddings. One challenge with using embeddings is that the volume with which they are generated to represent existing data often necessitates an ability to search through them quickly and accurately. Yet, traditional databases are not necessarily well-suited this purpose.
-
-Weaviate is such a vector database which can address this problem. With vector databases you can efficiently run searching, ranking and recommendation algorithms. Therefore, vector databases became the backbone of ML deployments in industry. Weaviate is a such a vector database & search engine that enables combining vector search with structured filtering. Weaviate can be used with out-of-the-box or custom trained ML models to do semantic search, one-shot classification, question answering, NER, multi-modal search, and much more, on a large scale.
+Weaviate stores data objects and vector embeddings from ML-models, helping our user scale the impact and power of these models into production. Weaviate enables efficient searching, ranking, and recommendation algorithms, making them the foundation of ML deployments across various industries. It can be used with pre-built or custom-trained ML models to perform semantic search, one-shot classification, question answering, NER, multi-modal search, and much more, on a large scale.
 
 Read more about Weaviate [here](/developers/weaviate/).
 
-### **Users and contributors**
-Weaviate can be used to solve industry-agnostic data problems, so our current users come from multiple disciplines. We have users and companies apply Weaviate for product search and categorization in e-commerce, video captions, knowledge bases, image-text search, scientific papers and those who look to extend the use of large language models by using Weaviate to provide it with grounded data.
+### Users and contributors
+Weaviate caters to industry-agnostic data challenges, attracting users from diverse fields.
 
-Current contributors to Weaviate are mainly people who [make their own Weaviate module](/developers/contributor-guide/weaviate-modules/how-to-build-a-new-module) (for example to use a new type of ML model with Weaviate). We have also had user contributions to our documentation, and contributions to supplementary documentation through their own blogs and platforms.
+Weaviate has been applied in areas such as product search and categorization in e-commerce, video captioning, knowledge bases, image-text search, and scientific paper analysis. It has also been utilized to extend the capabilities of large language models by providing them with grounded data through Weaviate to build platforms for tasks such as analyzing code bases.
 
-## **About the project**
+Current contributors to Weaviate include developers and data scientists, who have for example contributed to use a new type of ML model with Weaviate. User contributions to our documentation and supplementary documentation through personal blogs and platforms have also been valuable.
 
-### **The project's problem**
+### About the project
+
+#### The project's problem
 
 We have a [Weaviate documentation](/developers/weaviate/) site that is itself maintained as an open-source project ([GitHub](https://github.com/weaviate/weaviate-io)).
 
-Our documentation includes extensive code examples in 6 different languages (`Python`, `Javascript`, `Java`, `Go`, `shell` and `GraphQL`) to cater for our wide user base. As with many documentation sites, our users often use our code examples as a starting point from which they continue their journey in Weaviate.
+Our documentation includes extensive code examples in many languages (`Python`, `Javascript`, `Java`, `Go`, `shell` and `GraphQL`).
 
-One key challenge for us comes from being a startup with fast-paced development who also provide code examples in multiple languages. This means that our code examples might go out of date due to changes to the Weaviate code base, and not many of our maintainers are sufficiently fluent in all languages to pick up errors.
+One key challenge for us is keeping our documentation up-to-date with the fast-paced development of the codebase, especially as these code examples are in multiple languages. The result has been that unfortunately in some cases our users work with either outdated, or worse - broken code examples.
 
-This means that unfortunately in some cases our users work with either outdated, or worse - broken code examples.
+To address this, we seek to develop processes for testing our code examples in our documentation, which will immensely improve the quality and consistency of our code examples.
 
-To address this, we seek to develop a method of testing our code examples as we would our actual code base.
+#### The project's scope
 
-### **The project's scope**
+In this project, the technical writer will collaborate with the Documentation team to:
 
-For this project the technical writer will:
-
-* Improve the reliability and accuracy of the Weaviate documentation by working with the Documentation team to develop a method for testing code examples (Python, JavaScript, Java, Go, shell, and GraphQL) as part of the documentation maintenance process.
+* Develop and implement a method for testing code examples (Python, JavaScript, Java, Go, shell, and GraphQL) as an integral part of the documentation process.
 
 Specific project tasks include:
 
-* Analyze the current Weaviate documentation and catalog aspects of current code examples. This includes:
-    * Programming languages used, as well as
-    * The data sets currently being queried.
-* Collaborate with the Weaviate team to identify a strategy for testing, including:
-    * Weaviate instances to be queried for tests, and
-    * Appropriate test triggers, whether it be a pre-commit hook, or a continuous integration action.
-* Work with the Documentation team to develop a testing methodology for code examples, including test cases and an automated testing process that integrates with the documentation maintenance workflow.
-* Create guidelines and best practices for writing tests, to ensure consistency and maintainability across the documentation.
-* Write clear and concise documentation covering how to perform such tests.
-* Update the existing code examples in the Weaviate documentation, applying the new testing methodology and ensuring that they are up-to-date, accurate, and functional.
+* Review the Weaviate documentation to catalog aspects of existing code examples, encompassing:
+    * The programming languages used, and
+    * The data sets being queried.
+* Coordinate with the Weaviate team to establish a testing strategy, which includes:
+    * Reviewing and consolidating the datasets used for example code,
+    * Specifying (and potentially creating) Weaviate instances to be used for testing,
+    * Developing a workflow including suitable testing triggers, such as a pre-commit hook or a continuous integration action.
+* Develop guidelines and best practices for writing tests to ensure consistency and maintainability throughout the documentation.
+* Compose clear and concise documentation explaining how to conduct such tests.
+* Update the existing code examples in the Weaviate documentation by applying the newly established testing methodology, guaranteeing that they are up-to-date, accurate, and functional.
 
-The technical writer would not be expected to carry out all of the above, especially some of the tasks which may require more programming work, such as implementing code to perform tests. The expectation will be that they will work with the Weaviate team to outline the tests, and then document the guidelines and processes for using these tests going forward.
+:::note Support provided
+The technical writer is not expected to complete the tasks mentioned above by themselves, particularly those requiring potentially challenging programming work such as implementing code for tests.
 
-### **Measuring your project’s success**
+Instead, they will collaborate with the Weaviate team to outline the tests and subsequently document the guidelines and processes for utilizing these tests in the future.
 
-We will measure success by the following metrics.
-1. Test coverage: The percentage of code examples that include corresponding tests.
-1. Test documentation: Creation of documentation for which
+They will also be supported along the way, by being provided with guidance and collaboration throughout the process.
+:::
 
-The project will be classified successful upon completion, if:
-* Tests are written
+#### Measuring your project’s success
 
-### **Timeline**
+A successful completion will lead to benefits such as immediate identification and therefore opportunities to reduce errors. In the medium term, this will also lead to faster turnaround for issue resolution and identification of out-of-date code examples, for example using deprecated patterns.
+
+This will benefit the Weaviate team at large, as well as our users who can have further confidence in our code.
+
+To measure the project success, we will track:
+* Test coverage,
+* Reduction in reported issues, and
+* Adoption of new processes.
+
+More specifically, we seek:
+* Test coverage of at least 80% of the existing code examples across the Weaviate documentation.
+* A 50% reduction in the number of reported issues related to code examples in the documentation within three months of implementing the testing methodology.
+* Adoption of the newly developed guidelines and best practices for writing tests by the Documentation team, aiming for 100% compliance within two months of their introduction.
+
+#### Timeline
 
 The project will start in April 2023 and end in November 2023. The first month will be spend on hiring the technical writer and May will be dedicated to orientation.
 
@@ -87,35 +93,35 @@ The project will start in April 2023 and end in November 2023. The first month w
 * October: Gather feedback from community and incorporate feedback in docs
 * November: Complete the project
 
-### **Project budget**
+#### Project budget
 
 * Technical writer: $6000
 * Volunteer stipend: $500
 * Videos to support documentation/tutorials & to share to community: $500
 * Total: $7000
 
-### **What skills would a technical writer need to work on this project?**
+#### What skills would a technical writer need to work on this project?
 
 Must have:
-* Familiarity with GitHub (or willingness to work through GitHub tutorials).
+* Familiarity with Git + GitHub (or willingness to learn).
 * The ability to work with a team and openness to feedback.
-* A positive attitude and openness to learning.
+* A positive attitude and enthusiasm for learning.
 
 Nice to have:
 * Familiarity with writing in Markdown (or willingness to work through markdown tutorials).
 * Proficiency with at least one of (Python, JavaScript, Java or Go).
+* Familiarity with the concept of software testing.
 * Familiarity with Weaviate, natural language processing or deep learning.
 
-### **Volunteers & Mentors**
+#### Volunteers & Mentors
 
 * [JP Hwang](https://www.linkedin.com/in/jp-hwang/) as mentor from Weaviate
 * TBD
 
-### **Contact info**
+### Contact info
 
-Technical writers interested in working on this project should send an email to careers AT weaviate.io, **before May 1st**. Please include links to your technical writing work or portfolio/résumé/CV.
+Technical writers interested in working on this project should send an email to careers AT weaviate.io, **before May 1st, 2023**. Please include links to your technical writing work or portfolio/résumé/CV.
 
-
-## **Additional information**
+## Additional information
 
 Join our community [slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to say hello, get to know the community or ask questions.
