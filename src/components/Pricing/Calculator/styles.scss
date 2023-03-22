@@ -23,7 +23,7 @@
 
 .slider {
   display: grid;
-  grid-template-columns: 2fr 4fr 50px;
+  grid-template-columns: 2fr 4fr 70px;
   gap: 1rem;
   align-items: center;
   margin-bottom: 40px;
@@ -52,13 +52,14 @@
   input {
     appearance: none;
     padding: 1rem;
-    border: transparent;
     background-color: transparent;
     border-radius: 12px;
     padding: 0.8125rem 1.25rem;
     &:focus-visible {
       outline: none;
     }
+    border: 1px solid #EAEAE4;
+    width: 150px;
   }
 }
 
