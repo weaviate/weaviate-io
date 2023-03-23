@@ -132,9 +132,14 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   min-height: 280px;
   padding: 5px;
   cursor: pointer;
+
+  p {
+    padding: 0 45px;
+  }
 
   &:hover {
     text-decoration: none;
