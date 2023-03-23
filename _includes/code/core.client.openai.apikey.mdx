@@ -25,12 +25,12 @@ const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',
+    host: 'some-endpoint.weaviate.network',
     // highlight-start
     // Replace with your API key
     headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},
     // highlight-end
-  }); 
+  });
 ```
 
 </TabItem>
@@ -52,7 +52,7 @@ func main() {
         Scheme: "https",
         // highlight-start
         // Replace with your API key
-        Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"} 
+        Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"}
         // highlight-end
     }
 
