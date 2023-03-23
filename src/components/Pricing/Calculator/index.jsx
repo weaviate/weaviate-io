@@ -6,9 +6,9 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 export default function PricingCalculator({props}) {
-  const [embeddingSize, setEmbeddingSize] = useState(128);
-  const [amountOfDataObjs, setAmountOfDataObjs] = useState(100000);
-  const [queriesPerMonth, setQueriesPerMonth] = useState(100000);
+  const [embeddingSize, setEmbeddingSize] = useState(100);
+  const [amountOfDataObjs, setAmountOfDataObjs] = useState(0);
+  const [queriesPerMonth, setQueriesPerMonth] = useState(0);
   const [slaTier, setSlaTier] = useState('standard');
   const [highAvailability, setHighAvailability] = useState(false);
   const [price, setPrice] = useState({});
