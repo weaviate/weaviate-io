@@ -25,16 +25,16 @@ const weaviate = require('weaviate-client');
 // if you use the WCS
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',
-  }); 
+    host: 'some-endpoint.weaviate.network',
+  });
 
-// or 
+// or
 
 // if you use Docker-compose
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
-}); 
+});
 
 client
   .schema
@@ -100,8 +100,8 @@ public class App {
   public static void main(String[] args) {
     // if you use the WCS
     Config config = new Config("https", "some-endpoint.weaviate.network/");
-    
-    // or 
+
+    // or
 
     // if you use Docker-compose
     Config config = new Config("http", "localhost:8080");
