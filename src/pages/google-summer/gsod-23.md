@@ -57,6 +57,7 @@ Specific project tasks include:
 * Compose clear and concise documentation explaining how to conduct such tests.
 * Update existing code examples by applying the newly established testing methodology.
 * Work with the Weaviate team to develop 2-3 new tutorials based on existing code examples, including implementing tests to follow the newly established testing methodology.
+<!-- * Nice to have: linters/formatters for all language running automatically -->
 
 :::note Support provided
 The technical writer is not expected to complete the tasks mentioned above by themselves, particularly those requiring potentially challenging programming work such as implementing code for tests.
