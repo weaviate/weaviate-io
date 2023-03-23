@@ -73,8 +73,8 @@ const weaviate = require('weaviate-client');
 // update the endpoint here!
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',
-  }); 
+    host: 'some-endpoint.weaviate.network',
+  });
 
 // we will create the class "Author" and the properties
 // from the basics section of this guide
@@ -237,8 +237,8 @@ public class App {
   public static void main(String[] args) {
     // if you use the WCS
     Config config = new Config("https", "some-endpoint.weaviate.network/");
-    
-    // or 
+
+    // or
 
     // if you use Docker-compose
     Config config = new Config("http", "localhost:8080");
@@ -278,7 +278,7 @@ public class App {
           .build());
       } })
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {
@@ -296,7 +296,7 @@ public class App {
 
     // print the schema
     System.out.println(result.getResult());
-    
+
   }
 }
 ```

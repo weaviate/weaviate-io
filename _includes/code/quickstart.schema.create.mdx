@@ -29,7 +29,7 @@ class_obj = {
             "dataType": ["text"],
             "description": "The category",
             "name": "category",
-        },        
+        },
     ],
     "vectorizer": "text2vec-openai",
 }
@@ -53,8 +53,8 @@ const weaviate = require('weaviate-client');
 // update the endpoint!
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
-  }); 
+    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  });
 
 // we will create the class "Question"
 
@@ -76,7 +76,7 @@ let classObj = {
             "dataType": ["string"],
             "description": "The category",
             "name": "category",
-        },        
+        },
     ],
     "vectorizer": "text2vec-openai",
 }
@@ -143,7 +143,7 @@ func main() {
                 DataType:    []string{"string"},
                 Description: "The answer",
                 Name:        "answer",
-            },            
+            },
         },
     }
 
@@ -193,7 +193,7 @@ public class App {
           .dataType(new ArrayList(){ { add(DataType.STRING); } })
           .description("The question")
           .name("question")
-          .build());        
+          .build());
         add(Property.builder()
           .dataType(new ArrayList(){ { add(DataType.STRING); } })
           .description("The answer")
@@ -201,7 +201,7 @@ public class App {
           .build());
       } })
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {
@@ -217,7 +217,7 @@ public class App {
 
     // print the schema
     System.out.println(result.getResult());
-    
+
   }
 }
 ```
@@ -242,11 +242,11 @@ $ curl \
             "dataType": ["string"],
             "description": "The answer",
             "name": "answer"
-        }        
+        }
     ]
 }' \
 https://some-endpoint.weaviate.network/v1/schema
-    
+
 curl https://some-endpoint.weaviate.network/v1/schema
 ```
 
