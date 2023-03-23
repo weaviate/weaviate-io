@@ -123,38 +123,22 @@ func main() {
     Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"},
   }
   client := weaviate.New(cfg)
+  ctx := context.Background()
 
-  // highlight-start
-  // instruction for the generative module
-  generateTask := "\"Explain why these magazines or newspapers are about finance\""
-  // highlight-end
-
-  fields := []graphql.Field{
-    {Name: "name"},
-    // highlight-start
-    {
-      Name: "_additional",
-      Fields: []graphql.Field{
-        {
-          Name: "generate(groupedResult:{ task: " + generateTask + " })",
-          Fields: []graphql.Field{
-            {Name: "groupedResult"},
-          },
-        },
-      },
-    },
-    // highlight-end
-  }
+  name := graphql.Field{Name: "name"}
 
   concepts := []string{"magazine or newspaper about finance"}
   nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts)
 
-  ctx := context.Background()
+  // highlight-next-line
+  gs := graphql.NewGenerativeSearch().GroupedResult("Explain why these magazines or newspapers are about finance")
 
   result, err := client.GraphQL().Get().
     WithClassName("Publication").
-    WithFields(fields...).
+    WithFields(name).
+    // highlight-next-line
+    WithGenerativeSearch(gs).
     WithNearText(nearText).
     WithLimit(5).
     Do(ctx)
@@ -191,21 +175,12 @@ public class App {
 
     // highlight-start
     // instruction for the generative module
-    String generateTask = "\"Explain why these magazines or newspapers are about finance\"";
+    GenerativeSearchBuilder generativeSearch = GenerativeSearchBuilder.builder()
+      .groupedResultTask("Explain why these magazines or newspapers are about finance")
+      .build();
     // highlight-end
 
     Field name = Field.builder().name("name").build();
-
-    // highlight-start
-    Field generate = Field.builder()
-      .name("generate(groupedResult:{ task: " + generateTask + " } )")
-      .fields(new Field[]{ Field.builder().name("groupedResult").build() })
-      .build();
-    Field _additional = Field.builder()
-      .name("_additional")
-      .fields(new Field[]{ generate })
-      .build();
-    // highlight-end
 
     NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
       .concepts(new String[]{ "magazine or newspaper about finance" })
@@ -213,8 +188,9 @@ public class App {
 
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName("Publication")
+      .withFields(name)
       // highlight-next-line
-      .withFields(name, _additional)
+      .withGenerativeSearch(generativeSearch)
       .withNearText(nearText)
       .withLimit(5)
       .run();
