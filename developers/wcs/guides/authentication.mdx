@@ -8,25 +8,21 @@ image: og/wcs/user_guides.jpg
 
 For ensure security in a production environment, WCS instances of Weaviate come pre-configured with authentication enabled (except for sandbox instances, where it is optional).
 
-You can authenticate into a WCS instance through the account owner's WCS username and password, or an API key. There is no difference between the two in terms of the available permissions, so it is up to you to choose one that is most appropriate to your workflow.
+You have two options for authenticating into a WCS instance.
+- Using the account owner's **WCS username and password**, or
+- Using an **API key**.
+
+Currently, there is no difference between the two in terms of the available permissions, so it is up to you to choose one that is most appropriate to your workflow.
 
 :::tip Recommendation: Use the API key
-In general, we recommend authenticating with the API key so that your WCS account username and password remains secure.
+Generally, we recommend authenticating with the API key, using a Weaviate client (e.g. Python client).
 :::
 
 ## Instructions
 
 ### Authentication with an API key
 
-To authenticate with Weaviate with an API key, each request header should include:
-
-```json
-Authorization: Bearer {Bearer}
-```
-
-Where `{Bearer}` is the API key.
-
-This can be further abstracted using a Weaviate client, as shown in the code examples below:
+To authenticate with Weaviate with an API key, each request needs to include the key in its header. The easiest way to do this is with a Weaviate client at instantiation, as shown in the code examples below:
 
 :::warning TODO
 Complete code examples
@@ -36,32 +32,54 @@ import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.
 
 <WCSAuthenticationApiKey/>
 
-### Authentication with WCS username and password
+This way, every request made using the client will include the API key.
 
-To authenticate with Weaviate with your WCS username and password, you must obtain an OpenID Connect (OIDC) token, which needs to be then added to each request header as below:
+<details>
+  <summary>Manually adding the key to the header.</summary>
+
+If using a Weaviate client is not possible, you can manually include the API key in the request header as below:
 
 ```json
-Authorization: Bearer {Bearer}
+Authorization: Bearer {YOUR-WEAVIATE-API-KEY}
 ```
 
-As the token will periodically expire, new tokens must be obtained.
+Replacing `{YOUR-WEAVIATE-API-KEY}` with your API key.
 
-To automate this workflow, we strongly recommend that you use your preferred Weaviate client library for username and password authentication. The relevant code examples for authentication are below:
+</details>
 
-:::warning TODO
-Complete code examples
-:::
+### Authentication with WCS username and password
+
+To authenticate with Weaviate with an API key, each request needs to include the an OpenID Connect (OIDC) token in its header. As with the API key-based authentication, the easiest way to do this is with a Weaviate client at instantiation, by providing your WCS username and password as shown below:
 
 import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
 
 <WCSAuthenticationUserPass/>
+
+This way, every request made using the client will include the API key.
+
+<details>
+  <summary>Manually adding the key to the header.</summary>
+
+If using a Weaviate client is not possible, you can manually include the API key in the request header as below.
+
+```json
+Authorization: Bearer {TOKEN}
+```
+
+Replacing `{TOKEN}` with your OIDC token.
+
+Please note that OIDC tokens will periodically expire, so new tokens must be obtained and used. This can be done using the "refresh token", however this is outside the scope of the documentation.
+
+To automate this workflow, we strongly recommend that you use your preferred Weaviate client library for username and password-based authentication.
+
+</details>
 
 ### Resetting credentials
 
 If you would like to reset your credentials for whatever reason, you can do so as follows:
 
 - To revoke your API key, please [contact us directly](https://console.weaviate.cloud/contact).
-- TO reset your WCS password, you can do so [from WCS](https://console.weaviate.cloud/) (click "Sign In" and then "Forgot Password").
+- To reset your WCS password, you can do so [from WCS](https://console.weaviate.cloud/) (click "Sign In" and then "Forgot Password").
 
 ## Read more
 

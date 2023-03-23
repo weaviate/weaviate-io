@@ -1,22 +1,12 @@
 ---
-title: Quickstart tutorial
-sidebar_position: 20
-image: og/wcs/user_guides.jpg
+title: Weaviate, end-to-end
+sidebar_position: 2
+image: og/docs/quickstart-tutorial.jpg
+# tags: ['basics']
 ---
-
-:::warning Todo
-
-Should be the same material basically as the other Quickstart, but:
-
-- Simplify to WCS only
-- Ensure Auth switched on; cover both cases or at least refer to auth page
-- Amend URL patterns where necessary
-
-:::
-
 ## Overview
 
-Here, you will gain a hands-on overview of what you can do with Weaviate and WCS. If you have questions about some of the steps - don't worry, you can dig further into each step in more detail in later [tutorials](../../weaviate/tutorials/index.md).
+Here, you will gain a hands-on overview of what you can do with Weaviate. If you have questions about some of the steps - don't worry, you can dig further into each step in more detail in later [tutorials](../tutorials/index.md).
 
 By the end of this page, you will have:
 - Vectorized the quiz data
@@ -262,10 +252,3 @@ You can choose your direction from here. For example, you can:
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
-
-
-## More resources
-
-import WCSDocsMoreResources from '/_includes/wcs-more-resources-docs.md';
-
-<WCSDocsMoreResources />

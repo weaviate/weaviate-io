@@ -1,15 +1,11 @@
 ---
-title: Installation
+title: Setup
 sidebar_position: 1
 image: og/docs/quickstart-tutorial.jpg
-# tags: ['installation']
 ---
-import Badges from '/_includes/badges.mdx';
 import registerImg from './img/register.jpg';
 import WCSScreenshotImg from './img/WCS-screenshot.png';
 import weaviateClusterImg from './img/weaviate-cluster.jpg';
-
-<Badges/>
 
 ## Overview
 
