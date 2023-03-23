@@ -69,17 +69,35 @@ export default function PricingCalculator({props}) {
     setHighAvailability(checked);
   };
 
-  const redirectWithPrice = async () => {
+  const redirectWithPrice = async (event) => {
     const data = {
-      long_url: `https://weaviate.io/pricing?dimensions=${embeddingSize}&object_count=${amountOfDataObjs}&monthly_queries=${queriesPerMonth}&sla=${slaTier}&high_availability=${highAvailability ? 'true' : 'false'}`,
+      url: `https://weaviate.io/pricing?dimensions=${embeddingSize}&object_count=${amountOfDataObjs}&monthly_queries=${queriesPerMonth}&sla=${slaTier}&high_availability=${highAvailability ? 'true' : 'false'}`,
       domain: "link.weaviate.io"
     }
-    await fetch('https://us-central1-semi-production.cloudfunctions.net/create-bitly', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    })
-    .then(res => console.log('success'))
-    .catch(err => console.log('error',err))
+
+    try {
+      const response = await fetch('https://us-central1-semi-production.cloudfunctions.net/create-bitly', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+          }
+      })
+
+      const url = await response.text();
+      console.log(url)
+      navigator.clipboard.writeText(url);
+
+      // Add code to animate the button here
+      const btnText = event.target.innerText;
+      event.target.innerText = "Coppied to clipboard"
+      setTimeout(
+        ()=> {event.target.innerText = btnText},
+        1000
+      )
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
