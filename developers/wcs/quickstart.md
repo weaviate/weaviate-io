@@ -1,6 +1,6 @@
 ---
-title: Quickstart Tutorial
-sidebar_position: 0
+title: WCS Quickstart
+sidebar_position: 10
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 ---
@@ -12,7 +12,7 @@ import WCScreationProgress from './img/wcs-creation-progress.png';
 
 ## Overview
 
-Welcome to the **Quickstart tutorial** for Weaviate Cloud Services (WCS). Here, you will learn how to get set up on WCS with an instance of Weaviate and to instantiate a Weaviate client to communicate with it.
+Welcome to the **Quickstart guide** for Weaviate Cloud Services (WCS). Here, you will learn how to get set up on WCS with an instance of Weaviate and to instantiate a Weaviate client to communicate with it.
 
 By the time we are finished here, you'll be set up and ready to move onto our Weaviate library Quickstart tutorial if you wish.
 
@@ -64,7 +64,7 @@ In the meantime, let's start installing a client library.
 
 ## Install a client library
 
-You can communicate with Weaviate with the available [client libraries](../client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [RESTful API](../api/rest/index.md).
+You can communicate with Weaviate with the available [client libraries](../weaviate/client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [RESTful API](../weaviate/api/rest/index.md).
 
 import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
 
@@ -78,38 +78,35 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 ## Connect to your WCS instance
 
-:::warning todo
-finish
+By now, you should have:
+* a sandbox instance of Weaviate set up on WCS and,
+* a Weaviate client library installed
+
+Let's put the pieces together by connecting to the Weaviate instance and retrieve the existing schema, which should be empty.
+
+This can be done by sending a request to the `schema` endpoint.
+
+:::tip Authentication
+If you have enabled authentication in your sandbox for added security, this step will require that you pass on the authentication credentials. Consult the [authentication guide](./guides/authentication.mdx) to see how.
 :::
 
-Click on the `Cluster Id` link, which will open a new page in your browser and display all the available endpoints.
+Run the below code for your preferred client, replacing the endpoint address with your own:
 
-<img src={WCScreate} width="100%" alt="Weaviate Cluster"/>
+import WCSClientInstantiation from '/_includes/code/wcs.client.instantiation.mdx';
 
-If you can see this response in your browser, *congratulations!* you have successfully started up an instance of Weaviate. 🎉
+<WCSClientInstantiation/>
 
-:::warning todo
-finish
-:::
+You should receive a response confirming the instance to be empty.
 
-:::tip Authenticating with WCS + Weaviate client
-If you do enable OIDC in WCS for added security, the easiest way to authenticate as a user is to use the Weaviate client library.
-
-Consult the authentication for your preferred client library and use the "Resource Owner Password Flow" method, by passing on the `username` and `password` you used to sign in to WCS. See the docs below:
-- [Python](../client-libraries/python.md#wcs-authentication)
-- [JavaScript](../client-libraries/javascript.md#wcs-authentication)
-- [Go](../client-libraries/go.md#wcs-authentication)
-- [Java](../client-libraries/java.md#wcs-authentication)
-:::
-
-## Recap
-
-* You have a working instance of Weaviate in Weaviate Cloud Services (WCS).
-* You have installed a client library in your preferred language.
+```json
+{'classes': []}
+```
 
 ## Next
 
-* To refactored quickstart
+Now that you are set up with a WCS instance:
+* If you are new to Weaviate at large, we recommend moving to the [Weaviate Quickstart Tutorial](../weaviate/quickstart/index.md).
+* Otherwise, we hope you enjoy your experience with WCS.
 
 ## More resources
 
