@@ -10,13 +10,17 @@ For ensure security in a production environment, WCS instances of Weaviate come 
 
 You have two options for authenticating into a WCS instance.
 - Using the account owner's **WCS username and password**, or
-- Using an **API key**.
+- Using an **API key** (recommended method).
 
-Currently, there is no difference between the two in terms of the available permissions, so it is up to you to choose one that is most appropriate to your workflow.
-
-:::tip Recommendation: Use the API key
+:::tip Recommendation: Use the API key + a Weaviate client
 Generally, we recommend authenticating with the API key, using a Weaviate client (e.g. Python client).
 :::
+
+### API key permissions
+
+All Weaviate instances with authentication will generate API keys with full admin (read and write) access.
+
+Each paid WCS instance will also come with a read-only API key in addition to the full admin API key.
 
 ## Instructions
 

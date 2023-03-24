@@ -20,14 +20,14 @@ By the time we are finished here, you'll be set up and ready to move onto our We
 
 By the end of this tutorial, you will be familiar with basics of WCS. You will have:
 - Created a WCS account,
-- Created a new free WCS sandbox instance with authentication enabled,
+- Created a new free WCS sandbox instance without authentication,
 - Installed a Weaviate client of your choice, and
 - Queried your new WCS sandbox instance with the Weaviate client.
 
 ## Sign in to WCS
 
 1. First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.cloud/), and click on "Sign in with the Weaviate Cloud Services".
-1. (Optional) If you don't have an account with WCS yet, click on the "Register" button and create a new account.
+    1. If you don't have an account with WCS yet, click on the "Register" button and create a new account.
 1. Then, sign in with your WCS username and password.
 
 ## Create a Weaviate Cluster
@@ -36,12 +36,12 @@ To create a new Weaviate Cluster:
 1. Click the "Create cluster" button
 1. Select the **Free sandbox** *plan tier*.
 1. Provide a *cluster name*, which will become a part of its URL. A suffix will be added to this to ensure uniqueness.
-1. Leave the `Enable Authentication` option as `No`.
+1. Leave the `Enable Authentication?` option as `NO`.
 
 Your selections should look like this:
 <img src={WCSoptions} width="100%" alt="Instance configuration"/>
 
-Finally, press **Create** to create your sandbox instance. Note that the sandbox will expire in 30 days.
+Finally, press **Create** to create your sandbox instance. Note that the sandbox will expire after a set number of days.
 
 <details>
   <summary>Sandbox expiry & options</summary>
@@ -54,11 +54,11 @@ import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 <img src={WCScreate} width="100%" alt="Create instance"/>
 
-This will start the process to create a new instance, and you should see a progress indicator.
+This will start the process to create a new instance, and you will see a progress indicator.
 
 <img src={WCScreationProgress} width="60%" alt="Creation in progress"/>
 
-Instance creation should take a minute or two, and you should see a tick ✔️ when it's done - indicating that the instance is ready.
+Instance creation should take a minute or two, and you will see a tick ✔️ when it's done, indicating that the instance is ready.
 
 In the meantime, let's start installing a client library.
 

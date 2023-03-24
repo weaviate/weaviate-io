@@ -1,21 +1,81 @@
 ---
-title: Console
+title: GraphQL console
 sidebar_position: 45
 image: og/wcs/user_guides.jpg
 ---
 
+import WCSConsoleButton from './img/wcs-console-button.png';
+import WCSConsoleExampleQuery from './img/wcs-console-example-query.png';
+import WCSConnectedInstances from './img/wcs-connected-instances.png';
+import WCSQueryDropdown from './img/wcs-query-dropdown.png';
+import WCSGetKey from './img/wcs-get-key.png';
+import WCSKeyExample from './img/wcs-key-example.png';
+
 ## Overview
 
-:::warning TODO
-Complete basic notes
-- How to log in
-- How to use with authentication
-- What it is (could be a link to tutorial)
-:::
+The WCS GraphQL console is a browser-based GraphQL IDE that allows you to interactively query your Weaviate instance.
 
-https://console.weaviate.cloud/query
+The console is based on the [GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql) library, and as such provides many helpful features for using GraphQL, such as:
+
+* Syntax highlighting
+* Intelligent type ahead of fields, arguments, types, and more
+* Real-time error highlighting and reporting for queries and variables
+* Automatic query and variables completion
+
+The below image shows one such example, where a `Get` query is run on a dataset of wine reviews:
+
+<img src={WCSConsoleExampleQuery} width="100%" alt="WCS console example query"/>
+
+Note that here, the console handily highlights the query as well as the response.
+
+## Using the console
+
+### Log in
+
+You can find the GraphQL console by navigating to your [WCS Dashboard](https://console.weaviate.cloud/), logging in and clicking on the button highlighted below:
+
+<img src={WCSConsoleButton} width="100%" alt="WCS console button"/>
+
+This will open the GraphQL console, from which you can build a GraphQL query, using context-aware query and variables completion.
+
+### Select an instance
+
+The GraphQL console can connect to any Weaviate instance, including external instances, as long as it is connected through the WCS Dashboard.
+
+In the below example, the WCS Dashboard is connected to an external instance as well as the two WCS instances.
+
+<img src={WCSConnectedInstances} width="100%" alt="Connected instances"/>
+
+Here, the GraphQL console can be used to query any of the three instances.
+
+Clicking the `Query` button for any of the associated instances will open a console window for that particular instance.
+
+Alternatively, the query window includes a drop-down menu at the top of the screen which can be used to choose the desired instance.
+
+<img src={WCSQueryDropdown} width="100%" alt="Instance selection dropdown"/>
+<br/><br/>
+
+### Authentication
+
+To query Weaviate instances that have authentication enabled, you must pass authentication credentials to Weaviate by supplying it in the header.
+
+For instances with authentication enabled, the API key(s) can be accessed by clicking here
+
+<img src={WCSGetKey} width="100%" alt="Instance configuration"/>
+
+Which should bring up a screen like this, containing your API key(s) and additional header example:
+
+<img src={WCSKeyExample} width="100%" alt="WCS key example"/>
+
+Copy the highlighted text, and pass it as an additional header via the `Header` tab located towards the bottom of the console.
+
+This will ensure that each GraphQL query includes the appropriate authentication token.
 
 ## More resources
+
+:::info More about GraphiQL
+Read more about the [GraphiQL library here](https://github.com/graphql/graphiql/tree/main/packages/graphiql)
+:::
 
 import WCSDocsMoreResources from '/_includes/wcs-more-resources-docs.md';
 
