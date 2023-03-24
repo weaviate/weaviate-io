@@ -13,7 +13,7 @@ export default function PricingSandBox() {
           <span> Round robin region: AWS, Azure, GCP</span>
         </li>
         <li>
-          <div className={styles.checkIcon}></div> 30 days lifetime
+          <div className={styles.checkIcon}></div> 14 days lifetime
         </li>
       </div>
       <div className={styles.features}>
