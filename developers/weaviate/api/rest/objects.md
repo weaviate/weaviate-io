@@ -17,7 +17,7 @@ Lists all data objects in reverse order of creation. The data will be returned a
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
 :::tip After a class object count?
-A: This `Aggregate` GraphQL query will retrieve the total object count in a class.
+A: This `Aggregate` query will retrieve the total object count in a class.
 
 <HowToGetObjectCount/>
 :::
@@ -155,7 +155,7 @@ The response of a `GET` query of a data object will give you information about a
 | `properties` > `{crefPropertyName}` > `classification` > `meanWinningDistance` | float | `classification` | The mean distance of the winning group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
 | `properties` > `{crefPropertyName}` > `classification` > `overallCount` | integer | `classification` | Overall neighbors checked as part of the classification. In most cases this will equal `k`, but could be lower than `k` - for example if not enough data was present. |
 | `properties` > `{crefPropertyName}` > `classification` > `winningCount` | integer | `classification` | Size of the winning group, a number between 1 and `k`. |
-| `vector` | list of floats | `vector` | The long vector of the location of the object in the 300-dimensional space. | 
+| `vector` | list of floats | `vector` | The long vector of the location of the object in the 300-dimensional space. |
 | `classification` > `basedOn` | string |  `classification` | The property name where the classification was based on. |
 | `classification` > `classifiedFields` | string |  `classification` | The classified property. |
 | `classification` > `completed` | timestamp |  `classification` | The time of classification completion. |
@@ -171,7 +171,7 @@ The response of a `GET` query of a data object will give you information about a
 | Valid class, no objects present | `?class` is provided, class exists. There are no objects present for this class. | `200 OK` - No error |
 | Invalid class | `?class` is provided, class does not exist. | `404 Not Found` |
 | Validation | Otherwise invalid user request. | `422 Unprocessable Entity` |
-| Authorization | Not allowed to view resource. | `403 Forbidden` | 
+| Authorization | Not allowed to view resource. | `403 Forbidden` |
 | Server-Side error | Correct user input, but request failed for another reason. | `500 Internal Server Error` - contains detailed error message |
 
 #### Example request
@@ -193,7 +193,7 @@ The `objects` endpoint is meant for individual object creations.
 If you plan on importing a large number of objects, it's much more efficient to use the [`/v1/batch`](./batch.md) endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty:
 
 1. Each sequential request would be handled by a single thread server-side while most of the server resources are idle. In addition, if you only send the second request once the first has been completed, you will wait for a lot of network overhead.
-1. It's much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing. 
+1. It's much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing.
 1. You do not have to do the parallelization yourself, you can use the [`/v1/batch`](./batch.md) endpoint for this. Even if you are sending batches from a single client thread, the objects within a batch will be handled by multiple server threads.
 1. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint.
 
@@ -241,20 +241,20 @@ import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geoco
 
 ### With a custom vector
 
-When creating a data object, you can configure Weaviate to generate a vector with a vectorizer module, or you can provide the vector yourself. We sometimes refer to this as a "custom" vector. 
+When creating a data object, you can configure Weaviate to generate a vector with a vectorizer module, or you can provide the vector yourself. We sometimes refer to this as a "custom" vector.
 
 You can provide a custom vector during object creation either when:
 - you are not using a vectorizer for that class, or
 - you are using a vectorizer, but you wish to bypass it during the object creation stage.
 
 You can create a data object with a custom vector as follows:
-1. Set the `"vectorizer"` in the relevant class in the [data schema](../../configuration/schema-configuration.md#vectorizer). 
+1. Set the `"vectorizer"` in the relevant class in the [data schema](../../configuration/schema-configuration.md#vectorizer).
     - If you are not using a vectorizer at all, configure the class accordingly. To do this, you can:
         - set the default vectorizer module to `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), or
         - set the `"vectorizer"` for the class to `"none"` (`"vectorizer": "none"`) (*note: the class `vectorizer` setting will override the `DEFAULT_VECTORIZER_MODULE` parameter*).
     - If you wish to bypass the vectorizer for object creation:
       - set the vectorizer to the same vectorizer with identical settings used to generate the custom vector
-    > *Note: There is NO validation of this vector besides checking the vector length.* 
+    > *Note: There is NO validation of this vector besides checking the vector length.*
 2. Then, attach the vector in a special `"vector"` field during object creation. For example, if adding a single object, you can:
 
 import SemanticKindCreateVector from '/_includes/code/semantic-kind.create.vector.mdx';
@@ -265,7 +265,7 @@ import SemanticKindCreateVector from '/_includes/code/semantic-kind.create.vecto
 You can set custom vectors for batch imports as well as single object creation.
 :::
 
-See also [how to search using custom vectors](../graphql/vector-search-parameters.md#nearvector). 
+See also [how to search using custom vectors](../graphql/vector-search-parameters.md#nearvector).
 
 ## Get a data object
 
@@ -394,7 +394,7 @@ If the update was successful, no content will be returned.
 
 ## Delete a data object
 
-Delete an individual data object from Weaviate. 
+Delete an individual data object from Weaviate.
 
 #### Method and URL
 
@@ -546,7 +546,7 @@ The `PUT` request body is a list of beacons:
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon array | yes | Array of beacons in the format `weaviate://localhost/<ClassName>/<id>` |
 
-<BeaconsRequireLocalhost /> 
+<BeaconsRequireLocalhost />
 
 <BeaconsBackCompatOmitClassname />
 
