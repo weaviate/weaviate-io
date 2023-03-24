@@ -36,10 +36,10 @@ client.graphql
       .withFields('meta { count }')
       .do()
       .then(res => {
-        console.log(res)
+        console.log(JSON.stringify(res, null, 2))
       })
       .catch(err => {
-        console.error(err)
+        console.error(JSON.stringify(err, null, 2))
       });
 ```
 
