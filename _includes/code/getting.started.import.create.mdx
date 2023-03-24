@@ -72,8 +72,8 @@ const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',
-  }); 
+    host: 'some-endpoint.weaviate.network',
+  });
 
 var toImport = [{
   'id': '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6',
@@ -160,18 +160,18 @@ func GetSchema() {
         "Vector": []float32{-0.16147631, -0.065765485, -0.06546908}
       },
     }
-  
+
     result, err := client.Batch().ObjectsBatcher().
       WithObject(objects[0]).
       WithObject(objects[1]).
       Do(context.Background())
-  
+
     if err != nil {
       panic(err)
     }
     fmt.Printf("%v", result)
   }
-  
+
 ```
 
 </TabItem>

@@ -149,7 +149,7 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
 
 # Download the Roadmap
 
-<a href="/img/timeline_Weaviate_architecture_isometric.jpg" rel="Weaviate vector search engine Architecture Roadmap" target="_blank">
+<a href="/img/timeline_Weaviate_architecture_isometric.jpg" rel="Weaviate vector database Architecture Roadmap" target="_blank">
   You can download the complete roadmap (as an image) here too
 </a> -->
 

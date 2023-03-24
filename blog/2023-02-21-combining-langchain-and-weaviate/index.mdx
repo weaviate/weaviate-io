@@ -83,7 +83,7 @@ Refine is a unique technique because it has a local memory. An example of this i
 Map Rerank involves running an initial prompt that asks the model to give a relevance score. It is then passed through the language model and assigns a score based on the certainty of the answer. The documents are then ranked and the top two are stuffed to the language model to output a single response.
 
 ## Tool Use
-The last building block we will cover is tool use. [Tool use](https://langchain.readthedocs.io/en/latest/modules/agents/tools.html?highlight=tool%20use) is a way to augment language models to use tools. For example, we can hook up an LLM to search engines, calculators, or even code executors. Of course we will dive into the search engines next, but let’s start with an example of the code executor tool use.
+The last building block we will cover is tool use. [Tool use](https://langchain.readthedocs.io/en/latest/modules/agents/tools.html?highlight=tool%20use) is a way to augment language models to use tools. For example, we can hook up an LLM to vector databases, calculators, or even code executors. Of course we will dive into the vector databases next, but let’s start with an example of the code executor tool use.
 
 <img
     src={require('./img/tool-use.gif').default}
@@ -105,7 +105,7 @@ Follow Up Input: {question}
 Standalone question:"""
 ```
 
-We put the chat_history and the latest user input in the curly bracket syntax. Then we take this new query and hit the Weaviate semantic search engine to get context to answer the question. The ChatVectorDB chain we use has a default value of k = 4 search results, if we use longer search results we will need another CombineDocuments chain here as well! With the 4 search results, we answer the question with this final prompt:
+We put the chat_history and the latest user input in the curly bracket syntax. Then we take this new query and hit the Weaviate vector database to get context to answer the question. The ChatVectorDB chain we use has a default value of k = 4 search results, if we use longer search results we will need another CombineDocuments chain here as well! With the 4 search results, we answer the question with this final prompt:
 
 ```python
 Prompt_template = """Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.

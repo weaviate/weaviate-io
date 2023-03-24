@@ -1,3 +1,140 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
 ```graphql
 { Aggregate { <ClassName> { meta { count } } } }
 ```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("https://some-endpoint.weaviate.network/")
+
+client.query.aggregate(<ClassName>).with_meta_count().do()
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require("weaviate-client");
+
+const client = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.weaviate.network',
+});
+
+client.graphql
+      .aggregate()
+      .withClassName(<ClassName>)
+      .withFields('meta { count }')
+      .do()
+      .then(res => {
+        console.log(JSON.stringify(res, null, 2))
+      })
+      .catch(err => {
+        console.error(JSON.stringify(err, null, 2))
+      });
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "some-endpoint.weaviate.network",
+    Scheme: "https",
+  }
+  client := weaviate.New(cfg)
+
+  meta := graphql.Field{
+    Name: "meta", Fields: []graphql.Field{
+      {Name: "count"},
+    },
+  }
+
+  result, err := client.GraphQL().Aggregate().
+    WithClassName("<ClassName>").
+    WithFields(meta).
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "some-endpoint.weaviate.network");
+    WeaviateClient client = new WeaviateClient(config);
+    Field meta = Field.builder()
+      .name("meta")
+      .fields(new Field[]{
+        Field.builder().name("count").build()
+      }).build();
+    Result<GraphQLResponse> result = client.graphQL().aggregate()
+      .withClassName(<ClassName>)
+      .withFields(meta)
+      .run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem> */}
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Aggregate {
+      <ClassName> {
+        meta {
+          count
+        }
+      }
+    }
+  }"
+}' | tr -d "\n" | curl \
+  -X POST \
+  -H 'Content-Type: application/json' \
+  -d @- \
+  https://some-endpoint.weaviate.network/v1/graphql
+```
+
+</TabItem>
+</Tabs>
