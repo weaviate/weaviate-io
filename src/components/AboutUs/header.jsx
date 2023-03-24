@@ -15,7 +15,7 @@ export default function AboutUsHeader() {
           We believe that the next wave of software infrastructure is AI-first and that a strong open-source community is a basis for creating high-quality software.
         </p>
         <p className="text-center">
-          Our flagship product is the vector search engine Weaviate.
+          Our flagship product is the vector database Weaviate.
         </p>
       </div>
 

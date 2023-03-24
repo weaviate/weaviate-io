@@ -15,7 +15,7 @@ client = weaviate.Client(
     }
 )
 
-# ===== add schema ===== 
+# ===== add schema =====
 class_obj = {
     "class": "Question",
     "vectorizer": "text2vec-openai"
@@ -23,8 +23,8 @@ class_obj = {
 
 client.schema.create_class(class_obj)
 
-# ===== import data ===== 
-# Load data 
+# ===== import data =====
+# Load data
 import requests
 url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json'
 resp = requests.get(url)
@@ -54,9 +54,9 @@ const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
+    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
     headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
-  }); 
+  });
 
 let classObj = {
     "class": "Question",
@@ -115,7 +115,7 @@ async function importQuestions() {
       .catch(err => {
         console.error(err)
       });
-      
+
       // restart the batch queue
       counter = 0;
       batcher = client.batch.objectsBatcher();
@@ -133,7 +133,7 @@ async function importQuestions() {
   });
 }
 
-importQuestions(); 
+importQuestions();
 ```
 
 </TabItem>
@@ -159,8 +159,8 @@ func main() {
     client := weaviate.New(cfg)
 
     classObj := &models.Class{
-        Class:      "Question", 
-        Vectorizer: "text2vec-openai", 
+        Class:      "Question",
+        Vectorizer: "text2vec-openai",
     }
 
     // add the schema
@@ -197,7 +197,7 @@ public class App {
       .className("Question")
       .vectorizer("text2vec-openai")
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {

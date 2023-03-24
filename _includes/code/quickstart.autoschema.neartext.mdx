@@ -54,7 +54,7 @@ const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
   headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
 });
 
@@ -160,7 +160,7 @@ public class App {
       .build();
 
     Field question = Field.builder().name("question").build();
-    Field answer = Field.builder().name("answer").build();    
+    Field answer = Field.builder().name("answer").build();
 
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName("Question")

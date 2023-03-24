@@ -5,7 +5,7 @@ authors: [zain, erika, connor]
 date: 2023-02-07
 tags: []
 image: ./img/hero.png
-description: "Learn how you can customize Large Language Models prompt responses to your own data by leveraging vector search engines."
+description: "Learn how you can customize Large Language Models prompt responses to your own data by leveraging vector databases."
 ---
 ![ChatGPT for Generative Search](./img/hero.png)
 
@@ -28,7 +28,7 @@ In order to benefit from the capabilities of LLMs like ChatGPT's GPT-3 in real-l
 ## Generative Search - OpenAI Module for Weaviate
 Today we are announcing the release of the `generative-openai` module for Weaviate! This module enables you to leverage the power of ChatGPT's GPT-3 model on your own customized datasets and for specific use cases previously not possible!💥
 
-The `generative-openai` module makes a "custom version of ChatGPT" possible by combining it with the Weaviate vector search engine! By integrating a general purpose LLM with a vector search engine like Weaviate, you can utilize the model's power to carry out tasks in the context of your own data housed in Weaviate!
+The `generative-openai` module makes a "custom version of ChatGPT" possible by combining it with Weaviate! By integrating a general purpose LLM with a vector database like Weaviate, you can utilize the model's power to carry out tasks in the context of your own data housed in Weaviate!
 
 ## How the module works
 The `generative-openai` module can be used to get GPT-3 to accomplish tasks grounded in the context of knowledge provided by Weaviate search results. The process consists of two steps: first, we use Weaviate to extract context by filtering a subset of your data that has knowledge relevant to a specific prompt. Secondly, we send the prompt as well as the filtered subset of documents from step one directly to the [OpenAI Completion endpoint](https://platform.openai.com/docs/guides/completion) to accomplish the task specified in the prompt.
