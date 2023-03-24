@@ -1,3 +1,57 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
 ```graphql
 { Aggregate { <ClassName> { meta { count } } } }
 ```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+client.query.aggregate(<ClassName>).with_meta_count().do()
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+client.graphql
+      .aggregate()
+      .withClassName(<ClassName>)
+      .withFields('meta { count }')
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      });
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+<!-- Go code goes here -->
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+<!-- Java code goes here -->
+```
+
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
+
+```bash
+<!-- Curl code goes here -->
+```
+
+</TabItem> */}
+</Tabs>
