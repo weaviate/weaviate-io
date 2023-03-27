@@ -168,7 +168,7 @@ A: Here are top 3 best practices for updating data:
 
 #### Q: Can I train my own text2vec-contextionary vectorizer module?
 
-A: Not yet (but soon), you can currently use the [available contextionaries](/developers/weaviate/quickstart/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](https://newsletter.weaviate.io) or [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep updated about the release of custom contextionary training
+A: Not yet (but soon), you can currently use the [available contextionaries](/developers/weaviate/quickstart/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](https://newsletter.weaviate.io) or [Slack channel](https://weaviate.io/slack) to keep updated about the release of custom contextionary training
 
 ## Indexes in Weaviate
 
@@ -329,4 +329,4 @@ Look at the:
 1. [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
 1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
 1. For issues: [GitHub](https://github.com/weaviate/weaviate/issues). Or,
-1. Ask your question in the Slack channel: [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
+1. Ask your question in the Slack channel: [Slack](https://weaviate.io/slack).

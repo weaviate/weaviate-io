@@ -1,7 +1,7 @@
 ---
 title: HNSW+PQ - Exploring ANN algorithms Part 2.1
 slug: ann-algorithms-hnsw-pq
-authors: [abdel] 
+authors: [abdel]
 date: 2023-03-14
 tags: []
 image: ./img/hero.png
@@ -13,11 +13,11 @@ description: "Implementing HNSW + Product Quantization (PQ) vector compression i
 
 Weaviate is already a very performant and robust vector database and with the recent release of  v1.18 we are now bringing vector compression algorithms to Weaviate users everywhere. The main goal of this new feature is to offer similar performance at a fraction of the memory requirements and cost. In this blog we expand on the details behind this delicate balance between recall performance and memory management.
 
-In our previous blog [Vamana vs. HNSW - Exploring ANN algorithms Part 1](/blog/ann-algorithms-vamana-vs-hnsw), we explained the challenges and benefits of the Vamana and HNSW indexing algorithms. However, we did not explain the underlying motivation of moving vectors to disk. In this post we explore: 
+In our previous blog [Vamana vs. HNSW - Exploring ANN algorithms Part 1](/blog/ann-algorithms-vamana-vs-hnsw), we explained the challenges and benefits of the Vamana and HNSW indexing algorithms. However, we did not explain the underlying motivation of moving vectors to disk. In this post we explore:
 
 - What kind of information we need to move to disk
 - The challenges of moving data to disk
-- What the implications of moving information to disk are 
+- What the implications of moving information to disk are
 - Introduce and test a full first solution offered by the new HNSW+PQ feature in Weaviate v1.18
 
 ## What Information to Move to disk
@@ -71,24 +71,24 @@ For these reasons we need to select the compression mechanism very carefully! Th
 ## Product Quantization
 ![ann](./img/Ann.png)
 
-If you already know the details behind how Product Quantization works feel free to skip this section! 
+If you already know the details behind how Product Quantization works feel free to skip this section!
 
 The main intuition behind Product Quantization is that it adds the concept of segments to the compression function. Basically, to compress the full vector, we will chop it up and operate on segments of it. For example, if we have a 128 dimensional vector we could chop it up into 32 segments, meaning each segment would contain 4 dimensions. Following this segmentation step we compress each segment independently.
- 
+
 The compression is carried out by using predefined centers, which we will explain shortly. If we aim to compress each segment down to 8 bits (one byte) of memory, we might have 256 (total combinations with 8 bits) predefined centers per segment. When compressing a vector we would go segment-by-segment assigning a byte representing the index of the predefined center. The segmentation and compression process is demonstrated in Figure 3 below.
 
 ![pq](./img/image3.jpg)
 **Fig. 3**: *We are compressing a 128 dimensions vector into a 32 bytes compressed vector. For this, we define 32 segments meaning the first segment is composed of the first four dimensions, the second segment goes from dimension 5th to 8th and so on. Then for each segment we need a compression function that takes a four dimensional vector as an input and returns a byte representing the index of the center which best matches the input. The decompression function is straightforward, given a byte, we reconstruct the segment by returning the center at the index encoded by the input.*
 
 A straightforward encoding/compression function uses KMeans to generate the centers, each of which can be represented using an id/code and then each incoming vector segment can be assigned the id/code for the center closest to it.
- 
+
 Putting all of this together, the final algorithm would work as follows: Given a set of N vectors, we segment each of them producing smaller dimensional vectors, then apply KMeans clustering per segment over the complete data and find 256 centroids that will be used as predefined centers. When compressing a vector we find the closest centroid per segment and return an array of bytes with the indexes of the centroids per segment. When decompressing a vector, we concatenate the centroids encoded by each byte on the array.
 
 The explanation above is a simplification of the complete algorithm, as we also need to be concerned about performance for which we need to address duplication of calculations, synchronization in multithreading and so on. However what we have covered above should be sufficient to understand what you can accomplish using the PQ feature released in v1.18. Let's see some of the results HNSW implemented with PQ in Weaviate can accomplish next! If you're interested in learning more about PQ you can refer to the documentation [here](/developers/weaviate/concepts/vector-index#hnsw-with-product-quantizationpq). If you want to learn how to configure Weaviate to use PQ refer to the docs [here](/developers/weaviate/configuration/indexes#how-to-configure-hnsw).
 
 ## KMeans encoding results
 
-First, the PQ feature added to version 1.18 of Weaviate is assessed in the sections below. To check performance and distortion, we compared our implementation to [NanoPQ](https://github.com/matsui528/nanopq) and we observed similar results. 
+First, the PQ feature added to version 1.18 of Weaviate is assessed in the sections below. To check performance and distortion, we compared our implementation to [NanoPQ](https://github.com/matsui528/nanopq) and we observed similar results.
 
 The main idea behind running these experiments is to explore how PQ compression would affect our current indexing algorithms. The experiments consist of fitting the Product Quantizer on some datasets and then calculating the recall by applying brute force search on the compressed vectors. This will give us two important results, the time it would take to fit the data with KMeans clustering and compress the vectors (which will be needed at some step by the indexing algorithm) and the distortion introduced by reconstructing the compressed vectors to calculate the distance. This distortion is measured in terms of a drop in recall.
 
@@ -96,7 +96,7 @@ We considered three datasets for this study: Sift1M, Gist1M and DeepImage 96. Ta
 
 We analyze Product Quantization with KMeans encoding using different segment lengths. Notice that the lengths for the segments should be an integer divisor of the total amount of dimensions. For Sift1M we have used 1, 2, 4 and 8 dimensions per segment, while for Gist and DeepImage we have used 1, 2, 3, 4 and 6 dimensions per segment. Using segment length of 1 on Sift1M would give us 128 segments, while a segment length of 8 would give us 16 segments.
 
-We also offer the flexibility of choosing the amount of centroids to use with KMeans. The compression rate will depend on the amount of centroids. If we use 256 centroids we only need one byte per segment. Additionally, using an amount in the range 257 to 65536 will require two bytes per segment. 
+We also offer the flexibility of choosing the amount of centroids to use with KMeans. The compression rate will depend on the amount of centroids. If we use 256 centroids we only need one byte per segment. Additionally, using an amount in the range 257 to 65536 will require two bytes per segment.
 
 ### Sift
 
@@ -151,8 +151,8 @@ Our complete implementation of [FreshDiskANN](https://arxiv.org/abs/2105.09613) 
 
 As mentioned before, we could still store the complete representation of the vectors on disk and use them to correct the distances as we explore nodes during querying. For the time being, we are implementing only HNSW+PQ which means we do no correction to the distances. In the future we will explore adding such a correction and see the implications in recall and latency since we will have more accurate distances but also much more disk reads.
 
-We could use regular HNSW to start building our index. Once we have added some vectors (a fifth of the total amount, for example) we could then compress the existing vectors and from this point on, we compress the vectors once they come into the index. 
-The seperation between loading data uncompressed, then compressing afterwards is necessary. The threshold of how much data needs to be loaded in prior to compressing (a fifth of the data) is not a rule though. The decision on when to compress should be taken keeping in mind that we need to send enough data for the Product Quantizer to infer the distribution of the data before actually compressing the vectors. 
+We could use regular HNSW to start building our index. Once we have added some vectors (a fifth of the total amount, for example) we could then compress the existing vectors and from this point on, we compress the vectors once they come into the index.
+The seperation between loading data uncompressed, then compressing afterwards is necessary. The threshold of how much data needs to be loaded in prior to compressing (a fifth of the data) is not a rule though. The decision on when to compress should be taken keeping in mind that we need to send enough data for the Product Quantizer to infer the distribution of the data before actually compressing the vectors.
 If we compress too soon, when too little data is present in uncompressed form, the centroids will be underfit and won't capture the underlying data distribution. Alternatively, compressing too late will take up unnecessary ammounts of memory prior to compression. Keep in mind that the uncompressed vectors will require more memory so if we send the entire dataset and compress only at the end we will need to host all of these vectors in memory at some point prior to compressing after which we can free that memory. Depending on the size of your vectors the compressing time could be optimally calculated but this is not a big issue either.
 
 Figure 10 shows a profile of the memory used while loading Sift1M. Notice the first peak in memory at the beginning. This was the memory used for loading the first fifth of the data plus compressing the data. We then wait for the garbage collection cycle to claim the memory back after which we send the remaining data to the server. Note that the peaks in the middle are due to memory not being freed by the garbage collection process immediately. At the end you see the actual memory used after the garbage collection process clean everything up.
@@ -160,7 +160,7 @@ Figure 10 shows a profile of the memory used while loading Sift1M. Notice the fi
 ![graf](./img/image11.png)
 **Fig. 10**: *Heap usage while loading the data into the Weaviate server. Memory does not grow smoothly. Instead there is a higher peak at the beginning before the vectors are compressed.*
 
-Lets focus the comparison in three directions: 
+Lets focus the comparison in three directions:
 - How much longer does it take to index compressed data?
 - How much does it affect the recall and latency?
 - How much do we save in memory requirements?
@@ -187,7 +187,7 @@ We do not include the same charts for DeepImage but results are similar to those
 
 ### Memory compression results
 
-To explore how the memory usage changes with the HNSW+PQ feature, we compare the two versions: uncompressed HNSW and HNSW plus compression using the KMeans encoder. We only compare KMeans using the same amount of segments as dimensions. All other settings could achieve a little bit of a higher compression rate but since we do not compress the graph, it is not significant for these datasets. 
+To explore how the memory usage changes with the HNSW+PQ feature, we compare the two versions: uncompressed HNSW and HNSW plus compression using the KMeans encoder. We only compare KMeans using the same amount of segments as dimensions. All other settings could achieve a little bit of a higher compression rate but since we do not compress the graph, it is not significant for these datasets.
 Keep in mind that the whole graph built by HNSW is still hosted in memory. As we have mentioned before, this is not the final solution where we still do not move information to disk. Our final solution would use a compressed version of the vectors to guide the exploration and fetch the fully described data (vectors and graph) from disk as needed. With the final approach we will achieve better compression rate but also better recall since the uncompressed vectors will be used to correct the compression distortion.
 A final remark. Notice how the compression rate is better on Gist. The reason for this is the fact that we have larger vectors. This means that the memory dedicated to vectors is larger than the memory dedicated to the graph and since we only compress vectors, then the larger the vectors the higher the compression rate. Having even larger vectors such as OpenAI embeddings (1536 dimensions) would reach even better compression rates.
 
@@ -198,9 +198,9 @@ Let's sumamrize what we see in the above charts. We could index our data using h
 
 For Sift1M we would require roughly 1277 MB to 1674 MB of memory to index our data using uncompressed HNSW. This version would give us recall ranging from 0.96811 to 0.99974 and latencies ranging from 293 to 1772 microseconds. If we compress the vectors then the memory requirements goes down to 610 MB to 1478 MB range. After compression recall, drops to values ranging from 0.9136 to 0.9965. Latency rises up to the 401 to 1937 microsends range.
 
-For DeepImage96 we would require roughly 9420 MB to 15226 MB of memory to index our data using uncompressed HNSW. This version would give us recall ranging from 0.8644 to 0.99757 and latencies ranging from 827 to 2601 microseconds. If we compress the vectors then the memory requirements goes down to the 4730 MB to 12367 MB range. After compression, recall drops to values ranging from 0.8566 to 0.9702. Latency rises up to the 1039 to 2708 microsends range. 
+For DeepImage96 we would require roughly 9420 MB to 15226 MB of memory to index our data using uncompressed HNSW. This version would give us recall ranging from 0.8644 to 0.99757 and latencies ranging from 827 to 2601 microseconds. If we compress the vectors then the memory requirements goes down to the 4730 MB to 12367 MB range. After compression, recall drops to values ranging from 0.8566 to 0.9702. Latency rises up to the 1039 to 2708 microsends range.
 
-For Gist we would require roughly 4218 MB to 5103 MB of memory to index our data using uncompressed HNSW. This version would give us recall ranging from 0.7446 to 0.9962 and latencies ranging from 2133 to 15539 microseconds. If we compress the vectors then the memory requirements goes down to the 1572 MB to 2129 MB range. After compression, recall drops to values ranging from 0.7337 to 0.9545. Latency rises up to the 7521 to 37402 microsends range. 
+For Gist we would require roughly 4218 MB to 5103 MB of memory to index our data using uncompressed HNSW. This version would give us recall ranging from 0.7446 to 0.9962 and latencies ranging from 2133 to 15539 microseconds. If we compress the vectors then the memory requirements goes down to the 1572 MB to 2129 MB range. After compression, recall drops to values ranging from 0.7337 to 0.9545. Latency rises up to the 7521 to 37402 microsends range.
 
 A summary is shown in Table 3 below.
 
@@ -221,7 +221,7 @@ A summary is shown in Table 3 below.
 
 **Tab. 3**: *Summary of the previously presented results. We show results for the shortest and largest parameter sets for uncompressed and compressed versions. Additionally we show the speed down rate in latency and the percentage of memory, compared to uncompressed, needed to operate under compressed options.*
 
-We would like to give you an extra bonus row from the above table. [Sphere](https://github.com/facebookresearch/sphere) is an open-source dataset recently released by Meta. It collects 768 dimensions and nearly a billion objects. Only hosting the vectors in memory would take 3.1 TB. To work with data of this size, either you need to spend more to provision expensive resources, or you can sacrifice a bit on recall and latency and save drastically on resources. 
+We would like to give you an extra bonus row from the above table. [Sphere](https://github.com/facebookresearch/sphere) is an open-source dataset recently released by Meta. It collects 768 dimensions and nearly a billion objects. Only hosting the vectors in memory would take 3.1 TB. To work with data of this size, either you need to spend more to provision expensive resources, or you can sacrifice a bit on recall and latency and save drastically on resources.
 
 We show a simple test below to drive home the importance of compressing data and eventually moving graphs also to disk. The test was run over 10 million objects only. A final note on the numbers. While all the experiments above have been carried out directly on the algorithm, the table below is constructed using data collected from interactions with the Weaviate server. This means the latency is calculated end to end (with all the overhead on communication from clients).
 
@@ -239,6 +239,6 @@ In this post we explore the journey and details behind the HNSW+PQ feature relea
 ## What's next
 Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
+You can reach out to us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
 
 Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

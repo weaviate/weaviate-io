@@ -43,7 +43,7 @@ You can pick any project idea from the list below.
 
 If you have other ideas that are not in this list, contact the team first to make sure it is relevant to our organization.
 
-If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
+If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://weaviate.io/slack)
 
 ## Prerequisites
 
@@ -245,4 +245,4 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 **Documentation:**
 * [Developers · Weaviate Documentation](/developers/weaviate/)
 
-If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
+If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://weaviate.io/slack)
