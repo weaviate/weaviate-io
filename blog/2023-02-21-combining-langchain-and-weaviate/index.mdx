@@ -39,7 +39,7 @@ When we ask an LLM, “What type of mammal lays the biggest eggs?”, it initial
 ## CombineDocuments
 LLMs have a limited token length due to various practical and technical constraints. One of the primary reasons is the computational cost associated with processing and storing longer sequences of tokens. The longer the sequence, the more memory and processing power required to operate on it, which can be a significant challenge for even the most powerful computing systems.
 
-The relatively long input window of LLMs is what drives the integration with semantic search. For example, we can use this entire blog post as input in addition to questions if we want the LLM to answer questions such as “What are LLM Chains?” However, when we want to give the LLM an entire book or pages of search results, we need more clever techniques to decompose this task. This is where the [CombineDocuments](https://langchain.readthedocs.io/en/latest/modules/indexes/combine_docs.html) chain comes to play! Note, that one method is not better than another, and the performance is dependent solely on your application.
+The relatively long input window of LLMs is what drives the integration with semantic search. For example, we can use this entire blog post as input in addition to questions if we want the LLM to answer questions such as “What are LLM Chains?” However, when we want to give the LLM an entire book or pages of search results, we need more clever techniques to decompose this task. This is where the `CombineDocuments` chain comes to play! Note, that one method is not better than another, and the performance is dependent solely on your application.
 
 ### Stuffing
 
