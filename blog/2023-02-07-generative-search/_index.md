@@ -139,7 +139,7 @@ The `generate { }` parameter has the following arguments:
 Here is an example of a GraphQL query using the `singleResult{ prompt }`. From the `PodClip` class, we want the generative model to answer the question "What is Ref2Vec?" based on the content.
 
 ```graphql
-{  
+{
 	Get {
     PodClip (
       hybrid: {
@@ -187,11 +187,11 @@ The response looks like this:
 ```
 
 ## Generation prompts
-A `prompt` is a common term used to describe the instructions given to the LLM. Crafting the ideal prompt is typically more of an art than a science. It is also typically an iterative process where we begin with a draft of what we want the LLM to do and then tweak the prompt based on what we get back. Prompt tuning is hardly a straightforward task and the term “prompt engineering” has emerged to encapsulate the complexity of this process. To help you get started with prompt engineering Weaviate-augmented LLMs, here are 4 examples of prompt refinement: 
+A `prompt` is a common term used to describe the instructions given to the LLM. Crafting the ideal prompt is typically more of an art than a science. It is also typically an iterative process where we begin with a draft of what we want the LLM to do and then tweak the prompt based on what we get back. Prompt tuning is hardly a straightforward task and the term “prompt engineering” has emerged to encapsulate the complexity of this process. To help you get started with prompt engineering Weaviate-augmented LLMs, here are 4 examples of prompt refinement:
 
 * knowledge grounding,
 * uncertainty probing,
-* citing sources, 
+* citing sources,
 * and step-by-step thinking.
 
 ### Knowledge grounding
@@ -213,5 +213,5 @@ A few other examples include simply adding `Let’s think step-by-step`, or deco
 Prompting is an extremely new area of LLMs and search. As a general prescription, it is recommended to be as descriptive as possible with what you want the LLM to do, as well as to have an iterative mindset of tuning the prompt.
 
 ## Stay connected
-Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
+Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
 Weaviate is open-source, and you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don’t forget to give us a ⭐️ while you are there!

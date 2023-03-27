@@ -238,13 +238,12 @@ const config = {
                             },
                             {
                                 label: 'Slack',
-                                href: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw',
+                                href: 'https://weaviate.io/slack',
                             },
                         ],
                     },
-
                     {
-                        to: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/',
+                        to: 'https://weaviate.io/slack',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
@@ -301,7 +300,7 @@ const config = {
                             },
                             {
                                 label: 'Slack',
-                                href: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/',
+                                href: 'https://weaviate.io/slack',
                             },
                             {
                                 label: 'Twitter',

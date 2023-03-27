@@ -25,7 +25,7 @@ A few points to bear in mind:
 1. Avoid duplicate vectors for multiple data objects.
 1. Handle your errors. If you ignore them, it might lead to significant delays on import.
 1. If your import slows down after a particular number of objects (e.g. 2M), check to see if the [`vectorCacheMaxObjects`](../../configuration/indexes.md#how-to-configure-hnsw) in your schema is larger than the number of objects. Also, see [this example](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/blob/d4711f2bdc75afd503ff70092c3c5303f9dd1b3b/step-2/import.py#L58-L59).
-1. There are ways to improve your setup when using vectorizers, as we've shown in the Wikipedia demo dataset. Sign up for our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep up-to-date as we publish more on this topic.
+1. There are ways to improve your setup when using vectorizers, as we've shown in the Wikipedia demo dataset. Sign up for our [Slack channel](https://weaviate.io/slack) to keep up-to-date as we publish more on this topic.
 
 ### Method and URL
 
@@ -85,7 +85,7 @@ The POST body is an array of elements with the following fields:
 | `from` | Weaviate Beacon (long-form) | yes | The beacon, with the cross-reference property name at the end: `weaviate://localhost/{ClassName}/{id}/{crefPropertyName}` |
 | `to` | Weaviate Beacon (regular) | yes | The beacon, formatted as `weaviate://localhost/{ClassName}/{id}` |
 
-<BeaconsRequireLocalhost /> 
+<BeaconsRequireLocalhost />
 
 :::note
 For backward compatibility, you can omit the class name in the
@@ -205,11 +205,11 @@ import BatchDeleteObjects from '/_includes/code/batch.delete.objects.mdx';
 
 When sending a batch request to your Weaviate instance, it could be the case that an error occurs. This can be caused by several reasons, for example that the connection to Weaviate is lost or that there is a mistake in a single data object that you are trying to add.
 
-You can check if an error occurred, and of what kind. 
+You can check if an error occurred, and of what kind.
 
 A batch request will always return an HTTP `200` status code when the batch request was successful. That means that the batch was successfully sent to Weaviate, and there were no issues with the connection or processing of the batch, and the request was not malformed (`4xx` status code). However, with a `200` status code, there might still be individual failures of the data objects which are not contained in the response. Thus, a `200` status code does not guarantee that each batch item has been added/created. An example of an error on an individual data object that might be unnoticed by sending a batch request without checking the individual results is this: adding an object to the batch that is in conflict with the schema (for example a non-existing class name).
 
-The following Python code can be used to handle errors on individual data objects in the batch. 
+The following Python code can be used to handle errors on individual data objects in the batch.
 
 ```python
 import weaviate

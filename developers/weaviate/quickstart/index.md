@@ -75,7 +75,7 @@ The free tiers for any of them should be sufficient for you to follow along.
 :::info Is something broken?
 We want you to have the best experience possible here. So if you find that something here doesn't work, or doesn't make sense, please let us know! You can:
 - File an [issue on GitHub](https://github.com/weaviate/weaviate-io/issues), or
-- Talk to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
+- Talk to us on [Slack](https://weaviate.io/slack)
 :::
 
 ## Next

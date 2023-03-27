@@ -1,5 +1,5 @@
 ---
-title: Git and GitHub guide 
+title: Git and GitHub guide
 sidebar_position: 6
 image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
@@ -19,7 +19,7 @@ There are four major GitHub repositories of Weaviate, any of which you can contr
 * [Weaviate](https://github.com/weaviate/weaviate) - Weaviate's "core" codebase
 * [Weaviate-io](https://github.com/weaviate/weaviate-io) - official Weaviate documentation
 * [Weaviate Examples](https://github.com/weaviate/weaviate-examples) - apps built using Weaviate
-* [Awesome Weaviate](https://github.com/weaviate/awesome-weaviate) - list of examples and tutorials on how to use Weaviate 
+* [Awesome Weaviate](https://github.com/weaviate/awesome-weaviate) - list of examples and tutorials on how to use Weaviate
 
 Generally speaking, the process to contribute using git and GitHub goes like this:
 
@@ -33,7 +33,7 @@ Generally speaking, the process to contribute using git and GitHub goes like thi
 
 The below are some information on git and GitHub, as well as these steps.
 
-## Git 
+## Git
 
 Git is a version control tool which keeps track of the changes you make to files, allowing you to go back to previous versions if necessary and keeping a record of what has been done.
 
@@ -45,7 +45,7 @@ Once you have installed git, you can run commands like `git pull`, `git commit` 
 
 ## Using GitHub
 
-[GitHub](https://github.com/) is a website and cloud-based service for collaborating using git repositories. 
+[GitHub](https://github.com/) is a website and cloud-based service for collaborating using git repositories.
 
 To be clear, you do not need a GitHub account to use Weaviate. But you will need one to contribute code or documentation to open source projects hosted on GitHub, which includes Weaviate.
 
@@ -77,7 +77,7 @@ Fill out each field based on the questions and guidance provided.
 
 ## Work with a fork
 
-To work on a Weaviate repository, we recommend that you fork it first and then work on it. 
+To work on a Weaviate repository, we recommend that you fork it first and then work on it.
 
 > A **fork** is your own copy of someone else's repository. Forks let you make changes to a project without affecting the original repository. You can fetch updates from or submit changes to the original repository with pull requests.
 
@@ -115,7 +115,7 @@ Now you have a complete local copy of the repository! Here are some tips now on 
 
 ## Create a new branch to work on
 
-Do not change files on a main branch, even if it is on your fork. 
+Do not change files on a main branch, even if it is on your fork.
 
 It's best practice to create a new branch for each set of changes such as a new feature or bugfix. The reason is that it isolates each set of changes from the `main` branch so that each Pull Request can also be evaluated and managed independently.
 
@@ -134,10 +134,10 @@ git checkout feature/newPage    #checkout on created branch
 Or
 
 ```shell
-git checkout -b feature/newPage  
+git checkout -b feature/newPage
 ```
 
-**Note:** 
+**Note:**
 * `checkout` will switch to the newly created branch.
 * `-b` will create a new branch if the branch doesn't already exist
 
@@ -186,7 +186,7 @@ Here are some general guidelines about how to submit a Pull Request:
 
 **Adding the files and committing:**
 
-First, make sure you are on your development branch. 
+First, make sure you are on your development branch.
 
 In git, files need to be 'staged' before being added to a commit. Prior to adding files to the staging area, always validate visually which files need to be staged. Check the tracked modifications in the git repository like so:
 
@@ -200,7 +200,7 @@ From here, you can add relevant files to the staging area. You can do so based o
 git add filename
 ```
 
-You can also use `git add .` to stage all modified files in the current directory as well as subdirectories. But use this with care, as doing so might add irrelevant files, such as local configuration files for temporary files. 
+You can also use `git add .` to stage all modified files in the current directory as well as subdirectories. But use this with care, as doing so might add irrelevant files, such as local configuration files for temporary files.
 
 To systematically ignore certain files or directories, you can create a [.gitignore](https://www.atlassian.com/git/tutorials/saving-changes/gitignore) file.
 
@@ -222,7 +222,7 @@ git push origin feature/newPage
 
 If asked, enter your GitHub login credentials. When complete, all local commits will be on your GitHub repository.
 
-When all of your changes have been committed and pushed to GitHub, visit the page for your fork there, choose the development branch, and then press the `Compare & Pull Request` button. 
+When all of your changes have been committed and pushed to GitHub, visit the page for your fork there, choose the development branch, and then press the `Compare & Pull Request` button.
 
 ![create Pull Request](/img/contributor-guide/getting-started/pull_request.png)
 
@@ -244,11 +244,11 @@ For any changes you commit, make sure that you:
 
 * Compare your Pull Request's source changes to staging to ensure that the output matches the source and that everything is rendering as expected. This assists in detecting issues such as typos or content that isn't rendering due to versioning issues.
 
-* If there are any failing checks in your PR, try troubleshooting them until they are passing or [ask for help](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/).
+* If there are any failing checks in your PR, try troubleshooting them until they are passing or [ask for help](https://weaviate.io/slack).
 
 ### Documentation-specific guidelines
 
-* Check for technical accuracy in the content. You can always [ask for help](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/) if you get stuck.
+* Check for technical accuracy in the content. You can always [ask for help](https://weaviate.io/slack) if you get stuck.
 
 * Verify that the syntax of new or updated MDX or React statements is proper.
 
@@ -264,12 +264,12 @@ After you've created the Pull Request, there are two possibilities:
 
 Working with git and GitHub can be intimidating at first, but it is a core part of how the open-source community works together to create such amazing tools. If you have any further questions, you can reach out to us also.
 
-We include some additional tips below. 
+We include some additional tips below.
 
 ## Additional git / GitHub tips
 ### How to incorporate upstream changes
 
-A fork separates a repository from its upstream equivalent. So, you will need to pull upstream changes from time to time to keep your fork up to date with changes made upstream. 
+A fork separates a repository from its upstream equivalent. So, you will need to pull upstream changes from time to time to keep your fork up to date with changes made upstream.
 
 To do this, first track the upstream repo by adding a remote upstream URL to the local repository.
 
@@ -299,7 +299,7 @@ To bring in upstream changes to your fork, you need to fetch and pull the upstre
 
 #### Fetch upstream with GitHub and git CLI
 
-* The first step is to incorporate any upstream changes to your forked repository. Head over to the forked GitHub repository, and under `Fetch Upstream`, click `Fetch and merge`. 
+* The first step is to incorporate any upstream changes to your forked repository. Head over to the forked GitHub repository, and under `Fetch Upstream`, click `Fetch and merge`.
 
 * The next step is to bring those changes to the local repository. If you have made any changes, make sure to commit them locally. Then check out the `main` (or `master` for Weaviate) branch like so:
 
@@ -319,7 +319,7 @@ This will update your local repository to reflect your remote, forked repository
 
 #### Fetch upstream with git CLI
 
-Or you can just use the git CLI as below: 
+Or you can just use the git CLI as below:
 
 * Check out the `main` branch first
 
@@ -327,7 +327,7 @@ Or you can just use the git CLI as below:
 git checkout main
 ```
 
-* Fetch the upstream changes 
+* Fetch the upstream changes
 
 ```shell
 git fetch upstream
