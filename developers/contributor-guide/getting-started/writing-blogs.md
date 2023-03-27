@@ -4,17 +4,17 @@ sidebar_position: 5
 image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
 ---
-The Weaviate community produces a lot of great content including blog posts, tutorials, and demo applications. To help these reach the broader community, we maintain a curated list of these in our [Awesome Weaviate](https://github.com/weaviate/awesome-weaviate) repository. 
+The Weaviate community produces a lot of great content including blog posts, tutorials, and demo applications. To help these reach the broader community, we maintain a curated list of these in our [Awesome Weaviate](https://github.com/weaviate/awesome-weaviate) repository.
 
-If you would like to share your own work, we would love to hear from you. We can help it reach the wider Weaviate community, who will in turn benefit from your work. 
+If you would like to share your own work, we would love to hear from you. We can help it reach the wider Weaviate community, who will in turn benefit from your work.
 
 Here are some ideas and tips on how:
 
 ## Write a blog post or tutorial
 
-You could contribute by writing a blog post, or tutorial relating to Weaviate. 
+You could contribute by writing a blog post, or tutorial relating to Weaviate.
 
-It could be about anything from your Weaviate journey, concepts you've learnt and used with Weaviate like vector databases, or guides on how to integrate Weaviate with something. 
+It could be about anything from your Weaviate journey, concepts you've learnt and used with Weaviate like vector databases, or guides on how to integrate Weaviate with something.
 
 It can be hosted anywhere. It could be at a well-known platform such as Medium, Dev.to, or HashNode, or somewhere smaller like your own blog.
 
@@ -46,4 +46,4 @@ When you are ready to share your work, create a pull request in [Awesome Weaviat
 * [Podcasts by Weaviate](/podcast)
 * [Developer Style Guide (FreeCodeCamp)](https://www.freecodecamp.org/news/developer-news-style-guide/)
 
-If you need any help, reach out to us on our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/).
+If you need any help, reach out to us on our [Slack](https://weaviate.io/slack).

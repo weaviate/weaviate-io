@@ -23,7 +23,7 @@ If you’re interested, you need to send your submission via both:
 You need to apply on both websites!
 :::
 
-You can also join our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/) and talk to us and the other participant in the #gsoc channel.
+You can also join our [Slack](https://weaviate.io/slack) and talk to us and the other participant in the #gsoc channel.
 
 Don't hesitate to contact us for questions about the challenge and the Open Source project Weaviate.
 
@@ -47,7 +47,7 @@ We expect your application to be in the range of 1000-1500 words. Your proposal 
 
 You can pick any project idea from the list below.
 
-If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) 
+If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
 
 ## Prerequisites
 
@@ -74,7 +74,7 @@ Clear, useful, and inspiring examples are essential for helping new users unders
 
 You can do this by any means you see fit, with a dataset of your choice (e.g. from Kaggle.com or https://paperswithcode.com/datasets. We encourage you to be creative and have fun with this project.
 
-The demo app is expected to be developed in Python or JavaScript, but we are open to proposals in other languages as well. 
+The demo app is expected to be developed in Python or JavaScript, but we are open to proposals in other languages as well.
 
 This project is a great opportunity to gain hands-on experience, and should be suitable even for those new to Weaviate.
 
@@ -94,7 +94,7 @@ There are opportunities to build demo apps that will stand out incorporating one
 
 **Documentation:**
 
-* [Awesome Weaviate · GitHub](https://github.com/weaviate/awesome-weaviate) 
+* [Awesome Weaviate · GitHub](https://github.com/weaviate/awesome-weaviate)
 * [Quickstart · Weaviate](/developers/weaviate/quickstart)
 * [Tutorials · Weaviate](/developers/weaviate/tutorials)
 * [Blog · Weaviate](/blog/)
@@ -148,7 +148,7 @@ Our primary focus will be on providing an outstanding user experience for our Py
 
 **Required Skills:** Some experience in web development, git + GitHub. Ability to work independently and communicate clearly.
 
-**topics:** Web development, demo, documentation 
+**topics:** Web development, demo, documentation
 
 **Difficulty Level:** Easy
 
@@ -188,7 +188,7 @@ Your focus should be on building a fast and efficient import process that delive
 
 In this project, you will contribute to the growing library of Weaviate [modules](/developers/weaviate/modules/) by developing a new module. We have some suggestions in mind, like a module that can handle audio vectorization, but we're also open to your unique ideas.
 
-The module will be written in Go, and you'll receive guidance and support from Etienne and Marcin, who are experts in the language. 
+The module will be written in Go, and you'll receive guidance and support from Etienne and Marcin, who are experts in the language.
 
 This is an opportunity to gain hands-on experience with Go and contribute to the development of Weaviate.
 
@@ -228,11 +228,11 @@ In this project you will work on a selected Weaviate client to help us improve t
 
 ---
 
-### 7. Your Own Project Idea 
+### 7. Your Own Project Idea
 
-**Project Description:** If you are an out of the box thinker, and have a great understanding about vector search, and you can contribute in a manner not listed above. Feel free to contact the team on Slack so that we can discuss the possibilities and create that idea. 
+**Project Description:** If you are an out of the box thinker, and have a great understanding about vector search, and you can contribute in a manner not listed above. Feel free to contact the team on Slack so that we can discuss the possibilities and create that idea.
 
-**Required Skills:** n/a 
+**Required Skills:** n/a
 
 **topics:** Machine Learning, NLP
 
@@ -245,7 +245,7 @@ In this project you will work on a selected Weaviate client to help us improve t
 **Expected outcome:** A new great idea... Surprise us!
 
 **Documentation:**
-* [Developers · Weaviate Documentation](/developers/weaviate/)  
+* [Developers · Weaviate Documentation](/developers/weaviate/)
 
 ---
 
