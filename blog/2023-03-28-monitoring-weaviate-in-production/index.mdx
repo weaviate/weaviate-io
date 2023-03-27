@@ -55,9 +55,6 @@ For the first approach we will use the open-source [Grafana agent](https://grafa
 2\. Configure the Grafana `agent.yaml` to include a scrape job called `weaviate`. This will autodiscover Weaviate pods
  in Kubernetes. The `app=weaviate` label is automatically added by the Weaviate helm chart.
 
-<details>
-<summary>See the yaml file</summary>
-
 ```yaml
 metrics:
     configs:
@@ -79,8 +76,6 @@ metrics:
         username: <Your Grafana.com userid>
         password: <Your Grafana.com API Key>
 ```
-</details>
-
 
 3\. Validate that you are receiving data by going to explore and running the following PromQL query in Grafana.
 
