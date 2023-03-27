@@ -23,7 +23,7 @@ If you’re interested, you need to send your submission via both:
 You need to apply on both websites!
 :::
 
-You can also join our [Slack](https://weaviate.io/slack/) and talk to us and the other participant in the #gsoc channel.
+You can also join our [Slack](https://weaviate.io/slack) and talk to us and the other participant in the #gsoc channel.
 
 Don't hesitate to contact us for questions about the challenge and the Open Source project Weaviate.
 

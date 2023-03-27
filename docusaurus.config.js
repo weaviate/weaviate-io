@@ -229,9 +229,8 @@ const config = {
                             },
                         ],
                     },
-
                     {
-                        to: 'https://weaviate.io/slack/',
+                        to: 'https://weaviate.io/slack',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
@@ -288,7 +287,7 @@ const config = {
                             },
                             {
                                 label: 'Slack',
-                                href: 'https://weaviate.io/slack/',
+                                href: 'https://weaviate.io/slack',
                             },
                             {
                                 label: 'Twitter',
