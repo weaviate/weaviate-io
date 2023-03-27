@@ -14,7 +14,7 @@ Welcome to the **Quickstart tutorial** for Weaviate! Here, you will learn how to
 
 ### Data
 
-We will start with a (tiny) dataset consisting of questions from the popular quiz show "Jeopardy!". 
+We will start with a (tiny) dataset consisting of questions from the popular quiz show "Jeopardy!".
 
 <details>
   <summary>Take a look at the dataset</summary>
@@ -49,17 +49,17 @@ You will also see how Weaviate can:
 
 And once you're done with these - you can move on to our more [in-depth tutorials](../tutorials/index.md).
 
-## Before you start 
+## Before you start
 
 ### Assumed knowledge
 
-The tutorial assumes that you are somewhat familiar with databases and [vector embeddings](/blog/vector-embeddings-explained). 
+The tutorial assumes that you are somewhat familiar with databases and [vector embeddings](/blog/vector-embeddings-explained).
 
-But don't worry too much even if you are uncomfortable with any of these. This tutorial is about getting you started **doing things with Weaviate**. It is structured so that you should be able to follow along even if some of the concepts are unfamiliar. And you can always revisit some of these ideas in the documentation. 
+But don't worry too much even if you are uncomfortable with any of these. This tutorial is about getting you started **doing things with Weaviate**. It is structured so that you should be able to follow along even if some of the concepts are unfamiliar. And you can always revisit some of these ideas in the documentation.
 
 ### Accounts and API keys
 
-You will be creating your own instance of Weaviate in this tutorial, and using an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs). 
+You will be creating your own instance of Weaviate in this tutorial, and using an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs).
 
 To follow along with the tutorial, we recommend you create accounts with:
 1. [Weaviate Cloud Services (WCS)](https://console.weaviate.io/), and
@@ -69,13 +69,13 @@ To follow along with the tutorial, we recommend you create accounts with:
     1. [Hugging Face](https://huggingface.co/docs/api-inference/index).
 
 :::tip Use free tiers of these accounts
-The free tiers for any of them should be sufficient for you to follow along. 
+The free tiers for any of them should be sufficient for you to follow along.
 :::
 
 :::info Is something broken?
 We want you to have the best experience possible here. So if you find that something here doesn't work, or doesn't make sense, please let us know! You can:
 - File an [issue on GitHub](https://github.com/weaviate/weaviate-io/issues), or
-- Talk to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
+- Talk to us on [Slack](https://weaviate.io/slack)
 :::
 
 ## Next

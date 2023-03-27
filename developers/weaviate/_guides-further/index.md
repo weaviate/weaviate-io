@@ -10,15 +10,15 @@ image: og/docs/further-guides.jpg
 The various "Tutorials" sections are made up of documents from Tutorials in Weaviate Docs Classic, plus a some new documents.
 ::: -->
 
-## Overview 
+## Overview
 
 <!-- TODO - all the child pages generally outdated. Need work to clean up / update / create -->
-These **further** tutorials are somewhat narrower in scope, to show you how to achieve specific goals and tasks. Think of these as specific recipes, unlike [essential tutorials](../tutorials/index.md) which are more like cooking lessons. 
+These **further** tutorials are somewhat narrower in scope, to show you how to achieve specific goals and tasks. Think of these as specific recipes, unlike [essential tutorials](../tutorials/index.md) which are more like cooking lessons.
 
 Whether you read these tutorials will be mostly dependent on whether you would like to make the specific dish - that is, whether the topic of the tutorial is relevant to you. It can also be a great way to see what Weaviate is capable of.
 
 :::info What would you like to know?
-If you would like to see particular tutorial - let us know on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)! We can help you with your specific problem, and help make the documentation better.
+If you would like to see particular tutorial - let us know on [Slack](https://weaviate.io/slack)! We can help you with your specific problem, and help make the documentation better.
 :::
 
 import BasicPrereqs from '/_includes/prerequisites-quickstart.md';

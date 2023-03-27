@@ -19,7 +19,7 @@ Currently, Weaviate supports:
 - [Java](/developers/weaviate/client-libraries/java.md)
 
 :::note Don't see your preferred language?
-If you want to contribute one or request for us to work on a particular client, please let us know on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
+If you want to contribute one or request for us to work on a particular client, please let us know on [Slack](https://weaviate.io/slack)
 :::
 
 import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
@@ -68,9 +68,9 @@ print(result)
 
 ## Client-specific functions
 
-Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages ([Python](./python.md), [JavaScript](./javascript.md), [Java](./java.md) and [Go](./go.md)). An overview of features of the clients: 
+Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages ([Python](./python.md), [JavaScript](./javascript.md), [Java](./java.md) and [Go](./go.md)). An overview of features of the clients:
 
-| Feature  | Python client | JavaScript client | Java client | Go client | 
+| Feature  | Python client | JavaScript client | Java client | Go client |
 | --- | --- | --- | --- | --- |
 | RESTful API endpoints | **V** | **V** | **V** | **V** |
 | GraphQL Get | **V** | **V** | **V** | **V** |
