@@ -28,7 +28,7 @@ This guide also includes the following sections on specific areas. You can think
 
 ## Join the Weaviate Community
 
-A lot of community discussion happens on the [Weaviate Community Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw). Everyone is welcome to [join](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
+A lot of community discussion happens on the [Weaviate Community Slack](https://weaviate.io/slack). Everyone is welcome to [join](https://weaviate.io/slack).
 
 Many members of our Slack community help us by giving feedback, asking questions, or proposing ideas. To get involved in our community, please make sure to familiarize yourself with the project's [Code of Conduct](/service/code-of-conduct).
 

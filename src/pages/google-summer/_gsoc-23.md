@@ -47,7 +47,7 @@ We expect your application to be in the range of 1000-1500 words. Your proposal 
 
 You can pick any project idea from the list below.
 
-If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
+If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://weaviate.io/slack)
 
 ## Prerequisites
 
@@ -249,4 +249,4 @@ In this project you will work on a selected Weaviate client to help us improve t
 
 ---
 
-If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
+If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://weaviate.io/slack)
