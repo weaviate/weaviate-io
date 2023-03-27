@@ -49,7 +49,7 @@ To create a new Weaviate Cluster:
 1. Press the "Create a Weaviate Cluster" button
 1. Configure the cluster:
     1. Set a unique `name` for your cluster – note: The name will become part of the URL used to access this instance.
-    1. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 30 days
+    1. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 14 days
     1. Leave the `Weaviate Version` as the latest
     1. **Change** the `OIDC Authentication` to `Disabled`
 1. Finally, press **Create**.

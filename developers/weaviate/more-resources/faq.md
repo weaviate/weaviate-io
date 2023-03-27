@@ -112,7 +112,7 @@ A: You can create multiple classes in the Weaviate schema, where one class will 
 
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
-A: The below `Aggregate` GraphQL query will retrieve the total object count in a class.
+A: The below `Aggregate` query will retrieve the total object count in a class.
 
 <HowToGetObjectCount/>
 
