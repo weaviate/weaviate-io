@@ -12,7 +12,7 @@ description: Ever wonder how Weaviate turns objects into vectors, behind-the-sce
 
 ![Pulling back the curtains on text2vec](./img/hero.png)
 
-You probably know that Weaviate converts a text corpus into a set of vectors - each object is given a vector that captures its 'meaning'. But you might not know exactly how it does that, or how to adjust that behavior. Here, we will pull back the curtains to examine those questions, by revealing some of the mechanics behind `text2vec`'s magic. 
+You probably know that Weaviate converts a text corpus into a set of vectors - each object is given a vector that captures its 'meaning'. But you might not know exactly how it does that, or how to adjust that behavior. Here, we will pull back the curtains to examine those questions, by revealing some of the mechanics behind `text2vec`'s magic.
 
 First, we will reproduce Weaviate's output vector using only an external API. Then we will see how the text vectorization process can be tweaked, before wrapping up by discussing a few considerations also.
 
@@ -24,9 +24,9 @@ It is true that even in the “old days” of say, five to ten years ago, produc
 
 The past for vector searching definitely was not a “simpler time”, and the appeal of modern vector databases like Weaviate is pretty clear given this context.
 
-But while the future is here, it isn't yet perfect. Tools like Weaviate can seem like a magician's mystery box. Our users in turn ask us *exactly* how Weaviate does its magic; how it turns all of that data into vectors, and how to control the process. 
+But while the future is here, it isn't yet perfect. Tools like Weaviate can seem like a magician's mystery box. Our users in turn ask us *exactly* how Weaviate does its magic; how it turns all of that data into vectors, and how to control the process.
 
-So let's take a look inside the magic box together in this post. 
+So let's take a look inside the magic box together in this post.
 
 If you would like to follow along, the Jupyter notebook and data are available [here](https://github.com/weaviate/weaviate-examples/tree/main/text2vec-behind-curtain). You can use our free [Weaviate Cloud Services](https://console.weaviate.io/) (WCS) sandbox, or set up your own Weaviate instance also.
 
@@ -37,7 +37,7 @@ Let's get started!
 
 Weaviate's `text2vec-*` modules transform text data into dense vectors for populating a Weaviate database. Each `text2vec-*` module uses an external API (like `text2vec-openai` or `text2vec-huggingface`) or a local instance like `text2vec-transformers` to produce a vector for each object.
 
-Let's try vectorizing data with the `text2vec-cohere` module. We will be using data from `tiny_jeopardy.csv` [available here](https://github.com/weaviate/weaviate-examples/tree/main/text2vec-behind-curtain) containing questions from the game show Jeopardy. We'll just use a few (20) questions here, but the [full dataset on Kaggle](https://www.kaggle.com/datasets/tunguz/200000-jeopardy-questions) includes 200k+ questions.  
+Let's try vectorizing data with the `text2vec-cohere` module. We will be using data from `tiny_jeopardy.csv` [available here](https://github.com/weaviate/weaviate-examples/tree/main/text2vec-behind-curtain) containing questions from the game show Jeopardy. We'll just use a few (20) questions here, but the [full dataset on Kaggle](https://www.kaggle.com/datasets/tunguz/200000-jeopardy-questions) includes 200k+ questions.
 
 Load the data into a Pandas dataframe, then populate Weaviate like this:
 
@@ -63,28 +63,28 @@ Since we use the `text2vec-cohere` module to vectorize our data, we can query We
 ```python
 near_text = {"concepts": ["fast food chains"]}
 wv_resp = client.query.get(
-    "Question", 
+    "Question",
     ["question", "answer"]
 ).with_limit(2).with_near_text(
     near_text
 ).with_additional(['distance', 'vector']).do()
 ```
 
-This yields the McDonald's `Question` object above, including the object vector and the distance. The result is a `768`-dimensional vector that is about `0.1` away from the query vector. 
+This yields the McDonald's `Question` object above, including the object vector and the distance. The result is a `768`-dimensional vector that is about `0.1` away from the query vector.
 
-This all makes intuitive sense - the entry related to the largest fast food chain (McDonald's) is returned from our “fast food chains” query. 
+This all makes intuitive sense - the entry related to the largest fast food chain (McDonald's) is returned from our “fast food chains” query.
 
-But wait, how was that vector derived? 
+But wait, how was that vector derived?
 
-This is the 'magic' part. So let's look behind the curtain, and see if we can reproduce the magic. More specifically, let's try to reproduce Weaviate's output vector for each object by using an external API. 
+This is the 'magic' part. So let's look behind the curtain, and see if we can reproduce the magic. More specifically, let's try to reproduce Weaviate's output vector for each object by using an external API.
 
 ![pulling back the curtains](./img/pulling-back-the-curtains-text2vec.png)
 
 ### Matching Weaviate's vectorization
 
-We know that the vector for each object corresponds to its text. What we don't know is how, exactly. 
+We know that the vector for each object corresponds to its text. What we don't know is how, exactly.
 
-As each object only contains the two properties, `question` and `answer`, let's try concatenating our text and comparing it to Weaviate's. And instead of the `text2vec-cohere` module, we will go straight to the Cohere API. 
+As each object only contains the two properties, `question` and `answer`, let's try concatenating our text and comparing it to Weaviate's. And instead of the `text2vec-cohere` module, we will go straight to the Cohere API.
 
 Concatenating the text from the object:
 
@@ -98,7 +98,7 @@ We see:
 'In 1963, live on "The Art Linkletter Show", this company served its billionth burger McDonald\'s'
 ```
 
-Then, use the Cohere API to generate the vector like so, where `cohere_key` is the API key (keep it secret!), and `model` is the vectorizer. 
+Then, use the Cohere API to generate the vector like so, where `cohere_key` is the API key (keep it secret!), and `model` is the vectorizer.
 
 ```python
 import cohere
@@ -110,14 +110,14 @@ Then we run a `nearVector` based query to find the best matching object to this 
 
 ```python
 client.query.get(
-    "Question", 
+    "Question",
     ["question", "answer"]
 ).with_limit(2).with_near_vector(
     {'vector': co_resp.embeddings[0]}
 ).with_additional(['distance']).do()
 ```
 
-Interestingly, we get a distance of `0.0181` - small, but not zero. In other words - we did something differently to Weaviate! 
+Interestingly, we get a distance of `0.0181` - small, but not zero. In other words - we did something differently to Weaviate!
 
 Let's go through the differences one by one, which hopefully will help you to see Weaviate's default behavior.
 
@@ -163,7 +163,7 @@ In other words - we have manually reproduced Weaviate's default vectorization pr
 
 Unless specified otherwise, Weaviate follows the following logic in order to produce a string to be vectorized:
 
-- Only vectorizes properties that use `string` or `text` data types 
+- Only vectorizes properties that use `string` or `text` data types
 - Sorts properties in alphabetical (a-z) order before concatenating values
 - Prepends the class name
 - And converts the whole string to lowercase
@@ -172,27 +172,27 @@ Now that we understand this, you might be asking - is it possible to customize t
 
 ## Tweaking text2vec vectorization in Weaviate
 
-Some of you might have noticed that we have not done anything at all with the schema so far. This meant that the schema used is one generated by the auto-schema feature and thus the vectorizations were carried out using default options. 
+Some of you might have noticed that we have not done anything at all with the schema so far. This meant that the schema used is one generated by the auto-schema feature and thus the vectorizations were carried out using default options.
 
-The schema is the place to define, among other things, the data type and vectorizer to be used, as well as cross-references between classes. As a corollary, the vectorization process can be modified for each class by setting the relevant schema options. In fact, you can [define the data schema](/developers/weaviate/configuration/schema-configuration) for each class individually. 
+The schema is the place to define, among other things, the data type and vectorizer to be used, as well as cross-references between classes. As a corollary, the vectorization process can be modified for each class by setting the relevant schema options. In fact, you can [define the data schema](/developers/weaviate/configuration/schema-configuration) for each class individually.
 
-All this means that you can also use the schema to tweak Weaviate's vectorization behavior. The relevant variables for vectorization are `dataType` and those listed under `moduleConfig` at both the class level and property level. 
+All this means that you can also use the schema to tweak Weaviate's vectorization behavior. The relevant variables for vectorization are `dataType` and those listed under `moduleConfig` at both the class level and property level.
 
 * At the **class** level, `vectorizeClassName` will determine whether the class name is used for vectorization.
-* At the **property** level: 
+* At the **property** level:
     * `skip` will determine whether the property should be skipped (i.e. ignored) in vectorization, and
     * `vectorizePropertyName` will determine whether the property name will be used.
 * The property `dataType` determines whether Weaviate will ignore the property, as it will ignore everything but `string` and `text` values.
 
 > You can read more about each variable in the [schema configuration documentation](/developers/weaviate/configuration/schema-configuration).
-Let's apply this to our data to set Weaviate's vectorization behavior, then we will confirm it manually using the Cohere API as we did above. 
+Let's apply this to our data to set Weaviate's vectorization behavior, then we will confirm it manually using the Cohere API as we did above.
 
 Our new schema is below - note the commented lines:
 
 ```python
 question_class = {
     "class": "Question",
-    "description": "Details of a Jeopardy! question",    
+    "description": "Details of a Jeopardy! question",
     "moduleConfig": {
         "text2vec-cohere": {  # The vectorizer name - must match the vectorizer used
             "vectorizeClassName": False,  # Ignore class name
@@ -200,8 +200,8 @@ question_class = {
     },
     "properties": [
         {
-            "name": "answer",    
-            "description": "What the host prompts the contestants with.",            
+            "name": "answer",
+            "description": "What the host prompts the contestants with.",
             "dataType": ["string"],
             "moduleConfig": {
                 "text2vec-cohere": {
@@ -220,15 +220,15 @@ question_class = {
                     "vectorizePropertyName": True  # Do not ignore property name
                 }
             }
-        },        
+        },
     ]
 }
 client.schema.create_class(question_class)
 ```
 
-The schema is defined such that at least some of the options, such as `moduleConfig`/`text2vec-cohere` /`vectorizeClassName` and `properties`/`moduleConfig`/`text2vec-cohere`/`vectorizePropertyName` differ from their defaults. 
+The schema is defined such that at least some of the options, such as `moduleConfig`/`text2vec-cohere` /`vectorizeClassName` and `properties`/`moduleConfig`/`text2vec-cohere`/`vectorizePropertyName` differ from their defaults.
 
-And as a result, a `nearVector` search with the previously-matching Cohere API vector is now at a distance of `0.00395`. 
+And as a result, a `nearVector` search with the previously-matching Cohere API vector is now at a distance of `0.00395`.
 
 To get this back down to zero, we must revise the text generation pipeline to match the schema. Once we've done that, which looks like this:
 
@@ -249,23 +249,23 @@ Searching with the vector generated from this input, the closest matching object
 
 So there it is. Throughout the above journey, we saw how exactly Weaviate creates vectors from the text data objects, which is:
 
-- Vectorize properties that use `string` or `text` data types 
+- Vectorize properties that use `string` or `text` data types
 - Sorts properties in alphabetical (a-z) order before concatenating values
 - Prepends the class name
 - And converts the whole string to lowercase
 
-And we also saw how this can be tweaked through the schema definition for each class. 
+And we also saw how this can be tweaked through the schema definition for each class.
 
 One implication of this is that your vectorization requirements are a very important part of considerations in the schema definition. It may determine how you break down related data objects before importing them into Weaviate, as well as which fields you choose to import.
 
-Let's consider again our quiz question corpus as a concrete example. Imagine that we are building a quiz app that allows our users to search for questions. Then, it may be preferable to import each quiz item into two classes, one for the question and one for the answer to avoid giving away the answer based on the user's query. But we may yet use the answer to compare to the user's input. 
+Let's consider again our quiz question corpus as a concrete example. Imagine that we are building a quiz app that allows our users to search for questions. Then, it may be preferable to import each quiz item into two classes, one for the question and one for the answer to avoid giving away the answer based on the user's query. But we may yet use the answer to compare to the user's input.
 
-On the other hand, in some cases, it may be preferable to import text data with many fields as one object. This will allow the user to search for matching meanings without as much consideration given to which field the information is contained in exactly. We would be amiss to not mention other search methods such as BM25F, or hybrid searches, both of which would be affected by these decisions. 
+On the other hand, in some cases, it may be preferable to import text data with many fields as one object. This will allow the user to search for matching meanings without as much consideration given to which field the information is contained in exactly. We would be amiss to not mention other search methods such as BM25F, or hybrid searches, both of which would be affected by these decisions.
 
-Now that you've seen exactly what happens behind the curtains, we encourage you to try applying these concepts yourself the next time you are building something with Weaviate. While the changes to the similarities were somewhat minor in our examples, in some domains and corpora their impact may be certainly larger. And tweaking the exact vectorization scheme may provide that extra boost your Weaviate instance is looking for. 
+Now that you've seen exactly what happens behind the curtains, we encourage you to try applying these concepts yourself the next time you are building something with Weaviate. While the changes to the similarities were somewhat minor in our examples, in some domains and corpora their impact may be certainly larger. And tweaking the exact vectorization scheme may provide that extra boost your Weaviate instance is looking for.
 
 
 ## Stay Connected
-Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io). 
+Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
 
 Weaviate is open-source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

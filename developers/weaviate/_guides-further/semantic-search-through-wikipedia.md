@@ -17,7 +17,7 @@ Learn how to to another semantic search with Wikipedia
 Migrated from "semantic-search-through-wikipedia" tutorial from Weaviate Docs Classic
 ::: -->
 
-In this tutorial, we imported the complete English language Wikipedia article dataset into a single Weaviate instance to conduct semantic search queries through the Wikipedia articles, besides this, we've made all the graph relations between the articles too. We have made the import scripts, pre-processed articles, and backup available so that you can run the complete setup yourself. 
+In this tutorial, we imported the complete English language Wikipedia article dataset into a single Weaviate instance to conduct semantic search queries through the Wikipedia articles, besides this, we've made all the graph relations between the articles too. We have made the import scripts, pre-processed articles, and backup available so that you can run the complete setup yourself.
 
 In this tutorial, you'll find the 3-steps needed to replicate the import, but there are also downlaods available to skip the first two steps.
 
@@ -26,10 +26,10 @@ In this tutorial, you'll find the 3-steps needed to replicate the import, but th
 | description | value |
 | --- | --- |
 | Articles imported | `11.520.881` |
-| Paragaphs imported | `28.086.917` | 
+| Paragaphs imported | `28.086.917` |
 | Graph cross references | `125.447.595` |
-| Wikipedia version | `truthy May 15th, 2022` | 
-| Machine for inference | `12 CPU – 100 GB RAM – 250Gb SSD – 1 x NVIDIA Tesla P4` |  
+| Wikipedia version | `truthy May 15th, 2022` |
+| Machine for inference | `12 CPU – 100 GB RAM – 250Gb SSD – 1 x NVIDIA Tesla P4` |
 | Weaviate version | `v1.14.1` |
 | Dataset size | `122GB` |
 | Vectorization model | `sentence-transformers-paraphrase-MiniLM-L6-v2` |
@@ -45,7 +45,7 @@ In this tutorial, you'll find the 3-steps needed to replicate the import, but th
 ### Acknowledgments
 
 * The [`t2v-transformers` module](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) used contains the [sentence-transformers-paraphrase-MiniLM-L6-v2](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/tree/main/step-3/docker-compose-gpu.yml#L32) transformer created by the [SBERT team](https://www.sbert.net/)
-* Thanks to the team of [Obsei](https://github.com/obsei/obsei) for sharing the idea on our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) channel
+* Thanks to the team of [Obsei](https://github.com/obsei/obsei) for sharing the idea on our [Slack](https://weaviate.io/slack) channel
 
 ![Example semantic search queries in Weaviate's GraphQL interface)[/img/wikipedia-demo.gif)
 
@@ -135,10 +135,10 @@ $ tar -xvzf weaviate-wikipedia-1.13.2.tar.gz
 $ echo $(pwd)/var/weaviate
 # use the above result (e.g., /home/foobar/var/weaviate)
 #   update volumes in docker-compose.yml (NOT PERSISTENCE_DATA_PATH!) to the above output
-#   (e.g., 
+#   (e.g.,
 #     volumes:
 #       - /home/foobar/var/weaviate:/var/lib/weaviate
-#   )    
+#   )
 #
 #   With 12 CPUs this process takes about 12 to 15 minutes to complete.
 #   The Weaviate instance will be available directly, but the cache is pre-filling in this timeframe
@@ -318,9 +318,9 @@ Get all Wikipedia graph connections for _"jazz saxophone players"_ [try it live!
 | Q | A |
 | --- | --- |
 | Can I run this setup with a non-English dataset? | Yes – first, you need to go through the whole process (i.e., start with Step 1). E.g., if you want French, you can download the French version of Wikipedia like this: `https://dumps.wikimedia.org/frwiki/latest/frwiki-latest-pages-articles.xml.bz2`  (note that `en` if replaced with `fr`). Next, you need to change the Weaviate vectorizer module to an appropriate language. You can choose an OOTB language model as outlined [here](/developers/weaviate/modules/text2vec-transformers.md#option-1-use-a-pre-built-transformer-model-container) or add your own model as outlined [here](/developers/weaviate/modules/text2vec-transformers.md#option-2-use-any-publically-available-huggingface-model). |
-| Can I run this setup with all languages? | Yes – you can follow two strategies. You can use a multilingual model or extend the Weaviate schema to store different languages with different classes. The latter has the upside that you can use multiple vectorizers (e.g., per language) or a more elaborate sharding strategy. But in the end, both are possible. | 
+| Can I run this setup with all languages? | Yes – you can follow two strategies. You can use a multilingual model or extend the Weaviate schema to store different languages with different classes. The latter has the upside that you can use multiple vectorizers (e.g., per language) or a more elaborate sharding strategy. But in the end, both are possible. |
 | Can I run this with Kubernetes? | Of course, you need to start from Step 2. But if you follow the Kubernetes set up in the [docs](/developers/weaviate/installation/kubernetes.md) you should be good :-) |
-| Can I run this with my own data? | Yes! This is just a demo dataset, you can use any data you have and like. Go to the [Weaviate docs](/developers/weaviate/) or join our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to get started. |
+| Can I run this with my own data? | Yes! This is just a demo dataset, you can use any data you have and like. Go to the [Weaviate docs](/developers/weaviate/) or join our [Slack](https://weaviate.io/slack) to get started. |
 | Can I run the dataset without the Q&A module? | Yes, see [this](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/issues/2#issuecomment-995595909) answer |
 
 ## More Resources

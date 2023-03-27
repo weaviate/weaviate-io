@@ -1,7 +1,7 @@
 ---
 title: Why is Vector Search so fast?
 slug: why-is-vector-search-so-fast
-authors: [laura] 
+authors: [laura]
 date: 2022-09-13
 tags: []
 image: ./img/hero.png
@@ -29,9 +29,9 @@ The inevitable question that follows up this demonstration is always:
 > Why is this so incredibly fast?
 
 ## What is a vector search?
-To answer this question we need to look at how vector databases work. 
+To answer this question we need to look at how vector databases work.
 
-Vector databases index data, unlike other databases, based on data vectors (or vector embeddings). Vector embeddings capture the meaning and context of data, usually predicted by Machine Learning models. 
+Vector databases index data, unlike other databases, based on data vectors (or vector embeddings). Vector embeddings capture the meaning and context of data, usually predicted by Machine Learning models.
 
 At the time of entry/import (or any significant changes to data objects), for every new/updated data object, vector databases use Machine Learning models to predict and calculate vector embeddings, which then are stored together with the object.
 
@@ -42,12 +42,12 @@ In a nutshell, vector embeddings are an array of numbers, which can be used as c
 There are many different distance metrics, like [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) and [Euclidean distance (L2 distance)](https://en.wikipedia.org/wiki/Euclidean_distance).
 
 ### The search part
-In a similar fashion, whenever we run a query (like: "What is the tallest building in Berlin?"), a vector database can also convert it to a "query" vector. The task of a vector database is to identify and retrieve a list of vectors that are closest to the given vector of your query, using a distance metric and a search algorithm. 
+In a similar fashion, whenever we run a query (like: "What is the tallest building in Berlin?"), a vector database can also convert it to a "query" vector. The task of a vector database is to identify and retrieve a list of vectors that are closest to the given vector of your query, using a distance metric and a search algorithm.
 
 This is a bit like a game of boules – where the small marker (jack) is the location of our query vector, and the balls (boules) are our data vectors – and we need to find the boules that are nearest to the marker.
 
 ## k-nearest neighbors (kNN)
-One way to find similar vectors is with a simple [k-nearest neighbors (kNN) algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm), which returns the k nearest vectors, by comparing every data vector in the database to the query vector. 
+One way to find similar vectors is with a simple [k-nearest neighbors (kNN) algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm), which returns the k nearest vectors, by comparing every data vector in the database to the query vector.
 
 In our boules example (as illustraded below), with 6 boules, the kNN algorithm would measure the distance between the jack and each of the 6 boules on the ground. This would result in 6 separate calaculations.
 
@@ -93,9 +93,9 @@ Examples of ANN methods are:
 ![ANNOY](./img/ann-annoy.png)<br/>
 *[Figure 3 - Tree-based ANN search]*
 
-Which algorithm works best depends on your project. Performance can be measured in terms of latency, throughput (queries per second), build time, and accuracy (recall). These four components often have a tradeoff, so it depends on the use case which method works best. 
+Which algorithm works best depends on your project. Performance can be measured in terms of latency, throughput (queries per second), build time, and accuracy (recall). These four components often have a tradeoff, so it depends on the use case which method works best.
 
-So, while ANN is not some magic method that will always find the true k nearest neighbors in a dataset, it can find a pretty good approximation of the true k neighbors. And it can do this in a fraction of the time! 
+So, while ANN is not some magic method that will always find the true k nearest neighbors in a dataset, it can find a pretty good approximation of the true k neighbors. And it can do this in a fraction of the time!
 
 ## HNSW in Weaviate
 [Weaviate](/developers/weaviate/) is a great example of a vector database that uses ANN algorithms to offer ultra-fast queries. The first ANN algorithm introduced to Weaviate is a custom implementation of [Hierarchical Navigable Small World graphs (HNSW)](/developers/weaviate/concepts/vector-index#hnsw).
@@ -126,7 +126,7 @@ The Weaviate Core team is currently working on research and implementation for o
 Until then, you can:
 * Listen to a [podcast about ANN Benchmarks](https://youtu.be/kG3ji89AFyQ) with Connor and Etienne from Weaviate.
 * Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
-* Join our community on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), where we can all talk about vector databases.
+* Join our community on [Slack](https://weaviate.io/slack), where we can all talk about vector databases.
 * Reach out to us on [Twitter](https://twitter.com/weaviate_io).
 
 Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

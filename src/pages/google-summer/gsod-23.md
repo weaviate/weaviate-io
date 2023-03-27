@@ -120,4 +120,4 @@ Technical writers interested in working on this project should send an email to 
 
 ## Additional information
 
-Join our community [slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to say hello, get to know the community or ask questions.
+Join our community [slack](https://weaviate.io/slack) to say hello, get to know the community or ask questions.

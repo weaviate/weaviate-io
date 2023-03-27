@@ -1,7 +1,7 @@
 ---
 title: How to choose a Sentence Transformer from Hugging Face
 slug: how-to-choose-a-sentence-transformer-from-hugging-face
-authors: [connor] 
+authors: [connor]
 date: 2022-10-04
 tags: []
 image: ./img/hero.png
@@ -11,7 +11,7 @@ description: "Learn about the various Sentence Transformers from Hugging Face!"
 
 <!-- truncate -->
 
-[Weaviate](/developers/weaviate/) has recently unveiled a new module which allows users to easily [integrate models from Hugging Face](/blog/hugging-face-inference-api-in-weaviate) to vectorize their data and incoming queries. At the time of this writing, there are [over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads) that can be easily plugged into Weaviate. 
+[Weaviate](/developers/weaviate/) has recently unveiled a new module which allows users to easily [integrate models from Hugging Face](/blog/hugging-face-inference-api-in-weaviate) to vectorize their data and incoming queries. At the time of this writing, there are [over 700 models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads) that can be easily plugged into Weaviate.
 
 You may ask: **Why are there so many models and how do they differ?**<br/>
 And more importantly: **How to choose a Sentence Transformer for Semantic Search?**
@@ -30,12 +30,12 @@ Not too long ago, Deep Learning models were typically differentiated based on ar
 
 These days, neural nets differ from each other more so based on **what** they were trained on with respect to **data** -- as well as some subtleties with **how** they were trained, which we will save for a future article. This article will focus on **4 key dimensions**:
 
-1. [Domain](#domain) 
+1. [Domain](#domain)
 2. [Task](#task)
 3. [Scale](#scale)
 4. [Modality](#modality)
 
-## Domain  
+## Domain
 **Domain** largely describes the high-level notion of what the dataset is about. This is a common term in Machine Learning research to describe differences in large collections of objects. For example, in Computer Vision one **Domain** could be Paintbrush illustrations, and another **Domain** could be Photorealistic images. Both Paintbrush illustrations and Photorealistic images may have been labeled for the same **Task**, i.e. classify images as cats or dogs. The model trained to classify cats in the Paintbrush illustration will not perform as well as the model trained to classify cats in Photorealistic images, if the final use case is Photorealistic images!
 
 Domain differences are very common in Natural Language Processing (NLP), such as the difference between Legal Contracts, Financial Statements, Biomedical Scientific Papers, Wikipedia, or Reddit Conversations to give a few examples.
@@ -46,7 +46,7 @@ For every model, Hugging Face displays a list of important **color-coded** detai
 * Green - the **language** of the dataset
 * White or Purple - **additional details** about the model
 
-So, if we look at two Deep Learning models, we can see that [dangvantuan/sentence-camembert-large](https://huggingface.co/dangvantuan/sentence-camembert-large) was trained on **stsb_multi_mt**, which is a **French** dataset. 
+So, if we look at two Deep Learning models, we can see that [dangvantuan/sentence-camembert-large](https://huggingface.co/dangvantuan/sentence-camembert-large) was trained on **stsb_multi_mt**, which is a **French** dataset.
 
 ![Camembert Hugging Face Model Card](./img/camembert-model-card-min.png)
 
@@ -78,13 +78,13 @@ A **Task** is the function for which a model was trained, such as Question Answe
 Supervised Learning datasets play a prevalent role in Deep Learning applications, especially for many of the Sentence Transformer models. A dataset labeled for Question Answering is very different from Image Classification, or even Duplicate Question Detection.
 
 ### Task Benchmarks
-Two excellent benchmarks that collect Supervised Learning tasks to evaluate Sentence Transformers are Knowledge Intensive Language Tasks ([KILT](https://ai.facebook.com/tools/kilt/)) and Benchmarking Information Retrieval ([BEIR](https://arxiv.org/abs/2104.08663)). 
+Two excellent benchmarks that collect Supervised Learning tasks to evaluate Sentence Transformers are Knowledge Intensive Language Tasks ([KILT](https://ai.facebook.com/tools/kilt/)) and Benchmarking Information Retrieval ([BEIR](https://arxiv.org/abs/2104.08663)).
 
 **KILT** uses the same domain for all tasks, Wikipedia. Each task is labeled with a different task: Slot Filling, Question Answering, Dialogue, Fact Checking, or Entity Linking.
 
 ![KILT Benchmark](./img/KILT-min-correct.png)
 
-**BEIR** tests many different tasks: Fact Checking, Citation Prediction, Duplicate Question Retrieval, Argument Retrieval and more.  BEIR also tests a diverse set of domains such as Wikipedia, Scientific Papers, Quora, Stack Exchange, Internet scrapes, News, Financial Documents, and Tweets. 
+**BEIR** tests many different tasks: Fact Checking, Citation Prediction, Duplicate Question Retrieval, Argument Retrieval and more.  BEIR also tests a diverse set of domains such as Wikipedia, Scientific Papers, Quora, Stack Exchange, Internet scrapes, News, Financial Documents, and Tweets.
 
 ![BEIR Benchmark](./img/BEIR-min.png)
 
@@ -93,7 +93,7 @@ Two excellent benchmarks that collect Supervised Learning tasks to evaluate Sent
 
 These datasets can be simplified into 2 categories: (1) **Exact Semantic Match** and (2) **Relational Inference**. I believe the adoption of these categories can simplify the organization of text datasets used in embedding optimization.
 
-**Exact Semantic Match** is designed to encapsulate datasets like STS and Quora Question Pairs, as well as the miscellaneous Mono- and Multilingual Paraphrase datasets. 
+**Exact Semantic Match** is designed to encapsulate datasets like STS and Quora Question Pairs, as well as the miscellaneous Mono- and Multilingual Paraphrase datasets.
 
 **Relational Inference** is intended to capture Natural Language Inference, Fact Verification, Question Answering datasets, click logs like MS MARCO, and the massive pool of weakly supervised datasets extracted from web scraping, such as Reddit conversations and Stack Exchange discussions.
 
@@ -135,6 +135,6 @@ To recap, the HuggingFace Sentence Transformer checkpoints mostly differ in the 
 ## What's next
 Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
+You can reach out to us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
 
 Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.
