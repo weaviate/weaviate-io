@@ -89,7 +89,7 @@ const siteRedirects = {
         {
             to: '/developers/weaviate/tutorials/console',
             from: '/developers/weaviate/quickstart/console',
-        },        
+        },
 
         // Quickstart redirects
         {
@@ -111,7 +111,7 @@ const siteRedirects = {
         {
             to: '/developers/weaviate/tutorials/console',
             from: '/developers/weaviate/current/quickstart/console'
-        }, 
+        },
 
         // Tutorial redirects
         {
@@ -293,10 +293,16 @@ const siteRedirects = {
             from: ['/resources/gsod','/resources/gsoc', '/google-summer/gsoc-23', '/google-summer/', '/resources/gsod-summary']
         },
 
-        // moved/renamed pages
+        // moved WCS installation to WCS quickstart
         {
             to: '/developers/weaviate/installation/weaviate-cloud-services',
-            from: '/developers/weaviate/installation/weaviate-cloud-service'
+            from: '/developers/wcs/quickstart'
+        },
+
+        // moved Quickstart installation to WCS quickstart
+        {
+            to: '/developers/weaviate/quickstart/installation',
+            from: '/developers/wcs/quickstart'
         }
     ],
     createRedirects(existingPath) {
@@ -369,7 +375,7 @@ const siteRedirects = {
                     '/developers/weaviate/current'),
             ]
         }
-        
+
         // Contributor Guide redirects
         if (existingPath.includes('/contributor-guide/weaviate-modules')) {
             return [
@@ -384,7 +390,7 @@ const siteRedirects = {
                     '/developers/contributor-guide',
                     '/developers/contributor-guide/current'),
             ]
-        }       
+        }
 
         return undefined; // Return a falsy value: no redirect created
     },

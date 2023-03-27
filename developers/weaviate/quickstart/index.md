@@ -75,7 +75,7 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 <CodeClientInstall />
 
-### Accounts and API keys
+### Inference service
 
 You will be using an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs).
 
@@ -96,4 +96,4 @@ We want you to have the best experience possible here. So if you find that somet
 
 ## Next
 
-- Get started by [installing Weaviate](./installation.md).
+- [Weaviate, end-to-end](./end-to-end.md).
