@@ -6,7 +6,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 export default function PricingCalculator({props}) {
-  const [embeddingSize, setEmbeddingSize] = useState(100);
+  const [embeddingSize, setEmbeddingSize] = useState(768);
   const [amountOfDataObjs, setAmountOfDataObjs] = useState(0);
   const [queriesPerMonth, setQueriesPerMonth] = useState(0);
   const [slaTier, setSlaTier] = useState('standard');
@@ -71,7 +71,7 @@ export default function PricingCalculator({props}) {
 
   const redirectWithPrice = async (event) => {
     const data = {
-      url: `https://weaviate.io/pricing?dimensions=${embeddingSize}&object_count=${amountOfDataObjs}&monthly_queries=${queriesPerMonth}&sla=${slaTier}&high_availability=${highAvailability ? 'true' : 'false'}`,
+      url: `https://weaviate.io/pricing?dimensions=${embeddingSize}&object_count=${amountOfDataObjs}&monthly_queries=${queriesPerMonth}&sla=${slaTier}&high_availability=${highAvailability ? 'true' : 'false'}#mainPricingArea`,
       domain: "link.weaviate.io"
     }
 
@@ -104,7 +104,7 @@ export default function PricingCalculator({props}) {
     <div className="pricingCalculator">
       <div className="container">
         <div className="pricingBox">
-          <h2>Pay as you grow</h2>
+          <h2 id="mainPricingArea">Pay as you grow</h2>
           <p>
             Our pricing is built around vector dimensions stored and queried,
             and different SLA-tiers have <br /> different prices per dimension.
@@ -121,8 +121,8 @@ export default function PricingCalculator({props}) {
             </div>
             <Slider
               step={1}
-              min={100}
-              max={12800}
+              min={90}
+              max={1536}
               value={embeddingSize}
               onChange={(embeddingSize) => setEmbeddingSize(embeddingSize)}
             />
@@ -143,7 +143,7 @@ export default function PricingCalculator({props}) {
               <label>Data Objects:</label>
             </div>
             <Slider
-              step={2}
+              step={1000}
               min={0}
               max={100000000}
               value={amountOfDataObjs}
@@ -168,9 +168,9 @@ export default function PricingCalculator({props}) {
               <label>Monthly Queries:</label>
             </div>
             <Slider
-              step={3}
+              step={1000}
               min={0}
-              max={250000000}
+              max={100000000}
               value={queriesPerMonth}
               onChange={(queriesPerMonth) => setQueriesPerMonth(queriesPerMonth)}
             />
