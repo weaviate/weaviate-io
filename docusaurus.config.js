@@ -105,7 +105,7 @@ const config = {
                     sidebarPath: require.resolve('./sidebars.js'),
                     path: 'developers', // folder name – where the docs are
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
-                    
+
                     // TODO: Update to 'main' for release
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
@@ -167,14 +167,14 @@ const config = {
                             {
                                 label: 'Try Now',
                                 href: 'https://console.weaviate.io/',
-                            }, 
+                            },
                             {
                                 label: 'Documentation',
                                 docId: 'wcs/index',
                                 sidebarid: 'wcsSidebar',
                                 type: 'doc',
                             },
-                                               
+
                         ],
                     },
                     {
@@ -221,6 +221,12 @@ const config = {
                                 type: 'doc',
                             },
                             {
+                                label: 'WCS Docs',
+                                docId: 'wcs/index',
+                                sidebarid: 'wcsSidebar',
+                                type: 'doc',
+                            },
+                            {
                                 label: 'Contributor Guide',
                                 docId: 'contributor-guide/index',
                                 sidebarid: 'contributorSidebar',
@@ -236,7 +242,7 @@ const config = {
                             },
                         ],
                     },
-                    
+
                     {
                         to: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/',
                         label: ' ',
