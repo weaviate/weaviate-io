@@ -43,7 +43,7 @@ Copy the highlighted text, and pass it as an additional header via the `Header` 
 
 ### An API key
 
-To authenticate with Weaviate with an API key, each request needs to include the key in its header. The easiest way to do this is with a Weaviate client at instantiation, as shown in the code examples below:
+To authenticate against Weaviate with an API key, each request needs to include the key in its header. The easiest way to do this is with a Weaviate client at instantiation, as shown in the code examples below:
 
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 
@@ -66,9 +66,7 @@ Replacing `{YOUR-WEAVIATE-API-KEY}` with your API key.
 
 ### WCS username and password
 
-In this case, we recommend that you use the "Resource Owner Password Flow" method with your preferred client library for client-side authentication. Please refer to the relevant `WCS authentication` section below:
-
-To authenticate with Weaviate with an API key, each request needs to include the an OpenID Connect (OIDC) token in its header. As with the API key-based authentication, the easiest way to do this is with a Weaviate client at instantiation, by providing your WCS username and password as shown below:
+To authenticate against Weaviate with your WCS username and password, each request needs to include the an OpenID Connect (OIDC) token in its header. As with the API key-based authentication, the easiest way to do this is with a Weaviate client at instantiation, by providing your WCS username and password as shown below:
 
 import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
 
@@ -93,6 +91,9 @@ To automate this workflow, we strongly recommend that you use your preferred Wea
 
 </details>
 
+:::note What OIDC "flow" is this?
+This is the "Resource Owner Password Flow" method.
+:::
 ## Resetting credentials
 
 If you would like to reset your credentials for whatever reason, you can do so as follows:

@@ -57,7 +57,7 @@ This will start the process to create a new cluster, and you should see a progre
 
 (In the meantime, you can start installing a client library - or grab a hot drink 😉.)
 
-:::tip Authenticating with WCS + Weaviate client
+:::tip Authenticating against WCS with a Weaviate client
 If you do enable OIDC in WCS for added security, the easiest way to authenticate as a user is to use the Weaviate client library.
 
 Consult the `WCS authentication` section for your preferred client library and use the "Resource Owner Password Flow" method, by passing on the `username` and `password` you used to sign in to WCS. See the docs below:
