@@ -16,15 +16,21 @@ We provide documentation here for both scenarios, including:
 - [Configuring Weaviate for anonymous access](#anonymous-access)
 - [Configuring Weaviate and the client for OIDC](#oidc---a-systems-perspective)
 
+## WCS authentication
+
+If you are a Weaviate Cloud Services (WCS) user, WCS is set up as the token issuer by default, and no further configuration is required regarding the token issuer or the resource.
+
+See the [WCS documentation for instructions](../../wcs/guides/authentication.mdx) on how to authenticate as a user in this setup.
+
 ## OIDC - A systems perspective
 
-OIDC authentication can be confusing, because it involves three parties.
+OIDC authentication involves three parties.
 
 1. A **user** who wants to access a resource.
 1. An **identity provider (a.k.a token issuer)** (e.g. Okta, Microsoft, or WCS) that authenticates the user and issues tokens.
 1. A **resource** (in this case, Weaviate) who validates the tokens to rely on the identity provider's authentication.
 
-A Weaviate instance is a resource, Weaviate Cloud Services (WCS) may be an identity provider, and the Weaviate client may act on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication.
+For example, a setup may involve a Weaviate instance as a resource, Weaviate Cloud Services (WCS) as an identity provider, and the Weaviate client acting on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication.
 
 <details>
   <summary>
@@ -41,21 +47,6 @@ that it was indeed signed by the configured token issuer. If the signature is
 correct, all contents of the token are trusted, which authenticates the user based on the information in the token.
 
 </details>
-
-### OIDC for WCS users
-
-:::tip
-This applies to all WCS users
-:::
-
-If you are a Weaviate Cloud Services (WCS) user, WCS is set up as the token issuer by default, and no further configuration is required regarding the token issuer or the resource.
-
-In this case, we recommend that you use the "Resource Owner Password Flow" method with your preferred client library for client-side authentication. Please refer to the relevant `WCS authentication` section below:
-
-- [Python](../client-libraries/python.md#wcs-authentication)
-- [JavaScript](../client-libraries/javascript.md#wcs-authentication)
-- [Go](../client-libraries/go.md#wcs-authentication)
-- [Java](../client-libraries/java.md#wcs-authentication)
 
 ## OIDC - Configuring Weaviate as the resource
 
