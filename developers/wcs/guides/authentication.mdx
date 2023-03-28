@@ -4,6 +4,9 @@ sidebar_position: 15
 image: og/wcs/user_guides.jpg
 ---
 
+import WCSGetKey from './img/wcs-get-key.png';
+import WCSKeyExample from './img/wcs-key-example.png';
+
 ## Overview
 
 For ensure security in a production environment, WCS instances of Weaviate come pre-configured with authentication enabled (except for sandbox instances, where it is optional).
@@ -22,15 +25,24 @@ All Weaviate instances with authentication will generate API keys with full admi
 
 Each paid WCS instance will also come with a read-only API key in addition to the full admin API key.
 
-## Instructions
+## Access API key
 
-### Authentication with an API key
+For instances with authentication enabled, the API key(s) can be accessed by clicking here
+
+<img src={WCSGetKey} width="100%" alt="Instance configuration"/>
+
+Which should bring up a screen like this, containing your API key(s) and additional header example:
+
+<img src={WCSKeyExample} width="100%" alt="WCS key example"/>
+
+Copy the highlighted text, and pass it as an additional header via the `Header` tab located towards the bottom of the console.
+
+
+## Steps for authentication
+
+### With an API key
 
 To authenticate with Weaviate with an API key, each request needs to include the key in its header. The easiest way to do this is with a Weaviate client at instantiation, as shown in the code examples below:
-
-:::warning TODO
-Complete code examples
-:::
 
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 
@@ -51,7 +63,7 @@ Replacing `{YOUR-WEAVIATE-API-KEY}` with your API key.
 
 </details>
 
-### Authentication with WCS username and password
+### With WCS username and password
 
 To authenticate with Weaviate with an API key, each request needs to include the an OpenID Connect (OIDC) token in its header. As with the API key-based authentication, the easiest way to do this is with a Weaviate client at instantiation, by providing your WCS username and password as shown below:
 
@@ -78,7 +90,7 @@ To automate this workflow, we strongly recommend that you use your preferred Wea
 
 </details>
 
-### Resetting credentials
+## Resetting credentials
 
 If you would like to reset your credentials for whatever reason, you can do so as follows:
 

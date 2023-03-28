@@ -16,7 +16,7 @@ const sidebars = {
   docsSidebar: [
     {
       type: 'link',
-      label: '🔗 To WCS docs',
+      label: '🔗 WCS docs',
       href: '/developers/wcs',
     },
     {
@@ -37,7 +37,7 @@ const sidebars = {
   wcsSidebar: [
     {
       type: 'link',
-      label: '🔗 To Weaviate docs',
+      label: '🔗 Weaviate docs',
       href: '/developers/weaviate',
     },
     {
