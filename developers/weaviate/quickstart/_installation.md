@@ -31,14 +31,10 @@ If you prefer a local instance of Weaviate, we recommend getting started with Do
 
 ### Sign in to WCS
 
-First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.io/).
+First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.cloud/).
 
 :::note No account? No problem!
-If you don't have an account with WCS yet, click on the "Sign Up" button:
-
-<img src={registerImg} width="400px" alt="Register button"/>
-
-Or [click here to sign up](https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs&response_type=code&redirect_uri=https://console.weaviate.io/registration-login).
+If you don't have an account with WCS yet, you can create a new account for free.
 :::
 
 Then sign in to WCS with your credentials.

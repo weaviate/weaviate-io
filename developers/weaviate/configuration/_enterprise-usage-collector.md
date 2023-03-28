@@ -15,7 +15,7 @@ When using Weaviate Enterprise, a proxy service is placed in between the user (o
 
 ## 1. Collect a Weaviate Enterprise Token
 
-- Login into the [Weaviate Console](https://console.weaviate.io).
+- Login into the [Weaviate Console](https://console.weaviate.cloud).
 - Click the profile symbol in the top menu and collect the key, which is shown to you. Note, this key is a secret, and you should not make this available in public repositories.
 
 ## 2. Add the Weaviate Enterprise Usage Collector to your Docker-compose file
@@ -24,16 +24,16 @@ If you are using the Docker-compose file from the installation configurator, you
 
 ```yaml
 services:
-    enterprise-proxy: 
+    enterprise-proxy:
     image: semitechnologies/weaviate-enterprise-usage-collector:latest
     environment:
       - weaviate_enterprise_token=[[ WEAVIATE TOKEN ]]
       - weaviate_enterprise_project=[[ PROJECT NAME ]]
-    links: 
+    links:
       - "weaviate:weaviate.com"
-    ports: 
+    ports:
       - "8080:8080"
-    depends_on: 
+    depends_on:
       - weaviate
 ```
 
@@ -61,7 +61,7 @@ You can also use the Docker compose [configurator](/developers/weaviate/installa
 
 Obtain your token as described in step 1.
 
-Get a Weaviate [helm chart](https://github.com/weaviate/weaviate-helm/releases) of version `||site.helm_version||` or higher. 
+Get a Weaviate [helm chart](https://github.com/weaviate/weaviate-helm/releases) of version `||site.helm_version||` or higher.
 
 Enable the proxy and configure the proxy using the `collector_proxy` key from the `values.yaml` like so:
 ```
@@ -76,7 +76,7 @@ collector_proxy:
     type: LoadBalancer
 ```
 
-Deploy the helm chart and make sure to use the proxy service for your requests. 
+Deploy the helm chart and make sure to use the proxy service for your requests.
 
 ## More Resources
 

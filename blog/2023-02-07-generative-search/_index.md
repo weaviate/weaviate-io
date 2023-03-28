@@ -43,8 +43,8 @@ The [Generative OpenAI](/developers/weaviate/modules/reader-generator-modules/ge
 ### Weaviate Cloud Services
 The `Generative OpenAI` module is enabled by default in the Weaviate Cloud Services (WCS). If your instance version is on `1.17.3` or newer, then you are good to go.
 
-:::tip Free 30-day sandbox
-You can create a free 30-day sandbox on [WCS](https://console.weaviate.io/) and create a Weaviate instance.
+:::tip Free 14-day sandbox
+You can create a free 14-day sandbox on [WCS](https://console.weaviate.cloud) and create a Weaviate instance.
 :::
 
 :::note Available modules out of the box
