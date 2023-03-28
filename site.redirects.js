@@ -295,14 +295,14 @@ const siteRedirects = {
 
         // moved WCS installation to WCS quickstart
         {
-            to: '/developers/weaviate/installation/weaviate-cloud-services',
-            from: '/developers/wcs/quickstart'
+            to: '/developers/wcs/quickstart',
+            from: '/developers/weaviate/installation/weaviate-cloud-services',
         },
 
-        // moved Quickstart installation to WCS quickstart
+        // moved Quickstart installation to Quickstart
         {
-            to: '/developers/weaviate/quickstart/installation',
-            from: '/developers/wcs/quickstart'
+            to: '/developers/weaviate/quickstart',
+            from: '/developers/weaviate/quickstart/installation'
         }
     ],
     createRedirects(existingPath) {
