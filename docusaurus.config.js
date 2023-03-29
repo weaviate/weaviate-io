@@ -141,7 +141,7 @@ const config = {
             announcementBar: {
                 id: 'announcement-bar',
                 content:
-                    'We are excited to announce a huge update to <a target="_blank" rel="noopener noreferrer" href="https://console.weaviate.cloud/">Weaviate Cloud Services (WCS)</a> · and addition of dedicated <a target="_blank" rel="noopener noreferrer" href="/developers/wcs">WCS documentation</a>.',
+                    'We are excited to announce a huge update to <a target="_blank" rel="noopener noreferrer" href="https://console.weaviate.cloud/">Weaviate Cloud Services (WCS)</a> · check out the dedicated <a target="_blank" rel="noopener noreferrer" href="/developers/wcs">WCS docs</a>.',
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
