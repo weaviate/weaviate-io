@@ -1,11 +1,12 @@
 import React from 'react';
 import './styles.scss';
 import { useState, useEffect } from 'react';
-import ToggleSwitch from '../../ToggleSwitch';
-import Slider from 'react-rangeslider';
+import ToggleSwitch from '/src/components/ToggleSwitch';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
-export default function PricingCalculator() {
-  const [embeddingSize, setEmbeddingSize] = useState(100);
+export default function PricingCalculator({props}) {
+  const [embeddingSize, setEmbeddingSize] = useState(768);
   const [amountOfDataObjs, setAmountOfDataObjs] = useState(0);
   const [queriesPerMonth, setQueriesPerMonth] = useState(0);
   const [slaTier, setSlaTier] = useState('standard');
@@ -31,15 +32,79 @@ export default function PricingCalculator() {
     queriesPerMonth,
   ]);
 
+  useEffect(() => {
+    const params =  new URLSearchParams(window.location.search)
+    if(params.get('sla')) setSlaTier(params.get('sla'));
+    if(params.get('dimensions')) setEmbeddingSize(params.get('dimensions'));
+    if(params.get('object_count')) setAmountOfDataObjs(params.get('object_count'));
+    if(params.get('monthly_queries')) setQueriesPerMonth(params.get('monthly_queries'));
+    if(params.get('high_availability')) setHighAvailability(params.get('high_availability') === 'true' ? true : false);
+  },[])
+
+  const handleLabel = (value) => {
+    let valueFormated = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    return valueFormated;
+  }
+
+  const handleChangeEmbeddingSize = (e) => {
+    let clearValue = e.target.value.replace('.','').replace(',','');
+    clearValue = clearValue.replace('.','').replace(',','');
+    setEmbeddingSize(clearValue)
+  };
+
+  const handleChangeAmountOfDataObjs = (e) => {
+    let clearValue = e.target.value.replace('.','').replace(',','');
+    clearValue = clearValue.replace('.','').replace(',','');
+    setAmountOfDataObjs(clearValue)
+  };
+
+  const handleChangeQueriesPerMonth = (e) => {
+    let clearValue = e.target.value.replace('.','').replace(',','');
+    clearValue = clearValue.replace('.','').replace(',','');
+    setQueriesPerMonth(clearValue)
+  };
+
+
   const onHighAvailabilityChange = (checked) => {
     setHighAvailability(checked);
   };
+
+  const redirectWithPrice = async (event) => {
+    const data = {
+      url: `https://weaviate.io/pricing?dimensions=${embeddingSize}&object_count=${amountOfDataObjs}&monthly_queries=${queriesPerMonth}&sla=${slaTier}&high_availability=${highAvailability ? 'true' : 'false'}#mainPricingArea`,
+      domain: "link.weaviate.io"
+    }
+
+    try {
+      const response = await fetch('https://us-central1-semi-production.cloudfunctions.net/create-bitly', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+          }
+      })
+
+      const url = await response.text();
+      console.log(url)
+      navigator.clipboard.writeText(url);
+
+      // Add code to animate the button here
+      const btnText = event.target.innerText;
+      event.target.innerText = "Coppied to clipboard"
+      setTimeout(
+        ()=> {event.target.innerText = btnText},
+        1000
+      )
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <div className="pricingCalculator">
       <div className="container">
         <div className="pricingBox">
-          <h2>Pay as you grow</h2>
+          <h2 id="mainPricingArea">Pay as you grow</h2>
           <p>
             Our pricing is built around vector dimensions stored and queried,
             and different SLA-tiers have <br /> different prices per dimension.
@@ -56,18 +121,20 @@ export default function PricingCalculator() {
             </div>
             <Slider
               step={1}
-              min={100}
-              max={12800}
+              min={90}
+              max={1536}
               value={embeddingSize}
               onChange={(embeddingSize) => setEmbeddingSize(embeddingSize)}
             />
             <div className="value">
               <input
+                className='labelResult'
                 type="text"
-                placeholder={embeddingSize}
+                maxLength='11'
+                placeholder={handleLabel(embeddingSize)}
                 name="embeddingSize"
-                value={embeddingSize.valueAsNumber}
-                onChange={(e) => parseInt(setEmbeddingSize(e.target.value))}
+                value={handleLabel(embeddingSize)}
+                onChange={handleChangeEmbeddingSize}
               />
             </div>
           </div>
@@ -76,7 +143,7 @@ export default function PricingCalculator() {
               <label>Data Objects:</label>
             </div>
             <Slider
-              step={2}
+              step={1000}
               min={0}
               max={100000000}
               value={amountOfDataObjs}
@@ -86,11 +153,13 @@ export default function PricingCalculator() {
             />
             <div className="value">
               <input
+                className='labelResult'
                 type="text"
-                placeholder={amountOfDataObjs}
+                maxLength='11'
+                placeholder={handleLabel(amountOfDataObjs)}
                 name="amountOfDataObjs"
-                value={amountOfDataObjs.valueAsNumber}
-                onChange={(e) => parseInt(setAmountOfDataObjs(e.target.value))}
+                value={handleLabel(amountOfDataObjs)}
+                onChange={handleChangeAmountOfDataObjs}
               />
             </div>
           </div>
@@ -99,31 +168,28 @@ export default function PricingCalculator() {
               <label>Monthly Queries:</label>
             </div>
             <Slider
-              step={3}
+              step={1000}
               min={0}
-              max={250000000}
+              max={100000000}
               value={queriesPerMonth}
-              onChange={(queriesPerMonth) =>
-                setQueriesPerMonth(queriesPerMonth)
-              }
+              onChange={(queriesPerMonth) => setQueriesPerMonth(queriesPerMonth)}
             />
             <div className="value">
               <input
+                className='labelResult'
                 name="queriesPerMonth"
                 type="text"
-                placeholder={queriesPerMonth}
-                value={queriesPerMonth.valueAsNumber}
-                onChange={(e) => parseInt(setQueriesPerMonth(e.target.value))}
+                maxLength='11'
+                placeholder={handleLabel(queriesPerMonth)}
+                value={handleLabel(queriesPerMonth)}
+                onChange={handleChangeQueriesPerMonth}
               />
             </div>
           </div>
           <div className="selectContainer">
             <label>SLA Tier:</label>
             <div className="select">
-              <select
-                value={slaTier}
-                onChange={(event) => setSlaTier(event.target.value)}
-              >
+              <select value={slaTier} onChange={(event) => setSlaTier(event.target.value)}>
                 <option value="standard">Standard</option>
                 <option value="enterprise">Enterprise</option>
                 <option value="businessCritical">Business Critical</option>
@@ -135,7 +201,7 @@ export default function PricingCalculator() {
             <div className="highAva">
               <label htmlFor="highAvailability">High Availability:</label>{' '}
             </div>
-            <div className="switchContainer">
+            <div className='switchContainer'>
               <ToggleSwitch
                 id="highAvailability"
                 checked={highAvailability}
@@ -146,10 +212,8 @@ export default function PricingCalculator() {
               {price.error === false && (
                 <>
                   <span>Your estimated price</span>{' '}
-                  <div className="priceFormat">
-                    <p>
-                      $ <span className="test">{price.priceStr}</span> /mo
-                    </p>
+                  <div className='priceFormat'>
+                    <p>$ <span className='test'>{handleLabel(price.priceStr)}</span> /mo</p>
                   </div>
                 </>
               )}
@@ -161,6 +225,11 @@ export default function PricingCalculator() {
             </div>
           </div>
         </div>
+        <div className={'buttons'}>
+            <div className={'buttonOutline'} onClick={redirectWithPrice}>
+              Share this pricing
+            </div>
+          </div>
       </div>
     </div>
   );

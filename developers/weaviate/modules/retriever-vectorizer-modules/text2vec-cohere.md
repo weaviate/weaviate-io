@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-The `text2vec-cohere` module allows you to use the [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) directly in the Weaviate vector search engine as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using Cohere's models.
+The `text2vec-cohere` module allows you to use the [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) directly in the Weaviate vector database as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using Cohere's models.
 
 :::note
 * This module uses a third-party API and may incur costs.

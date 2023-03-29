@@ -8,11 +8,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## General
+## Q: Why would I use Weaviate as my vector database?
 
-#### Q: Why would I use Weaviate as my vector search engine?
-
-A: Our goal is three-folded. Firstly, we want to make it as easy as possible for others to create their own semantic systems or vector search engines (hence, our APIs are GraphQL based). Secondly, we have a strong focus on the semantic element (the "knowledge" in "vector search engine," if you will). Our ultimate goal is to have Weaviate help you manage, index, and "understand" your data so that you can build newer, better, and faster applications. And thirdly, we want you to be able to run it everywhere. This is the reason why Weaviate comes containerized.
+A: Our goal is three-folded. Firstly, we want to make it as easy as possible for others to create their own semantic systems or vector search engines (hence, our APIs are GraphQL based). Secondly, we have a strong focus on the semantic element (the "knowledge" in "vector databases," if you will). Our ultimate goal is to have Weaviate help you manage, index, and "understand" your data so that you can build newer, better, and faster applications. And thirdly, we want you to be able to run it everywhere. This is the reason why Weaviate comes containerized.
 
 #### Q: What is the difference between Weaviate and for example Elasticsearch?
 
@@ -114,7 +112,7 @@ A: You can create multiple classes in the Weaviate schema, where one class will 
 
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
-A: The below `Aggregate` GraphQL query will retrieve the total object count in a class.
+A: The below `Aggregate` query will retrieve the total object count in a class.
 
 <HowToGetObjectCount/>
 
@@ -170,7 +168,7 @@ A: Here are top 3 best practices for updating data:
 
 #### Q: Can I train my own text2vec-contextionary vectorizer module?
 
-A: Not yet (but soon), you can currently use the [available contextionaries](/developers/weaviate/quickstart/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](https://newsletter.weaviate.io) or [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep updated about the release of custom contextionary training
+A: Not yet (but soon), you can currently use the [available contextionaries](/developers/weaviate/quickstart/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](https://newsletter.weaviate.io) or [Slack channel](https://weaviate.io/slack) to keep updated about the release of custom contextionary training
 
 ## Indexes in Weaviate
 
@@ -331,4 +329,4 @@ Look at the:
 1. [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
 1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
 1. For issues: [GitHub](https://github.com/weaviate/weaviate/issues). Or,
-1. Ask your question in the Slack channel: [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
+1. Ask your question in the Slack channel: [Slack](https://weaviate.io/slack).

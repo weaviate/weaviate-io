@@ -19,7 +19,7 @@ Here, you will create a new Weaviate instance for use throughout this tutorial.
 
 We will use the free sandbox tier from _Weaviate Cloud Services_ (WCS) for this tutorial.
 
-WCS is a managed SaaS service that requires no maintenance at your end. As it is the fastest 🚀 way to create a new Weaviate instance, let's spin up an instance with it for use throughout this tutorial. 
+WCS is a managed SaaS service that requires no maintenance at your end. As it is the fastest 🚀 way to create a new Weaviate instance, let's spin up an instance with it for use throughout this tutorial.
 
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
@@ -31,7 +31,7 @@ If you prefer a local instance of Weaviate, we recommend getting started with Do
 
 ### Sign in to WCS
 
-First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.io/). 
+First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.io/).
 
 :::note No account? No problem!
 If you don't have an account with WCS yet, click on the "Sign Up" button:
@@ -48,8 +48,8 @@ Then sign in to WCS with your credentials.
 To create a new Weaviate Cluster:
 1. Press the "Create a Weaviate Cluster" button
 1. Configure the cluster:
-    1. Set a unique `name` for your cluster – note: The name will become part of the URL used to access this instance. 
-    1. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 30 days
+    1. Set a unique `name` for your cluster – note: The name will become part of the URL used to access this instance.
+    1. Leave the `Subscription Tier` as `Sandbox` - note: The sandbox is free, but it will expire after 14 days
     1. Leave the `Weaviate Version` as the latest
     1. **Change** the `OIDC Authentication` to `Disabled`
 1. Finally, press **Create**.
@@ -137,7 +137,7 @@ If you are running Weaviate with Docker, keep in mind that the address for Weavi
 
 ### More on deployment options
 
-To learn more about the other self-deployment options, check out the documentation for installation with [Docker](../installation/docker-compose.md) or [Kubernetes](../installation/kubernetes.md). 
+To learn more about the other self-deployment options, check out the documentation for installation with [Docker](../installation/docker-compose.md) or [Kubernetes](../installation/kubernetes.md).
 
 -----
 
