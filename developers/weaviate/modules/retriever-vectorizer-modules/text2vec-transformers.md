@@ -29,7 +29,7 @@ The `text2vec-transformers` module is not available on the WCS.
 You have three options to select your desired model:
 
 1. **Use [any of our pre-built transformers model containers](#pre-built-images).** The models selected in [this list](#pre-built-images) have proven to work well with semantic search in the past. These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/weaviate/weaviate/issues)).
-2. **Use any model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publicly-available-hugging-face-model). The `text2vec-transformers` module supports any PyTorch or Tensorflow transformer model. 
+2. **Use any model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publicly-available-hugging-face-model). The `text2vec-transformers` module supports any PyTorch or Tensorflow transformer model.
 3. **Use any private or local PyTorch or Tensorflow transformer model.** [Click here to learn how](#option-3-custom-build-with-a-private-or-local-model). If you have your own transformer model in a registry or on a local disk, you can use this with Weaviate.
 
 ### Option 1: Use a pre-built transformer model container
@@ -84,7 +84,7 @@ docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-tra
 Use a CUDA-enabled machine for optimal performance. Alternatively, include this container in the same `docker-compose.yml` as Weaviate.
 :::
 
-#### Step 3: Tell Weaviate where to find the inference 
+#### Step 3: Tell Weaviate where to find the inference
 
 Set the Weaviate environment variable `TRANSFORMERS_INFERENCE_API` to identify where your inference container is running, for example if Weaviate is running outside of Docker use `TRANSFORMERS_INFERENCE_API="http://localhost:8000"`. Alternatively if Weaviate is part of the same Docker network, e.g. because they are part of the same `docker-compose.yml` file, you can use Docker networking/DNS, such as `TRANSFORMERS_INFERENCE_API=http://t2v-transformers:8080`.
 
@@ -94,7 +94,7 @@ You can now use Weaviate normally and all vectorization during import and search
 
 You can download a selection of pre-built images directly from Dockerhub. We
 have chosen publicly available models that in our opinion are well suited for
-semantic search. 
+semantic search.
 
 The pre-built models include:
 
@@ -131,10 +131,10 @@ a custom image as outlined below.
 
 ### Option 2: Use any publicly available Hugging Face model
 
-You can build a Docker image which supports any model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`distilroberta-base` model](https://huggingface.co/distilroberta-base). 
+You can build a Docker image which supports any model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`distilroberta-base` model](https://huggingface.co/distilroberta-base).
 
 #### Step 1: Create a `Dockerfile`
-Create a new `Dockerfile`. We will name it `distilroberta.Dockerfile`. Add the following lines to it: 
+Create a new `Dockerfile`. We will name it `distilroberta.Dockerfile`. Add the following lines to it:
 ```
 FROM semitechnologies/transformers-inference:custom
 RUN MODEL_NAME=distilroberta-base ./download.py
@@ -189,9 +189,13 @@ ports:
   - "9090:8080"
 ```
 
-to your `text2vec-transformers`. 
+to your `text2vec-transformers`.
 
-Then you can send REST requests to it directly, e.g. `curl localhost:9090/vectors -d '{"text": "foo bar"}'` and it will print the created vector directly. 
+Then you can send REST requests to it directly, e.g.:
+```shell
+curl localhost:9090/vectors -H 'Content-Type: application/json' -d '{"text": "foo bar"}
+```
+and it will print the created vector directly.
 
 ## How to configure
 

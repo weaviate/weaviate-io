@@ -41,7 +41,7 @@ When you're connected, you can use the [GraphiQL](#graphiql) interface to intera
 
 ## GraphiQL
 
-GraphiQL is a graphical interface that allows you to manually write GraphQL queries. Within Weaviate we use it a lot, the auto-fill functionality allows you to easily navigate through your own dataset. Curious? Try out the console [right now](https://link.weaviate.io/3ThS9hG) with the news publication dataset.
+[GraphiQL](https://github.com/graphql/graphiql) is a graphical interface that allows you to write GraphQL queries interactively, with autocompletion and inline documentation. Curious? Try out the console [right now](https://link.weaviate.io/3ThS9hG) with the news publication dataset.
 
 ## Try out the console
 
@@ -72,9 +72,6 @@ The console might ask to downgrade to HTTP. This is done to avoid [CORS](https:/
 - [Concepts](../concepts/index.md)
 - [Roadmap](../roadmap/index.md)
 
-## Legend
-
-* [GraphiQL](https://github.com/graphql/graphiql)
 
 ## More Resources
 

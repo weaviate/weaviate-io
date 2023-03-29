@@ -37,7 +37,7 @@ To overcome this potential accuracy loss with BPR, the original paper suggests a
 BPR support in Weaviate is currently under development. The initial POCs have provided very promising results and production-grade support is expected for early 2022.
 :::
 
-Weaviate's BPR integration aims to provide the best possible user experience. Since BPR can be mostly seen as an optimization, it should not require any effort to set up. Weaviate will support native BPR integration which can be toggled on or off with a simple flag. BPR-supported Weaviate modules can advertise their BPR capabilities and default to BPR if desired. For users of Weaviate `text2vec-*` modules, using BPR within Weaviate will feel exactly the same way. For users importing their own vectors, a simple flag will activate BPR mode if your custom module is compatible with BPR. 
+Weaviate's BPR integration aims to provide the best possible user experience. Since BPR can be mostly seen as an optimization, it should not require any effort to set up. Weaviate will support native BPR integration which can be toggled on or off with a simple flag. BPR-supported Weaviate modules can advertise their BPR capabilities and default to BPR if desired. For users of Weaviate `text2vec-*` modules, using BPR within Weaviate will feel exactly the same way. For users importing their own vectors, a simple flag will activate BPR mode if your custom module is compatible with BPR.
 
 ### BPR-enabled Weaviate text2vec-modules
 
@@ -53,7 +53,7 @@ Since Binary Passage Retrieval is brand-new, we are sure you have plenty of ques
 
 #### When will BPR officially be supported in Weaviate?
 
-BPR support will be available around the end of Q1 2022 in production quality. If you want to try it out earlier and aren't afraid to play with POC-style code, join our [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) and you can get started considerably sooner.
+BPR support will be available around the end of Q1 2022 in production quality. If you want to try it out earlier and aren't afraid to play with POC-style code, join our [Slack](https://weaviate.io/slack) and you can get started considerably sooner.
 
 #### What vector distances are used with BPR?
 
@@ -83,7 +83,7 @@ From a purely technical perspective, there is no impediment to using any model w
 
 #### How can I stay up-to-date with this exciting development?
 
-Make sure to [join our Slack-channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) for regular updates.
+Make sure to [join our Slack-channel](https://weaviate.io/slack) for regular updates.
 
 ## More Resources
 

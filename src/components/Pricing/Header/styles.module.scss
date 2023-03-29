@@ -28,6 +28,11 @@ p {
 }
 
 [data-theme='dark'] {
+  .logos {
+    .aws {
+      background-image: url('../../../../static/img/site/aws.png');
+    }
+  }
   .textGradient {
     background: -webkit-linear-gradient(45deg, #20e220 60%, #ffff00);
     -webkit-background-clip: text;
@@ -91,7 +96,7 @@ p {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('../../../../static/img/site/aws.png');
+    background-image: url('../../../../static/img/site/aws-dark.png');
   }
   .azure {
     display: flex;
@@ -127,9 +132,14 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   min-height: 280px;
   padding: 5px;
   cursor: pointer;
+
+  p {
+    padding: 0 45px;
+  }
 
   &:hover {
     text-decoration: none;

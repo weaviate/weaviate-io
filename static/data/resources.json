@@ -49,7 +49,7 @@
     ]
   },
   {
-    "title": "\"SeMI Technologies' search engine opens up new ways to query your data\"",
+    "title": "\"Weaviate vector database opens up new ways to query your data\"",
     "date": "2022-02-22T00:00:02.000Z",
     "cover_image": "https://upload.wikimedia.org/wikipedia/commons/b/b9/TechCrunch_logo.svg",
     "description": "Check out this Techcrunch article that features SeMI's Series-A investment",
@@ -167,7 +167,7 @@
     "title": "Vector databases explained!",
     "date": "2021-09-05T00:00:00.000Z",
     "cover_image": "https://i3.ytimg.com/vi/YkK5IKgxp-c/hqdefault.jpg",
-    "description": "AI Coffee Break with Letitia – Modern search engines explained. Cool explaining video on what you need to know about today's vector search engines.",
+    "description": "AI Coffee Break with Letitia - Modern vector databases explained. A cool explainer video on what you need to know about today's vector databases.",
     "source": "youtube",
     "link": "https://www.youtube.com/watch?v=YkK5IKgxp-c",
     "tags": [
@@ -202,7 +202,7 @@
     "title": "Presentation by Laura Ham",
     "date": "2021-11-11T00:00:00.000Z",
     "cover_image": "https://i3.ytimg.com/vi/KZMl66wYfDI/maxresdefault.jpg",
-    "description": "AI-powered Vector Search Engine Weaviate by Laura Ham - during a Linux Foundation event.",
+    "description": "AI-powered vector database Weaviate by Laura Ham - during a Linux Foundation event.",
     "source": "youtube",
     "link": "https://www.youtube.com/watch?v=KZMl66wYfDI",
     "tags": [
@@ -214,7 +214,7 @@
     "title": "Etienne Dilocker on Weaviate",
     "date": "2021-10-11T00:00:00.000Z",
     "cover_image": "https://i3.ytimg.com/vi/6lkanzOqhDs/maxresdefault.jpg",
-    "description": "Vector Search Engines are powering the the next generation of search. This podcast explores HNSW, Neurosymbolic search and filtering, and more!",
+    "description": "Vector databases are powering the next generation of search. This podcast explores HNSW, Neurosymbolic search and filtering, and more!",
     "source": "youtube",
     "link": "https://www.youtube.com/watch?v=6lkanzOqhDs",
     "tags": [
@@ -237,7 +237,7 @@
     "title": "Weaviate for Retail",
     "date": "2021-03-03T00:00:00.000Z",
     "cover_image": "https://i3.ytimg.com/vi/dk7_Kzkcflk/maxresdefault.jpg",
-    "description": "Learn how the Weaviate vector search engine helps customers like Metro AG and explore one of the many use cases Weaviate is helpfull in!",
+    "description": "Learn how the Weaviate vector database helps customers like Metro AG and explore one of the many use cases Weaviate is helpfull in!",
     "source": "youtube",
     "link": "https://www.youtube.com/watch?v=dk7_Kzkcflk",
     "tags": [
@@ -249,7 +249,7 @@
     "title": "Weaviate @ FOSDEM 2020",
     "date": "2020-02-08T00:00:00.000Z",
     "cover_image": "https://i3.ytimg.com/vi/3NfcAF4qm2k/maxresdefault.jpg",
-    "description": "Introduction and demo by Bob van Luijt during FOSDEM 2020 about the Weaviate Vector Search Engine.",
+    "description": "Introduction and demo by Bob van Luijt during FOSDEM 2020 about the Weaviate vector database.",
     "source": "youtube",
     "link": "https://www.youtube.com/watch?v=3NfcAF4qm2k",
     "tags": [
@@ -285,7 +285,7 @@
     "title": "Keras Code Search",
     "date": "2021-12-22T00:00:00.000Z",
     "cover_image": "https://i3.ytimg.com/vi/ichptfuCvog/maxresdefault.jpg",
-    "description": "This video illustrates how to upload the Keras Code Examples into the Weaviate Vector Search Engine!",
+    "description": "This video illustrates how to upload the Keras Code Examples into the Weaviate vector database!",
     "source": "youtube",
     "link": "https://www.youtube.com/watch?v=ichptfuCvog",
     "tags": [
@@ -310,7 +310,7 @@
     "title": "Weaviate Python Library",
     "date": "2021-04-07T00:00:00.000Z",
     "cover_image": "https://miro.medium.com/max/1200/1*akHYKaEdaOUazZBmdoNlzg.png",
-    "description": "A full tutorial on the Python library of the new Machine Learning based vector search engine, Weaviate",
+    "description": "A full tutorial on the Python library of the new Machine Learning based vector database, Weaviate",
     "source": "tds",
     "link": "https://towardsdatascience.com/getting-started-with-weaviate-python-client-e85d14f19e4f",
     "tags": [
@@ -321,7 +321,7 @@
     "title": "Sub-50ms neural search",
     "date": "2021-04-07T00:00:00.000Z",
     "cover_image": "https://miro.medium.com/max/1200/0*tzMNv6d70bht6iRS",
-    "description": "How to build a fast and production-ready neural search using Transformers, DistilBERT, and the vector search engine Weaviate",
+    "description": "How to build a fast and production-ready neural search using Transformers, DistilBERT, and the vector database Weaviate",
     "source": "tds",
     "link": "https://towardsdatascience.com/a-sub-50ms-neural-search-with-distilbert-and-weaviate-4857ae390154",
     "tags": [
