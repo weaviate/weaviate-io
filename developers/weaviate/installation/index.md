@@ -32,7 +32,7 @@ You have three options to run Weaviate.
 The Weaviate library is identical regardless of whether it is used via Weaviate Cloud Services (WCS) or by downloading an open source version. The only difference that WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
 
 :::info configuration yaml files
-Both Docker Compose and Kubernetes setups use a yaml file for customizing Weaviate instances, typically called `docker-compose.yml` or `values.yml` respectively. These files will be referred to throughout the documentation as `configuration yaml files`.
+Both Docker Compose and Kubernetes setups use a yaml file for customizing Weaviate instances, typically called `docker-compose.yml` or `values.yaml` respectively. These files will be referred to throughout the documentation as `configuration yaml files`.
 :::
 
 :::tip Docker <i class="fa-regular fa-circle-arrow-right"></i> Kubernetes
