@@ -31,7 +31,7 @@ Have their own sections, and others such as the
 
 And more can be found in the [More Resources](./more-resources/index.md) section.
 
-:::tip Looking for WCS docs?
+:::tip Looking for Weaviate Cloud Services docs?
 The Weaviate Cloud Services (WCS) documentation now has its own section! [Check it out here](../wcs/index.mdx).
 :::
 

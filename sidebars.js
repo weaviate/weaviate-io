@@ -24,12 +24,12 @@ const sidebars = {
     },
     {
       type: 'link',
-      label: '🔗 : WCS docs',
+      label: '→ Weaviate Cloud Services docs',
       href: '/developers/wcs',
     },
     {
       type: 'link',
-      label: '🔗 : Contributor guide',
+      label: '→ Contributor guide',
       href: '/developers/contributor-guide',
     },
   ],
@@ -50,12 +50,12 @@ const sidebars = {
     },
     {
       type: 'link',
-      label: '🔗 : Weaviate docs',
+      label: '→ Weaviate docs',
       href: '/developers/weaviate',
     },
     {
       type: 'link',
-      label: '🔗 : Contributor guide',
+      label: '→ Contributor guide',
       href: '/developers/contributor-guide',
     },
   ],

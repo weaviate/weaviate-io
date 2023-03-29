@@ -25,7 +25,7 @@ You have three options to run Weaviate.
 * [Docker Compose](./docker-compose.md) – typically for development.
 * [Kubernetes](./kubernetes.md) – typically for production setups.
 
-:::tip WCS docs have a new home
+:::tip Weaviate Cloud Services docs have a new home
 [Check it out here](../../wcs/index.mdx). Or go straight to the [WCS quickstart guide](../../wcs/quickstart.mdx) which covers installation.
 :::
 

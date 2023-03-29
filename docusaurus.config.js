@@ -138,15 +138,14 @@ const config = {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             image: 'og/default.jpg',
-
-            announcementBar: {
-                id: 'announcement-bar',
-                content:
-                    'We are excited to announce the first generative search module for Weaviate! <a target="_blank" rel="noopener noreferrer" href="https://www.prnewswire.com/news-releases/weaviate-releases-a-generative-search-module-301740697.html">press release</a> - <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/modules/reader-generator-modules/generative-openai">documentation</a>',
-                backgroundColor: '#1C1468',
-                textColor: '#F5F5F5',
-                isCloseable: true,
-            },
+            // announcementBar: {
+            //     id: 'announcement-bar',
+            //     content:
+            //         'We are excited to announce the first generative search module for Weaviate! <a target="_blank" rel="noopener noreferrer" href="https://www.prnewswire.com/news-releases/weaviate-releases-a-generative-search-module-301740697.html">press release</a> - <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/modules/reader-generator-modules/generative-openai">documentation</a>',
+            //     backgroundColor: '#1C1468',
+            //     textColor: '#F5F5F5',
+            //     isCloseable: true,
+            // },
             navbar: {
                 title: '',
                 // hideOnScroll: true,
@@ -165,16 +164,15 @@ const config = {
                                 to: '/pricing',
                             },
                             {
-                                label: 'Try Now',
-                                href: 'https://console.weaviate.cloud',
-                            },
-                            {
                                 label: 'Documentation',
                                 docId: 'wcs/index',
                                 sidebarid: 'wcsSidebar',
                                 type: 'doc',
                             },
-
+                            {
+                                label: 'Try Now',
+                                href: 'https://console.weaviate.cloud',
+                            },
                         ],
                     },
                     {
@@ -215,13 +213,13 @@ const config = {
                         position: 'right',
                         items: [
                             {
-                                label: 'Docs',
+                                label: 'Weaviate Docs',
                                 docId: 'weaviate/index',
                                 sidebarid: 'docsSidebar',
                                 type: 'doc',
                             },
                             {
-                                label: 'WCS Docs',
+                                label: 'Weaviate Cloud Services Docs',
                                 docId: 'wcs/index',
                                 sidebarid: 'wcsSidebar',
                                 type: 'doc',
