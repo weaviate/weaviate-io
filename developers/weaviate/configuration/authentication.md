@@ -58,7 +58,7 @@ This applies to anyone who is running their own Weaviate instance.
 
 Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discovery can be used with Weaviate. Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
 
-- For simple use-cases such as for a single user, you can use [Weaviate Cloud Services (WCS)](https://auth.wcs.api.weaviate.io) as the OIDC token issuer.
+- For simple use-cases such as for a single user, you can use Weaviate Cloud Services (WCS) as the OIDC token issuer. To do so:
     - Make sure you have a WCS account (you can [sign up here](https://console.weaviate.cloud/)).
     - In the Weaviate configuration file (e.g. `docker-compose.yaml`), specify:
       - `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer (in `AUTHENTICATION_OIDC_ISSUER`),
@@ -144,7 +144,7 @@ While it is outside the scope of our documentation to cover every OIDC authentic
     - Validated using Okta and Azure as identity providers; GCP does not support client credentials grant flow (as of December 2022).
     - Weaviate's Python client directly supports this method.
     - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
-1. Use `resource owner password flow` for trusted applications such as [Weaviate Cloud Services](https://auth.wcs.api.weaviate.io).
+1. Use `resource owner password flow` for trusted applications (e.g. used by [Weaviate Cloud Services](../../wcs/guides/authentication.mdx).
 1. Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
 ### OIDC support for Weaviate clients
