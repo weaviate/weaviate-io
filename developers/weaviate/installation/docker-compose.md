@@ -246,7 +246,7 @@ $ docker-compose up -d && docker-compose logs -f weaviate
 Alternatively you can run docker-compose entirely detached with `docker-compose up -d` _and_ then poll `{bindaddress}:{port}/v1/meta` until you receive a status `200 OK`.
 
 <!-- TODO:
-1. Check that all environment variables are also applicable for the kubernetes setup and associated values.yml config file.
+1. Check that all environment variables are also applicable for the kubernetes setup and associated values.yaml config file.
 2. Take this section out and into References; potentially consolidate with others as they are strewn around the docs. (E.g. backup env variables are not included here.) -->
 
 ## More Resources
