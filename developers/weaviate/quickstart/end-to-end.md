@@ -33,7 +33,7 @@ We will be working with [this dataset](https://raw.githubusercontent.com/weaviat
 
 ## Connect to Weaviate
 
-You can connect to your instance of Weaviate using the Weaviate client as shown below. If this creates an instance of client, you should be ready to go.
+You can connect to your instance of Weaviate using the Weaviate client as shown below. If this creates an instance of the client, you should be ready to go. (If you are using `curl`, you can skip this step.)
 
 import ConnectToWeaviateNoKey from '/_includes/code/quickstart.autoschema.connect.nokey.mdx'
 
