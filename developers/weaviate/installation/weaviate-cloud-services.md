@@ -22,7 +22,7 @@ Note: WCS offers free sandboxes with a 14-day expiry date.
 
 :::info Learn More
 
-You can learn more about WCS from the dedicated [WCS documentation](/developers/wcs/guides/console.mdx).
+You can learn more about WCS from the dedicated [WCS documentation](/developers/wcs/index.mdx).
 
 :::
 
