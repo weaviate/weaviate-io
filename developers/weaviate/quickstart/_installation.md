@@ -31,7 +31,7 @@ If you prefer a local instance of Weaviate, we recommend getting started with Do
 
 ### Sign in to WCS
 
-First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.cloud/).
+First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.cloud).
 
 :::note No account? No problem!
 If you don't have an account with WCS yet, you can create a new account for free.

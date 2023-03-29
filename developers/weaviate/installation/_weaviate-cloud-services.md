@@ -23,7 +23,7 @@ import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 ## Sign in
 
-1. Visit [https://console.weaviate.cloud/](https://console.weaviate.cloud)
+1. Visit [https://console.weaviate.cloud](https://console.weaviate.cloud)
 2. Click _Sign in with the Weaviate Cloud Services_, and log in or create an account.
 3. After signing in you will be able to create a Weaviate cluster.
 

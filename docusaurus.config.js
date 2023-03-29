@@ -166,7 +166,7 @@ const config = {
                             },
                             {
                                 label: 'Try Now',
-                                href: 'https://console.weaviate.io/',
+                                href: 'https://console.weaviate.cloud',
                             },
                             {
                                 label: 'Documentation',
