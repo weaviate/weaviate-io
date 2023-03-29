@@ -25,7 +25,7 @@ To obtain and install the Weaviate chart on your Kubernetes cluster, take the fo
 ```bash
 # Check if helm is installed
 $ helm version
-# Make sure `kubectl` is configured correctly and you can access the cluster. 
+# Make sure `kubectl` is configured correctly and you can access the cluster.
 # For example, try listing the pods in the currently configured namespace.
 $ kubectl get pods
 ```
@@ -64,7 +64,7 @@ Out of the box, the configuration file is setup for:
   `img2vec-neural` are disabled by default. They can be enabled by setting the
   respective `enabled` flag to `true`.
 
-See the resource requests and limits in the example `values.yml`. You can
+See the resource requests and limits in the example `values.yaml`. You can
 adjust them based on your expected load and the resources available on the
 cluster.
 

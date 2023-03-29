@@ -15,16 +15,16 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-This section shows you available options for running Weaviate, and how to install and configure Weaviate with each option. 
+This section shows you available options for running Weaviate, and how to install and configure Weaviate with each option.
 
 ## Options for running Weaviate
 
 Weaviate versions on the Weaviate Cloud Services (WCS) and Weaviate open source are identical, with the only difference that the WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
 
-You have three options to run Weaviate, all come with their own installation guides. 
+You have three options to run Weaviate, all come with their own installation guides.
 
 :::info configuration yaml files
-Both Docker Compose and Kubernetes setups use a yaml file for customizing Weaviate instances, typically called `docker-compose.yml` or `values.yml` respectively. These files will be referred to throughout the documentation as 'configuration yaml files'.
+Both Docker Compose and Kubernetes setups use a yaml file for customizing Weaviate instances, typically called `docker-compose.yml` or `values.yaml` respectively. These files will be referred to throughout the documentation as 'configuration yaml files'.
 :::
 
 * [Weaviate Cloud Services](./weaviate-cloud-services.md) – advised for users who want to use a managed Weaviate service.
@@ -72,7 +72,7 @@ services:
     image: semitechnologies/contextionary:en0.16.0-v1.0.2
 ```
 
-After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`. 
+After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`.
 
 ## More Resources
 
