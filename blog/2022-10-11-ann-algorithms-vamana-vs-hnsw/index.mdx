@@ -1,7 +1,7 @@
 ---
 title: Vamana vs. HNSW - Exploring ANN algorithms Part 1
 slug: ann-algorithms-vamana-vs-hnsw
-authors: [abdel] 
+authors: [abdel]
 date: 2022-10-11
 tags: []
 image: ./img/hero.png
@@ -21,7 +21,7 @@ When we talk about a vast number of objects, today we often see use cases with h
 To get vector databases to that kind of scale, we need to constantly evolve and look for more efficient solutions. A big part of this search is to explore ANN algorithms that would let us go beyond the available RAM (which is a bit of a bottleneck) without sacrificing the performance and the UX.
 
 ### What to expect
-In this series of blog posts, we will take you on a journey with us as we research and implement new ANN algorithms in our quest to reach the 1T goal. 
+In this series of blog posts, we will take you on a journey with us as we research and implement new ANN algorithms in our quest to reach the 1T goal.
 
 In this article, we will cover the need for disk-based solutions, explore Vamana (how it works and contrast it against HNSW), and present the result of Vamana implementation.
 
@@ -58,18 +58,18 @@ At Weaviate, we pride ourselves on our research acumen and on providing state-of
 As the first step to disk-based vector indexing, we decided to explore Vamana – the algorithm behind the DiskANN solution. Here are some key differences between Vamana and HNSW:
 
 ### Vamana indexing - in short:
-* Build a random graph. 
-* Optimize the graph, so it only connects vectors close to each other. 
+* Build a random graph.
+* Optimize the graph, so it only connects vectors close to each other.
 * Modify the graph by removing some short connections and adding some long-range edges to speed up the traversal of the graph.
 
 ### HNSW indexing - in short:
-* Build a hierarchy of layers to speed up the traversal of the nearest neighbor graph. 
-* In this graph, the top layers contain only long-range edges. 
+* Build a hierarchy of layers to speed up the traversal of the nearest neighbor graph.
+* In this graph, the top layers contain only long-range edges.
 * The deeper the search traverses through the hierarchy, the shorter the distance between vectors captured in the edges.
 
-Put simply, Vamana can build a flat graph, in contrast to HNSW, which uses a hierarchical representation. And a flat graph may suffer less performance degradation from being stored on disk than a hierarchical representation might. The reason is that since the outgoing connections from each node are known, it is possible to store the information in such a way that we can calculate the exact position on the file to read when retrieving information on the neighbors of a given node. This makes the information retrieval process very efficient, and thus the lower speed imposed by disk storage becomes less of a problem. 
+Put simply, Vamana can build a flat graph, in contrast to HNSW, which uses a hierarchical representation. And a flat graph may suffer less performance degradation from being stored on disk than a hierarchical representation might. The reason is that since the outgoing connections from each node are known, it is possible to store the information in such a way that we can calculate the exact position on the file to read when retrieving information on the neighbors of a given node. This makes the information retrieval process very efficient, and thus the lower speed imposed by disk storage becomes less of a problem.
 
-The main advantage of the hierarchical representation used in HNSW is that the traversal of the graph is accelerated. This is solved in the Vamana implementation by hosting long-range connections with a similar function. 
+The main advantage of the hierarchical representation used in HNSW is that the traversal of the graph is accelerated. This is solved in the Vamana implementation by hosting long-range connections with a similar function.
 
 ### Traversing a graph
 Traversing a graph is a bit like planning international travel. First, we could take a long-distance flight (akin to a fast jump), taking us to a city closer to our destination. Then we could take a train (a lot better for the environment 😉) to get to the town of our choice. Finally, we can jump on a bike to reach our local destination.
@@ -142,13 +142,13 @@ We evaluated different data structures and achieved the best performance by:
 ![Recall vs. Latency when retrieving the hundred approximate nearest neighbors](./img/fig-4.png)
 *Fig. 4: Recall vs. Latency when retrieving the hundred approximate nearest neighbors.*
 
-## So, when do SSDs come into play? 
-But wait, is this the end of it? Was moving to disk, not the final goal? We are still on memory, are we not? 
+## So, when do SSDs come into play?
+But wait, is this the end of it? Was moving to disk, not the final goal? We are still on memory, are we not?
 Don't worry. This was just the first step toward our goal. We want to ensure that we have a solid implementation in memory before we move to disk, and this milestone ends here.
 
 :::note
 !Spoilers alert, as you read this article, we are evaluating our implementation on disk.<br/>
-We will prepare a similar article to outline; how we moved everything to disk and what the price was performance-wise. 
+We will prepare a similar article to outline; how we moved everything to disk and what the price was performance-wise.
 :::
 
 ## Conclusions
@@ -168,6 +168,6 @@ Keep in touch and check [our blog](/blog) from time to time.
 ## What's next
 Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
+You can reach out to us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
 
 Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

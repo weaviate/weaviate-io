@@ -21,13 +21,13 @@ By the end of this page, you will have:
 
 We have prepared code examples to help you follow along here. Go to [weaviate-tutorials/quickstart](https://github.com/weaviate-tutorials/quickstart) on GitHub to take a look.
 
-## Prerequisites 
+## Prerequisites
 
-At this point, you should have: 
+At this point, you should have:
 
 - A new instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.io)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
-- Installed your preferred Weaviate client library. 
+- Installed your preferred Weaviate client library.
 
 We will be working with [this dataset](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json), which will be loaded directly from the remote URL.
 
@@ -39,9 +39,9 @@ import ConnectToWeaviateNoKey from '/_includes/code/quickstart.autoschema.connec
 
 <ConnectToWeaviateNoKey />
 
-## Import data 
+## Import data
 
-Weaviate can take care of data vectorization at import time with its [`vectorizer modules`](../modules/retriever-vectorizer-modules/index.md). So you don't need to worry about vectorization other than choosing an appropriate vectorizer and passing the data to Weaviate. 
+Weaviate can take care of data vectorization at import time with its [`vectorizer modules`](../modules/retriever-vectorizer-modules/index.md). So you don't need to worry about vectorization other than choosing an appropriate vectorizer and passing the data to Weaviate.
 
 Using an inference API is one good way to do this. To do so:
 
@@ -49,7 +49,7 @@ Using an inference API is one good way to do this. To do so:
 - Provide the API key
 - Load & import data into Weaviate
 
-### Specify a vectorizer 
+### Specify a vectorizer
 
 First, we must define the class objects to store the data and specify what vectorizer to use. The following will create a `Question` class with the given vectorizer, and add it to the schema:
 
@@ -66,7 +66,7 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.m
 Weaviate will infer any further schema information from the given data. If you would like to know more, check out [this tutorial](../tutorials/schema.md) which covers schemas in more detail.
 
 :::note If you see this error: `Name 'Question' already used as a name for an Object class`
-You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions. 
+You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions.
 :::
 
 <details>
@@ -75,7 +75,7 @@ You may see this error if you try to create a class that already exists in your 
 After you have added the class to the schema, you can confirm that it has been created by visiting the [`schema` endpoint](../api/rest/schema.md). You can inspect the Weaviate schema here (replace the URL with your actual endpoint):
 
 ```
-https://some-endpoint.weaviate.network/v1/schema  
+https://some-endpoint.weaviate.network/v1/schema
 ```
 
 You should see:
@@ -92,7 +92,7 @@ You should see:
 }
 ```
 
-Where the schema should indicate that the `Question` class has been added. 
+Where the schema should indicate that the `Question` class has been added.
 
 :::note REST & GraphQL in Weaviate
 Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API endpoints can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
@@ -153,7 +153,7 @@ And that should have populated Weaviate with the data, including corresponding v
 Yes! You can bring your own vectors and pass them to Weaviate directly. See [this reference](../api/rest/objects.md#with-a-custom-vector) for more information.
 :::
 
-Note again that we did not provide any vectors to Weaviate. That's all managed by Weaviate, which calls the inference API for you and obtains a vector corresponding to your object at import time. 
+Note again that we did not provide any vectors to Weaviate. That's all managed by Weaviate, which calls the inference API for you and obtains a vector corresponding to your object at import time.
 
 <details>
   <summary>Confirm data import</summary>
@@ -176,17 +176,17 @@ You should see:
 }
 ```
 
-Where you should be able to confirm that you have imported all `10` objects. 
+Where you should be able to confirm that you have imported all `10` objects.
 
 </details>
 
 ## Query Weaviate
 
-Now that you've built a database, let's try some queries. 
+Now that you've built a database, let's try some queries.
 
 ### Text similarity search
 
-One of the most common use cases is text similarity search. As we have a `text2vec` module enabled, we can use the `nearText` parameter for this purpose. 
+One of the most common use cases is text similarity search. As we have a `text2vec` module enabled, we can use the `nearText` parameter for this purpose.
 
 If you wanted to find entries which related to biology, you can apply the `nearText` parameter like so:
 
@@ -223,11 +223,11 @@ Note that even though the word 'biology' does not appear anywhere, Weaviate has 
 
 That's a simple but powerful outcome, which shows a big reason behind the popularity of vector searches. Vectorized data objects allow for searches based on degrees of similarity, such as semantic similarity of text as we did here.
 
-Try it out yourself with different strings, by changing the string from "biology". 
+Try it out yourself with different strings, by changing the string from "biology".
 
 ## Recap
 
-If you made it here - well done. We have covered a lot in just a couple of pages, and you've successfully built a fully functioning vector database! 🥳 
+If you made it here - well done. We have covered a lot in just a couple of pages, and you've successfully built a fully functioning vector database! 🥳
 
 You have:
 - Spun up an instance of Weaviate through WCS,
@@ -235,9 +235,9 @@ You have:
 - Populated your WCS instance with the vectorized data, and
 - Performed text similarity searches.
 
-Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us. 
+Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us.
 
-Also, please feel free to reach out to us on our community [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw). We love to hear from our users. 
+Also, please feel free to reach out to us on our community [Slack](https://weaviate.io/slack). We love to hear from our users.
 
 ## Next
 
