@@ -38,7 +38,7 @@ const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
 });
 
 var className = 'YourClassName';  // Replace with your class name
@@ -70,11 +70,13 @@ client.schema
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-
+curl \
+  -X DELETE \
+  https://some-endpoint.weaviate.network/v1/schema/YourClassName
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

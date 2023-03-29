@@ -59,7 +59,7 @@ func main() {
     client := weaviate.New(cfg)
 
     classObj := &models.Class{
-        Class:      "Question", 
+        Class:      "Question",
         Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
     }
 
@@ -97,7 +97,7 @@ public class App {
       .className("Question")
       .vectorizer("text2vec-openai")  // Or "text2vec-cohere" or "text2vec-huggingface"
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {
@@ -109,18 +109,18 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
--X POST \
--H "Content-Type: application/json" \
--d '{
-    "class": "Question",
-    "vectorizer": "text2vec-openai",
-}' \
-https://some-endpoint.weaviate.network/v1/schema
+echo '{
+  "class": "Question",
+  "vectorizer": "text2vec-openai"
+}' | curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d @- \
+  https://some-endpoint.weaviate.network/v1/schema
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

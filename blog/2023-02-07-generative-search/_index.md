@@ -214,4 +214,5 @@ Prompting is an extremely new area of LLMs and search. As a general prescription
 
 ## Stay connected
 Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
+
 Weaviate is open-source, and you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don’t forget to give us a ⭐️ while you are there!

@@ -179,30 +179,31 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get{
-      Question(
+      Question (
+        limit: 2
         nearText: {
           concepts: [\"biology\"],
-        },
-        limit: 1
+        }
       ){
         question
         answer
+        category
       }
     }
   }"
-}' | curl \
+}' | tr -d "\n" | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-OpenAI-Api-Key: <THE-KEY>" \
+    -H "X-OpenAI-Api-Key: <OpenAI-API-Token>" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://some-endpoint.weaviate.network/v1/graphql  # Replace this with your endpoint
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>
