@@ -82,7 +82,7 @@ $ helm install \
   weaviate/weaviate \
   --install \
   --namespace "weaviate" \
-  --values ./values.yml
+  --values ./values.yaml
 ```
 
 The above assumes that you have permissions to create a new namespace. If you
