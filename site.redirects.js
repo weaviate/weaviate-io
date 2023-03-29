@@ -30,7 +30,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/clients'
         },
         {
-            to: '/developers/weaviate/tutorials/console',
+            to: '/developers/wcs/guides/console',
             from: '/developers/weaviate/current/core-knowledge/console'
         },
 
@@ -87,7 +87,7 @@ const siteRedirects = {
             from: '/developers/weaviate/quickstart/modules',
         },
         {
-            to: '/developers/weaviate/tutorials/console',
+            to: '/developers/wcs/guides/console',
             from: '/developers/weaviate/quickstart/console',
         },
 
@@ -109,7 +109,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/quickstart/modules'
         },
         {
-            to: '/developers/weaviate/tutorials/console',
+            to: '/developers/wcs/guides/console',
             from: '/developers/weaviate/current/quickstart/console'
         },
 
@@ -303,6 +303,11 @@ const siteRedirects = {
         {
             to: '/developers/weaviate/quickstart',
             from: '/developers/weaviate/quickstart/installation'
+        },
+
+        {
+            to: '/developers/wcs/guides/console',
+            from: '/developers/weaviate/tutorials/console'
         }
     ],
     createRedirects(existingPath) {

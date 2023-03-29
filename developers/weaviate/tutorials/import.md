@@ -161,7 +161,7 @@ A request with a `200` response may still include object-level errors, which is 
 - [Tutorial: Schemas in detail](./schema.md)
 - [Tutorial: Queries in detail](./query.md)
 - [Tutorial: Introduction to modules](./modules.md)
-- [Tutorial: Introduction to Weaviate Console](./console.md)
+- [Tutorial: Introduction to Weaviate Console](../../wcs/guides/console.mdx)
 
 ### Other object operations
 

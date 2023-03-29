@@ -280,7 +280,7 @@ You can read more about various schema, data types, modules, and index configura
 - [Tutorial: Import in detail](./import.md)
 - [Tutorial: Queries in detail](./query.md)
 - [Tutorial: Introduction to modules](./modules.md)
-- [Tutorial: Introduction to Weaviate Console](./console.md)
+- [Tutorial: Introduction to Weaviate Console](../../wcs/guides/console.mdx)
 
 ## More Resources
 

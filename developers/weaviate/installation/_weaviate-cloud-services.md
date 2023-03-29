@@ -14,7 +14,7 @@ Weaviate Cloud Services (WCS) is a managed SaaS service that requires no mainten
 
 WCS can be accessed via the [console](https://console.weaviate.cloud).
 
-* You can learn more about the console in [this guide](../tutorials/console.md).
+* You can learn more about the console in [this guide](../../wcs/guides/console.mds).
 * You can [sign up here](https://console.weaviate.cloud) and create a sandbox instance.
 
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';

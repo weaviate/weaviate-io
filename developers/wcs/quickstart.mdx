@@ -7,14 +7,15 @@ image: og/docs/quickstart-tutorial.jpg
 
 import registerImg from './img/register.png';
 import WCSoptions from './img/wcs-options.png';
+import WCScreateButton from './img/wcs-create-button.png';
 import WCScreate from './img/wcs-create.png';
 import WCScreationProgress from './img/wcs-creation-progress.png';
 
 ## Overview
 
-Welcome to the **Quickstart guide** for Weaviate Cloud Services (WCS). Here, you will learn how to get set up on WCS with an instance of Weaviate and to instantiate a Weaviate client to communicate with it.
-
-By the time we are finished here, you'll be set up and ready to move onto our Weaviate library Quickstart tutorial if you wish.
+Welcome to the **Quickstart guide** for Weaviate Cloud Services (WCS). Here, you will learn:
+- How to set up a Weaviate instance on WCS, and
+- How to instantiate a Weaviate client to communicate with the WCS instance.
 
 ### Agenda
 
@@ -24,6 +25,8 @@ By the end of this tutorial, you will be familiar with basics of WCS. You will h
 - Installed a Weaviate client of your choice, and
 - Queried your new WCS sandbox instance with the Weaviate client.
 
+And if you wish, you will be ready to move onto our [Weaviate Quickstart tutorial](../weaviate/quickstart/index.md) next.
+
 ## Sign in to WCS
 
 1. First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.cloud), and click on "Sign in with the Weaviate Cloud Services".
@@ -32,16 +35,29 @@ By the end of this tutorial, you will be familiar with basics of WCS. You will h
 
 ## Create a Weaviate Cluster
 
-To create a new Weaviate Cluster:
-1. Click the "Create cluster" button
+To create a new Weaviate Cluster, click the "Create cluster" button.
+
+<img src={WCScreateButton} width="100%" alt="Button to create WCS instance"/>
+
+Then:
+
 1. Select the **Free sandbox** *plan tier*.
 1. Provide a *cluster name*, which will become a part of its URL. A suffix will be added to this to ensure uniqueness.
 1. Set the `Enable Authentication?` option to `NO`.
 
 Your selections should look like this:
+
 <img src={WCSoptions} width="100%" alt="Instance configuration"/>
 
 Finally, press **Create** to create your sandbox instance. Note that the sandbox will expire after a set number of days.
+
+<img src={WCScreate} width="100%" alt="Create instance"/>
+
+This will start the process to create a new instance, and you will see a progress indicator.
+
+<img src={WCScreationProgress} width="100%" alt="Creation in progress"/>
+
+Instance creation should take a minute or two, and you will see a tick ✔️ when it's done, indicating that the instance is ready.
 
 <details>
   <summary>Sandbox expiry & options</summary>
@@ -51,14 +67,6 @@ import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 <SandBoxExpiry/>
 
 </details>
-
-<img src={WCScreate} width="100%" alt="Create instance"/>
-
-This will start the process to create a new instance, and you will see a progress indicator.
-
-<img src={WCScreationProgress} width="60%" alt="Creation in progress"/>
-
-Instance creation should take a minute or two, and you will see a tick ✔️ when it's done, indicating that the instance is ready.
 
 In the meantime, let's start installing a client library.
 
@@ -79,15 +87,15 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 ## Connect to your WCS instance
 
 By now, you should have:
-* a sandbox instance of Weaviate set up on WCS and,
-* a Weaviate client library installed
+* Set up a sandbox instance of Weaviate on WCS, and
+* Installed a Weaviate client library.
 
 Let's put the pieces together by connecting to the Weaviate instance and retrieve the existing schema, which should be empty.
 
 This can be done by sending a request to the `schema` endpoint.
 
 :::tip Authentication
-If you have enabled authentication in your sandbox for added security, this step will require that you pass on the authentication credentials. The [authentication guide](./guides/authentication.mdx) explains how.
+If you have enabled authentication in your sandbox for added security, this step will require that you pass on the authentication credentials. Please see the [authentication guide](./guides/authentication.mdx) for how.
 :::
 
 Run the below code for your preferred client, replacing the endpoint address with your own:
@@ -101,6 +109,8 @@ You should receive a response confirming the instance to be empty.
 ```json
 {'classes': []}
 ```
+
+Congratulations! You have successfully set up a cloud-based vector database with WCS.
 
 ## Next
 
