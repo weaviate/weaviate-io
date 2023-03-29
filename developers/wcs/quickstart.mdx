@@ -1,0 +1,131 @@
+---
+title: WCS Quickstart
+sidebar_position: 10
+image: og/docs/quickstart-tutorial.jpg
+# tags: ['getting started']
+---
+
+import registerImg from './img/register.png';
+import WCSoptions from './img/wcs-options.png';
+import WCScreateButton from './img/wcs-create-button.png';
+import WCScreate from './img/wcs-create.png';
+import WCScreationProgress from './img/wcs-creation-progress.png';
+
+## Overview
+
+Welcome to the **Quickstart guide** for Weaviate Cloud Services (WCS). Here, you will learn:
+- How to set up a Weaviate instance on WCS, and
+- How to instantiate a Weaviate client to communicate with the WCS instance.
+
+### Agenda
+
+By the end of this tutorial, you will be familiar with basics of WCS. You will have:
+- Created a WCS account,
+- Created a new free WCS sandbox instance without authentication,
+- Installed a Weaviate client of your choice, and
+- Queried your new WCS sandbox instance with the Weaviate client.
+
+And if you wish, you will be ready to move onto our [Weaviate Quickstart tutorial](../weaviate/quickstart/index.md) next.
+
+## Sign in to WCS
+
+1. First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.cloud), and click on "Sign in with the Weaviate Cloud Services".
+    1. If you don't have an account with WCS yet, click on the "Register" button and create a new account.
+1. Then, sign in with your WCS username and password.
+
+## Create a Weaviate Cluster
+
+To create a new Weaviate Cluster, click the "Create cluster" button.
+
+<img src={WCScreateButton} width="100%" alt="Button to create WCS instance"/>
+
+Then:
+
+1. Select the **Free sandbox** *plan tier*.
+1. Provide a *cluster name*, which will become a part of its URL. A suffix will be added to this to ensure uniqueness.
+1. Set the `Enable Authentication?` option to `NO`.
+
+Your selections should look like this:
+
+<img src={WCSoptions} width="100%" alt="Instance configuration"/>
+
+Finally, press **Create** to create your sandbox instance. Note that the sandbox will expire after a set number of days.
+
+<img src={WCScreate} width="100%" alt="Create instance"/>
+
+This will start the process to create a new instance, and you will see a progress indicator.
+
+<img src={WCScreationProgress} width="100%" alt="Creation in progress"/>
+
+Instance creation should take a minute or two, and you will see a tick ✔️ when it's done, indicating that the instance is ready.
+
+<details>
+  <summary>Sandbox expiry & options</summary>
+
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/>
+
+</details>
+
+In the meantime, let's start installing a client library.
+
+## Install a client library
+
+You can communicate with Weaviate with the available [client libraries](../weaviate/client-libraries/index.md) (currently available for `Python`, `JavaScript`, `Java` and `Go`) or the [RESTful API](../weaviate/api/rest/index.md).
+
+import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
+
+<ClientCapabilitiesOverview />
+
+Install your preferred client by following the relevant instructions below:
+
+import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
+
+<CodeClientInstall />
+
+## Connect to your WCS instance
+
+By now, you should have:
+* Set up a sandbox instance of Weaviate on WCS, and
+* Installed a Weaviate client library.
+
+Let's put the pieces together by connecting to the Weaviate instance and retrieve the existing schema, which should be empty.
+
+This can be done by sending a request to the `schema` endpoint.
+
+:::tip Authentication
+If you have enabled authentication in your sandbox for added security, this step will require that you pass on the authentication credentials. Please see the [authentication guide](./guides/authentication.mdx) for how.
+:::
+
+Run the below code for your preferred client, replacing the endpoint address with your own:
+
+import WCSClientInstantiation from '/_includes/code/wcs.client.instantiation.mdx';
+
+<WCSClientInstantiation/>
+
+You should receive a response confirming the instance to be empty.
+
+```json
+{'classes': []}
+```
+
+Congratulations! You have successfully set up a cloud-based vector database with WCS.
+
+## Next
+
+Now that you are set up with a WCS instance:
+* If you are new to Weaviate at large, we recommend moving to the [Weaviate Quickstart Tutorial](../weaviate/quickstart/index.md).
+* Otherwise, we hope you enjoy your experience with WCS.
+
+## More resources
+
+:::info Is something broken?
+We want you to have the best experience possible here. So if you find that something here doesn't work, or doesn't make sense, please let us know! You can:
+- File an [issue on GitHub](https://github.com/weaviate/weaviate-io/issues), or
+- Talk to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
+:::
+
+import WCSDocsMoreResources from '/_includes/wcs-more-resources-docs.md';
+
+<WCSDocsMoreResources />

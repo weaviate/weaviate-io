@@ -9,7 +9,7 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 :::info Related pages
-- [Quickstart tutorial: Installation](../quickstart/installation.md)
+- [WCS Quickstart](../../wcs/quickstart.mdx)
 - [References: Configuration](../configuration/index.md)
 :::
 
@@ -19,25 +19,29 @@ This section shows you available options for running Weaviate, and how to instal
 
 ## Options for running Weaviate
 
-Weaviate versions on the Weaviate Cloud Services (WCS) and Weaviate open source are identical, with the only difference that the WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
+You have three options to run Weaviate.
 
-You have three options to run Weaviate, all come with their own installation guides.
+* [Weaviate Cloud Services](../../wcs/quickstart.mdx) – a managed Weaviate service; suitable for development and production.
+* [Docker Compose](./docker-compose.md) – typically for development.
+* [Kubernetes](./kubernetes.md) – typically for production setups.
 
-:::info configuration yaml files
-Both Docker Compose and Kubernetes setups use a yaml file for customizing Weaviate instances, typically called `docker-compose.yml` or `values.yaml` respectively. These files will be referred to throughout the documentation as 'configuration yaml files'.
+:::tip Weaviate Cloud Services docs have a new home
+[Check it out here](../../wcs/index.mdx). Or go straight to the [WCS quickstart guide](../../wcs/quickstart.mdx) which covers installation.
 :::
 
-* [Weaviate Cloud Services](./weaviate-cloud-services.md) – advised for users who want to use a managed Weaviate service.
-* [Docker Compose](./docker-compose.md) – advised for those who want to develop on Weaviate.
-* [Kubernetes](./kubernetes.md) – advised for production setups.
+The Weaviate library is identical regardless of whether it is used via Weaviate Cloud Services (WCS) or by downloading an open source version. The only difference that WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
 
-:::note
-When self-hosting, we recommend starting with the Docker Compose configurator and set up to get a feel for how Weaviate operates. You can later adopt this knowledge when you are creating your Helm charts.
+:::info configuration yaml files
+Both Docker Compose and Kubernetes setups use a yaml file for customizing Weaviate instances, typically called `docker-compose.yml` or `values.yaml` respectively. These files will be referred to throughout the documentation as `configuration yaml files`.
+:::
+
+:::tip Docker <i class="fa-regular fa-circle-arrow-right"></i> Kubernetes
+If self-hosting, we recommend starting with Docker and gaining familiarity with Weaviate and its configurations. You can later apply this knowledge when you are creating your Helm charts.
 :::
 
 ### Run an unreleased version
 
-You can run Weaviate with `docker-compose`, building your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
+You can run Weaviate with `docker-compose`, building your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this may not be an officially release, and may contain bugs.
 
 ```sh
 git clone https://github.com/weaviate/weaviate.git

@@ -1,0 +1,82 @@
+<!-- Delete these imports if already imported in the file -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+auth_config = weaviate.AuthClientPassword(
+    username = "WCS_USERNAME",  # Replace w/ your WCS username
+    password = "WCS_PASSWORD",  # Replace w/ your WCS password
+)
+
+# Instantiate the client with the auth config
+client = weaviate.Client(
+    url="https://some-endpoint.weaviate.network",  # Replace w/ your endpoint
+    auth_client_secret=auth_config
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-client');
+
+const client = weaviate.client({
+  scheme: "https",
+  host: "some-endpoint.weaviate.network",  // Replace w/ your endpoint
+  authClientSecret: new weaviate.AuthUserPasswordCredentials({
+    username: "WCS_USERNAME",  // Replace w/ your WCS username
+    password: "WCS_PASSWORD",  // Replace w/ your WCS password
+  })
+});
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+cfg, err := weaviate.NewConfig(
+  Host:"some-endpoint.weaviate.network",  // Replace w/ your endpoint
+  Scheme: "https",
+  authConfig: auth.ResourceOwnerPasswordFlow{
+    Username: "WCS_USERNAME",  // Replace w/ your WCS username
+    Password: "WCS_PASSWORD",  // Replace w/ your WCS password
+  }
+  headers: nil,
+)
+if err != nil{
+  fmt.Println(err)
+}
+client := weaviate.New(*cfg)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateAuthClient;
+
+Config config = new Config("https", "some-endpoint.weaviate.network");  // Replace w/ your endpoint
+WeaviateAuthClient.clientPassword(
+    config,
+    "WCS_USERNAME",  // Replace w/ your WCS username
+    "WCS_PASSWORD",  // Replace w/ your WCS password
+);
+```
+
+</TabItem>
+</Tabs>

@@ -10,10 +10,10 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Here, you will gain a hands-on overview of what you can do with Weaviate. If you have questions about some of the steps - don't worry, you can dig further into each step in more detail in later [tutorials](../tutorials/index.md).
+Here, you will gain a hands-on overview of what you can do with Weaviate.
 
 By the end of this page, you will have:
-- Vectorized the quiz data
+- Vectorized a dataset
 - Added the vectorized data to Weaviate, and
 - Performed vector searches to retrieve relevant objects
 
@@ -23,21 +23,22 @@ We have prepared code examples to help you follow along here. Go to [weaviate-tu
 
 ## Prerequisites
 
-At this point, you should have:
+At this point, you should:
 
-- A new instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.io)),
-- An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
-- Installed your preferred Weaviate client library.
+- Have an instance of Weaviate running (e.g. on the [Weaviate Cloud Services](../../wcs/quickstart.mdx)),
+- Have an API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
+- Installed your preferred Weaviate client library, and
+- Know how to connect to your Weaviate instance.
 
 We will be working with [this dataset](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json), which will be loaded directly from the remote URL.
 
-## Connect to Weaviate
+import WCSClientInstantiation from '/_includes/code/wcs.client.instantiation.mdx';
 
-You can connect to your instance of Weaviate using the Weaviate client as shown below. If this creates an instance of the client, you should be ready to go. (If you are using `curl`, you can skip this step.)
+:::tip Connecting to Weaviate
+Before going further, please make sure that you can connect to your Weaviate instance, e.g. with the Weaviate client. If you do *not* have authentication enabled you should be able to run the below to retrieve your schema.
 
-import ConnectToWeaviateNoKey from '/_includes/code/quickstart.autoschema.connect.nokey.mdx'
-
-<ConnectToWeaviateNoKey />
+<WCSClientInstantiation/>
+:::
 
 ## Import data
 
@@ -230,9 +231,8 @@ Try it out yourself with different strings, by changing the string from "biology
 If you made it here - well done. We have covered a lot in just a couple of pages, and you've successfully built a fully functioning vector database! 🥳
 
 You have:
-- Spun up an instance of Weaviate through WCS,
 - Vectorized your dataset through an inference API,
-- Populated your WCS instance with the vectorized data, and
+- Populated your Weaviate instance with the vectorized data, and
 - Performed text similarity searches.
 
 Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us.

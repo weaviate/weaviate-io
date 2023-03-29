@@ -264,6 +264,26 @@
   }
 }
 
+.separator {
+  height: 1px;
+  border: none;
+  margin: 5px;
+  padding: 0px;
+}
+
+[data-theme='light'] {
+  .separator {
+    background-color: #e0e0e0;
+  }
+}
+
+[data-theme='dark'] {
+  .separator {
+    background-color: #505050;
+  }
+}
+
+
 .theme-doc-sidebar-menu {
   font-size: 0.9rem !important;
 }

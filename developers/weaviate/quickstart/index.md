@@ -10,7 +10,21 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Welcome to the **Quickstart tutorial** for Weaviate! Here, you will learn how to quickly get up and running with Weaviate, including an introduction to our managed cloud solution.
+Welcome to the **Quickstart tutorial** for Weaviate! Here, you will learn how to quickly get up and running with Weaviate.
+
+### Agenda
+
+By the end of this tutorial, you will be familiar with the key features and functionalities of Weaviate. You will have:
+- Vectorized and imported data, and
+- Performed queries to retrieve objects.
+
+You will also see how Weaviate can:
+- Vectorize data at import time,
+- Use an external inference API,
+- Automate data schema construction if necessary, and
+- Perform vector searches.
+
+And once you're done with these - you can move on to our more [in-depth tutorials](../tutorials/index.md).
 
 ### Data
 
@@ -34,39 +48,41 @@ We will start with a (tiny) dataset consisting of questions from the popular qui
 
 </details>
 
-### Agenda
+## Assumed knowledge
 
-By the end of this tutorial, you will be familiar with the key features and functionalities of Weaviate. You will have:
-- Built a Weaviate database,
-- Vectorized and imported data, and
-- Performed queries to retrieve objects.
+The tutorial assumes some familiarity with databases and [vector embeddings](/blog/vector-embeddings-explained). But don't worry too much even if you are just starting to learn about these.
 
-You will also see how Weaviate can:
-- Vectorize data at import time,
-- Use an external inference API,
-- Automate data schema construction if necessary, and
-- Perform vector searches.
+It is about getting you started with Weaviate **by doing**. And you can always revisit some of these ideas in the documentation.
 
-And once you're done with these - you can move on to our more [in-depth tutorials](../tutorials/index.md).
+## Prerequisites
 
-## Before you start
+### Installation
 
-### Assumed knowledge
+#### Weaviate instance
 
-The tutorial assumes that you are somewhat familiar with databases and [vector embeddings](/blog/vector-embeddings-explained).
+To follow along with this tutorial, you will need your own instance of Weaviate. You can use any of:
+1. A [Weaviate Cloud Services instance](../../wcs/quickstart.mdx), which involves signing up and creating a free *sandbox* instance.
+1. A [Docker-compose instance](../installation/docker-compose.md), which you can run locally, or
+1. A [Kubernetes instance](../installation/kubernetes.md)
 
-But don't worry too much even if you are uncomfortable with any of these. This tutorial is about getting you started **doing things with Weaviate**. It is structured so that you should be able to follow along even if some of the concepts are unfamiliar. And you can always revisit some of these ideas in the documentation.
+#### Weaviate client library
 
-### Accounts and API keys
+We also recommend that you use a Weaviate client library for the best experience with Weaviate. Currently they are available in [Python](../client-libraries/python.md), [JavaScript](../client-libraries/javascript.md), [Go](../client-libraries/go.md) and [Java](../client-libraries/go.md).
 
-You will be creating your own instance of Weaviate in this tutorial, and using an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs).
+Install your preferred client by following the relevant instructions below:
 
-To follow along with the tutorial, we recommend you create accounts with:
-1. [Weaviate Cloud Services (WCS)](https://console.weaviate.io/), and
-1. An inference API provider such as:
-    1. [OpenAI](https://platform.openai.com/docs/guides/embeddings),
-    1. [Cohere](https://docs.cohere.ai/reference/embed), or
-    1. [Hugging Face](https://huggingface.co/docs/api-inference/index).
+import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
+
+<CodeClientInstall />
+
+### Inference service
+
+You will be using an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs).
+
+To follow along with the tutorial, we recommend you create accounts with an inference API provider such as:
+* [OpenAI](https://platform.openai.com/docs/guides/embeddings),
+* [Cohere](https://docs.cohere.ai/reference/embed), or
+* [Hugging Face](https://huggingface.co/docs/api-inference/index).
 
 :::tip Use free tiers of these accounts
 The free tiers for any of them should be sufficient for you to follow along.
@@ -80,4 +96,4 @@ We want you to have the best experience possible here. So if you find that somet
 
 ## Next
 
-- Get started by [installing Weaviate](./installation.md).
+- [Weaviate, end-to-end](./end-to-end.md).
