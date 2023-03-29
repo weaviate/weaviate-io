@@ -19,7 +19,7 @@ Migrated from "how-to-do-classification" tutorial from Weaviate Docs Classic
 
 You can use Weaviate to automatically classify data, that is, you can ask Weaviate to automatically make references between concepts. Since Weaviate stores data objects based on semantics in a vector position, a variety of automated classification tasks can be performed in near-realtime. Weaviate offers two different types of classification:
 
-1. **Contextual classification**. Provided by the `text2vec-contextionary` module, thus can only be used when this module is active in your Weaviate instance. Uses the context of data points to make new references. There is no training data needed, and this type of classification is the right pick if you have a strong semantic relation in your data. See [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) for more information. 
+1. **Contextual classification**. Provided by the `text2vec-contextionary` module, thus can only be used when this module is active in your Weaviate instance. Uses the context of data points to make new references. There is no training data needed, and this type of classification is the right pick if you have a strong semantic relation in your data. See [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) for more information.
 2. **kNN classification**. To assign property values and references of data objects based on how similar objects are labeled that Weaviate finds. The more objects added and correctly labeled over time, the better a future classification becomes. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful. See more [here](../api/rest/classification.md#knn-classification).
 
 In this how-to guide, you will learn how to classify with Contextual and kNN classification.
@@ -28,7 +28,7 @@ In this how-to guide, you will learn how to classify with Contextual and kNN cla
 
 **1. Connect to a Weaviate instance**
 
-If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/developers/weaviate/quickstart/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/developers/weaviate/quickstart/installation.md) as vectorization module.
+If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/developers/weaviate/quickstart/index.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) as vectorization module.
 
 **2. Upload a schema**
 
@@ -40,7 +40,7 @@ Make sure there is data available in your Weaviate instance, you can read how to
 
 # Contextual classification
 
-_This type of classification is only provided by the `text2vec-contextionary` module, thus can only be used when this module is active in your Weaviate instance._ 
+_This type of classification is only provided by the `text2vec-contextionary` module, thus can only be used when this module is active in your Weaviate instance._
 
 We are going to classify the categories of articles by Contextual classification. No previous links between the articles and categories need to exist yet, we do not need any training data because we let Weaviate use the context of data objects for the classification.
 
@@ -81,7 +81,7 @@ A classification is started, and will run in the background. The following respo
 
 ## Interpretation of results
 
-If we later want to know to which `Category` a specific `Article` refers to, we can send the following `GET` request to `/v1/objects/{ArticleID}/?include=_classification`, which will return: 
+If we later want to know to which `Category` a specific `Article` refers to, we can send the following `GET` request to `/v1/objects/{ArticleID}/?include=_classification`, which will return:
 
 ```json
 {
@@ -224,7 +224,7 @@ Results in:
           "title": "GI Show - The Last of Us Part II State of Play, Minecraft Dungeons, and Monster Train",
           "wordCount": 256,
           "hasPopularity": null
-        }], 
+        }],
       "Popularity": [
         {
           "uuid": "c9a0e53b-93fe-38df-a6ea-4c8ff4501798",
@@ -315,11 +315,11 @@ And get the following result:
 }
 ```
 
-You can see that this article is predicted to also get a `"high"` popularity rating. 
+You can see that this article is predicted to also get a `"high"` popularity rating.
 
 This returned information does not only show the values of the properties of the requested `Thing`, but also `_classification` information about how the property values are obtained. If a property value is obtained by user input, not by classification, then the `_classification` fields in the property schema will be `null`.
 
-When a property value of a reference property is filled by classification, then `_classification` information will appear in the `_classification` field of this property. It contains information about winning and losing distances, which gives information about how the reference has been classified. The float numbers are a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. In kNN classification, the classification decision is based on vectors of the classes around a guessed vector. 
+When a property value of a reference property is filled by classification, then `_classification` information will appear in the `_classification` field of this property. It contains information about winning and losing distances, which gives information about how the reference has been classified. The float numbers are a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. In kNN classification, the classification decision is based on vectors of the classes around a guessed vector.
 
 - `closestLosingDistance`: The lowest distance of a neighbor in the losing group. Optional. If `k` equals the size of the winning group, there is no losing group.
 - `closestOverallDistance`: The lowest distance of any neighbor, regardless of whether they were in the winning or losing group.
@@ -330,7 +330,7 @@ When a property value of a reference property is filled by classification, then 
 - `overallCount`: Overall neighbors checked as part of the classification. In most cases this will equal `k`, but could be lower than `k` - for example if not enough data was present.
 - `winningCount`: Size of the winning group, a number between 1 and `k`.
 
-For example, if the kNN is set to 3, the closest 3 objects to the computed vector are taken into consideration. Let's say these 3 objects are of 2 different classes, then we classify the data object as the class of the majority. These two objects are "winning", and the other 1 object is "losing" in the classification. The distance of the winning data objects to the computed vector of the 'to be classified' data object is averaged and normalized. The same will be done to the losing data objects (in this case only 1). 
+For example, if the kNN is set to 3, the closest 3 objects to the computed vector are taken into consideration. Let's say these 3 objects are of 2 different classes, then we classify the data object as the class of the majority. These two objects are "winning", and the other 1 object is "losing" in the classification. The distance of the winning data objects to the computed vector of the 'to be classified' data object is averaged and normalized. The same will be done to the losing data objects (in this case only 1).
 
 `meanDistanceWinning` and `meanDistanceLosing` are a good indicators if you set the amount of k nearest neighbors right. For example if the `meanDistanceLosing` is way smaller than the `meanDistanceWinning`, than the set k values was too high because many their where many classifications to the same, but far group, and only one or a few classifications to a near group. Less abstract, this means that the 'to be classified' property is classified as a class that many other -not so similar- data objects have (winning but far away), and not as class of, losing, more similar data objects because they were in minority. In this case, the kNN was perhaps set too high, and a lower amount of kNN might lead to better classification.
 

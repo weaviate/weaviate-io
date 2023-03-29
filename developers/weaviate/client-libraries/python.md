@@ -14,7 +14,7 @@ The current Python client version is `v||site.python_client_version||`
 
 ## Installation and setup
 
-The Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher. 
+The Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher.
 
 ```bash
 $ pip install weaviate-client
@@ -52,13 +52,13 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 import weaviate
 
 resource_owner_config = weaviate.AuthClientPassword(
-  username = "user", 
-  password = "pass", 
+  username = "user",
+  password = "pass",
   scope = "offline_access" # optional, depends on the configuration of your identity provider (not required with WCS)
   )
 
 # Initiate the client with the auth config
-client = weaviate.Client("https://localhost:8080", auth_client_secret=resource_owner_config)
+client = weaviate.Client("http://localhost:8080", auth_client_secret=resource_owner_config)
 ```
 
 ### Client credentials flow
@@ -71,7 +71,7 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 import weaviate
 
 client_credentials_config = weaviate.AuthClientCredentials(
-  client_secret = "client_secret", 
+  client_secret = "client_secret",
   scope = "scope1 scope2" # optional, depends on the configuration of your identity provider (not required with WCS)
   )
 
@@ -98,13 +98,13 @@ bearer_config = weaviate.AuthBearerToken(
 client = weaviate.Client("https://localhost:8080", auth_client_secret=bearer_config)
 ```
 
-## Custom headers 
+## Custom headers
 
 You can pass custom headers to the client, which are added at initialization:
 
 ```python
 client = weaviate.Client(
-  url="https://localhost:8080", 
+  url="https://localhost:8080",
   additional_headers={"HeaderKey": "HeaderValue"},
 )
 ```
@@ -208,7 +208,7 @@ client.schema.create(schema)
 
 #### Example: Blog Post on How to get started with Weaviate and the Python client
 
-A full example of how to use the Python client for Weaviate can be found in [this article on Towards Data Science](https://towardsdatascience.com/quickstart-with-weaviate-python-client-e85d14f19e4f). 
+A full example of how to use the Python client for Weaviate can be found in [this article on Towards Data Science](https://towardsdatascience.com/quickstart-with-weaviate-python-client-e85d14f19e4f).
 
 ## Batching
 
@@ -219,7 +219,7 @@ Batching is a way of importing/creating `objects` and `references` in bulk using
 3. ***Manual-batching***
 
 ## New: Multi-threading batch import (weaviate-client>=3.9.0)
-Python client version `3.9.0` introduces Multi-threading Batch import which works with both `Auto-batching` and `Dynamic-batching`. 
+Python client version `3.9.0` introduces Multi-threading Batch import which works with both `Auto-batching` and `Dynamic-batching`.
 
 To use it, set the number of workers (threads) using the `.configure(...)` (same as `.__call__(...)`) by setting the argument `num_workers` in batch configuration. See also *Batch-configuration* below.
 
@@ -714,7 +714,7 @@ query_result = client.query\
 print(query_result)
 ```
 
-Note that you need to use the `.do()` method to execute the query. 
+Note that you need to use the `.do()` method to execute the query.
 
 ## Change logs
 

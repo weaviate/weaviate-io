@@ -15,12 +15,12 @@ Here you can learn how to use the Weaviate console.
 The Weaviate console allows you to connect to Weaviate instances that are running on the Weaviate Cloud Services (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
 
 :::tip
-The console is available on: [console.weaviate.io](https://console.weaviate.io).
+The console is available on: [console.weaviate.cloud](https://console.weaviate.cloud).
 :::
 
 ## Login page
 
-When opening the [Weaviate Console](https://console.weaviate.io), you'll see two options:
+When opening the [Weaviate Console](https://console.weaviate.cloud), you'll see two options:
 
 1. ["Sign in with the Weaviate Cloud Services"](#weaviate-cloud-services)
 2. ["Self-hosted Weaviate"](#connect-to-a-self-hosted-weaviate)
@@ -50,7 +50,7 @@ When you're connected, you can use the [GraphiQL](#graphiql) interface to intera
 
 ## Try out the console with your own instance
 
-1. Go to: [https://console.weaviate.io](https://console.weaviate.io)
+1. Go to: [https://console.weaviate.cloud](https://console.weaviate.cloud)
 2. In the Self-hosted Weaviate section, provide the endpoint of you instance. If you run Weaviate locally this will be `http://localhost:8080`.
 3. Click "connect"
 

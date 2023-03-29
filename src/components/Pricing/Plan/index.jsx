@@ -31,7 +31,7 @@ export default function PricingPlan() {
         </Link>
         <Link
           className={styles.buttonOutline}
-          to="https://console.weaviate.io/"
+          to="https://console.weaviate.cloud"
         >
           Create a Free Sandbox
         </Link>
