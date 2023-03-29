@@ -16,7 +16,7 @@ Here's what happens behind the scenes when the client uses the embedded options 
 1. The client downloads a Weaviate release from GitHub and caches it
 2. It then spawns a Weaviate process with a data directory configured to a specific location, and listening to the specified port (by default 6666)
 3. The server's STDOUT and STDERR are piped to the client
-4. The client connect to this server process (e.g. to http://127.0.0.1:6666) and runs the client code
+4. The client connect to this server process (e.g. to `http://127.0.0.1:6666`) and runs the client code
 5. After running the code, the client shuts down the Weaviate process
 6. The data directory is preserved, so subsequent invocations have access to the data from all previous invocations, across all clients using the embedded option.
 
