@@ -35,7 +35,7 @@ We will be working with [this dataset](https://raw.githubusercontent.com/weaviat
 import WCSClientInstantiation from '/_includes/code/wcs.client.instantiation.mdx';
 
 :::tip Connecting to Weaviate
-Before going further, please make sure that you can connect to your Weaviate instance, e.g. with the Weaviate client. If you do *not* have authentication, for example, you should be able to run the below to retrieve your schema.
+Before going further, please make sure that you can connect to your Weaviate instance, e.g. with the Weaviate client. If you do *not* have authentication enabled you should be able to run the below to retrieve your schema.
 
 <WCSClientInstantiation/>
 :::
