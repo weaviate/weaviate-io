@@ -30,13 +30,24 @@ The Weaviate server spwaned from the client can be configured via parameters pas
 
 | Parameter | Type | Description | Default value | Environment variable |
 | --------- | ---- | ----------- | ------------- | ------------------- |
-| persistence_data_path | string | Directory where the files making up the database are stored | `/.local/share/weaviate` | `XDG_DATA_HOME` |
-| binary_path | string | Where the binary is downloaded. If deleted, the client will download the binary again. | `~/.cache/weaviate-embedded` | `XDG_CACHE_HOME` |
-| version | string | Full URL pointing to a Linux AMD64 or ARM64 binary | [Varies](https://github.com/weaviate/weaviate/releases) | |
+| persistence_data_path | string | Directory where the files making up the database are stored | `~/.local/share/weaviate` | `XDG_DATA_HOME` |
+| binary_path | string | Where the binary is downloaded to. If deleted, the client will download the binary again. | `~/.cache/weaviate-embedded` | `XDG_CACHE_HOME` |
+| version | string | Full URL pointing to a Linux AMD64 or ARM64 binary | The default value is set to a recent AMD64 Weaviate binary | |
 | port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 6666 | |
 | hostname | string | Hostname/IP to bind to. | 127.0.0.1 | |
 | cluster_hostname | string | The label for the cluster hostname | "embedded" | CLUSTER_HOSTNAME |
 | additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. | |
+
+:::tip Providing Weaviate version
+
+To provide the full path for `version`:
+* head to [Weaviate releases](https://github.com/weaviate/weaviate/releases),
+* find the **Assets** section for the required Weaviate version
+* and copy the link to required `(name).tar.gz` file.<br/>
+
+For example, here is a path to Weaviate `1.18.2` `AMD64` binary: `https://github.com/weaviate/weaviate/releases/download/v1.18.2/weaviate-v1.18.2-linux-amd64.tar.gz`
+
+:::
 
 ## Starting Embedded Weaviate under the hood
 
@@ -44,9 +55,21 @@ Here's what happens behind the scenes when the client uses the embedded options 
 1. The client downloads a Weaviate release from GitHub and caches it
 2. It then spawns a Weaviate process with a data directory configured to a specific location, and listening to the specified port (by default 6666)
 3. The server's STDOUT and STDERR are piped to the client
-4. The client connect to this server process (e.g. to `http://127.0.0.1:6666`) and runs the client code
+4. The client connects to this server process (e.g. to `http://127.0.0.1:6666`) and runs the client code
 5. After running the code (when the application reaches the end), the client shuts down the Weaviate process
 6. The data directory is preserved, so subsequent invocations have access to the data from all previous invocations, across all clients using the embedded option.
+
+### Lifecycle
+
+The embedded instance will stay alive for as long as the parent application is running.
+
+When the application reaches the end (i.e. the end of the script), Weaviate will shut down the embedded instance, but the data will persist.
+
+:::note Embedded with Jupyter Notebooks
+An Embedded instance will stay alive for as long as the Jupyter notebook is active.
+
+This is really useful, as it will let you experiment and work with your Weaviate projects and examples.
+:::
 
 ## Supported Environments
 
