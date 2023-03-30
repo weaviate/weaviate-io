@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 {
   Get {
     Publication (
-      nearText:{ 
+      nearText:{
           concepts: ["fashion"],
           distance: 0.6, #prior to v1.14 use certainty: 0.7
           moveAwayFrom: {
@@ -61,7 +61,7 @@ near_text_filter = {
 
 additional_props = {
   "semanticPath": "path {distanceToNext distanceToPrevious distanceToQuery distanceToResult}"
-} 
+}
 
 query_result = (
   client.query
@@ -249,11 +249,11 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
   "query": "{
     Get {
       Publication (
-        nearText:{ 
+        nearText:{
             concepts: [\"fashion\"],
             distance: 0.6, #prior to v1.14 use certainty: 0.7
             moveAwayFrom: {

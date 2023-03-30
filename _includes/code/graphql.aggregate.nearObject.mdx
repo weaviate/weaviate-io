@@ -9,9 +9,9 @@ import TabItem from '@theme/TabItem';
   Aggregate {
     Article(nearObject:{
       id: "9199ee38-b0db-4800-b146-dea8cfc62351"
-                           # prior to v1.14 use certainty: 0.7, 
+                           # prior to v1.14 use certainty: 0.7,
                            # instead of distance
-      distance: 0.6        # at least one of "objectLimit", 
+      distance: 0.6        # at least one of "objectLimit",
     },                     # and/or "distance" must be set
     objectLimit: 200) {    # when using near<Media>
       meta {
@@ -208,7 +208,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
     "query": "{
       Aggregate {
         Article(nearObject:{

@@ -74,7 +74,7 @@ resultSet, gqlErr := client.GraphQL().Get().WithClassName("Article").WithHybrid(
 where := filters.Where().
 WithPath([]string{"wordCount"}).
 				WithOperator(filters.LessThan).
-				WithValueInt(1000)  
+				WithValueInt(1000)
 // highlight-end
 
 name = graphql.Field{Name: "summary"} // the output field
