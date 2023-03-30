@@ -253,7 +253,7 @@ Learn more about the schema configuration [here](/developers/weaviate/configurat
 | `vectorizer` | body | string | Vectorizer to use for data objects added to this class. Default can be set via Weaviate environment variables. |
 | `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | Include the class name in vector calculation (default true). Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
 | `properties` | body | array | An array of property objects. |
-| `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/configuration/datatypes.md). |
+| `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/config-refs/datatypes.md). |
 | `properties` > `description` | body | string | Description of the property. |
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
@@ -348,7 +348,7 @@ Parameters in the PUT body:
 | `vectorizer` | body | string | Vectorizer to use for data objects added to this class. Default can be set via Weaviate environment variables. |
 | `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | Include the class name in vector calculation (default true). Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
 | `properties` | body | array | An array of property objects. |
-| `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/configuration/datatypes.md) |
+| `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/config-refs/datatypes.md) |
 | `properties` > `description` | body | string | Description of the property. |
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
@@ -377,7 +377,7 @@ POST v1/schema/{class_name}/properties
 
 | Name | Location | Type | Description |
 | ---- | -------- | -----| ----------- |
-| `dataType` | body | array | An available [data type](/developers/weaviate/configuration/datatypes.md). |
+| `dataType` | body | array | An available [data type](/developers/weaviate/config-refs/datatypes.md). |
 | `description` | body | string | Description of the property. |
 | `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
 | `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |

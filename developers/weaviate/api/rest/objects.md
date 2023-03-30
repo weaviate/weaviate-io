@@ -233,7 +233,7 @@ import SemanticKindCreate from '/_includes/code/semantic-kind.create.mdx';
 
 ### With geoCoordinates
 
-If you want to supply a [`geoCoordinates`](/developers/weaviate/configuration/datatypes.md#datatype-geocoordinates) property, you need to specify the `latitude` and `longitude` as floating point decimal degrees:
+If you want to supply a [`geoCoordinates`](/developers/weaviate/config-refs/datatypes.md#datatype-geocoordinates) property, you need to specify the `latitude` and `longitude` as floating point decimal degrees:
 
 import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geocoordinates.mdx';
 
@@ -461,7 +461,7 @@ import SemanticKindValidate from '/_includes/code/semantic-kind.validate.mdx';
 
 ## Cross-references
 
-[Cross-references](../../configuration/datatypes.md#datatype-cross-reference) are object properties of type array, in which each element points from the source object to another object via a [beacon](../../more-resources/glossary.md).
+[Cross-references](../../config-refs/datatypes.md#datatype-cross-reference) are object properties of type array, in which each element points from the source object to another object via a [beacon](../../more-resources/glossary.md).
 
 ### Add a cross-reference
 

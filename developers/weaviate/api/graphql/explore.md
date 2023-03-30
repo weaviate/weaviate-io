@@ -97,7 +97,7 @@ A practical example would be: `concepts: ["beatles", "John Lennon"]`
 
 You can set a maximum allowed `distance`, which will be used to determine which
 data results to return. The interpretation of the value of the distance field
-depends on the [distance metric used](/developers/weaviate/configuration/distances.md).
+depends on the [distance metric used](/developers/weaviate/config-refs/distances.md).
 
 If the distance metric is `cosine` you can also use `certainty` instead of
 `distance`. Certainty normalizes the distance in a range of 0..1, where 0
