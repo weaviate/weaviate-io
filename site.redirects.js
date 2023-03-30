@@ -293,12 +293,6 @@ const siteRedirects = {
             from: ['/resources/gsod','/resources/gsoc', '/google-summer/gsoc-23', '/google-summer/', '/resources/gsod-summary']
         },
 
-        // moved WCS installation to WCS quickstart
-        {
-            to: '/developers/wcs/quickstart',
-            from: '/developers/weaviate/installation/weaviate-cloud-services',
-        },
-
         // moved Quickstart installation to Quickstart
         {
             to: '/developers/weaviate/quickstart',
