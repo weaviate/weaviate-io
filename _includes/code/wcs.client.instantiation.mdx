@@ -38,6 +38,29 @@ client
 ```
 
 </TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
+
+client
+    .schema
+    .getter()
+    .do()
+    .then((res: any) => {
+    console.log(res);
+    })
+    .catch((err: Error) => {
+    console.error(err)
+    });
+```
+
+</TabItem>
 <TabItem value="go" label="Go">
 
 ```go
