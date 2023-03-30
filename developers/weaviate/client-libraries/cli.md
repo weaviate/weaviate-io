@@ -1,6 +1,6 @@
 ---
 title: Weaviate CLI
-sidebar_position: 5
+sidebar_position: 9
 image: og/docs/client-libraries.jpg
 # tags: ['cli']
 ---
