@@ -1,0 +1,50 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  ```python
+  import weaviate
+  from weaviate.embedded import EmbeddedOptions
+
+  client = weaviate.Client(
+    embedded_options=EmbeddedOptions()
+  )
+
+  data_obj = {
+    "name": "Chardonnay",
+    "description": "Goes with fish"
+  }
+
+  client.data_object.create(data_obj, "Wine")
+  ```
+
+  </TabItem>
+  <TabItem value="js" label="JavaScript">
+
+  ```js
+  const client = weaviate.client({
+    scheme: 'http',
+    host: 'localhost:6666',
+    embedded: new weaviate.EmbeddedOptions({
+      port: 6666,
+    }),
+  });
+
+  await client.embedded?.start();
+
+  const result = await client.data
+    .creator()
+    .withClassName('Wine')
+    .withProperties({
+      name: 'Chardonnay',
+      description: 'Goes with fish',
+    })
+    .do();
+
+  await client.embedded?.stop();
+  ```
+
+  </TabItem>
+</Tabs>
