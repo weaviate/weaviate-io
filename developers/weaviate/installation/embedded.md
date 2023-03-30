@@ -37,6 +37,10 @@ The Weaviate server spwaned from the client can be configured via parameters pas
 | hostname | string | Hostname/IP to bind to. | 127.0.0.1 | |
 | additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. | |
 
+:::danger
+It is not recommended to change `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables, as that might affect many other (non-Weaviate related) applications and services running on the same server.
+:::
+
 :::tip Providing Weaviate version
 
 To provide the full path for `version`:
