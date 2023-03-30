@@ -69,9 +69,9 @@ To follow along with this tutorial, you will need your own instance of Weaviate.
 
 We also recommend that you use a Weaviate client library for the best experience with Weaviate. Currently they are available in [Python](../client-libraries/python.md), [TypeScript](../client-libraries/typescript.mdx), [Go](../client-libraries/go.md) and [Java](../client-libraries/go.md).
 
-:::note JS → TS
-Please note that the [JavaScript](../client-libraries/javascript.md) client library is no longer maintained.
-:::
+import JavaScriptMaintenanceWarning from '/_includes/javascript-maintenance-warning.mdx';
+
+<JavaScriptMaintenanceWarning />
 
 Install your preferred client by following the relevant instructions below:
 

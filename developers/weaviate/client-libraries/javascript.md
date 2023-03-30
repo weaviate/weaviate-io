@@ -1,6 +1,6 @@
 ---
 title: JavaScript
-sidebar_position: 2
+sidebar_position: 3
 image: og/docs/client-libraries.jpg
 # tags: ['JavaScript', 'client library']
 ---
@@ -12,9 +12,9 @@ import Badges from '/_includes/badges.mdx';
 The current JavaScript client version is `v||site.javascript_client_version||`.
 :::
 
-:::warning JavaScript client no longer maintained
-The JavaScript client is no longer being maintained. Please migrate to the new [TypeScript client](./typescript.mdx).
-:::
+import JavaScriptMaintenanceWarning from '/_includes/javascript-maintenance-warning.mdx';
+
+<JavaScriptMaintenanceWarning />
 
 ## Installation and setup
 
