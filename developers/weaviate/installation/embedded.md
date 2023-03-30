@@ -60,8 +60,9 @@ We are actively working to provide support for MacOS. We hope to share an update
 
 Embedded Weaviate is supported in the following language clients:
 
-* [Python client](../client-libraries/python.md) – version `3.15.4` or newer
-<!-- * [JavaScript client](../client-libraries/javascript.md) – version `v` or newer -->
+* [Python client](../client-libraries/python.md) – `v3.15.4` or newer
+* [TypeScript client](https://github.com/weaviate/typescript-client) – `v1` or newer
+    * Note: the TypeScript client is still in Beta.
 
 ## More Resources
 
