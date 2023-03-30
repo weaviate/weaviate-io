@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-In this tutorial, you will learn how to import data into Weaviate using the batch import method. 
+In this tutorial, you will learn how to import data into Weaviate using the batch import method.
 
 By the end of this tutorial, you should have a good idea of the steps involved in importing data, and when to use the batch import method.
 
@@ -19,7 +19,7 @@ Migrated from "How to import data" tutorial from Weaviate Docs Classic
 ::: -->
 
 
-# Introduction 
+# Introduction
 
 Data is added through the RESTful API. The syntax of a data object is as follows:
 

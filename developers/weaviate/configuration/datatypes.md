@@ -26,7 +26,7 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 ## DataType: string vs. text
 
-There are two data types dedicated to saving textual information: `string` and `text`. They exhibit slightly different tokenization behavior, and `string` also optionally allows the property to be indexed without tokenization. 
+There are two data types dedicated to saving textual information: `string` and `text`. They exhibit slightly different tokenization behavior, and `string` also optionally allows the property to be indexed without tokenization.
 
 Refer to [this section](./schema-configuration.md#property-tokenization) on the difference between the two types.
 
@@ -79,19 +79,19 @@ There is a special, primitive data type `phoneNumber`. When a phone number is ad
 
 There are two fields that accept input. `input` must always be set, while `defaultCountry` must only be set in specific situations. There are two scenarios possible:
 - When you entered an international number (e.g. `"+31 20 1234567"`) to the `input` field, no `defaultCountry` needs to be entered. The underlying parser will automatically recognize the number's country.
-- When you entered a national number (e.g. `"020 1234567"`), you need to specify the country in `defaultCountry` (in this case, `"nl"`), so that the parse can correctly convert the number into all formats. The string in `defaultCountry` should be an [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code. 
+- When you entered a national number (e.g. `"020 1234567"`), you need to specify the country in `defaultCountry` (in this case, `"nl"`), so that the parse can correctly convert the number into all formats. The string in `defaultCountry` should be an [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
 
 ## DataType: blob
 
 The datatype blob accepts any binary data. The data should be `base64` encoded, and passed as a `string`. Characteristics:
-* Weaviate doesn't make assumptions about the type of data that is encoded. A module (e.g. `img2vec`) can investigate file headers as it wishes, but Weaviate itself does not do this. 
-* When storing, the data is `base64` decoded (so Weaviate stores it more efficiently). 
-* When serving, the data is `base64` encoded (so it is safe to serve as `json`). 
-* There is no max file size limit. 
+* Weaviate doesn't make assumptions about the type of data that is encoded. A module (e.g. `img2vec`) can investigate file headers as it wishes, but Weaviate itself does not do this.
+* When storing, the data is `base64` decoded (so Weaviate stores it more efficiently).
+* When serving, the data is `base64` encoded (so it is safe to serve as `json`).
+* There is no max file size limit.
 * This `blob` field is always skipped in the inverted index, regardless of setting. This mean you can not search by this `blob` field in a Weaviate GraphQL `where` filter, and there is no `valueBlob` field accordingly. Depending on the module, this field can be used in module-specific filters (e.g. `nearImage`{} in the `img2vec-neural` filter).
-  
+
 Example:
 
 The dataType `blob` can be used as property dataType in the data schema as follows:

@@ -19,7 +19,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-This section shows you how to configure Weaviate to suit your specific needs. 
+This section shows you how to configure Weaviate to suit your specific needs.
 
 For example, you can read about how to:
 

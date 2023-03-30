@@ -148,16 +148,16 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
     "query": "{
       Get {
         Article {
           title
           url
           wordCount
-          inPublication {           
-            ... on Publication {    
-              name                  
+          inPublication {
+            ... on Publication {
+              name
             }
           }
         }

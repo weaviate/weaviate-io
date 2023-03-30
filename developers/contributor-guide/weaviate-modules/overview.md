@@ -1,5 +1,5 @@
 ---
-title: Overview 
+title: Overview
 sidebar_position: 1
 image: og/contributor-guide/weaviate-modules.jpg
 # tags: ['contributor-guide', 'weaviate module system']
@@ -17,7 +17,7 @@ The user decides which modules are activated at startup through configuration.
 Some modules can be combined with each other, others might be conflicting. In
 this case startup will fail.
 
-## High level architecture 
+## High level architecture
 
 A module is essentially code which compiles with Weaviate, but a module can
 also communicate with other services. We are going through the
@@ -79,7 +79,7 @@ other benefits from running the container as a separate service. Most notably:
 A module is a custom code that can extend Weaviate by hooking into specific lifecycle hooks. As Weaviate is written in Go, so module code must also be written in Go. However, some existing modules make use of independent services which can be written in any language, as is often the case with vectorizer modules which bring along model inference containers often written in Python.
 
 Modules can be "vectorizers" (defines how the numbers in the vectors are chosen from the data) or other modules providing additional functions like question answering, custom classification, etc. Modules have the following characteristics:
-- Naming convention: 
+- Naming convention:
   - Vectorizer: `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `image2vec-RESNET` or `text2vec-transformers`.
   - Other modules: `<functionality>-<name>-<optional>`.
   - A module name must be url-safe, meaning it must not contain any characters which would require url-encoding.

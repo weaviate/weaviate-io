@@ -279,7 +279,7 @@ import CodeSchemaCreateElaborate from '/_includes/code/schema.things.create.elab
 
 ## Get a single class from the schema
 
-Retrieves the configuration of a single class in the schema. 
+Retrieves the configuration of a single class in the schema.
 
 ### Method and URL
 
@@ -317,11 +317,11 @@ import CodeSchemaDelete from '/_includes/code/schema.things.delete.mdx';
 
 ## Update a class
 
-Update settings of an existing schema class. 
+Update settings of an existing schema class.
 
 Use this endpoint to alter an existing class in the schema. Note that not all settings are mutable. If an error about immutable fields is returned and you still need to update this particular setting, you will have to delete the class (and the underlying data) and recreate. This endpoint cannot be used to modify properties. Instead, use [`POST /v1/schema/{ClassName}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as the `vectorIndexConfig`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
 
-You should attach a body to this PUT request with the **entire** new configuration of the class. 
+You should attach a body to this PUT request with the **entire** new configuration of the class.
 
 ### Method and URL
 
@@ -420,7 +420,7 @@ import CodeSchemaShardsGet from '/_includes/code/schema.shards.get.mdx';
 
 ## Update shard status
 
-A shard may have been marked as read-only, for example because the disk was full. You can manually set a shard to `READY` again using the following API. There is also a convenience function in each client to set the status of all shards of a class. 
+A shard may have been marked as read-only, for example because the disk was full. You can manually set a shard to `READY` again using the following API. There is also a convenience function in each client to set the status of all shards of a class.
 
 ### Method and URL
 

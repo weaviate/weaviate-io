@@ -20,7 +20,7 @@ And it returns the following fields:
 - `hostname`: The location of the Weaviate instance.
 - `version`: The version of Weaviate.
 - `modules`: Module specific info.
-  
+
 ## Example
 The following command:
 

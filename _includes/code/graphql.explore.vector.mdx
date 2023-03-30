@@ -98,7 +98,7 @@ func main() {
 
   result, err := client.GraphQL().Explore().
     WithFields(
-      graphql.Beacon, 
+      graphql.Beacon,
       graphql.Certainty,  # only supported if distance==cosine
       graphql.Distance    # always supported
       graphql.ClassName).
@@ -132,7 +132,7 @@ public class App {
     ExploreFields[] fields = new ExploreFields[]{
       ExploreFields.CERTAINTY,  // only supported if distance==cosine
       ExploreFields.DISTANCE,   // always supported
-      ExploreFields.BEACON, 
+      ExploreFields.BEACON,
       ExploreFields.CLASS_NAME
     };
 
@@ -158,7 +158,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
   "query": "{
     Explore (
       nearVector: {

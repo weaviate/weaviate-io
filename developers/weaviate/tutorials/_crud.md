@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-In this tutorial, you will learn how to perform various CRUD operations with Weaviate.  
+In this tutorial, you will learn how to perform various CRUD operations with Weaviate.
 
 <!-- :::caution This page is under construction.
 ::: -->

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
   Aggregate {
     Article(nearVector:{
       vector: [0.1, 0.2, -0.3]
-      certainty: 0.7       # at least one of "objectLimit", 
+      certainty: 0.7       # at least one of "objectLimit",
     },                     # and/or "certainty" must be set
     objectLimit: 200) {    # when using near<Media>
       meta {
@@ -206,7 +206,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
     "query": "{
       Aggregate {
         Article(nearVector:{

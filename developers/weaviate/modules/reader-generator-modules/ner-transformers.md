@@ -13,7 +13,7 @@ import Badges from '/_includes/badges.mdx';
 * The Named Entity Recognition (NER) module is a Weaviate module for token classification.
 * The module depends on a NER Transformers model that should be running with Weaviate. There are pre-built models available, but you can also attach another HuggingFace Transformer or custom NER model.
 * The module adds a `tokens {}` filter to the GraphQL `_additional {}` field.
-* The module returns data objects as usual, with recognized tokens in the GraphQL `_additional { tokens {} }` field. 
+* The module returns data objects as usual, with recognized tokens in the GraphQL `_additional { tokens {} }` field.
 
 ## Introduction
 
@@ -76,7 +76,7 @@ To make use of the modules capabilities, simply extend your query with the follo
 
 ### GraphQL Token
 
-This module adds a search filter to the GraphQL `_additional` field in queries: `token{}`. This new filter takes the following arguments: 
+This module adds a search filter to the GraphQL `_additional` field in queries: `token{}`. This new filter takes the following arguments:
 
 | Field 	| Data Type 	| Required 	| Example value 	| Description 	|
 |-	|-	|-	|-	|-	|
@@ -143,10 +143,10 @@ The answer is contained in a new GraphQL `_additional` property called `tokens`,
 
 ## Use another NER Transformer module from HuggingFace
 
-You can build a Docker image which supports any model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`Davlan/bert-base-multilingual-cased-ner-hrl` model](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl). 
+You can build a Docker image which supports any model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`Davlan/bert-base-multilingual-cased-ner-hrl` model](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl).
 
 #### Step 1: Create a `Dockerfile`
-Create a new `Dockerfile`. We will name it `my-model.Dockerfile`. Add the following lines to it: 
+Create a new `Dockerfile`. We will name it `my-model.Dockerfile`. Add the following lines to it:
 ```
 FROM semitechnologies/ner-transformers:custom
 RUN chmod +x ./download.py

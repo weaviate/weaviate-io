@@ -19,7 +19,7 @@ To choose your specific model, you simply need to select the correct Docker cont
 You have three options to select your desired model:
 
 1. **Use [any of our pre-built clip model containers](#pre-built-images).** These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/weaviate/weaviate/issues)).
-2. **Use any SBERT CLIP model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publicly-available-hugging-face-model). The `multi2vec-clip` module supports any CLIP-based transformer model compatible with `SentenceTransformers`. 
+2. **Use any SBERT CLIP model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publicly-available-hugging-face-model). The `multi2vec-clip` module supports any CLIP-based transformer model compatible with `SentenceTransformers`.
 3. **Use any private or SBERT Clip model.** [Click here to learn how](#option-3-custom-build-with-a-private-or-local-model). If you have your own CLIP-based `SentenceTransformers` model in a registry or on a local disk, you can use this with Weaviate.
 
 ## Option 1: Use a pre-built transformer model container
@@ -72,13 +72,13 @@ Make sure you set the `ENABLE_MODULES=multi2vec-clip` environment variable. Addi
 
 #### Step 2: Run your favorite model
 
-Choose [any of our pre-built CLIP models](/developers/weaviate/installation/docker-compose.md#configurator) (for building your own model container, see below) and spin it up with your setup. 
+Choose [any of our pre-built CLIP models](/developers/weaviate/installation/docker-compose.md#configurator) (for building your own model container, see below) and spin it up with your setup.
 
 :::tip
 Use a CUDA-enabled machine for optimal performance.
 :::
 
-#### Step 3: Tell Weaviate where to find the inference 
+#### Step 3: Tell Weaviate where to find the inference
 
 Set the Weaviate environment variable `CLIP_INFERENCE_API` to where your inference container is running, for example `TRANSFORMERS_INFERENCE_API="http://multi2vec-clip:8000"` (Adjust hostname and port accordingly)
 
@@ -89,7 +89,7 @@ You can now use Weaviate normally and all vectorization during import and search
 You can build a Docker image which supports any model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`clip-ViT-B-32` model](https://huggingface.co/sentence-transformers/clip-ViT-B-32). *Note: This model exists as a pre-built container, you don't have to build it yourself. This is just to outline the process.*
 
 #### Step 1: Create a `Dockerfile`
-Create a new `Dockerfile`. We will name it `clip.Dockerfile`. Add the following lines to it: 
+Create a new `Dockerfile`. We will name it `clip.Dockerfile`. Add the following lines to it:
 ```
 FROM semitechnologies/multi2vec-clip:custom
 RUN CLIP_MODEL_NAME=clip-ViT-B-32 TEXT_MODEL_NAME=clip-ViT-B-32 ./download.py
@@ -152,11 +152,11 @@ inference container. in your Docker-compose add something like
 ports:
   - "9090:8080"
 ```
-to your `t2v-transformers`. 
+to your `t2v-transformers`.
 
 Then you can send REST requests to it directly, e.g. `curl
 localhost:9090/vectorize -d '{"texts": ["foo bar"], "images":[]}'` and it will
-print the created vector(s) directly. 
+print the created vector(s) directly.
 
 ## Schema Configuration for CLIP-vectorized Classes
 
@@ -229,7 +229,7 @@ image.
 The `multi2vec-clip` vectorizer module adds two search operators for `Get {}`
 and `Explore {}` GraphQL functions: `nearText: {}` and `nearImage: {}`. These
 operators can be used for semantically searching both text and images in your
-dataset. 
+dataset.
 
 Note: In the same query, you cannot use multiple `'near'` filters, or a `'near'`
 filter along with an [`'ask'`](../reader-generator-modules/qna-transformers.md)
@@ -273,7 +273,7 @@ non-cosine distance metrics.
 
 Because pagination is not possible in multidimensional storage, you can improve your results with additional explore functions which can move away from semantic concepts or towards semantic concepts. E.g., if you look for the concept 'New York Times' but don't want to find the city New York, you can use the `moveAwayFrom{}` function by using the words 'New York'. This is also a way to exclude concepts and to deal with negations (`not` operators in similar query languages). Concepts in the `moveAwayFrom{}` filter are not per definition excluded from the result, but the resulting concepts are further away from the concepts in this filter.
 
-Moving can be done based on `concepts` and/or `objects`. 
+Moving can be done based on `concepts` and/or `objects`.
 * `concepts` requires a list of one or more words
 * `objects` requires a list of one or more objects, given by their `id` or `beacon`. For example:
 
@@ -288,7 +288,7 @@ Moving can be done based on `concepts` and/or `objects`.
             objects: [{
                 beacon: "weaviate://localhost/Article/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
             }, {
-                id: "9f0c7463-8633-30ff-99e9-fd84349018f5" 
+                id: "9f0c7463-8633-30ff-99e9-fd84349018f5"
             }],
             concepts: ["summer"],
             force: 0.9

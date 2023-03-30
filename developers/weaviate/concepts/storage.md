@@ -51,7 +51,7 @@ Prior to version `v1.5.0`, Weaviate used a B+Tree storage mechanismwhich could n
 
 #### HNSW Vector Index Storage
 
-Each shard contains its own vector index next to the structured stores mentioned above. The vector store, however, is agnostic of the internals of the object storage. As a result it does not suffer from segmentation problems. 
+Each shard contains its own vector index next to the structured stores mentioned above. The vector store, however, is agnostic of the internals of the object storage. As a result it does not suffer from segmentation problems.
 
 By grouping a vector index with the object storage within a shard, Weaviate can make sure that each shard is a fully self-contained unit which can independently serve requests for the data it owns. By placing the vector index next to the object store (instead of within), Weaviate can avoid the downsides of a segmented vector index.
 
@@ -67,7 +67,7 @@ By the time Weaviate has responded with a successful status to your ingestion re
 
 The LSM stores will try to flush a segment on an orderly shutdown. Only if the operation is successful, will the WAL be marked as "complete". This means that if an unexpected crash happens and Weaviate encounters an "incomplete" WAL, it will recover from it. As part of the recovery process, Weaviate will flush a new segment based on the WAL and mark it as complete. As a result, future restarts will no longer have to recover from this WAL.
 
-For the HNSW vector index, the WAL serves two purposes: It is both the disaster-recovery mechanism, as well as the primary persistence mechanism. The cost in building up an HNSW index is in figuring out where to place a new object and how to link it with its neighbors. The WAL contains only the result of those calculations. Therefore, by reading the WAL into memory, the HNSW index will be in the same state as it was prior to a shutdown. 
+For the HNSW vector index, the WAL serves two purposes: It is both the disaster-recovery mechanism, as well as the primary persistence mechanism. The cost in building up an HNSW index is in figuring out where to place a new object and how to link it with its neighbors. The WAL contains only the result of those calculations. Therefore, by reading the WAL into memory, the HNSW index will be in the same state as it was prior to a shutdown.
 
 Over time, an append only WAL will contain a lot of redundant information. For example, imagine two subsequent entries which reassign all the links of a specific node. The second operation will completely replace the result of the first operation, thus the WAL no longer needs the first entry. To keep the WALs fresh, a background process will continuously compact WAL files and remove redundant information. This keeps the disk footprint small and the startup times fast, as Weaviate does not need to store (or load) outdated information.
 
@@ -75,7 +75,7 @@ As a result, any change to the HNSW index is immediately persisted and there is 
 
 ## Conclusions
 
-This page introduced you to the storage mechanisms of Weaviate. It outlined how all writes are persisted immediately and outlined the patterns used within Weaviate to make datasets scale well. For structured data, Weaviate makes use of segmentation to keep the write times constant. For the HNSW vector index, Weaviate avoids segmentation to keep query times efficient. 
+This page introduced you to the storage mechanisms of Weaviate. It outlined how all writes are persisted immediately and outlined the patterns used within Weaviate to make datasets scale well. For structured data, Weaviate makes use of segmentation to keep the write times constant. For the HNSW vector index, Weaviate avoids segmentation to keep query times efficient.
 
 ## More Resources
 
