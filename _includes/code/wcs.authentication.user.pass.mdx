@@ -21,15 +21,15 @@ client = weaviate.Client(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="ts" label="TypeScript">
 
-```js
-const weaviate = require('weaviate-client');
+```ts
+import weaviate, { AuthUserPasswordCredentials } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: "https",
   host: "some-endpoint.weaviate.network",  // Replace w/ your endpoint
-  authClientSecret: new weaviate.AuthUserPasswordCredentials({
+  authClientSecret: new AuthUserPasswordCredentials({
     username: "WCS_USERNAME",  // Replace w/ your WCS username
     password: "WCS_PASSWORD",  // Replace w/ your WCS password
   })

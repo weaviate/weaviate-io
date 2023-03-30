@@ -140,8 +140,7 @@ importQuestions();
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient } from "weaviate-ts-client";
-import ObjectsBatcher from "weaviate-ts-client/types/batch/objectsBatcher"
+import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
 import fetch, { Response } from 'node-fetch';  // Note that Node implements its own Response type
 
 const client: WeaviateClient = weaviate.client({

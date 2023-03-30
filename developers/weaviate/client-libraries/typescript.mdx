@@ -73,7 +73,7 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 const client: WeaviateClient = weaviate.client({
   scheme: "https",
   host: "some-endpoint.weaviate.network",
-  authClientSecret: new weaviate.AuthUserPasswordCredentials({
+  authClientSecret: new AuthUserPasswordCredentials({
     username: "user123",
     password: "password",
     scopes: ["offline_access"]  // optional, depends on the configuration of your identity provider (not required with WCS)
@@ -91,7 +91,7 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 const client: WeaviateClient = weaviate.client({
   scheme: "https",
   host: "some-endpoint.weaviate.network",
-  authClientSecret: new weaviate.AuthClientCredentials({
+  authClientSecret: new AuthClientCredentials({
     clientSecret: "supersecuresecret",
     scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
   })
@@ -108,7 +108,7 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 const client: WeaviateClient = weaviate.client({
   scheme: "https",
   host: "some-endpoint.weaviate.network",
-  authClientSecret: new weaviate.AuthAccessTokenCredentials({
+  authClientSecret: new AuthAccessTokenCredentials({
     accessToken: "abcd1234",
     expiresIn: 900,
     refreshToken: "efgh5678"
