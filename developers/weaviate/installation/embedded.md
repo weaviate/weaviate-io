@@ -1,5 +1,5 @@
 ---
-title: Embedded Weaviate (experimental)
+title: Embedded Weaviate
 sidebar_position: 4
 image: og/docs/installation.jpg
 # tags: ['installation', 'embedded', 'client']
@@ -8,7 +8,7 @@ image: og/docs/installation.jpg
 
 Embedded Weaviate is a new deployment model, which allows you to start a Weaviate instance, straight in your application code using a Weaviate Client library.
 
-:::warning Experimental
+:::caution Experimental
 Embedded Weaviate is still in the **Experimental** phase.
 
 Some of the APIs and parameters might change over time, as we work towards a perfect implementation.
@@ -28,17 +28,17 @@ import EmbeddedInstantiation from '/_includes/code/embedded.instantiate.mdx';
 
 The Weaviate server spwaned from the client can be configured via parameters passed to the at instantiation time, and via environment variables. All parameters are optional.
 
-| Parameter | Type | Description | Default value | Environment variable |
-| --------- | ---- | ----------- | ------------- | ------------------- |
-| persistence_data_path | string | Directory where the files making up the database are stored | `~/.local/share/weaviate` | `XDG_DATA_HOME` |
-| binary_path | string | Where the binary is downloaded to. If deleted, the client will download the binary again. | `~/.cache/weaviate-embedded` | `XDG_CACHE_HOME` |
-| version | string | Full URL pointing to a Linux AMD64 or ARM64 binary | The default value is set to a recent AMD64 Weaviate binary | |
-| port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 6666 | |
-| hostname | string | Hostname/IP to bind to. | 127.0.0.1 | |
-| additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. | |
+| Parameter | Type | Description | Default value |
+| --------- | ---- | ----------- | ------------- |
+| persistence_data_path | string | Directory where the files making up the database are stored | When `XDG_DATA_HOME` env variable is set, the default value is:<br/>`XDG_DATA_HOME/weaviate/`<br/><br/>Otherwise it is:<br/>`~/.local/share/weaviate` |
+| binary_path | string | Where the binary is downloaded to. If deleted, the client will download the binary again. | When `XDG_CACHE_HOME` env variable is set, the default value is:<br/>`XDG_CACHE_HOME/weaviate-embedded/`<br/><br/>Otherwise it is:<br/>`~/.cache/weaviate-embedded` |
+| version | string | Full URL pointing to a Linux AMD64 or ARM64 binary | The default value is set to a recent AMD64 Weaviate binary |
+| port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 6666 |
+| hostname | string | Hostname/IP to bind to. | 127.0.0.1 |
+| additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. |
 
-:::danger XDG environment variables
-It is **not recommended** to change `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables, as that might affect many other (non-Weaviate related) applications and services running on the same server.
+:::danger XDG Base Directory standard values
+It is **not recommended** to modify `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables from the standard **XDG Base Directory** values, as that might affect many other (non-Weaviate related) applications and services running on the same server.
 :::
 
 :::tip Providing Weaviate version
@@ -86,7 +86,10 @@ Embedded Weaviate is supported in the following language clients:
 
 * [Python client](../client-libraries/python.md) – `v3.15.4` or newer
 * [TypeScript client](https://github.com/weaviate/typescript-client) – `v1` or newer
-    * Note: the TypeScript client is still in Beta.
+
+:::caution TypeScript client – under construction
+The TypeScript client is in **Beta**.
+:::
 
 ## More Resources
 
