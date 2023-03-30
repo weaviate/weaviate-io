@@ -3,6 +3,7 @@ title: Embedding Weaviate (experimental)
 sidebar_position: 4
 # image: TODO
 # tags: ['installation', 'embedded', 'client']
+---
 ## Overview
 
 Embedded Weaviate is a new deployment model, which allows you to start a Weaviate instance, straight in your application code using a Weaviate Client library.
