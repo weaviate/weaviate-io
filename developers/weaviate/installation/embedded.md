@@ -1,7 +1,7 @@
 ---
 title: Embedded Weaviate (experimental)
 sidebar_position: 4
-# image: TODO
+image: og/docs/installation.jpg
 # tags: ['installation', 'embedded', 'client']
 ---
 ## Overview
