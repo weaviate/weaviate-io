@@ -16,7 +16,7 @@ Some of the APIs and parameters might change over time, as we work towards a per
 
 ### How is this possible?
 
-With every Weaviate [release](https://github.com/weaviate/weaviate/releases) we also publish a single-executalbe Linux binary ([see assets](https://github.com/weaviate/weaviate/releases)).
+With every Weaviate [release](https://github.com/weaviate/weaviate/releases) we also publish executable Linux binaries ([see assets](https://github.com/weaviate/weaviate/releases)).
 
 This allows launching the Weaviate database server from the client instantiation call, which makes the "installation" step transparent in the background:
 
@@ -32,11 +32,11 @@ The Weaviate server spwaned from the client can be configured via parameters pas
 | --------- | ---- | ----------- | ------------- | ------------------- |
 | persistence_data_path | string | Directory where the files making up the database are stored | `/.local/share/weaviate` | `XDG_DATA_HOME` |
 | binary_path | string | Where the binary is downloaded. If deleted, the client will download the binary again. | `~/.cache/weaviate-embedded` | `XDG_CACHE_HOME` |
-| version | string | Full URL pointing to the Linux AMD64 binary | [Varies](https://github.com/weaviate/weaviate/releases) | |
+| version | string | Full URL pointing to a Linux AMD64 or ARM64 binary | [Varies](https://github.com/weaviate/weaviate/releases) | |
 | port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 6666 | |
 | hostname | string | Hostname/IP to bind to. | 127.0.0.1 | |
 | cluster_hostname | string | The label for the cluster hostname | "embedded" | CLUSTER_HOSTNAME |
-| additional_env_vars | key = value | Useful to pass additional environment variables to the server, such as API keys. | |
+| additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. | |
 
 ## Starting Embedded Weaviate under the hood
 
