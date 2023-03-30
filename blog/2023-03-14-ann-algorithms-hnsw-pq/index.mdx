@@ -236,9 +236,7 @@ We show a simple test below to drive home the importance of compressing data and
 
 In this post we explore the journey and details behind the HNSW+PQ feature released in Weaviate v1.18. Though we still have a ways to go on this journey, as noted earlier, but what we've accomplished thus far can add loads of value to Weaviate users. This solution already allows for significant savings in terms of memory. When compressing vectors ranging from 100 to 1000 dimensions you can save half to three fourths of the memory you would normally need to run HNSW. This saving comes with a little cost in recall or latency. The indexing time is also larger but to address this we've cooked up a second encoder, developed specially by Weaviate, based on the distribution of the data that will reduce the indexing time significantly. Keep your eyes peeled for more details on this soon on [our blog](/blog)! We will share our insights as we go. 😀
 
-## What's next
-Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
+import WhatNext from '/_includes/what-next.mdx'
 
-Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.
+<WhatNext />
