@@ -12,13 +12,17 @@ import Badges from '/_includes/badges.mdx';
 The current JavaScript client version is `v||site.javascript_client_version||`.
 :::
 
+:::warning JavaScript client no longer maintained
+The JavaScript client is no longer being maintained. Please migrate to the new [TypeScript client](./typescript.mdx).
+:::
+
 ## Installation and setup
 
 The JavaScript client library package can be easily installed using [npm](https://www.npmjs.com/).
 
 <!-- Replace $ .. examples to remove the prompt ($) as it gets copied too along with the actual command -->
 ```bash
-$ npm install weaviate-client
+npm install weaviate-client
 ```
 
 Now you can use the client in your JavaScript scripts as follows:

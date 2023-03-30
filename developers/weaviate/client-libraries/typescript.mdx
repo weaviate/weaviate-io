@@ -9,7 +9,7 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 :::note TypeScript client version
-The current JavaScript client version is `v||site.typescript_client_version||`.
+The current TypeScript client version is `v||site.typescript_client_version||`.
 :::
 
 ## Installation and setup
@@ -53,7 +53,7 @@ client
 
 ### Type definitions
 
-The type definitions can be found under the `types` subdirectory of the package in the `*.d.ts` files, for example as shown on the [npm page](https://www.npmjs.com/package/weaviate-ts-client?activeTab=code).
+The type definitions can be found under the `types` subdirectory of the package in the `*.d.ts` files, for example as shown on the [npm package page](https://www.npmjs.com/package/weaviate-ts-client?activeTab=code).
 
 ## Authentication
 
@@ -74,7 +74,7 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 <ClientAuthFlowResourceOwnerPassword />
 
 ```ts
-const client = weaviate.client({
+const client: WeaviateClient = weaviate.client({
   scheme: "https",
   host: "some-endpoint.weaviate.network",
   authClientSecret: new weaviate.AuthUserPasswordCredentials({
@@ -92,7 +92,7 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 <ClientAuthFlowClientCredentials />
 
 ```ts
-const client = weaviate.client({
+const client: WeaviateClient = weaviate.client({
   scheme: "https",
   host: "some-endpoint.weaviate.network",
   authClientSecret: new weaviate.AuthClientCredentials({
@@ -109,7 +109,7 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 <ClientAuthBearerToken />
 
 ```ts
-const client = weaviate.client({
+const client: WeaviateClient = weaviate.client({
   scheme: "https",
   host: "some-endpoint.weaviate.network",
   authClientSecret: new weaviate.AuthAccessTokenCredentials({
@@ -125,7 +125,7 @@ const client = weaviate.client({
 You can pass custom headers to the client, which are added at initialization:
 
 ```ts
-const client = weaviate.client({
+const client: WeaviateClient = weaviate.client({
   scheme: "https",
   host: "some-endpoint.weaviate.network",
   headers: {headerName: 'HeaderValue'}
@@ -140,7 +140,7 @@ These headers will then be included in every request that the client makes.
 We are in the process of migrating our JavaScript code examples to TypeScript as necessary. Please be patient.
 :::
 
-Our [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) covered by the TypeScript client will soon have JavaScript examples in the code blocks.
+Our [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks. We are in the process of migrating them.
 
 ## Design
 
