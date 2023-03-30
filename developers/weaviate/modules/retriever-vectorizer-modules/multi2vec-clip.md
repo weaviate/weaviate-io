@@ -80,7 +80,7 @@ Use a CUDA-enabled machine for optimal performance.
 
 #### Step 3: Tell Weaviate where to find the inference
 
-Set the Weaviate environment variable `CLIP_INFERENCE_API` to where your inference container is running, for example `TRANSFORMERS_INFERENCE_API="http://multi2vec-clip:8000"` (Adjust hostname and port accordingly)
+Set the Weaviate environment variable `CLIP_INFERENCE_API` to where your inference container is running, for example `CLIP_INFERENCE_API="http://multi2vec-clip:8000"` (Adjust hostname and port accordingly)
 
 You can now use Weaviate normally and all vectorization during import and search time will be done with the selected CLIP transformers model.
 

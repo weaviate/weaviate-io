@@ -9,7 +9,7 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 :::info Related pages
-- [Configuration: Schema](./schema-configuration.md)
+- [Configuration: Schema](../configuration/schema-configuration.md)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)
 :::
@@ -28,7 +28,7 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 There are two data types dedicated to saving textual information: `string` and `text`. They exhibit slightly different tokenization behavior, and `string` also optionally allows the property to be indexed without tokenization.
 
-Refer to [this section](./schema-configuration.md#property-tokenization) on the difference between the two types.
+Refer to [this section](../configuration/schema-configuration.md#property-tokenization) on the difference between the two types.
 
 ## DataType: date
 

@@ -33,6 +33,7 @@
     "react-js-switch": "^1.1.6",
     "react-radio-group": "^3.0.3",
     "react-rangeslider": "^2.2.0",
+    "react-player": "^2.11.0",
     "rehype-katex": "5",
     "remark-math": "3",
     "rxjs": "^7.8.0",

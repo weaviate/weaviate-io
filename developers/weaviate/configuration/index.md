@@ -1,5 +1,5 @@
 ---
-title: References - Configuration
+title: How to configure Weaviate
 sidebar_position: 0
 image: og/docs/configuration.jpg
 # tags: ['configuration']

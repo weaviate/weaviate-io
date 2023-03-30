@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: How to install Weaviate
 sidebar_position: 0
 image: og/docs/installation.jpg
 # tags: ['installation']
