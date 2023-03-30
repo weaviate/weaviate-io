@@ -15,11 +15,11 @@ This module vectorizes images using neural networks. Pre-trained modules can be 
 ## Available img2vec-neural models
 
 There are two different inference models you can choose from. Depending on your machine (`arm64` or other) and whether you prefer to use multi-threading to extract feature vectors or not, you can choose between `keras` and `pytorch`. There are no other differences between the two models.
-- `resnet50` (`keras`): 
-  - Supports `amd64`, but not `arm64`. 
+- `resnet50` (`keras`):
+  - Supports `amd64`, but not `arm64`.
   - Does not support `CUDA` (yet)
   - Supports multi-threaded inference
-- `resnet50` (`pytorch`): 
+- `resnet50` (`pytorch`):
   - Supports both `amd64` and `arm64`.
   - Supports `CUDA`
   - Does not support multi-threaded inference
@@ -82,7 +82,7 @@ You can combine the image vectorization module with a text vectorization module.
       restart: on-failure:0
       environment:
         CONTEXTIONARY_URL: contextionary:9999
-        IMAGE_INFERENCE_API: "http://i2v-neural:8080" 
+        IMAGE_INFERENCE_API: "http://i2v-neural:8080"
         QUERY_DEFAULTS_LIMIT: 25
         AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
         PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
@@ -109,13 +109,13 @@ You can combine the image vectorization module with a text vectorization module.
 ### Other methods
 If you prefer not to use Docker-compose (but instead for example Kubernetes in a production setup), make you can use the `img2vec-neural` module after taking the following steps:
 1. Enable the `img2vec-neural` module. Make sure you set the `ENABLE_MODULES=img2vec-neural` environment variable. This can be combined with a text vectorization module: `ENABLE_MODULES: 'text2vec-contextionary,img2vec-neural'`. Additionally, you can make one of the modules the default vectorizer, so you don't have to specify it on each schema class: `DEFAULT_VECTORIZER_MODULE=text2vec-contextionary`
-2. Run the `img2vec-neural` module, for example using `docker run -itp "8000:8080" semitechnologies/img2vec-neural:resnet50-61dcbf8`. 
+2. Run the `img2vec-neural` module, for example using `docker run -itp "8000:8080" semitechnologies/img2vec-neural:resnet50-61dcbf8`.
 3. Tell Weaviate where to find the inference module. Set the Weaviate environment variable `IMAGE_INFERENCE_API`to where your inference container is running, for example `IMAGE_INFERENCE_API="http://localhost:8000"`
 4. You can now use Weaviate normally and all vectorization of images during import and search time will be done with the selected image vectorization model (given that the schema is configured correctly).
 
 ## Schema configuration
 
-You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](/developers/weaviate/configuration/schema-configuration.md). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector. 
+You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](/developers/weaviate/configuration/schema-configuration.md). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector.
 
 When adding a class with vectorizer type `img2vec-neural`, the configuration must contain information about which field holds the image. The dataType of the `imageFields` should be [`blob`](/developers/weaviate/configuration/datatypes.md#datatype-blob). This can be achieved with the following config in a class object:
 

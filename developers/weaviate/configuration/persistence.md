@@ -30,7 +30,7 @@ services:
     volumes:
       - /var/weaviate:/var/lib/weaviate
     environment:
-      CLUSTER_HOSTNAME: 'node1' 
+      CLUSTER_HOSTNAME: 'node1'
 ```
 
 * About the volumes

@@ -22,7 +22,7 @@ import Badges from '/_includes/badges.mdx';
 The **Concepts** section explains various aspects related to Weaviate and its architecture to help you get the most out of it. You can read these sections in any order.
 
 :::info
-If you are after a practical guide, try the [quickstart tutorial](/developers/weaviate/quickstart/index.md). 
+If you are after a practical guide, try the [quickstart tutorial](/developers/weaviate/quickstart/index.md).
 :::
 
 ## Core concepts
@@ -45,7 +45,7 @@ Read more about Weaviate's vector indexing architecture, such as the HNSW algori
 
 ## Weaviate Architecture
 
-The figure below gives a 30,000 feet view of Weaviate's architecture. 
+The figure below gives a 30,000 feet view of Weaviate's architecture.
 
 [![Weaviate module APIs overview](./img/weaviate-architecture-overview.svg "Weaviate System and Architecture Overview")](./img/weaviate-architecture-overview.svg)
 

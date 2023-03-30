@@ -8,9 +8,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## GraphQL 
+## GraphQL
 
-Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a query language built on using graph data structures. It is an efficient method of data retrieval and mutation, since it mitigates the common over-fetching and under-fetching problems of other query languages. 
+Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a query language built on using graph data structures. It is an efficient method of data retrieval and mutation, since it mitigates the common over-fetching and under-fetching problems of other query languages.
 
 ## All references
 
@@ -88,7 +88,7 @@ GraphQL queries follows a defined structure, defined to interact with your data 
 }
 ```
 
-- To obtain meta information about a data object (for example for interpretation or visualization purposes), use an [**additional property**](./additional-properties.md). 
+- To obtain meta information about a data object (for example for interpretation or visualization purposes), use an [**additional property**](./additional-properties.md).
 
 ## Limitations
 

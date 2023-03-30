@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
       name
       headquartersGeoLocation {
         latitude
-        longitude 
+        longitude
       }
     }
   }
@@ -57,7 +57,7 @@ get_articles_where = """
         name
         headquartersGeoLocation {
           latitude
-          longitude 
+          longitude
         }
       }
     }
@@ -88,11 +88,11 @@ client.graphql
         path: ['headquartersGeoLocation'],
         valueGeoRange: {
           geoCoordinates: {
-            latitude: 51.51,    
-            longitude: -0.09    
+            latitude: 51.51,
+            longitude: -0.09
           },
           distance: {
-            max: 2000 
+            max: 2000
           }
         }
       })
@@ -219,7 +219,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
   "query": "{
     Get {
       Publication(where: {
@@ -238,7 +238,7 @@ $ echo '{
         name
         headquartersGeoLocation {
           latitude
-          longitude 
+          longitude
         }
       }
     }

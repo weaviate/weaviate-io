@@ -20,7 +20,7 @@ class_obj = {
     },
     "vectorizer": "text2vec-contextionary",
     "moduleConfig": {
-      "text2vec-contextionary": {  
+      "text2vec-contextionary": {
         "vectorizeClassName": True
       }
     },
@@ -34,7 +34,7 @@ class_obj = {
             "indexInverted": True,
             "moduleConfig": {
                 "text2vec-contextionary": {
-                  "skip": False,                   
+                  "skip": False,
                   "vectorizePropertyName": False
                 }
               }
@@ -48,7 +48,7 @@ class_obj = {
             "indexInverted": True,
             "moduleConfig": {
                 "text2vec-contextionary": {
-                  "skip": False,                   
+                  "skip": False,
                   "vectorizePropertyName": False
                 }
               }
@@ -56,7 +56,7 @@ class_obj = {
     ],
     "shardingConfig": {
       "virtualPerPhysical": 128,
-      "desiredCount": 1,             
+      "desiredCount": 1,
       "desiredVirtualCount": 128,
       "key": "_id",
       "strategy": "hash",
@@ -100,7 +100,7 @@ let classObj = {
     },
     'vectorizer': 'text2vec-contextionary',
     'moduleConfig': {
-      'text2vec-contextionary': {  
+      'text2vec-contextionary': {
         'vectorizeClassName': true
       }
     },
@@ -114,7 +114,7 @@ let classObj = {
             'indexInverted': true,
             'moduleConfig': {
                 'text2vec-contextionary': {
-                  'skip': false,                   
+                  'skip': false,
                   'vectorizePropertyName': false
                 }
               }
@@ -128,7 +128,7 @@ let classObj = {
             'indexInverted': true,
             'moduleConfig': {
                 'text2vec-contextionary': {
-                  'skip': false,                   
+                  'skip': false,
                   'vectorizePropertyName': false
                 }
               }
@@ -136,7 +136,7 @@ let classObj = {
     ],
     'shardingConfig': {
       'virtualPerPhysical': 128,
-      'desiredCount': 1,             
+      'desiredCount': 1,
       'desiredVirtualCount': 128,
       'key': '_id',
       'strategy': 'hash',
@@ -288,7 +288,7 @@ public class App {
       .strategy("hash")
       .virtualPerPhysical(128)
       .build();
-    
+
     ReplicationConfig replicationConfig = ReplicationConfig.builder()
       .factor(3)
       .build();
@@ -345,7 +345,7 @@ $ curl \
     },
     "vectorizer": "text2vec-contextionary",
     "moduleConfig": {
-      "text2vec-contextionary": {  
+      "text2vec-contextionary": {
         "vectorizeClassName": true
       }
     },
@@ -359,7 +359,7 @@ $ curl \
             "indexInverted": true,
             "moduleConfig": {
                 "text2vec-contextionary": {
-                  "skip": false,                   
+                  "skip": false,
                   "vectorizePropertyName": true
                 }
               }
@@ -373,7 +373,7 @@ $ curl \
             "indexInverted": true,
             "moduleConfig": {
                 "text2vec-contextionary": {
-                  "skip": false,                   
+                  "skip": false,
                   "vectorizePropertyName": true
                 }
               }
@@ -381,7 +381,7 @@ $ curl \
     ],
     "shardingConfig": {
       "virtualPerPhysical": 128,
-      "desiredCount": 1,             
+      "desiredCount": 1,
       "desiredVirtualCount": 128,
       "key": "_id",
       "strategy": "hash",

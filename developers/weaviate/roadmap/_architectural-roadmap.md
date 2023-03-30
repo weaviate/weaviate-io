@@ -122,7 +122,7 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
     </td>
   </tr>
   <tr>
-    <td>  
+    <td>
       A node can contain shards which are already present on other nodes as well. This means if a node goes down, another node can take up the load without the loss of availability or data. Note that the design plans for a leaderless replication, so there is no distinction between primary and secondary shards. Removes all single point of failures.
     </td>
   </tr>

@@ -164,13 +164,13 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
   "query": "{
     Get{
       Publication(
         nearObject: {
           id: "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf",
-          distance: 0.6 # prior to v1.14 use certainty instead of distance 
+          distance: 0.6 # prior to v1.14 use certainty instead of distance
         }
       ){
         name

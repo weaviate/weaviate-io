@@ -5,7 +5,7 @@ image: og/contributor-guide/weaviate-clients.jpg
 # tags: ['contributor-guide', 'clients']
 ---
 
-# Contributor guidelines 
+# Contributor guidelines
 
 There are currently four clients developed for Weaviate's APIs:
 * [Python](/developers/weaviate/client-libraries/python.md)
@@ -21,7 +21,7 @@ These clients, and all future clients are and will be developed according to the
    1. These features on top of the 1-1 RESTful and GraphQL functionalities must be defined through a user story, which will also be reflected in the documentation.
    2. These features can be solved in a client's native way (follow the current design of the client for consistency)
    3. Preferably the functionalities are consistent across clients.
-4. Keep the design (nomenclature and builder structures) as consistent as possible, with the nomenclature of the RESTful and GraphQL API functions as base, then adopting names from similar functions in a client in another language. 
+4. Keep the design (nomenclature and builder structures) as consistent as possible, with the nomenclature of the RESTful and GraphQL API functions as base, then adopting names from similar functions in a client in another language.
 5. Clients must at the minimum contain journey-tests to be considered complete. See "Testing" below.
 
 # Design philosophy and API patterns
@@ -41,7 +41,7 @@ hand, has a fixed set of arguments per funtion call making it much better
 suited for a builder pattern.
 
 Casing in object, property and method names should follow best-practicies for
-the respective language. 
+the respective language.
 
 # Testing
 
@@ -78,9 +78,9 @@ similar to the one you've picked. For example, criteria could include:
 * How verbose are patterns in the language?
 
 Then you can take a look at an existing client which matches your language the
-closest and get inspried. 
+closest and get inspried.
 
-For example, if you plan to implement a client in C#, it might make sense to look at the 
+For example, if you plan to implement a client in C#, it might make sense to look at the
 [Java](/developers/weaviate/client-libraries/java.md) and
 [Go](/developers/weaviate/client-libraries/go.md) clients.
 

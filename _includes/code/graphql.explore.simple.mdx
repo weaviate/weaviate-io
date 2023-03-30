@@ -21,7 +21,7 @@ import TabItem from '@theme/TabItem';
     }
   ) {
     beacon
-    certainty # only supported if distance==cosine. 
+    certainty # only supported if distance==cosine.
     distance  # always supported
     className
   }
@@ -53,7 +53,7 @@ explore_articles_query = """
       }
     ) {
       beacon
-      certainty # only supported if distance==cosine. 
+      certainty # only supported if distance==cosine.
       distance  # always supported
       className
     }
@@ -128,7 +128,7 @@ func main() {
 
   result, err := client.GraphQL().Explore().
     WithFields(
-      graphql.Beacon, 
+      graphql.Beacon,
       graphql.Certainty, // only supported if distance==cosine
       graphql.Distance,  // always supported
       graphql.ClassName).
@@ -167,7 +167,7 @@ public class App {
     NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
       .concepts(new String[]{ "fashion", "shop" }).force(0.2f)
       .build();
-    
+
     NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
       .concepts(new String[]{ "New Yorker" })
       .moveTo(moveTo)
@@ -176,7 +176,7 @@ public class App {
       .build();
 
     Result<GraphQLResponse> result = client.graphQL().explore()
-      .withFields(ExploreFields.BEACON, 
+      .withFields(ExploreFields.BEACON,
         ExploreFields.CERTAINTY, // only supported if distance==cosine
         ExploreFields.DISTANCE,  // always supported
         ExploreFields.CLASS_NAME)
@@ -196,7 +196,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
   "query": "{
     Explore (
       nearText: {
@@ -213,7 +213,7 @@ $ echo '{
       }
     ) {
       beacon
-      certainty # only supported if distance==cosine. 
+      certainty # only supported if distance==cosine.
       distance  # always supported
       className
     }
