@@ -6,6 +6,6 @@ If you can't find the answer to your question here, please look at the:
 1. For issues: [GitHub](https://github.com/weaviate/weaviate/issues). Or,
 1. Ask your question in the Slack channel: [Slack](https://weaviate.io/slack).
 
-import GiscusComment from '/src/components/GiscusComment';
+import { GiscusDocComment } from '/src/components/GiscusComment';
 
-<GiscusComment />
+<GiscusDocComment />
