@@ -10,11 +10,11 @@ import Badges from '/_includes/badges.mdx';
 
 :::note Vector spaces and Expore{}
 
-The `Explore` function is currently not available on Weaviate Cloud Services (WCS) instances, or others where it is likely that multiple vector spaces will exist. 
+The `Explore` function is currently not available on Weaviate Cloud Services (WCS) instances, or others where it is likely that multiple vector spaces will exist.
 
 As WCS by default enables multiple inference-API modules and therefore multiple vector spaces, `Explore` is disabled by default by Weaviate.
 
-::: 
+:::
 
 ## Explore{} query structure and syntax
 
@@ -79,7 +79,7 @@ The result might look like this:
 
 Weaviate's vectorization module `text2vec-contextionary` splits words based on CamelCase. For example, if a user wants to explore for the iPhone (the Apple device) they should use `iphone` rather than `iPhone` because the latter will be interpreted as `[i, phone]`.
 
-## Explore filter arguments  
+## Explore filter arguments
 
 ### Concepts
 

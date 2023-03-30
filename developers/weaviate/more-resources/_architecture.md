@@ -23,7 +23,7 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
 ### 10,000 feet view
 * The "Core" Weaviate application (not to be confused with the Weaviate Stack)
   itself is stateless and stores its data in third-party databases
-* The two databases used are `etcd` and `Elasticsearch`. 
+* The two databases used are `etcd` and `Elasticsearch`.
 * `Etcd` has mostly historic reasons and is currently used to store
   configuration, the schema and contextionary extensions
 * `Elasticsearch` stores all data objects and provides search functionalities
@@ -33,7 +33,7 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
 
 ### Vector Search
 * When a vector search happens, Core uses the Contextionary to convert the
-  query text to a vector and passes it to Elasticsearch. 
+  query text to a vector and passes it to Elasticsearch.
 * Elasticsearch does a cosine similarity comparison using the OSS plugin
   `lior-k/fast-elasticsearch-vector-scoring`
 * This is a primitive, exhaustive approach, in other words, the query vector is
@@ -116,7 +116,7 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
   released. However, the entire persistence layer has been build with
   horizontal scalability in mind.
 * The purpose of shards is to distribute parts of the index among multiple
-  nodes in the cluster. 
+  nodes in the cluster.
 * Replication is masterless, i.e. there are no primary or secondary shards,
   each replication can accept writes. Therefore true horizontal scaling is
   possible, even when the number of shards is set to 1

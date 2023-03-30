@@ -31,7 +31,7 @@ In practice this means:
   There might be situations, especially when developing complex features, where
   you explicitly make commits which are "not production-ready". For example to
   get a get an integration test to pass you might require several commits.
-  Please, clearly mark such commits as "WIP". 
+  Please, clearly mark such commits as "WIP".
 
 * The best time to merge a PR is yesterday. There is no harm in having a
   non-breaking, not-yet finished feature already on the trunk. (Especially as
@@ -85,7 +85,7 @@ methods to show this deprecation when the user uses a deprecated feature.
 ## Releases
 
 There is no fixed release schedule. We aim to publish new features and fixes as
-early as possible. 
+early as possible.
 
 However, keep in mind, that an upgrade of an installation can be effort to a
 user. If we thus know that several features will be ready within a few days, we

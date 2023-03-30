@@ -49,7 +49,7 @@ The data about this author can be represented in JSON like this:
 
 ### Vectors
 
-As mentioned earlier, we can also attach `vector` representations to our data objects. This is represented as an array of numbers under a `"vector"` property, like this: 
+As mentioned earlier, we can also attach `vector` representations to our data objects. This is represented as an array of numbers under a `"vector"` property, like this:
 
 ```json
 {
@@ -67,7 +67,7 @@ As mentioned earlier, we can also attach `vector` representations to our data ob
 }
 ```
 
-You can generate vectors yourself outside of Weaviate, or use one of Weaviate's vectorizer [modules](./modules.md). 
+You can generate vectors yourself outside of Weaviate, or use one of Weaviate's vectorizer [modules](./modules.md).
 
 ### Class Collections
 

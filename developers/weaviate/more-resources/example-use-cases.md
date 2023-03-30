@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-Most use cases of Weaviate benefit from the following two core concepts: 
+Most use cases of Weaviate benefit from the following two core concepts:
 
 1. **Semantic search.**\
   [80% of data is unstructured](https://www.forbes.com/sites/forbestechcouncil/2019/01/29/the-80-blind-spot-are-you-ignoring-unstructured-organizational-data/) and the largest search engine in the world has only indexed [0.004%](https://www.seeker.com/how-much-of-the-internet-is-hidden-1792697912.html) of all data available. With Weaviate and its Contextionary, semantic search in unstructured data becomes possible. Various use cases benefit from unlocking this potential of unstructured data by semantic search, see [Document search and analysis](#document-search-and-analysis) and [Product search for E-commerce](#product-search-for-e-commerce).
@@ -23,7 +23,7 @@ Most use cases of Weaviate benefit from the following two core concepts:
 
 ## Product search for E-commerce
 
-**Challenge**: A product search bar is an important feature of e-commerce websites, but often a potential customer cannot find what they are looking for. Traditional search methods retrieve products based on matching keywords, with the problem that products with different keywords but the same context cannot be found by the user. If potential customers cannot find what they are looking for, this might lead to lost sales.  
+**Challenge**: A product search bar is an important feature of e-commerce websites, but often a potential customer cannot find what they are looking for. Traditional search methods retrieve products based on matching keywords, with the problem that products with different keywords but the same context cannot be found by the user. If potential customers cannot find what they are looking for, this might lead to lost sales.
 
 **Solution with Weaviate**: Weaviate adds machine learning to traditional search capabilities allowing people to not only search for fixed keywords, but also for context. For example, a category that was never created can be realtime processed by Weaviate (e.g., showing pumpkin products when searching for Halloween).
 

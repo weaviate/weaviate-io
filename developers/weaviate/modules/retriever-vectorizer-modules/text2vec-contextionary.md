@@ -28,7 +28,7 @@ When a new class object is created, it will be added to a Weaviate.
 
 ### Available modules and languages
 
-* Trained with on CommonCrawl and Wiki, using GloVe 
+* Trained with on CommonCrawl and Wiki, using GloVe
   * English
   * Dutch
   * German
@@ -151,13 +151,13 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 ### Find concepts
 
-To find concepts or words or to check if a concept is part of the Contextionary, use the `v1/modules/text2vec-contextionary/concepts/<concept>` endpoint. 
+To find concepts or words or to check if a concept is part of the Contextionary, use the `v1/modules/text2vec-contextionary/concepts/<concept>` endpoint.
 
 ```js
 GET /v1/modules/text2vec-contextionary/concepts/<concept>
 ```
 
-### Parameters 
+### Parameters
 
 The only parameter `concept` is a string that should be camelCased in case of compound words or a list of words.
 
@@ -250,7 +250,7 @@ The same fields as the input parameters will be in the response body if the exte
 
 ### Example
 
-Let's add the concept `"weaviate"` to the Contextionary. 
+Let's add the concept `"weaviate"` to the Contextionary.
 
 import CodeContextionaryExtensions from '/_includes/code/contextionary.extensions.mdx';
 

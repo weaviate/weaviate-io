@@ -13,7 +13,7 @@ import Badges from '/_includes/badges.mdx';
 * The Question and Answer (Q&A) module is a Weaviate module for answer extraction from data.
 * The module depends on a text vectorization module that should be running with Weaviate.
 * The module adds an `ask {}` parameter to the GraphQL `Get {}` queries
-* The module returns a max. of 1 answer in the GraphQL `_additional {}` field. 
+* The module returns a max. of 1 answer in the GraphQL `_additional {}` field.
 * The answer with the highest `certainty` (confidence level) will be returned.
 
 ## Introduction
@@ -22,7 +22,7 @@ The Question and Answer (Q&A) module is a Weaviate module for answer extraction 
 
 There are currently five different Question Answering modules available (taken from [Hugging Face](https://huggingface.co/)): [`distilbert-base-uncased-distilled-squad (uncased)`](https://huggingface.co/distilbert-base-uncased-distilled-squad), [`bert-large-uncased-whole-word-masking-finetuned-squad (uncased)`](https://huggingface.co/bert-large-uncased-whole-word-masking-finetuned-squad), [`distilbert-base-cased-distilled-squad (cased)`](https://huggingface.co/distilbert-base-cased-distilled-squad), [`deepset/roberta-base-squad2`](https://huggingface.co/deepset/roberta-base-squad2), and [`deepset/bert-large-uncased-whole-word-masking-squad2 (uncased)`](https://huggingface.co/deepset/bert-large-uncased-whole-word-masking-squad2). Note that not all models perform well on every dataset and use case. We recommend to use `bert-large-uncased-whole-word-masking-finetuned-squad (uncased)`, which performs best on most datasets (although it's quite heavyweighted).
 
-Starting with `v1.10.0`, the answer score can be used as a reranking factor for the search results. 
+Starting with `v1.10.0`, the answer score can be used as a reranking factor for the search results.
 
 ## How to enable (module configuration)
 
@@ -88,7 +88,7 @@ _Note: at the moment, text vectorization modules cannot be combined in a single 
 
 ### GraphQL Ask search
 
-This module adds a search parameter to GraphQL `Get{...}` queries: `ask{}`. This new search parameter takes the following arguments: 
+This module adds a search parameter to GraphQL `Get{...}` queries: `ask{}`. This new search parameter takes the following arguments:
 
 | Field 	| Data Type 	| Required 	| Example value 	| Description 	|
 |-	|-	|-	|-	|-	|
@@ -97,7 +97,7 @@ This module adds a search parameter to GraphQL `Get{...}` queries: `ask{}`. This
 | `properties` 	| list of strings 	| no 	| `["summary"]` 	| The properties of the queries Class which contains text. If no properties are set, all are considered.	|
 | `rerank` 	| bool 	| no 	| `true` 	| If enabled, the qna module will rerank the result based on the answer score. For example, if the 3rd result - as determined by the previous (semantic) search contained the most likely answer, result 3 will be pushed to position 1, etc. *Not supported prior to v1.10.0* |
 
-Notes: 
+Notes:
 * The GraphQL `Explore { }` function does support the `ask` searcher, but the result is only a beacon to the object containing the answer. It is thus not any different from performing a nearText semantic search with the question. No extraction is happening.
 * You cannot use the `'ask'` parameter along with a `'near'` parameter!
 
@@ -156,9 +156,9 @@ You can use the same approach as for `text2vec-transformers`, see [here](/develo
 
 ## How it works (under the hood)
 
-Under the hood, the model uses a two-step approach. First it performs a semantic search with `k=1` to find the document (e.g. a Sentence, Paragraph, Article, etc.) which is most likely to contain the answer. This step has no certainty threshold and as long as at least one document is present, it will be fetched and selected as the one most likely containing the answer. In a second step, a BERT-style answer extraction is performed on all `text` and `string` properties of the document. There are now three possible outcomes: 
-1.  No answer was found because the question can not be answered, 
-2.  An answer was found, but did not meet the user-specified minimum certainty, so it was discarded (typically the case when the document is on topic, but does not contain an actual answer to the question), and 
+Under the hood, the model uses a two-step approach. First it performs a semantic search with `k=1` to find the document (e.g. a Sentence, Paragraph, Article, etc.) which is most likely to contain the answer. This step has no certainty threshold and as long as at least one document is present, it will be fetched and selected as the one most likely containing the answer. In a second step, a BERT-style answer extraction is performed on all `text` and `string` properties of the document. There are now three possible outcomes:
+1.  No answer was found because the question can not be answered,
+2.  An answer was found, but did not meet the user-specified minimum certainty, so it was discarded (typically the case when the document is on topic, but does not contain an actual answer to the question), and
 3.  An answer was found that matches the desired certainty. It is returned to the user.
 
 The module performs a semantic search under the hood, so a `text2vec-...` module is required. It does not need to be transformers-based and you can also combine it with `text2vec-contextionary`. However, we expect that you will receive the best results by combining it with a well-fitting transformers model by using the appropriate configured `text2vec-transformers` module.

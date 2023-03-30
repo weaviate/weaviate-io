@@ -34,19 +34,19 @@ which should return ||site.weaviate_cli_version||.
 
 ### Configuration
 
-You need to configure the CLI tool before you can interact with you Weaviate instance. This can be done manually or by adding flags to commands. 
-- Manually (interactive): 
+You need to configure the CLI tool before you can interact with you Weaviate instance. This can be done manually or by adding flags to commands.
+- Manually (interactive):
   ```sh
   $ weaviate config set
   ```
-  or 
+  or
   ```sh
   $ weaviate init
   ```
   After which you will be asked to enter the Weaviate URL and authentication mode.
 
 - Flags: if you didn't configure the CLI manually, you can add a configuration flag pointing to a configuration json file (`--config-file myconfig.json`) with every command you execute.
-  
+
   ```bash
   $ weaviate --config-file myconfig.json
   ```
@@ -56,7 +56,7 @@ You need to configure the CLI tool before you can interact with you Weaviate ins
   {
     "url": "http://localhost:8080",
     "auth": null
-  }   
+  }
   ```
   or
   ```json
@@ -65,8 +65,8 @@ You need to configure the CLI tool before you can interact with you Weaviate ins
     "auth": {
         "secret": <your_client_secret>
     }
-  }   
-  ``` 
+  }
+  ```
   or
 
   ```json
@@ -76,7 +76,7 @@ You need to configure the CLI tool before you can interact with you Weaviate ins
         "user": <user name>,
         "pass": <user password>
     }
-  }   
+  }
   ```
 
 You can view the configuration with the command:
@@ -120,7 +120,7 @@ You can export a schema to a json file that is present in the Weaviate instance 
 $ weaviate schema export my_schema.json
 ```
 
-Where `my_schema.json` can be replaces by a json file and local location. Naturally this function only outputs the schema to the given location when a schema is present in Weaviate. 
+Where `my_schema.json` can be replaces by a json file and local location. Naturally this function only outputs the schema to the given location when a schema is present in Weaviate.
 
 #### Truncate
 
@@ -133,7 +133,7 @@ $ weaviate schema delete
 ### Data
 
 #### Import
-The `import` function enables data import from a json file. When the flag `--fail-on-error` is added, this command execution will fail if an error was thrown by Weaviate when loading the data object in. 
+The `import` function enables data import from a json file. When the flag `--fail-on-error` is added, this command execution will fail if an error was thrown by Weaviate when loading the data object in.
 
 ```sh
 $ weaviate data import my_data_objects.json

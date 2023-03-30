@@ -39,7 +39,7 @@ It has the following characteristics:
 * When a previously seen class is imported, which contains a property that Weaviate has not seen yet, the module alters the schema before importing the object. See section "DataTypes" below for details on how a property should be created.
 * When a previously seen class is imported, which contains a property which conflicts with the current schema type, an error is thrown. (e.g. trying to import a `string` into a field that exists in the schema as `int`).
 * When a previously unseen class is imported, the class is created alongside all the properties.
-* Weaviate also automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`. 
+* Weaviate also automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`.
 
 ### Class
 
@@ -61,7 +61,7 @@ current (as of `v1.10.0+`) class name validation regex is
 
 ### Properties
 
-Every class has properties. Properties define what kind of data values you will add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](./datatypes.md). Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name. 
+Every class has properties. Properties define what kind of data values you will add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](./datatypes.md). Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.
 
 ## Class object
 
@@ -77,7 +77,7 @@ An example of a complete class object including properties:
   },
   "vectorizer": "text2vec-contextionary",   // Vectorizer to use for data objects added to this class
   "moduleConfig": {
-    "text2vec-contextionary": {  
+    "text2vec-contextionary": {
       "vectorizeClassName": true            // Include the class name in vector calculation (default true)
     }
   },
@@ -98,7 +98,7 @@ An example of a complete class object including properties:
     }
   ],
   "invertedIndexConfig": {                  // Optional, index configuration
-    "stopwords": { 
+    "stopwords": {
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
     "indexTimestamps": false,               // Optional, maintains inverted indices for each object by its internal timestamps
@@ -202,7 +202,7 @@ the most common stopwords for a particular language. If you need more
 fine-grained control, you can add additional stopwords or remove stopwords that
 you believe should not be part of the list. Alternatively, you can create
 your custom stopword list by starting with an empty (`"none"`)
-preset and adding all your desired stopwords as additions. 
+preset and adding all your desired stopwords as additions.
 
 ```json
   "invertedIndexConfig": {
@@ -228,9 +228,9 @@ This configuration allows stopwords to be configured by class. If not set, these
 - If the same item is included in both additions and removals, then an error is returned
 :::
 
-As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking. 
+As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking.
 
-Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest/schema#parameters-2) the list of stopwords after your data has been indexed. 
+Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest/schema#parameters-2) the list of stopwords after your data has been indexed.
 
 Below is an example request on how to update the list of stopwords:
 
@@ -241,9 +241,9 @@ client = weaviate.Client("http://localhost:8080")
 
 class_obj = {
     "invertedIndexConfig": {
-        "stopwords": { 
+        "stopwords": {
             "preset": "en",
-            "additions": ["where", "is", "the"]                                         
+            "additions": ["where", "is", "the"]
         }
     }
 }
@@ -300,7 +300,7 @@ Using these features requires more resources, as the additional inverted indices
 
 ## Property object
 
-Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name. 
+Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.
 
 An example of a complete property object:
 
@@ -360,13 +360,13 @@ This feature was introduced in `v1.12.0`.
 :::
 
 Properties with `text` and `string` exhibit different tokenization behavior when indexing and
-searching through the inverted index. 
+searching through the inverted index.
 
 #### Tokenization with `text`
 
-`text` properties are always tokenized, and by all non-alphanumerical characters. Tokens are then lowercased before being indexed. For example, a `text` property value `Hello, (beautiful) world`, would be indexed by tokens `hello`, `beautiful`, and `world`. 
+`text` properties are always tokenized, and by all non-alphanumerical characters. Tokens are then lowercased before being indexed. For example, a `text` property value `Hello, (beautiful) world`, would be indexed by tokens `hello`, `beautiful`, and `world`.
 
-Each of these tokens will be indexed separately in the inverted index. This means that a search for any of the three tokens with the `Equal` operator under `valueText` would return this object regardless of the case. 
+Each of these tokens will be indexed separately in the inverted index. This means that a search for any of the three tokens with the `Equal` operator under `valueText` would return this object regardless of the case.
 
 #### Tokenization with `string`
 
@@ -374,7 +374,7 @@ Each of these tokens will be indexed separately in the inverted index. This mean
 
 If `tokenization` for a `string` property is set to `word`, the field will be tokenized. The tokenization behavior for `string` is different from `text`, however, as `string` values are only tokenized by white spaces, and casing is not altered.
 
-So, a `string` property value `Hello, (beautiful) world` with `tokenization` set as `word` would be split into the tokens `Hello,`, `(beautiful)`, and `world`. In this case, the `Equal` operator would need the exact match including non-alphanumerics and case (e.g. `Hello,`, not `hello`) to retrieve this object. 
+So, a `string` property value `Hello, (beautiful) world` with `tokenization` set as `word` would be split into the tokens `Hello,`, `(beautiful)`, and `world`. In this case, the `Equal` operator would need the exact match including non-alphanumerics and case (e.g. `Hello,`, not `hello`) to retrieve this object.
 
 `string` properties can also be indexed as the entire value, by setting `tokenization` as `field`. In such a case the `Equal` operator would require the value `Hello, (beautiful) world` before returning the object as a match.
 

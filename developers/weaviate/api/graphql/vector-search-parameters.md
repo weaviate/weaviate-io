@@ -97,7 +97,7 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 <MoleculeGQLDemo query='%7B%0D%0A++Get%7B%0D%0A++++Article%28%0D%0A++++++nearObject%3A+%7B%0D%0A++++++++beacon%3A+%22weaviate%3A%2F%2Flocalhost%2Fe5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf%22%2C+%0D%0A++++++++certainty%3A+0.7%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
 ## hybrid
-This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
+This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.
 
 ### Variables
 
@@ -109,12 +109,12 @@ This filter allows you to combine dense and sparse vectors to get the best of bo
 | `vector` | no | optional to supply your own vector |
 | `score` | no | ranked score that is assigned to each document |
 
-* Note: `alpha` can be any number from 0 to 1 
-  * If `alpha` = 0, it is using a pure **sparse** search method 
+* Note: `alpha` can be any number from 0 to 1
+  * If `alpha` = 0, it is using a pure **sparse** search method
   * If `alpha` = 1, it is using a pure **vector** search method
   * If `alpha` = 0.5, it is weighing the sparse and vector method evenly
 
-### Example 
+### Example
 
 import GraphQLFiltersHybrid from '/_includes/code/graphql.filters.hybrid.mdx';
 
@@ -130,8 +130,8 @@ import GraphQLFiltersHybridVector from '/_includes/code/graphql.filters.hybrid.v
 
 <GraphQLFiltersHybridVector/>
 
-### Hybrid with Where Filter 
-Starting with `v1.18`, you can use [`where` filters](../graphql/filters.md#where-filter) with `hybrid`. 
+### Hybrid with Where Filter
+Starting with `v1.18`, you can use [`where` filters](../graphql/filters.md#where-filter) with `hybrid`.
 
 import GraphQLFiltersHybridFilterExample from '/_includes/code/graphql.filters.hybrid.filter.example.mdx';
 
@@ -181,7 +181,7 @@ The `bm25` operator supports the following variables:
 | Variables | Required | Description |
 | --------- | -------- | ----------- |
 | `query`   | yes      | the keyword search query |
-| `properties` | no    | array of properties (fields) to search in, defaulting to all properties in the class| 
+| `properties` | no    | array of properties (fields) to search in, defaulting to all properties in the class|
 
 :::info Boosting properties
 Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
@@ -231,8 +231,8 @@ The `_additional` object in the GraphQL result exposes the score:
 }
 ```
 
-### BM25 with Where Filter 
-Introduced in `v1.18`, you can now use [`where` filters](../graphql/filters.md#where-filter) with `bm25`. 
+### BM25 with Where Filter
+Introduced in `v1.18`, you can now use [`where` filters](../graphql/filters.md#where-filter) with `bm25`.
 
 import GraphQLFiltersBM25FilterExample from '/_includes/code/graphql.filters.bm25.filter.example.mdx';
 
@@ -306,10 +306,10 @@ This results in the following. Note that publications `International New York Ti
 
 ## nearText
 
-Enabled by the modules: 
-- [text2vec-openai](../../modules/retriever-vectorizer-modules/text2vec-openai.md), 
-- [text2vec-cohere](../../modules/retriever-vectorizer-modules/text2vec-cohere.md), 
-- [text2vec-huggingface](../../modules/retriever-vectorizer-modules/text2vec-huggingface.md), 
+Enabled by the modules:
+- [text2vec-openai](../../modules/retriever-vectorizer-modules/text2vec-openai.md),
+- [text2vec-cohere](../../modules/retriever-vectorizer-modules/text2vec-cohere.md),
+- [text2vec-huggingface](../../modules/retriever-vectorizer-modules/text2vec-huggingface.md),
 - [text2vec-transformers](../../modules/retriever-vectorizer-modules/text2vec-transformers.md),
 - [text2vec-contextionary](../../modules/retriever-vectorizer-modules/text2vec-contextionary.md).
 - [multi2vec-clip](../../modules/retriever-vectorizer-modules/multi2vec-clip.md).
@@ -326,11 +326,11 @@ This filter allows you to find data objects in the vicinity of the vector repres
 | `autocorrect` | no | `boolean` | Autocorrect input text values |
 | `moveTo` | no | `object{}` | Move your search term closer to another vector described by keywords |
 | `moveTo{concepts}`| no | `[string]` | An array of strings - natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
-| `moveTo{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space. | 
-| `moveTo{force}`| no | `float` | The force to apply to a particular movement. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. | 
+| `moveTo{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space. |
+| `moveTo{force}`| no | `float` | The force to apply to a particular movement. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
 | `moveAwayFrom` | no | `object{}` | Move your search term away from another vector described by keywords |
 | `moveAwayFrom{concepts}`| no | `[string]` | An array of strings - natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
-| `moveAwayFrom{objects}`| no | `[UUID]` | Object IDs to move the results from. This is used to "bias" NLP search results into a certain direction in vector space. | 
+| `moveAwayFrom{objects}`| no | `[UUID]` | Object IDs to move the results from. This is used to "bias" NLP search results into a certain direction in vector space. |
 | `moveAwayFrom{force}`| no | `float` | The force to apply to a particular movement. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
 
 ### Example I
@@ -379,7 +379,7 @@ A practical example would be: `concepts: ["beatles", "John Lennon"]`
 
 * Only available in `txt2vec-contextionary` module
 
-The semantic path returns an array of concepts from the query to the data object. This allows you to see which steps Weaviate took and how the query and data object are interpreted. 
+The semantic path returns an array of concepts from the query to the data object. This allows you to see which steps Weaviate took and how the query and data object are interpreted.
 
 | Property | Description |
 | --- | --- |
