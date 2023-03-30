@@ -35,7 +35,6 @@ The Weaviate server spwaned from the client can be configured via parameters pas
 | version | string | Full URL pointing to a Linux AMD64 or ARM64 binary | The default value is set to a recent AMD64 Weaviate binary | |
 | port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 6666 | |
 | hostname | string | Hostname/IP to bind to. | 127.0.0.1 | |
-| cluster_hostname | string | The label for the cluster hostname | "embedded" | CLUSTER_HOSTNAME |
 | additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. | |
 
 :::tip Providing Weaviate version
