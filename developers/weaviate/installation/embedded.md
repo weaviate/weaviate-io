@@ -8,7 +8,7 @@ image: og/docs/installation.jpg
 
 Embedded Weaviate is a new deployment model, which allows you to start a Weaviate instance, straight in your application code using a Weaviate Client library.
 
-:::warning Experimental phase
+:::warning Experimental
 Embedded Weaviate is still in the **Experimental** phase.
 
 Some of the APIs and parameters might change over time, as we work towards a perfect implementation.
@@ -37,19 +37,17 @@ The Weaviate server spwaned from the client can be configured via parameters pas
 | hostname | string | Hostname/IP to bind to. | 127.0.0.1 | |
 | additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. | |
 
-:::danger
-It is not recommended to change `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables, as that might affect many other (non-Weaviate related) applications and services running on the same server.
+:::danger XDG environment variables
+It is **not recommended** to change `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables, as that might affect many other (non-Weaviate related) applications and services running on the same server.
 :::
 
 :::tip Providing Weaviate version
-
-To provide the full path for `version`:
+To find the **full path** for `version`:
 * head to [Weaviate releases](https://github.com/weaviate/weaviate/releases),
 * find the **Assets** section for the required Weaviate version
-* and copy the link to required `(name).tar.gz` file.<br/>
+* and copy the link to required `(name).tar.gz` file.
 
 For example, here is a path to Weaviate `1.18.2` `AMD64` binary: `https://github.com/weaviate/weaviate/releases/download/v1.18.2/weaviate-v1.18.2-linux-amd64.tar.gz`
-
 :::
 
 ## Starting Embedded Weaviate under the hood
