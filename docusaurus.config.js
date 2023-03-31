@@ -170,7 +170,7 @@ const config = {
                                 type: 'doc',
                             },
                             {
-                                label: 'Try Now',
+                                label: 'Weaviate Cloud console',
                                 href: 'https://console.weaviate.cloud',
                             },
                         ],
