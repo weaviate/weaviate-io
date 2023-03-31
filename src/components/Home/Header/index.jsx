@@ -15,7 +15,8 @@ export default function HomepageHeader() {
           Weaviate is an open-source vector database.<br/>It allows you to store data objects and vector embeddings from your favorite ML-models,<br/>and scale seamlessly into billions of data objects.
         </p>
         <ButtonContainer>
-          <LinkButton link="/developers/weaviate/quickstart" newTab={false}>Get Started Now</LinkButton>
+          <LinkButton link="https://console.weaviate.cloud" newTab={true}>Weaviate Cloud Service console</LinkButton>
+          <LinkButton link="/developers/weaviate/quickstart" newTab={false}>Quick start</LinkButton>
         </ButtonContainer>
         </div>
     </header>

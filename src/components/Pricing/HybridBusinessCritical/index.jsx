@@ -63,7 +63,7 @@ export default function HybridBusinessCritical() {
       </div>
       <div className={styles.buttons}>
         <Link className={styles.buttonGradient} to="#contact-sales">
-          Register for private beta
+          Register for Hybrid SaaS
         </Link>
       </div>
     </div>
