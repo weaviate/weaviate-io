@@ -84,7 +84,7 @@ The picture shows how a HNSW algorithm is used to go from a search query vector 
 
 ### Distance metrics
 
-All [distance metrics supported in Weaviate](/developers/weaviate/configuration/distances.md) are also supported with the HNSW index type.
+All [distance metrics supported in Weaviate](/developers/weaviate/config-refs/distances.md) are also supported with the HNSW index type.
 
 :::warning
 Please note that HNSW+PQ is an experimental feature released with Weaviate 1.18.

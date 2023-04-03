@@ -116,7 +116,7 @@ the distance between the query vector and each result. The distance is the raw
 distance metric that was used as part of the vector search. For example, if the
 distance metric is `cosine`, distance will return a number between 0 and 2. See
 the full overview of [distance metrics and the expected distance
-ranges](/developers/weaviate/configuration/distances.md).
+ranges](/developers/weaviate/config-refs/distances.md).
 
 A distance would be typical in any place that you retrieve objects using a
 vector, for example `Get {}` with `nearObject`, `nearVector`, or `near<Media>`.
@@ -128,7 +128,7 @@ another, than a higher value. Depending on the distance metric used, this can
 also mean that distances would return negative values. For example, if dot
 product distance is used, a distance of `-50` would indicate more similarity
 between a vector pair than `20`. See [the distances
-page](/developers/weaviate/configuration/distances.md) for details and exact
+page](/developers/weaviate/config-refs/distances.md) for details and exact
 definitions.
 
 *Note that the distance field was introduced in `v1.14.0`.*

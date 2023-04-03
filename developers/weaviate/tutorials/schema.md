@@ -261,7 +261,7 @@ With this you will have changed the specified properties from their defaults. No
 You can read more about various schema, data types, modules, and index configuration options in the pages below.
 
 - [Schema](../configuration/schema-configuration.md)
-- [Data types](../configuration/datatypes.md)
+- [Data types](../config-refs/datatypes.md)
 - [Modules](../configuration/modules.md)
 - [Indexes](../configuration/indexes.md)
 
