@@ -167,9 +167,9 @@ func main() {
     }
 
     client, err := weaviate.NewClient(cfg)
-  if err != nil {
-    panic(err)
-  }
+    if err != nil {
+        panic(err)
+    }
 
     // we will create the class "Author" and the properties
     // from the basics section of this guide

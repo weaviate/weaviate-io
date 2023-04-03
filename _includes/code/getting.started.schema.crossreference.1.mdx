@@ -90,9 +90,9 @@ func main() {
     }
 
     client, err := weaviate.NewClient(cfg)
-  if err != nil {
-    panic(err)
-  }
+    if err != nil {
+      panic(err)
+    }
 
     prop := &models.Property{
         DataType: []string{"Publication"}, // <== note how the name of the class is the cross-reference
