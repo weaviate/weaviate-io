@@ -25,9 +25,28 @@ Now you can use the client in your Python scripts as follows:
 ```python
 import weaviate
 
-client = weaviate.Client("http://localhost:8080") # or another location where your Weaviate instance is running
+client = weaviate.Client("https://some-endpoint.weaviate.network")  # Replace the URL with that of your Weaviate instance
 
-client.schema.get() # get the full schema as example
+client.schema.get()  # Get the schema to test connection
+```
+
+Or, with additional arguments such as those below:
+
+```python
+import weaviate
+
+client = weaviate.Client(
+  url="https://some-endpoint.weaviate.network",  # URL of your Weaviate instance
+  auth_client_secret=auth_config,  # (Optional) If the Weaviate instance requires authentication
+  timeout_config=(5, 15),  # (Optional) Set connection timeout & read timeout time in seconds
+  additional_headers={  # (Optional) Any additional headers; e.g. keys for API inference services
+    "X-Cohere-Api-Key": "<COHERE_KEY>",
+    "X-HuggingFace-Api-Key": "<HUGGINGFACE_KEY>",
+    "X-OpenAI-Api-Key": "<OPENAI_KEY>",
+  }
+)
+
+client.schema.get()  # Get the schema to test connection
 ```
 
 ## Authentication
