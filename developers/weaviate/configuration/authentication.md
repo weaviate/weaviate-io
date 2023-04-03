@@ -10,31 +10,33 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Weaviate allows an optional authentication scheme using through API keys and OpenID Connect (OIDC), from which different [authorizations](authorization.md) may be permitted.
+Weaviate offers an optional authentication scheme using API keys and OpenID Connect (OIDC), which can enable various [authorizations](authorization.md) levels.
 
-If authentication is disabled, all anonymous requests will be allowed.
+When authentication is disabled, all anonymous requests will be granted access.
 
-We provide documentation here for both scenarios:
+In this documentation, we cover all scenarios for your convenience:
 - [Configuring Weaviate and the client for API key use](#api-key)
 - [Configuring Weaviate and the client for OIDC](#oidc---a-systems-perspective)
 - [Configuring Weaviate for anonymous access](#anonymous-access)
 
-:::tip Try API key first
-Unless you have specific requirements, we recommend using the API key option for a balance of security and ease of use.
+Note that API key and OIDC authentication can be both enabled at the same time.
+
+:::tip We recommend starting with the API key
+For most use cases, the API key option offers a balance between security and ease of use. Give it a try first, unless you have specific requirements that necessitate a different approach.
 :::
 
 ## WCS authentication
 
-If you are a Weaviate Cloud Services (WCS) user, WCS is set up as the token issuer by default, and no further configuration is required regarding the token issuer or the resource.
+Weaviate Cloud Services (WCS) instances are pre-configured with both API key and OIDC authentication options, providing you with a seamless experience right out of the box.
 
-See the [WCS documentation for instructions](../../wcs/guides/authentication.mdx) on how to authenticate as a user in this setup.
+Refer to the [WCS documentation for instructions](../../wcs/guides/authentication.mdx) on how to authenticate as a user in this setup.
 
 ## API key
 
 :::info Available for Weaviate versions `1.18` and higher
 :::
 
-To configure Weaviate for API key-based authentication, specify the following environment variables in the relevant Weaviate configuration file (e.g. `docker-compose.yml`):
+To set up Weaviate for API key-based authentication, add the following environment variables to the appropriate Weaviate configuration file (e.g., `docker-compose.yml`):
 
 ```yaml
 services:
@@ -42,21 +44,22 @@ services:
     ...
     environment:
       ...
-      # Turns API key auth on; Must be enabled for API key use.
+      # Enables API key authentication.
       AUTHENTICATION_APIKEY_ENABLED: 'true'
 
-      # Set one or more keys here, separated by commas. Each key will correspond to a particular user identity below.
+      # List one or more keys, separated by commas. Each key corresponds to a specific user identity below.
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'jane-secret-key,ian-secret-key'
 
-      # Set one or more user identities here, separated by commas. Each identity will correspond to a particular key above.
+      # List one or more user identities, separated by commas. Each identity corresponds to a specific key above.
       AUTHENTICATION_APIKEY_USERS: 'jane@doe.com,ian-smith'
 ```
 
-With this configuration, authenticating against Weaviate with the API key:
-- `jane-secret-key` will confer permissions based on the `jane@doe.com` identity, and
-- `ian-secret-key` will confer permissions based on the `ian-smith` identity.
+With this configuration, the following API key-based authentication rules apply:
 
-Their permissions will be as specified by the [authorization](./authorization.md) configurations, such as one in the below example:
+The API key `jane-secret-key` is associated with the `jane@doe.com` identity.
+The API key `ian-secret-key` is associated with the `ian-smith` identity.
+
+These users' permissions will be determined by the [authorization](./authorization.md) settings. Below is one such example configuration.
 
 ```yaml
 services:
@@ -69,12 +72,12 @@ services:
       AUTHORIZATION_ADMINLIST_READONLY_USERS: 'ian-smith,roberta@doe.com'
 ```
 
-This specifies users `jane@doe.com` and `john@doe.com` as admin users, whereas `ian-smith` and `roberta@doe.com` only be read-only users.
+This configuration designates `jane@doe.com` and `john@doe.com` as admin users with read and write permissions, while `ian-smith` and `roberta@doe.com` have read-only access.
 
-In other words, `jane-secret-key` is an admin (read & write) key, whereas `ian-secret-key` is a read-only key in this scenario.
+In this scenario, `jane-secret-key` is an admin (read & write) key, and `ian-secret-key` is a read-only key.
 
 :::note What about the other identities?
-You might notice that the authorization list includes `john@doe.com` and `roberta@doe.com`. Weaviate allows for a mix of API key and OIDC based authentication. So, the additional users may be OIDC users.
+You might notice that the authorization list includes `john@doe.com` and `roberta@doe.com`. Weaviate supports a combination of API key and OIDC-based authentication. Thus, the additional users might be OIDC users.
 :::
 
 ## OIDC - A systems perspective
