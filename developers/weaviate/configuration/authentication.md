@@ -80,6 +80,18 @@ In this scenario, `jane-secret-key` is an admin (read & write) key, and `ian-sec
 You might notice that the authorization list includes `john@doe.com` and `roberta@doe.com`. Weaviate supports a combination of API key and OIDC-based authentication. Thus, the additional users might be OIDC users.
 :::
 
+### API key: Client-side usage
+
+To authenticate against Weaviate with the API key, each request must include it in the header like: `Authorization: Bearer <API_KEY>`, where `<API_KEY>` is the specific API key for the Weaviate instance.
+
+For example, you can use a CURL command as shown below:
+
+```bash
+curl https://some-endpoint.weaviate.network/v1/meta -H "Authorization: Bearer {YOUR-WEAVIATE-API-KEY}" | jq
+```
+
+If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#api-key-authentication), [TypeScript](../client-libraries/typescript.mdx#api-key-authentication), [Java](../client-libraries/java.md#api-key-authentication) or [Go](../client-libraries/go.md#api-key-authentication) to see client-specific instructions.
+
 ## OIDC - A systems perspective
 
 OIDC authentication involves three parties.
