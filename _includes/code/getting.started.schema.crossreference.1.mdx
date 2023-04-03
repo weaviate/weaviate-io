@@ -85,8 +85,8 @@ import (
 
 func main() {
     cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",
-        Scheme: "https",
+      Host:   "some-endpoint.weaviate.network/",
+      Scheme: "https",
     }
 
     client, err := weaviate.NewClient(cfg)
@@ -95,23 +95,23 @@ func main() {
     }
 
     prop := &models.Property{
-        DataType: []string{"Publication"}, // <== note how the name of the class is the cross-reference
-        Name:     "writesFor",
+      DataType: []string{"Publication"}, // <== note how the name of the class is the cross-reference
+      Name:     "writesFor",
     }
 
     err := client.Schema().PropertyCreator().
-        WithClassName("Author").
-        WithProperty(prop).
-        Do(context.Background())
+      WithClassName("Author").
+      WithProperty(prop).
+      Do(context.Background())
 
     if err != nil {
-        panic(err)
+      panic(err)
     }
 
     // get the schema
     schema, err := client.Schema().Getter().Do(context.Background())
     if err != nil {
-        panic(err)
+      panic(err)
     }
 
     // print the schema

@@ -237,7 +237,7 @@ func main() {
 
     client, err := weaviate.NewClient(cfg)
     if err != nil {
-      panic(err)
+        panic(err)
     }
 
     classObj := &models.Class{

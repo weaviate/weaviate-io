@@ -154,7 +154,7 @@ func main() {
 	client, err := weaviate.NewClient(cfg)
 	if err != nil {
 		panic(err)
-  }
+	}
 
 	fields := []graphql.Field{
 		{Name: "name"},
