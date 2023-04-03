@@ -146,7 +146,7 @@ cfg := weaviate.Config(
   authConfig: auth.BearerToken{
     AccessToken: "some token",
     RefreshToken: "other token",
-    ExpiresIn: uint(500)}, // in seconds
+    ExpiresIn: uint(500), // in seconds
   }
   headers: nil,
 )
