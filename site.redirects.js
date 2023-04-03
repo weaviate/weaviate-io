@@ -34,13 +34,13 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/console'
         },
 
-        // Configuration redirects
+        // Config-refs redirects
         {
             to: '/developers/weaviate/config-refs/datatypes',
             from: '/developers/weaviate/configuration/datatypes'
         },
         {
-            to: '/developers/weaviate/config-refs/datatypes',
+            to: '/developers/weaviate/config-refs/distances',
             from: '/developers/weaviate/configuration/distances'
         },
 
