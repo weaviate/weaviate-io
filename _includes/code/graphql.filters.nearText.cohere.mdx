@@ -121,7 +121,10 @@ func main() {
     Scheme:  "http",
     Headers: map[string]string{"X-Cohere-Api-Key": "<THE-KEY>"},
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
   className := "Publication"
 

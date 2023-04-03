@@ -108,7 +108,10 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
   concepts := []string{"New Yorker"}
   distance := float32(0.95)

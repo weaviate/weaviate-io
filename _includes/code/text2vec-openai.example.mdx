@@ -57,16 +57,19 @@ var (
 	batchSize        = 50
 )
 
-var cfg = weaviate.Config{
-	Host:   "localhost:8080",
-	Scheme: "http",
-}
-var client = weaviate.New(cfg)
-
-// replace those 10000 empty objects with your actual data
-var objects = make([]*models.Object, 10000)
-
 func main() {
+	cfg := weaviate.Config{
+		Host:   "localhost:8080",
+		Scheme: "http",
+	}
+	client, err := weaviate.NewClient(cfg)
+	if err != nil {
+		panic(err)
+	}
+
+	// replace those 10000 empty objects with your actual data
+	objects := make([]*models.Object, 10000)
+
 	// we aim to send one batch every tickInterval second.
 	tickInterval := time.Duration(batchSize/targetRatePerMinute) * time.Minute
 	t := time.NewTicker(tickInterval)
