@@ -71,7 +71,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   prop := &models.Property{
     DataType:    []string{"Article"},

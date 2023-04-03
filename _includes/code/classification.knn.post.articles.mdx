@@ -84,7 +84,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   valueInt32 := func(in int32) *int32 {
     return &in

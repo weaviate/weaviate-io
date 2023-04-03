@@ -54,7 +54,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   concept, err := client.C11y().
     ConceptsGetter().

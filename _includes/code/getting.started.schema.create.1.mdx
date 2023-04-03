@@ -166,7 +166,7 @@ func main() {
 		Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client := weaviate.NewClient(cfg)
 
     // we will create the class "Author" and the properties
     // from the basics section of this guide

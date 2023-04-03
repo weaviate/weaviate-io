@@ -75,7 +75,7 @@ func GetSchema() {
         Scheme: "http",
     }
 
-    client := weaviate.New(cfg)
+    client := weaviate.NewClient(cfg)
 
     schema, err := client.Schema().Getter().Do(context.Background())
     if err != nil {

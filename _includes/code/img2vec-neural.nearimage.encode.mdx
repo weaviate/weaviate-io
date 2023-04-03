@@ -102,7 +102,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   className := "FashionItem"
   image := graphql.Field{Name: "image"}

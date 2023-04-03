@@ -54,7 +54,7 @@ func GetSchema() {
         Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client := weaviate.NewClient(cfg)
 
     data, err := client.Data().ObjectsGetter().
         Do(context.Background())

@@ -87,7 +87,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
   meta := graphql.Field{
     Name: "meta", Fields: []graphql.Field{
       {Name: "count"},

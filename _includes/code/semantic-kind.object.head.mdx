@@ -75,7 +75,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   exists, err := client.Data().Checker().
     WithClassName("MyClass").

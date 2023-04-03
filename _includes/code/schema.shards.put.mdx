@@ -69,7 +69,7 @@ func main() {
     Scheme: "http",
   }
 
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   // Update a shard
   status, err := client.Schema().

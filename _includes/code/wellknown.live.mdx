@@ -53,7 +53,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   isLive, err := client.Misc().LiveChecker().Do(context.Background())
   if err != nil {

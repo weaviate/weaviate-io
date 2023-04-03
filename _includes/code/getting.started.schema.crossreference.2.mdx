@@ -89,7 +89,7 @@ func main() {
         Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client := weaviate.NewClient(cfg)
 
     prop := &models.Property{
         DataType: []string{"Author"}, // <== note how the name of the class is the cross-reference

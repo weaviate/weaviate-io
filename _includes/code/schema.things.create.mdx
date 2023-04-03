@@ -99,7 +99,7 @@ func main() {
         Host:   "localhost:8080",
         Scheme: "http",
     }
-    client := weaviate.New(cfg)
+    client := weaviate.NewClient(cfg)
 
     classObj := &models.Class{
         Class:       "Article",

@@ -124,7 +124,7 @@ func main() {
     Scheme:  "https",
     Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"},
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
   ctx := context.Background()
 
   fields := []graphql.Field{

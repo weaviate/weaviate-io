@@ -136,7 +136,7 @@ func GetSchema() {
 		Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client := weaviate.NewClient(cfg)
 
     objects := []*models.Object{
       {

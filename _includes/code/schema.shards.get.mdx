@@ -47,7 +47,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
   shards, err := client.Schema().
     ShardsGetter().
     WithClassName("Article").

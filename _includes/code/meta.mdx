@@ -53,7 +53,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   meta, err := client.Misc().MetaGetter().Do(context.Background())
 

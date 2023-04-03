@@ -61,7 +61,7 @@ var cfg = weaviate.Config{
 	Host:   "localhost:8080",
 	Scheme: "http",
 }
-var client = weaviate.New(cfg)
+var client = weaviate.NewClient(cfg)
 
 // replace those 10000 empty objects with your actual data
 var objects = make([]*models.Object, 10000)

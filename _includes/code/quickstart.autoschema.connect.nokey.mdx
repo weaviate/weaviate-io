@@ -44,7 +44,7 @@ func main() {
         Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client := weaviate.NewClient(cfg)
 
     classObj := &models.Class{
         Class:      "Question",

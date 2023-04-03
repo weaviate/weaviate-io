@@ -97,7 +97,7 @@ func main() {
 		Host:   "localhost:8080",
 		Scheme: "http",
 	}
-	client := weaviate.New(cfg)
+	client := weaviate.NewClient(cfg)
 
 	where := filters.Where().
 		WithPath([]string{"inPublication", "Publication", "name"}).

@@ -91,7 +91,7 @@ func main() {
 		Host:   "localhost:8080",
 		Scheme: "http",
 	}
-	client := weaviate.New(cfg)
+	client := weaviate.NewClient(cfg)
 
 	title := graphql.Field{Name: "title"}
 	where := filters.Where().

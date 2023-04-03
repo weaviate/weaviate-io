@@ -92,7 +92,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   sourceWhere := filters.Where().
     WithOperator(filters.GreaterThan).

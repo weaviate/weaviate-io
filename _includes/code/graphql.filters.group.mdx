@@ -93,7 +93,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   name := graphql.Field{Name: "name"}
   group := client.GraphQL().GroupArgBuilder().WithType(graphql.Merge).WithForce(0.05)

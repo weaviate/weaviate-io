@@ -108,7 +108,7 @@ func main() {
     Scheme:  "http",
     Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"},
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   className := "Article"
   fields := []graphql.Field{

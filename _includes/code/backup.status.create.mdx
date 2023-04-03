@@ -55,7 +55,7 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client := weaviate.NewClient(cfg)
 
   result, err := client.Backup().CreateStatusGetter().
     WithBackend(backup.BACKEND_FILESYSTEM).
