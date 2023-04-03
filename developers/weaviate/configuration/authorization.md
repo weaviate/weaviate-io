@@ -40,13 +40,15 @@ services:
       ...
       AUTHORIZATION_ADMINLIST_ENABLED: 'true'
       AUTHORIZATION_ADMINLIST_USERS: 'jane@doe.com,john@doe.com'
-      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'roberta@doe.com'
+      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'ian-smith,roberta@doe.com'
 ```
 
 The above would enable the plugin and make users `jane@doe.com` and
-`john@doe.com` admins. Additionally, user `roberta@doe.com` will have read-only permissions.
+`john@doe.com` admins. Additionally, users `ian-smith` and `roberta@doe.com` will have read-only permissions.
 
-Note that in the above example, email ids are used to identify the user. This is not a requirement, in fact, any string can be used. This depends on what you configured in the authentication settings. For example, if you are using Open ID Connect authentication, you could set the `authentication.oidc.username_claim` to `email` to achieve the result shown above.
+:::note User identifier
+As shown in the above example, any string can be used to identify the user. This depends on what you configured in the authentication settings. For example, OIDC users may be identified by their email address by setting `AUTHENTICATION_OIDC_USERNAME_CLAIM` as `email`, whereas API key-authenticated users may be identified as a plain string such as `ian-smith`.
+:::
 
 # RBAC
 
