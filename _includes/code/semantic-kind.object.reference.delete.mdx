@@ -71,9 +71,9 @@ func main() {
         Scheme: "http",
     }
     client, err := weaviate.NewClient(cfg)
-  if err != nil {
-    panic(err)
-  }
+    if err != nil {
+      panic(err)
+    }
 
     reference := client.Data().ReferencePayloadBuilder().
       WithClassName("TargetClass").

@@ -76,9 +76,9 @@ func main() {
         Scheme: "http",
     }
     client, err := weaviate.NewClient(cfg)
-  if err != nil {
-    panic(err)
-  }
+    if err != nil {
+      panic(err)
+    }
 
     data, err := client.Data().ObjectsGetter().
         WithClassName("MyClass").

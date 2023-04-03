@@ -62,9 +62,9 @@ func main() {
     }
 
     client, err := weaviate.NewClient(cfg)
-  if err != nil {
-    panic(err)
-  }
+    if err != nil {
+      panic(err)
+    }
 
     classObj := &models.Class{
         Class:      "Question",

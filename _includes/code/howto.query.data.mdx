@@ -98,9 +98,9 @@ func main() {
 		Scheme: "http",
 	}
 	client, err := weaviate.NewClient(cfg)
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 
 	where := filters.Where().
 		WithPath([]string{"inPublication", "Publication", "name"}).
