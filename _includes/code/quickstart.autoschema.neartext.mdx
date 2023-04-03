@@ -120,7 +120,10 @@ func main() {
     Scheme:  "https",
     Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"},
   }
-  client := weaviate.NewClient(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil{
+    panic(err)
+  }
 
   className := "Question"
 

@@ -59,7 +59,10 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.NewClient(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil{
+    panic(err)
+  }
 
   result, err := client.Backup().Creator().
     WithIncludeClassNames("Article", "Publication").

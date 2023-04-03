@@ -66,7 +66,10 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.NewClient(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil{
+    panic(err)
+  }
 
   dataSchema := map[string]interface{}{
     "content": "This is a news update of May 28 2021. Today .......",

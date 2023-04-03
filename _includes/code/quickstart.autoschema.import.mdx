@@ -159,7 +159,10 @@ func main() {
         Scheme: "https",
     }
 
-    client := weaviate.NewClient(cfg)
+    client, err := weaviate.NewClient(cfg)
+  if err != nil{
+    panic(err)
+  }
 
     classObj := &models.Class{
         Class:      "Question",

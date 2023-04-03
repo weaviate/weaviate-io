@@ -121,7 +121,10 @@ func main() {
     Scheme:  "http",
     Headers: map[string]string{"X-HuggingFace-Api-Key": "<THE-KEY>"},
   }
-  client := weaviate.NewClient(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil{
+    panic(err)
+  }
 
   className := "Publication"
 
