@@ -31,7 +31,7 @@ export function GiscusDocComment() {
   return (
     <Giscus
       {...GiscusParams}
-      term={`${frontMatter.title} (${path})`}
+      term={`Doc comment on ${frontMatter.title} (${path})`}
       theme={colorMode}
     />
   );
@@ -44,7 +44,7 @@ export function GiscusBlogPostComment() {
   return (
     <Giscus
       {...GiscusParams}
-      term={'Blog post: ' + frontMatter.title}
+      term={'Blog comment on ' + frontMatter.title}
       theme={colorMode}
     />
   );
