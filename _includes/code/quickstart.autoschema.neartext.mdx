@@ -74,6 +74,33 @@ client.graphql
 ```
 
 </TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+});
+
+client.graphql
+  .get()
+  .withClassName('Question')
+  .withFields('question answer category')
+  .withNearText({concepts: ["biology"]})
+  .withLimit(2)
+  .do()
+  .then((res: any) => {
+    console.log(JSON.stringify(res, null, 2))
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+```
+
+</TabItem>
 {/* <TabItem value="go" label="Go">
 
 ```go

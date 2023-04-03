@@ -29,6 +29,19 @@ const client = weaviate.client({
 ```
 
 </TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+  });
+```
+
+</TabItem>
 {/* <TabItem value="go" label="Go">
 
 ```go

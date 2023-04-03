@@ -1,6 +1,6 @@
 ---
 title: JavaScript
-sidebar_position: 2
+sidebar_position: 3
 image: og/docs/client-libraries.jpg
 # tags: ['JavaScript', 'client library']
 ---
@@ -12,13 +12,17 @@ import Badges from '/_includes/badges.mdx';
 The current JavaScript client version is `v||site.javascript_client_version||`.
 :::
 
+import JavaScriptMaintenanceWarning from '/_includes/javascript-maintenance-warning.mdx';
+
+<JavaScriptMaintenanceWarning />
+
 ## Installation and setup
 
 The JavaScript client library package can be easily installed using [npm](https://www.npmjs.com/).
 
 <!-- Replace $ .. examples to remove the prompt ($) as it gets copied too along with the actual command -->
 ```bash
-$ npm install weaviate-client
+npm install weaviate-client
 ```
 
 Now you can use the client in your JavaScript scripts as follows:
@@ -55,7 +59,13 @@ import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/cli
 
 <ClientAuthWCS />
 
-### Resource Owner Password Flow
+### OIDC authentication
+
+import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_components/client.auth.oidc.introduction.mdx'
+
+<ClientAuthOIDCIntro />
+
+#### Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
@@ -74,7 +84,7 @@ const client = weaviate.client({
 });
 ```
 
-### Client Credentials flow
+#### Client Credentials flow
 
 import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
@@ -91,7 +101,7 @@ const client = weaviate.client({
 });
 ```
 
-### Refresh Token flow
+#### Refresh Token flow
 
 import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 

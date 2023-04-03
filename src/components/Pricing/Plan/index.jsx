@@ -26,8 +26,8 @@ export default function PricingPlan() {
         <PricingSandBox />
       </div>
       <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="#contact-sales">
-          Register for private beta
+        <Link className={styles.buttonGradient} to="https://console.weaviate.cloud">
+          Weaviate Cloud console
         </Link>
         <Link
           className={styles.buttonOutline}

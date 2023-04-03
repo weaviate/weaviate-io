@@ -37,6 +37,29 @@ client
 ```
 
 </TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+let classObj = {
+    "class": "Question",
+    "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
 {/* <TabItem value="go" label="Go">
 
 ```go
