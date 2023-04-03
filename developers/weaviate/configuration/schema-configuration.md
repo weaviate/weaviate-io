@@ -31,7 +31,10 @@ Each data object in Weaviate always belongs to a Class, and has one or more Prop
 
 ### Auto-schema
 
-If you don't create a schema manually before adding data, a schema will be generated automatically (starting with Weaviate version v1.5.0). This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
+:::info Available in Weaviate versions `1.5.0` and higher
+:::
+
+If you don't create a schema manually before adding data, a schema will be generated automatically. This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
 
 It has the following characteristics:
 

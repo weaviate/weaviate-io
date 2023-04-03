@@ -33,7 +33,7 @@ Refer to the [WCS documentation for instructions](../../wcs/guides/authenticatio
 
 ## API key
 
-:::info Available for Weaviate versions `1.18` and higher
+:::info Available in Weaviate versions `1.18` and higher
 :::
 
 To set up Weaviate for API key-based authentication, add the following environment variables to the appropriate Weaviate configuration file (e.g., `docker-compose.yml`):
