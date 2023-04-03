@@ -21,13 +21,13 @@ This page includes a comprehensive list of environment variables that can be use
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
-| <code>PERSISTENCE<wbr />_DATA<wbr />_PATH</code> | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
-| <code>ENABLE<wbr />_MODULES</code> | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
+| <code>ENABLE<wbr />_MODULES</code> | Which modules to enable in the setup? | `string - comma-separated list` | `text2vec-openai,generative-openai` |
 | <code>DEFAULT<wbr />_VECTORIZER<wbr />_MODULE</code> | Default vectorizer module - will be overridden by any class-level value defined in the schema | `string` | `text2vec-contextionary` |
 | <code>QUERY<wbr />_MAXIMUM<wbr />_RESULTS</code> | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
 | <code>QUERY<wbr />_DEFAULTS<wbr />_LIMIT</code> | Sets the default number of objects to be returned in a query. | `string - number` | `25` |
 | `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/gomemlimit-a-game-changer-for-high-memory-applications). | `string - memory limit in SI uints` | `4096MiB` |
+| `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
+| <code>PERSISTENCE<wbr />_DATA<wbr />_PATH</code> | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
 | <code>DISK<wbr />_USE<wbr />_WARNING<wbr />_PERCENTAGE</code> | If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `80` |
 | <code>DISK<wbr />_USE<wbr />_READONLY<wbr />_PERCENTAGE</code> | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `90` |
 | <code>PROMETHEUS<wbr />_MONITORING<wbr />_ENABLED</code>  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `string - true/false` | `false` |
