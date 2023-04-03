@@ -57,7 +57,7 @@ cfg, err := weaviate.NewClientConfig(
   }
   headers: nil,
 )
-if err != nil{
+if err != nil {
   fmt.Println(err)
 }
 client := weaviate.NewClient(*cfg)
