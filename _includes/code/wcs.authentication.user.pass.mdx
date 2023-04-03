@@ -48,7 +48,7 @@ import (
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
 )
 
-cfg, err := weaviate.NewConfig(
+cfg, err := weaviate.Config(
   Host:"some-endpoint.weaviate.network",  // Replace w/ your endpoint
   Scheme: "https",
   authConfig: auth.ResourceOwnerPasswordFlow{
@@ -57,10 +57,10 @@ cfg, err := weaviate.NewConfig(
   }
   headers: nil,
 )
-if err != nil{
+client, err := weaviate.NewClient(cfg)
+if err != nil {
   fmt.Println(err)
 }
-client := weaviate.New(*cfg)
 ```
 
 </TabItem>
