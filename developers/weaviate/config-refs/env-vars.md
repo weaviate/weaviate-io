@@ -21,14 +21,13 @@ This page includes a comprehensive list of environment variables that can be use
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/gomemlimit-a-game-changer-for-high-memory-applications). | `string - memory limit in SI uints` | `4096MiB` |
 | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
-| <code>CONTEXTIONARY<wbr />_URL</code> | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
 | <code>PERSISTENCE<wbr />_DATA<wbr />_PATH</code> | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
 | <code>ENABLE<wbr />_MODULES</code> | Which modules to enable in the setup? | `string` | `text2vec-contextionary` |
 | <code>DEFAULT<wbr />_VECTORIZER<wbr />_MODULE</code> | Default vectorizer module - will be overridden by any class-level value defined in the schema | `string` | `text2vec-contextionary` |
 | <code>QUERY<wbr />_MAXIMUM<wbr />_RESULTS</code> | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
 | <code>QUERY<wbr />_DEFAULTS<wbr />_LIMIT</code> | Sets the default number of objects to be returned in a query. | `string - number` | `25` |
+| `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/gomemlimit-a-game-changer-for-high-memory-applications). | `string - memory limit in SI uints` | `4096MiB` |
 | <code>DISK<wbr />_USE<wbr />_WARNING<wbr />_PERCENTAGE</code> | If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `80` |
 | <code>DISK<wbr />_USE<wbr />_READONLY<wbr />_PERCENTAGE</code> | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `90` |
 | <code>PROMETHEUS<wbr />_MONITORING<wbr />_ENABLED</code>  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `string - true/false` | `false` |
@@ -38,6 +37,7 @@ This page includes a comprehensive list of environment variables that can be use
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
+| <code>CONTEXTIONARY<wbr />_URL</code> | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
 | <code>TRANSFORMERS<wbr />_INFERENCE<wbr />_API</code> | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
 | <code>CLIP<wbr />_INFERENCE<wbr />_API</code> | The endpoint where to reach the clip module if enabled | `string` | `http://multi2vec-clip:8000` |
 | <code>IMAGE<wbr />_INFERENCE<wbr />_API</code> | The endpoint where to reach the img2vec-neural module if enabled | `string` | `http://localhost:8000` |
@@ -47,7 +47,10 @@ This page includes a comprehensive list of environment variables that can be use
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
 | <code>AUTHENTICATION<wbr/>_ANONYMOUS<wbr/>_ACCESS<wbr/>_ENABLED</code> | Allow users to interact with weaviate without auth | `string - true/false` | `true` |
-| <code>AUTHENTICATION<wbr />_OIDC<wbr />_ENABLED</code> | Enable OIDC Auth | `string - true/false` | `false` |
+| <code>AUTHENTICATION<wbr/>_APIKEY<wbr/>_ENABLED</code> | Enable API key-based authentication | `string - true/false` | `false` |
+| <code>AUTHENTICATION<wbr/>_APIKEY<wbr/>_ALLOWED<wbr/>_KEYS</code> | Allowed API keys. <br/><br/> Each key corresponds to a specific user identity below. | `string - comma-separated list` | `jane-secret-key,ian-secret-key` |
+| <code>AUTHENTICATION<wbr/>_APIKEY<wbr/>_USERS</code> | API key-based identities. <br/><br/> Each identity corresponds to a specific key above. | `string - comma-separated list` | `jane@doe.com,ian-smith` |
+| <code>AUTHENTICATION<wbr />_OIDC<wbr />_ENABLED</code> | Enable OIDC-based authentication | `string - true/false` | `false` |
 | <code>AUTHENTICATION<wbr />_OIDC<wbr />_ISSUER</code> | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
 | <code>AUTHENTICATION<wbr />_OIDC<wbr />_CLIENT<wbr />_ID</code> | OIDC Client ID | `string` | `my-client-id` |
 | <code>AUTHENTICATION<wbr />_OIDC<wbr />_USERNAME<wbr />_CLAIM</code> | OIDC Username Claim | `string` | `email` |

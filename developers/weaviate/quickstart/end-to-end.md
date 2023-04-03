@@ -17,6 +17,10 @@ By the end of this page, you will have:
 - Added the vectorized data to Weaviate, and
 - Performed vector searches to retrieve relevant objects
 
+:::tip Prefer to use your own vectors?
+You can! See [this video](../manage-data/vector-provision-options.mdx) for an overview of vector provision options, and [this page](../api/rest/objects.md#with-a-custom-vector) to see how to specify vectors at import time.
+:::
+
 ### Code examples
 
 We have prepared code examples to help you follow along here. Go to [weaviate-tutorials/quickstart](https://github.com/weaviate-tutorials/quickstart) on GitHub to take a look.
