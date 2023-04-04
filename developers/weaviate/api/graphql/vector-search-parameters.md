@@ -108,6 +108,7 @@ This filter allows you to combine dense and sparse vectors to get the best of bo
 | `alpha` | no (default is set to 0.75) | weighting for each search algorithm |
 | `vector` | no | optional to supply your own vector |
 | `score` | no | ranked score that is assigned to each document |
+| `explainScore` | no | see how much each document contributed to the score |
 
 * Note: `alpha` can be any number from 0 to 1
   * If `alpha` = 0, it is using a pure **sparse** search method
@@ -120,8 +121,7 @@ import GraphQLFiltersHybrid from '/_includes/code/graphql.filters.hybrid.mdx';
 
 <GraphQLFiltersHybrid/>
 
-<MoleculeGQLDemo query='%7B%0A+  +Get+{%0A++++Article+(%0A++++++hybrid:+{%0A++++++++query:+%22Fisherman+that+catches+salmon%22%0A++++++++alpha:+0.5%0A++++++})%0A+++++{%0A++++++title%0A++++++summary%0A++++++_additional+{score}%0A++++}%0A++}%0A%7D'/>
-
+<MoleculeGQLDemo query= '%7B%0A+%20%20+Get+{%0A++++Article+(%0A++++++hybrid:+{%0A++++++++query:+"Fisherman+that+catches+salmon"%0A++++++++alpha:+0.5%0A++++++})%0A+++++{%0A++++++title%0A++++++summary%0A++++++_additional+{score%20explainScore}%0A++++}%0A++}%0A%7D' />
 
 ### Example with vector parameter
 If you're providing your own embeddings, you can add the vector query to the `vector` parameter. If Weaviate is handling the vectorization, then you can ignore the `vector` parameter and use the example code snippets above.
