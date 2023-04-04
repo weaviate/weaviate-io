@@ -17,7 +17,7 @@ Natural Language Processing (NLP) has enabled computers to understand the human 
 Cohere trains their own LLMs for text generation and understanding and serves them via API. You can think of it as a managed LLM service in the cloud, with the ability to customize/finetune them on your dataset.
 
 ## Cohere + Weaviate
-Now, you can combine Cohere’s LLMs with a vector search engine like Weaviate to get the best of both worlds. More specifically, you can run complex NLP queries at a large scale of millions (and even billions) of text objects and get results back in a blink of an eye.
+Now, you can combine Cohere’s LLMs with a vector database like Weaviate to get the best of both worlds. More specifically, you can run complex NLP queries at a large scale of millions (and even billions) of text objects and get results back in a blink of an eye.
 
 > If you don’t consider a "blink of an eye" as a scientific metric (note: it isn’t!), you can check Weaviate’s [benchmarks](/developers/weaviate/benchmarks/ann#results) on some standard datasets.
 
@@ -47,7 +47,7 @@ So, I’ve created a small dataset with a few objects with descriptions of anima
 
 Then, I took 15 minutes to create a small [Python project](https://github.com/weaviate-tutorials/cohere-multilingual-test):
 
-1. set up a new Weaviate instance in [WCS](https://console.weaviate.io/)
+1. set up a new Weaviate instance in [WCS](https://console.weaviate.cloud)
 1. request a [Cohere API key](https://dashboard.cohere.ai/api-keys)
 1. configure data schema to use the Cohere `multilingual-22-12` model
 1. and import a small (handcrafted) dataset.
@@ -126,7 +126,7 @@ Even though this was just a small test, the results I received back are great. I
 
 Over the Christmas break, I will take some time to build a larger app to more thoroughly test the Weaviate + Cohere combo. Something that will come with more data and test for more complex queries and scenarios. 😉
 
-If you have interesting data project ideas, give me a shout on [Weaviate community Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or via [Twitter @sebawita](https://twitter.com/sebawita).
+If you have interesting data project ideas, give me a shout on [Weaviate community Slack](https://weaviate.io/slack) or via [Twitter @sebawita](https://twitter.com/sebawita).
 
 ### Project in github
 You can find the test project on [GitHub](https://github.com/weaviate-tutorials/cohere-multilingual-test). Follow the readme instructions on how to set it up for yourself.
@@ -208,4 +208,6 @@ Let us know if you found this article interesting or useful. We are always happy
 
 We are always working on new articles and are looking for new topics. Let us know if there is anything that you would like us to write about. 🤗
 
-Please reach out to us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [GitHub](https://github.com/weaviate/weaviate).
+import ShareFeedback from '/_includes/share-feedback.md';
+
+<ShareFeedback />

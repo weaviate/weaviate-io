@@ -23,9 +23,22 @@ const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
+    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
     headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
-  }); 
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+  });
 ```
 
 </TabItem>
@@ -48,10 +61,13 @@ func main() {
         Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
 
     classObj := &models.Class{
-        Class:      "Question", 
+        Class:      "Question",
         Vectorizer: "text2vec-openai",
     }
 
@@ -68,15 +84,15 @@ func main() {
 
 ```java
 
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.ArrayList;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.schema.model.DataType;
-import technology.semi.weaviate.client.v1.schema.model.Property;
-import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
@@ -89,7 +105,7 @@ public class App {
       .className("Question")
       .vectorizer("text2vec-openai")
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {
@@ -101,18 +117,21 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
+
+- With `curl`, add the API key to the header as shown below:
+<br/>
 
 ```bash
-$ curl \
--X POST \
--H "Content-Type: application/json" \
--d '{
-    "class": "Question",
-    "vectorizer": "text2vec-openai",
-}' \
-https://some-endpoint.weaviate.network/v1/schema
+echo '{
+  "query": "<QUERY>"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H "X-OpenAI-Api-Key: <API-KEY>" \
+    -d @- \
+    https://some-endpoint.weaviate.network/v1/graphql
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

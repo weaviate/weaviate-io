@@ -1,5 +1,5 @@
 ---
-title: Reporting Bugs 
+title: Reporting Bugs
 sidebar_position: 3
 image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
@@ -16,7 +16,7 @@ Once you've determined which repository your bug is related to, check first for 
 If not, open an issue in that repository with **a complete, specific and accurate description**. We recommend using this [template](https://github.com/weaviate/weaviate-io/blob/main/.github/ISSUE_TEMPLATE/report_bug.yml).
 
 * **Use a clear and descriptive title** for the issue.
-* **Describe the exact steps** needed to reproduce the problem with as much detail as possible. For example, include any custom Weaviate configurations, modules used or shell commands. 
+* **Describe the exact steps** needed to reproduce the problem with as much detail as possible. For example, include any custom Weaviate configurations, modules used or shell commands.
 * **Give specific examples** to show the bug. This could be links or code snippets. For snippets, [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines) are better than images or animated GIFs.
 * Explain what **you expected to see instead** and why.
 * (If relevant) **Include screenshots and animated GIFs** which show you following the described steps and clearly demonstrate the problem.

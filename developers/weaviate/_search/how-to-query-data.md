@@ -13,13 +13,13 @@ Learn how to perform searches using Weaviate
 Migrated from "How to query data" tutorial from Weaviate Docs Classic
 ::: -->
 
-- Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/). 
+- Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/).
 - You can query a Weaviate after you've created a [schema](../tutorials/schema.md) and [populated it](../tutorials/import.md) with data.
 
 ## Prerequisites
 
  1. **Connect to a Weaviate instance.**\\
- If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/developers/weaviate/quickstart/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/developers/weaviate/quickstart/installation.md) as vectorization module.
+ If you haven't set up a Weaviate instance yet, check the [Quickstart guide](/developers/weaviate/quickstart/index.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) as vectorization module.
  2. **Upload a schema**. \\
  Learn how to create and upload a schema [here](../tutorials/schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
  3. **Add data**. \\

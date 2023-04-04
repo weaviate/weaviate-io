@@ -20,7 +20,7 @@ Some of you might already have a strong intuition on differences between vectori
 On the other hand, if you are looking for some heuristics or approximate tips on model types to choose based on might be best suited for certain data types and end use tasks, you may find this tutorial particularly useful.
 
 Moreover, we will discuss these in the context of Weaviate modules, so that you are able to hit the ground running with the right Weaviate module that will provide you with access to the right vectorizer.
-<!-- 
+<!--
 ## Prerequisites
 
 ## Background

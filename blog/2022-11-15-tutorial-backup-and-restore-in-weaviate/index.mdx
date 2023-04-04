@@ -59,7 +59,7 @@ To begin with, both Weaviate instances **W1** and **W2** should be empty. In ord
 
 ---
 ![hero](./img/hero.png)--
-**Note**: The tutorial text refers to shell scripts (e.g. `0_query_instances.sh`), but we also provide code examples in other languages including **Python** and **JavaScript**. These files are located in `scripts` subdirectory and we encourage you to try them out yourself using your favorite client. 
+**Note**: The tutorial text refers to shell scripts (e.g. `0_query_instances.sh`), but we also provide code examples in other languages including **Python** and **JavaScript**. These files are located in `scripts` subdirectory and we encourage you to try them out yourself using your favorite client.
 
 ---
 ![hero](./img/hero.png)--
@@ -142,9 +142,9 @@ Now, check the schemas again for **W1** and **W2**.
 scripts/0_query_instances.sh
 ```
 
-Do they *both* now contain the same schema? What about the data objects? They should be identical.   
+Do they *both* now contain the same schema? What about the data objects? They should be identical.
 
-Great. You have successfully backed up data from **W1** and restored it onto **W2**! 
+Great. You have successfully backed up data from **W1** and restored it onto **W2**!
 
 ## Backup features
 Before we finish, let's go back to talk a little more about additional backup options, and some important notes.
@@ -181,7 +181,7 @@ curl \
 http://localhost:8090/v1/backups/filesystem/my-very-first-backup/restore
 ```
 
-Delete everything in **W2** first with `8_delete_w2`, and try out the partial restore with `4a_partial_restore`. 
+Delete everything in **W2** first with `8_delete_w2`, and try out the partial restore with `4a_partial_restore`.
 
 ```bash
 scripts/8_delete_w2.sh
@@ -196,7 +196,7 @@ The restore function allows you to restore a class as long as the target Weaviat
 In some cases, Weaviate's response to your `backup` or `restore` request may have  `"status":"STARTED"`.<br/>
 *Isn't it interesting that the status was not indicative of a completion?*
 
-That is because Weaviate's backup operation can be initiated and monitored asynchronously. 
+That is because Weaviate's backup operation can be initiated and monitored asynchronously.
 
 This means that you don't need to maintain a connection to the server for the operation to complete. And you can look in on the status of a restore operation with a command like:
 ```bash
@@ -206,7 +206,7 @@ curl http://localhost:8090/v1/backups/filesystem/my-very-first-backup/restore
 Weaviate remains available for read and write operations while backup operations are ongoing. And you can poll the endpoint to check its status, without worrying about any potential downtime.
 
 Check out `3a_check_backup_status.sh` and `4b_check_restore_status.sh` for examples of how to query **W1** for the backup status, or **W2** for the restore status respectively.
- 
+
 ## Wrap-up
 That's it for our quick overview of the new backup feature available in Weaviate. We are excited about this feature as it will make it easier and faster for you to back up your data, which will help make your applications more robust.
 
@@ -214,4 +214,4 @@ To recap, Weaviate's new backup feature allows you to back up one or more classe
 
 Weaviate currently supports backing up to your local filesystem, AWS or GCS. But as the backup orchestration is decoupled from the remote backup storage backends, it is relatively easy to add new providers and use them with the existing backup API.
 
-If you would like to use another storage provider to use with Weaviate, we encourage you to open a feature request or consider contributing it yourself. For either option, [join our Slack community](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to have a quick chat with us on how to get started.
+If you would like to use another storage provider to use with Weaviate, we encourage you to open a feature request or consider contributing it yourself. For either option, [join our Slack community](https://weaviate.io/slack) to have a quick chat with us on how to get started.

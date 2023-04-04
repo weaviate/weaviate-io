@@ -34,16 +34,16 @@ Returning to the grocery store for a moment, the challenge comes because a groce
 
 Since it conveys both content and context, such a representation obviously presents a more complete and nuanced data picture. The challenge comes from searching through myriad dimensions. Initially, this was done with a brute force approach, looking at every vector associated with every entry. Needless to say, that approach didn't scale.
 
-One breakthrough that helped third-wave search engines to scale was an approach called "approximate nearest neighbor" (ANN) search. If we make one final trip to the supermarket to understand what a guava is, we could look at the things around it—other fruit. Somewhat further away we might find guava juice or tinned guavas, but there's really no reason to look four aisles over for guava-flavored cat food.
+One breakthrough that helped third-wave vector databases to scale was an approach called "approximate nearest neighbor" (ANN) search. If we make one final trip to the supermarket to understand what a guava is, we could look at the things around it—other fruit. Somewhat further away we might find guava juice or tinned guavas, but there's really no reason to look four aisles over for guava-flavored cat food.
 
 Using ANN allowed high-dimensional searches with near-perfect accuracy to be returned in milliseconds instead of hours. To be practical, vector databases also needed something prosaically called CRUD support. That stands for "create, read, update and delete," and solving that technical challenge meant that the complex process of indexing the database could be done once, rather than being repeated from scratch whenever the database was updated.
 
-This leads to the simplest definition of a third wave database: A vector database stores data indexed by machine learning models. Different types of databases (e.g., vector search engines) allow users to search through these vectorized datasets and others (e.g., feature stores) allow users to store vectors on a large scale for later use.
+This leads to the simplest definition of a third database wave: A vector database that stores data indexed by machine learning models. Different types of databases (e.g., vector search engines) allow users to search through these vectorized datasets, and others (e.g., feature stores) allow users to store vectors at a large scale for later use.
 
 ## We're awash in unstructured data.
 We're living in a time of massive data accumulation and much, if not most of it, is unstructured: text, photos, video, audio files, as well as other things such as genetic information. Vector search is particularly good at extracting value from such data.
 
-Tech giants like Google, AWS, or Microsoft Azure offer their vector search capabilities to customers willing to upload their data. But there's now an ecosystem of newer companies with AI-first specific (often open-source) solutions and vector-search capabilities that customers can run on a SaaS basis or on their own systems.
+Tech giants like Google, AWS, or Microsoft Azure offer their vector-search capabilities to customers willing to upload their data. But there's now an ecosystem of newer companies with AI-first specific (often open-source) solutions and vector-search capabilities that customers can run on a SaaS basis or on their own systems.
 
 ## The AI-first Database Ecosystem
 The companies that make up this ecosystem provide specialized services that overlap to various degrees. Combined, four sub-groups make up the ecosystem.
@@ -51,6 +51,6 @@ The companies that make up this ecosystem provide specialized services that over
 1. Embedding providers (e.g., Hugging Face or OpenAI)
 1. Neural framework (e.g., deepset or Jina)
 1. Feature stores (e.g., FeatureBase, FeatureForm or Tecton)
-1. Vector search engines (e.g., Weaviate or Vertex)
+1. Vector databases (e.g., Weaviate or Vertex)
 
 While the number of data that companies are collecting in their data warehouses keeps growing, the need for better, more efficient searches keeps growing too. The more data we collect, the more complex searching through it becomes. Thanks to the advances in machine learning in the past decade and the commoditization of AI-first database technologies, you can start using it in your business tomorrow.

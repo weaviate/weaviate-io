@@ -14,12 +14,16 @@ You can interact with Weaviate by using the GraphQL or RESTful API directly, or 
 Currently, Weaviate supports:
 
 - [Python](/developers/weaviate/client-libraries/python.md)
-- [JavaScript](/developers/weaviate/client-libraries/javascript.md)
+- [TypeScript](/developers/weaviate/client-libraries/typescript.mdx)
 - [Go](/developers/weaviate/client-libraries/go.md)
 - [Java](/developers/weaviate/client-libraries/java.md)
 
+import JavaScriptMaintenanceWarning from '/_includes/javascript-maintenance-warning.mdx';
+
+<JavaScriptMaintenanceWarning />
+
 :::note Don't see your preferred language?
-If you want to contribute one or request for us to work on a particualar client, please let us know on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw)
+If you want to contribute one or request for us to work on a particular client, please let us know on [Slack](https://weaviate.io/slack)
 :::
 
 import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
@@ -28,7 +32,7 @@ import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
 
 ## Native vs GraphQL queries
 
-When querying Weaviate you can choose to write your queries in GraphQL and send the raw GraphQL query to Weaviate or you can write the query natively to the client language you are using.
+When querying Weaviate you can choose to write your queries in GraphQL and send the raw GraphQL query to Weaviate, or you can write the query natively to the client language you are using.
 
 For example, if you were using the Weaviate Python client:
 
@@ -68,17 +72,17 @@ print(result)
 
 ## Client-specific functions
 
-Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages ([Python](./python.md), [JavaScript](./javascript.md), [Java](./java.md) and [Go](./go.md)). An overview of features of the clients: 
+Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages. An overview of features of the clients:
 
-| Feature  | Python client | JavaScript client | Java client | Go client | 
+| Feature  | Python client | TypeScript client | JavaScript client | Java client | Go client |
 | --- | --- | --- | --- | --- |
-| RESTful API endpoints | **V** | **V** | **V** | **V** |
-| GraphQL Get | **V** | **V** | **V** | **V** |
-| GraphQL Aggregate | **V** | **V** | **V** | **V** |
-| GraphQL Explore | **V** | **V** | **V** | **V** |
-| Uploading a full JSON schema | **V** | X | X | X |
-| Deleting a full JSON schema | **V** | X | X | X |
-| Check schema | **V** | X | X | X |
+| RESTful API endpoints | **V** | **V** | **V** | **V** | **V** |
+| GraphQL Get | **V** | **V** | **V** | **V** | **V** |
+| GraphQL Aggregate | **V** | **V** | **V** | **V** | **V** |
+| GraphQL Explore | **V** | **V** | **V** | **V** | **V** |
+| Uploading a full JSON schema | **V** | X | X | X | X |
+| Deleting a full JSON schema | **V** | X | X | X | X |
+| Check schema | **V** | X | X | X | X |
 
 ## Command Line Interface (CLI)
 You can interact with Weaviate via a command line interface. Information about how to install and use can be found [here](./cli.md).

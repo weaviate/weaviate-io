@@ -18,7 +18,7 @@ import json
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
     additional_headers={
-        "X-OpenAI-Api-Key": api_tkn  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key" 
+        "X-OpenAI-Api-Key": api_tkn  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
     }
 )
 
@@ -47,7 +47,7 @@ const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
     scheme: "https",
-    host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
+    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
     headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
 });
 
@@ -61,7 +61,7 @@ client.graphql
     .aggregate()
     .withClassName('Question')
     .withFields('meta { count }')
-    .withWhere(where_filter)    
+    .withWhere(where_filter)
     .do()
     .then(res => {
     console.log(JSON.stringify(res, null, 2))

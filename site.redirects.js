@@ -30,17 +30,27 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/clients'
         },
         {
-            to: '/developers/weaviate/tutorials/console',
+            to: '/developers/wcs/guides/console',
             from: '/developers/weaviate/current/core-knowledge/console'
+        },
+
+        // Config-refs redirects
+        {
+            to: '/developers/weaviate/config-refs/datatypes',
+            from: '/developers/weaviate/configuration/datatypes'
+        },
+        {
+            to: '/developers/weaviate/config-refs/distances',
+            from: '/developers/weaviate/configuration/distances'
         },
 
         // Configuration redirects
         {
-            to: '/developers/weaviate/configuration/datatypes',
+            to: '/developers/weaviate/config-refs/datatypes',
             from: '/developers/weaviate/current/schema/datatypes'
         },
         {
-            to: '/developers/weaviate/configuration/distances',
+            to: '/developers/weaviate/config-refs/distances',
             from: '/developers/weaviate/current/vector-index-plugins/distances'
         },
         {
@@ -87,9 +97,9 @@ const siteRedirects = {
             from: '/developers/weaviate/quickstart/modules',
         },
         {
-            to: '/developers/weaviate/tutorials/console',
+            to: '/developers/wcs/guides/console',
             from: '/developers/weaviate/quickstart/console',
-        },        
+        },
 
         // Quickstart redirects
         {
@@ -109,9 +119,9 @@ const siteRedirects = {
             from: '/developers/weaviate/current/quickstart/modules'
         },
         {
-            to: '/developers/weaviate/tutorials/console',
+            to: '/developers/wcs/guides/console',
             from: '/developers/weaviate/current/quickstart/console'
-        }, 
+        },
 
         // Tutorial redirects
         {
@@ -293,10 +303,15 @@ const siteRedirects = {
             from: ['/resources/gsod','/resources/gsoc', '/google-summer/gsoc-23', '/google-summer/', '/resources/gsod-summary']
         },
 
-        // moved/renamed pages
+        // moved Quickstart installation to Quickstart
         {
-            to: '/developers/weaviate/installation/weaviate-cloud-services',
-            from: '/developers/weaviate/installation/weaviate-cloud-service'
+            to: '/developers/weaviate/quickstart',
+            from: '/developers/weaviate/quickstart/installation'
+        },
+
+        {
+            to: '/developers/wcs/guides/console',
+            from: '/developers/weaviate/tutorials/console'
         }
     ],
     createRedirects(existingPath) {
@@ -369,7 +384,7 @@ const siteRedirects = {
                     '/developers/weaviate/current'),
             ]
         }
-        
+
         // Contributor Guide redirects
         if (existingPath.includes('/contributor-guide/weaviate-modules')) {
             return [
@@ -384,7 +399,7 @@ const siteRedirects = {
                     '/developers/contributor-guide',
                     '/developers/contributor-guide/current'),
             ]
-        }       
+        }
 
         return undefined; // Return a falsy value: no redirect created
     },

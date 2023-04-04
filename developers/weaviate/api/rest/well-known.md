@@ -9,7 +9,7 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 ## OpenID Configuration
-The RESTful API discovery gives information if [OpenID Connect (OIDC)](/developers/weaviate/configuration/authentication.md#openid-connect-oidc) authentication is enabled. The endpoint redirects to the token issued if one is configured.
+The RESTful API discovery gives information if [OpenID Connect (OIDC)](/developers/weaviate/configuration/authentication.md) authentication is enabled. The endpoint redirects to the token issued if one is configured.
 
 #### Usage
 
@@ -24,7 +24,7 @@ And it returns the following fields:
 - `cliendID`: The ID of the client.
 
 If no OIDC provider is present, a `404` code will be returned.
-  
+
 #### Example
 The following command:
 
@@ -54,7 +54,7 @@ GET /v1/.well-known/live
 ```
 
 And it returns 200 if the application is able to respond to HTTP requests.
-  
+
 #### Example
 If the following command:
 
@@ -77,7 +77,7 @@ GET /v1/.well-known/ready
 ```
 
 And it returns 200 if the application is able to respond to HTTP requests, and 503 if the application is currently not able to serve traffic. If other horizontal replicas of Weaviate are available and they are capable of receiving traffic, all traffic should be redirected there instead.
-  
+
 #### Example
 If the following command:
 

@@ -13,7 +13,7 @@ query_result = client.classification.schedule()\
     .with_type("<e.g. knn>")\
     .with_class_name("<className>")\
     .with_based_on_properties(["<property3>"])\
-    .with_classify_properties(["<property1>", "<property2>"])\ 
+    .with_classify_properties(["<property1>", "<property2>"])\
     .with_settings(<additional classification settings>)\
     .with_wait_for_completion()\
     .do()
@@ -68,8 +68,11 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
-  
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
   classification, err := client.Classifications().
     Scheduler().
     WithType(classifications.<e.g. KNN>).
@@ -79,7 +82,7 @@ func main() {
     WithBasedOnProperties([]string{"<property3>"}).
     WithWaitForCompletion.
     Do(context.Background())
-  
+
   if err != nil {
     panic(err)
   }
@@ -91,14 +94,14 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.classifications.model.Classification;
-import technology.semi.weaviate.client.v1.classifications.model.ClassificationType;
-import technology.semi.weaviate.client.v1.classifications.model.ParamsKNN;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.classifications.model.Classification;
+import io.weaviate.client.v1.classifications.model.ClassificationType;
+import io.weaviate.client.v1.classifications.model.ParamsKNN;
 
 public class App {
   public static void main(String[] args) {

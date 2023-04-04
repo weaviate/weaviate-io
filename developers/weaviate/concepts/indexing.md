@@ -33,7 +33,7 @@ Some things to bear in mind:
 What's important to know, is that the "A" in ANN (i.e., the "approximate") comes with a trade-off. That is, the index is _approximate_ and, therefore _not_ always 100% accurate. This is what the experts mean when they talk about the "recall of the algorithm."
 
 :::tip
-There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>. Only those algorithms which support [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) can be used in Weaviate (we want that sweet database UX) and Weaviate's ANN system is [completely plug-and-playable](../concepts/index.md#weaviates-architecture-from-above) so that we can always add other algorithms in the future.
+There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>. Only those algorithms which support [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) can be used in Weaviate (we want that sweet database UX) and Weaviate's ANN system is [completely plug-and-playable](../concepts/index.md#weaviate-architecture) so that we can always add other algorithms in the future.
 :::
 
 <!-- TODO: Not sure if we need this here -->
@@ -53,7 +53,7 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
         {
             "class": "Publication",
             "properties": [],
-            "vectorIndexType": "hnsw" // <== the current ANN algorithm 
+            "vectorIndexType": "hnsw" // <== the current ANN algorithm
             "vectorIndexConfig": { // <== the vector index settings
                 "skip": false,
                 "cleanupIntervalSeconds": 300,
@@ -74,7 +74,7 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
 }
 ```
 
-As shown above, there are quite a few configurable parameters available for an ANN index. Modifying them can affect Weaviate's performance, such as tradeoffs between the recall performance and query time, or between query time and import time. 
+As shown above, there are quite a few configurable parameters available for an ANN index. Modifying them can affect Weaviate's performance, such as tradeoffs between the recall performance and query time, or between query time and import time.
 
 Read more below on:
 - [Configuring the vector index](../configuration/indexes.md)
@@ -108,7 +108,7 @@ When using vectorizers, you need to set vectorization at the class and property 
 ```js
 {
     "class": "Author",
-    "moduleConfig": { // <== class level configuration 
+    "moduleConfig": { // <== class level configuration
         "text2vec-transformers": { // <== name of the module
             "vectorizeClassName": false // <== vectorize the class name?
         }

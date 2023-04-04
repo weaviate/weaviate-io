@@ -80,7 +80,7 @@ The following guidelines help us write clean and maintainable code:
   is inspired by the settings on [Go Report
   Card](https://goreportcard.com/report/github.com/weaviate/weaviate)
   where Weaviate holds an A+ rating.
-* Keep methods short. 
+* Keep methods short.
 * Don't comment obvious things, comment intent on decisions you took that might
   not be 100% obvious. It's better to have a few 100-line comments, than to
   have 100s of 1-line comments which don't add any value.

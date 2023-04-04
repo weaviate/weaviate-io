@@ -17,7 +17,7 @@ Migrated from "How to perform a semantic search" tutorial from Weaviate Docs Cla
 
 ## Introduction
 
-- Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/). 
+- Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/).
 - You can query a Weaviate after you've created a [schema](../tutorials/schema.md) and [populated it](/developers/weaviate/tutorials/import.md) with data.
 - You can perform simple [`Get{}`](../api/graphql/get.md) queries to easily retrieve data, learn how [here](./how-to-query-data.md).
 - To narrow down search results from a `Get{}` query based on semantics, use the `nearText` filter in the `Get{}` query. Read how in [this tutorial](#neartext-filter).
@@ -25,7 +25,7 @@ Migrated from "How to perform a semantic search" tutorial from Weaviate Docs Cla
 
 ## Prerequisites
  1. **Connect to a Weaviate instance.**\\
- If you haven't set up a Weaviate instance yet, check the [Getting started guide](/developers/weaviate/quickstart/installation.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/developers/weaviate/quickstart/installation.md) as vectorization module.
+ If you haven't set up a Weaviate instance yet, check the [Quickstart guide](/developers/weaviate/quickstart/index.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) as vectorization module.
  2. **Upload a schema**. \\
  Learn how to create and upload a schema [here](../tutorials/schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
  3. **Add data**. \\
@@ -62,9 +62,9 @@ This will result in something like the following. Vogue was selected as only res
 ```
 
 ## Explore GraphQL function
-If you are not sure what classes you want to query, or want to perform a fuzzy search through your whole dataset, then you can use the `Explore{}` function instead of the `Get{}` function. In the `Explore{}` function you don't specify which classes you perform the semantic search on, so the semantic search will be performed on all the data objects. Since this search is fuzzy, the only fields you can return are the `beacon`, `certainty`, `className`; you cannot request property values of the data objects, since the property value names depend on the data object, defined in the schema. 
+If you are not sure what classes you want to query, or want to perform a fuzzy search through your whole dataset, then you can use the `Explore{}` function instead of the `Get{}` function. In the `Explore{}` function you don't specify which classes you perform the semantic search on, so the semantic search will be performed on all the data objects. Since this search is fuzzy, the only fields you can return are the `beacon`, `certainty`, `className`; you cannot request property values of the data objects, since the property value names depend on the data object, defined in the schema.
 
-Let's search for data object about fashion again, but now we are not only interested in `Publication` data objects, but in all data objects that have something to do with "fashion". 
+Let's search for data object about fashion again, but now we are not only interested in `Publication` data objects, but in all data objects that have something to do with "fashion".
 
 import HowtoSemanticSearchFunction from '/_includes/code/howto.semanticsearch.function.mdx';
 

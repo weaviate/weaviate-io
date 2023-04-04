@@ -39,7 +39,7 @@ When we ask an LLM, “What type of mammal lays the biggest eggs?”, it initial
 ## CombineDocuments
 LLMs have a limited token length due to various practical and technical constraints. One of the primary reasons is the computational cost associated with processing and storing longer sequences of tokens. The longer the sequence, the more memory and processing power required to operate on it, which can be a significant challenge for even the most powerful computing systems.
 
-The relatively long input window of LLMs is what drives the integration with semantic search. For example, we can use this entire blog post as input in addition to questions if we want the LLM to answer questions such as “What are LLM Chains?” However, when we want to give the LLM an entire book or pages of search results, we need more clever techniques to decompose this task. This is where the [CombineDocuments](https://langchain.readthedocs.io/en/latest/modules/indexes/combine_docs.html) chain comes to play! Note, that one method is not better than another, and the performance is dependent solely on your application.
+The relatively long input window of LLMs is what drives the integration with semantic search. For example, we can use this entire blog post as input in addition to questions if we want the LLM to answer questions such as “What are LLM Chains?” However, when we want to give the LLM an entire book or pages of search results, we need more clever techniques to decompose this task. This is where the `CombineDocuments` chain comes to play! Note, that one method is not better than another, and the performance is dependent solely on your application.
 
 ### Stuffing
 
@@ -83,7 +83,7 @@ Refine is a unique technique because it has a local memory. An example of this i
 Map Rerank involves running an initial prompt that asks the model to give a relevance score. It is then passed through the language model and assigns a score based on the certainty of the answer. The documents are then ranked and the top two are stuffed to the language model to output a single response.
 
 ## Tool Use
-The last building block we will cover is tool use. [Tool use](https://langchain.readthedocs.io/en/latest/modules/agents/tools.html?highlight=tool%20use) is a way to augment language models to use tools. For example, we can hook up an LLM to search engines, calculators, or even code executors. Of course we will dive into the search engines next, but let’s start with an example of the code executor tool use.
+The last building block we will cover is tool use. [Tool use](https://langchain.readthedocs.io/en/latest/modules/agents/tools.html?highlight=tool%20use) is a way to augment language models to use tools. For example, we can hook up an LLM to vector databases, calculators, or even code executors. Of course we will dive into the vector databases next, but let’s start with an example of the code executor tool use.
 
 <img
     src={require('./img/tool-use.gif').default}
@@ -105,7 +105,7 @@ Follow Up Input: {question}
 Standalone question:"""
 ```
 
-We put the chat_history and the latest user input in the curly bracket syntax. Then we take this new query and hit the Weaviate semantic search engine to get context to answer the question. The ChatVectorDB chain we use has a default value of k = 4 search results, if we use longer search results we will need another CombineDocuments chain here as well! With the 4 search results, we answer the question with this final prompt:
+We put the chat_history and the latest user input in the curly bracket syntax. Then we take this new query and hit the Weaviate vector database to get context to answer the question. The ChatVectorDB chain we use has a default value of k = 4 search results, if we use longer search results we will need another CombineDocuments chain here as well! With the 4 search results, we answer the question with this final prompt:
 
 ```python
 Prompt_template = """Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
@@ -151,5 +151,6 @@ while True:
 And just like that, you have built an application using LangChain and Weaviate. I recommend checking out the GitHub repository to test this out yourself!
 
 ## Stay connected
-Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
+Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
+
 Weaviate is open-source, and you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don’t forget to give us a ⭐️ while you are there!

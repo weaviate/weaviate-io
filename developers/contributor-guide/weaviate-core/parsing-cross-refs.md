@@ -59,7 +59,7 @@ The cached resolver is a helper struct with a two-step process:
    pointers to other objects, these are resolved in the same fashion -
    recursively until everything that the user requested is resolved.
 
-## Relevant Code 
+## Relevant Code
 
 * [The reference Cacher](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/refcache/cacher.go) and its [unit tests](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/refcache/cacher_test.go)
 * [The reference Resolver](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/refcache/resolver.go) and its [unit tests](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/refcache/resolver_test.go)

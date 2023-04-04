@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 The list below contains deprecation messages:
-<!-- 
+<!--
 <ul>
     {% for message in site.data.deprecations.deprecations %}
     <li>
@@ -22,7 +22,7 @@ The list below contains deprecation messages:
 <!-- <h2 class="title-column" style="font-size:1.75rem" id="{{ message.id }}">{{ message.id }}</h2> -->
 
 {{ message.msg }}
-<!-- 
+<!--
 <table>
     <tr>
         <td>status</td>

@@ -37,6 +37,29 @@ client
 ```
 
 </TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+let classObj = {
+    "class": "Question",
+    "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
 {/* <TabItem value="go" label="Go">
 
 ```go
@@ -56,10 +79,13 @@ func main() {
         Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
 
     classObj := &models.Class{
-        Class:      "Question", 
+        Class:      "Question",
         Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
     }
 
@@ -76,15 +102,15 @@ func main() {
 
 ```java
 
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.ArrayList;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.schema.model.DataType;
-import technology.semi.weaviate.client.v1.schema.model.Property;
-import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
@@ -97,7 +123,7 @@ public class App {
       .className("Question")
       .vectorizer("text2vec-openai")  // Or "text2vec-cohere" or "text2vec-huggingface"
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {
@@ -109,18 +135,18 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
--X POST \
--H "Content-Type: application/json" \
--d '{
-    "class": "Question",
-    "vectorizer": "text2vec-openai",
-}' \
-https://some-endpoint.weaviate.network/v1/schema
+echo '{
+  "class": "Question",
+  "vectorizer": "text2vec-openai"
+}' | curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d @- \
+  https://some-endpoint.weaviate.network/v1/schema
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

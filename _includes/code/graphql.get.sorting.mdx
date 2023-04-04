@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
   Get {
     Article(sort: [{
       path: ["title"]     # Path to the property that should be used
-      order: asc          # Sort order, possible values: asc, desc 
+      order: asc          # Sort order, possible values: asc, desc
     }]) {
       title
       url
@@ -105,7 +105,10 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
   title := graphql.Field{Name: "title"}
   url := graphql.Field{Name: "url"}
@@ -132,15 +135,15 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
-import technology.semi.weaviate.client.v1.graphql.query.argument.SortArgument;
-import technology.semi.weaviate.client.v1.graphql.query.argument.SortOrder;
-import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.SortArgument;
+import io.weaviate.client.v1.graphql.query.argument.SortOrder;
+import io.weaviate.client.v1.graphql.query.fields.Field;
 
 public class App {
   public static void main(String[] args) {
@@ -174,7 +177,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
   "query": "{
     Get {
       Article(sort: [{

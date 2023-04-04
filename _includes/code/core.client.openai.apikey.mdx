@@ -25,12 +25,12 @@ const weaviate = require("weaviate-client");
 
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',
+    host: 'some-endpoint.weaviate.network',
     // highlight-start
     // Replace with your API key
     headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},
     // highlight-end
-  }); 
+  });
 ```
 
 </TabItem>
@@ -52,11 +52,14 @@ func main() {
         Scheme: "https",
         // highlight-start
         // Replace with your API key
-        Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"} 
+        Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"}
         // highlight-end
     }
 
-    client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+      panic(err)
+    }
 }
 ```
 
@@ -64,11 +67,11 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 import java.util.ArrayList;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
 
 public class App {
   public static void main(String[] args) {

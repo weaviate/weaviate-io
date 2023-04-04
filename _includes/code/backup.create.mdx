@@ -59,7 +59,10 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
   result, err := client.Backup().Creator().
     WithIncludeClassNames("Article", "Publication").
@@ -79,13 +82,13 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.backup.model.Backend;
-import technology.semi.weaviate.client.v1.backup.model.BackupCreateResponse;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.backup.model.Backend;
+import io.weaviate.client.v1.backup.model.BackupCreateResponse;
 
 public class App {
   public static void main(String[] args) {
