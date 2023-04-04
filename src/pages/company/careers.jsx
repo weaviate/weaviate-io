@@ -14,10 +14,10 @@ export default function CareersPage() {
       <Layout>
         <MetaSEO img="og/company/careers.jpg" />
         <CareersHeader />
-        <CareersIntro />
+        {/* <CareersIntro />
         <CareersInterviewProcess />
         <Jobs />
-        <Benefits />
+        <Benefits /> */}
       </Layout>
     </div>
   );
