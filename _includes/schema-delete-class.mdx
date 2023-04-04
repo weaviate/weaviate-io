@@ -38,7 +38,7 @@ const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
 });
 
 var className = 'YourClassName';  // Replace with your class name
@@ -52,6 +52,31 @@ client.schema
   })
   .catch(err => {
     console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
+
+var className: string = 'YourClassName';  // Replace with your class name
+
+client.schema
+  .classDeleter()
+  .withClassName(className)
+  .do()
+  .then((res: any) => {
+  console.log(res);
+  })
+  .catch((err: Error) => {
+  console.error(err)
   });
 ```
 

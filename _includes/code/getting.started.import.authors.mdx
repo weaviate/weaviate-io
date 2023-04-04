@@ -61,7 +61,7 @@ async function importAuthors() {
       // flush the batch queue (use await to execute the promise)
       let result = await (batcher.do());
       console.log(`Batch loaded: ${JSON.stringify(result)}`);
-      
+
       // restart the batch queue
       counter = 0;
       batcher = client.batch.objectsBatcher();
@@ -114,7 +114,7 @@ func importAuthors(ctx context.Context, client *weaviate.Client) error {
 
 	return nil
 }
-  
+
 ```
 
 </TabItem>

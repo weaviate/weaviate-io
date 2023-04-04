@@ -50,17 +50,20 @@ import (
 
 func GetSchema() {
     cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",
-        Scheme: "https",
+      Host:   "some-endpoint.weaviate.network/",
+      Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+      panic(err)
+    }
 
     data, err := client.Data().ObjectsGetter().
-        Do(context.Background())
+      Do(context.Background())
 
     if err != nil {
-        panic(err)
+      panic(err)
     }
     fmt.Printf("%v", data)
 

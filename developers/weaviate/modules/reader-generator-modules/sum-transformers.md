@@ -13,7 +13,7 @@ import Badges from '/_includes/badges.mdx';
 * The Summarization (`sum-transformers`) module is a Weaviate module that summarizes whole paragraphs into a short text.
 * The module containerizes a summarization-focussed transformers model for Weaviate to connect to. We make pre-built models available here, but you can also attach another transformer model from Hugging Face or even a custom model.
 * The module adds a `summary {}` filter to the GraphQL `_additional {}` field.
-* The module returns the results in the GraphQL `_additional { summary {} }` field. 
+* The module returns the results in the GraphQL `_additional { summary {} }` field.
 
 ## Introduction
 
@@ -28,8 +28,8 @@ and transform it to a short sentence like this:
 > <em>"The Eiffel Tower is a landmark in Paris, France."</em>
 
 :::note GPUs preferred
-For maximum performance of your queries, transformer-based models should run with GPUs. 
-CPUs can be used, however, this will significantly slow down your queries. 
+For maximum performance of your queries, transformer-based models should run with GPUs.
+CPUs can be used, however, this will significantly slow down your queries.
 :::
 
 ### Available modules
@@ -42,7 +42,7 @@ Here is the current list of available `SUM` modules - sourced from [Hugging Face
 
 ### Docker-compose
 
-The `sum-transformers` module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. 
+The `sum-transformers` module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running.
 
 An example Docker-compose file for using the `sum-transformers` module (with the `facebook-bart-large-cnn` model) in combination with the `text2vec-contextionary` vectorizer module is below:
 
@@ -82,7 +82,7 @@ services:
     ports:
     - 9999:9999
   sum-transformers:
-    image: semitechnologies/sum-transformers:facebook-bart-large-cnn-1.2.0  
+    image: semitechnologies/sum-transformers:facebook-bart-large-cnn-1.2.0
     # image: semitechnologies/sum-transformers:google-pegasus-xsum-1.2.0  # Could be used instead
 ...
 ```
@@ -96,7 +96,7 @@ To make use of the modules capabilities, extend your query with the following ne
 
 ### GraphQL Token
 
-This module adds a search filter to the GraphQL `_additional` field in queries: `summary{}`. This new filter takes the following arguments: 
+This module adds a search filter to the GraphQL `_additional` field in queries: `summary{}`. This new filter takes the following arguments:
 
 | Field 	| Data Type 	| Required 	| Example value 	| Description 	|
 |-	|-	|-	|-	|-	|
@@ -108,7 +108,7 @@ import CodeSumTransformer from '/_includes/code/sum-transformers-module.mdx';
 
 <CodeSumTransformer />
 
-<!-- TODO: Update the live working example 
+<!-- TODO: Update the live working example
   We need to add the Summarizer to the cloud instance
 
 <!-- import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
@@ -148,11 +148,11 @@ The answer is contained in a new GraphQL `_additional` property called `summary`
 
 ## Use another Summarization module from Hugging Face
 
-You can build a Docker image which supports any summarization model from the [Hugging Face Model Hub](https://huggingface.co/models?pipeline_tag=summarization) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`google/pegasus-pubmed` model](https://huggingface.co/google/pegasus-pubmed). 
+You can build a Docker image which supports any summarization model from the [Hugging Face Model Hub](https://huggingface.co/models?pipeline_tag=summarization) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`google/pegasus-pubmed` model](https://huggingface.co/google/pegasus-pubmed).
 
 #### Step 1: Create a `Dockerfile`
 
-Create a new `Dockerfile`. We will name it `my-model.Dockerfile`. Add the following lines to it: 
+Create a new `Dockerfile`. We will name it `my-model.Dockerfile`. Add the following lines to it:
 ```
 FROM semitechnologies/sum-transformers:custom
 RUN chmod +x ./download.py
@@ -192,7 +192,7 @@ Note that much of output does not copy the input verbatim, but is *based on* it.
 :::note Input length
 Note that like many other language models, summarizer models can only process a limited amount of text. The `sum-transformers` module will be limited to the maximum length of the model it is using. For example, the `facebook/bart-large-cnn` model can only process 1024 tokens.
 
-On the other hand, be aware that providing an input of insufficient length and detail may cause the transformer model to [hallucinate](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)). 
+On the other hand, be aware that providing an input of insufficient length and detail may cause the transformer model to [hallucinate](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)).
 :::
 
 ## More resources

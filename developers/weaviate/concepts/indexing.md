@@ -53,7 +53,7 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
         {
             "class": "Publication",
             "properties": [],
-            "vectorIndexType": "hnsw" // <== the current ANN algorithm 
+            "vectorIndexType": "hnsw" // <== the current ANN algorithm
             "vectorIndexConfig": { // <== the vector index settings
                 "skip": false,
                 "cleanupIntervalSeconds": 300,
@@ -74,7 +74,7 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
 }
 ```
 
-As shown above, there are quite a few configurable parameters available for an ANN index. Modifying them can affect Weaviate's performance, such as tradeoffs between the recall performance and query time, or between query time and import time. 
+As shown above, there are quite a few configurable parameters available for an ANN index. Modifying them can affect Weaviate's performance, such as tradeoffs between the recall performance and query time, or between query time and import time.
 
 Read more below on:
 - [Configuring the vector index](../configuration/indexes.md)
@@ -108,7 +108,7 @@ When using vectorizers, you need to set vectorization at the class and property 
 ```js
 {
     "class": "Author",
-    "moduleConfig": { // <== class level configuration 
+    "moduleConfig": { // <== class level configuration
         "text2vec-transformers": { // <== name of the module
             "vectorizeClassName": false // <== vectorize the class name?
         }

@@ -14,11 +14,11 @@ import Badges from '/_includes/badges.mdx';
 Welcome to the documentation for **Weaviate**, an open source vector database.
 
 ### About the docs
-The majority of the content is categorized into one of three categories based on its focus:
+The majority of the content is categorized into one of three categories based on its main goal:
 
-| | 📚 References | 💡 Concepts | 👷 Tutorials |
-| ----- | ----- | ----- | ----- |
-| **Focus** | Find **itemized** information | **Explanations** of topics | How to **do** something |
+| | 🔧<br/>How-to | 📚<br/>References | 💡<br/>Concepts | 🎓<br/>Tutorials |
+| ----- | ----- | ----- | ----- | ----- |
+| **Goal** | **Solve** a problem | Find **itemized** information | **Explanations** of topics | Guided **lessons** |
 
 Commonly requested resources such as
 - [Benchmarks](./benchmarks/index.md)
@@ -41,7 +41,7 @@ If you are new to Weaviate, we recommend starting with these sections:
 1. Introduction (this page),
 2. [Quickstart tutorial](./quickstart/index.md)
 3. [Installation](./installation/index.md)
-4. [References: Configuration](./configuration/index.md)
+4. [How-to: Configure](./configuration/index.md)
 
 We suggest you browse through the [concepts](./concepts/index.md) section if you are interested in how Weaviate works.
 

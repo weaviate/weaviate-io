@@ -57,7 +57,10 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
   schema, err := client.Schema().ClassGetter().WithClassName("Article").Do(context.Background())
   if err != nil {

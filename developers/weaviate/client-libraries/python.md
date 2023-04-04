@@ -25,9 +25,28 @@ Now you can use the client in your Python scripts as follows:
 ```python
 import weaviate
 
-client = weaviate.Client("http://localhost:8080") # or another location where your Weaviate instance is running
+client = weaviate.Client("https://some-endpoint.weaviate.network")  # Replace the URL with that of your Weaviate instance
 
-client.schema.get() # get the full schema as example
+client.schema.get()  # Get the schema to test connection
+```
+
+Or, with additional arguments such as those below:
+
+```python
+import weaviate
+
+client = weaviate.Client(
+  url="https://some-endpoint.weaviate.network",  # URL of your Weaviate instance
+  auth_client_secret=auth_config,  # (Optional) If the Weaviate instance requires authentication
+  timeout_config=(5, 15),  # (Optional) Set connection timeout & read timeout time in seconds
+  additional_headers={  # (Optional) Any additional headers; e.g. keys for API inference services
+    "X-Cohere-Api-Key": "<COHERE_KEY>",
+    "X-HuggingFace-Api-Key": "<HUGGINGFACE_KEY>",
+    "X-OpenAI-Api-Key": "<OPENAI_KEY>",
+  }
+)
+
+client.schema.get()  # Get the schema to test connection
 ```
 
 ## Authentication
@@ -42,7 +61,34 @@ import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/cli
 
 <ClientAuthWCS />
 
-### Resource Owner Password Flow
+### API key authentication
+
+:::info Available in Weaviate Python client versions `3.14.0` and higher.
+:::
+
+import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
+
+<ClientAuthApiKey />
+
+```python
+import weaviate
+
+auth_config = weaviate.auth.AuthApiKey(api_key="<YOUR-WEAVIATE-API-KEY>")  # Replace w/ your API Key for the Weaviate instance
+
+# Instantiate the client with the auth config
+client = weaviate.Client(
+    url="https://some-endpoint.weaviate.network",  # Replace w/ your endpoint
+    auth_client_secret=auth_config
+)
+```
+
+### OIDC authentication
+
+import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_components/client.auth.oidc.introduction.mdx'
+
+<ClientAuthOIDCIntro />
+
+#### Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
@@ -61,7 +107,7 @@ resource_owner_config = weaviate.AuthClientPassword(
 client = weaviate.Client("http://localhost:8080", auth_client_secret=resource_owner_config)
 ```
 
-### Client credentials flow
+#### Client credentials flow
 
 import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
@@ -79,7 +125,7 @@ client_credentials_config = weaviate.AuthClientCredentials(
 client = weaviate.Client("https://localhost:8080", auth_client_secret=client_credentials_config)
 ```
 
-### Refresh Token flow
+#### Refresh Token flow
 
 import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 

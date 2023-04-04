@@ -63,23 +63,26 @@ import (
 func GetSchema() {
     // if you use the WCS
     cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",
-        Scheme: "https",
+      Host:   "some-endpoint.weaviate.network/",
+      Scheme: "https",
     }
 
     // or
 
     // if you use Docker-compose
     cfg := weaviate.Config{
-        Host:   "localhost:8080",
-        Scheme: "http",
+      Host:   "localhost:8080",
+      Scheme: "http",
     }
 
-    client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+      panic(err)
+    }
 
     schema, err := client.Schema().Getter().Do(context.Background())
     if err != nil {
-        panic(err)
+      panic(err)
     }
     fmt.Printf("%v", schema)
 }

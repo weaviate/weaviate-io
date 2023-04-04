@@ -29,7 +29,7 @@ Currently the only index type is HNSW, so all data objects will be indexed using
 
 - `vectorIndexType` is the ANN algorithm you want to use. By default, Weaviate selects `hnsw` -- the Hierarchical Navigable Small World (HNSW) algorithm.
 - `"vectorIndexConfig"`: an object where you can set specific parameters to the chosen vector index type, in this case to hnsw, which has the following parameters:
-  - `"distance"`: The distance metric to be used to calculate the distance between any two arbitrary vectors. Defaults to `cosine`. See [supported metrics here](/developers/weaviate/configuration/distances.md).
+  - `"distance"`: The distance metric to be used to calculate the distance between any two arbitrary vectors. Defaults to `cosine`. See [supported metrics here](/developers/weaviate/config-refs/distances.md).
   - `"ef"`: The higher `ef` is chosen, the more accurate, but also slower a search becomes. This helps in the recall/performance trade-off that is possible with HNSW. If you omit setting this field it will default to `-1` which means "Let Weaviate pick the right `ef` value". `ef` can be updated over time, and is not immutable like `efConstruction` and `maxConnections`.
   - `"efConstruction"`: controls index search speed/build speed tradeoff. The tradeoff here is on importing. So a high `efConstruction` means that you can lower your `ef` settings but that importing will be slower. Default is set to 128, the integer should be greater than 0. This setting is immutable after class initialization.
   - `"maxConnections"`: the maximum number of connections per element in all layers. Default is set to 64, the integer should be greater than 0. This setting is immutable after class initialization.
@@ -126,7 +126,7 @@ The inverted index is by default _on_. You can simply turn it of like this:
 A rule of thumb to follow when determining if you turn it on or off is this: _if you don't need it to query, turn it off._
 
 :::note
-We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](/developers/weaviate/configuration/datatypes.md#datatype-string-vs-text).
+We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](/developers/weaviate/config-refs/datatypes.md#datatype-string-vs-text).
 :::
 
 You can also enable an inverted index to search [based on timestamps](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps).

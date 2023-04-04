@@ -40,7 +40,7 @@ near_text_filter = {
 
 additional_props = {
   "interpretation": "source {concept occurrence weight}"
-} 
+}
 
 query_result = (
   client.query
@@ -96,7 +96,10 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
   className := "Publication"
   fields := []graphql.Field{
@@ -184,7 +187,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
   "query": "{
     Get {
       Publication (

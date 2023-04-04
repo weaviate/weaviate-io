@@ -135,7 +135,7 @@ This module extends the  `_additional {...}` property with a `generate` operator
 Currently, you can't provide your OpenAI key in the Weaviate console. That means you can't use the `GraphQL` examples with your WCS instances, but if you provide your API key in the Docker configuration, then this should work.
 :::
 
-### Example of properties in the prompt 
+### Example of properties in the prompt
 
 When piping the results to the prompt, at least one field returned by the query must be added to the prompt. If you don't add any fields, Weaviate will throw an error.
 
@@ -163,7 +163,7 @@ You can add both `title` and `summary` to the prompt by enclosing them in curly 
           singleResult: {
             prompt: """
             Summarize the following in a tweet:
-            
+
             {title} - {summary}
             """
           }

@@ -1,6 +1,6 @@
 ---
 title: Java
-sidebar_position: 3
+sidebar_position: 5
 image: og/docs/client-libraries.jpg
 # tags: ['java', 'client library']
 ---
@@ -15,7 +15,7 @@ The current Java client version is `v||site.java_client_version||`.
 :::info Breaking changes introduced in v4
 The `package` and `import` paths have been updated from `technology.semi.weaviate` to `io.weaviate`.
 
-See the [Migration Guide](#from-3xx-to-400) for more info.  
+See the [Migration Guide](#from-3xx-to-400) for more info.
 :::
 
 ## Installation and setup
@@ -69,7 +69,30 @@ import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/cli
 
 <ClientAuthWCS />
 
-### Resource Owner Password Flow
+### API key authentication
+
+:::info Available in Weaviate Java client versions `4.0.2` and higher.
+:::
+
+import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
+
+<ClientAuthApiKey />
+
+```java
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateAuthClient;
+
+Config config = new Config("https", "some-endpoint.weaviate.network");
+WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace w/ your API Key for the Weaviate instance
+```
+
+### OIDC authentication
+
+import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_components/client.auth.oidc.introduction.mdx'
+
+<ClientAuthOIDCIntro />
+
+#### Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
@@ -88,7 +111,7 @@ WeaviateAuthClient.clientPassword(
 );
 ```
 
-### Client credentials flow
+#### Client credentials flow
 
 import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
@@ -106,7 +129,7 @@ WeaviateAuthClient.clientCredentials(
 );
 ```
 
-### Refresh Token flow
+#### Refresh Token flow
 
 import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
@@ -125,7 +148,7 @@ WeaviateAuthClient.bearerToken(
 );
 ```
 
-## Custom headers 
+## Custom headers
 
 You can pass custom headers to the client, which are added at initialization:
 
@@ -154,7 +177,7 @@ All [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/gra
 
 The Java client functions are designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../api/rest/index.md) and the [GraphQL reference pages](../api/graphql/index.md).
 
-The code snippet above shows a simple query similar to `RESTful GET /v1/meta`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by using the `.metaGetter()` on `.misc()`. The query will be sent with the `.run()` function, this object is thus required for every function you want to build and execute. 
+The code snippet above shows a simple query similar to `RESTful GET /v1/meta`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by using the `.metaGetter()` on `.misc()`. The query will be sent with the `.run()` function, this object is thus required for every function you want to build and execute.
 
 ## Migration Guides
 
@@ -271,7 +294,7 @@ WhereFilter where = WhereFilter.builder()
     .path(new String[]{ "add" })
     .build();
 
-client.graphQL().aggregate().withWhere(where)...    
+client.graphQL().aggregate().withWhere(where)...
 ```
 
 Before:

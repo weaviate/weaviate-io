@@ -9,7 +9,7 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 :::info Related pages
-- [Configuration: Schema](./schema-configuration.md)
+- [Configuration: Schema](../configuration/schema-configuration.md)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)
 :::
