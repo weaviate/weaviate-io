@@ -7,10 +7,6 @@ const siteRedirects = {
             from: '/company',
         },
         {
-            to: '/company/careers',
-            from: '/company',
-        },
-        {
             to: '/developers/weaviate/roadmap',
             from: [
                 '/developers/weaviate/current/roadmap/index',
