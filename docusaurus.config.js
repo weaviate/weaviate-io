@@ -193,7 +193,7 @@ const config = {
                             },
                             {
                                 label: 'Careers',
-                                href: '/company/careers',
+                                to: '/company/careers',
                             },
                             {
                                 label: 'Investors',
