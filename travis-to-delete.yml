@@ -55,5 +55,5 @@ script:
       source _build_scripts/slack-find-author.sh
       source _build_scripts/slack-release-message.sh
     fi
-  
+
   - echo "It is all done"
