@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
+import fetch, { Headers } from 'node-fetch';
 
 const headers = new Headers();
 headers.append(

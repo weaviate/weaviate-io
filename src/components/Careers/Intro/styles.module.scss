@@ -4,7 +4,7 @@
 
   margin-top: 2rem;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 850px) {
     grid-template-columns: 1fr;
     margin-top: 0;
   }
@@ -22,7 +22,7 @@
     margin-bottom: 1rem;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 850px) {
     padding: 0 1.5rem;
   }
 }

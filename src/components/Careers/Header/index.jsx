@@ -2,7 +2,7 @@ import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
 
-export default function CareersHeader() {
+export default function Header() {
   return (
     <div className="container">
       <div className={styles.box}>
