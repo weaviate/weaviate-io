@@ -57,12 +57,10 @@ Now let's dive into it to see the backup functionality in action!
 ### Utility scripts
 To begin with, both Weaviate instances **W1** and **W2** should be empty. In order to get straight to the point of this tutorial, we've prepared a set of scripts (located in the `scripts` folder) that will help you prepare your Weaviate instances and test them out.
 
----
-![hero](./img/hero.png)--
-**Note**: The tutorial text refers to shell scripts (e.g. `0_query_instances.sh`), but we also provide code examples in other languages including **Python** and **JavaScript**. These files are located in `scripts` subdirectory and we encourage you to try them out yourself using your favorite client.
 
----
-![hero](./img/hero.png)--
+:::note Examples available in other languages
+The tutorial text refers to shell scripts (e.g. `0_query_instances.sh`), but we also provide code examples in other languages including **Python** and **JavaScript**. These files are located in `scripts` subdirectory and we encourage you to try them out yourself using your favorite client.
+:::
 
 If you run the `0_query_instances` script, you should see that neither instances contain a schema.
 
@@ -104,12 +102,10 @@ curl \
     }' \
 http://localhost:8080/v1/backups/filesystem
 ```
----
-![hero](./img/hero.png)--
-**Note**: The `backup_id` must be unique. The ID value is used to create a subdirectory in the backup location, and attempting to reuse an existing ID will cause Weaviate to throw an error. Delete the existing directory if one already exists.
 
----
-![hero](./img/hero.png)--
+:::note The `backup_id` must be unique.
+The ID value is used to create a subdirectory in the backup location, and attempting to reuse an existing ID will cause Weaviate to throw an error. Delete the existing directory if one already exists.
+:::
 
 Now try running `3_backup` yourself to back up data from **W1**.
 

@@ -88,7 +88,7 @@ import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_componen
 
 <ClientAuthOIDCIntro />
 
-#### Resource Owner Password Flow
+#### <i class="fa-solid fa-key"></i> Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
@@ -107,7 +107,7 @@ resource_owner_config = weaviate.AuthClientPassword(
 client = weaviate.Client("http://localhost:8080", auth_client_secret=resource_owner_config)
 ```
 
-#### Client credentials flow
+#### <i class="fa-solid fa-key"></i> Client Credentials flow
 
 import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
@@ -125,7 +125,7 @@ client_credentials_config = weaviate.AuthClientCredentials(
 client = weaviate.Client("https://localhost:8080", auth_client_secret=client_credentials_config)
 ```
 
-#### Refresh Token flow
+#### <i class="fa-solid fa-key"></i> Refresh Token flow
 
 import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
@@ -264,8 +264,12 @@ Batching is a way of importing/creating `objects` and `references` in bulk using
 2. ***Dynamic-batching***
 3. ***Manual-batching***
 
-## New: Multi-threading batch import (weaviate-client>=3.9.0)
-Python client version `3.9.0` introduces Multi-threading Batch import which works with both `Auto-batching` and `Dynamic-batching`.
+## Multi-threading batch import
+
+:::info Available in Weaviate Python client versions `3.9.0` and higher.
+:::
+
+Multi-threading Batch import works with both `Auto-batching` and `Dynamic-batching`.
 
 To use it, set the number of workers (threads) using the `.configure(...)` (same as `.__call__(...)`) by setting the argument `num_workers` in batch configuration. See also *Batch-configuration* below.
 
