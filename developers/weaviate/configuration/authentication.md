@@ -245,7 +245,7 @@ For cases or workflows where you may wish to manually obtain a token, we outline
     - Where `[USERNAME]` and `[PASSWORD]` are replaced with the actual values for each.
 1. Parse the response (`token_resp`), and look for `access_token` in `token_resp`. This is your Bearer token.
 
-##### Hybrid flow
+#### Hybrid flow
 
 1. Send a GET request to `[WEAVIATE_URL]/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`)
 2. Parse the `clientId` and `href` from `wv_oidc_config`

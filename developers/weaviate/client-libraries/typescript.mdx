@@ -86,7 +86,13 @@ import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_componen
 
 <ClientAuthOIDCIntro />
 
-#### Resource Owner Password Flow
+:::info Background refresh processes with TS
+When using OIDC with the TypeScript client, its background token refresh process can block a script from exiting. If this behavior is not desired, you can:
+1. Set the `silentRefresh` parameter as `false` in the OIDC configuration. Or,
+1. Stop the process via `client.oidcAuth?.stopTokenRefresh()`, e.g. when a script is expected to exit, or token refresh is no longer needed.
+:::
+
+#### <i class="fa-solid fa-key"></i> Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
@@ -99,12 +105,13 @@ const client: WeaviateClient = weaviate.client({
   authClientSecret: new AuthUserPasswordCredentials({
     username: "user123",
     password: "password",
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
     scopes: ["offline_access"]  // optional, depends on the configuration of your identity provider (not required with WCS)
   })
 });
 ```
 
-#### Client Credentials flow
+#### <i class="fa-solid fa-key"></i> Client Credentials flow
 
 import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
@@ -116,12 +123,13 @@ const client: WeaviateClient = weaviate.client({
   host: "some-endpoint.weaviate.network",
   authClientSecret: new AuthClientCredentials({
     clientSecret: "supersecuresecret",
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
     scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
   })
 });
 ```
 
-#### Refresh Token flow
+#### <i class="fa-solid fa-key"></i> Refresh Token flow
 
 import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
@@ -134,7 +142,8 @@ const client: WeaviateClient = weaviate.client({
   authClientSecret: new AuthAccessTokenCredentials({
     accessToken: "abcd1234",
     expiresIn: 900,
-    refreshToken: "efgh5678"
+    refreshToken: "efgh5678",
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
   })
 });
 ```

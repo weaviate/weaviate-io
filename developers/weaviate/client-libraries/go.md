@@ -61,7 +61,7 @@ import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/cli
 
 ### API key authentication
 
-:::info Available in Weaviate Python client versions `4.7.0` and higher.
+:::info Available in Weaviate Go client versions `4.7.0` and higher.
 :::
 
 import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
@@ -88,7 +88,7 @@ import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_componen
 
 <ClientAuthOIDCIntro />
 
-#### Resource Owner Password Flow
+#### <i class="fa-solid fa-key"></i> Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
@@ -111,7 +111,7 @@ if err != nil{
 }
 ```
 
-#### Client Credentials flow
+#### <i class="fa-solid fa-key"></i> Client Credentials flow
 
 import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
@@ -133,7 +133,7 @@ if err != nil{
 }
 ```
 
-#### Refresh Token flow
+#### <i class="fa-solid fa-key"></i> Refresh Token flow
 
 import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
