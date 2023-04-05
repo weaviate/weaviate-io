@@ -50,7 +50,7 @@ print(json.dumps(result, indent=4))
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -62,7 +62,7 @@ client.graphql
   .get()
   .withClassName('Question')
   .withFields('question answer category')
-  .withNearText({concepts: ["biology"]})
+  .withNearText({concepts: ['biology']})
   .withLimit(2)
   .do()
   .then(res => {
@@ -89,7 +89,7 @@ client.graphql
   .get()
   .withClassName('Question')
   .withFields('question answer category')
-  .withNearText({concepts: ["biology"]})
+  .withNearText({concepts: ['biology']})
   .withLimit(2)
   .do()
   .then((res: any) => {
