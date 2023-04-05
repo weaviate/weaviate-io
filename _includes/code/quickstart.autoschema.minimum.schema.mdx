@@ -18,8 +18,8 @@ client.schema.create_class(class_obj)
 
 ```js
 let classObj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
+  'class': 'Question',
+  'vectorizer': 'text2vec-openai'  // Or 'text2vec-cohere' or 'text2vec-huggingface'
 }
 
 // add the schema
@@ -32,6 +32,52 @@ client
     console.log(res)
   })
   .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+let classObj = {
+  'class': 'Question',
+  'vectorizer': 'text2vec-openai'  // Or 'text2vec-cohere' or 'text2vec-huggingface'
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+let classObj = {
+  'class': 'Question',
+  'vectorizer': 'text2vec-openai'  // Or 'text2vec-cohere' or 'text2vec-huggingface'
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
     console.error(err)
   });
 ```
@@ -90,18 +136,18 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
--X POST \
--H "Content-Type: application/json" \
--d '{
-    "class": "Question",
-    "vectorizer": "text2vec-openai",
-}' \
-https://some-endpoint.weaviate.network/v1/schema
+echo '{
+  "class": "Question",
+  "vectorizer": "text2vec-openai"
+}' | curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d @- \
+  https://some-endpoint.weaviate.network/v1/schema
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

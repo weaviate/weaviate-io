@@ -1,7 +1,7 @@
 ---
 title: How Weaviate's GraphQL API was designed
 slug: graphql-api-design
-authors: [laura] 
+authors: [laura]
 date: 2021-01-27
 tags: []
 image: ./img/hero.png
@@ -22,7 +22,7 @@ In this article we explain how the use of GraphQL leverages the UX of Weaviate, 
 ![Demo of Weaviate](./img/weaviate-demo.gif?i=8)
 
 ## What is Weaviate and why does it need an API?
-Weaviate is an [open-source](https://github.com/weaviate/weaviate) Vector Search Engine: for understandable knowledge representation, enabling semantic search and automatic classification. Weaviate does not only store data, but also its (automatically derived) context, consisting of linguistic information and relations to other concepts. The result is a network of knowledge, or a graph of data.
+Weaviate is an [open-source](https://github.com/weaviate/weaviate) Vector Database: for understandable knowledge representation, enabling semantic search and automatic classification. Weaviate does not only store data, but also its (automatically derived) context, consisting of linguistic information and relations to other concepts. The result is a network of knowledge, or a graph of data.
 
 One core question is: How do we interact with this new type of data storage? Interacting with big data, enriched with contextual information, might sound even more overwhelming than interacting with a traditional, relational database.
 
@@ -45,8 +45,8 @@ Let's look at an example. Consider you (digitally) store supermarket items in We
   Get {
     Product(
       where: {
-        path: ["inStock"], 
-        operator: LessThan, 
+        path: ["inStock"],
+        operator: LessThan,
         valueInt: 100
       }) {
       name
@@ -94,8 +94,8 @@ The following query shows the automatic contextualization of concepts in Weaviat
   Get {
     Product(
       where: {
-        path: ["inStock"], 
-        operator: LessThan, 
+        path: ["inStock"],
+        operator: LessThan,
         valueInt: 100
       },
       nearText: {
@@ -121,6 +121,6 @@ With Weaviate, we want to allow the end-user to be focused on their data, and th
 ## What next
 Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
+You can reach out to us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
 
 Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

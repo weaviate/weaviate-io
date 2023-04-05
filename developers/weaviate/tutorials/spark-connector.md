@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-This tutorial is designed to show you an example of how to use the [Spark Connector](https://github.com/weaviate/spark-connector) to import data into Weaviate from Spark. 
+This tutorial is designed to show you an example of how to use the [Spark Connector](https://github.com/weaviate/spark-connector) to import data into Weaviate from Spark.
 
 By the end of this tutorial, you'll be able to see how to you can import your data into [Apache Spark](https://spark.apache.org/) and then use the Spark Connector to write your data to Weaviate.
 
@@ -33,13 +33,13 @@ curl https://github.com/weaviate/spark-connector/releases/download/v||site.spark
 
 For this tutorial, you will also need a Weaviate instance running at `http://localhost:8080`. This instance does not need to have any modules and can be setup by following the [Quickstart tutorial](../quickstart/index.md).
 
-You will also need Java 8+ and Scala 2.12 installed. You can get these separately setup or a more convenient way to get both of these set up is to install [IntelliJ](https://www.jetbrains.com/idea/). 
+You will also need Java 8+ and Scala 2.12 installed. You can get these separately setup or a more convenient way to get both of these set up is to install [IntelliJ](https://www.jetbrains.com/idea/).
 
 ## What is the Spark connector?
 
 The Spark Connector gives you the ability to easily write data from Spark data structures into Weaviate. This is quite useful when used in conjunction with Spark extract, transform, load (ETLs) processes to populate a Weaviate vector database.
 
-The Spark Connector is able to automatically infer the correct Spark DataType based on your schema for the class in Weaviate. You can choose to vectorize your data when writing to Weaviate, or if you already have vectors available, you can supply them. By default, the Weaviate client will create document IDs for you for new documents but if you already have IDs you can also supply those in the dataframe. All of this and more can be specified as options in the Spark Connector. 
+The Spark Connector is able to automatically infer the correct Spark DataType based on your schema for the class in Weaviate. You can choose to vectorize your data when writing to Weaviate, or if you already have vectors available, you can supply them. By default, the Weaviate client will create document IDs for you for new documents but if you already have IDs you can also supply those in the dataframe. All of this and more can be specified as options in the Spark Connector.
 
 ## Initializing a Spark session
 
@@ -72,7 +72,7 @@ spark
 
 ## Reading data into Spark
 
-For this tutorial we will read in a subset of the Sphere dataset, containing 100k lines, into the Spark Session that was just started. 
+For this tutorial we will read in a subset of the Sphere dataset, containing 100k lines, into the Spark Session that was just started.
 
 You can download this dataset from [here](https://storage.googleapis.com/sphere-demo/sphere.100k.jsonl.tar.gz). Once downloaded extract the dataset.
 
@@ -102,7 +102,7 @@ curl -o docker-compose.yml "https://configuration.weaviate.io/v2/docker-compose/
 
 Once you have the file you can spin up the `docker-compose.yml` using:
 ```bash
-docker compose up -d 
+docker compose up -d
 ```
 
 The Spark Connector assumes that a schema has already been created in Weaviate. For this reason we will use the Python client to create this schema. For more information on how we create the schema see this [tutorial](./schema.md).
@@ -119,19 +119,19 @@ client.schema.create_class(
         "class": "Sphere",
         "properties": [
             {
-                "name": "raw", 
+                "name": "raw",
                 "dataType": ["string"]
             },
             {
-                "name": "sha", 
+                "name": "sha",
                 "dataType": ["string"]
             },
             {
-                "name": "title", 
+                "name": "title",
                 "dataType": ["string"]
             },
             {
-                "name": "url", 
+                "name": "url",
                 "dataType": ["string"]
             },
         ],
@@ -156,7 +156,7 @@ df.limit(1500).withColumnRenamed("id", "uuid").write.format("io.weaviate.spark.W
 
 Let's examine the code above to understand exactly what's happening and all the settings for the Spark Connector.
 
-- Using `.option("host", "localhost:8080")` we specify the Weaviate instance we want to write to 
+- Using `.option("host", "localhost:8080")` we specify the Weaviate instance we want to write to
 
 - Using `.option("className", "Sphere")` we ensure that the data is written to the class we just created.
 

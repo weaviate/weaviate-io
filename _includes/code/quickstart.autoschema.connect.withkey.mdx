@@ -19,11 +19,24 @@ client = weaviate.Client(
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
+    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+    scheme: 'https',
+    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
     headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
   });
 ```
@@ -40,7 +53,22 @@ cfg := weaviate.Config{
     },
 }
 
-client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
+
+    classObj := &models.Class{
+        Class:      "Question",
+        Vectorizer: "text2vec-openai",
+    }
+
+    // add the schema
+    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+}
 ```
 
 </TabItem>
@@ -81,18 +109,21 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
+
+- With `curl`, add the API key to the header as shown below:
+<br/>
 
 ```bash
-$ curl \
--X POST \
--H "Content-Type: application/json" \
--d '{
-    "class": "Question",
-    "vectorizer": "text2vec-openai",
-}' \
-https://some-endpoint.weaviate.network/v1/schema
+echo '{
+  "query": "<QUERY>"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H "X-OpenAI-Api-Key: <API-KEY>" \
+    -d @- \
+    https://some-endpoint.weaviate.network/v1/graphql
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

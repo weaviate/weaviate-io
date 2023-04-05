@@ -148,7 +148,7 @@ In addition to enabling the module, you need to configure it using environment v
 There are two different ways to authenticate against Azure with `backup-azure`. You can use either:
 
 1. An Azure Storage connection string, or
-1. An Azure Storage account name and key. 
+1. An Azure Storage account name and key.
 
 Both options can be implemented using environment variables as follows:
 
@@ -356,7 +356,7 @@ If you would like your application to wait for the background backup process to 
 
 ### Migrating to another environment
 
-The flexibility around backup providers opens up new use cases. Besides using the backup & restore feature for disaster recovery, you can also use it for duplicating environments or migrating between clusters. 
+The flexibility around backup providers opens up new use cases. Besides using the backup & restore feature for disaster recovery, you can also use it for duplicating environments or migrating between clusters.
 
 For example, consider the following situation: You would like to do a load test on production data. If you would do the load test in production it might affect users. An easy way to get meaningful results without affecting uses it to duplicate your entire environment. Once the new production-like "loadtest" environment is up, create a backup from your production environment and restore it into your "loadtest" environment. This even works if the production environment is running on a completely different cloud provider than the new environment.
 

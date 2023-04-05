@@ -84,7 +84,10 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
   className := "Article"
   fields := []graphql.Field{
@@ -156,7 +159,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
   "query": "{
     Get {
       Article(

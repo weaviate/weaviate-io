@@ -1,6 +1,6 @@
 abdel:
   name: Abdel Rodriguez
-  title: Vector Index Researcher 
+  title: Vector Index Researcher
   url: https://github.com/abdelr
   image_url: /img/people/icon/abdel.jpg
 bob:
@@ -10,12 +10,12 @@ bob:
   image_url: /img/people/icon/bob.jpg
 byron:
   name: Byron Voorbach
-  title: Head of Customer Success 
+  title: Head of Customer Success
   url: https://github.com/byronvoorbach
   image_url: /img/people/icon/byron.png
 connor:
   name: Connor Shorten
-  title: Product Researcher 
+  title: Product Researcher
   url: https://github.com/CShorten
   image_url: /img/people/icon/connor.jpg
 dan:
@@ -73,3 +73,8 @@ zain:
   title: Developer Advocate
   url: https://github.com/zainhas
   image_url: /img/people/icon/zain.jpg
+john:
+  name: John Trengrove
+  title: Solution Engineer
+  url: https://github.com/trengrj
+  image_url: /img/people/icon/john.png

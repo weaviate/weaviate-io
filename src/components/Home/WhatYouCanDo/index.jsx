@@ -10,7 +10,7 @@ export default function HomepageWhatYouCanDo() {
       <div className={styles.header}>
         <h2 className={styles.title}>What you can do with Weaviate</h2>
         <p className={styles.subtitle}>
-          Beyond search, Weaviate's next-gen vector search engine can power a wide range of innovative apps.
+          Beyond search, Weaviate's next-gen vector database can power a wide range of innovative apps.
         </p>
       </div>
       <div className={styles.module}>

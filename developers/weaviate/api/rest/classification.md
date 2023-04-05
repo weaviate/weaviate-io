@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Start a classification
 
-Weaviate's classification features allows you to classify data objects by predicting cross-references based on the semantic meaning of the data objects. Weaviate Core (without any modules) provides one type of classification: 
+Weaviate's classification features allows you to classify data objects by predicting cross-references based on the semantic meaning of the data objects. Weaviate Core (without any modules) provides one type of classification:
 - **[kNN classification](#knn-classification)**: Uses the k-nearest neighbors algorithm and requiring training data to predict cross-references. Weaviate finds similar objects and checks how they were labeled in the past. Especially when there isn't a logical semantic relationship in the objects that need to be classified, the kNN algorithm is helpful.
 
 The vectorizer module `text2vec-contextionary` provides a second type of classification. Information about this classification type can be found [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md).
@@ -25,12 +25,12 @@ import ClassificationPost from '/_includes/code/classification.post.mdx';
 Which will return [information](#response) about the started classification, including the classification `id`.
 
 ## Clients and async classification
-Some classification jobs can take some time to complete. With the Weaviate clients, there are two ways to deal with this. Although there is no explicit async method for classification available, you can do the following: 
+Some classification jobs can take some time to complete. With the Weaviate clients, there are two ways to deal with this. Although there is no explicit async method for classification available, you can do the following:
   - Wait for the classification function to finish before continuing with the rest of the script (see examples in the code block above).
     - `Python`: add `with_wait_for_completion()` to the builder pattern.
     - `Go`: add `.WithWaitForCompletion()` to the builder pattern.
     - `JavaScript`: add `.withWaitForCompletion()` to the builder pattern.
-  - Don't wait for the classification to be finished and return directly. You can check if the classification is completed using the classification meta endpoint with the id of the classification (which can be found in the return body of the classification start). The field `status` in the return body will either be `running` or `completed`. See [here](#get-status-results-and-metadata) how to query this information. 
+  - Don't wait for the classification to be finished and return directly. You can check if the classification is completed using the classification meta endpoint with the id of the classification (which can be found in the return body of the classification start). The field `status` in the return body will either be `running` or `completed`. See [here](#get-status-results-and-metadata) how to query this information.
 
 ## Get status, results and metadata
 
@@ -111,10 +111,10 @@ returns:
   "tfidfCutoffPercentile": 80,
   "type": "knn",
   "settings": {
-    "k": 3, 
+    "k": 3,
   }
 }
-``` 
+```
 
 ### Evaluation of single data object results
 After the classification is completed, the concerning reference properties data objects in the Weaviate instance are updated according to the classification. These data objects will be represented similarly to other data objects. The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](./objects.md#response-fields) or with the [GraphQL `_additional {classification}` field](../graphql/additional-properties.md#classification).
@@ -147,7 +147,7 @@ A classification can be started via the `v1/classifications` endpoint, which can
 - `basedOnProperties`: one or more of the other properties of the class (NOTE: current Weaviate supports only one property given, so make sure to pass a list with a string of one property name), this field must be specified, but the current implementation takes the whole vector of the class (objects) into account.
 
 **Optional, with default values:**
-- `settings {k: 3}`. The number of neighbors to base the classification on. 
+- `settings {k: 3}`. The number of neighbors to base the classification on.
 - Parameters to add limitations (based on e.g. background business knowledge).
   - `filters: {}` with the following possible properties:
     - `sourceWhere: {}`. Parameter to determine which data objects to classify (i.e. you can use this if you want to leave out some data objects to classify them later based on background knowledge). It accepts a [`where` filter body](../graphql/filters.md#where-filter).
@@ -182,7 +182,7 @@ A classification is started, and will run in the background. The following respo
   "tfidfCutoffPercentile": 80,
   "type": "knn",
   "settings": {
-    "k": 3, 
+    "k": 3,
   }
 }
 ```
@@ -194,9 +194,9 @@ After the classification is completed, the concerning reference properties data 
 
 Zero-shot classification is an unsupervised classification method, meaning you don't need any training data. Zero-shot allows you to classify data which wasn't seen before to build the classifier. This type of classification is perfect if you want to label data objects with classes, but you don't have or don't want to use training data. It picks the label objects that have the lowest distance to the source objects. The link is made using cross-references, similar to existing classifications in Weaviate.
 
-Weaviate's zero-shot classification measures how similar (how close) a data item is to a potential target item (a class or label). More specifically, Weaviate uses `vector search and similarity` algorithms to classify data objects with other data objects. Internally, Weaviate performs a `nearVector` search (which you can also [perform manually with GraphQL](../graphql/vector-search-parameters.md#nearvector)), and takes the closes result out of a given set of options (data objects) to classify. 
+Weaviate's zero-shot classification measures how similar (how close) a data item is to a potential target item (a class or label). More specifically, Weaviate uses `vector search and similarity` algorithms to classify data objects with other data objects. Internally, Weaviate performs a `nearVector` search (which you can also [perform manually with GraphQL](../graphql/vector-search-parameters.md#nearvector)), and takes the closes result out of a given set of options (data objects) to classify.
 
-Zero-shot classification works with all (text/image/..) vectorizers (or no vectorizer, as long as you have vectors stored in Weaviate). 
+Zero-shot classification works with all (text/image/..) vectorizers (or no vectorizer, as long as you have vectors stored in Weaviate).
 
 ### Endpoint and parameters
 

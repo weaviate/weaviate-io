@@ -13,7 +13,7 @@ TBC
 
 ```python
 import weaviate
-import json 
+import json
 
 client = weaviate.Client('https://some-endpoint.semi.network')
 query_result = client.query.get(class_name='Publication', properties="name").with_near_vector({

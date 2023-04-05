@@ -56,7 +56,7 @@ For example, here is an `Article` class which is configured to use ref2vec-centr
 1. `referenceProperties`: a list of the class' reference properties which should be used during the calculation of the centroid.
 2. `method`: the method by which the centroid is calculated. Currently only `mean` is supported.
 
-The `Article` class specifies its `hasParagraphs` property as the only reference property to be used in the calculation of an `Article` object's vector. 
+The `Article` class specifies its `hasParagraphs` property as the only reference property to be used in the calculation of an `Article` object's vector.
 
 It is important to note that unlike the other vectorizer modules (e.g. text2vec/multi2vec/image2vec), ref2vec-centroid does not generate embeddings based on the contents of an object. Rather, the point of this module is to calculate an object's vector based on vectors of its *references*.
 
@@ -121,14 +121,16 @@ Although this example uses text2vec-contextionary to generate vectors for the `P
 
 ## How to use
 
-Now that the `Article` class is properly configured to use the ref2vec-centroid module, we can begin to create some objects. If there are not yet any `Paragraph` objects to reference, or if we simply don't want to reference a `Paragraph` object yet, any newly created `Article` object will have its vector set to `nil`. 
+Now that the `Article` class is properly configured to use the ref2vec-centroid module, we can begin to create some objects. If there are not yet any `Paragraph` objects to reference, or if we simply don't want to reference a `Paragraph` object yet, any newly created `Article` object will have its vector set to `nil`.
 
 Once we are ready to reference one or more existing `Paragraph` objects (with non-nil vectors), our `Article` object will automatically be assigned a centroid vector, calculated using the vectors from all the `Paragraph` objects which are referenced by our `Article` object.
 
 ### Updating the centroid
 
 An object whose class is configured to use ref2vec-centroid will have its vector calculated (or recalculated) as a result of these events:
-- Creating the object with references already assigned as properties 
+- Creating the object with references already assigned as properties
+  - Object `POST`: create a single new object with references
+  - Batch object `POST`: create multiple objects at once, each with references
 - Updating an existing object's list of references. Note that this can happen several ways:
   - Object `PUT`: update all of the object's properties with a new set of references. This totally replaces the object's existing reference list with the newly provided one
   - Object `PATCH`: update an existing object by adding any newly provided reference(s) to the object's existing reference list
@@ -137,6 +139,8 @@ An object whose class is configured to use ref2vec-centroid will have its vector
 - Deleting references from the object. Note that this can happen several ways:
   - Object `PUT`: update all of the object's properties, removing all references
   - Reference `DELETE`: delete an existing reference from the object's list of references
+
+**Note:** Adding references in batches is not currently supported. This is because the batch reference feature is specifically built to avoid the cost of updating the vector index. If this is an important use case for you that you'd like to see in production, please feel free to open up a [feature request](https://github.com/weaviate/weaviate/issues/new) on GitHub.
 
 ### Making queries
 

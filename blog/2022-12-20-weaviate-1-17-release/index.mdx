@@ -62,7 +62,7 @@ To learn more, visit the documentation pages for [Replication Architecture](/dev
 ## Hybrid Search
 ![Hybrid Search](./img/hybrid-search.png)
 
-Hybrid search is a search engine technology that **combines** the best features of both keyword-based search algorithms with vector search techniques. In hybrid search, sparse and dense vectors are used to represent the meaning and context of search queries and documents. Sparse embeddings are generated from models like [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) and [SPLADE](https://arxiv.org/abs/2107.05720). Dense embeddings are generated from machine learning models like [GloVe](https://text2vec.org/glove.html) and [Transformers](https://huggingface.co/docs/transformers/index).
+Hybrid search is a search functionality that **combines** the best features of both keyword-based search algorithms with vector search techniques. In hybrid search, sparse and dense vectors are used to represent the meaning and context of search queries and documents. Sparse embeddings are generated from models like [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) and [SPLADE](https://arxiv.org/abs/2107.05720). Dense embeddings are generated from machine learning models like [GloVe](https://text2vec.org/glove.html) and [Transformers](https://huggingface.co/docs/transformers/index).
 
 Using both sparse and dense search methods combines the power of keyword matching with contextual semantics. For example, in the query "How to catch an Alaskan Pollock?", the semantic meaning of "catch" is revealed to be related to fishing from the context; this is where dense vectors thrive. Sparse methods on their own would not be able to associate "catch" with fishing any differently from catching a baseball or a cold. On the other hand, sparse methods can capture specific entities such as "Alaskan Pollock". This query illustrates an example where hybrid search combines the best of both sparse and dense vectors.
 
@@ -173,7 +173,9 @@ There haven't been any new fixes that are exclusive to `v1.17`. However, there h
 For a more detailed breakdown of the fixes please see the release notes:
 [v1.16.1](https://github.com/weaviate/weaviate/releases/tag/v1.16.1), [v1.16.2](https://github.com/weaviate/weaviate/releases/tag/v1.16.2), [v1.16.3](https://github.com/weaviate/weaviate/releases/tag/v1.16.3), [v1.16.4](https://github.com/weaviate/weaviate/releases/tag/v1.16.4), [v1.16.5](https://github.com/weaviate/weaviate/releases/tag/v1.16.5), [v1.16.6](https://github.com/weaviate/weaviate/releases/tag/v1.16.6), [v1.16.7](https://github.com/weaviate/weaviate/releases/tag/v1.16.7).
 
-## Stay Connected
-Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
+## Enjoy
+We hope you enjoy all the new features, new operators, performance improvements, and bug fixes that made this the best Weaviate release yet!🔥
 
-Weaviate is open-source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.
+import ShareFeedback from '/_includes/share-feedback.md';
+
+<ShareFeedback />

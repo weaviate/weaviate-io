@@ -50,17 +50,17 @@ with client.batch as batch:
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
-    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
-  });
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+});
 
 let classObj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"
+    'class': 'Question',
+    'vectorizer': 'text2vec-openai'
 }
 
 // add the schema
@@ -137,6 +137,164 @@ importQuestions();
 ```
 
 </TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
+import fetch, { Response } from 'node-fetch';  // Note that Node implements its own Response type
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+});
+
+async function getJsonData(): Promise<any> {
+  const file: Response = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json');
+  return file.json();
+}
+
+async function importQuestions() {
+  // Get the data from the data.json file
+  const data = await getJsonData();
+
+  // Prepare a batcher
+  let batcher: ObjectsBatcher = client.batch.objectsBatcher();
+  let counter: number = 0;
+  let batchSize: number = 100;
+
+  interface Question {
+    Answer: string;
+    Question: string;
+    Category: string;
+  }
+
+  data.forEach((question: Question) => {
+    // Construct an object with a class and properties 'answer' and 'question'
+    const obj = {
+      class: 'Question',
+      properties: {
+        answer: question.Answer,
+        question: question.Question,
+        category: question.Category,
+      },
+    }
+
+    // add the object to the batch queue
+    batcher = batcher.withObject(obj);
+
+    // When the batch counter reaches batchSize, push the objects to Weaviate
+    if (counter++ == batchSize) {
+      // flush the batch queue
+      batcher
+      .do()
+      .then((res: any) => {
+        console.log(res)
+      })
+      .catch((err: Error) => {
+        console.error(err)
+      });
+
+      // restart the batch queue
+      counter = 0;
+      batcher = client.batch.objectsBatcher();
+    }
+  });
+
+  // Flush the remaining objects
+  batcher
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+}
+
+importQuestions();
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
+import fetch, { Response } from 'node-fetch';  // Note that Node implements its own Response type
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+});
+
+async function getJsonData(): Promise<any> {
+  const file: Response = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json');
+  return file.json();
+}
+
+async function importQuestions() {
+  // Get the data from the data.json file
+  const data = await getJsonData();
+
+  // Prepare a batcher
+  let batcher: ObjectsBatcher = client.batch.objectsBatcher();
+  let counter: number = 0;
+  let batchSize: number = 100;
+
+  interface Question {
+    Answer: string;
+    Question: string;
+    Category: string;
+  }
+
+  data.forEach((question: Question) => {
+    // Construct an object with a class and properties 'answer' and 'question'
+    const obj = {
+      class: 'Question',
+      properties: {
+        answer: question.Answer,
+        question: question.Question,
+        category: question.Category,
+      },
+    }
+
+    // add the object to the batch queue
+    batcher = batcher.withObject(obj);
+
+    // When the batch counter reaches batchSize, push the objects to Weaviate
+    if (counter++ == batchSize) {
+      // flush the batch queue
+      batcher
+      .do()
+      .then((res: any) => {
+        console.log(res)
+      })
+      .catch((err: Error) => {
+        console.error(err)
+      });
+
+      // restart the batch queue
+      counter = 0;
+      batcher = client.batch.objectsBatcher();
+    }
+  });
+
+  // Flush the remaining objects
+  batcher
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+}
+
+importQuestions();
+```
+
+</TabItem>
 <TabItem value="go" label="Go">
 
 ```go
@@ -159,7 +317,10 @@ func main() {
 			"X-OpenAI-Api-Key": "<THE-KEY>",
 		},
 	}
-	client := weaviate.New(cfg)
+	client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
 
 	// add the schema
 	classObj := &models.Class{
@@ -256,18 +417,71 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
--X POST \
--H "Content-Type: application/json" \
--d '{
-    "class": "Question",
-    "vectorizer": "text2vec-openai",
-}' \
-https://some-endpoint.weaviate.network/v1/schema
+# Download the data file
+curl -O -L "https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json"
+
+# Replace with your endpoints
+SCHEMA_API_URL="https://some-endpoint.weaviate.network/v1/schema"
+BATCH_API_URL="http://some-endpoint.weaviate.network/v1/batch/objects"
+# Replace with your Inference API token (e.g. as an environment variable: $OPENAI_API_KEY)
+OPENAI_API_TOKEN="<OpenAI-API-Token>"
+BATCH_SIZE=100
+
+# Create the schema
+echo '{
+  "class": "Question",
+  "vectorizer": "text2vec-openai"
+}' | curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d @- \
+  $SCHEMA_API_URL
+
+# Read the JSON file and loop through its entries
+lines_processed=0
+batch_data="{\"objects\": ["
+
+cat jeopardy_tiny.json | jq -c '.[]' | while read line; do
+  # Concatenate lines
+  line=$(echo "$line" | jq "{class: \"Question\", properties: {answer: .Answer, question: .Question, category: .Category}}")
+  if [ $lines_processed -eq 0 ]; then
+    batch_data+=$line
+  else
+    batch_data+=",$line"
+  fi
+
+  lines_processed=$((lines_processed + 1))
+
+  # If the batch is full, send it to the API using curl
+  if [ $lines_processed -eq $BATCH_SIZE ]; then
+    batch_data+="]}"
+
+    curl -X POST "$BATCH_API_URL" \
+         -H "Content-Type: application/json" \
+         -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
+         -d "$batch_data"
+    echo "" # Print a newline for better output formatting
+
+    # Reset the batch data and counter
+    lines_processed=0
+    batch_data="{\"objects\": ["
+  fi
+done
+
+# Send the remaining data (if any) to the API using curl
+if [ $lines_processed -ne 0 ]; then
+  batch_data+="]}"
+
+  curl -X POST "$BATCH_API_URL" \
+       -H "Content-Type: application/json" \
+       -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
+       -d "$batch_data"
+  echo "" # Print a newline for better output formatting
+fi
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

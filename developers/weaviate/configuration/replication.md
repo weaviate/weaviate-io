@@ -23,11 +23,11 @@ Replication is disabled by default and can be enabled per data class in the [sch
 
 ```yaml
 {
-  "class": "ExampleClass",                        
-  "properties": [                           
+  "class": "ExampleClass",
+  "properties": [
     {
-      "name": "exampleProperty", 
-      "dataType": [                         
+      "name": "exampleProperty",
+      "dataType": [
         "string"
       ]
     }
@@ -59,7 +59,7 @@ The data schema has a [write consistency level](../concepts/replication-architec
 
 When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available [consistency levels](../concepts/replication-architecture/consistency.md) are `ONE`, `QUORUM` (replication_factor / 2 + 1) and `ALL`.
 
-The `consistency_level` can be specified at query time: 
+The `consistency_level` can be specified at query time:
 
 ```bash
 # Get an object by ID, with consistency level ONE

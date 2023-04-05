@@ -29,7 +29,6 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
 - `Operator` (which takes one of the following values)
   - `And`
   - `Or`
-  - `Not`
   - `Equal`
   - `NotEqual`
   - `GreaterThan`
@@ -495,7 +494,7 @@ import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 <GraphQLFiltersAfter/>
 
 :::note
-The `after` cursor is available on both single-shard and multi-shard set-ups.  
+The `after` cursor is available on both single-shard and multi-shard set-ups.
 :::
 
 ## More Resources
