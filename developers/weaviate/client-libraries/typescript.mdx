@@ -164,12 +164,13 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
   authClientSecret: new weaviate.AuthUserPasswordCredentials({
-    username: "user123",
-    password: "password",
-    scopes: ["offline_access"]  // optional, depends on the configuration of your identity provider (not required with WCS)
+    username: 'user123',
+    password: 'password',
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+    scopes: ['offline_access']  // optional, depends on the configuration of your identity provider (not required with WCS)
   })
 });
 ```
@@ -181,13 +182,13 @@ const client = weaviate.client({
 import weaviate, { WeaviateClient, AuthUserPasswordCredentials } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
   authClientSecret: new AuthUserPasswordCredentials({
-    username: "user123",
-    password: "password",
+    username: 'user123',
+    password: 'password',
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ["offline_access"]  // optional, depends on the configuration of your identity provider (not required with WCS)
+    scopes: ['offline_access']  // optional, depends on the configuration of your identity provider (not required with WCS)
   })
 });
 ```
@@ -208,11 +209,12 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
   authClientSecret: new weaviate.AuthClientCredentials({
-    clientSecret: "supersecuresecret",
-    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
+    clientSecret: 'supersecuresecret',
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+    scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
   })
 });
 ```
@@ -224,12 +226,12 @@ const client = weaviate.client({
 import weaviate, { WeaviateClient, AuthClientCredentials } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
   authClientSecret: new AuthClientCredentials({
-    clientSecret: "supersecuresecret",
+    clientSecret: 'supersecuresecret',
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
+    scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
   })
 });
 ```
@@ -250,12 +252,13 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
   authClientSecret: new weaviate.AuthAccessTokenCredentials({
-    accessToken: "abcd1234",
+    accessToken: 'abcd1234',
     expiresIn: 900,
-    refreshToken: "efgh5678"
+    refreshToken: 'efgh5678',
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
   })
 });
 ```
@@ -267,12 +270,12 @@ const client = weaviate.client({
 import weaviate, { WeaviateClient, AuthAccessTokenCredentials } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
   authClientSecret: new AuthAccessTokenCredentials({
-    accessToken: "abcd1234",
+    accessToken: 'abcd1234',
     expiresIn: 900,
-    refreshToken: "efgh5678",
+    refreshToken: 'efgh5678',
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
   })
 });
@@ -292,8 +295,8 @@ You can pass custom headers to the client, which are added at initialization:
 const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
   headers: {headerName: 'HeaderValue'}
 });
 ```
@@ -305,8 +308,8 @@ const client = weaviate.client({
 import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
   headers: {headerName: 'HeaderValue'}
 });
 ```
