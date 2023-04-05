@@ -71,7 +71,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-client');
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -87,13 +87,12 @@ const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
 client.graphql
   .get()
   .withClassName('Article')
-  .withFields(
-    'title summary ' +
-    // highlight-next-line
-    `_additional {generate(singleResult:{ prompt: ${generatePrompt} }) { singleResult }}`
-  )
+  .withFields('title summary')
   .withNearText({
     concepts: ['Italian food']
+  })
+  .withGenerate({
+    singlePrompt: generatePrompt,
   })
   .withLimit(5)
   .do()
@@ -101,6 +100,43 @@ client.graphql
     console.log(res)
   })
   .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},
+});
+
+// highlight-start
+// instruction for the generative module
+const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
+// highlight-end
+
+client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title summary')
+  .withNearText({
+    concepts: ['Italian food']
+  })
+  .withGenerate({
+    singlePrompt: generatePrompt,
+  })
+  .withLimit(5)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
     console.error(err)
   });
 ```

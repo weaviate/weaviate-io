@@ -1,16 +1,26 @@
 ---
-title: TypeScript
+title: TypeScript / JavaScript
 sidebar_position: 2
 image: og/docs/client-libraries.jpg
 # tags: ['TypeScript', 'client library']
 ---
 import Badges from '/_includes/badges.mdx';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Badges/>
 
 :::note TypeScript client version
 The current TypeScript client version is `v||site.typescript_client_version||`.
 :::
+
+## Overview
+
+The TypeScript client can be used for both JavaScript and TypeScript scripts.
+
+import JavaScriptMaintenanceWarning from '/_includes/javascript-maintenance-warning.mdx';
+
+<JavaScriptMaintenanceWarning />
 
 ## Installation and setup
 
@@ -23,16 +33,42 @@ npm install weaviate-ts-client
 
 ## Usage and type definitions
 
+Once installed, you can use the client in your TypeScript and JavaScript scripts, as shown in the following examples.
+
 ### Usage
 
-Once the client has been installed, you can use the client in your TypeScript scripts, such as in the following example.
+<Tabs groupId="languages">
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-ts-client');
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+});
+
+client
+  .schema
+  .getter()
+  .do()
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
 
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
 });
 
 client
@@ -46,6 +82,9 @@ client
     console.error(err)
   });
 ```
+
+</TabItem>
+</Tabs>
 
 ### Type definitions
 
@@ -69,16 +108,36 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 
 <ClientAuthApiKey />
 
-```ts
-import weaviate, { ApiKey } from 'weaviate-ts-client';
+<Tabs groupId="languages">
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-ts-client');
 
 // Instantiate the client with the auth config
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',
+  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your API Key for the Weaviate instance
+});
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
+
+// Instantiate the client with the auth config
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your API Key for the Weaviate instance
 });
 ```
+
+</TabItem>
+</Tabs>
 
 ### OIDC authentication
 
@@ -98,18 +157,44 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 
 <ClientAuthFlowResourceOwnerPassword />
 
-```ts
-const client: WeaviateClient = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
-  authClientSecret: new AuthUserPasswordCredentials({
-    username: "user123",
-    password: "password",
+<Tabs groupId="languages">
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-ts-client');
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  authClientSecret: new weaviate.AuthUserPasswordCredentials({
+    username: 'user123',
+    password: 'password',
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ["offline_access"]  // optional, depends on the configuration of your identity provider (not required with WCS)
+    scopes: ['offline_access']  // optional, depends on the configuration of your identity provider (not required with WCS)
   })
 });
 ```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient, AuthUserPasswordCredentials } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  authClientSecret: new AuthUserPasswordCredentials({
+    username: 'user123',
+    password: 'password',
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+    scopes: ['offline_access']  // optional, depends on the configuration of your identity provider (not required with WCS)
+  })
+});
+```
+
+</TabItem>
+</Tabs>
 
 #### <i class="fa-solid fa-key"></i> Client Credentials flow
 
@@ -117,17 +202,42 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 
 <ClientAuthFlowClientCredentials />
 
-```ts
-const client: WeaviateClient = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
-  authClientSecret: new AuthClientCredentials({
-    clientSecret: "supersecuresecret",
+<Tabs groupId="languages">
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-ts-client');
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  authClientSecret: new weaviate.AuthClientCredentials({
+    clientSecret: 'supersecuresecret',
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ["scope1", "scope2"]  // optional, depends on the configuration of your identity provider
+    scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
   })
 });
 ```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient, AuthClientCredentials } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  authClientSecret: new AuthClientCredentials({
+    clientSecret: 'supersecuresecret',
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+    scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
+  })
+});
+```
+
+</TabItem>
+</Tabs>
 
 #### <i class="fa-solid fa-key"></i> Refresh Token flow
 
@@ -135,30 +245,77 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 
 <ClientAuthBearerToken />
 
-```ts
-const client: WeaviateClient = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
-  authClientSecret: new AuthAccessTokenCredentials({
-    accessToken: "abcd1234",
+<Tabs groupId="languages">
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-ts-client');
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  authClientSecret: new weaviate.AuthAccessTokenCredentials({
+    accessToken: 'abcd1234',
     expiresIn: 900,
-    refreshToken: "efgh5678",
+    refreshToken: 'efgh5678',
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
   })
 });
 ```
 
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient, AuthAccessTokenCredentials } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  authClientSecret: new AuthAccessTokenCredentials({
+    accessToken: 'abcd1234',
+    expiresIn: 900,
+    refreshToken: 'efgh5678',
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+  })
+});
+```
+
+</TabItem>
+</Tabs>
+
 ## Custom headers
 
 You can pass custom headers to the client, which are added at initialization:
 
-```ts
-const client: WeaviateClient = weaviate.client({
-  scheme: "https",
-  host: "some-endpoint.weaviate.network",
+<Tabs groupId="languages">
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-ts-client');
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
   headers: {headerName: 'HeaderValue'}
 });
 ```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  headers: {headerName: 'HeaderValue'}
+});
+```
+
+</TabItem>
+</Tabs>
 
 These headers will then be included in every request that the client makes.
 

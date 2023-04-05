@@ -34,6 +34,12 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/console'
         },
 
+        // Client library redirects
+        {
+            to: '/developers/weaviate/client-libraries/typescript',
+            from: '/developers/weaviate/client-libraries/javascript'
+        },
+
         // Config-refs redirects
         {
             to: '/developers/weaviate/config-refs/datatypes',

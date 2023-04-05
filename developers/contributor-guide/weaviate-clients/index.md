@@ -10,7 +10,7 @@ image: og/contributor-guide/weaviate-clients.jpg
 There are currently four clients developed for Weaviate's APIs:
 * [Python](/developers/weaviate/client-libraries/python.md)
 * [Go](/developers/weaviate/client-libraries/go.md)
-* [JavaScript](/developers/weaviate/client-libraries/javascript.md)
+* [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx)
 * [Java](/developers/weaviate/client-libraries/java.md)
 
 These clients, and all future clients are and will be developed according to the following guidelines:

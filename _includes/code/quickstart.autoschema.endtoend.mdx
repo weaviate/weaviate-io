@@ -50,7 +50,7 @@ with client.batch as batch:
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -59,8 +59,8 @@ const client = weaviate.client({
 });
 
 let classObj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"
+    'class': 'Question',
+    'vectorizer': 'text2vec-openai'
 }
 
 // add the schema

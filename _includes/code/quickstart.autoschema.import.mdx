@@ -23,6 +23,9 @@ with client.batch as batch:
 
 ```js
 async function importQuestions() {
+  // Get the data from the data.json file
+  const data = await getJsonData();
+
   // Prepare a batcher
   let batcher = client.batch.objectsBatcher();
   let counter = 0;
