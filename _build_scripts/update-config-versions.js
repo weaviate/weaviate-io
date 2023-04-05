@@ -24,7 +24,7 @@ const appendVersionsToConfig = async (config) => {
     config.weaviate_version = await getRepoVersion('weaviate');
     config.python_client_version = await getRepoVersion('weaviate-python-client');
     config.go_client_version = await getRepoVersion('weaviate-go-client');
-    config.java_client_version = await getRepoVersion('weaviate-java-client');git
+    config.java_client_version = await getRepoVersion('weaviate-java-client');
     // config.javascript_client_version = await getRepoVersion('weaviate-javascript-client');
     config.typescript_client_version = await getRepoVersion('typescript-client');
 
