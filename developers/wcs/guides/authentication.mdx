@@ -6,6 +6,7 @@ image: og/wcs/user_guides.jpg
 
 import WCSGetKey from './img/wcs-get-key.png';
 import WCSKeyExample from './img/wcs-key-example.png';
+import WCSHeadersAuth from './img/wcs-headers-auth.png';
 
 ## Overview
 
@@ -29,15 +30,15 @@ Each paid WCS instance will also come with a read-only API key in addition to th
 
 ## Access API key(s)
 
-For instances with authentication enabled, the API key(s) can be accessed by clicking here
+For instances with authentication enabled, the API key(s) can be accessed by clicking the key 🔑 icon:
 
 <img src={WCSGetKey} width="100%" alt="Instance configuration"/>
 
-Which should bring up a screen like this, containing your API key(s) and additional header example:
+That should bring up a screen like this, containing your API key(s) and an authorization header:
 
 <img src={WCSKeyExample} width="100%" alt="WCS key example"/>
 
-Copy the highlighted text, and pass it as an additional header via the `Header` tab located towards the bottom of the console.
+Use the API key or the authorization header to authenticate against Weaviate as described below.
 
 :::warning Keep your API key secret
 Please ensure that your API key is kept secret for security. The above image is for demonstration purposes only.
@@ -76,12 +77,12 @@ import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.p
 
 <WCSAuthenticationUserPass/>
 
-This way, every request made using the client will include the API key.
+This way, every request made using the client will include an OIDC token.
 
 <details>
   <summary>Manually adding the key to the header.</summary>
 
-If using a Weaviate client is not possible, you can manually include the API key in the request header as below.
+If using a Weaviate client is not possible, you can manually include an OIDC token in the request header as below.
 
 ```json
 Authorization: Bearer {TOKEN}
@@ -98,6 +99,25 @@ To automate this workflow, we strongly recommend that you use your preferred Wea
 :::note What OIDC "flow" is this?
 This is the "Resource Owner Password Flow" method.
 :::
+
+### Weaviate console
+
+:::info Automatic authentication for your WCS instances
+If you are using the GraphQL console to query WCS instances under the same account, the console will automatically include the relevant credentials for you. In other words, your queries will be automatically authenticated.
+:::
+
+If you are querying an external Weaviate instance through the WCS console, you can pass authentication credentials (e.g. your API key) in this format:
+
+```json title="Headers tab"
+{ "Authorization": "Bearer <YOUR_API_KEY>" }
+```
+
+Pass the credentials as an additional header via the `Header` tab located towards the bottom of the console:
+
+<img src={WCSHeadersAuth} width="100%" alt="WCS Headers Authorization Bearer example"/>
+
+This will authenticate your requests against the Weaviate instance.
+
 ## Resetting credentials
 
 If you would like to reset your credentials for whatever reason, you can do so as follows:
