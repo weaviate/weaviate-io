@@ -36,7 +36,7 @@ In the section about Storage, [we have described in detail which parts make up a
 1. An inverted index (similar to a traditional search engine) is used to create an allow-list of eligible candidates. This list is essentially a list of `uint64` ids, so it can grow very large without sacrificing efficiency.
 2. A vector search is performed where the allow-list is passed to the HNSW index. The index will move along any node's edges normally, but will only add ids to the result set that are present on the allow list. The exit conditions for the search are the same as for an unfiltered search: The search will stop when the desired limit is reached and additional candidates no longer improve the result quality.
 
-### Pre-filtering with roaring bitmaps
+### Pre-filtering with Roaring Bitmaps
 
 Weaviate versions `1.18.0` and up use Roaring Bitmaps through the `RoaringSet` data type. Roaring Bitmaps employ various strategies to add efficiencies, whereby it divides data into chunks and applies an appropriate storage strategy to each one. This enables high data compression and set operations speeds, resulting in faster filtering speeds for Weaviate.
 
