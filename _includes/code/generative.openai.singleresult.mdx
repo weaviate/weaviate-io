@@ -68,16 +68,16 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="ts" label="TypeScript">
 
-```js
-const weaviate = require('weaviate-client');
+```ts
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',
   headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},
-});
+})
 
 // highlight-start
 // instruction for the generative module
@@ -87,20 +87,19 @@ const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
 client.graphql
   .get()
   .withClassName('Article')
-  .withFields(
-    'title summary ' +
-    // highlight-next-line
-    `_additional {generate(singleResult:{ prompt: ${generatePrompt} }) { singleResult }}`
-  )
+  .withFields('title summary')
   .withNearText({
     concepts: ['Italian food']
   })
+  .withGenerate({
+    singlePrompt: generatePrompt,
+  })
   .withLimit(5)
   .do()
-  .then(res => {
+  .then((res: any) => {
     console.log(res)
   })
-  .catch(err => {
+  .catch((err: Error) => {
     console.error(err)
   });
 ```
