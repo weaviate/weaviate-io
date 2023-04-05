@@ -7,11 +7,55 @@ import { analyticsSiteSearched, analyticsSiteSearchResultsRejected, analyticsSit
 import { debounceTime, tap, distinctUntilChanged, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+const defaultMenuPages = {
+  heading: 'Pages',
+  id: 'pages',
+  items: [{
+      id: 1001,
+      children: 'Weaviate Cloud console',
+      icon: 'BookmarkIcon',
+      href: 'https://console.weaviate.cloud/'
+    },{
+      id: 1002,
+      children: 'Weaviate Cloud Services - Pricing',
+      icon: 'BookmarkIcon',
+      href: '/pricing'
+    },
+    {
+      id: 1003,
+      children: 'Blog',
+      icon: 'BookmarkIcon',
+      href: '/blog'
+    },{
+      id: 1004,
+      children: 'Documentation',
+      icon: 'BookmarkIcon',
+      href: '/developers/weaviate'
+    },
+  ]
+}
+
+const defaultSocialMediaLinks = {
+  heading: 'SocialMedia',
+  id: 'socialMedia',
+  items: [{
+      id: 2001,
+      children: 'Slack',
+      icon: 'ChatBubbleLeftRightIcon',
+      href: 'https://weaviate.io/slack/'
+    },{
+      id: 2002,
+      children: 'Twitter',
+      icon: 'ChatBubbleLeftRightIcon',
+      href: 'https://twitter.com/weaviate_io'
+    },
+  ]
+}
 
 export default function CommandMenu({open, setOpen}) {
   const [page, setPage] = useState('root');
   const [search, setSearch] = useState('');
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([defaultMenuPages, defaultSocialMediaLinks]);
   const [onSearch$] = useState(()=>new Subject());
 
   useEffect(() => {
@@ -73,7 +117,7 @@ export default function CommandMenu({open, setOpen}) {
 
   const clearSearch = () => {
     setSearch('');
-    setFilteredItems([]);
+    setFilteredItems([defaultMenuPages, defaultSocialMediaLinks]);
   }
 
   const handleQuery = async (searchTerm) => {
@@ -194,4 +238,3 @@ export default function CommandMenu({open, setOpen}) {
     </CommandPalette>
   );
 }
-
