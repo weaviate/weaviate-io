@@ -101,7 +101,7 @@ client.graphql
 ```
 
 </TabItem>
-{/* <TabItem value="go" label="Go">
+<TabItem value="go" label="Go">
 
 ```go
 package main
@@ -125,32 +125,31 @@ func main() {
     panic(err)
   }
 
-  className := "Question"
+	fields := []graphql.Field{
+		{Name: "question"},
+		{Name: "answer"},
+		{Name: "category"},
+	}
 
-  question := graphql.Field{Name: "question"}
-  answer := graphql.Field{Name: "answer"}
+	nearText := client.GraphQL().
+		NearTextArgBuilder().
+		WithConcepts([]string{"biology"})
 
-  concepts := []string{"biology"}
-  nearText := client.GraphQL().NearTextArgBuilder().
-    WithConcepts(concepts).
+	result, err := client.GraphQL().Get().
+		WithClassName("Question").
+		WithFields(fields...).
+		WithNearText(nearText).
+		WithLimit(2).
+		Do(context.Background())
+	if err != nil {
+		panic(err)
+	}
 
-  ctx := context.Background()
-
-  result, err := client.GraphQL().Get().
-    WithClassName(className).
-    WithFields(question, answer).
-    WithNearText(nearText).
-    WithLimit(2).
-    Do(ctx)
-
-  if err != nil {
-    panic(err)
-  }
-  fmt.Printf("%v", result)
+	fmt.Printf("%v", result)
 }
 ```
 
-</TabItem> */}
+</TabItem>
 {/* <TabItem value="java" label="Java">
 
 ```java
