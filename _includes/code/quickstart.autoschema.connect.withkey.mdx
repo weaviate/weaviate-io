@@ -64,7 +64,7 @@ cfg := weaviate.Config{
     }
 
     // add the schema
-    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+    err = client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
     if err != nil {
         panic(err)
     }

@@ -72,7 +72,7 @@ import (
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
 )
 
-func GetSchema() {
+func main() {
     cfg := weaviate.Config{
         Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
         Scheme: "https",
@@ -87,7 +87,7 @@ func GetSchema() {
     if err != nil {
         panic(err)
     }
-    fmt.Printf("%v", schema)
+    fmt.Printf("%+v", schema)
 }
 ```
 

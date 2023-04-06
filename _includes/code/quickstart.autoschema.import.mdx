@@ -163,7 +163,7 @@ if err := json.NewDecoder(data.Body).Decode(&items); err != nil {
 objects := make([]*models.Object, len(items))
 for i := range items {
   objects[i] = &models.Object{
-    Class: className,
+    Class: "Question",
     Properties: map[string]any{
       "category": items[i]["Category"],
       "question": items[i]["Question"],
@@ -173,7 +173,7 @@ for i := range items {
 }
 
 // batch write items
-batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(ctx)
+batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(context.Background())
 if err != nil {
   panic(err)
 }

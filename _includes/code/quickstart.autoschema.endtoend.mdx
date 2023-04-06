@@ -248,8 +248,8 @@ func main() {
 		Class:      "Question",
 		Vectorizer: "text2vec-openai",
 	}
-	err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-	if err != nil {
+  
+	if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
 		panic(err)
 	}
 
@@ -263,7 +263,7 @@ func main() {
 	objects := make([]*models.Object, len(items))
 	for i := range items {
 		objects[i] = &models.Object{
-			Class: className,
+			Class: "Question",
 			Properties: map[string]any{
 				"category": items[i]["Category"],
 				"question": items[i]["Question"],

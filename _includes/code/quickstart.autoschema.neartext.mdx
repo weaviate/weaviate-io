@@ -126,9 +126,9 @@ func main() {
   }
 
 	fields := []graphql.Field{
-		graphql.Field{Name: "question"},
-		graphql.Field{Name: "answer"},
-		graphql.Field{Name: "category"},
+		{Name: "question"},
+		{Name: "answer"},
+		{Name: "category"},
 	}
 
 	nearText := client.GraphQL().
@@ -136,7 +136,7 @@ func main() {
 		WithConcepts([]string{"biology"})
 
 	result, err := client.GraphQL().Get().
-		WithClassName(className).
+		WithClassName("Question").
 		WithFields(fields...).
 		WithNearText(nearText).
 		WithLimit(2).

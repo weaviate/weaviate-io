@@ -85,7 +85,7 @@ client.schema
 
 ```go
 // delete the class
-if err := client.Schema().ClassDeleter().WithClassName(className).Do(ctx); err != nil {
+if err := client.Schema().ClassDeleter().WithClassName(className).Do(context.Background()); err != nil {
   // Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
   if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
     panic(err)
