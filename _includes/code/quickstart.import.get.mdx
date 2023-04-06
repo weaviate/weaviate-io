@@ -17,23 +17,46 @@ print(json.dumps(some_objects))
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-client');
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  });
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
 
 client
-    .data
-    .getter()
-    .do()
-    .then(res => {
-        console.log(res)
-    })
-    .catch(err => {
-        console.error(err)
-    });
+  .data
+  .getter()
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
+
+client
+  .data
+  .getter()
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
 ```
 
 </TabItem>

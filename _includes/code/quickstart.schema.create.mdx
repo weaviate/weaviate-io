@@ -48,37 +48,36 @@ print(json.dumps(schema, indent=4))
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-client');
+const weaviate = require('weaviate-ts-client');
 
-// update the endpoint!
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  });
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
 
-// we will create the class "Question"
+// we will create the class 'Question'
 
 let classObj = {
-    'class': 'Question',
-    'description': 'Information from a Jeopardy! question',  // description of the class
-    'properties': [
-        {
-            "dataType": ["text"],
-            "description": "The question",
-            "name": "question",
-        },
-        {
-            "dataType": ["text"],
-            "description": "The answer",
-            "name": "answer",
-        },
-        {
-            "dataType": ["string"],
-            "description": "The category",
-            "name": "category",
-        },
-    ],
-    "vectorizer": "text2vec-openai",
+  'class': 'Question',
+  'description': 'Information from a Jeopardy! question',  // description of the class
+  'properties': [
+      {
+          'dataType': ['text'],
+          'description': 'The question',
+          'name': 'question',
+      },
+      {
+          'dataType': ['text'],
+          'description': 'The answer',
+          'name': 'answer',
+      },
+      {
+          'dataType': ['string'],
+          'description': 'The category',
+          'name': 'category',
+      },
+  ],
+  'vectorizer': 'text2vec-openai',
 }
 
 // add the schema
@@ -103,6 +102,68 @@ client
     console.log(res);
   })
   .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
+
+// we will create the class 'Question'
+
+let classObj = {
+  'class': 'Question',
+  'description': 'Information from a Jeopardy! question',  // description of the class
+  'properties': [
+      {
+          'dataType': ['text'],
+          'description': 'The question',
+          'name': 'question',
+      },
+      {
+          'dataType': ['text'],
+          'description': 'The answer',
+          'name': 'answer',
+      },
+      {
+          'dataType': ['string'],
+          'description': 'The category',
+          'name': 'category',
+      },
+  ],
+  'vectorizer': 'text2vec-openai',
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+
+// get and print the schema
+client
+  .schema
+  .getter()
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
     console.error(err)
   });
 ```
