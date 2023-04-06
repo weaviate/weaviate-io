@@ -42,33 +42,66 @@ print(json.dumps(result, indent=4))
 <TabItem value="js" label="JavaScript">
 
 ```js
-weaviate = require("weaviate-client");
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
-    scheme: "https",
-    host: "some-endpoint.semi.network",
-    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
 });
 
 const where_filter = {
-    "path": ["category"],
-    "operator": "Equal",
-    "valueText": "ANIMALS",
-}
+  'path': ['category'],
+  'operator': 'Equal',
+  'valueText': 'ANIMALS',
+};
 
 client.graphql
-    .get()
-    .withClassName('Question')
-    .withFields('question answer category')
-    .withNearText({concepts: ["biology"]})
-    .withWhere(where_filter)
-    .do()
-    .then(res => {
-        console.log(JSON.stringify(res, null, 2))
-    })
-    .catch(err => {
-        console.error(err)
-    });
+  .get()
+  .withClassName('Question')
+  .withFields('question answer category')
+  .withNearText({concepts: ['biology']})
+  .withWhere(where_filter)
+  .do()
+  .then(res => {
+    console.log(JSON.stringify(res, null, 2))
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+});
+
+const where_filter = {
+  'path': ['category'],
+  'operator': 'Equal',
+  'valueText': 'ANIMALS',
+};
+
+client.graphql
+  .get()
+  .withClassName('Question')
+  .withFields('question answer category')
+  .withNearText({concepts: ['biology']})
+  .withWhere(where_filter)
+  .do()
+  .then((res: any) => {
+    console.log(JSON.stringify(res, null, 2))
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
 ```
 
 </TabItem>

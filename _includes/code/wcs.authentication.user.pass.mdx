@@ -48,14 +48,13 @@ import (
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
 )
 
-cfg, err := weaviate.Config(
+cfg := weaviate.Config(
   Host:"some-endpoint.weaviate.network",  // Replace w/ your endpoint
   Scheme: "https",
   authConfig: auth.ResourceOwnerPasswordFlow{
     Username: "WCS_USERNAME",  // Replace w/ your WCS username
     Password: "WCS_PASSWORD",  // Replace w/ your WCS password
   }
-  headers: nil,
 )
 client, err := weaviate.NewClient(cfg)
 if err != nil {
