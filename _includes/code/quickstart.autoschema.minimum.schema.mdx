@@ -68,10 +68,8 @@ classObj := &models.Class{
     Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
 }
 
-// add the schema
-err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-if err != nil {
-    panic(err)
+if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
+  panic(err)
 }
 ```
 
