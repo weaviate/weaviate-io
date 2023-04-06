@@ -12,9 +12,9 @@ export default function Intro() {
           </h2>
           <p>
             Weaviate is a remote-first company that has big ambitions. Our
-            flagship product Weaviate is a vector-based search engine, which
-            uses AI and machine learning to organize and search data in a
-            completely new way.
+            product Weaviate is a vector-based search engine, which uses AI and
+            machine learning to organize and search data in a completely new
+            way.
           </p>
           <p>
             With over 1.6 million downloads, Weaviate continues to grow. We are

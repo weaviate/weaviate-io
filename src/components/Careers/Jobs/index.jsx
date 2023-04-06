@@ -56,7 +56,7 @@ export default function Jobs() {
   }, [rawJobs]);
 
   return (
-    <div className="container">
+    <div className="container" id="jobs">
       <div className={styles.title}>
         <h2>Let’s work together</h2>
         <p>
@@ -91,7 +91,7 @@ export default function Jobs() {
         </div>
       </div>
       <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="#contact-sales">
+        <Link className={styles.buttonGradient} to="mailto:jessie@weaviate.io">
           Let’s have a chat
         </Link>
       </div>

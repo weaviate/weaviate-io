@@ -18,7 +18,7 @@
   justify-content: space-between;
 
   width: 33.5rem;
-  height: 25rem;
+  height: 27rem;
   background-color: #141F39;
   margin: 1rem;
   padding: 2rem;
@@ -32,9 +32,6 @@
 }
 
 .cardHeader {
-  // display: flex;
-  // justify-content: space-evenly;
-  // align-items: flex-start;
   display: grid;
   grid-template-columns: 1fr 2fr;
 
@@ -65,6 +62,11 @@
   @media screen and (max-width: 600px) {
     margin-bottom: 0.7rem;
   }
+}
+
+.contentDiv {
+  height: 100%;
+  margin-top: 0.5rem;
 }
 
 .textCardContent {
@@ -106,6 +108,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+
+  // background-color: red;
 }
 
 .startImg {

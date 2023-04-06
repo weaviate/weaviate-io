@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 
 export default function InterviewProcess() {
   return (
-    <div className="container">
+    <div id="interview-process" className="container">
       <div className={styles.title}>
         <h2>What to expect from our interview process</h2>
       </div>
@@ -20,7 +20,7 @@ export default function InterviewProcess() {
               </h3>
             </div>
           </div>
-          <div>
+          <div className={styles.contentDiv} className={styles.contentDiv}>
             <p className={styles.textCardContent}>
               Introduce yourself. Tell us about your ambitions and life goals.
               We’d like to know about you as a person - so feel free to tell us
@@ -31,7 +31,6 @@ export default function InterviewProcess() {
           </div>
           <div className={styles.cardFooter}>
             <div className={styles.cardFooterDiv}>
-              {' '}
               <div className={styles.cardHeaderLeft}>
                 <div className={`${styles.img} ${styles.startImg}`} />
               </div>
@@ -54,7 +53,7 @@ export default function InterviewProcess() {
               </h3>
             </div>
           </div>
-          <div>
+          <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
               You will have the chance to talk about your experience in greater
               depth. Give us insights into how your skills fit this role and
@@ -77,14 +76,16 @@ export default function InterviewProcess() {
         </div>
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <div className={`${styles.img} ${styles.checkImg}`} />
+            <div className={styles.cardHeaderLeft}>
+              <div className={`${styles.img} ${styles.checkImg}`} />
+            </div>
             <div className={styles.cardHeaderRight}>
               <h3 className={styles.cardTextColor}>
                 Step 3 <h3>Your challenge and in-depth interview</h3>
               </h3>
             </div>
           </div>
-          <div>
+          <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
               You will receive a Weaviate-related challenge. This assignment
               gives you insights into the type of work related to this role and
@@ -107,14 +108,16 @@ export default function InterviewProcess() {
         </div>
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <div className={`${styles.img} ${styles.heartImg}`} />
+            <div className={styles.cardHeaderLeft}>
+              <div className={`${styles.img} ${styles.heartImg}`} />
+            </div>
             <div className={styles.cardHeaderRight}>
               <h3 className={styles.cardTextColor}>
                 Step 4 <h3>Are we a cultural fit?</h3>
               </h3>
             </div>
           </div>
-          <div>
+          <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
               To be able to have a strong remote culture, Weaviate needs to hire
               the right people with a good cultural fit. Let’s talk about your

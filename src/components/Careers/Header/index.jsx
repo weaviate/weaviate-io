@@ -17,13 +17,10 @@ export default function Header() {
         </p>
       </div>
       <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="#contact-sales">
+        <Link className={styles.buttonGradient} to="#jobs">
           View Openings
         </Link>
-        <Link
-          className={styles.buttonOutline}
-          to="https://console.weaviate.cloud"
-        >
+        <Link className={styles.buttonOutline} to="#interview-process">
           Check our Hiring Process
         </Link>
       </div>
