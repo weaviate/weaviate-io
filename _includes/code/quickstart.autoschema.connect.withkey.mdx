@@ -46,28 +46,25 @@ const client: WeaviateClient = weaviate.client({
 
 ```go
 cfg := weaviate.Config{
-    Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
-    Scheme: "https",
-    Headers: map[string]string{
-      "X-OpenAI-Api-Key": "<THE-KEY>",
-    },
+  Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
+  Scheme: "https",
+  Headers: map[string]string{
+    "X-OpenAI-Api-Key": "<THE-KEY>",
+  },
 }
 
-    client, err := weaviate.NewClient(cfg)
-    if err != nil {
-        panic(err)
-    }
+client, err := weaviate.NewClient(cfg)
+if err != nil {
+    panic(err)
+}
 
-    classObj := &models.Class{
-        Class:      "Question",
-        Vectorizer: "text2vec-openai",
-    }
+classObj := &models.Class{
+    Class:      "Question",
+    Vectorizer: "text2vec-openai",
+}
 
-    // add the schema
-    err = client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-    if err != nil {
-        panic(err)
-    }
+if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
+  panic(err)
 }
 ```
 
