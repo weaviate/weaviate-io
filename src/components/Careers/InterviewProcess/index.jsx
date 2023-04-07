@@ -34,7 +34,7 @@ export default function InterviewProcess() {
               <div className={styles.cardHeaderLeft}>
                 <div className={`${styles.img} ${styles.startImg}`} />
               </div>
-              <p>Jessie de Groof, head of People & Culture</p>
+              <p>Jessie de Groot, head of People & Culture</p>
             </div>
             <div className={styles.cardFooterDiv}>
               <div className={`${styles.img} ${styles.clockSmallImg}`} />
