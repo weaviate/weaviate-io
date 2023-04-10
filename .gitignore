@@ -1,8 +1,8 @@
 # For testing
 .venv
 nohup.out
-.ipynb
-.ipynb_checkpoints/*
+**/.ipynb
+**/.ipynb_checkpoints/*
 
 # Dependencies
 /node_modules

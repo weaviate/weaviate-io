@@ -17,7 +17,7 @@ updated_schema = {
 client.data_object.update(
     updated_schema,
     class_name="Author",
-    "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"
+    uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
     consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 
@@ -25,7 +25,7 @@ client.data_object.update(
 client.data_object.replace(
     updated_schema,
     "Author",
-    "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"
+    "36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
     consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 ```
