@@ -66,6 +66,8 @@ Let’s see an example of this in action using the Weaviate Podcast Search datas
 
 By re-ranking the results we are able to get the clip where Jonathan Frankle describes the benchmarks created by Ofir Press et al. in the self-ask paper! This result was originally placed at #6 with Hybrid Search only. This is a great opportunity to preview the discussion of how LLMs use search versus humans. When humans search, we are used to scrolling through the results a bit to see the one that makes sense. In contrast, language models are constrained by input length; we can only give so many results to the input of the LLM. Thus, quality at the expense of speed, becomes more interesting.
 
+### LLMs as Cross Encoders
+
 So, let’s dive into the LLM hype a little more, how can we use LLMs for re-ranking? There are generally 2 ways to do this. The first strategy is identical to the cross encoder, we give the LLM the [query, document] input and prompt it to output a score of how relevant the document is to the query. The tricky thing with this is bounding the score. One technique is to prompt it with:
 `please output a relevance score on a scale of 1 to 100.`
 
@@ -83,7 +85,7 @@ So for example, say we have features that describe a Users looking for Movies su
 User Features - (Age, Gender, Location, Occupation, Preferences)
 Movie Features - (Release Year, Genre, Box Office, Duration).
 
-So together, the Metadata ranker takes as input something like: [Age, Gender, Location, Occupation, Preferences, Release year, Genre, Box Office, Duration] and predicts a score of how much this User will like the movie the User. We can fix the User features and rotate in each Document to get a score for each of the candidate movies (retrieved with something like ref2vec) to rank with.
+So together, the Metadata ranker takes as input something like: [Age, Gender, Location, Occupation, Preferences, Release year, Genre, Box Office, Duration] and predicts a score of how much this User will like the movie. We can fix the User features and rotate in each Document to get a score for each of the candidate movies (retrieved with something like ref2vec) to rank with.
 
 In addition to vectors, Weaviate also enables storing metadata features about objects such as `price`, or `color`. We can send these features to wherever our Metadata Ranker is hosted and get those scores back to Weaviate to sort our search results.
 
