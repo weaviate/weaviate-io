@@ -31,7 +31,10 @@ Each data object in Weaviate always belongs to a Class, and has one or more Prop
 
 ### Auto-schema
 
-If you don't create a schema manually before adding data, a schema will be generated automatically (starting with Weaviate version v1.5.0). This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
+:::info Available in Weaviate versions `1.5.0` and higher
+:::
+
+If you don't create a schema manually before adding data, a schema will be generated automatically. This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
 
 It has the following characteristics:
 
@@ -61,7 +64,7 @@ current (as of `v1.10.0+`) class name validation regex is
 
 ### Properties
 
-Every class has properties. Properties define what kind of data values you will add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](./datatypes.md). Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.
+Every class has properties. Properties define what kind of data values you will add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](../config-refs/datatypes.md). Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.
 
 ## Class object
 

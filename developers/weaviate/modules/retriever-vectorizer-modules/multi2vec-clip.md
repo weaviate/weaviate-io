@@ -80,7 +80,7 @@ Use a CUDA-enabled machine for optimal performance.
 
 #### Step 3: Tell Weaviate where to find the inference
 
-Set the Weaviate environment variable `CLIP_INFERENCE_API` to where your inference container is running, for example `TRANSFORMERS_INFERENCE_API="http://multi2vec-clip:8000"` (Adjust hostname and port accordingly)
+Set the Weaviate environment variable `CLIP_INFERENCE_API` to where your inference container is running, for example `CLIP_INFERENCE_API="http://multi2vec-clip:8000"` (Adjust hostname and port accordingly)
 
 You can now use Weaviate normally and all vectorization during import and search time will be done with the selected CLIP transformers model.
 
@@ -261,7 +261,7 @@ import CodeNearImageEncode from '/_includes/code/img2vec-neural.nearimage.encode
 
 You can set a maximum allowed `distance`, which will be used to determine which
 data results to return. The interpretation of the value of the distance field
-depends on the [distance metric used](/developers/weaviate/configuration/distances.md).
+depends on the [distance metric used](/developers/weaviate/config-refs/distances.md).
 
 If the distance metric is `cosine` you can also use `certainty` instead of
 `distance`. Certainty normalizes the distance in a range of 0..1, where 0

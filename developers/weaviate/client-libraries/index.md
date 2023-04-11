@@ -14,9 +14,13 @@ You can interact with Weaviate by using the GraphQL or RESTful API directly, or 
 Currently, Weaviate supports:
 
 - [Python](/developers/weaviate/client-libraries/python.md)
-- [JavaScript](/developers/weaviate/client-libraries/javascript.md)
+- [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx)
 - [Go](/developers/weaviate/client-libraries/go.md)
 - [Java](/developers/weaviate/client-libraries/java.md)
+
+import JavaScriptMaintenanceWarning from '/_includes/javascript-maintenance-warning.mdx';
+
+<JavaScriptMaintenanceWarning />
 
 :::note Don't see your preferred language?
 If you want to contribute one or request for us to work on a particular client, please let us know on [Slack](https://weaviate.io/slack)
@@ -68,9 +72,9 @@ print(result)
 
 ## Client-specific functions
 
-Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages ([Python](./python.md), [JavaScript](./javascript.md), [Java](./java.md) and [Go](./go.md)). An overview of features of the clients:
+Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages. An overview of features of the clients:
 
-| Feature  | Python client | JavaScript client | Java client | Go client |
+| Feature  | Python client | TypeScript client | Java client | Go client |
 | --- | --- | --- | --- | --- |
 | RESTful API endpoints | **V** | **V** | **V** | **V** |
 | GraphQL Get | **V** | **V** | **V** | **V** |

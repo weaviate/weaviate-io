@@ -1,6 +1,6 @@
 ---
 title: Go
-sidebar_position: 4
+sidebar_position: 7
 image: og/docs/client-libraries.jpg
 # tags: ['go', 'client library']
 ---
@@ -37,7 +37,7 @@ func GetSchema() {
         Host:   "localhost:8080",
 		Scheme: "http",
     }
-    client := weaviate.New(cfg)
+    client := weaviate.NewClient(cfg)
 
     schema, err := client.Schema().Getter().Do(context.Background())
     if err != nil {
@@ -59,14 +59,43 @@ import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/cli
 
 <ClientAuthWCS />
 
-### Resource Owner Password Flow
+### API key authentication
+
+:::info Available in Weaviate Go client versions `4.7.0` and higher.
+:::
+
+import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
+
+<ClientAuthApiKey />
+
+
+```go
+cfg := weaviate.Config(
+  Host:"weaviate.example.com",
+  Scheme: "http",
+  authConfig: auth.ApiKey{Value: "my-secret-key"}
+  headers: nil,
+)
+client, err := weaviate.NewClient(cfg)
+if err != nil{
+  fmt.Println(err)
+}
+```
+
+### OIDC authentication
+
+import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_components/client.auth.oidc.introduction.mdx'
+
+<ClientAuthOIDCIntro />
+
+#### <i class="fa-solid fa-key"></i> Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
 <ClientAuthFlowResourceOwnerPassword />
 
 ```go
-cfg, err := weaviate.NewConfig(
+cfg := weaviate.Config(
   Host:"weaviate.example.com",
   Scheme: "http",
   authConfig: auth.ResourceOwnerPasswordFlow{
@@ -76,20 +105,20 @@ cfg, err := weaviate.NewConfig(
   }
   headers: nil,
 )
+client, err := weaviate.NewClient(cfg)
 if err != nil{
   fmt.Println(err)
 }
-client := weaviate.New(*cfg)
 ```
 
-### Client Credentials flow
+#### <i class="fa-solid fa-key"></i> Client Credentials flow
 
 import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
 <ClientAuthFlowClientCredentials />
 
 ```go
-cfg, err := weaviate.NewConfig(
+cfg := weaviate.Config(
   Host:"weaviate.example.com",
   Scheme: "http",
   authConfig: auth.ClientCredentials{
@@ -98,32 +127,33 @@ cfg, err := weaviate.NewConfig(
   }
   headers: nil,
 )
+client, err := weaviate.NewClient(cfg)
 if err != nil{
   fmt.Println(err)
 }
-client := weaviate.New(*cfg)
 ```
 
-### Refresh Token flow
+#### <i class="fa-solid fa-key"></i> Refresh Token flow
 
 import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
 <ClientAuthBearerToken />
 
 ```go
-cfg, err := weaviate.NewConfig(
+cfg := weaviate.Config(
   Host:"weaviate.example.com",
   Scheme: "http",
   authConfig: auth.BearerToken{
     AccessToken: "some token",
     RefreshToken: "other token",
-    ExpiresIn: uint(500)}, // in seconds
+    ExpiresIn: uint(500), // in seconds
+  }
   headers: nil,
 )
+client, err := weaviate.NewClient(cfg)
 if err != nil{
   fmt.Println(err)
 }
-client := weaviate.New(*cfg)
 ```
 
 ## Custom headers
@@ -131,7 +161,7 @@ client := weaviate.New(*cfg)
 You can pass custom headers to the client, which are added at initialization:
 
 ```go
-cfg, err := weaviate.NewConfig(
+cfg := weaviate.Config(
   Host:"weaviate.example.com",
   Scheme: "http",
   authConfig: nil
@@ -140,10 +170,10 @@ cfg, err := weaviate.NewConfig(
     "header_key2": "otherValue",
     },
 )
+client, err := weaviate.NewClient(cfg)
 if err != nil{
   fmt.Println(err)
 }
-client := weaviate.New(*cfg)
 ```
 
 ## References

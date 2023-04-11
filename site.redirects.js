@@ -34,13 +34,29 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/console'
         },
 
+        // Client library redirects
+        {
+            to: '/developers/weaviate/client-libraries/typescript',
+            from: '/developers/weaviate/client-libraries/javascript'
+        },
+
+        // Config-refs redirects
+        {
+            to: '/developers/weaviate/config-refs/datatypes',
+            from: '/developers/weaviate/configuration/datatypes'
+        },
+        {
+            to: '/developers/weaviate/config-refs/distances',
+            from: '/developers/weaviate/configuration/distances'
+        },
+
         // Configuration redirects
         {
-            to: '/developers/weaviate/configuration/datatypes',
+            to: '/developers/weaviate/config-refs/datatypes',
             from: '/developers/weaviate/current/schema/datatypes'
         },
         {
-            to: '/developers/weaviate/configuration/distances',
+            to: '/developers/weaviate/config-refs/distances',
             from: '/developers/weaviate/current/vector-index-plugins/distances'
         },
         {

@@ -1,6 +1,6 @@
 ---
 title: Java
-sidebar_position: 3
+sidebar_position: 5
 image: og/docs/client-libraries.jpg
 # tags: ['java', 'client library']
 ---
@@ -69,7 +69,30 @@ import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/cli
 
 <ClientAuthWCS />
 
-### Resource Owner Password Flow
+### API key authentication
+
+:::info Available in Weaviate Java client versions `4.0.2` and higher.
+:::
+
+import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
+
+<ClientAuthApiKey />
+
+```java
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateAuthClient;
+
+Config config = new Config("https", "some-endpoint.weaviate.network");
+WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace w/ your API Key for the Weaviate instance
+```
+
+### OIDC authentication
+
+import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_components/client.auth.oidc.introduction.mdx'
+
+<ClientAuthOIDCIntro />
+
+#### <i class="fa-solid fa-key"></i> Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
@@ -88,7 +111,7 @@ WeaviateAuthClient.clientPassword(
 );
 ```
 
-### Client credentials flow
+#### <i class="fa-solid fa-key"></i> Client Credentials flow
 
 import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
@@ -106,7 +129,7 @@ WeaviateAuthClient.clientCredentials(
 );
 ```
 
-### Refresh Token flow
+#### <i class="fa-solid fa-key"></i> Refresh Token flow
 
 import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 

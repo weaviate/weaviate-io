@@ -21,15 +21,15 @@ client = weaviate.Client(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="ts" label="TypeScript">
 
-```js
-const weaviate = require('weaviate-client');
+```ts
+import weaviate, { AuthUserPasswordCredentials } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: "https",
   host: "some-endpoint.weaviate.network",  // Replace w/ your endpoint
-  authClientSecret: new weaviate.AuthUserPasswordCredentials({
+  authClientSecret: new AuthUserPasswordCredentials({
     username: "WCS_USERNAME",  // Replace w/ your WCS username
     password: "WCS_PASSWORD",  // Replace w/ your WCS password
   })
@@ -48,19 +48,18 @@ import (
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
 )
 
-cfg, err := weaviate.NewConfig(
+cfg := weaviate.Config(
   Host:"some-endpoint.weaviate.network",  // Replace w/ your endpoint
   Scheme: "https",
   authConfig: auth.ResourceOwnerPasswordFlow{
     Username: "WCS_USERNAME",  // Replace w/ your WCS username
     Password: "WCS_PASSWORD",  // Replace w/ your WCS password
   }
-  headers: nil,
 )
-if err != nil{
+client, err := weaviate.NewClient(cfg)
+if err != nil {
   fmt.Println(err)
 }
-client := weaviate.New(*cfg)
 ```
 
 </TabItem>

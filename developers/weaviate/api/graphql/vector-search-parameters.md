@@ -49,7 +49,7 @@ This filter allows you to find data objects in the vicinity of an input vector. 
 | Variables | Required | Type | Description |
 | --- | --- | --- | --- |
 | `vector` | yes | `[float]` | This variable takes a vector embedding in the form of an array of floats. The array should have the same length as the vectors in this class. |
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
+| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors).. Can't be used together with the `distance` variable. |
 
 ### Example
@@ -85,7 +85,7 @@ This filter allows you to find data objects in the vicinity of other data object
 | --------- | -------- | ---- | ----------- |
 | `id` | yes | `UUID` | Data object identifier in the uuid format. |
 | `beacon` | yes | `url` | Data object identifier in the beacon URL format. E.g., `weaviate://<hostname>/<kind>/id`. |
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
+| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors).. Can't be used together with the `distance` variable. |
 
 ### Example
@@ -108,6 +108,7 @@ This filter allows you to combine dense and sparse vectors to get the best of bo
 | `alpha` | no (default is set to 0.75) | weighting for each search algorithm |
 | `vector` | no | optional to supply your own vector |
 | `score` | no | ranked score that is assigned to each document |
+| `explainScore` | no | see how much each document contributed to the score |
 
 * Note: `alpha` can be any number from 0 to 1
   * If `alpha` = 0, it is using a pure **sparse** search method
@@ -120,8 +121,7 @@ import GraphQLFiltersHybrid from '/_includes/code/graphql.filters.hybrid.mdx';
 
 <GraphQLFiltersHybrid/>
 
-<MoleculeGQLDemo query='%7B%0A+  +Get+{%0A++++Article+(%0A++++++hybrid:+{%0A++++++++query:+%22Fisherman+that+catches+salmon%22%0A++++++++alpha:+0.5%0A++++++})%0A+++++{%0A++++++title%0A++++++summary%0A++++++_additional+{score}%0A++++}%0A++}%0A%7D'/>
-
+<MoleculeGQLDemo query= '%7B%0A+%20%20+Get+{%0A++++Article+(%0A++++++hybrid:+{%0A++++++++query:+"Fisherman+that+catches+salmon"%0A++++++++alpha:+0.5%0A++++++})%0A+++++{%0A++++++title%0A++++++summary%0A++++++_additional+{score%20explainScore}%0A++++}%0A++}%0A%7D' />
 
 ### Example with vector parameter
 If you're providing your own embeddings, you can add the vector query to the `vector` parameter. If Weaviate is handling the vectorization, then you can ignore the `vector` parameter and use the example code snippets above.
@@ -322,7 +322,7 @@ This filter allows you to find data objects in the vicinity of the vector repres
 | --- | --- | --- | --- |
 | `concepts` | yes | `[string]` | An array of strings that can be natural language queries, or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing). |
 | `certainty` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values.<br/>Values can be between 0 (no match) and 1 (perfect match).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `distance` variable. |
-| `distance` | no | `float` | Normalized Distance between the result item and the search vector.<br/>The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `certainty` variable.|
+| `distance` | no | `float` | Normalized Distance between the result item and the search vector.<br/>The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `certainty` variable.|
 | `autocorrect` | no | `boolean` | Autocorrect input text values |
 | `moveTo` | no | `object{}` | Move your search term closer to another vector described by keywords |
 | `moveTo{concepts}`| no | `[string]` | An array of strings - natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |

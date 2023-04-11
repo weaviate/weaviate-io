@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: How to install Weaviate
 sidebar_position: 0
 image: og/docs/installation.jpg
 # tags: ['installation']
@@ -17,9 +17,9 @@ import Badges from '/_includes/badges.mdx';
 
 This section shows you available options for running Weaviate, and how to install and configure Weaviate with each option.
 
-## Options for running Weaviate
+## How to run Weaviate
 
-You have three options to run Weaviate.
+You have three options for running Weaviate.
 
 * [Weaviate Cloud Services](../../wcs/quickstart.mdx) – a managed Weaviate service; suitable for development and production.
 * [Docker Compose](./docker-compose.md) – typically for development.

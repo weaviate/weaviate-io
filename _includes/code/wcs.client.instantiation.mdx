@@ -18,23 +18,46 @@ client.schema.get()
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
 });
 
 client
-    .schema
-    .getter()
-    .do()
-    .then(res => {
-    console.log(res);
-    })
-    .catch(err => {
-    console.error(err)
-    });
+  .schema
+  .getter()
+  .do()
+  .then(res => {
+  console.log(res);
+  })
+  .catch(err => {
+  console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
+
+client
+  .schema
+  .getter()
+  .do()
+  .then((res: any) => {
+  console.log(res);
+  })
+  .catch((err: Error) => {
+  console.error(err)
+  });
 ```
 
 </TabItem>
@@ -49,19 +72,22 @@ import (
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
 )
 
-func GetSchema() {
+func main() {
     cfg := weaviate.Config{
         Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
         Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+      panic(err)
+    }
 
     schema, err := client.Schema().Getter().Do(context.Background())
     if err != nil {
         panic(err)
     }
-    fmt.Printf("%v", schema)
+    fmt.Printf("%+v", schema)
 }
 ```
 
