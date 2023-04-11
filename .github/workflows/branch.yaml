@@ -29,7 +29,7 @@ jobs:
           GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
         run: |
           node _build_scripts/update-config-versions.js
-      - name: Build docusarus project
+      - name: Build Docusarus project
         run: |
           yarn build
       - name: Deploy draft to Netlify
