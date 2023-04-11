@@ -24,10 +24,16 @@ jobs:
         run: |
           rm -vrf node_modules/.cache/webpack
           yarn install
+      - name: Update versions from GitHub
+        env:
+          GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
+        run: |
           node _build_scripts/update-config-versions.js
-      - name: Deploy draft to Netlify
+      - name: Build docusarus project
         run: |
           yarn build
+      - name: Deploy draft to Netlify
+        run: |
           source _build_scripts/publish-draft-to-netlify.sh
       - name: Send Slack Message for branch build
         if: ${{ github.ref_name != 'main' }}
