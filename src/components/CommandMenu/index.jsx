@@ -2,19 +2,62 @@ import React, { useEffect } from 'react';
 import CommandPalette, { getItemIndex, useHandleOpenCommandPalette } from 'react-cmdk';
 import './cmdk.css';
 import { useState } from 'react';
-import { query } from './query';
-import { analyticsSiteSearched, analyticsSiteSearchSelected } from '../../analytics';
+import { runQuery } from './query';
+import { analyticsSiteSearched, analyticsSiteSearchResultsRejected, analyticsSiteSearchSelected } from '../../analytics';
 import { debounceTime, tap, distinctUntilChanged, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+const defaultMenuPages = {
+  heading: 'Pages',
+  id: 'pages',
+  items: [{
+      id: 1001,
+      children: 'Weaviate Cloud console',
+      icon: 'BookmarkIcon',
+      href: 'https://console.weaviate.cloud/'
+    },{
+      id: 1002,
+      children: 'Weaviate Cloud Services - Pricing',
+      icon: 'BookmarkIcon',
+      href: '/pricing'
+    },
+    {
+      id: 1003,
+      children: 'Blog',
+      icon: 'BookmarkIcon',
+      href: '/blog'
+    },{
+      id: 1004,
+      children: 'Documentation',
+      icon: 'BookmarkIcon',
+      href: '/developers/weaviate'
+    },
+  ]
+}
+
+const defaultSocialMediaLinks = {
+  heading: 'SocialMedia',
+  id: 'socialMedia',
+  items: [{
+      id: 2001,
+      children: 'Slack',
+      icon: 'ChatBubbleLeftRightIcon',
+      href: 'https://weaviate.io/slack/'
+    },{
+      id: 2002,
+      children: 'Twitter',
+      icon: 'ChatBubbleLeftRightIcon',
+      href: 'https://twitter.com/weaviate_io'
+    },
+  ]
+}
 
 export default function CommandMenu({open, setOpen}) {
   const [page, setPage] = useState('root');
   const [search, setSearch] = useState('');
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([defaultMenuPages, defaultSocialMediaLinks]);
   const [onSearch$] = useState(()=>new Subject());
-  
-  
+
   useEffect(() => {
     const sub = onSearch$.pipe(
       debounceTime(270),
@@ -22,24 +65,27 @@ export default function CommandMenu({open, setOpen}) {
       distinctUntilChanged(),
       tap(handleQuery),
       tap(analyticsSiteSearched),
-      ).subscribe();
-      
-      // clean up subscriptions on leave
-      return () => {
-        sub.unsubscribe();
-      }
+    ).subscribe();
+
+    // clean up subscriptions on leave
+    return () => {
+      sub.unsubscribe();
+    }
   }, [])
-    
+
   const getIcon = (type) => {
-    if(type === 'docs'){
-      return 'BookmarkIcon'
-    }else if(type === 'blog'){
-      return 'BookOpenIcon'
-    }else{
-      return 'CodeIcon'
+    switch (type) {
+      case 'rejected':
+        return 'CogIcon';
+      case 'docs':
+        return 'BookmarkIcon';
+      case 'blog':
+        return 'BookOpenIcon';
+      default:
+        return 'CodeIcon';
     }
   }
-    
+
   const addPage = (pageTitle, title) => {
     if(pageTitle != title){
       return pageTitle + ' • ' + title;
@@ -50,17 +96,38 @@ export default function CommandMenu({open, setOpen}) {
   const onSearchResultsClicked = (event) => {
     // get the search term from the search box
     const searchTerm = document.getElementById('command-palette-search-input').value;
+
     // get the result url from the even
     const selectedResultURI = event.target.baseURI;
 
+    const selectedTitle = event.target.innerText;
     // capture analytics for the selected search result
-    analyticsSiteSearchSelected(searchTerm, selectedResultURI)
+    analyticsSiteSearchSelected(searchTerm, selectedResultURI, selectedTitle)
   }
-    
-  const handleQuery = (searchTerm) => {
-    query(searchTerm)
-    .then(res => {
-      const data = res.data.Get.PageChunkOpenAI
+
+  const onSearchResultsRejected = (event) => {
+    // get the search term from the search box
+    const searchTerm = document.getElementById('command-palette-search-input').value;
+
+    // capture analytics for the rejected search results
+    analyticsSiteSearchResultsRejected(searchTerm);
+
+    clearSearch();
+  }
+
+  const clearSearch = () => {
+    setSearch('');
+    setFilteredItems([defaultMenuPages, defaultSocialMediaLinks]);
+  }
+
+  const handleQuery = async (searchTerm) => {
+    const limit = 8;
+
+    try {
+      const queryResult = await runQuery(searchTerm, limit);
+
+      const data = queryResult.data.Get.PageChunkOpenAI;
+
       const resultFormated = data.map((item, index) => {
         return {
           id: index,
@@ -71,8 +138,9 @@ export default function CommandMenu({open, setOpen}) {
 
           onClick: onSearchResultsClicked
         }
-      })
-      const sliceArray = resultFormated.slice(0,5);
+      });
+
+      const sliceArray = resultFormated.slice(0,limit);
       let documentationSection = [];
       let blogSection = [];
       let miscSection = [];
@@ -102,11 +170,26 @@ export default function CommandMenu({open, setOpen}) {
           heading: 'Miscellaneous',
           id: 'miscellaneous',
           items: miscSection
+        },
+        // hardcoded no results feedback item
+        {
+          heading: 'Give Feedback',
+          id: 'feedback',
+          items: [{
+            id: 100,
+            children: 'No Good Results',
+            icon: getIcon('rejected'),
+            onClick: onSearchResultsRejected
+          }]
         }
       ];
+
       formated = formated.filter(item => item.items.length > 0);
       setFilteredItems(formated);
-    }).catch(err => console.log(err))
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -124,7 +207,7 @@ export default function CommandMenu({open, setOpen}) {
       </div>
     )
   }
-      
+
   return (
     <CommandPalette
       onChangeSearch={setSearch}
@@ -155,4 +238,3 @@ export default function CommandMenu({open, setOpen}) {
     </CommandPalette>
   );
 }
-

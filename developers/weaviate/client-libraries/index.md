@@ -14,7 +14,7 @@ You can interact with Weaviate by using the GraphQL or RESTful API directly, or 
 Currently, Weaviate supports:
 
 - [Python](/developers/weaviate/client-libraries/python.md)
-- [TypeScript](/developers/weaviate/client-libraries/typescript.mdx)
+- [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx)
 - [Go](/developers/weaviate/client-libraries/go.md)
 - [Java](/developers/weaviate/client-libraries/java.md)
 
@@ -74,15 +74,15 @@ print(result)
 
 Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages. An overview of features of the clients:
 
-| Feature  | Python client | TypeScript client | JavaScript client | Java client | Go client |
+| Feature  | Python client | TypeScript client | Java client | Go client |
 | --- | --- | --- | --- | --- |
-| RESTful API endpoints | **V** | **V** | **V** | **V** | **V** |
-| GraphQL Get | **V** | **V** | **V** | **V** | **V** |
-| GraphQL Aggregate | **V** | **V** | **V** | **V** | **V** |
-| GraphQL Explore | **V** | **V** | **V** | **V** | **V** |
-| Uploading a full JSON schema | **V** | X | X | X | X |
-| Deleting a full JSON schema | **V** | X | X | X | X |
-| Check schema | **V** | X | X | X | X |
+| RESTful API endpoints | **V** | **V** | **V** | **V** |
+| GraphQL Get | **V** | **V** | **V** | **V** |
+| GraphQL Aggregate | **V** | **V** | **V** | **V** |
+| GraphQL Explore | **V** | **V** | **V** | **V** |
+| Uploading a full JSON schema | **V** | X | X | X |
+| Deleting a full JSON schema | **V** | X | X | X |
+| Check schema | **V** | X | X | X |
 
 ## Command Line Interface (CLI)
 You can interact with Weaviate via a command line interface. Information about how to install and use can be found [here](./cli.md).
