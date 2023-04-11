@@ -7,11 +7,8 @@ import TabItem from '@theme/TabItem';
 ```python
 import weaviate
 
-# Only if authentication enabled; assuming WCS sandbox use
-auth_config = weaviate.AuthClientPassword(  
-    username = "wcs_username",
-    password = "wcs_password",
-)
+# Only if authentication enabled; assuming API key authentication
+auth_config = weaviate.auth.AuthApiKey(api_key="<YOUR-WEAVIATE-API-KEY>")  # Replace w/ your API Key for the Weaviate instance
 
 # Instantiate the client
 client = weaviate.Client(
@@ -23,27 +20,6 @@ client = weaviate.Client(
         "X-OpenAI-Api-Key": "<OPENAI-KEY>",
     }
 )
-```
-
-</TabItem>
-<TabItem value="js" label="JavaScript">
-
-```js
-
-```
-
-</TabItem>
-<TabItem value="go" label="Go">
-
-```go
-
-```
-
-</TabItem>
-<TabItem value="java" label="Java">
-
-```java
-
 ```
 
 </TabItem>

@@ -2,19 +2,28 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="graphql" label="GraphQL">
 
-```python
-import weaviate
-
-client = weaviate.Client("https://some-endpoint.weaviate.network")
-
-result = client.query.get("WikiArticle", ["title", "wiki_summary"]).do()
-print(result)
+```graphql
+{
+  Get {
+    WikiArticle {
+      title
+      wiki_summary
+    }
+  }
+}
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="py" label="Python">
+
+```python
+result = client.query.get("WikiArticle", ["title", "wiki_summary"]).do()
+```
+
+</TabItem>
+{/* <TabItem value="js" label="JavaScript">
 
 ```js
 const weaviate = require('weaviate-client');
@@ -106,5 +115,5 @@ public class App {
 }
 ```
 
-</TabItem>
+</TabItem> */}
 </Tabs>

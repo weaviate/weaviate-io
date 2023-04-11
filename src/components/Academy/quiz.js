@@ -7,7 +7,7 @@ export default function Quiz(props) {
 
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showFeedback, setShowFeedback] = useState(false);
-	const [feedback, setFeedback] = useState("");	
+	const [feedback, setFeedback] = useState("");
 	const [score, setScore] = useState(0);
 
 	const handleAnswerOptionClick = (isCorrect, feedback) => {
@@ -45,7 +45,7 @@ export default function Quiz(props) {
 					<div className='question-text'>{feedback}</div>
 				</div>
 				<div className='answer-section'>
-          <button className='quiz-button' onClick={() => handleRetryClick()}>Retry</button>
+          <button className={btnClass} onClick={() => handleRetryClick()}>Retry</button>
 				</div>
 				</div>
 			) : (

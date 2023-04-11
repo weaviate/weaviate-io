@@ -1,0 +1,54 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+ask = {
+  "question": "When was the London Olympics?",
+  "properties": ["wiki_summary"]
+}
+
+res = (
+  client.query
+  .get("WikiCity", [
+      "city_name",
+      "_additional {answer {hasAnswer property result} }"
+  ])
+  .with_ask(ask)
+  .with_limit(1)
+  .do()
+)
+
+print(json.dumps(res, indent=2))
+```
+
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Expected output</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "WikiCity": [
+        {
+          "_additional": {
+            "answer": {
+              "hasAnswer": true,
+              "property": "wiki_summary",
+              "result": " 2012"
+            }
+          },
+          "city_name": "London"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>

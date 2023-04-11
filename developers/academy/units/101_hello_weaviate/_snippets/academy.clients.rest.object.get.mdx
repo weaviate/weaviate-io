@@ -2,19 +2,21 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="http" label="HTTP">
 
-```python
-import weaviate
-
-client = weaviate.Client("https://some-endpoint.weaviate.network")
-
-data_object = client.data_object.get_by_id("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "WikiArticle")
-print(data_object)
+```http
+GET https://some-endpoint.weaviate.network/v1/objects/WikiArticle/36ddd591-2dee-4e7e-a3cc-eb86d30a4303
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="py" label="Python">
+
+```python
+data_object = client.data_object.get_by_id("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "WikiArticle")
+```
+
+</TabItem>
+{/* <TabItem value="js" label="JavaScript">
 
 ```js
 const weaviate = require('weaviate-client');
@@ -101,5 +103,5 @@ public class App {
 }
 ```
 
-</TabItem>
+</TabItem> */}
 </Tabs>

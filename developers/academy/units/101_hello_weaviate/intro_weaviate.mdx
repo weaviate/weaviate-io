@@ -13,57 +13,57 @@ Weaviate is an open-source vector database. But what does that mean? Let's unpac
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector database
 
-![](../../tmp_images/person_holding_a_magnifying_glass_in_front_of_a_big_pile_of_numbers_1.jpg)
-
 Weaviate is a fantastic tool for retrieving the information you need, quickly and accurately. It does this by being an amazing **vector database**.
 
-A vector database can catalog, store and retrieve information based on similarity. This is different to traditional databases and retrieval strategies, for example those that rely on SQL.
+You may be familiar with traditional databases such as relational databases SQL. A database can catalog, store and retrieve information. A **vector** database can carry out these tasks also, with the key difference being that they can perform these tasks based on similarity.
 
-#### How traditional searches work
+#### <i class="fa-solid fa-memo-pad"></i> How traditional searches work
 
-Imagine that you are searching a relational database for books related to birds. Maybe you are a bird-watcher, or perhaps you're an ornithologist (bird scientist). Using SQL, you might construct a query like this:
+Imagine that you are searching a relational database containing articles on cities, to retrieve a list of "major" European cities. Using SQL, you might construct a query like this:
 
 ```sql
-SELECT title, author, summary
-FROM books
-WHERE title LIKE '%bird%'
-    OR title LIKE '%avian%'
-    OR title LIKE '%ornithology%'
-    OR title LIKE '%ornithological%'
-    OR title LIKE '%fowl%'
-    OR title LIKE '%feathered friend%'
-    OR title LIKE '%winged wonder%'
-    OR title LIKE '%feathery creature%'
-    OR title LIKE '%avifauna%'
+SELECT city_name wiki_summary
+FROM wiki_city
+WHERE (wiki_summary LIKE '%major European city%' OR
+       wiki_summary LIKE '%important European city%' OR
+       wiki_summary LIKE '%prominent European city%' OR
+       wiki_summary LIKE '%leading European city%' OR
+       wiki_summary LIKE '%significant European city%' OR
+       wiki_summary LIKE '%top European city%' OR
+       wiki_summary LIKE '%influential European city%' OR
+       wiki_summary LIKE '%notable European city%')
+    (… and so on)
 ```
 
-Which would return books that contained any of these strings (`bird`, `avian`, `ornithology`, ... etc) in the `title`.
+Which would return books that contained any of these strings (`major`, `important`, `prominent`, ... etc) in the `wiki_summary` column.
 
-#### Limitations of traditional search
+This works well in many circumstances. However, there are two significant limitations with this approach.
 
-There are two main challenges with this approach.
+#### <i class="fa-solid fa-memo-pad"></i> Limitations of traditional search
 
-Here, you must identify all terms that have been used with the topic. Otherwise, the search would miss any entities that didn't include any of these terms.
+Using this type of search requires you to identify terms that *may* have been used to describe the concept, which is no easy feat.
 
-What's more, this doesn't solve the problem of how to rank, or sort, the list of resulting books. Based on your search, a book like *"The Birdie Book. A Miscellany Of Golf"* (irrelevant) is given equal weighting to *"What It's Like to Be a Bird"* (highly relevant).
+What's more, this doesn't solve the problem of how to rank the list of resulting books.
+
+With the above search query, an entry merely containing a mention of a different European city (i.e. not very relevant) would be given equal weighting to an entry for Paris, or Rome, which would be highly relevant.
 
 A vector database makes this job simpler by enabling searches based on similarity.
 
-#### Examples of vector search
+#### <i class="fa-solid fa-memo-pad"></i> Examples of vector search
 
 So, you could perform a query like this in Weaviate:
 
 ```graphql
 {
   Get {
-    Book (
-      nearText: { concepts: ["birds"] }
-    ) { title author summary }
+    WikiCity (
+      nearText: { concepts: ["Major European city"] }
+    ) { city_name wiki_summary }
   }
 }
 ```
 
-And it would return a list of books that are *ranked by their similarity* to the query - the idea of "birds".
+And it would return a list of entries that are *ranked by their similarity* to the query - the idea of "Major European city".
 
 What's more, Weaviate "indexes" the data based on their similarity, making this type of data retrieval lightning-fast.
 
@@ -75,8 +75,6 @@ A vector search is also referred to as a "semantic search" because it returns re
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Open-source
 
-![](../../tmp_images/a_crowd_looking_at_many_many_lines_of_computer_code_1.jpg)
-
 Weaviate is open-source. In other words, its [codebase is available online](https://github.com/weaviate/weaviate) for anyone to see and use<sup>[(1)](#1)</sup>.
 
 And that is *the* codebase, regardless of how you use it. So whether you run Weaviate on your own computer, on a cloud computing environment, or through our managed service [Weaviate Cloud Services, or WCS](https://console.weaviate.io/), you are using the exact same technology.
@@ -87,7 +85,7 @@ It also means that your knowledge about Weaviate is fungible, between local, clo
 
 We are used to thinking of information as static, like a book. But with Weaviate and modern AI-driven language models, we can do much more than just retrieve static information but easily build on top of it. Take a look at these examples:
 
-#### Question answering
+#### <i class="fa-solid fa-memo-pad"></i> Question answering
 
 Given a list of Wikipedia entries, you could ask Weaviate:
 
@@ -104,7 +102,7 @@ Lewis Hamilton was born on January 7, 1985. ([check for yourself](https://en.wik
 <details>
   <summary><i class="fa-solid fa-code"></i> See the full query & response</summary>
 
-#### Query
+#### <i class="fa-solid fa-memo-pad"></i> Query
 
 ```graphql
 {
@@ -127,7 +125,7 @@ Lewis Hamilton was born on January 7, 1985. ([check for yourself](https://en.wik
 }
 ```
 
-#### Response
+#### <i class="fa-solid fa-memo-pad"></i> Response
 
 ```json
 {
@@ -150,7 +148,7 @@ Lewis Hamilton was born on January 7, 1985. ([check for yourself](https://en.wik
 
 </details>
 
-#### Generative search
+#### <i class="fa-solid fa-memo-pad"></i> Generative search
 
 Or you can synthesize passages using retrieved information with Weaviate:
 
@@ -169,7 +167,7 @@ Check out the amazing story of Lewis Hamilton, the 7-time Formula One World Driv
 <details>
   <summary><i class="fa-solid fa-code"></i> See the full query & response</summary>
 
-#### Query
+#### <i class="fa-solid fa-memo-pad"></i> Query
 
 ```graphql
 {
@@ -200,7 +198,7 @@ Check out the amazing story of Lewis Hamilton, the 7-time Formula One World Driv
 }
 ```
 
-#### Response
+#### <i class="fa-solid fa-memo-pad"></i> Response
 
 ```json
 {
@@ -230,55 +228,25 @@ We will cover these and many more capabilities, such as vectorization, summariza
 
 For now, keep in mind that Weaviate is a vector database at its core which can also leverage AI tools to do more with the retrieved information.
 
-<Quiz questions={weaviateOpenSource} />
-
-<Quiz questions={vectorSearchDefinition} />
-
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;How does Weaviate work?
-
-<img src={imageUrl} alt="Image alt" width="75%"/>
-
-Weaviate enables vector searches by indexing and storing data objects and corresponding vector embeddings from machine learning models.
-
-In plain terms, Weaviate processes and organizes your data in such a way that objects can be retrieved based on their similarity to a query.
-
-There are a few factors here that are important to point out.
-
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Quantifying similarity
-
-![](../../tmp_images/confused_person_holding_documents_on_either_hand_0.jpg)
-
-As we've mentioned, vector searches are similarity-based, but what does that actually mean? How do we determine that two pieces of data are "similar"? What does it mean for two vectors, two pieces of text, or two objects in general, to be similar?
-
-This is a relatively simple idea that is actually incredibly interesting and intricate once we start to dive into the details.
-
-But for now, you should know that machine learning (ML) models are key to this whole process. Similar models to those that allows clever text generation from prompts power vector searches. Instead of generating new text, here these models capture "meaning" of pieces of text or other media. We will cover this in more detail later on.
-
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Indexing data
-
-Vector searches can be very computationally intensive.
-
-To overcome this problem, Weaviate uses a combination of indexes including an approximate nearest neighbor (ANN) index and an inverted index. They respectively allow Weaviate to perform extremely fast vector searches, as well as to filter data using Boolean criteria on data.
-
-We will get into this in more detail later - but for now, it's enough to know that Weaviate can perform fast vector searches as well as filtering.
-
-<Quiz questions={howWeaviateWorks} />
-
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
 In this section, you learned about what Weaviate is and how it works at a very high level. You have also been introduced to what vector search is at a high level, that it is a similarity-based search method.
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercises
 
-Can you describe, in your own sentence, what vector search is?
+<Quiz questions={weaviateOpenSource} />
+
+<Quiz questions={vectorSearchDefinition} />
+
+<!-- Can you describe, in your own sentence, what vector search is?
 
 :::warning TODO
 Input box for user to put answer in and get back a similarity score & our definition?
 - What is a vector search
 - What is Weaviate
-:::
+::: -->
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
@@ -288,6 +256,7 @@ Input box for user to put answer in and get back a similarity score & our defini
 - Weaviate can also transform your data after retrieving it before returning it to you.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Notes
+
 <a name="1"></a>(1) Subject to terms of its license, of course.
 
 import Quiz from '/src/components/Academy/quiz.js'
@@ -312,28 +281,3 @@ const vectorSearchDefinition = [
     ],
   },
 ];
-const howWeaviateWorks = [{
-  questionText: 'Which of these are not true about Weaviate?',
-  answerOptions: [
-    {
-      answerText: 'Weaviate has no way of quantifying similarity between objects.',
-      isCorrect: false,
-      feedback: 'Weaviate performs vector searches, which is similarity-based.',
-    },
-    {
-      answerText: 'The only type of index in Weaviate is the vector index.',
-      isCorrect: false,
-      feedback: 'In addition to the vector index, Weaviate uses an inverted index.',
-    },
-    {
-      answerText: 'Weaviate is a machine learning model.',
-      isCorrect: true,
-      feedback: 'While Weaviate can be used with a variety of different models which help it determine object similarity, it is itself not a machine learning model. Weaviate is a vector database.',
-    },
-    {
-      answerText: 'None of the above',
-      isCorrect: false,
-      feedback: 'There is a correct answer out there!',
-    },
-  ]
-}];

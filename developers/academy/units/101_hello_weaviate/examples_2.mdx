@@ -1,6 +1,6 @@
 ---
-title: Hands-on 2 - More than search
-sidebar_position: 50
+title: Examples 2 - More than search
+sidebar_position: 25
 ---
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Beyond vector searches
@@ -9,9 +9,9 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-You can do a lot more with Weaviate than to simply retrieve static information. 
+You can do a lot more with Weaviate than to simply retrieve static information.
 
-Let's take a look at a couple of examples, where we do more than simply retrieve objects from the database. 
+Let's take a look at a couple of examples, where we do more than simply retrieve objects from the database.
 
 We'll use this Wiki entry as an example:
 
@@ -28,7 +28,7 @@ On 28 June 2007, the Sydney Opera House became a UNESCO World Heritage Site, hav
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Question-answering demo
 
-For one, Weaviate can extract knowledge from text. 
+For one, Weaviate can extract knowledge from text.
 
 ```graphql
 {
@@ -85,14 +85,14 @@ Weaviate can do even more with these entries, too. You can ask it to grab an obj
         generate(
           singleResult: {
             prompt: """
-              Write a fun tweet encouraging people to read about this: ## {title} 
+              Write a fun tweet encouraging people to read about this: ## {title}
               by summarizing highlights from: ## {wiki_summary}
             """
           }
         ) {
           singleResult
           error
-        }        
+        }
       }
     }
   }
@@ -112,52 +112,20 @@ Explore the world-famous Sydney Opera House and its incredible architecture! Fro
 
 This is an example of a `generative search`, where Weaviate has retrieved information, and then leveraged a large language model (LLM) to re-shape it. This is a powerful feature that can transform how you deal with information.
 
-You can vary the prompt to build any number of other outputs from this input. 
-
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Try it yourself
-
-<img src={imageUrl} alt="Image alt" width="75%"/>
-
-Now you have already seen how Weaviate makes it easy to not only retrieve information, but build on top of it. Let's take some time to try a few simple demos ourselves.
-
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Question answering
-
-Go to `INSERT URL`.
-
-Modify the highlighted line of the query below to ask questions about `topics`, to see if Weaviate can answer the question from its stored information.
-
-:::note Try it yourself
-Go to `INSERT URL` and see if Weaviate can answer your question.
-
-- Input box for user to put in their (or demo) Weaviate instance, and try queries
-- Suggest questions
-:::
-
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Generative search
-
-Go to `INSERT URL`.
-
-Modify the highlighted line of the query below to ask Weaviate to do something with the information about the `TOPIC`. 
-
-:::note Try it yourself
-Go to `INSERT URL` and manipulate this information to generate this text.
-
-- Input box for user to put in their (or demo) Weaviate instance, and try queries
-- Suggest questions
-:::
+You can vary the prompt to build any number of other outputs from this input.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+<!-- ### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
 
 Can you describe, in your own sentence, XXX?
 
 :::warning TODO
 Input box for user to put answer in and get back a similarity score & our definition?
 ??
-:::
+::: -->
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 

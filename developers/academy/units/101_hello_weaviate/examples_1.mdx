@@ -1,6 +1,6 @@
 ---
-title: Hands-on 1 - Queries
-sidebar_position: 40
+title: Examples 1 - Queries
+sidebar_position: 20
 ---
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vectors in action
@@ -9,17 +9,15 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-Now that you have learned what vector searches are, and set up a WCS instance, let's dive in and start to get our hands a little bit dirty. 
+Let's take a look at a few more examples of what you can do with Weaviate.
 
-We will try vector searches by searching through our demo database that contains multiple datasets. You will learn how to use Weaviate to retrieve objects based on their similarity, using various query types such as an input text, vector, or object. 
+First, we will try vector searches by searching through our demo database. You will learn how to use Weaviate to retrieve objects based on their similarity, using various query types such as an input text, vector, or object.
 
 You will also compare vector search with keyword search to compare and contrast the two techniques, before learning how to combine the two techniques through the use of filters.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector search demo
 
-![](../../tmp_images/students_looking_at_computer_screen_with_code_0.jpg)
-
-For our first search, let's look through our demo dataset which contains a small sample of questions from the quiz show *Jeopardy!*. 
+For our first search, let's look through our demo dataset which contains a small sample of questions from the quiz show *Jeopardy!*.
 
 Imagine that you're running a quiz night, and want to get some questions around the category of "animals in movies". You could look for word matches - perhaps something like:
 
@@ -98,7 +96,7 @@ Weaviate retrieved these as the top answers:
 
 Note just how relevant the results are, despite none of them including the word "animal", or the "movie", let alone both!
 
-This is exactly why vector searches are so useful. They can identify related objects without the need to match exact texts. 
+This is exactly why vector searches are so useful. They can identify related objects without the need to match exact texts.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector similarities demo
 
@@ -183,39 +181,26 @@ Take a look at this response. Do you notice any additional information?
 
 </details>
 
-The difference is that the response now contains a `distance` value. 
+The difference is that the response now contains a `distance` value.
 
-A `distance` is indicative of the degree of similarity between the returned object and the query. 
+A `distance` is indicative of the degree of similarity between the returned object and the query.
 
-If you're wondering exactly what that means, and who decides how similar any two objects or concepts are, those are great questions! We will cover those in more detail later. 
+If you're wondering exactly what that means, and who decides how similar any two objects or concepts are, those are great questions! We will cover those in more detail later.
 
-For now, just keep in mind that smaller distances mean two objects are more similar to each other. 
-
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Try it yourself
-
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Vector searches
-
-<img src={imageUrl} alt="Image alt" width="75%"/>
-
-:::note Try vector searches
-Go to `INSERT URL` and try your own searches.
-
-- Input box for user to put in their (or demo) Weaviate instance, and try queries
-- Perhaps just a GraphQL box
-:::
+For now, just keep in mind that smaller distances mean two objects are more similar to each other.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+<!-- ### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
 
 Can you describe, in your own sentence, XXX?
 
 :::warning TODO
 Input box for user to put answer in and get back a similarity score & our definition?
 ??
-:::
+::: -->
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
