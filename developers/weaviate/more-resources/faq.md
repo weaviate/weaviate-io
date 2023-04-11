@@ -112,7 +112,7 @@ A: You can create multiple classes in the Weaviate schema, where one class will 
 
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
-A: The below `Aggregate` GraphQL query will retrieve the total object count in a class.
+A: The below `Aggregate` query will retrieve the total object count in a class.
 
 <HowToGetObjectCount/>
 
@@ -168,7 +168,7 @@ A: Here are top 3 best practices for updating data:
 
 #### Q: Can I train my own text2vec-contextionary vectorizer module?
 
-A: Not yet (but soon), you can currently use the [available contextionaries](/developers/weaviate/quickstart/installation.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](https://newsletter.weaviate.io) or [Slack channel](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) to keep updated about the release of custom contextionary training
+A: Not yet (but soon), you can currently use the [available contextionaries](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed. Sign up to our [newsletter](https://newsletter.weaviate.io) or [Slack channel](https://weaviate.io/slack) to keep updated about the release of custom contextionary training
 
 ## Indexes in Weaviate
 
@@ -267,7 +267,7 @@ Weaviate has no notion of transactions, operations always affect exactly a singl
 
 #### Q: Does Weaviate require NFS volumes on Kubernetes?
 
-A: By default, no NFS volumes are active. In a production setting, we recommend turning etcd disaster recovery on which requires an NFS volume. However, [the helm docs](/developers/weaviate/quickstart/installation.md) contain instructions on how to deploy an nfs-provisioner. For more details, see also this [stack overflow answer](https://stackoverflow.com/a/60505796/5322199).
+A: By default, no NFS volumes are active. In a production setting, we recommend turning etcd disaster recovery on which requires an NFS volume. However, [the helm docs](/developers/weaviate/installation/kubernetes.md) contain instructions on how to deploy an nfs-provisioner. For more details, see also this [stack overflow answer](https://stackoverflow.com/a/60505796/5322199).
 
 <!-- #### Q: Why is the contextionary created using GloVe?
 
@@ -329,4 +329,4 @@ Look at the:
 1. [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
 1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
 1. For issues: [GitHub](https://github.com/weaviate/weaviate/issues). Or,
-1. Ask your question in the Slack channel: [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw).
+1. Ask your question in the Slack channel: [Slack](https://weaviate.io/slack).

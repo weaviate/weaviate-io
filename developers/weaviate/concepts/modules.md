@@ -27,20 +27,20 @@ This page explains what modules are, and what purpose they serve in Weaviate.
 
 Weaviate adopts a modularized structure, where for examples functionalities such as vectorization or backups are carried out by *optional* modules.
 
-The core of Weaviate, without any modules attached, is a pure vector-native database. 
+The core of Weaviate, without any modules attached, is a pure vector-native database.
 [![Weaviate modules introduction](./img/weaviate-module-diagram.svg "Weaviate Module Diagram")](./img/weaviate-module-diagram.svg)
 
-Data is stored in Weaviate as the combination of an object and its vector, and these vectors are searchable by the provided [vector index algorithm](../concepts/vector-index.md). Without any vectorizer modules attached, Weaviate does not know how to *vectorize* an object, i.e. *how* to calculate the vectors given an object. 
+Data is stored in Weaviate as the combination of an object and its vector, and these vectors are searchable by the provided [vector index algorithm](../concepts/vector-index.md). Without any vectorizer modules attached, Weaviate does not know how to *vectorize* an object, i.e. *how* to calculate the vectors given an object.
 
-Depending on the type of data you want to store and search (text, images, etc.), and depending on the use case (like search, question answering, etc., depending on language, classification, ML model, training set, etc.), you can choose and attach a vectorizer module that best fits your use case. Or, you can "bring your own" vectors to Weaviate. 
+Depending on the type of data you want to store and search (text, images, etc.), and depending on the use case (like search, question answering, etc., depending on language, classification, ML model, training set, etc.), you can choose and attach a vectorizer module that best fits your use case. Or, you can "bring your own" vectors to Weaviate.
 
 ## Available module types
 
-This graphic shows the available modules of the latest Weaviate version (v||site.weaviate_version||). 
+This graphic shows the available modules of the latest Weaviate version (v||site.weaviate_version||).
 
 Broadly, we categorize them into one of:
 - Vectorization modules,
-- Vectorization + additional functionality modules, and 
+- Vectorization + additional functionality modules, and
 - Other modules
 
 ![Weaviate module ecosystem](./img/weaviate-modules.png "Weaviate module ecosystem")
@@ -56,7 +56,7 @@ Dense vector retrievers are a relatively new approach to data retrieval, which u
 
 ### Modules with additional functionalities (*Reader* or *Generator* modules)
 
-Reader or Generator modules can be used on top of a Retriever/Vectorization module. A Reader module takes the set of relevant documents that are retrieved by the Retriever module, and extracts a piece of relevant information per document. An example Reader module is [`qna-transformers`](../modules/reader-generator-modules/qna-transformers.md) module, which extracts an answer directly from a document that is retrieved by a Retriever module. A Generator module would, on the other hand, use *language generation* to generate an answer from the given document. 
+Reader or Generator modules can be used on top of a Retriever/Vectorization module. A Reader module takes the set of relevant documents that are retrieved by the Retriever module, and extracts a piece of relevant information per document. An example Reader module is [`qna-transformers`](../modules/reader-generator-modules/qna-transformers.md) module, which extracts an answer directly from a document that is retrieved by a Retriever module. A Generator module would, on the other hand, use *language generation* to generate an answer from the given document.
 
 ### Other modules
 
@@ -68,7 +68,7 @@ Modules can be dependent on other modules to be present. For example, to use the
 
 ## Weaviate without modules
 
-Weaviate can also be used without any modules, as pure vector native database and search engine. If you choose not to include any modules, you will need to enter a vector for each data entry. You can then search through the objects by a vector as well. 
+Weaviate can also be used without any modules, as pure vector native database and search engine. If you choose not to include any modules, you will need to enter a vector for each data entry. You can then search through the objects by a vector as well.
 
 ## Custom modules
 

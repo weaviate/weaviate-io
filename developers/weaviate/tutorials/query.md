@@ -12,15 +12,15 @@ import Badges from '/_includes/badges.mdx';
 
 In this section, we will explore different queries that you can perform with Weaviate. Here, we will expand on the `nearText` queries that you may have seen in the [Quickstart tutorial](../quickstart/end-to-end.md) to show you different query types, filters and metrics that can be used.
 
-By the end of this section, you will have performed vector and scalar searches separately as well as in combination to retrieve individual objects and aggregations. 
+By the end of this section, you will have performed vector and scalar searches separately as well as in combination to retrieve individual objects and aggregations.
 
-## Prerequisites 
+## Prerequisites
 
-We recommend you complete the [Quickstart tutorial](../quickstart/index.md) first. 
+We recommend you complete the [Quickstart tutorial](../quickstart/index.md) first.
 
 Before you start this tutorial, you should follow the steps in the Quickstart to have:
 
-- An instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.io)),
+- An instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.cloud)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
 - Installed your preferred Weaviate client library,
 - Set up a `Question` class in your schema, and
@@ -31,12 +31,12 @@ Before you start this tutorial, you should follow the steps in the Quickstart to
 :::tip GraphQL
 Weaviate's queries are built using GraphQL. If this is new to you, don't worry. We will take it step-by-step and build up from the basics. Also, in many cases, the GraphQL syntax is abstracted by the client.
 
-You can query Weaviate using one or a combination of a semantic (i.e. vector) search and a lexical (i.e. scalar) search. As you've seen, a vector search allows for similarity-based searches, while scalar searches allow filtering by exact matches. 
+You can query Weaviate using one or a combination of a semantic (i.e. vector) search and a lexical (i.e. scalar) search. As you've seen, a vector search allows for similarity-based searches, while scalar searches allow filtering by exact matches.
 :::
 
 First, we will start by making queries to Weaviate to retrieve **Question** objects that we imported earlier.
 
-The Weaviate function for retrieving objects is `Get`. 
+The Weaviate function for retrieving objects is `Get`.
 
 This might be familiar for some of you. If you have completed our [Imports in detail tutorial](./import.md), you may have performed a `Get` query to confirm that the data import was successful. Here is the same code as a reminder:
 
@@ -46,11 +46,11 @@ import CodeImportGet from '/_includes/code/quickstart.import.get.mdx';
 
 This query simply asks Weaviate for *some* objects of this (`Question`) class.
 
-Of course, in most cases we would want to retrieve information on some criteria. Let's build on this query by adding a vector search. 
+Of course, in most cases we would want to retrieve information on some criteria. Let's build on this query by adding a vector search.
 
 ### `Get` with `nearText`
 
-This is a vector search using a `Get` query. 
+This is a vector search using a `Get` query.
 
 import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
 
@@ -62,7 +62,7 @@ Here, we are using a `nearText` parameter. What we are doing is to provide Weavi
 
 Also note here that we pass the API key in the header. This is required as the inference API is used to vectorize the input query.
 
-Additionally, we use the `limit` argument to only fetch a maximum of two (2) objects. 
+Additionally, we use the `limit` argument to only fetch a maximum of two (2) objects.
 
 If you run this query, you should see the entries on *"DNA"* and *"species"* returned by Weaviate.
 
@@ -95,7 +95,7 @@ result = (
 print(json.dumps(result, indent=4))
 ```
 
-And it should return the same results as above. 
+And it should return the same results as above.
 
 Note that we used the same OpenAI embedding model (`text-embedding-ada-002`) here so that the vectors are in the same vector "space".
 
@@ -140,13 +140,13 @@ Try it out, and you should see a response like this:
 
 You can try modifying this query to see if you retrieve the vector (note - it will be a looooong response 😉).
 
-We encourage you to also try out different queries and see how that changes the results and distances not only with this dataset but also with different datasets, and/or vectorizers. 
+We encourage you to also try out different queries and see how that changes the results and distances not only with this dataset but also with different datasets, and/or vectorizers.
 
 ## Filters
 
-As useful as it is, sometimes vector search alone may not be sufficient. For example, you may actually only be interested in **Question** objects in a particular category, for instance. 
+As useful as it is, sometimes vector search alone may not be sufficient. For example, you may actually only be interested in **Question** objects in a particular category, for instance.
 
-In these cases, you can use Weaviate's scalar filtering capabilities - either alone, or in combination with the vector search. 
+In these cases, you can use Weaviate's scalar filtering capabilities - either alone, or in combination with the vector search.
 
 Try the following:
 
@@ -187,7 +187,7 @@ This query asks Weaviate for **Question** objects whose category contains the st
 }
 ```
 
-Now that you've seen a scalar filter, let's see how it can be combined with vector search functions. 
+Now that you've seen a scalar filter, let's see how it can be combined with vector search functions.
 
 ### Vector search with scalar filters
 
@@ -230,7 +230,7 @@ Note that the results are confined to the choices from the 'animals' category. N
 
 ## Metadata with `Aggregate`
 
-As the name suggests, the `Aggregate` function can be used to show aggregated data such as on entire classes or groups of objects.  
+As the name suggests, the `Aggregate` function can be used to show aggregated data such as on entire classes or groups of objects.
 
 For example, the below query will return the number of data objects in the `Question` class:
 
@@ -279,7 +279,7 @@ As you can see, the `Aggregate` function can return handy aggregated, or metadat
 - [Tutorial: Schemas in detail](./schema.md)
 - [Tutorial: Import in detail](./import.md)
 - [Tutorial: Introduction to modules](./modules.md)
-- [Tutorial: Introduction to Weaviate Console](./console.md)
+- [Tutorial: Introduction to Weaviate Console](../../wcs/guides/console.mdx)
 
 ## Notes
 

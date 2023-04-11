@@ -16,7 +16,7 @@ export default function HomepageReady() {
         </p>
         <p>
           or request access to the{' '}
-          <Link className={styles.color} to="https://console.weaviate.io/">
+          <Link className={styles.color} to="https://console.weaviate.cloud">
             Weaviate Cloud Services {'>'}{' '}
           </Link>
         </p>

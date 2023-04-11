@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-This tutorial is designed to show you an example of how to create a schema in Weaviate. 
+This tutorial is designed to show you an example of how to create a schema in Weaviate.
 
 By the end of this tutorial, you should have a good idea of how to create a schema. You will begin to see why it is important, and where to find the relevant information required for schema definition.
 
@@ -62,7 +62,7 @@ Classes always start with a capital letter. Properties always begin with a small
 
 Let's define the class `Publication` with the properties `name`, `hasArticles` and `headquartersGeoLocation` in JSON format. `name` will be the name of the `Publication`, in string format. `hasArticles` will be a reference to Article objects. We need to define the class `Articles` in the same schema to make sure the reference is possible. `headquartersGeoLocation` will be of the special dataType `geoCoordinates`.
 
-Note that the property `"title"` of the class `"Article"` has dataType `"string"`, while the property `"content"` is of dataType `"text"`. `string` values and `text` values are tokenized differently to each other. 
+Note that the property `"title"` of the class `"Article"` has dataType `"string"`, while the property `"content"` is of dataType `"text"`. `string` values and `text` values are tokenized differently to each other.
 
 ```json
 {

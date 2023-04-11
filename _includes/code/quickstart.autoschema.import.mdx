@@ -23,6 +23,9 @@ with client.batch as batch:
 
 ```js
 async function importQuestions() {
+  // Get the data from the data.json file
+  const data = await getJsonData();
+
   // Prepare a batcher
   let batcher = client.batch.objectsBatcher();
   let counter = 0;
@@ -53,7 +56,7 @@ async function importQuestions() {
       .catch(err => {
         console.error(err)
       });
-      
+
       // restart the batch queue
       counter = 0;
       batcher = client.batch.objectsBatcher();
@@ -71,45 +74,117 @@ async function importQuestions() {
   });
 }
 
-importQuestions(); 
+importQuestions();
 ```
 
 </TabItem>
-{/* <TabItem value="go" label="Go">
+<TabItem value="ts" label="TypeScript">
+
+```ts
+async function importQuestions() {
+  // Get the data from the data.json file
+  const data = await getJsonData();
+
+  // Prepare a batcher
+  let batcher = client.batch.objectsBatcher();
+  let counter: number = 0;
+  let batchSize: number = 100;
+
+  interface Question {
+    Answer: string;
+    Question: string;
+    Category: string;
+  }
+
+  data.forEach((question: Question) => {
+    // Construct an object with a class and properties 'answer' and 'question'
+    const obj = {
+      class: 'Question',
+      properties: {
+        answer: question.Answer,
+        question: question.Question,
+        category: question.Category,
+      },
+    }
+
+    // add the object to the batch queue
+    batcher = batcher.withObject(obj);
+
+    // When the batch counter reaches batchSize, push the objects to Weaviate
+    if (counter++ == batchSize) {
+      // flush the batch queue
+      batcher
+      .do()
+      .then((res: any) => {
+        console.log(res)
+      })
+      .catch((err: Error) => {
+        console.error(err)
+      });
+
+      // restart the batch queue
+      counter = 0;
+      batcher = client.batch.objectsBatcher();
+    }
+  });
+
+  // Flush the remaining objects
+  batcher
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+}
+
+importQuestions();
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
 
 ```go
-package main
+// Retrieve the data
+data, err := http.DefaultClient.Get("https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json")
+if err != nil {
+  panic(err)
+}
+defer data.Body.Close()
 
-import (
-	"context"
-	"fmt"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate/entities/models"
+// Decode the data
+var items []map[string]string
+if err := json.NewDecoder(data.Body).Decode(&items); err != nil {
+  panic(err)
+}
 
-)
+// convert items into a slice of models.Object
+objects := make([]*models.Object, len(items))
+for i := range items {
+  objects[i] = &models.Object{
+    Class: "Question",
+    Properties: map[string]any{
+      "category": items[i]["Category"],
+      "question": items[i]["Question"],
+      "answer":   items[i]["Answer"],
+    },
+  }
+}
 
-func main() {
-    cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",
-        Scheme: "https",
-    }
-
-    client := weaviate.New(cfg)
-
-    classObj := &models.Class{
-        Class:      "Question", 
-        Vectorizer: "text2vec-openai",
-    }
-
-    // add the schema
-    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-    if err != nil {
-        panic(err)
-    }
+// batch write items
+batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(context.Background())
+if err != nil {
+  panic(err)
+}
+for _, res := range batchRes {
+  if res.Result.Errors != nil {
+    panic("batch load failed: %v", res.Result.Errors.Error)
+  }
 }
 ```
 
-</TabItem> */}
+</TabItem>
 {/* <TabItem value="java" label="Java">
 
 ```java
@@ -135,7 +210,7 @@ public class App {
       .className("Question")
       .vectorizer("text2vec-openai")
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {
@@ -147,18 +222,58 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
--X POST \
--H "Content-Type: application/json" \
--d '{
-    "class": "Question",
-    "vectorizer": "text2vec-openai",
-}' \
-https://some-endpoint.weaviate.network/v1/schema
+# Replace with your endpoint
+API_URL="http://some-endpoint.weaviate.network/v1/batch/objects"
+# Replace with your Inference API token
+OPENAI_API_TOKEN="<OpenAI-API-Token>"
+# Set batch size
+BATCH_SIZE=100
+
+# Read the JSON file and loop through its entries
+lines_processed=0
+batch_data="{\"objects\": ["
+
+cat jeopardy_tiny.json | jq -c '.[]' | while read line; do
+  # Concatenate lines
+  line=$(echo "$line" | jq "{class: \"Question\", properties: {answer: .Answer, question: .Question, category: .Category}}")
+  if [ $lines_processed -eq 0 ]; then
+    batch_data+=$line
+  else
+    batch_data+=",$line"
+  fi
+
+  lines_processed=$((lines_processed + 1))
+
+  # If the batch is full, send it to the API using curl
+  if [ $lines_processed -eq $BATCH_SIZE ]; then
+    batch_data+="]}"
+
+    curl -X POST "$API_URL" \
+         -H "Content-Type: application/json" \
+         -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
+         -d "$batch_data"
+    echo "" # Print a newline for better output formatting
+
+    # Reset the batch data and counter
+    lines_processed=0
+    batch_data="{\"objects\": ["
+  fi
+done
+
+# Send the remaining data (if any) to the API using curl
+if [ $lines_processed -ne 0 ]; then
+  batch_data+="]}"
+
+  curl -X POST "$API_URL" \
+       -H "Content-Type: application/json" \
+       -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
+       -d "$batch_data"
+  echo "" # Print a newline for better output formatting
+fi
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

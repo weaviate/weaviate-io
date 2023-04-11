@@ -12,17 +12,17 @@ description: "Learn how to import and query the Sphere dataset in Weaviate!"
 <!-- truncate -->
 
 ## What is Sphere?
-[Sphere](https://github.com/facebookresearch/sphere) is an open-source dataset recently [released](https://ai.facebook.com/blog/introducing-sphere-meta-ais-web-scale-corpus-for-better-knowledge-intensive-nlp/) by Meta. It is a collection of 134 million documents (broken up into 906 million 100-word snippets). It is one of the largest knowledge bases that can help solve knowledge-intensive natural language tasks such as question-answering, fact-checking, and much more. 
+[Sphere](https://github.com/facebookresearch/sphere) is an open-source dataset recently [released](https://ai.facebook.com/blog/introducing-sphere-meta-ais-web-scale-corpus-for-better-knowledge-intensive-nlp/) by Meta. It is a collection of 134 million documents (broken up into 906 million 100-word snippets). It is one of the largest knowledge bases that can help solve knowledge-intensive natural language tasks such as question-answering, fact-checking, and much more.
 
-Simply stated, Sphere aims to act as a "universal, uncurated and unstructured source of knowledge." This means that the next time you have a question like: "Was McDonald's, the food chain, founded by the same Ol' McDonald who had a farm?" Sphere will have the relevant knowledge to answer your question and point you toward a relevant article. The potential for this large of a dataset is awe-inspiring and the applications one can dream up are limitless - from combating fake news on social media platforms to helping locate your next dream vacation spot. 
+Simply stated, Sphere aims to act as a "universal, uncurated and unstructured source of knowledge." This means that the next time you have a question like: "Was McDonald's, the food chain, founded by the same Ol' McDonald who had a farm?" Sphere will have the relevant knowledge to answer your question and point you toward a relevant article. The potential for this large of a dataset is awe-inspiring and the applications one can dream up are limitless - from combating fake news on social media platforms to helping locate your next dream vacation spot.
 
 Additionally, Sphere is ideal for hybrid vector search at scale since it is one of the few large scale datasets where vectors are provided in addition to their corresponding text fields. You can learn more about the model that is used to generate these vectors [here](https://huggingface.co/facebook/dpr-question_encoder-single-nq-base). For all of these reasons we wanted to make this resource as accessible to the community as possible.
 
 ## The Challenges of using Sphere
 
-The only limitation of this dataset is how difficult it is to access and use for the average developer. In this regard the enormity of the dataset ends up as a double-edged sword. It is challenging to use Sphere in its current open-source format for anyone other than large industry and academic labs - even for them the UX leaves a lot to be desired. 
+The only limitation of this dataset is how difficult it is to access and use for the average developer. In this regard the enormity of the dataset ends up as a double-edged sword. It is challenging to use Sphere in its current open-source format for anyone other than large industry and academic labs - even for them the UX leaves a lot to be desired.
 
-*Don't believe me?* 
+*Don't believe me?*
 
 Try following the [readme](https://github.com/facebookresearch/sphere) to get Sphere set up and usable on your machine. The first limitation you'll run into is that the smallest open-sourced sparse Sphere indices file is a whopping 833 Gigabytes in its compressed format. Once you get past that hurdle,  to start using the Sphere dataset for its intended purpose of hybrid search testing and benchmarking, it requires another herculean effort.
 
@@ -40,9 +40,9 @@ Your browser does not support the video tag.
 
 
 Get it? ... It's a Sphere 🥁ba dum tsss🥁 I'll show myself out…
- 
 
-There are two ways to import the Sphere dataset into Weaviate. You can use the Python client (less than 75 lines of code) or the Weaviate Spark connector. 
+
+There are two ways to import the Sphere dataset into Weaviate. You can use the Python client (less than 75 lines of code) or the Weaviate Spark connector.
 
 ### Importing Sphere with Python
 The setup is quite straightforward, all you need is the [Weaviate Client](/developers/weaviate/client-libraries). We provide an example that uses the Python Client and the dpr-question_encoder-single-nq-base model (i.e., the module that is used to vectorize objects in Sphere).
@@ -54,7 +54,7 @@ We have prepared files ranging from 100K data points all the way up to the entir
 * [100M lines](https://storage.googleapis.com/sphere-demo/sphere.100M.jsonl.tar.gz)
 * [899M lines](https://storage.googleapis.com/sphere-demo/sphere.899M.jsonl.tar.gz)
 
-Once you have the dataset file downloaded and unpacked, the next step is to import the dataset into Weaviate with Python: 
+Once you have the dataset file downloaded and unpacked, the next step is to import the dataset into Weaviate with Python:
 
 ```python
 import sys
@@ -74,7 +74,7 @@ client = weaviate.Client(
 )
 
 client.batch.configure(
-    batch_size=BATCH_SIZE, 
+    batch_size=BATCH_SIZE,
     dynamic=True,
     num_workers=os.cpu_count()
 )
@@ -125,7 +125,7 @@ print('Done in', end - start)
 ### Importing Sphere with Spark
 If you want to start training large language models for knowledge-intensive tasks on Sphere, then you might want to leverage big data frameworks. This is where Apache Spark enters the picture!
 
-To process Sphere with Spark, you can use [PySpark](https://spark.apache.org/docs/latest/api/python/) and [Weaviate's Python Client](/developers/weaviate/client-libraries/python). The setup is slightly more difficult than simply importing the dataset with python; however, once you do have it setup, it is lightning fast! ⚡ 
+To process Sphere with Spark, you can use [PySpark](https://spark.apache.org/docs/latest/api/python/) and [Weaviate's Python Client](/developers/weaviate/client-libraries/python). The setup is slightly more difficult than simply importing the dataset with python; however, once you do have it setup, it is lightning fast! ⚡
 
 You can see the step-by-step instructions detailed in this [tutorial](/developers/weaviate/tutorials/spark-connector). The tutorial demonstrates how to get Sphere into a Spark dataframe, import it into Weaviate, and conduct queries. Once you have Sphere imported into your Spark instance you can leverage Spark functionality to start training powerful models. In this particular example we are using the [Weaviate Spark connector](https://github.com/weaviate/weaviate-spark-connector) making it easy to load data from Spark to Weaviate.
 
@@ -149,6 +149,6 @@ Since the primary usage of Sphere is around conducting large scale hybrid search
 And that's all folks! Now with the Sphere dataset readily available and easy to import into Weaviate anyone can start to build with this powerful tool in conjunction with the loads of awesome features that we already offer in Weaviate. Happy coding!
 
 ## Stay Connected
-Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io). 🙂
+Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io). 🙂
 
 Weaviate is open-source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

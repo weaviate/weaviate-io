@@ -247,7 +247,7 @@ Prefer the use of [stretchr/testify](https://github.com/stretchr/testify) to
 make assertions. We consider the readability of testify assertions higher than
 those of raw if statements if no assertion library was used.
 
-If there are cases which cannot be solved using `testify`, write a manual assertion. 
+If there are cases which cannot be solved using `testify`, write a manual assertion.
 
 ### Catastrophic Failure of tests
 Use the `assert` package if a failure of this tests is not catastrophic and use

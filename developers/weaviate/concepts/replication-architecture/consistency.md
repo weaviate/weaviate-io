@@ -8,21 +8,21 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-Data consistency is a property of a database that refers to whether data in different nodes do or do not match. In Weaviate, availability is generally preferred over strong consistency. This doesn't mean that we don't pay attention to consistency at all. Schema and data consistency are as important as possible. As captured by the [CAP Theorem](./index.md#cap-theorem), consistency and availability are a trade-off. In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C. 
+Data consistency is a property of a database that refers to whether data in different nodes do or do not match. In Weaviate, availability is generally preferred over strong consistency. This doesn't mean that we don't pay attention to consistency at all. Schema and data consistency are as important as possible. As captured by the [CAP Theorem](./index.md#cap-theorem), consistency and availability are a trade-off. In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C.
 
-Schema consistency is not tunable, but set to a strong consistency protocol. 
+Schema consistency is not tunable, but set to a strong consistency protocol.
 
 The strength of consistency can be determined by applying the following conditions:
 * If r + w > n, then the system is strongly consistent.
     * r is the consistency level of read operations
     * w is the consistency level of write operations
     * n is the replication factor (number of replicas)
-* If r + w <= n, then eventual consistency is the best that can be reached in this scenario. 
+* If r + w <= n, then eventual consistency is the best that can be reached in this scenario.
 
 
 ## Schema
 
-The data schema in Weaviate is **strongly consistent**. Once you use Weaviate, the data schema is rarely changed. From a user's perspective, it is acceptable that the latency for updating a schema is a bit higher than querying and updating data. By a 'slow' schema update, Weaviate can ensure consistency because it disallows multiple schema changes at the same time. 
+The data schema in Weaviate is **strongly consistent**. Once you use Weaviate, the data schema is rarely changed. From a user's perspective, it is acceptable that the latency for updating a schema is a bit higher than querying and updating data. By a 'slow' schema update, Weaviate can ensure consistency because it disallows multiple schema changes at the same time.
 
 A schema update is done via a [Distributed Transaction](https://en.wikipedia.org/wiki/Distributed_transaction) algorithm. This is a set of operations that is done across databases on different nodes in the distributed network. Weaviate uses a [two-phase commit (2PC)](https://en.wikipedia.org/wiki/Two-phase_commit_protocol) protocol, which replicates the schema updates in a short period of time (milliseconds).
 
@@ -31,17 +31,17 @@ A clean (without fails) execution has two phases:
 2. The commit phase, in which the coordinator commits the changes to the nodes.
 
 
-## Data objects 
+## Data objects
 
 Data objects in Weaviate have **eventual consistency**, which means that all nodes will eventually contain the most updated data if the data is not updated for a while. It might happen that after a data update, not all nodes are updated yet, but there is a guarantee that all nodes will be up-to-date after some time. Weaviate uses two-phase commits for objects as well, adjusted for the consistency level. For example for a `QUORUM` write (see below), if there are 5 nodes, 3 requests will be sent out, each of them using a 2-phase commit under the hood.
 
-Eventual consistency provides BASE semantics: 
+Eventual consistency provides BASE semantics:
 
 * **Basically available**: reading and writing operations are as available as possible
 * **Soft-state**: there are no consistency guarantees since updates might not yet have converged
-* **Eventually consistent**: if the system functions long enough, after some writes, all nodes will be consistent. 
+* **Eventually consistent**: if the system functions long enough, after some writes, all nodes will be consistent.
 
-Eventual consistency is chosen over strong consistency, to ensure high availability. Nevertheless, write and read consistency are tunable, so you have some influence on the tradeoff between availability and consistency. 
+Eventual consistency is chosen over strong consistency, to ensure high availability. Nevertheless, write and read consistency are tunable, so you have some influence on the tradeoff between availability and consistency.
 
 *The animation below is an example of how a write or a read is performed with Weaviate with a replication factor of 3 and 8 nodes. The blue node acts as coordinator node. The consistency level is set to `QUORUM`, so the coordinator node only waits for two out of three responses before sending the result back to the client.*
 
@@ -49,14 +49,14 @@ Eventual consistency is chosen over strong consistency, to ensure high availabil
 
 ### Tunable write consistency
 
-Adding or changing data objects are **write** operations.  
+Adding or changing data objects are **write** operations.
 
 :::note
 Write operations are tunable starting with Weaviate v1.18, to `ONE`, `QUORUM` (default) or `ALL`. In v1.17, write operations are always set to `ALL` (highest consistency).
 :::
 
 The main reason for introducing configurable write consistency in v1.18 is because that is also when automatic repairs are introduced. A write will always be written to n (replication factor) nodes, regardless of the chosen consistency level. The coordinator node however waits for acknowledgements from `ONE`, `QUORUM` or `ALL` nodes before it returns. To guarantee that a write is applied everywhere without the availability of repairs on read requests, write consistency is set to `ALL` for now. Possible settings in v1.18+ are:
-* **ONE** - a write must receive an acknowledgement from at least one replica node. This is the fastest (most available), but least consistent option. 
+* **ONE** - a write must receive an acknowledgement from at least one replica node. This is the fastest (most available), but least consistent option.
 * **QUORUM** - a write must receive an acknowledgement from at least `QUORUM` replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
 * **ALL** - a write must receive an acknowledgement from all replica nodes. This is the most consistent, but 'slowest' (least available) option.
 
@@ -85,7 +85,7 @@ Prior to `v1.18`, read consistency was tunable only for requests that [obtained 
 
 Starting with `v1.18`, the following consistency levels are applicable to most read operations:
 
-* **ONE** - a read response must be returned by at least one replica. This is the fastest (most available), but least consistent option. 
+* **ONE** - a read response must be returned by at least one replica. This is the fastest (most available), but least consistent option.
 * **QUORUM** - a response must be returned by `QUORUM` amount of replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
 * **ALL** - a read response must be returned by all replicas. The read operation will fail if at least one replica fails to respond. This is the most consistent, but 'slowest' (least available) option.
 

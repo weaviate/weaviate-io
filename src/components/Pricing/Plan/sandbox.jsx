@@ -13,7 +13,7 @@ export default function PricingSandBox() {
           <span> Round robin region: AWS, Azure, GCP</span>
         </li>
         <li>
-          <div className={styles.checkIcon}></div> 30 days lifetime
+          <div className={styles.checkIcon}></div> 14 days lifetime
         </li>
       </div>
       <div className={styles.features}>
@@ -22,7 +22,7 @@ export default function PricingSandBox() {
         </li>
         <li>
           <div className={styles.checkIcon}></div>
-          <a href="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw">
+          <a href="https://weaviate.io/slack">
             {' '}
             Public Slack
           </a>

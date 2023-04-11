@@ -14,22 +14,26 @@ import Badges from '/_includes/badges.mdx';
 Welcome to the documentation for **Weaviate**, an open source vector database.
 
 ### About the docs
-The majority of the content is categorized into one of three categories based on its focus:
+The majority of the content is categorized into one of three categories based on its main goal:
 
-| | 📚 References | 💡 Concepts | 👷 Tutorials |
-| ----- | ----- | ----- | ----- |
-| **Focus** | Find **itemized** information | **Explanations** of topics | How to **do** something |
+| | 🔧<br/>How-to | 📚<br/>References | 💡<br/>Concepts | 🎓<br/>Tutorials |
+| ----- | ----- | ----- | ----- | ----- |
+| **Goal** | **Solve** a problem | Find **itemized** information | **Explanations** of topics | Guided **lessons** |
 
 Commonly requested resources such as
 - [Benchmarks](./benchmarks/index.md)
 - [Roadmap](./roadmap/index.md)
 
-Have their own sections, and others such as the 
+Have their own sections, and others such as the
 
 - [FAQ](./more-resources/faq.md)
-- [Glossary](./more-resources/glossary.md) 
+- [Glossary](./more-resources/glossary.md)
 
 And more can be found in the [More Resources](./more-resources/index.md) section.
+
+:::tip Looking for Weaviate Cloud Services docs?
+The Weaviate Cloud Services (WCS) documentation now has its own section! [Check it out here](../wcs/index.mdx).
+:::
 
 ### For new users
 
@@ -37,14 +41,14 @@ If you are new to Weaviate, we recommend starting with these sections:
 1. Introduction (this page),
 2. [Quickstart tutorial](./quickstart/index.md)
 3. [Installation](./installation/index.md)
-4. [References: Configuration](./configuration/index.md)
+4. [How-to: Configure](./configuration/index.md)
 
 We suggest you browse through the [concepts](./concepts/index.md) section if you are interested in how Weaviate works.
 
 :::info Help us to help you!
 If the documentation does not quite suit **your** needs, we would love to hear from you.
 
-Please reach out on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) - we can help you with your specific problem, and help make the documentation better. Plus you'll meet our amazing, helpful community of users just like you!
+Please reach out on [Slack](https://weaviate.io/slack) - we can help you with your specific problem, and help make the documentation better. Plus you'll meet our amazing, helpful community of users just like you!
 :::
 
 :::note
@@ -67,7 +71,7 @@ This page is an introduction to Weaviate. We present a very high-level overview 
 
 Weaviate is an open source vector database that stores both objects and vectors. This allows for combining vector search with structured filtering.
 
-**Weaviate in a nutshell**: 
+**Weaviate in a nutshell**:
 
 * Weaviate is an open source vector database.
 * Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](./concepts/vector-index.md).
@@ -105,7 +109,7 @@ Weaviate makes it easy to use state-of-the-art AI models while providing the sca
 Use State-of-the-Art AI model inference (e.g., Transformers) for accessing data (text, images, etc.) at search-and-query time to let Weaviate manage the process of vectorizing data for you - or provide your own vectors.
 
 * **Combine vector and scalar search**<br />
- Weaviate allows for efficient, combined vector and scalar searches. For example, "articles related to the COVID-19 pandemic published within the past 7 days." Weaviate stores both objects and vectors and ensures the retrieval of both is always efficient. There is no need for a third-party object storage. 
+ Weaviate allows for efficient, combined vector and scalar searches. For example, "articles related to the COVID-19 pandemic published within the past 7 days." Weaviate stores both objects and vectors and ensures the retrieval of both is always efficient. There is no need for a third-party object storage.
 
 * **Real-time and persistent**<br />
 Weaviate lets you search through your data even if it's currently being imported or updated. In addition, every write is written to a Write-Ahead-Log (WAL) for immediately persisted writes - even when a crash occurs.
@@ -126,7 +130,7 @@ Weaviate lets you search through your data even if it's currently being imported
 
 Within Weaviate, all individual data objects are based on a class property structure where a vector represents each data object. You can connect data objects (like in a traditional graph) and search for data objects in the vector space.
 
-You can add data to Weaviate through the [RESTful API](./api/rest/index.md) end-points and retrieve data through the [GraphQL interface](./api/graphql/index.md). 
+You can add data to Weaviate through the [RESTful API](./api/rest/index.md) end-points and retrieve data through the [GraphQL interface](./api/graphql/index.md).
 
 Weaviate's [vector indexing mechanism is modular](./concepts/vector-index.md), and the current available plugin is the Hierarchical Navigable Small World (HNSW) multilayered graph.
 
@@ -152,9 +156,9 @@ There are four main situations when you should consider using Weaviate.
 
 - **If you don't like the quality of results that your current search engine gives you.** (With Weaviate you can search through your data semantically.)
 - **If you want to do textual and image similarity search with out-of-the-box state-of-the-art ML models.** (Combine storing and querying of multiple media types in one Weaviate instance.)
-- **If you want to combine semantic (vector) and scalar search with a vector database taking milliseconds.** (Weaviate stores both your objects and vectors and makes sure the retrieval of both is always efficient). 
+- **If you want to combine semantic (vector) and scalar search with a vector database taking milliseconds.** (Weaviate stores both your objects and vectors and makes sure the retrieval of both is always efficient).
 - **If you need to scale your own machine learning models to production size.** (HNSW algorithm and horizontally scalable support near-realtime database operations)
-- **If you need to classify large datasets fast and near-realtime.** (kNN, zero-shot or contextual classification with out-of-the-box or custom ML models). 
+- **If you need to classify large datasets fast and near-realtime.** (kNN, zero-shot or contextual classification with out-of-the-box or custom ML models).
 
 People use Weaviate for cases such as semantic search, image search, similarity search, anomaly detection, power recommendation engines, e-commerce search, data classification in ERP systems, automated data harmonization, cybersecurity threat analysis, and many, many more cases.
 

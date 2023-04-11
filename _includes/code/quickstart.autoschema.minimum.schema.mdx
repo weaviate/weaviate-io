@@ -18,8 +18,8 @@ client.schema.create_class(class_obj)
 
 ```js
 let classObj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
+  'class': 'Question',
+  'vectorizer': 'text2vec-openai'  // Or 'text2vec-cohere' or 'text2vec-huggingface'
 }
 
 // add the schema
@@ -37,41 +37,45 @@ client
 ```
 
 </TabItem>
-{/* <TabItem value="go" label="Go">
+<TabItem value="ts" label="TypeScript">
+
+```ts
+let classObj = {
+  'class': 'Question',
+  'vectorizer': 'text2vec-openai'  // Or 'text2vec-cohere' or 'text2vec-huggingface'
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
 
 ```go
-package main
+classObj := &models.Class{
+    Class:      "Question",
+    Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
+}
 
-import (
-	"context"
-	"fmt"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate/entities/models"
-
-)
-
-func main() {
-    cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",
-        Scheme: "https",
-    }
-
-    client := weaviate.New(cfg)
-
-    classObj := &models.Class{
-        Class:      "Question", 
-        Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
-    }
-
-    // add the schema
-    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-    if err != nil {
-        panic(err)
-    }
+// add the schema
+err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+if err != nil {
+    panic(err)
 }
 ```
 
-</TabItem> */}
+</TabItem>
 {/* <TabItem value="java" label="Java">
 
 ```java
@@ -97,7 +101,7 @@ public class App {
       .className("Question")
       .vectorizer("text2vec-openai")  // Or "text2vec-cohere" or "text2vec-huggingface"
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {
@@ -109,18 +113,18 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
--X POST \
--H "Content-Type: application/json" \
--d '{
-    "class": "Question",
-    "vectorizer": "text2vec-openai",
-}' \
-https://some-endpoint.weaviate.network/v1/schema
+echo '{
+  "class": "Question",
+  "vectorizer": "text2vec-openai"
+}' | curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d @- \
+  https://some-endpoint.weaviate.network/v1/schema
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

@@ -1,7 +1,7 @@
 ---
 title: GOMEMLIMIT is a game changer for high-memory applications
 slug: gomemlimit-a-game-changer-for-high-memory-applications
-authors: [etienne] 
+authors: [etienne]
 date: 2022-08-15
 tags: []
 image: ./img/hero.jpg
@@ -19,10 +19,10 @@ In this article, I will invite you on a journey. We will cover:
 * When the Garbage Collector runs, and what the implications are.
 * Why it was far too easy to run out of memory before Go 1.19.
 * What GOMEMLIMT is and why it can prevent premature OOM kills.
-* Run an experiment first without and then with GOMEMLIMIT 
+* Run an experiment first without and then with GOMEMLIMIT
 
 ## What is a garbage-collected language?
-In a garbage-collected language, such as Go, C#, or Java, the programmer doesn't have to deallocate objects manually after using them. A GC cycle runs periodically to collect memory no longer needed and ensure it can be assigned again. Using a garbage-collected language is a trade-off between development complexity and execution time. Some CPU time has to be spent at runtime to run the GC cycles. 
+In a garbage-collected language, such as Go, C#, or Java, the programmer doesn't have to deallocate objects manually after using them. A GC cycle runs periodically to collect memory no longer needed and ensure it can be assigned again. Using a garbage-collected language is a trade-off between development complexity and execution time. Some CPU time has to be spent at runtime to run the GC cycles.
 
 Go's Garbage collector is highly concurrent and [quite efficient](https://tip.golang.org/doc/gc-guide#Understanding_costs). That makes Go a great compromise between both worlds. The syntax is straightforward, and the potential for memory-related bugs (such as memory leaks) is low. At the same time, it's not uncommon to have Go programs spend considerably less than 1% of their CPU time on GC-related activities. Given how little the average program is optimized for execution efficiency, trading in just 1% of execution time is a pretty good deal. After all, who wants to worry about freeing memory after it's been used?
 
@@ -75,15 +75,15 @@ So, we want the best of both worlds; to get as close to our limit as possible bu
 ![Delayed garbage collector](./img/delayed-garbage-collector.png)
 
 ### Previously GC targets were always relative.
-Looking at the three graphs above, you might think this is pretty obvious. We want to make use of the memory we have without going above it. However, before Go 1.19, you only had a single knob to turn: the GOGC environment variable. This variable accepted a relative target compared to the current live heap size. The default value for GOGC is 100, meaning that the heap should double (i.e. grow by 100 percent) before GC should run again. 
+Looking at the three graphs above, you might think this is pretty obvious. We want to make use of the memory we have without going above it. However, before Go 1.19, you only had a single knob to turn: the GOGC environment variable. This variable accepted a relative target compared to the current live heap size. The default value for GOGC is 100, meaning that the heap should double (i.e. grow by 100 percent) before GC should run again.
 
 That works well for applications that have tiny permanent live heaps. For example, if your constant heap is just 100MB and you have 6GB available, you can double your heap targets many times before ever being in danger. If your application load increases and temporary allocations increase, your dynamic targets would be 200MB, 400MB, 800MB, 1600MB, and 3200MB. Your load must double six times to cross the 6GB mark. In other words, running out of memory is extremely unlikely.
 
-But now, let's think back to our cache application with a permanent 4GB live heap on a 6GB machine. Even the first doubling of the heap is highly problematic because the new target (8GB) would already exceed the physical memory on the machine. 
+But now, let's think back to our cache application with a permanent 4GB live heap on a 6GB machine. Even the first doubling of the heap is highly problematic because the new target (8GB) would already exceed the physical memory on the machine.
 
 In the past, there was not much we could do about this. Remember, GOGC is the only knob that we could turn. So we would have most likely picked a value such as GOGC=25. That means the heap could grow by 25% for GC to kick in. Our new target would now be 5GB; unless the load changes drastically, we should be safe from running OOM again.
 
-But this scenario only looks at a single snapshot in time. We have pretended that we would always start with a 4GB live heap. That's an over-simplification that won't always hold in reality. What if fewer items are in the cache and the live heap is only 100MB? That would make our heap goal just 125MB. In other words, we would end up with constant GC cycles. They would take up a lot of CPU time. As a result, user-facing latencies – as well as the overall throughput – would suffer. 
+But this scenario only looks at a single snapshot in time. We have pretended that we would always start with a 4GB live heap. That's an over-simplification that won't always hold in reality. What if fewer items are in the cache and the live heap is only 100MB? That would make our heap goal just 125MB. In other words, we would end up with constant GC cycles. They would take up a lot of CPU time. As a result, user-facing latencies – as well as the overall throughput – would suffer.
 
 ### Be less aggressive when there is a lot of memory, be very aggressive when there is little.
 What we want is a situation where the GC is not very aggressive (i.e., it runs rarely) when a lot of memory is still available, yet at the same time, the GC should become very aggressive when memory is scarce. In the past, this was only possible with a workaround. The so-called GC ballast method is a technique that the engineers at Twitch popularized. At the application startup, you would allocate a ballast, for example, a byte array that would take up a vast amount of memory. Since the heap is now significant, you can make GOGC quite aggressive. To stick with our numbers from above: If you allocate a 4GB ballast and set GOGC=25, the GC will not run until 5GB of memory is allocated.
@@ -91,24 +91,24 @@ What we want is a situation where the GC is not very aggressive (i.e., it runs r
 You might be wondering if this exercise defeats the purpose? Yes, this will defer the first GC cycle, but don't we have 4GB of useless memory allocations on the heap now? The answer is "not really" because the ballast would only occupy virtual memory. This concept is explained well in the article from Twitch.
 
 ## GOMEMLIMIT – no more need for a workaround
-While I love the ingenuity of using virtual memory as ballast, it is still a workaround – one that you should never need in the first place. And with Go 1.19, we finally have a better solution. GOMEMLIMIT allows specifying a soft memory cap. It does not replace GOGC but works in conjunction with it. You can set GOGC for a scenario in which memory is always available. And at the same time, you can trust that GOMEMLIMIT automatically makes the GC more aggressive when memory is scarce. In other words, GOMEMLIMIT is precisely the missing piece that we outlined before. 
+While I love the ingenuity of using virtual memory as ballast, it is still a workaround – one that you should never need in the first place. And with Go 1.19, we finally have a better solution. GOMEMLIMIT allows specifying a soft memory cap. It does not replace GOGC but works in conjunction with it. You can set GOGC for a scenario in which memory is always available. And at the same time, you can trust that GOMEMLIMIT automatically makes the GC more aggressive when memory is scarce. In other words, GOMEMLIMIT is precisely the missing piece that we outlined before.
 
 If the live heap is low (e.g., 100MB), we can delay the next GC cycle until the heap has doubled (200MB). But if the heap has grown close to our limit (e.g., 4GB), the GC runs more often to prevent us from ever running OOM.
 
 ### Why a soft limit? What is the difference between a soft and a hard limit?
-The Go authors explicitly label GOMEMLIMIT a "soft" limit. That means that the Go runtime does not guarantee that the memory usage will exceed the limit. Instead, it uses it as a target. The goal is to fail fast in an impossible-to-solve situation: Imagine we set the limit to a value just a few kilobytes larger than the live heap. The GC would have to run constantly. We would be in a situation where the regular and GC execution would compete for the same resources. The application would stall. Since there is no way out – other than running with more memory – the Go runtime prefers an OOM situation. All the usable memory has been used up, and nothing can be freed anymore. That is a failure scenario, and fast failure is preferred. That makes the limit a soft limit. Crossing it - and thus invoking an OOM kill from the kernel – is still an option, but only when the live heap is used up entirely, and there is nothing else that the runtime can do. 
+The Go authors explicitly label GOMEMLIMIT a "soft" limit. That means that the Go runtime does not guarantee that the memory usage will exceed the limit. Instead, it uses it as a target. The goal is to fail fast in an impossible-to-solve situation: Imagine we set the limit to a value just a few kilobytes larger than the live heap. The GC would have to run constantly. We would be in a situation where the regular and GC execution would compete for the same resources. The application would stall. Since there is no way out – other than running with more memory – the Go runtime prefers an OOM situation. All the usable memory has been used up, and nothing can be freed anymore. That is a failure scenario, and fast failure is preferred. That makes the limit a soft limit. Crossing it - and thus invoking an OOM kill from the kernel – is still an option, but only when the live heap is used up entirely, and there is nothing else that the runtime can do.
 
 ## Adding GOMEMLIMIT to Weaviate – before & after
 [Weaviate](/developers/weaviate) is a vector database that we are building. As a database provider, we care both about OOM safety as well as about performance. Using default settings, Weaviate will create an in-memory index for efficient vector-based retrieval. In other words, the more the user imports, the more the heap will grow. That makes it quite unpredictable to know what live heap we will end up with eventually. In other words, Weaviate – like any other memory-intensive Go application – is a perfect candidate to benefit from GOMEMLIMT. It also comes out of the box with [Prometheus-compatible monitoring](/developers/weaviate/configuration/monitoring), so it should be easy to visualize the heap usage.
 
-For this experiment, we will use the latest Weaviate version compiled with Go 1.19. We will run it in Docker, making it very easy to limit the available memory. Based on what we are about to import, we will predict that the live heap should be around 3GB. 
+For this experiment, we will use the latest Weaviate version compiled with Go 1.19. We will run it in Docker, making it very easy to limit the available memory. Based on what we are about to import, we will predict that the live heap should be around 3GB.
 
 ## Without GOMEMLIMT
-For the first run, I have chosen the following settings: 
+For the first run, I have chosen the following settings:
 GOMEMLIMIT is not set at all,
 GOGC is set to 100.
-Using Docker, the memory limit is set to 3GiB. 
-The goal is to import 400,000 objects, each with a 768d vector attached. 
+Using Docker, the memory limit is set to 3GiB.
+The goal is to import 400,000 objects, each with a 768d vector attached.
 
 Based on our predictions, this should use just above 2GiB of live memory. Will we run out of memory?
 
@@ -176,7 +176,7 @@ How do we interpret this output?
 * The explanation is that with `GOGC=100`, the GC waits for the heap to double. That effectively means that on a 3GiB machine, we can never safely use more than 1.5GiB.
 
 ## With GOMEMLIMIT=2750MiB
-Now, I will repeat the same experiment. I will keep GOGC at 100, but will also introduce GOMEMLIMT. I have set the value slightly below the 3000MiB cgroup limit to 2750MiB. That is because GOMEMLIMIT is only a soft limit. It does not guarantee that the Go runtime will never exceed it; it just acts as a new target. 
+Now, I will repeat the same experiment. I will keep GOGC at 100, but will also introduce GOMEMLIMT. I have set the value slightly below the 3000MiB cgroup limit to 2750MiB. That is because GOMEMLIMIT is only a soft limit. It does not guarantee that the Go runtime will never exceed it; it just acts as a new target.
 
 With the new parameter, I will invoke Weaviate like this:
 
@@ -246,6 +246,6 @@ Does that mean that GOMEMLIMIT is your *get-out-of-jail-free* card for heap allo
 ## What next
 Check out the [Getting Started with Weaviate](/developers/weaviate/quickstart) and begin building amazing apps with Weaviate.
 
-You can reach out to us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
+You can reach out to us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
 
 Weaviate is open source, you can follow the project on [GitHub](https://github.com/weaviate/weaviate). Don't forget to give us a ⭐️ while you are there.

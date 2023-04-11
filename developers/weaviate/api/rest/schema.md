@@ -253,7 +253,7 @@ Learn more about the schema configuration [here](/developers/weaviate/configurat
 | `vectorizer` | body | string | Vectorizer to use for data objects added to this class. Default can be set via Weaviate environment variables. |
 | `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | Include the class name in vector calculation (default true). Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
 | `properties` | body | array | An array of property objects. |
-| `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/configuration/datatypes.md). |
+| `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/config-refs/datatypes.md). |
 | `properties` > `description` | body | string | Description of the property. |
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
@@ -279,7 +279,7 @@ import CodeSchemaCreateElaborate from '/_includes/code/schema.things.create.elab
 
 ## Get a single class from the schema
 
-Retrieves the configuration of a single class in the schema. 
+Retrieves the configuration of a single class in the schema.
 
 ### Method and URL
 
@@ -317,11 +317,11 @@ import CodeSchemaDelete from '/_includes/code/schema.things.delete.mdx';
 
 ## Update a class
 
-Update settings of an existing schema class. 
+Update settings of an existing schema class.
 
 Use this endpoint to alter an existing class in the schema. Note that not all settings are mutable. If an error about immutable fields is returned and you still need to update this particular setting, you will have to delete the class (and the underlying data) and recreate. This endpoint cannot be used to modify properties. Instead, use [`POST /v1/schema/{ClassName}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as the `vectorIndexConfig`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
 
-You should attach a body to this PUT request with the **entire** new configuration of the class. 
+You should attach a body to this PUT request with the **entire** new configuration of the class.
 
 ### Method and URL
 
@@ -348,7 +348,7 @@ Parameters in the PUT body:
 | `vectorizer` | body | string | Vectorizer to use for data objects added to this class. Default can be set via Weaviate environment variables. |
 | `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | Include the class name in vector calculation (default true). Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
 | `properties` | body | array | An array of property objects. |
-| `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/configuration/datatypes.md) |
+| `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/config-refs/datatypes.md) |
 | `properties` > `description` | body | string | Description of the property. |
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
 | `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
@@ -377,7 +377,7 @@ POST v1/schema/{class_name}/properties
 
 | Name | Location | Type | Description |
 | ---- | -------- | -----| ----------- |
-| `dataType` | body | array | An available [data type](/developers/weaviate/configuration/datatypes.md). |
+| `dataType` | body | array | An available [data type](/developers/weaviate/config-refs/datatypes.md). |
 | `description` | body | string | Description of the property. |
 | `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
 | `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about how to [configure indexing in Weaviate](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing). |
@@ -420,7 +420,7 @@ import CodeSchemaShardsGet from '/_includes/code/schema.shards.get.mdx';
 
 ## Update shard status
 
-A shard may have been marked as read-only, for example because the disk was full. You can manually set a shard to `READY` again using the following API. There is also a convenience function in each client to set the status of all shards of a class. 
+A shard may have been marked as read-only, for example because the disk was full. You can manually set a shard to `READY` again using the following API. There is also a convenience function in each client to set the status of all shards of a class.
 
 ### Method and URL
 

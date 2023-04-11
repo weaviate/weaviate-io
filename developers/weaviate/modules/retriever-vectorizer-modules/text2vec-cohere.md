@@ -61,7 +61,7 @@ In your Weaviate schema, you must define how you want this module to vectorize y
 The following schema configuration tells Weaviate to vectorize the `Document` class with `text2vec-cohere`, using the `multilingual-22-12` model and without input truncation by the Cohere API.
 
 :::info
-The multilingual models use dot product, and the English model uses cosine. Make sure to set this accordingly in your Weaviate schema. You can see supported distance metrics [here](../../configuration/distances.md).
+The multilingual models use dot product, and the English model uses cosine. Make sure to set this accordingly in your Weaviate schema. You can see supported distance metrics [here](../../config-refs/distances.md).
 :::
 
 ```json
