@@ -30,8 +30,8 @@ export default function PricingHeader({ selectedType, handleSelected }) {
               <p>We manage everything in the Weaviate Cloud</p>
               <div className={styles.logos}>
                 <span className={styles.google} />
-                <span className={styles.aws} />
-                <span className={styles.azure} />
+                <span className={`${styles.aws} ${styles.opacity}`} />
+                <span className={`${styles.azure} ${styles.opacity}`} />
               </div>
             </div>
           </div>
