@@ -12,7 +12,7 @@ export default function Intro() {
           </h2>
           <p>
             Weaviate is a remote-first company that has big ambitions. Our
-            product Weaviate is a vector-based search engine, which uses AI and
+            product Weaviate is a vector database, which uses AI and
             machine learning to organize and search data in a completely new
             way.
           </p>

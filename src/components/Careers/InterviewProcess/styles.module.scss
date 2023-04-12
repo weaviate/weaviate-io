@@ -15,10 +15,12 @@
 .card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 
-  width: 33.5rem;
+  width: 34rem;
+  min-width: 34rem;
   height: 27rem;
+  min-height: 27rem;
   background-color: #141F39;
   margin: 1rem;
   padding: 2rem;

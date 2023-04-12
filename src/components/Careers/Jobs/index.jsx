@@ -84,15 +84,20 @@ export default function Jobs() {
                 <p>{job.title}</p>
                 <p className={styles.removeInMobile}>{job.departament}</p>
                 <p className={styles.removeInMobile}>
-                  {job.remote && 'Remoto'}
+                  {job.remote && 'Remote'}
                 </p>
               </a>
             ))}
         </div>
       </div>
+      <div className={styles.titleFooter}>
+        <p>
+          Can't find the right vacancy or do you have any questions?
+        </p>
+      </div>
       <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="mailto:jessie@weaviate.io">
-          Let’s have a chat
+        <Link className={styles.buttonGradient} to="mailto:careers@weaviate.io">
+          Contact us
         </Link>
       </div>
     </div>
