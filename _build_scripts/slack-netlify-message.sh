@@ -12,7 +12,7 @@ commit_message=${commit_message//>/&gt;}
 
 # Extract Netlify URL
 NETLIFY_LOC=$(grep -r 'Website Draft URL:' netlify.out)
-NETLIFY_URL=$(echo ${NETLIFY_LOC:20})
+NETLIFY_URL=$(echo ${NETLIFY_LOC:19})
 echo $NETLIFY_URL
 
 # Prepare the message and send it to Slack
@@ -20,10 +20,6 @@ branch_name=${GITHUB_REF##*/}
 MESSAGE="{ \"text\": \"Hey $AUTHOR_NAME - your :docusaurus: *weaviate website* build (\`$branch_name\`) is ready on Netlify:\n $NETLIFY_URL \n> $commit_message\" }"
 
 echo $MESSAGE > payload_netlify.json
-
-echo "-----"
-echo $MESSAGE
-echo "-----"
 
 # Send the slack message
 curl -X POST -H 'Content-type: application/json' -d @payload_netlify.json https://hooks.slack.com/services/$SLACK_BOT
