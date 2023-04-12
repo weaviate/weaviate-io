@@ -31,7 +31,9 @@ schema ([Example to add new schema class](../api/rest/schema.md#create-a-class))
 
 If you're missing your favorite distance type and would like to contribute it to Weaviate, we'd be happy to review your [PR](https://github.com/weaviate/weaviate).
 
-[^1]: Dot Product on its own is a similarity metric, not a distance metric. As a result, Weaviate returns the negative dot product to stick with the intuition that a smaller value of a distance indicates a more similar result and a higher distance value indicates a less similar result.
+:::info Dot Product - negative values
+Dot Product on its own is a similarity metric, not a distance metric. As a result, Weaviate returns the negative dot product to stick with the intuition that a smaller value of a distance indicates a more similar result and a higher distance value indicates a less similar result.
+:::
 
 ### Distance Implementations and Optimizations
 
