@@ -73,3 +73,9 @@ For backward compatibility, `certainty` can still be used when the distance is
 `cosine`. If any other distance is selected `certainty` cannot be used.
 
 See also [distance and certainty _additional{} properties](../api/graphql/additional-properties.md).
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
