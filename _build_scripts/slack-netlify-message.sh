@@ -10,6 +10,11 @@ commit_message=${commit_message//&/&amp;}
 commit_message=${commit_message//</&lt;}
 commit_message=${commit_message//>/&gt;}
 
+# Extract Netlify URL
+NETLIFY_LOC=$(grep -r 'Website Draft URL:' netlify.out)
+NETLIFY_URL=$(echo ${NETLIFY_LOC:29})
+echo $NETLIFY_URL
+
 # Prepare the message and send it to Slack
 branch_name=${GITHUB_REF##*/}
 MESSAGE="{ \"text\": \"Hey $AUTHOR_NAME - your :docusaurus: *weaviate website* build (\`$branch_name\`) is ready on Netlify: $NETLIFY_URL \n> $commit_message\" }"

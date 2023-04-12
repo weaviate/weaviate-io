@@ -14,6 +14,6 @@ rm build/robots.txt
 mv build/robots.txt.live build/robots.txt
 
 # Extract Netlify URL
-NETLIFY_LOC=$(grep -r 'Website Draft URL:' netlify.out)
-NETLIFY_URL=$(echo ${NETLIFY_LOC:29})
-echo $NETLIFY_URL
+# NETLIFY_LOC=$(grep -r 'Website Draft URL:' netlify.out)
+# NETLIFY_URL=$(echo ${NETLIFY_LOC:29})
+# echo $NETLIFY_URL
