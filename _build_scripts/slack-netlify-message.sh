@@ -13,7 +13,6 @@ commit_message=${commit_message//>/&gt;}
 # Extract Netlify URL
 NETLIFY_LOC=$(grep -r 'Website Draft URL:' netlify.out)
 NETLIFY_URL=$(echo ${NETLIFY_LOC:19})
-echo $NETLIFY_URL
 
 # Prepare the message and send it to Slack
 branch_name=${GITHUB_REF##*/}
