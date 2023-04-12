@@ -16,5 +16,9 @@ MESSAGE="{ \"text\": \"Hey $AUTHOR_NAME - your :docusaurus: *weaviate website* b
 
 echo $MESSAGE > payload_netlify.json
 
+echo "-----"
+echo $MESSAGE
+echo "-----"
+
 # Send the slack message
 curl -X POST -H 'Content-type: application/json' -d @payload_netlify.json https://hooks.slack.com/services/$SLACK_BOT
