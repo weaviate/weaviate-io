@@ -37,7 +37,10 @@ func GetSchema() {
         Host:   "localhost:8080",
 		Scheme: "http",
     }
-    client := weaviate.NewClient(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
 
     schema, err := client.Schema().Getter().Do(context.Background())
     if err != nil {
