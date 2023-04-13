@@ -8,8 +8,8 @@ const getRepoVersion = async (repoName) => {
             headers: {
                 'Content-Type': 'application/json',
                 'authorization': // Use the github token if available
-                    (process.env.GITHUB_API_TOKEN) ?
-                        `Bearer ${ process.env.GITHUB_API_TOKEN }` : ''
+                    (process.env.GH_API_TOKEN) ?
+                        `Bearer ${ process.env.GH_API_TOKEN }` : ''
             }
         }
     );
