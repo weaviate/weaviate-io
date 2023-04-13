@@ -7,6 +7,10 @@ DOCUSAURUS_IGNORES="github.com/.*github.com/|github.com/weaviate/weaviate-io"
 # Note #1 github.com/.*github.com/ - is to ignore meta links that include blog co-authors
 # Note #2 github.com/weaviate/weaviate-io/tree/ - is for edit on github links
 
+# Extract Netlify URL
+NETLIFY_LOC=$(grep -r 'Website Draft URL:' netlify.out)
+NETLIFY_URL=$(echo ${NETLIFY_LOC:19})
+
 echo "**************************************
 Starting Link Verification
 PATH: ${NETLIFY_URL}
