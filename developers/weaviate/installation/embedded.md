@@ -30,9 +30,9 @@ The Weaviate server spwaned from the client can be configured via parameters pas
 
 | Parameter | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| persistence_data_path | string | Directory where the files making up the database are stored | When the `XDG_DATA_HOME` env variable is set, the default value is:<br/>`XDG_DATA_HOME/weaviate/`<br/><br/>Otherwise it is:<br/>`~/.local/share/weaviate` |
-| binary_path | string | Where the binary is downloaded to. If deleted, the client will download the binary again. | When the `XDG_CACHE_HOME` env variable is set, the default value is:<br/>`XDG_CACHE_HOME/weaviate-embedded/`<br/><br/>Otherwise it is:<br/>`~/.cache/weaviate-embedded` |
-| version | string | Full URL pointing to a Linux AMD64 or ARM64 binary | The default value is set to a recent AMD64 Weaviate binary. |
+| persistence_data_path | string | Directory where the files making up the database are stored. | When the `XDG_DATA_HOME` env variable is set, the default value is:<br/>`XDG_DATA_HOME/weaviate/`<br/><br/>Otherwise it is:<br/>`~/.local/share/weaviate` |
+| binary_path | string | Directory where to download the binary. If deleted, the client will download the binary again. | When the `XDG_CACHE_HOME` env variable is set, the default value is:<br/>`XDG_CACHE_HOME/weaviate-embedded/`<br/><br/>Otherwise it is:<br/>`~/.cache/weaviate-embedded` |
+| version | string | Version takes two types of input:<br/>- **version number** - for example `"1.18.3"` or `"latest"`<br/>- **full URL** pointing to a Linux AMD64 or ARM64 binary | Latest stable version |
 | port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 6666 |
 | hostname | string | Hostname/IP to bind to. | 127.0.0.1 |
 | additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. |
@@ -41,7 +41,7 @@ The Weaviate server spwaned from the client can be configured via parameters pas
 It is **not recommended** to modify the `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables from the standard **XDG Base Directory** values, as that might affect many other (non-Weaviate related) applications and services running on the same server.
 :::
 
-:::tip Providing the Weaviate version
+:::tip Providing the Weaviate version as a URL
 To find the **full URL** for `version`:
 * head to [Weaviate releases](https://github.com/weaviate/weaviate/releases),
 * find the **Assets** section for the required Weaviate version
