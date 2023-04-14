@@ -5,7 +5,6 @@ import CommandMenu from '../components/CommandMenu';
 export default function SearchBarWrapper(props) {
     const [open, setOpen] = useState(false);
     const [isApple, setIsApple] = useState(true);
-    console.log(navigator);
 
   useEffect(() => {
     if (navigator.appVersion.indexOf("Apple") != -1) {
