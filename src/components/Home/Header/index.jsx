@@ -21,13 +21,13 @@ export default function HomepageHeader() {
             </p>
             <div className={styles.buttons}>
               <Link className={styles.buttonGradient} to="https://console.weaviate.cloud">
-                Weaviate Cloud console
+                Start Free
               </Link>
               <Link
                 className={styles.buttonOutline}
-                to="https://console.weaviate.cloud"
+                to="https://weaviate.io/developers/wcs"
               >
-                Create a Free Sandbox
+                Documentation
               </Link>
             </div>
           </div>
