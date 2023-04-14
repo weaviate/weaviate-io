@@ -283,6 +283,10 @@ const config = {
                         target: '_blank',
                         className: 'fab fa-lg fa-spotify',
                     },
+                    {
+                        type: 'search',
+                        position: 'right',
+                    },
                 ],
             },
 

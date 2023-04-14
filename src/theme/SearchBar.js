@@ -3,8 +3,15 @@ import './searchBar.scss';
 import CommandMenu from '../components/CommandMenu';
 
 export default function SearchBarWrapper(props) {
-  const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [isApple, setIsApple] = useState(true);
+    console.log(navigator);
 
+  useEffect(() => {
+    if (navigator.appVersion.indexOf("Apple") != -1) {
+        setIsApple(true);
+    }
+  }, [])
   return (
     <>
       <CommandMenu open={open} setOpen={setOpen} />
@@ -16,7 +23,7 @@ export default function SearchBarWrapper(props) {
           </span>
           <div className='commandIconContainer'>
             <span className='commandIcon'>
-              ⌘K
+                {isApple ? '⌘K' : 'Ctrl + K'}
             </span>
           </div>
         </button>

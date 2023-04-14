@@ -25,7 +25,7 @@ export default function HomepageHeader() {
               </Link>
               <Link
                 className={styles.buttonOutline}
-                to="https://weaviate.io/developers/wcs"
+                to="https://weaviate.io/developers/weaviate"
               >
                 Documentation
               </Link>
