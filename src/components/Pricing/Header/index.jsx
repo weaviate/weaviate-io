@@ -6,7 +6,9 @@ export default function PricingHeader({ selectedType, handleSelected }) {
   return (
     <div className="container">
       <div className={styles.box}>
-        <h1><span className={styles.textGradient}>Weaviate</span> Cloud Services</h1>
+        <h1>
+          <span className={styles.textGradient}>Weaviate</span> Cloud Services
+        </h1>
         <h3>The power of the open-source vector database, fully managed</h3>
         <p>
           Start for free and only pay for the vector dimensions you store and
@@ -28,6 +30,8 @@ export default function PricingHeader({ selectedType, handleSelected }) {
               <p>We manage everything in the Weaviate Cloud</p>
               <div className={styles.logos}>
                 <span className={styles.google} />
+                <span className={`${styles.aws} ${styles.opacity}`} />
+                <span className={`${styles.azure} ${styles.opacity}`} />
               </div>
             </div>
           </div>
