@@ -86,6 +86,10 @@ client
 </TabItem>
 </Tabs>
 
+#### Troubleshooting import with TypeScript
+
+If you are having any issues with the import statement in typescript (e.g. if `weaviate` is `undefined`), try adding `"esModuleInterop": true` to your `"compilerOptions"` in `tsconfig.json`.
+
 ### Type definitions
 
 The type definitions can be found under the `types` subdirectory of the package in the `*.d.ts` files, for example as shown on the [npm package page](https://www.npmjs.com/package/weaviate-ts-client?activeTab=code).
