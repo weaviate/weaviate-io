@@ -20,19 +20,26 @@ If not specified explicitly, the default distance metric in Weaviate is
 `cosine`. It can be [set in the vectorIndexConfig](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) field as part of the
 schema ([Example to add new schema class](../api/rest/schema.md#create-a-class)) to any of the following types:
 
+:::tip Comparing distances
+In all cases, larger distance values indicate lower similarity. Conversely, smaller distance values indicate higher similarity.
+:::
+
 <!-- TODO: Consider removing {:.text-nowrap} -->
-| Name | Description | Definition | Range |
-| --- | --- | --- | --- |
-| <span style={{ whiteSpace: 'nowrap' }}>`cosine`</span> | Cosine (angular) distance between two vectors. For a more efficient calculation, when chosing `cosine` all vectors are normalized to length 1 at import/read time and dot product is used for the actual calculation. A distance of 0 represents identical vectors, a distance of 2 represents opposing vectors. | <span style={{ whiteSpace: 'nowrap' }}>`1 - cosine_sim(a,b)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d <= 2`</span> |
-| <span style={{ whiteSpace: 'nowrap' }}>`dot`</span> | The negative dot product.[^1] The larger the value, the more similar two vectors are. Example: two vectors with dot distance -3 are more similar than two vectors with dot distance -2 or +5. | <span style={{ whiteSpace: 'nowrap' }}>`-dot(a,b)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`-∞ < d < ∞`</span> |
-| <span style={{ whiteSpace: 'nowrap' }}>`l2-squared`</span> | The squared euclidean distance between two vectors. A distance of 0 represents identical vectors. The larger the value, the farther the vectors are apart in the euclidean space.  | <span style={{ whiteSpace: 'nowrap' }}>`sum((a_i - b_i)^2)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < ∞`</span> |
-| <span style={{ whiteSpace: 'nowrap' }}>`hamming`</span> | Number of differences between vectors at each dimensions. A distance of 0 represents identical vectors. The larger the value, the farther the vectors are apart in the space.  | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i != b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < ∞`</span> |
-| <span style={{ whiteSpace: 'nowrap' }}>`manhattan`</span> | The distance between two vector dimensions measured along axes at right angles. A distance of 0 represents identical vectors. The larger the value, the farther the vectors are apart in the space.  | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i - b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < dims`</span> |
+| Name | Description | Definition | Range | Examples |
+| --- | --- | --- | --- | --- |
+| <span style={{ whiteSpace: 'nowrap' }}>`cosine`</span> | Cosine (angular) distance.[^1] | <span style={{ whiteSpace: 'nowrap' }}>`1 - cosine_sim(a,b)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d <= 2`</span> | `0`: identical vectors<br/><br/> `2`: Opposing vectors.
+| <span style={{ whiteSpace: 'nowrap' }}>`dot`</span> | A dot product-based indication of distance. <br/><br/>More precisely, the negative dot product.[^2] | <span style={{ whiteSpace: 'nowrap' }}>`-dot(a,b)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`-∞ < d < ∞`</span> | `-3`: more similar than `-2` <br/><br/>`2`: more similar than `5` |
+| <span style={{ whiteSpace: 'nowrap' }}>`l2-squared`</span> | The squared euclidean distance between two vectors. | <span style={{ whiteSpace: 'nowrap' }}>`sum((a_i - b_i)^2)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < ∞`</span> | `0`: identical vectors |
+| <span style={{ whiteSpace: 'nowrap' }}>`hamming`</span> | Number of differences between vectors at each dimensions. | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i != b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < ∞`</span> | `0`: identical vectors
+| <span style={{ whiteSpace: 'nowrap' }}>`manhattan`</span> | The distance between two vector dimensions measured along axes at right angles.  | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i - b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < dims`</span> | `0`: identical vectors
+
+
 
 If you're missing your favorite distance type and would like to contribute it to Weaviate, we'd be happy to review your [PR](https://github.com/weaviate/weaviate).
 
-:::info Dot Product - negative values
-Dot Product on its own is a similarity metric, not a distance metric. As a result, Weaviate returns the negative dot product to stick with the intuition that a smaller value of a distance indicates a more similar result and a higher distance value indicates a less similar result.
+:::note Additional notes
+[^1]: If `cosine` is chosen, all vectors are normalized to length 1 at import/read time and dot product is used to calculate the distance for computational efficiency.
+[^2]: Dot Product on its own is a similarity metric, not a distance metric. As a result, Weaviate returns the negative dot product to stick with the intuition that a smaller value of a distance indicates a more similar result and a higher distance value indicates a less similar result.
 :::
 
 ### Distance Implementations and Optimizations
