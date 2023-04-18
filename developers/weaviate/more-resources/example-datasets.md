@@ -14,7 +14,7 @@ This example application spins up a Weaviate instance using the
 [multi2vec-clip](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
 module, imports a few sample images (you can add your own images, too!) and
 provides a very simple search frontend in [React](https://reactjs.org/) using
-the [Weaviate JS Client](/developers/weaviate/client-libraries/javascript.md)
+the [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx) client.
 
 [Get started here](https://github.com/weaviate/weaviate-examples/blob/main/clip-multi-modal-text-image-search/README.md)
 
@@ -34,7 +34,7 @@ We have imported the complete Wikidata PBG model into a Weaviate to search throu
 
 This dataset contains +/- 1000 random news articles from; Financial Times, New York Times, Guardian, Wallstreet Journal, CNN, Fox News, The Economist, New Yorker, Wired, Vogue, Game Informer.
 
-It includes a [schema](../tutorials/schema.md) with classes for `Article`, `Publication`, `Category` and `Author`. 
+It includes a [schema](../tutorials/schema.md) with classes for `Article`, `Publication`, `Category` and `Author`.
 
 ### Run with Docker Compose
 
@@ -127,7 +127,7 @@ _Note: run this from the same directory where the Weaviate Docker Compose files 
 
 {% raw %}
 ```bash
-# This gets the weaviate container name and because the docker uses only lowercase we need to do it too (Can be found manually if 'tr' does not work for you)
+# This gets the Weaviate container name and because the docker uses only lowercase we need to do it too (Can be found manually if 'tr' does not work for you)
 $ export WEAVIATE_ID=$(echo ${PWD##*/}_weaviate_1 | tr "[:upper:]" "[:lower:]")
 # WEAVIATE ORIGIN (e.g., http://localhost:8080), note the paragraph "basics" for setting the local IP
 $ export WEAVIATE_ORIGIN="http://$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $WEAVIATE_ID):8080"

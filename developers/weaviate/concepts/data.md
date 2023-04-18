@@ -49,7 +49,7 @@ The data about this author can be represented in JSON like this:
 
 ### Vectors
 
-As mentioned earlier, we can also attach `vector` representations to our data objects. This is represented as an array of numbers under a `"vector"` property, like this: 
+As mentioned earlier, we can also attach `vector` representations to our data objects. This is represented as an array of numbers under a `"vector"` property, like this:
 
 ```json
 {
@@ -67,7 +67,7 @@ As mentioned earlier, we can also attach `vector` representations to our data ob
 }
 ```
 
-You can generate vectors yourself outside of Weaviate, or use one of Weaviate's vectorizer [modules](./modules.md). 
+You can generate vectors yourself outside of Weaviate, or use one of Weaviate's vectorizer [modules](./modules.md).
 
 ### Class Collections
 
@@ -132,7 +132,7 @@ Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Unive
 In some cases we need to link data objects with each other.
 
 For example: *"Paul Krugman writes for the New York Times"*.<br/>
-To represent this relationship between the `Author` and the `Publication`, we need to cross reference the objects.
+To represent this relationship between the `Author` and the `Publication`, we need to cross-reference the objects.
 
 Let's say we have a *New York Times* object, like this:
 

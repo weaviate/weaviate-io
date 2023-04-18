@@ -12,19 +12,19 @@ import Badges from '/_includes/badges.mdx';
 
 In this section, we will explore schema construction, including discussing some of the more commonly specified parameters. We will also discuss the auto-schema feature and why you might want to take the time to manually set the schema.
 
-## Prerequisites 
+## Prerequisites
 
-We recommend you complete the [Quickstart tutorial](../quickstart/index.md) first. 
+We recommend you complete the [Quickstart tutorial](../quickstart/index.md) first.
 
 Before you start this tutorial, you should follow the steps in the tutorials to have:
 
-- A new instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.io)),
+- A new instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.cloud)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face, and
-- Installed your preferred Weaviate client library. 
+- Installed your preferred Weaviate client library.
 
-If you have completed the entire Quickstart tutorial, your Weaviate instance will contain data objects and a schema. 
+If you have completed the entire Quickstart tutorial, your Weaviate instance will contain data objects and a schema. **We recommend deleting the `Question` class before starting this section.** See below for details on how to do so:
 
-**We recommend deleting it the `Question` class before starting this section.**
+### Deleting classes
 
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
@@ -46,11 +46,11 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.m
 
 <CodeAutoschemaMinimumSchema />
 
-Then when you navigated to the [`schema` endpoint](../api/rest/schema.md) at `https://some-endpoint.weaviate.network/v1/schema`, you will have seen the above-specified class name and the vectorizer. 
+Then when you navigated to the [`schema` endpoint](../api/rest/schema.md) at `https://some-endpoint.weaviate.network/v1/schema`, you will have seen the above-specified class name and the vectorizer.
 
-But you might have also noticed that the `schema` included a whole lot of information that you did not specify. 
+But you might have also noticed that the `schema` included a whole lot of information that you did not specify.
 
-That's because Weaviate inferred them for us, using the "auto-schema" feature. 
+That's because Weaviate inferred them for us, using the "auto-schema" feature.
 
 ### Auto-schema vs. manual schema
 
@@ -62,24 +62,31 @@ While this may be suitable in some circumstances, in many cases you may wish to 
 
 ## Create a class
 
-A collection of data in Weaviate is called a "class". We will be adding a class to store our quiz data. 
+A collection of data in Weaviate is called a "class". We will be adding a class to store our quiz data.
 
 ### About classes
 
-Weaviate classes:
-- Are always written with a capital letter first. This is to distinguish them from generic names for cross-referencing.
-- Have `property` values, and each `property` specifies the data types to store.
-- Can each have different vectorizers (e.g. one class can have a `text2vec-openai` vectorizer, and another might have `multi2vec-clip` vectorizer, or `none` if providing your own vectors).
+Here are some key considerations about classes:
+
+Each Weaviate class:
+- Is always written with a capital letter first. This is to distinguish them from generic names for cross-referencing.
+- Constitutes a distinct vector space. A search in Weaviate is always restricted to a class.
+- Can have its own vectorizer. (e.g. one class can have a `text2vec-openai` vectorizer, and another might have `multi2vec-clip` vectorizer, or `none` if you do not intend on using a vectorizer).
+- Has `property` values, where each `property` specifies the data type to store.
+
+:::info Can I specify my own vectors?
+Yes! You can bring your own vectors and pass them to Weaviate directly. See [this reference](../api/rest/objects.md#with-a-custom-vector) for more information.
+:::
 
 ### Create a basic class
 
-Let's create a class called **Question** for our data. 
+Let's create a class called **Question** for our data.
 
 Our **Question** class will:
 - Contain three properties:
     - name `answer`: type `text`
     - name `question`: type `text`
-    - name `category`: type `string`    
+    - name `category`: type `text`
 - Use a `text2vec-openai` vectorizer
 
 Run the below code with your client to define the schema for the **Question** class and display the created schema information.
@@ -89,12 +96,13 @@ import CodeCreateSchema from '/_includes/code/quickstart.schema.create.mdx';
 <CodeCreateSchema />
 
 :::note Classes and Properties - best practice
-Notice that these words are *singular* (which is best practice, each data object is *one* of these classes).
-
-Classes always start with a capital letter. Properties always begin with a small letter. When you want to concatenate words into one class name or one property name, you can do that with camelCasing the words. Read more about schema classes, properties and data types [here](../configuration/schema-configuration.md#data-objects-and-structure).
+Classes always start with a capital letter. Properties always begin with a small letter. You can use `CamelCase` class names, and property names allow underscores. Read more about schema classes, properties and data types [here](../configuration/schema-configuration.md#data-objects-and-structure).
 :::
 
 The result should look something like this:
+
+<details>
+  <summary>See the returned schema</summary>
 
 ```json
 {
@@ -153,7 +161,7 @@ The result should look something like this:
                 },
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "The category",
                     "moduleConfig": {
@@ -199,19 +207,21 @@ The result should look something like this:
 }
 ```
 
-We get back a lot of information here. 
+</details>
 
-Some of it is what we specified, such as the class name (`class`), and `properties` including their `dataType` and `name`. But the others are inferred by Weaviate based on the defaults and the data provided. 
+We get back a lot of information here.
+
+Some of it is what we specified, such as the class name (`class`), and `properties` including their `dataType` and `name`. But the others are inferred by Weaviate based on the defaults and the data provided.
 
 ### Class property specification examples
 
 And depending on your needs, you might want to change any number of these. For example, you might change:
 
-- `dataType` to modify the type of data being saved. Above, classes with dataType `text` will be indexed after tokenization, whereas `string` classes will not be [read more](../configuration/datatypes.md#datatype-string-vs-text).
+- `dataType` to modify the type of data being saved. For example, classes with dataType `text` will be tokenized differently to those with `string` dataType ([read more](../configuration/schema-configuration.md#property-tokenization)).
 - `moduleConfig` to modify how each module behaves. In this case, you could change the model and/or version for the OpenAI inference API, and the vectorization behavior such as whether the class name is used for vectorization.
 - `properties` / `moduleConfig` to further modify module behavior at a class data property level. You might choose to skip a particular property being included for vectorization.
 - `invertedIndexConfig` to add or remove particular stopwords, or change BM25 indexing constants.
-- `vectorIndexConfig` to change vector index (e.g. HNSW) parameters, such as for speed / recall tradeoffs. 
+- `vectorIndexConfig` to change vector index (e.g. HNSW) parameters, such as for speed / recall tradeoffs.
 
 So for example, you might specify a schema like the one below:
 
@@ -221,46 +231,37 @@ So for example, you might specify a schema like the one below:
     "description": "Information from a Jeopardy! question",
     "moduleConfig": {
         "text2vec-openai": {
-            "vectorizeClassName": false
+            "vectorizeClassName": false  // Default: true
         }
     },
     "invertedIndexConfig": {
         "bm25": {
-            "k1": 1.5,
+            "k1": 1.5,  // Default: 1.2
             "b": 0.75
         }
-    },    
+    },
     "properties": [
         {
             "dataType": ["text"],
             "description": "The question",
             "moduleConfig": {
                 "text2vec-openai": {
-                    "vectorizePropertyName": true
+                    "vectorizePropertyName": true  // Default: false
                 }
-            },             
+            },
             "name": "question",
         },
-        {
-            "dataType": ["text"],
-            "description": "The answer",
-            "name": "answer",
-        },
-        {
-            "dataType": ["string"],
-            "description": "The category",
-            "name": "category",
-        },           
+        ...
     ]
 }
 ```
 
-And with this you will have changed the specified properties from their defaults. 
+With this you will have changed the specified properties from their defaults. Note that in the rest of the tutorials, we assume that you have not done this.
 
-You can read more about various schema, data types, modules, and index configuration options in the pages below. 
+You can read more about various schema, data types, modules, and index configuration options in the pages below.
 
 - [Schema](../configuration/schema-configuration.md)
-- [Data types](../configuration/datatypes.md)
+- [Data types](../config-refs/datatypes.md)
 - [Modules](../configuration/modules.md)
 - [Indexes](../configuration/indexes.md)
 
@@ -270,16 +271,16 @@ You can read more about various schema, data types, modules, and index configura
 - A schema consists of classes and properties, which define concepts.
 <!-- - Words in the schema (names of classes and properties) must be part of the `text2vec-contextionary`. -->
 - Any unspecified setting is inferred by the auto-schema feature based on the data and defaults.
-- The schema can be modified through the [RESTful API](../api/rest/schema.md). 
+- The schema can be modified through the [RESTful API](../api/rest/schema.md).
 - A class or property in Weaviate is immutable, but can always be extended.
 
 ## Suggested reading
 
-- [`schema` endpoint RESTful API reference](../api/rest/schema.md)
-- [Import in detail](./import.md)
-- [Queries in detail](./query.md)
-- [Introduction to modules](./modules.md)
-- [Introduction to Weaviate Console](./console.md)
+- [Reference: `schema` endpoint RESTful API](../api/rest/schema.md)
+- [Tutorial: Import in detail](./import.md)
+- [Tutorial: Queries in detail](./query.md)
+- [Tutorial: Introduction to modules](./modules.md)
+- [Tutorial: Introduction to Weaviate Console](../../wcs/guides/console.mdx)
 
 ## More Resources
 

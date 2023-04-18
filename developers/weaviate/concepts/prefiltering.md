@@ -31,13 +31,26 @@ Some authors make a distinction between "pre-filtering" and "single-stage filter
 
 ## Efficient Pre-Filtered Searches in Weaviate
 
-In the section about Storage, [we have described in detail which parts make up a
-shard in Weaviate](./storage.md). Most notably, each shard contains an
-inverted index right next to the HNSW index. This allows for efficient
-pre-filtering. The process is as follows:
+In the section about Storage, [we have described in detail which parts make up a shard in Weaviate](./storage.md). Most notably, each shard contains an inverted index right next to the HNSW index. This allows for efficient pre-filtering. The process is as follows:
 
 1. An inverted index (similar to a traditional search engine) is used to create an allow-list of eligible candidates. This list is essentially a list of `uint64` ids, so it can grow very large without sacrificing efficiency.
 2. A vector search is performed where the allow-list is passed to the HNSW index. The index will move along any node's edges normally, but will only add ids to the result set that are present on the allow list. The exit conditions for the search are the same as for an unfiltered search: The search will stop when the desired limit is reached and additional candidates no longer improve the result quality.
+
+### Pre-filtering with Roaring Bitmaps
+
+Weaviate versions `1.18.0` and up use Roaring Bitmaps through the `RoaringSet` data type. Roaring Bitmaps employ various strategies to add efficiencies, whereby it divides data into chunks and applies an appropriate storage strategy to each one. This enables high data compression and set operations speeds, resulting in faster filtering speeds for Weaviate.
+
+If you are dealing with a large dataset, this will likely improve your filtering performance significantly and we therefore encourage you to migrate and re-index.
+
+In addition, our team maintains our underlying Roaring Bitmap library to address any issues and make improvements as needed.
+
+We note that the current implementation is not yet applicable to filtering `text` and `string` datatypes, which is an area that we aim to tackle in the future.
+
+#### Migration to Roaring Bitmaps
+
+If you are using Weaviate version `< 1.18.0`, you can take advantage of roaring bitmaps by migrating to `1.18.0` or higher, and going through a one-time process to create the new index. Once your Weaviate instance creates the Roaring Bitmap index, it will operate in the background to speed up your work.
+
+This behavior is set through the <code>REINDEX<wbr />_SET_TO<wbr />_ROARINGSET<wbr />_AT_STARTUP</code> [environment variable](../config-refs/env-vars.md). If you do not wish for reindexing to occur, you can set this to `false` prior to upgrading.
 
 ## Recall on Pre-Filtered Searches
 
@@ -49,7 +62,7 @@ The graphic below shows filters of varying levels of restrictiveness. From left 
 
 ## Flat-Search Cutoff
 
-Version `v1.8.0` introduces the ability to automatically switch to a flat (brute-force) vector search when a filter becomes too restrictive. This scenario only applies to combined vector and scalar searches. For a detailed explanation of why HNSW requires switching to a flat search on certain filters, see this article in [towards data science](https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c). In short, if a filter is very restrictive (i.e. a small percentage of the dataset is matched), an HNSW traversal becomes exhaustive. In other words, the more restrictive the filter becomes, the closer the performance of HNSW is to a brute-force search on the entire dataset. However, with such a restrictive filter, we have already narrowed down the dataset to a small fraction. So if the performance is close to brute-force anyway, it is much more efficient to only search on the matching subset as opposed to the entire dataset. 
+Version `v1.8.0` introduces the ability to automatically switch to a flat (brute-force) vector search when a filter becomes too restrictive. This scenario only applies to combined vector and scalar searches. For a detailed explanation of why HNSW requires switching to a flat search on certain filters, see this article in [towards data science](https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c). In short, if a filter is very restrictive (i.e. a small percentage of the dataset is matched), an HNSW traversal becomes exhaustive. In other words, the more restrictive the filter becomes, the closer the performance of HNSW is to a brute-force search on the entire dataset. However, with such a restrictive filter, we have already narrowed down the dataset to a small fraction. So if the performance is close to brute-force anyway, it is much more efficient to only search on the matching subset as opposed to the entire dataset.
 
 The following graphic shows filters with varying restrictiveness. From left (0%) to right (100%), the filters become more restrictive. The **cut-off is configured at ~15% of the dataset** size.  This means the right side of the dotted line uses a brute-force search.
 
@@ -60,6 +73,12 @@ As a comparison, with pure HNSW - without the cutoff - the same filters would lo
 ![Prefiltering with pure HNSW](./img/prefiltering-pure-hnsw-without-cutoff.png "Prefiltering without cutoff, i.e. pure HNSW")
 
 The cutoff value can be configured as [part of the `vectorIndexConfig` settings in the schema](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) for each class separately.
+
+<!-- TODO - replace figures with updated post-roaring bitmaps figures -->
+
+:::note Performance improvements from roaring bitmaps
+From `v1.18.0` onwards, Weaviate implements 'Roaring bitmaps' for the inverted index which decreased filtering times, especially for large allow lists. In terms of the above graphs, the *blue* areas will be reduced the most, especially towards the left of the figures.
+:::
 
 ## Cachable Filters
 
@@ -102,9 +121,11 @@ The two semantic queries have very little relation and most likely there will be
 
 ## Performance of vector searches with cached filters
 
-The following was run single-threaded (i.e. you can add more CPU threads to increase throughput) on a dataset of 1M objects with random vectors of 384d with a warm filter cache.
+The following was run single-threaded (i.e. you can add more CPU threads to increase throughput) on a dataset of 1M objects with random vectors of 384d with a warm filter cache (pre-`Roaring bitmap` implementation).
 
 Please note that each search uses a completely unique (random) search vector, meaning that only the filter portion is cached, but not the vector search portion, i.e. on `count=100`, 100 unique query vectors were used with the same filter.
+
+<!-- TODO - replace table with updated post-roaring bitmaps figures -->
 
 [![Performance of filtered vector search with caching](./img/filtered-vector-search-with-caches-performance.png "Performance of filtered vector searches with 1M 384d objects")](./img/filtered-vector-search-with-caches-performance.png)
 

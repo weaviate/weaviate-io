@@ -14,21 +14,21 @@ When using Weaviate for medium to large-scale cases, it is recommended to plan y
 
 Note that Weaviate has an option to limit the amount of vectors held in memory to prevent unexpected Out-of-Memory ("OOM") situations. This limit is entirely configurable and by default is set to one trillion (i.e. `1e12`) objects per class.
 
-## The role of CPUs 
+## The role of CPUs
 
 :::tip Rule of thumb
 The amount of available CPUs has a direct effect on query and import speed, but does not affect dataset size.
 :::
 
-The most common operation that is CPU-bound in Weaviate is a vector search. Vector searches occur at query time, but also at import time. When using the HNSW vector index, an insert operation makes use of several search operations. This is how the HNSW algorithm knows where to place new entries in the existing graph. 
+The most common operation that is CPU-bound in Weaviate is a vector search. Vector searches occur at query time, but also at import time. When using the HNSW vector index, an insert operation makes use of several search operations. This is how the HNSW algorithm knows where to place new entries in the existing graph.
 
-A single insert or single search is single-threaded. But multiple searches or inserts can occur at the same time and will make use of multiple threads. A batch insert will run over multiple threads in parallel. It is therefore quite common to max out CPU utilization by using decently sized batches for importing. 
+A single insert or single search is single-threaded. But multiple searches or inserts can occur at the same time and will make use of multiple threads. A batch insert will run over multiple threads in parallel. It is therefore quite common to max out CPU utilization by using decently sized batches for importing.
 
 ### Motivations to add more CPUs to your Weaviate machine or cluster
 
 Typically you should consider adding more CPUs if:
 - you want to increase import speed and CPU utilization is high during importing
-- you want to increase search throughput (measured in queries per second) 
+- you want to increase search throughput (measured in queries per second)
 
 ## The role of memory
 
@@ -51,7 +51,7 @@ On an otherwise idle machine, memory usage is driven almost entirely by the HNSW
 The following calculation assumes that you want to hold all vectors in memory. For a memory/disk hybrid approach, see [Vector Cache](#vector-cache) below.
 :::
 
-To find an approximate number for your memory needs, you can use the following rule of thumb: 
+To find an approximate number for your memory needs, you can use the following rule of thumb:
 
 `Memory usage = 2x the memory footprint of all vectors`
 
@@ -70,7 +70,7 @@ Typically you should consider adding more memory if:
 Weaviate is written in Go, which is a Garbage-Collected Language. This means in-heap memory (that is memory that has a lifetime longer than a typical function call stack) is not made available to the application or the OS immediately after it is no longer in use. Instead an asynchronous process, the Garbage Collection cycle, will free up the memory, eventually. This has two distinct effects on memory utilization:
 
 ### Effect 1: Memory Overhead for the Garbage Collector
-The exact memory footprint formula from above describes the state at rest. However, while importing, more temporary memory is allocated and eventually freed up. Due to the async nature of Garbage collection, this additional memory must be accounted for, which is done by the approximate formula from above. 
+The exact memory footprint formula from above describes the state at rest. However, while importing, more temporary memory is allocated and eventually freed up. Due to the async nature of Garbage collection, this additional memory must be accounted for, which is done by the approximate formula from above.
 
 ### Effect 2: Out-of-Memory issues due to Garbage Collection
 In rare situations - typically on large machines with very high import speeds - Weaviate may get into situations where memory is allocated faster than the Garbage Collector can free it up, leading to an OOM-Kill from the system's Kernel. This is a known issue, which is constantly being improved upon by Weaviate's contributors.

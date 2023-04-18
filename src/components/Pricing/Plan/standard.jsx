@@ -15,46 +15,41 @@ export default function PricingStandard() {
       </div>
       <div className={styles.features}>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIcon}></div>
           <span>
-            $0.050 per 1M vector dimensions stored or queried per month
+            $0.050 per 1M vector dimensions stored <br /> or queried per month
           </span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIcon}></div>
           <span>Round robin region: AWS, Azure, GCP</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIcon}></div>
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIcon}></div>
           <span>Hibernation after 1 hour</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
-          <span>Monitoring</span>
+          <div className={styles.checkIcon}></div> <span>Monitoring</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
-          <span>Public Slack</span>
+          <div className={styles.checkIcon}></div> <span>Public Slack</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIcon}></div>
           <span>
-            Severity 1 - max 1h <br />
-            Severity 2 - max 4h <br />
-            Severity 3 - max 1bd
+            Severity 1 - max 1h Severity <br /> 2 max 4h Severity <br /> 3
+            Severity 3 max 1bd
           </span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
-          <span>Multi AZ</span>
+          <div className={styles.checkIcon}></div> <span>Multi AZ</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
-          <span>HA optional</span>
+          <div className={styles.checkIcon}></div> <span>HA optional</span>
         </li>
       </div>
     </div>

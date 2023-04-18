@@ -66,7 +66,7 @@ Variable explanations:
 
 ## How to configure
 
-​In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
+In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
 
 The following schema configuration uses the `ada` model.
 
@@ -111,8 +111,8 @@ This module adds a search parameter to GraphQL `Get{...}` queries: `ask{}`. This
 
 | Field | Data Type | Required | Example value | Description |
 |- |- |- |- |- |
-| `question`  | string | yes | `"What is the name of the Dutch king?"`  | The question to be answered. |
-| `properties`  | list of strings | no | `["summary"]`  | The properties of the queries Class which contains text. If no properties are set, all are considered. |
+| `question`  | string | yes | `"What is the name of the Dutch king?"` | The question to be answered. |
+| `properties`  | list of strings | no | `["summary"]` | The properties of the queries Class which contains text. If no properties are set, all are considered. |
 
 Notes:
 

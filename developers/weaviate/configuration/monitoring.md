@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## Overview 
+## Overview
 
 Weaviate can expose Prometheus-compatible metrics for monitoring. A standard
 Prometheus/Grafana setup can be used to visualize metrics on various
@@ -40,7 +40,7 @@ PROMETHEUS_MONITORING_PORT=3456
 ### Scrape metrics from Weaviate
 
 Metrics are typically scraped into a time-series database, such as Prometheus.
-How you consume metrics depends on your setup and environment. 
+How you consume metrics depends on your setup and environment.
 
 The [Weaviate examples repo contains a fully pre-configured setup using
 Prometheus, Grafana and some example
@@ -62,20 +62,20 @@ command. In this setup the following components are used:
 
 The list of metrics that are obtainable through Weaviate's metric system is
 constantly being expanded. Here are some noteworthy metrics and what they can
-be used for. 
+be used for.
 
 Typically metrics are quite granular, as they can always be aggregated later
 on. For example if the granularity is "shard", you could aggregate all "shard"
 metrics of the same "class" to obtain a class metrics, or aggregate all metrics
 to obtain the metric for the entire Weaviate instance.
 
-| Metric | Description | Labels | Type | 
+| Metric | Description | Labels | Type |
 | --- | --- | --- | --- |
-| `batch_durations_ms` | Duration of a single batch operation in ms. The `operation` label further defines what operation as part of the batch (e.g. object, inverted, vector) is being used. Granularity is a shard of a class.  | `operation`, `class_name`, `shard_name` | Histogram | 
-| `batch_delete_durations_ms` | Duration of a batch delete in ms. The `operation` label further defines what operation as part of the batch delete is being measured. Granularity is a shard of a class | `class_name`, `shard_name` | Histogram | 
+| `batch_durations_ms` | Duration of a single batch operation in ms. The `operation` label further defines what operation as part of the batch (e.g. object, inverted, vector) is being used. Granularity is a shard of a class.  | `operation`, `class_name`, `shard_name` | Histogram |
+| `batch_delete_durations_ms` | Duration of a batch delete in ms. The `operation` label further defines what operation as part of the batch delete is being measured. Granularity is a shard of a class | `class_name`, `shard_name` | Histogram |
 | `objects_durations_ms` | Duration of an individual object operation, such as `put`, `delete`, etc. as indicated by the `operation` label, also as part of a batch. The `step` label adds additional precisions to each `operation`. Granularity is a shard of a class. | `class_name`, `shard_name` | Histogram |
 | `object_count` | Numbers of objects present. Granularity is a shard of a class | `class_name`, `shard_name` | Gauge |
-| `async_operations_running` | Number of currently running async operations. The operation itself is defined through the `operation` label. | `operation`, `class_name`, `shard_name`, `path` | Gauge | 
+| `async_operations_running` | Number of currently running async operations. The operation itself is defined through the `operation` label. | `operation`, `class_name`, `shard_name`, `path` | Gauge |
 | `lsm_active_segments` | Number of currently present segments per shard. Granularity is shard of a class. Grouped by `strategy`.| `strategy`, `class_name`, `shard_name`, `path` | Gauge |
 | `lsm_bloom_filter_duration_ms` | Duration of a bloom filter operation per shard in ms. Granularity is shard of a class. Grouped by `strategy`. | `operation`, `strategy`, `class_name`, `shard_name` | Histogram |
 | `lsm_segment_objects` | Number of entries per LSM segment by level. Granularity is shard of a class. Grouped by `strategy` and `level`. | `operation`, `strategy`, `class_name`, `shard_name`, `path`, `level` | Gauge |

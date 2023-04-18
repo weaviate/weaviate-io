@@ -8,9 +8,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## GraphQL 
+## GraphQL
 
-Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a query language built on using graph data structures. It is an efficient method of data retrieval and mutation, since it mitigates the common over-fetching and under-fetching problems of other query languages. 
+Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a query language built on using graph data structures. It is an efficient method of data retrieval and mutation, since it mitigates the common over-fetching and under-fetching problems of other query languages.
 
 ## All references
 
@@ -88,11 +88,15 @@ GraphQL queries follows a defined structure, defined to interact with your data 
 }
 ```
 
-- To obtain meta information about a data object (for example for interpretation or visualization purposes), use an [**additional property**](./additional-properties.md). 
+- To obtain meta information about a data object (for example for interpretation or visualization purposes), use an [**additional property**](./additional-properties.md).
 
 ## Limitations
 
 GraphQL _integer_ data currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
+
+## Consistency level
+
+GraphQL queries are run with a [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency) of `ONE`, which is currently not tunable.
 
 ## More Resources
 

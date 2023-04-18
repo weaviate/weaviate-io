@@ -1,15 +1,11 @@
-<hr />
-
-### Deleting classes
-
-If your Weaviate instance contains data where you would like it to be empty, or you can manually delete the unwanted class(es).
+If your Weaviate instance contains data you want removed, you can manually delete the unwanted class(es).
 
 :::caution Deleting a class == Deleting its objects
 Know that **deleting a class will also delete all associated objects**!
 
-Do not do this to a production database, or anywhere where you do not wish to delete your data. 
+Do not do this to a production database, or anywhere where you do not wish to delete your data.
 
-Run this code to delete the relevant class and get an output confirming it;
+Run the code below to delete the relevant class and its objects.
 :::
 
 import Tabs from '@theme/Tabs';
@@ -27,27 +23,23 @@ import TabItem from '@theme/TabItem';
 
 ```python
 import weaviate
-import json
 
 client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
 
 # delete class "YourClassName" - THIS WILL DELETE ALL DATA IN THIS CLASS
-client.schema.delete_class("YourClassName")  # Replace with your class name
-
-schema = client.schema.get()
-print(json.dumps(schema, indent=4))
+client.schema.delete_class("YourClassName")  # Replace with your class name - e.g. "Question"
 ```
 
 </TabItem>
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-client');
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
-}); 
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
 
 var className = 'YourClassName';  // Replace with your class name
 
@@ -55,31 +47,55 @@ client.schema
   .classDeleter()
   .withClassName(className)
   .do()
-  .then(
-    client
-      .schema
-      .getter()
-      .do()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.error(err)
-      })
-  )
+  .then(res => {
+  console.log(res);
+  })
   .catch(err => {
-    console.error(err)
+  console.error(err)
   });
 ```
 
 </TabItem>
-{/* <TabItem value="go" label="Go">
+<TabItem value="ts" label="TypeScript">
 
-```go
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
+
+var className: string = 'YourClassName';  // Replace with your class name
+
+client.schema
+  .classDeleter()
+  .withClassName(className)
+  .do()
+  .then((res: any) => {
+  console.log(res);
+  })
+  .catch((err: Error) => {
+  console.error(err)
+  });
 ```
 
-</TabItem> */}
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+className := "YourClassName"
+
+// delete the class
+if err := client.Schema().ClassDeleter().WithClassName(className).Do(context.Background()); err != nil {
+  // Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+  if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+    panic(err)
+  }
+}
+```
+
+</TabItem>
 {/* <TabItem value="java" label="Java">
 
 ```java
@@ -87,13 +103,13 @@ client.schema
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-
+curl \
+  -X DELETE \
+  https://some-endpoint.weaviate.network/v1/schema/YourClassName
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>
-
-<hr />

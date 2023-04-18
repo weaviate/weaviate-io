@@ -11,12 +11,12 @@ import Badges from '/_includes/badges.mdx';
 ## Write great bug reports!
 
 This page outlines what an ideal bug report would look like. We know that it is
-not always possible to write a perfect bug report and we don't want to
+not always possible to write a perfect bug report, and we don't want to
 discourage you from reporting a bug just because you might not be able to
 provide all the info needed to make the report great. At the same time we want
 to provide you with the information to make the lives of our engineers a bit
 easier. Sometimes we also need to prioritize and decide about which bug ticket
-to pick up first. If a bug report is well prepared it has a greater chance of
+to pick up first. If a bug report is well-prepared, it has a greater chance of
 being picked up first.
 
 ### What makes a great bug report stand out?
@@ -50,7 +50,7 @@ Here are some points that make a bug report great:
   during the slow query, etc.? We do not expect you to know all the internals
   of Weaviate, but we ask you to think about what details may be helpful in
   reproducing the bug and which are most likely superfluous.
-  
+
 - **Quick to reproduce**
   Every bug is important and we are happy about every single report. However,
   we must still prioritize. A bug report that is easier for us to reproduce is
@@ -59,7 +59,7 @@ Here are some points that make a bug report great:
   its entirety. Below are some examples for a great reproducing example in a
   bug report.
 
-  
+
 - **Narrowed down to a particular area**
   Weaviate is more than just the Weaviate server, it's an entire ecosystem that
   often contains the Weaviate Server, a language-specific Weaviate client and
@@ -125,7 +125,7 @@ some of the individual areas and see *how* we can write better reports.
 Don't worry about it. We know that sometimes bugs are tricky and not so easy to
 reproduce. If it is simply not feasible to write a perfect bug report, please
 still write the bug report. We are very happy when we see that you made an
-effort to write a good report. 
+effort to write a good report.
 
 ## Thank you
 

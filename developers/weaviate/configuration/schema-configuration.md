@@ -27,11 +27,14 @@ The RESTful endpoint `/v1/schema` can be used for schema-related operations. Lea
 
 ## Data objects and structure
 
-Data objects in Weaviate always belongs to a Class, and has one or more Properties.
+Each data object in Weaviate always belongs to a Class, and has one or more Properties.
 
 ### Auto-schema
 
-If you don't create a schema manually before adding data, a schema will be generated automatically (available from Weaviate version v1.5.0). This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
+:::info Available in Weaviate versions `1.5.0` and higher
+:::
+
+If you don't create a schema manually before adding data, a schema will be generated automatically. This feature is present and on by default, which you can change in the Weaviate's environment variables (e.g. in `docker-compose.yml`): default: `AUTOSCHEMA_ENABLED:  'true'`, disable by setting `AUTOSCHEMA_ENABLED: 'false'`.
 
 It has the following characteristics:
 
@@ -39,7 +42,7 @@ It has the following characteristics:
 * When a previously seen class is imported, which contains a property that Weaviate has not seen yet, the module alters the schema before importing the object. See section "DataTypes" below for details on how a property should be created.
 * When a previously seen class is imported, which contains a property which conflicts with the current schema type, an error is thrown. (e.g. trying to import a `string` into a field that exists in the schema as `int`).
 * When a previously unseen class is imported, the class is created alongside all the properties.
-* Weaviate also automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`. 
+* Weaviate also automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`.
 
 ### Class
 
@@ -61,7 +64,7 @@ current (as of `v1.10.0+`) class name validation regex is
 
 ### Properties
 
-Every class has properties. Properties define what kind of data values you will add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](./datatypes.md). Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name. 
+Every class has properties. Properties define what kind of data values you will add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](../config-refs/datatypes.md). Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.
 
 ## Class object
 
@@ -71,38 +74,38 @@ An example of a complete class object including properties:
 {
   "class": "string",                        // The name of the class in string format
   "description": "string",                  // A description for your reference
-  "vectorIndexType": "hnsw",                // defaults to hnsw, can be omitted in schema definition since this is the only available type for now
+  "vectorIndexType": "hnsw",                // Defaults to hnsw, can be omitted in schema definition since this is the only available type for now
   "vectorIndexConfig": {
-    ...                                     // vector index type specific settings, including distance metric
+    ...                                     // Vector index type specific settings, including distance metric
   },
-  "vectorizer": "text2vec-contextionary",   // vectorizer to use for data objects added to this class
+  "vectorizer": "text2vec-contextionary",   // Vectorizer to use for data objects added to this class
   "moduleConfig": {
-    "text2vec-contextionary": {  
-      "vectorizeClassName": true            // include the class name in vector calculation (default true)
+    "text2vec-contextionary": {
+      "vectorizeClassName": true            // Include the class name in vector calculation (default true)
     }
   },
   "properties": [                           // An array of the properties you are adding, same as a Property Object
     {
       "name": "string",                     // The name of the property
       "description": "string",              // A description for your reference
-      "dataType": [                         // The data type of the object as described above, When creating cross references, a property can have multiple dataTypes
+      "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple data types, hence the array syntax.
         "string"
       ],
-      "moduleConfig": {                     // module specific settings
+      "moduleConfig": {                     // Module-specific settings
         "text2vec-contextionary": {
-          "skip": true,                     // if true, the whole property will NOT be included in vectorization. default is false, meaning that the object will be NOT be skipped
-          "vectorizePropertyName": true,    // whether name of the property is used in the calculation for the vector position of data objects. default is false
+          "skip": true,                     // If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped.
+          "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
         }
       },
-      "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector-search. You can ignore properties in searches by explicitly setting index to false.
+      "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
     }
   ],
-  "invertedIndexConfig": {                  // Optional, index configuration.
-    "stopwords": { 
+  "invertedIndexConfig": {                  // Optional, index configuration
+    "stopwords": {
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
-    "indexTimestamps": false,                 // Optional, maintains inverted indices for each object by its internal timestamps
-    "indexNullState": false,                 // Optional, maintains inverted indices for each property regarding its null state
+    "indexTimestamps": false,               // Optional, maintains inverted indices for each object by its internal timestamps
+    "indexNullState": false,                // Optional, maintains inverted indices for each property regarding its null state
     "indexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
   },
   "shardingConfig": {
@@ -115,11 +118,9 @@ An example of a complete class object including properties:
 
 The vectorizer (`"vectorizer": "..."`) can be specified per class in the schema object. Check the [modules page](/developers/weaviate/modules/index.md) for available vectorizer modules.
 
-In case you don't want to use a vectorization module to calculate vectors from data objects, and want to enter the vectors per data object yourself when adding data objects, make sure to set `"vectorizer": "none"`.
+#### Weaviate without a vectorizer
 
-__Configure semantic indexing__
-
-With the [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) vectorizer module you can specify whether class names, property names or entire properties are included in the calculation of the data object's vector. Read [here](/developers/weaviate/configuration/schema-configuration.md#configure-semantic-indexing) how this works.
+You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This may be useful in case you wish to upload your own vectors from a custom model ([see how here](../api/rest/objects.md#with-a-custom-vector)), or wish to create a class without any vectors.
 
 ### vectorIndexType
 
@@ -140,7 +141,7 @@ The `"shardingConfig"` controls how a class should be [sharded and distributed a
 ```json
   "shardingConfig": {
     "virtualPerPhysical": 128,
-    "desiredCount": 1,             # defaults to the amount of Weaviate nodes in the cluster
+    "desiredCount": 1,           // defaults to the amount of Weaviate nodes in the cluster
     "actualCount": 1,
     "desiredVirtualCount": 128,
     "actualVirtualCount": 128,
@@ -197,17 +198,13 @@ The meaning of the individual fields in detail:
 This feature was introduced in `v1.12.0`.
 :::
 
-Properties of type `text` and `string` may contain words that are very common
-and have no meaning. In this case you may want to remove them entirely from
-indexing. This will save storage space on disk and speed up queries that
-contain stopwords, as they can be automatically removed from queries as well.
-This speed up is very notable on scored searches, such as `BM25`.
+Properties of type `text` and `string` may contain words that are very common and don't contribute to search results. Ignoring them speeds up queries that contain stopwords, as they can be automatically removed from queries as well. This speed up is very notable on scored searches, such as `BM25`.
 
 The stopword configuration uses a preset system. You can select a preset to use
 the most common stopwords for a particular language. If you need more
 fine-grained control, you can add additional stopwords or remove stopwords that
-you believe should not be part of the list. Alternatively, you can also create
-your completely custom stopword list by starting with an empty (`"none"`)
+you believe should not be part of the list. Alternatively, you can create
+your custom stopword list by starting with an empty (`"none"`)
 preset and adding all your desired stopwords as additions.
 
 ```json
@@ -233,6 +230,29 @@ This configuration allows stopwords to be configured by class. If not set, these
 - If none is the selected preset, then the class' stopwords will consist entirely of the additions list.
 - If the same item is included in both additions and removals, then an error is returned
 :::
+
+As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking.
+
+Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest/schema#parameters-2) the list of stopwords after your data has been indexed.
+
+Below is an example request on how to update the list of stopwords:
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+class_obj = {
+    "invertedIndexConfig": {
+        "stopwords": {
+            "preset": "en",
+            "additions": ["where", "is", "the"]
+        }
+    }
+}
+
+client.schema.update_config("Article", class_obj)
+```
 
 ### invertedIndexConfig > indexTimestamps
 
@@ -283,7 +303,7 @@ Using these features requires more resources, as the additional inverted indices
 
 ## Property object
 
-Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name. 
+Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.
 
 An example of a complete property object:
 
@@ -291,17 +311,17 @@ An example of a complete property object:
 {
     "name": "string",                     // The name of the property
     "description": "string",              // A description for your reference
-    "dataType": [                         // The data type of the object as described above, When creating cross references, a property can have multiple dataTypes
+    "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes.
     "string"
     ],
     "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See Property Tokenization below for more detail.
-    "moduleConfig": {                     // module specific settings
+    "moduleConfig": {                     // Module-specific settings
       "text2vec-contextionary": {
-          "skip": true,                     // if true, the whole property will NOT be included in vectorization. default is false, meaning that the object will be NOT be skipped
-          "vectorizePropertyName": true,    // whether name of the property is used in the calculation for the vector position of data objects. default is false
+          "skip": true,                     // If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped.
+          "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
       }
     },
-    "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector-search. You can ignore properties in searches by explicitly setting index to false.
+    "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
 }
 ```
 
@@ -342,24 +362,28 @@ Author
 This feature was introduced in `v1.12.0`.
 :::
 
-Properties of type `text` and `string` use tokenization when indexing and
-searching through the inverted index. Text is always tokenized at the `word`
-level, meaning that words will be split when a non-alphanumeric character
-appears. For example, the string `"hello (beautiful) world"`, would be split
-into the tokens `"hello", "beautiful", "world"`. Each token will be indexed
-separately in the inverted index. This means that a search for any of the three
-tokens would return this object. 
+Properties with `text` and `string` exhibit different tokenization behavior when indexing and
+searching through the inverted index.
 
-Sometimes there are situations when exact string matching across the whole field
-is desired. In this case, you can use a property of type `string` and set the
-`"tokenization"` setting to `"field"`. This means the whole field will be
-indexed as one. For example the value `"hello (beautiful) world"` would be
-indexed as a single token. This means searching for `"hello"` or `"world"`
-would not return the object mentioned above, but only the exact string `"hello
-(beautiful) world"` will match.
+#### Tokenization with `text`
 
-If no values are provided, properties of type `text` and `string` default to
-`"word"` level tokenization for backward-compatibility.
+`text` properties are always tokenized, and by all non-alphanumerical characters. Tokens are then lowercased before being indexed. For example, a `text` property value `Hello, (beautiful) world`, would be indexed by tokens `hello`, `beautiful`, and `world`.
+
+Each of these tokens will be indexed separately in the inverted index. This means that a search for any of the three tokens with the `Equal` operator under `valueText` would return this object regardless of the case.
+
+#### Tokenization with `string`
+
+`string` properties allow the user to set whether it should be tokenized, by setting the `tokenization` class property.
+
+If `tokenization` for a `string` property is set to `word`, the field will be tokenized. The tokenization behavior for `string` is different from `text`, however, as `string` values are only tokenized by white spaces, and casing is not altered.
+
+So, a `string` property value `Hello, (beautiful) world` with `tokenization` set as `word` would be split into the tokens `Hello,`, `(beautiful)`, and `world`. In this case, the `Equal` operator would need the exact match including non-alphanumerics and case (e.g. `Hello,`, not `hello`) to retrieve this object.
+
+`string` properties can also be indexed as the entire value, by setting `tokenization` as `field`. In such a case the `Equal` operator would require the value `Hello, (beautiful) world` before returning the object as a match.
+
+#### Default behavior
+
+`text` and `string` properties default to `word` level tokenization for backward-compatibility.
 
 ## Configure semantic indexing
 
@@ -367,28 +391,24 @@ If no values are provided, properties of type `text` and `string` default to
 Only for `text2vec-*` modules
 :::
 
-In the schema you can define advanced settings for how data is stored and used by Weaviate. 
+Weaviate creates one vector per object by concatenating together the class name, followed by the [`string` and `text` properties](#property-tokenization) of the object sorted by the property name, then lowercasing and vectorizing the resulting string. For the precise sequence and how to configure the vectorization details, see [Tweaking text2vec vectorization](/blog/pulling-back-the-curtains-on-text2vec/#tweaking-text2vec-vectorization-in-weaviate).
 
-In some cases, you want to be able to configure specific parts of the schema to optimize indexing.
+For example, this data object,
 
-For example, a data object with the following schema:
-
-```yaml
-Article:
-  title: Cows lose their jobs as milk prices drop
-  summary: As his 100 diary cows lumbered over for their Monday...
+```js
+Article = {
+  summery: "Cows lose their jobs as milk prices drop",
+  text: "As his 100 diary cows lumbered over for their Monday..."
+}
 ```
 
-which will be vectorized as:
+will be vectorized as:
 
 ```md
-article cows lose their
-jobs as milk prices drop summary
-as his diary cows lumbered
-over for their monday
+article cows lose their jobs as milk prices drop summary as his diary cows lumbered over for their monday...
 ```
 
-By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can configure the indexing.
+By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can configure the indexing. <!-- TODO: clarify -->
 
 ### Datatypes
 

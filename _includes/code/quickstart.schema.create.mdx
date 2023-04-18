@@ -26,11 +26,12 @@ class_obj = {
             "name": "answer",
         },
         {
-            "dataType": ["string"],
+            "dataType": ["text"],
             "description": "The category",
             "name": "category",
-        },        
-    ]
+        },
+    ],
+    "vectorizer": "text2vec-openai",
 }
 
 # add the schema
@@ -47,36 +48,36 @@ print(json.dumps(schema, indent=4))
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-client');
+const weaviate = require('weaviate-ts-client');
 
-// update the endpoint!
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
-  }); 
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
 
-// we will create the class "Question"
+// we will create the class 'Question'
 
 let classObj = {
-    'class': 'Question',
-    'description': 'Information from a Jeopardy! question',  // description of the class
-    'properties': [
-        {
-            "dataType": ["text"],
-            "description": "The question",
-            "name": "question",
-        },
-        {
-            "dataType": ["text"],
-            "description": "The answer",
-            "name": "answer",
-        },
-        {
-            "dataType": ["string"],
-            "description": "The category",
-            "name": "category",
-        },        
-    ]
+  'class': 'Question',
+  'description': 'Information from a Jeopardy! question',  // description of the class
+  'properties': [
+      {
+          'dataType': ['text'],
+          'description': 'The question',
+          'name': 'question',
+      },
+      {
+          'dataType': ['text'],
+          'description': 'The answer',
+          'name': 'answer',
+      },
+      {
+          'dataType': ['string'],
+          'description': 'The category',
+          'name': 'category',
+      },
+  ],
+  'vectorizer': 'text2vec-openai',
 }
 
 // add the schema
@@ -106,6 +107,68 @@ client
 ```
 
 </TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
+
+// we will create the class 'Question'
+
+let classObj = {
+  'class': 'Question',
+  'description': 'Information from a Jeopardy! question',  // description of the class
+  'properties': [
+      {
+          'dataType': ['text'],
+          'description': 'The question',
+          'name': 'question',
+      },
+      {
+          'dataType': ['text'],
+          'description': 'The answer',
+          'name': 'answer',
+      },
+      {
+          'dataType': ['string'],
+          'description': 'The category',
+          'name': 'category',
+      },
+  ],
+  'vectorizer': 'text2vec-openai',
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+
+// get and print the schema
+client
+  .schema
+  .getter()
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+```
+
+</TabItem>
 {/* <TabItem value="go" label="Go">
 
 ```go
@@ -125,7 +188,10 @@ func main() {
         Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
 
     // we will create the class "Question"
     classObj := &models.Class{
@@ -141,7 +207,7 @@ func main() {
                 DataType:    []string{"string"},
                 Description: "The answer",
                 Name:        "answer",
-            },            
+            },
         },
     }
 
@@ -166,15 +232,15 @@ func main() {
 {/* <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.ArrayList;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.schema.model.DataType;
-import technology.semi.weaviate.client.v1.schema.model.Property;
-import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
@@ -191,7 +257,7 @@ public class App {
           .dataType(new ArrayList(){ { add(DataType.STRING); } })
           .description("The question")
           .name("question")
-          .build());        
+          .build());
         add(Property.builder()
           .dataType(new ArrayList(){ { add(DataType.STRING); } })
           .description("The answer")
@@ -199,7 +265,7 @@ public class App {
           .build());
       } })
       .build();
-    
+
     // add the schema
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
     if (result.hasErrors()) {
@@ -215,7 +281,7 @@ public class App {
 
     // print the schema
     System.out.println(result.getResult());
-    
+
   }
 }
 ```
@@ -240,11 +306,11 @@ $ curl \
             "dataType": ["string"],
             "description": "The answer",
             "name": "answer"
-        }        
+        }
     ]
 }' \
 https://some-endpoint.weaviate.network/v1/schema
-    
+
 curl https://some-endpoint.weaviate.network/v1/schema
 ```
 

@@ -20,7 +20,7 @@ class_obj = {
     },
     "vectorizer": "text2vec-contextionary",
     "moduleConfig": {
-      "text2vec-contextionary": {  
+      "text2vec-contextionary": {
         "vectorizeClassName": True
       }
     },
@@ -34,7 +34,7 @@ class_obj = {
             "indexInverted": True,
             "moduleConfig": {
                 "text2vec-contextionary": {
-                  "skip": False,                   
+                  "skip": False,
                   "vectorizePropertyName": False
                 }
               }
@@ -48,7 +48,7 @@ class_obj = {
             "indexInverted": True,
             "moduleConfig": {
                 "text2vec-contextionary": {
-                  "skip": False,                   
+                  "skip": False,
                   "vectorizePropertyName": False
                 }
               }
@@ -56,7 +56,7 @@ class_obj = {
     ],
     "shardingConfig": {
       "virtualPerPhysical": 128,
-      "desiredCount": 1,             
+      "desiredCount": 1,
       "desiredVirtualCount": 128,
       "key": "_id",
       "strategy": "hash",
@@ -100,7 +100,7 @@ let classObj = {
     },
     'vectorizer': 'text2vec-contextionary',
     'moduleConfig': {
-      'text2vec-contextionary': {  
+      'text2vec-contextionary': {
         'vectorizeClassName': true
       }
     },
@@ -114,7 +114,7 @@ let classObj = {
             'indexInverted': true,
             'moduleConfig': {
                 'text2vec-contextionary': {
-                  'skip': false,                   
+                  'skip': false,
                   'vectorizePropertyName': false
                 }
               }
@@ -128,7 +128,7 @@ let classObj = {
             'indexInverted': true,
             'moduleConfig': {
                 'text2vec-contextionary': {
-                  'skip': false,                   
+                  'skip': false,
                   'vectorizePropertyName': false
                 }
               }
@@ -136,7 +136,7 @@ let classObj = {
     ],
     'shardingConfig': {
       'virtualPerPhysical': 128,
-      'desiredCount': 1,             
+      'desiredCount': 1,
       'desiredVirtualCount': 128,
       'key': '_id',
       'strategy': 'hash',
@@ -186,7 +186,10 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
   classObj := &models.Class{
     Class:             "Article",
@@ -235,20 +238,20 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.ArrayList;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.misc.model.InvertedIndexConfig;
-import technology.semi.weaviate.client.v1.misc.model.ShardingConfig;
-import technology.semi.weaviate.client.v1.misc.model.StopwordConfig;
-import technology.semi.weaviate.client.v1.misc.model.VectorIndexConfig;
-import technology.semi.weaviate.client.v1.schema.model.DataType;
-import technology.semi.weaviate.client.v1.schema.model.Property;
-import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
-import technology.semi.weaviate.client.v1.misc.model.ReplicationConfig;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.misc.model.InvertedIndexConfig;
+import io.weaviate.client.v1.misc.model.ShardingConfig;
+import io.weaviate.client.v1.misc.model.StopwordConfig;
+import io.weaviate.client.v1.misc.model.VectorIndexConfig;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+import io.weaviate.client.v1.misc.model.ReplicationConfig;
 
 public class App {
   public static void main(String[] args) {
@@ -288,7 +291,7 @@ public class App {
       .strategy("hash")
       .virtualPerPhysical(128)
       .build();
-    
+
     ReplicationConfig replicationConfig = ReplicationConfig.builder()
       .factor(3)
       .build();
@@ -345,7 +348,7 @@ $ curl \
     },
     "vectorizer": "text2vec-contextionary",
     "moduleConfig": {
-      "text2vec-contextionary": {  
+      "text2vec-contextionary": {
         "vectorizeClassName": true
       }
     },
@@ -359,7 +362,7 @@ $ curl \
             "indexInverted": true,
             "moduleConfig": {
                 "text2vec-contextionary": {
-                  "skip": false,                   
+                  "skip": false,
                   "vectorizePropertyName": true
                 }
               }
@@ -373,7 +376,7 @@ $ curl \
             "indexInverted": true,
             "moduleConfig": {
                 "text2vec-contextionary": {
-                  "skip": false,                   
+                  "skip": false,
                   "vectorizePropertyName": true
                 }
               }
@@ -381,7 +384,7 @@ $ curl \
     ],
     "shardingConfig": {
       "virtualPerPhysical": 128,
-      "desiredCount": 1,             
+      "desiredCount": 1,
       "desiredVirtualCount": 128,
       "key": "_id",
       "strategy": "hash",

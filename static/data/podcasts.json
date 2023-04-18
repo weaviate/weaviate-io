@@ -219,7 +219,7 @@
   },
   {
     "title": "Yury Malkov co-author of HNSW • HNSW in Vector Search and Weaviate",
-    "description": "At the heart of Weaviate sits HNSW, the ANN algorithm that brings the vector search engine to life! Check out this amazing podcast about the science and engineering behind it.",
+    "description": "At the heart of Weaviate sits HNSW, the ANN algorithm that brings the vector database to life! Check out this amazing podcast about the science and engineering behind it.",
     "youtube": "WijYx9_Bpkw",
     "date": "2022-03-10",
     "cover_image": "/img/podcasts/podcast-10.jpg",
@@ -261,7 +261,7 @@
   },
   {
     "title": "Michael Wechner of Katie • How the knowledge management bot Katie leverages Weaviate",
-    "description": "Katie is a knowledge management bot, continuously improving, self-learning, and trained by humans. Under the hood, Katie is powered by the Weaviate vector search engine, during this podcast, Katie's Michael Wechner will talk about all things vector search and more!",
+    "description": "Katie is a knowledge management bot, continuously improving, self-learning, and trained by humans. Under the hood, Katie is powered by the Weaviate vector database, during this podcast, Katie's Michael Wechner will talk about all things vector search and more!",
     "youtube": "dcu2xIO_lAE",
     "date": "2022-01-21",
     "cover_image": "/img/podcasts/podcast-5.jpg",
@@ -269,8 +269,8 @@
     "logo": "/img/katie.svg"
   },
   {
-    "title": "Malte Pietsch of Deepset • On Deepset's Haystack and how they leverage the Weaviate vector search engine",
-    "description": "NLP frameworks like Deepset's Haystack are powerful tools to help data scientists and software engineers work with the latest and greatest in natural language processing. In this interview, Malte Pietsch will be talking about Haystack and how they leverage the Weaviate vector search engine as a persistent storage engine for their data and vector representations.",
+    "title": "Malte Pietsch of Deepset • On Deepset's Haystack and how they leverage the Weaviate vector database",
+    "description": "NLP frameworks like Deepset's Haystack are powerful tools to help data scientists and software engineers work with the latest and greatest in natural language processing. In this interview, Malte Pietsch will be talking about Haystack and how they leverage the Weaviate vector database as a persistent storage engine for their data and vector representations.",
     "youtube": "9DTDUHs3aB0",
     "date": "2022-01-11",
     "cover_image": "/img/podcasts/podcast-4.jpg",
@@ -279,7 +279,7 @@
   },
   {
     "title": "Bob van Luijt of Weaviate • Vector search use cases, GraphQL API UX, multimodal models, and more...",
-    "description": "Join Connor Shorten and Bob van Luijt (Weaviate) for the third Weaviate vector search engine Podcast. During the show, they will be discussing use cases, the GraphQL API, knowledge graphs, Weaviate as a product, vector search engine use cases, and a vision for the future of vector search.",
+    "description": "Join Connor Shorten and Bob van Luijt (Weaviate) for the third Weaviate vector database Podcast. During the show, they will be discussing use cases, the GraphQL API, knowledge graphs, Weaviate as a product, vector database use cases, and a vision for the future of vector search.",
     "youtube": "8wdUREOzi2M",
     "date": "2021-12-20",
     "cover_image": "/img/podcasts/podcast-3.jpg",
@@ -287,7 +287,7 @@
   },
   {
     "title": "Charles Pierse of Keenious • How Keenious uses Weaviate to enable semantic search through 60M+ academic PUBs",
-    "description": "Join Connor Shorten and Charles Pierse (Keenious) for the second Weaviate vector search engine Podcast. During the show, they will be discussing how Keenious uses Weaviate and broader, all things NLP! ",
+    "description": "Join Connor Shorten and Charles Pierse (Keenious) for the second Weaviate vector database Podcast. During the show, they will be discussing how Keenious uses Weaviate and broader, all things NLP! ",
     "youtube": "hU7GJEidaUE",
     "date": "2021-12-13",
     "cover_image": "/img/podcasts/podcast-2.jpg",

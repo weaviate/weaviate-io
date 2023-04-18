@@ -28,7 +28,7 @@ And it returns a `nodes` field containing array of nodes with following fields:
     - `name`: Name of the shard.
     - `class`: Name of the objects' class stored on the shard.
     - `objectCount`: Number of objects on the shard.
-  
+
 ## Example
 The following command:
 

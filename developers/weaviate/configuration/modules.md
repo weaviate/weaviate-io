@@ -21,13 +21,13 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-Weaviate is modularized, which provides it and its users a great deal of flexibility. This also requires users to specify the desired optional Weaviate modules to be used the relevant configuration file, by setting appropriate [environment variables](../installation/docker-compose.md#environment-variables).
+Weaviate is modularized, which provides it and its users a great deal of flexibility. This also requires users to specify the desired optional Weaviate modules to be used the relevant configuration file, by setting appropriate [environment variables](../config-refs/env-vars.md).
 
 Some of the key environment variables in relation to module use are explained below.
 
 ### Enable modules
 
-Provide the list of modules to be used to the `ENABLE_MODULES` variable. For example, the below will enable the `text2vec-contextionary` module. 
+Provide the list of modules to be used to the `ENABLE_MODULES` variable. For example, the below will enable the `text2vec-contextionary` module.
 
 ```yaml
 services:
@@ -47,7 +47,7 @@ services:
 
 ### Default vectorizer module
 
-You can specify a default vectorization module in Weaviate's configuration with the environment variable `DEFAULT_VECTORIZER_MODULE` as below. 
+You can specify a default vectorization module in Weaviate's configuration with the environment variable `DEFAULT_VECTORIZER_MODULE` as below.
 
 ``` yaml
 services:

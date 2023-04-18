@@ -5,13 +5,13 @@ authors: [zain, erika, connor]
 date: 2023-02-07
 tags: []
 image: ./img/hero.png
+description: "Learn how you can customize Large Language Models prompt responses to your own data by leveraging vector databases."
 ---
-
 ![ChatGPT for Generative Search](./img/hero.png)
 
-When OpenAI launched ChatGPT at the end of 2022, more than one million people had tried the model in just a week and that trend has only continued with monthly active users for the chatbot service reaching over 100 Million, quicker than any service before, as reported by [Reuters](https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/) and [Yahoo Finance](https://finance.yahoo.com/news/chatgpt-on-track-to-surpass-100-million-users-faster-than-tiktok-or-instagram-ubs-214423357.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAFCTz2vosCcjWFstJGkvduTSNZJrxULx8EHwbTE8mF7EV-hAlWvmMe59ex94LHlkB40zlUMUPshv5Ggq1GxyY9oDQxtoLcc0GV2E-v-0DeGuZi7dtEJT9MZF5NvUe20V64ZCVNziFtJdWUL_AAxMFoCGFxT1duBiaPbfzwkjbyNQ). It wouldn’t be hyperbole to say that NLP and Generative Large Language Models (LLMs) have taken the world by storm.
-
 <!-- truncate -->
+
+When OpenAI launched ChatGPT at the end of 2022, more than one million people had tried the model in just a week and that trend has only continued with monthly active users for the chatbot service reaching over 100 Million, quicker than any service before, as reported by [Reuters](https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/) and [Yahoo Finance](https://finance.yahoo.com/news/chatgpt-on-track-to-surpass-100-million-users-faster-than-tiktok-or-instagram-ubs-214423357.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAFCTz2vosCcjWFstJGkvduTSNZJrxULx8EHwbTE8mF7EV-hAlWvmMe59ex94LHlkB40zlUMUPshv5Ggq1GxyY9oDQxtoLcc0GV2E-v-0DeGuZi7dtEJT9MZF5NvUe20V64ZCVNziFtJdWUL_AAxMFoCGFxT1duBiaPbfzwkjbyNQ). It wouldn’t be hyperbole to say that NLP and Generative Large Language Models (LLMs) have taken the world by storm.
 
 Though this was not the first AI chatbot that has been released to the public, what really surprised people about this particular service was the breadth and depth of knowledge it had and its ability to articulate that knowledge with human-like responses. Aside from this, the generative aspect of this model is also quite apparent as it can hallucinate situations and dream up vivid details to fill in descriptions when prompted to do so. This gives the chatbot service somewhat of a human-like “creativity” - which is what adds a wow factor to the user experience!
 
@@ -28,7 +28,7 @@ In order to benefit from the capabilities of LLMs like ChatGPT's GPT-3 in real-l
 ## Generative Search - OpenAI Module for Weaviate
 Today we are announcing the release of the `generative-openai` module for Weaviate! This module enables you to leverage the power of ChatGPT's GPT-3 model on your own customized datasets and for specific use cases previously not possible!💥
 
-The `generative-openai` module makes a "custom version of ChatGPT" possible by combining it with the Weaviate vector search engine! By integrating a general purpose LLM with a vector search engine like Weaviate, you can utilize the model's power to carry out tasks in the context of your own data housed in Weaviate!
+The `generative-openai` module makes a "custom version of ChatGPT" possible by combining it with Weaviate! By integrating a general purpose LLM with a vector database like Weaviate, you can utilize the model's power to carry out tasks in the context of your own data housed in Weaviate!
 
 ## How the module works
 The `generative-openai` module can be used to get GPT-3 to accomplish tasks grounded in the context of knowledge provided by Weaviate search results. The process consists of two steps: first, we use Weaviate to extract context by filtering a subset of your data that has knowledge relevant to a specific prompt. Secondly, we send the prompt as well as the filtered subset of documents from step one directly to the [OpenAI Completion endpoint](https://platform.openai.com/docs/guides/completion) to accomplish the task specified in the prompt.
@@ -43,8 +43,8 @@ The [Generative OpenAI](/developers/weaviate/modules/reader-generator-modules/ge
 ### Weaviate Cloud Services
 The `Generative OpenAI` module is enabled by default in the Weaviate Cloud Services (WCS). If your instance version is on `1.17.3` or newer, then you are good to go.
 
-:::tip Free 30-day sandbox
-You can create a free 30-day sandbox on [WCS](https://console.weaviate.io/) and create a Weaviate instance.
+:::tip Free 14-day sandbox
+You can create a free 14-day sandbox on [WCS](https://console.weaviate.cloud) and create a Weaviate instance.
 :::
 
 :::note Available modules out of the box
@@ -131,15 +131,15 @@ The module adds a `generate { }` parameter to the `_additional { }` property und
 
 The `generate { }` parameter has the following arguments:
 
-| Field | Data Type |  Description
+| Field | Data Type | Description |
 | --- | --- | --- |
-| `singleResult {prompt}` | string | The generative model makes a generation for each individual search result.
-| `groupedResult {task}` | string | The generative model receives all search results as input.
+| `singleResult {prompt}` | string | The generative model makes a generation for each individual search result. |
+| `groupedResult {task}` | string | The generative model receives all search results as input. |
 
 Here is an example of a GraphQL query using the `singleResult{ prompt }`. From the `PodClip` class, we want the generative model to answer the question "What is Ref2Vec?" based on the content.
 
 ```graphql
-{  
+{
 	Get {
     PodClip (
       hybrid: {
@@ -187,11 +187,11 @@ The response looks like this:
 ```
 
 ## Generation prompts
-A `prompt` is a common term used to describe the instructions given to the LLM. Crafting the ideal prompt is typically more of an art than a science. It is also typically an iterative process where we begin with a draft of what we want the LLM to do and then tweak the prompt based on what we get back. Prompt tuning is hardly a straightforward task and the term “prompt engineering” has emerged to encapsulate the complexity of this process. To help you get started with prompt engineering Weaviate-augmented LLMs, here are 4 examples of prompt refinement: 
+A `prompt` is a common term used to describe the instructions given to the LLM. Crafting the ideal prompt is typically more of an art than a science. It is also typically an iterative process where we begin with a draft of what we want the LLM to do and then tweak the prompt based on what we get back. Prompt tuning is hardly a straightforward task and the term “prompt engineering” has emerged to encapsulate the complexity of this process. To help you get started with prompt engineering Weaviate-augmented LLMs, here are 4 examples of prompt refinement:
 
 * knowledge grounding,
 * uncertainty probing,
-* citing sources, 
+* citing sources,
 * and step-by-step thinking.
 
 ### Knowledge grounding
@@ -212,6 +212,7 @@ A few other examples include simply adding `Let’s think step-by-step`, or deco
 
 Prompting is an extremely new area of LLMs and search. As a general prescription, it is recommended to be as descriptive as possible with what you want the LLM to do, as well as to have an iterative mindset of tuning the prompt.
 
-## Stay connected
-Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw) or [Twitter](https://twitter.com/weaviate_io).
-Weaviate is open-source, and you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don’t forget to give us a ⭐️ while you are there!
+
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />

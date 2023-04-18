@@ -1,3 +1,9 @@
+# For testing
+.venv
+nohup.out
+**/.ipynb
+**/.ipynb_checkpoints/*
+
 # Dependencies
 /node_modules
 
@@ -14,6 +20,9 @@
 # Ignore Academy for now
 /developers/academy
 
+# IDEs
+.idea
+
 # Misc
 .DS_Store
 .env.local
@@ -28,3 +37,4 @@ package-lock.json
 yarn.lock
 
 .python-version
+__pycache__

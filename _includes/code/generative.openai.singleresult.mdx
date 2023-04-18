@@ -49,16 +49,14 @@ client  = weaviate.Client(
 
 # highlight-start
 # instruction for the generative module
-generatePrompt = '"Describe the following as a Facebook Ad: {summary}"'
+generatePrompt = "Describe the following as a Facebook Ad: {summary}"
 # highlight-end
 
 result = (
   client.query
   .get("Article", ["title", "summary"])
   # highlight-start
-  .with_additional(
-    "generate(singleResult:{ prompt: " + generatePrompt + " }) { singleResult }"
-  )
+  .with_generate(single_prompt=generatePrompt)
   # highlight-end
   .with_near_text({
     "concepts": ["Italian food"]
@@ -73,7 +71,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-client');
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -83,19 +81,18 @@ const client = weaviate.client({
 
 // highlight-start
 // instruction for the generative module
-const generatePrompt = '"Describe the following as a Facebook Ad: {summary}"';
+const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
 // highlight-end
 
 client.graphql
   .get()
   .withClassName('Article')
-  .withFields(
-    'title summary ' +
-    // highlight-next-line
-    `_additional {generate(singleResult:{ prompt: ${generatePrompt} }) { singleResult }}`
-  )
+  .withFields('title summary')
   .withNearText({
     concepts: ['Italian food']
+  })
+  .withGenerate({
+    singlePrompt: generatePrompt,
   })
   .withLimit(5)
   .do()
@@ -103,6 +100,43 @@ client.graphql
     console.log(res)
   })
   .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},
+});
+
+// highlight-start
+// instruction for the generative module
+const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
+// highlight-end
+
+client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title summary')
+  .withNearText({
+    concepts: ['Italian food']
+  })
+  .withGenerate({
+    singlePrompt: generatePrompt,
+  })
+  .withLimit(5)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
     console.error(err)
   });
 ```
@@ -126,41 +160,30 @@ func main() {
     Scheme:  "https",
     Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"},
   }
-  client := weaviate.New(cfg)
-
-  // highlight-start
-  // instruction for the generative module
-  generatePrompt := "\"Describe the following as a Facebook Ad: {summary}\""
-  // highlight-end
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+  ctx := context.Background()
 
   fields := []graphql.Field{
     {Name: "title"},
     {Name: "summary"},
-    // highlight-start
-    {
-      Name: "_additional",
-      Fields: []graphql.Field{
-        {
-          Name: "generate(singleResult:{ prompt: " + generatePrompt + " })",
-          Fields: []graphql.Field{
-            {Name: "singleResult"},
-          },
-        },
-      },
-    },
-    // highlight-end
   }
 
   concepts := []string{"Italian food"}
   nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts)
 
-  ctx := context.Background()
+  // highlight-next-line
+  gs := graphql.NewGenerativeSearch().SingleResult("\"Describe the following as a Facebook Ad: {summary}\"")
 
   result, err := client.GraphQL().Get().
     WithClassName("Article").
     WithFields(fields...).
     WithNearText(nearText).
+    // highlight-next-line
+    withGenerativeSearch(generativeSearch).
     WithLimit(5).
     Do(ctx)
 
@@ -175,16 +198,16 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.HashMap;
 import java.util.Map;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
-import technology.semi.weaviate.client.v1.graphql.query.argument.NearTextArgument;
-import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.fields.Field;
 
 public class App {
   public static void main(String[] args) {
@@ -196,22 +219,13 @@ public class App {
 
     // highlight-start
     // instruction for the generative module
-    String generatePrompt = "\"Describe the following as a Facebook Ad: {summary}\""
+    GenerativeSearchBuilder generativeSearch = GenerativeSearchBuilder.builder()
+      .singleResultPrompt("\"Describe the following as a Facebook Ad: {summary}\"")
+      .build();
     // highlight-end
 
     Field title = Field.builder().name("title").build();
     Field summary = Field.builder().name("summary").build();
-
-    // highlight-start
-    Field generate = Field.builder()
-      .name("generate(singleResult:{ prompt: " + generatePrompt + " } )")
-      .fields(new Field[]{ Field.builder().name("singleResult").build() })
-      .build();
-    Field _additional = Field.builder()
-      .name("_additional")
-      .fields(new Field[]{ generate })
-      .build();
-    // highlight-end
 
     NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
       .concepts(new String[]{ "Italian food" })
@@ -219,7 +233,9 @@ public class App {
 
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName("Article")
-      .withFields(title, summary, _additional)
+      .withFields(title, summary)
+      // highlight-next-line
+      .withGenerativeSearch(generativeSearch)
       .withNearText(nearText)
       .withLimit(5)
       .run();

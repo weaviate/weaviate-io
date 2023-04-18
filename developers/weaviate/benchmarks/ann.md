@@ -20,7 +20,7 @@ solutions.
 To make the most of this benchmark, you can look at it from different perspectives:
 
 - **The overall performance** – Review the [benchmark result section below](#results) to draw conclusions about what to expect from Weaviate in a production setting.
-- **Expectation for your use case** – Find the dataset closest to your production use case, and estimate Weaviate's expected performance for your use case. 
+- **Expectation for your use case** – Find the dataset closest to your production use case, and estimate Weaviate's expected performance for your use case.
 - **Fine Tuning** – If you don't get the results you expect. Find the optimal combinations of the config parameters (efConstruction, maxConnections and ef) to achieve the best results for your production configuration.
 
 ## What is being measured?
@@ -34,13 +34,13 @@ For each benchmark test, we picked parameters of:
 
 For each set of parameters we've run 10000 requests and we measured:
 
-- The **Recall@1**, **Recall@10**, **Recall@100** - by comparing Weaviate's results to the 
+- The **Recall@1**, **Recall@10**, **Recall@100** - by comparing Weaviate's results to the
   ground truths specified in each dataset
 - **Multi-threaded Queries per Second (QPS)** - The overall throughput you can
   achieve with each configuration
 - **Individual Request Latency (mean)** - The mean latency over all 10,000 requests
 - **P99 Latency** - 99% of all requests (9.900 out of 10.000) have a latency that
-  is lower than or equal to this number – this shows how fast 
+  is lower than or equal to this number – this shows how fast
 - **Import time** - Since varying build parameters has an effect on import
   time, the import time is also included
 
@@ -134,7 +134,7 @@ For each dataset, there is a highlighted configuration. The highlighted
 configuration is an opinionated pick about a good recall/latency/throughput
 trade-off. The highlight sections will give you a good overview of Weaviate's
 performance with the respective dataset. Below the highlighted configuration,
-you can find alternative configurations. 
+you can find alternative configurations.
 
 ## SIFT1M (1M 128d vectors, L2 distance)
 
@@ -252,14 +252,14 @@ would mean that 200 requests can be answered in a second.
 However, in reality, you often don't have a single user sending one query after
 another. Instead, you have multiple users sending queries. This makes the
 querying-side concurrent. Similarly, Weaviate can handle concurrent incoming
-requests. We can identify how many concurrent requests can be served by measuring 
+requests. We can identify how many concurrent requests can be served by measuring
 the throughput.
 
 We can take our single-thread calculation from before and multiply it with the
 number of server CPU cores. This will give us a rough estimate of what the
 server can handle concurrently. However, it would be best never to trust this
 calculation alone and continuously measure the actual throughput. This is because
-such scaling may not always be linear. For example, there may be synchronization 
+such scaling may not always be linear. For example, there may be synchronization
 mechanisms used to make concurrent access safe, such as locks. Not only do
 these mechanisms have a cost themselves, but if implemented incorrectly, they
 can also lead to congestion which would further decrease the concurrent
@@ -304,7 +304,7 @@ rough estimation of how the throughput would vary on smaller or larger
 machines. If you do not need the stated throughput, you can run with fewer CPU
 cores. If you need more throughput, you can run with more CPU cores.
 
-Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks.​ ​Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be ​[​available in Weaviate soon​](/developers/weaviate/roadmap/index.md)​.
+Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks. Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be [available in Weaviate soon](/developers/weaviate/roadmap/index.md).
 
 ## What are ef, efConstruction, and maxConnections?
 
@@ -325,12 +325,12 @@ hints to look at:
   switching the CPU type to the one used in this benchmark.
 
 * Are you using an actual dataset or random vectors? HNSW is known to perform
-  considerably worse with random vectors than with real​ world​ datasets. This is due
-  to the distribution of points in real world​ datasets compared to randomly
+  considerably worse with random vectors than with real-world datasets. This is due
+  to the distribution of points in real-world datasets compared to randomly
   generated vectors. If you cannot achieve the performance (or recall)
   outlined above with random vectors, switch to an actual dataset.
 
-* Are your disks fast enough? While the ANN search itself is CPU-bound, the objects 
+* Are your disks fast enough? While the ANN search itself is CPU-bound, the objects
   must be read from disk after the search has been completed. Weaviate
   uses memory-mapped files to speed this process up. However, if not enough
   memory is present or the operating system has allocated the cached pages
@@ -338,59 +338,9 @@ hints to look at:
   it could then be that your benchmark is bottlenecked by those disks.
 
 * Are you using more than 2 million vectors? If yes, make sure to set the
-  [vector cache large
-  enough](/developers/weaviate/concepts/resources.md#imports-slowed-down-after-crossing-2m-objects---what-can-i-do)
+  [vector cache large enough](/developers/weaviate/concepts/resources.md#vector-cache)
   for maximum performance.
 
 ## Where can I find the scripts to run this benchmark myself?
 
 The [repository is located here](https://github.com/weaviate/weaviate-benchmarking).
-
-<!-- <style type="text/css">
-
-  .highlighted-config-label {
-    font-size:1em;
-    text-align: center;
-  }
-
-  .highlighted-config-value {
-    font-size:2em;
-    text-align: center;
-  }
-
-
-  .highlighted-result {
-    background: #ffe6f1;
-    text-align: center;
-    color: #fa0171;
-  }
-
-  .highlighted-results-label{
-    font-weight: bold;
-    font-size:0.9em;
-    text-align: center;
-  }
-
-  .highlighted-results-value {
-    font-size: 1.75em;
-    text-align: center;
-    line-height: 200%;
-  }
-
-  @media all and (max-width: 1200px) {
-    .highlighted-config-value {
-      font-size:1em;
-      font-weight: bold;
-    }
-    .highlighted-config-label {
-      font-size:0.4em;
-    }
-    .highlighted-results-value {
-      font-size: 1.4em;
-    }
-    .highlighted-results-label {
-      font-size:0.5em;
-    }
-  }
-
-</style> -->

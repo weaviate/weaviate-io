@@ -1,0 +1,67 @@
+---
+title: Overview
+sidebar_position: 0
+image: og/wcs/overview.jpg
+---
+
+## Introduction
+
+Welcome to the documentation for **Weaviate Cloud Services** (WCS).
+
+:::tip Looking for Weaviate docs?
+Documentation for Weaviate [can be found here](/developers/weaviate/index.md).
+:::
+
+## About Weaviate Cloud Services (WCS)
+
+WCS is our SaaS (software-as-a-service) solution, providing managed Weaviate instances on the cloud.
+
+With WCS we aim to provide you with the most convenient Weaviate experience. We do this by reflecting in WCS best practices for running Weaviate on the cloud and managing the underlying infrastructure so you can focus on using Weaviate to add value to your work.
+
+### Configuration
+
+WCS instances of Weaviate come pre-configured as shown below to reduce the work and time required for you to get up and running.
+
+:::info <i class="fa-solid fa-screwdriver-wrench"></i> How are WCS instances configured?
+Each WCS instance is:
+- Automatically created with the latest available version of Weaviate.
+- Upgradeable to later versions of Weaviate as they are released.
+- Pre-configured with the `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, `qna-openai` and `generative-openai` modules.
+- Configured with authentication for security (optional for the sandbox).
+    - We recommend using a Weaviate client for the most convenient experience with authentication.
+- Accessible through the Weaviate Console.
+:::
+
+<details>
+  <summary>Is it possible to modify WCS instances' configurations?</summary>
+
+For the moment, all WCS instances are pre-configured and are not able to be changed by the user, although this is planned for the future.
+
+If you require a particular module or configuration that is different to one used by WCS instances, please [reach out to us](https://console.weaviate.cloud/contact) to have a chat about custom deployments.
+
+Alternatively you can also try a self-deployment option with [Docker](/developers/weaviate/installation/docker-compose.md) or [Kubernetes](/developers/weaviate/installation/kubernetes.md).
+
+</details>
+
+### WCS vs Weaviate open-source
+
+Weaviate offers the same capabilities regardless of whether you run Weaviate as a self-deployed solution, or through WCS.
+
+The difference is in how they are configured, hosted and deployed, and who manages them.
+
+## What next?
+
+The following pages will help you to get started with WCS:
+
+- [WCS quickstart](./quickstart.mdx)
+- User guides for:
+    - [Creating a WCS instance](./guides/create-instance.mdx)
+    - [Authentication](./guides/authentication.mdx)
+    - [WCS Console](./guides/authentication.mdx)
+- [WCS pricing](/pricing)
+
+## More resources
+
+import WCSDocsMoreResources from '/_includes/wcs-more-resources-docs.md';
+
+<WCSDocsMoreResources />

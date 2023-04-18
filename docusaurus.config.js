@@ -6,9 +6,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
 const siteRedirects = require('./site.redirects');
 
+// Math equation plugins
+const math = require('remark-math');
+const katex = require('rehype-katex');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'Weaviate - vector search engine',
+    title: 'Weaviate - vector database',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
     url: 'https://weaviate.io',
@@ -30,9 +34,9 @@ const config = {
         [
             '@docusaurus/plugin-content-blog',
             {
-                blogTitle: 'Weaviate Playbook',
+                blogTitle: 'Playbook',
                 blogDescription: 'Learn How we run Weaviate as a Company',
-                blogSidebarCount: 12,
+                blogSidebarCount: 0,
                 postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Playbook',
 
@@ -70,11 +74,18 @@ const config = {
     ],
 
     stylesheets: [
-        //Add Font Awesome stylesheets
+        // Add Font Awesome stylesheets
         '/fonts/font-awesome/fontawesome.css',
         '/fonts/font-awesome/solid.css',
         '/fonts/font-awesome/regular.css',
-        '/fonts/font-awesome/brands.css'
+        '/fonts/font-awesome/brands.css',
+
+        { // styles for math equations
+            href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+            type: 'text/css',
+            integrity: 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+            crossorigin: 'anonymous',
+        },
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -94,19 +105,24 @@ const config = {
                     sidebarPath: require.resolve('./sidebars.js'),
                     path: 'developers', // folder name – where the docs are
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
-                    
+
                     // TODO: Update to 'main' for release
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
-                    remarkPlugins: [remarkReplace],
+                    remarkPlugins: [remarkReplace, math],
+                    rehypePlugins: [katex]
                 },
                 blog: {
+                    blogTitle: 'Blog',
                     showReadingTime: true,
                     authorsMapPath: '../authors.yml',
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
-                    blogSidebarCount: 12,
-                    postsPerPage: 6,
+                    blogSidebarCount: 0,
+                    postsPerPage: 12,
+                    blogSidebarTitle: 'Weaviate Blog',
+                    remarkPlugins: [math],
+                    rehypePlugins: [katex]
                 },
                 theme: {
                     customCss: [
@@ -122,15 +138,12 @@ const config = {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             image: 'og/default.jpg',
-
             announcementBar: {
                 id: 'announcement-bar',
                 content:
-                    // 'We are excited to announce our new generative search module! <a target="_blank" rel="noopener noreferrer" href="https://www.prnewswire.com/news-releases/weaviate-releases-a-generative-search-module-301740697.html">press release</a> - <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/modules/reader-generator-modules/qna-openai">documentation</a>',
-                    'We are excited to announce the first generative search module for Weaviate! <a target="_blank" rel="noopener noreferrer" href="https://www.prnewswire.com/news-releases/weaviate-releases-a-generative-search-module-301740697.html">press release</a> - <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/modules/reader-generator-modules/generative-openai">documentation</a>',
-                // backgroundColor: '#00b800',
-                backgroundColor: '#2d3197',
-                textColor: '#fff',
+                    'We are excited to announce a huge update to <a target="_blank" rel="noopener noreferrer" href="https://console.weaviate.cloud/">Weaviate Cloud Services (WCS)</a> · check out the dedicated <a target="_blank" rel="noopener noreferrer" href="/developers/wcs">WCS docs</a>.',
+                backgroundColor: '#1C1468',
+                textColor: '#F5F5F5',
                 isCloseable: true,
             },
             navbar: {
@@ -150,9 +163,15 @@ const config = {
                                 label: 'Pricing',
                                 to: '/pricing',
                             },
+                            // {
+                            //     label: 'Documentation',
+                            //     docId: 'wcs/index',
+                            //     sidebarid: 'wcsSidebar',
+                            //     type: 'doc',
+                            // },
                             {
-                                label: 'Try Now',
-                                href: 'https://console.weaviate.io/',
+                                label: 'Weaviate Cloud console',
+                                href: 'https://console.weaviate.cloud',
                             },
                         ],
                     },
@@ -184,23 +203,9 @@ const config = {
                         ],
                     },
                     {
-                        type: 'dropdown',
-                        label: 'Content',
+                        label: 'Blog',
+                        to: '/blog',
                         position: 'right',
-                        items: [
-                            {
-                                label: 'Blog',
-                                to: '/blog',
-                            },
-                            {
-                                label: 'Podcast',
-                                to: '/podcast',
-                            },
-                            {
-                                label: 'Newsletter',
-                                href: 'https://newsletter.weaviate.io',
-                            },
-                        ],
                     },
                     {
                         type: 'dropdown',
@@ -208,9 +213,15 @@ const config = {
                         position: 'right',
                         items: [
                             {
-                                label: 'Docs',
+                                label: 'Weaviate Docs',
                                 docId: 'weaviate/index',
                                 sidebarid: 'docsSidebar',
+                                type: 'doc',
+                            },
+                            {
+                                label: 'Weaviate Cloud Services Docs',
+                                docId: 'wcs/index',
+                                sidebarid: 'wcsSidebar',
                                 type: 'doc',
                             },
                             {
@@ -225,45 +236,56 @@ const config = {
                             },
                             {
                                 label: 'Slack',
-                                href: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw',
+                                href: 'https://weaviate.io/slack',
                             },
                         ],
                     },
-                    
                     {
-                        to: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/',
+                        to: 'https://weaviate.io/slack',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-slack',
+                        className: 'fab fa-lg fa-slack',
                     },
                     {
                         to: 'https://github.com/weaviate/weaviate',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-github',
+                        className: 'fab fa-lg fa-github',
                     },
                     {
                         to: 'https://twitter.com/weaviate_io',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-twitter',
+                        className: 'fab fa-lg fa-twitter',
                     },
                     {
-                        to: 'https://www.youtube.com/@Weaviate/playlists',
+                        to: 'https://newsletter.weaviate.io',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-youtube',
+                        className: 'fas fa-lg fa-envelope',
+                    },
+                    {
+                        to: '/podcast',
+                        // to: 'https://www.youtube.com/@Weaviate/playlists',
+                        label: ' ',
+                        position: 'right',
+                        // target: '_blank',
+                        className: 'fas fa-lg fa-microphone',
                     },
                     {
                         to: 'https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7',
                         label: ' ',
                         position: 'right',
                         target: '_blank',
-                        className: 'fa-brands fa-lg fa-spotify',
+                        className: 'fab fa-lg fa-spotify',
+                    },
+                    {
+                        type: 'search',
+                        position: 'right',
                     },
                 ],
             },
@@ -271,15 +293,6 @@ const config = {
             footer: {
                 style: 'dark',
                 links: [
-                    // {
-                    //   title: 'Docs',
-                    //   items: [
-                    //     {
-                    //       label: 'Getting Started',
-                    //       to: '/developers/weaviate/quickstart',
-                    //     },
-                    //   ],
-                    // },
                     {
                         title: 'Community',
                         items: [
@@ -289,7 +302,7 @@ const config = {
                             },
                             {
                                 label: 'Slack',
-                                href: 'https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw/',
+                                href: 'https://weaviate.io/slack',
                             },
                             {
                                 label: 'Twitter',
@@ -349,7 +362,7 @@ const config = {
             colorMode: {
                 defaultMode: 'dark',
                 disableSwitch: false,
-                respectPrefersColorScheme: false,
+                respectPrefersColorScheme: true,
             },
             prism: {
                 theme: lightCodeTheme,

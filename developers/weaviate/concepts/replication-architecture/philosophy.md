@@ -14,7 +14,7 @@ The architecture that guides the principles for Weaviate’s replication systems
 * They are often **very-large-scale** (with datasets in the billions of objects and vectors)
 * They often incur **large parallel usage with strict latency requirements** (i.e. high throughput with low p99 latencies)
 * It is vital that the service is **highly-available** and resilient to unplanned outages or planned maintenance, such as version upgrades.
-* It is often tolerable if data is temporarily out of sync, as long as **consistency is reached eventually**. 
+* It is often tolerable if data is temporarily out of sync, as long as **consistency is reached eventually**.
 * Weaviate is sometimes used alongside strongly consistent, transactional databases if transactional data exists in a use case. In cases where Weaviate is used as the primary database, data is typically not transactional.
 * Weaviate’s users have a lot of experience working with cloud-native technologies, including NoSQL databases, and know how an application needs to be structured to deal with eventually consistent systems correctly.
 
@@ -27,7 +27,7 @@ Weaviate’s replication architecture is inspired by other modern, Internet-scal
 
 ## Gradual rollout
 
-As with many other Weaviate features, Replication is being rolled out in multiple phases. This does not mean that the first release with replication is to be considered incomplete. Instead it means that Replication is an umbrella term that accompanies many features that work together to achieve the various goals of replication. The most significant of those are contained in the first release (v1.17), but some may only follow in subsequent releases, such as v1.18 and v1.19. 
+As with many other Weaviate features, Replication is being rolled out in multiple phases. This does not mean that the first release with replication is to be considered incomplete. Instead it means that Replication is an umbrella term that accompanies many features that work together to achieve the various goals of replication. The most significant of those are contained in the first release (v1.17), but some may only follow in subsequent releases, such as v1.18 and v1.19.
 
 The motivation behind this phased roll-out is two-fold. First, not everyone has the same requirements, and the feature set included in the first release is sufficient for many use cases. You can use the [Replication Roadmap](./index.md#roadmap) section to make an informed decision. Second, your feedback and learning about your needs are extremely valuable to guide the future releases of features. By releasing early and often, we can reduce the time to get valuable feedback.
 

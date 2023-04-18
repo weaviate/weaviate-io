@@ -13,6 +13,7 @@ git_slack_map=(
     ["Erika Cardenas"]="<@U03RSSRAMLN>"
     ["Etienne Dilocker"]="<@UCZDBEZ5F>"
     ["hsm207"]="<@U04C2EATF6K>" #Shukri
+    ["Igor Lamas"]="<@U04MGB80F45>"
     ["John Trengrove"]="<@U03KPAE8Y7K>"
     ["JP Hwang"]="<@U0441J6PYGN>"
     ["Ken MacInnis"]="<@U048YRPG5J7>"
@@ -30,7 +31,8 @@ git_slack_map=(
 )
 
 # Get the Author name and map it to their Slack handle
-github_name="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
+git_hash=$(echo "$GITHUB_SHA" | cut -c1-7)
+github_name="$(git log -1 $git_hash --pretty="%aN")"
 if [ ${git_slack_map[$github_name]+_} ]; then
     export AUTHOR_NAME=${git_slack_map[$github_name]}
 else

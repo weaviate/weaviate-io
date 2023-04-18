@@ -1,0 +1,90 @@
+.searchBox {
+    // hide the searchbox for now
+    // display: none;
+    // display: flex;
+    height: 37px;
+    width: 155px;
+    justify-content: center;
+
+    @media screen and (max-width: 668px) {
+        width: 80px;
+    }
+}
+
+.searchButton {
+    border: 0;
+    margin: auto;
+    padding: 0 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #141F39;
+    width: 100%;
+    height: 100%;
+    font-weight: 500;
+    border: rgb(229, 229, 229, 0.5) solid 0.3px;
+
+    @media screen and (max-width: 668px) {
+        width: auto;
+    }
+}
+
+.searchPlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+
+    .searchIcon {
+        color: #e5e5e5;
+        margin-right: 3px;
+
+        @media screen and (max-width: 668px) {
+            margin-right: 8px;
+        }
+    }
+}
+
+.searchPlaceholderText {
+    font-size: 16px;
+    color: #e5e5e5;
+
+    @media screen and (max-width: 668px) {
+        display: none;
+    }
+}
+
+.commandIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.commandIcon {
+    color: #e5e5e5;
+    background-color: #0C1428;
+    font-size: 15px;
+    padding: 3px 4px;
+    border-radius: 5px;
+    border: rgb(229, 229, 229, 0.5) solid 0.3px;
+}
+
+[data-theme='light'] {
+    .searchButton {
+        background-color: #FFFFFF;
+        border: rgb(45, 49, 151, 0.5) solid 0.3px
+    }
+
+    .searchPlaceholderText, .searchIcon {
+        color: #1C1468;
+    }
+
+    .commandIcon {
+        background-color: #FFFFFF;
+        border: rgb(45, 49, 151, 0.5) solid 0.3px;
+        color: #1C1468;
+    }
+}
