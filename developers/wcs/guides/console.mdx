@@ -8,6 +8,8 @@ import WCSConsoleButton from './img/wcs-console-button.png';
 import WCSConsoleExampleQuery from './img/wcs-console-example-query.png';
 import WCSConnectedInstances from './img/wcs-connected-instances.png';
 import WCSQueryDropdown from './img/wcs-query-dropdown.png';
+import WCSInferenceApiKey from './img/wcs-console-inference-key.png';
+import WCSManyInferenceApiKeys from './img/wcs-console-many-inference-keys.png';
 
 ## Overview
 
@@ -59,11 +61,28 @@ If you are querying a WCS instance that you own through the WCS console, your qu
 
 This is the case for both WCS sandboxes as well as managed clusters.
 
+### Inference key(s)
+
+If you need to provide any inference service API keys for modules such as `text2vec-cohere`, `text2vec-cohere`, or `text2vec-openai`, you can do so through the "Header" tab located towards the bottom of the query screen. An example is shown below, where the `X-OpenAI-Api-Key` header has been set with the OpenAI API key (actual value hidden).
+
+<img src={WCSInferenceApiKey} width="100%" alt="How to add an API inference key to a WCS console query"/>
+
+The header can contain multiple keys if needed (e.g. if `text2vec-cohere` is used with `generative-openai`).
+
+The image below shows the syntax to do so (you must provide the actual values).
+
+<img src={WCSManyInferenceApiKeys} width="80%" alt="How to add multiple API inference keys to a WCS console query"/>
+
+:::tip Check your Weaviate version
+If you are having any issues providing additional headers on a WCS instance, check that your Weaviate server version is `1.18.3` or higher. We added a [fix in v1.18.3](https://github.com/weaviate/weaviate/pull/2840) which might affect this capability.
+:::
+
 ## More resources
 
-:::info More about GraphiQL
-Read more about the [GraphiQL library here](https://github.com/graphql/graphiql/tree/main/packages/graphiql)
-:::
+### Read more
+
+- [GraphiQL library](https://github.com/graphql/graphiql/tree/main/packages/graphiql)
+- [Vectorizer modules](/developers/weaviate/modules/retriever-vectorizer-modules/) (e.g. Cohere / HuggingFace / OpenAI)
 
 import WCSDocsMoreResources from '/_includes/wcs-more-resources-docs.md';
 

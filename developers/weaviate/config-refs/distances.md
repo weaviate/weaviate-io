@@ -37,8 +37,10 @@ In all cases, larger distance values indicate lower similarity. Conversely, smal
 
 If you're missing your favorite distance type and would like to contribute it to Weaviate, we'd be happy to review your [PR](https://github.com/weaviate/weaviate).
 
+:::note Additional notes
 [^1]: If `cosine` is chosen, all vectors are normalized to length 1 at import/read time and dot product is used to calculate the distance for computational efficiency.
 [^2]: Dot Product on its own is a similarity metric, not a distance metric. As a result, Weaviate returns the negative dot product to stick with the intuition that a smaller value of a distance indicates a more similar result and a higher distance value indicates a less similar result.
+:::
 
 ### Distance Implementations and Optimizations
 
@@ -80,3 +82,9 @@ For backward compatibility, `certainty` can still be used when the distance is
 `cosine`. If any other distance is selected `certainty` cannot be used.
 
 See also [distance and certainty _additional{} properties](../api/graphql/additional-properties.md).
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

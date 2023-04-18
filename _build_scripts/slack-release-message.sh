@@ -2,7 +2,8 @@
 set -e
 
 # Get commit message
-commit_message="$(git log -1 $TRAVIS_COMMIT --pretty="%s")"
+git_hash=$(echo "$GITHUB_SHA" | cut -c1-7)
+commit_message="$(git log -1 $git_hash --pretty="%s")"
 
 # Replace &, <, and > – as per Slack API instructions
 commit_message=${commit_message//&/&amp;}
