@@ -163,12 +163,12 @@ const config = {
                                 label: 'Pricing',
                                 to: '/pricing',
                             },
-                            {
-                                label: 'Documentation',
-                                docId: 'wcs/index',
-                                sidebarid: 'wcsSidebar',
-                                type: 'doc',
-                            },
+                            // {
+                            //     label: 'Documentation',
+                            //     docId: 'wcs/index',
+                            //     sidebarid: 'wcsSidebar',
+                            //     type: 'doc',
+                            // },
                             {
                                 label: 'Weaviate Cloud console',
                                 href: 'https://console.weaviate.cloud',
@@ -288,6 +288,10 @@ const config = {
                         position: 'right',
                         target: '_blank',
                         className: 'fab fa-lg fa-spotify',
+                    },
+                    {
+                        type: 'search',
+                        position: 'right',
                     },
                 ],
             },
