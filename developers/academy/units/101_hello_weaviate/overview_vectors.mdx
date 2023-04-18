@@ -1,6 +1,6 @@
 ---
-title: How does Weaviate work?
-sidebar_position: 80
+title: Vectors - An overview
+sidebar_position: 15
 ---
 
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
@@ -9,11 +9,11 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-We've come this far without discussing what vectors are, exactly.
+We've covered that Weaviate is a vector database, and that a vector search is similarity-based. But what is a vector?
 
-Although it sounds quite technical, in this context a vector is just a series of numbers - like [1, 0] or [0.513, 0.155, 0.983, 0.001, 0.932]. The reason for using vectors is that they capture meaning as a series of numbers.
+A vector in this context is just a series of numbers - like `[1, 0]` or `[0.513, 0.155, 0.983, ..., 0.001, 0.932]`. Vectors like these are used to capture meaning as a series of numbers.
 
-In fact, many people have used vectors already without realizing - for example if they have tried photo editing, or MS Paint.
+This might seem like an odd concept. But in fact, many people have used vectors already without realizing - for example if they have tried photo editing, or MS Paint.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;How do numbers represent meaning?
 
@@ -70,9 +70,9 @@ Can you describe, in your own words, what vectors are?
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
-:::info
-Add summary
-:::
+- A vector is a series of numbers that capture the meaning or essence of objects.
+- Machine learning models help quantify similarity between different objects, which is essential for vector searches.
+- Weaviate uses a combination of approximate nearest neighbor (ANN) index and an inverted index to perform fast vector searches with filtering.
 
 import Quiz from '/src/components/Academy/quiz.js'
 const howWeaviateWorks = [{
