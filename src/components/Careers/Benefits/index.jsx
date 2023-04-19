@@ -38,7 +38,7 @@ export default function Benefits() {
         <div className={styles.item}>
           <div className={`${styles.img} ${styles.earthImg}`} />
           <div className={styles.itemText}>
-            <h3>Work equipment</h3>
+            <h3>Company trips</h3>
             <p>
               With a global distributed team,
               <br />
