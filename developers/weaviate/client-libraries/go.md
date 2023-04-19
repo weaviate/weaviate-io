@@ -70,12 +70,12 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 
 
 ```go
-cfg := weaviate.Config(
-  Host:"weaviate.example.com",
-  Scheme: "http",
-  authConfig: auth.ApiKey{Value: "my-secret-key"}
-  headers: nil,
-)
+cfg := weaviate.Config{
+	Host:       "weaviate.example.com",
+	Scheme:     "http",
+	AuthConfig: auth.ApiKey{Value: "my-secret-key"},
+	Headers:    nil,
+}
 client, err := weaviate.NewClient(cfg)
 if err != nil{
   fmt.Println(err)
@@ -95,19 +95,19 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 <ClientAuthFlowResourceOwnerPassword />
 
 ```go
-cfg := weaviate.Config(
-  Host:"weaviate.example.com",
-  Scheme: "http",
-  authConfig: auth.ResourceOwnerPasswordFlow{
-    Username: "Your user",
-    Password: "Your password",
-    Scopes: []string{"offline_access"}, // optional, depends on the configuration of your identity provider (not required with WCS)
-  }
-  headers: nil,
-)
+cfg := weaviate.Config{
+	Host:   "weaviate.example.com",
+	Scheme: "http",
+	AuthConfig: auth.ResourceOwnerPasswordFlow{
+		Username: "Your user",
+		Password: "Your password",
+		Scopes:   []string{"offline_access"}, // optional, depends on the configuration of your identity provider (not required with WCS)
+	},
+	Headers: nil,
+}
 client, err := weaviate.NewClient(cfg)
 if err != nil{
-  fmt.Println(err)
+	fmt.Println(err)
 }
 ```
 
@@ -118,18 +118,18 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 <ClientAuthFlowClientCredentials />
 
 ```go
-cfg := weaviate.Config(
-  Host:"weaviate.example.com",
-  Scheme: "http",
-  authConfig: auth.ClientCredentials{
-    ClientSecret: "your_client_secret",
-    Scopes: []string{"scope1 scope2"}  // optional, depends on the configuration of your identity provider (not required with WCS)
-  }
-  headers: nil,
-)
+cfg := weaviate.Config{
+	Host:   "weaviate.example.com",
+	Scheme: "http",
+	AuthConfig: auth.ClientCredentials{
+		ClientSecret: "your_client_secret",
+		Scopes:       []string{"scope1 scope2"}, // optional, depends on the configuration of your identity provider (not required with WCS)
+	},
+	Headers: nil,
+}
 client, err := weaviate.NewClient(cfg)
 if err != nil{
-  fmt.Println(err)
+	fmt.Println(err)
 }
 ```
 
@@ -140,19 +140,19 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 <ClientAuthBearerToken />
 
 ```go
-cfg := weaviate.Config(
-  Host:"weaviate.example.com",
-  Scheme: "http",
-  authConfig: auth.BearerToken{
-    AccessToken: "some token",
-    RefreshToken: "other token",
-    ExpiresIn: uint(500), // in seconds
-  }
-  headers: nil,
-)
+cfg := weaviate.Config{
+	Host:   "weaviate.example.com",
+	Scheme: "http",
+	AuthConfig: auth.BearerToken{
+		AccessToken:  "some token",
+		RefreshToken: "other token",
+		ExpiresIn:    uint(500), // in seconds
+	},
+	Headers: nil,
+}
 client, err := weaviate.NewClient(cfg)
 if err != nil{
-  fmt.Println(err)
+	fmt.Println(err)
 }
 ```
 
@@ -161,15 +161,15 @@ if err != nil{
 You can pass custom headers to the client, which are added at initialization:
 
 ```go
-cfg := weaviate.Config(
+cfg := weaviate.Config{
   Host:"weaviate.example.com",
   Scheme: "http",
-  authConfig: nil
-  headers: map[string]string{
+  AuthConfig: nil,
+  Headers: map[string]string{
     "header_key1": "value",
     "header_key2": "otherValue",
     },
-)
+}
 client, err := weaviate.NewClient(cfg)
 if err != nil{
   fmt.Println(err)
