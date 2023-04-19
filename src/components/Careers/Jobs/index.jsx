@@ -92,7 +92,7 @@ export default function Jobs() {
       </div>
       <div className={styles.titleFooter}>
         <p>
-          Can't find the right vacancy or do you have any questions?
+        Do you have any questions? Feel free to reach out, we're happy to help!
         </p>
       </div>
       <div className={styles.buttons}>
