@@ -50,27 +50,28 @@ const config = {
         ],
         // Add HTML Header tags
         () => ({
-            name: "inject-tag",
+            name: 'inject-tag',
             injectHtmlTags() {
                 return {
                     headTags: [
-                    // Add plausible
-                    {
-                        tagName: 'script',
-                        attributes: {
-                            defer: '',
-                            'data-domain': 'weaviate.io',
-                            src:'https://plausible.io/js/plausible.js',
+                        // Add plausible
+                        {
+                            tagName: 'script',
+                            attributes: {
+                                defer: '',
+                                'data-domain': 'weaviate.io',
+                                src: 'https://plausible.io/js/plausible.js',
+                            },
                         },
-                    },
-                    // Add hotjar
-                    {
-                        tagName: 'script',
-                        innerHTML: `(function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:3237492,hjsv:6};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`
-                    }],
+                        // Add hotjar
+                        {
+                            tagName: 'script',
+                            innerHTML: `(function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:3237492,hjsv:6};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
+                        },
+                    ],
                 };
             },
-        })
+        }),
     ],
 
     stylesheets: [
@@ -80,10 +81,12 @@ const config = {
         '/fonts/font-awesome/regular.css',
         '/fonts/font-awesome/brands.css',
 
-        { // styles for math equations
+        {
+            // styles for math equations
             href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
             type: 'text/css',
-            integrity: 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+            integrity:
+                'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
             crossorigin: 'anonymous',
         },
     ],
@@ -110,7 +113,7 @@ const config = {
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
                     remarkPlugins: [remarkReplace, math],
-                    rehypePlugins: [katex]
+                    rehypePlugins: [katex],
                 },
                 blog: {
                     blogTitle: 'Blog',
@@ -122,7 +125,7 @@ const config = {
                     postsPerPage: 12,
                     blogSidebarTitle: 'Weaviate Blog',
                     remarkPlugins: [math],
-                    rehypePlugins: [katex]
+                    rehypePlugins: [katex],
                 },
                 theme: {
                     customCss: [
@@ -190,7 +193,7 @@ const config = {
                             },
                             {
                                 label: 'Careers',
-                                href: 'https://careers.weaviate.io/',
+                                to: '/company/careers',
                             },
                             {
                                 label: 'Investors',
@@ -343,12 +346,12 @@ const config = {
                                 to: '/blog',
                             },
                             {
-                              label: 'Podcast',
-                              to: '/podcast',
+                                label: 'Podcast',
+                                to: '/podcast',
                             },
                             {
-                              label: 'Playbook',
-                              to: 'company/playbook',
+                                label: 'Playbook',
+                                to: 'company/playbook',
                             },
                             {
                                 label: 'GitHub',
