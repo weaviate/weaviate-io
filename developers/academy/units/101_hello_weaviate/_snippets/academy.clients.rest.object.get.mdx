@@ -2,17 +2,21 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="http" label="HTTP">
+<TabItem value="rest" label="REST">
 
-```http
-GET https://some-endpoint.weaviate.network/v1/objects/WikiArticle/36ddd591-2dee-4e7e-a3cc-eb86d30a4303
+```shell
+curl http://localhost:8080/v1/meta
 ```
 
 </TabItem>
 <TabItem value="py" label="Python">
 
 ```python
-data_object = client.data_object.get_by_id("36ddd591-2dee-4e7e-a3cc-eb86d30a4303", "WikiArticle")
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+print(client.get_meta())
 ```
 
 </TabItem>
