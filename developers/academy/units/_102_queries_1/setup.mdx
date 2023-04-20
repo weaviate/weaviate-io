@@ -1,0 +1,147 @@
+---
+title: Set-up
+sidebar_position: 00
+---
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Python & Python client
+
+We will be using Python for this unit.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Install Python
+
+You can install Python 3 in a variety of ways. One easy way is to use an appropriate installer for your system as per instructions on [Python.org](https://www.python.org/downloads/).
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Set up a virtual environment
+
+:::tip Virtual environments
+It is best practice to use virtual environments to isolate projects.
+
+If you're not familiar with virtual environments, we highly recommend reading up on them - this tutorial on [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/) is a good resource, as is this article on [RealPython](https://realpython.com/python-virtual-environments-a-primer/), which goes a little more in-depth.
+:::
+
+You will also need the following libraries:
+
+```
+weaviate-client
+weaviate-demo-datasets
+jupyterlab
+```
+
+Activate your virtual environment, and install these libraries with:
+
+```shell
+pip install weaviate-client weaviate-demo-datasets jupyterlab
+```
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Weaviate Instance
+
+Check that you have an instance of Weaviate running for use in this unit.
+
+If you do not have one, we recommend setting one up **without authentication**.
+
+Follow the "Get Started with WCS" [section on this page](../101_hello_weaviate/set_up.mdx#get-started-with-wcs) and come back.
+
+:::tip What is your Weaviate instance address?
+Make sure you know what your Weaviate instance address is - it should look like:
+```
+https://your-instance-name.weaviate.network
+```
+:::
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Inference API Key
+
+We will be using an inference API in this unit, using OpenAI's API by default with `text2vec-openai`.
+
+Create an OpenAI account, and create a [free API key here](https://platform.openai.com/account/api-keys).
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Check instance access
+
+Try running this code, replacing `your-instance-name` with the actual name:
+
+```python
+import weaviate
+import os
+import json
+
+wv_url = "https://your-instance-name.weaviate.network"
+# Provide your OpenAI key here.
+api_key = os.environ.get("OPENAI_API_KEY")  # This reads the API key as an environment variable.
+
+client = weaviate.Client(
+    url=wv_url,
+    additional_headers={"X-OpenAI-Api-Key": api_key},
+)
+
+print(json.dumps(client.schema.get(), indent=2))
+```
+
+If you see the below, you have successfully queried your Weaviate instance.
+```json
+{
+  "classes": []
+}
+```
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Upload dataset
+
+We have prepared the `weaviate-demo-datasets` library for tutorials and demos. For this unit, run the following code in Python to upload the dataset into your Weaviate instance.
+
+```python
+import weaviate_datasets
+wiki_dataset = weaviate_datasets.WikiArticles()
+wiki_dataset.upload_dataset(client, batch_size=200)
+jeopardy_dataset = weaviate_datasets.JeopardyQuestions10k()
+jeopardy_dataset.upload_dataset(client, batch_size=200)
+```
+
+This will upload a handful of Wikipedia articles, and (10,000) questions from the quiz show *Jeopardy!* to your Weaviate instance. This should take about ~5 minutes, depending on your set-up, so we recommend grabbing a coffee or tea.
+
+The *Jeoaprdy!* dataset **includes vectors**, so you will not incur API costs, and the Wikipedia articles should be small enough for the free account.
+
+:::tip Too slow? Try the smaller dataset.
+If you want something faster, you can use the smaller `JeopardyQuestions1k` dataset:
+```
+jeopardy_dataset = weaviate_datasets.JeopardyQuestions1k()
+```
+:::
+
+Now, running:
+
+```python
+print(json.dumps(client.schema.get(), indent=2))
+```
+
+Should return:
+
+```json
+{
+  "classes": [
+    {
+      "class": "JeopardyCategory",
+      "description": "A Jeopardy! category",
+      ... // truncated
+      "vectorizer": "text2vec-openai"
+    },
+    {
+      "class": "JeopardyQuestion",
+      "description": "A Jeopardy! question",
+      ...  // truncated
+      "vectorizer": "text2vec-openai"
+    },
+    {
+      "class": "WikiArticle",
+      "description": "A Wikipedia article",
+      ...  // truncated
+      "vectorizer": "text2vec-openai"
+    }
+  ]
+}
+```
+
+And you are good to go!

@@ -1,0 +1,50 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("https://some-endpoint.weaviate.network")
+
+query = '''
+{
+  Get {
+    WikiArticle {
+      title
+      wiki_summary
+    }
+  }
+}
+'''
+
+result = client.query.raw(query)
+
+print(result)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+TBC
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+TBC
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+TBC
+```
+
+</TabItem>
+</Tabs>

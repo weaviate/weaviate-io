@@ -1,0 +1,752 @@
+---
+title: More on search arguments
+sidebar_position: 50
+---
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Available operators
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+You have already seen some arguments that are available in Weaviate, such as `limit`, or `nearVector`.
+
+In fact, arguments in Weaviate are wide-ranging. Take a look at just some of the available operators.
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Available arguments
+
+Some of the available arguments are:
+
+#### Vector search
+
+- `nearObject`: For searching based on a particular object's vector.
+- `nearVector`: For searching based on a specified vector.
+- `bm25`: For performing BM25 searches.
+- `hybrid`: For performing hybrid searches.
+- `ask`: To retrieve a specific answer based on stored object data.
+
+#### Filtering
+
+- `where`: Apply a Boolean filter from which your search will be carried out.
+- `limit`: Restrict the maximum objects to be retrieved.
+- `sort`: For sorting non-vector search results.
+- `offset`: For pagination of vector search results.
+
+(and more!)
+
+But we don't need to cover them all at this moment. For now, let's explore a few more of the most commonly used, powerful arguments.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Filter data with `where`
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+A filter is a way to specify additional criteria to be applied to the results of the vector search. It is analogous to the `WHERE` clause in a SQL query, and in fact the argument in Weaviate is also called `where`.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Single operand example
+
+We ran a example query like this earlier:
+
+<details>
+  <summary>See original query</summary>
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</details>
+
+Which returned these answers:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.1791926,
+            "id": "b1645a32-0c22-5814-8f35-58f142eadf7e"
+          },
+          "answer": "escaping the Earth's gravity (and go off into outer space, on your way to the moon, for instance)",
+          "question": "It takes approximately 24,840 MPH to achieve this"
+        },
+        {
+          "_additional": {
+            "distance": 0.18123823,
+            "id": "ef263438-b152-5540-97f7-99f4076bd124"
+          },
+          "answer": "the Milky Way",
+          "question": "This is the name of our own galaxy"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+So let's extend our query to now include a `where` argument that uses a `Like` operator.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).with_where({
+    "path": ["question"],    
+    "operator": "Like",  
+    "valueText": "*rocket*"
+}).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Intergalactic travel"],
+      }
+      where: {
+        path: ["question"],    
+        operator: Like,  
+        valueText: "*rocket*"
+      }
+    ) {
+      question 
+      answer 
+      _additional {
+        distance
+        id
+      }      
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+Can you guess how you would expect the earlier response to change, if at all?
+
+Here is the actual response:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.18400955,
+            "id": "ddcc3f06-5410-5944-85c4-3cb56ab27088"
+          },
+          "answer": "space shuttles",
+          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane"
+        },
+        {
+          "_additional": {
+            "distance": 0.2267003,
+            "id": "36ffe6ca-9b73-5a54-80eb-a93f01822956"
+          },
+          "answer": "Robert Goddard",
+          "question": "He's been called the \"Father of Modern Rocketry\""
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+Observe that the results have changed. The previous results have been removed as they do not contain the text `rocket` in the `question` property. 
+
+This approach of combining a vector search with a filter is a powerful way to find objects that are similar to a given input, but also meet additional criteria as you see. And while filtering may remove some objects which might otherwise be "closer" to the query vector than the remaining ones, it provides a powerful strategy to find the most relevant objects by removing false positive.
+
+</details>
+
+We can apply the query to filter the data in any number of ways. For example, consider the below query:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer", "points"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).with_where({
+    "path": ["points"],    
+    "operator": "GreaterThan",  
+    "valueInt": 200
+}).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+<!-- GraphQL code goes here -->
+```
+
+</TabItem>
+</Tabs>
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Intergalactic travel"],
+      }
+      where: {
+        path: ["points"],    
+        operator: GreaterThan,  
+        valueInt: 200
+      }
+    ) {
+      question 
+      answer 
+      points
+      _additional {
+        distance
+        id
+      }      
+    }
+  }
+}
+```
+
+How do you expect that this query will be different to the earlier queries?
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.18251508,
+            "id": "15f06117-012c-506d-b5c5-24df2e750f35"
+          },
+          "answer": "the Milky Way",
+          "points": 400,          
+          "question": "Into the 20th Century it was thought the universe was one big galaxy--this one"
+        },
+        {
+          "_additional": {
+            "distance": 0.19289112,
+            "id": "584a6c68-0ebe-561f-b32a-3a735eadf02e"
+          },
+          "answer": "Asteroid",
+          "points": 400,          
+          "question": "A 1991 photo of Gaspra taken by the Galileo probe was the first close-up of one of these minor planets"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+This query has been modified to only return `JeopardyQuestion` objects with a `points` value greater than 200. 
+
+Accordingly, the returned data set is very different.
+
+</details>
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Multiple operands example
+
+The query syntax can extend to beyond a single operand to take advantage of multiple conditions:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer", "points"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).with_where({
+    "operator": "And",
+    "operands": [
+        {
+            "path": ["question"],    
+            "operator": "Like",  
+            "valueText": "*rocket*"            
+        },
+        {
+            "path": ["points"],    
+            "operator": "GreaterThan",  
+            "valueInt": 200            
+        }
+    ]
+}).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Intergalactic travel"],
+      }
+      where: {
+        operator: And, 
+        operands: [
+        {
+          path: ["question"],    
+          operator: Like,  
+          valueText: "*rocket*"
+        }
+        {
+          path: ["points"],    
+          operator: GreaterThan,  
+          valueInt: 400        
+        },        
+        ]     
+
+      }
+    ) {
+      question 
+      answer 
+      points
+      _additional {
+        distance
+        id
+      }      
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+Take a look at the `where` argument (i.e. `.with_where`). What limitations do you expect in the results?
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.2267003,
+            "id": "a488fbe5-c2c6-50ad-8938-4b9f20dc56d1"
+          },
+          "answer": "Robert Goddard",
+          "points": 400,
+          "question": "He's been called the \"Father of Modern Rocketry\""
+        },
+        {
+          "_additional": {
+            "distance": 0.24946856,
+            "id": "c00decd4-4cf1-5b03-a789-a57077e082fb"
+          },
+          "answer": "Huntsville",
+          "points": 1000,
+          "question": "A campus for the University of Alabama is here, nicknamed \"Rocket City, U.S.A.\""
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+This query has been modified to only return `JeopardyQuestion` objects with a `points` value great than than 400, AND include the text `rocket` in the `question` field. 
+
+</details>
+
+:::tip Nested filters
+You can nest `where` filters as well by nesting each item within `operands`. Try it yourself, or take a look at this example:
+
+<details>
+  <summary>
+    Nested where filter example
+  </summary>
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer", "points"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).with_where({
+    "operator": "And",
+    "operands": [
+        {
+            "path": ["question"],    
+            "operator": "Like",  
+            "valueText": "*rocket*"            
+        },
+        {
+            "operator": "Or",
+            "operands": [
+                {
+                    "path": ["points"],    
+                    "operator": "Equal",  
+                    "valueInt": 200             
+                },
+                {
+                    "path": ["points"],    
+                    "operator": "Equal",  
+                    "valueInt": 1000       
+                }                
+            ]
+        }
+    ]
+}).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Intergalactic travel"],
+      }
+      where: {
+        operator: And, 
+        operands: [
+        {
+          path: ["question"],    
+          operator: Like,  
+          valueText: "*rocket*"
+        }
+        {
+          operator: Or,
+          operands: [
+          {
+              path: ["points"],    
+              operator: Equal,  
+              valueInt: 200            
+          },
+          {
+              path: ["points"],    
+              operator: Equal,  
+              valueInt: 1000            
+          }            
+          ]      
+        },        
+        ]     
+
+      }
+    ) {
+      question 
+      answer 
+      points
+      _additional {
+        distance
+        id
+      }      
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+</details>
+
+it should produce a result like this:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.18400955,
+            "id": "48fe1f8f-8e09-5aee-afe9-1728ab2fe8a0"
+          },
+          "answer": "space shuttles",
+          "points": 200,
+          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane"
+        },
+        {
+          "_additional": {
+            "distance": 0.24946856,
+            "id": "c00decd4-4cf1-5b03-a789-a57077e082fb"
+          },
+          "answer": "Huntsville",
+          "points": 1000,
+          "question": "A campus for the University of Alabama is here, nicknamed \"Rocket City, U.S.A.\""
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+:::
+
+You can apply these filters to an `Aggregate` query also. Try it yourself.
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try these: 
+- adding a `where` filter to an `Aggregation` query, following the above pattern.
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vector search parameters
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+Vector search parameters are available to further specify how to carry out each search. 
+
+Take a look at a few of these examples.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`nearVector` / `nearObject`
+
+You've already seen how to carry out vector searches with the `nearText` parameter. 
+
+The `nearVector` and `nearObject` parameters are two other available options for carrying out vector search. 
+
+Both `nearVector` and `nearObject` directly provides Weaviate with a source vector with which it can perform a vector search. 
+
+In case of `nearVector`, the query must include a source vector based on which similarity will be measured. An example query might look like:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer", "points"]
+).with_limit(2).with_near_vector(
+    {"vector": <VECTOR>}
+).with_additional(
+    ["distance", "id"]
+).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearVector: {
+        vector: <QUERY_VECTOR>
+      }
+    ) {
+      question 
+      answer 
+      points
+      _additional {
+        distance
+        id
+      }      
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+Where `<QUERY_VECTOR>` is a string containing the vector as an array (e.g. `"[0.016475919634103775, -0.005134709179401398, -0.00508853979408741, ...]"`).
+
+In case of `nearObject`, the query must include an object ID, whose vector Weaviate will retrieve as the source vector in the search. An example query might look like:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion", 
+    ["question", "answer", "points"]
+).with_limit(2).with_near_object(
+    {"id": "48fe1f8f-8e09-5aee-afe9-1728ab2fe8a0"}
+).with_additional(
+    ["distance", "id"]
+).do()
+
+print(json.dumps(response, indent=2))
+
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+<!-- GraphQL code goes here -->
+```
+
+</TabItem>
+</Tabs>
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearObject: {
+        id: "48fe1f8f-8e09-5aee-afe9-1728ab2fe8a0"
+      }
+    ) {
+      question 
+      answer 
+      points
+      _additional {
+        distance
+        id
+      }      
+    }
+  }
+}
+```
+
+:::info `nearVector` / `nearObject` availability
+Both `nearVector` and `nearObject` are available in Weaviate at all times, whereas `nearText` is only available when a vectorizer module is enabled and in use. 
+:::
+
+You might use a `nearVector` query when you are using your own vectorizer, or have a library of vectors already available. A `nearObject` is a useful query for finding similar objects to an existing one. 
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Distance thresholds
+
+You've seen how to limit the search space to exclude irrelevant objects using a `limit` argument or `distance`. You can also use `certainty` instead of `distance`.
+
+A threshold value such as `distance` or `certainty` specify the maximum distance (or, looked from the other direction, minimum similarity) required for objects being retrieved.
+
+:::note Exercise: Threshold distances
+Try changing the one of the above queries to:
+- Use a `certainty` threshold rather than `distance`.
+- Return `certainty` as well as `distance`.
+Do they behave as you expected? 
+:::
+
+In this context, `distance` measures the degree of difference. You might also see `certainty` used in some contexts. This is the opposite of `distance`, where higher values imply larger differences in meaning. 
+
+We will cover later on what these values mean, exactly, and where they come form. But for now, remember that:
+
+- `distance` is a measure of dissimilarity (lower is more similar), and
+- `certainty` is a measure of similarity (higher is more similar)
+
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+
+Can you describe, in your own sentence, XXX?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+??
+:::
+
+### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+
+:::info
+Add summary
+:::
+
+import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
