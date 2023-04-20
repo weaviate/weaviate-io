@@ -38,7 +38,7 @@ bm25 = {
 result = (
   client.query
   .get("Article", ["title", "_additional {score} "])
-  .with_bm25(bm25)
+  .with_bm25(**bm25)
   .do()
 )
 

@@ -36,7 +36,7 @@ query_result = (
   client.query
   .get("Article", ["title", "summary"])
   .with_where(where_filter)
-  .with_bm25("query" = "how to fish")
+  .with_bm25(query="how to fish")
   .do()
 )
 ```
