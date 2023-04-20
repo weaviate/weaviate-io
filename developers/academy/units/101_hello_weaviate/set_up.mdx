@@ -4,6 +4,11 @@ sidebar_position: 40
 ---
 
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+import registerImg from '../../../wcs/img/register.png';
+import WCSoptions from '../../../wcs/img/wcs-options.png';
+import WCScreateButton from '../../../wcs/img/wcs-create-button.png';
+import WCScreate from '../../../wcs/img/wcs-create.png';
+import WCScreationProgress from '../../../wcs/img/wcs-creation-progress.png';
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
@@ -44,11 +49,46 @@ It is however in an experimental phase only, and is not recommended for anything
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Get started with WCS
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Create a WCS instance
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Sign in to WCS
 
-Follow this video to sign up to WCS, and create a free "sandbox" instance.
+1. First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.cloud), and click on "Sign in with the Weaviate Cloud Services".
+    1. If you don't have an account with WCS yet, click on the "Register" button and create a new account.
+1. Then, sign in with your WCS username and password.
 
-<img src={imageUrl} alt="Image alt" width="75%"/>
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Create a Weaviate Cluster
+
+To create a new Weaviate Cluster, click the "Create cluster" button.
+
+<img src={WCScreateButton} width="100%" alt="Button to create WCS instance"/>
+
+Then:
+
+1. Select the **Free sandbox** *plan tier*.
+1. Provide a *cluster name*, which will become a part of its URL. A suffix will be added to this to ensure uniqueness.
+1. Set the `Enable Authentication?` option to `NO`.
+
+Your selections should look like this:
+
+<img src={WCSoptions} width="100%" alt="Instance configuration"/>
+
+Finally, press **Create** to create your sandbox instance. Note that the sandbox will expire after a set number of days.
+
+<img src={WCScreate} width="100%" alt="Create instance"/>
+
+This will start the process to create a new instance, and you will see a progress indicator.
+
+<img src={WCScreationProgress} width="100%" alt="Creation in progress"/>
+
+Instance creation should take a minute or two, and you will see a tick ✔️ when it's done, indicating that the instance is ready.
+
+<details>
+  <summary>Sandbox expiry & options</summary>
+
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/>
+
+</details>
 
 You can communicate with Weaviate with the available [client libraries](/developers/weaviate/client-libraries/index.md) or directly with the [RESTful API](/developers/weaviate/api/rest/index.md) and the [GraphQL API](/developers/weaviate/api/graphql/index.md).
 

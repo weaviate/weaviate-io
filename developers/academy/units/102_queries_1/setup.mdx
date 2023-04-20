@@ -11,7 +11,7 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Python & Python client
 
-We will be using Python for this unit. 
+We will be using Python for this unit.
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Install Python
 
@@ -20,9 +20,9 @@ You can install Python 3 in a variety of ways. One easy way is to use an appropr
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Set up a virtual environment
 
 :::tip Virtual environments
-It is best practice to use virtual environments to isolate projects. 
+It is best practice to use virtual environments to isolate projects.
 
-If you're not familiar with virtual environments, we highly recommend reading up on them - this tutorial on [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/) is a good resource, as is this article on [RealPython](https://realpython.com/python-virtual-environments-a-primer/), which goes a little more in-depth. 
+If you're not familiar with virtual environments, we highly recommend reading up on them - this tutorial on [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/) is a good resource, as is this article on [RealPython](https://realpython.com/python-virtual-environments-a-primer/), which goes a little more in-depth.
 :::
 
 You will also need the following libraries:
@@ -45,10 +45,10 @@ Check that you have an instance of Weaviate running for use in this unit.
 
 If you do not have one, we recommend setting one up **without authentication**.
 
-Follow the "Get Started with WCS" [section on this page](../hello_weaviate/running_weaviate#get-started-with-wcs) and come back.
+Follow the "Get Started with WCS" [section on this page](../101_hello_weaviate/set_up.mdx#get-started-with-wcs) and come back.
 
 :::tip What is your Weaviate instance address?
-Make sure you know what your Weaviate instance address is - it should look like: 
+Make sure you know what your Weaviate instance address is - it should look like:
 ```
 https://your-instance-name.weaviate.network
 ```
@@ -100,7 +100,7 @@ jeopardy_dataset = weaviate_datasets.JeopardyQuestions10k()
 jeopardy_dataset.upload_dataset(client, batch_size=200)
 ```
 
-This will upload a handful of Wikipedia articles, and (10,000) questions from the quiz show *Jeopardy!* to your Weaviate instance. This should take about ~5 minutes, depending on your set-up, so we recommend grabbing a coffee or tea. 
+This will upload a handful of Wikipedia articles, and (10,000) questions from the quiz show *Jeopardy!* to your Weaviate instance. This should take about ~5 minutes, depending on your set-up, so we recommend grabbing a coffee or tea.
 
 The *Jeoaprdy!* dataset **includes vectors**, so you will not incur API costs, and the Wikipedia articles should be small enough for the free account.
 
@@ -139,7 +139,7 @@ Should return:
       "description": "A Wikipedia article",
       ...  // truncated
       "vectorizer": "text2vec-openai"
-    }    
+    }
   ]
 }
 ```
