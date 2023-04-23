@@ -1,0 +1,86 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+import json
+
+client = weaviate.Client(url="https://some-endpoint.weaviate.network/") # Replace with your endpoint
+
+#create properties
+article_properties = [Property(name="title",description="Article title",dataType="string"),
+                      Property(name="textBody",description="Article text",dataType="text")]
+
+iiConfig= {                  #Optional, index configuration
+    "stopwords": {                          #Optional, controls which words should be ignored in the inverted index, see section below
+      "preset": "en",
+      "additions": ["star", "nebula"],
+      "removals": ["a", "the"]
+    },
+    "indexTimestamps": false,               #Optional, maintains inverted indices for each object by its internal timestamps
+    "indexNullState": false,                #Optional, maintains inverted indices for each property regarding its null state
+    "indexPropertyLength": false            #Optional, maintains inverted indices for each property by its length
+  }
+
+#create class
+client.schema.create_class(name = "Article",
+                          description = "Wiki Article",
+                          vectorizer = "text2vec-contextionary",
+                          properties = article_properties,
+                          invertedIndexConfig = iiConfig)
+
+# get the schema
+schema = client.schema.get()
+
+# print the schema
+print(json.dumps(schema, indent=4))
+
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-ts-client');
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
+
+const iiConfig = { // Optional, index configuration
+  stopwords: { // Optional, controls which words should be ignored in the inverted index, see section below
+    preset: 'en',
+    additions: ['star', 'nebula'],
+    removals: ['a', 'the']
+  },
+  indexTimestamps: false, // Optional, maintains inverted indices for each object by its internal timestamps
+  indexNullState: false, // Optional, maintains inverted indices for each property regarding its null state
+  indexPropertyLength: false // Optional, maintains inverted indices for each property by its length
+};
+
+
+// Create an array of Property objects
+const articleProperties = [
+  new Property("title", "Article title", "string"),
+  new Property("textBody", "Article text", "text")
+];
+
+
+// Create the class
+await client.schema.createClass(name = "Article",
+                                description = "Wiki Article",
+                                vectorizer = "text2vec-contextionary",
+                                properties = article_properties,
+                                invertedIndexConfig = iiConfig
+                                );
+
+// Get the schema
+const schema = await client.schema.get();
+```
+
+</TabItem>
+</Tabs>
