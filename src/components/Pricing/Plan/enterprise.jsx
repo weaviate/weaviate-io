@@ -28,10 +28,6 @@ export default function PricingEnterprise() {
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>
-          <div className={styles.checkIcon}></div>
-          <span>Hibernation after 8 hours</span>
-        </li>
-        <li>
           <div className={styles.checkIcon}></div> <span>Monitoring</span>
         </li>
         <li>
