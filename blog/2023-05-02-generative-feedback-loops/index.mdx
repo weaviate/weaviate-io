@@ -1,0 +1,223 @@
+---
+title: Generative Feedback Loops for Vector Databases
+slug: generative-feedback-loops
+authors: [connor]
+date: 2023-05-02
+# image: ./img/hero.png
+tags: []
+description: "An Introduction to creating generative feedback loops with LLMs in Weaviate"
+
+---
+
+
+<!-- truncate -->
+
+Large Language Models are heralding a new era in information technology. To better understand this revolution, it’s important to consider the historical context. The printing press significantly reduced the cost of reproducing information, while the internet cut out the middleman, making the distribution of information virtually free. [In Aggregation Theory](https://stratechery.com/2015/aggregation-theory/), Ben Thompson writes about how the free distribution of the internet allowed companies to modularize (or unbundle) services and focus on user experience. Ben states that “companies that win the user experience can generate a virtuous cycle where their ownership of consumers/users attracts suppliers which improves the user experience”. Enter LLMs, a world changing technology that enables transforming and generating information at incredible speeds and low cost. LLMs present the opportunity to expedite the virtuous cycle Aggregation Theory describes by commoditizing the human effort traditionally required to deliver great user experiences.
+
+The internet cut out the newspaper, now content can be delivered directly to you. Now we are going a step further, modifying content itself based on your personal preferences! Not only are we able to bring content with a great UX to people, but now we can generate content, in real time, based on existing information in the database to create an ever better and more personalized experience!
+
+In this article, we are going to illustrate the concept of **Generative Feedback Loops**. Retrieving information from the Weaviate Vector Database to prompt Weaviate’s generative module and then vectorizing and saving these generations **back** into the database! Now we can semantically search through the generated content, as well as add symbolic metadata about it.
+
+We will step into the shoes of AirBnB and implement a Generative Feedback Loop to process `Listing` objects. This shows how LLMs let us supercharge user experience by creating custom advertisements based on user preferences. We retrieve information about users from the DB, give that + information about the property to the LLM, and save the resulting custom advertisement back to the database.
+
+1. Create a description for Listings based on x,y,z.
+2. Semantic Search through generated Listings with the Vector Database
+3. Generate Ads for these Listings and link them with cross-references.
+4. Write personalized Ads for Connor the dog owner and Bob the weightlifter
+
+## Part 1: AirBnB Listing Example
+
+:::info
+As a bonus, we’ll also see Weaviate embedded in a Jupyter notebook!
+:::
+
+In this example we will use the OpenAI `text-davinci-003` LLM to generate content, but this is also possible with other providers such as Cohere, HuggingFace, Anthropic, and more. Set your OpenAI key to use with Weaviate’s generate module using the following block of code:
+
+```python
+Import weaviate
+Client = weaviate.Client(embedded_options=weaviate.EmbeddedOptions(),
+			    additional_headers = {
+				“X-OpenAI-Api-Key”: “<YOUR OPENAI KEY HERE>”
+			  })
+client.get_meta() # see which modules are enabled in Weaviate Embedded
+```
+
+The table below illustrates the schema of the data we will use, please see the notebook for reference of the full json dictionary to create Weaviate schemas with configurations like this:
+
+:::note
+The schema can be found in this [repository](https://github.com/weaviate/Generative-Feedback-Loops/blob/main/listing-schema.py)
+:::
+
+## Avoiding Hallucinations: Real-Time Data with LLM Capabilities
+Utilizing prompt engineering tactics like “Please base your response only on the provided information” and a basic reflection prompt, we integrate data from the Listing database into the generative model. This allows us to draw exclusively from the provided information. By emphasizing the use of real-time information stored in Weaviate, we continuously update the language model with the latest data, bypassing the limitation of its encoded knowledge. Ultimately combining the peanut butter of factual information from the database with the jelly of LLM language understanding.
+
+Add – “Did you hallucinate, if so please revise the response” reflection chain
+
+### Generate a description for each Listing
+
+```python
+generatePrompt = """
+Please write a description for the following AirBnb Listing in english:
+Name: {name}
+Neighbourhood: {neighbourhood}
+Neighbourhood Group: {neighbourhood_group}
+Latitude: {latitude}
+Longitude: {longitude}
+Room Type: {room_type}
+Price: {price}
+Minimum Nights: {minimum_nights}
+Number of Reviews: {number_of_reviews}
+Last Review: {last_review}
+Reviews per Month: {reviews_per_month}
+Calculated Host Listings Count: {calculated_host_listings_count}
+Availability_365: {availability_365}
+
+
+Please do not make up any information about the property in your description.
+"""
+
+
+generate_properties = ["name","neighbourhood","neighbourhood_group",
+                      "latitude","longitude","room_type",
+                      "price","minimum_nights","number_of_reviews",
+                      "last_review","reviews_per_month",
+                      "calculated_host_listings_count","availability_365"]
+
+
+descriptions = client.query\
+           .get("Listing", generate_properties)\
+           .with_generate(single_prompt=generatePrompt)\
+           .with_additional(["id"])\
+           .with_limit(5)\
+           .do()["data"]["Get"]["Listing"]
+
+for description in descriptions:
+ new_property = {
+     "description": description["_additional"]["generate"]["singleResult"]
+ }
+ id = description["_additional"]["id"]
+ client.data_object.update(
+     new_property,
+     class_name = "Listing",
+     uuid=id
+ )
+```
+
+Now let’s test a semantic search through the Listings, each vectorized with the respective LLM-generated `description`:
+```python
+client.query.get("Listing", "description").with_near_text({
+   "concepts": ["AirBnB near a place to walk my dog"]
+}).do()
+```
+
+### Query Example: “AirBnB near a place to walk my dog”
+
+
+### Generate New Data Objects
+In the previous example we’ve enhanced existing data objects by adding a `description` property. But we can now even create complete new data objects (e.g., Ads for specific target audiences) based on the new objects.
+
+### Generic Ads
+
+```python
+generatePrompt = """
+Please write an engaging advertisement for the following AirBnb Listing:
+Description: {description}
+"""
+
+
+ads = client.query\
+           .get("Listing", ["description", "room_type", "neighbourhood"])\
+           .with_generate(single_prompt=generatePrompt)\
+           .with_additional(["id"])\
+           .with_limit(5)\
+           .do()["data"]["Get"]["Listing"]
+
+for ad in ads:
+ new_ad_properties = {
+     "content": ad["_additional"]["generate"]["singleResult"]
+ }
+ new_ad_id = get_valid_uuid(uuid4())
+ client.data_object.create(
+     data_object = new_ad_properties,
+     class_name = "Ad",
+     uuid = new_ad_id
+ )
+ client.data_object.reference.add(
+     from_uuid = ad["_additional"]["id"],
+     from_property_name = "hasAd",
+     to_uuid = new_ad_id
+ )
+```
+ADD table
+
+### Targeted Ads
+Please write the ad to target {target}.
+
+What we are going to do is create 3 Ads per listing:
+
+1. For young couples
+2. For elderly couples
+3. For single travelers
+
+We will add the target as a property to the `Ad` class, like this:
+
+```python
+target_property = {
+   "dataType": [
+       "text"
+   ],
+   "name": "target",
+   "description": "High-level audience target for this ad."
+}
+
+
+client.schema.property.create("Ad", target_property)
+```
+Now let’s see the variance in the resulting ads based on their respective target:
+
+ADD TABLE
+
+In the future we may want to add other properties, such as dates when we ran the Ad, how much we spent, and what the resulting Click-Through-Rate was. We could then generate a new Ad by taking the top 5 highest CTR ads as a reference!
+
+### Personlized Ad for Connor
+Let’s keep unpeeling the onion and show how we could even further target these ads based on user biographies.
+
+ADD TABLE
+
+## Deeper into Personalization
+Personalized digital experiences have been taken to a new level with the latest advances in AI technology. Along with personalized recommendations or search results, the content itself can now be individualized to cater to your particular needs and preferences.From ads that look for the nearest dog parks or gyms, we may imagine a future where video advertisements are generated! The video for Connor shows maybe even him and his dog walking through central park, whereas the video for Bob shows him hitting a hang clean in a local gym! We may even imagine custom metaphors when explaining complex concepts for people. For example, “life is like a game of fetch” for Connor the dog owner, or “life is like pushing and resting in the gym” for Bob the weightlifter.
+
+## Other Use Case Examples of Feedback Loops
+
+1. TV Shows: Streaming services could show different scenes or alternate endings of a movie or TV show based on the user’s preferences.
+2. Code: AI can generate cod snippets based on the user’s requirements and create a feedback loop with tests to improve the code over time.
+3. AutoCAD drawings: AI could create CAD drawings of buildings based on 3D models and store information about the materials available in the environment, making it easier for architects and engineers to design and plan construction projects.
+4. Tesla Configuration: The car’s settings could be personalized based on the user’s driving style and preferences, such as choosing a slow and relaxed drive home versus a fast and sporty one.
+
+## When Do Generative Feedback Loops Run?
+Having illustrated the general concept of Generative Feedback Loops, where we use data from the database to supplement the factual knowledge of generative models and then write the generated outputs back to the database for future use, let’s discuss when to kick this off.
+
+### Data Ingestion
+Data Ingestion is a shorthand reference to importing data into the database. For example, everytime a new User is added to the AirBnB database, we may want to kick off a Generative Feedback Loop of retrieving information about a listing and this new user and save the new ads targeted to this user. On the other hand, we may want to kick this off when a new Listing is added, writing ads for each of our users!
+
+As another example, imagine that we have a collection of podcast episodes. Every time a new episode is added to the database, we want to kick off generation of a summary and a comparison of the podcast compared to the existing podcasts in the database. To further reinforce the idea of Generative Feedback Loops, we may retrieve a previously generated podcast summary that has been saved and indexed with semantic vector search, and use this to prompt the generative model to analyze the uniqueness of the latest podcast episode!
+
+In addition to generating novel things based on our data, we may also task LLMs with adding symbolic properties.Gilardi, Alizadeh, and Kubli very recently published “ChatGPT Outperforms Crowd-Workers for Text-Annotation Tasks”. In this paper, Gilardi et al. compare the ability of humans with ChatGPT in categorizing 2,382 tweets into categories representative of 5 classification tasks such as whether a tweet is about content moderation, which of six predefined topics the tweet is about, and so on. This study illustrates how cheap and effective this technique is for adding labels to our data. When we generate these symbolic structures like “room_type”, we can then use it in filtered vector search! Filtered Vector Search has recently been made [1000(!) times faster in Weaviate thanks to roaring bitmap indexing](/blog/weaviate-1-18-release#faster-filtering-with-roaring-bitmaps)!
+
+Another powerful idea is the emergence of `Knowledge Graphs 2.0`. We can use LLMs to suggest relations between pieces of content and then connect these nodes together with the relational edges. Check out this example of GraphGPT!
+
+## From ChatGPT to AutoGPT and the role of Weaviate
+Another title for this section would be “Complex Tasks that run overnight”. The latest imagination inspiring feat of AI has been the rise of AutoGPT! AutoGPT is a loop of prompts in which the LLM breaks a complex task into subtasks, executes them, reflects on the plan, and so on until the complex task has been completed.
+
+Generative Feedback Loops are one of the key pieces to this puzzle. Firstly, the agent may need to save intermediate results to reference later. For example, if the agent is tasked with: “Please make an example for John on how to add ref2vec to his Weaviate app”. The agent can save a summary of John’s app after researching his code base and maybe message history on the Weaviate slack. This summary can then be used in the retrieval-augmented prompting when figuring out where to add ref2vec.
+
+Another application of Generative Feedback Loops is for humans to debug the chain of reasoning that happened when a model like this runs overnight. Further, we may imagine multi-agent systems with roles, such as marketers, artists, product designers, and engineers. By saving intermediate results, other agents can access it and keep the party going.
+
+## Conclusion
+
+In summary, we have presented the concept of Generative Feedback Loops. This describes not only using results from the database to answer a query, but saving the resulting generation back in the database for future reference. Hopefully this example with AirBnB listings and advertisements helped inspire your thinking about how you can use this technology and where personalization seems to be headed. We ended the article by presenting a couple of scenarios of when this runs such as Data Ingestion, and the trend towards more autonomous AI assistants. Thank you so much for reading!
+
+
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />
