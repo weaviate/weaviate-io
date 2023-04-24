@@ -1,0 +1,18 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+auth_config = weaviate.auth.AuthApiKey(api_key="learn-weaviate")  # A read-only API Key for the Weaviate instance
+
+client = weaviate.Client(
+    url="https://edu.weaviate.network",
+    auth_client_secret=auth_config
+)
+
+client.is_ready()
+```
