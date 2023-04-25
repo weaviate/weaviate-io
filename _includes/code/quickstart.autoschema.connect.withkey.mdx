@@ -9,8 +9,9 @@ import weaviate
 
 client = weaviate.Client(
     url = "https://some-endpoint.weaviate.network/",  # Replace with your endpoint
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="<YOUR-WEAVIATE-API-KEY>"),  # Replace w/ your API Key for the Weaviate instance
     additional_headers = {
-        "X-OpenAI-Api-Key": "<THE-KEY>"  # Replace with your API key
+        "X-OpenAI-Api-Key": "<THE-KEY>"  # Replace with your inference API key
     }
 )
 ```
@@ -24,7 +25,8 @@ const weaviate = require('weaviate-ts-client');
 const client = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+    apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your API Key for the Weaviate instance
+    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your inference API key
   });
 ```
 
@@ -37,7 +39,8 @@ import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 const client: WeaviateClient = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+    apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your API Key for the Weaviate instance
+    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your inference API key
   });
 ```
 
@@ -48,8 +51,9 @@ const client: WeaviateClient = weaviate.client({
 cfg := weaviate.Config{
   Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
   Scheme: "https",
+  authConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your API Key for the Weaviate instance
   Headers: map[string]string{
-    "X-OpenAI-Api-Key": "<THE-KEY>",
+    "X-OpenAI-Api-Key": "<THE-KEY>",  // Replace with your inference API key
   },
 }
 
@@ -116,7 +120,8 @@ echo '{
   "query": "<QUERY>"
 }' | curl \
     -X POST \
-    -H 'Content-Type: application/json' \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer {YOUR-WEAVIATE-API-KEY}" \
     -H "X-OpenAI-Api-Key: <API-KEY>" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql
