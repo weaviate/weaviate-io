@@ -1,0 +1,30 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    <Class>,
+    [<properties>]
+).<arguments>.do()
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    <Class> (
+      <arguments>
+    ) {
+      <properties>
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

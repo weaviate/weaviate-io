@@ -21,12 +21,12 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
-  search_1: {
-    title: "Search 1",
-    body: "Learn how to use `Get` and `Aggregate` queries with vector searches and scalar filters.",
+  queries_1: {
+    title: "Queries 1",
+    body: "Learn how to retrieve data from Weaviate using vector searches and scalar filters.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/units/queries_1",
+    buttonURL: "/developers/academy/units/search_1",
     learningGoals: [
       "How to retrieve objects and properties.",
       "The structure of returned responses from Weaviate.",

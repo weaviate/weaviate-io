@@ -1,0 +1,246 @@
+---
+title: Get{} objects
+---
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;About `Get` queries
+
+In many use cases, retrieving objects from a Weaviate instance may be the most common operation.
+
+For example, a user may want to retrieve a list of passages most closely related to the input query, or they may wish to retrieve a list of images which are most similar to another image. It is even possible to retrieve a set of images that best match a given passage.
+
+In Weaviate, such operations to retrieve objects are performed using the `Get` function.
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Get` function syntax
+
+A basic `Get` function looks as follows:
+
+import GetSyntax from './_snippets/academy.queries.get.syntax.mdx';
+
+<GetSyntax/>
+
+- The `Class` field specifies the name of the class of objects to be retrieved.
+- The `arguments` argument specifies the search criteria to be used to retrieve the objects.
+- The `properties` argument specifies the properties of the objects to be retrieved, including any `_additional` properties.
+
+Now let's try out some concrete `Get` queries.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Standalone `Get` queries
+
+A basic, standalone, `Get` query might look as follows:
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+
+import GetStandalone from './_snippets/academy.queries.get.standalone.mdx';
+
+<GetStandalone/>
+
+What results do you expect? See if you can correspond each field to the syntax.
+
+Now, try it out yourself. This query should return something like the below:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "Amazon.com",
+          "question": "On July 16, 1995 this company made its first sale, a science textbook"
+        },
+        {
+          "answer": "Parfait",
+          "question": "The French name of this layered ice cream dessert means \"perfect\""
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+In this case, Weaviate will return two objects due to the `.with_limit(2)` argument. Without this limit, Weaviate would return a maximum number according to its configuration.
+
+:::tip Is this query useful?
+As this does not apply any user-specific criteria to the search, the specific results will likely not be very useful.
+
+However, this may be a viable method for "sanity" checks, such as checking that you can connect to a Weaviate instance, or that at least some objects have been imported successfully.
+:::
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Class` and `properties`
+
+In the above example, we specify a `Class` of `JeopardyQuestion` and `properties` of `questions` and `answer`.
+
+That is possible because those are available as defined in the schema, as shown below:
+
+<details>
+  <summary>How to I see the schema?</summary>
+
+You can fetch the schema like this - try it out!
+
+```python
+client.schema.get()
+```
+
+</details>
+
+import ShortSchema from './_snippets/academy.queries.schema.short.mdx';
+
+<ShortSchema/>
+
+The `Class` and `properties` fields must correspond to collections of objects that have been defined in the Weaviate schema.
+
+The `Class` must be the name of a data object collection, and the `properties` a list of properties to be retrieved.
+
+The schema contains the `JeopardyQuestion` class, with properties: `question`, `answer` and `points`.
+
+So, a query retrieving objects from the `Question` class could specify any of its properties such as `question`, `answer`, and `points`.
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out the above query again, with these changes.
+- Can you get the `points` property as well?
+- What happens if you don't specify any properties?
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Get` with `additional` properties
+
+You can retrieve additional properties that are not defined in the schema. These properties may be inherent to the object, or relate to the query performed.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+
+In this example, we've built on the previous example to add the `.with_additional` method.
+
+import GetWithAdditional from './_snippets/academy.queries.get.with.additional.mdx';
+
+<GetWithAdditional/>
+
+Again, consider what the response might look like. What would have changed in the response?
+
+Now, try it out yourself. This query should return something like the below:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.1791926,
+            "id": "b1645a32-0c22-5814-8f35-58f142eadf7e"
+          },
+          "answer": "escaping the Earth's gravity (and go off into outer space, on your way to the moon, for instance)",
+          "question": "It takes approximately 24,840 MPH to achieve this"
+        },
+        {
+          "_additional": {
+            "distance": 0.18123823,
+            "id": "ef263438-b152-5540-97f7-99f4076bd124"
+          },
+          "answer": "the Milky Way",
+          "question": "This is the name of our own galaxy"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+Here, the `distance` and `id` properties contain the object's distance to the query and its unique ID respectively.
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`_additonal` properties
+
+As the name suggests, `_additional` properties are separate to those explicitly created as class properties.
+
+The above query included the `distance` property in the `_additional` field. This represents the degree of similarity (or, in this case, the *dissimilarity*) between the input vector and the vector of the object.
+
+:::info Vectors available through `_additional`
+
+The object vector can also be retrieved through an `_additional` field, by specifying `vector` in its sub-field.
+
+Note that the returned vector in many cases will be a very long list of numbers.
+
+:::
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out the above query again, with these changes.
+- Can you get the `vector` property as well?
+- Earlier, providing an empty list as the main properties under the `.get()` method will have caused an error. What happens if you try it again, now that you are requesting additional properties?
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+
+### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+
+See in-line exercises.
+
+### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+
+:::info
+Add summary
+:::
+
+import Quiz from '/src/components/Academy/quiz.js'
+const nearText = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
