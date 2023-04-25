@@ -8,6 +8,12 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::tip <b>Important</b> Set the correct Weaviate version
+Make sure to set your desired Weaviate version.
+
+This can be done through either explicitly setting it as part of the `values.yaml` or through overwriting the default as outlined in the [deployment step](#deploy-install-the-helm-chart) below.
+:::
+
 ## Requirements
 
 * A Kuberentes Cluster with a recent version (e.g. >=1.23).
@@ -43,12 +49,13 @@ Get the default `values.yaml` configuration file from the Weaviate helm chart:
 helm show values weaviate/weaviate > values.yaml
 ```
 
-## Adjust the configuration in the values.yaml (Optional)
+## Modify values.yaml (as necessary)
 
-_Note: You can skip this step and run with all default values. In any case,
-make sure that you set the correct Weaviate version. This may either be through
-explicitly setting it as part of the `values.yaml` or through overwriting the
-default as outlined in the deploy step below._
+:::note You do not *need* to modify values.yaml
+You can skip this step and run with all default values.
+
+But, if you do not modify the defaults in `values.yaml`, make sure to set the appropriate Weaviate version at the deployment step.
+:::
 
 In the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)
 file you can tweak the configuration to align it with your
@@ -67,6 +74,44 @@ Out of the box, the configuration file is setup for:
 See the resource requests and limits in the example `values.yaml`. You can
 adjust them based on your expected load and the resources available on the
 cluster.
+
+### Authentication and authorization
+
+An example configuration for authentication is shown below.
+
+```yaml
+authentication:
+  apikey:
+    enabled: true
+    allowed_keys:
+      - readonly-key,secr3tk3y
+    users:
+      - readonly@example.com,admin@example.com
+  anonymous_access:
+    enabled: false
+  oidc:
+    enabled: true
+    issuer: https://auth.wcs.api.weaviate.io/auth/realms/SeMI
+    username_claim: email
+    groups_claim: groups
+    client_id: wcs
+authorization:
+  admin_list:
+    enabled: true
+    users:
+      - someuser@weaviate.io
+      - admin@example.com
+    readonly_users:
+      - readonly@example.com
+```
+
+In this example, the key `readonly-key` will authenticate a user as the `readonly@example.com` identity, and `secr3tk3y` will authenticate a user as `admin@example.com`.
+
+OIDC authentication is also enabled, with WCS as the token issuer/identity provider. Thus, users with WCS accounts could be authenticated. This configuration sets `someuser@weaviate.io` as an admin user, so if `someuser@weaviate.io` were to authenticate, they will be given full (read and write) privileges.
+
+For further, general documentation on authentication and authorization configuration, see:
+- [Authentication](../configuration/authentication.md)
+- [Authorization](../configuration/authorization.md)
 
 ## Deploy (install the Helm chart)
 

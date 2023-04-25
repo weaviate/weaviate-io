@@ -145,6 +145,10 @@ By default, Weaviate will validate that the token includes a specified client id
 
 ### Setting configuration options
 
+:::info Using Kubernetes?
+See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
+:::
+
 To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate.
 
 :::info

@@ -30,6 +30,10 @@ throw an error on startup due to the invalid configuration.
 
 # Usage
 
+:::info Using Kubernetes?
+See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
+:::
+
 Configure the admin plugin in the configuration yaml like so:
 
 ```yaml
