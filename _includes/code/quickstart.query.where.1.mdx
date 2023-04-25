@@ -31,6 +31,7 @@ where_filter = {
 result = (
     client.query
     .get("Question", ["question", "answer", "category"])
+    .with_near_text({"concepts": ["biology"]})
     .with_where(where_filter)
     .do()
 )
