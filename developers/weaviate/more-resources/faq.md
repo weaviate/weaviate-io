@@ -8,7 +8,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## Q: Why would I use Weaviate as my vector database?
+## General
+
+#### Q: Why would I use Weaviate as my vector database?
 
 A: Our goal is three-folded. Firstly, we want to make it as easy as possible for others to create their own semantic systems or vector search engines (hence, our APIs are GraphQL based). Secondly, we have a strong focus on the semantic element (the "knowledge" in "vector databases," if you will). Our ultimate goal is to have Weaviate help you manage, index, and "understand" your data so that you can build newer, better, and faster applications. And thirdly, we want you to be able to run it everywhere. This is the reason why Weaviate comes containerized.
 
@@ -209,6 +211,12 @@ A: It's a 2-step process:
 2. If we encounter a document id which would be a close match, but isn't on the allow list the id is treated as a candidate (i.e. we add it to our list of links to evaluate), but is never added to the result set. Since we only add allowed IDs to the set, we don't exit early, i.e. before the top `k` elements are reached.
 
 For more information on the technical implementations, see [this video](https://www.youtube.com/watch?v=6hdEJdHWXRE).
+
+#### What is the maximum number of vector dimensions for embeddings?
+
+There is (practically) no limit.
+
+We have tested embeddings with ~10k dimensions in the past. There may be a limit as the variable size increases, but for all practical purposes, it is unlimited.
 
 ## Performance
 

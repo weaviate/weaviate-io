@@ -14,6 +14,7 @@ import Badges from '/_includes/badges.mdx';
 * The module can generate a response for each returned object, or a single response for a group of objects.
 * The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries
 * Added in Weaviate `v1.17.3`
+* The default model is `gpt-3.5-turbo`, but other models (e.g. `gpt-4`) are supported.
 
 ## Introduction
 
@@ -105,13 +106,33 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-## Schema configuration
+## How to configure
 
-The Generative module doesn't require a specific schema configuration.
+In your Weaviate schema, you can define settings for this module.
 
-:::note
-You need a schema to run queries on your data, so that the module can use the results to generate a response.
-:::
+For example, the following schema configuration will set Weaviate to use the `generative-openai` model with the `Document` class, with the `gpt-3.5-turbo` model. You can also configure additional parameters for the OpenAI endpoint through the parameters shown below.
+
+```json
+{
+  "classes": [
+    {
+      "class": "Document",
+      "description": "A class called document",
+      ...,
+      "moduleConfig": {
+        "generative-openai": {
+          "model": "gpt-3.5-turbo",  // Optional - Defaults to `gpt-3.5-turbo`
+          "temperatureProperty": <temperature>,  // Optional
+          "maxTokensProperty": <max_tokens>,  // Optional
+          "frequencyPenaltyProperty": <frequency_penalty>,  // Optional
+          "presencePenaltyProperty": <presence_penalty>,  // Optional
+          "topPProperty": <top_p>,  // Optional
+        }
+      }
+    }
+  ]
+}
+```
 
 <details>
   <summary>New to Weaviate Schemas?</summary>
@@ -262,11 +283,18 @@ additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++c
 
 ## Additional information
 
-### Available models
+### Supported models
 
-OpenAI has one model available to generate answers based on the prompt.
+You can use any of
 
-* [davinci 003](https://platform.openai.com/docs/models/davinci)
+* [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5) (default)
+* [gpt-4](https://platform.openai.com/docs/models/gpt-4)
+* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4)
+
+The module also supports these legacy models (not recommended)
+
+* [davinci 002](https://platform.openai.com/docs/models/overview)
+* [davinci 003](https://platform.openai.com/docs/models/overview)
 
 ## More resources
 

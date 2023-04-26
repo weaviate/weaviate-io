@@ -140,10 +140,22 @@ name of your pre-configured namespace.
 The above command (`helm upgrade...`) is idempotent, you can run it again, for
 example after adjusting your desired configuration.
 
-### Additional Configuration Help
+## Additional Configuration Help
 
 - [Cannot list resource "configmaps" in API group when deploying Weaviate k8s setup on GCP](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
 - [Error: UPGRADE FAILED: configmaps is forbidden](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
+
+## Troubleshooting
+
+- If you see `No private IP address found, and explicit IP not provided`, set the pod subnet to be in an valid ip address range of the following:
+
+    ```
+    10.0.0.0/8
+    100.64.0.0/10
+    172.16.0.0/12
+    192.168.0.0/16
+    198.19.0.0/16
+    ```
 
 ## More Resources
 
