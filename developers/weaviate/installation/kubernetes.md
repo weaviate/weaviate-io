@@ -22,11 +22,11 @@ This can be done through either explicitly setting it as part of the `values.yam
   file system capable of `ReadWriteOnce` access mode is sufficient.
 * Helm (only v3 is compatible from Helm version `"v||site.helm_version||"`)
 
-# Weaviate Helm chart
+## Weaviate Helm chart
 
 To obtain and install the Weaviate chart on your Kubernetes cluster, take the following steps:
 
-## Verify tool setup and cluster access
+### Verify tool setup and cluster access
 
 ```bash
 # Check if helm is installed
@@ -36,7 +36,7 @@ $ helm version
 $ kubectl get pods
 ```
 
-## Obtain the Helm Chart
+### Obtain the Helm Chart
 
 Add the Weaviate helm repo that contains the Weaviate helm chart
 
@@ -49,7 +49,7 @@ Get the default `values.yaml` configuration file from the Weaviate helm chart:
 helm show values weaviate/weaviate > values.yaml
 ```
 
-## Modify values.yaml (as necessary)
+### Modify values.yaml (as necessary)
 
 :::note You do not *need* to modify values.yaml
 You can skip this step and run with all default values.
@@ -75,7 +75,7 @@ See the resource requests and limits in the example `values.yaml`. You can
 adjust them based on your expected load and the resources available on the
 cluster.
 
-### Authentication and authorization
+#### Authentication and authorization
 
 An example configuration for authentication is shown below.
 
@@ -113,7 +113,7 @@ For further, general documentation on authentication and authorization configura
 - [Authentication](../configuration/authentication.md)
 - [Authorization](../configuration/authorization.md)
 
-## Deploy (install the Helm chart)
+### Deploy (install the Helm chart)
 
 You can deploy the helm charts as follows:
 
@@ -135,12 +135,12 @@ have only namespace-level permissions, you can skip creating a new
 namespace and adjust the namespace argument on `helm upgrade` according to the
 name of your pre-configured namespace.
 
-## Updating the installation after the initial deployment
+### Updating the installation after the initial deployment
 
 The above command (`helm upgrade...`) is idempotent, you can run it again, for
 example after adjusting your desired configuration.
 
-# Additional Configuration Help
+### Additional Configuration Help
 
 - [Cannot list resource "configmaps" in API group when deploying Weaviate k8s setup on GCP](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
 - [Error: UPGRADE FAILED: configmaps is forbidden](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)

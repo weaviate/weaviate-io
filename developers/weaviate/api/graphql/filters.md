@@ -345,7 +345,7 @@ Using the `IsNull` operator allows you to do filter for objects where given prop
 Filtering by null-state requires the target class to be configured to index this. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indexnullstate) for details.
 :::
 
-# Sorting
+## Sorting
 
 :::info
 Support for sorting was added in `v1.13.0`.
@@ -353,7 +353,7 @@ Support for sorting was added in `v1.13.0`.
 
 You can sort results by any primitive property, typically a `text`, `string`, `number`, or `int` property. When a query has a natural order (e.g. because of a `near<Media>` vector search), adding a sort operator will override the order.
 
-## Cost of sorting / architecture
+### Cost of sorting / architecture
 
 Weaviate's sorting implementation is built in a way that it does not lead to massive memory spikes; it does not need to load all objects to be sorted into memory completely. Only the property value being sorted is kept in memory.
 
@@ -378,7 +378,7 @@ Examples:
 - `[2, 2] > [1, 2, 3, 4]`
 - `[1, 2, 3] < [1, 2, 3, 4]`
 
-## Sorting API
+### Sorting API
 
 import GraphQLGetSorting from '/_includes/code/graphql.get.sorting.mdx';
 
