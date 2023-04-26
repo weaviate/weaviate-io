@@ -214,9 +214,7 @@ For more information on the technical implementations, see [this video](https://
 
 #### What is the maximum number of vector dimensions for embeddings?
 
-There is (practically) no limit.
-
-We have tested embeddings with ~10k dimensions in the past. There may be a limit as the variable size increases, but for all practical purposes, it is unlimited.
+As the embedding is currently stored using `uint16`, the maximum possible length is currently 65535.
 
 ## Performance
 
