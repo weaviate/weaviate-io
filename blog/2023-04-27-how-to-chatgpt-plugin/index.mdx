@@ -47,7 +47,7 @@ Below are the steps we took to develop the plugin, Part 1 focuses on building a 
 
 **Step 1: Setup the Development Environment**
 
-To setup our development environment we used [Dev Containers](https://containers.dev/). The `devcontainer.json` [file](https://github.com/weaviate/howto-weaviate-retrieval-plugin/blob/main/.devcontainer/devcontainer.json)  was updated by adding [Fly.io](https://fly.io/), [Docker](https://www.docker.com/) and [Poetry](https://python-poetry.org/). Depending on what your plugin needs you can modify templates [here](https://containers.dev/templates).
+To setup our development environment we used [Dev Containers](https://containers.dev/). The `devcontainer.json` [file](https://github.com/weaviate/howto-weaviate-retrieval-plugin/blob/main/.devcontainer/devcontainer.json)  was updated by adding [Fly.io](https://fly.io/), [Docker](https://www.docker.com/) and [Poetry](https://python-poetry.org/). You can find other dev container templates [here](https://containers.dev/templates).
 
 **Step 2. Test the Setup**
 
@@ -138,7 +138,7 @@ def init_db():
 
 **Step 5: Initialize the database when the server starts and add a dependency for the Weaviate client**
 
-We now need to integrate the usage of these functions so that on starting the ChatGPT plugin server up we automatically initialize the Weaviate instance and connection of the client. We do this by using FastAPI’s [lifespan](https://fastapi.tiangolo.com/advanced/events/#lifespan-events) feature in the  [main server python script](https://github.com/weaviate/howto-weaviate-retrieval-plugin/blob/main/server/main.py) which gets run every time the server starts. This simple function calls our database initialization function defined above which yields the Weaviate client object. Any logic that needs to be run on server shutdown can be included after the `yield` statement on line 9 below. Since we don’t need to do anything specific for our plugin we leave it empty.
+We now need to integrate the usage of these functions so that on starting the ChatGPT plugin server up we automatically initialize the Weaviate instance and connection of the client. We do this by using FastAPI’s [lifespan](https://fastapi.tiangolo.com/advanced/events/#lifespan-events) feature in the  [main server python script](https://github.com/weaviate/howto-weaviate-retrieval-plugin/blob/main/server/main.py) which gets run every time the server starts. This simple function calls our database initialization function defined above which yields the Weaviate client object. Any logic that needs to be run on server shutdown can be included after the `yield` statement below. Since we don’t need to do anything specific for our plugin we leave it empty.
 
 ```python
 from fastapi import FastAPI
@@ -171,8 +171,9 @@ After this point the initial server setup and testing is complete. Now we get to
 
 Our plugin has three specific endpoints: `/upsert`, `/query` and `/delete`. These functions give ChatGPT the ability to add objects to the Weaviate instance, query and search through objects in the Weaviate instance and lastly delete objects if needed. Upon interacting with ChatGPT while the plugin is enabled it can be instructed to use a particular endpoint via prompt but will also independently decide when to use the appropriate endpoint to complete the response to a query! These endpoints are what extend the functionality of ChatGPT and enable it to interact with the vector database.
 
-We developed these three endpoints through test driven development, as such we will display the tests that each endpoint must first pass and then the implementation that satisfies these tests. In preparation to setup the Weaviate instance for these tests we added the following documents:
+We developed these three endpoints through test driven development, as such we will display the tests that each endpoint must first pass and then the implementation that satisfies these tests. In preparation to setup the Weaviate instance for these tests we added the following test documents through a fixture:
 ```python
+@pytest.fixture
 def documents(weaviate_client):
     docs = [
         {"text": "The lion is the king of the jungle", "document_id": "1"},
