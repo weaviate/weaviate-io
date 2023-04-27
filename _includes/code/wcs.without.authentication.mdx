@@ -8,10 +8,8 @@ import TabItem from '@theme/TabItem';
 import weaviate
 
 client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
+    url="https://some-endpoint.weaviate.network",  # Replace with your endpoint
 )
-
-client.schema.get()
 ```
 
 </TabItem>
@@ -24,17 +22,6 @@ const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
 });
-
-client
-  .schema
-  .getter()
-  .do()
-  .then(res => {
-  console.log(res);
-  })
-  .catch(err => {
-  console.error(err)
-  });
 ```
 
 </TabItem>
@@ -47,17 +34,6 @@ const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
 });
-
-client
-  .schema
-  .getter()
-  .do()
-  .then((res: any) => {
-  console.log(res);
-  })
-  .catch((err: Error) => {
-  console.error(err)
-  });
 ```
 
 </TabItem>
@@ -74,7 +50,7 @@ import (
 
 func main() {
     cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
+        Host:   "some-endpoint.weaviate.network",  // Replace with your endpoint
         Scheme: "https",
     }
 
@@ -82,12 +58,6 @@ func main() {
     if err != nil {
       panic(err)
     }
-
-    schema, err := client.Schema().Getter().Do(context.Background())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Printf("%+v", schema)
 }
 ```
 
@@ -99,24 +69,12 @@ package io.weaviate;
 
 import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateClient;
-import io.weaviate.client.base.Result;
-import io.weaviate.client.v1.misc.model.Meta;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");  // Replace with your endpoint
+    Config config = new Config("https", "some-endpoint.weaviate.network");  // Replace with your endpoint
 
     WeaviateClient client = new WeaviateClient(config);
-
-    // get the schema
-    Result<Schema> result = client.schema().getter().run();
-    if (result.hasErrors()) {
-        System.out.println(result.getError());
-        return;
-    }
-
-    // print the schema
-    System.out.println(result.getResult());
   }
 }
 ```
@@ -125,7 +83,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-curl https://some-endpoint.weaviate.network/v1/schema
+curl https://some-endpoint.weaviate.network/v1/meta | jq
 ```
 
 </TabItem>

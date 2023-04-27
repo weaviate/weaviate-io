@@ -1,6 +1,6 @@
 ---
 title: Weaviate, end-to-end
-sidebar_position: 2
+sidebar_position: 50
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['basics']
 ---
@@ -36,7 +36,7 @@ At this point, you should:
 
 We will be working with [this dataset](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json), which will be loaded directly from the remote URL.
 
-import WCSClientInstantiation from '/_includes/code/wcs.client.instantiation.mdx';
+import WCSWithoutAuthentication from '/_includes/code/wcs.without.authentication.mdx';
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
 
@@ -47,7 +47,7 @@ Before going further, please make sure that you can connect to your Weaviate ins
 <details>
   <summary><b>Without authentication enabled</b></summary>
 
-<WCSClientInstantiation/>
+<WCSWithoutAuthentication/>
 
 </details>
 

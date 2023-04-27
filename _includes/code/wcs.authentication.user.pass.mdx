@@ -14,7 +14,7 @@ client = weaviate.Client(
     auth_client_secret=weaviate.AuthClientPassword(
         username = "WCS_USERNAME",  # Replace w/ your WCS username
         password = "WCS_PASSWORD",  # Replace w/ your WCS password
-    )
+    ),
 )
 ```
 
@@ -49,7 +49,7 @@ import (
 cfg := weaviate.Config(
   Host:"some-endpoint.weaviate.network",  // Replace w/ your endpoint
   Scheme: "https",
-  authConfig: auth.ResourceOwnerPasswordFlow{
+  AuthConfig: auth.ResourceOwnerPasswordFlow{
     Username: "WCS_USERNAME",  // Replace w/ your WCS username
     Password: "WCS_PASSWORD",  // Replace w/ your WCS password
   }
