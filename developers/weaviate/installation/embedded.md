@@ -119,16 +119,23 @@ Embedded Weaviate is currently supported on Linux only.
 
 We are actively working to provide support for MacOS. We hope to share an update in the near future.
 
-### Language Clients
+## Language Clients
 
-Embedded Weaviate is supported in the following language clients:
+### Python
 
-* [Python client](../client-libraries/python.md) – `v3.15.4` or newer
+The [Python client](../client-libraries/python.md) – `v3.15.4` or newer
 
-Note that due to use of server-side dependencies which are not available in the browser platform, the embedded TypeScript client has been split out into its own project. Therefore the original non-embedded TypeScript client can remain isomorphic.
+### TypeScript
 
-The TypeScript embedded client simply extends the original TypeScript client, so once instantiated it can be used exactly the same way to interact Weaviate.
+Due to use of server-side dependencies which are not available in the browser platform, the embedded TypeScript client has been split out into its own project. Therefore the original non-embedded TypeScript client can remain isomorphic.
 
+The TypeScript embedded client simply extends the original TypeScript client, so once instantiated it can be used exactly the same way to interact Weaviate. It can be installed with the following command:
+
+```
+npm install weaviate-ts-embedded
+```
+
+GitHub repositories:
 * [TypeScript embedded client](https://github.com/weaviate/typescript-embedded)
 * [Original TypeScript client](https://github.com/weaviate/typescript-client)
 
