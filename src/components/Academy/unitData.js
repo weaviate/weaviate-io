@@ -40,8 +40,8 @@ export const unitData = {
       "Parse a response from Weaviate.",
       "Explain the differences between `nearVector`, `nearObject` and `nearText`.",
       "Construct 'Aggregate' queries to retrieve aggregated properties about relevant objects.",
-      "Broadly describe how ",
-      "Add filters to queries."
+      "Add filters to queries to exclude certain results.",
+      "Describe how `nearObject` and `nearText` queries are converted to vector searches, and what pre-filtering is.",
     ],
     owner: "jp",
     reviewer: "jp"

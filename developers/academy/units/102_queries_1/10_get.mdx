@@ -68,6 +68,12 @@ Now, try it out yourself. This query should return something like the below:
 
 </details>
 
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Response object from Weaviate
+
+As you see above, the response object from Weaviate is in JSON format, where the results are obtained via the `data` field. It is then arranged in a corresponding manner to reflect the query as well as the queried object.
+
+In the above example, the `Get` field reflects the query function, and the `JeopardyQuestion` field reflects the queried object class, containing returned objects. Each object contains `answer` and `question` fields, reflecting the requested properties.
+
 <details>
   <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
 
@@ -163,6 +169,10 @@ Now, try it out yourself. This query should return something like the below:
 ```
 
 </details>
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Response object from Weaviate
+
+In this response, you see that the `_additional` field has been added to the response object, with `distance` and `id` nested under it.
 
 <details>
   <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
