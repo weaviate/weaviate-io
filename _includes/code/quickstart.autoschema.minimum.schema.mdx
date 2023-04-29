@@ -5,9 +5,14 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 
-import MyComponentSource from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
 
-<FilteredTextBlock text={MyComponentSource} startMarker="# ===== add schema =====" endMarker="# ===== import data ====="/>
+<FilteredTextBlock
+  text={EndToEndPyCode}
+  startMarker="# ===== add schema ====="
+  endMarker="# ===== import data ====="
+  language="py"
+/>
 
 </TabItem>
 <TabItem value="js" label="JavaScript">

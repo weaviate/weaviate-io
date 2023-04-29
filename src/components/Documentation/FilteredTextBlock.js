@@ -1,7 +1,8 @@
 import React from 'react';
 import CodeBlock from '@theme/CodeBlock';
 
-const FilteredTextBlock = ({ text, startMarker, endMarker }) => {
+const FilteredTextBlock = ({ text, startMarker, endMarker, language }) => {
+  // Filter out lines that before the start marker, and lines with or after the end marker
   const lines = text.split('\n');
   let withinMarkers = false;
   const filteredLines = lines
@@ -21,7 +22,7 @@ const FilteredTextBlock = ({ text, startMarker, endMarker }) => {
     .join('\n');
 
   return (
-    <CodeBlock className="language-py">
+    <CodeBlock className={`language-${language}`}>
       {filteredLines}
     </CodeBlock>
   );
