@@ -4,9 +4,11 @@ title: Filters
 
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Available operators
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Available operators
 
 So far, you've seen different query functions such as `Get`, and `Aggregate`, and vector search parameters such as `nearVector`, `nearObject` and `nearText`.
 
@@ -20,11 +22,9 @@ There exist many available filters, but we do not need to cover them all at this
 
 - `where`: Apply a Boolean condition to filter the available data.
 - `limit`: Restrict the maximum objects to be retrieved.
-- `sort`: For sorting non-vector search results.
+- `offset`: For pagination of search results.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Filter data with `where`
-
-<img src={imageUrl} alt="Image alt" width="75%"/>
 
 The `where` filter is analogous to the `WHERE` clause in a SQL query. As in the SQL clause, the `where` filter can be used to apply a boolean conditional to the data.
 
@@ -76,59 +76,9 @@ Which returned these answers:
 
 So let's extend our query to now include a `where` argument that uses a `Like` operator.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import FilterWhereLike from './_snippets/academy.queries.filter.where.like.mdx';
 
-<Tabs groupId="languages">
-<TabItem value="py" label="Python">
-
-```python
-response = client.query.get(
-    "JeopardyQuestion",
-    ["question", "answer"]
-).with_limit(2).with_near_text(
-    {"concepts": "Intergalactic travel"}
-).with_additional(
-    ["distance", "id"]
-).with_where({
-    "path": ["question"],
-    "operator": "Like",
-    "valueText": "*rocket*"
-}).do()
-
-print(json.dumps(response, indent=2))
-```
-
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    JeopardyQuestion (
-      limit: 2
-      nearText: {
-        concepts: ["Intergalactic travel"],
-      }
-      where: {
-        path: ["question"],
-        operator: Like,
-        valueText: "*rocket*"
-      }
-    ) {
-      question
-      answer
-      _additional {
-        distance
-        id
-      }
-    }
-  }
-}
-```
-
-</TabItem>
-</Tabs>
+<FilterWhereLike/>
 
 Can you guess how you would expect the earlier response to change, if at all?
 
@@ -177,61 +127,9 @@ This approach of combining a vector search with a filter is a powerful way to fi
 
 We can apply the query to filter the data in any number of ways. For example, consider the below query:
 
-<Tabs groupId="languages">
-<TabItem value="py" label="Python">
+import FilterWhereGreater from './_snippets/academy.queries.filter.where.greater.mdx';
 
-```python
-response = client.query.get(
-    "JeopardyQuestion",
-    ["question", "answer", "points"]
-).with_limit(2).with_near_text(
-    {"concepts": "Intergalactic travel"}
-).with_additional(
-    ["distance", "id"]
-).with_where({
-    "path": ["points"],
-    "operator": "GreaterThan",
-    "valueInt": 200
-}).do()
-
-print(json.dumps(response, indent=2))
-```
-
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-<!-- GraphQL code goes here -->
-```
-
-</TabItem>
-</Tabs>
-
-```graphql
-{
-  Get {
-    JeopardyQuestion (
-      limit: 2
-      nearText: {
-        concepts: ["Intergalactic travel"],
-      }
-      where: {
-        path: ["points"],
-        operator: GreaterThan,
-        valueInt: 200
-      }
-    ) {
-      question
-      answer
-      points
-      _additional {
-        distance
-        id
-      }
-    }
-  }
-}
-```
+<FilterWhereGreater/>
 
 How do you expect that this query will be different to the earlier queries?
 
@@ -278,82 +176,21 @@ Accordingly, the returned data set is very different.
 
 </details>
 
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try filtering for `JeopardyQuestion` objects with:
+- a `points` value equal to 200
+- a `points` value greater than or equal to 600
+
+You can find the list of available operators on [this page](https://weaviate.io/developers/weaviate/api/graphql/filters#filter-structure).
+:::
+
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Multiple operands example
 
 The query syntax can extend to beyond a single operand to take advantage of multiple conditions:
 
-<Tabs groupId="languages">
-<TabItem value="py" label="Python">
+import FilterMultipleOperands from './_snippets/academy.queries.filter.multiple.operands.mdx';
 
-```python
-response = client.query.get(
-    "JeopardyQuestion",
-    ["question", "answer", "points"]
-).with_limit(2).with_near_text(
-    {"concepts": "Intergalactic travel"}
-).with_additional(
-    ["distance", "id"]
-).with_where({
-    "operator": "And",
-    "operands": [
-        {
-            "path": ["question"],
-            "operator": "Like",
-            "valueText": "*rocket*"
-        },
-        {
-            "path": ["points"],
-            "operator": "GreaterThan",
-            "valueInt": 200
-        }
-    ]
-}).do()
-
-print(json.dumps(response, indent=2))
-```
-
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    JeopardyQuestion (
-      limit: 2
-      nearText: {
-        concepts: ["Intergalactic travel"],
-      }
-      where: {
-        operator: And,
-        operands: [
-        {
-          path: ["question"],
-          operator: Like,
-          valueText: "*rocket*"
-        }
-        {
-          path: ["points"],
-          operator: GreaterThan,
-          valueInt: 400
-        },
-        ]
-
-      }
-    ) {
-      question
-      answer
-      points
-      _additional {
-        distance
-        id
-      }
-    }
-  }
-}
-```
-
-</TabItem>
-</Tabs>
+<FilterMultipleOperands/>
 
 Take a look at the `where` argument (i.e. `.with_where`). What limitations do you expect in the results?
 
@@ -398,110 +235,26 @@ This query has been modified to only return `JeopardyQuestion` objects with a `p
 
 </details>
 
-:::tip Nested filters
-You can nest `where` filters as well by nesting each item within `operands`. Try it yourself, or take a look at this example:
+You can apply these filters to an `Aggregate` query also. Try it yourself.
 
-<details>
-  <summary>
-    Nested where filter example
-  </summary>
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try these:
+- adding a `where` filter to an `Aggregation` query, following the above pattern.
+:::
 
-<Tabs groupId="languages">
-<TabItem value="py" label="Python">
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Result pagination with `offset`
 
-```python
-response = client.query.get(
-    "JeopardyQuestion",
-    ["question", "answer", "points"]
-).with_limit(2).with_near_text(
-    {"concepts": "Intergalactic travel"}
-).with_additional(
-    ["distance", "id"]
-).with_where({
-    "operator": "And",
-    "operands": [
-        {
-            "path": ["question"],
-            "operator": "Like",
-            "valueText": "*rocket*"
-        },
-        {
-            "operator": "Or",
-            "operands": [
-                {
-                    "path": ["points"],
-                    "operator": "Equal",
-                    "valueInt": 200
-                },
-                {
-                    "path": ["points"],
-                    "operator": "Equal",
-                    "valueInt": 1000
-                }
-            ]
-        }
-    ]
-}).do()
+When you query for data, you can use the `offset` parameter to skip a number of results. This is useful for pagination, where you want to show a certain number of results per page.
 
-print(json.dumps(response, indent=2))
-```
+The `offset` parameter works in conjunction with the existing `limit` parameter to shows results from the `offset+1` to `offset+1+limit`.
 
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
+For example, to list the first ten results, set `limit`: 10. Then, to "display the second page of 10", set `offset`: 10, `limit`:10 and so on.
 
-```graphql
-{
-  Get {
-    JeopardyQuestion (
-      limit: 2
-      nearText: {
-        concepts: ["Intergalactic travel"],
-      }
-      where: {
-        operator: And,
-        operands: [
-        {
-          path: ["question"],
-          operator: Like,
-          valueText: "*rocket*"
-        }
-        {
-          operator: Or,
-          operands: [
-          {
-              path: ["points"],
-              operator: Equal,
-              valueInt: 200
-          },
-          {
-              path: ["points"],
-              operator: Equal,
-              valueInt: 1000
-          }
-          ]
-        },
-        ]
+The syntax, using `offset` is as follows:
 
-      }
-    ) {
-      question
-      answer
-      points
-      _additional {
-        distance
-        id
-      }
-    }
-  }
-}
-```
+import FilterPaginationNeartext from './_snippets/academy.queries.filter.pagination.nearText.mdx';
 
-</TabItem>
-</Tabs>
-
-</details>
-
-it should produce a result like this:
+<FilterPaginationNeartext/>
 
 <details>
   <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
@@ -512,22 +265,12 @@ it should produce a result like this:
     "Get": {
       "JeopardyQuestion": [
         {
-          "_additional": {
-            "distance": 0.18400955,
-            "id": "48fe1f8f-8e09-5aee-afe9-1728ab2fe8a0"
-          },
-          "answer": "space shuttles",
-          "points": 200,
-          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane"
+          "answer": "the Milky Way",
+          "question": "Into the 20th Century it was thought the universe was one big galaxy--this one"
         },
         {
-          "_additional": {
-            "distance": 0.24946856,
-            "id": "c00decd4-4cf1-5b03-a789-a57077e082fb"
-          },
-          "answer": "Huntsville",
-          "points": 1000,
-          "question": "A campus for the University of Alabama is here, nicknamed \"Rocket City, U.S.A.\""
+          "answer": "space shuttles",
+          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane"
         }
       ]
     }
@@ -537,61 +280,87 @@ it should produce a result like this:
 
 </details>
 
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+This query retrieves the 2 results (`limit`: 2) after the first 2 results (`offset`: 2).
+
+We can confirm this by comparing the results to the below query, which retrieves the top 4 results. The last two results from the below query are the same as the two results from the above query.
+
+```graphql
+{
+  Get {
+    JeopardyQuestion(limit: 4) {
+      answer
+      question
+    }
+  }
+}
+```
+
+import FilterPaginationRelated from './_snippets/academy.queries.filter.pagination.related.mdx';
+
+<FilterPaginationRelated/>
+
+</details>
+
+:::tip
+So, the `n` th page would have `offset`: `n*m`, `limit`: `m`, where `m` is the number of results per page.
 :::
 
-You can apply these filters to an `Aggregate` query also. Try it yourself.
-
-:::note <i class="fa-solid fa-square-terminal"></i> Exercise
-Try these:
-- adding a `where` filter to an `Aggregation` query, following the above pattern.
-:::
-
-
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;pagination-with-offset
-
-https://weaviate.io/developers/weaviate/api/graphql/filters#pagination-with-offset
-
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;cursor-with-after
-
-https://weaviate.io/developers/weaviate/api/graphql/filters#cursor-with-after
+The `offset` parameter is available with all vector search functions including `Get` and `Aggregate`.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
-<img src={imageUrl} alt="Image alt" width="75%"/>
+<Quiz questions={whereUsage} />
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
-
-Can you describe, in your own sentence, XXX?
-
-:::warning TODO
-Input box for user to put answer in and get back a similarity score & our definition?
-??
-:::
+<Quiz questions={offsetExample} />
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
-:::info
-Add summary
-:::
+- Filters are used to apply additional criteria to the results. Some commonly used filters include `where`, `limit` and `offset`.
+- The `where` filter allows you to apply a boolean condition to the data being queried. It can be used with various operators like `Like`, `Greater`, `Equal`, etc.
+- You can use multiple conditions within a `where` filter to further refine your query results.
+- The `offset` parameter can be used in conjunction with `limit` to skip results and build pagination.
 
 import Quiz from '/src/components/Academy/quiz.js'
-const varName = [{
-  questionText: 'questionText',
+const whereUsage = [{
+  questionText: 'Which filter is used to apply a boolean condition to the data in Weaviate?',
   answerOptions: [
     {
-      answerText: 'answerOne',
+      answerText: 'limit',
       isCorrect: false,
-      feedback: 'feedbackOne',
+      feedback: 'This is used to set the maximum number of objects to retrieve.',
     },
     {
-      answerText: 'answerTwo',
+      answerText: 'offset',
       isCorrect: false,
-      feedback: 'feedbackTwo',
+      feedback: 'This is used to skip a number of results.',
     },
     {
-      answerText: 'answerThree',
+      answerText: 'where',
+      isCorrect: true,
+      feedback: 'It is similar to the WHERE clause in SQL.',
+    },
+  ]
+}];
+const offsetExample = [{
+  questionText: 'How can you combine the offset and limit parameters to display the second page of results with 10 results per page?',
+  answerOptions: [
+    {
+      answerText: 'Set offset: 10 and limit: 10',
+      isCorrect: true,
+      feedback: 'This would get results 11-20.',
+    },
+    {
+      answerText: 'Set offset: 20 and limit: 10',
       isCorrect: false,
-      feedback: 'feedbackThree',
+      feedback: 'This would get results 21-30.',
+    },
+    {
+      answerText: 'Set offset: 10 and limit: 20',
+      isCorrect: false,
+      feedback: 'This would get results 11-30',
     },
   ]
 }];
