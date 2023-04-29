@@ -128,7 +128,7 @@ If you're new to ML and Weaviate, but are already a bit familiar with Python, th
 
 **Documentation**
 
-* [JavaScript · Weaviate Documentation](/developers/weaviate/client-libraries/javascript)
+* [JavaScript/TypeScript · Weaviate Documentation](/developers/weaviate/client-libraries/typescript)
 * [Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/cli)
 
 ---
@@ -158,7 +158,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 ### 5. Make Weaviate support a new datatype (e.g. videos, or 3D models, etc)
 
-**Project Description:** At the moment, Weaviate is able to store [datatypes](/developers/weaviate/configuration/datatypes) like text and images. The goal of this project is to create a new datatype for Weaviate, like speech, videos or 3D mesh. You'll work in Go.
+**Project Description:** At the moment, Weaviate is able to store [datatypes](/developers/weaviate/config-refs/datatypes) like text and images. The goal of this project is to create a new datatype for Weaviate, like speech, videos or 3D mesh. You'll work in Go.
 You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you can learn along the way.
 
 **Required Skills:** Check the Go Documentation and Modules Documentation below to get an understanding of how to create new/custom modules. The knowledge of Machine Learning & NLP Based Models like text2vec, word vectors, etc. is important. Medium-advanced knowledge of golang is desired.
