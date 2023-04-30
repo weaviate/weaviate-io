@@ -61,11 +61,11 @@ We will be accessing a pre-built instance of Weaviate throughout the course, loc
 
 You can access the instance with the below code, using a read-only Weaviate API key.
 
-Confirm that you can run the below code to make sure
+Confirm that you can run the below code, to make sure it is all functioning as expected.
 
-import CheckAccess from './_snippets/academy.search.check.access.mdx';
+import InstantiationCheck from './_snippets/academy.instantiation.check.mdx';
 
-<CheckAccess/>
+<InstantiationCheck/>
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Inference API Key
 
@@ -73,7 +73,51 @@ We will be using OpenAI's API, so you will need an API key.
 
 If you haven't yet, create an OpenAI account, and create a [free API key here](https://platform.openai.com/account/api-keys).
 
+Then, instantiate the client as shown below, replacing `<OPENAI-KEY>` with your own API key for OpenAI.
+
+import InstantiationWithOpenai from './_snippets/academy.instantiation.with.openai.mdx';
+
+<InstantiationWithOpenai/>
+
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Code examples
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Client instantiation
+
+For brevity, many code examples in the Weaviate Academy will not show the instantiation of the client. So, where you see examples such as:
+
+```python
+response = client.query.get(
+    "JeopardyQuestion",
+    ["question", "answer"]
+).with_near_text(
+    {"concepts": ["intergalactic travel"]}
+).with_limit(2).do()
+
+print(json.dumps(response, indent=2))
+```
+
+You will need to instantiate the client as shown in the previous section. So, the above code would become:
+
+```python
+import weaviate
+
+client = weaviate.Client(
+    url="https://edu.weaviate.network",
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="learn-weaviate"),  # A read-only API Key for the Weaviate instance
+    additional_headers={
+        "X-OpenAI-Api-Key": "<OPENAI-KEY>",  # Replace this with YOUR OpenAI API key
+    }
+)
+
+response = client.query.get(
+    "JeopardyQuestion",
+    ["question", "answer"]
+).with_near_text(
+    {"concepts": ["intergalactic travel"]}
+).with_limit(2).do()
+
+print(json.dumps(response, indent=2))
+```
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;GraphQL
 
@@ -171,4 +215,9 @@ print(json.dumps(response, indent=2))
 - You have installed the Weaviate client library in your preferred environment.
 - You have an OpenAI inference key.
 - You have some way of running Python code.
+- You know how to instantiate the Weaviate Python client, and run the shown example code.
 - The Academy units will show Python code, but also raw GraphQL or REST snippets where applicable.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

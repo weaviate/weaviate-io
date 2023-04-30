@@ -32,18 +32,9 @@ The `where` filter is analogous to the `WHERE` clause in a SQL query. As in the 
 
 We ran an example query like this earlier:
 
-```python
-response = client.query.get(
-    "JeopardyQuestion",
-    ["question", "answer"]
-).with_limit(2).with_near_text(
-    {"concepts": "Intergalactic travel"}
-).with_additional(
-    ["distance", "id"]
-).do()
+import GetWithAdditional from './_snippets/academy.queries.get.with.additional.mdx';
 
-print(json.dumps(response, indent=2))
-```
+<GetWithAdditional/>
 
 Which returned these answers:
 
@@ -364,3 +355,7 @@ const offsetExample = [{
     },
   ]
 }];
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

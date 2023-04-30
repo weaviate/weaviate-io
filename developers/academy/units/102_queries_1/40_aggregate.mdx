@@ -167,50 +167,9 @@ So far, we have seen how to use `Aggregate` queries to compile information relat
 
 For example, let's say we want to know how many questions there are for each available `value` property. We can do this by adding the `groupBy` argument to the query:
 
-<Tabs groupId="languages">
-<TabItem value="py" label="Python">
+import AggregateGroupby from './_snippets/academy.queries.aggregate.groupby.mdx';
 
-```python
-response = client.query.aggregate(
-    "JeopardyQuestion",
-).with_group_by_filter(
-    "round"
-).with_fields(
-    "groupedBy {path value}"
-).with_near_text(
-    {"concepts": ["Intergalactic travel"], "distance": 0.2}
-).with_meta_count().do()
-
-print(json.dumps(response, indent=2))
-```
-
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Aggregate {
-    JeopardyQuestion (
-      nearText: {
-        concepts: ["Intergalactic travel"],
-        distance: 0.2
-      }
-      groupBy: ["round"]
-      ) {
-      groupedBy {
-        path
-        value
-      }
-      meta {
-        count
-      }
-    }
-  }
-}
-```
-
-</TabItem>
-</Tabs>
+<AggregateGroupby/>
 
 What do you expect to see here? How will the results differ, now that we've added the `groupBy` argument? Do you notice what else has changed to the query?
 
@@ -295,9 +254,11 @@ Try out the above `nearText` query again, with these changes.
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
-:::info
-Add summary
-:::
+- The `Aggregate` function is used to compile information from multiple objects, providing an overview.
+- Vector search parameters, like `nearText`, can be used in `Aggregate` queries.
+    - To produce meaningful aggregations, the search space must be limited by setting an explicit limit or a threshold (distance or certainty) in the query.
+- The `groupBy` argument can be used to compile information from multiple subsets of results, refining the aggregation.
+- When using the groupBy argument, the additional property groupedBy is made available, helping to identify the group that the result belongs to.
 
 import Quiz from '/src/components/Academy/quiz.js'
 const varName = [{
@@ -320,3 +281,7 @@ const varName = [{
     },
   ]
 }];
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

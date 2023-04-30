@@ -3,6 +3,16 @@ title: Get{} objects
 ---
 
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+import InstantiationWithOpenai from '../_snippets/academy.instantiation.with.openai.mdx';
+
+:::info Make sure you complete Weaviate Academy Preparation
+Make sure to complete the [Weaviate Academy Preparation](../setup.mdx) mini-unit before starting this unit to make sure that you can run the client library and connect to the demo Weaviate instance without issues.
+<p><br/></p>
+
+Below, you will see code snippets that do not include client instantiation details. Before running these snippets, make sure to instantiate the client as shown below.
+
+<InstantiationWithOpenai/>
+:::
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
@@ -209,9 +219,12 @@ See in-line exercises.
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
-:::info
-Add summary
-:::
+- The 'Get' function can be used to retrieve objects in Weaviate.
+- The 'Get' function syntax requires specifying the class, properties, and any additional arguments related to the search criteria.
+- Weaviate responses are in JSON format.
+- Class and properties fields must correspond to the objects and properties defined in the Weaviate schema.
+- 'Get' queries can retrieve additional properties not defined in the schema, which can be inherent to the object or related to the query performed.
+- '_additional' properties can include distance, id, and vector information, providing more context and information about the retrieved objects.
 
 import Quiz from '/src/components/Academy/quiz.js'
 const nearText = [{
@@ -254,3 +267,7 @@ const varName = [{
     },
   ]
 }];
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
