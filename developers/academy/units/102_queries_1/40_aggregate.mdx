@@ -2,11 +2,12 @@
 title: Aggregate{} the result set
 ---
 
-import imageUrl from '../../tmp_images/academy_placeholder.jpg';
-
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
-<img src={imageUrl} alt="Image alt" width="75%"/>
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer url='https://youtu.be/BDmCotY2b5U' controls='true'/>
+<br/>
 
 Now that you have seen how to retrieve individual objects with `Get`, let's take a look at how to compile information with `Aggregate`.
 
@@ -43,9 +44,7 @@ import ShortSchema from './_snippets/academy.queries.schema.short.mdx';
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Standalone `Aggregate` queries
 
-Below is a simple `Aggregate` query.
-
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example 1
 
 Take a look at the below query:
 
@@ -100,6 +99,74 @@ A `Get` query retrieves a set of individual results, so we can select properties
 An `Aggregate` query, on the other hand, returns an aggregation of the results. Accordingly, we must specify a sub-property that applies to the entire set of results.
 
 The `meta` property is one such property. It is available for all data types, and can be used with the `count` sub-property to return the number of retrieved objects.
+
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example 2
+
+Take a look at the below query:
+
+import AggregateStandalone2 from './_snippets/academy.queries.aggregate.standalone.2.mdx';
+
+<AggregateStandalone2/>
+
+What fields do you expect back in the results?
+
+Now, try it out yourself.
+
+Your query should return something like the below:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Aggregate": {
+      "JeopardyQuestion": [
+        {
+          "answer": {
+            "count": 10000,
+            "topOccurrences": [
+              {
+                "occurs": 19,
+                "value": "Australia"
+              },
+              {
+                "occurs": 18,
+                "value": "Hawaii"
+              },
+              {
+                "occurs": 16,
+                "value": "Boston"
+              },
+              {
+                "occurs": 15,
+                "value": "French"
+              },
+              {
+                "occurs": 15,
+                "value": "India"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+```
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+This response includes an object to represent aggregations from the `answer` property requested from `JeopardyQuestion` class. Because the property contains textual information, we can aggregate `topOccurrences` information, such as the `value` property, which is the token, as well as the number of times it `occurs`.
+
+</details>
+
+:::tip Available properties
+The list of available properties can be found on [this page](/developers/weaviate/api/graphql/aggregate.md#aggregate-syntax-and-query-structure) in our documentation.
+:::
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Aggregate` with a vector search parameter
 
