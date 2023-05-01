@@ -1,3 +1,5 @@
+## 102
+
 ---
 title: Introduction to Queries
 sidebar_position: 10
@@ -21,7 +23,7 @@ So please be aware that when we show a query such as this:
 
 ```python
 response = client.query.get(
-    "JeopardyQuestion", 
+    "JeopardyQuestion",
     ["question", "answer"]
 ).with_near_text(
     {"concepts": ["intergalactic travel"]}
@@ -73,7 +75,7 @@ This tab will show GraphQL code.
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Raw GraphQL queries
 
-Note that you can run raw GraphQL queries directly with the Weaviate Python client, or with the [Weaviate Console](https://console.weaviate.io/). 
+Note that you can run raw GraphQL queries directly with the Weaviate Python client, or with the [Weaviate Console](https://console.weaviate.io/).
 
 In Python, you can run a GraphQL query directly with:
 
@@ -132,7 +134,7 @@ So keep these terms in mind.
 
 The primary query functions in Weaviate are `Get`, `Aggregate` or `Explore`.
 
-These three functions are used to `Get` objects, `Aggregate` information and `Explore` vector spaces. 
+These three functions are used to `Get` objects, `Aggregate` information and `Explore` vector spaces.
 
 Let's review each one briefly, before we learn about them in detail in the following sections.
 
@@ -147,7 +149,7 @@ Take a look at the following:
 
 ```python
 response = client.query.get(
-    "JeopardyQuestion", 
+    "JeopardyQuestion",
     ["question", "answer"]
 ).with_limit(1).do()
 
@@ -170,7 +172,7 @@ print(json.dumps(response, indent=2))
 </TabItem>
 </Tabs>
 
-This is a `Get` query to `JeopardyQuestion` class, with a limit of maximum `1` returned object, with the object's `["question", "answer"]` properties. 
+This is a `Get` query to `JeopardyQuestion` class, with a limit of maximum `1` returned object, with the object's `["question", "answer"]` properties.
 
 It should produce a response like the following:
 
@@ -189,11 +191,61 @@ It should produce a response like the following:
 }
 ```
 
-You can see that the response includes a data object from the `JeopardyQuestion` class, and values of its `question` and `answer` properties. 
+You can see that the response includes a data object from the `JeopardyQuestion` class, and values of its `question` and `answer` properties.
+
+
+=================
+
+Notice the presence of the `groupBy` argument.
+
+`groupBy` is an optional argument that can be used to group results of the query. The `Aggregate` function can also return metadata about the results, such as the number of results in each group.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.aggregate(
+    <CLASS>,
+).with_group_by_filter(
+    <property>
+).with_fields(
+    "groupedBy {path value}"  # requires `groupBy` argument
+    <properties>
+).with_meta_count(  # optional
+).<arguments>.do()
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Aggregate (groupBy:[<property>]) {  # `groupBy`: optional argument
+    groupedBy {  # requires `groupBy` argument
+        path
+        value
+    }
+    meta {  # optional
+      count
+    }
+    <Class> (
+      <arguments>
+    ) {
+      <properties>
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Aggregate` information
 
-Whereas `Get` returns objects, `Aggregate` returns summary statistics or aggregates from the result set. 
+Whereas `Get` returns objects, `Aggregate` returns summary statistics or aggregates from the result set.
 
 As such you can use `Aggregate` to obtain summary values such as counts, sums, means and so on from groups of objects. Take a look at the following:
 
@@ -202,7 +254,7 @@ As such you can use `Aggregate` to obtain summary values such as counts, sums, m
 
 ```python
 response = client.query.aggregate(
-    "JeopardyQuestion", 
+    "JeopardyQuestion",
 ).with_near_text(
     {"concepts": ["Animals in movies"]}
 ).with_object_limit(
@@ -269,7 +321,7 @@ Notice that even though the query related to a maximum of 10 objects, the result
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Explore` vector spaces
 
-`Explore` allows you to navigate the entire vector space of objects stored in Weaviate. 
+`Explore` allows you to navigate the entire vector space of objects stored in Weaviate.
 
 This means that you can use `Explore` to find objects that are similar to a given object or vector, regardless of the class of the object. As such, `Explore` is very useful when you may not be sure of what class to search for.
 
@@ -292,7 +344,140 @@ Input box for user to put answer in and get back a similarity score & our defini
 ??
 :::
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Sub-properties for `Aggregate`
+
+As we have seen, the `meta` property is available for all data types, and can be used with the `count` sub-property to return the number of retrieved objects.
+
+In addition to this, there are a number of other sub-properties that can be used with `Aggregate` queries. Their availability, however, depend on the data type that is being queried.
+
+Let's take a look at some of these sub-properties, based on the `Question` class.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+
+Try the following query:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.aggregate(
+    "JeopardyQuestion",
+).with_fields(
+    "round {type topOccurrences {value occurs}}"
+).with_near_text(
+    {"concepts": ["Intergalactic travel"]}
+).with_object_limit(10).with_meta_count().do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Aggregate {
+    JeopardyQuestion (
+      nearText: {
+        concepts: ["Intergalactic travel"],
+        distance: 0.2
+      }
+      ) {
+      meta {
+        count
+      }
+      round {
+        type
+        topOccurrences {
+          value
+          occurs
+        }
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+Take a note of the requested properties in the GraphQL query, and consider what types of values they might return. How might these properties change according to the nature of the source data?
+
+Now, try it out yourself. This query should return something like the below:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Aggregate": {
+      "JeopardyQuestion": [
+        {
+          "meta": {
+            "count": 10
+          },
+          "round": {
+            "topOccurrences": [
+              {
+                "occurs": 5,
+                "value": "Double Jeopardy!"
+              },
+              {
+                "occurs": 4,
+                "value": "Jeopardy!"
+              },
+              {
+                "occurs": 1,
+                "value": "Final Jeopardy!"
+              }
+            ],
+            "type": "string"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+The sub-properties under `round` in the query requests additional aggregations here, resulting in the top occurring answers being returned as well as their counts.
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Available sub-properties
+
+Sub-properties allow further granular aggregations of data from Weaviate. These properties that can be queried will vary according to the data type that is being aggregated.
+
+Along with the `string` data type, `text` properties may be queried to retrieve one or more of:
+
+- count
+- type
+- topOccurrences
+
+However, `int` data types, for example, can be aggregated to retrieve:
+
+- count
+- type
+- minimum
+- maximum
+- mean
+- median
+- mode
+- sum
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out the above query again, with these changes.
+- Can you aggregate the results based on the data from the `answer` property?
+- Try modifying the query to group the results by `round`, and then aggregate top occurrences from `answer`.
+:::
 
 :::info
 Add summary
@@ -336,11 +521,11 @@ const functionExplanations = [{
       answerText: 'The Get function can retrieve objects from multiple classes in one query.',
       isCorrect: false,
       feedback: 'Each Get query can only search one class of objects.',
-    },        
+    },
     {
       answerText: 'None of the above.',
       isCorrect: true,
       feedback: 'All of the above are false!',
-    },          
+    },
   ]
 }];

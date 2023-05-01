@@ -1,0 +1,40 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+vector_input = [0.023932384327054024, -0.014095712453126907, ..., -0.0357337519526481]
+
+response = client.query.get(
+    "JeopardyQuestion",
+    ["question", "answer"]
+).with_limit(2).with_near_vector(
+    {"vector": vector_input}
+).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearVector: {
+        vector: [0.023932384327054024, -0.014095712453126907, ..., -0.0357337519526481]
+      }
+    ) {
+      question
+      answer
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

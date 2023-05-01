@@ -1,6 +1,6 @@
 ---
 title: A little more about GraphQL
-sidebar_position: 25
+sidebar_position: 99
 ---
 
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
@@ -33,13 +33,13 @@ You can see that a Weaviate GraphQL query contains multiple components. If you w
 * `<Class>`: The class that you want to retrieve data from, such as `WikiArticle`.
 * `<properties>`: The properties that you want to retrieve, such as `title`, `wiki_summary`.
 
-Each field can also accept arguments, such as `limit` to limit the number of objects to be returned, or `where` to apply a filter. 
+Each field can also accept arguments, such as `limit` to limit the number of objects to be returned, or `where` to apply a filter.
 
 The data flow with a GraphQL query can be conceptualized like this:
 
 ![](https://kinsta.com/wp-content/uploads/2022/09/graphql.png)
 
-This specificity may seem challenging at first. However, it is a powerful feature that allows you to build highly customized queries, and to retrieve only the data that you need. 
+This specificity may seem challenging at first. However, it is a powerful feature that allows you to build highly customized queries, and to retrieve only the data that you need.
 
 It is also highly efficient, as what may have taken multiple requests in a REST API can be done in a single GraphQL query.
 
@@ -80,7 +80,7 @@ However, importantly, names in GraphQL [are case-sensitive](https://spec.graphql
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-In GraphQL, we can provide further `arguments` to provide further restrictions to our query. In fact, you have already seen in it action with the `limit` argument above. 
+In GraphQL, we can provide further `arguments` to provide further restrictions to our query. In fact, you have already seen in it action with the `limit` argument above.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Argument syntax in GraphQL
 
@@ -104,13 +104,13 @@ This specifies a key `limit` with value `1` to specify the maximum number of obj
 Arguments are used in Weaviate to provide additional search parameters and filters. It can be used to:
 
 - Limit the number of results
-- Specify a search vector 
+- Specify a search vector
 - Prompt generative search results
 - Add filters
 - Sort the output
 - And more
 
-We'll take a closer look at the arguments in greater detail in later sections. 
+We'll take a closer look at the arguments in greater detail in later sections.
 
 <Quiz questions={varName} /> -->
 
@@ -144,7 +144,7 @@ const graphQLSyntax = [{
       answerText: 'It is not case-sensitive.',
       isCorrect: false,
       feedback: 'GraphQL is case sensitive.',
-    },    
+    },
     {
       answerText: 'Whitespaces are typically ignored.',
       isCorrect: true,
@@ -154,6 +154,6 @@ const graphQLSyntax = [{
       answerText: 'GraphQL always returns the same fields in the response.',
       isCorrect: false,
       feedback: 'As you have seen in our Get queries previously, you must specify the fields to be returned in GraphQL.',
-    },    
+    },
   ]
 }];
