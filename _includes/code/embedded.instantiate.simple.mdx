@@ -1,0 +1,32 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  ```python
+  import weaviate
+  from weaviate.embedded import EmbeddedOptions
+
+  client = weaviate.Client(
+    embedded_options=EmbeddedOptions()
+  )
+  ```
+
+  </TabItem>
+  <TabItem value="js" label="JavaScript / TypeScript">
+
+  ```js
+  import { weaviate, EmbeddedClient, EmbeddedOptions } from 'weaviate-ts-embedded';
+
+  const client: EmbeddedClient = weaviate.client(new EmbeddedOptions());
+
+  await client.embedded.start();
+
+  // Work with Weaviate
+
+  client.embedded.stop();
+  ```
+
+  </TabItem>
+</Tabs>

@@ -1,5 +1,5 @@
 ---
-title: Quickstart Tutorial
+title: Quickstart tutorials
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
@@ -10,19 +10,23 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Welcome to the **Quickstart tutorial** for Weaviate! Here, you will learn how to quickly get up and running with Weaviate.
+Welcome to the **Quickstart tutorials** for Weaviate! Here, you will learn how to quickly get up and running with Weaviate.
 
 ### Agenda
 
-By the end of this tutorial, you will be familiar with the key features and functionalities of Weaviate. You will have:
-- Vectorized and imported data, and
-- Performed queries to retrieve objects.
+By the end of these tutorials, you will be familiar with the key features and functionalities of Weaviate.
 
-You will also see how Weaviate can:
-- Vectorize data at import time,
-- Use an external inference API,
-- Automate data schema construction if necessary, and
-- Perform vector searches.
+1. You will have learned about different ways to log into Weaviate.
+
+1. You will have:
+    - Vectorized and imported data, and
+    - Performed queries to retrieve objects.
+
+1. You will also see how Weaviate can:
+    - Vectorize data at import time,
+    - Use an external inference API,
+    - Automate data schema construction if necessary, and
+    - Perform vector searches.
 
 And once you're done with these - you can move on to our more [in-depth tutorials](../tutorials/index.md).
 
@@ -62,12 +66,13 @@ It is about getting you started with Weaviate **by doing**. And you can always r
 
 To follow along with this tutorial, you will need your own instance of Weaviate. You can use any of:
 1. A [Weaviate Cloud Services instance](../../wcs/quickstart.mdx), which involves signing up and creating a free *sandbox* instance.
-1. A [Docker-compose instance](../installation/docker-compose.md), which you can run locally, or
-1. A [Kubernetes instance](../installation/kubernetes.md)
+1. A [Docker-compose instance](../installation/docker-compose.md), which you can run locally,
+1. A [Kubernetes instance](../installation/kubernetes.md), or
+1. An [Embedded Weaviate instance](../installation/embedded.md) (Experimental).
 
 #### Weaviate client library
 
-We also recommend that you use a Weaviate client library for the best experience with Weaviate. Currently they are available in [Python](../client-libraries/python.md), [TypeScript](../client-libraries/typescript.mdx), [Go](../client-libraries/go.md) and [Java](../client-libraries/go.md).
+We also recommend that you use a Weaviate client library for the best experience with Weaviate. Currently they are available in [Python](../client-libraries/python.md), [TypeScript/JavaScript](../client-libraries/typescript.mdx), [Go](../client-libraries/go.md) and [Java](../client-libraries/go.md).
 
 import JavaScriptMaintenanceWarning from '/_includes/javascript-maintenance-warning.mdx';
 
@@ -100,4 +105,5 @@ We want you to have the best experience possible here. So if you find that somet
 
 ## Next
 
+- [How to connect to Weaviate](./connect.mdx)
 - [Weaviate, end-to-end](./end-to-end.md).

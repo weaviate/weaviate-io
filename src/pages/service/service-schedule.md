@@ -40,23 +40,21 @@ These terms and conditions (Terms) apply to the order by you and supply of Servi
 
 2.9.4 The provisioned cluster has a lifetime until the end of the agreement.
 
-2.9.5 The cluster will go into hibernation (i.e., the cluster will shut down) with the persistence of data after **1 hour** of being stale. Any API request after the hour will restore the cluster to its previous state. Wake-up times differ based on the size of the cluster.
+2.9.5 API requests to the cluster are based on fair usage, and keep-alive pings are not permitted.
 
-2.9.6 API requests to the cluster are based on fair usage, and keep-alive pings are not permitted.
+2.9.6 Monitoring is available to validate cluster health.
 
-2.9.7 Monitoring is available to validate cluster health.
+2.9.7 Support is available on a fair-usage basis through the public Weaviate Slack channel.
 
-2.9.8 Support is available on a fair-usage basis through the public Weaviate Slack channel.
+2.9.8 [Severity level 1](#severity-level-1-definitions) - within 1 hour.
 
-2.9.9 [Severity level 1](#severity-level-1-definitions) - within 1 hour.
+2.9.9 [Severity level 2](#severity-level-2-definitions) - within 4 hours.
 
-2.9.10 [Severity level 2](#severity-level-2-definitions) - within 4 hours.
+2.9.10 [Severity level 3](#severity-level-3-definitions) - within one business day.
 
-2.9.11 [Severity level 3](#severity-level-3-definitions) - within one business day.
+2.9.11 Uptime guarantee of 99.9% ("three nines") without high availability enabled.
 
-2.9.12 Uptime guarantee of 99.9% ("three nines") without high availability enabled.
-
-2.9.13 Uptime guarantee of 99.99% ("four nines") with [high availability](#service-level-add-on-high-availability) enabled.
+2.9.12 Uptime guarantee of 99.99% ("four nines") with [high availability](#service-level-add-on-high-availability) enabled.
 
 2.10 Service Level: Enterprise
  
