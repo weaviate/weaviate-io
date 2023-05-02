@@ -13,6 +13,12 @@
   //   }
   // }
 
+  p, ul {
+    font-family: var(--site-font-base-family);
+    font-size: 1.2rem;
+    color: var(--site-font-main-color);
+  }
+
   pre code {
     max-height: 700px;
   }
@@ -23,7 +29,7 @@
   #__docusaurus {
     background-image: none;
   }
-  
+
   #__docusaurus, .navbar {
     background: var(--site-background);
   }
