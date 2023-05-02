@@ -10,6 +10,10 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
+:::info Using Kubernetes?
+See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
+:::
+
 Weaviate offers an optional authentication scheme using API keys and OpenID Connect (OIDC), which can enable various [authorizations](authorization.md) levels.
 
 When authentication is disabled, all anonymous requests will be granted access.
@@ -144,10 +148,6 @@ By default, Weaviate will validate that the token includes a specified client id
 :::
 
 ### Setting configuration options
-
-:::info Using Kubernetes?
-See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
-:::
 
 To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate.
 
