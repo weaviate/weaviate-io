@@ -17,21 +17,15 @@ import TabItem from '@theme/TabItem';
   <TabItem value="js" label="JavaScript / TypeScript">
 
   ```js
-  import weaviate from 'weaviate-ts-client';
+  import { weaviate, EmbeddedClient, EmbeddedOptions } from 'weaviate-ts-embedded';
 
-  const client = weaviate.client({
-    scheme: 'http',
-    host: 'localhost:6666',
-    embedded: new weaviate.EmbeddedOptions({
-      port: 6666,
-    }),
-  });
+  const client: EmbeddedClient = weaviate.client(new EmbeddedOptions());
 
-  await client.embedded?.start();
+  await client.embedded.start();
 
   // Work with Weaviate
 
-  await client.embedded?.stop();
+  client.embedded.stop();
   ```
 
   </TabItem>

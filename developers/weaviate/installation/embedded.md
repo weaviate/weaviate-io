@@ -62,6 +62,7 @@ The following modules are enabled by default:
 
 Additional modules can be enabled by setting additional environment variables as [laid out above](#embedded-options). For instance, to add a module called `backup-s3` to the set, you would pass it at instantiation as follows:
 
+Python:
 ```python
 import weaviate
 from weaviate.embedded import EmbeddedOptions
@@ -73,6 +74,19 @@ client = weaviate.Client(
         "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai"}
     )
 )
+```
+
+TypeScript:
+```ts
+import weaviate, { EmbeddedClient, EmbeddedOptions } from 'weaviate-ts-embedded';
+
+const client: EmbeddedClient = weaviate.client(
+  new EmbeddedOptions({
+    env: {
+      ENABLE_MODULES: "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai",
+    },
+  })
+);
 ```
 
 ## Starting Embedded Weaviate under the hood
@@ -105,12 +119,25 @@ Embedded Weaviate is currently supported on Linux only.
 
 We are actively working to provide support for MacOS. We hope to share an update in the near future.
 
-### Language Clients
+## Language Clients
 
-Embedded Weaviate is supported in the following language clients:
+### Python
 
-* [Python client](../client-libraries/python.md) – `v3.15.4` or newer
-* [TypeScript client](https://github.com/weaviate/typescript-client) – `v1.0.0` or newer
+The [Python client](../client-libraries/python.md) – `v3.15.4` or newer
+
+### TypeScript
+
+Due to use of server-side dependencies which are not available in the browser platform, the embedded TypeScript client has been split out into its own project. Therefore the original non-embedded TypeScript client can remain isomorphic.
+
+The TypeScript embedded client simply extends the original TypeScript client, so once instantiated it can be used exactly the same way to interact with Weaviate. It can be installed with the following command:
+
+```
+npm install weaviate-ts-embedded
+```
+
+GitHub repositories:
+* [TypeScript embedded client](https://github.com/weaviate/typescript-embedded)
+* [Original TypeScript client](https://github.com/weaviate/typescript-client)
 
 ## More Resources
 
