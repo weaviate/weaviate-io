@@ -111,7 +111,8 @@ An example of a complete class object including properties:
           "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
         }
       },
-      "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
+      "indexFilterable": true,                // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
+      "indexSearchable": true,                // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
     }
   ],
   "invertedIndexConfig": {                  // Optional, index configuration
@@ -335,7 +336,8 @@ An example of a complete property object:
           "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
       }
     },
-    "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
+    "indexFilterable": true,                // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
+    "indexSearchable": true,                // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
 }
 ```
 
