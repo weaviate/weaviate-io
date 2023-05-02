@@ -41,7 +41,7 @@ import Badges from '/_includes/badges.mdx';
         "properties": [
           {
             "dataType": [
-              "string"
+              "text"
             ],
             "name": "name"
           },
@@ -667,7 +667,7 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
 
   ```json
   {
-    "dataType": [ "string" ],
+    "dataType": [ "text" ],
     "description": "string",
     "cardinality": "string",
     "vectorizePropertyName": true,
@@ -681,7 +681,7 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
 
   ```json
   {
-    "dataType": [ "string" ],
+    "dataType": [ "text" ],
     "description": "string",
     "moduleConfig": {
       "text2vec-contextionary": {
@@ -832,7 +832,7 @@ The Contextionary becomes the first vectorization module of Weaviate, renamed to
 
     ```json
     {
-      "dataType": [ "string" ],
+      "dataType": [ "text" ],
       "description": "string",
       "moduleConfig": {
         "text2vec-contextionary": {

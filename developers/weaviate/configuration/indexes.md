@@ -59,7 +59,7 @@ Example of a class could be [configured in your data schema](/developers/weaviat
     {
       "name": "title",
       "description": "string",
-      "dataType": ["string"]
+      "dataType": ["text"]
     }
   ],
   "vectorIndexType": "hnsw",
@@ -115,7 +115,7 @@ The inverted index is by default _on_. You can simply turn it of like this:
         {
             "indexInverted": false, // <== turn it off by setting `indexInverted` to false
             "dataType": [
-                "string"
+                "text"
             ],
             "name": "name"
         }
@@ -158,7 +158,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
         {
             "indexInverted": false, // <== disable inverted index for this property
             "dataType": [
-                "string"
+                "text"
             ],
             "description": "The name of the Author",
             "name": "name"
