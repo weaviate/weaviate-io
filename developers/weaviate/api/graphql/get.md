@@ -212,6 +212,19 @@ Will result in the following response:
 Keep in mind that specifying a `path` value that requires resolving a large number of objects may be computationally expensive. For instance, setting the `path` above to `["ofDocument", "Document", "title"]` would require resolving all documents and may take considerably longer.
 :::
 
+### Consistency levels
+
+:::info Available from `v1.19` onwards
+:::
+
+The `Get{}` function can be configured to return results with different levels of consistency. This is useful when you want to retrieve the most up-to-date data, or when you want to retrieve data as fast as possible.
+
+Read more about consistency levels [here](../../concepts/replication-architecture/consistency.md).
+
+import GraphQLGetConsistency from '/_includes/code/graphql.get.consistency.mdx';
+
+<GraphQLGetConsistency/>
+
 ## Query beacon references
 
 If you've set a beacon reference in the schema, you can query it as follows:
