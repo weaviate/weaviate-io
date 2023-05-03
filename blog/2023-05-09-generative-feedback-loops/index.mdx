@@ -2,7 +2,7 @@
 title: Generative Feedback Loops for Vector Databases
 slug: generative-feedback-loops
 authors: [connor]
-date: 2023-05-02
+date: 2023-05-09
 # image: ./img/hero.png
 tags: []
 description: "An Introduction to creating generative feedback loops with LLMs in Weaviate"
@@ -55,124 +55,13 @@ Add – “Did you hallucinate, if so please revise the response” reflection c
 
 ### Generate a description for each Listing
 
-```python
-generatePrompt = """
-Please write a description for the following AirBnb Listing in english:
-Name: {name}
-Neighbourhood: {neighbourhood}
-Neighbourhood Group: {neighbourhood_group}
-Latitude: {latitude}
-Longitude: {longitude}
-Room Type: {room_type}
-Price: {price}
-Minimum Nights: {minimum_nights}
-Number of Reviews: {number_of_reviews}
-Last Review: {last_review}
-Reviews per Month: {reviews_per_month}
-Calculated Host Listings Count: {calculated_host_listings_count}
-Availability_365: {availability_365}
+import GenerativeFeedbackLoops from '/_includes/code/generative.feedback.loops.mdx';
+
+<GenerativeFeedbackLoops/>
 
 
-Please do not make up any information about the property in your description.
-"""
 
 
-generate_properties = ["name","neighbourhood","neighbourhood_group",
-                      "latitude","longitude","room_type",
-                      "price","minimum_nights","number_of_reviews",
-                      "last_review","reviews_per_month",
-                      "calculated_host_listings_count","availability_365"]
-
-
-descriptions = client.query\
-           .get("Listing", generate_properties)\
-           .with_generate(single_prompt=generatePrompt)\
-           .with_additional(["id"])\
-           .with_limit(5)\
-           .do()["data"]["Get"]["Listing"]
-
-for description in descriptions:
- new_property = {
-     "description": description["_additional"]["generate"]["singleResult"]
- }
- id = description["_additional"]["id"]
- client.data_object.update(
-     new_property,
-     class_name = "Listing",
-     uuid=id
- )
-```
-
-Now let’s test a semantic search through the Listings, each vectorized with the respective LLM-generated `description`:
-```python
-client.query.get("Listing", "description").with_near_text({
-   "concepts": ["AirBnB near a place to walk my dog"]
-}).do()
-```
-
-### Query Example: “AirBnB near a place to walk my dog”
-
-
-### Generate New Data Objects
-In the previous example we’ve enhanced existing data objects by adding a `description` property. But we can now even create complete new data objects (e.g., Ads for specific target audiences) based on the new objects.
-
-### Generic Ads
-
-```python
-generatePrompt = """
-Please write an engaging advertisement for the following AirBnb Listing:
-Description: {description}
-"""
-
-
-ads = client.query\
-           .get("Listing", ["description", "room_type", "neighbourhood"])\
-           .with_generate(single_prompt=generatePrompt)\
-           .with_additional(["id"])\
-           .with_limit(5)\
-           .do()["data"]["Get"]["Listing"]
-
-for ad in ads:
- new_ad_properties = {
-     "content": ad["_additional"]["generate"]["singleResult"]
- }
- new_ad_id = get_valid_uuid(uuid4())
- client.data_object.create(
-     data_object = new_ad_properties,
-     class_name = "Ad",
-     uuid = new_ad_id
- )
- client.data_object.reference.add(
-     from_uuid = ad["_additional"]["id"],
-     from_property_name = "hasAd",
-     to_uuid = new_ad_id
- )
-```
-ADD table
-
-### Targeted Ads
-Please write the ad to target {target}.
-
-What we are going to do is create 3 Ads per listing:
-
-1. For young couples
-2. For elderly couples
-3. For single travelers
-
-We will add the target as a property to the `Ad` class, like this:
-
-```python
-target_property = {
-   "dataType": [
-       "text"
-   ],
-   "name": "target",
-   "description": "High-level audience target for this ad."
-}
-
-
-client.schema.property.create("Ad", target_property)
-```
 Now let’s see the variance in the resulting ads based on their respective target:
 
 ADD TABLE
