@@ -37,7 +37,7 @@ You have three options to select your desired model:
 #### Example Docker-compose file
 Note: you can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
 
-You can find an example Docker-compose file below, which will spin up Weaviate with the transformers module. In this example, we have selected the `sentence-transformers/msmarco-distilroberta-base-v2` which works great for [asymmetric semantic search](https://sbert.net/examples/applications/semantic-search/README.html#symmetric-vs-asymmetric-semantic-search). See below for how to select an alternative model.
+You can find an example Docker-compose file below, which will spin up Weaviate with the transformers module. In this example, we have selected the `sentence-transformers/multi-qa-MiniLM-L6-cos-v1` which works great for [asymmetric semantic search](https://sbert.net/examples/applications/semantic-search/README.html#symmetric-vs-asymmetric-semantic-search). See below for how to select an alternative model.
 
 ```yaml
 version: '3.4'
@@ -56,7 +56,7 @@ services:
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
       CLUSTER_HOSTNAME: 'node1'
   t2v-transformers:
-    image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
+    image: semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
     environment:
       ENABLE_CUDA: 0 # set to 1 to enable
 ```
@@ -77,7 +77,7 @@ This setting is now a requirement, if you plan on using any module. So, when usi
 Choose [any of our pre-built transformers models](#pre-built-images) (for building your own model container, see below) and spin it up - for example using:
 
 ```
-docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
+docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
 ```
 
 :::tip

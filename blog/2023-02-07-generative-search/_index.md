@@ -131,10 +131,10 @@ The module adds a `generate { }` parameter to the `_additional { }` property und
 
 The `generate { }` parameter has the following arguments:
 
-| Field | Data Type |  Description
+| Field | Data Type | Description |
 | --- | --- | --- |
-| `singleResult {prompt}` | string | The generative model makes a generation for each individual search result.
-| `groupedResult {task}` | string | The generative model receives all search results as input.
+| `singleResult {prompt}` | string | The generative model makes a generation for each individual search result. |
+| `groupedResult {task}` | string | The generative model receives all search results as input. |
 
 Here is an example of a GraphQL query using the `singleResult{ prompt }`. From the `PodClip` class, we want the generative model to answer the question "What is Ref2Vec?" based on the content.
 
@@ -212,7 +212,7 @@ A few other examples include simply adding `Let’s think step-by-step`, or deco
 
 Prompting is an extremely new area of LLMs and search. As a general prescription, it is recommended to be as descriptive as possible with what you want the LLM to do, as well as to have an iterative mindset of tuning the prompt.
 
-## Stay connected
-Thank you so much for reading! If you would like to talk to us more about this topic, please connect with us on [Slack](https://weaviate.io/slack) or [Twitter](https://twitter.com/weaviate_io).
 
-Weaviate is open-source, and you can follow the project on [GitHub](https://github.com/semi-technologies/weaviate). Don’t forget to give us a ⭐️ while you are there!
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />

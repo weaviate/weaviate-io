@@ -14,11 +14,11 @@ Embedded Weaviate is still in the **Experimental** phase.
 Some of the APIs and parameters might change over time, as we work towards a perfect implementation.
 :::
 
-### How is this possible?
+### How does it work?
 
 With every Weaviate [release](https://github.com/weaviate/weaviate/releases) we also publish executable Linux binaries ([see assets](https://github.com/weaviate/weaviate/releases)).
 
-This allows launching the Weaviate database server from the client instantiation call, which makes the "installation" step transparent in the background:
+This allows launching the Weaviate database server from the client instantiation call, which makes the "installation" step invisible by pushing it to the background:
 
 import EmbeddedInstantiation from '/_includes/code/embedded.instantiate.mdx';
 
@@ -26,13 +26,13 @@ import EmbeddedInstantiation from '/_includes/code/embedded.instantiate.mdx';
 
 ## Embedded options
 
-The Weaviate server spwaned from the client can be configured via parameters passed at instantiation time, and via environment variables. All parameters are optional.
+The Weaviate server spawned from the client can be configured via parameters passed at instantiation time, and via environment variables. All parameters are optional.
 
 | Parameter | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| persistence_data_path | string | Directory where the files making up the database are stored | When the `XDG_DATA_HOME` env variable is set, the default value is:<br/>`XDG_DATA_HOME/weaviate/`<br/><br/>Otherwise it is:<br/>`~/.local/share/weaviate` |
-| binary_path | string | Where the binary is downloaded to. If deleted, the client will download the binary again. | When the `XDG_CACHE_HOME` env variable is set, the default value is:<br/>`XDG_CACHE_HOME/weaviate-embedded/`<br/><br/>Otherwise it is:<br/>`~/.cache/weaviate-embedded` |
-| version | string | Full URL pointing to a Linux AMD64 or ARM64 binary | The default value is set to a recent AMD64 Weaviate binary. |
+| persistence_data_path | string | Directory where the files making up the database are stored. | When the `XDG_DATA_HOME` env variable is set, the default value is:<br/>`XDG_DATA_HOME/weaviate/`<br/><br/>Otherwise it is:<br/>`~/.local/share/weaviate` |
+| binary_path | string | Directory where to download the binary. If deleted, the client will download the binary again. | When the `XDG_CACHE_HOME` env variable is set, the default value is:<br/>`XDG_CACHE_HOME/weaviate-embedded/`<br/><br/>Otherwise it is:<br/>`~/.cache/weaviate-embedded` |
+| version | string | Version takes two types of input:<br/>- **version number** - for example `"1.18.3"` or `"latest"`<br/>- **full URL** pointing to a Linux AMD64 or ARM64 binary | Latest stable version |
 | port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 6666 |
 | hostname | string | Hostname/IP to bind to. | 127.0.0.1 |
 | additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. |
@@ -41,7 +41,7 @@ The Weaviate server spwaned from the client can be configured via parameters pas
 It is **not recommended** to modify the `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables from the standard **XDG Base Directory** values, as that might affect many other (non-Weaviate related) applications and services running on the same server.
 :::
 
-:::tip Providing the Weaviate version
+:::tip Providing the Weaviate version as a URL
 To find the **full URL** for `version`:
 * head to [Weaviate releases](https://github.com/weaviate/weaviate/releases),
 * find the **Assets** section for the required Weaviate version
@@ -49,6 +49,45 @@ To find the **full URL** for `version`:
 
 For example, here is the URL of the Weaviate `1.18.2` `AMD64` binary: `https://github.com/weaviate/weaviate/releases/download/v1.18.2/weaviate-v1.18.2-linux-amd64.tar.gz`.
 :::
+
+### Default modules
+
+The following modules are enabled by default:
+- `generative-openai`
+- `qna-openai`
+- `ref2vec-centroid`
+- `text2vec-cohere`
+- `text2vec-huggingface`
+- `text2vec-openai`
+
+Additional modules can be enabled by setting additional environment variables as [laid out above](#embedded-options). For instance, to add a module called `backup-s3` to the set, you would pass it at instantiation as follows:
+
+Python:
+```python
+import weaviate
+from weaviate.embedded import EmbeddedOptions
+
+client = weaviate.Client(
+    embedded_options=EmbeddedOptions(
+        additional_env_vars={
+        "ENABLE_MODULES":
+        "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai"}
+    )
+)
+```
+
+TypeScript:
+```ts
+import weaviate, { EmbeddedClient, EmbeddedOptions } from 'weaviate-ts-embedded';
+
+const client: EmbeddedClient = weaviate.client(
+  new EmbeddedOptions({
+    env: {
+      ENABLE_MODULES: "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai",
+    },
+  })
+);
+```
 
 ## Starting Embedded Weaviate under the hood
 
@@ -80,16 +119,25 @@ Embedded Weaviate is currently supported on Linux only.
 
 We are actively working to provide support for MacOS. We hope to share an update in the near future.
 
-### Language Clients
+## Language Clients
 
-Embedded Weaviate is supported in the following language clients:
+### Python
 
-* [Python client](../client-libraries/python.md) – `v3.15.4` or newer
-* [TypeScript client](https://github.com/weaviate/typescript-client) – `v1` or newer
+The [Python client](../client-libraries/python.md) – `v3.15.4` or newer
 
-:::caution TypeScript client – under construction
-The TypeScript client is in **Beta**.
-:::
+### TypeScript
+
+Due to use of server-side dependencies which are not available in the browser platform, the embedded TypeScript client has been split out into its own project. Therefore the original non-embedded TypeScript client can remain isomorphic.
+
+The TypeScript embedded client simply extends the original TypeScript client, so once instantiated it can be used exactly the same way to interact with Weaviate. It can be installed with the following command:
+
+```
+npm install weaviate-ts-embedded
+```
+
+GitHub repositories:
+* [TypeScript embedded client](https://github.com/weaviate/typescript-embedded)
+* [Original TypeScript client](https://github.com/weaviate/typescript-client)
 
 ## More Resources
 

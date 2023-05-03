@@ -65,7 +65,7 @@ import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_componen
 
 <ClientAuthOIDCIntro />
 
-#### Resource Owner Password Flow
+#### <i class="fa-solid fa-key"></i> Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
@@ -84,7 +84,7 @@ const client = weaviate.client({
 });
 ```
 
-#### Client Credentials flow
+#### <i class="fa-solid fa-key"></i> Client Credentials flow
 
 import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
@@ -101,7 +101,7 @@ const client = weaviate.client({
 });
 ```
 
-#### Refresh Token flow
+#### <i class="fa-solid fa-key"></i> Refresh Token flow
 
 import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 

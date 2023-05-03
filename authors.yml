@@ -53,6 +53,11 @@ laura:
   title: Developer Advocate
   url: https://github.com/laura-ham
   image_url: /img/people/icon/laura.jpg
+pete:
+  name: Peter Schramm
+  title: WCS Tech Lead
+  url: https://github.com/glockenbeat
+  image_url: /img/people/icon/pete.jpg
 sebastian:
   name: Sebastian Witalec
   title: Head of DevRel
@@ -78,3 +83,8 @@ john:
   title: Solution Engineer
   url: https://github.com/trengrj
   image_url: /img/people/icon/john.png
+shukri:
+  name: Mohd Shukri Hasan
+  title: Community Solution Engineer
+  url: https://github.com/hsm207
+  image_url: /img/people/icon/shukri.jpeg

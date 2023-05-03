@@ -8,7 +8,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## Q: Why would I use Weaviate as my vector database?
+## General
+
+#### Q: Why would I use Weaviate as my vector database?
 
 A: Our goal is three-folded. Firstly, we want to make it as easy as possible for others to create their own semantic systems or vector search engines (hence, our APIs are GraphQL based). Secondly, we have a strong focus on the semantic element (the "knowledge" in "vector databases," if you will). Our ultimate goal is to have Weaviate help you manage, index, and "understand" your data so that you can build newer, better, and faster applications. And thirdly, we want you to be able to run it everywhere. This is the reason why Weaviate comes containerized.
 
@@ -210,6 +212,10 @@ A: It's a 2-step process:
 
 For more information on the technical implementations, see [this video](https://www.youtube.com/watch?v=6hdEJdHWXRE).
 
+#### What is the maximum number of vector dimensions for embeddings?
+
+As the embedding is currently stored using `uint16`, the maximum possible length is currently 65535.
+
 ## Performance
 
 #### Q: What would you say is more important for query speed in Weaviate: More CPU power, or more RAM?
@@ -329,4 +335,8 @@ Look at the:
 1. [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
 1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
 1. For issues: [GitHub](https://github.com/weaviate/weaviate/issues). Or,
-1. Ask your question in the Slack channel: [Slack](https://weaviate.io/slack).
+1. Ask your question in the [Slack channel](https://weaviate.io/slack).
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

@@ -1,6 +1,6 @@
 ---
 title: Weaviate, end-to-end
-sidebar_position: 2
+sidebar_position: 50
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['basics']
 ---
@@ -36,12 +36,42 @@ At this point, you should:
 
 We will be working with [this dataset](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json), which will be loaded directly from the remote URL.
 
-import WCSClientInstantiation from '/_includes/code/wcs.client.instantiation.mdx';
+import WCSWithoutAuthentication from '/_includes/code/wcs.without.authentication.mdx';
+import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
+import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
 
 :::tip Connecting to Weaviate
-Before going further, please make sure that you can connect to your Weaviate instance, e.g. with the Weaviate client. If you do *not* have authentication enabled you should be able to run the below to retrieve your schema.
+Before going further, please make sure that you can connect to your Weaviate instance, e.g. with the Weaviate client.
 
-<WCSClientInstantiation/>
+<br/>
+<details>
+  <summary><b>Without authentication enabled</b></summary>
+
+<WCSWithoutAuthentication/>
+
+</details>
+
+If you do have authentication enabled, you can log in with an API key (recommended), or with OIDC.
+
+<br/>
+<details>
+  <summary>With <b>API key authentication</b> (Recommended)</summary>
+
+<WCSAuthenticationApiKey/>
+
+</details>
+
+<details>
+  <summary>With <b>OIDC authentication</b> (WCS username & password)</summary>
+
+<WCSAuthenticationUserPass/>
+
+</details>
+
+Going forward, the examples will assume that
+
+- Authentication is enabled, and
+- The API key authentication method is used.
 :::
 
 ## Import data
@@ -122,7 +152,7 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <hr />
 
-### Provide the API key
+### Provide the inference API key
 
 import ProvideOpenAIAPIKey from '/_includes/provide-openai-api-key-headers.mdx'
 

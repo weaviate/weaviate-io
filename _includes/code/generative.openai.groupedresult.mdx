@@ -68,7 +68,7 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-client');
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -84,13 +84,12 @@ const generateTask = 'Explain why these magazines or newspapers are about financ
 client.graphql
   .get()
   .withClassName('Article')
-  .withFields(
-    'name ' +
-    // highlight-next-line
-    `_additional {generate(groupedResult:{ task: ${generateTask} }) { groupedResult }}`
-  )
+  .withFields('name')
   .withNearText({
     concepts: ['magazine or newspaper about finance']
+  })
+  .withGenerate({
+    groupedTask: generateTask,
   })
   .withLimit(5)
   .do()
@@ -98,6 +97,43 @@ client.graphql
     console.log(res)
   })
   .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},
+});
+
+// highlight-start
+// instruction for the generative module
+const generateTask = 'Explain why these magazines or newspapers are about finance';
+// highlight-end
+
+client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('name')
+  .withNearText({
+    concepts: ['magazine or newspaper about finance']
+  })
+  .withGenerate({
+    groupedTask: generateTask,
+  })
+  .withLimit(5)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
     console.error(err)
   });
 ```

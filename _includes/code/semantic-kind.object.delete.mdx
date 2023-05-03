@@ -11,7 +11,7 @@ client = weaviate.Client("http://localhost:8080")
 
 client.data_object.delete(
   "36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
-  class_name="MyClass"
+  class_name="MyClass",
   consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 ```

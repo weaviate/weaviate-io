@@ -1,7 +1,7 @@
 ---
 title: Research Insights – Learning to Retrieve Passages without Supervision
 slug: research-insights-spider
-authors: [connor] 
+authors: [connor]
 date: 2022-08-30
 tags: []
 image: ./img/hero.jpg
@@ -33,7 +33,7 @@ In order to answer queries based on data from Wikipedia, we take every sentence,
 * a dataset (such as paragraphs from Wikipedia),
 * and an optimization task.
 
-Here we can use Contrastive Learning, which is a strong optimization task. Contrastive Learning uses a combination of positive (semantically similar – we want these to match) and negative (semantically dissimilar – we don't want these to match) samples from a given anchor/query point.  
+Here we can use Contrastive Learning, which is a strong optimization task. Contrastive Learning uses a combination of positive (semantically similar – we want these to match) and negative (semantically dissimilar – we don't want these to match) samples from a given anchor/query point.
 
 The image below illustrates the concept of Contrastive Learning. We want to align representations of Meerkat images by contrasting them with sampled negatives. If we choose negatives that are too easy (like comparing Meerkats with a New York City photograph), the model won't learn a whole lot about semantics. However, if we choose a better negative (like a Golden Retriever), the model has to capture more semantics about the visual features of Meerkats.
 
@@ -51,7 +51,7 @@ Some quick terms before diving in:
 * Document - A collection of Passages such as a Wikipedia article, blog post, or scientific paper, to give a few examples.
 * Passage - 100 word chunks extracted from a Document.
 * Span - A snippet of words such as "Deep Learning" or "biological brain of most living organisms".
-* Recurring Span - A piece of text (ignoring punctuation, etc) that appears in more than one Passage. 
+* Recurring Span - A piece of text (ignoring punctuation, etc) that appears in more than one Passage.
 
 ## What’s New - Span-based Unsupervised Dense Retriever (SPIDER)
 
@@ -99,7 +99,7 @@ It was a fun exercise seeing which spans re-appeared in the "Deep Learning" wiki
 Feel free to open my [Google Colab notebook](https://colab.research.google.com/github/CShorten/Small-Weaviate-Examples/blob/main/Recurring-Spans.ipynb), and replace the `Raw_Document` text with the text of your document of choice! It will be interesting to see what you get.
 
 ## SPIDER – deeper dive
-The notion of passages is a clever Self-Supervised Learning trick that uses the structure inherent in documents such as Wikipedia articles. A passage is the abstraction of atomic units, i.e. sentences, paragraphs, or some arbitrary sequence length. Passages are sourced from documents such as the Wikipedia article "Oxygen". Thus positive pairs are passages that share an overlapping n-gram and negative pairs are passages that do not. 
+The notion of passages is a clever Self-Supervised Learning trick that uses the structure inherent in documents such as Wikipedia articles. A passage is the abstraction of atomic units, i.e. sentences, paragraphs, or some arbitrary sequence length. Passages are sourced from documents such as the Wikipedia article "Oxygen". Thus positive pairs are passages that share an overlapping n-gram and negative pairs are passages that do not.
 
 This has an auto-labeling benefit since the negative pair is likely to be semantically similar to the query point, rather than learning the function of entailment which distinguishes positives and negatives. Similar to the image above, which either compares a Meerkat with a New York City photograph or a Golden Retriever, we want to find better negatives for text retrieval. We will get better representations if the model learns to contrast particular sections of the "Oxygen" article, rather than something describing the basketball career of LeBron James.
 
@@ -111,14 +111,14 @@ Once positive pairs are sampled based on Recurring Spans, a **Query Transformati
 
 The authors experimentally ablate the effectiveness of applying this query transformation, the impact of sampling a negative as well as a positive (i.e. using positives from other documents as negatives for the current query point), as well as the impact of batch size and training time on performance.
 
-The image below demonstrates two examples with the matching Recurring Spans **"the priesthood for himself and his male descendants"** and **"Yoko Ono"**. The first anchor point keeps the Recurring Span in the positive. The second anchor deletes the phrase **"Yoko Ono"**. 
+The image below demonstrates two examples with the matching Recurring Spans **"the priesthood for himself and his male descendants"** and **"Yoko Ono"**. The first anchor point keeps the Recurring Span in the positive. The second anchor deletes the phrase **"Yoko Ono"**.
 
 ![Construction of positive and negative samples](./img/positive-negative-samples.jpg)
 *Image source: Learning to Retrieve Passages without Supervision, Ram et al. 2022.*
 
 ## Experimental Evaluation
 
-The authors experimentally present the effectiveness of Spider with the use of ODQA (Open-Domain Question Answering) datasets. ODQA datasets consist of labeled (question, answer, context) tuples. For example ("What is the atomic number of oxygen?", "8", "Oxygen is the chemical element with the symbol O and atomic number 8."). Retrieval models are evaluated based on whether they can retrieve this context given the question as input and a large collection of contexts represented as vectors. This is reported with the top-k retrieval accuracy, the percentage of questions for which the answer span is found in the top-k passages most similar to the query. 
+The authors experimentally present the effectiveness of Spider with the use of ODQA (Open-Domain Question Answering) datasets. ODQA datasets consist of labeled (question, answer, context) tuples. For example ("What is the atomic number of oxygen?", "8", "Oxygen is the chemical element with the symbol O and atomic number 8."). Retrieval models are evaluated based on whether they can retrieve this context given the question as input and a large collection of contexts represented as vectors. This is reported with the top-k retrieval accuracy, the percentage of questions for which the answer span is found in the top-k passages most similar to the query.
 
 The Spider retrieval models are 110 million parameter BERT-base transformers, using an uncased WordPiece tokenizer. The vector representations of passages are extracted by indexing the [CLS] token, a common indexing technique describing extraction from the leftmost vector in BERT’s output matrix. Spider is trained on a Wikipedia dump from Dec. 20th, 2018 with passages of 100 words as retrieval units, totalling 21 million passages after preprocessing. Spider is trained for 200,000 steps using a batch size of 1024. This takes 2 days on 8 80GB A100 GPUs. The authors additionally explore fine-tuning Spider with Supervised Learning using 8 Quadro RTX 8000 GPUs.
 
@@ -177,3 +177,8 @@ Advances such as Spider can be added to the Weaviate vector database by creating
 ## Conclusion
 
 In conclusion, methods like Spider give Weaviate users the ability to have a customized retriever without needing to label data. Performance can be improved by labeling data, but the amount needed is greatly reduced. For the development of Weaviate, we are on the hunt for new techniques in retrieval models like this to understand advances in Search technology. We hope this article inspired your interest in Self-Supervised retrieval and emerging technologies around this!
+
+
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />

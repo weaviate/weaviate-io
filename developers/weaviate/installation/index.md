@@ -19,11 +19,12 @@ This section shows you available options for running Weaviate, and how to instal
 
 ## How to run Weaviate
 
-You have three options for running Weaviate.
+You have multiple options for running Weaviate.
 
 * [Weaviate Cloud Services](../../wcs/quickstart.mdx) – a managed Weaviate service; suitable for development and production.
 * [Docker Compose](./docker-compose.md) – typically for development.
 * [Kubernetes](./kubernetes.md) – typically for production setups.
+* [Embedded Weaviate](./embedded.md) - in-line instantiation from a client (experimental).
 
 :::tip Weaviate Cloud Services docs have a new home
 [Check it out here](../../wcs/index.mdx). Or go straight to the [WCS quickstart guide](../../wcs/quickstart.mdx) which covers installation.
@@ -73,7 +74,7 @@ services:
       EXTENSIONS_STORAGE_ORIGIN: http://weaviate:8080
       NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE: 5
       ENABLE_COMPOUND_SPLITTING: 'false'
-    image: semitechnologies/contextionary:en0.16.0-v1.0.2
+    image: semitechnologies/contextionary:en0.16.0-v1.2.1
 ```
 
 After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`.

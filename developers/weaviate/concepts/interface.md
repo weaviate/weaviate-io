@@ -137,7 +137,7 @@ The [Weaviate Console](https://console.weaviate.cloud) is a dashboard to manage 
 
 ## Weaviate Clients and CLI
 
-Weaviate has several client libraries: in [Go](/developers/weaviate/client-libraries/go.md), [Java](/developers/weaviate/client-libraries/java.md), [Python](/developers/weaviate/client-libraries/python.md) and [JavaScript](/developers/weaviate/client-libraries/javascript.md). The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. The APIs are intuitive to use, so it is easy to integrate Weaviate into your existing data landscape.
+Weaviate has several client libraries: in [Go](/developers/weaviate/client-libraries/go.md), [Java](/developers/weaviate/client-libraries/java.md), [Python](/developers/weaviate/client-libraries/python.md) and [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx). The client libraries in all languages support all API functions. Some clients, e.g. the Python client, have additional functionality, such as full schema management and batching operations. This way, Weaviate is easy to use in custom projects. The APIs are intuitive to use, so it is easy to integrate Weaviate into your existing data landscape.
 
 Weaviate also has a [Command Line Interface](/developers/weaviate/client-libraries/cli.md), enabling basic management from the command line to your Weaviate instances.
 

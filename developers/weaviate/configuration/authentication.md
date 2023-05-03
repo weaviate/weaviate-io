@@ -10,6 +10,10 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
+:::info Using Kubernetes?
+See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
+:::
+
 Weaviate offers an optional authentication scheme using API keys and OpenID Connect (OIDC), which can enable various [authorizations](authorization.md) levels.
 
 When authentication is disabled, all anonymous requests will be granted access.
@@ -58,6 +62,12 @@ With this configuration, the following API key-based authentication rules apply:
 
 The API key `jane-secret-key` is associated with the `jane@doe.com` identity.
 The API key `ian-secret-key` is associated with the `ian-smith` identity.
+
+:::info `n` APIKEY_ALLOWED_KEYS vs `n` APIKEY_USERS
+There are two options for configuring the number of keys and users:
+- Option 1: There is exactly one user specified and any number of keys (all keys will end up using the same user).
+- Option 2: The lengths match, then key `n` will map to user `n`.
+:::
 
 These users' permissions will be determined by the [authorization](./authorization.md) settings. Below is one such example configuration.
 
@@ -245,7 +255,7 @@ For cases or workflows where you may wish to manually obtain a token, we outline
     - Where `[USERNAME]` and `[PASSWORD]` are replaced with the actual values for each.
 1. Parse the response (`token_resp`), and look for `access_token` in `token_resp`. This is your Bearer token.
 
-##### Hybrid flow
+#### Hybrid flow
 
 1. Send a GET request to `[WEAVIATE_URL]/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`)
 2. Parse the `clientId` and `href` from `wv_oidc_config`
@@ -340,7 +350,7 @@ For example, you can use a CURL command as shown below:
 $ curl http://localhost:8080/v1/objects -H "Authorization: Bearer {Bearer}"
 ```
 
-If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#authentication), [JavaScript](../client-libraries/javascript.md#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
+If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#authentication), [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
 
 ## Anonymous access
 By default, Weaviate is configured to accept requests without any

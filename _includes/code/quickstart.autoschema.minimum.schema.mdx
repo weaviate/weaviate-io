@@ -18,8 +18,8 @@ client.schema.create_class(class_obj)
 
 ```js
 let classObj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
+  'class': 'Question',
+  'vectorizer': 'text2vec-openai'  // Or 'text2vec-cohere' or 'text2vec-huggingface'
 }
 
 // add the schema
@@ -41,8 +41,8 @@ client
 
 ```ts
 let classObj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"  // Or "text2vec-cohere" or "text2vec-huggingface"
+  'class': 'Question',
+  'vectorizer': 'text2vec-openai'  // Or 'text2vec-cohere' or 'text2vec-huggingface'
 }
 
 // add the schema
@@ -51,53 +51,31 @@ client
   .classCreator()
   .withClass(classObj)
   .do()
-  .then(res => {
+  .then((res: any) => {
     console.log(res)
   })
-  .catch(err => {
+  .catch((err: Error) => {
     console.error(err)
   });
 ```
 
 </TabItem>
-{/* <TabItem value="go" label="Go">
+<TabItem value="go" label="Go">
 
 ```go
-package main
+classObj := &models.Class{
+    Class:      "Question",
+    Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
+}
 
-import (
-	"context"
-	"fmt"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate/entities/models"
-
-)
-
-func main() {
-    cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",
-        Scheme: "https",
-    }
-
-    client, err := weaviate.NewClient(cfg)
-    if err != nil {
-        panic(err)
-    }
-
-    classObj := &models.Class{
-        Class:      "Question",
-        Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
-    }
-
-    // add the schema
-    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-    if err != nil {
-        panic(err)
-    }
+// add the schema
+err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+if err != nil {
+    panic(err)
 }
 ```
 
-</TabItem> */}
+</TabItem>
 {/* <TabItem value="java" label="Java">
 
 ```java

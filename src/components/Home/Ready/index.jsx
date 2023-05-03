@@ -9,9 +9,9 @@ export default function HomepageReady() {
       <h2 className={styles.title}>Ready to get started?</h2>
       <div className={styles.links}>
         <p>
-          Install{' '}
-          <Link to="/developers/weaviate/quickstart/installation">
-            Weaviate open source {'>'}{' '}
+          Follow the {' '}
+          <Link to="/developers/weaviate/quickstart">
+            Quickstart tutorial {'>'}{' '}
           </Link>
         </p>
         <p>
