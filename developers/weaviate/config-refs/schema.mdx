@@ -27,9 +27,9 @@ It has the following characteristics:
 
 * When the module is present, the schema can still be created manually.
 * When a previously seen class is imported, which contains a property that Weaviate has not seen yet, the module alters the schema before importing the object. See section "DataTypes" below for details on how a property should be created.
-* When a previously seen class is imported, which contains a property which conflicts with the current schema type, an error is thrown. (e.g. trying to import a `string` into a field that exists in the schema as `int`).
+* When a previously seen class is imported, which contains a property which conflicts with the current schema type, an error is thrown. (e.g. trying to import a `text` into a field that exists in the schema as `int`).
 * When a previously unseen class is imported, the class is created alongside all the properties.
-* Weaviate also automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`.
+* Weaviate also automatically recognizes array datatypes, such as `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`.
 
 
 ### Class
