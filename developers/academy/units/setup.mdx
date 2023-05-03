@@ -102,7 +102,7 @@ You will need to instantiate the client as shown in the previous section. So, th
 import weaviate
 
 client = weaviate.Client(
-    url="https://edu.weaviate.network",
+    url="https://edu-demo.weaviate.network",
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="learn-weaviate"),  # A read-only API Key for the Weaviate instance
     additional_headers={
         "X-OpenAI-Api-Key": "<OPENAI-KEY>",  # Replace this with YOUR OpenAI API key
