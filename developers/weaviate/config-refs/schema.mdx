@@ -194,6 +194,24 @@ The meaning of the individual fields in detail:
   target (virtual - and therefore physical) shard. `"murmur3"` creates a 64bit
   hash making hash collisions very unlikely.
 
+### replicationConfig
+
+Replication configurations can be set using the schema, through the `replicationConfig` parameter.
+
+The `factor` parameter sets how many copies of this class will be stored.
+
+```json
+{
+  "class": "Article",
+  "vectorizer": "text2vec-openai",
+  // highlight-start
+  "replicationConfig": {
+    "factor": 3,
+  },
+  // highlight-end
+}
+```
+
 ### invertedIndexConfig > stopwords (stopword lists)
 
 :::note
@@ -330,7 +348,28 @@ An example of a complete property object:
 
 ### Property tokenization
 
-You can customize how `text` data is tokenized and indexed in the inverted index.
+You can customize how `text` data is tokenized and indexed in the inverted index. For example:
+
+```json
+{
+  "classes": [
+    {
+      "class": "Question",
+      "properties": [
+        {
+          "dataType": ["text"],
+          "name": "question",
+          // highlight-start
+          "tokenization": "word"
+          // highlight-end
+        },
+      ],
+      ...
+      "vectorizer": "text2vec-openai"
+    }
+  ]
+}
+```
 
 :::note
 This feature was introduced in `v1.12.0`. This applies to the BM25/hybrid searching and filtering.

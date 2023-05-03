@@ -29,8 +29,9 @@ Creating a schema manually is not mandatory. If a data object is inserted into W
 
 A class describes a collection of data objects. They can be defined as a part of the schema, such as shown in the examples below.
 
-:::info For a full list of parameters
-See the `schema` REST endpoint [API reference page](../api/rest/schema.md#create-a-class) for a full list of available parameters.
+:::info References
+- See the `schema` REST endpoint [API references page](../api/rest/schema.md#create-a-class) for detailed information on the endpoint usage, and
+- See the [Schema configuration references page](../config-refs/schema.mdx) for explanation of each parameter.
 :::
 
 ### Minimal example
@@ -49,7 +50,9 @@ import CodeSchemaCreateProperty from '/_includes/code/schema.class.create.proper
 
 <CodeSchemaCreateProperty />
 
-In addition to the property name, you can figure parameters such as the data type, inverted index configuration and more.
+In addition to the property name, you can figure parameters such as the data type, inverted index tokenization and more.
+
+- [Property object configuration references](../config-refs/schema.mdx#property-object)
 
 ### Specify a vectorizer
 
@@ -58,6 +61,8 @@ Each class's vectorizer setting can be adjusted through the schema. The followin
 import CodeSchemaCreateVectorizer from '/_includes/code/schema.class.create.vectorizer.mdx';
 
 <CodeSchemaCreateVectorizer />
+
+- [Vectorizer configuration references](../config-refs/schema.mdx#vectorizer)
 
 ### Class-level module settings
 
@@ -69,6 +74,8 @@ import CodeSchemaCreateVectorizerClass from '/_includes/code/schema.class.create
 
 <CodeSchemaCreateVectorizerClass />
 
+The available parameters vary according to the module. See the [modules page](../modules/index.md) for more.
+
 ### Property-level module settings
 
 Modules' behaviors can be also set on a property level with the schema, with the `moduleConfig` parameter under each class property.
@@ -79,15 +86,28 @@ import CodeSchemaCreateVectorizerProperty from '/_includes/code/schema.class.cre
 
 <CodeSchemaCreateVectorizerProperty />
 
-### Index configurations
+The available parameters vary according to the module. See the [modules page](../modules/index.md) for more.
 
-Both of the inverted index and vector index configuration can be set using the schema.
+### Indexing, sharding and replication settings
 
-For example, the following snippet includes the `vectorIndexConfig` parameter to set the vector index parameters such as `efConstruction` and `maxConnections`, and `invertedIndexConfig` to set the inverted index parameters such as `stopwords`.
+Both of the inverted index and vector index configuration can be set using the schema, as well as sharding and replication settings.
 
-import CodeSchemaCreateIndexProps from '/_includes/code/schema.class.create.index.props.mdx';
+The `vectorIndexConfig` parameter sets vector index parameters such as `efConstruction` and `maxConnections`, and the `invertedIndexConfig` parameters sets the inverted index parameters such as `stopwords`.
 
-<CodeSchemaCreateIndexProps />
+Sharding configurations can be set through the `shardingConfig` parameter and replication configurations can be set through the `replicationConfig` parameter.
+
+- [Vector index configuration references](../config-refs/schema.mdx#vectorindexconfig)
+- [Inverted index configuration references](../config-refs/schema.mdx#invertedindexconfig--stopwords-stopword-lists)
+- [Sharding configuration references](../config-refs/schema.mdx#shardingconfig)
+- [Replication configuration references](../config-refs/schema.mdx#replicationconfig)
+
+## Delete a class
+
+## Update a class definition
+
+### Add a property
+
+### Remove a property
 
 ## More Resources
 
