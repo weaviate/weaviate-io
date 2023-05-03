@@ -23,7 +23,9 @@ The schema can contain one or more classes defining a collection of data objects
 
 ### Auto-schema
 
-Creating a schema manually is not mandatory. If a data object is inserted into Weaviate without sufficient corresponding class definition, the `auto-schema` feature will infer the missing definition based on the data object's properties and defaults ([read more](../config-refs/schema.mdx#auto-schema)).
+When a class definition is missing or inadequate for data import, the auto-schema feature can infer the missing definition by examining the data object's properties and applying default values ([learn more](../config-refs/schema.mdx#auto-schema)).
+
+However, you might find it preferable to define the schema manually. This is because the properties inferred by the auto-schema may not always align with your specific requirements.
 
 ## Create a class
 
@@ -103,11 +105,18 @@ Sharding configurations can be set through the `shardingConfig` parameter and re
 
 ## Delete a class
 
+import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
+
+<CautionSchemaDeleteClass />
+
 ## Update a class definition
 
 ### Add a property
 
-### Remove a property
+### Modify a property
+
+:::info
+:::
 
 ## More Resources
 
