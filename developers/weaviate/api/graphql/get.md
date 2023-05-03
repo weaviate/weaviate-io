@@ -58,9 +58,8 @@ The `groupBy{}` argument is structured as follows for the `Get{}` function:
       }
     ) {
       _additional {
-        id  # An identifier for the group in this search
         group {
-          id  # UUID of the group (if one exists)
+          id  # An identifier for the group in this search
           groupedBy  # Properties grouped by
           count  # Count of objects in this group
           maxDistance  # Maximum distance from the group to the query vector
