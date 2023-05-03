@@ -114,10 +114,11 @@ You will see that the class and property names are not indexed, but the article 
             "properties": [
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "title of the article",
-                    "indexInverted": true,
+                    "indexFilterable": true,
+                    "indexSearchable": true,
                     "moduleConfig": {
                         "text2vec-transformers": {
                             "skip": false,
@@ -129,10 +130,11 @@ You will see that the class and property names are not indexed, but the article 
                 },
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "url of the article",
-                    "indexInverted": false,
+                    "indexFilterable": true,
+                    "indexSearchable": true,
                     "moduleConfig": {
                         "text2vec-transformers": {
                             "skip": false,
@@ -147,7 +149,8 @@ You will see that the class and property names are not indexed, but the article 
                         "text"
                     ],
                     "description": "summary of the article",
-                    "indexInverted": true,
+                    "indexFilterable": true,
+                    "indexSearchable": true,
                     "moduleConfig": {
                         "text2vec-transformers": {
                             "skip": false,
