@@ -129,9 +129,40 @@ For example
 }
 ```
 
-:::note Schema note
+### Schema Configuration
+
 If you are using this module and are vectorizing the class or property name, the name(s) must be a part of the `text2vec-contextionary`.
-:::
+
+#### Class/property names
+
+Sometimes you might want to use multiple words to set as a class or property
+definition. For example, the year a person is born in, you might want to define
+with the two words: `born` and `in`. You can do this by capitalizing per word
+(CamelCase), for example, `bornIn`. When using the `text2vec-contextionary`
+module, the camel case words will be split up to try and derive its semantic
+meaning. Without this particular module there is no semantic meaning to
+camel-casing. Starting with `v1.7.2` you can also use underscores in properties
+names (`snake_case`), e.g. `has_articles`, `publication_date`, etc.
+
+For example:
+
+```yaml
+Publication
+  name
+  hasArticles
+Article
+  title
+  summary
+  wordCount
+  url
+  hasAuthors
+  inPublication        # CamelCase (all versions)
+  publication_date     # snake_case (from v1.7.2 on)
+Author
+  name
+  wroteArticles
+  writesFor
+```
 
 ## How to use
 

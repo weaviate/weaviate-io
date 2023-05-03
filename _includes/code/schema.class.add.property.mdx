@@ -1,0 +1,66 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+add_prop = {
+    "dataType": ["text"],
+    "name": "body"
+}
+
+client.schema.property.create("Article", add_prop)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const className = 'Article';
+const prop = {
+  'dataType': ['text'],
+  'name': 'body'
+};
+
+client
+  .schema
+  .propertyCreator()
+  .withClassName(className)
+  .withProperty(prop)
+  .do()
+  .then(res => {
+  console.log(res);
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+const className = 'Article';
+const prop = {
+  'dataType': ['text'],
+  'name': 'body'
+};
+
+// add the schema
+client
+  .schema
+  .propertyCreator()
+  .withClassName(className)
+  .withProperty(prop)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+</Tabs>

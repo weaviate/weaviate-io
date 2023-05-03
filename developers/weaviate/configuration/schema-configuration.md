@@ -17,9 +17,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-This page describes how to configure Weaviate's schema, which defines the structure of the data and corresponding indexes in Weaviate.
-
-The schema can contain one or more classes defining a collection of data objects.
+This page includes information on how to configure Weaviate's schema, which defines the structure of the data and corresponding indexes in Weaviate. For API-specific information, see the [`schema` REST API page](../api/rest/schema.md).
 
 ### Auto-schema
 
@@ -28,6 +26,10 @@ When a class definition is missing or inadequate for data import, the auto-schem
 However, you might find it preferable to define the schema manually. This is because the properties inferred by the auto-schema may not always align with your specific requirements.
 
 ## Create a class
+
+:::info Capitalization
+Class and property names are treated equally no matter how the first letter is cased, eg "Article" == "article"
+:::
 
 A class describes a collection of data objects. They can be defined as a part of the schema, such as shown in the examples below.
 
@@ -111,12 +113,25 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 ## Update a class definition
 
+Some parts of a class definition may be updated, while others are immutable.
+
+The following sections describe how to add a property in a class, or to modify parameters.
+
 ### Add a property
 
-### Modify a property
+A new property can be added to an existing class.
 
-:::info
+import CodeSchemaAddProperty from '/_includes/code/schema.class.add.property.mdx';
+
+<CodeSchemaAddProperty />
+
+:::info Property removal/change currently not possible
+Currently, a property cannot be removed from a class definition or renamed once it has been added. This is due to the high compute cost associated with reindexing the data in such scenarios.
 :::
+
+### Modify a parameter
+
+
 
 ## More Resources
 
