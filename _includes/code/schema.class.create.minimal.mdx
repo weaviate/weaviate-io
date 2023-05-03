@@ -1,0 +1,66 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+class_obj = {
+    # highlight-start
+    "class": "Article",
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+let classObj = {
+    // highlight-start
+    'class': 'Article',
+    // highlight-end
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+let classObj = {
+    // highlight-start
+    'class': 'Article',
+    // highlight-end
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+</Tabs>

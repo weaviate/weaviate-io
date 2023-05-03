@@ -25,6 +25,8 @@ This document lays out how Weaviate deals with data objects, including how they 
 
 ## Data object nomenclature
 
+Each data object in Weaviate always belongs to a Class, and has one or more Properties.
+
 Weaviate stores _data objects_ (represented as JSON-documents) in _class-based collections_, where each object can be represented by a machine learning _vector_ (i.e., an embedding).
 
 Each _class-based collection_ contains objects of the same _class_, which are defined by a common _schema_.

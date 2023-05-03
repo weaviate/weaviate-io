@@ -1,0 +1,99 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+class_obj = {
+    "class": "Article",
+    "vectorizer": "text2vec-openai",
+    # highlight-start
+    "vectorIndexConfig": {
+        "efConstruction": 128,
+        "maxConnections": 64
+    },
+    "invertedIndexConfig": {
+      "stopwords": {
+        "preset": "en",
+        "removals": ["a", "the"]
+      },
+    },
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+let classObj = {
+    'class': 'Article',
+    'vectorizer': 'text2vec-openai',
+    // highlight-start
+    'vectorIndexConfig': {
+        'efConstruction': 128,
+        'maxConnections': 64
+    },
+    'invertedIndexConfig': {
+      'stopwords': {
+        'preset': 'en',
+        'removals': ['a', 'the']
+      },
+    },
+    // highlight-end
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+let classObj = {
+    'class': 'Article',
+    'vectorizer': 'text2vec-openai',
+    // highlight-start
+    'vectorIndexConfig': {
+        'efConstruction': 128,
+        'maxConnections': 64
+    },
+    'invertedIndexConfig': {
+      'stopwords': {
+        'preset': 'en',
+        'removals': ['a', 'the']
+      },
+    },
+    // highlight-end
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+</Tabs>
