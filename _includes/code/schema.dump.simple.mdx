@@ -1,0 +1,44 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+client.schema.get()
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+client
+  .schema
+  .getter()
+  .do()
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+client
+  .schema
+  .getter()
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+</Tabs>

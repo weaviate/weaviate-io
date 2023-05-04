@@ -8,6 +8,8 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+# How to configure a schema
+
 ## Overview
 
 This page includes information on **how to configure** your schema in Weaviate. For other schema-related information, see related pages below.
@@ -129,6 +131,117 @@ You can modify some parameters of a schema as shown below. However, many paramet
 import CodeSchemaUpdateParameter from '/_includes/code/schema.class.update.parameter.mdx';
 
 <CodeSchemaUpdateParameter />
+
+## Review schema
+
+If you want to review the schema, you can retrieve it as shown below.
+
+import SchemaDumpSimple from '/_includes/code/schema.dump.simple.mdx';
+
+<SchemaDumpSimple />
+
+The response will be a JSON object, such as the example shown below.
+
+<details>
+  <summary>Sample schema</summary>
+
+```json
+{
+  "classes": [
+    {
+      "class": "Article",
+      "invertedIndexConfig": {
+        "bm25": {
+          "b": 0.75,
+          "k1": 1.2
+        },
+        "cleanupIntervalSeconds": 60,
+        "stopwords": {
+          "additions": null,
+          "preset": "en",
+          "removals": null
+        }
+      },
+      "moduleConfig": {
+        "text2vec-openai": {
+          "model": "ada",
+          "modelVersion": "002",
+          "type": "text",
+          "vectorizeClassName": true
+        }
+      },
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "moduleConfig": {
+            "text2vec-openai": {
+              "skip": false,
+              "vectorizePropertyName": false
+            }
+          },
+          "name": "title",
+          "tokenization": "word"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "moduleConfig": {
+            "text2vec-openai": {
+              "skip": false,
+              "vectorizePropertyName": false
+            }
+          },
+          "name": "body",
+          "tokenization": "word"
+        }
+      ],
+      "replicationConfig": {
+        "factor": 1
+      },
+      "shardingConfig": {
+        "virtualPerPhysical": 128,
+        "desiredCount": 1,
+        "actualCount": 1,
+        "desiredVirtualCount": 128,
+        "actualVirtualCount": 128,
+        "key": "_id",
+        "strategy": "hash",
+        "function": "murmur3"
+      },
+      "vectorIndexConfig": {
+        "skip": false,
+        "cleanupIntervalSeconds": 300,
+        "maxConnections": 64,
+        "efConstruction": 128,
+        "ef": -1,
+        "dynamicEfMin": 100,
+        "dynamicEfMax": 500,
+        "dynamicEfFactor": 8,
+        "vectorCacheMaxObjects": 1000000000000,
+        "flatSearchCutoff": 40000,
+        "distance": "cosine",
+        "pq": {
+          "enabled": false,
+          "bitCompression": false,
+          "segments": 0,
+          "centroids": 256,
+          "encoder": {
+            "type": "kmeans",
+            "distribution": "log-normal"
+          }
+        }
+      },
+      "vectorIndexType": "hnsw",
+      "vectorizer": "text2vec-openai"
+    }
+  ]
+}
+```
+
+</details>
 
 ## More Resources
 
