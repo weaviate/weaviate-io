@@ -15,8 +15,8 @@ We are happy to announce the release of Weaviate `1.19`, which brings a set of g
 
 If you like your content brief and to the point, here is the TL;DR of this release:
 
-1. [New (or improved) Data Types](#new-or-improved-data-types) – Datatypes changes with text having faster filtering & more tokenization options while deprecating string to reduce complexity, and adding uuid to allow efficient uuid storage.
 1. [Group by arbitrary property](#group-by-arbitrary-property) – The groupBy option has been introduced to Get object retrieval, so you can group search results by any property.
+1. [New (or improved) Data Types](#new-or-improved-data-types) – Datatypes changes with text having faster filtering & more tokenization options while deprecating string to reduce complexity, and adding uuid to allow efficient uuid storage.
 1. [Generative Cohere Module](#generative-cohere-module) – Combines the best of Weaviate, retrieving and searching relevant documents with the generative capabilities of the models that Cohere is cooking up!
 1. [Tunable Consistency for Vector Search and GraphQL Get Requests](#tunable-consistency-for-vector-search-and-graphql-get-requests) – Consistency tuning with replication is now available for vector search with Get requests.
 1. [gRPC API support(experimental)](#grpc-api-support-experimental) – gRPC API support slowly being trialled, with some big potential for speedups.
@@ -24,56 +24,6 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 
 Read below to learn more about each of these points in more detail.
 
-## New (or improved) Data Types
-
-![new or improved data types](./img/datatypes.png)
-
-We've made several enhancements to the way we handle data, including upgrades to the `text` property and the introduction of dedicated `uuid` data types.
-
-### Text / String changes
-We have upgraded the `text` property to offer more flexibility in tokenizing textual data for indexing. You can now choose from `word`, `whitespace`, `lowercase`, and `field` tokenization options. To simplify matters, we have deprecated the `string` data type.
-
-The available tokenization options for `text` are:
-
--   `word` (default): Keep alpha-numeric characters, lowercase them, and split by whitespace. _(Same as the current `text` behavior.)_
--   `whitespace`: Split the text on whitespace. _(Same as `word` on `string` right now.)_
--   `lowercase`: Lowercase the text and split on whitespace. _(New)_
--   `field`: Index the whole field after trimming whitespace characters. _(Same as the current `string` behavior.)_
-
-#### Faster filtering & index changes
-
-We have introduced a roaring bitmap index for `text` properties, which brings the fast filtering capabilities introduced in version `1.18` to text data. Internally, this is implemented using two separate (`filterable` & `searchable`) indexes, which replaces the existing index. You can configure the new `indexFilterable` and `indexSearchable` parameters to determine whether to create the roaring set index and the BM25-suitable Map index, respectively. (Both are enabled by default.)
-
-:::note What happens if indexFilterable is disabled?
-The searchable index works also as fallback for text filtering, so filtering is still possible even if indexFilterable will be disabled. The downside, in this scenario is that the performance benefits of using natively roaring set will not be available (so, the exclusive searchable index will work exactly as it works on pre v1.19, and used for both bm25 search and filtering).
-:::
-
-
-<details>
-  <summary>How will upgrades work?</summary>
-
-After upgrading a pre-`v1.19` Weaviate to `v1.19`, `indexFilterable` + `indexSearchable` will be set based on the value of `indexInverted`, meaning `true` -> `true`+`true`, `false` -> `false`+`false`, `null` -> `null`+`null`. (A `null` will use the default, which is to turn it on.)
-`indexFilterable` and `indexSearchable` are available for all types of data, although searchable is only relevant for `text`/`text[]`, and in other cases it will be simply ignored.
-
-Since filterable & searchable are separate indexes, filterable does not exist in Weaviate instances upgraded from pre-`v1.19` to `v1.19`. The missing `filterable` index can be created though on startup for all `text/text[]` properties if env variable INDEX_MISSING_TEXT_FILTERABLE_AT_STARTUP is set (to `true`).
-
-While building the `filterable` index, Weaviate will work in readonly mode (similarly to reindexing sets to roaring sets on pre-`v1.18` to `v1.18` migration).
-
-</details>
-
-#### Deprecation of `string`
-
-Existing `string` classes can be migrated according to the tokenization rules above during the first startup. If a user specifies `string` for a new class, it will be stored as `text` with `field` tokenization, and a deprecation warning will be shown.
-
-### Dedicated UUID Data Types
-
-We have introduced dedicated `uuid` and `uuid[]` data types, reducing the storage space required by more than half.
-
-`uuid` details:
-
--   Each `uuid` is a 128-bit (16-byte) number.
--   The filterable index uses roaring bitmaps.
--   Please note that it is currently not possible to aggregate or sort by `uuid` or `uuid[]` types.
 
 ## Group by arbitrary property
 
@@ -207,6 +157,57 @@ This functionality offers the advantage of maintaining granular search results b
 :::note Performance vs `path` complexity
 Keep in mind that specifying a `path` value that requires resolving a large number of objects may be computationally expensive. For instance, setting the `path` above to `["ofDocument", "Document", "title"]` would require resolving all documents and may take considerably longer.
 :::
+
+## New (or improved) Data Types
+
+![new or improved data types](./img/datatypes.png)
+
+We've made several enhancements to the way we handle data, including upgrades to the `text` property and the introduction of dedicated `uuid` data types.
+
+### Text / String changes
+We have upgraded the `text` property to offer more flexibility in tokenizing textual data for indexing. You can now choose from `word`, `whitespace`, `lowercase`, and `field` tokenization options. To simplify matters, we have deprecated the `string` data type.
+
+The available tokenization options for `text` are:
+
+-   `word` (default): Keep alpha-numeric characters, lowercase them, and split by whitespace. _(Same as the current `text` behavior.)_
+-   `whitespace`: Split the text on whitespace. _(Same as `word` on `string` right now.)_
+-   `lowercase`: Lowercase the text and split on whitespace. _(New)_
+-   `field`: Index the whole field after trimming whitespace characters. _(Same as the current `string` behavior.)_
+
+#### Faster filtering & index changes
+
+We have introduced a roaring bitmap index for `text` properties, which brings the fast filtering capabilities introduced in version `1.18` to text data. Internally, this is implemented using two separate (`filterable` & `searchable`) indexes, which replaces the existing index. You can configure the new `indexFilterable` and `indexSearchable` parameters to determine whether to create the roaring set index and the BM25-suitable Map index, respectively. (Both are enabled by default.)
+
+:::note What happens if indexFilterable is disabled?
+The searchable index works also as fallback for text filtering, so filtering is still possible even if indexFilterable will be disabled. The downside, in this scenario is that the performance benefits of using natively roaring set will not be available (so, the exclusive searchable index will work exactly as it works on pre v1.19, and used for both bm25 search and filtering).
+:::
+
+
+<details>
+  <summary>How will upgrades work?</summary>
+
+After upgrading a pre-`v1.19` Weaviate to `v1.19`, `indexFilterable` + `indexSearchable` will be set based on the value of `indexInverted`, meaning `true` -> `true`+`true`, `false` -> `false`+`false`, `null` -> `null`+`null`. (A `null` will use the default, which is to turn it on.)
+`indexFilterable` and `indexSearchable` are available for all types of data, although searchable is only relevant for `text`/`text[]`, and in other cases it will be simply ignored.
+
+Since filterable & searchable are separate indexes, filterable does not exist in Weaviate instances upgraded from pre-`v1.19` to `v1.19`. The missing `filterable` index can be created though on startup for all `text/text[]` properties if env variable INDEX_MISSING_TEXT_FILTERABLE_AT_STARTUP is set (to `true`).
+
+While building the `filterable` index, Weaviate will work in readonly mode (similarly to reindexing sets to roaring sets on pre-`v1.18` to `v1.18` migration).
+
+</details>
+
+#### Deprecation of `string`
+
+Existing `string` classes can be migrated according to the tokenization rules above during the first startup. If a user specifies `string` for a new class, it will be stored as `text` with `field` tokenization, and a deprecation warning will be shown.
+
+### Dedicated UUID Data Types
+
+We have introduced dedicated `uuid` and `uuid[]` data types, reducing the storage space required by more than half.
+
+`uuid` details:
+
+-   Each `uuid` is a 128-bit (16-byte) number.
+-   The filterable index uses roaring bitmaps.
+-   Please note that it is currently not possible to aggregate or sort by `uuid` or `uuid[]` types.
 
 ## Generative Cohere Module
 
