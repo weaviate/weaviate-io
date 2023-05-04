@@ -24,6 +24,12 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 
 Read below to learn more about each of these points in more detail.
 
+:::danger Upgrade with Caution
+Keep in mind that after upgrading to `v1.19` a downgrade to `v1.18` will **no longer be supported**. If you anticipate having to downgrade, please create a backup before upgrading! If a backup is done with `v1.18` before upgrading, you can always go back to `v1.18` if you wish.
+
+* With the `string`->`text` migration, downgrading after upgrading will not work.
+* With the prop tracker fixes (bm25), once migrated you can’t downgrade again.
+:::
 
 ## Group by arbitrary property
 
@@ -179,7 +185,7 @@ The available tokenization options for `text` are:
 We have introduced a roaring bitmap index for `text` properties, which brings the fast filtering capabilities introduced in version `1.18` to text data. Internally, this is implemented using two separate (`filterable` & `searchable`) indexes, which replaces the existing index. You can configure the new `indexFilterable` and `indexSearchable` parameters to determine whether to create the roaring set index and the BM25-suitable Map index, respectively. (Both are enabled by default.)
 
 :::note What happens if indexFilterable is disabled?
-The searchable index works also as fallback for text filtering, so filtering is still possible even if indexFilterable will be disabled. The downside, in this scenario is if you turn off the bitmap indexing, filtering by the text property will be slower. 
+The searchable index works also as fallback for text filtering, so filtering is still possible even if indexFilterable will be disabled. The downside, in this scenario is if you turn off the bitmap indexing, filtering by the text property will be slower.
 :::
 
 
@@ -337,13 +343,6 @@ The above features highlighted a few changes that were included in the patch rel
 * [Release v1.18.2](https://github.com/weaviate/weaviate/releases/tag/v1.18.2)
 * [Release v1.18.3](https://github.com/weaviate/weaviate/releases/tag/v1.18.2)
 * [Release v1.18.4](https://github.com/weaviate/weaviate/releases/tag/v1.18.4)
-
-
-## Upgrade with Caution
-Keep in mind that after upgrading to `v1.19` a downgrade to `v1.18` will **no longer be supported**. If you anticipate having to downgrade, please create a backup before upgrading! If a backup is done with `v1.18` before upgrading, you can always go back to `v1.18` if you wish.
-
-* With the `string`->`text` migration, downgrading after upgrading will not work.
-* With the prop tracker fixes (bm25), once migrated you can’t downgrade again.
 
 import WhatNext from '/_includes/what-next.mdx'
 
