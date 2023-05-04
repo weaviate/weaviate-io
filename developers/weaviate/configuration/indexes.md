@@ -59,7 +59,7 @@ Example of a class could be [configured in your data schema](/developers/weaviat
     {
       "name": "title",
       "description": "string",
-      "dataType": ["string"]
+      "dataType": ["text"]
     }
   ],
   "vectorIndexType": "hnsw",
@@ -104,18 +104,25 @@ Note that the vector index type only specifies how the vectors of data objects a
 
 ### Configure the inverted index
 
-In contrast to the ANN index, there are very few configurable parameters for an inverted index. It's on or it's off and indexes on a property level.
+There are two indexes for filtering or searching the data, where the first (filterable) is for building a fast, Roaring Bitmaps index, and the second (searchable) index is for a BM25 or hybrid search.
 
-The inverted index is by default _on_. You can simply turn it of like this:
+So there are `indexFilterable` and `indexSearchable` keys that can be set to `true` (on) or `false` (off) on a property level. Both are _on_ by default.
 
-```js
+The filterable index is only capable of filtering, while the searchable index can be used for both searching and filtering (though not as fast as the filterable index).
+
+So, setting `"indexFilterable": false` and `"indexSearchable": true` (or not setting it at all) will have the trade-off of worse filtering performance but faster imports (due to only needing to update one index) and lower disk usage.
+
+You can set these keys in the schema like shown below, at a property level:
+
+```json
 {
     "class": "Author",
     "properties": [ // <== note that the inverted index is set per property
         {
-            "indexInverted": false, // <== turn it off by setting `indexInverted` to false
+            "indexFilterable": false,  // <== turn off the filterable (Roaring Bitmap index) by setting `indexFilterable` to false
+            "indexSearchable": false,  // <== turn off the searchable (for BM25/hybrid) by setting `indexSearchable` to false
             "dataType": [
-                "string"
+                "text"
             ],
             "name": "name"
         }
@@ -123,10 +130,12 @@ The inverted index is by default _on_. You can simply turn it of like this:
 }
 ```
 
-A rule of thumb to follow when determining if you turn it on or off is this: _if you don't need it to query, turn it off._
+A rule of thumb to follow when determining whether to switch off indexing is: _if you will never perform queries based on this property, you can turn it off._
 
-:::note
-We support both `string` and `text` data types, they play a role in tokenization in the inverted index, more information can be found [here](/developers/weaviate/config-refs/datatypes.md#datatype-string-vs-text).
+:::tip Data types and indexes
+
+Both `indexFilterable` and `indexSearchable` are available for all types of data. However, `indexSearchable` is only relevant for `text`/`text[]`, and in other cases it will be ignored.
+
 :::
 
 You can also enable an inverted index to search [based on timestamps](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps).
@@ -156,15 +165,16 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
     },
     "properties": [
         {
-            "indexInverted": false, // <== disable inverted index for this property
+            "indexFilterable": false,  // <== disable filterable index for this property
+            "indexSearchable": false,  // <== disable searchable index for this property
             "dataType": [
-                "string"
+                "text"
             ],
             "description": "The name of the Author",
             "name": "name"
         },
         {
-            "indexInverted": false, // <== disable inverted index for this property
+            "indexFilterable": false,  // <== disable filterable index for this property
             "dataType": [
                 "int"
             ],
@@ -172,7 +182,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
             "name": "age"
         },
         {
-            "indexInverted": false, // <== disable inverted index for this property
+            "indexFilterable": false,  // <== disable filterable index for this property
             "dataType": [
                 "date"
             ],
@@ -180,7 +190,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
             "name": "born"
         },
         {
-            "indexInverted": false, // <== disable inverted index for this property
+            "indexFilterable": false,  // <== disable filterable index for this property
             "dataType": [
                 "boolean"
             ],
@@ -188,7 +198,8 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
             "name": "wonNobelPrize"
         },
         {
-            "indexInverted": false, // <== disable inverted index for this property
+            "indexFilterable": false,  // <== disable filterable index for this property
+            "indexSearchable": false,  // <== disable searchable index for this property
             "dataType": [
                 "text"
             ],

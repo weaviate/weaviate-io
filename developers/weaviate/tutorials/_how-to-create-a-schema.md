@@ -71,7 +71,7 @@ Note that the property `"title"` of the class `"Article"` has dataType `"string"
   "properties": [
     {
       "dataType": [
-        "string"
+        "text"
       ],
       "description": "Name of the publication",
       "name": "name"
@@ -103,7 +103,7 @@ Add the classes `Article` and `Author` to the same schema, so you will end up wi
   "properties": [
     {
       "dataType": [
-        "string"
+        "text"
       ],
       "description": "Name of the publication",
       "name": "name"
@@ -129,7 +129,7 @@ Add the classes `Article` and `Author` to the same schema, so you will end up wi
   "properties": [
     {
       "dataType": [
-        "string"
+        "text"
       ],
       "description": "Title of the article",
       "name": "title"
@@ -148,7 +148,7 @@ Add the classes `Article` and `Author` to the same schema, so you will end up wi
   "properties": [
       {
         "dataType": [
-            "string"
+            "text"
         ],
         "description": "Name of the author",
         "name": "name"
@@ -181,7 +181,7 @@ Now, add this list of classes to the schema, which will look like this:
     "properties": [
       {
         "dataType": [
-          "string"
+          "text"
         ],
         "description": "Name of the publication",
         "name": "name"
@@ -207,7 +207,7 @@ Now, add this list of classes to the schema, which will look like this:
     "properties": [
       {
         "dataType": [
-          "string"
+          "text"
         ],
         "description": "Title of the article",
         "name": "title"
@@ -226,7 +226,7 @@ Now, add this list of classes to the schema, which will look like this:
     "properties": [
       {
         "dataType": [
-            "string"
+            "text"
         ],
         "description": "Name of the author",
         "name": "name"

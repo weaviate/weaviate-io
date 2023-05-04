@@ -24,13 +24,37 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 (*) Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
 
-## DataType: string vs. text
+## DataType: `text`
 
-There are two data types dedicated to saving textual information: `string` and `text`. They exhibit slightly different tokenization behavior, and `string` also optionally allows the property to be indexed without tokenization.
+### Tokenization configuration
 
-Refer to [this section](../configuration/schema-configuration.md#property-tokenization) on the difference between the two types.
+Refer to [this section](../configuration/schema-configuration.md#property-tokenization) on how to configure the tokenization behavior of a `text` property.
 
-## DataType: date
+:::tip `string` is deprecated
+
+Prior to `v1.19`, Weaviate supported an additional datatype `string`, which was differentiated by tokenization behavior to `text`. As of `v1.19`, this type is deprecated and will be removed in a future release.
+
+Please use `text` instead, which now supports all tokenizations options previously available through `string`.
+:::
+## DataType: `cross-reference`
+
+The [`cross-reference`](../more-resources/glossary.md) type is the graph element of Weaviate: you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list of are names of classes that exist elsewhere in the schema. For example:
+
+```json
+{
+  "properties": [
+    {
+      "name": "hasWritten",
+      "dataType": [
+        "Article",
+        "Blog"
+      ]
+    }
+  ]
+}
+```
+
+## DataType: `date`
 
 Weaviate requires an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) formatted date that includes the time and the offset.
 
@@ -42,48 +66,7 @@ For example:
 
 In case you want to add a list of dates as one Weaviate data value, you can use above formatting in an array, for example like: `["1985-04-12T23:20:50.52Z", "1937-01-01T12:00:27.87+00:20"]`
 
-## DataType: geoCoordinates
-
-Weaviate allows you to store geo coordinates related to a thing or action. When querying Weaviate, you can use this type to find items in a radius around this area. A geo coordinate value is a float, and is processed as [decimal degree](https://en.wikipedia.org/wiki/Decimal_degrees) according to the [ISO standard](https://www.iso.org/standard/39242.html#:~:text=For%20computer%20data%20interchange%20of,minutes%2C%20seconds%20and%20decimal%20seconds).
-
-An example of how geo coordinates are used in a data object:
-
-```json
-{
-  "City": {
-    "location": {
-      "latitude": 52.366667,
-      "longitude": 4.9
-    }
-  }
-}
-```
-
-## DataType: phoneNumber
-
-There is a special, primitive data type `phoneNumber`. When a phone number is added to this field, the input will be normalized and validated, unlike the single fields as `number` and `string`. The data field is an object, as opposed to a flat type similar to `geoCoordinates`. The object has multiple fields:
-
-```yaml
-{
-  "phoneNumber": {
-    "input": "020 1234567",                       // Required. Raw input in string format
-    "defaultCountry": "nl",                       // Required if only a national number is provided, ISO 3166-1 alpha-2 country code. Only set if explicitly set by the user.
-    "internationalFormatted": "+31 20 1234567",   // Read-only string
-    "countryCode": 31,                            // Read-only unsigned integer, numerical country code
-    "national": 201234567,                        // Read-only unsigned integer, numerical representation of the national number
-    "nationalFormatted": "020 1234567",           // Read-only string
-    "valid": true                                 // Read-only boolean. Whether the parser recognized the phone number as valid
-  }
-}
-```
-
-There are two fields that accept input. `input` must always be set, while `defaultCountry` must only be set in specific situations. There are two scenarios possible:
-- When you entered an international number (e.g. `"+31 20 1234567"`) to the `input` field, no `defaultCountry` needs to be entered. The underlying parser will automatically recognize the number's country.
-- When you entered a national number (e.g. `"020 1234567"`), you need to specify the country in `defaultCountry` (in this case, `"nl"`), so that the parse can correctly convert the number into all formats. The string in `defaultCountry` should be an [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
-
-As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
-
-## DataType: blob
+## DataType: `blob`
 
 The datatype blob accepts any binary data. The data should be `base64` encoded, and passed as a `string`. Characteristics:
 * Weaviate doesn't make assumptions about the type of data that is encoded. A module (e.g. `img2vec`) can investigate file headers as it wishes, but Weaviate itself does not do this.
@@ -128,24 +111,60 @@ $ curl \
   }' \
     http://localhost:8080/v1/objects
 ```
+## DataType: `uuid`
 
-## DataType: cross-reference
+:::info Available from `v1.19` onwards
+:::
 
-The [`cross-reference`](../more-resources/glossary.md) type is the graph element of Weaviate: you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list of are names of classes that exist elsewhere in the schema. For example:
+The dedicated `uuid` and `uuid[]` data types are more space-efficient than storing the same data as text.
+
+-   Each `uuid` is a 128-bit (16-byte) number.
+-   The filterable index uses roaring bitmaps.
+
+:::note Aggregate/sort currently not possible
+It is currently not possible to aggregate or sort by `uuid` or `uuid[]` types.
+:::
+
+## DataType: `geoCoordinates`
+
+Weaviate allows you to store geo coordinates related to a thing or action. When querying Weaviate, you can use this type to find items in a radius around this area. A geo coordinate value is a float, and is processed as [decimal degree](https://en.wikipedia.org/wiki/Decimal_degrees) according to the [ISO standard](https://www.iso.org/standard/39242.html#:~:text=For%20computer%20data%20interchange%20of,minutes%2C%20seconds%20and%20decimal%20seconds).
+
+An example of how geo coordinates are used in a data object:
 
 ```json
 {
-  "properties": [
-    {
-      "name": "hasWritten",
-      "dataType": [
-        "Article",
-        "Blog"
-      ]
+  "City": {
+    "location": {
+      "latitude": 52.366667,
+      "longitude": 4.9
     }
-  ]
+  }
 }
 ```
+
+## DataType: `phoneNumber`
+
+There is a special, primitive data type `phoneNumber`. When a phone number is added to this field, the input will be normalized and validated, unlike the single fields as `number` and `string`. The data field is an object, as opposed to a flat type similar to `geoCoordinates`. The object has multiple fields:
+
+```yaml
+{
+  "phoneNumber": {
+    "input": "020 1234567",                       // Required. Raw input in string format
+    "defaultCountry": "nl",                       // Required if only a national number is provided, ISO 3166-1 alpha-2 country code. Only set if explicitly set by the user.
+    "internationalFormatted": "+31 20 1234567",   // Read-only string
+    "countryCode": 31,                            // Read-only unsigned integer, numerical country code
+    "national": 201234567,                        // Read-only unsigned integer, numerical representation of the national number
+    "nationalFormatted": "020 1234567",           // Read-only string
+    "valid": true                                 // Read-only boolean. Whether the parser recognized the phone number as valid
+  }
+}
+```
+
+There are two fields that accept input. `input` must always be set, while `defaultCountry` must only be set in specific situations. There are two scenarios possible:
+- When you entered an international number (e.g. `"+31 20 1234567"`) to the `input` field, no `defaultCountry` needs to be entered. The underlying parser will automatically recognize the number's country.
+- When you entered a national number (e.g. `"020 1234567"`), you need to specify the country in `defaultCountry` (in this case, `"nl"`), so that the parse can correctly convert the number into all formats. The string in `defaultCountry` should be an [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
+
+As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
 
 ### Number of linked instances
 

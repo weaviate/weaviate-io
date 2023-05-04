@@ -40,6 +40,200 @@ The above query will result in something like the following:
 The order of object retrieval is not guaranteed in a `Get` query without any search parameters or filters. Accordingly, such a `Get` query is not suitable for any substantive object retrieval strategy.
 :::
 
+### groupBy argument
+
+You can use a groupBy argument to retrieve groups of objects from Weaviate. This functionality offers the advantage of maintaining granular search results by searching through detailed or segmented objects (e.g. chunks of documents), while also enabling you to step back and view the broader context of the objects (e.g. documents as a whole).
+
+The `groupBy{}` argument is structured as follows for the `Get{}` function:
+
+:::info Single-level grouping only
+As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference. Nested paths are current not supported.
+:::
+
+```graphql
+{
+  Get{
+    <Class>(
+      <vectorSearchParameter>  # e.g. nearVector, nearObject, nearText
+      groupBy:{
+        path: [<propertyName>]  # Property to group by (only one property or cross-reference)
+        groups: <number>  # Max. number of groups
+        objectPerGroup: <number>  # Max. number of objects per group
+      }
+    ) {
+      _additional {
+        group {
+          id  # An identifier for the group in this search
+          groupedBy{ value path }  # Value and path of the property grouped by
+          count  # Count of objects in this group
+          maxDistance  # Maximum distance from the group to the query vector
+          minDistance  # Minimum distance from the group to the query vector
+          hits {  # Where the actual properties for each grouped objects will be
+            <properties>  # Properties of the individual object
+            _additional {
+              id  # UUID of the individual object
+              vector  # The vector of the individual object
+              distance  # The distance from the individual object to the query vector
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Take a collection of `Passage` objects for example, each object belonging to a `Document`. If searching through `Passage` objects, you can group the results according to any property of the `Passage`, including the cross-reference property that represents the `Document` each `Passage` is associated with.
+
+The `groups` and `objectsPerGroup` limits are customizable. So in this example, you could retrieve the top 1000 objects and group them to identify the 3 most relevant `Document` objects, based on the top 3 `Passage` objects from each `Document`.
+
+More concretely, an query such as below:
+
+<details>
+  <summary>Example Get query with groupBy</summary>
+
+```graphql
+{
+  Get{
+    Passage(
+      limit: 100
+      nearObject:{
+        id: "00000000-0000-0000-0000-000000000001"
+      }
+      groupBy:{
+        path:["content"]
+        groups:2
+        objectsPerGroup:2
+      }
+    ){
+      _additional{
+        id
+        group{
+          id
+          count
+          groupedBy{ value path }
+          maxDistance
+          minDistance
+          hits{
+            content
+            ofDocument {
+              ... on Document{
+                _additional{
+                  id
+                }
+              }
+            }
+            _additional{
+              id
+              distance
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+</details>
+
+Will result in the following response:
+
+<details>
+  <summary>Corresponding response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Passage": [
+        {
+          "_additional": {
+            "group": {
+              "count": 1,
+              "groupedBy": {
+                "path": [
+                  "content"
+                ],
+                "value": "Content of passage 1"
+              },
+              "hits": [
+                {
+                  "_additional": {
+                    "distance": 0,
+                    "id": "00000000-0000-0000-0000-000000000001"
+                  },
+                  "content": "Content of passage 1",
+                  "ofDocument": [
+                    {
+                      "_additional": {
+                        "id": "00000000-0000-0000-0000-000000000011"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "id": 0,
+              "maxDistance": 0,
+              "minDistance": 0
+            },
+            "id": "00000000-0000-0000-0000-000000000001"
+          }
+        },
+        {
+          "_additional": {
+            "group": {
+              "count": 1,
+              "groupedBy": {
+                "path": [
+                  "content"
+                ],
+                "value": "Content of passage 2"
+              },
+              "hits": [
+                {
+                  "_additional": {
+                    "distance": 0.00078231096,
+                    "id": "00000000-0000-0000-0000-000000000002"
+                  },
+                  "content": "Content of passage 2",
+                  "ofDocument": [
+                    {
+                      "_additional": {
+                        "id": "00000000-0000-0000-0000-000000000011"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "id": 1,
+              "maxDistance": 0.00078231096,
+              "minDistance": 0.00078231096
+            },
+            "id": "00000000-0000-0000-0000-000000000002"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+### Consistency levels
+
+:::info Available from `v1.19` onwards
+:::
+
+The `Get{}` function can be configured to return results with different levels of consistency. This is useful when you want to retrieve the most up-to-date data, or when you want to retrieve data as fast as possible.
+
+Read more about consistency levels [here](../../concepts/replication-architecture/consistency.md).
+
+import GraphQLGetConsistency from '/_includes/code/graphql.get.consistency.mdx';
+
+<GraphQLGetConsistency/>
+
 ## Query beacon references
 
 If you've set a beacon reference in the schema, you can query it as follows:

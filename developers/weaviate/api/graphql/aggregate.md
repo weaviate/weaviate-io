@@ -118,10 +118,11 @@ As such, this `Aggregate` query will retrieve the total object count in a class.
 <HowToGetObjectCount/>
 :::
 
-### GroupBy Argument
+### groupBy argument
+
 You can use a groupBy argument to get meta information about groups of data objects.
 
-The `groupBy{}` argument is structured as follows for the `Get{}` function:
+The `groupBy{}` argument is structured as follows for the `Aggregate{}` function:
 
 ```graphql
 {

@@ -164,7 +164,7 @@ A full example of a class using the `img2vec-neural` module is shown below. This
         },
         {
           "dataType": [
-            "string"
+            "text"
           ],
           "description": "label name (description) of the given image.",
           "name": "labelName"
