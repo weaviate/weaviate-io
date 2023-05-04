@@ -1,6 +1,6 @@
 ---
-title: Generative Feedback Loops for Vector Databases
-slug: generative-feedback-loops
+title: Generative Feedback Loops with LLMs for Vector Databases
+slug: generative-feedback-loops-with-LLMs
 authors: [connor]
 date: 2023-05-09
 image: ./img/hero.png
@@ -9,14 +9,16 @@ description: "An Introduction to creating generative feedback loops with LLMs in
 
 ---
 
-![Generative Feedback Loop Visualization](./img/hero.png)
+![Generative Feedback Loop with an LLM Visualization](./img/hero.png)
 <!-- truncate -->
 
-Large Language Models are heralding a new era in information technology. To better understand this revolution, it’s important to consider the historical context. The printing press significantly reduced the cost of reproducing information, while the internet cut out the middleman, making the distribution of information virtually free. [In Aggregation Theory](https://stratechery.com/2015/aggregation-theory/), Ben Thompson writes about how the free distribution of the internet allowed companies to modularize (or unbundle) services and focus on user experience. Ben states that “companies that win the user experience can generate a virtuous cycle where their ownership of consumers/users attracts suppliers which improves the user experience”. Enter LLMs, a world changing technology that enables transforming and generating information at incredible speeds and low cost. LLMs present the opportunity to expedite the virtuous cycle Aggregation Theory describes by commoditizing the human effort traditionally required to deliver great user experiences.
+Large Language Models are heralding a new era in information technology. To better understand this revolution, it’s important to consider the historical context. The printing press significantly reduced the cost of reproducing information, while the internet cut out the middleman, making the distribution of information virtually free. [In Aggregation Theory](https://stratechery.com/2015/aggregation-theory/), Ben Thompson writes about how the free distribution of the internet allowed companies to modularize (or unbundle) services and focus on user experience. Ben states that “companies that win the user experience can generate a virtuous cycle where their ownership of consumers/users attracts suppliers which improves the user experience”.
+
+Enter Large Language Models (LLMs), a world changing technology that enables transforming and generating information at incredible speeds and low cost. **LLMs present the opportunity to expedite the virtuous cycle Aggregation Theory describes by commoditizing the human effort traditionally required to deliver great user experiences.**
 
 The internet cut out the newspaper, now content can be delivered directly to you. Now we are going a step further, modifying content itself based on your personal preferences! Not only are we able to bring content with a great UX to people, but now we can generate content, in real time, based on existing information in the database to create an ever better and more personalized experience!
 
-In this article, we are going to illustrate the concept of **Generative Feedback Loops**. Retrieving information from the Weaviate Vector Database to prompt Weaviate’s generative module and then vectorizing and saving these generations **back** into the database! Now we can semantically search through the generated content, as well as add symbolic metadata about it.
+In this article, we are going to illustrate the concept of **Generative Feedback Loops with LLMs**. Retrieving information from the Weaviate Vector Database to prompt Weaviate’s generative module and then vectorizing and saving these generations **back** into the database! Now we can semantically search through the generated content, as well as add symbolic metadata about it.
 
 We will step into the shoes of AirBnB and implement a Generative Feedback Loop to process `Listing` objects. This shows how LLMs let us supercharge user experience by creating custom advertisements based on user preferences. We retrieve information about users from the DB, give that + information about the property to the LLM, and save the resulting custom advertisement back to the database.
 
@@ -27,8 +29,8 @@ We will step into the shoes of AirBnB and implement a Generative Feedback Loop t
 
 ## Part 1: AirBnB Listing Example
 
-:::info
-As a bonus, we’ll also see Weaviate embedded in a Jupyter notebook!
+:::note
+The Github repo with notebooks (using Weaviate embedded) can be found [here](https://github.com/weaviate/Generative-Feedback-Loops/).
 :::
 
 In this example we will use the OpenAI `text-davinci-003` LLM to generate content, but this is also possible with other providers such as Cohere, HuggingFace, Anthropic, and more. Set your OpenAI key to use with Weaviate’s generate module using the following block of code:
@@ -49,23 +51,24 @@ client.get_meta() # see which modules are enabled in Weaviate Embedded
 
 The table below illustrates the schema of the data we will use, please see the notebook for reference of the full json dictionary to create Weaviate schemas with configurations like this:
 
-| Property                   | Type    | Vectorize? | AI Generated? |
-|----------------------------|---------|------------|---------------|
-| name                       | string  | ✅          | ✅             |
-| host_name                  | string  | ❌          | ❌             |
-| neighbourhood              | string  | ❌          | ❌             |
-| neighbourhood_group        | string  | ❌          | ❌             |
-| latitude                   | number  | ❌          | ❌             |
-| longitude                  | number  | ❌          | ❌             |
-| room_type                  | string  | ❌          | ❌             |
-| price                      | number  | ❌          | ❌             |
-| minimum_nights             | int     | ❌          | ❌             |
-| number_of_reviews          | int     | ❌          | ❌             |
-| last_review                | date    | ❌          | ❌             |
-| reviews_per_month          | number  | ❌          | ❌             |
-| calculated_host_listings_count | int | ❌          | ❌             |
-| availability_365           | int     | ❌          | ❌             |
-| hasAd                      | Ad      | ❌*         | ✅             |
+| Property                   | Type    | Vectorize? | AI Generated? | In import dataset? |
+|----------------------------|---------|------------|---------------| -------------------
+| name                       | string  | ✅          | ❌            | ✅ |
+| description                | string  | ✅          | ✅            | ❌ |
+| host_name                  | string  | ❌          | ❌            | ✅ |
+| neighbourhood              | string  | ❌          | ❌            | ✅ |
+| neighbourhood_group        | string  | ❌          | ❌            | ✅ |
+| latitude                   | number  | ❌          | ❌            | ✅ |
+| longitude                  | number  | ❌          | ❌            | ✅ |
+| room_type                  | string  | ❌          | ❌            | ✅ |
+| price                      | number  | ❌          | ❌            | ✅ |
+| minimum_nights             | int     | ❌          | ❌            | ✅ |
+| number_of_reviews          | int     | ❌          | ❌            | ✅ |
+| last_review                | date    | ❌          | ❌            | ✅ |
+| reviews_per_month          | number  | ❌          | ❌            | ✅ |
+| calculated_host_listings_count | int | ❌          | ❌            | ✅ |
+| availability_365           | int     | ❌          | ❌            | ✅ |
+| hasAd                      | Ad      | ❌*         | ✅            | ❌ | 
 
 
 
