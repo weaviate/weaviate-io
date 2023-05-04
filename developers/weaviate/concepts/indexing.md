@@ -121,7 +121,7 @@ When using vectorizers, you need to set vectorization at the class and property 
             }
         },
         "dataType": [
-            "string"
+            "text"
         ],
         "name": "name"
     }]

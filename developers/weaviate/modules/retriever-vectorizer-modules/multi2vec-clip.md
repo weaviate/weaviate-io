@@ -185,7 +185,7 @@ text fields using the `multi2vec-clip` module as a `vectorizer`:
       "properties": [
         {
           "dataType": [
-            "string"
+            "text"
           ],
           "name": "name"
         },

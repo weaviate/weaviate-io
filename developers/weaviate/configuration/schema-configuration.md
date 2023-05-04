@@ -44,6 +44,20 @@ It has the following characteristics:
 * When a previously unseen class is imported, the class is created alongside all the properties.
 * Weaviate also automatically recognizes array datatypes, such as `string[]`, `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`.
 
+#### Datatypes
+
+Weaviate needs to guess the datatypes based on the objects it sees. For this you can set some preferences. e.g.
+
+* `AUTOSCHEMA_DEFAULT_STRING=text` would tell Weaviate that when it sees a prop of type `string`, it should treat it as `text` (as opposed to `string`)
+* `AUTOSCHEMA_DEFAULT_NUMBER=number` would tell Weaviate that when its sees a numerical value, it should treat it as number as opposed to `int`, etc.
+* `AUTOSCHEMA_DEFAULT_DATE=date` respectively
+
+The above configurable defaults will themselves default to something reasonable, if they are not set.
+
+In addition, we need to catch types we do not support at all:
+* Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
+* Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what the class of the resolved beacon is, since it needs the ClassName to be able to alter the schema.
+
 ### Class
 
 A class describes a data object in the form of a noun (e.g., *Person*,
@@ -54,9 +68,9 @@ recognize, it will not accept the schema.
 
 Classes are always written with a **capital letter** first. This helps in
 distinguishing classes from primitive data types when used in properties. For
-example, `dataType: ["string"]` means that a property is a string, whereas
-`dataType: ["String"]` means that a property is a cross-reference type to a
-class named `String`.
+example, `dataType: ["text"]` means that a property is a string, whereas
+`dataType: ["Text"]` means that a property is a cross-reference type to a
+class named `Text`.
 
 After the first letter, classes may use any GraphQL-compatible characters. The
 current (as of `v1.10.0+`) class name validation regex is
@@ -89,7 +103,7 @@ An example of a complete class object including properties:
       "name": "string",                     // The name of the property
       "description": "string",              // A description for your reference
       "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple data types, hence the array syntax.
-        "string"
+        "text"
       ],
       "moduleConfig": {                     // Module-specific settings
         "text2vec-contextionary": {
@@ -97,7 +111,8 @@ An example of a complete class object including properties:
           "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
         }
       },
-      "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
+      "indexFilterable": true,                // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
+      "indexSearchable": true,                // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
     }
   ],
   "invertedIndexConfig": {                  // Optional, index configuration
@@ -312,7 +327,7 @@ An example of a complete property object:
     "name": "string",                     // The name of the property
     "description": "string",              // A description for your reference
     "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes.
-    "string"
+      "text"
     ],
     "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See Property Tokenization below for more detail.
     "moduleConfig": {                     // Module-specific settings
@@ -321,11 +336,94 @@ An example of a complete property object:
           "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
       }
     },
-    "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
+    "indexFilterable": true,                // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
+    "indexSearchable": true,                // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
 }
 ```
 
-### Concatenate classes and properties
+### Property tokenization
+
+You can customize how `text` data is tokenized and indexed in the inverted index.
+
+:::note
+This feature was introduced in `v1.12.0`. This applies to the BM25/hybrid searching and filtering.
+:::
+
+:::caution `string` is deprecated
+`string` has been deprecated from Weaviate `v1.19` onwards. Please use `text` instead.
+:::
+
+Tokenization of `text` properties can be customized using `tokenization` property in the schema for the relevant class.
+
+Each token will be indexed separately in the inverted index. This would cause filtering, for example, to behave differently. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method:
+
+| Tokenization Method | Explanation                                                 | Example Input           | Indexed Tokens                                    |
+|---------------------|-------------------------------------------------------------|-------------------------|---------------------------------------------------|
+| `word` (default)    | Keep alpha-numeric characters, lowercase them, and split by whitespace. | `Hello, (beautiful) world` | `hello`, `beautiful`, `world`                   |
+| `whitespace`        | Split the text on whitespace.                               | `Hello, (beautiful) world` | `Hello,`, `(beautiful)`, `world`                |
+| `lowercase`         | Lowercase the text and split on whitespace.                 | `Hello, (beautiful) world` | `hello,`, `(beautiful)`, `world`                |
+| `field`             | Index the whole field after trimming whitespace characters. | `Hello, (beautiful) world` | `Hello, (beautiful) world`                      |
+
+<details>
+  <summary>
+    Pre <code>v1.19</code> tokenization behavior
+  </summary>
+
+**Tokenization with `text`**
+
+`text` properties are always tokenized, and by all non-alphanumerical characters. Tokens are then lowercased before being indexed. For example, a `text` property value `Hello, (beautiful) world`, would be indexed by tokens `hello`, `beautiful`, and `world`.
+
+Each of these tokens will be indexed separately in the inverted index. This means that a search for any of the three tokens with the `Equal` operator under `valueText` would return this object regardless of the case.
+
+**Tokenization with `string`**
+
+`string` properties allow the user to set whether it should be tokenized, by setting the `tokenization` class property.
+
+If `tokenization` for a `string` property is set to `word`, the field will be tokenized. The tokenization behavior for `string` is different from `text`, however, as `string` values are only tokenized by white spaces, and casing is not altered.
+
+So, a `string` property value `Hello, (beautiful) world` with `tokenization` set as `word` would be split into the tokens `Hello,`, `(beautiful)`, and `world`. In this case, the `Equal` operator would need the exact match including non-alphanumerics and case (e.g. `Hello,`, not `hello`) to retrieve this object.
+
+`string` properties can also be indexed as the entire value, by setting `tokenization` as `field`. In such a case the `Equal` operator would require the value `Hello, (beautiful) world` before returning the object as a match.
+
+**Default behavior**
+
+`text` and `string` properties default to `word` level tokenization for backward-compatibility.
+
+</details>
+
+## Configure semantic indexing
+
+:::info
+Only for `text2vec-*` modules
+:::
+
+Weaviate creates one vector per object by concatenating together the class name, followed by the [`text` properties](#property-tokenization) of the object sorted by the property name, then lowercasing and vectorizing the resulting string. For the precise sequence and how to configure the vectorization details, see [Tweaking text2vec vectorization](/blog/pulling-back-the-curtains-on-text2vec/#tweaking-text2vec-vectorization-in-weaviate).
+
+For example, this data object,
+
+```js
+Article = {
+  summery: "Cows lose their jobs as milk prices drop",
+  text: "As his 100 diary cows lumbered over for their Monday..."
+}
+```
+
+will be vectorized as:
+
+```md
+article cows lose their jobs as milk prices drop summary as his diary cows lumbered over for their monday...
+```
+
+By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can configure the indexing. <!-- TODO: clarify -->
+
+### Default distance metric
+
+Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every class unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
+
+### Class/property names (`text2vec-contextionary` only)
+
+:::info Applicable to `text2vec-contextionary` module only
+:::
 
 Sometimes you might want to use multiple words to set as a class or property
 definition. For example, the year a person is born in, you might want to define
@@ -355,78 +453,6 @@ Author
   wroteArticles
   writesFor
 ```
-
-### Property tokenization
-
-:::note
-This feature was introduced in `v1.12.0`.
-:::
-
-Properties with `text` and `string` exhibit different tokenization behavior when indexing and
-searching through the inverted index.
-
-#### Tokenization with `text`
-
-`text` properties are always tokenized, and by all non-alphanumerical characters. Tokens are then lowercased before being indexed. For example, a `text` property value `Hello, (beautiful) world`, would be indexed by tokens `hello`, `beautiful`, and `world`.
-
-Each of these tokens will be indexed separately in the inverted index. This means that a search for any of the three tokens with the `Equal` operator under `valueText` would return this object regardless of the case.
-
-#### Tokenization with `string`
-
-`string` properties allow the user to set whether it should be tokenized, by setting the `tokenization` class property.
-
-If `tokenization` for a `string` property is set to `word`, the field will be tokenized. The tokenization behavior for `string` is different from `text`, however, as `string` values are only tokenized by white spaces, and casing is not altered.
-
-So, a `string` property value `Hello, (beautiful) world` with `tokenization` set as `word` would be split into the tokens `Hello,`, `(beautiful)`, and `world`. In this case, the `Equal` operator would need the exact match including non-alphanumerics and case (e.g. `Hello,`, not `hello`) to retrieve this object.
-
-`string` properties can also be indexed as the entire value, by setting `tokenization` as `field`. In such a case the `Equal` operator would require the value `Hello, (beautiful) world` before returning the object as a match.
-
-#### Default behavior
-
-`text` and `string` properties default to `word` level tokenization for backward-compatibility.
-
-## Configure semantic indexing
-
-:::info
-Only for `text2vec-*` modules
-:::
-
-Weaviate creates one vector per object by concatenating together the class name, followed by the [`string` and `text` properties](#property-tokenization) of the object sorted by the property name, then lowercasing and vectorizing the resulting string. For the precise sequence and how to configure the vectorization details, see [Tweaking text2vec vectorization](/blog/pulling-back-the-curtains-on-text2vec/#tweaking-text2vec-vectorization-in-weaviate).
-
-For example, this data object,
-
-```js
-Article = {
-  summery: "Cows lose their jobs as milk prices drop",
-  text: "As his 100 diary cows lumbered over for their Monday..."
-}
-```
-
-will be vectorized as:
-
-```md
-article cows lose their jobs as milk prices drop summary as his diary cows lumbered over for their monday...
-```
-
-By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. There are four ways in which you can configure the indexing. <!-- TODO: clarify -->
-
-### Datatypes
-
-Weaviate needs to guess the datatypes based on the objects it sees. For this you can set some preferences. e.g.
-
-* `AUTOSCHEMA_DEFAULT_STRING=text` would tell Weaviate that when it sees a prop of type `string`, it should treat it as `text` (as opposed to `string`)
-* `AUTOSCHEMA_DEFAULT_NUMBER=number` would tell Weaviate that when its sees a numerical value, it should treat it as number as opposed to `int`, etc.
-* `AUTOSCHEMA_DEFAULT_DATE=date` respectively
-
-The above configurable defaults will themselves default to something reasonable, if they are not set.
-
-In addition, we need to catch types we do not support at all:
-* Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
-* Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what the class of the resolved beacon is, since it needs the ClassName to be able to alter the schema.
-
-### Default distance metric
-
-Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every class unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
 
 ## More Resources
 

@@ -28,7 +28,7 @@ Replication is disabled by default and can be enabled per data class in the [sch
     {
       "name": "exampleProperty",
       "dataType": [
-        "string"
+        "text"
       ]
     }
   ],
