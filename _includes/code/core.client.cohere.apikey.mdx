@@ -21,16 +21,16 @@ client = weaviate.Client(
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require('weaviate-ts-client');
 
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network',
-    // highlight-start
-    // Replace with your API key
-    headers: {'X-Cohere-Api-Key': '<THE-KEY>'},
-    // highlight-end
-  });
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  // highlight-start
+  // Replace with your API key
+  headers: {'X-Cohere-Api-Key': '<THE-KEY>'},
+  // highlight-end
+});
 ```
 
 </TabItem>
