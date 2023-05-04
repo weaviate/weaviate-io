@@ -3,7 +3,7 @@ import subprocess
 
 
 @pytest.fixture(scope="session")
-def anon_empty_weaviate(request):
+def apikey_empty_weaviate(request):
     # Code to run at startup
     print("Spinning up Weaviate")
     subprocess.run(["tests/start-weaviate.sh"])
@@ -14,3 +14,7 @@ def anon_empty_weaviate(request):
         subprocess.run(["tests/stop-weaviate.sh"])
 
     request.addfinalizer(teardown)
+
+
+# TODO - add non empty Weaviate fixture
+# TODO - add fixture for a Weaviate with sample data
