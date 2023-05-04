@@ -17,7 +17,7 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 
 1. [New (or improved) Data Types](#new-or-improved-data-types) – Datatypes changes with text having faster filtering & more tokenization options while deprecating string to reduce complexity, and adding uuid to allow efficient uuid storage.
 1. [Group by arbitrary property](#group-by-arbitrary-property) – The groupBy option has been introduced to Get object retrieval, so you can group search results by any property.
-1. [Generative Cohere Module](#generative-cohere-module) –
+1. [Generative Cohere Module](#generative-cohere-module) – Combines the best of Weaviate, retrieving and searching relevant documents with the generative capabilities of the models that Cohere is cooking up!
 1. [Tunable Consistency for Vector Search and GraphQL Get Requests](#tunable-consistency-for-vector-search-and-graphql-get-requests) – Consistency tuning with replication is now available for vector search with Get requests.
 1. [gRPC API support(experimental)](#grpc-api-support-experimental) – gRPC API support slowly being trialled, with some big potential for speedups.
 1. [Other Improvements and Bug Fixes](#other-improvements-and-bug-fixes) – fixes and improvements delivered since `1.18`.
@@ -28,7 +28,6 @@ Read below to learn more about each of these points in more detail.
 
 ![new or improved data types](./img/datatypes.png)
 
-## Data type improvements
 We've made several enhancements to the way we handle data, including upgrades to the `text` property and the introduction of dedicated `uuid` data types.
 
 ### Text / String changes
@@ -135,44 +134,6 @@ This functionality offers the advantage of maintaining granular search results b
 </details>
 
 <details>
-  <summary>How will upgrades work?</summary>
-
-After upgrading a pre-`v1.19` Weaviate to `v1.19`, `indexFilterable` + `indexSearchable` will be set based on the value of `indexInverted`, meaning `true` -> `true`+`true`, `false` -> `false`+`false`, `null` -> `null`+`null`. (A `null` will use the default, which is to turn it on.)
-`indexFilterable` and `indexSearchable` are available for all types of data, although searchable is only relevant for `text`/`text[]`, and in other cases it will be simply ignored.
-
-Since filterable & searchable are separate indexes, filterable does not exist in Weaviate instances upgraded from pre-`v1.19` to `v1.19`. The missing `filterable` index can be created though on startup for all `text/text[]` properties if env variable INDEX_MISSING_TEXT_FILTERABLE_AT_STARTUP is set (to `true`).
-
-While building the `filterable` index, Weaviate will work in readonly mode (similarly to reindexing sets to roaring sets on pre-`v1.18` to `v1.18` migration).
-
-</details>
-
-#### Deprecation of `string`
-
-Existing `string` classes can be migrated according to the tokenization rules above during the first startup. If a user specifies `string` for a new class, it will be stored as `text` with `field` tokenization, and a deprecation warning will be shown.
-
-### Dedicated UUID Data Types
-
-We have introduced dedicated `uuid` and `uuid[]` data types, reducing the storage space required by more than half.
-
-`uuid` details:
-
--   Each `uuid` is a 128-bit (16-byte) number.
--   The filterable index uses roaring bitmaps.
--   Please note that it is currently not possible to aggregate or sort by `uuid` or `uuid[]` types.
-
-## Group by arbitrary property
-
-![group by arbitrary property](./img/groupby.png)
-
-With the introduction of this feature, you can now group `Get` search results based on a specific property.
-
-Take a collection of `Passage` objects for example, each object belonging to a `Document`. If searching through `Passage` objects, you can group the results according to any property of the `Passage`, including the cross-reference property that represents the `Document` each `Passage` is associated with.
-
-The `groups` and `objectsPerGroup` limits are customizable. So in this example, you could retrieve the top 1000 objects and group them to identify the 3 most relevant `Document` objects, based on the top 3 `Passage` objects from each `Document`.
-
-This functionality offers the advantage of maintaining granular search results by searching through detailed or segmented objects (e.g., `Passage`), while also enabling you to step back and view the broader context of the objects (e.g., `Document`).
-
-<details>
   <summary>And a corresponding example response is also shown below:</summary>
 
 ```graphql
@@ -243,11 +204,9 @@ This functionality offers the advantage of maintaining granular search results b
 ```
 </details>
 
-
 :::note Performance vs `path` complexity
 Keep in mind that specifying a `path` value that requires resolving a large number of objects may be computationally expensive. For instance, setting the `path` above to `["ofDocument", "Document", "title"]` would require resolving all documents and may take considerably longer.
 :::
-
 
 ## Generative Cohere Module
 
