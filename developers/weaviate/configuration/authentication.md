@@ -63,6 +63,12 @@ With this configuration, the following API key-based authentication rules apply:
 The API key `jane-secret-key` is associated with the `jane@doe.com` identity.
 The API key `ian-secret-key` is associated with the `ian-smith` identity.
 
+:::info `n` APIKEY_ALLOWED_KEYS vs `n` APIKEY_USERS
+There are two options for configuring the number of keys and users:
+- Option 1: There is exactly one user specified and any number of keys (all keys will end up using the same user).
+- Option 2: The lengths match, then key `n` will map to user `n`.
+:::
+
 These users' permissions will be determined by the [authorization](./authorization.md) settings. Below is one such example configuration.
 
 ```yaml

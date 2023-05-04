@@ -160,8 +160,8 @@ Example (as part of a class definition):
       "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "text2vec-openai": {
-          "model": "babbage",
-          "modelVersion": "001",
+          "model": "ada",
+          "modelVersion": "002",
           "type": "text"
         }
       }
