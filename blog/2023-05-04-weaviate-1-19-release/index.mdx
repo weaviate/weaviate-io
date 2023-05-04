@@ -179,7 +179,7 @@ The available tokenization options for `text` are:
 We have introduced a roaring bitmap index for `text` properties, which brings the fast filtering capabilities introduced in version `1.18` to text data. Internally, this is implemented using two separate (`filterable` & `searchable`) indexes, which replaces the existing index. You can configure the new `indexFilterable` and `indexSearchable` parameters to determine whether to create the roaring set index and the BM25-suitable Map index, respectively. (Both are enabled by default.)
 
 :::note What happens if indexFilterable is disabled?
-The searchable index works also as fallback for text filtering, so filtering is still possible even if indexFilterable will be disabled. The downside, in this scenario is that the performance benefits of using natively roaring set will not be available (so, the exclusive searchable index will work exactly as it works on pre v1.19, and used for both bm25 search and filtering).
+The searchable index works also as fallback for text filtering, so filtering is still possible even if indexFilterable will be disabled. The downside, in this scenario is if you turn off the bitmap indexing, filtering by the text property will be slower. 
 :::
 
 
