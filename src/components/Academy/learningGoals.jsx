@@ -11,9 +11,9 @@ function LearningGoals(props) {
   } else if (props.courseName !== undefined) {
     data = courseData[props.courseName]
   }
-  
+
   let goalsArray = [];
-  let outcomesArray = [];  
+  let outcomesArray = [];
 
   for (let i = 0; i < data.learningGoals.length; i++) {
     goalsArray.push(
@@ -22,31 +22,31 @@ function LearningGoals(props) {
       </li>
     );
   };
-  for (let i = 0; i < data.learningOutcomes.length; i++) {  
+  for (let i = 0; i < data.learningOutcomes.length; i++) {
     outcomesArray.push(
       <li>
         {data.learningOutcomes[i]}
       </li>
-    )    
+    )
   };
 
-  return (    
+  return (
     <div class="card __academycard">
       <div class="card__body">
         <div class="learning_goal_head">
           <h4><i class="fa-solid fa-person-chalkboard"></i>&nbsp;&nbsp;Here, we will cover:</h4>
           <span class="badge badge--secondary">Learning Goals</span>
         </div>
-        
+
         <ul>{goalsArray}</ul>
         <hr/>
         <div class="learning_goal_head">
-          <h4><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;&nbsp;By the time you are finished, you will to be able to:</h4>       
+          <h4><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;&nbsp;By the time you are finished, you will be able to:</h4>
           <span class="badge badge--secondary">Learning Outcomes</span>
         </div>
-        <ul>{outcomesArray}</ul>    
-      </div>  
-    </div>       
+        <ul>{outcomesArray}</ul>
+      </div>
+    </div>
   )
 };
 

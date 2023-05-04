@@ -84,9 +84,11 @@ authentication:
   apikey:
     enabled: true
     allowed_keys:
-      - readonly-key,secr3tk3y
+      - readonly-key
+      - secr3tk3y
     users:
-      - readonly@example.com,admin@example.com
+      - readonly@example.com
+      - admin@example.com
   anonymous_access:
     enabled: false
   oidc:
