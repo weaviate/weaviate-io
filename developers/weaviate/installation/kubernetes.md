@@ -127,7 +127,6 @@ $ kubectl create namespace weaviate
 $ helm install \
   "weaviate" \
   weaviate/weaviate \
-  --install \
   --namespace "weaviate" \
   --values ./values.yaml
 ```
