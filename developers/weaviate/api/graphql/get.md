@@ -64,7 +64,7 @@ As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference
       _additional {
         group {
           id  # An identifier for the group in this search
-          groupedBy  # Properties grouped by
+          groupedBy{ value path }  # Value and path of the property grouped by
           count  # Count of objects in this group
           maxDistance  # Maximum distance from the group to the query vector
           minDistance  # Minimum distance from the group to the query vector
