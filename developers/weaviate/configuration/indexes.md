@@ -102,13 +102,17 @@ Note that the vector index type only specifies how the vectors of data objects a
 
 ## Inverted index
 
-### Configure the inverted index - for `text`
+### Configure the inverted index
 
 There are two indexes for filtering or searching the data, where the first (filterable) is for building a fast, Roaring Bitmaps index, and the second (searchable) index is for a BM25 or hybrid search.
 
-So there are `indexFilterable` and `indexSearchable` keys that can be on or off on a property level.
+So there are `indexFilterable` and `indexSearchable` keys that can be set to `true` (on) or `false` (off) on a property level. Both are _on_ by default.
 
-Both are by default _on_. You can simply turn each off like this:
+The filterable index is only capable of filtering, while the searchable index can be used for both searching and filtering (though not as fast as the filterable index).
+
+So, setting `"indexFilterable": false` and `"indexSearchable": true` (or not setting it at all) will have the trade-off of worse filtering performance but faster imports (due to only needing to update one index) and lower disk usage.
+
+You can set these keys in the schema like shown below, at a property level:
 
 ```json
 {
@@ -126,11 +130,11 @@ Both are by default _on_. You can simply turn each off like this:
 }
 ```
 
-A rule of thumb to follow when determining if you turn it on or off is this: _if you don't need it to query, turn it off._
+A rule of thumb to follow when determining whether to switch off indexing is: _if you will never perform queries based on this property, you can turn it off._
 
 :::tip Data types and indexes
 
-Both `indexFilterable` and `indexSearchable` are available for all types of data. However, `indexSearchable` is only relevant for `text`/`text[]`, and in other cases it will be simply ignored.
+Both `indexFilterable` and `indexSearchable` are available for all types of data. However, `indexSearchable` is only relevant for `text`/`text[]`, and in other cases it will be ignored.
 
 :::
 
@@ -161,8 +165,8 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
     },
     "properties": [
         {
-            "indexFilterable": true,  // <== disable filterable index for this property
-            "indexSearchable": true,  // <== disable searchable index for this property
+            "indexFilterable": false,  // <== disable filterable index for this property
+            "indexSearchable": false,  // <== disable searchable index for this property
             "dataType": [
                 "text"
             ],
@@ -170,7 +174,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
             "name": "name"
         },
         {
-            "indexFilterable": true,  // <== disable filterable index for this property
+            "indexFilterable": false,  // <== disable filterable index for this property
             "dataType": [
                 "int"
             ],
@@ -178,7 +182,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
             "name": "age"
         },
         {
-            "indexFilterable": true,  // <== disable filterable index for this property
+            "indexFilterable": false,  // <== disable filterable index for this property
             "dataType": [
                 "date"
             ],
@@ -186,7 +190,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
             "name": "born"
         },
         {
-            "indexFilterable": true,  // <== disable filterable index for this property
+            "indexFilterable": false,  // <== disable filterable index for this property
             "dataType": [
                 "boolean"
             ],
@@ -194,8 +198,8 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
             "name": "wonNobelPrize"
         },
         {
-            "indexFilterable": true,  // <== disable filterable index for this property
-            "indexSearchable": true,  // <== disable searchable index for this property
+            "indexFilterable": false,  // <== disable filterable index for this property
+            "indexSearchable": false,  // <== disable searchable index for this property
             "dataType": [
                 "text"
             ],
