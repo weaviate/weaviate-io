@@ -1,7 +1,7 @@
 ---
 title: Generative Search - Cohere
 sidebar_position: 2
-image: og/docs/modules/generative-cohere.png
+image: og/docs/modules/generative-cohere.jpg
 # tags: ['generative', 'transformers', 'cohere']
 ---
 import Badges from '/_includes/badges.mdx';
