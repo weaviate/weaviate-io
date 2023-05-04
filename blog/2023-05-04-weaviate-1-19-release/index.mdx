@@ -339,6 +339,12 @@ The above features highlighted a few changes that were included in the patch rel
 * [Release v1.18.4](https://github.com/weaviate/weaviate/releases/tag/v1.18.4)
 
 
+## Upgrade with Caution
+Keep in mind that after upgrading to `v1.19` a downgrade to `v1.18` will **no longer be supported**. If you anticipate having to downgrade, please create a backup before upgrading! If a backup is done with `v1.18` before upgrading, you can always go back to `v1.18` if you wish.
+
+* With the `string`->`text` migration, downgrading after upgrading will not work.
+* With the prop tracker fixes (bm25), once migrated you can’t downgrade again.
+
 import WhatNext from '/_includes/what-next.mdx'
 
 <WhatNext />
