@@ -1,22 +1,18 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 
-```python
-# Configure a batch process
-with client.batch as batch:
-    batch.batch_size=100
-    for i, d in enumerate(data):
-        properties = {
-            "answer": d["Answer"],
-            "question": d["Question"],
-            "category": d["Category"],
-        }
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
 
-        client.batch.add_data_object(properties, "Question")
-```
+<FilteredTextBlock
+  text={EndToEndPyCode}
+  startMarker="# ===== import data ====="
+  endMarker="NO END MARKER"
+  language="py"
+/>
 
 </TabItem>
 <TabItem value="js" label="JavaScript">

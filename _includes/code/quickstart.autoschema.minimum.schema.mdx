@@ -1,17 +1,18 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 
-```python
-class_obj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"  # Or "text2vec-cohere" or "text2vec-huggingface"
-}
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
 
-client.schema.create_class(class_obj)
-```
+<FilteredTextBlock
+  text={EndToEndPyCode}
+  startMarker="# ===== add schema ====="
+  endMarker="# ===== import data ====="
+  language="py"
+/>
 
 </TabItem>
 <TabItem value="js" label="JavaScript">
