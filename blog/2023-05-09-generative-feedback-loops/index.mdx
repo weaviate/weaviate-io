@@ -3,13 +3,13 @@ title: Generative Feedback Loops for Vector Databases
 slug: generative-feedback-loops
 authors: [connor]
 date: 2023-05-09
-# image: ./img/hero.png
+image: ./img/hero.png
 tags: []
 description: "An Introduction to creating generative feedback loops with LLMs in Weaviate"
 
 ---
 
-
+![Generative Feedback Loop Visualization](./img/hero.png)
 <!-- truncate -->
 
 Large Language Models are heralding a new era in information technology. To better understand this revolution, it’s important to consider the historical context. The printing press significantly reduced the cost of reproducing information, while the internet cut out the middleman, making the distribution of information virtually free. [In Aggregation Theory](https://stratechery.com/2015/aggregation-theory/), Ben Thompson writes about how the free distribution of the internet allowed companies to modularize (or unbundle) services and focus on user experience. Ben states that “companies that win the user experience can generate a virtuous cycle where their ownership of consumers/users attracts suppliers which improves the user experience”. Enter LLMs, a world changing technology that enables transforming and generating information at incredible speeds and low cost. LLMs present the opportunity to expedite the virtuous cycle Aggregation Theory describes by commoditizing the human effort traditionally required to deliver great user experiences.
@@ -34,15 +34,40 @@ As a bonus, we’ll also see Weaviate embedded in a Jupyter notebook!
 In this example we will use the OpenAI `text-davinci-003` LLM to generate content, but this is also possible with other providers such as Cohere, HuggingFace, Anthropic, and more. Set your OpenAI key to use with Weaviate’s generate module using the following block of code:
 
 ```python
-Import weaviate
-Client = weaviate.Client(embedded_options=weaviate.EmbeddedOptions(),
+import weaviate
+client = weaviate.Client(embedded_options=weaviate.EmbeddedOptions(),
 			    additional_headers = {
 				“X-OpenAI-Api-Key”: “<YOUR OPENAI KEY HERE>”
 			  })
 client.get_meta() # see which modules are enabled in Weaviate Embedded
 ```
 
+:::note
+[This notebook shows how you can run this example with Cohere in Weaviate](https://github.com/weaviate/Generative-Feedback-Loops/blob/main/Cohere-GFL-Notebook.ipynb)
+:::
+
+
 The table below illustrates the schema of the data we will use, please see the notebook for reference of the full json dictionary to create Weaviate schemas with configurations like this:
+
+| Property                   | Type    | Vectorize? | AI Generated? |
+|----------------------------|---------|------------|---------------|
+| name                       | string  | ✅          | ✅             |
+| host_name                  | string  | ❌          | ❌             |
+| neighbourhood              | string  | ❌          | ❌             |
+| neighbourhood_group        | string  | ❌          | ❌             |
+| latitude                   | number  | ❌          | ❌             |
+| longitude                  | number  | ❌          | ❌             |
+| room_type                  | string  | ❌          | ❌             |
+| price                      | number  | ❌          | ❌             |
+| minimum_nights             | int     | ❌          | ❌             |
+| number_of_reviews          | int     | ❌          | ❌             |
+| last_review                | date    | ❌          | ❌             |
+| reviews_per_month          | number  | ❌          | ❌             |
+| calculated_host_listings_count | int | ❌          | ❌             |
+| availability_365           | int     | ❌          | ❌             |
+| hasAd                      | Ad      | ❌*         | ✅             |
+
+
 
 :::note
 The schema can be found in this [repository](https://github.com/weaviate/Generative-Feedback-Loops/blob/main/listing-schema.py)
