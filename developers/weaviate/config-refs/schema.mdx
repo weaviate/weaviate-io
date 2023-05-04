@@ -427,6 +427,17 @@ By default, the `class name` and all property `values` *will* be taken in the ca
 
 Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every class unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
 
+```python
+class_obj = {
+    "class": "Article",
+    "vectorIndexConfig": {
+        "distance": "dot",
+    },
+}
+
+client.schema.create_class(class_obj)
+```
+
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
