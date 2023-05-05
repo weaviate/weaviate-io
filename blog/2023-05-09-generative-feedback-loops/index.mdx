@@ -20,8 +20,9 @@ The internet cut out the newspaper, now content can be delivered directly to you
 
 In this article, we are going to illustrate the concept of **Generative Feedback Loops with LLMs**. Retrieving information from the Weaviate Vector Database to prompt Weaviate’s generative module and then vectorizing and saving these generations **back** into the database! Now we can semantically search through the generated content, as well as add symbolic metadata about it.
 
-We will step into the shoes of AirBnB and implement a Generative Feedback Loop to process `Listing` objects. This shows how LLMs let us supercharge user experience by creating custom advertisements based on user preferences. We retrieve information about users from the DB, give that + information about the property to the LLM, and save the resulting custom advertisement back to the database.
+We will step into the shoes of AirBnB and implement a Generative Feedback Loop to process `Listing` objects. This shows how LLMs let us supercharge user experience by creating custom advertisements based on user preferences. We retrieve information about users from the DB, give that + information about the Listing to the LLM, and save the resulting custom advertisement back to the database.
 
+Here is a quick overview of the code snippets before diving in:
 1. Create a description for Listings based on x,y,z.
 2. Semantic Search through generated Listings with the Vector Database
 3. Generate Ads for these Listings and link them with cross-references.
@@ -33,7 +34,7 @@ We will step into the shoes of AirBnB and implement a Generative Feedback Loop t
 The Github repo with notebooks (using Weaviate embedded) can be found [here](https://github.com/weaviate/Generative-Feedback-Loops/).
 :::
 
-In this example we will use the OpenAI `text-davinci-003` LLM to generate content, but this is also possible with other providers such as Cohere, HuggingFace, Anthropic, and more. Set your OpenAI key to use with Weaviate’s generate module using the following block of code:
+In this example we will be using the OpenAI `text-davinci-003` and the Cohere `command-xlarge-nightly` LLMs to generate content, but this is also possible with other providers such as HuggingFace, Anthropic, and more. Set your OpenAI or Cohere key to use with Weaviate’s generate module using the following block of code:
 
 ```python
 import weaviate
@@ -63,7 +64,7 @@ The table below illustrates the schema of the data we will use, please see the n
 | reviews_per_month          | number  | ❌          | ❌            | ✅ |
 | calculated_host_listings_count | int | ❌          | ❌            | ✅ |
 | availability_365           | int     | ❌          | ❌            | ✅ |
-| hasAd                      | Ad      | ❌*         | ✅            | ❌ |
+| hasAd                      | Ad      | ❌          | ✅            | ❌ |
 
 
 
@@ -72,7 +73,7 @@ The schema can be found in this [repository](https://github.com/weaviate/Generat
 :::
 
 ## Avoiding Hallucinations: Real-Time Data with LLM Capabilities
-Utilizing prompt engineering tactics like “Please base your response only on the provided information” and a basic reflection prompt, we integrate data from the Listing database into the generative model. This allows us to draw exclusively from the provided information. By emphasizing the use of real-time information stored in Weaviate, we continuously update the language model with the latest data, bypassing the limitation of its encoded knowledge. Ultimately combining the peanut butter of factual information from the database with the jelly of LLM language understanding.
+Utilizing prompt engineering tactics like “Please base your response only on the provided information”, we integrate data from the Listing database into the generative model. This allows us to draw from the provided information. By emphasizing the use of real-time information stored in Weaviate, we continuously update the language model with the latest data, bypassing the limitation of its encoded knowledge. Ultimately combining the peanut butter of factual information from the database with the jelly of LLM language understanding.
 
 ### Generate a description for each Listing
 
