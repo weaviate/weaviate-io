@@ -26,7 +26,7 @@ import EmbeddedInstantiationSimple from '/_includes/code/embedded.instantiate.si
 
 ### For WCS users
 
-You can find the cluster URL, authentication status and enabled modules for each instance on the WCS dashboard.
+You can find the cluster URL, authentication status and enabled modules for each instance, in the Weaviate Cloud Services dashboard.
 
 ### For Docker/Kubernetes deployments
 
@@ -60,7 +60,7 @@ This set up is not recommended in general as anyone can access your Weaviate ins
 
 If you do have authentication enabled, you can log in with an API key (recommended), or with OIDC.
 
-### With API key authentication (Recommended)
+### With API key authentication (recommended)
 
 :::info This is your Weaviate API key
 This is **not** the place to specify the API key for services such as Cohere, Hugging Face or OpenAI.
@@ -80,22 +80,22 @@ This authentication method is available for WCS. Your specific identity provider
 
 ## Providing inference API keys
 
-Additionally, you can provide inference API keys to Weaviate so that you can use modules that leverage external APIs such as `generative-openai` or `text2vec-cohere`, for example.
+Additionally, you can provide inference API keys to Weaviate so that you can use modules that leverage external APIs, for example `generative-openai` or `text2vec-cohere`.
 
-This is done as an additional header, added as below:
+This is done via an additional header, added as below:
 
 <WCSAuthenticationApiKeyWithInferenceKey/>
 
 ## Next
 
-You can continue on to the [Weaviate, end-to-end](./end-to-end.md) tutorial, if you have not yet.
+If you want to stay focused, continue to the [Weaviate, end-to-end](./end-to-end.md) tutorial.
 
-You can also read more about some of the concepts discussed here, such as:
+Or, you can read more about some of the concepts discussed here, such as:
 - [Authentication](../configuration/authentication.md)
 - [Configuration](../configuration/index.md)
 - [Modules](../modules/index.md)
 
-Or you can learn more about how to do things in [Tutorials](../tutorials/index.md), like [build schemas](../tutorials/schema.md), [import data](../tutorials/import.md), [query data](../tutorials/query.md) and more.
+For more in-depth [tutorials](../tutorials/index.md), learn how to [build schemas](../tutorials/schema.md), [import data](../tutorials/import.md), [query data](../tutorials/query.md) and more.
 
 ## More Resources
 

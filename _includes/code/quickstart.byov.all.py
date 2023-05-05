@@ -5,15 +5,11 @@ import json
 client = weaviate.Client(
     url = "https://some-endpoint.weaviate.network",  # Replace with your endpoint
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your inference API key
-    }
 )
 
 # ===== add schema =====
 class_obj = {
     "class": "Question",
-    "vectorizer": "text2vec-openai"
 }
 
 client.schema.create_class(class_obj)
@@ -21,7 +17,7 @@ client.schema.create_class(class_obj)
 # ===== import data =====
 # Load data
 import requests
-url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json'
+url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny+vectors.json'
 resp = requests.get(url)
 data = json.loads(resp.text)
 
@@ -38,7 +34,9 @@ with client.batch as batch:
             "category": d["Category"],
         }
 
-        client.batch.add_data_object(properties, "Question")
+        vector = TODO
+
+        client.batch.add_data_object(properties, "Question", vector=vector)
 
 # ===== Test import =====
 schema = client.schema.get()
@@ -52,19 +50,16 @@ import weaviate
 import json
 
 client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="<YOUR-WEAVIATE-API-KEY>"),  # Replace w/ your API Key for the Weaviate instance
-    additional_headers={
-        "X-OpenAI-Api-Key": "<THE-KEY>"  # Replace with your inference API key
-    }
+    url="https://some-endpoint.weaviate.network",  # replace with your endpoint
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # replace w/ your Weaviate instance API key
 )
 
-nearText = {"concepts": ["biology"]}
+nearVector = TODO
 
 result = (
     client.query
     .get("Question", ["question", "answer", "category"])
-    .with_near_text(nearText)
+    .with_near_vector(nearVector)
     .with_limit(2)
     .do()
 )
