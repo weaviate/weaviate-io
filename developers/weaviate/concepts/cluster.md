@@ -82,12 +82,12 @@ Weaviate - especially when running as a cluster - is optimized to run on Kuberne
 
 ## Node affinity of shards and/or replication shards
 
-Weaviate tries to select the node with the most available resources.
+Weaviate tries to select the node with the most available disk space.
 
-This only applies when creating a new class, rather than when adding more data to an existing single class. The current implementation only considers the disk space.
+This only applies when creating a new class, rather than when adding more data to an existing single class.
 
 <details>
-  <summary>Pre-`v1.18.1` behavior</summary>
+  <summary>Pre-<code>v1.18.1</code> behavior</summary>
 
 In versions `v1.8.0`-`v1.18.0`, users could not specify the node-affinity of a specific shard or replication shard.
 
