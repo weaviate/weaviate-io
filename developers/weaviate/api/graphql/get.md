@@ -46,22 +46,25 @@ You can use a groupBy argument to retrieve groups of objects from Weaviate. This
 
 The `groupBy{}` argument is structured as follows for the `Get{}` function:
 
+:::info Single-level grouping only
+As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference. Nested paths are current not supported.
+:::
+
 ```graphql
 {
   Get{
     <Class>(
       <vectorSearchParameter>  # e.g. nearVector, nearObject, nearText
       groupBy:{
-        path: [<propertyName>]  # Properties to group by
+        path: [<propertyName>]  # Property to group by (only one property or cross-reference)
         groups: <number>  # Max. number of groups
         objectPerGroup: <number>  # Max. number of objects per group
       }
     ) {
       _additional {
-        id  # An identifier for the group in this search
         group {
-          id  # UUID of the group (if one exists)
-          groupedBy  # Properties grouped by
+          id  # An identifier for the group in this search
+          groupedBy{ value path }  # Value and path of the property grouped by
           count  # Count of objects in this group
           maxDistance  # Maximum distance from the group to the query vector
           minDistance  # Minimum distance from the group to the query vector
@@ -108,7 +111,7 @@ More concretely, an query such as below:
         group{
           id
           count
-          groupValue
+          groupedBy{ value path }
           maxDistance
           minDistance
           hits{
@@ -148,7 +151,12 @@ Will result in the following response:
           "_additional": {
             "group": {
               "count": 1,
-              "groupValue": "Content of passage 1",
+              "groupedBy": {
+                "path": [
+                  "content"
+                ],
+                "value": "Content of passage 1"
+              },
               "hits": [
                 {
                   "_additional": {
@@ -176,7 +184,12 @@ Will result in the following response:
           "_additional": {
             "group": {
               "count": 1,
-              "groupValue": "Content of passage 2",
+              "groupedBy": {
+                "path": [
+                  "content"
+                ],
+                "value": "Content of passage 2"
+              },
               "hits": [
                 {
                   "_additional": {
@@ -207,10 +220,6 @@ Will result in the following response:
 ```
 
 </details>
-
-:::note Performance vs `path` complexity
-Keep in mind that specifying a `path` value that requires resolving a large number of objects may be computationally expensive. For instance, setting the `path` above to `["ofDocument", "Document", "title"]` would require resolving all documents and may take considerably longer.
-:::
 
 ### Consistency levels
 
