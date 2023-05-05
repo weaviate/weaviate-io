@@ -82,9 +82,18 @@ Weaviate - especially when running as a cluster - is optimized to run on Kuberne
 
 ## Node affinity of shards and/or replication shards
 
-As of `v1.8.0`, users cannot specify the node-affinity of a specific shard or replication shard. Shards are assigned to 'live' nodes in a round-robin fashion starting with a random node. There are not yet any mechanisms in place to make sure that a new class' shards are owned by the node that currently has the least work. Similarly, there is no way to assign specific classes to specific nodes if nodes aren't equally sized in the cluster.
+Weaviate tries to select the node with the most available disk space.
 
-Such node-affinity labels and/or rules may be added in future releases.
+This only applies when creating a new class, rather than when adding more data to an existing single class.
+
+<details>
+  <summary>Pre-<code>v1.18.1</code> behavior</summary>
+
+In versions `v1.8.0`-`v1.18.0`, users could not specify the node-affinity of a specific shard or replication shard.
+
+Shards were assigned to 'live' nodes in a round-robin fashion starting with a random node.
+
+</details>
 
 ## Consistency and current limitations
 

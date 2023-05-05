@@ -325,6 +325,12 @@ const siteRedirects = {
             to: '/developers/wcs/guides/console',
             from: '/developers/weaviate/tutorials/console',
         },
+
+        // old link redirects
+        {
+            to: '/developers/weaviate/installation',
+            from: '/developers/weaviate/current/getting-started/installation',
+        },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

@@ -129,6 +129,12 @@ There are currently three main functions in a GraphQL request: "Get{}", "Explore
 2. **Explorative & fuzzy search: `Explore {}`**: to search in a fuzzy way, when you don't know the data schema and class names.
 3. **Data analysis (meta data): `Aggregate {}`**: to search for meta data, and do data analysis of data aggregations.
 
+## gRPC API support
+
+Starting with version `1.19`, Weaviate is introducing support for the gRPC (gRPC Remote Procedure Calls) API, with the aim of making Weaviate even faster over time.
+
+This will not result in any user-facing API changes. As of May 2023, gRPC has been added at a very small scale, with the goal of rolling it out further over time to the core library as well as the clients.
+
 ## Weaviate Console
 
 The [Weaviate Console](https://console.weaviate.cloud) is a dashboard to manage Weaviate clusters from WCS, and access Weaviate instances running elsewhere. You can use the Query Module to make GraphQL queries.

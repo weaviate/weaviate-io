@@ -29,10 +29,6 @@ export default function PricingStandard() {
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>
-          <div className={styles.checkIcon}></div>
-          <span>Hibernation after 1 hour</span>
-        </li>
-        <li>
           <div className={styles.checkIcon}></div> <span>Monitoring</span>
         </li>
         <li>

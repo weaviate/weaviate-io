@@ -25,10 +25,6 @@
     "answer": "Not yet; we are currently in the process of becoming SOC2 compliant. Feel free to email us for a status update on <a href='mailto:hello+soc2@weaviate.io'>hello+soc2@weaviate.io</a>"
   },
   {
-    "question": "What is Hibernation?",
-    "answer": "​Hibernation ​is a process where a cluster goes down (i.e., 'hybernates') while retaining your data after a given period. This is ideal for research or development purposes; when the service endpoints are used again, the service comes back up with a short time delay."
-  },
-  {
     "question": "​What is round-robin provisioning?",
     "answer": "​If your SLA tier contains round-robin provisioning, the Weaviate Cloud Service will provision on Amazon Web Services (AWS), Google Cloud Platform (GCP), ​or Microsoft Azure where enough resources are available."
   },

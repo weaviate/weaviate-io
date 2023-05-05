@@ -161,7 +161,7 @@ Imagine you have a property for the popularity of the `Article` by the audience,
       "properties": [
         {
           "dataType": [
-            "string"
+            "text"
           ],
           "description": "The popularity level",
           "name": "level"

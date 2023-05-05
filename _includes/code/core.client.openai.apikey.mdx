@@ -11,7 +11,8 @@ client = weaviate.Client(
   url = "https://some-endpoint.weaviate.network/",
   # highlight-start
   additional_headers = {
-    "X-OpenAI-Api-Key": "<THE-KEY>"  # Replace with your API key
+    "X-OpenAI-Api-Key": "<THE-KEY>",  # For OpenAI. Replace with your API key
+    "X-Azure-Api-Key": "<THE-KEY>",  # For Azure OpenAI. Replace with your API key
   }
   # highlight-end
 )
@@ -21,14 +22,17 @@ client = weaviate.Client(
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const weaviate = require("weaviate-ts-client");
 
 const client = weaviate.client({
     scheme: 'https',
     host: 'some-endpoint.weaviate.network',
     // highlight-start
     // Replace with your API key
-    headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},
+    headers: {
+      'X-OpenAI-Api-Key': '<THE-KEY>',
+      'X-Azure-Api-Key': '<THE-KEY>',
+    },
     // highlight-end
   });
 ```
@@ -52,7 +56,10 @@ func main() {
         Scheme: "https",
         // highlight-start
         // Replace with your API key
-        Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"}
+        Headers: map[string]string{
+          "X-OpenAI-Api-Key": "<THE-KEY>",  // For OpenAI
+          "X-Azure-Api-Key": "<THE-KEY>", // For Azure OpenAI
+        }
         // highlight-end
     }
 
@@ -78,7 +85,8 @@ public class App {
     // highlight-start
     Map<String, String> headers = new HashMap<String, String>() { {
       // Replace with your API key
-      put("X-OpenAI-Api-Key", "<THE-KEY>");
+      put("X-OpenAI-Api-Key", "<THE-KEY>");  // For OpenAI
+      put("X-Azure-Api-Key", "<THE-KEY>"); // For Azure OpenAI
     } };
     // highlight-end
 

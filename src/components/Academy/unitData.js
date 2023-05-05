@@ -23,23 +23,52 @@ export const unitData = {
   },
   queries_1: {
     title: "Queries 1",
-    body: "Learn how to use `Get` and `Aggregate` queries with vector searches and scalar filters.",
+    body: "Learn how to retrieve data from Weaviate using vector searches and scalar filters.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/units/queries_1",
+    buttonURL: "/developers/academy/units/search_1",
     learningGoals: [
-      "How to use `Get` queries to retrieve objects.",
-      "How to use `Aggregate` queries to retrieve meta information about objects.",
-      "The difference between `nearVector`, `nearObject` and `nearText` parameters.",
-      "How to use `certainty` and `distance` parameters to modify vector searches.",
+      "How to retrieve objects and properties.",
+      "The structure of returned responses from Weaviate.",
+      "The difference between `nearVector`, `nearObject` and `nearText`.",
+      "How to aggregate meta information about objects.",
       "How to add filters to vector searches.",
+      "Weaviate's internal vector search process.",
     ],
     learningOutcomes: [
-      "Demonstrate understanding of GraphQL syntax structure",
       "Construct 'Get' queries to retrieve relevant objects and desired properties.",
+      "Parse a response from Weaviate.",
+      "Explain the differences between `nearVector`, `nearObject` and `nearText`.",
       "Construct 'Aggregate' queries to retrieve aggregated properties about relevant objects.",
-      "Differentiate and apply appropriate vector search parameters such as distance, certainty and beacon to modify searches.",
-      "Add filters to queries such as by themselves and in combination."
+      "Add filters to queries to exclude certain results.",
+      "Describe how `nearObject` and `nearText` queries are converted to vector searches, and what pre-filtering is.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  schema_and_import: {  // Separate the more difficult topics into their own units (schema 2 / import 2)
+    title: "Schema and imports",
+    body: "Learn what role the schema plays in Weaviate, and how to define it",
+    buttonType: "Click here",
+    badgeType: "mixed",
+    buttonURL: "/developers/academy/units/schema_1",
+    learningGoals: [
+      "Learn what a Weaviate data schema is.",
+      "Learn what classes, properties and datatypes are.",
+      "Learn how to upload and retrieve a schema in Weaviate.",
+      "The ability to populate Weaviate with data, including an understanding of suggested best practices such as batching, error diagnoses and handling.",
+    ],
+    learningOutcomes: [
+      "Understand the definitions of schema classes, properties and different data types.",
+      "Create a schema with classes, properties, various data types and basic vectorization settings.",
+      "Use upload, retrieve and change operations to a data schema in Weaviate.",
+      "Describe Weaviate's data structure in terms of classes, objects, properties and vectors.",
+      "Compare when to use batch imports and when to use single object creation.",
+      "Locate REST endpoints that allow data import into Weaviate, and identify their primary purposes.",
+      "Use the Weaviate client to import a dataset into Weaviate, with and without 'custom' vectors.",
+      "Describe available batching parameters and their purpose.",
+      "Distinguish between object-level and batch-level errors occurring during import.",
+      "Identify object-level import errors and implement error handling through the Weaviate client.",
     ],
     owner: "jp",
     reviewer: "jp"
@@ -51,14 +80,12 @@ export const unitData = {
     badgeType: "mixed",
     buttonURL: "/developers/academy/units/vectorization_essentials",
     learningGoals: [
-      "What a vector is, and how it can represent meaning.",
       "How vectors and deep learning models enable semantic search.",
       "How Weaviate converts data into vectors.",
       "Weaviate's text vectorization process.",
       "Basics of vectorizer selection for Weaviate.",
     ],
     learningOutcomes: [
-      "Explain what a vector is and its role in representing meaning.",
       "Describe the use of vectors and deep learning models in semantic search.",
       "Broadly explain the process by which Weaviate converts data into vectors.",
       "Understand the fundamental concepts of text vectorization.",
@@ -68,26 +95,7 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
-  schema_1: {
-    title: "Schema 1",
-    body: "Learn what role the schema plays in Weaviate, and how to define it",
-    buttonType: "Click here",
-    badgeType: "mixed",
-    buttonURL: "/developers/academy/units/schema_1",
-    learningGoals: [
-      "Learn what a Weaviate data schema is.",
-      "Learn what classes, properties and datatypes are.",
-      "Learn how to upload and retrieve a schema in Weaviate."
-    ],
-    learningOutcomes: [
-      "Understand the definitions of schema classes, properties and different data types.",
-      "Create a schema with classes, properties, various data types and basic vectorization settings.",
-      "Use upload, retrieve and change operations to a data schema in Weaviate."
-    ],
-    owner: "jp",
-    reviewer: "jp"
-  },
-  data_import: {
+  imports_in_detail: {
     title: "Data import",
     body: "How to efficiently import data into Weaviate.",
     buttonType: "Click here",
@@ -97,13 +105,7 @@ export const unitData = {
       "The ability to populate Weaviate with data, including an understanding of suggested best practices such as batching, error diagnoses and handling.",
     ],
     learningOutcomes: [
-      "Describe Weaviate's data structure in terms of classes, objects, properties and vectors.",
-      "Compare when to use batch imports and when to use single object creation.",
-      "Locate REST endpoints that allow data import into Weaviate, and identify their primary purposes.",
-      "Use the Weaviate client to import a dataset into Weaviate, with and without 'custom' vectors.",
-      "Describe available batching parameters and their purpose.",
-      "Distinguish between object-level and batch-level errors occurring during import.",
-      "Identify object-level import errors and implement error handling through the Weaviate client.",
+
     ],
     owner: "jp",
     reviewer: "jp"

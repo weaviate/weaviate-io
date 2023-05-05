@@ -160,7 +160,7 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
       "name": "string",
       "description": "string",
       "dataType": [
-        "string"
+        "text"
       ],
       # Property-level settings override the class-level settings
       "invertedIndexConfig": {
@@ -169,7 +169,8 @@ The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedi
           "k1": 1.2
         }
       },
-      "indexInverted": true
+      "indexFilterable": true,
+      "indexSearchable": true,
     }
   ]
 }

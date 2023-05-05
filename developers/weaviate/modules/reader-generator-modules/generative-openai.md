@@ -10,21 +10,27 @@ import Badges from '/_includes/badges.mdx';
 
 ## In short
 
-* The Generative OpenAI (`generative-openai`) module is a Weaviate module for generating responses based on the data stored in your Weaviate instance.
+* The Generative OpenAI (`generative-openai`) module generates responses based on the data stored in your Weaviate instance.
 * The module can generate a response for each returned object, or a single response for a group of objects.
-* The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries
-* Added in Weaviate `v1.17.3`
+* The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries.
+* Added in Weaviate `v1.17.3`.
+* The default OpenAI model is `gpt-3.5-turbo`, but other models (e.g. `gpt-4`) are supported.
+* For Azure OpenAI, a model must be specified.
+
+import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
+
+<OpenAIOrAzureOpenAI/>
 
 ## Introduction
 
-`generative-openai` is a Weaviate module for generating text based on fields returned by Weaviate queries.
+`generative-openai` generates responses based on the data stored in your Weaviate instance.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
-2. (OpenAI) Use OpenAI to generate a response based on the results (from the previous step) and the provided prompt or task.
+2. (OpenAI) Use an OpenAI model to generate a response based on the results (from the previous step) and the provided prompt or task.
 
 :::note
-You can use the Generative OpenAI module with any other modules. For example, you could use `text2vec-cohere` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-openai` module to generate a response.
+You can use the Generative OpenAI module with non-OpenAI upstream modules. For example, you could use `text2vec-cohere` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-openai` module to generate a response.
 :::
 
 The generative module can provide results for:
@@ -33,43 +39,42 @@ The generative module can provide results for:
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 
-## OpenAI API key
+## Inference API key
 
-`generative-openai` requires an [OpenAI API key](https://openai.com/api/) to perform the generation task.
+`generative-openai` requires an API key from OpenAI or Azure OpenAI.
+
+:::tip
+You only need to provide one of the two keys, depending on which service (OpenAI or Azure OpenAI) you are using.
+:::
 
 ### Providing the key to Weaviate
 
-You can provide your OpenAI API key in two ways:
+You can provide your API key in two ways:
 
-1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` under `environment` to your `docker-compose` file, like this:
+1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `docker-compose` file, like this:
 
-  ```
+  ```yaml
   environment:
-    OPENAI_APIKEY: 'your-key-goes-here'
+    OPENAI_APIKEY: 'your-key-goes-here'  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+    AZURE_APIKEY: 'your-key-goes-here'  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
     ...
   ```
 
-2. At **run-time** (recommended), by providing `"X-OpenAI-Api-Key"` to the Weaviate client, like this:
+2. At **run-time** (recommended), by providing `"X-OpenAI-Api-Key"` or `"X-Azure-Api-Key"` through the request header. You can provide it using the Weaviate client, like this:
 
 import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 
 <ClientKey />
 
-## Enabling the module
+## Module configuration
 
-:::caution
-Your Weaviate instance must be on `1.17.3` or newer.
-
-If your instance is older than `1.17.3` then you need to migrate or upgrade it to a newer version.
+:::tip Not applicable to WCS
+This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 
-### WCS
+### Configuration file (Weaviate open source only)
 
-The `Generative OpenAI` module is enabled by default in the Weaviate Cloud Services (WCS). If your instance version is on `1.17.3` or newer, then the module is ready to go.
-
-### Local deployment with Docker
-
-To enable the Generative OpenAI module with your local deployment of Weaviate, you need to configure your `docker-compose` file. Add the `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative OpenAI module in your configuration file (e.g. `docker-compose.yaml`). Add the `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-openai,generative-openai'
@@ -101,17 +106,51 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
       // highlight-next-line
       ENABLE_MODULES: 'text2vec-openai,generative-openai'
-      OPENAI_APIKEY: sk-foobar # this parameter is optional, as you can also provide it through the client
+      OPENAI_APIKEY: sk-foobar  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+      AZURE_APIKEY: sk-foobar  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```
 
 ## Schema configuration
 
-The Generative module doesn't require a specific schema configuration.
+You can define settings for this module in the schema.
 
-:::note
-You need a schema to run queries on your data, so that the module can use the results to generate a response.
-:::
+### OpenAI vs Azure OpenAI
+
+- **OpenAI** users can optionally set the `model` parameter.
+- **Azure OpenAI** users must set the parameters `resourceName` and `deploymentId`.
+
+### Model parameters
+
+You can also configure additional parameters for the generative model through the `xxxProperty` parameters shown below.
+
+### Example schema
+
+For example, the following schema configuration will set Weaviate to use the `generative-openai` model with the `Document` class.
+
+```json
+{
+  "classes": [
+    {
+      "class": "Document",
+      "description": "A class called document",
+      ...,
+      "moduleConfig": {
+        "generative-openai": {
+          "model": "gpt-3.5-turbo",  // Optional - Defaults to `gpt-3.5-turbo`
+          "resourceName": "<YOUR-RESOURCE-NAME>",  // For Azure OpenAI - Required
+          "deploymentId": "<YOUR-MODEL-NAME>",  // For Azure OpenAI - Required
+          "temperatureProperty": <temperature>,  // Optional, applicable to both OpenAI and Azure OpenAI
+          "maxTokensProperty": <max_tokens>,  // Optional, applicable to both OpenAI and Azure OpenAI
+          "frequencyPenaltyProperty": <frequency_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
+          "presencePenaltyProperty": <presence_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
+          "topPProperty": <top_p>,  // Optional, applicable to both OpenAI and Azure OpenAI
+        }
+      }
+    }
+  ]
+}
+```
 
 <details>
   <summary>New to Weaviate Schemas?</summary>
@@ -130,10 +169,6 @@ This module extends the  `_additional {...}` property with a `generate` operator
 |- |- |- |- |- |
 | `singleResult {prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result. You need to include at least one result field in the prompt, between braces. |
 | `groupedResult {task}`  | string | no | `Explain why these results are similar to each other`  | Generates a single response for all search results |
-
-:::note
-Currently, you can't provide your OpenAI key in the Weaviate console. That means you can't use the `GraphQL` examples with your WCS instances, but if you provide your API key in the Docker configuration, then this should work.
-:::
 
 ### Example of properties in the prompt
 
@@ -262,11 +297,18 @@ additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++c
 
 ## Additional information
 
-### Available models
+### Supported models (OpenAI)
 
-OpenAI has one model available to generate answers based on the prompt.
+You can use any of
 
-* [davinci 003](https://platform.openai.com/docs/models/davinci)
+* [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5) (default)
+* [gpt-4](https://platform.openai.com/docs/models/gpt-4)
+* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4)
+
+The module also supports these legacy models (not recommended)
+
+* [davinci 002](https://platform.openai.com/docs/models/overview)
+* [davinci 003](https://platform.openai.com/docs/models/overview)
 
 ## More resources
 

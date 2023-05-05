@@ -62,7 +62,7 @@ If you do enable OIDC in WCS for added security, the easiest way to authenticate
 
 Consult the `WCS authentication` section for your preferred client library and use the "Resource Owner Password Flow" method, by passing on the `username` and `password` you used to sign in to WCS. See the docs below:
 - [Python](../client-libraries/python.md#wcs-authentication)
-- [JavaScript](../client-libraries/javascript.md#wcs-authentication)
+- [JavaScript/TypeScript](../client-libraries/typescript.mdx.md#wcs-authentication)
 - [Go](../client-libraries/go.md#wcs-authentication)
 - [Java](../client-libraries/java.md#wcs-authentication)
 :::

@@ -181,7 +181,7 @@ schema = {
     "properties": [
       {
         "dataType": [
-          "string"
+          "text"
         ],
         "description": "Name of the publication",
         "name": "name"
@@ -207,7 +207,7 @@ schema = {
     "properties": [
       {
         "dataType": [
-          "string"
+          "text"
         ],
         "description": "Title of the article",
         "name": "title"
@@ -226,7 +226,7 @@ schema = {
     "properties": [
       {
         "dataType": [
-            "string"
+            "text"
         ],
         "description": "Name of the author",
         "name": "name"
@@ -302,7 +302,7 @@ schema = {
       "properties": [
         {
           "name": "name",
-          "dataType": ["string"]
+          "dataType": ["text"]
         },
         {
           "name": "wroteBooks",
@@ -419,7 +419,7 @@ schema = {
       "properties": [
         {
           "name": "name",
-          "dataType": ["string"]
+          "dataType": ["text"]
         },
         {
           "name": "wroteBooks",
@@ -536,7 +536,7 @@ schema = {
       "properties": [
         {
           "name": "name",
-          "dataType": ["string"]
+          "dataType": ["text"]
         },
         {
           "name": "wroteBooks",

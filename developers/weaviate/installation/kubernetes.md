@@ -8,6 +8,12 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::tip <b>Important</b> Set the correct Weaviate version
+Make sure to set your desired Weaviate version.
+
+This can be done through either explicitly setting it as part of the `values.yaml` or through overwriting the default as outlined in the [deployment step](#deploy-install-the-helm-chart) below.
+:::
+
 ## Requirements
 
 * A Kuberentes Cluster with a recent version (e.g. >=1.23).
@@ -16,11 +22,11 @@ import Badges from '/_includes/badges.mdx';
   file system capable of `ReadWriteOnce` access mode is sufficient.
 * Helm (only v3 is compatible from Helm version `"v||site.helm_version||"`)
 
-# Weaviate Helm chart
+## Weaviate Helm chart
 
 To obtain and install the Weaviate chart on your Kubernetes cluster, take the following steps:
 
-## Verify tool setup and cluster access
+### Verify tool setup and cluster access
 
 ```bash
 # Check if helm is installed
@@ -30,7 +36,7 @@ $ helm version
 $ kubectl get pods
 ```
 
-## Obtain the Helm Chart
+### Obtain the Helm Chart
 
 Add the Weaviate helm repo that contains the Weaviate helm chart
 
@@ -43,12 +49,13 @@ Get the default `values.yaml` configuration file from the Weaviate helm chart:
 helm show values weaviate/weaviate > values.yaml
 ```
 
-## Adjust the configuration in the values.yaml (Optional)
+### Modify values.yaml (as necessary)
 
-_Note: You can skip this step and run with all default values. In any case,
-make sure that you set the correct Weaviate version. This may either be through
-explicitly setting it as part of the `values.yaml` or through overwriting the
-default as outlined in the deploy step below._
+:::note You do not *need* to modify values.yaml
+You can skip this step and run with all default values.
+
+But, if you do not modify the defaults in `values.yaml`, make sure to set the appropriate Weaviate version at the deployment step.
+:::
 
 In the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)
 file you can tweak the configuration to align it with your
@@ -68,7 +75,47 @@ See the resource requests and limits in the example `values.yaml`. You can
 adjust them based on your expected load and the resources available on the
 cluster.
 
-## Deploy (install the Helm chart)
+#### Authentication and authorization
+
+An example configuration for authentication is shown below.
+
+```yaml
+authentication:
+  apikey:
+    enabled: true
+    allowed_keys:
+      - readonly-key
+      - secr3tk3y
+    users:
+      - readonly@example.com
+      - admin@example.com
+  anonymous_access:
+    enabled: false
+  oidc:
+    enabled: true
+    issuer: https://auth.wcs.api.weaviate.io/auth/realms/SeMI
+    username_claim: email
+    groups_claim: groups
+    client_id: wcs
+authorization:
+  admin_list:
+    enabled: true
+    users:
+      - someuser@weaviate.io
+      - admin@example.com
+    readonly_users:
+      - readonly@example.com
+```
+
+In this example, the key `readonly-key` will authenticate a user as the `readonly@example.com` identity, and `secr3tk3y` will authenticate a user as `admin@example.com`.
+
+OIDC authentication is also enabled, with WCS as the token issuer/identity provider. Thus, users with WCS accounts could be authenticated. This configuration sets `someuser@weaviate.io` as an admin user, so if `someuser@weaviate.io` were to authenticate, they will be given full (read and write) privileges.
+
+For further, general documentation on authentication and authorization configuration, see:
+- [Authentication](../configuration/authentication.md)
+- [Authorization](../configuration/authorization.md)
+
+### Deploy (install the Helm chart)
 
 You can deploy the helm charts as follows:
 
@@ -90,15 +137,27 @@ have only namespace-level permissions, you can skip creating a new
 namespace and adjust the namespace argument on `helm upgrade` according to the
 name of your pre-configured namespace.
 
-## Updating the installation after the initial deployment
+### Updating the installation after the initial deployment
 
 The above command (`helm upgrade...`) is idempotent, you can run it again, for
 example after adjusting your desired configuration.
 
-# Additional Configuration Help
+## Additional Configuration Help
 
 - [Cannot list resource "configmaps" in API group when deploying Weaviate k8s setup on GCP](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
 - [Error: UPGRADE FAILED: configmaps is forbidden](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
+
+## Troubleshooting
+
+- If you see `No private IP address found, and explicit IP not provided`, set the pod subnet to be in an valid ip address range of the following:
+
+    ```
+    10.0.0.0/8
+    100.64.0.0/10
+    172.16.0.0/12
+    192.168.0.0/16
+    198.19.0.0/16
+    ```
 
 ## More Resources
 

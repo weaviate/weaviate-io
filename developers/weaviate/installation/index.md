@@ -74,7 +74,7 @@ services:
       EXTENSIONS_STORAGE_ORIGIN: http://weaviate:8080
       NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE: 5
       ENABLE_COMPOUND_SPLITTING: 'false'
-    image: semitechnologies/contextionary:en0.16.0-v1.0.2
+    image: semitechnologies/contextionary:en0.16.0-v1.2.1
 ```
 
 After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`.
