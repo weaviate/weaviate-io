@@ -65,17 +65,11 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 
 <ClientKey />
 
-## Enabling the module
-
-:::caution
-Your Weaviate instance must be on `1.17.3` or newer.
-
-If your instance is older than `1.17.3` then you need to migrate or upgrade it to a newer version.
-:::
+## Module configuration
 
 ### WCS
 
-The `Generative OpenAI` module is enabled by default in the Weaviate Cloud Services (WCS). If your instance version is on `1.17.3` or newer, then the module is ready to go.
+The `generative-openai` module is enabled by default in the Weaviate Cloud Services (WCS).
 
 ### Local deployment with Docker
 
@@ -122,9 +116,8 @@ You can define settings for this module in the schema.
 
 ### OpenAI vs Azure OpenAI
 
-OpenAI users can optionally set the `model` parameter.
-
-Azure OpenAI users must set the parameters `resourceName` and `deploymentId`.
+- **OpenAI** users can optionally set the `model` parameter.
+- **Azure OpenAI** users must set the parameters `resourceName` and `deploymentId`.
 
 ### Model parameters
 
