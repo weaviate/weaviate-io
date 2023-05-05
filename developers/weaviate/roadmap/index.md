@@ -18,10 +18,6 @@ If you find any of the issues of interest, follow the link and upvote <i classNa
 
 Please feel free to engage with us about the roadmap on [Weaviate's GitHub](https://github.com/weaviate/weaviate) or on [Slack](https://weaviate.io/slack).
 
-## Planned for Weaviate 1.19
-
-<Roadmap label="planned-1.19"/>
-
 ## Planned for Weaviate 1.20
 
 <Roadmap label="planned-1.20"/>
