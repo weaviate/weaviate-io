@@ -102,7 +102,7 @@ Note that the vector index type only specifies how the vectors of data objects a
 
 ## Inverted index
 
-### Configure the inverted index - for `text`
+### Configure the inverted index
 
 There are two indexes for filtering or searching the data, where the first (filterable) is for building a fast, Roaring Bitmaps index, and the second (searchable) index is for a BM25 or hybrid search.
 
