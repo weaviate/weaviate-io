@@ -198,7 +198,8 @@ The output will look something like this:
                         "string"
                     ],
                     "description": "title of the article",
-                    "indexInverted": true,
+                    "indexFilterable": true,
+                    "indexSearchable": true,
                     "moduleConfig": {
                         "text2vec-contextionary": {
                             "skip": false,
@@ -212,7 +213,8 @@ The output will look something like this:
                         "string"
                     ],
                     "description": "url of the article",
-                    "indexInverted": false,
+                    "indexFilterable": false,
+                    "indexSearchable": false,
                     "moduleConfig": {
                         "text2vec-contextionary": {
                             "skip": false,

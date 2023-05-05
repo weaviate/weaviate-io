@@ -83,7 +83,10 @@ Read operations are GET requests to data objects in Weaviate. Like write, read c
 Prior to `v1.18`, read consistency was tunable only for requests that [obtained an object by id](../../api/rest/objects.md#get-a-data-object), and all other read requests had a consistency of `ALL`.
 :::
 
-Starting with `v1.18`, the following consistency levels are applicable to most read operations:
+The following consistency levels are applicable to most read operations:
+
+- Starting with `v1.18`, consistency levels are applicable to REST endpoint operations.
+- Starting with `v1.19`, consistency levels are applicable to GraphQL `Get` requests.
 
 * **ONE** - a read response must be returned by at least one replica. This is the fastest (most available), but least consistent option.
 * **QUORUM** - a response must be returned by `QUORUM` amount of replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
