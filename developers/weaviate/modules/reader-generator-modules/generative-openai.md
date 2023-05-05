@@ -14,7 +14,8 @@ import Badges from '/_includes/badges.mdx';
 * The module can generate a response for each returned object, or a single response for a group of objects.
 * The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries.
 * Added in Weaviate `v1.17.3`.
-* The default model is `gpt-3.5-turbo`, but other models (e.g. `gpt-4`) are supported.
+* The default OpenAI model is `gpt-3.5-turbo`, but other models (e.g. `gpt-4`) are supported.
+* For Azure OpenAI, a model must be specified.
 
 import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
 
@@ -22,7 +23,7 @@ import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
 
 ## Introduction
 
-`generative-openai` is a Weaviate module for generating text based on fields returned by Weaviate queries.
+`generative-openai` generates responses based on the data stored in your Weaviate instance.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
@@ -67,13 +68,13 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 
 ## Module configuration
 
-### WCS
+:::tip Not applicable to WCS
+This module is enabled and pre-configured on Weaviate Cloud Services.
+:::
 
-The `generative-openai` module is enabled by default in the Weaviate Cloud Services (WCS).
+### Configuration file (Weaviate open source only)
 
-### Local deployment with Docker
-
-To enable the Generative OpenAI module with your local deployment of Weaviate, you need to configure your `docker-compose` file. Add the `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative OpenAI module in your configuration file (e.g. `docker-compose.yaml`). Add the `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-openai,generative-openai'
@@ -110,7 +111,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-## How to configure
+## Schema configuration
 
 You can define settings for this module in the schema.
 
@@ -139,11 +140,11 @@ For example, the following schema configuration will set Weaviate to use the `ge
           "model": "gpt-3.5-turbo",  // Optional - Defaults to `gpt-3.5-turbo`
           "resourceName": "<YOUR-RESOURCE-NAME>",  // For Azure OpenAI - Required
           "deploymentId": "<YOUR-MODEL-NAME>",  // For Azure OpenAI - Required
-          "temperatureProperty": <temperature>,  // Optional
-          "maxTokensProperty": <max_tokens>,  // Optional
-          "frequencyPenaltyProperty": <frequency_penalty>,  // Optional
-          "presencePenaltyProperty": <presence_penalty>,  // Optional
-          "topPProperty": <top_p>,  // Optional
+          "temperatureProperty": <temperature>,  // Optional, applicable to both OpenAI and Azure OpenAI
+          "maxTokensProperty": <max_tokens>,  // Optional, applicable to both OpenAI and Azure OpenAI
+          "frequencyPenaltyProperty": <frequency_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
+          "presencePenaltyProperty": <presence_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
+          "topPProperty": <top_p>,  // Optional, applicable to both OpenAI and Azure OpenAI
         }
       }
     }
@@ -168,10 +169,6 @@ This module extends the  `_additional {...}` property with a `generate` operator
 |- |- |- |- |- |
 | `singleResult {prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result. You need to include at least one result field in the prompt, between braces. |
 | `groupedResult {task}`  | string | no | `Explain why these results are similar to each other`  | Generates a single response for all search results |
-
-:::note
-Currently, you can't provide your OpenAI key in the Weaviate console. That means you can't use the `GraphQL` examples with your WCS instances, but if you provide your API key in the Docker configuration, then this should work.
-:::
 
 ### Example of properties in the prompt
 

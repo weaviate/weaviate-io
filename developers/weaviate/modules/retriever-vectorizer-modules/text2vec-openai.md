@@ -25,15 +25,15 @@ import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
 
 <OpenAIOrAzureOpenAI/>
 
-## How to configure
-
-### Configuration file (Weaviate open source only)
+## Module configuration
 
 :::tip Not applicable to WCS
 This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 
-You can find an example Docker Compose file below.
+### Configuration file (Weaviate open source only)
+
+You can enable the `text2vec-openai` module in your configuration file (e.g. `docker-compose.yaml`).
 
 - This configuration will start Weaviate with the OpenAI module enabled, and set as the default vectorizer module.
 - Optionally, you can specify the required API key in the file..

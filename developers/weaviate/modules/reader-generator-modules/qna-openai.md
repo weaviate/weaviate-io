@@ -56,13 +56,13 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 
 ## Module configuration
 
-### WCS
+:::tip Not applicable to WCS
+This module is enabled and pre-configured on Weaviate Cloud Services.
+:::
 
-The `qna-openai` module is enabled by default in the Weaviate Cloud Services (WCS).
+### Configuration file (Weaviate open source only)
 
-### Local deployment with Docker
-
-To enable the OpenAI Q&A module with your local deployment of Weaviate, you need to configure your `docker-compose` file. Add the `qna-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the OpenAI Q&A module in your configuration file (e.g. `docker-compose.yaml`). Add the `qna-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-openai,qna-openai'
@@ -98,7 +98,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-## How to configure
+## Schema configuration
 
 You can define settings for this module in the schema.
 
@@ -109,7 +109,7 @@ You can define settings for this module in the schema.
 
 ### Model parameters
 
-You can also configure additional parameters for the generative model through the `xxxProperty` parameters shown below.
+You can also configure additional parameters for the model through the parameters shown below.
 
 ### Example schema
 
@@ -129,11 +129,11 @@ The following schema configuration uses the `text-davinci-002` model.
           "model": "text-davinci-002", // For OpenAI
           "resourceName": "<YOUR-RESOURCE-NAME>",  // For Azure OpenAI
           "deploymentId": "<YOUR-MODEL-NAME>",  // For Azure OpenAI
-          "maxTokens": 16,
-          "temperature": 0.0,
-          "topP": 1,
-          "frequencyPenalty": 0.0,
-          "presencePenalty": 0.0
+          "maxTokens": 16, // Applicable to both OpenAI and Azure OpenAI
+          "temperature": 0.0,  // Applicable to both OpenAI and Azure OpenAI
+          "topP": 1,  // Applicable to both OpenAI and Azure OpenAI
+          "frequencyPenalty": 0.0,  // Applicable to both OpenAI and Azure OpenAI
+          "presencePenalty": 0.0  // Applicable to both OpenAI and Azure OpenAI
         }
       },
       "properties": [
