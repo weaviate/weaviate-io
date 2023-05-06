@@ -1,0 +1,19 @@
+<!-- Delete these imports if already imported in the file -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+import UnitCodeExample from '!!raw-loader!./05_create_instance.py';
+
+<FilteredTextBlock
+  text={UnitCodeExample}
+  startMarker="# ===== Instantiate Weaviate client w/o auth ====="
+  endMarker="# ===== END Instantiate Weaviate client w/o auth ====="
+  language="py"
+/>
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,51 @@
+---
+title: Get your own WCS instance
+---
+
+import WCSWIthOpenAIWithAPIAuth from './snippets/wcs.with.openai.api.auth.mdx';
+import WCSWithOpenAINoAuth from './snippets/wcs.with.openai.noauth.mdx';
+import WCSConfirmAccess from './snippets/wcs.confirm.access.mdx';
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Create Weaviate Instance
+
+For this unit, you will require your own instance of Weaviate.
+
+If you do not have one, we recommend setting one up on the Weaviate Cloud Services (WCS). Follow the "Get Started with WCS" [section on this page](../101_hello_weaviate/40_set_up.mdx#get-started-with-wcs) and come back.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Access your Weaviate Instance
+
+Now, make sure that you can access your new Weaviate instance by following the below example.
+
+:::tip What is your Weaviate instance address?
+Make sure you know what your Weaviate instance address is - it should look like:
+```
+https://your-instance-name.weaviate.network
+```
+You can find it in your WCS dashboard.
+:::
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;With API key authentication (Recommended)
+
+If authentication is on, you can instantiate your client as shown below.
+
+<WCSWIthOpenAIWithAPIAuth/>
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Without Authentication
+
+If authentication is switched off in your instance, you do not need the authentication parameter.
+
+<WCSWithOpenAINoAuth/>
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Confirm access
+
+Once your client is instantiated, you can confirm that you can access your Weaviate instance by running the following code:
+
+<WCSConfirmAccess/>
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
