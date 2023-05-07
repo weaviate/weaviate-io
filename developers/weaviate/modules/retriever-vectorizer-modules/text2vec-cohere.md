@@ -158,9 +158,9 @@ If you run into rate limits, you can also decide to throttle the import in your 
 
 E.g., in Python and Go using the Weaviate client.
 
-import Text2VecCohereExample from '/_includes/code/text2vec-cohere.example.mdx';
+import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.example.mdx';
 
-<Text2VecCohereExample/>
+<CodeThrottlingExample />
 
 ## More resources
 

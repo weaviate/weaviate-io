@@ -241,9 +241,9 @@ Since you will obtain embeddings using your own API key, corresponding rate limi
 
 One way of dealing with rate limits is to throttle the import within your application. For example, when using the Weaviate client in Python or Java:
 
-import CodeOpenAIExample from '/_includes/code/text2vec-openai.example.mdx';
+import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.example.mdx';
 
-<CodeOpenAIExample />
+<CodeThrottlingExample />
 
 The current rate limit will appear in the error message, as shown below:
 
