@@ -2,7 +2,7 @@
 title: text2vec-palm
 sidebar_position: 1
 image: og/docs/modules/text2vec-palm.jpg
-# tags: ['text2vec', 'text2vec-palm', 'palm']
+# tags: ['text2vec', 'text2vec-palm', 'palm', 'gcp']
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -10,14 +10,15 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-The `text2vec-palm` module enables you to use [PaLM embeddings](TODO-INSERT LINK) in Weaviate to represent data objects.
+The `text2vec-palm` module enables you to use PaLM embeddings in Weaviate to represent data objects.
 
 :::note
 * This module uses a third-party API and may incur costs.
 * Check the vendor pricing (e.g. [GCP pricing page](TODO-INSERT LINK)) before vectorizing large amounts of data.
 * Weaviate automatically parallelizes requests to the API when using the batch endpoint.
-* You will need an API key (also called `authentication token` by GCP) from Google Vertex to use this module.
+* You will need an API key (also called `authentication token` by GCP) from GCP to use this module.
 * The default PaLM model is `textembedding-gecko-001`.
+* This can be used with either publicly available API endpoints or custom GCP endpoints.
 :::
 
 ## Module configuration
@@ -141,7 +142,7 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 ### Available model
 
-Currently, Vertex PaLM has the `textembedding-gecko-001` model available. Specify it as a part of the schema as shown below.
+You can specify the model as a part of the schema as shown below.
 
 ```json
 {
@@ -159,7 +160,9 @@ Currently, Vertex PaLM has the `textembedding-gecko-001` model available. Specif
 }
 ```
 
-The model accepts a maximum of 3,072 input tokens, and and outputs 768-dimensional vector embeddings.
+Currently, the only available model is `textembedding-gecko-001`.
+
+The `textembedding-gecko-001` accepts a maximum of 3,072 input tokens, and and outputs 768-dimensional vector embeddings.
 
 ### Rate limits
 

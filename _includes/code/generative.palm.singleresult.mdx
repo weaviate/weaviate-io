@@ -7,25 +7,28 @@ import TabItem from '@theme/TabItem';
 ```graphql
 {
   Get {
-    Publication(
+    Article(
       nearText: {
-        concepts: ["magazine or newspaper about finance"]
-        certainty: 0.75
+        concepts: ["Italian food"]
       }
+      limit: 1
     ) {
-      name
-      // highlight-start
+      title
+      summary
       _additional {
+        # highlight-start
         generate(
-          groupedResult: {
-            task: "Explain why these magazines or newspapers are about finance"
+          singleResult: {
+            prompt: """
+              Describe the following as a Facebook Ad: {summary}
+            """
           }
         ) {
-          groupedResult
+          singleResult
           error
         }
+        # highlight-end
       }
-      // highlight-end
     }
   }
 }
@@ -46,17 +49,17 @@ client  = weaviate.Client(
 
 # highlight-start
 # instruction for the generative module
-generateTask = "Explain why these magazines or newspapers are about finance"
+generatePrompt = "Describe the following as a Facebook Ad: {summary}"
 # highlight-end
 
 result = (
   client.query
-  .get("Publication", ["name"])
+  .get("Article", ["title", "summary"])
   # highlight-start
-  .with_generate(grouped_task=generateTask)
+  .with_generate(single_prompt=generatePrompt)
   # highlight-end
   .with_near_text({
-    "concepts": ["magazine or newspaper about finance"]
+    "concepts": ["Italian food"]
   })
   .with_limit(5)
 ).do()
@@ -78,18 +81,18 @@ const client = weaviate.client({
 
 // highlight-start
 // instruction for the generative module
-const generateTask = 'Explain why these magazines or newspapers are about finance';
+const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
 // highlight-end
 
 client.graphql
   .get()
   .withClassName('Article')
-  .withFields('name')
+  .withFields('title summary')
   .withNearText({
-    concepts: ['magazine or newspaper about finance']
+    concepts: ['Italian food']
   })
   .withGenerate({
-    groupedTask: generateTask,
+    singlePrompt: generatePrompt,
   })
   .withLimit(5)
   .do()
@@ -115,18 +118,18 @@ const client: WeaviateClient = weaviate.client({
 
 // highlight-start
 // instruction for the generative module
-const generateTask = 'Explain why these magazines or newspapers are about finance';
+const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
 // highlight-end
 
 client.graphql
   .get()
   .withClassName('Article')
-  .withFields('name')
+  .withFields('title summary')
   .withNearText({
-    concepts: ['magazine or newspaper about finance']
+    concepts: ['Italian food']
   })
   .withGenerate({
-    groupedTask: generateTask,
+    singlePrompt: generatePrompt,
   })
   .withLimit(5)
   .do()
@@ -147,7 +150,6 @@ package main
 import (
   "context"
   "fmt"
-
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
   "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 )
@@ -164,21 +166,24 @@ func main() {
   }
   ctx := context.Background()
 
-  name := graphql.Field{Name: "name"}
+  fields := []graphql.Field{
+    {Name: "title"},
+    {Name: "summary"},
+  }
 
-  concepts := []string{"magazine or newspaper about finance"}
+  concepts := []string{"Italian food"}
   nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts)
 
   // highlight-next-line
-  gs := graphql.NewGenerativeSearch().GroupedResult("Explain why these magazines or newspapers are about finance")
+  gs := graphql.NewGenerativeSearch().SingleResult("\"Describe the following as a Facebook Ad: {summary}\"")
 
   result, err := client.GraphQL().Get().
-    WithClassName("Publication").
-    WithFields(name).
-    // highlight-next-line
-    WithGenerativeSearch(gs).
+    WithClassName("Article").
+    WithFields(fields...).
     WithNearText(nearText).
+    // highlight-next-line
+    withGenerativeSearch(generativeSearch).
     WithLimit(5).
     Do(ctx)
 
@@ -206,28 +211,29 @@ import io.weaviate.client.v1.graphql.query.fields.Field;
 
 public class App {
   public static void main(String[] args) {
-    Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-Palm-Api-Key", "<THE-KEY>");
-    } };
+    Map<String, String> headers = new HashMap<String, String>() {
+      {put("X-Palm-Api-Key", "<THE-KEY>");}
+    };
     Config config = new Config("https", "some-endpoint.weaviate.network", headers);
     WeaviateClient client = new WeaviateClient(config);
 
     // highlight-start
     // instruction for the generative module
     GenerativeSearchBuilder generativeSearch = GenerativeSearchBuilder.builder()
-      .groupedResultTask("Explain why these magazines or newspapers are about finance")
+      .singleResultPrompt("\"Describe the following as a Facebook Ad: {summary}\"")
       .build();
     // highlight-end
 
-    Field name = Field.builder().name("name").build();
+    Field title = Field.builder().name("title").build();
+    Field summary = Field.builder().name("summary").build();
 
     NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
-      .concepts(new String[]{ "magazine or newspaper about finance" })
+      .concepts(new String[]{ "Italian food" })
       .build();
 
     Result<GraphQLResponse> result = client.graphQL().get()
-      .withClassName("Publication")
-      .withFields(name)
+      .withClassName("Article")
+      .withFields(title, summary)
       // highlight-next-line
       .withGenerativeSearch(generativeSearch)
       .withNearText(nearText)
@@ -250,21 +256,24 @@ public class App {
 $ echo '{
   "query": "{
     Get {
-      Publication(
+      Article(
         nearText: {
-          concepts: [\"magazine or newspaper about finance\"]
+          concepts: [\"Italian food\"]
         }
         limit: 5
       ) {
-        name
+        title
+        summary
         # highlight-start
         _additional {
           generate(
-            groupedResult: {
-              task: \"Explain why these magazines or newspapers are about finance\"
+            singleResult: {
+              prompt: \"\"\"
+                Describe the following as a Facebook Ad: {summary}
+              \"\"\"
             }
           ) {
-            groupedResult
+            singleResult
             error
           }
         }
