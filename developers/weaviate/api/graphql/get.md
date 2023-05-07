@@ -16,25 +16,21 @@ import GraphQLGetSimple from '/_includes/code/graphql.get.simple.mdx';
 
 <GraphQLGetSimple/>
 
-import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
+<!-- import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
+<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
 
 The above query will result in something like the following:
 
-```json
-{
-  "data": {
-    "Get": {
-      "Article": [{
-        "title": "“Joker” Is a Viewing Experience of Rare, Numbing Emptiness",
-        "url": "https://www.newyorker.com/culture/the-front-row/joker-is-a-viewing-experience-of-rare-numbing-emptiness",
-        "wordCount": 1794
-      }]
-    }
-  }
-}
-```
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import UnfilteredCode from '!!raw-loader!/_includes/code/graphql.get.simple.py';
+
+<FilteredTextBlock
+  text={UnfilteredCode}
+  startMarker="// ===== EXPECTED RESULT ====="
+  endMarker="// ===== END EXPECTED RESULT ====="
+  language="json"
+/>
 
 :::info Get query without arguments
 The order of object retrieval is not guaranteed in a `Get` query without any search parameters or filters. Accordingly, such a `Get` query is not suitable for any substantive object retrieval strategy.

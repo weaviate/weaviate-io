@@ -9,7 +9,7 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language }) => {
     .filter((line) => {
       if (line.includes(startMarker)) {
         withinMarkers = true;
-        return true;
+        return false;
       }
 
       if (line.includes(endMarker)) {
