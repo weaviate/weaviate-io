@@ -1,6 +1,6 @@
 ---
 title: Generative Search - OpenAI
-sidebar_position: 2
+sidebar_position: 10
 image: og/docs/modules/generative-openai.jpg
 # tags: ['generative', 'transformers', 'openai']
 ---

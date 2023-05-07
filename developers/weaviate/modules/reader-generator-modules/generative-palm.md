@@ -1,6 +1,6 @@
 ---
 title: Generative Search - Palm
-sidebar_position: 2
+sidebar_position: 12
 image: og/docs/modules/generative-palm.jpg
 # tags: ['generative', 'transformers', 'palm', 'gcp']
 ---
@@ -14,7 +14,7 @@ import Badges from '/_includes/badges.mdx';
 * The module can generate a response for each returned object, or a single response for a group of objects.
 * The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries.
 * Added in Weaviate `v1.19.x`.
-* The `text-bison-001` model is used.
+* The module uses the `text-bison-001` model.
 
 ## Introduction
 
@@ -106,7 +106,11 @@ You can define settings for this module in the schema.
 
 ### Model parameters
 
-You can also configure additional parameters for the generative model through the `TODO- WHAT ARE THE PARAMETERS` parameters shown below.
+:::warning TODO
+CONFIRM parameters here and in the schema
+:::
+
+You can also configure additional parameters for the generative model through the `xxxProperty` parameters shown below.
 
 ### Example schema
 
@@ -121,7 +125,10 @@ For example, the following schema configuration will set Weaviate to use the `ge
       ...,
       "moduleConfig": {
         "generative-palm": {
-          "???": "???"  // TODO - review
+          "temperature": "???",  // TODO - review
+          "maxOutputTokens": "???",  // TODO - review
+          "topK": "???",  // TODO - review
+          "topP": "???",  // TODO - review
         }
       }
     }
@@ -278,7 +285,11 @@ additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++c
 
 The `text-bison-001` model is used. The model has the following properties:
 
-- Max input token: 4,096
+:::warning TODO
+CONFIRM parameters
+:::
+
+- Max input token: 8,192
 - Max output tokens: 1,024
 - Training data: Up to Feb 2023
 

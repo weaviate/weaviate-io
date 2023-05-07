@@ -1,6 +1,6 @@
 ---
 title: Named Entity Recognition
-sidebar_position: 5
+sidebar_position: 50
 image: og/docs/modules/ner-transformers.jpg
 # tags: ['ner-transformers', 'transformers', 'token classification']
 ---
