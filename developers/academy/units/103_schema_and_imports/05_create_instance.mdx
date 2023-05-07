@@ -2,9 +2,10 @@
 title: Get your own WCS instance
 ---
 
-import WCSWIthOpenAIWithAPIAuth from './snippets/wcs.with.openai.api.auth.mdx';
-import WCSWithOpenAINoAuth from './snippets/wcs.with.openai.noauth.mdx';
-import WCSConfirmAccess from './snippets/wcs.confirm.access.mdx';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCodeExample from '!!raw-loader!./snippets/05_create_instance.py';
 
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
@@ -32,19 +33,62 @@ You can find it in your WCS dashboard.
 
 If authentication is on, you can instantiate your client as shown below.
 
-<WCSWIthOpenAIWithAPIAuth/>
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Instantiate Weaviate client w/ auth config ====="
+  endMarker="# ===== END Instantiate Weaviate client w/ auth config ====="
+  language="py"
+/>
+
+</TabItem>
+</Tabs>
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Without Authentication
 
 If authentication is switched off in your instance, you do not need the authentication parameter.
 
-<WCSWithOpenAINoAuth/>
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Instantiate Weaviate client w/o auth ====="
+  endMarker="# ===== END Instantiate Weaviate client w/o auth ====="
+  language="py"
+/>
+
+</TabItem>
+</Tabs>
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Confirm access
 
 Once your client is instantiated, you can confirm that you can access your Weaviate instance by running the following code:
 
-<WCSConfirmAccess/>
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Confirm that the client can access the instance ====="
+  endMarker="# ===== END Confirm that the client can access the instance ====="
+  language="py"
+/>
+
+</TabItem>
+</Tabs>
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+
+### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+
+:::caution TODO
+Add review exercises
+:::
+
+### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
