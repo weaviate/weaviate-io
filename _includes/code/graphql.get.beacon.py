@@ -6,24 +6,25 @@ client = weaviate.Client(
 )
 
 # ===== END PYTHON EXAMPLE =====
-# Actual instantiation for testing
 client = weaviate.Client(
     "https://edu-demo.weaviate.network",
     auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
 )
-# END Actual instantiation
+
 # ===== PYTHON EXAMPLE =====
-result = client.query.get("JeopardyQuestion", ["question", "answer", "points"]).do()
+result = client.query.get("JeopardyQuestion", ["question", "answer", "points", "hasCategory {... on JeopardyCategory {title }}"]).do()
+
 print(result)
 # ===== END PYTHON EXAMPLE =====
 
 # ===== TEST RESULTS =====
 def check_results(result_in):
     assert "JeopardyQuestion" in result_in["data"]["Get"]
-    assert result_in["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "points"}
+    assert result_in["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "points", "hasCategory"}
 
 check_results(result)
 # ===== END TEST =====
+
 
 
 
@@ -36,6 +37,11 @@ gql_query = """
       question
       answer
       points
+      hasCategory {                # the reference property
+        ... on JeopardyCategory {  # the destination class
+          title                    # the property related to target class
+        }
+      }
     }
   }
 }
@@ -52,6 +58,11 @@ expected_result = """
       "JeopardyQuestion": [
         {
           "answer": "Jonah",
+          "hasCategory": [
+            {
+              "title": "THE BIBLE"
+            }
+          ],
           "points": 100,
           "question": "This prophet passed the time he spent inside a fish offering up prayers"
         },
