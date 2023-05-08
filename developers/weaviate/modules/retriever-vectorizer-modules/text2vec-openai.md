@@ -8,28 +8,37 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## Introduction
+## Overview
 
-The `text2vec-openai` module allows you to use [OpenAI embeddings](https://platform.openai.com/docs/guides/embeddings) in Weaviate as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using OpenAI's `text-embedding-ada-002` model (legacy Ada, Babbage, Curie, or Davinci models are also supported).
+The `text2vec-openai` module enables you to use OpenAI embeddings in Weaviate to represent data objects.
 
 :::note
 * This module uses a third-party API and may incur costs.
-* Make sure to check the OpenAI [pricing page](https://openai.com/api/pricing/) before vectorizing large amounts of data.
-* Weaviate automatically parallelizes requests to the OpenAI API when using the batch endpoint.
+* Check the vendor pricing (e.g. [OpenAI pricing page](https://openai.com/api/pricing/)) before vectorizing large amounts of data.
+* Weaviate automatically parallelizes requests to the API when using the batch endpoint.
 * Check out the [text2vec-openai demo](https://github.com/weaviate/DEMO-text2vec-openai).
+* You will need an API key from OpenAI or Azure OpenAI to use this module.
+* The default OpenAI model is `text-embedding-ada-002`.
+* Read more about embeddings at [OpenAI](https://platform.openai.com/docs/guides/embeddings) or [Azure](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/understand-embeddings).
 :::
 
-## How to enable
+import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
 
-Request an OpenAI API key via [their website](https://openai.com/api/).
+<OpenAIOrAzureOpenAI/>
 
-### Weaviate Cloud Services
+## Module configuration
 
-This module is enabled by default on the WCS.
+:::tip Not applicable to WCS
+This module is enabled and pre-configured on Weaviate Cloud Services.
+:::
 
-### Weaviate open source
+### Configuration file (Weaviate open source only)
 
-You can find an example Docker Compose file below, which will spin up Weaviate with the OpenAI module.
+You can enable the `text2vec-openai` module in your configuration file (e.g. `docker-compose.yaml`).
+
+- This configuration will start Weaviate with the OpenAI module enabled, and set as the default vectorizer module.
+- Optionally, you can specify the required API key in the file..
+    - If you do not, you must specify the API key at runtime.
 
 ```yaml
 ---
@@ -46,7 +55,8 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       DEFAULT_VECTORIZER_MODULE: text2vec-openai
       ENABLE_MODULES: text2vec-openai
-      OPENAI_APIKEY: sk-foobar # request a key on openai.com, setting this parameter is optional, you can also provide the API key at runtime
+      OPENAI_APIKEY: sk-foobar  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+      AZURE_APIKEY: sk-foobar  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ...
 ```
@@ -55,11 +65,60 @@ import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.m
 
 <T2VInferenceYamlNotes apiname="OPENAI_APIKEY"/>
 
-## How to configure
+## Schema configuration
 
-In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
+You can provide additional module configurations through the schema. You can [learn about schemas here](/developers/weaviate/tutorials/schema.md).
 
-For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-openai` using the `ada` model.
+For `text2vec-openai`, you can set the vectorizer model and vectorizer behavior.
+
+### OpenAI settings
+
+Set the vectorizer model using parameters `model`, `modelVersion` and `type` in the `moduleConfig` section of your schema:
+
+```json
+{
+  "classes": [
+    {
+      "class": "Document",
+      "description": "A class called document",
+      "vectorizer": "text2vec-openai",
+      "moduleConfig": {
+        "text2vec-openai": {
+          "model": "ada",
+          "modelVersion": "002",
+          "type": "text"
+        }
+      },
+    }
+  ]
+}
+```
+
+### Azure OpenAI settings
+
+Set the parameters `resourceName` and `deploymentId` in the `moduleConfig` section of your schema:
+
+```json
+{
+  "classes": [
+    {
+      "class": "Document",
+      "description": "A class called document",
+      "vectorizer": "text2vec-openai",
+      "moduleConfig": {
+        "text2vec-openai": {
+          "resourceName": "<YOUR-RESOURCE-NAME>",
+          "deploymentId": "<YOUR-MODEL-NAME>",
+        }
+      }
+    }
+  ]
+}
+```
+
+### Vectorizer behavior
+
+Set property-level vectorizer behavior using the `moduleConfig` section under each property:
 
 ```json
 {
@@ -77,9 +136,7 @@ For example, the following schema configuration will set Weaviate to vectorize t
       },
       "properties": [
         {
-          "dataType": [
-            "text"
-          ],
+          "dataType": ["text"],
           "description": "Content that will be vectorized",
           "moduleConfig": {
             "text2vec-openai": {
@@ -95,10 +152,17 @@ For example, the following schema configuration will set Weaviate to vectorize t
 }
 ```
 
-## How to use
+## Usage
 
-* If the OpenAI API key is not set in the `text2vec-openai` module, you can set the API key at query time by adding the following to the HTTP header: `X-OpenAI-Api-Key: <openai-api-key>`.
-* Using this module will enable [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
+Enabling this module will make [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext) available.
+
+### Provide the API key
+
+If the API key is not set in the `text2vec-openai` configuration, you can supply it when making a query.
+
+You can achieve this by adding the appropriate key to the HTTP header:
+- `X-OpenAI-Api-Key: <openai-api-key>` for OpenAI, and
+- `X-Azure-Api-Key: <azure-api-key>` for Azure OpenAI, and
 
 ### Example
 
@@ -112,7 +176,7 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 ## Additional information
 
-### Available models
+### Available models (OpenAI)
 
 OpenAI has multiple models available with different trade-offs. All the models offered by OpenAI can be used within Weaviate. Note that the more dimensions a model produces, the larger your data footprint will be. To estimate the total size of your dataset use [this](/developers/weaviate/concepts/resources.md#an-example-calculation) calculation.
 
@@ -136,7 +200,7 @@ The default model is `text-embedding-ada-002` but you can also specify it in you
 }
 ```
 
-For document embeddings you can choose one of the following models:
+For document embeddings, choose from the following models:
 * [ada](https://platform.openai.com/docs/models/ada)
 * [babbage](https://platform.openai.com/docs/models/babbage)
 * [curie](https://platform.openai.com/docs/models/curie)
@@ -172,19 +236,17 @@ Example (as part of a class definition):
 
 ### OpenAI rate limits
 
-Because you will be getting embeddings based on your own API key, you will be dealing with rate limits applied to your account. If you have a low rate limit set, Weaviate will output the error message generated by the OpenAI API. You can request to increase your rate limit by emailing OpenAI at `support@openai.com` describing your use case with Weaviate.
+Since you will obtain embeddings using your own API key, corresponding rate limits related to your account will apply. If you have a low rate limit set, Weaviate will output the error message generated by the OpenAI API. You can request to increase your rate limit by emailing OpenAI at `support@openai.com` describing your use case with Weaviate.
 
 ### Throttle the import inside your application
 
-If you run into rate limits, you can also decide to throttle the import in your application.
-
-E.g., in Python and Java using the Weaviate client.
+One way of dealing with rate limits is to throttle the import within your application. For example, when using the Weaviate client in Python or Java:
 
 import CodeOpenAIExample from '/_includes/code/text2vec-openai.example.mdx';
 
 <CodeOpenAIExample />
 
-The current rate limit will be displayed in the error message like:
+The current rate limit will appear in the error message, as shown below:
 
 ```json
 {
