@@ -51,7 +51,7 @@ async function getJsonData() {
 }
 
 async function importQuestions() {
-  // Get the data from the data.json file
+const { default: weaviate } = require('weaviate-ts-client');
   const data = await getJsonData();
 
   // Prepare a batcher

@@ -51,7 +51,7 @@ client.graphql
   .withFields('question answer category')
   .withNearText({concepts: ['biology']})
   .withLimit(2)
-  .do()
+const { default: weaviate } = require('weaviate-ts-client');
   .then(res => {
     console.log(JSON.stringify(res, null, 2))
   })

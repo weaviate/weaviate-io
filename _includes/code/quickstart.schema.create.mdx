@@ -48,7 +48,7 @@ print(json.dumps(schema, indent=4))
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',

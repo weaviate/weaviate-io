@@ -20,7 +20,7 @@ import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 ```js
 const weaviate = require('weaviate-ts-client');
 
-const client = weaviate.client({
+const { default: weaviate } = require('weaviate-ts-client');
     scheme: 'https',
     host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
     apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your API Key for the Weaviate instance
