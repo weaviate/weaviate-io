@@ -38,6 +38,12 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 `generative-palm` requires an API key (also called `authentication token`) from GCP.
 
+If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
+
+```shell
+gcloud auth print-access-token
+```
+
 ### Providing the key to Weaviate
 
 You can provide your API key in two ways:
@@ -70,7 +76,7 @@ You can enable the Generative Palm module in your configuration file (e.g. `dock
 ENABLE_MODULES: 'text2vec-palm,generative-palm'
 ```
 
-Here is a full example of a Docker configuration, which uses the `generative-palm` module in combination with `text2vec-palm`:
+Here is a full example of a Docker configuration, which uses the `generative-palm` module in combination with `text2vec-palm`, and provides the API key:
 
 ```yaml
 ---
@@ -102,19 +108,11 @@ services:
 
 ## Schema configuration
 
-You can define settings for this module in the schema.
-
-### Model parameters
-
-:::warning TODO
-CONFIRM parameters here and in the schema
-:::
-
-You can also configure additional parameters for the generative model through the `xxxProperty` parameters shown below.
+You can define settings for this module in the schema, including the API endpoint and project information, as well as optional model parameters.
 
 ### Example schema
 
-For example, the following schema configuration will set Weaviate to use the `generative-palm` model with the `Document` class.
+For example, the following schema configuration will set the `generative-palm` endpoint information, as well as the optional parameters.
 
 ```json
 {
@@ -124,17 +122,24 @@ For example, the following schema configuration will set Weaviate to use the `ge
       "description": "A class called document",
       ...,
       "moduleConfig": {
+        // highlight-start
         "generative-palm": {
-          "temperature": "???",  // TODO - review
-          "maxOutputTokens": "???",  // TODO - review
-          "topK": "???",  // TODO - review
-          "topP": "???",  // TODO - review
+          "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value.
+          "projectID": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value.
+          "endpointID": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",  // Required. Replace with your value.
+          "temperature": 0.2,      // Optional
+          "maxOutputTokens": 512,  // Optional
+          "topK": 3,               // Optional
+          "topP": 0.95,            // Optional
         }
+        // highlight-end
       }
     }
   ]
 }
 ```
+
+See the relevant PaLM API documentation for further details on these parameters.
 
 <details>
   <summary>New to Weaviate Schemas?</summary>
@@ -145,7 +150,7 @@ If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers
 
 ## How to use
 
-This module extends the  `_additional {...}` property with a `generate` operator.
+This module extends the `_additional {...}` property with a `generate` operator.
 
 `generate` takes the following arguments:
 
@@ -284,10 +289,6 @@ additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++c
 ### Supported models
 
 The `text-bison-001` model is used. The model has the following properties:
-
-:::warning TODO
-CONFIRM parameters
-:::
 
 - Max input token: 8,192
 - Max output tokens: 1,024
