@@ -5,6 +5,7 @@ image: og/docs/api.jpg
 # tags: ['graphql', 'get{}']
 ---
 import Badges from '/_includes/badges.mdx';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Badges/>
 
@@ -16,25 +17,20 @@ import GraphQLGetSimple from '/_includes/code/graphql.get.simple.mdx';
 
 <GraphQLGetSimple/>
 
-import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
+<!-- import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
+<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
 
 The above query will result in something like the following:
 
-```json
-{
-  "data": {
-    "Get": {
-      "Article": [{
-        "title": "“Joker” Is a Viewing Experience of Rare, Numbing Emptiness",
-        "url": "https://www.newyorker.com/culture/the-front-row/joker-is-a-viewing-experience-of-rare-numbing-emptiness",
-        "wordCount": 1794
-      }]
-    }
-  }
-}
-```
+import GraphQLGetSimpleUnfiltered from '!!raw-loader!/_includes/code/graphql.get.simple.py';
+
+<FilteredTextBlock
+  text={GraphQLGetSimpleUnfiltered}
+  startMarker="// ===== EXPECTED RESULT ====="
+  endMarker="// ===== END EXPECTED RESULT ====="
+  language="json"
+/>
 
 :::info Get query without arguments
 The order of object retrieval is not guaranteed in a `Get` query without any search parameters or filters. Accordingly, such a `Get` query is not suitable for any substantive object retrieval strategy.
@@ -236,34 +232,24 @@ import GraphQLGetConsistency from '/_includes/code/graphql.get.consistency.mdx';
 
 ## Query beacon references
 
-If you've set a beacon reference in the schema, you can query it as follows:
+If you've set a beacon reference (cross-reference) in the schema, you can query it as follows:
 
 import GraphQLGetBeacon from '/_includes/code/graphql.get.beacon.mdx';
 
 <GraphQLGetBeacon/>
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++++inPublication+%7B+++++++++++%23+the+reference%0D%0A++++++++...+on+Publication+%7B++++%23+you+always+set+the+destination+class%0D%0A++++++++++name++++++++++++++++++%23+the+property+related+to+target+class%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
+<!-- <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++++inPublication+%7B+++++++++++%23+the+reference%0D%0A++++++++...+on+Publication+%7B++++%23+you+always+set+the+destination+class%0D%0A++++++++++name++++++++++++++++++%23+the+property+related+to+target+class%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
 
 The above query will result in something like the following:
 
-```json
-{
-  "data": {
-    "Get": {
-      "Article": [{
-        "title": "“Joker” Is a Viewing Experience of Rare, Numbing Emptiness",
-        "url": "https://www.newyorker.com/culture/the-front-row/joker-is-a-viewing-experience-of-rare-numbing-emptiness",
-        "wordCount": 1794,
-        "inPublication": [
-          {
-            "name": "New Yorker"
-          }
-        ]
-      }]
-    }
-  }
-}
-```
+import GraphQLGetBeaconUnfiltered from '!!raw-loader!/_includes/code/graphql.get.beacon.py';
+
+<FilteredTextBlock
+  text={GraphQLGetBeaconUnfiltered}
+  startMarker="// ===== EXPECTED RESULT ====="
+  endMarker="// ===== END EXPECTED RESULT ====="
+  language="json"
+/>
 
 ## Additional properties
 
