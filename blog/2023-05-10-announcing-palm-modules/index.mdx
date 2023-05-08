@@ -13,3 +13,65 @@ description: "Weaviate now supports the PaLM models for embeddings and generativ
 
 <!-- truncate -->
 
+We are thrilled to announce two brand new Weaviate modules today to support Google Cloud users make the most of the new PaLM large language model (LLM).
+
+These new modules are:
+- ['text2vec-palm`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm) for producing vector embeddings, and
+- ['generative-palm'](/developers/weaviate/modules/reader-generator-modules/generative-palm.md) for generative search.
+
+<!-- TODO - check Weaviate version number before merging. -->
+These modules are available to all Weaviate users as of **today**, with the release of Weaviate version `v1.19.1`. They integrate the new Vertex PaLM APIs with Weaviate, allowing you to hit the ground running straight away with the latest in LLM and vector database technologies.
+
+## What are PaLM models?
+
+The Pathways Language Model (or `PaLM`) is Google’s LLM that was designed to generalize across domains and tasks while being highly efficient.
+
+You can read more about in [this blog](https://ai.googleblog.com/2022/04/pathways-language-model-palm-scaling-to.html) or [this paper](https://arxiv.org/abs/2204.02311), but some of the highlights are that PaLM:
+- Contains a 540-billion parameters,
+- Is a dense decoder-only Transformer model, and
+- Was trained using a combination of English and multilingual datasets.
+
+As a result, PaLM is capable of multi-lingual tasks
+
+
+
+
+
+The Vertex AI PaLM API enables you to test, customize, and deploy instances of Google’s large language models (LLM) so that you can leverage the capabilities of PaLM in your applications. This user guide outlines the major LLM concepts and workflows, and shows you how to complete the supported workflows in Vertex AI.
+
+On Vertex AI, you can customize a foundation model for more specific tasks or knowledge domains by using prompt design and model tuning.
+
+To learn how to design prompts, see the Design your own prompts section.
+Model tuning
+While prompt design is great for quick experimentation, if training data is available, higher quality can be achieved by tuning the model itself. Tuning a model enables you to customize the model response based on examples of the task that you want the model to perform.
+
+To learn how to tune a foundation model on Vertex AI, see the Tune a model section.
+
+
+
+Generative AI Studio (UI) for testing
+In Generative AI Studio, you can quickly test sample prompts, design and save your own prompts, perform model tuning, and test a multi-turn chat application.
+Test models using predesigned prompt samples
+Select from a list of pre-designed prompt samples to perform quick testing.
+
+In Generative AI Studio, click the Prompt gallery tab.
+
+
+
+
+Model tuning allows you to customize the model to improve performance on specific tasks or help the model to better adhere to your specific output requirements where instructions alone may not be sufficient.
+
+In terms of what type of tasks you can tune a model to perform, tuning can help when your given task has an explicit structure that can’t be easily captured through instructions alone. Some examples include:
+
+Summarization, where the summary follows a specific format
+“Summarize: Jessica: That sounds great! See you in Times Square! Alexander: See you at 10!
+One potentially summary is “#Person1 and #Person2 agree to meet at 10:00 AM at Times Square.”, which has specific formatting and information that’s difficult to describe and the base model may not naturally produce such a response.
+Extractive Question Answering,
+
+
+
+
+The Vertex AI PaLM Embedding API performs online (real-time) predictions to get embeddings from input text.
+
+The API accepts a maximum of 3,072 input tokens and outputs 768-dimensional vector embeddings.
+
