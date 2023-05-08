@@ -58,7 +58,7 @@ In addition to the property name, you can configure parameters such as the data 
 
 ### Specify a vectorizer
 
-You can set a `vectorizer` for each class, which will override any default values present in the configuration (e.g. in an [environment variable](../config-refs/env-vars.md)). The following sets the `text2vec-openai` module as the vectorizer for the `Article` class.
+You can set an optional `vectorizer` for each class, which will override any default values present in the configuration (e.g. in an [environment variable](../config-refs/env-vars.md)). The following sets the `text2vec-openai` module as the vectorizer for the `Article` class.
 
 import CodeSchemaCreateVectorizer from '/_includes/code/schema.class.create.vectorizer.mdx';
 
