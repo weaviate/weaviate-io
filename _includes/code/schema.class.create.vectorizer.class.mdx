@@ -13,14 +13,12 @@ class_obj = {
             "name": "title",
         },
     ],
-    "vectorizer": "text2vec-openai",
+    "vectorizer": "text2vec-cohere",  # This could be any vectorizer
     # highlight-start
     "moduleConfig": {
-        "text2vec-openai": {
+        "text2vec-cohere": {  # This must match the vectorizer used
             "vectorizeClassName": True,
-            "model": "ada",
-            "modelVersion": "002",
-            "type": "text"
+            "model": "multilingual-22-12",
         }
     }
     # highlight-end
@@ -41,14 +39,12 @@ let classObj = {
             'name': 'title',
         },
     ],
-    'vectorizer': 'text2vec-openai',
+    'vectorizer': 'text2vec-cohere',  // This could be any vectorizer
     // highlight-start
     'moduleConfig': {
-        'text2vec-openai': {
+        'text2vec-cohere': {  // This must match the vectorizer used
             'vectorizeClassName': True,
-            'model': 'ada',
-            'modelVersion': '002',
-            'type': 'text'
+            'model': 'multilingual-22-12',
         }
     }
     // highlight-end
@@ -80,14 +76,12 @@ let classObj = {
             'name': 'title',
         },
     ],
-    'vectorizer': 'text2vec-openai',
+    'vectorizer': 'text2vec-cohere',  // This could be any vectorizer
     // highlight-start
     'moduleConfig': {
-        'text2vec-openai': {
+        'text2vec-cohere': {  // This must match the vectorizer used
             'vectorizeClassName': True,
-            'model': 'ada',
-            'modelVersion': '002',
-            'type': 'text'
+            'model': 'multilingual-22-12',
         }
     }
     // highlight-end

@@ -54,6 +54,7 @@ import CodeSchemaCreateProperty from '/_includes/code/schema.class.create.proper
 In addition to the property name, you can configure parameters such as the data type, inverted index tokenization and more.
 
 - [Property object configuration references](../config-refs/schema.mdx#property-object)
+- [Available data types](../config-refs/datatypes.md)
 
 ### Specify a vectorizer
 
@@ -63,6 +64,7 @@ import CodeSchemaCreateVectorizer from '/_includes/code/schema.class.create.vect
 
 <CodeSchemaCreateVectorizer />
 
+- [Available vectorizers](../modules/retriever-vectorizer-modules/)
 - [Vectorizer configuration references](../config-refs/schema.mdx#vectorizer)
 
 ### Class-level module settings
