@@ -64,7 +64,7 @@ import CodeSchemaCreateVectorizer from '/_includes/code/schema.class.create.vect
 
 <CodeSchemaCreateVectorizer />
 
-- [Available vectorizers](../modules/retriever-vectorizer-modules/)
+- [Available vectorizers](../modules/retriever-vectorizer-modules)
 - [Vectorizer configuration references](../config-refs/schema.mdx#vectorizer)
 
 ### Class-level module settings
