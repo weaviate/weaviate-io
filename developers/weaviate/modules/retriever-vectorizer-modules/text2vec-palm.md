@@ -16,9 +16,19 @@ The `text2vec-palm` module enables you to use PaLM embeddings in Weaviate to rep
 * This module uses a third-party API and may incur costs.
 * Check the vendor pricing (e.g. [GCP pricing page](TODO-INSERT LINK)) before vectorizing large amounts of data.
 * Weaviate automatically parallelizes requests to the API when using the batch endpoint.
-* You will need an API key (also called `authentication token` by GCP) from GCP to use this module.
+* You will need an API key (also called `access token`) from GCP. from GCP to use this module.
 * The default PaLM model is `textembedding-gecko-001`.
 * This can be used with either publicly available API endpoints or custom GCP endpoints.
+:::
+
+:::tip Where to find the Google Cloud access token
+If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
+
+```shell
+gcloud auth print-access-token
+```
+
+If you do not have a token configured, you will need to create one through GCP.
 :::
 
 ## Module configuration
@@ -32,8 +42,8 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 You can enable the `text2vec-palm` module in your configuration file (e.g. `docker-compose.yaml`).
 
 - This configuration will start Weaviate with the PaLM module enabled, and set as the default vectorizer module.
-- Optionally, you can specify the required API key in the file..
-    - If you do not, you must specify the API key at runtime.
+- Optionally, you can specify the required Google Cloud API key (i.e. "access token") in the file..
+    - If you do not, you must specify the Google Cloud API key at runtime.
 
 ```yaml
 ---
@@ -162,7 +172,7 @@ You can specify the model as a part of the schema as shown below.
 
 Currently, the only available model is `textembedding-gecko-001`.
 
-The `textembedding-gecko-001` accepts a maximum of 3,072 input tokens, and and outputs 768-dimensional vector embeddings.
+The `textembedding-gecko-001` accepts a maximum of 3,072 input tokens, and outputs 768-dimensional vector embeddings.
 
 ### Rate limits
 

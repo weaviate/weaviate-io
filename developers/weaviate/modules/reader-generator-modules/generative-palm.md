@@ -36,7 +36,7 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 ## Inference API key
 
-`generative-palm` requires an API key (also called `authentication token`) from GCP.
+`generative-palm` requires an API key (also called `access token`) from GCP.
 
 If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
 
