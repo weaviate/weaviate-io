@@ -22,7 +22,7 @@ Running model inference in production is hard.
 * Hardware tends to be underutilized once the bulk of the heavy work is done.
 * Sharing and prioritizing resources with other teams is hard.
 
-The good neews is, there are companies – like Hugging Face, OpenAI, and Cohere – that offer running model inference as a service.
+The good news is, there are companies – like Hugging Face, OpenAI, and Cohere – that offer running model inference as a service.
 
 > "Running model inference in production is hard,
 let them do it for you."
@@ -41,10 +41,9 @@ The Hugging Face module, allows you to use the [Hugging Face Inference service](
 The Hugging Face module is quite incredible, for many reasons.
 
 ### Public models
-You get access to over 600 already pre-trained [sentence similarity models]. No need to train your own models, if there is already one that works well for your use case.
+You get access to over 1600 pre-trained [sentence similarity models](https://huggingface.co/models?pipeline_tag=sentence-similarity). No need to train your own models, if there is already one that works well for your use case.
 
-<!-- TODO: update with a link to the article once it is ready -->
-*In case, you struggle with picking the right model for you, we are working on an article that will provide you with guidance on how to pick the right model for you.*
+In case you struggle with picking the right model, see our blog post on [choosing a sentence transformer from Hugging Face](/blog/how-to-choose-a-sentence-transformer-from-hugging-face).
 
 ### Private models
 If you have your own models, trained specially for your data, then you can upload them to Hugging Face (as private modules), and use them in Weaviate.
@@ -119,7 +118,7 @@ Add your token, to a Weaviate client configuration. For example in Python, you d
 client = weaviate.Client(
     url='http://localhost:8080',
     additional_headers={
-        'X-HuggingFace-Api-Key': '<THE-KEY>'
+        'X-HuggingFace-Api-Key': 'YOUR-HUGGINGFACE-API-KEY'
     }
 )
 ```
