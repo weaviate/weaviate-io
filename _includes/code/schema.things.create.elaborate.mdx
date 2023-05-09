@@ -27,7 +27,7 @@ class_obj = {
     "properties": [
         {
             "dataType": [
-                "string"
+                "text"
             ],
             "description": "Title of the article",
             "name": "title",
@@ -107,7 +107,7 @@ let classObj = {
     'properties': [
         {
             'dataType': [
-                'string'
+                'text'
             ],
             'description': 'Title of the article',
             'name': 'title',
@@ -204,7 +204,7 @@ func main() {
     },
     Properties: []*models.Property{
       {
-        DataType:    []string{"string"},
+        DataType:    []string{"text"},
         Description: "Title of the article",
         Name:        "title",
       },
@@ -308,7 +308,7 @@ public class App {
       .replicationConfig(replicationConfig)
       .properties(new ArrayList() { {
         add(Property.builder()
-          .dataType(new ArrayList(){ { add(DataType.STRING); } })
+          .dataType(new ArrayList(){ { add(DataType.TEXT); } })
           .description("Title of the article")
           .name("title")
           .build());
@@ -355,7 +355,7 @@ $ curl \
     "properties": [
         {
             "dataType": [
-                "string"
+                "text"
             ],
             "description": "Title of the article",
             "name": "title",
