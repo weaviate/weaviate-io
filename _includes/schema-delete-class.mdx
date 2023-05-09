@@ -34,7 +34,7 @@ client.schema.delete_class("YourClassName")  # Replace with your class name - e.
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
