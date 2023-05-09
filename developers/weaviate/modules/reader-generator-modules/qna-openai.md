@@ -10,28 +10,65 @@ import Badges from '/_includes/badges.mdx';
 
 ## In short
 
-* The OpenAI Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI [completions endpoint](https://platform.openai.com/docs/api-reference/completions).
+* The OpenAI Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI [completions endpoint](https://platform.openai.com/docs/api-reference/completions) or the Azure OpenAI equivalent.
 * The module depends on a text vectorization module that should be running with Weaviate.
 * The module adds an `ask {}` parameter to the GraphQL `Get {}` queries
 * The module returns a max. of 1 answer in the GraphQL `_additional {}` field.
 * The answer with the highest `certainty` (confidence level) will be returned.
 * Added in Weaviate `v1.16.6`
 
+import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
+
+<OpenAIOrAzureOpenAI/>
+
 ## Introduction
 
-The Question and Answer (Q&A) OpenAI module is a Weaviate module for answer extraction from data. It uses the [completions endpoint](https://platform.openai.com/docs/api-reference/completions), created by OpenAI, to try and extract an answer from the most relevant docs. This module can be used in GraphQL `Get{...}` queries, as a search operator. The `qna-openai` module tries to find an answer in the data objects of the specified class. If an answer is found within the given `certainty` range, it will be returned in the GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the optionally set `certainty`. The answer with the highest `certainty` (confidence level) will be returned.
+The Question and Answer (Q&A) OpenAI module is a Weaviate module for answer extraction from data. It uses an OpenAI completions endpoint to try and extract an answer from the most relevant docs.
 
-## How to enable
+This module can be used in GraphQL `Get{...}` queries, as a search operator. The `qna-openai` module tries to find an answer in the data objects of the specified class. If an answer is found within the given `certainty` range, it will be returned in the GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the optionally set `certainty`. The answer with the highest `certainty` (confidence level) will be returned.
 
-Request an OpenAI API-key via [their website](https://openai.com/api/).
+## Inference API key
 
-## How to enable (module configuration)
+`qna-openai` requires an API key from OpenAI or Azure OpenAI.
 
-### Docker-compose
+:::tip
+You only need to provide one of the two keys, depending on which service (OpenAI or Azure OpenAI) you are using.
+:::
 
-* The Q&A module can be added as a service to the Docker-compose file.
-* You must have a text vectorizer running.
-* An example Docker-compose file for using the `qna-openai` module in combination with the `text2vec-openai` is as follows:
+### Providing the key to Weaviate
+
+You can provide your API key in two ways:
+
+1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `docker-compose` file, like this:
+
+  ```yaml
+  environment:
+    OPENAI_APIKEY: 'your-key-goes-here'  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+    AZURE_APIKEY: 'your-key-goes-here'  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+    ...
+  ```
+
+2. At **run-time** (recommended), by providing `"X-OpenAI-Api-Key"` or `"X-Azure-Api-Key"` through the request header. You can provide it using the Weaviate client, like this:
+
+import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
+
+<ClientKey />
+
+## Module configuration
+
+:::tip Not applicable to WCS
+This module is enabled and pre-configured on Weaviate Cloud Services.
+:::
+
+### Configuration file (Weaviate open source only)
+
+You can enable the OpenAI Q&A module in your configuration file (e.g. `docker-compose.yaml`). Add the `qna-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+
+```
+ENABLE_MODULES: 'text2vec-openai,qna-openai'
+```
+
+Here is a full example of a Docker configuration, which uses the `qna-openai` module in combination with `text2vec-openai`:
 
 ```yaml
 ---
@@ -56,19 +93,29 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
       ENABLE_MODULES: 'text2vec-openai,qna-openai'
-      OPENAI_APIKEY: sk-foobar # this parameter is optional, as you can also provide it at insert/query time
+      OPENAI_APIKEY: sk-foobar  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+      AZURE_APIKEY: sk-foobar  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-Variable explanations:
+## Schema configuration
 
-* Note: Starting with `v1.11.0` the `OPENAI_APIKEY` variable is now optional and you can instead provide the key at insert/query time as an HTTP header.
+You can define settings for this module in the schema.
 
-## How to configure
+### OpenAI vs Azure OpenAI
 
-In your Weaviate schema, you must define how you want this module to interact with the OpenAI endpoint. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
+- **OpenAI** users can optionally set the `model` parameter.
+- **Azure OpenAI** users must set the parameters `resourceName` and `deploymentId`.
 
-The following schema configuration uses the `ada` model.
+### Model parameters
+
+You can also configure additional parameters for the model through the parameters shown below.
+
+### Example schema
+
+For example, the following schema configuration will set Weaviate to use the `qna-openai` model with the `Document` class.
+
+The following schema configuration uses the `text-davinci-002` model.
 
 ```json
 {
@@ -79,12 +126,14 @@ The following schema configuration uses the `ada` model.
       "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "qna-openai": {
-          "model": "text-davinci-002",
-          "maxTokens": 16,
-          "temperature": 0.0,
-          "topP": 1,
-          "frequencyPenalty": 0.0,
-          "presencePenalty": 0.0
+          "model": "text-davinci-002", // For OpenAI
+          "resourceName": "<YOUR-RESOURCE-NAME>",  // For Azure OpenAI
+          "deploymentId": "<YOUR-MODEL-NAME>",  // For Azure OpenAI
+          "maxTokens": 16, // Applicable to both OpenAI and Azure OpenAI
+          "temperature": 0.0,  // Applicable to both OpenAI and Azure OpenAI
+          "topP": 1,  // Applicable to both OpenAI and Azure OpenAI
+          "frequencyPenalty": 0.0,  // Applicable to both OpenAI and Azure OpenAI
+          "presencePenalty": 0.0  // Applicable to both OpenAI and Azure OpenAI
         }
       },
       "properties": [
@@ -103,9 +152,7 @@ The following schema configuration uses the `ada` model.
 
 For information on how to use the individual parameters you [can check here](https://platform.openai.com/docs/api-reference/completions)
 
-## How to use (GraphQL)
-
-### GraphQL Ask search
+## How to use
 
 This module adds a search parameter to GraphQL `Get{...}` queries: `ask{}`. This new search parameter takes the following arguments:
 

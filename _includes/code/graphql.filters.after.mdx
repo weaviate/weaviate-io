@@ -21,4 +21,36 @@ import TabItem from '@theme/TabItem';
 ```
 
 </TabItem>
+<TabItem value="python" label="Python">
+
+```py
+result = (
+    client.query.get("Article", ["title"])
+    .with_additional(["id"])
+    .with_limit(5)
+    .with_after("00314096-d170-3038-8413-560add0fda2b")
+    .do()
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title _additional { id }')
+  .withAfter('00314096-d170-3038-8413-560add0fda2b')
+  .withLimit(5)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
 </Tabs>

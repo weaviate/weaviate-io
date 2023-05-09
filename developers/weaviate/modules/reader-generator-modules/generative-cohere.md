@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## In short
 
-* The Generative Cohere (`generative-cohere`) module is a Weaviate module for generating responses from Large Language Models based on the data stored in your Weaviate instance.
+* The Generative Cohere (`generative-cohere`) module generates responses based on the data stored in your Weaviate instance.
 * The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
 * The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries
 * Added in Weaviate `v1.19.0`
@@ -18,14 +18,14 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-`generative-cohere` is a Weaviate module for generating text based on fields returned by Weaviate queries.
+`generative-cohere` generates responses based on the data stored in your Weaviate instance.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
 2. (Cohere) Use a Cohere Large Language Model to generate a response based on the results (from the previous step) and the provided prompt or task.
 
 :::note
-You can use the Generative Cohere module with any other modules. For example, you could use `text2vec-openai` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-cohere` module to generate a response.
+You can use the Generative Cohere module with non-Cohere upstream modules. For example, you could use `text2vec-openai` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-cohere` module to generate a response.
 :::
 
 The generative module can provide results for:
@@ -56,7 +56,11 @@ import ClientKey from '/_includes/code/core.client.cohere.apikey.mdx';
 
 <ClientKey />
 
-## Enabling the module
+## Module configuration
+
+:::tip Not applicable to WCS
+This module is enabled and pre-configured on Weaviate Cloud Services.
+:::
 
 :::caution
 Your Weaviate instance must be on `1.19.0` or newer.
@@ -64,9 +68,9 @@ Your Weaviate instance must be on `1.19.0` or newer.
 If your instance is older than `1.19.0` then you need to migrate or upgrade it to a newer version.
 :::
 
-### Local deployment with Docker
+### Configuration file (Weaviate open source only)
 
-To enable the Generative Cohere module with your local deployment of Weaviate, you need to configure your `docker-compose` file. Add the `generative-cohere` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative Cohere module in your configuration file (e.g. `docker-compose.yaml`). Add the `generative-cohere` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-cohere,generative-cohere'
@@ -102,7 +106,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 ```
 
-## How to configure
+## Schema configuration
 
 In your Weaviate schema, you can define settings for this module.
 
@@ -148,10 +152,6 @@ This module extends the  `_additional {...}` property with a `generate` operator
 |- |- |- |- |- |
 | `singleResult {prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result. You need to include at least one result field in the prompt, between braces. |
 | `groupedResult {task}`  | string | no | `Explain why these results are similar to each other`  | Generates a single response for all search results |
-
-:::note
-Currently, you can't provide your Cohere key in the Weaviate console. That means you can't use the `GraphQL` examples with your WCS instances, but if you provide your API key in the Docker configuration, then this should work.
-:::
 
 ### Example of properties in the prompt
 

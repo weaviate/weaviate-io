@@ -88,7 +88,7 @@ the path selector for `name` will be `["inPublication", "Publication", "name"]`.
 
 The behavior for the `Equal` operator on multi-word textual properties in `where` filters depends on the property type (`string` or `text`), and the `tokenization` property.
 
-Refer to [this section](../../configuration/schema-configuration.md#property-tokenization) on the difference between the two types.
+Refer to [this section](../../config-refs/schema.mdx#property-tokenization) on the difference between the two types.
 
 #### Stopwords in `text`/`string` filter values
 

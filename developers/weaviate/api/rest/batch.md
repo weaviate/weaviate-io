@@ -201,7 +201,7 @@ import BatchDeleteObjects from '/_includes/code/batch.delete.objects.mdx';
 
 <BatchDeleteObjects/>
 
-### Error handling
+## Error handling
 
 When sending a batch request to your Weaviate instance, it could be the case that an error occurs. This can be caused by several reasons, for example that the connection to Weaviate is lost or that there is a mistake in a single data object that you are trying to add.
 
