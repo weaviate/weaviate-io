@@ -18,7 +18,7 @@ import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -51,7 +51,7 @@ async function getJsonData() {
 }
 
 async function importQuestions() {
-  // Get the data from the data.json file
+  // Get the questions directly from the URL
   const data = await getJsonData();
 
   // Prepare a batcher
@@ -192,83 +192,83 @@ importQuestions();
 package main
 
 import (
-	"context"
-	"encoding/json"
-	"net/http"
+  "context"
+  "encoding/json"
+  "net/http"
 
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate/entities/models"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
 )
 
 func main() {
-	cfg := weaviate.Config{
-		Host:   "some-endpoint.weaviate.network/", // Replace with your endpoint
-		Scheme: "https",
-    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your API Key for the Weaviate instance
-		Headers: map[string]string{
-			"X-OpenAI-Api-Key": "<THE-KEY>",  // Replace with your inference API key
-		},
-	}
-	client, err := weaviate.NewClient(cfg)
+  cfg := weaviate.Config{
+    Host:   "some-endpoint.weaviate.network/", // Replace with your endpoint
+    Scheme: "https",
+    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+    Headers: map[string]string{
+      "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
+    },
+  }
+  client, err := weaviate.NewClient(cfg)
     if err != nil {
         panic(err)
     }
 
-	// add the schema
-	classObj := &models.Class{
-		Class:      "Question",
-		Vectorizer: "text2vec-openai",
-	}
+  // add the schema
+  classObj := &models.Class{
+    Class:      "Question",
+    Vectorizer: "text2vec-openai",
+  }
 
-	if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
-		panic(err)
-	}
+  if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
+    panic(err)
+  }
 
-	// Retrieve the data
-	items, err := getJSONdata()
-	if err != nil {
-		panic(err)
-	}
+  // Retrieve the data
+  items, err := getJSONdata()
+  if err != nil {
+    panic(err)
+  }
 
-	// convert items into a slice of models.Object
-	objects := make([]*models.Object, len(items))
-	for i := range items {
-		objects[i] = &models.Object{
-			Class: "Question",
-			Properties: map[string]any{
-				"category": items[i]["Category"],
-				"question": items[i]["Question"],
-				"answer":   items[i]["Answer"],
-			},
-		}
-	}
+  // convert items into a slice of models.Object
+  objects := make([]*models.Object, len(items))
+  for i := range items {
+    objects[i] = &models.Object{
+      Class: "Question",
+      Properties: map[string]any{
+        "category": items[i]["Category"],
+        "question": items[i]["Question"],
+        "answer":   items[i]["Answer"],
+      },
+    }
+  }
 
-	// batch write items
-	batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(context.Background())
-	if err != nil {
-		panic(err)
-	}
-	for _, res := range batchRes {
-		if res.Result.Errors != nil {
-			panic(res.Result.Errors.Error)
-		}
-	}
+  // batch write items
+  batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  for _, res := range batchRes {
+    if res.Result.Errors != nil {
+      panic(res.Result.Errors.Error)
+    }
+  }
 }
 
 func getJSONdata() ([]map[string]string, error) {
-	// Retrieve the data
-	data, err := http.DefaultClient.Get("https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json")
-	if err != nil {
-		return nil, err
-	}
-	defer data.Body.Close()
+  // Retrieve the data
+  data, err := http.DefaultClient.Get("https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json")
+  if err != nil {
+    return nil, err
+  }
+  defer data.Body.Close()
 
-	// Decode the data
-	var items []map[string]string
-	if err := json.NewDecoder(data.Body).Decode(&items); err != nil {
-		return nil, err
-	}
-	return items, nil
+  // Decode the data
+  var items []map[string]string
+  if err := json.NewDecoder(data.Body).Decode(&items); err != nil {
+    return nil, err
+  }
+  return items, nil
 }
 ```
 </TabItem>
@@ -369,7 +369,7 @@ if [ $lines_processed -ne 0 ]; then
 
   curl -X POST "$BATCH_API_URL" \
        -H "Content-Type: application/json" \
-       -H "Authorization: Bearer {YOUR-WEAVIATE-API-KEY}" \
+       -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
        -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
        -d "$batch_data"
   echo "" # Print a newline for better output formatting
