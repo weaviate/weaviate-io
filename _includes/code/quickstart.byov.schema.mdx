@@ -1,0 +1,58 @@
+<!-- Quickstart - Bring Your Own Vectors - Schema - /developers/weaviate/quickstart/custom-vectors#schema -->
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
+
+<FilteredTextBlock
+  text={ByovAllPyCode}
+  startMarker="# ===== Create schema ====="
+  endMarker="# ===== Import data ====="
+  language="py"
+/>
+
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+
+import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
+
+<FilteredTextBlock
+  text={ByovAllTsCode}
+  startMarker="// Class definition"
+  endMarker="// Import data"
+  language="ts"
+/>
+
+  </TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+
+```
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+
+```
+
+</TabItem> */}
+  <TabItem value="curl" label="Curl">
+
+import ByovAllCurl from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
+
+<FilteredTextBlock
+  text={ByovAllCurl}
+  startMarker="# Create the schema"
+  endMarker="# Read the JSON file"
+  language="bash"
+/>
+
+  </TabItem>
+</Tabs>
