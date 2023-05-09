@@ -76,7 +76,15 @@ Going forward, the examples will assume that
 
 ## Import data
 
-Weaviate can take care of data vectorization at import time with its [`vectorizer modules`](../modules/retriever-vectorizer-modules/index.md). So you don't need to worry about vectorization other than choosing an appropriate vectorizer and passing the data to Weaviate.
+As a vector database, Weaviate operates using vector representations, also known as "embeddings", of data objects.
+
+To generate these vector embeddings, you can employ a Weaviate ["vectorizer" module](../modules/retriever-vectorizer-modules/index.md), which can generate vectors at the time of import. Alternatively, you're welcome to supply your own "custom" vector embeddings.
+
+If you choose to use a vectorizer module, you don't need to worry about vectorization other than choosing an appropriate vectorizer and passing the data to Weaviate.
+
+:::tip Prefer to use custom vectors?
+See the ["Bring Your Own Vectors" Quickstart guide](./custom-vectors.mdx) or [this reference](../api/rest/objects.md#with-a-custom-vector) for more information if you would like to use your own vectors instead of using a vectorizer module.
+:::
 
 Using an inference API is one good way to do this. To do so:
 
@@ -99,10 +107,6 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.m
 <CodeAutoschemaMinimumSchema />
 
 Weaviate will infer any further schema information from the given data. If you would like to know more, check out [this tutorial](../tutorials/schema.md) which covers schemas in more detail.
-
-:::note If you see this error: `Name 'Question' already used as a name for an Object class`
-You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions.
-:::
 
 <details>
   <summary>Confirm schema creation</summary>
@@ -135,7 +139,9 @@ Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful AP
 
 </details>
 
-<hr />
+:::note If you see this error: `Name 'Question' already used as a name for an Object class`
+You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions.
+:::
 
 ### Deleting classes
 
@@ -172,7 +178,7 @@ import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.m
 
 <CodeAutoschemaImport />
 
-Note that we use a batch import process here for speed. You should use batch imports unless you have a good reason not to. We'll cover more on this later.
+Note that we use a batch import process, so that each request to the inference API contains multiple objects. You should use batch imports unless you have a good reason not to, as it will significantly improve the speed of data ingestion.
 
 ### Putting it together
 
@@ -183,10 +189,6 @@ import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoe
 <CodeAutoschemaEndToEnd />
 
 And that should have populated Weaviate with the data, including corresponding vectors!
-
-:::info Can I specify my own vectors?
-Yes! You can bring your own vectors and pass them to Weaviate directly. See [this reference](../api/rest/objects.md#with-a-custom-vector) for more information.
-:::
 
 Note again that we did not provide any vectors to Weaviate. That's all managed by Weaviate, which calls the inference API for you and obtains a vector corresponding to your object at import time.
 
@@ -223,7 +225,7 @@ Now that you've built a database, let's try some queries.
 
 One of the most common use cases is text similarity search. As we have a `text2vec` module enabled, we can use the `nearText` parameter for this purpose.
 
-If you wanted to find entries which related to biology, you can apply the `nearText` parameter like so:
+If you wanted to find entries related to biology, you can apply the `nearText` parameter like so:
 
 import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
 
@@ -233,26 +235,9 @@ Note that we use the `Get` function (or the relevant client implementation) to f
 
 You should see something like this:
 
-```json
-{
-    "data": {
-        "Get": {
-            "Question": [
-                {
-                    "answer": "DNA",
-                    "category": "SCIENCE",
-                    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance"
-                },
-                {
-                    "answer": "species",
-                    "category": "SCIENCE",
-                    "question": "2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification"
-                }
-            ]
-        }
-    }
-}
-```
+import BiologyQuestionsJson from '/_includes/code/quickstart.biology.questions.mdx'
+
+<BiologyQuestionsJson />
 
 Note that even though the word 'biology' does not appear anywhere, Weaviate has returned biology-related entries (on DNA and species) as the closest results. Also, it has returned these entries over and above many entries otherwise related to animals in general.
 
@@ -275,15 +260,9 @@ Also, please feel free to reach out to us on our community [Slack](https://weavi
 
 ## Next
 
-You can choose your direction from here. For example, you can:
+import WhatNext from '/_includes/quickstart.what-next.mdx';
 
-- Learn more about how to do things in [Tutorials](../tutorials/index.md), like [build schemas](../tutorials/schema.md), [import data](../tutorials/import.md), [query data](../tutorials/query.md) and more.
-- Read about important [concepts/theory about Weaviate](../concepts/index.md)
-- Read our references for:
-    - [Configuration](../configuration/index.md)
-    - [API](../api/index.md)
-    - [Modules](../modules/index.md)
-    - [Client libraries](../client-libraries/index.md)
+<WhatNext />
 
 ## More Resources
 

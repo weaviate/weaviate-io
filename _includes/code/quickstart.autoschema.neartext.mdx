@@ -7,14 +7,15 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 
 ```graphql
 {
-  Get{
+  Get {
     Question(
       nearText: {
         concepts: ["biology"],
       }
-    ){
+    ) {
       question
       answer
+      category
     }
   }
 }
@@ -36,7 +37,7 @@ import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -114,27 +115,27 @@ func main() {
     panic(err)
   }
 
-	fields := []graphql.Field{
-		{Name: "question"},
-		{Name: "answer"},
-		{Name: "category"},
-	}
+  fields := []graphql.Field{
+    {Name: "question"},
+    {Name: "answer"},
+    {Name: "category"},
+  }
 
-	nearText := client.GraphQL().
-		NearTextArgBuilder().
-		WithConcepts([]string{"biology"})
+  nearText := client.GraphQL().
+    NearTextArgBuilder().
+    WithConcepts([]string{"biology"})
 
-	result, err := client.GraphQL().Get().
-		WithClassName("Question").
-		WithFields(fields...).
-		WithNearText(nearText).
-		WithLimit(2).
-		Do(context.Background())
-	if err != nil {
-		panic(err)
-	}
+  result, err := client.GraphQL().Get().
+    WithClassName("Question").
+    WithFields(fields...).
+    WithNearText(nearText).
+    WithLimit(2).
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
 
-	fmt.Printf("%v", result)
+  fmt.Printf("%v", result)
 }
 ```
 
