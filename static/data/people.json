@@ -23,7 +23,7 @@
 	},
 	{
 		"name": "Byron Voorbach",
-		"title": "Head of Customer Success",
+		"title": "Head of Sales Engineering",
 		"photo": "byron.png",
 		"linkedin": "byronvoorbach",
 		"twitter": "byronvoorbach",
@@ -53,18 +53,25 @@
 	},
 	{
 		"name": "Dirk Kulawiak",
-		"title": "Core Engineer ",
+		"title": "Core Engineer",
 		"photo": "dirk.png",
 		"linkedin": "dirk-kulawiak",
 		"github": "dirkkul"
+	},
+	{
+		"name": "Edward Schmuhl",
+		"title": "Machine Learning Engineer",
+		"photo": "edward.png",
+		"linkedin": "edward-schmuhl-563161195",
+		"twitter": "aestheticedwar1",
+		"github": "thomashacker"
 	},
 	{
 		"name": "Eric Caleb",
 		"title": "Senior Software Engineer",
 		"photo": "eric.png",
 		"linkedin": "iamcaleberic",
-		"twitter": "iamcaleberic",
-		"github": ""
+		"twitter": "iamcaleberic"
 	},
 	{
 		"name": "Erika Cardenas",
@@ -142,11 +149,24 @@
 		"github": "parkerduckworth"
 	},
 	{
+		"name": "Paul Anderson",
+		"title": "Recruitment Lead",
+		"photo": "paul.png",
+		"linkedin": "paulanderson9"
+	},
+	{
 		"name": "Peter Schramm",
-		"title": "Tech Lead",
+		"title": "Head of WCS",
 		"photo": "peter.png",
 		"linkedin": "peter-schramm-cologne",
 		"github": "Glockenbeat"
+	},
+	{
+		"name": "Philip Vollet",
+		"title": "Head of Developer Growth",
+		"photo": "philip.png",
+		"linkedin": "philipvollet",
+		"twitter": "philipvollet"
 	},
 	{
 		"name": "Redouan 'Red' El Rhazouani",
