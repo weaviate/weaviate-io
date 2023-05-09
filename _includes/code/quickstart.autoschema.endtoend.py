@@ -74,3 +74,5 @@ print(json.dumps(result, indent=4))
 # ===== Test query results =====
 assert len(result["data"]["Get"]["Question"]) == 2
 assert result["data"]["Get"]["Question"][0]["answer"] == "DNA"
+
+client.schema.delete_class("Question")  # Cleanup after

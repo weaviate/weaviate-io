@@ -22,6 +22,7 @@ def preprocess_codeblock(raw_codeblock: str) -> str:
         ],  # Specify different port to usual to avoid confusion
         ["https://some-endpoint.weaviate.network", "http://localhost:8099"],
         ["<YOUR-WEAVIATE-API-KEY>", "secr3tk3y"],
+        ["YOUR-WEAVIATE-API-KEY", "secr3tk3y"],
     ]:
         proc_codeblock = proc_codeblock.replace(*replace_pair)
 

@@ -1,5 +1,6 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
 <TabItem value="graphql" label="GraphQL">
@@ -27,18 +28,14 @@ import TabItem from '@theme/TabItem';
 </TabItem>
 <TabItem value="py" label="Python">
 
-Python nearText query - why isn't it transcluded?
-
 import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
 
 <FilteredTextBlock
   text={ByovAllPyCode}
   startMarker="# ===== Query ====="
-  endMarker="END-OF-FILE"
+  endMarker="# ===== Test query results ====="
   language="py"
 />
-
-TODO
 
 </TabItem>
 <TabItem value="js" label="JavaScript">

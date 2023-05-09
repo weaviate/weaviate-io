@@ -76,7 +76,15 @@ Going forward, the examples will assume that
 
 ## Import data
 
-Weaviate can take care of data vectorization at import time with its [vectorizer modules](../modules/retriever-vectorizer-modules/index.md). So you don't need to worry about vectorization other than choosing an appropriate vectorizer and passing the data to Weaviate.
+As a vector database, Weaviate operates using vector representations, also known as "embeddings", of data objects.
+
+To generate these vector embeddings, you can employ a Weaviate ["vectorizer" module](../modules/retriever-vectorizer-modules/index.md), which can generate vectors at the time of import. Alternatively, you're welcome to supply your own "custom" vector embeddings.
+
+If you choose to use a vectorizer module, you don't need to worry about vectorization other than choosing an appropriate vectorizer and passing the data to Weaviate.
+
+:::tip Prefer to use custom vectors?
+See the ["Bring Your Own Vectors" Quickstart guide](./custom-vectors.mdx) or [this reference](../api/rest/objects.md#with-a-custom-vector) for more information if you would like to use your own vectors instead of using a vectorizer module.
+:::
 
 Using an inference API is one good way to do this. To do so:
 
@@ -170,7 +178,7 @@ import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.m
 
 <CodeAutoschemaImport />
 
-Note that we use a batch import process here for speed. You should use batch imports unless you have a good reason not to. We'll cover more on this later.
+Note that we use a batch import process, so that each request to the inference API contains multiple objects. You should use batch imports unless you have a good reason not to, as it will significantly improve the speed of data ingestion.
 
 ### Putting it together
 
@@ -181,10 +189,6 @@ import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoe
 <CodeAutoschemaEndToEnd />
 
 And that should have populated Weaviate with the data, including corresponding vectors!
-
-:::info Can I specify my own vectors?
-Yes! You can bring your own vectors and pass them to Weaviate directly. See the [Bring Your Own Vectors](./custom-vectors.mdx) quickstart tutorial, or [this reference](../api/rest/objects.md#with-a-custom-vector) for more information.
-:::
 
 Note again that we did not provide any vectors to Weaviate. That's all managed by Weaviate, which calls the inference API for you and obtains a vector corresponding to your object at import time.
 
