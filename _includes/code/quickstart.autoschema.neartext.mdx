@@ -37,7 +37,7 @@ import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -52,7 +52,7 @@ client.graphql
   .withFields('question answer category')
   .withNearText({concepts: ['biology']})
   .withLimit(2)
-const { default: weaviate } = require('weaviate-ts-client');
+  .do()
   .then(res => {
     console.log(JSON.stringify(res, null, 2))
   })
