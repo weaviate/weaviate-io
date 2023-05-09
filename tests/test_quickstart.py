@@ -6,6 +6,7 @@ import utils
     "script_loc",
     [
         "./_includes/code/quickstart.autoschema.endtoend.py",
+        "./_includes/code/quickstart.byov.all.py",
     ],
 )
 def test_python_script(apikey_empty_weaviate, script_loc):
