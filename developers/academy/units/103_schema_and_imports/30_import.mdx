@@ -13,30 +13,90 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
-### Key principles
+So far, you've learned that data in Weaviate is represented by objects, which belong to a `class`, and have a set of `properties`. In the previous section on the `schema`, you learned how to create a framework for this structure.
 
-### Batch imports
+In this section, you will learn how to import data into Weaviate, including our recommended best practices, and some key considerations. Once you're done with this section, you will be ready to import a real dataset into Weaviate by putting together what we've learned about the schema and imports.
 
-### Vector specification
-Mirror video content
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Imports: A high-level view
 
-### ID
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Object creation
 
-### Sources of vectors
+To create a Weaviate object, you must:
 
-Weaviate provides multiple ways for users to associate vector representations with objects. In general, users can either use Weaviate's vectorizer modules to obtain vector representations during the import process or supply their own vector representations.
+- Load your source data,
+- Build a data object with any desired properties, and
+- Add it to your desired class in Weaviate.
 
-#### Using vectorizer modules
+Optionally, you can manually specify:
 
-If you want to obtain vectors at the time of import, you can use a Weaviate vectorizer module. These modules can be categorized into two groups: those (`text2vec-openai`, `text2vec-cohere`, `text2vec-huggingface`) that call external inference APIs, and those that run locally as a microservice to perform vectorization (e.g. `text2vec-transformers`).
+- An object ID, and
+- A vector
 
-Weaviate's set of vectorizer modules is versatile and extensible. It includes modules for vectorizing text or images, a module that can vectorize both text and images into a single vector space (`multi2vec-clip`), and one that generates vectors based on other vectors (`ref2vec-centroid`).
+:::info Optional properties
 
-Custom modules can also be created to extend the capabilities of Weaviate as needed.
+- An object ID is required. So, if one is not specified, Weaviate will create one.
+- If a vector is not specified, Weaviate will create one if a vectorizer is set for the class.
 
-#### Uploading vectors
+We'll cover these in more detail later on.
+:::
 
-Another option for adding vectors to Weaviate is to manually upload them. This is sometimes referred to as the "Bring Your Own Vector" option in our documentation, and may be a good choice for users who prefer to generate vectors outside of Weaviate or who have already vectorized their data.
+:::warning TODO
+Add example snippets with a hypothetical "Article" object matching prev. schema page
+:::
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Use batch imports
+
+Weaviate offers a "batch import" process to maximize the import speed. Take a look at the below diagram indicating the object creation process:
+
+import ImportConceptualImg from './images/academy_103_import_process_conceptual.png';
+
+<img src={ImportConceptualImg} alt="Conceptual diagram of the import process" width="100%"/>
+
+In the figure, a request is made to create an object based on the provided data.
+
+If the vector is not provided and a vectorizer is specified, Weaviate (core) will send a request to the vectorizer module for a vector embedding. If that module is an inference-API based module, such as `text2vec-cohere`, it must then contact the inference API to request the appropriate vector.
+
+You can imagine that in such a configuration, the network latencies may add a significant amount of time for large datasets, or become a bottleneck.
+
+A batch import significantly reduces the impact of network latencies by processing multiple objects per request. You should use batch imports unless you have a good reason not to, as it will significantly improve the speed of data ingestion.
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Error handling
+
+The batch import process is configured to handle errors at a batch level, and at individual object level.
+
+#### Batch-level errors
+
+Any batch-level errors are indicated via the HTTP response code for the batch request.
+- A 200 response code indicates that batch was successfully sent, connected and processed.
+- A 4xx status code indicates that the request was malformed.
+
+#### Object-level errors
+
+Since a batch contains multiple objects, individual errors may occur during import even when the request was successful.
+
+Accordingly, object-level errors are returned as a part of the response.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Optional parameters
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;ID
+
+Each object in Weaviate has a unique identifier. This ID can be user-provided, but if not, Weaviate will generate a random [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+
+Weaviate does not check if a duplicate object is being created. As a result, using a deterministic uuid may prevent accidental creation of duplicate objects.
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector
+
+Each object in Weaviate can have a vector embedding to represent it, although this is not mandatory.
+
+- If a vector is specified at creation time, Weaviate will use that vector to represent the object.
+- If a vector is not specified, Weaviate will check to see if a vectorizer setting applies to the relevant class.
+    - If so, Weaviate will send a request to that vectorizer module for a vector embedding.
+    - If not, the object will not have a vector representation.
+
+:::info How is a vectorizer determined for the class?
+- If a vectorizer was set in the schema for the class, this vectorizer will be used.
+- If not, Weaviate will check for a default vectorizer setting for that Weaviate instance.
+:::
 
 :::note Upload vectors and use a vectorizer
 It is possible to both upload your own vectors and specify a vectorizer for Weaviate. For example, if you are importing a large dataset and have vectorized the data using a vectorizer that is also available through Weaviate, this may be a useful approach. This will allow you to use Weaviate to vectorize any updates to the dataset, as well as to vectorize queries as necessary.

@@ -46,13 +46,29 @@ Each set of vectors are said to reside in a "vector space", indicating that it i
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Classes
 
-A class in Weaviate is a collection of objects of the same type. So if you are storing a set of quiz items from the game show *Jeopardy!* in Weaviate, you might have a class called `JeopardyQuestion`, each of which is an object of the `JeopardyQuestion` class. The class may contain one or more `properties`, which are the attributes of the object. For our quiz example, the `JeopardyQuestion` class may contain a `question` property and an `answer` property.
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;What is a `class`?
 
-Each object in Weaviate must belong to a class, and one class only.
+A class in Weaviate is a collection of objects of the same type. Each object in Weaviate must belong to a class, and one class only.
 
-Each object is represented by one vector, and each class has one vector index. This means that all objects in the class will be associated with the same vector index. In other words, all objects in the class will be stored in what is called the same vector space. This is important to keep in mind when designing your data schema in Weaviate. A vector search can only be performed within a single vector space, for reasons that a vector of different lengths, or even those of the same length but with different meanings, cannot be compared.
+Imagine that you are storing a set of quiz items from the game show *Jeopardy!* in Weaviate. A good way to structure it would be to have an object represent a question including all associated attributes, such as the answer, what round it was from, how many points it was worth, when it aired on TV, and so on.
 
-Going back to our color analogy that you saw earlier - you wouldn't be able to compare an RGB value to an CMYK value, right? The same applies to vector embeddings that represent text.
+So, a good way to represent this data would be through a class called `JeopardyQuestion`, which would contain a set of objects, each object representing one such question.
+
+:::note Class names are singular by convention
+This is as they refer to individual objects, e.g. a `JeopardyQuestion` object.
+:::
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;What is in a class?
+
+As we mentioned, each Jeopardy! question would contain multiple related, but distinct, attributes such as the question, answer, round, points, and so on. These are reflected in each `class` object in Weaviate as a set of `properties`, such as a `question` property, an `answer` property, and so on.
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;How many vectors per object?
+
+Each object is represented by one vector, and each class has one vector index. This means that all objects in the class will be associated with the same vector index.
+
+In other words, all objects in the class will be stored in what is called the same vector space. This is important to keep in mind when designing your data schema in Weaviate. A vector search can only be performed within a single vector space, for reasons that a vector of different lengths, or even those of the same length but with different meanings, cannot be compared.
+
+Going back to our [color analogy](../101_hello_weaviate/15_overview_vectors.mdx#how-do-numbers-represent-meaning) that you saw earlier - you wouldn't be able to compare an RGB value to an CMYK value, right? The same applies to vector embeddings that represent text.
 
 So in Weaviate, a vector search can only search one class at a time. As a result, it is important to design your schema such that objects that you want to search together are in the same class.
 
