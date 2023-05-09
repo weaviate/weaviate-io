@@ -30,7 +30,9 @@ However, you might find it preferable to define the schema manually to ensure th
 ## Create a class
 
 :::info Capitalization
-Class and property names are treated equally no matter how the first letter is cased, eg "Article" == "article"
+Class and property names are treated equally no matter how the first letter is cased, eg "Article" == "article".
+
+Generally, however, Weaviate follows GraphQL conventions where classes start with a capital letter and properties start with a lowercase letter.
 :::
 
 A class describes a collection of data objects. They are defined as a part of the schema, such as shown in the examples below.
