@@ -23,8 +23,8 @@ const { default: weaviate } = require('weaviate-ts-client');
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your API Key for the Weaviate instance
-  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your inference API key
+  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
 });
 
 let classObj = {
@@ -115,8 +115,8 @@ import fetch, { Response } from 'node-fetch';  // Note that Node implements its 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your API Key for the Weaviate instance
-  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your inference API key
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
 });
 
 async function getJsonData(): Promise<any> {
@@ -312,33 +312,53 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-# Download the data file
-curl -O -L "https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json"
+#!/bin/bash
+# Requiring `bash` above enables process substitution support, used when redirecting the output of jq to the while loop.
+echo "Downloading the data file..."
+curl -O -L "https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json" --no-progress-meter
 
-# Replace with your endpoints
-SCHEMA_API_URL="https://some-endpoint.weaviate.network/v1/schema"
-BATCH_API_URL="http://some-endpoint.weaviate.network/v1/batch/objects"
-# Replace with your Inference API token (e.g. as an environment variable: $OPENAI_API_KEY)
-OPENAI_API_TOKEN="<OpenAI-API-Token>"
+# Replace with your endpoint and API keys
+WEAVIATE_URL=https://some-endpoint.weaviate.network
+WEAVIATE_API_KEY=YOUR_WEAVIATE_API_KEY
+OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+
+SCHEMA_API_URL="$WEAVIATE_URL/v1/schema"
+BATCH_API_URL="$WEAVIATE_URL/v1/batch/objects"
 BATCH_SIZE=100
 
-# Create the schema
+# Send to the batch endpoint valid JSON data (no comments, no newlines - https://github.com/weaviate/weaviate/issues/2745)
+function send_data() {
+  curl --no-progress-meter -X POST "$BATCH_API_URL" \
+       -H "Content-Type: application/json" \
+       -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+       -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+       -d "$1" \
+       -o /dev/null  # suppress the output because vectors are long
+}
+
+# Uncomment to delete all Question objects if you see a "Name 'Question' already used" error
+curl -X DELETE $SCHEMA_API_URL/Question -H "Authorization: Bearer $WEAVIATE_API_KEY"
+
+echo "Creating the schema. Weaviate's autoschema feature will infer class properties when importing..."
 echo '{
   "class": "Question",
   "vectorizer": "text2vec-openai"
-}' | curl \
+}' | curl --no-progress-meter \
   -X POST \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $WEAVIATE_API_KEY" \
   -d @- \
+  -o /dev/null \
   $SCHEMA_API_URL
 
 # Read the JSON file and loop through its entries
 lines_processed=0
-batch_data="{\"objects\": ["
+batch_data='{"objects": ['
 
-cat jeopardy_tiny.json | jq -c '.[]' | while read line; do
-  # Concatenate lines
-  line=$(echo "$line" | jq "{class: \"Question\", properties: {answer: .Answer, question: .Question, category: .Category}}")
+while read -r line; do
+  # Create the class object out of the JSON data
+  line=$(echo "$line" | jq '{class: "Question", properties: {answer: .Answer, question: .Question, category: .Category}}')
+
   if [ $lines_processed -eq 0 ]; then
     batch_data+=$line
   else
@@ -347,33 +367,24 @@ cat jeopardy_tiny.json | jq -c '.[]' | while read line; do
 
   lines_processed=$((lines_processed + 1))
 
-  # If the batch is full, send it to the API using curl
+  # If the batch is full, send it to the API
   if [ $lines_processed -eq $BATCH_SIZE ]; then
     batch_data+="]}"
 
-    curl -X POST "$BATCH_API_URL" \
-         -H "Content-Type: application/json" \
-         -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
-         -d "$batch_data"
-    echo "" # Print a newline for better output formatting
+    send_data "$batch_data"
 
     # Reset the batch data and counter
     lines_processed=0
-    batch_data="{\"objects\": ["
+    batch_data='{"objects": ['
   fi
-done
+done < <(jq -c '.[]' jeopardy_tiny.json)  # process substitution
 
-# Send the remaining data (if any) to the API using curl
+echo "Sending the remaining data (if any) to the API..."
 if [ $lines_processed -ne 0 ]; then
   batch_data+="]}"
-
-  curl -X POST "$BATCH_API_URL" \
-       -H "Content-Type: application/json" \
-       -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
-       -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
-       -d "$batch_data"
-  echo "" # Print a newline for better output formatting
+  send_data "$batch_data"
 fi
+echo "Import finished."
 ```
 
 </TabItem>
