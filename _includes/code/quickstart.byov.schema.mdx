@@ -1,34 +1,35 @@
-<!-- Quickstart - Bring Your Own Vectors - Putting it all together - /developers/weaviate/quickstart/custom-vectors#putting-it-together -->
+<!-- Quickstart - Bring Your Own Vectors - Schema - /developers/weaviate/quickstart/custom-vectors#schema -->
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
 
 <FilteredTextBlock
   text={ByovAllPyCode}
-  startMarker="# Bring your own vectors - Python complete sample"
-  endMarker="# ===== Test import ====="
+  startMarker="# ===== Create schema ====="
+  endMarker="# ===== Import data ====="
   language="py"
 />
 
-</TabItem>
+  </TabItem>
 
-<TabItem value="ts" label="TypeScript">
+  <TabItem value="ts" label="TypeScript">
 
 import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
 
 <FilteredTextBlock
   text={ByovAllTsCode}
-  startMarker="// Bring your own vectors - TypeScript complete sample"
+  startMarker="// Class definition"
+  endMarker="// Import data"
   language="ts"
 />
 
-</TabItem>
+  </TabItem>
 {/* <TabItem value="go" label="Go">
 
 ```go
@@ -42,15 +43,16 @@ import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
 ```
 
 </TabItem> */}
-<TabItem value="curl" label="Curl">
+  <TabItem value="curl" label="Curl">
 
 import ByovAllCurl from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
 
 <FilteredTextBlock
   text={ByovAllCurl}
-  startMarker="# Bring Your Own Vectors - curl example"
+  startMarker="# Create the schema"
+  endMarker="# Read the JSON file"
   language="bash"
 />
 
-</TabItem>
+  </TabItem>
 </Tabs>

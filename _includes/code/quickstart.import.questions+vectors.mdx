@@ -1,44 +1,33 @@
-```ts
-async function importQuestionsWithVectors() {
-  // Get the questions directly from the URL
-  const data = await getJsonData();
+<!-- Quickstart - Bring Your Own Vectors - Import data with vectors - /developers/weaviate/quickstart/custom-vectors#import-data-with-vectors -->
 
-  // Prepare a batcher. Even though this dataset is tiny, this is the best practice for import.
-  let batcher: ObjectsBatcher = client.batch.objectsBatcher();
-  let counter: number = 0;
-  let batchSize: number = 100;
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
-  interface Question {
-    Answer: string;
-    Question: string;
-    Category: string;
-  }
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
 
-  data.forEach((question: Question) => {
-    // Construct an object with a class and properties 'answer' and 'question'
-    const obj = {
-      class: 'Question',
-      properties: {
-        answer: question.Answer,
-        question: question.Question,
-        category: question.Category,
-      },
-      vector: question.Vector,
-    }
+import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
 
-    // add the object to the batch queue
-    batcher = batcher.withObject(obj);
+<FilteredTextBlock
+  text={ByovAllPyCode}
+  startMarker="# ===== Import data ====="
+  endMarker="# ===== Test import ====="
+  language="py"
+/>
 
-    // When the batch counter reaches batchSize, push the objects to Weaviate
-    if (counter++ % batchSize === 0) {
-    // Flush the batch queue and restart it
-      await batcher.do();
-      batcher = client.batch.objectsBatcher();
-    }
-  });
+  </TabItem>
 
-  // Flush the remaining objects
-  await batcher.do();
-  console.log(`Finished importing ${counter} Questions.`);
-}
-```
+  <TabItem value="ts" label="TypeScript">
+
+import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
+
+<FilteredTextBlock
+  text={ByovAllTsCode}
+  startMarker="// Import data"
+  endMarker="// Query using nearVector"
+  language="ts"
+/>
+
+  </TabItem>
+</Tabs>

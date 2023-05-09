@@ -256,15 +256,9 @@ Also, please feel free to reach out to us on our community [Slack](https://weavi
 
 ## Next
 
-You can choose your direction from here. For example, you can:
+import WhatNext from '/_includes/quickstart.what-next.mdx';
 
-- Learn more about how to do things in [Tutorials](../tutorials/index.md), like [build schemas](../tutorials/schema.md), [import data](../tutorials/import.md), [query data](../tutorials/query.md) and more.
-- Read about important [concepts/theory about Weaviate](../concepts/index.md)
-- Read our references for:
-    - [Configuration](../configuration/index.md)
-    - [API](../api/index.md)
-    - [Modules](../modules/index.md)
-    - [Client libraries](../client-libraries/index.md)
+<WhatNext />
 
 ## More Resources
 
