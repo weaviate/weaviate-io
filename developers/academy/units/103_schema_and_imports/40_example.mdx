@@ -1,11 +1,15 @@
 ---
-title: Data import - Example 1
+title: Populate your Weaviate instance!
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCodeExample from '!!raw-loader!./snippets/40_import_example_1.py';
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
@@ -68,7 +72,7 @@ For this example, we will obtain our object vectors using an inference service. 
 <FilteredTextBlock
   text={PythonCodeExample}
   startMarker="# Specify a vectorizer"
-  endMarker="# End schema"
+  endMarker="# Module settings"
   language="py"
 />
 </TabItem>
@@ -136,7 +140,7 @@ We can now add the class to the schema.
 <FilteredTextBlock
   text={PythonCodeExample}
   startMarker="# Define the class"
-  endMarker='# Retrieve "JeopardyQuestion" class schema'
+  endMarker='# End class definition'
   language="py"
 />
 </TabItem>
@@ -149,17 +153,124 @@ Now, you can check that the class has been created successfully by retrieving it
 <FilteredTextBlock
   text={PythonCodeExample}
   startMarker='# Retrieve "JeopardyQuestion" class schema'
-  endMarker="# Test class addition"
+  endMarker='# END Retrieve "JeopardyQuestion" class schema'
   language="py"
 />
 </TabItem>
 </Tabs>
 
-:::note There's still quite a few more details!
-See that the retrieved schema still has quite a few more details than we've seen! We'll cover many of those as we go.
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the full schema response</summary>
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="// RETRIEVED CLASS SCHEMA"
+  endMarker="// END RETRIEVED CLASS SCHEMA"
+  language="json"
+/>
+
+</details>
+
+:::note The retrieved schema is even longer!
+Although we've defined a lot of details here, the retrieved schema is still longer. The additional details relate to the vector index, the inverted index, sharding and sharding. We'll cover many of those as we go.
 :::
 
+If you see a schema that is close to the example response - awesome! You're ready to import the data.
+
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Import data
+
+Here, we'll show you how to import the requisite data, including how to configure and use a batch.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Load data
+
+We've made the data available online - so, fetch and load it like so:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Load data"
+  endMarker="# Finished loading data"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Configure batch and import data
+
+And let's set up a batch import process. As mentioned earlier, the batch import process in Weaviate can send data in bulk and in parallel.
+
+In Python, we recommend that you use a context manager like:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Context manager for batch import"
+  endMarker="# Build data objects & add to batch"
+  language="py"
+/>
+
+Note the use of parameters `batch_size` and `num_workers`. They specify the number of objects sent per batch, as well as how many processes are used for parallelization.
+
+Then, the next step is to build data objects & add them to the batch process. We build objects (as Python dictionaries) by passing data from  corresponding columns to the right Weaviate property, and the client will take care of when to send them.
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Import data - simple version"
+  endMarker="# END Import data - simple version"
+  language="py"
+/>
+
+Then, let's check that we've got the right number of objects imported:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Check object count"
+  endMarker="# END Check object count"
+  language="py"
+/>
+
+If this assertion returns `True`, you've successfully populated your Weaviate instance!
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;What happens if this runs again?
+
+Before we go on, I have a question. What do you think will happen if you run the above import script again?
+
+<details>
+  <summary><i class="fa-solid fa-face-thinking"></i> The answer is... </summary>
+
+That you will end up with duplicate items!<p><br/></p>
+
+Weaviate does not check if you are uploading items with the same properties as ones that exist already. And since the import script did not provide an ID, Weaviate will simply assign a new, random ID, and create new objects.
+
+</details>
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Specify object UUID
+
+You could specify an object UUID at import time to serve as the object identifier. The Weaviate Python client, for example, provides a function to create a deterministic UUID based on an object. So, it could be added to our import script as shown below:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Import data with deterministic UUIDs"
+  endMarker="# END Import data with deterministic UUIDs"
+  language="py"
+/>
+
+What this will do is to create objects whose UUID is based on the object properties. Accordingly, if the object properties remain the same, so will the UUID.
+
+Running the above script multiple times will *not* cause the number of objects to increase.
+
+:::tip What is your desired behavior?
+Because the UUID is based on the object properties, it will still create new objects in case some property has changed. So, when you design your import process, consider what properties might change, and how you would want Weaviate to behave in these scenarios.<p><br/></p>
+
+Then you could, for instance, design your UUID to be created based on a subset of unique properties, to have the objects be overwritten, or alternatively have the UUID be created from the entire set of properties to only prevent duplicates.
+:::
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Full import script
+
+Putting it all together, we get the following import script:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Full code snippet"
+  endMarker="# END Full code snippet"
+  language="py"
+/>
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 

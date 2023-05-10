@@ -58,7 +58,7 @@ If the vector is not provided and a vectorizer is specified, Weaviate (core) wil
 
 You can imagine that in such a configuration, the network latencies may add a significant amount of time for large datasets, or become a bottleneck.
 
-A batch import significantly reduces the impact of network latencies by processing multiple objects per request. You should use batch imports unless you have a good reason not to, as it will significantly improve the speed of data ingestion.
+A batch import significantly reduces the impact of network latencies by processing multiple objects per request, and our clients (e.g. the Python client) can parallelize the process as well. You should use batch imports unless you have a good reason not to, as it will significantly improve the speed of data ingestion.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Error handling
 
