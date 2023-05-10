@@ -1,8 +1,7 @@
 ---
 title: Generative Search - PaLM
 sidebar_position: 12
-# image: og/docs/modules/generative-palm.jpg
-image: og/docs/modules/readers-generators-overview.jpg
+image: og/docs/modules/generative-palm.jpg
 # tags: ['generative', 'transformers', 'palm', 'gcp']
 ---
 import Badges from '/_includes/badges.mdx';
