@@ -53,9 +53,9 @@ And we are excited to tell you about the ['text2vec-palm`](/developers/weaviate/
 
 The [`text2vec-palm`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm) module can use a PaLM model to convert text to vector embeddings that represent their meaning.
 
-So, you can use the `text2vec-palm` module module to build a Weaviate database using PaLM-derived vectors for text objects, and perform lightning-fast searches.
+So, you can use the `text2vec-palm` module to build a Weaviate database using PaLM-derived vectors for text objects, and perform lightning-fast searches.
 
-The model used, `textembedding-gecko-001`, takes a maximum of 3,072 input tokens, and outputs 768-dimensional vector embeddings.
+The PaLM model used, `textembedding-gecko-001`, takes a maximum of 3,072 input tokens, and outputs 768-dimensional vector embeddings.
 
 Please note that according to Google, the embedding endpoint does *not* support fine-tuning.
 
@@ -69,7 +69,7 @@ In other words - Weaviate can not only find the right data object for you, it ca
 
 And remember that the Vertex PaLM API allows further fine-tuning of your PaLM model? It means you can do all this with an LLM that has been tuned to your use case, such as your task, or domain.
 
-The base model is `text-bison-001`, which has the following properties:
+The base PaLM model for generative search is `text-bison-001`, which has the following properties:
 
 - Max input token: 8,192
 - Max output tokens: 1,024
