@@ -1,63 +1,30 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 
-```python
-import weaviate
-import json
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
 
-client = weaviate.Client(
-    url = "https://some-endpoint.weaviate.network/",  # replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="<YOUR-WEAVIATE-API-KEY>"),  # replace w/ your Weaviate instance API key
-    additional_headers = {
-        "X-OpenAI-Api-Key": "<YOUR-OPENAI-API-KEY>"  # replace with your OpenAI API key
-    }
-)
-
-# ===== add schema =====
-class_obj = {
-    "class": "Question",
-    "vectorizer": "text2vec-openai"
-}
-
-client.schema.create_class(class_obj)
-
-# ===== import data =====
-# Load data
-import requests
-url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json'
-resp = requests.get(url)
-data = json.loads(resp.text)
-
-# Configure a batch process
-with client.batch as batch:
-    batch.batch_size=100
-    # Batch import all Questions
-    for i, d in enumerate(data):
-        print(f"importing question: {i+1}")
-
-        properties = {
-            "answer": d["Answer"],
-            "question": d["Question"],
-            "category": d["Category"],
-        }
-
-        client.batch.add_data_object(properties, "Question")
-```
+<FilteredTextBlock
+  text={EndToEndPyCode}
+  startMarker="# ===== Weaviate Quickstart tutorial ====="
+  endMarker="# ===== Test import ====="
+  language="py"
+/>
 
 </TabItem>
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // replace with your endpoint
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // replace w/ your Weaviate instance API key
-  headers: { 'X-OpenAI-Api-Key': '<YOUR-OPENAI-API-KEY>' },  // replace with your OpenAI API key
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
 });
 
 let classObj = {
@@ -84,7 +51,7 @@ async function getJsonData() {
 }
 
 async function importQuestions() {
-  // Get the data from the data.json file
+  // Get the questions directly from the URL
   const data = await getJsonData();
 
   // Prepare a batcher
@@ -147,9 +114,9 @@ import fetch, { Response } from 'node-fetch';  // note that Node implements its 
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // replace with your endpoint
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // replace w/ your Weaviate instance API key
-  headers: { 'X-OpenAI-Api-Key': '<YOUR-OPENAI-API-KEY>' },  // replace with your OpenAI API key
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
 });
 
 async function getJsonData(): Promise<any> {
@@ -225,83 +192,83 @@ importQuestions();
 package main
 
 import (
-	"context"
-	"encoding/json"
-	"net/http"
+  "context"
+  "encoding/json"
+  "net/http"
 
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate/entities/models"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
 )
 
 func main() {
-	cfg := weaviate.Config{
-		Host:   "some-endpoint.weaviate.network/",  // replace with your endpoint
-		Scheme: "https",
-    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // replace w/ your Weaviate instance API Key
-		Headers: map[string]string{
-			"X-OpenAI-Api-Key": "<YOUR-OPENAI-API-KEY>",  // replace with your OpenAI API key
-		},
-	}
-	client, err := weaviate.NewClient(cfg)
-    if err != nil {
-        panic(err)
+  cfg := weaviate.Config{
+    Host:   "some-endpoint.weaviate.network/", // Replace with your endpoint
+    Scheme: "https",
+    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+    Headers: map[string]string{
+      "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
+    },
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+      panic(err)
+  }
+
+  // add the schema
+  classObj := &models.Class{
+    Class:      "Question",
+    Vectorizer: "text2vec-openai",
+  }
+
+  if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
+    panic(err)
+  }
+
+  // Retrieve the data
+  items, err := getJSONdata()
+  if err != nil {
+    panic(err)
+  }
+
+  // convert items into a slice of models.Object
+  objects := make([]*models.Object, len(items))
+  for i := range items {
+    objects[i] = &models.Object{
+      Class: "Question",
+      Properties: map[string]any{
+        "category": items[i]["Category"],
+        "question": items[i]["Question"],
+        "answer":   items[i]["Answer"],
+      },
     }
+  }
 
-	// add the schema
-	classObj := &models.Class{
-		Class:      "Question",
-		Vectorizer: "text2vec-openai",
-	}
-
-	if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
-		panic(err)
-	}
-
-	// Retrieve the data
-	items, err := getJSONdata()
-	if err != nil {
-		panic(err)
-	}
-
-	// convert items into a slice of models.Object
-	objects := make([]*models.Object, len(items))
-	for i := range items {
-		objects[i] = &models.Object{
-			Class: "Question",
-			Properties: map[string]any{
-				"category": items[i]["Category"],
-				"question": items[i]["Question"],
-				"answer":   items[i]["Answer"],
-			},
-		}
-	}
-
-	// batch write items
-	batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(context.Background())
-	if err != nil {
-		panic(err)
-	}
-	for _, res := range batchRes {
-		if res.Result.Errors != nil {
-			panic(res.Result.Errors.Error)
-		}
-	}
+  // batch write items
+  batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  for _, res := range batchRes {
+    if res.Result.Errors != nil {
+      panic(res.Result.Errors.Error)
+    }
+  }
 }
 
 func getJSONdata() ([]map[string]string, error) {
-	// Retrieve the data
-	data, err := http.DefaultClient.Get("https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json")
-	if err != nil {
-		return nil, err
-	}
-	defer data.Body.Close()
+  // Retrieve the data
+  data, err := http.DefaultClient.Get("https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json")
+  if err != nil {
+    return nil, err
+  }
+  defer data.Body.Close()
 
-	// Decode the data
-	var items []map[string]string
-	if err := json.NewDecoder(data.Body).Decode(&items); err != nil {
-		return nil, err
-	}
-	return items, nil
+  // Decode the data
+  var items []map[string]string
+  if err := json.NewDecoder(data.Body).Decode(&items); err != nil {
+    return nil, err
+  }
+  return items, nil
 }
 ```
 </TabItem>
@@ -345,33 +312,53 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-# Download the data file
-curl -O -L "https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json"
+#!/bin/bash
+# Requiring `bash` above enables process substitution support, used when redirecting the output of jq to the while loop.
+echo "Downloading the data file..."
+curl -O -L "https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json" --no-progress-meter
 
-# Replace with your endpoints
-SCHEMA_API_URL="https://some-endpoint.weaviate.network/v1/schema"
-BATCH_API_URL="http://some-endpoint.weaviate.network/v1/batch/objects"
-# Replace with your OpenAI API token (e.g. as an environment variable: $OPENAI_API_KEY)
-OPENAI_API_TOKEN="<OpenAI-API-Token>"
+# Replace with your endpoint and API keys
+WEAVIATE_URL=https://some-endpoint.weaviate.network
+WEAVIATE_API_KEY=YOUR_WEAVIATE_API_KEY
+OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+
+SCHEMA_API_URL="$WEAVIATE_URL/v1/schema"
+BATCH_API_URL="$WEAVIATE_URL/v1/batch/objects"
 BATCH_SIZE=100
 
-# Create the schema
+# Send to the batch endpoint valid JSON data (no comments, no newlines - https://github.com/weaviate/weaviate/issues/2745)
+function send_data() {
+  curl --no-progress-meter -X POST "$BATCH_API_URL" \
+       -H "Content-Type: application/json" \
+       -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+       -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+       -d "$1" \
+       -o /dev/null  # suppress the output because vectors are long
+}
+
+# Uncomment to delete all Question objects if you see a "Name 'Question' already used" error
+curl -X DELETE $SCHEMA_API_URL/Question -H "Authorization: Bearer $WEAVIATE_API_KEY"
+
+echo "Creating the schema. Weaviate's autoschema feature will infer class properties when importing..."
 echo '{
   "class": "Question",
   "vectorizer": "text2vec-openai"
-}' | curl \
+}' | curl --no-progress-meter \
   -X POST \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $WEAVIATE_API_KEY" \
   -d @- \
+  -o /dev/null \
   $SCHEMA_API_URL
 
 # Read the JSON file and loop through its entries
 lines_processed=0
-batch_data="{\"objects\": ["
+batch_data='{"objects": ['
 
-cat jeopardy_tiny.json | jq -c '.[]' | while read line; do
-  # Concatenate lines
-  line=$(echo "$line" | jq "{class: \"Question\", properties: {answer: .Answer, question: .Question, category: .Category}}")
+while read -r line; do
+  # Create the class object out of the JSON data
+  line=$(echo "$line" | jq '{class: "Question", properties: {answer: .Answer, question: .Question, category: .Category}}')
+
   if [ $lines_processed -eq 0 ]; then
     batch_data+=$line
   else
@@ -380,33 +367,24 @@ cat jeopardy_tiny.json | jq -c '.[]' | while read line; do
 
   lines_processed=$((lines_processed + 1))
 
-  # If the batch is full, send it to the API using curl
+  # If the batch is full, send it to the API
   if [ $lines_processed -eq $BATCH_SIZE ]; then
     batch_data+="]}"
 
-    curl -X POST "$BATCH_API_URL" \
-         -H "Content-Type: application/json" \
-         -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
-         -d "$batch_data"
-    echo "" # Print a newline for better output formatting
+    send_data "$batch_data"
 
     # Reset the batch data and counter
     lines_processed=0
-    batch_data="{\"objects\": ["
+    batch_data='{"objects": ['
   fi
-done
+done < <(jq -c '.[]' jeopardy_tiny.json)  # process substitution
 
-# Send the remaining data (if any) to the API using curl
+echo "Sending the remaining data (if any) to the API..."
 if [ $lines_processed -ne 0 ]; then
   batch_data+="]}"
-
-  curl -X POST "$BATCH_API_URL" \
-       -H "Content-Type: application/json" \
-       -H "Authorization: Bearer {YOUR-WEAVIATE-API-KEY}" \
-       -H "X-OpenAI-Api-Key: $OPENAI_API_TOKEN" \
-       -d "$batch_data"
-  echo "" # Print a newline for better output formatting
+  send_data "$batch_data"
 fi
+echo "Import finished."
 ```
 
 </TabItem>

@@ -8,6 +8,12 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+## Migration for version 1.19.0
+
+This version introduces `indexFilterable` and `indexSearchable` variables for the new text indexes, whose values will be set based on the value of `indexInverted`.
+
+Since filterable & searchable are separate indexes, filterable does not exist in Weaviate instances upgraded from pre-`v1.19` to `v1.19`. The missing `filterable` index can be created though on startup for all `text/text[]` properties if env variable `INDEX_MISSING_TEXT_FILTERABLE_AT_STARTUP` is set.
+
 ## Changelog for version v1.9.0
 
 * no breaking changes
@@ -41,7 +47,7 @@ import Badges from '/_includes/badges.mdx';
         "properties": [
           {
             "dataType": [
-              "string"
+              "text"
             ],
             "name": "name"
           },
@@ -667,7 +673,7 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
 
   ```json
   {
-    "dataType": [ "string" ],
+    "dataType": [ "text" ],
     "description": "string",
     "cardinality": "string",
     "vectorizePropertyName": true,
@@ -681,7 +687,7 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
 
   ```json
   {
-    "dataType": [ "string" ],
+    "dataType": [ "text" ],
     "description": "string",
     "moduleConfig": {
       "text2vec-contextionary": {
@@ -832,7 +838,7 @@ The Contextionary becomes the first vectorization module of Weaviate, renamed to
 
     ```json
     {
-      "dataType": [ "string" ],
+      "dataType": [ "text" ],
       "description": "string",
       "moduleConfig": {
         "text2vec-contextionary": {

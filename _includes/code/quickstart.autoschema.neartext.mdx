@@ -1,19 +1,21 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
 {/* <TabItem value="graphql" label="GraphQL">
 
 ```graphql
 {
-  Get{
+  Get {
     Question(
       nearText: {
         concepts: ["biology"],
       }
-    ){
+    ) {
       question
       answer
+      category
     }
   }
 }
@@ -22,36 +24,20 @@ import TabItem from '@theme/TabItem';
 </TabItem> */}
 <TabItem value="py" label="Python">
 
-```python
-import weaviate
-import json
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
 
-client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="<YOUR-WEAVIATE-API-KEY>"),  # Replace w/ your API Key for the Weaviate instance
-    additional_headers={
-        "X-OpenAI-Api-Key": "<THE-KEY>"  # Replace with your inference API key
-    }
-)
-
-nearText = {"concepts": ["biology"]}
-
-result = (
-    client.query
-    .get("Question", ["question", "answer", "category"])
-    .with_near_text(nearText)
-    .with_limit(2)
-    .do()
-)
-
-print(json.dumps(result, indent=4))
-```
+<FilteredTextBlock
+  text={EndToEndPyCode}
+  startMarker="# ===== Query instance ====="
+  endMarker="# ===== Test query results ====="
+  language="py"
+/>
 
 </TabItem>
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -129,27 +115,27 @@ func main() {
     panic(err)
   }
 
-	fields := []graphql.Field{
-		{Name: "question"},
-		{Name: "answer"},
-		{Name: "category"},
-	}
+  fields := []graphql.Field{
+    {Name: "question"},
+    {Name: "answer"},
+    {Name: "category"},
+  }
 
-	nearText := client.GraphQL().
-		NearTextArgBuilder().
-		WithConcepts([]string{"biology"})
+  nearText := client.GraphQL().
+    NearTextArgBuilder().
+    WithConcepts([]string{"biology"})
 
-	result, err := client.GraphQL().Get().
-		WithClassName("Question").
-		WithFields(fields...).
-		WithNearText(nearText).
-		WithLimit(2).
-		Do(context.Background())
-	if err != nil {
-		panic(err)
-	}
+  result, err := client.GraphQL().Get().
+    WithClassName("Question").
+    WithFields(fields...).
+    WithNearText(nearText).
+    WithLimit(2).
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
 
-	fmt.Printf("%v", result)
+  fmt.Printf("%v", result)
 }
 ```
 
