@@ -160,11 +160,9 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 ### Provide the inference API key
 
-The inference API key can be provided to Weaviate as an environment variable, or in the HTTP header with every request. Here, we will add them to the Weaviate client at instantiation as shown below. It will then send the key as a part of the header with every request.
+import ProvideOpenAIAPIKey from '/_includes/provide-openai-api-key-headers.mdx'
 
-import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
-
-<ConnectToWeaviateWithKey />
+<ProvideOpenAIAPIKey />
 
 :::note Not using OpenAI?
 If you are not using OpenAI, change the API key parameter in the code examples from `X-OpenAI-Api-Key` to one relevant to your chosen inference API, such as `X-Cohere-Api-Key` for Cohere or `X-HuggingFace-Api-Key` for Hugging Face.
