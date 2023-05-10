@@ -32,7 +32,7 @@ let classObj = {
     'vectorizer': 'text2vec-openai'
 }
 
-// add the schema
+// Add the schema
 client
   .schema
   .classCreator()
@@ -46,8 +46,8 @@ client
   });
 
 async function getJsonData() {
-    const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json');
-    return file.json();
+  const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json');
+  return file.json();
 }
 
 async function importQuestions() {
@@ -110,7 +110,7 @@ importQuestions();
 
 ```ts
 import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
-import fetch, { Response } from 'node-fetch';  // Note that Node implements its own Response type
+import fetch, { Response } from 'node-fetch';  // note that Node implements its own Response type
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
@@ -210,9 +210,9 @@ func main() {
     },
   }
   client, err := weaviate.NewClient(cfg)
-    if err != nil {
-        panic(err)
-    }
+  if err != nil {
+      panic(err)
+  }
 
   // add the schema
   classObj := &models.Class{
@@ -288,7 +288,7 @@ import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");  // Replace with your endpoint
+    Config config = new Config("https", "some-endpoint.weaviate.network/");  // replace with your endpoint
 
     WeaviateClient client = new WeaviateClient(config);
 
