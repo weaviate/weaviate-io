@@ -19,15 +19,9 @@ This section includes reference guides for retriever & vectorizer modules. As th
 
 ### Vectorization with `text2vec-*` modules
 
-You can use `text2vec` modules with Weaviate to generate vector data each object. To produce the string to be vectorized, Weaviate follows schema configuration for the relevant class.
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
-Unless specified otherwise, the default behavior is to:
-
-- Only vectorize properties that use `string` or `text` data types
-- Sort properties in alphabetical (a-z) order before concatenating values
-- Prepend the class name to the value
-- Join properties with spaces, and
-- Convert the produced string to lowercase
+<VectorizationBehavior/>
 
 :::info Vector inference at object update
 Where Weaviate is configured with a vectorizer, it will only obtain a new vector if an object update changes the underlying text to be vectorized.

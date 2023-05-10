@@ -19,7 +19,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-The `text2vec-openai` module enables you to use [OpenAI embeddings](https://platform.openai.com/docs/guides/embeddings) in Weaviate to represent data objects.
+The `text2vec-openai` module enables you to use [OpenAI](https://platform.openai.com/docs/guides/embeddings) in Weaviate or [Azure](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/understand-embeddings) embeddings to represent data objects.
 
 import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
 

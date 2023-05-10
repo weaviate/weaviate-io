@@ -9,7 +9,7 @@ services:
     - '8099'  # Specify different port to avoid confusion
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.18.4
+    image: semitechnologies/weaviate:1.19.0
     ports:
     - 8099:8099
     restart: on-failure:0

@@ -41,7 +41,7 @@ Once installed, you can use the client in your TypeScript and JavaScript scripts
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -116,7 +116,7 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 // Instantiate the client with the auth config
 const client = weaviate.client({
@@ -165,7 +165,7 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -210,7 +210,7 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -253,7 +253,7 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
@@ -296,7 +296,7 @@ You can pass custom headers to the client, which are added at initialization:
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',

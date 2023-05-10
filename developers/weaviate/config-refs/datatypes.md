@@ -1,6 +1,6 @@
 ---
 title: Data types
-sidebar_position: 2
+sidebar_position: 3
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
@@ -28,7 +28,7 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 ### Tokenization configuration
 
-Refer to [this section](../configuration/schema-configuration.md#property-tokenization) on how to configure the tokenization behavior of a `text` property.
+Refer to [this section](../config-refs/schema.mdx#property-tokenization) on how to configure the tokenization behavior of a `text` property.
 
 :::tip `string` is deprecated
 

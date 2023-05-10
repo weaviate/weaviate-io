@@ -25,6 +25,8 @@ This document lays out how Weaviate deals with data objects, including how they 
 
 ## Data object nomenclature
 
+Each data object in Weaviate always belongs to a Class, and has one or more Properties.
+
 Weaviate stores _data objects_ (represented as JSON-documents) in _class-based collections_, where each object can be represented by a machine learning _vector_ (i.e., an embedding).
 
 Each _class-based collection_ contains objects of the same _class_, which are defined by a common _schema_.
@@ -189,7 +191,7 @@ Designing and adding a data schema does not need to be done manually. In the abs
 A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 :::
 
-As you're probably guessing, we have a separate quickstart tutorial for [working with a schema](../tutorials/schema.md).
+To learn how to build a schema, [see our schema tutorial](../tutorials/schema.md), or [how-to on schema configuration](../configuration/schema-configuration.md).
 
 For now, what's important to know is this:
 

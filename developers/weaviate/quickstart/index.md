@@ -23,8 +23,8 @@ By the end of these tutorials, you will be familiar with the key features and fu
     - Performed queries to retrieve objects.
 
 1. You will also see how Weaviate can:
-    - Vectorize data at import time,
-    - Use an external inference API,
+    - Vectorize data at import time by using an external inference API, or
+    - Let you use custom vectors - see the [Bring Your Own Vectors quickstart](./custom-vectors.mdx)
     - Automate data schema construction if necessary, and
     - Perform vector searches.
 
@@ -65,7 +65,7 @@ It is about getting you started with Weaviate **by doing**. And you can always r
 #### Weaviate instance
 
 To follow along with this tutorial, you will need your own instance of Weaviate. You can use any of:
-1. A [Weaviate Cloud Services instance](../../wcs/quickstart.mdx), which involves signing up and creating a free *sandbox* instance.
+1. A [Weaviate Cloud Services (WCS) instance](../../wcs/quickstart.mdx), which involves signing up and creating a free *sandbox* instance.
 1. A [Docker-compose instance](../installation/docker-compose.md), which you can run locally,
 1. A [Kubernetes instance](../installation/kubernetes.md), or
 1. An [Embedded Weaviate instance](../installation/embedded.md) (Experimental).
@@ -86,14 +86,14 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 ### Inference service
 
-You will be using an API for Weaviate to vectorize the data with (these types of APIs are called *inference* APIs).
+To create vector embeddings for data objects, you will be using an API service. These types of APIs are called *inference* APIs.
 
-To follow along with the tutorial, we recommend you create accounts with an inference API provider such as:
+To follow along with the tutorial, we recommend creating an account with an inference API provider such as:
 * [OpenAI](https://platform.openai.com/docs/guides/embeddings),
 * [Cohere](https://docs.cohere.ai/reference/embed), or
 * [Hugging Face](https://huggingface.co/docs/api-inference/index).
 
-:::tip Use free tiers of these accounts
+:::tip Use the free tiers of these accounts
 The free tiers for any of them should be sufficient for you to follow along.
 :::
 
