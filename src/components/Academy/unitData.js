@@ -62,7 +62,7 @@ export const unitData = {
     ],
     learningOutcomes: [
       "Describe how the schema relates to organization and storage of data in Weaviate.",
-      "Broadly describe the role of indexes in Weaviate",
+      "Broadly describe the role of indexes in Weaviate.",
       "Understand how classes and properties represent your data.",
       "Create a schema to suit your data.",
       "Populate Weaviate with data, using batch imports.",
