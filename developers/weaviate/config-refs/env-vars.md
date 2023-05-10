@@ -23,6 +23,7 @@ This page includes a comprehensive list of environment variables that can be use
 | --- | --- | --- | --- |
 | <code>ENABLE<wbr />_MODULES</code> | Which modules to enable in the setup? | `string - comma-separated list` | `text2vec-openai,generative-openai` |
 | <code>DEFAULT<wbr />_VECTORIZER<wbr />_MODULE</code> | Default vectorizer module - will be overridden by any class-level value defined in the schema | `string` | `text2vec-contextionary` |
+| <code>AUTOSCHEMA<wbr />_ENABLED</code> | Whether to infer the schema where necessary with the autoschema (default: `true`) | `string - true/false` | `true` |
 | <code>QUERY<wbr />_MAXIMUM<wbr />_RESULTS</code> | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
 | <code>QUERY<wbr />_DEFAULTS<wbr />_LIMIT</code> | Sets the default number of objects to be returned in a query. | `string - number` | `25` |
 | `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the Gargabe Collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/gomemlimit-a-game-changer-for-high-memory-applications). | `string - memory limit in SI uints` | `4096MiB` |

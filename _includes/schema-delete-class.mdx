@@ -22,10 +22,6 @@ import TabItem from '@theme/TabItem';
 <TabItem value="py" label="Python">
 
 ```python
-import weaviate
-
-client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
-
 # delete class "YourClassName" - THIS WILL DELETE ALL DATA IN THIS CLASS
 client.schema.delete_class("YourClassName")  # Replace with your class name - e.g. "Question"
 ```
@@ -34,13 +30,6 @@ client.schema.delete_class("YourClassName")  # Replace with your class name - e.
 <TabItem value="js" label="JavaScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
-
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-});
-
 var className = 'YourClassName';  // Replace with your class name
 
 client.schema
@@ -59,13 +48,6 @@ client.schema
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-});
-
 var className: string = 'YourClassName';  // Replace with your class name
 
 client.schema

@@ -1,0 +1,105 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+class_obj = {
+    "class": "Article",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "title",
+            # highlight-start
+            "moduleConfig": {
+                "text2vec-huggingface": {  # This must match the vectorizer used
+                    "skip": False,
+                    "vectorizePropertyName": False
+                }
+            }
+            # highlight-end
+        },
+    ],
+    "vectorizer": "text2vec-huggingface"  # This could be any vectorizer
+}
+
+client.schema.create_class(class_obj)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+let classObj = {
+    'class': 'Article',
+    'properties': [
+        {
+            'dataType': ['text'],
+            'name': 'title',
+            // highlight-start
+            'moduleConfig': {
+                'text2vec-huggingface': {  // This must match the vectorizer used
+                    'skip': False,
+                    'vectorizePropertyName': False
+                }
+            }
+            // highlight-end
+        },
+    ],
+    'vectorizer': 'text2vec-huggingface'  // This could be any vectorizer
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+let classObj = {
+    'class': 'Article',
+    'properties': [
+        {
+            'dataType': ['text'],
+            'name': 'title',
+            // highlight-start
+            'moduleConfig': {
+                'text2vec-huggingface': {  // This must match the vectorizer used
+                    'skip': False,
+                    'vectorizePropertyName': False
+                }
+            }
+            // highlight-end
+        },
+    ],
+    'vectorizer': 'text2vec-huggingface'  // This could be any vectorizer
+}
+
+// add the schema
+client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do()
+  .then((res: any) => {
+    console.log(res)
+  })
+  .catch((err: Error) => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+</Tabs>
