@@ -54,20 +54,18 @@ export const unitData = {
     buttonURL: "/developers/academy/units/schema_1",
     learningGoals: [
       "How Weaviate organizes and stores data.",
+      "An overview of indexes used in Weaviate.",
       "What a schema is, and how to define it.",
-      "Important class and property parameters, including cross-references.",
+      "How to define classes and properties, including appropriate data types.",
       "How to populate Weaviate with data.",
-      "Various options for providing vector embeddings.",
-      "The relationship between the data structure and searches."
+      "Some best practices such as batch imports and additional properties.",
     ],
     learningOutcomes: [
       "Describe how the schema relates to organization and storage of data in Weaviate.",
       "Broadly describe the role of indexes in Weaviate",
       "Understand how classes and properties represent your data.",
       "Create a schema to suit your data.",
-      "Different options for providing vector embeddings in Weaviate",
       "Populate Weaviate with data, using batch imports.",
-      "Understand how the data structure affects search capabilities and results.",
     ],
     owner: "jp",
     reviewer: "jp"
@@ -86,12 +84,17 @@ export const unitData = {
     badgeType: "mixed",
     buttonURL: "/developers/academy/units/vectorization_essentials",
     learningGoals: [
+      "Various options for providing vector embeddings.",
+      "Important class and property parameters, including cross-references.",
+      "The relationship between the data structure and searches.",
       "How vectors and deep learning models enable semantic search.",
       "How Weaviate converts data into vectors.",
       "Weaviate's text vectorization process.",
       "Basics of vectorizer selection for Weaviate.",
     ],
     learningOutcomes: [
+      "Different options for providing vector embeddings in Weaviate",
+      "Understand how the data structure affects search capabilities and results.",
       "Describe the use of vectors and deep learning models in semantic search.",
       "Broadly explain the process by which Weaviate converts data into vectors.",
       "Understand the fundamental concepts of text vectorization.",

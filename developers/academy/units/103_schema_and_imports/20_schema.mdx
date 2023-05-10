@@ -13,9 +13,9 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
-A `schema` in Weaviate is the blueprint that defines its data structure. It does so for each `class` of objects, which are collections of objects of the same type.
+A `schema` in Weaviate is the blueprint that defines its data structure for each `class` of objects. A class is a collection of objects of the same type.
 
-In this section, you will learn how to define a schema, as well as some key considerations while doing so.
+In this section, you will learn how to define a schema and gain insight into some key considerations while doing so.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;How to define a schema
 
@@ -224,6 +224,13 @@ Add review exercises
 :::
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+
+- A schema in Weaviate serves as a blueprint defining the data structure for each class of objects.
+- A class represents a collection of objects of the same type.
+- Schema definition includes metadata, data properties, the vectorizer, and module configurations.
+- Data properties in a class need to be assigned a specific data type, such as `text` or `number`.
+- The vectorizer parameter determines which Weaviate module will be used to generate vector embeddings for a class.
+- Module configurations at the class and property levels allow customization of module behavior across the entire class or per property, respectively.
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 

@@ -22,7 +22,7 @@ The **vector index** allows for efficient retrieval of vectors based on similari
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Inverted index
 
-An inverted index deconstructs text into a set of constituent terms and stores them in a data structure, such as a hash table. Take for example, a data object containing the text "Conference (Chicago, IL)".
+An inverted index deconstructs text into a set of constituent terms and stores them in a data structure, such as a hash table. Take, for example, a data object containing the text "Conference (Chicago, IL)".
 
 The user might want to search for this object based on any of the contained terms such as "conference", "Chicago", or "IL". The inverted index allows Weaviate to quickly retrieve the ID of the object containing the term.
 
@@ -204,6 +204,13 @@ Add review exercises
 :::
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+
+- Weaviate stores data using two main indexes: the inverted index and the vector index.
+- A class in Weaviate represents a collection of objects of the same type, and each object in Weaviate must belong to a single class.
+- A schema is the blueprint that defines Weaviate's data structure.
+- Vector searches can only be performed within a single vector space.
+    - So, any objects you want to search together should be in the same class.
+- Any missing information required for schema definition will be automatically inferred by Weaviate based on default values and the imported data.
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
