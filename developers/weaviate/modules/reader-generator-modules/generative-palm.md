@@ -51,8 +51,6 @@ If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed 
 gcloud auth print-access-token
 ```
 
-<!-- TODO - add token refresh doc here -->
-
 ### Providing the key to Weaviate
 
 You can provide your PaLM API key by providing `"X-Palm-Api-Key"` through the request header. If you use the Weaviate client, you can do so like this:
@@ -61,7 +59,7 @@ import ClientKey from '/_includes/code/core.client.palm.apikey.mdx';
 
 <ClientKey />
 
-Optionally, you can provide the PaLM API key as an environment variable.
+Optionally (not recommended), you can provide the PaLM API key as an environment variable.
 
 <details>
   <summary>How to provide the PaLM API key as an environment variable</summary>
@@ -75,6 +73,12 @@ During the **configuration** of your Docker instance, by adding `PALM_APIKEY` un
   ```
 
 </details>
+
+### Token expiry for Google Cloud users
+
+import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
+
+<GCPTokenExpiryNotes/>
 
 ## Module configuration
 
