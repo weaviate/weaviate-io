@@ -1,8 +1,8 @@
 ---
-title: Generative Search - OpenAI
-sidebar_position: 10
-image: og/docs/modules/generative-openai.jpg
-# tags: ['generative', 'transformers', 'openai']
+title: Generative Search - PaLM
+sidebar_position: 12
+image: og/docs/modules/generative-palm.jpg
+# tags: ['generative', 'transformers', 'palm', 'gcp']
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -10,61 +10,75 @@ import Badges from '/_includes/badges.mdx';
 
 ## In short
 
-* The Generative OpenAI (`generative-openai`) module generates responses based on the data stored in your Weaviate instance.
+* The Generative PaLM (`generative-palm`) module generates responses based on the data stored in your Weaviate instance.
 * The module can generate a response for each returned object, or a single response for a group of objects.
 * The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries.
-* Added in Weaviate `v1.17.3`.
-* The default OpenAI model is `gpt-3.5-turbo`, but other models (e.g. `gpt-4`) are supported.
-* For Azure OpenAI, a model must be specified.
-
-import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
-
-<OpenAIOrAzureOpenAI/>
+* Added in Weaviate `v1.19.1`.
+* You need an API key for a PaLM API to use this module.
+* The default model is `text-bison-001`.
 
 ## Introduction
 
-`generative-openai` generates responses based on the data stored in your Weaviate instance.
+`generative-palm` generates responses based on the data stored in your Weaviate instance.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
-2. (OpenAI) Use an OpenAI model to generate a response based on the results (from the previous step) and the provided prompt or task.
+2. (PaLM) Use a PaLM model to generate a response based on the results (from the previous step) and the provided prompt or task.
 
 :::note
-You can use the Generative OpenAI module with non-OpenAI upstream modules. For example, you could use `text2vec-cohere` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-openai` module to generate a response.
+You can use the Generative PaLM module with non-PaLM upstream modules. For example, you could use `text2vec-openai`, `text2vec-cohere` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-palm` module to generate a response.
 :::
 
 The generative module can provide results for:
-* each returned object - `singleResult{ prompt }`
-* the group of all results together – `groupedResult{ task }`
+* each returned object, using `singleResult{ prompt }`
+* the group of all results together, using `groupedResult{ task }`
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 
 ## Inference API key
 
-`generative-openai` requires an API key from OpenAI or Azure OpenAI.
-
-:::tip
-You only need to provide one of the two keys, depending on which service (OpenAI or Azure OpenAI) you are using.
+:::caution Important: Provide PaLM API key to Weaviate
+As the `generative-palm` uses a PaLM API endpoint, you must provide a valid PaLM API key to weaviate.
 :::
+
+### For Google Cloud users
+
+This is called an `access token` in Google Cloud.
+
+If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
+
+```shell
+gcloud auth print-access-token
+```
 
 ### Providing the key to Weaviate
 
-You can provide your API key in two ways:
+You can provide your PaLM API key by providing `"X-Palm-Api-Key"` through the request header. If you use the Weaviate client, you can do so like this:
 
-1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `docker-compose` file, like this:
+import ClientKey from '/_includes/code/core.client.palm.apikey.mdx';
+
+<ClientKey />
+
+Optionally (not recommended), you can provide the PaLM API key as an environment variable.
+
+<details>
+  <summary>How to provide the PaLM API key as an environment variable</summary>
+
+During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `docker-compose` file, like this:
 
   ```yaml
   environment:
-    OPENAI_APIKEY: 'your-key-goes-here'  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
-    AZURE_APIKEY: 'your-key-goes-here'  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+    PALM_APIKEY: 'your-key-goes-here'  # Setting this parameter is optional; you can also provide the key at runtime.
     ...
   ```
 
-2. At **run-time** (recommended), by providing `"X-OpenAI-Api-Key"` or `"X-Azure-Api-Key"` through the request header. You can provide it using the Weaviate client, like this:
+</details>
 
-import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
+### Token expiry for Google Cloud users
 
-<ClientKey />
+import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
+
+<GCPTokenExpiryNotes/>
 
 ## Module configuration
 
@@ -74,13 +88,16 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 
 ### Configuration file (Weaviate open source only)
 
-You can enable the Generative OpenAI module in your configuration file (e.g. `docker-compose.yaml`). Add the `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative Palm module in your configuration file (e.g. `docker-compose.yaml`). Add the `generative-palm` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
-ENABLE_MODULES: 'text2vec-openai,generative-openai'
+ENABLE_MODULES: 'text2vec-palm,generative-palm'
 ```
 
-Here is a full example of a Docker configuration, which uses the `generative-openai` module in combination with `text2vec-openai`:
+<details>
+  <summary>See a full example of a Docker configuration with <code>generative-palm</code></summary>
+
+Here is a full example of a Docker configuration, which uses the `generative-palm` module in combination with `text2vec-palm`, and provides the API key:
 
 ```yaml
 ---
@@ -103,30 +120,22 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-palm'
       // highlight-next-line
-      ENABLE_MODULES: 'text2vec-openai,generative-openai'
-      OPENAI_APIKEY: sk-foobar  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
-      AZURE_APIKEY: sk-foobar  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+      ENABLE_MODULES: 'text2vec-palm,generative-palm'
+      PALM_APIKEY: sk-foobar  # Setting this parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```
 
+</details>
+
 ## Schema configuration
 
-You can define settings for this module in the schema.
-
-### OpenAI vs Azure OpenAI
-
-- **OpenAI** users can optionally set the `model` parameter.
-- **Azure OpenAI** users must set the parameters `resourceName` and `deploymentId`.
-
-### Model parameters
-
-You can also configure additional parameters for the generative model through the `xxxProperty` parameters shown below.
+You can define settings for this module in the schema, including the API endpoint and project information, as well as optional model parameters.
 
 ### Example schema
 
-For example, the following schema configuration will set Weaviate to use the `generative-openai` model with the `Document` class.
+For example, the following schema configuration will set the PaLM API information, as well as the optional parameters.
 
 ```json
 {
@@ -136,21 +145,24 @@ For example, the following schema configuration will set Weaviate to use the `ge
       "description": "A class called document",
       ...,
       "moduleConfig": {
-        "generative-openai": {
-          "model": "gpt-3.5-turbo",  // Optional - Defaults to `gpt-3.5-turbo`
-          "resourceName": "<YOUR-RESOURCE-NAME>",  // For Azure OpenAI - Required
-          "deploymentId": "<YOUR-MODEL-NAME>",  // For Azure OpenAI - Required
-          "temperatureProperty": <temperature>,  // Optional, applicable to both OpenAI and Azure OpenAI
-          "maxTokensProperty": <max_tokens>,  // Optional, applicable to both OpenAI and Azure OpenAI
-          "frequencyPenaltyProperty": <frequency_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
-          "presencePenaltyProperty": <presence_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
-          "topPProperty": <top_p>,  // Optional, applicable to both OpenAI and Azure OpenAI
+        // highlight-start
+        "generative-palm": {
+          "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value.
+          "projectID": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value.
+          "endpointID": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",  // Required. Replace with your value.
+          "temperature": 0.2,      // Optional
+          "maxOutputTokens": 512,  // Optional
+          "topK": 3,               // Optional
+          "topP": 0.95,            // Optional
         }
+        // highlight-end
       }
     }
   ]
 }
 ```
+
+See the relevant PaLM API documentation for further details on these parameters.
 
 <details>
   <summary>New to Weaviate Schemas?</summary>
@@ -161,7 +173,7 @@ If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers
 
 ## How to use
 
-This module extends the  `_additional {...}` property with a `generate` operator.
+This module extends the `_additional {...}` property with a `generate` operator.
 
 `generate` takes the following arguments:
 
@@ -219,9 +231,9 @@ Here is an example of a query where:
 * then we ask the generator module to describe each result as a Facebook ad.
   * the query asks for the `summary` field, which it then includes in the `prompt` argument of the `generate` operator.
 
-import OpenAISingleResult from '/_includes/code/generative.openai.singleresult.mdx';
+import PalmSingleResult from '/_includes/code/generative.palm.singleresult.mdx';
 
-<OpenAISingleResult/>
+<PalmSingleResult/>
 
 ### Example response - single result
 
@@ -252,9 +264,9 @@ Here is an example of a query where:
 * we run a vector search (with `nearText`) to find publications about finance,
 * then we ask the generator module to explain why these articles are about finance.
 
-import OpenAIGroupedResult from '/_includes/code/generative.openai.groupedresult.mdx';
+import PalmGroupedResult from '/_includes/code/generative.palm.groupedresult.mdx';
 
-<OpenAIGroupedResult />
+<PalmGroupedResult />
 
 <!-- import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
@@ -297,18 +309,13 @@ additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++c
 
 ## Additional information
 
-### Supported models (OpenAI)
+### Supported models
 
-You can use any of
+The `text-bison-001` model is used by default. The model has the following properties:
 
-* [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5) (default)
-* [gpt-4](https://platform.openai.com/docs/models/gpt-4)
-* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4)
-
-The module also supports these legacy models (not recommended)
-
-* [davinci 002](https://platform.openai.com/docs/models/overview)
-* [davinci 003](https://platform.openai.com/docs/models/overview)
+- Max input token: 8,192
+- Max output tokens: 1,024
+- Training data: Up to Feb 2023
 
 ## More resources
 
