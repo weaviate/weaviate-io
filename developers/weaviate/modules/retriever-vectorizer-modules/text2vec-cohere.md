@@ -8,15 +8,15 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## Introduction
+## In short
 
-The `text2vec-cohere` module allows you to use the [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) directly in the Weaviate vector database as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using Cohere's models.
-
-:::note
 * This module uses a third-party API and may incur costs.
 * Make sure to check the Cohere [pricing page](https://cohere.ai/pricing) before vectorizing large amounts of data.
 * Weaviate automatically parallelizes requests to the Cohere-API when using the batch endpoint.
-:::
+
+## Introduction
+
+The `text2vec-cohere` module enables you to use [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) in Weaviate to represent data objects and run semantic (`nearText`) queries.
 
 ## How to enable
 
@@ -158,9 +158,9 @@ If you run into rate limits, you can also decide to throttle the import in your 
 
 E.g., in Python and Go using the Weaviate client.
 
-import Text2VecCohereExample from '/_includes/code/text2vec-cohere.example.mdx';
+import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.example.mdx';
 
-<Text2VecCohereExample/>
+<CodeThrottlingExample />
 
 ## More resources
 
