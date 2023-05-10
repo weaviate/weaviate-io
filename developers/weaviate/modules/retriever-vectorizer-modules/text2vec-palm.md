@@ -8,28 +8,59 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+## In short
+
+* This module uses a third-party API and may incur costs.
+* Check the vendor pricing (e.g. check Google Vertex AI pricing) before vectorizing large amounts of data.
+* Weaviate automatically parallelizes requests to the API when using the batch endpoint.
+* Added in Weaviate `v1.19.1`.
+* You need an API key for a PaLM API to use this module.
+* The default model is `textembedding-gecko-001`.
+
 ## Overview
 
-The `text2vec-palm` module enables you to use PaLM embeddings in Weaviate to represent data objects.
+The `text2vec-palm` module enables you to use PaLM embeddings in Weaviate to represent data objects and run semantic (`nearText`) queries.
 
-:::note
-* This module uses a third-party API and may incur costs.
-* Check the vendor pricing (e.g. [GCP pricing page](TODO-INSERT LINK)) before vectorizing large amounts of data.
-* Weaviate automatically parallelizes requests to the API when using the batch endpoint.
-* You will need an API key (also called `access token`) from GCP. from GCP to use this module.
-* The default PaLM model is `textembedding-gecko-001`.
-* This can be used with either publicly available API endpoints or custom GCP endpoints.
+## Inference API key
+
+:::caution Important: Provide PaLM API key to Weaviate
+As the `text2vec-palm` uses a PaLM API endpoint, you must provide a valid PaLM API key to weaviate.
 :::
 
-:::tip Where to find the Google Cloud access token
+### For Google Cloud users
+
+This is called an `access token` in Google Cloud.
+
 If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
 
 ```shell
 gcloud auth print-access-token
 ```
 
-If you do not have a token configured, you will need to create one through GCP.
-:::
+<!-- TODO - add token refresh doc here -->
+
+### Providing the key to Weaviate
+
+You can provide your PaLM API key by providing `"X-Palm-Api-Key"` through the request header. If you use the Weaviate client, you can do so like this:
+
+import ClientKey from '/_includes/code/core.client.palm.apikey.mdx';
+
+<ClientKey />
+
+Optionally, you can provide the PaLM API key as an environment variable.
+
+<details>
+  <summary>How to provide the PaLM API key as an environment variable</summary>
+
+During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `docker-compose` file, like this:
+
+  ```yaml
+  environment:
+    PALM_APIKEY: 'your-key-goes-here'  # Setting this parameter is optional; you can also provide the key at runtime.
+    ...
+  ```
+
+</details>
 
 ## Module configuration
 
@@ -39,11 +70,21 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 
 ### Configuration file (Weaviate open source only)
 
-You can enable the `text2vec-palm` module in your configuration file (e.g. `docker-compose.yaml`).
+Through the configuration file (e.g. `docker-compose.yaml`), you can:
+- enable the `text2vec-palm` module,
+- set it as the default vectorizer, and
+- provide the API key for it.
 
-- This configuration will start Weaviate with the PaLM module enabled, and set as the default vectorizer module.
-- Optionally, you can specify the required Google Cloud API key (i.e. "access token") in the file..
-    - If you do not, you must specify the Google Cloud API key at runtime.
+Using the following variables:
+
+```
+ENABLE_MODULES: 'text2vec-palm,generative-palm'
+DEFAULT_VECTORIZER_MODULE: text2vec-palm
+PALM_APIKEY: sk-foobar
+```
+
+<details>
+  <summary>See a full example of a Docker configuration with <code>text2vec-palm</code></summary>
 
 ```yaml
 ---
@@ -65,6 +106,8 @@ services:
 ...
 ```
 
+</details>
+
 import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.mdx';
 
 <T2VInferenceYamlNotes apiname="PALM_APIKEY"/>
@@ -75,7 +118,7 @@ You can provide additional module configurations through the schema. You can [le
 
 For `text2vec-palm`, you can set the vectorizer model and vectorizer behavior.
 
-Set the vectorizer model using parameters (TODO-confirm parameter names) in the `moduleConfig` section of your schema:
+Set the vectorizer model using parameters in the `moduleConfig` section of your schema:
 
 ```json
 {
@@ -85,9 +128,13 @@ Set the vectorizer model using parameters (TODO-confirm parameter names) in the 
       "description": "A class called document",
       "vectorizer": "text2vec-palm",
       "moduleConfig": {
+        // highlight-start
         "text2vec-palm": {
-          "???": "???"
-        }
+          "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value.
+          "projectID": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value.
+          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to `textembedding-gecko-001`.
+        },
+        // highlight-end
       },
     }
   ]
@@ -107,18 +154,22 @@ Set property-level vectorizer behavior using the `moduleConfig` section under ea
       "vectorizer": "text2vec-palm",
       "moduleConfig": {
         "text2vec-palm": {
-          "???": "???"  // TODO-copy from above once confirmed
-        }
+          "apiEndpoint": "YOUR-API-ENDPOINT",           // Required. Replace with your value.
+          "projectID": "YOUR-GOOGLE-CLOUD-PROJECT-ID",  // Required. Replace with your value.
+          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",      // Optional. Defaults to `textembedding-gecko-001`.
+        },
       },
       "properties": [
         {
           "dataType": ["text"],
           "description": "Content that will be vectorized",
           "moduleConfig": {
+            // highlight-start
             "text2vec-palm": {
               "skip": false,
               "vectorizePropertyName": false
-            }
+            },
+            // highlight-end
           },
           "name": "content"
         }
@@ -131,12 +182,6 @@ Set property-level vectorizer behavior using the `moduleConfig` section under ea
 ## Usage
 
 Enabling this module will make [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext) available.
-
-### Provide the API key
-
-If the PaLM API key is not set in the `text2vec-palm` configuration, you can supply it when making a query.
-
-You can achieve this by adding the key to the HTTP header as `X-Palm-Api-Key: <palm-api-key>`.
 
 ### Example
 
@@ -162,8 +207,10 @@ You can specify the model as a part of the schema as shown below.
       "vectorizer": "text2vec-palm",
       "moduleConfig": {
         "text2vec-palm": {
-          "???": "???"  // TODO-copy from above once confirmed
-        }
+          "apiEndpoint": "YOUR-API-ENDPOINT",           // Required. Replace with your value.
+          "projectID": "YOUR-GOOGLE-CLOUD-PROJECT-ID",  // Required. Replace with your value.
+          "modelId": "textembedding-gecko-001",         // Optional. Defaults to `textembedding-gecko-001`.
+        },
       }
     }
   ]
@@ -176,7 +223,9 @@ The `textembedding-gecko-001` accepts a maximum of 3,072 input tokens, and outpu
 
 ### Rate limits
 
-Since you will obtain embeddings using your own API key, corresponding rate limits related to your account will apply. If you exceed your rate limit, Weaviate will output the error message generated by the PaLM API. If this persists, we suggest requesting to increase your rate limit by contacting [Vertex AI support](https://cloud.google.com/vertex-ai/docs/support/getting-support) describing your use case with Weaviate.
+Since you will obtain embeddings using your own API key, any corresponding rate limits related to your account will apply to your use with Weaviate also.
+
+If you exceed your rate limit, Weaviate will output the error message generated by the PaLM API. If this persists, we suggest requesting to increase your rate limit by contacting [Vertex AI support](https://cloud.google.com/vertex-ai/docs/support/getting-support) describing your use case with Weaviate.
 
 ### Throttle the import inside your application
 
@@ -185,14 +234,6 @@ One way of dealing with rate limits is to throttle the import within your applic
 import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.example.mdx';
 
 <CodeThrottlingExample />
-
-The current rate limit will appear in the error message, as shown below:
-
-```json
-{
-  "message": "Rate limit reached for requests. Limit: 600.000000 / min. Current: 1024.000000 / min. Contact support if you continue to have issues."
-}
-```
 
 ## More resources
 

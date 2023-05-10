@@ -1,5 +1,5 @@
 ---
-title: Generative Search - Palm
+title: Generative Search - PaLM
 sidebar_position: 12
 image: og/docs/modules/generative-palm.jpg
 # tags: ['generative', 'transformers', 'palm', 'gcp']
@@ -13,8 +13,9 @@ import Badges from '/_includes/badges.mdx';
 * The Generative PaLM (`generative-palm`) module generates responses based on the data stored in your Weaviate instance.
 * The module can generate a response for each returned object, or a single response for a group of objects.
 * The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries.
-* Added in Weaviate `v1.19.x`.
-* The module uses the `text-bison-001` model.
+* Added in Weaviate `v1.19.1`.
+* You need an API key for a PaLM API to use this module.
+* The default model is `text-bison-001`.
 
 ## Introduction
 
@@ -29,14 +30,20 @@ You can use the Generative PaLM module with non-PaLM upstream modules. For examp
 :::
 
 The generative module can provide results for:
-* each returned object - `singleResult{ prompt }`
-* the group of all results together – `groupedResult{ task }`
+* each returned object, using `singleResult{ prompt }`
+* the group of all results together, using `groupedResult{ task }`
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 
 ## Inference API key
 
-`generative-palm` requires an API key (also called `access token`) from GCP.
+:::caution Important: Provide PaLM API key to Weaviate
+As the `generative-palm` uses a PaLM API endpoint, you must provide a valid PaLM API key to weaviate.
+:::
+
+### For Google Cloud users
+
+This is called an `access token` in Google Cloud.
 
 If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
 
@@ -44,11 +51,22 @@ If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed 
 gcloud auth print-access-token
 ```
 
+<!-- TODO - add token refresh doc here -->
+
 ### Providing the key to Weaviate
 
-You can provide your API key in two ways:
+You can provide your PaLM API key by providing `"X-Palm-Api-Key"` through the request header. If you use the Weaviate client, you can do so like this:
 
-1. During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `docker-compose` file, like this:
+import ClientKey from '/_includes/code/core.client.palm.apikey.mdx';
+
+<ClientKey />
+
+Optionally, you can provide the PaLM API key as an environment variable.
+
+<details>
+  <summary>How to provide the PaLM API key as an environment variable</summary>
+
+During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `docker-compose` file, like this:
 
   ```yaml
   environment:
@@ -56,11 +74,7 @@ You can provide your API key in two ways:
     ...
   ```
 
-2. At **run-time** (recommended), by providing `"X-Palm-Api-Key"` through the request header. You can provide it using the Weaviate client, like this:
-
-import ClientKey from '/_includes/code/core.client.palm.apikey.mdx';
-
-<ClientKey />
+</details>
 
 ## Module configuration
 
@@ -75,6 +89,9 @@ You can enable the Generative Palm module in your configuration file (e.g. `dock
 ```
 ENABLE_MODULES: 'text2vec-palm,generative-palm'
 ```
+
+<details>
+  <summary>See a full example of a Docker configuration with <code>generative-palm</code></summary>
 
 Here is a full example of a Docker configuration, which uses the `generative-palm` module in combination with `text2vec-palm`, and provides the API key:
 
@@ -106,13 +123,15 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 ```
 
+</details>
+
 ## Schema configuration
 
 You can define settings for this module in the schema, including the API endpoint and project information, as well as optional model parameters.
 
 ### Example schema
 
-For example, the following schema configuration will set the `generative-palm` endpoint information, as well as the optional parameters.
+For example, the following schema configuration will set the PaLM API information, as well as the optional parameters.
 
 ```json
 {
@@ -288,7 +307,7 @@ additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++c
 
 ### Supported models
 
-The `text-bison-001` model is used. The model has the following properties:
+The `text-bison-001` model is used by default. The model has the following properties:
 
 - Max input token: 8,192
 - Max output tokens: 1,024
