@@ -1,7 +1,7 @@
 ---
 title: text2vec-palm
 sidebar_position: 1
-image: og/docs/modules/text2vec-palm.jpg
+image: og/docs/modules/vectorizers-overview.jpg
 # tags: ['text2vec', 'text2vec-palm', 'palm', 'gcp']
 ---
 import Badges from '/_includes/badges.mdx';
