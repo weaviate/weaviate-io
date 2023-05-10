@@ -28,7 +28,7 @@ import json
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network/",  # replace with your endpoint
     additional_headers={
-        "X-OpenAI-Api-Key": "<THE-KEY>"  # replace with your API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your API key
     }
 )
 
@@ -95,7 +95,7 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-OpenAI-Api-Key: <THE-KEY>" \
+    -H "X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY" \
     -d @- \
     http://localhost:8080/v1/graphql
 ```
