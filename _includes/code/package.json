@@ -1,0 +1,16 @@
+{
+  "name": "weaviate-code",
+  "private": true,
+  "type": "module",
+  "version": "1.19.0",
+  "description": "TypeScript samples for weaviate.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weaviate/weaviate-io.git"
+  },
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/weaviate/weaviate-io/issues"
+  },
+  "homepage": "https://github.com/weaviate/weaviate-io#readme"
+}

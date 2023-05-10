@@ -1,5 +1,5 @@
 {
-  "name": "my-website",
+  "name": "weaviate-io",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -39,7 +39,9 @@
     "rehype-katex": "5",
     "remark-math": "3",
     "rxjs": "^7.8.0",
-    "sass": "^1.56.1"
+    "sass": "^1.56.1",
+    "ts-node": "^10.9.1",
+    "weaviate-ts-client": "^1.3.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.3.1",

@@ -10,31 +10,118 @@ image: og/docs/howto.jpg
 
 ## Overview
 
-Learn how to perform semantic searches using Weaviate.
+This page will show you how to perform semantic (similarity) searches using Weaviate.
+
+import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
+
+<BasicPrereqs />
 
 ## Semantic search methods
 
+Weaviate has four semantic search parameters that return results close in vector space to the specified entity: three `near` parameters, and a `hybrid` parameter that combines vector search with keyword search. This page discusses the `near` parameters, which are added to [`Get` GraphQL queries](../../api/graphql/get), or used through the [client libraries](../../client-libraries):
+
+* [`nearText`](#using-an-input-text) - the simplest and most commonly used parameter: returns objects in a collection that are closest in vector space to the vector representation of a (list of) concept(s) specified as an array of strings:
+
+  `Get { YourClassName( nearText: { concepts: ["your input text"] } ) }`
+
+* [`nearVector`](#using-a-vector) - finds objects in a collection that are closest in vector space to the specified vector. Useful when you've vectorized your query independently of Weaviate.
+
+  `Get { YourClassName( nearVector: { vector: [-0.368, 0.1397, ... , 0.0971] } ) }`
+
+* [`nearObject`](#using-an-object) - to find objects in the collection TODO database closest to a specified object:
+
+  `Get { YourClassName( nearObject: { id: "xxxxxxxx-yyyy-zzzz-aaaa-bb...bb" } ) }`
+
+Each Weaviate result object includes an [`_additional` property](../../api/graphql/additional-properties/), with fields such as the `id` of the object. Using these `near...` parameters adds two fields of interest under `_additional`:
+* `distance` - the [distance](../../api/graphql/additional-properties#distance) in vector space between the query vector and each result. Results are sorted ascending by distance - the lower the distance the closer the result is to the query, so the best results come first.
+* `certainty` - another measure of similarity, which you can [read more about](../../api/graphql/additional-properties#certainty-only-for-cosine-distance)
+
+**TODO**: We have prepared an illustrative dataset of [Jeopardy!](https://en.wikipedia.org/wiki/Jeopardy!) Q&As that we'll be using for the examples below. You can explore the collection using the Weaviate Cloud Services Console and adding `edu-demo.weaviate.network` as an external Weaviate cluster. The quiz objects have been vectorized using OpenAI (using the <nobr>[`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings)</nobr>), so you'll need an [OpenAI API key](https://platform.openai.com/account/api-keys) for the `nearText` part of this howto.
+
+
 ### Using an input text
 
-`Get` + `nearText`
+If you want to search for an object that is close in vector space to a concept (or set of concepts), use the [`nearText` search parameter](../../api/graphql/vector-search-parameters#neartext). Weaviate will vectorize the concept(s) passed to `nearText` and will return results sorted ascending by distance. Since Weaviate does the vectorization, it will need the vectorizer key (in this case OpenAI).
 
-### Using an object
+In the example below, we'll search the Jeopardy Q&A set for "_animals in movies_":
 
-`Get` + `nearObject`
+import NearText from '/_includes/code/howto/semantic.nearText.mdx';
+
+<NearText />
+
+The results should look like this:
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "meerkats",
+          "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]",
+          "_additional": { "distance": 0.17592645 }
+        },
+        {
+          "answer": "dogs",
+          "question": "Scooby-Doo, Goofy & Pluto are cartoon versions",
+          "_additional": { "distance": 0.17837858 }
+        },
+        {
+          "answer": "The Call of the Wild Thornberrys",
+          "question": "Jack London story about the dog Buck who joins a Nick cartoon about Eliza, who can talk to animals",
+          "_additional": { "distance": 0.18662733 }
+        }
+      ]
+    }
+  },
+  ...
+}
+```
+
+Note just how relevant the results are, despite none of them including the word "animal", or the "movie", let alone both!
+
+This is exactly why vector searches are so useful. They can identify related objects without needing to match exact keywords.
+
 
 ### Using a vector
 
-`Get` + `nearVector`
+If you already have a vector for your query and want to find the objects closest to it in vector space, use the [`nearVector` parameter](../../api/graphql/vector-search-parameters#nearvector). In the example below we'll be using the 1536-element vector embedding generated with [`text-embedding-ada-002`](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings) for "_animals in movies_".
+
+import NearVector from '/_includes/code/howto/semantic.nearVector.mdx';
+
+<NearVector />
+
+The results will be the same as those for `nearText` above.
+
+
+### Using an object
+
+If you want to find the most similar objects to one given by ID (a use case would be similar products in an e-commerce application), use the [`nearObject` parameter](../../api/graphql/vector-search-parameters#nearobject). In the example below, we'll search for Jeopardy! questions similar to one of our top results for "_animals in movies_", `{ "question": "Scooby-Doo, Goofy & Pluto are cartoon versions" }`, which has the ID `56b9449e-65db-5df4-887b-0a4773f52aa7`. (You can obtain the ID for results by requesting the `id` `_additional` field.)
+
+import NearObject from '/_includes/code/howto/semantic.nearObject.mdx';
+
+<NearObject />
+
+Note that the first result is always the object itself.
+
 
 ## Limit the returned results
 
+You may have noticed that the examples above produce a *lot* of results - 100, to be more exact. This is the default limit for Weaviate queries. If you want fewer results, you can use `limit` or distance parameters.
+
+
 ### `limit` argument
 
-`Get` + `near<>` + `limit`
-`Get` + `near<>` + `limit` + `offset`
+To limit the number of results returned by a `near...` query, add the limit parameter. To start at a given offset, add the `offset` parameter. For example if we want to obtain the animals in movies #2 and #3 from the [`nearText` example](#using-an-input-text) above, we'll need to use `offset: 1, limit: 2`:
+
+import LimitOffset from '/_includes/code/howto/semantic.limitOffset.mdx';
+
+<LimitOffset />
+
 
 ### Distance parameters (`distance` and `certainty`)
 
+TODO:
 `Get` + `near<>` + `distance`
 `Get` + `near<>` + `certainty`
 
@@ -42,13 +129,16 @@ Reference to distance metrics
 
 ### groupBy
 
+TODO:
 `Get` + `near<>` + `limit` + `groupBy`
 
 ## Add a Boolean (`where`) filter
 
+TODO:
 Show one `Get` + `near<>` + `where` example
 
 Link to `where` filter howto page.
+
 
 ## More Resources
 

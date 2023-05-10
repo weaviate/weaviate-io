@@ -8,7 +8,7 @@ image: og/contributor-guide/weaviate-core.jpg
 ## Package structure
 
 Weaviate's package structure is modelled after [Clean
-Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
+Architecture](https://web.archive.org/web/20230223003135/https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
 ### Why Clean Architecture?
 
