@@ -15,9 +15,9 @@ client = weaviate.Client(
     url="https://example.weaviate.network",
     auth_client_secret=auth_config,  # Only necessary if authentication enabled
     additional_headers={
-        "X-Cohere-Api-Key": "<COHERE-KEY>",
-        "X-HuggingFace-Api-Key": "<HUGGINGFACE-KEY>",
-        "X-OpenAI-Api-Key": "<OPENAI-KEY>",
+        "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",            # Replace with your Cohere key
+        "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  # Replace with your Hugging Face key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",            # Replace with your OpenAI key
     }
 )
 ```

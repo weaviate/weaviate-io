@@ -40,9 +40,9 @@ client = weaviate.Client(
   auth_client_secret=auth_config,  # (Optional) If the Weaviate instance requires authentication
   timeout_config=(5, 15),  # (Optional) Set connection timeout & read timeout time in seconds
   additional_headers={  # (Optional) Any additional headers; e.g. keys for API inference services
-    "X-Cohere-Api-Key": "<COHERE_KEY>",
-    "X-HuggingFace-Api-Key": "<HUGGINGFACE_KEY>",
-    "X-OpenAI-Api-Key": "<OPENAI_KEY>",
+    "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",            # Replace with your Cohere key
+    "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  # Replace with your Hugging Face key
+    "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",            # Replace with your OpenAI key
   }
 )
 
