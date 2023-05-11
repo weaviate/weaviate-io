@@ -1,5 +1,5 @@
 ---
-title: Prep - Create a WCS instance
+title: Preparation
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,19 +7,17 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCodeExample from '!!raw-loader!./snippets/05_create_instance.py';
 
-import imageUrl from '../../tmp_images/academy_placeholder.jpg';
-
-<img src={imageUrl} alt="Image alt" width="75%"/>
-
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Create Weaviate Instance
 
 For this unit, you will require your own instance of Weaviate.
 
-If you do not have one, we recommend setting one up on the Weaviate Cloud Services (WCS). Follow the "Get Started with WCS" [section on this page](../101_hello_weaviate/40_set_up.mdx#get-started-with-wcs) and come back.
+If you do not have one, we recommend setting one up on the Weaviate Cloud Services (WCS). **A free sandbox instance should be just fine.**
+
+Follow the "Get Started with WCS" [section on this page](../101_hello_weaviate/40_set_up.mdx#get-started-with-wcs) and come back.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Access your Weaviate Instance
 
-Now, make sure that you can access your new Weaviate instance by following the below example.
+Now, let's make sure that you can access your Weaviate instance by following the below example.
 
 :::tip What is your Weaviate instance address?
 Make sure you know what your Weaviate instance address is - it should look like:
@@ -28,6 +26,8 @@ https://your-instance-name.weaviate.network
 ```
 You can find it in your WCS dashboard.
 :::
+
+The code to access depends on whether you have authentication turned on, or off. If you are not sure, go to your WCS dashboard and check what it says about "Authentication".
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;With API key authentication (Recommended)
 
@@ -61,7 +61,7 @@ If authentication is switched off in your instance, you do not need the authenti
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Confirm access
 
-Once your client is instantiated, you can confirm that you can access your Weaviate instance by running the following code:
+Once your client is instantiated, you can confirm that you can write to your Weaviate instance by running the following code:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -74,13 +74,26 @@ Once your client is instantiated, you can confirm that you can access your Weavi
 </TabItem>
 </Tabs>
 
+You should see a long alphanumeric string printed on your screen, like `"59340403-4bcd-479f-ae9c-de5da039ac0e"`.
+
+If you do, you can access your Weaviate instance and have write access! Which means you are ready to move on.
+
+Let's do one more thing before we move on, though, which is to clean up the test data that we've just created.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Delete our test object ====="
+  endMarker="# ===== END Delete our test object ====="
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+We'll see you in the next section.
+
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
-
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
-
-:::caution TODO
-Add review exercises
-:::
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 

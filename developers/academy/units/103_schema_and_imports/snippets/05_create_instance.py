@@ -28,7 +28,11 @@ client.is_ready()  # This should return `True`
 assert client.is_ready()  # This should return `True`
 
 # ===== Confirm that the client can access the instance =====
-schema = client.schema.get()
-print(schema)  # This should return {'classes': []}, as you should have a new & blank Weaviate instance
+response = client.data_object.create({"name": "dummy"}, "TestClass")
+print(response)  # This should be a UUID, like "59340403-4bcd-479f-ae9c-de5da039ac0e"
 # ===== END Confirm that the client can access the instance =====
-assert schema["classes"] == []
+assert response.count("-") == 4  # This should be a UUID, like "59340403-4bcd-479f-ae9c-de5da039ac0e"
+
+# ===== Delete our test object =====
+client.data_object.delete(response, class_name="TestClass")
+# ===== END Delete our test object =====
