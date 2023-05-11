@@ -83,7 +83,7 @@ import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateAuthClient;
 
 Config config = new Config("https", "some-endpoint.weaviate.network");
-WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace w/ your API Key for the Weaviate instance
+WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace w/ your Weaviate instance API key
 ```
 
 ### OIDC authentication

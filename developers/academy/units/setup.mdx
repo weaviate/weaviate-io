@@ -73,7 +73,7 @@ We will be using OpenAI's API, so you will need an API key.
 
 If you haven't yet, create an OpenAI account, and create a [free API key here](https://platform.openai.com/account/api-keys).
 
-Then, instantiate the client as shown below, replacing `<OPENAI-KEY>` with your own API key for OpenAI.
+Then, instantiate the client as shown below, replacing `YOUR-OPENAI-API-KEY` with your own API key for OpenAI.
 
 import InstantiationWithOpenai from './_snippets/academy.instantiation.with.openai.mdx';
 
@@ -105,7 +105,7 @@ client = weaviate.Client(
     url="https://edu-demo.weaviate.network",
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="learn-weaviate"),  # A read-only API Key for the Weaviate instance
     additional_headers={
-        "X-OpenAI-Api-Key": "<OPENAI-KEY>",  # Replace this with YOUR OpenAI API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  # Replace this with YOUR OpenAI API key
     }
 )
 

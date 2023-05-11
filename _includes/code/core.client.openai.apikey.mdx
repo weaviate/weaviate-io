@@ -11,8 +11,8 @@ client = weaviate.Client(
   url = "https://some-endpoint.weaviate.network/",
   # highlight-start
   additional_headers = {
-    "X-OpenAI-Api-Key": "<THE-KEY>",  # For OpenAI. Replace with your API key
-    "X-Azure-Api-Key": "<THE-KEY>",  # For Azure OpenAI. Replace with your API key
+    "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  # Replace with your API key
+    "X-Azure-Api-Key": "YOUR-AZURE-API-KEY",  # Replace with your API key
   }
   # highlight-end
 )
@@ -30,8 +30,8 @@ const client = weaviate.client({
     // highlight-start
     // Replace with your API key
     headers: {
-      'X-OpenAI-Api-Key': '<THE-KEY>',
-      'X-Azure-Api-Key': '<THE-KEY>',
+      'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',
+      'X-Azure-Api-Key': 'YOUR-AZURE-API-KEY',
     },
     // highlight-end
   });
@@ -57,8 +57,8 @@ func main() {
         // highlight-start
         // Replace with your API key
         Headers: map[string]string{
-          "X-OpenAI-Api-Key": "<THE-KEY>",  // For OpenAI
-          "X-Azure-Api-Key": "<THE-KEY>", // For Azure OpenAI
+          "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your API key
+          "X-Azure-Api-Key": "YOUR-AZURE-API-KEY", // Replace with your API key
         }
         // highlight-end
     }
@@ -85,8 +85,8 @@ public class App {
     // highlight-start
     Map<String, String> headers = new HashMap<String, String>() { {
       // Replace with your API key
-      put("X-OpenAI-Api-Key", "<THE-KEY>");  // For OpenAI
-      put("X-Azure-Api-Key", "<THE-KEY>"); // For Azure OpenAI
+      put("X-OpenAI-Api-Key", "YOUR-OPENAI-API-KEY");  // Replace with your API key
+      put("X-Azure-Api-Key", "YOUR-AZURE-API-KEY"); // Replace with your API key
     } };
     // highlight-end
 

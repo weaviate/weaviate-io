@@ -38,7 +38,7 @@ import weaviate
 client = weaviate.Client(
     url="http://localhost:8080",
     additional_headers={
-        "X-OpenAI-Api-Key": "<THE-KEY>"
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
     }
 )
 
@@ -67,7 +67,7 @@ const weaviate = require('weaviate-client');
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
-  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},
 });
 
 client.graphql
@@ -106,7 +106,7 @@ func main() {
   cfg := weaviate.Config{
     Host:    "localhost:8080",
     Scheme:  "http",
-    Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"},
+    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -161,7 +161,7 @@ import io.weaviate.client.v1.graphql.query.fields.Field;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-OpenAI-Api-Key", "<THE-KEY>");
+      put("X-OpenAI-Api-Key", "YOUR-OPENAI-API-KEY");
     } };
     Config config = new Config("http", "localhost:8080", headers);
     WeaviateClient client = new WeaviateClient(config);
@@ -233,7 +233,7 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-OpenAI-Api-Key: <THE-KEY>" \
+    -H "X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY" \
     -d @- \
     http://localhost:8080/v1/graphql
 ```

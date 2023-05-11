@@ -51,7 +51,7 @@ const { default: weaviate } = require('weaviate-ts-client');
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
 });
 
 const where_filter = {
@@ -85,7 +85,7 @@ import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
 });
 
 const where_filter = {
