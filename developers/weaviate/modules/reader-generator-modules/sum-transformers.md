@@ -1,6 +1,6 @@
 ---
 title: Summarization
-sidebar_position: 8
+sidebar_position: 80
 image: og/docs/modules/sum-transformers.jpg
 # tags: ['transformers']
 ---

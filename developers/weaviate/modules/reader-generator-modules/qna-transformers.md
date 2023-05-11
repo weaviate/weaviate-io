@@ -1,6 +1,6 @@
 ---
 title: Question Answering - transfomers
-sidebar_position: 1
+sidebar_position: 20
 image: og/docs/modules/qna-transformers.jpg
 # tags: ['qna', 'qna-transformers', 'transformers']
 ---

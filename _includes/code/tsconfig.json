@@ -1,4 +1,4 @@
-// This file exists to silence IDE errors about top-level aways in .ts files like _includes/code/quickstart.byov.all.ts
+// This file exists to silence IDE errors about top-level await in .ts files like _includes/code/quickstart.byov.all.ts
 {
   "compilerOptions": {
     "resolveJsonModule": true,  // to import JSON data files directly

@@ -1,6 +1,6 @@
 ---
 title: Generative Search - Cohere
-sidebar_position: 2
+sidebar_position: 11
 image: og/docs/modules/generative-cohere.jpg
 # tags: ['generative', 'transformers', 'cohere']
 ---

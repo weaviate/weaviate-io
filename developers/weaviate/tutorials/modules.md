@@ -80,7 +80,7 @@ If you don't want to vectorize a property at all, you can simply skip it.
 
 ## Example
 
-<!-- TODO: Update this to the new domain -->
+<!-- TODO: Update this to the new domain but https://edu-demo.weaviate.network/v1/schema doesn't have anonymous access enabled. -->
 If you [look at the schema](https://demo.dataset.playground.semi.technology/v1/schema) of the article demo dataset, you can see a complete example.
 
 Let's take a look at the schema item for the Article class. Look for the `"moduleConfig"` entries on the class and on the property level.
