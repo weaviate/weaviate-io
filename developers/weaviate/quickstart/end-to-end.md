@@ -34,6 +34,8 @@ At this point, you should:
 - Installed your preferred Weaviate client library, and
 - Know how to connect to your Weaviate instance.
 
+For JavaScript/TypeScript, you may also need the `node-fetch` library to download the dataset. You can install it with `npm install node-fetch`.
+
 We will be working with [this dataset](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json), which will be loaded directly from the remote URL.
 
 import WCSWithoutAuthentication from '/_includes/code/wcs.without.authentication.mdx';
