@@ -54,7 +54,7 @@ As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference
       groupBy:{
         path: [<propertyName>]  # Property to group by (only one property or cross-reference)
         groups: <number>  # Max. number of groups
-        objectPerGroup: <number>  # Max. number of objects per group
+        objectsPerGroup: <number>  # Max. number of objects per group
       }
     ) {
       _additional {
