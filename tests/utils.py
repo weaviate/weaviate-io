@@ -28,7 +28,7 @@ def preprocess_codeblock(raw_codeblock: str) -> str:
 
     # Replace OpenAI key
     pattern = r'"X-OpenAI-Api-Key": "(.+?)"'
-    my_api_key = os.environ["OPENAI_API_KEY"]
+    my_api_key = os.environ["OPENAI_APIKEY"]
     proc_codeblock = re.sub(
         pattern, f'"X-OpenAI-Api-Key": "{my_api_key}"', proc_codeblock
     )

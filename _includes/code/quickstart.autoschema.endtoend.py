@@ -4,7 +4,7 @@ import json
 
 client = weaviate.Client(
     url = "https://some-endpoint.weaviate.network",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
+    auth_client_secret=weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
     additional_headers = {
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your inference API key
     }
@@ -53,7 +53,7 @@ import json
 
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="<YOUR-WEAVIATE-API-KEY>"),  # Replace w/ your API Key for the Weaviate instance
+    auth_client_secret=weaviate.AuthApiKey(api_key="<YOUR-WEAVIATE-API-KEY>"),  # Replace w/ your API Key for the Weaviate instance
     additional_headers={
         "X-OpenAI-Api-Key": "<THE-KEY>"  # Replace with your inference API key
     }
