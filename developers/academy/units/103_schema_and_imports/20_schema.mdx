@@ -98,9 +98,9 @@ If you ran the first class creation command shown, and this command, Weaviate wi
 
 The `vectorizer` parameter for the class specifies the Weaviate module that will be used to generate vector embeddings for the class.
 
-For text objects, you must select one of the `text2vec` modules such as `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai` which is enabled at the Weaviate instance.
+For text objects, you would typically select one of the `text2vec` modules - such as `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`.
 
-You can see the list of available modules by running the below command.
+Modules are enabled at the instance level through its configuration. You can see the list of available modules for your particular instance by running the below command.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
