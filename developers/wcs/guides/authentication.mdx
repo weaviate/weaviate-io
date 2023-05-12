@@ -62,10 +62,10 @@ This way, every request made using the client will include the API key.
 If using a Weaviate client is not possible, you can manually include the API key in the request header as below:
 
 ```json
-Authorization: Bearer {YOUR-WEAVIATE-API-KEY}
+Authorization: Bearer YOUR-WEAVIATE-API-KEY
 ```
 
-Replacing `{YOUR-WEAVIATE-API-KEY}` with your API key.
+Replacing `YOUR-WEAVIATE-API-KEY` with your API key.
 
 </details>
 
@@ -85,10 +85,10 @@ This way, every request made using the client will include an OIDC token.
 If using a Weaviate client is not possible, you can manually include an OIDC token in the request header as below.
 
 ```json
-Authorization: Bearer {TOKEN}
+Authorization: Bearer TOKEN
 ```
 
-Replacing `{TOKEN}` with your OIDC token.
+Replacing `TOKEN` with your OIDC token.
 
 Please note that OIDC tokens will periodically expire, so new tokens must be obtained and used. This can be done using the "refresh token", however this is outside the scope of the documentation.
 
@@ -109,7 +109,7 @@ If you are using the GraphQL console to query WCS instances under the same accou
 If you are querying an external Weaviate instance through the WCS console, you can pass authentication credentials (e.g. your API key) in this format:
 
 ```json title="Headers tab"
-{ "Authorization": "Bearer <YOUR_API_KEY>" }
+{ "Authorization": "Bearer YOUR_API_KEY" }
 ```
 
 Pass the credentials as an additional header via the `Header` tab located towards the bottom of the console:

@@ -43,7 +43,7 @@ import weaviate
 client  = weaviate.Client(
   url = "https://some-endpoint.weaviate.network/",
   additional_headers={
-      "X-Palm-Api-Key": "<THE-KEY>"
+      "X-Palm-Api-Key": "YOUR-PALM-API-KEY"
   }
 )
 
@@ -76,7 +76,7 @@ const weaviate = require('weaviate-ts-client');
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',
-  headers: {'X-Palm-Api-Key': '<THE-KEY>'},
+  headers: {'X-Palm-Api-Key': 'YOUR-PALM-API-KEY'},
 });
 
 // highlight-start
@@ -113,7 +113,7 @@ import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',
-  headers: {'X-Palm-Api-Key': '<THE-KEY>'},
+  headers: {'X-Palm-Api-Key': 'YOUR-PALM-API-KEY'},
 });
 
 // highlight-start
@@ -158,7 +158,7 @@ func main() {
   cfg := weaviate.Config{
     Host:    "some-endpoint.weaviate.network",
     Scheme:  "https",
-    Headers: map[string]string{"X-Palm-Api-Key": "<THE-KEY>"},
+    Headers: map[string]string{"X-Palm-Api-Key": "YOUR-PALM-API-KEY"},
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -212,7 +212,7 @@ import io.weaviate.client.v1.graphql.query.fields.Field;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() {
-      {put("X-Palm-Api-Key", "<THE-KEY>");}
+      {put("X-Palm-Api-Key", "YOUR-PALM-API-KEY");}
     };
     Config config = new Config("https", "some-endpoint.weaviate.network", headers);
     WeaviateClient client = new WeaviateClient(config);
@@ -285,7 +285,7 @@ $ echo '{
 }' | tr -d "\n" | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-Palm-Api-Key: <THE-KEY>" \
+    -H "X-Palm-Api-Key: YOUR-PALM-API-KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql
 ```
