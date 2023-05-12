@@ -54,7 +54,9 @@ To define a class, you can use the below syntax.
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Properties with data types
 
-Each `class` definition will include one or more properties, which must have a data type. The currently supported data types include the below.
+Each `class` definition will include one or more properties, which must have a data type. If you do not specify a data type, Weaviate will automatically assign one based on your data. But for more predictable results, we recommend that you manually specify them in the schema if possible.
+
+The currently supported data types include the below.
 
 import DataTypes from '/_includes/datatypes.mdx';
 
@@ -98,7 +100,7 @@ If you ran the first class creation command shown, and this command, Weaviate wi
 
 The `vectorizer` parameter for the class specifies the Weaviate module that will be used to generate vector embeddings for the class.
 
-For text objects, you would typically select one of the `text2vec` modules - such as `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`.
+For text objects, you would typically select one of the `text2vec` modules - such as `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or `text2vec-palm`.
 
 Modules are enabled at the instance level through its configuration. You can see the list of available modules for your particular instance by running the below command.
 
@@ -208,6 +210,10 @@ The below example includes a `skip` parameter to `True` for the `url` property, 
 
 </TabItem>
 </Tabs>
+
+:::note But wait, what about the other options?
+There are other settings that we haven't covered yet - such as the index settings, or cluster settings such as those relating to replication. We'll cover these in other units later on.
+:::
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Why so many options?
 
