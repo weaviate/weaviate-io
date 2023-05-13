@@ -7,11 +7,12 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCodeExample from '!!raw-loader!./snippets/20_schema.py';
 
-import imageUrl from '../../tmp_images/academy_placeholder.jpg';
-
-<img src={imageUrl} alt="Image alt" width="75%"/>
-
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer url='https://youtu.be/fSakt3Z5Zso' controls='true'/>
+<br/>
 
 A `schema` in Weaviate is the blueprint that defines its data structure for each `class` of objects. A class is a collection of objects of the same type.
 
@@ -225,8 +226,10 @@ We'll ingest some data in the next section, and then you'll see how these option
 
 ### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
 
-:::caution TODO
-Add review exercises
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Do you have a dataset that you are interested in adding to Weaviate?
+
+Try to construct a schema for that dataset based on what you've learned here.
 :::
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways

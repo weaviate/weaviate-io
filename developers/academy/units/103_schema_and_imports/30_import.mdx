@@ -7,11 +7,12 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCodeExample from '!!raw-loader!./snippets/30_import.py';
 
-import imageUrl from '../../tmp_images/academy_placeholder.jpg';
-
-<img src={imageUrl} alt="Image alt" width="75%"/>
-
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer url='https://youtu.be/QuibD1sy-dA' controls='true'/>
+<br/>
 
 So far, you've learned that data in Weaviate is represented by objects, which belong to a `class`, and have a set of `properties`. In the previous section on the `schema`, you learned how to create a framework for this structure.
 
@@ -167,8 +168,11 @@ With these parameters, you have the option of manually specifying the object ID 
 
 ### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
 
-:::caution TODO
-Add review exercises
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+- After studying the batch import process, try to explain it in your own words.
+    - Include in your explanation what the batch import process is, why it is used, and how it improves the speed of data ingestion.
+- Can you recall which parameters were optional in the object creation process?
+    - Can you imagine scenarios in which you might want to, or not want to, specify these parameters?
 :::
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
