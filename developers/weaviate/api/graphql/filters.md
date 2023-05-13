@@ -496,7 +496,7 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 
 ## Cursor with `after`
 
-From version `1.18`, the `after` parameter can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
+Starting with version `1.18`, the `after` parameter can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
 
 The `after` parameter relies on the order of ids. It can therefore only be applied to list queries without any search operators. In other words, `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, etc.
 

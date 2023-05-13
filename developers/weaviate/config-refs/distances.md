@@ -14,7 +14,7 @@ import Badges from '/_includes/badges.mdx';
 - [Concepts: Data Structure](../concepts/data.md)
 :::
 
-## Available Distance Metrics
+## Available distance metrics
 
 If not specified explicitly, the default distance metric in Weaviate is
 `cosine`. It can be [set in the vectorIndexConfig](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) field as part of the  schema (here's an [example adding a class to the schema](../api/rest/schema.md#create-a-class)) to any of the following types:
@@ -41,7 +41,7 @@ If you're missing your favorite distance type and would like to contribute it to
 [^2]: Dot Product on its own is a similarity metric, not a distance metric. As a result, Weaviate returns the negative dot product to stick with the intuition that a smaller value of a distance indicates a more similar result and a higher distance value indicates a less similar result.
 :::
 
-### Distance Implementations and Optimizations
+### Distance implementations and optimizations
 
 On a typical Weaviate use case the largest portion of CPU time is spent calculating vector distances. Even with an approximate nearest neighbor index - which leads to far fewer calculations - the efficiency of distance calculations has a major impact on [overall performance](/developers/weaviate/benchmarks/ann.md).
 
@@ -57,14 +57,14 @@ You can use the following overview to find the best possible combination of dist
 
 If you like dealing with Assembly programming, SIMD, and vector instruction sets we would love to receive your contribution for one of the combinations that have not yet received an SIMD-specific optimization.
 
-### Distance Fields in the APIs
+### Distance fields in the APIs
 
 The `distance` is exposed in the APIs in two ways:
 
 * Whenever a vector search is involved, the distance can be displayed as part of the results, for example using <span style={{ whiteSpace: 'nowrap' }}>`_additional { distance }`</span>
-* Whenever a vector search is involved, the distance can be specified as a limiting criteria, for example using <span style={{ whiteSpace: 'nowrap' }}>`nearVector({distance: 1.5, vector: ... })`</span>
+* Whenever a vector search is involved, the distance can be specified as a limiting criterion, for example using <span style={{ whiteSpace: 'nowrap' }}>`nearVector({distance: 1.5, vector: ... })`</span>
 
-Note: The `distance` field was intorduced in `v1.14.0`. In previous versions, only `certainty` (see below) was available.
+Note: The `distance` field was introduced in `v1.14.0`. In previous versions, only `certainty` (see below) was available.
 
 ### Distance vs Certainty
 
@@ -82,7 +82,7 @@ For backward compatibility, `certainty` can still be used when the distance is
 
 See also [distance and certainty _additional{} properties](../api/graphql/additional-properties.md).
 
-## More Resources
+## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

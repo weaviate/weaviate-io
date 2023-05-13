@@ -407,11 +407,11 @@ This filter allows you to return answers to questions by running the results thr
 ### Variables
 
 | Variables | Required | Type | Description |
-| --- | --- | --- | --- |
-| `question` 	| yes	| `string` | The question to be answered. 	|
-| `certainty` 	| no 	| `float` | Desired minimal certainty or confidence of answer to the question. The higher the value, the stricter the search becomes. The lower the value, the fuzzier the search becomes. If no certainty is set, any answer that could be extracted will be returned|
-| `properties` 	| no 	| `[string]` | The properties of the queries Class which contains text. If no properties are set, all are considered.	|
-| `rerank` 	| no 	| `boolean`	| If enabled, the qna module will rerank the result based on the answer score. For example, if the 3rd result - as determined by the previous (semantic) search contained the most likely answer, result 3 will be pushed to position 1, etc. *Not supported prior to v1.10.0* |
+| --------- | -------- | ---- | ----------- |
+| `question` 	| yes	| `string` | The question to be answered. |
+| `certainty` | no 	| `float` | Desired minimal certainty or confidence of answer to the question. The higher the value, the stricter the search becomes. The lower the value, the fuzzier the search becomes. If no certainty is set, any answer that could be extracted will be returned. |
+| `properties`	| no 	| `[string]` | The properties of the queries Class which contains text. If no properties are set, all are considered.	|
+| `rerank` 	| no 	| `boolean`	| If enabled, the qna module will rerank the result based on the answer score. For example, if the 3rd result - as determined by the previous (semantic) search contained the most likely answer, result 3 will be pushed to position 1, etc. *Supported since v1.10.0* |
 
 ### Example
 
