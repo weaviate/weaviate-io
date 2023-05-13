@@ -17,8 +17,7 @@ import Badges from '/_includes/badges.mdx';
 ## Available Distance Metrics
 
 If not specified explicitly, the default distance metric in Weaviate is
-`cosine`. It can be [set in the vectorIndexConfig](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) field as part of the
-schema ([Example to add new schema class](../api/rest/schema.md#create-a-class)) to any of the following types:
+`cosine`. It can be [set in the vectorIndexConfig](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) field as part of the  schema (here's an [example adding a class to the schema](../api/rest/schema.md#create-a-class)) to any of the following types:
 
 :::tip Comparing distances
 In all cases, larger distance values indicate lower similarity. Conversely, smaller distance values indicate higher similarity.
@@ -27,11 +26,11 @@ In all cases, larger distance values indicate lower similarity. Conversely, smal
 <!-- TODO: Consider removing {:.text-nowrap} -->
 | Name | Description | Definition | Range | Examples |
 | --- | --- | --- | --- | --- |
-| <span style={{ whiteSpace: 'nowrap' }}>`cosine`</span> | Cosine (angular) distance.[^1] | <span style={{ whiteSpace: 'nowrap' }}>`1 - cosine_sim(a,b)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d <= 2`</span> | `0`: identical vectors<br/><br/> `2`: Opposing vectors.
+| <span style={{ whiteSpace: 'nowrap' }}>`cosine`</span> | Cosine (angular) distance.[^1] | <span style={{ whiteSpace: 'nowrap' }}>`1 - cosine_sim(a,b)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d <= 2`</span> | `0`: identical vectors<br/><br/> `2`: Opposing vectors. |
 | <span style={{ whiteSpace: 'nowrap' }}>`dot`</span> | A dot product-based indication of distance. <br/><br/>More precisely, the negative dot product.[^2] | <span style={{ whiteSpace: 'nowrap' }}>`-dot(a,b)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`-∞ < d < ∞`</span> | `-3`: more similar than `-2` <br/><br/>`2`: more similar than `5` |
 | <span style={{ whiteSpace: 'nowrap' }}>`l2-squared`</span> | The squared euclidean distance between two vectors. | <span style={{ whiteSpace: 'nowrap' }}>`sum((a_i - b_i)^2)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < ∞`</span> | `0`: identical vectors |
-| <span style={{ whiteSpace: 'nowrap' }}>`hamming`</span> | Number of differences between vectors at each dimensions. | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i != b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < ∞`</span> | `0`: identical vectors
-| <span style={{ whiteSpace: 'nowrap' }}>`manhattan`</span> | The distance between two vector dimensions measured along axes at right angles.  | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i - b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < dims`</span> | `0`: identical vectors
+| <span style={{ whiteSpace: 'nowrap' }}>`hamming`</span> | Number of differences between vectors at each dimensions. | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i != b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < ∞`</span> | `0`: identical vectors |
+| <span style={{ whiteSpace: 'nowrap' }}>`manhattan`</span> | The distance between two vector dimensions measured along axes at right angles.  | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i - b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < dims`</span> | `0`: identical vectors |
 
 
 
