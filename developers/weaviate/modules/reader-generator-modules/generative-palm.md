@@ -148,8 +148,8 @@ For example, the following schema configuration will set the PaLM API informatio
         // highlight-start
         "generative-palm": {
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value.
-          "projectID": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value.
-          "endpointID": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",  // Required. Replace with your value.
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value.
+          "endpointId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",  // Required. Replace with your value.
           "temperature": 0.2,      // Optional
           "maxOutputTokens": 512,  // Optional
           "topK": 3,               // Optional
