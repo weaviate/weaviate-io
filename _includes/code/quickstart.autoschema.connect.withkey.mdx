@@ -119,8 +119,8 @@ echo '{
 }' | curl \
     -X POST \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer {YOUR-WEAVIATE-API-KEY}" \
-    -H "X-OpenAI-Api-Key: <API-KEY>" \
+    -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
+    -H "X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql
 ```

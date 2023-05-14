@@ -92,12 +92,12 @@ You might notice that the authorization list includes `john@doe.com` and `robert
 
 ### API key: Client-side usage
 
-To authenticate against Weaviate with the API key, each request must include it in the header like: `Authorization: Bearer <API_KEY>`, where `<API_KEY>` is the specific API key for the Weaviate instance.
+To authenticate against Weaviate with the API key, each request must include it in the header like: `Authorization: Bearer API_KEY`, where `API_KEY` is the specific API key for the Weaviate instance.
 
 For example, you can use a CURL command as shown below:
 
 ```bash
-curl https://some-endpoint.weaviate.network/v1/meta -H "Authorization: Bearer {YOUR-WEAVIATE-API-KEY}" | jq
+curl https://some-endpoint.weaviate.network/v1/meta -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" | jq
 ```
 
 If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#api-key-authentication), [TypeScript](../client-libraries/typescript.mdx#api-key-authentication), [Java](../client-libraries/java.md#api-key-authentication) or [Go](../client-libraries/go.md#api-key-authentication) to see client-specific instructions.
@@ -341,13 +341,13 @@ The token has a configurable expiry time that is set by the token issuer. We sug
 
 ### Add a Bearer to a Request
 
-Once you have obtained a token, attach it to all requests to Weaviate in the header like so: `Authorization: Bearer <token>`, where `<token>` is your actual token.
+Once you have obtained a token, attach it to all requests to Weaviate in the header like so: `Authorization: Bearer TOKEN`, where `TOKEN` is your actual token.
 
 For example, you can use a CURL command as shown below:
 
 ```bash
-# List all objects with a Bearer token
-$ curl http://localhost:8080/v1/objects -H "Authorization: Bearer {Bearer}"
+# List all objects using a Bearer token
+$ curl http://localhost:8080/v1/objects -H "Authorization: Bearer TOKEN"
 ```
 
 If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#authentication), [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
