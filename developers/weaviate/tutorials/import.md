@@ -1,7 +1,7 @@
 ---
 title: Imports in detail
 sidebar_position: 4
-image: og/docs/quickstart-tutorial.jpg
+image: og/docs/tutorials.jpg
 # tags: ['import']
 ---
 import Badges from '/_includes/badges.mdx';

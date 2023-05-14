@@ -1,7 +1,7 @@
 ---
 title: Queries in detail
 sidebar_position: 10
-image: og/docs/quickstart-tutorial.jpg
+image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
 import Badges from '/_includes/badges.mdx';
