@@ -21,6 +21,7 @@ def preprocess_codeblock(raw_codeblock: str) -> str:
             "http://localhost:8099",
         ],  # Specify different port to usual to avoid confusion
         ["https://some-endpoint.weaviate.network", "http://localhost:8099"],
+        ["https://anon-endpoint.weaviate.network", "http://localhost:8090"],
         ["<YOUR-WEAVIATE-API-KEY>", "secr3tk3y"],
         ["YOUR-WEAVIATE-API-KEY", "secr3tk3y"],
     ]:

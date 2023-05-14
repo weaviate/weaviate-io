@@ -1,17 +1,17 @@
 ---
 version: '3.4'
 services:
-  weaviate_apikey:
+  weaviate_anon:
     command:
     - --host
     - 0.0.0.0
     - --port
-    - '8099'  # Specify different port to avoid confusion
+    - '8090'  # Specify different port to avoid confusion
     - --scheme
     - http
     image: semitechnologies/weaviate:1.19.2
     ports:
-    - 8099:8099
+    - 8090:8090
     restart: on-failure:0
     environment:
       OPENAI_APIKEY: $OPENAI_APIKEY
@@ -21,13 +21,4 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
       ENABLE_MODULES: 'text2vec-openai,text2vec-cohere,generative-openai'
       CLUSTER_HOSTNAME: 'node1'
-
-      # Enables API key authentication.
-      AUTHENTICATION_APIKEY_ENABLED: 'true'
-
-      # List one or more keys, separated by commas. Each key corresponds to a specific user identity below.
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'secr3tk3y'
-
-      # List one or more user identities, separated by commas. Each identity corresponds to a specific key above.
-      AUTHENTICATION_APIKEY_USERS: 'testuser@weaviate.io'
 ...

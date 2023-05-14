@@ -7,9 +7,9 @@ import json
 
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network",  # Replace w/ your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="<YOUR-WEAVIATE-API-KEY>"),  # Replace w/ your API Key for the Weaviate instance. Delete if authentication is disabled.
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your API Key for the Weaviate instance. Delete if authentication is disabled.
     additional_headers={
-        "X-OpenAI-Api-Key": "<OPENAI-KEY>",
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-KEY",
     },
 )
 
@@ -75,7 +75,7 @@ with client.batch(
         question_object = {
             "question": row["Question"],
             "answer": row["Answer"],
-            "points": row["Value"],
+            "value": row["Value"],
             "round": row["Round"],
         }
         batch.add_data_object(
@@ -87,20 +87,24 @@ with client.batch(
 # END Full code snippet
 
 # Test data ingestion
-def test_class_addition():
-    class_schema = client.schema.get("JeopardyQuestion")
+def test_class_addition(client_in):
+    class_schema = client_in.schema.get("JeopardyQuestion")
     assert class_schema["class"] == "JeopardyQuestion"
     assert class_schema["vectorizer"] == "text2vec-openai"
     assert len(class_schema["properties"]) == 4
-test_class_addition()
+test_class_addition(client)
 assert client.query.aggregate("JeopardyQuestion").with_meta_count().do()["data"]["Aggregate"]["JeopardyQuestion"][0]["meta"]["count"] == 100
 # Cleanup
 client.schema.delete_class("JeopardyQuestion")
+classes = [c["class"] for c in client.schema.get()["classes"]]
+assert "JeopardyQuestion" not in classes
 # END Test data ingestion
 
 # ============================================================
 # ========== SMALLER CODE SNIPPETS ===========================
 # ============================================================
+
+client.schema.create_class(class_obj)
 
 # Retrieve "JeopardyQuestion" class schema
 client.schema.get("JeopardyQuestion")
@@ -251,7 +255,7 @@ with client.batch(
         question_object = {
             "question": row["Question"],
             "answer": row["Answer"],
-            "points": row["Value"],
+            "value": row["Value"],
             "round": row["Round"],
         }
         batch.add_data_object(
@@ -273,7 +277,7 @@ with client.batch(
         question_object = {
             "question": row["Question"],
             "answer": row["Answer"],
-            "points": row["Value"],
+            "value": row["Value"],
             "round": row["Round"],
         }
         batch.add_data_object(
@@ -285,8 +289,11 @@ assert client.query.aggregate("JeopardyQuestion").with_meta_count().do()["data"]
 
 # Cleanup
 client.schema.delete_class("JeopardyQuestion")
+classes = [c["class"] for c in client.schema.get()["classes"]]
+assert "JeopardyQuestion" not in classes
+
 client.schema.create_class(class_obj)
-test_class_addition()
+test_class_addition(client)
 
 
 # Import data with deterministic UUIDs
@@ -300,7 +307,7 @@ with client.batch(
         question_object = {
             "question": row["Question"],
             "answer": row["Answer"],
-            "points": row["Value"],
+            "value": row["Value"],
             "round": row["Round"],
         }
         batch.add_data_object(
@@ -320,7 +327,7 @@ with client.batch(
         question_object = {
             "question": row["Question"],
             "answer": row["Answer"],
-            "points": row["Value"],
+            "value": row["Value"],
             "round": row["Round"],
         }
         batch.add_data_object(
@@ -330,3 +337,6 @@ with client.batch(
         )
 assert client.query.aggregate("JeopardyQuestion").with_meta_count().do()["data"]["Aggregate"]["JeopardyQuestion"][0]["meta"]["count"] == 100
 
+client.schema.delete_class("JeopardyQuestion")
+classes = [c["class"] for c in client.schema.get()["classes"]]
+assert "JeopardyQuestion" not in classes
