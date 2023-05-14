@@ -137,6 +137,10 @@ You can define settings for this module in the schema, including the API endpoin
 
 For example, the following schema configuration will set the PaLM API information, as well as the optional parameters.
 
+- The `"apiEndpoint"` may be something like: `"us-central1-aiplatform.googleapis.com"`
+- The `"projectId"` may be something like `"cloud-large-language-models"`, and
+- The `"endpointId"` may be something like `"4511608470067216384"`
+
 ```json
 {
   "classes": [
@@ -147,9 +151,9 @@ For example, the following schema configuration will set the PaLM API informatio
       "moduleConfig": {
         // highlight-start
         "generative-palm": {
-          "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value.
-          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value.
-          "endpointId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",  // Required. Replace with your value.
+          "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value: (e.g. "us-central1-aiplatform.googleapis.com".
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
+          "endpointId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",  // Required. Replace with your value: (e.g. "4511608470067216384")
           "temperature": 0.2,      // Optional
           "maxOutputTokens": 512,  // Optional
           "topK": 3,               // Optional

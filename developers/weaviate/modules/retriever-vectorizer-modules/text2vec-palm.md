@@ -124,6 +124,10 @@ For `text2vec-palm`, you can set the vectorizer model and vectorizer behavior.
 
 Set the vectorizer model using parameters in the `moduleConfig` section of your schema:
 
+- The `"apiEndpoint"` may be something like: `"us-central1-aiplatform.googleapis.com"`
+- The `"projectId"` may be something like `"cloud-large-language-models"`, and
+- The `"modelId"` may be something like `"textembedding-gecko-001"`.
+
 ```json
 {
   "classes": [
@@ -134,8 +138,8 @@ Set the vectorizer model using parameters in the `moduleConfig` section of your 
       "moduleConfig": {
         // highlight-start
         "text2vec-palm": {
-          "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value.
-          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value.
+          "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value: (e.g. "us-central1-aiplatform.googleapis.com")
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
           "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to `textembedding-gecko-001`.
         },
         // highlight-end
@@ -158,8 +162,8 @@ Set property-level vectorizer behavior using the `moduleConfig` section under ea
       "vectorizer": "text2vec-palm",
       "moduleConfig": {
         "text2vec-palm": {
-          "apiEndpoint": "YOUR-API-ENDPOINT",           // Required. Replace with your value.
-          "projectID": "YOUR-GOOGLE-CLOUD-PROJECT-ID",  // Required. Replace with your value.
+          "apiEndpoint": "YOUR-API-ENDPOINT",           // Required. Replace with your value: (e.g. "us-central1-aiplatform.googleapis.
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",  // Required. Replace with your value: (e.g. "cloud-large-language-models")
           "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",      // Optional. Defaults to `textembedding-gecko-001`.
         },
       },
@@ -211,8 +215,8 @@ You can specify the model as a part of the schema as shown below.
       "vectorizer": "text2vec-palm",
       "moduleConfig": {
         "text2vec-palm": {
-          "apiEndpoint": "YOUR-API-ENDPOINT",           // Required. Replace with your value.
-          "projectID": "YOUR-GOOGLE-CLOUD-PROJECT-ID",  // Required. Replace with your value.
+          "apiEndpoint": "YOUR-API-ENDPOINT",           // Required. Replace with your value: (e.g. "us-central1-aiplatform.googleapis.
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",  // Required. Replace with your value: (e.g. "cloud-large-language-models")
           "modelId": "textembedding-gecko-001",         // Optional. Defaults to `textembedding-gecko-001`.
         },
       }
