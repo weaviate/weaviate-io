@@ -1,0 +1,56 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+<Tabs groupId="languages">
+  <TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    JeopardyQuestion(
+# highlight-start
+      nearObject: {
+        id: "56b9449e-65db-5df4-887b-0a4773f52aa7"
+      }
+# highlight-end
+    ) {
+      question
+      answer
+      _additional {
+        distance
+      }
+    }
+  }
+}
+```
+
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+
+import PythonCode from '!!raw-loader!/_includes/code/howto/semantic.py';
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Query using nearObject"
+  endMarker="# Limit"
+  language="python"
+/>
+
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+
+import TypeScriptCode from '!!raw-loader!/_includes/code/howto/semantic.ts';
+
+<FilteredTextBlock
+  text={TypeScriptCode}
+  startMarker="// Query using nearObject"
+  endMarker="// Limit"
+  language="typescript"
+/>
+
+  </TabItem>
+
+</Tabs>
