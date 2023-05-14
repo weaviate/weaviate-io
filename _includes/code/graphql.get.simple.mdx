@@ -37,8 +37,8 @@ const client = weaviate.client({
 
 client.graphql
       .get()
-      .withClassName('Article')
-      .withFields('title url wordCount')
+      .withClassName('JeopardyQuestion')
+      .withFields('question answer points')
       .do()
       .then(res => {
         console.log(res)
@@ -72,13 +72,13 @@ func main() {
     panic(err)
   }
   fields := []graphql.Field{
-    {Name: "title"},
-    {Name: "url"},
-    {Name: "wordCount"},
+    {Name: "question"},
+    {Name: "answer"},
+    {Name: "points"},
   }
   ctx := context.Background()
   result, err := client.GraphQL().Get().
-    WithClassName("Article").
+    WithClassName("JeopardyQuestion").
     WithFields(fields...).
     Do(ctx)
   if err != nil {
@@ -105,12 +105,12 @@ public class App {
     Config config = new Config("https", "some-endpoint.weaviate.network");  // Replace with your Weaviate URL
     WeaviateClient client = new WeaviateClient(config);
 
-    Field title = Field.builder().name("title").build();
-    Field url = Field.builder().name("url").build();
-    Field wordCount = Field.builder().name("wordCount").build();
+    Field title = Field.builder().name("question").build();
+    Field url = Field.builder().name("answer").build();
+    Field wordCount = Field.builder().name("points").build();
 
     Result<GraphQLResponse> result = client.graphQL().get()
-      .withClassName("Article")
+      .withClassName("JeopardyQuestion")
       .withFields(title, url, wordCount)
       .run();
     if (result.hasErrors()) {
@@ -129,10 +129,10 @@ public class App {
 $ echo '{
   "query": "{
     Get {
-      Article {
-        title
-        url
-        wordCount
+      JeopardyQuestion {
+        question
+        answer
+        points
       }
     }
   }"

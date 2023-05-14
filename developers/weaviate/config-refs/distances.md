@@ -14,11 +14,10 @@ import Badges from '/_includes/badges.mdx';
 - [Concepts: Data Structure](../concepts/data.md)
 :::
 
-## Available Distance Metrics
+## Available distance metrics
 
 If not specified explicitly, the default distance metric in Weaviate is
-`cosine`. It can be [set in the vectorIndexConfig](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) field as part of the
-schema ([Example to add new schema class](../api/rest/schema.md#create-a-class)) to any of the following types:
+`cosine`. It can be [set in the vectorIndexConfig](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) field as part of the  schema (here's an [example adding a class to the schema](../api/rest/schema.md#create-a-class)) to any of the following types:
 
 :::tip Comparing distances
 In all cases, larger distance values indicate lower similarity. Conversely, smaller distance values indicate higher similarity.
@@ -27,11 +26,11 @@ In all cases, larger distance values indicate lower similarity. Conversely, smal
 <!-- TODO: Consider removing {:.text-nowrap} -->
 | Name | Description | Definition | Range | Examples |
 | --- | --- | --- | --- | --- |
-| <span style={{ whiteSpace: 'nowrap' }}>`cosine`</span> | Cosine (angular) distance.[^1] | <span style={{ whiteSpace: 'nowrap' }}>`1 - cosine_sim(a,b)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d <= 2`</span> | `0`: identical vectors<br/><br/> `2`: Opposing vectors.
+| <span style={{ whiteSpace: 'nowrap' }}>`cosine`</span> | Cosine (angular) distance.[^1] | <span style={{ whiteSpace: 'nowrap' }}>`1 - cosine_sim(a,b)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d <= 2`</span> | `0`: identical vectors<br/><br/> `2`: Opposing vectors. |
 | <span style={{ whiteSpace: 'nowrap' }}>`dot`</span> | A dot product-based indication of distance. <br/><br/>More precisely, the negative dot product.[^2] | <span style={{ whiteSpace: 'nowrap' }}>`-dot(a,b)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`-∞ < d < ∞`</span> | `-3`: more similar than `-2` <br/><br/>`2`: more similar than `5` |
 | <span style={{ whiteSpace: 'nowrap' }}>`l2-squared`</span> | The squared euclidean distance between two vectors. | <span style={{ whiteSpace: 'nowrap' }}>`sum((a_i - b_i)^2)`</span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < ∞`</span> | `0`: identical vectors |
-| <span style={{ whiteSpace: 'nowrap' }}>`hamming`</span> | Number of differences between vectors at each dimensions. | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i != b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < ∞`</span> | `0`: identical vectors
-| <span style={{ whiteSpace: 'nowrap' }}>`manhattan`</span> | The distance between two vector dimensions measured along axes at right angles.  | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i - b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < dims`</span> | `0`: identical vectors
+| <span style={{ whiteSpace: 'nowrap' }}>`hamming`</span> | Number of differences between vectors at each dimensions. | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i != b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < ∞`</span> | `0`: identical vectors |
+| <span style={{ whiteSpace: 'nowrap' }}>`manhattan`</span> | The distance between two vector dimensions measured along axes at right angles.  | <span style={{ whiteSpace: 'nowrap' }}><code>sum(&#124;a_i - b_i&#124;)</code></span> | <span style={{ whiteSpace: 'nowrap' }}>`0 <= d < dims`</span> | `0`: identical vectors |
 
 
 
@@ -42,7 +41,7 @@ If you're missing your favorite distance type and would like to contribute it to
 [^2]: Dot Product on its own is a similarity metric, not a distance metric. As a result, Weaviate returns the negative dot product to stick with the intuition that a smaller value of a distance indicates a more similar result and a higher distance value indicates a less similar result.
 :::
 
-### Distance Implementations and Optimizations
+### Distance implementations and optimizations
 
 On a typical Weaviate use case the largest portion of CPU time is spent calculating vector distances. Even with an approximate nearest neighbor index - which leads to far fewer calculations - the efficiency of distance calculations has a major impact on [overall performance](/developers/weaviate/benchmarks/ann.md).
 
@@ -58,14 +57,14 @@ You can use the following overview to find the best possible combination of dist
 
 If you like dealing with Assembly programming, SIMD, and vector instruction sets we would love to receive your contribution for one of the combinations that have not yet received an SIMD-specific optimization.
 
-### Distance Fields in the APIs
+### Distance fields in the APIs
 
 The `distance` is exposed in the APIs in two ways:
 
 * Whenever a vector search is involved, the distance can be displayed as part of the results, for example using <span style={{ whiteSpace: 'nowrap' }}>`_additional { distance }`</span>
-* Whenever a vector search is involved, the distance can be specified as a limiting criteria, for example using <span style={{ whiteSpace: 'nowrap' }}>`nearVector({distance: 1.5, vector: ... })`</span>
+* Whenever a vector search is involved, the distance can be specified as a limiting criterion, for example using <span style={{ whiteSpace: 'nowrap' }}>`nearVector({distance: 1.5, vector: ... })`</span>
 
-Note: The `distance` field was intorduced in `v1.14.0`. In previous versions, only `certainty` (see below) was available.
+Note: The `distance` field was introduced in `v1.14.0`. In previous versions, only `certainty` (see below) was available.
 
 ### Distance vs Certainty
 
@@ -83,7 +82,7 @@ For backward compatibility, `certainty` can still be used when the distance is
 
 See also [distance and certainty _additional{} properties](../api/graphql/additional-properties.md).
 
-## More Resources
+## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

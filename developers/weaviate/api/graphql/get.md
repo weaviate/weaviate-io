@@ -11,13 +11,14 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 
 ## Get{} syntax and query structure
 
-A `Get{}` function is always based on the schema. For example, if you've created a schema with a class `Articles` which has the properties `title`, `url` and `wordCount`, you can query it as follows:
+The `Get{}` function fetches fields described in the schema. For example, if you've created a schema with a class `JeopardyQuestion` which has the properties `question`, `answer` and `points`, you can query it as follows:
 
 import GraphQLGetSimple from '/_includes/code/graphql.get.simple.mdx';
 
 <GraphQLGetSimple/>
 
-<!-- import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
+<!-- TODO: remove for good, or get link to edu-demo?
+import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
 
@@ -33,7 +34,7 @@ import GraphQLGetSimpleUnfiltered from '!!raw-loader!/_includes/code/graphql.get
 />
 
 :::info Get query without arguments
-The order of object retrieval is not guaranteed in a `Get` query without any search parameters or filters. Accordingly, such a `Get` query is not suitable for any substantive object retrieval strategy.
+The order of object retrieval is not guaranteed in a `Get` query without any search parameters or filters. Accordingly, such a `Get` query is not suitable for any substantive object retrieval strategy. Consider the [Cursor API](./filters.md#cursor-with-after) for that purpose.
 :::
 
 ### groupBy argument
