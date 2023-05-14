@@ -9,6 +9,6 @@ import utils
         "./_includes/code/quickstart.byov.all.py",
     ],
 )
-def test_python_script(empty_weaviates, script_loc):
+def test_py(empty_weaviates, script_loc):
     proc_script = utils.load_and_prep_script(script_loc)
     exec(proc_script)
