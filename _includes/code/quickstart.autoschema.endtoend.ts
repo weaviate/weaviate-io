@@ -119,6 +119,8 @@ populateWeaviate();
 
 /*
 // NearText TS
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
