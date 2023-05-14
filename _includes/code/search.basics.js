@@ -26,32 +26,20 @@ const client = weaviate.client({
 // END BasicGet JS Example
 `
 
-// NOTE: EXAMPLE Using try/catch pattern
-// async function basicGetQuery() {
-//   try {
-//     const res = await client
-//       .graphql
-//       .get()
-//       .withClassName('JeopardyQuestion')
-//       .withFields('question')
-//       .do();
-//     console.log(JSON.stringify(res));
-//     return res;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
 // BasicGet JS Example
 async function basicGetQuery() {
-  const res = await client
-    .graphql
-    .get()
-    .withClassName('JeopardyQuestion')
-    .withFields('question')
-    .do();
-  console.log(JSON.stringify(res));
-  return res;
+  try {
+    const res = await client
+      .graphql
+      .get()
+      .withClassName('JeopardyQuestion')
+      .withFields('question')
+      .do();
+    console.log(JSON.stringify(res));
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 basicGetQuery();
@@ -82,15 +70,19 @@ const client = weaviate.client({
 
 // GetWithLimit JS Example
 async function getWithLimitQuery() {
-  const res = await client
-    .graphql
-    .get()
-    .withClassName('JeopardyQuestion')
-    .withFields('question')
-    .withLimit(1)
-    .do();
-  console.log(JSON.stringify(res));
-  return res;
+  try {
+    const res = await client
+      .graphql
+      .get()
+      .withClassName('JeopardyQuestion')
+      .withFields('question')
+      .withLimit(1)
+      .do();
+    console.log(JSON.stringify(res));
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 getWithLimitQuery();
@@ -122,15 +114,19 @@ const client = weaviate.client({
 
 // GetProperties JS Example
 async function getPropertiesQuery() {
-  const res = await client
-    .graphql
-    .get()
-    .withClassName('JeopardyQuestion')
-    .withFields('question answer points')
-    .withLimit(1)
-    .do();
-  console.log(JSON.stringify(res));
-  return res;
+  try {
+    const res = await client
+      .graphql
+      .get()
+      .withClassName('JeopardyQuestion')
+      .withFields('question answer points')
+      .withLimit(1)
+      .do();
+    console.log(JSON.stringify(res));
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 getPropertiesQuery();
@@ -162,15 +158,19 @@ const client = weaviate.client({
 
 // GetObjectVector JS Example
 async function getObjectVectorQuery() {
-  const res = await client
-    .graphql
-    .get()
-    .withClassName('JeopardyQuestion')
-    .withFields('_additional {vector}')
-    .withLimit(1)
-    .do();
-  console.log(JSON.stringify(res));
-  return res;
+  try {
+    const res = await client
+      .graphql
+      .get()
+      .withClassName('JeopardyQuestion')
+      .withFields('_additional {vector}')
+      .withLimit(1)
+      .do();
+    console.log(JSON.stringify(res));
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 getObjectVectorQuery();
@@ -202,15 +202,19 @@ const client = weaviate.client({
 
 // GetObjectId JS Example
 async function getObjectIdQuery() {
-  const res = await client
-    .graphql
-    .get()
-    .withClassName('JeopardyQuestion')
-    .withFields('_additional {id}')
-    .withLimit(1)
-    .do();
-  console.log(JSON.stringify(res));
-  return res;
+  try {
+    const res = await client
+      .graphql
+      .get()
+      .withClassName('JeopardyQuestion')
+      .withFields('_additional {id}')
+      .withLimit(1)
+      .do();
+    console.log(JSON.stringify(res));
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 getObjectIdQuery();
