@@ -135,7 +135,7 @@ Set the vectorizer model using parameters in the `moduleConfig` section of your 
         // highlight-start
         "text2vec-palm": {
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value.
-          "projectID": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value.
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value.
           "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to `textembedding-gecko-001`.
         },
         // highlight-end
