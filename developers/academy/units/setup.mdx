@@ -3,7 +3,10 @@ title: 101A Weaviate Academy Preparation
 sidebar_position: 101.5
 ---
 
-import imageUrl from '../tmp_images/academy_placeholder.jpg';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PythonCodeExample from '!!raw-loader!./_snippets/setup.py';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
@@ -63,9 +66,12 @@ You can access the instance with the below code, using a read-only Weaviate API 
 
 Confirm that you can run the below code, to make sure it is all functioning as expected.
 
-import InstantiationCheck from './_snippets/academy.instantiation.check.mdx';
-
-<InstantiationCheck/>
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Basic instantiation ====="
+  endMarker="# ===== END Basic instantiation ====="
+  language="py"
+/>
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Inference API Key
 
@@ -75,9 +81,12 @@ If you haven't yet, create an OpenAI account, and create a [free API key here](h
 
 Then, instantiate the client as shown below, replacing `YOUR-OPENAI-API-KEY` with your own API key for OpenAI.
 
-import InstantiationWithOpenai from './_snippets/academy.instantiation.with.openai.mdx';
-
-<InstantiationWithOpenai/>
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Instantiate to edu-demo with OpenAI ====="
+  endMarker="# ===== END Instantiate to edu-demo with OpenAI ====="
+  language="py"
+/>
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Code examples
 
@@ -85,39 +94,21 @@ import InstantiationWithOpenai from './_snippets/academy.instantiation.with.open
 
 For brevity, many code examples in the Weaviate Academy will not show the instantiation of the client. So, where you see examples such as:
 
-```python
-response = client.query.get(
-    "JeopardyQuestion",
-    ["question", "answer"]
-).with_near_text(
-    {"concepts": ["intergalactic travel"]}
-).with_limit(2).do()
-
-print(json.dumps(response, indent=2))
-```
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Arbitrary code example ====="
+  endMarker="# ===== END Arbitrary code example ====="
+  language="py"
+/>
 
 You will need to instantiate the client as shown in the previous section. So, the above code would become:
 
-```python
-import weaviate
-
-client = weaviate.Client(
-    url="https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey(api_key="learn-weaviate"),  # A read-only API Key for the Weaviate instance
-    additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  # Replace this with YOUR OpenAI API key
-    }
-)
-
-response = client.query.get(
-    "JeopardyQuestion",
-    ["question", "answer"]
-).with_near_text(
-    {"concepts": ["intergalactic travel"]}
-).with_limit(2).do()
-
-print(json.dumps(response, indent=2))
-```
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Fuller arbitrary code example ====="
+  endMarker="# ===== END Fuller arbitrary code example ====="
+  language="py"
+/>
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;GraphQL
 
@@ -127,40 +118,23 @@ But note that we also show raw GraphQL/REST queries as well as the Python code w
 
 So please be aware that when we show a query such as this:
 
-```python
-response = client.query.get(
-    "JeopardyQuestion",
-    ["question", "answer"]
-).with_near_text(
-    {"concepts": ["intergalactic travel"]}
-).with_limit(2).do()
-
-print(json.dumps(response, indent=2))
-```
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Arbitrary code example ====="
+  endMarker="# ===== END Arbitrary code example ====="
+  language="py"
+/>
 
 We are performing, under the hood, the below:
 
-```graphql
-{
-  Get {
-    JeopardyQuestion (
-      nearText: {
-        concepts: ["intergalactic travel"]
-        }
-      limit: 2
-    ) {
-      question
-      answer
-    }
-  }
-}
-```
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Equivalent GraphQL example ====="
+  endMarker="# ===== END Equivalent GraphQL example ====="
+  language="graphql"
+/>
 
 We will show them in separate tabs going forward where applicable, like so:
-
-<!-- Delete these imports if already imported in the file -->
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -185,26 +159,12 @@ Note that you can run raw GraphQL queries directly with the Weaviate Python clie
 
 In Python, you can run a GraphQL query directly with:
 
-```python
-query = '''
-{
-  Get {
-    JeopardyQuestion (
-      nearText: {
-        concepts: ["intergalactic travel"]
-        }
-      limit: 2
-    ) {
-      question
-      answer
-    }
-  }
-}
-'''
-
-response = client.query.raw(query)
-print(json.dumps(response, indent=2))
-```
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== GraphQL example with Python execution ====="
+  endMarker="# ===== END GraphQL example with Python execution ====="
+  language="py"
+/>
 
 <!-- Or, the Weaviate Console provides a graphical interface that you can connect to your Weaviate instance and run queries. -->
 

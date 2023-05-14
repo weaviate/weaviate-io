@@ -53,26 +53,30 @@ export const unitData = {
     badgeType: "mixed",
     buttonURL: "/developers/academy/units/schema_1",
     learningGoals: [
-      "Learn what a Weaviate data schema is.",
-      "Learn what classes, properties and datatypes are.",
-      "Learn how to upload and retrieve a schema in Weaviate.",
-      "The ability to populate Weaviate with data, including an understanding of suggested best practices such as batching, error diagnoses and handling.",
+      "How Weaviate organizes and stores data.",
+      "An overview of indexes used in Weaviate.",
+      "What a schema is, and how to define it.",
+      "How to define classes and properties, including appropriate data types.",
+      "How to populate Weaviate with data.",
+      "Some best practices such as batch imports and additional properties.",
     ],
     learningOutcomes: [
-      "Understand the definitions of schema classes, properties and different data types.",
-      "Create a schema with classes, properties, various data types and basic vectorization settings.",
-      "Use upload, retrieve and change operations to a data schema in Weaviate.",
-      "Describe Weaviate's data structure in terms of classes, objects, properties and vectors.",
-      "Compare when to use batch imports and when to use single object creation.",
-      "Locate REST endpoints that allow data import into Weaviate, and identify their primary purposes.",
-      "Use the Weaviate client to import a dataset into Weaviate, with and without 'custom' vectors.",
-      "Describe available batching parameters and their purpose.",
-      "Distinguish between object-level and batch-level errors occurring during import.",
-      "Identify object-level import errors and implement error handling through the Weaviate client.",
+      "Describe how the schema relates to organization and storage of data in Weaviate.",
+      "Broadly describe the role of indexes in Weaviate.",
+      "Understand how classes and properties represent your data.",
+      "Create a schema to suit your data.",
+      "Populate Weaviate with data, using batch imports.",
     ],
     owner: "jp",
     reviewer: "jp"
   },
+
+
+
+
+
+
+
   vectorization_essentials: {
     title: "Vectorization Essentials",
     body: "Learn about vectors including how to create and use them.",
@@ -80,12 +84,17 @@ export const unitData = {
     badgeType: "mixed",
     buttonURL: "/developers/academy/units/vectorization_essentials",
     learningGoals: [
+      "Various options for providing vector embeddings.",
+      "Important class and property parameters, including cross-references.",
+      "The relationship between the data structure and searches.",
       "How vectors and deep learning models enable semantic search.",
       "How Weaviate converts data into vectors.",
       "Weaviate's text vectorization process.",
       "Basics of vectorizer selection for Weaviate.",
     ],
     learningOutcomes: [
+      "Different options for providing vector embeddings in Weaviate",
+      "Understand how the data structure affects search capabilities and results.",
       "Describe the use of vectors and deep learning models in semantic search.",
       "Broadly explain the process by which Weaviate converts data into vectors.",
       "Understand the fundamental concepts of text vectorization.",
@@ -105,7 +114,10 @@ export const unitData = {
       "The ability to populate Weaviate with data, including an understanding of suggested best practices such as batching, error diagnoses and handling.",
     ],
     learningOutcomes: [
-
+      "Use upload, retrieve and change operations to a data schema in Weaviate.",
+      "Describe available batching parameters and their purpose.",
+      "Distinguish between object-level and batch-level errors occurring during import.",
+      "Identify object-level import errors and implement error handling through the Weaviate client.",
     ],
     owner: "jp",
     reviewer: "jp"

@@ -16,7 +16,7 @@ We started by learning how to use `Get` and `Aggregate` vector search functions,
 Now let's stop to take a look at how these searches are actually performed, starting with the vector search process.
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;The vector search process
 
-### Vector search, behind the scenes
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector search, behind the scenes
 
 As the name suggests, vector search relies on vectors to perform its operations. When you perform a vector search in Weaviate, regardless of whether `nearVector`, `nearObject` or `nearText` is used, the input is converted to a vector.
 
@@ -160,7 +160,7 @@ In this case, Weaviate vectorizes the input text using the `text2vec-openai` mod
 
 </details>
 
-### Filtering
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Filtering
 
 Filters can be applied during the vector search process to further refine the results.
 
@@ -168,13 +168,13 @@ Under the hood, Weaviate implements "pre-filtering". This means that Weaviate ap
 
 This, combined with efficient filtering methods, allows Weaviate to easily return the right number of results even under challenging conditions, such as when restrictive filters are applied to a large database.
 
-import SearchConceptualImg from './images/search-conceptual-dark.png';
-
-### Conceptual diagram (filtering + vector search)
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Conceptual diagram (filtering + vector search)
 
 The below conceptual diagram shows how the vector search process works. When an input is provided containing filters and vector search parameters, Weaviate first performs a pre-filtering step to obtain an "allow list" of objects.
 
 The input is used to determine an input vector, which may involve an additional step, such as retrieving the object's vector with `nearObject` or vectorizing the input text with `nearText`. The input vector is then compared to perform a vector search, returning the most relevant objects from the allow list.
+
+import SearchConceptualImg from './images/search-conceptual-dark.png';
 
 <img src={SearchConceptualImg} alt="Conceptual diagram of how search works" width="100%"/>
 
