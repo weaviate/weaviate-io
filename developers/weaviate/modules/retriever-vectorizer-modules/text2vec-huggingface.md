@@ -96,7 +96,7 @@ For example, the following schema configuration will set Weaviate to vectorize t
 
 ## How to use
 
-* If the Hugging Face API key is not set in the `text2vec-huggingface` module, you can set the API key at query time by adding the following to the HTTP header: `X-Huggingface-Api-Key: <huggingface-api-key>`.
+* If the Hugging Face API key is not set in the `text2vec-huggingface` module, you can set the API key at query time by adding the following to the HTTP header: `X-Huggingface-Api-Key: YOUR-HUGGINGFACE-API-KEY`.
 * Using this module will enable [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
 
 ### Example

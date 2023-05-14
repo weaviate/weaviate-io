@@ -42,8 +42,8 @@ const { default: weaviate } = require('weaviate-ts-client');
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your API Key for the Weaviate instance
-  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your inference API key
+  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
 });
 
 client.graphql
@@ -70,8 +70,8 @@ import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your API Key for the Weaviate instance
-  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your inference API key
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
 });
 
 client.graphql
@@ -107,8 +107,8 @@ func main() {
   cfg := weaviate.Config{
     Host:    "some-endpoint.weaviate.network/",  // Replace with your endpoint
     Scheme:  "https",
-    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your API Key for the Weaviate instance
-    Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"},  // Replace with your inference API key
+    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},  // Replace with your inference API key
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -159,7 +159,7 @@ import java.util.Map;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-OpenAI-Api-Key", "<THE-KEY>");
+      put("X-OpenAI-Api-Key", "YOUR-OPENAI-API-KEY");
     } };
     Config config = new Config("https", "some-endpoint.weaviate.network/", headers);  // Replace with your endpoint
     WeaviateClient client = new WeaviateClient(config);

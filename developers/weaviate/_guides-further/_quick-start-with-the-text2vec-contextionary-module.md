@@ -91,7 +91,7 @@ The output will look something like this:
             "properties": [
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "Name of the publication",
                     "moduleConfig": {
@@ -146,7 +146,7 @@ The output will look something like this:
             "properties": [
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "Name of the author",
                     "moduleConfig": {
@@ -195,7 +195,7 @@ The output will look something like this:
             "properties": [
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "title of the article",
                     "indexFilterable": true,
@@ -210,7 +210,7 @@ The output will look something like this:
                 },
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "url of the article",
                     "indexFilterable": false,
@@ -322,7 +322,7 @@ The output will look something like this:
             "properties": [
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "category name",
                     "indexInverted": true,

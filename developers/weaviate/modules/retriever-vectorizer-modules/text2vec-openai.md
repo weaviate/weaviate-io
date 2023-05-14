@@ -160,8 +160,8 @@ Enabling this module will make [GraphQL vector search operators](/developers/wea
 If the API key is not set in the `text2vec-openai` configuration, you can supply it when making a query.
 
 You can achieve this by adding the appropriate key to the HTTP header:
-- `X-OpenAI-Api-Key: <openai-api-key>` for OpenAI, and
-- `X-Azure-Api-Key: <azure-api-key>` for Azure OpenAI, and
+- `X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY` for OpenAI, and
+- `X-Azure-Api-Key: YOUR-AZURE-API-KEY` for Azure OpenAI, and
 
 ### Example
 

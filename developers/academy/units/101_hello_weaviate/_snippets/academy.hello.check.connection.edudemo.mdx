@@ -8,14 +8,14 @@ import TabItem from '@theme/TabItem';
 import weaviate
 import json
 
-auth_config = weaviate.auth.AuthApiKey(api_key="readonly-demo")
+auth_config = weaviate.AuthApiKey(api_key="readonly-demo")
 
 # Instantiate the client
 client = weaviate.Client(
     url="https://edu-demo.weaviate.network",
     auth_client_secret=auth_config,
     additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-KEY",  # Replace with your OpenAI key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  # Replace with your OpenAI key
     }
 )
 
