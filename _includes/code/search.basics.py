@@ -23,27 +23,10 @@ print(result)
 # END BasicGet Python Example
 
 # Test results
-def check_results(result_in):
-    assert "JeopardyQuestion" in result_in["data"]["Get"]
-    assert result_in["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
-
-check_results(result)
+assert "JeopardyQuestion" in result["data"]["Get"]
+assert result["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
 # End test
 
-
-gql_query = """
-# BasicGet GraphQL Example
-{
-  Get {
-    JeopardyQuestion {
-      question
-    }
-  }
-}
-# END BasicGet GraphQL Example
-"""
-result = client.query.raw(gql_query)
-print(result)
 
 expected_result = """
 // BasicGet Expected Results
@@ -62,9 +45,23 @@ expected_result = """
 // END BasicGet Expected Results
 """
 
+
+gql_query = """
+# BasicGet GraphQL Example
+{
+  Get {
+    JeopardyQuestion {
+      question
+    }
+  }
+}
+# END BasicGet GraphQL Example
+"""
+gqlresult = client.query.raw(gql_query)
 # Test results
-check_results(result)
+assert gqlresult == result
 # END Test results
+
 
 
 # ====================================
@@ -92,27 +89,11 @@ print(result)
 # END GetWithLimit Python Example
 
 # Test results
-def check_results(result_in):
-    assert "JeopardyQuestion" in result_in["data"]["Get"]
-    assert len(result_in["data"]["Get"]["JeopardyQuestion"]) == 1
-    assert result_in["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
-
-check_results(result)
+assert "JeopardyQuestion" in result["data"]["Get"]
+assert len(result["data"]["Get"]["JeopardyQuestion"]) == 1
+assert result["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
 # End test
 
-
-gql_query = """
-# GetWithLimit GraphQL Example
-{
-  Get {
-    JeopardyQuestion (limit: 1) {
-      question
-    }
-  }
-}
-# END GetWithLimit GraphQL Example
-"""
-gqlresult = client.query.raw(gql_query)
 
 expected_result = """
 // GetWithLimit Expected Results
@@ -131,8 +112,20 @@ expected_result = """
 // END GetWithLimit Expected Results
 """
 
+
+gql_query = """
+# GetWithLimit GraphQL Example
+{
+  Get {
+    JeopardyQuestion (limit: 1) {
+      question
+    }
+  }
+}
+# END GetWithLimit GraphQL Example
+"""
+gqlresult = client.query.raw(gql_query)
 # Test results
-check_results(gqlresult)
 assert gqlresult == result
 # END Test results
 
@@ -163,27 +156,11 @@ print(result)
 # END GetWithLimitOffset Python Example
 
 # Test results
-def check_results(result_in):
-    assert "JeopardyQuestion" in result_in["data"]["Get"]
-    assert len(result_in["data"]["Get"]["JeopardyQuestion"]) == 1
-    assert result_in["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
-
-check_results(result)
+assert "JeopardyQuestion" in result["data"]["Get"]
+assert len(result["data"]["Get"]["JeopardyQuestion"]) == 1
+assert result["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
 # End test
 
-
-gql_query = """
-# GetWithLimitOffset GraphQL Example
-{
-  Get {
-    JeopardyQuestion (limit: 1 offset: 1) {
-      question
-    }
-  }
-}
-# END GetWithLimitOffset GraphQL Example
-"""
-gqlresult = client.query.raw(gql_query)
 
 expected_result = """
 // GetWithLimitOffset Expected Results
@@ -201,8 +178,20 @@ expected_result = """
 // END GetWithLimitOffset Expected Results
 """
 
+
+gql_query = """
+# GetWithLimitOffset GraphQL Example
+{
+  Get {
+    JeopardyQuestion (limit: 1 offset: 1) {
+      question
+    }
+  }
+}
+# END GetWithLimitOffset GraphQL Example
+"""
+gqlresult = client.query.raw(gql_query)
 # Test results
-check_results(gqlresult)
 assert gqlresult == result
 # END Test results
 
@@ -234,29 +223,11 @@ print(result)
 # END GetProperties Python Example
 
 # Test results
-def check_results(result_in):
-    assert "JeopardyQuestion" in result_in["data"]["Get"]
-    assert len(result_in["data"]["Get"]["JeopardyQuestion"]) == 1
-    assert result_in["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "points"}
-
-check_results(result)
+assert "JeopardyQuestion" in result["data"]["Get"]
+assert len(result["data"]["Get"]["JeopardyQuestion"]) == 1
+assert result["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "points"}
 # End test
 
-
-gql_query = """
-# GetProperties GraphQL Example
-{
-  Get {
-    JeopardyQuestion (limit: 1) {
-      question
-      answer
-      points
-    }
-  }
-}
-# END GetProperties GraphQL Example
-"""
-gqlresult = client.query.raw(gql_query)
 
 expected_result = """
 // GetProperties Expected Results
@@ -276,10 +247,25 @@ expected_result = """
 // END GetProperties Expected Results
 """
 
+
+gql_query = """
+# GetProperties GraphQL Example
+{
+  Get {
+    JeopardyQuestion (limit: 1) {
+      question
+      answer
+      points
+    }
+  }
+}
+# END GetProperties GraphQL Example
+"""
+gqlresult = client.query.raw(gql_query)
 # Test results
-check_results(gqlresult)
 assert gqlresult == result
 # END Test results
+
 
 
 # ======================================
@@ -308,29 +294,11 @@ print(result)
 # END GetObjectVector Python Example
 
 # Test results
-def check_results(result_in):
-    assert "JeopardyQuestion" in result_in["data"]["Get"]
-    assert len(result_in["data"]["Get"]["JeopardyQuestion"]) == 1
-    assert result_in["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"vector"}
-
-check_results(result)
+assert "JeopardyQuestion" in result["data"]["Get"]
+assert len(result["data"]["Get"]["JeopardyQuestion"]) == 1
+assert result["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"vector"}
 # End test
 
-
-gql_query = """
-# GetObjectVector GraphQL Example
-{
-  Get {
-    JeopardyQuestion (limit: 1) {
-      _additional {
-        vector
-      }
-    }
-  }
-}
-# END GetObjectVector GraphQL Example
-"""
-gqlresult = client.query.raw(gql_query)
 
 expected_result = """
 // GetObjectVector Expected Results
@@ -356,8 +324,22 @@ expected_result = """
 // END GetObjectVector Expected Results
 """
 
+
+gql_query = """
+# GetObjectVector GraphQL Example
+{
+  Get {
+    JeopardyQuestion (limit: 1) {
+      _additional {
+        vector
+      }
+    }
+  }
+}
+# END GetObjectVector GraphQL Example
+"""
+gqlresult = client.query.raw(gql_query)
 # Test results
-check_results(result)
 assert gqlresult == result
 # END Test results
 
@@ -388,29 +370,11 @@ print(result)
 # END GetObjectId Python Example
 
 # Test results
-def check_results(result_in):
-    assert "JeopardyQuestion" in result_in["data"]["Get"]
-    assert len(result_in["data"]["Get"]["JeopardyQuestion"]) == 1
-    assert result_in["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"id"}
-
-check_results(result)
+assert "JeopardyQuestion" in result["data"]["Get"]
+assert len(result["data"]["Get"]["JeopardyQuestion"]) == 1
+assert result["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"id"}
 # End test
 
-
-gql_query = """
-# GetObjectId GraphQL Example
-{
-  Get {
-    JeopardyQuestion (limit: 1) {
-      _additional {
-        id
-      }
-    }
-  }
-}
-# END GetObjectId GraphQL Example
-"""
-gqlresult = client.query.raw(gql_query)
 
 expected_result = """
 // GetObjectId Expected Results
@@ -431,7 +395,21 @@ expected_result = """
 // END GetObjectId Expected Results
 """
 
+
+gql_query = """
+# GetObjectId GraphQL Example
+{
+  Get {
+    JeopardyQuestion (limit: 1) {
+      _additional {
+        id
+      }
+    }
+  }
+}
+# END GetObjectId GraphQL Example
+"""
+gqlresult = client.query.raw(gql_query)
 # Test results
-check_results(gqlresult)
 assert gqlresult == result
 # END Test results

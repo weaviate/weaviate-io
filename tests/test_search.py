@@ -7,6 +7,7 @@ import subprocess
     "script_loc",
     [
         "./_includes/code/search.basics.py",
+        "./_includes/code/howto/similarity.py"
     ],
 )
 def test_py(empty_weaviates, script_loc):

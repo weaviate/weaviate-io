@@ -5,6 +5,12 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'perform a similarity search']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCode from '!!raw-loader!/_includes/code/howto/similarity.py';
+import TypeScriptCode from '!!raw-loader!/_includes/code/howto/similarity.ts';
+
 ## Overview
 
 This page shows you how to perform similarity-based searches using Weaviate, using `nearXXX` parameters. See [this page instead](./hybrid.mdx) for `hybrid` searches.
@@ -37,36 +43,44 @@ You can use these parameters to find objects most similar to a raw (un-vectorize
 
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching `"animals in movies"`, using `nearText`:
 
-import NearText from '/_includes/code/howto/similarity.nearText.mdx';
-
-<NearText />
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GraphQL Query using nearText"
+  endMarker="# END GraphQL Query using nearText"
+  language="graphql"
+/>
+</TabItem>
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Query using nearText"
+  endMarker="# END Query using nearText"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+<FilteredTextBlock
+  text={TypeScriptCode}
+  startMarker="// Query using nearText"
+  endMarker="// Query using nearVector"
+  language="typescript"
+/>
+</TabItem>
+</Tabs>
 
 <details>
   <summary>Example response</summary>
 
 It should produce a response such as this:
 
-```json
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "answer": "meerkats",
-          "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]",
-          "_additional": { "distance": 0.17592645 }
-        },
-        {
-          "answer": "dogs",
-          "question": "Scooby-Doo, Goofy & Pluto are cartoon versions",
-          "_additional": { "distance": 0.17837858 }
-        },
-      ]
-    }
-  },
-  ...
-}
-```
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Expected nearText results"
+  endMarker="# END Expected nearText results"
+  language="python"
+/>
 
 </details>
 
@@ -80,9 +94,32 @@ See [this section](./basics.mdx#retrieve-the-object-id)
 
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching the object with ID `56b9449e-65db-5df4-887b-0a4773f52aa7`, using `nearObject`:
 
-import NearObject from '/_includes/code/howto/similarity.nearObject.mdx';
-
-<NearObject />
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GraphQL Query using nearObject"
+  endMarker="# END GraphQL Query using nearObject"
+  language="graphql"
+/>
+</TabItem>
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Query using nearObject"
+  endMarker="# END Query using nearObject"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+<FilteredTextBlock
+  text={TypeScriptCode}
+  startMarker="// Query using nearObject"
+  endMarker="// Limit"
+  language="typescript"
+/>
+</TabItem>
+</Tabs>
 
 Note that the first result is always the same object.
 <!-- TODO: you can technically pass the ID of an object outside of the collection in order to find similar objects across collections. -->
@@ -94,9 +131,32 @@ You can use the [`nearVector` parameter](../api/graphql/vector-search-parameters
 
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching the object with the provided vector, using `nearVector`:
 
-import NearVector from '/_includes/code/howto/similarity.nearVector.mdx';
-
-<NearVector />
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GraphQL Query using nearVector"
+  endMarker="# END GraphQL Query using nearVector"
+  language="graphql"
+/>
+</TabItem>
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Query using nearVector"
+  endMarker="# END Query using nearVector"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+<FilteredTextBlock
+  text={TypeScriptCode}
+  startMarker="// Query using nearVector"
+  endMarker="// Query using nearObject"
+  language="python"
+/>
+</TabItem>
+</Tabs>
 
 
 ## Limit the results
@@ -115,12 +175,35 @@ To limit the number of results returned by a `near...` query, add the limit para
 
 The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, skips 1 object (`offset`) and returns the next 2 objects:
 
-import LimitOffset from '/_includes/code/howto/similarity.limitOffset.mdx';
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GraphQL Query with LimitOffset"
+  endMarker="# END GraphQL Query with LimitOffset"
+  language="graphql"
+/>
+</TabItem>
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Query with LimitOffset"
+  endMarker="# END Query with LimitOffset"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+<FilteredTextBlock
+  text={TypeScriptCode}
+  startMarker="// Limit"
+  endMarker="// Distance"
+  language="typescript"
+/>
+</TabItem>
+</Tabs>
 
-<LimitOffset />
 
-
-### Similarity threshold
+### Distance threshold
 
 You can set a threshold for similarity search by setting a maximum `distance`. The distance indicates how dissimilar two objects are.
 
@@ -128,13 +211,37 @@ Multiple [distance metrics](../config-refs/distances.md) are available in Weavia
 
 The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, returning those with a `distance` less than `0.18`:
 
-import Distance from '/_includes/code/howto/similarity.distance.mdx';
-
-<Distance />
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GraphQL Query with Distance"
+  endMarker="# END GraphQL Query with Distance"
+  language="graphql"
+/>
+</TabItem>
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Query with Distance"
+  endMarker="# END Query with Distance"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+<FilteredTextBlock
+  text={TypeScriptCode}
+  startMarker="// Limit"
+  endMarker="// Distance"
+  language="typescript"
+/>
+</TabItem>
+</Tabs>
 
 :::tip Using `certainty` possible for `cosine` distance metric only
 If the distance metric is set as `cosine` the [`certainty`](../config-refs/distances.md#distance-vs-certainty) variable can be used, which normalizes the complement of distance to a value between 0 and 1.
 :::
+
 
 ## Group results by a property
 
