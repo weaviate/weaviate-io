@@ -1,11 +1,12 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
+import EndToEndJSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.js';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
 
 <FilteredTextBlock
   text={EndToEndPyCode}
@@ -17,48 +18,22 @@ import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 </TabItem>
 <TabItem value="js" label="JavaScript">
 
-```js
-let classObj = {
-  'class': 'Question',
-  'vectorizer': 'text2vec-openai'  // Or 'text2vec-cohere' or 'text2vec-huggingface'
-}
-
-// add the schema
-client
-  .schema
-  .classCreator()
-  .withClass(classObj)
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
-```
+<FilteredTextBlock
+  text={EndToEndJSCode}
+  startMarker="// Add the schema"
+  endMarker="// Import data"
+  language="js"
+/>
 
 </TabItem>
 <TabItem value="ts" label="TypeScript">
 
-```ts
-let classObj = {
-  'class': 'Question',
-  'vectorizer': 'text2vec-openai'  // Or 'text2vec-cohere' or 'text2vec-huggingface'
-}
-
-// add the schema
-client
-  .schema
-  .classCreator()
-  .withClass(classObj)
-  .do()
-  .then((res: any) => {
-    console.log(res)
-  })
-  .catch((err: Error) => {
-    console.error(err)
-  });
-```
+<FilteredTextBlock
+  text={EndToEndTSCode}
+  startMarker="// Add the schema"
+  endMarker="// Import data"
+  language="ts"
+/>
 
 </TabItem>
 <TabItem value="go" label="Go">

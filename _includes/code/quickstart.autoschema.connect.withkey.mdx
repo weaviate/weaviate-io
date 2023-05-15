@@ -1,11 +1,12 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
+import EndToEndJSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.js';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
 
 <FilteredTextBlock
   text={EndToEndPyCode}
@@ -17,30 +18,22 @@ import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 </TabItem>
 <TabItem value="js" label="JavaScript">
 
-```js
-const { default: weaviate } = require('weaviate-ts-client');
-
-const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-    apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
-    headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
-  });
-```
+<FilteredTextBlock
+  text={EndToEndJSCode}
+  startMarker="// Instantiate client"
+  endMarker="// END Instantiate client"
+  language="js"
+/>
 
 </TabItem>
 <TabItem value="ts" label="TypeScript">
 
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-    apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
-    headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
-  });
-```
+<FilteredTextBlock
+  text={EndToEndTSCode}
+  startMarker="// Instantiate client"
+  endMarker="// END Instantiate client"
+  language="ts"
+/>
 
 </TabItem>
 <TabItem value="go" label="Go">
