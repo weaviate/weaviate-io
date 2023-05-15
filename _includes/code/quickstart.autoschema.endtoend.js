@@ -24,6 +24,8 @@ async function addSchema() {
   console.log(res);
 }
 
+// END Add the schema
+
 // Import data function
 async function getJsonData() {
   const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json');
@@ -69,14 +71,8 @@ async function importQuestions() {
   const res = await batcher.do();
   console.log(res);
 }
-// END Import data function
 
-async function populateWeaviate() {
-  await addSchema();
-  await importQuestions();
-}
-
-// END EndToEndExample
+// END EndToEndExample  // END Import data function
 
 // NearTextExample
 async function nearTextQuery() {
@@ -109,25 +105,60 @@ async function cleanup() {
 // END Define test functions
 
 
-// EndToEndExample  // NearTextExample
+/* ================================================================================
+Actually populate the instance and run the query
+================================================================================ */
+
+// EndToEndExample
 async function run() {
-// END EndToEndExample  // END NearTextExample
-
-  // EndToEndExample  // To show how to populate Weaviate - Not indented for display in docs
-  await populateWeaviate();
+  await addSchema();
+  await importQuestions();
   // END EndToEndExample
-
-  // NearTextExample  // To show how to populate Weaviate - Not indented for display in docs
   const res = await nearTextQuery();
-  // END NearTextExample
 
+  // Test
   assert.deepEqual(res.data.Get.Question.length, 2);
   assert.deepEqual(res.data.Get.Question[0].answer, 'DNA');
   const count = await getNumObjects();
   assert.deepEqual(count, 10);
   await cleanup();
-// EndToEndExample  // NearTextExample
+// EndToEndExample
 }
 
-run();
 // END EndToEndExample  // END NearTextExample
+
+// EndToEndExample
+run();
+// END EndToEndExample
+
+
+/* ================================================================================
+Writing modular code for display in the docs is a little trickier due to the
+asynchronous nature of JavaScript/TypeScript.
+
+To show examples of these functions being run in the doc,
+the below sections call the functions within commented snippet.
+This is to prevent the functions from being run out of order
+(e.g. prevent query being called before the DB is populated),
+or prevent it from populating the instance when it should not.
+================================================================================ */
+
+/*
+// NearTextExample
+nearTextQuery();
+// END NearTextExample
+*/
+
+
+/*
+// Add the schema
+addSchema();
+// END Add the schema
+*/
+
+
+/*
+// Import data function
+importQuestions();
+// END Import data function
+*/

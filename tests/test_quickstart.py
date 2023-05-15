@@ -22,7 +22,7 @@ def test_python_script(empty_weaviates, script_loc):
     ],
 )
 def test_js(empty_weaviates, script_loc):
-    temp_proc_script_loc = utils.load_and_prep_js_script(script_loc)
+    temp_proc_script_loc = utils.load_and_prep_temp_file(script_loc)
     try:
         # If the script throws an error, this will raise a CalledProcessError
         subprocess.check_call(['node', temp_proc_script_loc])
@@ -37,7 +37,7 @@ def test_js(empty_weaviates, script_loc):
     ],
 )
 def test_ts(empty_weaviates, script_loc):
-    temp_proc_script_loc = utils.load_and_prep_temp_script(script_loc, lang="ts")
+    temp_proc_script_loc = utils.load_and_prep_temp_file(script_loc, lang="ts")
     command = ["npx", "ts-node", "-O", '{ "module": "commonjs" }', temp_proc_script_loc]
 
     try:

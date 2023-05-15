@@ -1,13 +1,13 @@
 const assert = require('assert');
 
 // EndToEndExample  // InstantiationExample  // NearTextExample
-import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
+import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 import fetch from 'node-fetch';
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
   headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
 });
 
@@ -24,6 +24,8 @@ async function addSchema() {
   const res = await client.schema.classCreator().withClass(classObj).do();
   console.log(res);
 }
+
+// END Add the schema
 
 // Import data function
 async function getJsonData() {
@@ -70,14 +72,8 @@ async function importQuestions() {
   const res = await batcher.do();
   console.log(res);
 }
-// END Import data function
 
-async function populateWeaviate() {
-  await addSchema();
-  await importQuestions();
-}
-
-// END EndToEndExample
+// END EndToEndExample  // END Import data function
 
 // NearTextExample
 async function nearTextQuery() {
@@ -110,19 +106,60 @@ async function cleanup() {
 // END Define test functions
 
 
-// Run the whole script
+/* ================================================================================
+Actually populate the instance and run the query
+================================================================================ */
+
+// EndToEndExample
 async function run() {
-// EndToEndExample  // To show how to populate Weaviate
-await populateWeaviate();
-// END EndToEndExample
-// NearTextExample  // To show how to populate Weaviate
-const res = await nearTextQuery();
-// END NearTextExample
-assert.deepEqual(res.data.Get.Question.length, 2);
-assert.deepEqual(res.data.Get.Question[0].answer, 'DNA');
-const count = await getNumObjects();
-assert.deepEqual(count, 10);
-await cleanup();
+  await addSchema();
+  await importQuestions();
+  // END EndToEndExample
+  const res = await nearTextQuery();
+
+  // Test
+  assert.deepEqual(res.data.Get.Question.length, 2);
+  assert.deepEqual(res.data.Get.Question[0].answer, 'DNA');
+  const count = await getNumObjects();
+  assert.deepEqual(count, 10);
+  await cleanup();
+// EndToEndExample
 }
 
+// END EndToEndExample  // END NearTextExample
+
+// EndToEndExample
 run();
+// END EndToEndExample
+
+
+/* ================================================================================
+Writing modular code for display in the docs is a little trickier due to the
+asynchronous nature of JavaScript/TypeScript.
+
+To show examples of these functions being run in the doc,
+the below sections call the functions within commented snippet.
+This is to prevent the functions from being run out of order
+(e.g. prevent query being called before the DB is populated),
+or prevent it from populating the instance when it should not.
+================================================================================ */
+
+/*
+// NearTextExample
+nearTextQuery();
+// END NearTextExample
+*/
+
+
+/*
+// Add the schema
+addSchema();
+// END Add the schema
+*/
+
+
+/*
+// Import data function
+importQuestions();
+// END Import data function
+*/

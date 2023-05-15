@@ -58,7 +58,7 @@ def load_and_prep_script(script_path: str):
     return preprocess_codeblock(code_block)
 
 
-def load_and_prep_temp_script(script_path: str, lang: str = "js"):
+def load_and_prep_temp_file(script_path: str, lang: str = "js"):
     if lang == "js":
         outpath: Path = Path("./tests/temp.js")
     elif lang == "ts":
