@@ -245,30 +245,76 @@ If the distance metric is set as `cosine` the [`certainty`](../config-refs/dista
 
 ## Group results by a property
 
-TODO:
-`Get` + `near<>` + `limit` + `groupBy`
+:::info Requires Weaviate `v1.19.0` or higher.
+:::
+
+You can group search results by any arbitrary property.
+
+The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, fetching the 10 closest results. Then those results are grouped by `round`, returning a maximum of two groups, each group with a maximum of two results (`hits`):
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GraphQL Query with groupBy"
+  endMarker="# END GraphQL Query with groupBy"
+  language="graphql"
+/>
+</TabItem>
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Query with groupBy"
+  endMarker="# END Query with groupBy"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+TODO
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response such as this:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Expected groupBy results"
+  endMarker="# END Expected groupBy results"
+  language="python"
+/>
+
+</details>
 
 ## Add a Boolean (`where`) filter
 
-TODO:
-Show one `Get` + `near<>` + `where` example
+You can add a Boolean filter to your search results using the `where` argument.
 
-TODO[where is that]: Link to `where` filter howto page.
+The example below searches the `JeopardyQuestion` class for the top 2 objects best matching `"animals in movies"`, as long as their `round` property is exactly `"Double Jeopardy!"`:
 
-## How to run these snippets
-
-* `distance` - the [distance](../api/graphql/additional-properties.md#distance) in vector space between the query vector and each result. Results are sorted ascending by distance - the lower the distance the closer the result is to the query, so the best results come first.
-* `certainty` - another measure of similarity, which you can [read more about](../api/graphql/additional-properties.md#certainty-only-for-cosine-distance)
-
-We have prepared an illustrative dataset of [Jeopardy!](https://en.wikipedia.org/wiki/Jeopardy!) Q&As that we'll be using for the examples below. You can explore the collection using the Weaviate Cloud Services Console and connecting to `https://edu-demo.weaviate.network`. In the <kbd>Headers</kbd> section, add the following authorization entry:
-
-```json
-{
-  "Authorization": "Bearer learn-weaviate"
-}
-```
-
-The quiz objects have been vectorized with OpenAI' <nobr>[`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings)</nobr>, so you'll need an [OpenAI API key](https://platform.openai.com/account/api-keys) for the `nearText` part of this howto right below.
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GraphQL Query using where"
+  endMarker="# END GraphQL Query using where"
+  language="graphql"
+/>
+</TabItem>
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Query using where"
+  endMarker="# END Query using where"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+TODO
+</TabItem>
+</Tabs>
 
 ## More Resources
 

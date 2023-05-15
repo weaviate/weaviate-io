@@ -7,7 +7,7 @@ client = weaviate.Client(
     url="https://edu-demo.weaviate.network",  # Replace w/ your endpoint
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="learn-weaviate"),
     additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
 )
 
@@ -25,7 +25,7 @@ client = weaviate.Client(
     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
     auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
     additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
 )
 
@@ -132,7 +132,7 @@ client = weaviate.Client(
     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
     auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
     additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
 )
 
@@ -210,7 +210,7 @@ client = weaviate.Client(
     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
     auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
     additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
 )
 
@@ -288,7 +288,7 @@ client = weaviate.Client(
     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
     auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
     additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
 )
 
@@ -379,7 +379,7 @@ client = weaviate.Client(
     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
     auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
     additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
 )
 
@@ -459,49 +459,154 @@ test_gqlresponse(response, gqlresponse)
 # IF AVAILABLE FOR ALL, MOVE TO A NEW PAGE
 
 
-# # groupBy - https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
-# response = client.query.get(
-#     "JeopardyQuestion",
-#     ["question", "answer"]
-# ).with_near_text({
-#     "concepts": ["animals in movies"]
-# # highlight-start
-# }).with_group_by(
-#     ["round"],
-#     groups=999,  # only the actual number of groups found will be returned
-#     objects_per_group=10
-# ).with_additional(["""
-#     group {
-#         id
-#         groupedBy {
-#             path
-#             value
-#         }
-#         count
-#         minDistance
-#         maxDistance
-#         hits {
-#             question
-#             answer
-#         }
-#     }
-# """]
-# # highlight-end
-# ).do()
+# Query with groupBy - https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
+import weaviate
+import json
+
+client = weaviate.Client(
+    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    additional_headers = {
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
+    }
+)
+
+# END Query with groupBy
+
+# Actual instantiation for testing
+client = weaviate.Client(
+    "https://edu-demo.weaviate.network",
+    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
+    additional_headers = {
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
+    }
+)
+# END Actual instantiation
+
+# Query with groupBy
+max_groups = 2
+max_objects_per_group = 2
+response = client.query.get(
+    "JeopardyQuestion",
+    ["question", "answer"]
+).with_near_text({
+    "concepts": ["animals in movies"]
+# highlight-start
+}).with_limit(10).with_group_by(
+    ["round"],
+    groups=max_groups,
+    objects_per_group=max_objects_per_group
+).with_additional(["""
+    group {
+        id
+        groupedBy {
+            path
+            value
+        }
+        count
+        minDistance
+        maxDistance
+        hits {
+            question
+            answer
+        }
+    }
+"""]
+# highlight-end
+).do()
+
+print(json.dumps(response, indent=2))
+# END Query with groupBy
+
+# Test results
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) <= max_groups
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["group"].keys() == {"count", "groupedBy", "hits", "id", "maxDistance", "minDistance"}
+assert len(response["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["group"]["hits"]) <= max_objects_per_group
+# End test
+
+
+
+expected_results = """
+# Expected groupBy results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "group": {
+              "count": 2,
+              "groupedBy": {
+                "path": [
+                  "round"
+                ],
+                "value": "Jeopardy!"
+              },
+              "hits": [
+                {
+                  "answer": "meerkats",
+                  "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]"
+                },
+                {
+                  "answer": "dogs",
+                  "question": "Scooby-Doo, Goofy & Pluto are cartoon versions"
+                }
+              ],
+              "id": 0,
+              "maxDistance": 0.17837858,
+              "minDistance": 0.17592645
+            }
+          }
+        },
+        {
+          "_additional": {
+            "group": {
+              "count": 2,
+              "groupedBy": {
+                "path": [
+                  "round"
+                ],
+                "value": "Double Jeopardy!"
+              },
+              "hits": [
+                {
+                  "answer": "fox",
+                  "question": "In titles, animal associated with both Volpone and Reynard"
+                },
+                {
+                  "answer": "Swan",
+                  "question": "In a Tchaikovsky ballet, Prince Siegfried goes hunting for these animals & falls in love with 1 of them"
+                }
+              ],
+              "id": 1,
+              "maxDistance": 0.19532347,
+              "minDistance": 0.18759078
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+# END Expected groupBy results
+"""
+
 
 
 gql_query = """
-# GraphQL Query with GroupBy
+# GraphQL Query with groupBy
 {
   Get {
     JeopardyQuestion(
+      limit: 10
       nearText: {
         concepts: ["animals in movies"],
       }
       groupBy: {
         path: ["round"],
-        groups: 99,
-        objectsPerGroup: 10
+        groups: 2,
+        objectsPerGroup: 2
       }
     ) {
       _additional {
@@ -523,12 +628,131 @@ gql_query = """
     }
   }
 }
-# END GraphQL Query with GroupBy
+# END GraphQL Query with groupBy
+"""
+gqlresponse = client.query.raw(gql_query)
+# Test results
+assert "JeopardyQuestion" in gqlresponse["data"]["Get"]
+assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"][0]) <= max_groups
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["group"].keys() == {"count", "groupedBy", "hits", "id", "maxDistance", "minDistance"}
+assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["group"]["hits"]) <= max_objects_per_group
+# End test
+
+
+
+# ==========================================
+# ===== QUERY WITH WHERE =====
+# ==========================================
+
+
+
+# Query using where - https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
+import weaviate
+import json
+
+client = weaviate.Client(
+    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    additional_headers = {
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
+    }
+)
+
+# END Query using where
+
+# Actual instantiation for testing
+client = weaviate.Client(
+    "https://edu-demo.weaviate.network",
+    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
+    additional_headers = {
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
+    }
+)
+# END Actual instantiation
+
+# Query using where
+response = client.query.get(
+    "JeopardyQuestion",
+    ["question", "answer", "round"]
+).with_near_text(
+    {"concepts": ["animals in movies"]}
+).with_limit(2).with_additional(
+    ["distance"]
+).with_where(
+    {
+        "path": ["round"],
+        "operator": "Equal",
+        "valueText": "Double Jeopardy!"
+    }
+).do()
+
+print(json.dumps(response, indent=2))
+# END Query using where
+
+# Test results
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 2
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "round", "_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"distance"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["round"] == "Double Jeopardy!"
+# End test
+
+
+
+expected_results = """
+# Expected where results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.18759078
+          },
+          "answer": "fox",
+          "question": "In titles, animal associated with both Volpone and Reynard",
+          "round": "Double Jeopardy!"
+        },
+        {
+          "_additional": {
+            "distance": 0.19532347
+          },
+          "answer": "Swan",
+          "question": "In a Tchaikovsky ballet, Prince Siegfried goes hunting for these animals & falls in love with 1 of them",
+          "round": "Double Jeopardy!"
+        }
+      ]
+    }
+  }
+}
+# END Expected where results
 """
 
 
-
-# print(json.dumps(response, indent=2))
-
-
-# where - TODO
+gql_query = """
+# GraphQL Query using where
+{
+  Get {
+    JeopardyQuestion(
+      limit: 2
+      nearText: {
+        concepts: ["animals in movies"]
+      }
+      where: {
+        path: ["round"]
+        operator: Equal
+        valueText: "Double Jeopardy!"
+      }
+    ) {
+      question
+      answer
+      _additional {
+        distance
+      }
+    }
+  }
+}
+# END GraphQL Query using where
+"""
+gqlresponse = client.query.raw(gql_query)
+test_gqlresponse(response, gqlresponse)
