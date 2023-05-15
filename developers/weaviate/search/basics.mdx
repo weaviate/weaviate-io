@@ -34,7 +34,7 @@ To retrieve objects from Weaviate, you must use the `Get` function and specify a
   text={PythonCode}
   startMarker="# BasicGet GraphQL Example"
   endMarker="# END BasicGet GraphQL Example"
-  language="py"
+  language="graphql"
 />
 
 </TabItem>
@@ -84,7 +84,7 @@ Often, you will only want the top `n` results from the query. This can be achiev
   text={PythonCode}
   startMarker="# GetWithLimit GraphQL Example"
   endMarker="# END GetWithLimit GraphQL Example"
-  language="py"
+  language="graphql"
 />
 
 </TabItem>
@@ -119,6 +119,54 @@ The above query will result in something like the following:
   language="json"
 />
 
+### `limit` with `offset`
+
+If you only want the `n` results after the first `m` results from the query, you can do this with `limit` and `offset` as shown below.
+
+Note that this will cause Weaviate to fetch `n+m` results, and may be an expensive operation especially as `m` grows larger.
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetWithLimitOffset GraphQL Example"
+  endMarker="# END GetWithLimitOffset GraphQL Example"
+  language="graphql"
+/>
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetWithLimitOffset Python Example"
+  endMarker="# END GetWithLimitOffset Python Example"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+<FilteredTextBlock
+  text={JSCode}
+  startMarker="// GetWithLimitOffset JS Example"
+  endMarker="// END GetWithLimitOffset JS Example"
+  language="js"
+/>
+
+</TabItem>
+</Tabs>
+
+The above query will result in something like the following:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="// GetWithLimitOffset Expected Results"
+  endMarker="// END GetWithLimitOffset Expected Results"
+  language="json"
+/>
+
 ## Specify the fetched properties
 
 You can specify the properties to be fetched, as long as one or more are specified.
@@ -134,7 +182,7 @@ You can specify object properties as below.
   text={PythonCode}
   startMarker="# GetProperties GraphQL Example"
   endMarker="# END GetProperties GraphQL Example"
-  language="py"
+  language="graphql"
 />
 
 </TabItem>
@@ -180,7 +228,7 @@ To retrieve the object vector, request the `_additional` property and `vector` s
   text={PythonCode}
   startMarker="# GetObjectVector GraphQL Example"
   endMarker="# END GetObjectVector GraphQL Example"
-  language="py"
+  language="graphql"
 />
 
 </TabItem>
@@ -226,7 +274,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
   text={PythonCode}
   startMarker="# GetObjectId GraphQL Example"
   endMarker="# END GetObjectId GraphQL Example"
-  language="py"
+  language="graphql"
 />
 
 </TabItem>
@@ -260,11 +308,6 @@ The above query will result in something like the following:
   endMarker="// END GetObjectId Expected Results"
   language="json"
 />
-
-## Next steps
-
-Check out the how-to guides for:
-- TBC
 
 ## More Resources
 

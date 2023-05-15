@@ -112,8 +112,7 @@ gql_query = """
 }
 # END GetWithLimit GraphQL Example
 """
-result = client.query.raw(gql_query)
-print(result)
+gqlresult = client.query.raw(gql_query)
 
 expected_result = """
 // GetWithLimit Expected Results
@@ -133,8 +132,81 @@ expected_result = """
 """
 
 # Test results
-check_results(result)
+check_results(gqlresult)
+assert gqlresult == result
 # END Test results
+
+
+
+# ==========================================
+# ===== GET LIMIT WITH OFFSET EXAMPLES =====
+# ==========================================
+
+# GetWithLimitOffset Python Example
+import weaviate
+
+client = weaviate.Client(
+    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+)
+
+# END GetWithLimitOffset Python Example
+# Actual instantiation for testing
+client = weaviate.Client(
+    "https://edu-demo.weaviate.network",
+    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
+)
+# END Actual instantiation
+# GetWithLimitOffset Python Example
+result = client.query.get("JeopardyQuestion", ["question"]).with_limit(1).with_offset(1).do()
+print(result)
+# END GetWithLimitOffset Python Example
+
+# Test results
+def check_results(result_in):
+    assert "JeopardyQuestion" in result_in["data"]["Get"]
+    assert len(result_in["data"]["Get"]["JeopardyQuestion"]) == 1
+    assert result_in["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
+
+check_results(result)
+# End test
+
+
+gql_query = """
+# GetWithLimitOffset GraphQL Example
+{
+  Get {
+    JeopardyQuestion (limit: 1 offset: 1) {
+      question
+    }
+  }
+}
+# END GetWithLimitOffset GraphQL Example
+"""
+gqlresult = client.query.raw(gql_query)
+
+expected_result = """
+// GetWithLimitOffset Expected Results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "question": "Pythons are oviparous, meaning they do this"
+        }
+      ]
+    }
+  }
+}
+// END GetWithLimitOffset Expected Results
+"""
+
+# Test results
+check_results(gqlresult)
+assert gqlresult == result
+# END Test results
+
+
 
 # ==========================================
 # ===== GET OBJECT PROPERTIES EXAMPLES =====
@@ -184,8 +256,7 @@ gql_query = """
 }
 # END GetProperties GraphQL Example
 """
-result = client.query.raw(gql_query)
-print(result)
+gqlresult = client.query.raw(gql_query)
 
 expected_result = """
 // GetProperties Expected Results
@@ -206,7 +277,8 @@ expected_result = """
 """
 
 # Test results
-check_results(result)
+check_results(gqlresult)
+assert gqlresult == result
 # END Test results
 
 
@@ -258,8 +330,7 @@ gql_query = """
 }
 # END GetObjectVector GraphQL Example
 """
-result = client.query.raw(gql_query)
-print(result)
+gqlresult = client.query.raw(gql_query)
 
 expected_result = """
 // GetObjectVector Expected Results
@@ -287,6 +358,7 @@ expected_result = """
 
 # Test results
 check_results(result)
+assert gqlresult == result
 # END Test results
 
 
@@ -338,8 +410,7 @@ gql_query = """
 }
 # END GetObjectId GraphQL Example
 """
-result = client.query.raw(gql_query)
-print(result)
+gqlresult = client.query.raw(gql_query)
 
 expected_result = """
 // GetObjectId Expected Results
@@ -361,5 +432,6 @@ expected_result = """
 """
 
 # Test results
-check_results(result)
+check_results(gqlresult)
+assert gqlresult == result
 # END Test results

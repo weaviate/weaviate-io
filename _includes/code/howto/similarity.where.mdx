@@ -9,10 +9,11 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 {
   Get {
     JeopardyQuestion(
-# highlight-start
-      nearObject: {
-        id: "56b9449e-65db-5df4-887b-0a4773f52aa7"
+      nearText: {
+        concepts: ["animals in movies"]
       }
+# highlight-start
+      where: TODO
 # highlight-end
     ) {
       question
@@ -29,12 +30,11 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 
   <TabItem value="py" label="Python">
 
-import PythonCode from '!!raw-loader!/_includes/code/howto/semantic.py';
+import PythonCode from '!!raw-loader!/_includes/code/howto/similarity.py';
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# Query using nearObject"
-  endMarker="# Limit"
+  startMarker="# where"
   language="python"
 />
 
@@ -42,12 +42,11 @@ import PythonCode from '!!raw-loader!/_includes/code/howto/semantic.py';
 
   <TabItem value="ts" label="TypeScript">
 
-import TypeScriptCode from '!!raw-loader!/_includes/code/howto/semantic.ts';
+import TypeScriptCode from '!!raw-loader!/_includes/code/howto/similarity.ts';
 
 <FilteredTextBlock
   text={TypeScriptCode}
-  startMarker="// Query using nearObject"
-  endMarker="// Limit"
+  startMarker="// where"
   language="typescript"
 />
 
