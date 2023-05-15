@@ -1,6 +1,7 @@
 # For testing
 .venv
 nohup.out
+tests/temp.*
 **/.ipynb
 **/.ipynb_checkpoints/*
 

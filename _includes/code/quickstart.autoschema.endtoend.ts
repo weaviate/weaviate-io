@@ -1,43 +1,19 @@
 const assert = require('assert');
 
-/*
-// Instantiate client
-import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
-});
-// END Instantiate client
-*/
-
-// EndToEnd TS
-import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
+// EndToEndExample  // InstantiationExample  // NearTextExample
+import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 import fetch from 'node-fetch';
 
-// END EndToEnd TS
-
-// Actual instantiation for testing
-const client: WeaviateClient = weaviate.client({
-    scheme: 'http',
-    host: 'localhost:8090',
-});
-
-/*
-// EndToEnd TS
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
   headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
 });
 
-// END EndToEnd TS
-*/
+// END EndToEndExample  // END InstantiationExample  // END NearTextExample
 
-// EndToEnd TS
+// EndToEndExample
 // Add the schema
 let classObj = {
     'class': 'Question',
@@ -45,13 +21,11 @@ let classObj = {
 }
 
 async function addSchema() {
-  try {
-    const res = await client.schema.classCreator().withClass(classObj).do();
-    console.log(res);
-  } catch(err) {
-    console.error(err);
-  }
+  const res = await client.schema.classCreator().withClass(classObj).do();
+  console.log(res);
 }
+
+// END Add the schema
 
 // Import data function
 async function getJsonData() {
@@ -60,99 +34,64 @@ async function getJsonData() {
 }
 
 async function importQuestions() {
-  try {
-    // Get the questions directly from the URL
-    const data = await getJsonData();
+  // Get the questions directly from the URL
+  const data = await getJsonData();
 
-    // Prepare a batcher
-    let batcher: ObjectsBatcher = client.batch.objectsBatcher();
-    let counter = 0;
-    let batchSize = 100;
+  // Prepare a batcher
+  let batcher: ObjectsBatcher = client.batch.objectsBatcher();
+  let counter = 0;
+  let batchSize = 100;
 
-    for (const question of data) {
-      // Construct an object with a class and properties 'answer' and 'question'
-      const obj = {
-        class: 'Question',
-        properties: {
-          answer: question.Answer,
-          question: question.Question,
-          category: question.Category,
-        },
-      }
-
-      // add the object to the batch queue
-      batcher = batcher.withObject(obj);
-
-      // When the batch counter reaches batchSize, push the objects to Weaviate
-      if (counter++ == batchSize) {
-        // flush the batch queue
-        const res = await batcher.do();
-        console.log(res);
-
-        // restart the batch queue
-        counter = 0;
-        batcher = client.batch.objectsBatcher();
-      }
+  for (const question of data) {
+    // Construct an object with a class and properties 'answer' and 'question'
+    const obj = {
+      class: 'Question',
+      properties: {
+        answer: question.Answer,
+        question: question.Question,
+        category: question.Category,
+      },
     }
 
-    // Flush the remaining objects
-    const res = await batcher.do();
-    console.log(res);
-  } catch(err) {
-    console.error(err);
+    // add the object to the batch queue
+    batcher = batcher.withObject(obj);
+
+    // When the batch counter reaches batchSize, push the objects to Weaviate
+    if (counter++ == batchSize) {
+      // flush the batch queue
+      const res = await batcher.do();
+      console.log(res);
+
+      // restart the batch queue
+      counter = 0;
+      batcher = client.batch.objectsBatcher();
+    }
   }
-}
-// END Import data function
 
-async function populateWeaviate() {
-  await addSchema();
-  await importQuestions();
+  // Flush the remaining objects
+  const res = await batcher.do();
+  console.log(res);
 }
 
-// END EndToEnd TS
+// END EndToEndExample  // END Import data function
 
-/*
-// EndToEnd TS
-populateWeaviate();
-// END EndToEnd TS
-*/
-
-/*
-// NearText TS
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
-});
-
-// END NearText TS
-*/
-
-// NearText TS
+// NearTextExample
 async function nearTextQuery() {
-  try {
-    const res = await client.graphql
-      .get()
-      .withClassName('Question')
-      .withFields('question answer category')
-      .withNearText({concepts: ['biology']})
-      .withLimit(2)
-      .do();
+  const res = await client.graphql
+    .get()
+    .withClassName('Question')
+    .withFields('question answer category')
+    .withNearText({concepts: ['biology']})
+    .withLimit(2)
+    .do();
 
-    console.log(JSON.stringify(res, null, 2));
-    return res
-  } catch (err) {
-    console.error(err);
-  }
+  console.log(JSON.stringify(res, null, 2));
+  return res
 }
 
-nearTextQuery();
-// END NearText TS
+// END NearTextExample
 
-// Test
+// Define test functions
 async function getNumObjects() {
   const res = await client.graphql
     .aggregate()
@@ -164,16 +103,63 @@ async function getNumObjects() {
 async function cleanup() {
   client.schema.classDeleter().withClassName('Question').do();
 }
+// END Define test functions
 
-async function testNearTextQuery() {
-  await populateWeaviate();
+
+/* ================================================================================
+Actually populate the instance and run the query
+================================================================================ */
+
+// EndToEndExample
+async function run() {
+  await addSchema();
+  await importQuestions();
+  // END EndToEndExample
   const res = await nearTextQuery();
+
+  // Test
   assert.deepEqual(res.data.Get.Question.length, 2);
   assert.deepEqual(res.data.Get.Question[0].answer, 'DNA');
   const count = await getNumObjects();
   assert.deepEqual(count, 10);
-  await cleanup()
+  await cleanup();
+// EndToEndExample
 }
 
-testNearTextQuery();
-// End test
+// END EndToEndExample  // END NearTextExample
+
+// EndToEndExample
+run();
+// END EndToEndExample
+
+
+/* ================================================================================
+Writing modular code for display in the docs is a little trickier due to the
+asynchronous nature of JavaScript/TypeScript.
+
+To show examples of these functions being run in the doc,
+the below sections call the functions within commented snippet.
+This is to prevent the functions from being run out of order
+(e.g. prevent query being called before the DB is populated),
+or prevent it from populating the instance when it should not.
+================================================================================ */
+
+/*
+// NearTextExample
+nearTextQuery();
+// END NearTextExample
+*/
+
+
+/*
+// Add the schema
+addSchema();
+// END Add the schema
+*/
+
+
+/*
+// Import data function
+importQuestions();
+// END Import data function
+*/
