@@ -289,7 +289,9 @@ test_gqlresponse(response, gqlresponse)
 # http://weaviate.io/developers/weaviate/config-refs/distances
 
 # GetWithDistancePython
+# highlight-start
 max_distance = 0.18
+# highlight-end
 response = client.query.get(
     "JeopardyQuestion",
     ["question", "answer"]
@@ -469,10 +471,11 @@ gql_query = """
 {
   Get {
     JeopardyQuestion(
-      limit: 10
       nearText: {
         concepts: ["animals in movies"],
       }
+      # highlight-start
+      limit: 10
       groupBy: {
         path: ["round"],
         groups: 2,
@@ -495,6 +498,7 @@ gql_query = """
           }
         }
       }
+      # highlight-end
     }
   }
 }
@@ -524,12 +528,14 @@ response = client.query.get(
     {"concepts": ["animals in movies"]}
 ).with_limit(2).with_additional(
     ["distance"]
+# highlight-start
 ).with_where(
     {
         "path": ["round"],
         "operator": "Equal",
         "valueText": "Double Jeopardy!"
     }
+# highlight-end
 ).do()
 
 print(json.dumps(response, indent=2))
@@ -584,11 +590,13 @@ gql_query = """
       nearText: {
         concepts: ["animals in movies"]
       }
+      # highlight-start
       where: {
         path: ["round"]
         operator: Equal
         valueText: "Double Jeopardy!"
       }
+      # highlight-end
     ) {
       question
       answer
