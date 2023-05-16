@@ -1,0 +1,23 @@
+@import '/src/css/blog-custom-layout.scss';
+
+.featuredTags {
+    margin-bottom: 20px;
+    .label {
+        font-size: larger;
+        font-weight: bold;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        font-size: large;
+        border-radius: var(--ifm-global-radius);
+        border: 1px solid;
+        margin: 5px 5px;
+        padding: 4px;
+    }
+}
+

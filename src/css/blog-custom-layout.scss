@@ -1,10 +1,10 @@
 // update built-in docusarus styles for the blog list page
-.blog-list-page {
+.blog-list-page, .blog-tags-post-list-page {
   main {
     margin: 0;
   }
 
-  header, footer {
+  article header, article footer {
     display: none;
   }
 
@@ -71,7 +71,7 @@
 
 .blogCardImage {
   grid-area: image;
-  
+
   img {
     width: 100%;
   }
@@ -95,4 +95,16 @@
 
   display: flex;
   align-items: center;
+}
+
+.blogTags {
+  padding: 8px 0;
+
+  .blogTag {
+    font-size: smaller;
+    border-radius: var(--ifm-global-radius);
+    border: 1px solid;
+    margin: 0px 4px;
+    padding: 4px;
+  }
 }
