@@ -10,9 +10,9 @@ import BeaconsBackCompatOmitClassname from '/_includes/beacons-backcompat-omit-c
 
 <Badges/>
 
-## List all data objects
+## Retrieve data objects
 
-Lists all data objects in reverse order of creation. The data will be returned as an array of objects.
+Retrieve data objects in reverse order of creation. The data will be returned as an array of objects.
 
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
@@ -77,10 +77,11 @@ GET /v1/objects?class=MyClass&limit=10&offset=20
 ### Exhaustive retrieval using a cursor: `after`
 
 :::tip
-You can use `class`, `limit` and `after` for retrieving an entire object set from a class.
+- You can use `class`, `limit` and `after` for retrieving an entire object set from a class.
+- The `after` parameter is based on the order of ids. It can therefore only be applied to list queries without sorting.
 :::
 
-The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. It can therefore only be applied to list queries without sorting. You can pass the last id you retrieved as a cursor to start the next page.
+You can retrieve a list of all data objects with the `after` parameter. The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. You can pass the last id you retrieved as a cursor to start the next page.
 
 It is not possible to use the `after` parameter without specifying a `class`.
 
