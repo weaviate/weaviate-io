@@ -342,7 +342,7 @@ Using the `IsNull` operator allows you to do filter for objects where given prop
 ```
 
 :::note
-Filtering by null-state requires the target class to be configured to index this. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indexnullstate) for details.
+Filtering by null-state requires the target class to be configured to index this. See [here](../../config-refs/schema.mdx#invertedindexconfig--indexnullstate) for details.
 :::
 
 ## Sorting
