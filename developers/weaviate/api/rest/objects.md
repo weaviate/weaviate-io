@@ -461,7 +461,11 @@ import SemanticKindValidate from '/_includes/code/semantic-kind.validate.mdx';
 
 ## Cross-references
 
-[Cross-references](../../config-refs/datatypes.md#datatype-cross-reference) are object properties of type array, in which each element points from the source object to another object via a [beacon](../../more-resources/glossary.md).
+[Cross-references](../../config-refs/datatypes.md#datatype-cross-reference) are object properties for establishing links from the source object to another object via a [beacon](../../more-resources/glossary.md).
+
+:::note Cross-references do not affect vectors
+Creating cross-references do not affect object vectors in either direction.
+:::
 
 ### Add a cross-reference
 
