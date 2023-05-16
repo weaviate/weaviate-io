@@ -85,7 +85,7 @@ GET /v1/objects?class=MyClass&limit=10&offset=20
 - The `after` parameter is based on the order of ids. It can therefore only be applied to list queries without sorting.
 :::
 
-You can retrieve a list of all data objects with the `after` parameter. The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. You can pass the id of the last retrieved object as a cursor to start the next page.
+You can use the `after` parameter to retrieve all objects from a Weaviate instance . The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. You can pass the id of the last retrieved object as a cursor to start the next page.
 
 It is not possible to use the `after` parameter without specifying a `class`.
 
