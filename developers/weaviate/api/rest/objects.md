@@ -81,6 +81,7 @@ GET /v1/objects?class=MyClass&limit=10&offset=20
 ### Exhaustive listing using a cursor: `after`
 
 :::tip
+- Available from version `v1.18.0`.
 - You can use `class`, `limit` and `after` for listing an entire object set from a class.
 - The `after` parameter is based on the order of ids. It can therefore only be applied to list queries without sorting.
 :::
