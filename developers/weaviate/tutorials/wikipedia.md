@@ -59,13 +59,13 @@ If you haven't already, make sure to download the dataset and unzip the file. Yo
 We can create a Weaviate instance locally using the [embedded](../installation/embedded.md) option on Linux (transparent and fastest), Docker on any OS (fastest import and search), or in the cloud using the Weaviate Cloud Services (easiest setup, but importing may be slower due to the network speed). Each option is explained on its [Installation](../installation/index.md) page.
 
 :::caution text2vec-openai
-If using the Docker option, make sure to select "With Modules" (instead of standalone), and the `text2vec-openai` module when using the Docker configurator, at the "Vectorizer & Retriever Text Module" step. At the "OpenAI Requires an API Key" step, you can choose to "provide the key with each request", as we'll do so in the next section. 
+If using the Docker option, make sure to select "With Modules" (instead of standalone), and the `text2vec-openai` module when using the Docker configurator, at the "Vectorizer & Retriever Text Module" step. At the "OpenAI Requires an API Key" step, you can choose to "provide the key with each request", as we'll do so in the next section.
 :::
 
 
 ## Connect to the instance and OpenAI
 
-To pave the way for using OpenAI later when querying, let's make sure we provide the OpenAI API key to the client. 
+To pave the way for using OpenAI later when querying, let's make sure we provide the OpenAI API key to the client.
 
 import ProvideOpenAIAPIKey from '/_includes/provide-openai-api-key-headers.mdx'
 
@@ -74,7 +74,7 @@ import ProvideOpenAIAPIKey from '/_includes/provide-openai-api-key-headers.mdx'
 
 ## Create the schema
 
-The [schema](./schema.md) defines the data structure for objects in a given Weaviate class. We'll create a schema for a Wikipedia `Article` class mapping the CSV columns, and using the [text2vec-openai vectorizer](../configuration/schema-configuration.md#vectorizer). The schema will have two properties:
+The [schema](./schema.md) defines the data structure for objects in a given Weaviate class. We'll create a schema for a Wikipedia `Article` class mapping the CSV columns, and using the [text2vec-openai vectorizer](../configuration/schema-configuration.md#specify-a-vectorizer). The schema will have two properties:
 * `title` - article title, not vectorized
 * `content` - article content, corresponding to the `text` column from the CSV
 
@@ -92,7 +92,7 @@ As of Weaviate 1.18, the `text2vec-openai` vectorizer uses by default the same m
 }
 ```
 
-Another detail to be careful about is how exactly we store the `content_vector` embedding. [Weaviate vectorizes entire objects](../configuration/schema-configuration.md#configure-semantic-indexing) (not properties), and it includes by default the class name in the string serialization of the object it will vectorize. Since OpenAI has provided embeddings only for the `text` (content) field, we need to make sure Weaviate vectorizes an `Article` object the same way. That means we need to disable including the class name in the vectorization, so we must set `vectorizeClassName: false` in the `text2vec-openai` section of the `moduleConfig`. Together, these schema settings will look like this:
+Another detail to be careful about is how exactly we store the `content_vector` embedding. [Weaviate vectorizes entire objects](../config-refs/schema.mdx#configure-semantic-indexing) (not properties), and it includes by default the class name in the string serialization of the object it will vectorize. Since OpenAI has provided embeddings only for the `text` (content) field, we need to make sure Weaviate vectorizes an `Article` object the same way. That means we need to disable including the class name in the vectorization, so we must set `vectorizeClassName: false` in the `text2vec-openai` section of the `moduleConfig`. Together, these schema settings will look like this:
 
 import CreateSchema from '/_includes/code/tutorials.wikipedia.schema.mdx';
 
@@ -130,7 +130,7 @@ Go to the [Weaviate GraphQL console](https://console.weaviate.io), connect to yo
 ```graphql
 query {
   Aggregate { Article { meta { count } } }
-  
+
   Get {
     Article(limit: 5) {
       title
