@@ -1,8 +1,9 @@
-# ==============================
-# ===== BASIC GET EXAMPLES =====
-# ==============================
+# ================================
+# ===== INSTANTIATION-COMMON =====
+# ================================
 
-# BasicGet Python Example
+# ===== Instantiation shown on snippet
+# BasicGetPython  # GetWithLimitPython  # GetWithLimitOffsetPython  # GetPropertiesPython  # GetObjectVectorPython  # GetObjectIdPython
 import weaviate
 
 client = weaviate.Client(
@@ -10,17 +11,16 @@ client = weaviate.Client(
     auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
 )
 
-# END BasicGet Python Example
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-)
-# END Actual instantiation
-# BasicGet Python Example
+# END BasicGetPython  # END GetWithLimitPython  # END GetWithLimitOffsetPython  # END GetPropertiesPython  # END GetObjectVectorPython  # END GetObjectIdPython
+
+# ==============================
+# ===== BASIC GET EXAMPLES =====
+# ==============================
+
+# BasicGetPython
 result = client.query.get("JeopardyQuestion", ["question"]).do()
 print(result)
-# END BasicGet Python Example
+# END BasicGetPython
 
 # Test results
 assert "JeopardyQuestion" in result["data"]["Get"]
@@ -47,7 +47,7 @@ expected_result = """
 
 
 gql_query = """
-# BasicGet GraphQL Example
+# BasicGetGraphQL
 {
   Get {
     JeopardyQuestion {
@@ -55,7 +55,7 @@ gql_query = """
     }
   }
 }
-# END BasicGet GraphQL Example
+# END BasicGetGraphQL
 """
 gqlresult = client.query.raw(gql_query)
 # Test results
@@ -68,25 +68,10 @@ assert gqlresult == result
 # ===== BASIC GET LIMIT EXAMPLES =====
 # ====================================
 
-# GetWithLimit Python Example
-import weaviate
-
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-)
-
-# END GetWithLimit Python Example
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-)
-# END Actual instantiation
-# GetWithLimit Python Example
+# GetWithLimitPython
 result = client.query.get("JeopardyQuestion", ["question"]).with_limit(1).do()
 print(result)
-# END GetWithLimit Python Example
+# END GetWithLimitPython
 
 # Test results
 assert "JeopardyQuestion" in result["data"]["Get"]
@@ -114,7 +99,7 @@ expected_result = """
 
 
 gql_query = """
-# GetWithLimit GraphQL Example
+# GetWithLimitGraphQL
 {
   Get {
     JeopardyQuestion (limit: 1) {
@@ -122,7 +107,7 @@ gql_query = """
     }
   }
 }
-# END GetWithLimit GraphQL Example
+# ENDGetWithLimit GraphQL
 """
 gqlresult = client.query.raw(gql_query)
 # Test results
@@ -135,25 +120,10 @@ assert gqlresult == result
 # ===== GET LIMIT WITH OFFSET EXAMPLES =====
 # ==========================================
 
-# GetWithLimitOffset Python Example
-import weaviate
-
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-)
-
-# END GetWithLimitOffset Python Example
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-)
-# END Actual instantiation
-# GetWithLimitOffset Python Example
+# GetWithLimitOffsetPython
 result = client.query.get("JeopardyQuestion", ["question"]).with_limit(1).with_offset(1).do()
 print(result)
-# END GetWithLimitOffset Python Example
+# END GetWithLimitOffsetPython
 
 # Test results
 assert "JeopardyQuestion" in result["data"]["Get"]
@@ -180,7 +150,7 @@ expected_result = """
 
 
 gql_query = """
-# GetWithLimitOffset GraphQL Example
+# GetWithLimitOffsetGraphQL
 {
   Get {
     JeopardyQuestion (limit: 1 offset: 1) {
@@ -188,7 +158,7 @@ gql_query = """
     }
   }
 }
-# END GetWithLimitOffset GraphQL Example
+# END GetWithLimitOffsetGraphQL
 """
 gqlresult = client.query.raw(gql_query)
 # Test results
@@ -201,26 +171,10 @@ assert gqlresult == result
 # ===== GET OBJECT PROPERTIES EXAMPLES =====
 # ==========================================
 
-
-# GetProperties Python Example
-import weaviate
-
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-)
-
-# END GetProperties Python Example
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-)
-# END Actual instantiation
-# GetProperties Python Example
+# GetPropertiesPython
 result = client.query.get("JeopardyQuestion", ["question", "answer", "points"]).with_limit(1).do()
 print(result)
-# END GetProperties Python Example
+# END GetPropertiesPython
 
 # Test results
 assert "JeopardyQuestion" in result["data"]["Get"]
@@ -249,7 +203,7 @@ expected_result = """
 
 
 gql_query = """
-# GetProperties GraphQL Example
+# GetPropertiesGraphQL
 {
   Get {
     JeopardyQuestion (limit: 1) {
@@ -259,7 +213,7 @@ gql_query = """
     }
   }
 }
-# END GetProperties GraphQL Example
+# END GetPropertiesGraphQL
 """
 gqlresult = client.query.raw(gql_query)
 # Test results
@@ -272,26 +226,10 @@ assert gqlresult == result
 # ===== GET OBJECT VECTOR EXAMPLES =====
 # ======================================
 
-
-# GetObjectVector Python Example
-import weaviate
-
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-)
-
-# END GetObjectVector Python Example
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-)
-# END Actual instantiation
-# GetObjectVector Python Example
+# GetObjectVectorPython
 result = client.query.get("JeopardyQuestion").with_additional("vector").with_limit(1).do()
 print(result)
-# END GetObjectVector Python Example
+# END GetObjectVectorPython
 
 # Test results
 assert "JeopardyQuestion" in result["data"]["Get"]
@@ -326,7 +264,7 @@ expected_result = """
 
 
 gql_query = """
-# GetObjectVector GraphQL Example
+# GetObjectVectorGraphQL
 {
   Get {
     JeopardyQuestion (limit: 1) {
@@ -336,7 +274,7 @@ gql_query = """
     }
   }
 }
-# END GetObjectVector GraphQL Example
+# END GetObjectVectorGraphQL
 """
 gqlresult = client.query.raw(gql_query)
 # Test results
@@ -348,26 +286,10 @@ assert gqlresult == result
 # ===== GET OBJECT ID EXAMPLES =====
 # ==================================
 
-
-# GetObjectId Python Example
-import weaviate
-
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-)
-
-# END GetObjectId Python Example
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-)
-# END Actual instantiation
-# GetObjectId Python Example
+# GetObjectIdPython
 result = client.query.get("JeopardyQuestion").with_additional("id").with_limit(1).do()
 print(result)
-# END GetObjectId Python Example
+# END GetObjectIdPython
 
 # Test results
 assert "JeopardyQuestion" in result["data"]["Get"]
@@ -397,7 +319,7 @@ expected_result = """
 
 
 gql_query = """
-# GetObjectId GraphQL Example
+# GetObjectIdGraphQL
 {
   Get {
     JeopardyQuestion (limit: 1) {
@@ -407,7 +329,7 @@ gql_query = """
     }
   }
 }
-# END GetObjectId GraphQL Example
+# END GetObjectIdGraphQL
 """
 gqlresult = client.query.raw(gql_query)
 # Test results

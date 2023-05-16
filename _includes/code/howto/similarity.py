@@ -1,26 +1,14 @@
 # Howto: semantic search - Python examples
+
+# ================================
+# ===== INSTANTIATION-COMMON =====
+# ================================
+
+# GetNearTextPython  # GetNearObjectPython  # GetNearVectorPython  # GetLimitOffsetPython  # GetWithDistancePython  # GetWithGroupbyPython  # GetWithWherePython
 import weaviate
 import json
 
 # Instantiate the client with the user/password and OpenAI api key
-client = weaviate.Client(
-    url="https://edu-demo.weaviate.network",  # Replace w/ your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="learn-weaviate"),
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
-    }
-)
-
-
-# ==========================================
-# ===== QUERY WITH NEARTEXT =====
-# ==========================================
-
-
-# Query using nearText - https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
-import weaviate
-import json
-
 client = weaviate.Client(
     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
     auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
@@ -29,19 +17,15 @@ client = weaviate.Client(
     }
 )
 
-# END Query using nearText
+# END GetNearTextPython  # END GetNearObjectPython  # END GetNearVectorPython  # END GetLimitOffsetPython  # END GetWithDistancePython  # END GetWithGroupbyPython  # END GetWithWherePython
 
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
-    }
-)
-# END Actual instantiation
+# ==========================================
+# ===== QUERY WITH NEARTEXT =====
+# ==========================================
 
-# Query using nearText
+# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
+
+# GetNearText
 response = client.query.get(
     "JeopardyQuestion",
     ["question", "answer"]
@@ -54,7 +38,7 @@ response = client.query.get(
 ).do()
 
 print(json.dumps(response, indent=2))
-# END Query using nearText
+# END GetNearText
 
 # Test results
 assert "JeopardyQuestion" in response["data"]["Get"]
@@ -91,7 +75,7 @@ expected_results = """
 
 
 gql_query = """
-# GraphQL Query using nearText
+# GetNearTextGraphql
 {
   Get {
     JeopardyQuestion(
@@ -110,7 +94,7 @@ gql_query = """
     }
   }
 }
-# END GraphQL Query using nearText
+# END GetNearTextGraphql
 """
 gqlresponse = client.query.raw(gql_query)
 def test_gqlresponse(response_in, gqlresponse_in):
@@ -123,32 +107,9 @@ test_gqlresponse(response, gqlresponse)
 # ===== QUERY WITH NEAROBJECT =====
 # ==========================================
 
+# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearobject
 
-# Query using nearObject - https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearobject
-import weaviate
-import json
-
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
-    }
-)
-
-# END Query using nearObject
-
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
-    }
-)
-# END Actual instantiation
-
-# Query using nearObject
+# GetNearObjectPython
 response = client.query.get(
     "JeopardyQuestion",
     ["question", "answer"]
@@ -161,7 +122,7 @@ response = client.query.get(
 ).do()
 
 print(json.dumps(response, indent=2))
-# END Query using nearObject
+# END GetNearObjectPython
 
 # Test results
 assert "JeopardyQuestion" in response["data"]["Get"]
@@ -172,7 +133,7 @@ assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {
 
 
 gql_query = """
-# GraphQL Query using nearObject
+# GetNearObjectGraphQL
 {
   Get {
     JeopardyQuestion (
@@ -191,7 +152,7 @@ gql_query = """
     }
   }
 }
-# END GraphQL Query using nearObject
+# END GetNearObjectGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
@@ -201,32 +162,9 @@ test_gqlresponse(response, gqlresponse)
 # ===== QUERY WITH NEARVECTOR =====
 # ==========================================
 
+# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearvector
 
-# Query using nearVector - https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearvector
-import weaviate
-import json
-
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
-    }
-)
-
-# END Query using nearVector
-
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
-    }
-)
-# END Actual instantiation
-
-# Query using nearVector
+# GetNearVectorPython
 response = client.query.get(
     "JeopardyQuestion",
     ["question", "answer"]
@@ -239,7 +177,7 @@ response = client.query.get(
 ).do()
 
 print(json.dumps(response, indent=2))
-# END Query using nearVector
+# END GetNearVectorPython
 
 # Test results
 assert "JeopardyQuestion" in response["data"]["Get"]
@@ -250,7 +188,7 @@ assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {
 
 
 gql_query = """
-# GraphQL Query using nearVector
+# GetNearVectorGraphQL
 {
   Get {
     JeopardyQuestion (
@@ -269,7 +207,7 @@ gql_query = """
     }
   }
 }
-# END GraphQL Query using nearVector
+# END GetNearVectorGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
@@ -281,30 +219,8 @@ test_gqlresponse(response, gqlresponse)
 
 
 # Query with LimitOffset - https://weaviate.io/developers/weaviate/api/graphql/filters#limit-argument
-import weaviate
-import json
 
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
-    }
-)
-
-# END Query with LimitOffset
-
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
-    }
-)
-# END Actual instantiation
-
-# Query with LimitOffset
+# GetLimitOffsetPython
 response = client.query.get(
     "JeopardyQuestion",
     ["question", "answer"]
@@ -317,7 +233,7 @@ response = client.query.get(
 # highlight-end
 
 print(json.dumps(response, indent=2))
-# END Query with LimitOffset
+# END GetLimitOffsetPython
 
 # Test results
 no_offset_response = client.query.get(
@@ -340,7 +256,7 @@ assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {
 
 
 gql_query = """
-# GraphQL Query with LimitOffset
+# GetLimitOffsetGraphQL
 {
   Get {
     JeopardyQuestion(
@@ -360,7 +276,7 @@ gql_query = """
     }
   }
 }
-# END GraphQL Query with LimitOffset
+# END GetLimitOffsetGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
@@ -370,32 +286,9 @@ test_gqlresponse(response, gqlresponse)
 # ===== QUERY WITH DISTANCE =====
 # ==========================================
 
+# http://weaviate.io/developers/weaviate/config-refs/distances
 
-# Query with Distance - https://weaviate.io/developers/weaviate/api/graphql/filters#limit-argument
-import weaviate
-import json
-
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
-    }
-)
-
-# END Query with Distance
-
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
-    }
-)
-# END Actual instantiation
-
-# Query with Distance - http://weaviate.io/developers/weaviate/config-refs/distances
+# GetWithDistancePython
 max_distance = 0.18
 response = client.query.get(
     "JeopardyQuestion",
@@ -412,7 +305,7 @@ response = client.query.get(
 ).do()
 
 print(json.dumps(response, indent=2))
-# END Query with Distance
+# END GetWithDistancePython
 
 # Test results
 assert "JeopardyQuestion" in response["data"]["Get"]
@@ -425,7 +318,7 @@ assert max(distances) < max_distance
 
 
 gql_query = """
-# GraphQL Query with Distance
+# GetWithDistanceGraphQL
 {
   Get {
     JeopardyQuestion(
@@ -444,7 +337,7 @@ gql_query = """
     }
   }
 }
-# END GraphQL Query with Distance
+# END GetWithDistanceGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
@@ -459,31 +352,8 @@ test_gqlresponse(response, gqlresponse)
 # IF AVAILABLE FOR ALL, MOVE TO A NEW PAGE
 
 
-# Query with groupBy - https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
-import weaviate
-import json
-
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
-    }
-)
-
-# END Query with groupBy
-
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
-    }
-)
-# END Actual instantiation
-
-# Query with groupBy
+# https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
+# GetWithGroupbyPython
 max_groups = 2
 max_objects_per_group = 2
 response = client.query.get(
@@ -516,7 +386,7 @@ response = client.query.get(
 ).do()
 
 print(json.dumps(response, indent=2))
-# END Query with groupBy
+# END GetWithGroupbyPython
 
 # Test results
 assert "JeopardyQuestion" in response["data"]["Get"]
@@ -595,7 +465,7 @@ expected_results = """
 
 
 gql_query = """
-# GraphQL Query with groupBy
+# GetWithGroupbyGraphQL
 {
   Get {
     JeopardyQuestion(
@@ -628,7 +498,7 @@ gql_query = """
     }
   }
 }
-# END GraphQL Query with groupBy
+# END GetWithGroupbyGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
@@ -644,33 +514,9 @@ assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["gro
 # ===== QUERY WITH WHERE =====
 # ==========================================
 
+# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
 
-
-# Query using where - https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
-import weaviate
-import json
-
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
-    }
-)
-
-# END Query using where
-
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
-    additional_headers = {
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
-    }
-)
-# END Actual instantiation
-
-# Query using where
+# GetWithWherePython
 response = client.query.get(
     "JeopardyQuestion",
     ["question", "answer", "round"]
@@ -687,7 +533,7 @@ response = client.query.get(
 ).do()
 
 print(json.dumps(response, indent=2))
-# END Query using where
+# END GetWithWherePython
 
 # Test results
 assert "JeopardyQuestion" in response["data"]["Get"]
@@ -730,7 +576,7 @@ expected_results = """
 
 
 gql_query = """
-# GraphQL Query using where
+# GetWithWhereGraphQL
 {
   Get {
     JeopardyQuestion(
@@ -752,7 +598,7 @@ gql_query = """
     }
   }
 }
-# END GraphQL Query using where
+# END GetWithWhereGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)

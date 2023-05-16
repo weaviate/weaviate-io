@@ -1,32 +1,27 @@
+const assert = require('assert');
+
+// ================================
+// ===== INSTANTIATION-COMMON =====
+// ================================
+
+// BasicGetJS
+const { default: weaviate } = require('weaviate-ts-client');
+
+// END BasicGetJS
+// ===== Instantiation shown on snippet
+// BasicGetJS
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
+  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
+});
+// END BasicGetJS
+
 // ==============================
 // ===== BASIC GET EXAMPLES =====
 // ==============================
-const assert = require('assert');
 
-// BasicGet JS Example
-const { default: weaviate } = require('weaviate-ts-client');
-
-// END BasicGet JS Example
-
-// Actual instantiation for testing
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'edu-demo.weaviate.network',
-  apiKey: new weaviate.ApiKey('learn-weaviate'),  // If authentication is on. Replace w/ your Weaviate instance API key
-});
-
-`
-// BasicGet JS Example
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'https://some-endpoint.weaviate.network',
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
-});
-
-// END BasicGet JS Example
-`
-
-// BasicGet JS Example
+// BasicGetJS
 async function basicGetQuery() {
   try {
     const res = await client
@@ -43,7 +38,7 @@ async function basicGetQuery() {
 }
 
 basicGetQuery();
-// END BasicGet JS Example
+// END BasicGetJS
 
 // Test
 basicGetQuery().then(res => {
@@ -57,18 +52,8 @@ basicGetQuery().then(res => {
 // ===================================
 // ===== GET WITH LIMIT EXAMPLES =====
 // ===================================
-`
-// GetWithLimit JS Example
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'https://some-endpoint.weaviate.network',
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
-});
 
-// END GetWithLimit JS Example
-`
-
-// GetWithLimit JS Example
+// GetWithLimitJS
 async function getWithLimitQuery() {
   try {
     const res = await client
@@ -86,7 +71,7 @@ async function getWithLimitQuery() {
 }
 
 getWithLimitQuery();
-// END GetWithLimit JS Example
+// END GetWithLimitJS
 
 // Test
 getWithLimitQuery().then(res => {
@@ -101,18 +86,8 @@ getWithLimitQuery().then(res => {
 // ===================================
 // ===== GET PROPERTIES EXAMPLES =====
 // ===================================
-`
-// GetProperties JS Example
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'https://some-endpoint.weaviate.network',
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
-});
 
-// END GetProperties JS Example
-`
-
-// GetProperties JS Example
+// GetPropertiesJS
 async function getPropertiesQuery() {
   try {
     const res = await client
@@ -130,7 +105,7 @@ async function getPropertiesQuery() {
 }
 
 getPropertiesQuery();
-// END GetProperties JS Example
+// END GetPropertiesJS
 
 // Test
 getPropertiesQuery().then(res => {
@@ -145,18 +120,8 @@ getPropertiesQuery().then(res => {
 // ======================================
 // ===== GET OBJECT VECTOR EXAMPLES =====
 // ======================================
-`
-// GetObjectVector JS Example
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'https://some-endpoint.weaviate.network',
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
-});
 
-// END GetObjectVector JS Example
-`
-
-// GetObjectVector JS Example
+// GetObjectVectorJS
 async function getObjectVectorQuery() {
   try {
     const res = await client
@@ -174,7 +139,7 @@ async function getObjectVectorQuery() {
 }
 
 getObjectVectorQuery();
-// END GetObjectVector JS Example
+// END GetObjectVectorJS
 
 // Test
 getObjectVectorQuery().then(res => {
@@ -189,18 +154,8 @@ getObjectVectorQuery().then(res => {
 // ==================================
 // ===== GET OBJECT ID EXAMPLES =====
 // ==================================
-`
-// GetObjectId JS Example
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'https://some-endpoint.weaviate.network',
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
-});
 
-// END GetObjectId JS Example
-`
-
-// GetObjectId JS Example
+// GetObjectIdJS
 async function getObjectIdQuery() {
   try {
     const res = await client
@@ -218,7 +173,7 @@ async function getObjectIdQuery() {
 }
 
 getObjectIdQuery();
-// END GetObjectId JS Example
+// END GetObjectIdJS
 
 // Test
 getObjectIdQuery().then(res => {
