@@ -10,14 +10,18 @@ import BeaconsBackCompatOmitClassname from '/_includes/beacons-backcompat-omit-c
 
 <Badges/>
 
-## List all data objects
+## List data objects
 
-Lists all data objects in reverse order of creation. The data will be returned as an array of objects.
+:::tip Do you want to list all objects from Weaviate?
+Use the [`after`](#exhaustive-listing-using-a-cursor-after) parameter.
+:::
+
+List data objects in reverse order of creation. The data will be returned as an array of objects.
 
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
 :::tip After a class object count?
-A: This `Aggregate` query will retrieve the total object count in a class.
+A: This `Aggregate` query will output a total object count in a class.
 
 <HowToGetObjectCount/>
 :::
@@ -46,7 +50,7 @@ GET /v1/objects?class={ClassName}&limit={limit}&include={include}
 | `class` | string | List objects by class using the class name. |
 | `limit` | integer | The maximum number of data objects to return. Default 25. |
 | `offset` | integer | The offset of objects returned (the starting index of the returned objects).<br/><br/>Cannot be used with `after`.<br/>Should be used in conjunction with `limit`. |
-| `after` | string | ID of the object after which (i.e. non-inclusive ID) objects are to be retrieved.<br/><br/>Must be used with `class`<br/>Cannot be used with `offset` or `sort`.<br/>Should be used in conjunction with `limit`. |
+| `after` | string | ID of the object after which (i.e. non-inclusive ID) objects are to be listed.<br/><br/>Must be used with `class`<br/>Cannot be used with `offset` or `sort`.<br/>Should be used in conjunction with `limit`. |
 | `include` | string | Include additional information, such as classification info. <br/><br/>Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
 | `sort` | string | Name of the property to sort by - i.e. `sort=city`<br/><br/>You can also provide multiple names – i.e. `sort=country,city` |
 | `order` | string | Order in which to sort by.<br/><br/>Possible values: `asc` (default) and `desc`. <br/>Should be used in conjunction with `sort`.|
@@ -57,7 +61,7 @@ GET /v1/objects?class={ClassName}&limit={limit}&include={include}
 You can use `limit` and `offset` for paging results.
 :::
 
-The `offset` parameter is a flexible way to page results as it allows use with parameters such as `sort`. It is limited by the value of `QUERY_MAXIMUM_RESULTS` which sets the maximum total number of objects that can be retrieved using this parameter.
+The `offset` parameter is a flexible way to page results as it allows use with parameters such as `sort`. It is limited by the value of `QUERY_MAXIMUM_RESULTS` which sets the maximum total number of objects that can be listed using this parameter.
 
 Get the first 10 objects:
 ```http
@@ -74,13 +78,15 @@ Get the next batch of 10 objects:
 GET /v1/objects?class=MyClass&limit=10&offset=20
 ```
 
-### Exhaustive retrieval using a cursor: `after`
+### Exhaustive listing using a cursor: `after`
 
 :::tip
-You can use `class`, `limit` and `after` for retrieving an entire object set from a class.
+- Available from version `v1.18.0`.
+- You can use `class`, `limit` and `after` for listing an entire object set from a class.
+- The `after` parameter is based on the order of ids. It can therefore only be applied to list queries without sorting.
 :::
 
-The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. It can therefore only be applied to list queries without sorting. You can pass the last id you retrieved as a cursor to start the next page.
+You can use the `after` parameter to retrieve all objects from a Weaviate instance . The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. You can pass the id of the last retrieved object as a cursor to start the next page.
 
 It is not possible to use the `after` parameter without specifying a `class`.
 
