@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 const featuredTags=[
-  'announcements',
   'concepts',
   'engineering',
   'integrations',
   'how-to',
-  'modules',
-  'performance',
   'release',
   'research',
   'search',
