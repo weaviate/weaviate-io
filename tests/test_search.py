@@ -7,7 +7,8 @@ import subprocess
     "script_loc",
     [
         "./_includes/code/search.basics.py",
-        "./_includes/code/howto/similarity.py"
+        "./_includes/code/howto/similarity.py",
+        "./_includes/code/howto/bm25.py"
     ],
 )
 def test_py(empty_weaviates, script_loc):
@@ -42,6 +43,7 @@ def test_js(empty_weaviates, script_loc):
     "script_loc",
     [
         "./_includes/code/howto/similarity.ts",
+        "./_includes/code/howto/bm25.ts",
     ],
 )
 def test_ts(empty_weaviates, script_loc):

@@ -22,7 +22,7 @@ const client: WeaviateClient = weaviate.client({
 
 // https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
 // GetNearText
-async function GetNearText() {
+async function getNearText() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -44,12 +44,12 @@ async function GetNearText() {
   return response;
 }
 
-GetNearText();
+getNearText();
 // END GetNearText
 
 // https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
 // GetNearVector
-async function GetNearVector() {
+async function getNearVector() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -70,13 +70,13 @@ async function GetNearVector() {
   console.log(response['data']['Get']['JeopardyQuestion']);
 }
 
-GetNearVector();
+getNearVector();
 
 // END GetNearVector
 
 // https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearobject
 // GetNearObject
-async function GetNearObject() {
+async function getNearObject() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -95,12 +95,12 @@ async function GetNearObject() {
   console.log(response['data']['Get']['JeopardyQuestion']);
 }
 
-GetNearObject();
+getNearObject();
 // END GetNearObject
 
 // Limit - https://weaviate.io/developers/weaviate/api/graphql/filters#limit-argument
 // GetLimitOffset
-async function GetLimitOffset() {
+async function getLimitOffset() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -121,13 +121,13 @@ async function GetLimitOffset() {
   console.log(response['data']['Get']['JeopardyQuestion']);
 }
 
-GetLimitOffset();
+getLimitOffset();
 // END GetLimitOffset
 
 
 // Distance - http://weaviate.io/developers/weaviate/config-refs/distances
 // GetWithDistance
-async function GetWithDistance() {
+async function getWithDistance() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -149,13 +149,13 @@ async function GetWithDistance() {
   console.log(response['data']['Get']['JeopardyQuestion']);
 }
 
-GetWithDistance();
+getWithDistance();
 // END GetWithDistance
 
 
 // groupBy - https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
 // GetWithGroupBy
-async function GetWithGroupBy() {
+async function getWithGroupBy() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -201,11 +201,11 @@ async function GetWithGroupBy() {
     console.log(group['_additional']['group']);
 }
 
-GetWithGroupBy();
+getWithGroupBy();
 // END GetWithGroupBy
 
 // GetWithWhere
-async function GetWithWhere() {
+async function getWithWhere() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -234,5 +234,5 @@ async function GetWithWhere() {
   return response;
 }
 
-GetWithWhere();
+getWithWhere();
 // END GetWithWhere

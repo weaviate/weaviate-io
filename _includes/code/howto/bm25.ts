@@ -1,0 +1,172 @@
+// Howto: semantic search - TypeScript examples
+
+const assert = require('assert');
+
+// ================================
+// ===== INSTANTIATION-COMMON =====
+// ================================
+
+// searchBM25Basic  // searchBM25withProperties  // searchBM25withBoost  // searchBM25withFilter
+import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
+  headers: {
+    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'
+  }
+});
+
+// END searchBM25Basic  // END searchBM25withProperties  // END searchBM25withBoost  // END searchBM25withFilter
+
+// ================================
+// ===== Basic BM25 Query =====
+// ================================
+
+// searchBM25Basic
+async function searchBM25Basic() {
+  let response = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+// highlight-start
+  .withBm25({
+    query: 'food',
+  })
+// highlight-end
+  .withLimit(3)
+  .withFields('question answer _additional { score }')
+  .do();
+  console.log(response['data']['Get']['JeopardyQuestion']);
+  // END searchBM25Basic
+
+  // Tests
+  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
+  assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+  const additionalKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]._additional));
+  assert.deepEqual(additionalKeys, new Set(['score']));
+  assert.deepEqual(response.data.Get.JeopardyQuestion.length, 3);
+
+  // searchBM25Basic
+  return response;
+}
+
+searchBM25Basic();
+// END searchBM25Basic
+
+// ================================
+// ===== BM25 Query with Selected Properties =====
+// ================================
+
+// searchBM25withProperties
+async function searchBM25withProperties() {
+  let response = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+// highlight-start
+  .withBm25({
+    query: 'food',
+    properties: ['question']
+  })
+// highlight-end
+  .withLimit(3)
+  .withFields('question answer _additional { score }')
+  .do();
+  console.log(response['data']['Get']['JeopardyQuestion']);
+  // END searchBM25withProperties
+
+  // Tests
+  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
+  assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+  const additionalKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]._additional));
+  assert.deepEqual(additionalKeys, new Set(['score']));
+  assert.deepEqual(response.data.Get.JeopardyQuestion.length, 3);
+  for ( const question of response.data.Get.JeopardyQuestion ) {
+    assert.ok(question.question.includes('food'));
+  }
+
+  // searchBM25withProperties
+  return response;
+}
+
+searchBM25withProperties();
+// END searchBM25withProperties
+
+
+// ================================
+// ===== BM25 Query with Boosted Properties =====
+// ================================
+
+// searchBM25withBoost
+async function searchBM25withBoost() {
+  let response = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+// highlight-start
+  .withBm25({
+    query: 'food',
+    properties: ['question^2', 'answer']
+  })
+// highlight-end
+  .withLimit(3)
+  .withFields('question answer _additional { score }')
+  .do();
+  console.log(response['data']['Get']['JeopardyQuestion']);
+  // END searchBM25withBoost
+
+  // Tests
+  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
+  assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+  const additionalKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]._additional));
+  assert.deepEqual(additionalKeys, new Set(['score']));
+  assert.deepEqual(response.data.Get.JeopardyQuestion.length, 3);
+
+  // searchBM25withBoost
+  return response;
+}
+
+searchBM25withBoost();
+// END searchBM25withBoost
+
+
+// ================================
+// ===== BM25 Query with Filter =====
+// ================================
+
+// searchBM25withFilter
+async function searchBM25withFilter() {
+  let response = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+// highlight-start
+  .withBm25({
+    query: 'food'
+  })
+  .withWhere({
+      'path': ['round'],
+      'operator': 'Equal',
+      'valueText': 'Double Jeopardy!'
+  })
+// highlight-end
+  .withLimit(3)
+  .withFields('question answer round _additional { score }')
+  .do();
+  console.log(response['data']['Get']['JeopardyQuestion']);
+  // END searchBM25withFilter
+
+  // Tests
+  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
+  assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', '_additional']));
+  const additionalKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]._additional));
+  assert.deepEqual(additionalKeys, new Set(['score']));
+  assert.deepEqual(response.data.Get.JeopardyQuestion.length, 3);
+  for ( const question of response.data.Get.JeopardyQuestion ) {
+    assert.deepEqual(question.round, 'Double Jeopardy!');
+  }
+
+  // searchBM25withFilter
+  return response;
+}
+
+searchBM25withFilter();
+// END searchBM25withFilter
