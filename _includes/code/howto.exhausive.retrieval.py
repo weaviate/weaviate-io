@@ -33,13 +33,14 @@ while True:
         break
 
     objects_list.extend(results["data"]["Get"][class_name])
-# Finished retrieving data
+# Finished retrieving data  # END CursorExample
 
 # ===== Tests - retrieval =====
 aggregate_resp = client.query.aggregate("WineReview").with_meta_count().do()
 aggregate_count = aggregate_resp["data"]["Aggregate"]["WineReview"][0]["meta"]["count"]
 assert len(objects_list) == aggregate_count
 # ===== END Tests - retrieval =====
+# CursorExample
 
 # Fetch the schema
 class_schema = client.schema.get(class_name)
@@ -67,10 +68,10 @@ with client.batch(
 
     # Batch import all Questions
     for retrieved_object in objects_list:
-        properties = dict()
+        new_object = dict()
         for prop in class_properties:
-            properties[prop] = retrieved_object[prop]
-        client.batch.add_data_object(properties, class_name=class_name)
+            new_object[prop] = retrieved_object[prop]
+        client.batch.add_data_object(new_object, class_name=class_name)
 # Finished restoring to a new instance
 # END CursorExample
 

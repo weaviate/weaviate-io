@@ -16,7 +16,7 @@ Sometimes, you may wish to list every object in a class, such as for manual back
 The best way to do this is with the `after` parameter, also called the cursor API.
 
 :::info Alternative ordering not possible
-The `after` parameter is based on the order of IDs. No other ordering of data, such as sorting or searching is not possible.
+The `after` parameter is based on the order of IDs. No other ordering of data, such as sorting or searching, is possible.
 :::
 
 ## Retrieve and restore objects
@@ -56,8 +56,8 @@ You can fetch the existing schema like this:
 ### Restore to a new instance
 
 And then restore to a new instance, by:
-- Creating a new class using the fetched schema, and
-- Batch-importing objects.
+- Creating a new class in the new instance using the fetched schema, and
+- Then batch-importing the objects into this new class.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -78,8 +78,8 @@ Putting the pieces together, the below example will retrieve all objects and the
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCodeExample}
-  startMarker="# Restore to a new instance"
-  endMarker="# Finished restoring to a new instance"
+  startMarker="# CursorExample"
+  endMarker="# END CursorExample"
   language="py"
 />
 </TabItem>
