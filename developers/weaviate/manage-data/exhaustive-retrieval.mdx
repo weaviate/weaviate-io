@@ -1,0 +1,92 @@
+---
+title: Exhaustive retrieval & restore
+sidebar_position: 10
+image: og/docs/howto.jpg
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCodeExample from '!!raw-loader!/_includes/code/howto.exhausive.retrieval.py';
+
+## Overview
+
+Sometimes, you may wish to list every object in a class, such as for manual backup when the [`backup`](../configuration/backups.md) feature is not suitable. You may also wish to then restore these objects as well, to a different Weaviate instance for example.
+
+The best way to do this is with the `after` parameter, also called the cursor API.
+
+:::info Alternative ordering not possible
+The `after` parameter is based on the order of IDs. No other ordering of data, such as sorting or searching, is possible.
+:::
+
+## Retrieve and restore objects
+
+### List every object
+
+You can list (i.e. retrieve) every object as shown in the below example, looping through the data with the `after` parameter.
+
+The below example will loop through all objects (and their `title` property) in the `WineReview` class from `https://some-endpoint.weaviate.network` using the ID of the last object retrieved as the cursor:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Retrieve data"
+  endMarker="# Finished retrieving data"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+### Fetch the schema
+
+You can fetch the existing schema like this:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Fetch the schema"
+  endMarker="# Finished fetching the schema"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+### Restore to a new instance
+
+And then restore to a new instance, by:
+- Creating a new class in the new instance using the fetched schema, and
+- Then batch-importing the objects into this new class.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Restore to a new instance"
+  endMarker="# Finished restoring to a new instance"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+### Putting it together
+
+Putting the pieces together, the below example will retrieve all objects and the schema from the `WineReview` class from `https://some-endpoint.weaviate.network` and populate `https://anon-endpoint.weaviate.network` with the same:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# CursorExample"
+  endMarker="# END CursorExample"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
