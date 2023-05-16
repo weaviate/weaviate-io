@@ -22,11 +22,12 @@ def test_python_script(empty_weaviates, script_loc):
     ],
 )
 def test_js(empty_weaviates, script_loc):
+    temp_proc_script_loc = utils.load_and_prep_temp_file(script_loc)
     try:
         # If the script throws an error, this will raise a CalledProcessError
-        subprocess.check_call(['node', script_loc])
+        subprocess.check_call(['node', temp_proc_script_loc])
     except subprocess.CalledProcessError as error:
-        pytest.fail(f'Script {script_loc} failed with error: {error}')
+        pytest.fail(f'Script {temp_proc_script_loc} failed with error: {error}')
 
 
 @pytest.mark.parametrize(
@@ -36,10 +37,11 @@ def test_js(empty_weaviates, script_loc):
     ],
 )
 def test_ts(empty_weaviates, script_loc):
-    command = ["npx", "ts-node", "-O", '{ "module": "commonjs" }', script_loc]
+    temp_proc_script_loc = utils.load_and_prep_temp_file(script_loc, lang="ts")
+    command = ["npx", "ts-node", "-O", '{ "module": "commonjs" }', temp_proc_script_loc]
 
     try:
         # If the script throws an error, this will raise a CalledProcessError
         subprocess.check_call(command)
     except subprocess.CalledProcessError as error:
-        pytest.fail(f'Script {script_loc} failed with error: {error}')
+        pytest.fail(f'Script {temp_proc_script_loc} failed with error: {error}')
