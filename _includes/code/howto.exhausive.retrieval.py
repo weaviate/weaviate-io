@@ -47,8 +47,7 @@ class_schema = client.schema.get(class_name)
 
 # Restore to a new instance
 client = weaviate.Client(
-    url = "http://localhost:8080",  # Replace with your endpoint
-    auth_client_secret=weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # If auth enabled. Replace w/ your Weaviate instance API key
+    url = "https://anon-endpoint.weaviate.network",  # Replace with your endpoint
 )
 
 client.schema.create_class(class_schema)
@@ -67,8 +66,10 @@ with client.batch(
 ) as batch:
 
     # Batch import all Questions
-    for i, d in enumerate(objects_list):
-        properties = {property: d[property] for property in class_properties}
+    for retrieved_object in objects_list:
+        properties = dict()
+        for prop in class_properties:
+            properties[prop] = retrieved_object[prop]
         client.batch.add_data_object(properties, class_name=class_name)
 # Finished restoring to a new instance
 # END CursorExample

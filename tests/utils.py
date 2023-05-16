@@ -13,7 +13,7 @@ def populate_openai_key(codeblock_in: str) -> str:
     return codeblock_out
 
 
-def preprocess_codeblock(raw_codeblock: str, lang: str="py") -> str:
+def preprocess_codeblock(raw_codeblock: str, lang: str="py", custom_replace_pairs: list=[]) -> str:
     """
     Replaces placeholder text such as the URL and API keys with testable equivalents.
 
@@ -33,6 +33,9 @@ def preprocess_codeblock(raw_codeblock: str, lang: str="py") -> str:
         ["<YOUR-WEAVIATE-API-KEY>", "secr3tk3y"],
         ["YOUR-WEAVIATE-API-KEY", "secr3tk3y"],
     ]
+
+    for replace_pair in custom_replace_pairs:
+        proc_codeblock = proc_codeblock.replace(*replace_pair)
 
     for replace_pair in common_replace_pairs:
         proc_codeblock = proc_codeblock.replace(*replace_pair)
@@ -58,16 +61,24 @@ def load_and_prep_script(script_path: str):
     return preprocess_codeblock(code_block)
 
 
-def load_and_prep_temp_file(script_path: str, lang: str = "js"):
+def load_and_prep_temp_file(script_path: str, lang: str = "js", custom_replace_pairs: list = []):
     if lang == "js":
         outpath: Path = Path("./tests/temp.js")
     elif lang == "ts":
         outpath: Path = Path("./tests/temp.ts")
+    elif lang == "py":
+        outpath: Path = Path("./tests/temp.py")
     else:
         raise ValueError(f"Language {lang} not understood.")
 
     with open(script_path, "r") as f:
         code_block = f.read()
-    new_codeblock = preprocess_codeblock(code_block, lang=lang)
+    new_codeblock = preprocess_codeblock(code_block, lang=lang, custom_replace_pairs=custom_replace_pairs)
     outpath.write_text(new_codeblock)
     return outpath.absolute()
+
+
+edu_readonly_replacements = [
+    ("some-endpoint.weaviate.network", "edu-demo.weaviate.network"),
+    ("YOUR-WEAVIATE-API-KEY", "learn-weaviate")
+]
