@@ -35,6 +35,12 @@ while True:
     objects_list.extend(results["data"]["Get"][class_name])
 # Finished retrieving data
 
+# ===== Tests - retrieval =====
+aggregate_resp = client.query.aggregate("WineReview").with_meta_count().do()
+aggregate_count = aggregate_resp["data"]["Aggregate"]["WineReview"][0]["meta"]["count"]
+assert len(objects_list) == aggregate_count
+# ===== END Tests - retrieval =====
+
 # Fetch the schema
 class_schema = client.schema.get(class_name)
 # Finished fetching the schema
@@ -47,6 +53,15 @@ client = weaviate.Client(
 
 client.schema.create_class(class_schema)
 
+# Finished restoring to a new instance  # END CursorExample
+
+# ===== Tests - pre-population =====
+target_aggregate_resp = client.query.aggregate("WineReview").with_meta_count().do()
+target_aggregate_count = target_aggregate_resp["data"]["Aggregate"]["WineReview"][0]["meta"]["count"]
+assert target_aggregate_count == 0
+# ===== END Tests - pre-population =====
+
+# Restore to a new instance  # CursorExample
 with client.batch(
     batch_size=50,
 ) as batch:
@@ -57,3 +72,9 @@ with client.batch(
         client.batch.add_data_object(properties, class_name=class_name)
 # Finished restoring to a new instance
 # END CursorExample
+
+# ===== Tests - pre-population =====
+target_aggregate_resp = client.query.aggregate("WineReview").with_meta_count().do()
+target_aggregate_count = target_aggregate_resp["data"]["Aggregate"]["WineReview"][0]["meta"]["count"]
+assert target_aggregate_count == aggregate_count
+# ===== END Tests - pre-population =====
