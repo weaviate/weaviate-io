@@ -56,7 +56,7 @@ That's because Weaviate inferred them for us, using the "auto-schema" feature.
 
 Weaviate requires a complete schema for each class of data objects.
 
-If any required information is missing, Weaviate will use the [auto-schema feature](../configuration/schema-configuration.md#auto-schema) to fill in infer the rest from the data being imported as well as the default settings.
+If any required information is missing, Weaviate will use the [auto-schema feature](../config-refs/schema.mdx#auto-schema) to fill in infer the rest from the data being imported as well as the default settings.
 
 While this may be suitable in some circumstances, in many cases you may wish to explicitly define a schema. Manually defining the schema will help you ensure that the schema is suited for your specific data and needs.
 
@@ -96,7 +96,7 @@ import CodeCreateSchema from '/_includes/code/quickstart.schema.create.mdx';
 <CodeCreateSchema />
 
 :::note Classes and Properties - best practice
-Classes always start with a capital letter. Properties always begin with a small letter. You can use `CamelCase` class names, and property names allow underscores. Read more about schema classes, properties and data types [here](../configuration/schema-configuration.md#data-objects-and-structure).
+Classes always start with a capital letter. Properties always begin with a small letter. You can use `CamelCase` class names, and property names allow underscores. Read more about schema classes, properties and data types [here](../config-refs/schema.mdx).
 :::
 
 The result should look something like this:
