@@ -274,9 +274,9 @@ It should produce a response like the one below:
 
 </details>
 
-## Add a Boolean (`where`) filter
+## Add a conditional (`where`) filter
 
-You can add a Boolean filter to any hybrid search query, which will filter the outputs but not impact the ranking.
+You can add a conditional filter to any hybrid search query, which will filter the outputs but not impact the ranking.
 
 The below example performs a hybrid search for `food` in any field from objects that have the `round` property of `Double Jeopardy!`, and returns the top 3.
 
