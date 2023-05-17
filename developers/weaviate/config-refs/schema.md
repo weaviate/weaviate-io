@@ -306,6 +306,43 @@ To perform queries which are filtered by the length of a property, the target cl
 Using these features requires more resources, as the additional inverted indices must be created/maintained for the lifetime of the class.
 :::
 
+### invertedIndexConfig > bm25
+
+The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases.
+
+If necessary, they can be configured in the schema per class, and can optionally be overridden per property:
+
+```json
+{
+  "class": "Article",
+  # Configuration of the sparse index
+  "invertedIndexConfig": {
+    "bm25": {
+      "b": 0.75,
+      "k1": 1.2
+    }
+  },
+  "properties": [
+    {
+      "name": "title",
+      "description": "title of the article",
+      "dataType": [
+        "text"
+      ],
+      # Property-level settings override the class-level settings
+      "invertedIndexConfig": {
+        "bm25": {
+          "b": 0.75,
+          "k1": 1.2
+        }
+      },
+      "indexFilterable": true,
+      "indexSearchable": true,
+    }
+  ]
+}
+```
+
 ## Property object
 
 Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.

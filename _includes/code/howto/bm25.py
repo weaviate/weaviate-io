@@ -22,19 +22,100 @@ client = weaviate.Client(
 
 # BM25BasicPython
 response = (
-  client.query
-  .get("JeopardyQuestion", ["question", "answer", "_additional {score} "])
-  # highlight-start
-  .with_bm25(
-    query="food"
-  )
-  # highlight-end
-  .with_limit(3)
-  .do()
+    client.query
+    .get("JeopardyQuestion", ["question", "answer"])
+    # highlight-start
+    .with_bm25(
+      query="food"
+    )
+    # highlight-end
+    .with_limit(3)
+    .do()
 )
 
 print(json.dumps(response, indent=2))
 # END BM25BasicPython
+
+# Tests
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
+# End test
+
+
+expected_results = """
+# Expected BM25Basic results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "food stores (supermarkets)",
+          "question": "This type of retail store sells more shampoo & makeup than any other"
+        },
+        {
+          "answer": "cake",
+          "question": "Devil's food & angel food are types of this dessert"
+        },
+        {
+          "answer": "a closer grocer",
+          "question": "A nearer food merchant"
+        }
+      ]
+    }
+  }
+}
+# END Expected BM25Basic results
+"""
+
+
+
+gql_query = """
+# BM25BasicGraphQL
+{
+  Get {
+    JeopardyQuestion(
+      limit: 3
+# highlight-start
+      bm25: {
+        query: "food"
+      }
+# highlight-end
+    ) {
+      question
+      answer
+    }
+  }
+}
+# END BM25BasicGraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+def test_gqlresponse(response_in, gqlresponse_in):
+    for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
+        assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
+test_gqlresponse(response, gqlresponse)
+
+
+# ==========================================
+# ===== BM25 Query with score / explainScore =====
+# ==========================================
+
+# BM25WithScorePython
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question", "answer"])
+    # highlight-start
+    .with_bm25(
+      query="food"
+    )
+    .with_additional("score")
+    # highlight-end
+    .with_limit(3)
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END BM25WithScorePython
 
 # Tests
 assert "JeopardyQuestion" in response["data"]["Get"]
@@ -45,7 +126,7 @@ assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {
 
 
 expected_results = """
-# Expected BM25Basic results
+# Expected BM25WithScore results
 {
   "data": {
     "Get": {
@@ -75,13 +156,13 @@ expected_results = """
     }
   }
 }
-# END Expected BM25Basic results
+# END Expected BM25WithScore results
 """
 
 
 
 gql_query = """
-# BM25BasicGraphQL
+# BM25WithScoreGraphQL
 {
   Get {
     JeopardyQuestion(
@@ -94,19 +175,22 @@ gql_query = """
     ) {
       question
       answer
+# highlight-start
       _additional {
         score
       }
+# highlight-end
     }
   }
 }
-# END BM25BasicGraphQL
+# END BM25WithScoreGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
 def test_gqlresponse(response_in, gqlresponse_in):
     for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
         assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
 test_gqlresponse(response, gqlresponse)
+
 
 
 # ==========================================
@@ -116,16 +200,17 @@ test_gqlresponse(response, gqlresponse)
 
 # BM25WithPropertiesPython
 response = (
-  client.query
-  .get("JeopardyQuestion", ["question", "answer", "_additional {score} "])
-  # highlight-start
-  .with_bm25(
-    query="food",
-    properties=["question"]
-  )
-  # highlight-end
-  .with_limit(3)
-  .do()
+    client.query
+    .get("JeopardyQuestion", ["question", "answer"])
+    # highlight-start
+    .with_bm25(
+      query="food",
+      properties=["question"]
+    )
+    # highlight-end
+    .with_additional("score")
+    .with_limit(3)
+    .do()
 )
 
 print(json.dumps(response, indent=2))
@@ -211,17 +296,18 @@ test_gqlresponse(response, gqlresponse)
 
 # BM25WithBoostedPropertiesPython
 response = (
-  client.query
-  .get("JeopardyQuestion", ["question", "answer", "_additional {score} "])
-  # highlight-start
-  .with_bm25(
-    query="food",
-    properties=["question^2", "answer"]
+    client.query
+    .get("JeopardyQuestion", ["question", "answer"])
+    # highlight-start
+    .with_bm25(
+      query="food",
+      properties=["question^2", "answer"]
+    )
+    .with_additional("score")
+    # highlight-end
+    .with_limit(3)
+    .do()
   )
-  # highlight-end
-  .with_limit(3)
-  .do()
-)
 
 print(json.dumps(response, indent=2))
 # END BM25WithBoostedPropertiesPython
@@ -303,21 +389,22 @@ test_gqlresponse(response, gqlresponse)
 
 # BM25WithFilterPython
 response = (
-  client.query
-  .get("JeopardyQuestion", ["question", "answer", "round", "_additional {score} "])
-  # highlight-start
-  .with_bm25(
-    query="food"
+    client.query
+    .get("JeopardyQuestion", ["question", "answer", "round"])
+    # highlight-start
+    .with_bm25(
+      query="food"
+    )
+    .with_where({
+        "path": ["round"],
+        "operator": "Equal",
+        "valueText": "Double Jeopardy!"
+    })
+    # highlight-end
+    .with_additional("score")
+    .with_limit(3)
+    .do()
   )
-  .with_where({
-      "path": ["round"],
-      "operator": "Equal",
-      "valueText": "Double Jeopardy!"
-  })
-  # highlight-end
-  .with_limit(3)
-  .do()
-)
 
 print(json.dumps(response, indent=2))
 # END BM25WithFilterPython

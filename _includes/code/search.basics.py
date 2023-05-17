@@ -15,17 +15,22 @@ client = weaviate.Client(
 # ==============================
 
 # BasicGetPython
-result = client.query.get("JeopardyQuestion", ["question"]).do()
-print(result)
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question"])
+    .do()
+)
+
+print(response)
 # END BasicGetPython
 
 # Test results
-assert "JeopardyQuestion" in result["data"]["Get"]
-assert result["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
 # End test
 
 
-expected_result = """
+expected_response = """
 // BasicGet Expected Results
 {
   "data": {
@@ -54,9 +59,9 @@ gql_query = """
 }
 # END BasicGetGraphQL
 """
-gqlresult = client.query.raw(gql_query)
+gqlresponse = client.query.raw(gql_query)
 # Test results
-assert gqlresult == result
+assert gqlresponse == response
 # END Test results
 
 
@@ -66,18 +71,24 @@ assert gqlresult == result
 # ====================================
 
 # GetWithLimitPython
-result = client.query.get("JeopardyQuestion", ["question"]).with_limit(1).do()
-print(result)
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question"])
+    .with_limit(1)
+    .do()
+)
+
+print(response)
 # END GetWithLimitPython
 
 # Test results
-assert "JeopardyQuestion" in result["data"]["Get"]
-assert len(result["data"]["Get"]["JeopardyQuestion"]) == 1
-assert result["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
 # End test
 
 
-expected_result = """
+expected_response = """
 // GetWithLimit Expected Results
 {
   "data": {
@@ -104,11 +115,11 @@ gql_query = """
     }
   }
 }
-# ENDGetWithLimit GraphQL
+# END GetWithLimitGraphQL
 """
-gqlresult = client.query.raw(gql_query)
+gqlresponse = client.query.raw(gql_query)
 # Test results
-assert gqlresult == result
+assert gqlresponse == response
 # END Test results
 
 
@@ -118,18 +129,24 @@ assert gqlresult == result
 # ==========================================
 
 # GetWithLimitOffsetPython
-result = client.query.get("JeopardyQuestion", ["question"]).with_limit(1).with_offset(1).do()
-print(result)
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question"])
+    .with_limit(1)
+    .with_offset(1)
+    .do()
+)
+print(response)
 # END GetWithLimitOffsetPython
 
 # Test results
-assert "JeopardyQuestion" in result["data"]["Get"]
-assert len(result["data"]["Get"]["JeopardyQuestion"]) == 1
-assert result["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
 # End test
 
 
-expected_result = """
+expected_response = """
 // GetWithLimitOffset Expected Results
 {
   "data": {
@@ -157,9 +174,9 @@ gql_query = """
 }
 # END GetWithLimitOffsetGraphQL
 """
-gqlresult = client.query.raw(gql_query)
+gqlresponse = client.query.raw(gql_query)
 # Test results
-assert gqlresult == result
+assert gqlresponse == response
 # END Test results
 
 
@@ -169,18 +186,23 @@ assert gqlresult == result
 # ==========================================
 
 # GetPropertiesPython
-result = client.query.get("JeopardyQuestion", ["question", "answer", "points"]).with_limit(1).do()
-print(result)
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question", "answer", "points"])
+    .with_limit(1)
+    .do()
+)
+print(response)
 # END GetPropertiesPython
 
 # Test results
-assert "JeopardyQuestion" in result["data"]["Get"]
-assert len(result["data"]["Get"]["JeopardyQuestion"]) == 1
-assert result["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "points"}
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "points"}
 # End test
 
 
-expected_result = """
+expected_response = """
 // GetProperties Expected Results
 {
   "data": {
@@ -212,9 +234,9 @@ gql_query = """
 }
 # END GetPropertiesGraphQL
 """
-gqlresult = client.query.raw(gql_query)
+gqlresponse = client.query.raw(gql_query)
 # Test results
-assert gqlresult == result
+assert gqlresponse == response
 # END Test results
 
 
@@ -224,18 +246,24 @@ assert gqlresult == result
 # ======================================
 
 # GetObjectVectorPython
-result = client.query.get("JeopardyQuestion").with_additional("vector").with_limit(1).do()
-print(result)
+response = (
+    client.query
+    .get("JeopardyQuestion")
+    .with_additional("vector")
+    .with_limit(1)
+    .do()
+)
+print(response)
 # END GetObjectVectorPython
 
 # Test results
-assert "JeopardyQuestion" in result["data"]["Get"]
-assert len(result["data"]["Get"]["JeopardyQuestion"]) == 1
-assert result["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"vector"}
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"vector"}
 # End test
 
 
-expected_result = """
+expected_response = """
 // GetObjectVector Expected Results
 {
   "data": {
@@ -273,9 +301,9 @@ gql_query = """
 }
 # END GetObjectVectorGraphQL
 """
-gqlresult = client.query.raw(gql_query)
+gqlresponse = client.query.raw(gql_query)
 # Test results
-assert gqlresult == result
+assert gqlresponse == response
 # END Test results
 
 
@@ -284,18 +312,24 @@ assert gqlresult == result
 # ==================================
 
 # GetObjectIdPython
-result = client.query.get("JeopardyQuestion").with_additional("id").with_limit(1).do()
-print(result)
+response = (
+    client.query
+    .get("JeopardyQuestion")
+    .with_additional("id")
+    .with_limit(1)
+    .do()
+)
+print(response)
 # END GetObjectIdPython
 
 # Test results
-assert "JeopardyQuestion" in result["data"]["Get"]
-assert len(result["data"]["Get"]["JeopardyQuestion"]) == 1
-assert result["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"id"}
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"id"}
 # End test
 
 
-expected_result = """
+expected_response = """
 // GetObjectId Expected Results
 {
   "data": {
@@ -328,7 +362,7 @@ gql_query = """
 }
 # END GetObjectIdGraphQL
 """
-gqlresult = client.query.raw(gql_query)
+gqlresponse = client.query.raw(gql_query)
 # Test results
-assert gqlresult == result
+assert gqlresponse == response
 # END Test results

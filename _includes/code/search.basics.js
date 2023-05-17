@@ -4,18 +4,14 @@ const assert = require('assert');
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-// BasicGetJS
 const { default: weaviate } = require('weaviate-ts-client');
 
-// END BasicGetJS
 // ===== Instantiation shown on snippet
-// BasicGetJS
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
   apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
 });
-// END BasicGetJS
 
 // ==============================
 // ===== BASIC GET EXAMPLES =====
@@ -23,18 +19,14 @@ const client = weaviate.client({
 
 // BasicGetJS
 async function basicGetQuery() {
-  try {
-    const res = await client
-      .graphql
-      .get()
-      .withClassName('JeopardyQuestion')
-      .withFields('question')
-      .do();
-    console.log(JSON.stringify(res));
-    return res;
-  } catch (err) {
-    console.error(err);
-  }
+  const res = await client
+    .graphql
+    .get()
+    .withClassName('JeopardyQuestion')
+    .withFields('question')
+    .do();
+  console.log(JSON.stringify(res));
+  return res;
 }
 
 basicGetQuery();
@@ -55,23 +47,50 @@ basicGetQuery().then(res => {
 
 // GetWithLimitJS
 async function getWithLimitQuery() {
-  try {
-    const res = await client
-      .graphql
-      .get()
-      .withClassName('JeopardyQuestion')
-      .withFields('question')
-      .withLimit(1)
-      .do();
-    console.log(JSON.stringify(res));
-    return res;
-  } catch (err) {
-    console.error(err);
-  }
+  const res = await client
+    .graphql
+    .get()
+    .withClassName('JeopardyQuestion')
+    .withFields('question')
+    .withLimit(1)
+    .do();
+  console.log(JSON.stringify(res));
+  return res;
 }
 
 getWithLimitQuery();
 // END GetWithLimitJS
+
+// Test
+getWithLimitQuery().then(res => {
+  assert('JeopardyQuestion' in res.data.Get);
+  assert.deepEqual(res.data.Get.JeopardyQuestion.length, 1)
+  const questionKeys = new Set(Object.keys(res.data.Get.JeopardyQuestion[0]));
+  assert.deepEqual(questionKeys, new Set(['question']));
+});
+// End test
+
+
+// ===================================
+// ===== GET WITH LIMIT AND OFFSET EXAMPLES =====
+// ===================================
+
+// GetWithLimitOffsetJS
+async function getWithLimitOffset() {
+  const res = await client
+    .graphql
+    .get()
+    .withClassName('JeopardyQuestion')
+    .withFields('question')
+    .withLimit(1)
+    .withOffset(1)
+    .do();
+  console.log(JSON.stringify(res));
+  return res;
+}
+
+getWithLimitOffset();
+// END GetWithLimitOffsetJS
 
 // Test
 getWithLimitQuery().then(res => {
@@ -89,19 +108,15 @@ getWithLimitQuery().then(res => {
 
 // GetPropertiesJS
 async function getPropertiesQuery() {
-  try {
-    const res = await client
-      .graphql
-      .get()
-      .withClassName('JeopardyQuestion')
-      .withFields('question answer points')
-      .withLimit(1)
-      .do();
-    console.log(JSON.stringify(res));
-    return res;
-  } catch (err) {
-    console.error(err);
-  }
+  const res = await client
+    .graphql
+    .get()
+    .withClassName('JeopardyQuestion')
+    .withFields('question answer points')
+    .withLimit(1)
+    .do();
+  console.log(JSON.stringify(res));
+  return res;
 }
 
 getPropertiesQuery();
@@ -123,19 +138,15 @@ getPropertiesQuery().then(res => {
 
 // GetObjectVectorJS
 async function getObjectVectorQuery() {
-  try {
-    const res = await client
-      .graphql
-      .get()
-      .withClassName('JeopardyQuestion')
-      .withFields('_additional {vector}')
-      .withLimit(1)
-      .do();
-    console.log(JSON.stringify(res));
-    return res;
-  } catch (err) {
-    console.error(err);
-  }
+  const res = await client
+    .graphql
+    .get()
+    .withClassName('JeopardyQuestion')
+    .withFields('_additional {vector}')
+    .withLimit(1)
+    .do();
+  console.log(JSON.stringify(res));
+  return res;
 }
 
 getObjectVectorQuery();
@@ -157,19 +168,15 @@ getObjectVectorQuery().then(res => {
 
 // GetObjectIdJS
 async function getObjectIdQuery() {
-  try {
-    const res = await client
-      .graphql
-      .get()
-      .withClassName('JeopardyQuestion')
-      .withFields('_additional {id}')
-      .withLimit(1)
-      .do();
-    console.log(JSON.stringify(res));
-    return res;
-  } catch (err) {
-    console.error(err);
-  }
+  const res = await client
+    .graphql
+    .get()
+    .withClassName('JeopardyQuestion')
+    .withFields('_additional {id}')
+    .withLimit(1)
+    .do();
+  console.log(JSON.stringify(res));
+  return res;
 }
 
 getObjectIdQuery();

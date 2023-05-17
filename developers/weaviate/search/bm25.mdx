@@ -1,6 +1,6 @@
 ---
 title: BM25 search
-sidebar_position: 3
+sidebar_position: 50
 image: og/docs/howto.jpg
 # tags: ['how to', 'perform a similarity search']
 ---
@@ -13,7 +13,9 @@ import TypeScriptCode from '!!raw-loader!/_includes/code/howto/bm25.ts';
 
 ## Overview
 
-This page shows you how to perform keyword searches using Weaviate using the `bm25` parameter. The `bm25` parameter uses the [BM25F](https://en.wikipedia.org/wiki/Okapi_BM25) ranking function to score the results.
+This page shows you how to perform keyword searches using Weaviate using the `bm25` parameter.
+
+The `bm25` parameter uses the [BM25F](https://en.wikipedia.org/wiki/Okapi_BM25) ranking function to score the results.
 
 :::info Related pages
 - [API References: Vector search parameters # BM25](../api/graphql/vector-search-parameters.md#bm25)
@@ -27,9 +29,11 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 ### Basic BM25 search
 
-The simplest search with BM25 will search through all object properties.
+A BM25 search requires a search string as a minimum.
 
-The below example searches for objects containing the keyword `food` anywhere, ranks them using BM25F, and returns the top 3.
+The below example uses default settings, looking for objects containing the keyword `food` anywhere in the object.
+
+It ranks the results using BM25F, and returns the top 3.
 
 <Tabs groupId="languages">
 <TabItem value="graphql" label="GraphQL">
@@ -71,6 +75,56 @@ It should produce a response such as this:
 />
 
 </details>
+
+
+### Score / explainScore
+
+The `score` sub-property is the BM25F score used to rank the outputs. It can be retrieved under the `_additional` property.
+
+The below example adds the `score` property to the list of retrieved properties.
+
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# BM25WithScoreGraphQL"
+  endMarker="# END BM25WithScoreGraphQL"
+  language="graphql"
+/>
+</TabItem>
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# BM25WithScorePython"
+  endMarker="# END BM25WithScorePython"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+<FilteredTextBlock
+  text={TypeScriptCode}
+  startMarker="// searchBM25WithScore"
+  endMarker="// END searchBM25WithScore"
+  language="typescript"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response such as this:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Expected BM25WithScore results"
+  endMarker="# END Expected BM25WithScore results"
+  language="python"
+/>
+
+</details>
+
 
 ### Selected properties only
 
@@ -168,7 +222,7 @@ It should produce a response such as this:
 
 ## Add a Boolean (`where`) filter
 
-You can add a Boolean filter as well, which will filter the outputs but not impact the ranking.
+You can add a Boolean filter to any BM25 search query, which will filter the outputs but not impact the ranking.
 
 The below example searches for objects containing the keyword `food` in any field and has the `round` property of `Double Jeopardy!`, ranks them using BM25F, and returns the top 3.
 

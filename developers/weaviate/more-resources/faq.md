@@ -72,7 +72,7 @@ A: Yes, it is possible to reference to one or more objects (Class -> one or more
 
 #### Q: What is the different between `text` and `string` and `valueText` and `valueString`?
 
-A: In general `value<Text|String>` should always match the data type in your schema. `text` and `string` exhibit different tokenization behavior. Read more in [this section](../config-refs/schema.mdx#property-tokenization) on the differences.
+A: In general `value<Text|String>` should always match the data type in your schema. `text` and `string` exhibit different tokenization behavior. Read more in [this section](../config-refs/schema.md#property-tokenization) on the differences.
 
 #### Q: Are there restrictions on UUID formatting? Do I have to adhere to any standards?
 

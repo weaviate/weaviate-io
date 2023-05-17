@@ -8,7 +8,8 @@ import subprocess
     [
         "./_includes/code/search.basics.py",
         "./_includes/code/howto/similarity.py",
-        "./_includes/code/howto/bm25.py"
+        "./_includes/code/howto/bm25.py",
+        "./_includes/code/howto/hybrid.py"
     ],
 )
 def test_py(empty_weaviates, script_loc):

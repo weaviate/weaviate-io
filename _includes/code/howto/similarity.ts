@@ -6,7 +6,6 @@ const assert = require('assert');
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-// GetNearText  // GetNearVector  // GetNearObject  // GetLimitOffset  // GetWithDistance  // GetWithGroupBy
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
@@ -17,8 +16,6 @@ const client: WeaviateClient = weaviate.client({
     'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'
   }
 });
-
-// END GetNearText  // END GetNearVector  // END GetNearObject // END GetLimitOffset  // END GetWithDistance  // END GetWithGroupBy
 
 // https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
 // GetNearText
