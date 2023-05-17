@@ -6,12 +6,12 @@ const assert = require('assert');
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
+const { default: weaviate } = require('weaviate-ts-client');
 
-const client: WeaviateClient = weaviate.client({
+const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
+  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
   headers: {
     'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'
   }

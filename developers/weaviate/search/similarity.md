@@ -8,8 +8,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/similarity.py';
-import TypeScriptCode from '!!raw-loader!/_includes/code/howto/similarity.ts';
+import PythonCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.similarity.js';
 
 ## Overview
 
@@ -60,9 +60,9 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// GetNearText"
   endMarker="// END GetNearText"
   language="ts"
@@ -111,9 +111,9 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// GetNearObject"
   endMarker="// END GetNearObject"
   language="ts"
@@ -148,9 +148,9 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// GetNearVector"
   endMarker="// END GetNearVector"
   language="ts"
@@ -192,9 +192,9 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// GetLimitOffset"
   endMarker="// END GetLimitOffset"
   language="ts"
@@ -228,9 +228,9 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// GetWithDistance"
   endMarker="// END GetWithDistance"
   language="ts"
@@ -273,9 +273,9 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// GetWithGroupBy"
   endMarker="// END GetWithGroupBy"
   language="ts"
@@ -320,9 +320,9 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// GetWithWhere"
   endMarker="// END GetWithWhere"
   language="ts"

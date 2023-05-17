@@ -8,8 +8,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/search.basics.py';
-import JSCode from '!!raw-loader!/_includes/code/search.basics.js';
+import PythonCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
+import JSCode from '!!raw-loader!/_includes/code/howto/search.basics.js';
 
 ## Overview
 
@@ -50,7 +50,7 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={JSCode}
@@ -105,7 +105,7 @@ Often, you will only want the top `n` results from the query. This can be achiev
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={JSCode}
@@ -158,7 +158,7 @@ Be aware that although you will only see `n` results, this could become an expen
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={JSCode}
@@ -213,7 +213,7 @@ You can specify object properties as below.
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={JSCode}
@@ -264,7 +264,7 @@ To retrieve the object vector, request the `_additional` property and `vector` s
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={JSCode}
@@ -315,7 +315,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={JSCode}

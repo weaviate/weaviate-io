@@ -8,8 +8,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/hybrid.py';
-import TypeScriptCode from '!!raw-loader!/_includes/code/howto/hybrid.ts';
+import PythonCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
+import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.hybrid.js';
 
 ## Overview
 
@@ -56,12 +56,12 @@ It ranks the results using a combination of the BM25 and vector search rankings,
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// searchHybridBasic"
   endMarker="// END searchHybridBasic"
-  language="typescript"
+  language="js"
 />
 </TabItem>
 </Tabs>
@@ -105,12 +105,12 @@ The below example adds the two properties to the list of retrieved properties.
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// searchHybridWithScore"
   endMarker="// END searchHybridWithScore"
-  language="typescript"
+  language="js"
 />
 </TabItem>
 </Tabs>
@@ -153,12 +153,12 @@ The following example uses an alpha of `0.25`, favoring keyword search results.
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// searchHybridWithAlpha"
   endMarker="// END searchHybridWithAlpha"
-  language="typescript"
+  language="js"
 />
 </TabItem>
 </Tabs>
@@ -204,12 +204,12 @@ This is not possible, as doing so will require the entire database to be re-vect
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// searchHybridWithProperties"
   endMarker="// END searchHybridWithProperties"
-  language="typescript"
+  language="js"
 />
 </TabItem>
 </Tabs>
@@ -252,12 +252,12 @@ The below example supplies the vector for "italian food", while using "food" as 
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// searchHybridWithVector"
   endMarker="// END searchHybridWithVector"
-  language="typescript"
+  language="js"
 />
 </TabItem>
 </Tabs>
@@ -300,12 +300,12 @@ The below example performs a hybrid search for `food` in any field from objects 
   language="python"
 />
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={TypeScriptCode}
+  text={JavaScriptCode}
   startMarker="// searchHybridWithFilter"
   endMarker="// END searchHybridWithFilter"
-  language="typescript"
+  language="js"
 />
 </TabItem>
 </Tabs>

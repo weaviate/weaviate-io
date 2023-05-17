@@ -6,10 +6,10 @@ import subprocess
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/search.basics.py",
-        "./_includes/code/howto/similarity.py",
-        "./_includes/code/howto/bm25.py",
-        "./_includes/code/howto/hybrid.py"
+        "./_includes/code/howto/search.basics.py",
+        "./_includes/code/howto/search.similarity.py",
+        "./_includes/code/howto/search.bm25.py",
+        "./_includes/code/howto/search.hybrid.py"
     ],
 )
 def test_py(empty_weaviates, script_loc):
@@ -24,7 +24,10 @@ def test_py(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/search.basics.js",
+        "./_includes/code/howto/search.basics.js",
+        "./_includes/code/howto/search.similarity.js",
+        "./_includes/code/howto/search.bm25.js",
+        "./_includes/code/howto/search.hybrid.js"
     ],
 )
 def test_js(empty_weaviates, script_loc):
@@ -43,9 +46,7 @@ def test_js(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/howto/similarity.ts",
-        "./_includes/code/howto/bm25.ts",
-        "./_includes/code/howto/hybrid.ts"
+
     ],
 )
 def test_ts(empty_weaviates, script_loc):
