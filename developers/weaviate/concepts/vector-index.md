@@ -21,7 +21,7 @@ This page explains what vector indices are, and what purpose they serve in Weavi
 :::info Related pages
 - [Concepts: Indexing](./indexing.md)
 - [Configuration: Indexes](../configuration/indexes.md)
-- [Configuration: Schema (Configure semantic indexing)](../configuration/schema-configuration.md#configure-semantic-indexing)
+- [Configuration: Schema (Configure semantic indexing)](../config-refs/schema.mdx#configure-semantic-indexing)
 :::
 
 ## Introduction
