@@ -11,16 +11,16 @@ import Badges from '/_includes/badges.mdx';
 ## In short
 
 * This module uses a third-party API and may incur costs.
-* Make sure to check the Cohere [pricing page](https://cohere.ai/pricing) before vectorizing large amounts of data.
+* Make sure to check the Cohere [pricing page](https://cohere.com/pricing) before vectorizing large amounts of data.
 * Weaviate automatically parallelizes requests to the Cohere-API when using the batch endpoint.
 
 ## Introduction
 
-The `text2vec-cohere` module enables you to use [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) in Weaviate to represent data objects and run semantic (`nearText`) queries.
+The `text2vec-cohere` module enables you to use [Cohere embeddings](https://docs.cohere.com/docs/embeddings) in Weaviate to represent data objects and run semantic (`nearText`) queries.
 
 ## How to enable
 
-Request a Cohere API-key via [their dashboard](https://dashboard.cohere.ai/welcome/login).
+Request a Cohere API-key via [their dashboard](https://dashboard.cohere.com/welcome/login).
 
 ### Weaviate Cloud Services
 
@@ -45,7 +45,7 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       DEFAULT_VECTORIZER_MODULE: text2vec-cohere
       ENABLE_MODULES: text2vec-cohere
-      COHERE_APIKEY: sk-foobar # request a key on cohere.ai, setting this parameter is optional, you can also provide the API key at runtime
+      COHERE_APIKEY: sk-foobar # request a key on cohere.com, setting this parameter is optional, you can also provide the API key at runtime
       CLUSTER_HOSTNAME: 'node1'
 ...
 ```
@@ -143,14 +143,14 @@ For example, the following schema configuration will set Weaviate to vectorize t
 
 If the input text contains too many tokens and is not truncated, the API will throw an error. The Cohere API can be set to automatically truncate your input text.
 
-You can set the truncation option with the `truncate` parameter to `RIGHT` or `NONE`. Passing RIGHT will discard the right side of the input, the remaining input is exactly the maximum input token length for the model. [source](https://docs.cohere.ai/reference/embed)
+You can set the truncation option with the `truncate` parameter to `RIGHT` or `NONE`. Passing RIGHT will discard the right side of the input, the remaining input is exactly the maximum input token length for the model. [source](https://docs.cohere.com/reference/embed)
 
 * The _upside_ of truncating is that a batch import always succeeds.
 * The _downside_ of truncating (i.e., `NONE`) is that a large text will be partially vectorized without the user being made aware of the truncation.
 
 ### Cohere Rate Limits
 
-Because you will be getting embeddings based on your own API key, you will be dealing with rate limits applied to your account. More information about Cohere rate limits can be found [here](https://docs.cohere.ai/docs/going-live).
+Because you will be getting embeddings based on your own API key, you will be dealing with rate limits applied to your account. More information about Cohere rate limits can be found [here](https://docs.cohere.com/docs/going-live).
 
 ### Throttle the import inside your application
 

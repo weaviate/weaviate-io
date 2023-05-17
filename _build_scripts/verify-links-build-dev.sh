@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-URL_IGNORES="jsonlines.org/|arxiv.org/|huggingface.co/|linkedin.com/in/|crunchbase.com|www.nytimes.com|www.researchgate.net|cohere.ai|www.meetup.com|wiki.pathmind.com|twitter.com|chat.openai.com|platform.openai.com*|www.ing.com"
+URL_IGNORES="jsonlines.org/|arxiv.org/|huggingface.co/|linkedin.com/in/|crunchbase.com|www.nytimes.com|www.researchgate.net|cohere.com|www.meetup.com|wiki.pathmind.com|twitter.com|chat.openai.com|platform.openai.com*|www.ing.com"
 GITHUB_IGNORES="github.com|github.com/weaviate/howto*"
 DEV_BUILD_LINKS_TO_IGNORE="assets/files|https://weaviate.io"
 
