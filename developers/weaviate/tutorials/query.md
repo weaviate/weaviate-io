@@ -75,7 +75,7 @@ For example, here is an example Python code obtaining an OpenAI embedding manual
 ```python
 import openai
 
-openai.api_key = api_tkn
+openai.api_key = "YOUR-OPENAI-API-KEY"
 model="text-embedding-ada-002"
 oai_resp = openai.Embedding.create(input = ["biology"], model=model)
 

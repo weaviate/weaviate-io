@@ -2,13 +2,21 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-{/* <TabItem value="graphql" label="GraphQL">
+{<TabItem value="graphql" label="GraphQL">
 
 ```graphql
-TBC
+{
+  Aggregate {
+    Question {
+      meta {
+        count
+      }
+    }
+  }
+}
 ```
 
-</TabItem> */}
+</TabItem>}
 <TabItem value="py" label="Python">
 
 ```python
@@ -18,14 +26,14 @@ import json
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
     additional_headers={
-        "X-OpenAI-Api-Key": api_tkn  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
     }
 )
 
 result = (
     client.query
     .aggregate("Question")
-    .with_fields("meta {count}")
+    .with_fields("meta { count }")
     .do()
 )
 
@@ -69,17 +77,13 @@ const client: WeaviateClient = weaviate.client({
   headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
 });
 
-client.graphql
+const response = await client.graphql
   .aggregate()
   .withClassName('Question')
   .withFields('meta { count }')
-  .do()
-  .then((res: any) => {
-    console.log(JSON.stringify(res, null, 2))
-  })
-  .catch((err: Error) => {
-    console.error(err)
-  });
+  .do();
+
+console.log(response.data.Aggregate['Question']);
 ```
 
 </TabItem>
