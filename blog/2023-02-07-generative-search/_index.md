@@ -3,7 +3,7 @@ title: ChatGPT for Generative Search
 slug: generative-search
 authors: [zain, erika, connor]
 date: 2023-02-07
-tags: []
+tags: ['search', 'integrations']
 image: ./img/hero.png
 description: "Learn how you can customize Large Language Models prompt responses to your own data by leveraging vector databases."
 ---

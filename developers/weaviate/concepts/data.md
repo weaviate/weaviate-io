@@ -131,6 +131,10 @@ Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Unive
 
 ### Cross-references
 
+:::note Cross-references do not affect vectors
+Creating cross-references do not affect object vectors in either direction.
+:::
+
 In some cases we need to link data objects with each other.
 
 For example: *"Paul Krugman writes for the New York Times"*.<br/>

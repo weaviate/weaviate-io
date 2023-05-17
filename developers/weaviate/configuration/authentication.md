@@ -346,7 +346,7 @@ Once you have obtained a token, attach it to all requests to Weaviate in the hea
 For example, you can use a CURL command as shown below:
 
 ```bash
-# List all objects using a Bearer token
+# List objects using a Bearer token
 $ curl http://localhost:8080/v1/objects -H "Authorization: Bearer TOKEN"
 ```
 

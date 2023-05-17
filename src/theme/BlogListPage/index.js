@@ -10,7 +10,9 @@ import BlogLayout from '@theme/BlogLayout';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
+import FeaturedBlogTags from '../FeaturedBlogTags';
 import { MetaSEO } from '/src/theme/MetaSEO';
+
 
 function BlogListPageMetadata(props) {
   const {metadata} = props;
@@ -34,6 +36,11 @@ function BlogListPageContent(props) {
   return (
     <BlogLayout sidebar={sidebar}>
       <h1 className='page-title'>Weaviate <span className='highlight'>{metadata.blogTitle}</span></h1>
+
+      {metadata.permalink == '/blog' &&
+        <FeaturedBlogTags/>
+      }
+
       <BlogPostItems items={items} />
       <BlogListPaginator metadata={metadata} />
     </BlogLayout>
