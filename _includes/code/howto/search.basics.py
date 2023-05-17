@@ -74,7 +74,9 @@ assert gqlresponse == response
 response = (
     client.query
     .get("JeopardyQuestion", ["question"])
+    # highlight-start
     .with_limit(1)
+    # highlight-end
     .do()
 )
 
@@ -110,7 +112,11 @@ gql_query = """
 # GetWithLimitGraphQL
 {
   Get {
-    JeopardyQuestion (limit: 1) {
+    JeopardyQuestion (
+    # highlight-start
+      limit: 1
+    # highlight-end
+    ) {
       question
     }
   }
@@ -132,8 +138,10 @@ assert gqlresponse == response
 response = (
     client.query
     .get("JeopardyQuestion", ["question"])
+    # highlight-start
     .with_limit(1)
     .with_offset(1)
+    # highlight-end
     .do()
 )
 print(response)
@@ -167,7 +175,12 @@ gql_query = """
 # GetWithLimitOffsetGraphQL
 {
   Get {
-    JeopardyQuestion (limit: 1 offset: 1) {
+    JeopardyQuestion (
+    # highlight-start
+      limit: 1
+      offset: 1
+    # highlight-end
+    ) {
       question
     }
   }
@@ -188,7 +201,9 @@ assert gqlresponse == response
 # GetPropertiesPython
 response = (
     client.query
+    # highlight-start
     .get("JeopardyQuestion", ["question", "answer", "points"])
+    # highlight-end
     .with_limit(1)
     .do()
 )
@@ -226,9 +241,11 @@ gql_query = """
 {
   Get {
     JeopardyQuestion (limit: 1) {
+    # highlight-start
       question
       answer
       points
+    # highlight-end
     }
   }
 }
@@ -249,7 +266,9 @@ assert gqlresponse == response
 response = (
     client.query
     .get("JeopardyQuestion")
+    # highlight-start
     .with_additional("vector")
+    # highlight-end
     .with_limit(1)
     .do()
 )
@@ -293,9 +312,11 @@ gql_query = """
 {
   Get {
     JeopardyQuestion (limit: 1) {
+    # highlight-start
       _additional {
         vector
       }
+    # highlight-end
     }
   }
 }
@@ -315,7 +336,9 @@ assert gqlresponse == response
 response = (
     client.query
     .get("JeopardyQuestion")
+    # highlight-start
     .with_additional("id")
+    # highlight-end
     .with_limit(1)
     .do()
 )
@@ -354,9 +377,11 @@ gql_query = """
 {
   Get {
     JeopardyQuestion (limit: 1) {
+    # highlight-start
       _additional {
         id
       }
+    # highlight-end
     }
   }
 }

@@ -59,10 +59,10 @@ async function searchBM25WithScore() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
-// highlight-start
   .withBm25({
     query: 'food',
   })
+// highlight-start
   .withFields('question answer _additional { score }')
 // highlight-end
   .withLimit(3)
@@ -94,12 +94,12 @@ async function searchBM25withProperties() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
-// highlight-start
   .withBm25({
     query: 'food',
+// highlight-start
     properties: ['question']
-  })
 // highlight-end
+  })
   .withLimit(3)
   .withFields('question answer _additional { score }')
   .do();
@@ -133,12 +133,12 @@ async function searchBM25withBoost() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
-// highlight-start
   .withBm25({
     query: 'food',
+// highlight-start
     properties: ['question^2', 'answer']
-  })
 // highlight-end
+  })
   .withLimit(3)
   .withFields('question answer _additional { score }')
   .do();
@@ -169,10 +169,10 @@ async function searchBM25withFilter() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
-// highlight-start
   .withBm25({
     query: 'food'
   })
+// highlight-start
   .withWhere({
       'path': ['round'],
       'operator': 'Equal',

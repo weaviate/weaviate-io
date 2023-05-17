@@ -52,7 +52,9 @@ async function getWithLimitQuery() {
     .get()
     .withClassName('JeopardyQuestion')
     .withFields('question')
+    // highlight-start
     .withLimit(1)
+    // highlight-end
     .do();
   console.log(JSON.stringify(res));
   return res;
@@ -82,8 +84,10 @@ async function getWithLimitOffset() {
     .get()
     .withClassName('JeopardyQuestion')
     .withFields('question')
+    // highlight-start
     .withLimit(1)
     .withOffset(1)
+    // highlight-end
     .do();
   console.log(JSON.stringify(res));
   return res;
@@ -112,7 +116,9 @@ async function getPropertiesQuery() {
     .graphql
     .get()
     .withClassName('JeopardyQuestion')
+    // highlight-start
     .withFields('question answer points')
+    // highlight-end
     .withLimit(1)
     .do();
   console.log(JSON.stringify(res));
@@ -142,7 +148,9 @@ async function getObjectVectorQuery() {
     .graphql
     .get()
     .withClassName('JeopardyQuestion')
+    // highlight-start
     .withFields('_additional {vector}')
+    // highlight-end
     .withLimit(1)
     .do();
   console.log(JSON.stringify(res));
@@ -172,7 +180,9 @@ async function getObjectIdQuery() {
     .graphql
     .get()
     .withClassName('JeopardyQuestion')
+    // highlight-start
     .withFields('_additional {id}')
+    // highlight-end
     .withLimit(1)
     .do();
   console.log(JSON.stringify(res));

@@ -322,8 +322,8 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={JavaScriptCode}
-  startMarker="// GetWithWhere"
-  endMarker="// END GetWithWhere"
+  startMarker="// GetWithFilter"
+  endMarker="// END GetWithFilter"
   language="ts"
 />
 </TabItem>

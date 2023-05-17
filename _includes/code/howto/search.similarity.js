@@ -17,6 +17,10 @@ const client = weaviate.client({
   }
 });
 
+// ================================
+// ===== With NearText =====
+// ================================
+
 // https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
 // GetNearText
 async function getNearText() {
@@ -44,6 +48,10 @@ async function getNearText() {
 getNearText();
 // END GetNearText
 
+// ================================
+// ===== With NearVector =====
+// ================================
+
 // https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
 // GetNearVector
 async function getNearVector() {
@@ -70,6 +78,10 @@ async function getNearVector() {
 getNearVector();
 
 // END GetNearVector
+
+// ================================
+// ===== With NearObject =====
+// ================================
 
 // https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearobject
 // GetNearObject
@@ -121,6 +133,9 @@ async function getLimitOffset() {
 getLimitOffset();
 // END GetLimitOffset
 
+// ================================
+// ===== With Distance =====
+// ================================
 
 // Distance - http://weaviate.io/developers/weaviate/config-refs/distances
 // GetWithDistance
@@ -149,6 +164,9 @@ async function getWithDistance() {
 getWithDistance();
 // END GetWithDistance
 
+// ================================
+// ===== With GroupBy =====
+// ================================
 
 // groupBy - https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
 // GetWithGroupBy
@@ -158,13 +176,15 @@ async function getWithGroupBy() {
   .withClassName('JeopardyQuestion')
   .withNearText({
     concepts: ['animals in movies']
+  })
   // highlight-start
-  }).withLimit(10)
+  .withLimit(10)
   .withGroupBy({
       path: ["round"],
-      groups: 2,  // only the actual number of groups found will be returned
+      groups: 2,
       objectsPerGroup: 2
-  }).withFields(`
+  })
+  .withFields(`
     _additional {
       group {
         id
@@ -182,7 +202,7 @@ async function getWithGroupBy() {
       }
     }
   `)
-// highlight-end
+  // highlight-end
   .do();
   // END GetWithGroupBy
 
@@ -201,8 +221,12 @@ async function getWithGroupBy() {
 getWithGroupBy();
 // END GetWithGroupBy
 
-// GetWithWhere
-async function getWithWhere() {
+// ================================
+// ===== With Filter =====
+// ================================
+
+// GetWithFilter
+async function GetWithFilter() {
   let response = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -218,7 +242,7 @@ async function getWithWhere() {
   // highlight-end
   .withFields('question answer round _additional { distance }')
   .do();
-  // END GetWithWhere
+  // END GetWithFilter
 
   // Tests
   const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
@@ -226,10 +250,10 @@ async function getWithWhere() {
   assert.deepEqual(response.data.Get.JeopardyQuestion[0]['round'], 'Double Jeopardy!')
   assert.deepEqual(response.data.Get.JeopardyQuestion.length, 2)
 
-  // GetWithWhere
+  // GetWithFilter
   console.log(response['data']['Get']['JeopardyQuestion']);
   return response;
 }
 
-getWithWhere();
-// END GetWithWhere
+GetWithFilter();
+// END GetWithFilter

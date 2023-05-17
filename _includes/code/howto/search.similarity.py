@@ -367,7 +367,8 @@ response = (
     .with_near_text({
         "concepts": ["animals in movies"]})
     # highlight-start
-    .with_limit(10).with_group_by(
+    .with_limit(10)
+    .with_group_by(
         ["round"],
         groups=max_groups,
         objects_per_group=max_objects_per_group

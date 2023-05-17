@@ -104,10 +104,10 @@ test_gqlresponse(response, gqlresponse)
 response = (
     client.query
     .get("JeopardyQuestion", ["question", "answer"])
-    # highlight-start
     .with_bm25(
       query="food"
     )
+    # highlight-start
     .with_additional("score")
     # highlight-end
     .with_limit(3)
@@ -167,11 +167,9 @@ gql_query = """
   Get {
     JeopardyQuestion(
       limit: 3
-# highlight-start
       bm25: {
         query: "food"
       }
-# highlight-end
     ) {
       question
       answer
@@ -202,12 +200,12 @@ test_gqlresponse(response, gqlresponse)
 response = (
     client.query
     .get("JeopardyQuestion", ["question", "answer"])
-    # highlight-start
     .with_bm25(
       query="food",
+      # highlight-start
       properties=["question"]
+      # highlight-end
     )
-    # highlight-end
     .with_additional("score")
     .with_limit(3)
     .do()
@@ -268,12 +266,12 @@ gql_query = """
   Get {
     JeopardyQuestion(
       limit: 3
-# highlight-start
       bm25: {
         query: "food"
+        # highlight-start
         properties: ["question"]
+        # highlight-end
       }
-# highlight-end
     ) {
       question
       answer
@@ -298,13 +296,13 @@ test_gqlresponse(response, gqlresponse)
 response = (
     client.query
     .get("JeopardyQuestion", ["question", "answer"])
-    # highlight-start
     .with_bm25(
       query="food",
+      # highlight-start
       properties=["question^2", "answer"]
+      # highlight-end
     )
     .with_additional("score")
-    # highlight-end
     .with_limit(3)
     .do()
   )
@@ -362,12 +360,12 @@ gql_query = """
   Get {
     JeopardyQuestion(
       limit: 3
-# highlight-start
       bm25: {
         query: "food"
+        # highlight-start
         properties: ["question^2", "answer"]
+        # highlight-end
       }
-# highlight-end
     ) {
       question
       answer
@@ -391,10 +389,10 @@ test_gqlresponse(response, gqlresponse)
 response = (
     client.query
     .get("JeopardyQuestion", ["question", "answer", "round"])
-    # highlight-start
     .with_bm25(
       query="food"
     )
+    # highlight-start
     .with_where({
         "path": ["round"],
         "operator": "Equal",
@@ -464,16 +462,16 @@ gql_query = """
   Get {
     JeopardyQuestion(
       limit: 3
-# highlight-start
       bm25: {
         query: "food"
       }
+      # highlight-start
       where: {
         path: ["round"]
         operator: Equal
         valueText: "Double Jeopardy!"
       }
-# highlight-end
+      # highlight-end
     ) {
       question
       answer
