@@ -13,7 +13,7 @@ import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.similarity
 
 ## Overview
 
-This page shows you how to perform similarity-based searches using Weaviate using the `nearXXX` parameters.
+This page shows you how to perform similarity-based searches using Weaviate with the `nearXXX` parameters.
 
 :::info Related pages
 - [API References: Vector search parameters](../api/graphql/vector-search-parameters.md)
@@ -86,7 +86,7 @@ It should produce a response like the one below:
 
 ### An object
 
-You can use the [`nearObject` parameter](../api/graphql/vector-search-parameters.md#nearobject) to find objects most similar to an existing Weaviate object, by specifying the object ID (e.g. `56b9449e-65db-5df4-887b-0a4773f52aa7`).
+You can use the [`nearObject` parameter](../api/graphql/vector-search-parameters.md#nearobject) to find objects most similar to an existing Weaviate object. To do so, specify the object ID (e.g. `56b9449e-65db-5df4-887b-0a4773f52aa7`) as shown below.
 
 :::tip How to retrieve object IDs
 See [this section](./basics.md#retrieve-the-object-id)
@@ -121,7 +121,6 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 </TabItem>
 </Tabs>
 
-Note that the first result should be query object, as they should be identical.
 <!-- Possibly add: you can technically pass the ID of an object outside of the collection in order to find similar objects across collections. -->
 
 
@@ -163,7 +162,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 
 You can set a limit on:
 - The number of results returned (with `limit`), or
-- How (dis)similar the results are to the query (with `distance` or `certainty`).
+- How similar the results are to the query (with `distance`).
 
 ### Number of results
 

@@ -16,7 +16,7 @@ import JSCode from '!!raw-loader!/_includes/code/howto/search.basics.js';
 This section includes the essentials of performing searches and retrieving objects with the `Get` function.
 
 :::info Related pages
-- [API References: GraphQL](../api/graphql/index.md)
+- [API References: GraphQL: Get](../api/graphql/get.md)
 :::
 
 ## Search syntax
@@ -24,8 +24,8 @@ This section includes the essentials of performing searches and retrieving objec
 ### `Get` function requirements
 
 To retrieve objects from Weaviate, you must use the [`Get` function](../api/graphql/get.md) and specify at least:
-- The target class to search, and
-- At least one property to retrieve.
+- The target `class` to search, and
+- One or more `properties` to retrieve.
 
 ### Simple `Get` example
 
@@ -131,11 +131,15 @@ It should produce a response like the one below:
 
 </details>
 
-### `limit` with `offset`
+### Paginate with `limit` and `offset`
 
 If you only want the `n` results after the first `m` results from the query, you can do this with `limit` and `offset` as shown below.
 
 Be aware that although you will only see `n` results, this could become an expensive operation as `m` grows larger, as Weaviate must fetch `n+m` results.
+
+:::tip For exhaustive retrieval, use `after` instead.
+If you want to list and retrieve all objects from a `class`, use the cursor API instead with the `after` parameter. Read [this guide](../manage-data/exhaustive-retrieval.mdx) for more information on how.
+:::
 
 <Tabs groupId="languages">
 <TabItem value="graphql" label="GraphQL">

@@ -17,7 +17,7 @@ This page shows you how to perform keyword searches using Weaviate using the `hy
 
 The `hybrid` parameter uses both the `bm25` (i.e. sparse vector) and vector (i.e. dense vector) search algorithms, and combines their outputs to produce results.
 
-The results are determined by a weighting of the two search outputs.
+The results are determined by a weighted combination of the two search outputs.
 
 :::info Related pages
 - [API References: Vector search parameters # Hybrid](../api/graphql/vector-search-parameters.md#hybrid)
@@ -27,17 +27,15 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 <BasicPrereqs />
 
-## Search syntax
+## Basic hybrid search
 
-### Basic hybrid search
-
-A hybrid search requires a search string as a minimum.
+To use hybrid search, you must provide a search string as a minimum.
 
 The below example uses default settings, looking for:
-- objects containing the keyword `food` anywhere in the object, and
-- objects most similar to the vector of `food`.
+- Objects containing the keyword `food` anywhere in the object, and
+- Objects most similar to the vector of `food`.
 
-It ranks the results using a combination of the BM25 and vector search rankings, and returns the top 3.
+It ranks the results using a combination of the `bm25` and vector search rankings, and returns the top 3.
 
 <Tabs groupId="languages">
 <TabItem value="graphql" label="GraphQL">
@@ -130,9 +128,9 @@ It should produce a response like the one below:
 </details>
 
 
-### Weight keyword vs vector results
+## Weight keyword vs vector results
 
-You can use the `alpha` argument to weight the keyword (`bm25`) or vector search results. An `alpha` of `1` triggers a pure vector search and `0` triggers a pure keyword search. The default is `0.75`.
+You can use the `alpha` argument to weight the keyword (`bm25`) or vector search results. An `alpha` of `1` is for a pure vector search and `0` is for a pure keyword search. The default is `0.75`.
 
 The following example uses an alpha of `0.25`, favoring keyword search results.
 
@@ -177,14 +175,14 @@ It should produce a response like the one below:
 
 </details>
 
-### Selected properties only
+## Selected properties only
 
 You can specify the object `properties` for the `bm25` portion of the search.
 
 The below example performs a `bm25` search for the keyword `food` in the `question` property only, and combines it with vector search results for `food`.
 
 :::info Why does this not affect the vector search?
-This is not possible, as doing so will require the entire database to be re-vectorized with the new vectorization options, and indexed.
+This is not possible as doing so will require the entire database to be re-vectorized and re-indexed with the new vectorization options.
 :::
 
 <Tabs groupId="languages">
@@ -229,7 +227,7 @@ It should produce a response like the one below:
 </details>
 
 
-### With a custom vector
+## With a custom vector
 
 You can provide your own `vector` input to the hybrid query. In this scenario, Weaviate will use the query string for the `bm25` search and the input vector for the vector search.
 
