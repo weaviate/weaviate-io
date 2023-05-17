@@ -27,6 +27,7 @@ Each WCS instance is:
 - Automatically created with the latest available version of Weaviate.
 - Upgradeable to later versions of Weaviate as they are released.
 - Pre-configured with the `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, `qna-openai` and `generative-openai` modules.
+    - Not configured with a default vectorizer. So you must [specify a vectorizer in the schema](../weaviate/configuration/schema-configuration.md#specify-a-vectorizer) if you want Weaviate to vectorize your data.
 - Configured with authentication for security (optional for the sandbox).
     - We recommend using a Weaviate client for the most convenient experience with authentication.
 - Accessible through the Weaviate Console.
