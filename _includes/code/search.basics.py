@@ -3,15 +3,12 @@
 # ================================
 
 # ===== Instantiation shown on snippet
-# BasicGetPython  # GetWithLimitPython  # GetWithLimitOffsetPython  # GetPropertiesPython  # GetObjectVectorPython  # GetObjectIdPython
 import weaviate
 
 client = weaviate.Client(
     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
     auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
 )
-
-# END BasicGetPython  # END GetWithLimitPython  # END GetWithLimitOffsetPython  # END GetPropertiesPython  # END GetObjectVectorPython  # END GetObjectIdPython
 
 # ==============================
 # ===== BASIC GET EXAMPLES =====

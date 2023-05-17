@@ -4,7 +4,6 @@
 # ===== INSTANTIATION-COMMON =====
 # ================================
 
-# GetNearTextPython  # GetNearObjectPython  # GetNearVectorPython  # GetLimitOffsetPython  # GetWithDistancePython  # GetWithGroupbyPython  # GetWithWherePython
 import weaviate
 import json
 
@@ -17,15 +16,13 @@ client = weaviate.Client(
     }
 )
 
-# END GetNearTextPython  # END GetNearObjectPython  # END GetNearVectorPython  # END GetLimitOffsetPython  # END GetWithDistancePython  # END GetWithGroupbyPython  # END GetWithWherePython
-
 # ==========================================
 # ===== QUERY WITH NEARTEXT =====
 # ==========================================
 
 # https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
 
-# GetNearText
+# GetNearTextPython
 response = client.query.get(
     "JeopardyQuestion",
     ["question", "answer"]
@@ -38,7 +35,7 @@ response = client.query.get(
 ).do()
 
 print(json.dumps(response, indent=2))
-# END GetNearText
+# END GetNearTextPython
 
 # Test results
 assert "JeopardyQuestion" in response["data"]["Get"]

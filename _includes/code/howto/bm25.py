@@ -4,7 +4,6 @@
 # ===== INSTANTIATION-COMMON =====
 # ================================
 
-# BM25BasicPython  # BM25WithPropertiesPython  # BM25WithFilterPython  # BM25WithBoostedPropertiesPython
 import weaviate
 import json
 
@@ -16,8 +15,6 @@ client = weaviate.Client(
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
 )
-
-# END BM25BasicPython  # END BM25WithPropertiesPython  # END BM25WithFilterPython  # END BM25WithBoostedPropertiesPython
 
 # ==========================================
 # ===== Basic BM25 Query =====
