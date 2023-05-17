@@ -15,7 +15,7 @@ import Badges from '/_includes/badges.mdx';
 * The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries.
 * Added in Weaviate `v1.19.1`.
 * You need an API key for a PaLM API to use this module.
-* The default model is `text-bison-001`.
+* The default model is `chat-bison`.
 
 ## Introduction
 
@@ -133,13 +133,15 @@ services:
 
 You can define settings for this module in the schema, including the API endpoint and project information, as well as optional model parameters.
 
+Note that the `projectId` parameter is required.
+
 ### Example schema
 
 For example, the following schema configuration will set the PaLM API information, as well as the optional parameters.
 
-- The `"apiEndpoint"` may be something like: `"us-central1-aiplatform.googleapis.com"`
-- The `"projectId"` may be something like `"cloud-large-language-models"`, and
-- The `"endpointId"` may be something like `"4511608470067216384"`
+- The `"projectId"` is REQUIRED, and may be something like `"cloud-large-language-models"`
+- The `"apiEndpoint"` is optional, and may be something like: `"us-central1-aiplatform.googleapis.com"`, and
+- The `"modelId"` is optional, and may be something like `"chat-bison"`.
 
 ```json
 {
@@ -151,9 +153,9 @@ For example, the following schema configuration will set the PaLM API informatio
       "moduleConfig": {
         // highlight-start
         "generative-palm": {
-          "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value: (e.g. "us-central1-aiplatform.googleapis.com".
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
-          "endpointId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",  // Required. Replace with your value: (e.g. "4511608470067216384")
+          "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.
+          "modelId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",     // Optional. Defaults to "chat-bison"
           "temperature": 0.2,      // Optional
           "maxOutputTokens": 512,  // Optional
           "topK": 3,               // Optional
@@ -315,7 +317,7 @@ additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++c
 
 ### Supported models
 
-The `text-bison-001` model is used by default. The model has the following properties:
+The `chat-bison` model is used by default. The model has the following properties:
 
 - Max input token: 8,192
 - Max output tokens: 1,024

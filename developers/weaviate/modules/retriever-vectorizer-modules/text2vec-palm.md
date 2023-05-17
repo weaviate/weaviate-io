@@ -15,7 +15,7 @@ import Badges from '/_includes/badges.mdx';
 * Weaviate automatically parallelizes requests to the API when using the batch endpoint.
 * Added in Weaviate `v1.19.1`.
 * You need an API key for a PaLM API to use this module.
-* The default model is `textembedding-gecko-001`.
+* The default model is `textembedding-gecko`.
 
 ## Overview
 
@@ -120,13 +120,17 @@ import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.m
 
 You can provide additional module configurations through the schema. You can [learn about schemas here](/developers/weaviate/tutorials/schema.md).
 
-For `text2vec-palm`, you can set the vectorizer model and vectorizer behavior.
+For `text2vec-palm`, you can set the vectorizer model and vectorizer behavior using parameters in the `moduleConfig` section of your schema:
 
-Set the vectorizer model using parameters in the `moduleConfig` section of your schema:
+Note that the `projectId` parameter is required.
 
-- The `"apiEndpoint"` may be something like: `"us-central1-aiplatform.googleapis.com"`
-- The `"projectId"` may be something like `"cloud-large-language-models"`, and
-- The `"modelId"` may be something like `"textembedding-gecko-001"`.
+### Example schema
+
+For example, the following schema configuration will set the PaLM API information.
+
+- The `"projectId"` is REQUIRED, and may be something like `"cloud-large-language-models"`
+- The `"apiEndpoint"` is optional, and may be something like: `"us-central1-aiplatform.googleapis.com"`, and
+- The `"modelId"` is optional, and may be something like `"textembedding-gecko"`.
 
 ```json
 {
@@ -138,9 +142,9 @@ Set the vectorizer model using parameters in the `moduleConfig` section of your 
       "moduleConfig": {
         // highlight-start
         "text2vec-palm": {
-          "apiEndpoint": "YOUR-API-ENDPOINT",             // Required. Replace with your value: (e.g. "us-central1-aiplatform.googleapis.com")
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
-          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to `textembedding-gecko-001`.
+          "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
+          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko".
         },
         // highlight-end
       },
@@ -162,9 +166,7 @@ Set property-level vectorizer behavior using the `moduleConfig` section under ea
       "vectorizer": "text2vec-palm",
       "moduleConfig": {
         "text2vec-palm": {
-          "apiEndpoint": "YOUR-API-ENDPOINT",           // Required. Replace with your value: (e.g. "us-central1-aiplatform.googleapis.
-          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",  // Required. Replace with your value: (e.g. "cloud-large-language-models")
-          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",      // Optional. Defaults to `textembedding-gecko-001`.
+          // See above for module parameters
         },
       },
       "properties": [
@@ -205,29 +207,11 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 ### Available model
 
-You can specify the model as a part of the schema as shown below.
+You can specify the model as a part of the schema as shown earlier.
 
-```json
-{
-  "classes": [
-    {
-      "class": "Document",
-      "vectorizer": "text2vec-palm",
-      "moduleConfig": {
-        "text2vec-palm": {
-          "apiEndpoint": "YOUR-API-ENDPOINT",           // Required. Replace with your value: (e.g. "us-central1-aiplatform.googleapis.
-          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",  // Required. Replace with your value: (e.g. "cloud-large-language-models")
-          "modelId": "textembedding-gecko-001",         // Optional. Defaults to `textembedding-gecko-001`.
-        },
-      }
-    }
-  ]
-}
-```
+Currently, the only available model is `textembedding-gecko`.
 
-Currently, the only available model is `textembedding-gecko-001`.
-
-The `textembedding-gecko-001` accepts a maximum of 3,072 input tokens, and outputs 768-dimensional vector embeddings.
+The `textembedding-gecko` model accepts a maximum of 3,072 input tokens, and outputs 768-dimensional vector embeddings.
 
 ### Rate limits
 
