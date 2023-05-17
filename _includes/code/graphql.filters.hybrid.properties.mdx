@@ -12,12 +12,12 @@ import TabItem from '@theme/TabItem';
     JeopardyQuestion(
       hybrid: {
         query: "Venus"
-        alpha: 0.01  # close to pure keyword search
+        alpha: 0.25  # closer to pure keyword search
 # highlight-start
         properties: ["question"]  # changing to "answer" will yield a different result set
 # highlight-end
       }
-      limit: 10
+      limit: 3
     ) {
       question
       answer
@@ -39,11 +39,12 @@ result = (
   .with_additional(["score"])
   .with_hybrid(
     "Venus",
-    alpha=0.01,  # close to pure keyword search
+    alpha=0.25,  # closer to pure keyword search
 # highlight-start
     properties=["question"]  # changing to "answer" will yield a different result set
 # highlight-end
-  ).do()
+  )
+  .with_limit(3)do()
 )
 
 print(json.dumps(result, indent=4))
@@ -59,11 +60,12 @@ const response = await client.graphql
   .withFields('question answer _additional{ score }')
   .withHybrid({
     query: 'Venus',
-    alpha: 0.01,  // close to pure keyword search
+    alpha: 0.25,  // closer to pure keyword search
 // highlight-start
     properties: ['question'],  // changing to "answer" will yield a different set of results
 // highlight-end
   })
+  withLimit(3)
   .do();
 
 console.log(response['data']['Get']['JeopardyQuestion']);
@@ -75,7 +77,7 @@ console.log(response['data']['Get']['JeopardyQuestion']);
 ```java
 HybridArgument hybrid = client.graphQL().arguments().HybridArgBuilder()
   .query("Fisherman that catches salmon")
-  .alpha(0.01f)  // close to pure keyword search
+  .alpha(0.25f)  // closer to pure keyword search
 // highlight-start
   .properties(String[]{"question"})  // changing to "answer" will yield a different result set
 // highlight-end
@@ -89,7 +91,9 @@ Field _additional = Field.builder()
 testGenerics.createTestSchemaAndData(client);
 Result<GraphQLResponse> result = client.graphQL().get().withClassName("JeopardyQuestion")
   .withHybrid(hybrid)
-  .withFields(name, _additional).run();
+  .withFields(name, _additional)
+  .withLimit(3)
+  .run();
 ```
 
 </TabItem>
@@ -102,11 +106,13 @@ echo '{
         JeopardyQuestion (
           hybrid: {
             query: \"Venus\"
-            alpha: 0.01
+            alpha: 0.25
 # highlight-start
             properties: [\"question\"]
 # highlight-end
-          })
+          }
+          limit: 3
+        )
         {
           question
           answer

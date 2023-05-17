@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
      {
       title
       summary
-      _additional { score }
+      _additional { score, explainScore }
     }
   }
 }
@@ -30,7 +30,7 @@ import TabItem from '@theme/TabItem';
 result = (
     client.query
     .get("Article", ["title", "summary"])
-    .with_additional(["score"])
+    .with_additional(["score", "explainScore"])
     .with_hybrid("Fisherman that catches salmon", alpha=0.5)
     .do()
   )
@@ -45,7 +45,7 @@ result = (
 client.graphql
   .get()
   .withClassName('Article')
-  .withFields('title summary _additional{ score }')
+  .withFields('title summary _additional{ score explainScore }')
   .withHybrid({
       query: 'Fisherman that catches salmon'
       alpha: 0.5, // optional, defaults to 0.75
@@ -79,7 +79,7 @@ HybridArgument hybrid = client.graphQL().arguments().HybridArgBuilder()
 Field name = Field.builder().name("title" "summary").build();
 Field _additional = Field.builder()
   .name("_additional")
-  .fields(new Field[]{Field.builder().name("score").build()})
+  .fields(new Field[]{Field.builder().name("score explainScore").build()})
   .build();
 // when
 testGenerics.createTestSchemaAndData(client);
@@ -104,7 +104,7 @@ echo '{
         {
           title
           summary
-          _additional { score }
+          _additional { score explainScore }
       }
     }
   }"
