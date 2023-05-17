@@ -65,7 +65,7 @@ This example shows how to aggregate over the entire database. [Below](#aggregati
 }
 ```
 
-An example query to obtain meta information about the data in the class `Article` can be queried as follows. Note that the data is not grouped yet, the meta information is about all the data objects found with the class `Article`.
+Below is an example query to obtain meta information about the data in the class `Article`. Note that the data is not grouped yet, the meta information is about all the data objects found with the class `Article`.
 
 import GraphQLAggregateSimple from '/_includes/code/graphql.aggregate.simple.mdx';
 
@@ -112,7 +112,7 @@ The above query will result in something like the following:
 
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
-:::tip `meta` count will return the query object count
+:::tip `meta { count }` will return the query object count
 As such, this `Aggregate` query will retrieve the total object count in a class.
 
 <HowToGetObjectCount/>
