@@ -30,16 +30,6 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 ### Simple `Get` example
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# BasicGetGraphQL"
-  endMarker="# END BasicGetGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
@@ -57,6 +47,16 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
   startMarker="// BasicGetJS"
   endMarker="// END BasicGetJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# BasicGetGraphQL"
+  endMarker="# END BasicGetGraphQL"
+  language="graphql"
 />
 
 </TabItem>
@@ -85,16 +85,6 @@ The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRU
 Often, you will only want the top `n` results from the query. This can be achieved by setting a `limit` as shown below.
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithLimitGraphQL"
-  endMarker="# END GetWithLimitGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
@@ -112,6 +102,16 @@ Often, you will only want the top `n` results from the query. This can be achiev
   startMarker="// GetWithLimitJS"
   endMarker="// END GetWithLimitJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetWithLimitGraphQL"
+  endMarker="# END GetWithLimitGraphQL"
+  language="graphql"
 />
 
 </TabItem>
@@ -142,16 +142,6 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
 :::
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithLimitOffsetGraphQL"
-  endMarker="# END GetWithLimitOffsetGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
@@ -169,6 +159,16 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
   startMarker="// GetWithLimitOffsetJS"
   endMarker="// END GetWithLimitOffsetJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetWithLimitOffsetGraphQL"
+  endMarker="# END GetWithLimitOffsetGraphQL"
+  language="graphql"
 />
 
 </TabItem>
@@ -197,16 +197,6 @@ You can specify the properties to be fetched, as long as one or more are specifi
 You can specify object properties as below.
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetPropertiesGraphQL"
-  endMarker="# END GetPropertiesGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
@@ -224,6 +214,16 @@ You can specify object properties as below.
   startMarker="// GetPropertiesJS"
   endMarker="// END GetPropertiesJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetPropertiesGraphQL"
+  endMarker="# END GetPropertiesGraphQL"
+  language="graphql"
 />
 
 </TabItem>
@@ -248,16 +248,6 @@ It should produce a response like the one below:
 To retrieve the object vector, request the `_additional` property and `vector` sub-property. You can do so as shown below.
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetObjectVectorGraphQL"
-  endMarker="# END GetObjectVectorGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
@@ -275,6 +265,16 @@ To retrieve the object vector, request the `_additional` property and `vector` s
   startMarker="// GetObjectVectorJS"
   endMarker="// END GetObjectVectorJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetObjectVectorGraphQL"
+  endMarker="# END GetObjectVectorGraphQL"
+  language="graphql"
 />
 
 </TabItem>
@@ -299,16 +299,6 @@ It should produce a response like the one below:
 To retrieve the object ID, request the `_additional` property and `id` sub-property. You can do so as shown below.
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetObjectIdGraphQL"
-  endMarker="# END GetObjectIdGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
@@ -326,6 +316,16 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
   startMarker="// GetObjectIdJS"
   endMarker="// END GetObjectIdJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetObjectIdGraphQL"
+  endMarker="# END GetObjectIdGraphQL"
+  language="graphql"
 />
 
 </TabItem>

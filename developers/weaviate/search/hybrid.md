@@ -38,14 +38,6 @@ The below example uses default settings, looking for:
 It ranks the results using a combination of the `bm25` and vector search rankings, and returns the top 3.
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# HybridBasicGraphQL"
-  endMarker="# END HybridBasicGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -60,6 +52,14 @@ It ranks the results using a combination of the `bm25` and vector search ranking
   startMarker="// searchHybridBasic"
   endMarker="// END searchHybridBasic"
   language="js"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridBasicGraphQL"
+  endMarker="# END HybridBasicGraphQL"
+  language="graphql"
 />
 </TabItem>
 </Tabs>
@@ -87,14 +87,6 @@ The below example adds the two properties to the list of retrieved properties.
 
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# HybridWithScoreGraphQL"
-  endMarker="# END HybridWithScoreGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -109,6 +101,14 @@ The below example adds the two properties to the list of retrieved properties.
   startMarker="// searchHybridWithScore"
   endMarker="// END searchHybridWithScore"
   language="js"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithScoreGraphQL"
+  endMarker="# END HybridWithScoreGraphQL"
+  language="graphql"
 />
 </TabItem>
 </Tabs>
@@ -135,14 +135,6 @@ You can use the `alpha` argument to weight the keyword (`bm25`) or vector search
 The following example uses an alpha of `0.25`, favoring keyword search results.
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# HybridWithAlphaGraphQL"
-  endMarker="# END HybridWithAlphaGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -157,6 +149,14 @@ The following example uses an alpha of `0.25`, favoring keyword search results.
   startMarker="// searchHybridWithAlpha"
   endMarker="// END searchHybridWithAlpha"
   language="js"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithAlphaGraphQL"
+  endMarker="# END HybridWithAlphaGraphQL"
+  language="graphql"
 />
 </TabItem>
 </Tabs>
@@ -186,14 +186,6 @@ This is not possible as doing so will require the entire database to be re-vecto
 :::
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# HybridWithVectorGraphQL"
-  endMarker="# END HybridWithVectorGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -208,6 +200,14 @@ This is not possible as doing so will require the entire database to be re-vecto
   startMarker="// searchHybridWithProperties"
   endMarker="// END searchHybridWithProperties"
   language="js"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithVectorGraphQL"
+  endMarker="# END HybridWithVectorGraphQL"
+  language="graphql"
 />
 </TabItem>
 </Tabs>
@@ -234,14 +234,6 @@ You can provide your own `vector` input to the hybrid query. In this scenario, W
 The below example supplies the vector for "italian food", while using "food" as the query text. Note how the results have now skewed towards Italian food.
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# HybridWithVectorGraphQL"
-  endMarker="# END HybridWithVectorGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -256,6 +248,14 @@ The below example supplies the vector for "italian food", while using "food" as 
   startMarker="// searchHybridWithVector"
   endMarker="// END searchHybridWithVector"
   language="js"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithVectorGraphQL"
+  endMarker="# END HybridWithVectorGraphQL"
+  language="graphql"
 />
 </TabItem>
 </Tabs>
@@ -282,14 +282,6 @@ The below example performs a hybrid search for `food` in any field from objects 
 
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# HybridWithFilterGraphQL"
-  endMarker="# END HybridWithFilterGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -304,6 +296,14 @@ The below example performs a hybrid search for `food` in any field from objects 
   startMarker="// searchHybridWithFilter"
   endMarker="// END searchHybridWithFilter"
   language="js"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithFilterGraphQL"
+  endMarker="# END HybridWithFilterGraphQL"
+  language="graphql"
 />
 </TabItem>
 </Tabs>

@@ -44,14 +44,6 @@ You can use these parameters to find objects most similar to a raw (un-vectorize
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching `"animals in movies"`, using `nearText`:
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearTextGraphql"
-  endMarker="# END GetNearTextGraphql"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -66,6 +58,14 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   startMarker="// GetNearText"
   endMarker="// END GetNearText"
   language="ts"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetNearTextGraphql"
+  endMarker="# END GetNearTextGraphql"
+  language="graphql"
 />
 </TabItem>
 </Tabs>
@@ -95,14 +95,6 @@ See [this section](./basics.md#retrieve-the-object-id)
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching the object with ID `56b9449e-65db-5df4-887b-0a4773f52aa7`, using `nearObject`:
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearObjectGraphQL"
-  endMarker="# END GetNearObjectGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -119,6 +111,14 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   language="ts"
 />
 </TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetNearObjectGraphQL"
+  endMarker="# END GetNearObjectGraphQL"
+  language="graphql"
+/>
+</TabItem>
 </Tabs>
 
 <!-- Possibly add: you can technically pass the ID of an object outside of the collection in order to find similar objects across collections. -->
@@ -131,14 +131,6 @@ You can use the [`nearVector` parameter](../api/graphql/vector-search-parameters
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching the object with the provided vector, using `nearVector`:
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearVectorGraphQL"
-  endMarker="# END GetNearVectorGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -153,6 +145,14 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   startMarker="// GetNearVector"
   endMarker="// END GetNearVector"
   language="ts"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetNearVectorGraphQL"
+  endMarker="# END GetNearVectorGraphQL"
+  language="graphql"
 />
 </TabItem>
 </Tabs>
@@ -175,14 +175,6 @@ To limit the number of results returned by a `near...` query, add the limit para
 The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, skips 1 object (`offset`) and returns the next 2 objects:
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetLimitOffsetGraphQL"
-  endMarker="# END GetLimitOffsetGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -199,6 +191,14 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
   language="ts"
 />
 </TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetLimitOffsetGraphQL"
+  endMarker="# END GetLimitOffsetGraphQL"
+  language="graphql"
+/>
+</TabItem>
 </Tabs>
 
 
@@ -211,14 +211,6 @@ Multiple [distance metrics](../config-refs/distances.md) are available in Weavia
 The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, returning those with a `distance` less than `0.18`:
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithDistanceGraphQL"
-  endMarker="# END GetWithDistanceGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -233,6 +225,14 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
   startMarker="// GetWithDistance"
   endMarker="// END GetWithDistance"
   language="ts"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetWithDistanceGraphQL"
+  endMarker="# END GetWithDistanceGraphQL"
+  language="graphql"
 />
 </TabItem>
 </Tabs>
@@ -256,14 +256,6 @@ You can group search results by any arbitrary property.
 The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, fetching the 10 closest results. Then those results are grouped by `round`, returning a maximum of two groups, each group with a maximum of two results (`hits`):
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithGroupbyGraphQL"
-  endMarker="# END GetWithGroupbyGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -278,6 +270,14 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
   startMarker="// GetWithGroupBy"
   endMarker="// END GetWithGroupBy"
   language="ts"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetWithGroupbyGraphQL"
+  endMarker="# END GetWithGroupbyGraphQL"
+  language="graphql"
 />
 </TabItem>
 </Tabs>
@@ -303,14 +303,6 @@ You can add a Boolean filter to your search results using the `where` argument.
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching `"animals in movies"`, as long as their `round` property is exactly `"Double Jeopardy!"`:
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithWhereGraphQL"
-  endMarker="# END GetWithWhereGraphQL"
-  language="graphql"
-/>
-</TabItem>
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
@@ -325,6 +317,14 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   startMarker="// GetWithFilter"
   endMarker="// END GetWithFilter"
   language="ts"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetWithWhereGraphQL"
+  endMarker="# END GetWithWhereGraphQL"
+  language="graphql"
 />
 </TabItem>
 </Tabs>
