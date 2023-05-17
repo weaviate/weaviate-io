@@ -13,7 +13,7 @@ import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.hybrid.js'
 
 ## Overview
 
-This page shows you how to perform keyword searches using Weaviate using the `hybrid` parameter.
+This page shows you how to perform `hybrid` searches using Weaviate.
 
 The `hybrid` parameter uses both the `bm25` (i.e. sparse vector) and vector (i.e. dense vector) search algorithms, and combines their outputs to produce results.
 
@@ -189,8 +189,8 @@ This is not possible as doing so will require the entire database to be re-vecto
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# HybridWithVectorPython"
-  endMarker="# END HybridWithVectorPython"
+  startMarker="# HybridWithPropertiesPython"
+  endMarker="# END HybridWithPropertiesPython"
   language="python"
 />
 </TabItem>
@@ -205,8 +205,8 @@ This is not possible as doing so will require the entire database to be re-vecto
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# HybridWithVectorGraphQL"
-  endMarker="# END HybridWithVectorGraphQL"
+  startMarker="# HybridWithPropertiesGraphQL"
+  endMarker="# END HybridWithPropertiesGraphQL"
   language="graphql"
 />
 </TabItem>

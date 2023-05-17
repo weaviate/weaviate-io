@@ -280,6 +280,7 @@ test_gqlresponse(response, gqlresponse)
 # ===== Hybrid Query with Properties Specified =====
 # ==========================================
 
+# HybridWithPropertiesPython
 response = (
     client.query
     .get("JeopardyQuestion", ["question", "answer"])
