@@ -84,7 +84,7 @@ Take a collection of `Passage` objects for example, each object belonging to a `
 
 The `groups` and `objectsPerGroup` limits are customizable. So in this example, you could retrieve the top 1000 objects and group them to identify the 3 most relevant `Document` objects, based on the top 3 `Passage` objects from each `Document`.
 
-More concretely, an query such as below:
+More concretely, a query such as below:
 
 <details>
   <summary>Example Get query with groupBy</summary>
@@ -94,33 +94,33 @@ More concretely, an query such as below:
   Get{
     Passage(
       limit: 100
-      nearObject:{
+      nearObject: {
         id: "00000000-0000-0000-0000-000000000001"
       }
-      groupBy:{
-        path:["content"]
-        groups:2
-        objectsPerGroup:2
+      groupBy: {
+        path: ["content"]
+        groups: 2
+        objectsPerGroup: 2
       }
     ){
-      _additional{
+      _additional {
         id
-        group{
+        group {
           id
           count
-          groupedBy{ value path }
+          groupedBy { value path }
           maxDistance
           minDistance
           hits{
             content
             ofDocument {
-              ... on Document{
-                _additional{
+              ... on Document {
+                _additional {
                   id
                 }
               }
             }
-            _additional{
+            _additional {
               id
               distance
             }

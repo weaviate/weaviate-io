@@ -13783,10 +13783,10 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-weaviate-ts-client@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/weaviate-ts-client/-/weaviate-ts-client-1.3.0.tgz#05ee0e05bfb7445d690c1881e6478ebae7039b1d"
-  integrity sha512-xV0OOx48hPOljjmzyCXTqMe3edVM6J2Mq4qdrYllRkEAfJt4kOQCOzNTk3cFk8RisrTmh3C8YyxGLTzBH6Rw9w==
+weaviate-ts-client@*:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/weaviate-ts-client/-/weaviate-ts-client-1.3.1.tgz#c0415681357f63a6e39cc1e13dc4ba422cb9f1fc"
+  integrity sha512-1uiv8yeTqRyfl68AfWxEszLW0yWN3Yyj0qtYCtUYvs1HsSwdwOjS/Z6CjUwPGxgPxzfXZTcnMXmUexbiiQFWvQ==
   dependencies:
     graphql-request "^5.1.0"
     isomorphic-fetch "^3.0.0"

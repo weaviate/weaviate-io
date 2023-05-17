@@ -138,7 +138,7 @@ Both `indexFilterable` and `indexSearchable` are available for all types of data
 
 :::
 
-You can also enable an inverted index to search [based on timestamps](/developers/weaviate/config-refs/schema.mdx#invertedindexconfig--indextimestamps).
+You can also enable an inverted index to search [based on timestamps](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indextimestamps).
 
 ```js
 {

@@ -1,5 +1,9 @@
 const assert = require('assert');
 
+// ================================
+// ===== INSTANTIATION-COMMON =====
+// ================================
+
 // EndToEndExample  // InstantiationExample  // NearTextExample
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 import fetch from 'node-fetch';
@@ -12,6 +16,10 @@ const client: WeaviateClient = weaviate.client({
 });
 
 // END EndToEndExample  // END InstantiationExample  // END NearTextExample
+
+// ================================
+// ===== END-TO-END EXAMPLE =====
+// ================================
 
 // EndToEndExample
 // Add the schema

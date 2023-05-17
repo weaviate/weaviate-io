@@ -16,14 +16,14 @@ This page includes information on **how to configure** your schema in Weaviate. 
 
 :::info Related pages
 - [Tutorial: Schema](../tutorials/schema.md)
-- [References: Schema](../config-refs/schema.mdx)
+- [References: Schema](../config-refs/schema.md)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)
 :::
 
 ### Auto-schema
 
-When a class definition is missing or inadequate for data import, the auto-schema feature infers it based on the object properties and defaults ([learn more](../config-refs/schema.mdx#auto-schema)).
+When a class definition is missing or inadequate for data import, the auto-schema feature infers it based on the object properties and defaults ([learn more](../config-refs/schema.md#auto-schema)).
 
 However, you might find it preferable to define the schema manually to ensure that the schema aligns with your specific requirements.
 
@@ -55,7 +55,7 @@ import CodeSchemaCreateProperty from '/_includes/code/schema.class.create.proper
 
 In addition to the property name, you can configure parameters such as the data type, inverted index tokenization and more.
 
-- [Property object configuration references](../config-refs/schema.mdx#property-object)
+- [Property object configuration references](../config-refs/schema.md#property-object)
 - [Available data types](../config-refs/datatypes.md)
 
 ### Specify a vectorizer
@@ -67,7 +67,7 @@ import CodeSchemaCreateVectorizer from '/_includes/code/schema.class.create.vect
 <CodeSchemaCreateVectorizer />
 
 - [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
-- [Vectorizer configuration references](../config-refs/schema.mdx#vectorizer)
+- [Vectorizer configuration references](../config-refs/schema.md#vectorizer)
 
 ### Class-level module settings
 
@@ -99,10 +99,10 @@ import CodeSchemaIndexingReplication from '/_includes/code/schema.class.create.i
 
 You can read more about various parameters here.
 
-- [Vector index configuration references](../config-refs/schema.mdx#vectorindexconfig)
-- [Inverted index configuration references](../config-refs/schema.mdx#invertedindexconfig--stopwords-stopword-lists)
-- [Sharding configuration references](../config-refs/schema.mdx#shardingconfig)
-- [Replication configuration references](../config-refs/schema.mdx#replicationconfig)
+- [Vector index configuration references](../config-refs/schema.md#vectorindexconfig)
+- [Inverted index configuration references](../config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists)
+- [Sharding configuration references](../config-refs/schema.md#shardingconfig)
+- [Replication configuration references](../config-refs/schema.md#replicationconfig)
 
 ## Delete a class
 

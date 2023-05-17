@@ -161,43 +161,14 @@ import GraphQLFiltersHybridProperties from '/_includes/code/graphql.filters.hybr
 
 
 ## BM25
+
 The `bm25` operator performs a keyword (sparse vector) search, and uses the BM25F ranking function to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
 
 The search is case-insensitive, and case matching does not confer a score advantage. Stop words are removed. [Stemming is not supported yet](https://github.com/weaviate/weaviate/issues/2439).
 
 ### Schema configuration
-The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases. If necessary, they can be configured in the schema per class, and can optionally be overridden per property:
 
-```json
-{
-  "class": "string",
-  # Configuration of the sparse index
-  "invertedIndexConfig": {
-    "bm25": {
-      "b": 0.75,
-      "k1": 1.2
-    }
-  },
-  "properties": [
-    {
-      "name": "string",
-      "description": "string",
-      "dataType": [
-        "text"
-      ],
-      # Property-level settings override the class-level settings
-      "invertedIndexConfig": {
-        "bm25": {
-          "b": 0.75,
-          "k1": 1.2
-        }
-      },
-      "indexFilterable": true,
-      "indexSearchable": true,
-    }
-  ]
-}
-```
+The [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function) are configurable and optional. See the [schema reference](../../config-refs/schema.md#invertedindexconfig--bm25) for more details.
 
 ### Variables
 The `bm25` operator supports the following variables:

@@ -28,7 +28,7 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 ### Tokenization configuration
 
-Refer to [this section](../config-refs/schema.mdx#property-tokenization) on how to configure the tokenization behavior of a `text` property.
+Refer to [this section](../config-refs/schema.md#property-tokenization) on how to configure the tokenization behavior of a `text` property.
 
 :::tip `string` is deprecated
 

@@ -1,7 +1,7 @@
 ---
 title: Modules - an introduction
 sidebar_position: 9
-image: og/docs/quickstart-tutorial.jpg
+image: og/docs/tutorials.jpg
 # tags: ['modules']
 ---
 import Badges from '/_includes/badges.mdx';
