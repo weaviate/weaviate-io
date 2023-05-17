@@ -45,6 +45,7 @@ def test_js(empty_weaviates, script_loc):
     [
         "./_includes/code/howto/similarity.ts",
         "./_includes/code/howto/bm25.ts",
+        "./_includes/code/howto/hybrid.ts"
     ],
 )
 def test_ts(empty_weaviates, script_loc):

@@ -19,9 +19,11 @@ This section includes the essentials of performing searches and retrieving objec
 - [API References: GraphQL](../api/graphql/index.md)
 :::
 
+## Search syntax
+
 ### `Get` function requirements
 
-To retrieve objects from Weaviate, you must use the `Get` function and specify at least:
+To retrieve objects from Weaviate, you must use the [`Get` function](../api/graphql/get.md) and specify at least:
 - The target class to search, and
 - At least one property to retrieve.
 
@@ -60,7 +62,10 @@ To retrieve objects from Weaviate, you must use the `Get` function and specify a
 </TabItem>
 </Tabs>
 
-The above query will result in something like the following:
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -69,8 +74,10 @@ The above query will result in something like the following:
   language="json"
 />
 
+</details>
+
 :::tip `objects` endpoint != search
-Weaviate's [`objects` endpoint](../api/rest/objects.md) is designed for CRUD operations. It not capable of performing searches.
+The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRUD operations and not capable of performing searches.
 :::
 
 ### `limit` returned objects
@@ -110,7 +117,10 @@ Often, you will only want the top `n` results from the query. This can be achiev
 </TabItem>
 </Tabs>
 
-The above query will result in something like the following:
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -119,11 +129,13 @@ The above query will result in something like the following:
   language="json"
 />
 
+</details>
+
 ### `limit` with `offset`
 
 If you only want the `n` results after the first `m` results from the query, you can do this with `limit` and `offset` as shown below.
 
-Note that this will cause Weaviate to fetch `n+m` results, and may be an expensive operation especially as `m` grows larger.
+Be aware that although you will only see `n` results, this could become an expensive operation as `m` grows larger, as Weaviate must fetch `n+m` results.
 
 <Tabs groupId="languages">
 <TabItem value="graphql" label="GraphQL">
@@ -158,7 +170,10 @@ Note that this will cause Weaviate to fetch `n+m` results, and may be an expensi
 </TabItem>
 </Tabs>
 
-The above query will result in something like the following:
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -166,6 +181,8 @@ The above query will result in something like the following:
   endMarker="// END GetWithLimitOffset Expected Results"
   language="json"
 />
+
+</details>
 
 ## Specify the fetched properties
 
@@ -208,7 +225,10 @@ You can specify object properties as below.
 </TabItem>
 </Tabs>
 
-The above query will result in something like the following:
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -216,6 +236,8 @@ The above query will result in something like the following:
   endMarker="// END GetProperties Expected Results"
   language="json"
 />
+
+</details>
 
 ### Retrieve the object `vector`
 
@@ -254,7 +276,10 @@ To retrieve the object vector, request the `_additional` property and `vector` s
 </TabItem>
 </Tabs>
 
-The above query will result in something like the following:
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -262,6 +287,8 @@ The above query will result in something like the following:
   endMarker="// END GetObjectVector Expected Results"
   language="json"
 />
+
+</details>
 
 ### Retrieve the object `id`
 
@@ -300,7 +327,10 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 </TabItem>
 </Tabs>
 
-The above query will result in something like the following:
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -308,6 +338,8 @@ The above query will result in something like the following:
   endMarker="// END GetObjectId Expected Results"
   language="json"
 />
+
+</details>
 
 ## More Resources
 

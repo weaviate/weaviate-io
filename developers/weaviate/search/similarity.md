@@ -65,7 +65,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   text={TypeScriptCode}
   startMarker="// GetNearText"
   endMarker="// END GetNearText"
-  language="typescript"
+  language="ts"
 />
 </TabItem>
 </Tabs>
@@ -73,13 +73,13 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 <details>
   <summary>Example response</summary>
 
-It should produce a response such as this:
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# Expected nearText results"
   endMarker="# END Expected nearText results"
-  language="python"
+  language="json"
 />
 
 </details>
@@ -89,7 +89,7 @@ It should produce a response such as this:
 You can use the [`nearObject` parameter](../api/graphql/vector-search-parameters.md#nearobject) to find objects most similar to an existing Weaviate object, by specifying the object ID (e.g. `56b9449e-65db-5df4-887b-0a4773f52aa7`).
 
 :::tip How to retrieve object IDs
-See [this section](./basics.mdx#retrieve-the-object-id)
+See [this section](./basics.md#retrieve-the-object-id)
 :::
 
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching the object with ID `56b9449e-65db-5df4-887b-0a4773f52aa7`, using `nearObject`:
@@ -116,13 +116,13 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   text={TypeScriptCode}
   startMarker="// GetNearObject"
   endMarker="// END GetNearObject"
-  language="typescript"
+  language="ts"
 />
 </TabItem>
 </Tabs>
 
-Note that the first result is always the same object.
-<!-- TODO: you can technically pass the ID of an object outside of the collection in order to find similar objects across collections. -->
+Note that the first result should be query object, as they should be identical.
+<!-- Possibly add: you can technically pass the ID of an object outside of the collection in order to find similar objects across collections. -->
 
 
 ### A vector
@@ -153,7 +153,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   text={TypeScriptCode}
   startMarker="// GetNearVector"
   endMarker="// END GetNearVector"
-  language="typescript"
+  language="ts"
 />
 </TabItem>
 </Tabs>
@@ -167,9 +167,9 @@ You can set a limit on:
 
 ### Number of results
 
-You can set the maximum number of results returned with `limit` in the same way as shown in the [search basics how-to guide](./basics.mdx#limit-returned-objects).
+You can set the maximum number of results returned with `limit` in the same way as shown in the [search basics how-to guide](./basics.md#limit-returned-objects).
 
-Similarly, you can retrieve a maximum `n` objects after the first `m` results by using `limit` with `offset` as shown in the [search basics how-to guide](./basics.mdx#limit-with-offset).
+Similarly, you can retrieve a maximum `n` objects after the first `m` results by using `limit` with `offset` as shown in the [search basics how-to guide](./basics.md#limit-with-offset).
 
 To limit the number of results returned by a `near...` query, add the limit parameter. To start at a given offset, add the `offset` parameter. For example if we want to obtain the animals in movies #2 and #3 from the [`nearText` example](#an-input-medium) above, we'll need to use `offset: 1, limit: 2`:
 
@@ -197,7 +197,7 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
   text={TypeScriptCode}
   startMarker="// GetLimitOffset"
   endMarker="// END GetLimitOffset"
-  language="typescript"
+  language="ts"
 />
 </TabItem>
 </Tabs>
@@ -233,10 +233,14 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
   text={TypeScriptCode}
   startMarker="// GetWithDistance"
   endMarker="// END GetWithDistance"
-  language="typescript"
+  language="ts"
 />
 </TabItem>
 </Tabs>
+
+:::info Why `0.18`?
+The numerical value for `distance` will depend on many factors, including the vectorization model and the distance metric used. As such, there are no hard and fast rules. In this case, we selected this value as our trial and error evaluation of this dataset indicated this value to produce relatively intuitive outputs.
+:::
 
 :::tip Using `certainty` possible for `cosine` distance metric only
 If the distance metric is set as `cosine` the [`certainty`](../config-refs/distances.md#distance-vs-certainty) variable can be used, which normalizes the complement of distance to a value between 0 and 1.
@@ -274,7 +278,7 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
   text={TypeScriptCode}
   startMarker="// GetWithGroupBy"
   endMarker="// END GetWithGroupBy"
-  language="typescript"
+  language="ts"
 />
 </TabItem>
 </Tabs>
@@ -282,13 +286,13 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
 <details>
   <summary>Example response</summary>
 
-It should produce a response such as this:
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# Expected groupBy results"
   endMarker="# END Expected groupBy results"
-  language="python"
+  language="json"
 />
 
 </details>
@@ -321,10 +325,24 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
   text={TypeScriptCode}
   startMarker="// GetWithWhere"
   endMarker="// END GetWithWhere"
-  language="typescript"
+  language="ts"
 />
 </TabItem>
 </Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Expected where results"
+  endMarker="# END Expected where results"
+  language="json"
+/>
+
+</details>
 
 ## More Resources
 

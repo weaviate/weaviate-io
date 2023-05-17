@@ -69,13 +69,13 @@ It ranks the results using a combination of the BM25 and vector search rankings,
 <details>
   <summary>Example response</summary>
 
-It should produce a response such as this:
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# Expected HybridBasic results"
   endMarker="# END Expected HybridBasic results"
-  language="python"
+  language="json"
 />
 
 </details>
@@ -118,13 +118,13 @@ The below example adds the two properties to the list of retrieved properties.
 <details>
   <summary>Example response</summary>
 
-It should produce a response such as this:
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# Expected HybridWithScore results"
   endMarker="# END Expected HybridWithScore results"
-  language="python"
+  language="json"
 />
 
 </details>
@@ -166,13 +166,13 @@ The following example uses an alpha of `0.25`, favoring keyword search results.
 <details>
   <summary>Example response</summary>
 
-It should produce a response such as this:
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# Expected HybridWithAlpha results"
   endMarker="# END Expected HybridWithAlpha results"
-  language="python"
+  language="json"
 />
 
 </details>
@@ -207,8 +207,8 @@ This is not possible, as doing so will require the entire database to be re-vect
 <TabItem value="ts" label="TypeScript">
 <FilteredTextBlock
   text={TypeScriptCode}
-  startMarker="// searchHybridWithVector"
-  endMarker="// END searchHybridWithVector"
+  startMarker="// searchHybridWithProperties"
+  endMarker="// END searchHybridWithProperties"
   language="typescript"
 />
 </TabItem>
@@ -217,13 +217,13 @@ This is not possible, as doing so will require the entire database to be re-vect
 <details>
   <summary>Example response</summary>
 
-It should produce a response such as this:
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# Expected HybridWithVector results"
   endMarker="# END Expected HybridWithVector results"
-  language="python"
+  language="json"
 />
 
 </details>
@@ -265,13 +265,13 @@ The below example supplies the vector for "italian food", while using "food" as 
 <details>
   <summary>Example response</summary>
 
-It should produce a response such as this:
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# Expected HybridWithVector results"
   endMarker="# END Expected HybridWithVector results"
-  language="python"
+  language="json"
 />
 
 </details>
@@ -313,13 +313,13 @@ The below example performs a hybrid search for `food` in any field from objects 
 <details>
   <summary>Example response</summary>
 
-It should produce a response such as this:
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# Expected HybridWithFilter results"
   endMarker="# END Expected HybridWithFilter results"
-  language="python"
+  language="json"
 />
 
 </details>
