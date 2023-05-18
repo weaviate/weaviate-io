@@ -25,6 +25,8 @@ This document lays out how Weaviate deals with data objects, including how they 
 
 ## Data object nomenclature
 
+Each data object in Weaviate always belongs to a Class, and has one or more Properties.
+
 Weaviate stores _data objects_ (represented as JSON-documents) in _class-based collections_, where each object can be represented by a machine learning _vector_ (i.e., an embedding).
 
 Each _class-based collection_ contains objects of the same _class_, which are defined by a common _schema_.
@@ -49,7 +51,7 @@ The data about this author can be represented in JSON like this:
 
 ### Vectors
 
-As mentioned earlier, we can also attach `vector` representations to our data objects. This is represented as an array of numbers under a `"vector"` property, like this: 
+As mentioned earlier, we can also attach `vector` representations to our data objects. This is represented as an array of numbers under a `"vector"` property, like this:
 
 ```json
 {
@@ -67,7 +69,7 @@ As mentioned earlier, we can also attach `vector` representations to our data ob
 }
 ```
 
-You can generate vectors yourself outside of Weaviate, or use one of Weaviate's vectorizer [modules](./modules.md). 
+You can generate vectors yourself outside of Weaviate, or use one of Weaviate's vectorizer [modules](./modules.md).
 
 ### Class Collections
 
@@ -129,6 +131,10 @@ Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Unive
 
 ### Cross-references
 
+:::note Cross-references do not affect vectors
+Creating cross-references do not affect object vectors in either direction.
+:::
+
 In some cases we need to link data objects with each other.
 
 For example: *"Paul Krugman writes for the New York Times"*.<br/>
@@ -189,7 +195,7 @@ Designing and adding a data schema does not need to be done manually. In the abs
 A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 :::
 
-As you're probably guessing, we have a separate quickstart tutorial for [working with a schema](../tutorials/schema.md).
+To learn how to build a schema, [see our schema tutorial](../tutorials/schema.md), or [how-to on schema configuration](../configuration/schema-configuration.md).
 
 For now, what's important to know is this:
 

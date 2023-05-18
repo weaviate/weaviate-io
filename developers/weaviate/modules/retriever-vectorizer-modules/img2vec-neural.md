@@ -15,11 +15,11 @@ This module vectorizes images using neural networks. Pre-trained modules can be 
 ## Available img2vec-neural models
 
 There are two different inference models you can choose from. Depending on your machine (`arm64` or other) and whether you prefer to use multi-threading to extract feature vectors or not, you can choose between `keras` and `pytorch`. There are no other differences between the two models.
-- `resnet50` (`keras`): 
-  - Supports `amd64`, but not `arm64`. 
+- `resnet50` (`keras`):
+  - Supports `amd64`, but not `arm64`.
   - Does not support `CUDA` (yet)
   - Supports multi-threaded inference
-- `resnet50` (`pytorch`): 
+- `resnet50` (`pytorch`):
   - Supports both `amd64` and `arm64`.
   - Supports `CUDA`
   - Does not support multi-threaded inference
@@ -82,7 +82,7 @@ You can combine the image vectorization module with a text vectorization module.
       restart: on-failure:0
       environment:
         CONTEXTIONARY_URL: contextionary:9999
-        IMAGE_INFERENCE_API: "http://i2v-neural:8080" 
+        IMAGE_INFERENCE_API: "http://i2v-neural:8080"
         QUERY_DEFAULTS_LIMIT: 25
         AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
         PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
@@ -109,15 +109,15 @@ You can combine the image vectorization module with a text vectorization module.
 ### Other methods
 If you prefer not to use Docker-compose (but instead for example Kubernetes in a production setup), make you can use the `img2vec-neural` module after taking the following steps:
 1. Enable the `img2vec-neural` module. Make sure you set the `ENABLE_MODULES=img2vec-neural` environment variable. This can be combined with a text vectorization module: `ENABLE_MODULES: 'text2vec-contextionary,img2vec-neural'`. Additionally, you can make one of the modules the default vectorizer, so you don't have to specify it on each schema class: `DEFAULT_VECTORIZER_MODULE=text2vec-contextionary`
-2. Run the `img2vec-neural` module, for example using `docker run -itp "8000:8080" semitechnologies/img2vec-neural:resnet50-61dcbf8`. 
+2. Run the `img2vec-neural` module, for example using `docker run -itp "8000:8080" semitechnologies/img2vec-neural:resnet50-61dcbf8`.
 3. Tell Weaviate where to find the inference module. Set the Weaviate environment variable `IMAGE_INFERENCE_API`to where your inference container is running, for example `IMAGE_INFERENCE_API="http://localhost:8000"`
 4. You can now use Weaviate normally and all vectorization of images during import and search time will be done with the selected image vectorization model (given that the schema is configured correctly).
 
 ## Schema configuration
 
-You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](/developers/weaviate/configuration/schema-configuration.md). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector. 
+You can specify to use the image vectorizer per class in the schema. To find details on how to configure a data schema, go [here](/developers/weaviate/configuration/schema-configuration.md). When you set the `vectorizer` of a class to `img2vec-neural`, only the property fields that are specified in the `moduleConfig` will be taken into the computation of the vector.
 
-When adding a class with vectorizer type `img2vec-neural`, the configuration must contain information about which field holds the image. The dataType of the `imageFields` should be [`blob`](/developers/weaviate/configuration/datatypes.md#datatype-blob). This can be achieved with the following config in a class object:
+When adding a class with vectorizer type `img2vec-neural`, the configuration must contain information about which field holds the image. The dataType of the `imageFields` should be [`blob`](/developers/weaviate/config-refs/datatypes.md#datatype-blob). This can be achieved with the following config in a class object:
 
 ```json
   "moduleConfig": {
@@ -164,7 +164,7 @@ A full example of a class using the `img2vec-neural` module is shown below. This
         },
         {
           "dataType": [
-            "string"
+            "text"
           ],
           "description": "label name (description) of the given image.",
           "name": "labelName"
@@ -178,7 +178,7 @@ A full example of a class using the `img2vec-neural` module is shown below. This
 ```
 
 :::note
-Other properties, for example the name of the image that is given in another field, will not be taken into consideration. This means that you can only find the image with semantic search by [another image](#nearimage-search), [data object](/developers/weaviate/api/graphql/filters.md#nearobject-filter), or [raw vector](/developers/weaviate/api/graphql/filters.md#nearvector-filter). Semantic search of images by text field (using `nearText`) is not possible, because this requires a `text2vec` vectorization module. Multiple modules cannot be combined at class level yet (might become possible in the future, since `image-text-combined transformers` exists). We recommend to use one of the following workarounds:
+Other properties, for example the name of the image that is given in another field, will not be taken into consideration. This means that you can only find the image with semantic search by [another image](#nearimage-search), [data object](/developers/weaviate/api/graphql/vector-search-parameters.md#nearobject), or [raw vector](/developers/weaviate/api/graphql/vector-search-parameters.md#nearvector). Semantic search of images by text field (using `nearText`) is not possible, because this requires a `text2vec` vectorization module. Multiple modules cannot be combined at class level yet (might become possible in the future, since `image-text-combined transformers` exists). We recommend to use one of the following workarounds:
 1. Best practice for multi-module search: create an image class and a text class in which you refer to each other by cross-reference. This way you can always hop along the reference and search either by "text labels" (using a `text2vec-....` module) or by image (using a `img2vec-...` module).
 2. If you don't want to create multiple classes, you are limited to using a `where` filter to find images by other search terms than an `image`, `data object`, or `vector`. A `where` filter does not use semantic features of a module.
 :::

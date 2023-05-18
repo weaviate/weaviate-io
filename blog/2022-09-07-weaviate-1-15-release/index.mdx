@@ -3,7 +3,7 @@ title: Weaviate 1.15 release
 slug: weaviate-1-15-release
 authors: [connor, erika, laura, sebastian]
 date: 2022-09-07
-tags: []
+tags: ['release']
 image: ./img/hero.png
 description: "Weaviate 1.15 introduces Cloud-native Backups, Memory Optimizations, faster Filtered Aggregations and Ordered Imports, new Distance Metrics and new Weaviate modules."
 ---
@@ -309,7 +309,7 @@ But don't take our word for it, this was from a test run by one of our community
 
 Thanks to the community contributions from [Aakash Thatte](https://github.com/sky-2002), Weaviate `v1.15` adds two new distance metrics: **Hamming** distance and **Manhattan** distance. In total, you can now choose between five various distance metrics to support your datasets.
 
-Check out the [metrics documentation page](/developers/weaviate/configuration/distances#distance-implementations-and-optimizations) for a complete overview of all available metrics in Weaviate.
+Check out the [metrics documentation page](/developers/weaviate/config-refs/distances#distance-implementations-and-optimizations) for a complete overview of all available metrics in Weaviate.
 
 ### Hamming distance
 The Hamming distance is a metric for comparing two numerical vectors. <br/>
@@ -335,9 +335,7 @@ We can calculate the Manhattan distance in these steps:
 1. distance = `0 + 7 + 0 + 5 + 0`
 1. distance = `12`
 
-<!-- TODO: add a link to Erika's blog -->
-<!-- ### Dive deeper
-For a deeper dive into the Hamming and Manhattan distances, check out this [amazing blog post](). There you will learn how each of the distances work in more detail, when to use each and how they compare to other metrics. -->
+For a deeper dive into the Hamming and Manhattan distances, check out our [blog post on distance metrics](/blog/distance-metrics-in-vector-search). There you will learn how each of the distances works in more detail, when to use each, and how they compare to other metrics.
 
 ## New Weaviate modules
 
@@ -435,4 +433,7 @@ You can find the complete list and the relevant links in the [release notes](htt
 ## Enjoy
 We hope you enjoy all the new features, performance improvements, memory savings and bug fixes that made this the best Weaviate release yet!🔥
 
-Please share your feedback with us via [Slack](https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw), [Twitter](https://twitter.com/weaviate_io), or [GitHub](https://github.com/weaviate/weaviate).
+import ShareFeedback from '/_includes/share-feedback.md';
+
+<ShareFeedback />
+

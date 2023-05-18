@@ -72,8 +72,8 @@ const weaviate = require('weaviate-client');
 
 const client = weaviate.client({
     scheme: 'https',
-    host: 'some-endpoint.weaviate.network/',
-  }); 
+    host: 'some-endpoint.weaviate.network',
+  });
 
 var toImport = [{
   'id': '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6',
@@ -136,7 +136,10 @@ func GetSchema() {
 		Scheme: "https",
     }
 
-    client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+      panic(err)
+    }
 
     objects := []*models.Object{
       {
@@ -160,34 +163,34 @@ func GetSchema() {
         "Vector": []float32{-0.16147631, -0.065765485, -0.06546908}
       },
     }
-  
+
     result, err := client.Batch().ObjectsBatcher().
       WithObject(objects[0]).
       WithObject(objects[1]).
       Do(context.Background())
-  
+
     if err != nil {
       panic(err)
     }
     fmt.Printf("%v", result)
   }
-  
+
 ```
 
 </TabItem>
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.batch.model.ObjectGetResponse;
-import technology.semi.weaviate.client.v1.data.model.WeaviateObject;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.batch.model.ObjectGetResponse;
+import io.weaviate.client.v1.data.model.WeaviateObject;
 
 public class App {
   public static void main(String[] args) {

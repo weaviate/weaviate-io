@@ -1,38 +1,28 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import UnfilteredCode from '!!raw-loader!/_includes/code/graphql.get.beacon.py';
 
 <Tabs groupId="languages">
 <TabItem value="graphql" label="GraphQL">
 
-```graphql
-{
-  Get {
-    Article {
-      title
-      url
-      wordCount
-      inPublication {           # the reference
-        ... on Publication {    # you always set the destination class
-          name                  # the property related to target class
-        }
-      }
-    }
-  }
-}
-```
+<FilteredTextBlock
+  text={UnfilteredCode}
+  startMarker="# ===== GRAPHQL EXAMPLE ====="
+  endMarker="# ===== END GRAPHQL EXAMPLE ====="
+  language="py"
+/>
 
 </TabItem>
 <TabItem value="py" label="Python">
 
-```python
-import weaviate
-
-client = weaviate.Client("http://localhost:8080")
-
-result = client.query.get("Article", ["title", "url", "wordCount", "inPublication {... on Publication {name }}"])
-
-print(result)
-```
+<FilteredTextBlock
+  text={UnfilteredCode}
+  startMarker="# ===== PYTHON EXAMPLE ====="
+  endMarker="# ===== END PYTHON EXAMPLE ====="
+  language="py"
+/>
 
 </TabItem>
 <TabItem value="js" label="JavaScript">
@@ -77,7 +67,10 @@ func main() {
     Host:   "localhost:8080",
     Scheme: "http",
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
   ctx := context.Background()
   fields := []graphql.Field{
     {Name: "title"},
@@ -104,13 +97,13 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
-import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.fields.Field;
 
 public class App {
   public static void main(String[] args) {
@@ -148,16 +141,16 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{ 
+$ echo '{
     "query": "{
       Get {
         Article {
           title
           url
           wordCount
-          inPublication {           
-            ... on Publication {    
-              name                  
+          inPublication {
+            ... on Publication {
+              name
             }
           }
         }

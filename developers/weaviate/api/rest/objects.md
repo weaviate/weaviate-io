@@ -5,24 +5,30 @@ image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'class']
 ---
 import Badges from '/_includes/badges.mdx';
+import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
+import BeaconsBackCompatOmitClassname from '/_includes/beacons-backcompat-omit-class.md'
 
 <Badges/>
 
-## List all data objects
+## List data objects
 
-Lists all data objects in reverse order of creation. The data will be returned as an array of objects.
+:::tip Do you want to list all objects from Weaviate?
+Use the [`after`](#exhaustive-listing-using-a-cursor-after) parameter.
+:::
+
+List data objects in reverse order of creation. The data will be returned as an array of objects.
 
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
 :::tip After a class object count?
-A: This `Aggregate` GraphQL query will retrieve the total object count in a class.
+A: This `Aggregate` query will output a total object count in a class.
 
 <HowToGetObjectCount/>
 :::
 
 #### Method and URL
 
-Without any restrictions (across classes, default limit = 100):
+Without any restrictions (across classes, default limit = 25):
 
 ```http
 GET /v1/objects
@@ -40,11 +46,11 @@ GET /v1/objects?class={ClassName}&limit={limit}&include={include}
 :::
 
 | Name | Type | Description |
-| ---- | ---- | ----------- | 
+| ---- | ---- | ----------- |
 | `class` | string | List objects by class using the class name. |
-| `limit` | integer | The maximum number of data objects to return. |
+| `limit` | integer | The maximum number of data objects to return. Default 25. |
 | `offset` | integer | The offset of objects returned (the starting index of the returned objects).<br/><br/>Cannot be used with `after`.<br/>Should be used in conjunction with `limit`. |
-| `after` | string | ID of the object after which (i.e. non-inclusive ID) objects are to be retrieved.<br/><br/>Must be used with `class`<br/>Cannot be used with `offset` or `sort`.<br/>Should be used in conjunction with `limit`. |
+| `after` | string | ID of the object after which (i.e. non-inclusive ID) objects are to be listed.<br/><br/>Must be used with `class`<br/>Cannot be used with `offset` or `sort`.<br/>Should be used in conjunction with `limit`. |
 | `include` | string | Include additional information, such as classification info. <br/><br/>Allowed values include: `classification`, `vector`, `featureProjection` and other module-specific additional properties. |
 | `sort` | string | Name of the property to sort by - i.e. `sort=city`<br/><br/>You can also provide multiple names – i.e. `sort=country,city` |
 | `order` | string | Order in which to sort by.<br/><br/>Possible values: `asc` (default) and `desc`. <br/>Should be used in conjunction with `sort`.|
@@ -55,7 +61,7 @@ GET /v1/objects?class={ClassName}&limit={limit}&include={include}
 You can use `limit` and `offset` for paging results.
 :::
 
-The `offset` parameter is a flexible way to page results as it allows use with parameters such as `sort`. It is limited by the value of `QUERY_MAXIMUM_RESULTS` which sets the maximum total number of objects that can be retrieved using this parameter.
+The `offset` parameter is a flexible way to page results as it allows use with parameters such as `sort`. It is limited by the value of `QUERY_MAXIMUM_RESULTS` which sets the maximum total number of objects that can be listed using this parameter.
 
 Get the first 10 objects:
 ```http
@@ -72,13 +78,15 @@ Get the next batch of 10 objects:
 GET /v1/objects?class=MyClass&limit=10&offset=20
 ```
 
-### Exhaustive retrieval: `after`
+### Exhaustive listing using a cursor: `after`
 
 :::tip
-You can use `class`, `limit` and `after` for retrieving an entire object set from a class.
+- Available from version `v1.18.0`.
+- You can use `class`, `limit` and `after` for listing an entire object set from a class.
+- The `after` parameter is based on the order of ids. It can therefore only be applied to list queries without sorting.
 :::
 
-The `after` parameter retrieves objects of a class based on the order of ids. It can therefore only be applied to list queries without sorting. 
+You can use the `after` parameter to retrieve all objects from a Weaviate instance . The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. You can pass the id of the last retrieved object as a cursor to start the next page.
 
 It is not possible to use the `after` parameter without specifying a `class`.
 
@@ -153,7 +161,7 @@ The response of a `GET` query of a data object will give you information about a
 | `properties` > `{crefPropertyName}` > `classification` > `meanWinningDistance` | float | `classification` | The mean distance of the winning group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
 | `properties` > `{crefPropertyName}` > `classification` > `overallCount` | integer | `classification` | Overall neighbors checked as part of the classification. In most cases this will equal `k`, but could be lower than `k` - for example if not enough data was present. |
 | `properties` > `{crefPropertyName}` > `classification` > `winningCount` | integer | `classification` | Size of the winning group, a number between 1 and `k`. |
-| `vector` | list of floats | `vector` | The long vector of the location of the object in the 300-dimensional space. | 
+| `vector` | list of floats | `vector` | The long vector of the location of the object in the 300-dimensional space. |
 | `classification` > `basedOn` | string |  `classification` | The property name where the classification was based on. |
 | `classification` > `classifiedFields` | string |  `classification` | The classified property. |
 | `classification` > `completed` | timestamp |  `classification` | The time of classification completion. |
@@ -169,7 +177,7 @@ The response of a `GET` query of a data object will give you information about a
 | Valid class, no objects present | `?class` is provided, class exists. There are no objects present for this class. | `200 OK` - No error |
 | Invalid class | `?class` is provided, class does not exist. | `404 Not Found` |
 | Validation | Otherwise invalid user request. | `422 Unprocessable Entity` |
-| Authorization | Not allowed to view resource. | `403 Forbidden` | 
+| Authorization | Not allowed to view resource. | `403 Forbidden` |
 | Server-Side error | Correct user input, but request failed for another reason. | `500 Internal Server Error` - contains detailed error message |
 
 #### Example request
@@ -191,7 +199,7 @@ The `objects` endpoint is meant for individual object creations.
 If you plan on importing a large number of objects, it's much more efficient to use the [`/v1/batch`](./batch.md) endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty:
 
 1. Each sequential request would be handled by a single thread server-side while most of the server resources are idle. In addition, if you only send the second request once the first has been completed, you will wait for a lot of network overhead.
-1. It's much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing. 
+1. It's much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing.
 1. You do not have to do the parallelization yourself, you can use the [`/v1/batch`](./batch.md) endpoint for this. Even if you are sending batches from a single client thread, the objects within a batch will be handled by multiple server threads.
 1. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint.
 
@@ -221,6 +229,7 @@ The request body for a new object has the following fields:
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `id` | v4 UUID | no | Optional id for the object |
+| `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
 
 #### Example request
 
@@ -230,7 +239,7 @@ import SemanticKindCreate from '/_includes/code/semantic-kind.create.mdx';
 
 ### With geoCoordinates
 
-If you want to supply a [`geoCoordinates`](/developers/weaviate/configuration/datatypes.md#datatype-geocoordinates) property, you need to specify the `latitude` and `longitude` as floating point decimal degrees:
+If you want to supply a [`geoCoordinates`](/developers/weaviate/config-refs/datatypes.md#datatype-geocoordinates) property, you need to specify the `latitude` and `longitude` as floating point decimal degrees:
 
 import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geocoordinates.mdx';
 
@@ -238,20 +247,20 @@ import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geoco
 
 ### With a custom vector
 
-When creating a data object, you can configure Weaviate to generate a vector with a vectorizer module, or you can provide the vector yourself. We sometimes refer to this as a "custom" vector. 
+When creating a data object, you can configure Weaviate to generate a vector with a vectorizer module, or you can provide the vector yourself. We sometimes refer to this as a "custom" vector.
 
 You can provide a custom vector during object creation either when:
 - you are not using a vectorizer for that class, or
 - you are using a vectorizer, but you wish to bypass it during the object creation stage.
 
 You can create a data object with a custom vector as follows:
-1. Set the `"vectorizer"` in the relevant class in the [data schema](../../configuration/schema-configuration.md#vectorizer). 
+1. Set the `"vectorizer"` in the relevant class in the [data schema](../../configuration/schema-configuration.md#specify-a-vectorizer).
     - If you are not using a vectorizer at all, configure the class accordingly. To do this, you can:
         - set the default vectorizer module to `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), or
         - set the `"vectorizer"` for the class to `"none"` (`"vectorizer": "none"`) (*note: the class `vectorizer` setting will override the `DEFAULT_VECTORIZER_MODULE` parameter*).
     - If you wish to bypass the vectorizer for object creation:
       - set the vectorizer to the same vectorizer with identical settings used to generate the custom vector
-    > *Note: There is NO validation of this vector besides checking the vector length.* 
+    > *Note: There is NO validation of this vector besides checking the vector length.*
 2. Then, attach the vector in a special `"vector"` field during object creation. For example, if adding a single object, you can:
 
 import SemanticKindCreateVector from '/_includes/code/semantic-kind.create.vector.mdx';
@@ -262,7 +271,7 @@ import SemanticKindCreateVector from '/_includes/code/semantic-kind.create.vecto
 You can set custom vectors for batch imports as well as single object creation.
 :::
 
-See also [how to search using custom vectors](../graphql/vector-search-parameters.md#nearvector). 
+See also [how to search using custom vectors](../graphql/vector-search-parameters.md#nearvector).
 
 ## Get a data object
 
@@ -379,6 +388,7 @@ The request body for replacing (some) properties of an object has the following 
 | `id` | string | ? | Required for `PUT` to be the same id as the one passed in the URL |
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
+| `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
 
 #### Example request
 
@@ -390,7 +400,7 @@ If the update was successful, no content will be returned.
 
 ## Delete a data object
 
-Delete an individual data object from Weaviate. 
+Delete an individual data object from Weaviate.
 
 #### Method and URL
 
@@ -457,7 +467,11 @@ import SemanticKindValidate from '/_includes/code/semantic-kind.validate.mdx';
 
 ## Cross-references
 
-[Cross-references](../../configuration/datatypes.md#datatype-cross-reference) are object properties of type array, in which each element points from the source object to another object via a [beacon](../../more-resources/glossary.md).
+[Cross-references](../../config-refs/datatypes.md#datatype-cross-reference) are object properties for establishing links from the source object to another object via a [beacon](../../more-resources/glossary.md).
+
+:::note Cross-references do not affect vectors
+Creating cross-references do not affect object vectors in either direction.
+:::
 
 ### Add a cross-reference
 
@@ -495,19 +509,9 @@ The request body is an object with the following field:
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, in the format `weaviate://localhost/<ClassName>/<id>` |
 
-:::caution
-In the beacon format, you need to always use `localhost` as the host,
-rather than the actual hostname. `localhost` refers to the fact that the
-beacon's target is on the same Weaviate instance, as opposed to a foreign
-instance.
-:::
+<BeaconsRequireLocalhost />
 
-:::note
-For backward compatibility, you can omit the class name in the beacon
-format and specify it as `weaviate://localhost/<id>`. This is, however,
-considered deprecated and will be removed with a future release, as duplicate
-IDs across classes could mean that this beacon is not uniquely identifiable.
-:::
+<BeaconsBackCompatOmitClassname />
 
 #### Example request
 
@@ -552,19 +556,9 @@ The `PUT` request body is a list of beacons:
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon array | yes | Array of beacons in the format `weaviate://localhost/<ClassName>/<id>` |
 
-:::caution
-In the beacon format, you need to always use `localhost` as the host,
-rather than the actual hostname. `localhost` refers to the fact that the
-beacon's target is on the same Weaviate instance, as opposed to a foreign
-instance.
-:::
+<BeaconsRequireLocalhost />
 
-:::note
-For backward compatibility, you can omit the class name in the beacon
-format and specify it as `weaviate://localhost/<id>`. This is, however,
-considered deprecated and will be removed with a future release, as duplicate
-IDs across classes could mean that this beacon is not uniquely identifiable.
-:::
+<BeaconsBackCompatOmitClassname />
 
 #### Example request
 
@@ -609,12 +603,7 @@ The request body is a beacon object:
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, formatted as `weaviate://localhost/<ClassName>/<id>` |
 
-:::caution
-In the beacon format, you need to always use `localhost` as the host,
-rather than the actual hostname. `localhost` refers to the fact that the
-beacon's target is on the same Weaviate instance, as opposed to a foreign
-instance.
-:::
+<BeaconsRequireLocalhost />
 
 :::note
 For backward compatibility, beacons generally support an older,

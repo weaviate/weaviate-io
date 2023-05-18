@@ -36,6 +36,30 @@ In the section about Storage, [we have described in detail which parts make up a
 1. An inverted index (similar to a traditional search engine) is used to create an allow-list of eligible candidates. This list is essentially a list of `uint64` ids, so it can grow very large without sacrificing efficiency.
 2. A vector search is performed where the allow-list is passed to the HNSW index. The index will move along any node's edges normally, but will only add ids to the result set that are present on the allow list. The exit conditions for the search are the same as for an unfiltered search: The search will stop when the desired limit is reached and additional candidates no longer improve the result quality.
 
+### Pre-filtering with Roaring Bitmaps
+
+:::info Available for Weaviate versions `1.18` and up
+:::
+
+Weaviate versions `1.18.0` and up use Roaring Bitmaps through the `RoaringSet` data type. Roaring Bitmaps employ various strategies to add efficiencies, whereby it divides data into chunks and applies an appropriate storage strategy to each one. This enables high data compression and set operations speeds, resulting in faster filtering speeds for Weaviate.
+
+If you are dealing with a large dataset, this will likely improve your filtering performance significantly and we therefore encourage you to migrate and re-index.
+
+In addition, our team maintains our underlying Roaring Bitmap library to address any issues and make improvements as needed.
+
+#### Roaring Bitmaps for `text` properties
+
+:::info Available for Weaviate versions `1.19` and up
+:::
+
+A roaring bitmap index for `text` properties is available from `1.19` and up, and it is implemented using two separate (`filterable` & `searchable`) indexes, which replaces the existing single index. You can configure the new `indexFilterable` and `indexSearchable` parameters to determine whether to create the roaring set index and the BM25-suitable Map index, respectively. (Both are enabled by default.)
+
+#### Migration to Roaring Bitmaps
+
+If you are using Weaviate version `< 1.18.0`, you can take advantage of roaring bitmaps by migrating to `1.18.0` or higher, and going through a one-time process to create the new index. Once your Weaviate instance creates the Roaring Bitmap index, it will operate in the background to speed up your work.
+
+This behavior is set through the <code>REINDEX<wbr />_SET_TO<wbr />_ROARINGSET<wbr />_AT_STARTUP</code> [environment variable](../config-refs/env-vars.md). If you do not wish for reindexing to occur, you can set this to `false` prior to upgrading.
+
 ## Recall on Pre-Filtered Searches
 
 Thanks to Weaviate's custom HNSW implementation, which persists in following all links in the HNSW graph normally and only applying the filter condition when considering the result set, graph integrity is kept intact. The recall of a filtered search is typically not any worse than that of an unfiltered search.
@@ -46,7 +70,7 @@ The graphic below shows filters of varying levels of restrictiveness. From left 
 
 ## Flat-Search Cutoff
 
-Version `v1.8.0` introduces the ability to automatically switch to a flat (brute-force) vector search when a filter becomes too restrictive. This scenario only applies to combined vector and scalar searches. For a detailed explanation of why HNSW requires switching to a flat search on certain filters, see this article in [towards data science](https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c). In short, if a filter is very restrictive (i.e. a small percentage of the dataset is matched), an HNSW traversal becomes exhaustive. In other words, the more restrictive the filter becomes, the closer the performance of HNSW is to a brute-force search on the entire dataset. However, with such a restrictive filter, we have already narrowed down the dataset to a small fraction. So if the performance is close to brute-force anyway, it is much more efficient to only search on the matching subset as opposed to the entire dataset. 
+Version `v1.8.0` introduces the ability to automatically switch to a flat (brute-force) vector search when a filter becomes too restrictive. This scenario only applies to combined vector and scalar searches. For a detailed explanation of why HNSW requires switching to a flat search on certain filters, see this article in [towards data science](https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c). In short, if a filter is very restrictive (i.e. a small percentage of the dataset is matched), an HNSW traversal becomes exhaustive. In other words, the more restrictive the filter becomes, the closer the performance of HNSW is to a brute-force search on the entire dataset. However, with such a restrictive filter, we have already narrowed down the dataset to a small fraction. So if the performance is close to brute-force anyway, it is much more efficient to only search on the matching subset as opposed to the entire dataset.
 
 The following graphic shows filters with varying restrictiveness. From left (0%) to right (100%), the filters become more restrictive. The **cut-off is configured at ~15% of the dataset** size.  This means the right side of the dotted line uses a brute-force search.
 
@@ -62,7 +86,7 @@ The cutoff value can be configured as [part of the `vectorIndexConfig` settings 
 
 :::note Performance improvements from roaring bitmaps
 From `v1.18.0` onwards, Weaviate implements 'Roaring bitmaps' for the inverted index which decreased filtering times, especially for large allow lists. In terms of the above graphs, the *blue* areas will be reduced the most, especially towards the left of the figures.
-::: 
+:::
 
 ## Cachable Filters
 

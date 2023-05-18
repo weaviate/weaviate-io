@@ -14,7 +14,7 @@ export default function HomepageJoinCommunity() {
         </div>
         <div className={styles.rightSide}>
           <div className={styles.socialBox}>
-            <Link to="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw">
+            <Link to="https://weaviate.io/slack">
               <div className={styles.slack} />
               <p className={styles.text}>Slack</p>
             </Link>

@@ -17,7 +17,7 @@ updated_schema = {
 client.data_object.update(
     updated_schema,
     class_name="Author",
-    "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"
+    uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
     consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 
@@ -25,7 +25,7 @@ client.data_object.update(
 client.data_object.replace(
     updated_schema,
     "Author",
-    "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"
+    "36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
     consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 ```
@@ -87,7 +87,10 @@ func main() {
         Host:   "localhost:8080",
         Scheme: "http",
     }
-    client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
 
     dataSchema := map[string]interface{}{
         "name": "J. Kantor",
@@ -110,14 +113,14 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.HashMap;
 import java.util.Map;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.data.replication.model.ConsistencyLevel;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.data.replication.model.ConsistencyLevel;
 
 public class App {
   public static void main(String[] args) {

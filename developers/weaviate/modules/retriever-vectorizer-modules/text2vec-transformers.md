@@ -14,9 +14,17 @@ The `text2vec-transformers` module allows you to run your own inference containe
 
 With the `text2vec-transformers` module, you can use one of any number of pretrained NLP models specific to your use case. This means models like `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. can be used out-of-the box with Weaviate.
 
-The models are encapsulated in Docker containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled servers, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.
+The models are encapsulated in Docker containers. This allows for efficient scaling and resource planning. To choose your specific model, select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware, as  Weaviate is CPU-optimized.
 
-To choose your specific model, select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile.
+:::tip Significant GPU/CPU speed differences
+Transformer architecture models run *much* faster with GPUs, even for inference (10x+ speeds typically). 
+
+Without a GPU, import or `nearText` queries may become bottlenecks in production if using `text2vec-transformers`.
+
+If this is the case, we recommend:
+- An API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md), or 
+- The [`text2vec-contextionary`](./text2vec-contextionary.md) module if you prefer a local inference container.
+:::
 
 ## How to enable
 
@@ -29,7 +37,7 @@ The `text2vec-transformers` module is not available on the WCS.
 You have three options to select your desired model:
 
 1. **Use [any of our pre-built transformers model containers](#pre-built-images).** The models selected in [this list](#pre-built-images) have proven to work well with semantic search in the past. These model containers are pre-built by us, and packed in a container. (If you think we should support another model out-of-the-box [please open an issue or pull request here](https://github.com/weaviate/weaviate/issues)).
-2. **Use any model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publicly-available-hugging-face-model). The `text2vec-transformers` module supports any PyTorch or Tensorflow transformer model. 
+2. **Use any model from Hugging Face Model Hub.** [Click here to learn how](#option-2-use-any-publicly-available-hugging-face-model). The `text2vec-transformers` module supports any PyTorch or Tensorflow transformer model.
 3. **Use any private or local PyTorch or Tensorflow transformer model.** [Click here to learn how](#option-3-custom-build-with-a-private-or-local-model). If you have your own transformer model in a registry or on a local disk, you can use this with Weaviate.
 
 ### Option 1: Use a pre-built transformer model container
@@ -37,7 +45,7 @@ You have three options to select your desired model:
 #### Example Docker-compose file
 Note: you can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
 
-You can find an example Docker-compose file below, which will spin up Weaviate with the transformers module. In this example, we have selected the `sentence-transformers/msmarco-distilroberta-base-v2` which works great for [asymmetric semantic search](https://sbert.net/examples/applications/semantic-search/README.html#symmetric-vs-asymmetric-semantic-search). See below for how to select an alternative model.
+You can find an example Docker-compose file below, which will spin up Weaviate with the transformers module. In this example, we have selected the `sentence-transformers/multi-qa-MiniLM-L6-cos-v1` which works great for [asymmetric semantic search](https://sbert.net/examples/applications/semantic-search/README.html#symmetric-vs-asymmetric-semantic-search). See below for how to select an alternative model.
 
 ```yaml
 version: '3.4'
@@ -56,12 +64,14 @@ services:
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
       CLUSTER_HOSTNAME: 'node1'
   t2v-transformers:
-    image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
+    image: semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
     environment:
       ENABLE_CUDA: 0 # set to 1 to enable
 ```
 
-Note that running Weaviate with a text2vec-transformer module but without GPU will be slow. Enable CUDA if you have a GPU available (`ENABLE_CUDA=1`).
+:::note Have you enabled CUDA?
+The `text2vec-transformer` module will benefit greatly from GPU usage. Make sure to enable CUDA if you have a compatible GPU available (`ENABLE_CUDA=1`).
+:::
 
 ### Alternative: configure your custom setup
 
@@ -77,14 +87,14 @@ This setting is now a requirement, if you plan on using any module. So, when usi
 Choose [any of our pre-built transformers models](#pre-built-images) (for building your own model container, see below) and spin it up - for example using:
 
 ```
-docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
+docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
 ```
 
 :::tip
 Use a CUDA-enabled machine for optimal performance. Alternatively, include this container in the same `docker-compose.yml` as Weaviate.
 :::
 
-#### Step 3: Tell Weaviate where to find the inference 
+#### Step 3: Tell Weaviate where to find the inference
 
 Set the Weaviate environment variable `TRANSFORMERS_INFERENCE_API` to identify where your inference container is running, for example if Weaviate is running outside of Docker use `TRANSFORMERS_INFERENCE_API="http://localhost:8000"`. Alternatively if Weaviate is part of the same Docker network, e.g. because they are part of the same `docker-compose.yml` file, you can use Docker networking/DNS, such as `TRANSFORMERS_INFERENCE_API=http://t2v-transformers:8080`.
 
@@ -94,7 +104,7 @@ You can now use Weaviate normally and all vectorization during import and search
 
 You can download a selection of pre-built images directly from Dockerhub. We
 have chosen publicly available models that in our opinion are well suited for
-semantic search. 
+semantic search.
 
 The pre-built models include:
 
@@ -131,10 +141,10 @@ a custom image as outlined below.
 
 ### Option 2: Use any publicly available Hugging Face model
 
-You can build a Docker image which supports any model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`distilroberta-base` model](https://huggingface.co/distilroberta-base). 
+You can build a Docker image which supports any model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`distilroberta-base` model](https://huggingface.co/distilroberta-base).
 
 #### Step 1: Create a `Dockerfile`
-Create a new `Dockerfile`. We will name it `distilroberta.Dockerfile`. Add the following lines to it: 
+Create a new `Dockerfile`. We will name it `distilroberta.Dockerfile`. Add the following lines to it:
 ```
 FROM semitechnologies/transformers-inference:custom
 RUN MODEL_NAME=distilroberta-base ./download.py
@@ -189,9 +199,13 @@ ports:
   - "9090:8080"
 ```
 
-to your `text2vec-transformers`. 
+to your `text2vec-transformers`.
 
-Then you can send REST requests to it directly, e.g. `curl localhost:9090/vectors -d '{"text": "foo bar"}'` and it will print the created vector directly. 
+Then you can send REST requests to it directly, e.g.:
+```shell
+curl localhost:9090/vectors -H 'Content-Type: application/json' -d '{"text": "foo bar"}
+```
+and it will print the created vector directly.
 
 ## How to configure
 

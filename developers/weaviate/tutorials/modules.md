@@ -1,7 +1,7 @@
 ---
 title: Modules - an introduction
 sidebar_position: 9
-image: og/docs/quickstart-tutorial.jpg
+image: og/docs/tutorials.jpg
 # tags: ['modules']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -80,7 +80,7 @@ If you don't want to vectorize a property at all, you can simply skip it.
 
 ## Example
 
-<!-- TODO: Update this to the new domain -->
+<!-- TODO: Update this to the new domain but https://edu-demo.weaviate.network/v1/schema doesn't have anonymous access enabled. -->
 If you [look at the schema](https://demo.dataset.playground.semi.technology/v1/schema) of the article demo dataset, you can see a complete example.
 
 Let's take a look at the schema item for the Article class. Look for the `"moduleConfig"` entries on the class and on the property level.
@@ -114,10 +114,11 @@ You will see that the class and property names are not indexed, but the article 
             "properties": [
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "title of the article",
-                    "indexInverted": true,
+                    "indexFilterable": true,
+                    "indexSearchable": true,
                     "moduleConfig": {
                         "text2vec-transformers": {
                             "skip": false,
@@ -129,10 +130,11 @@ You will see that the class and property names are not indexed, but the article 
                 },
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "url of the article",
-                    "indexInverted": false,
+                    "indexFilterable": true,
+                    "indexSearchable": true,
                     "moduleConfig": {
                         "text2vec-transformers": {
                             "skip": false,
@@ -147,7 +149,8 @@ You will see that the class and property names are not indexed, but the article 
                         "text"
                     ],
                     "description": "summary of the article",
-                    "indexInverted": true,
+                    "indexFilterable": true,
+                    "indexSearchable": true,
                     "moduleConfig": {
                         "text2vec-transformers": {
                             "skip": false,

@@ -49,8 +49,8 @@ This filter allows you to find data objects in the vicinity of an input vector. 
 | Variables | Required | Type | Description |
 | --- | --- | --- | --- |
 | `vector` | yes | `[float]` | This variable takes a vector embedding in the form of an array of floats. The array should have the same length as the vectors in this class. |
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
-| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors).. Can't be used together with the `distance` variable. |
+| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
+| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors). Can't be used together with the `distance` variable. |
 
 ### Example
 
@@ -85,8 +85,8 @@ This filter allows you to find data objects in the vicinity of other data object
 | --------- | -------- | ---- | ----------- |
 | `id` | yes | `UUID` | Data object identifier in the uuid format. |
 | `beacon` | yes | `url` | Data object identifier in the beacon URL format. E.g., `weaviate://<hostname>/<kind>/id`. |
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md). |
-| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors).. Can't be used together with the `distance` variable. |
+| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
+| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors). Can't be used together with the `distance` variable. |
 
 ### Example
 
@@ -97,83 +97,78 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 <MoleculeGQLDemo query='%7B%0D%0A++Get%7B%0D%0A++++Article%28%0D%0A++++++nearObject%3A+%7B%0D%0A++++++++beacon%3A+%22weaviate%3A%2F%2Flocalhost%2Fe5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf%22%2C+%0D%0A++++++++certainty%3A+0.7%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++certainty%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
 ## hybrid
-This filter allows you to combine dense and sparse vectors to get the best of both search methods. It's supported by the `Get{}` function.  
+This filter allows you to combine [BM25](#bm25) and vector search to get the best of both search methods. It's supported by the `Get{}` function.
 
 ### Variables
 
-| Variables | Required | Description |
-| --- | --- | --- |
-| `hybrid` | yes | need to specify that you want to use hybrid search |
-| `query` | yes | search query |
-| `alpha` | no (default is set to 0.75) | weighting for each search algorithm |
-| `vector` | no | optional to supply your own vector |
-| `score` | no | ranked score that is assigned to each document |
+| Variables    | Required | Type       | Description                                                                 |
+|--------------|----------|------------|-----------------------------------------------------------------------------|
+| `query`      | yes      | `string`   | search query                                                                |
+| `alpha`      | no       | `float`    | weighting for each search algorithm, default 0.75                           |
+| `vector`     | no       | `[float]`  | optional to supply your own vector                                          |
+| `properties` | no       | `[string]` | list of properties to limit the BM25 search to, default all text properties |
 
-* Note: `alpha` can be any number from 0 to 1 
-  * If `alpha` = 0, it is using a pure **sparse** search method 
-  * If `alpha` = 1, it is using a pure **vector** search method
-  * If `alpha` = 0.5, it is weighing the sparse and vector method evenly
+* Note: `alpha` can be any number from 0 to 1, defaulting to 0.75.
+  * `alpha` = 0 forces using a pure **keyword** search method (BM25)
+  * `alpha` = 1 forces using a pure **vector** search method
+  * `alpha` = 0.5 weighs the BM25 and vector methods evenly
 
-### Example 
+### GraphQL response
+
+The `_additional` property in the GraphQL result exposes the `score`. Results are sorted descending by the score.
+
+```json
+{
+  "_additional": {
+    "score": "0.016390799"
+  }
+}
+```
+
+
+### Example
 
 import GraphQLFiltersHybrid from '/_includes/code/graphql.filters.hybrid.mdx';
 
 <GraphQLFiltersHybrid/>
 
-<MoleculeGQLDemo query='%7B%0A+  +Get+{%0A++++Article+(%0A++++++hybrid:+{%0A++++++++query:+%22Fisherman+that+catches+salmon%22%0A++++++++alpha:+0.5%0A++++++})%0A+++++{%0A++++++title%0A++++++summary%0A++++++_additional+{score}%0A++++}%0A++}%0A%7D'/>
-
+<MoleculeGQLDemo query= '%7B%0A+%20%20+Get+{%0A++++Article+(%0A++++++hybrid:+{%0A++++++++query:+"Fisherman+that+catches+salmon"%0A++++++++alpha:+0.5%0A++++++})%0A+++++{%0A++++++title%0A++++++summary%0A++++++_additional+{score}%0A++++}%0A++}%0A%7D' />
 
 ### Example with vector parameter
-If you're providing your own embeddings, you can add the vector query to the `vector` parameter. If Weaviate is handling the vectorization, then you can ignore the `vector` parameter and use the example code snippets above.
+If you're providing your own embeddings, you can supply the vector query to the `vector` variable. If Weaviate is handling the vectorization, then you can ignore the `vector` variable and use the example code snippets above.
 
 import GraphQLFiltersHybridVector from '/_includes/code/graphql.filters.hybrid.vector.mdx';
 
 <GraphQLFiltersHybridVector/>
 
-### Hybrid with Where Filter 
-Starting with `v1.18`, you can use [`where` filters](../graphql/filters.md#where-filter) with `hybrid`. 
+### Hybrid with Where filter
+Starting with `v1.18`, you can use [`where` filters](../graphql/filters.md#where-filter) with `hybrid`.
 
 import GraphQLFiltersHybridFilterExample from '/_includes/code/graphql.filters.hybrid.filter.example.mdx';
 
 <GraphQLFiltersHybridFilterExample/>
 
+
+### Limiting BM25 properties
+
+Starting with `v1.19`, `hybrid` accepts a `properties` array of strings that limits the set of properties that will be searched by the BM25 component of the search. If not specified, all text properties will be searched.
+
+In the examples below, the `alpha` parameter is set close to 0 to favor BM25 search, and changing the `properties` from `"question"` to `"answer"` will yield a different set of results.
+
+import GraphQLFiltersHybridProperties from '/_includes/code/graphql.filters.hybrid.properties.mdx';
+
+<GraphQLFiltersHybridProperties/>
+
+
 ## BM25
+
 The `bm25` operator performs a keyword (sparse vector) search, and uses the BM25F ranking function to score the results. BM25F (**B**est **M**atch **25** with Extension to Multiple Weighted **F**ields) is an extended version of BM25 that applies the scoring algorithm to multiple fields (`properties`), producing better results.
 
 The search is case-insensitive, and case matching does not confer a score advantage. Stop words are removed. [Stemming is not supported yet](https://github.com/weaviate/weaviate/issues/2439).
 
 ### Schema configuration
-The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases. If necessary, they can be configured in the schema per class, and can optionally be overridden per property:
 
-```yaml
-{
-  "class": "string",
-  # Configuration of the sparse index
-  "invertedIndexConfig": {
-    "bm25": {
-      "b": 0.75,
-      "k1": 1.2
-    }
-  },
-  "properties": [
-    {
-      "name": "string",
-      "description": "string",
-      "dataType": [
-        "string"
-      ],
-      # Property-level settings override the class-level settings
-      "invertedIndexConfig": {
-        "bm25": {
-          "b": 0.75,
-          "k1": 1.2
-        }
-      },
-      "indexInverted": true
-    }
-  ]
-}
-```
+The [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function) are configurable and optional. See the [schema reference](../../config-refs/schema.md#invertedindexconfig--bm25) for more details.
 
 ### Variables
 The `bm25` operator supports the following variables:
@@ -181,7 +176,7 @@ The `bm25` operator supports the following variables:
 | Variables | Required | Description |
 | --------- | -------- | ----------- |
 | `query`   | yes      | the keyword search query |
-| `properties` | no    | array of properties (fields) to search in, defaulting to all properties in the class| 
+| `properties` | no    | array of properties (fields) to search in, defaulting to all properties in the class|
 
 :::info Boosting properties
 Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
@@ -197,9 +192,9 @@ import GraphQLFiltersBM25 from '/_includes/code/graphql.filters.bm25.mdx';
 
 ### GraphQL response
 
-The `_additional` object in the GraphQL result exposes the score:
+The `_additional` property in the GraphQL result exposes the score:
 
-```yaml
+```json
 {
   "_additional": {
     "score": "5.3201",
@@ -231,8 +226,8 @@ The `_additional` object in the GraphQL result exposes the score:
 }
 ```
 
-### BM25 with Where Filter 
-Introduced in `v1.18`, you can now use [`where` filters](../graphql/filters.md#where-filter) with `bm25`. 
+### BM25 with Where Filter
+Introduced in `v1.18`, you can now use [`where` filters](../graphql/filters.md#where-filter) with `bm25`.
 
 import GraphQLFiltersBM25FilterExample from '/_includes/code/graphql.filters.bm25.filter.example.mdx';
 
@@ -306,10 +301,10 @@ This results in the following. Note that publications `International New York Ti
 
 ## nearText
 
-Enabled by the modules: 
-- [text2vec-openai](../../modules/retriever-vectorizer-modules/text2vec-openai.md), 
-- [text2vec-cohere](../../modules/retriever-vectorizer-modules/text2vec-cohere.md), 
-- [text2vec-huggingface](../../modules/retriever-vectorizer-modules/text2vec-huggingface.md), 
+Enabled by the modules:
+- [text2vec-openai](../../modules/retriever-vectorizer-modules/text2vec-openai.md),
+- [text2vec-cohere](../../modules/retriever-vectorizer-modules/text2vec-cohere.md),
+- [text2vec-huggingface](../../modules/retriever-vectorizer-modules/text2vec-huggingface.md),
 - [text2vec-transformers](../../modules/retriever-vectorizer-modules/text2vec-transformers.md),
 - [text2vec-contextionary](../../modules/retriever-vectorizer-modules/text2vec-contextionary.md).
 - [multi2vec-clip](../../modules/retriever-vectorizer-modules/multi2vec-clip.md).
@@ -320,18 +315,18 @@ This filter allows you to find data objects in the vicinity of the vector repres
 
 | Variables | Required | Type | Description |
 | --- | --- | --- | --- |
-| `concepts` | yes | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing) |
+| `concepts` | yes | `[string]` | An array of strings that can be natural language queries, or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing). |
 | `certainty` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values.<br/>Values can be between 0 (no match) and 1 (perfect match).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `distance` variable. |
-| `distance` | no | `float` | Normalized Distance between the result item and the search vector.<br/>The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/configuration/distances.md).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `certainty` variable.|
+| `distance` | no | `float` | Normalized Distance between the result item and the search vector.<br/>The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `certainty` variable.|
 | `autocorrect` | no | `boolean` | Autocorrect input text values |
 | `moveTo` | no | `object{}` | Move your search term closer to another vector described by keywords |
-| `moveTo{concepts}`| no | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
-| `moveTo{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space | 
-| `moveTo{force}`| no | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible | 
+| `moveTo{concepts}`| no | `[string]` | An array of strings - natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
+| `moveTo{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space. |
+| `moveTo{force}`| no | `float` | The force to apply to a particular movement. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
 | `moveAwayFrom` | no | `object{}` | Move your search term away from another vector described by keywords |
-| `moveAwayFrom{concepts}`| no | `[string]` | An array of strings, this can be natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
-| `moveAwayFrom{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space | 
-| `moveAwayFrom{force}`| no | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible | 
+| `moveAwayFrom{concepts}`| no | `[string]` | An array of strings - natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
+| `moveAwayFrom{objects}`| no | `[UUID]` | Object IDs to move the results from. This is used to "bias" NLP search results into a certain direction in vector space. |
+| `moveAwayFrom{force}`| no | `float` | The force to apply to a particular movement. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
 
 ### Example I
 
@@ -379,7 +374,7 @@ A practical example would be: `concepts: ["beatles", "John Lennon"]`
 
 * Only available in `txt2vec-contextionary` module
 
-The semantic path returns an array of concepts from the query to the data object. This allows you to see which steps Weaviate took and how the query and data object are interpreted. 
+The semantic path returns an array of concepts from the query to the data object. This allows you to see which steps Weaviate took and how the query and data object are interpreted.
 
 | Property | Description |
 | --- | --- |
@@ -406,11 +401,11 @@ This filter allows you to return answers to questions by running the results thr
 ### Variables
 
 | Variables | Required | Type | Description |
-| --- | --- | --- | --- |
-| `question` 	| yes	| `string` | The question to be answered. 	|
-| `certainty` 	| no 	| `float` | Desired minimal certainty or confidence of answer to the question. The higher the value, the stricter the search becomes. The lower the value, the fuzzier the search becomes. If no certainty is set, any answer that could be extracted will be returned|
-| `properties` 	| no 	| `[string]` | The properties of the queries Class which contains text. If no properties are set, all are considered.	|
-| `rerank` 	| no 	| `boolean`	| If enabled, the qna module will rerank the result based on the answer score. For example, if the 3rd result - as determined by the previous (semantic) search contained the most likely answer, result 3 will be pushed to position 1, etc. *Not supported prior to v1.10.0* |
+| --------- | -------- | ---- | ----------- |
+| `question` 	| yes	| `string` | The question to be answered. |
+| `certainty` | no 	| `float` | Desired minimal certainty or confidence of answer to the question. The higher the value, the stricter the search becomes. The lower the value, the fuzzier the search becomes. If no certainty is set, any answer that could be extracted will be returned. |
+| `properties`	| no 	| `[string]` | The properties of the queries Class which contains text. If no properties are set, all are considered.	|
+| `rerank` 	| no 	| `boolean`	| If enabled, the qna module will rerank the result based on the answer score. For example, if the 3rd result - as determined by the previous (semantic) search contained the most likely answer, result 3 will be pushed to position 1, etc. *Supported since v1.10.0* |
 
 ### Example
 
@@ -420,7 +415,7 @@ import QNATransformersAsk from '/_includes/code/qna-transformers.ask.mdx';
 
 <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++ask%3A+%7B%0D%0A++++++++question%3A+%22Who+is+the+king+of+the+Netherlands%3F%22%2C%0D%0A++++++++properties%3A+%5B%22summary%22%5D%0D%0A++++++%7D%2C+%0D%0A++++++limit%3A1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++answer+%7B%0D%0A++++++++++hasAnswer%0D%0A++++++++++certainty%0D%0A++++++++++property%0D%0A++++++++++result%0D%0A++++++++++startPosition%0D%0A++++++++++endPosition%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
 
-### Additional information
+### GraphQL response
 
 The `_additional{}` property is extended with the answer and a certainty of the answer.
 

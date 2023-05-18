@@ -29,7 +29,7 @@ import json
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
     additional_headers={
-        "X-OpenAI-Api-Key": api_tkn  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key" 
+        "X-OpenAI-Api-Key": api_tkn  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
     }
 )
 
@@ -51,25 +51,52 @@ print(json.dumps(result, indent=4))
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require("weaviate-client");
+const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
-  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
 });
 
 client.graphql
   .get()
   .withClassName('Question')
   .withFields('question answer category _additional {certainty}')
-  .withNearText({concepts: ["biology"]})
+  .withNearText({concepts: ['biology']})
   .withLimit(2)
   .do()
   .then(res => {
     console.log(JSON.stringify(res, null, 2))
   })
   .catch(err => {
+    console.error(err)
+  });
+```
+
+</TabItem>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
+});
+
+client.graphql
+  .get()
+  .withClassName('Question')
+  .withFields('question answer category _additional {certainty}')
+  .withNearText({concepts: ['biology']})
+  .withLimit(2)
+  .do()
+  .then((res: any) => {
+    console.log(JSON.stringify(res, null, 2))
+  })
+  .catch((err: Error) => {
     console.error(err)
   });
 ```
@@ -92,9 +119,12 @@ func main() {
   cfg := weaviate.Config{
     Host:    "some-endpoint.weaviate.network/",
     Scheme:  "https",
-    Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"},
+    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
   className := "Question"
 
@@ -125,15 +155,15 @@ func main() {
 {/* <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
-import technology.semi.weaviate.client.v1.graphql.query.argument.NearTextArgument;
-import technology.semi.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
-import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
+import io.weaviate.client.v1.graphql.query.fields.Field;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -141,7 +171,7 @@ import java.util.Map;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-OpenAI-Api-Key", "<THE-KEY>");
+      put("X-OpenAI-Api-Key", "YOUR-OPENAI-API-KEY");
     } };
     Config config = new Config("https", "some-endpoint.weaviate.network/", headers);
     WeaviateClient client = new WeaviateClient(config);
@@ -161,7 +191,7 @@ public class App {
       .build();
 
     Field question = Field.builder().name("question").build();
-    Field answer = Field.builder().name("answer").build();    
+    Field answer = Field.builder().name("answer").build();
 
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName("Question")
@@ -200,7 +230,7 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-OpenAI-Api-Key: <THE-KEY>" \
+    -H "X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY" \
     -d @- \
     http://localhost:8080/v1/graphql
 ```

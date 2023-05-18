@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-This tutorial is designed to show you an example of how to create a schema in Weaviate. 
+This tutorial is designed to show you an example of how to create a schema in Weaviate.
 
 By the end of this tutorial, you should have a good idea of how to create a schema. You will begin to see why it is important, and where to find the relevant information required for schema definition.
 
@@ -34,7 +34,7 @@ import SchemaDef from '/_includes/definition-schema.md';
 
 <SchemaDef/>
 
-If you begin to import data without having defined a schema, it will trigger the [auto-schema feature](/developers/weaviate/configuration/schema-configuration.md#auto-schema) and Weaviate will create a schema for you.
+If you begin to import data without having defined a schema, it will trigger the [auto-schema feature](/developers/weaviate/config-refs/schema.md#auto-schema) and Weaviate will create a schema for you.
 
 While this may be suitable in some circumstances, in many cases you may wish to explicitly define a schema. Manually defining the schema will help you ensure that the schema is suited for your specific data and needs.
 
@@ -58,11 +58,11 @@ Schemas are defined in JSON format. An empty schema to start with:
 
 Let's say there are three classes you want to capture from this dataset in Weaviate: `Publication`, `Article` and `Author`. Notice that these words are *singular* (which is best practice, each data object is *one* of these classes).
 
-Classes always start with a capital letter. Properties always begin with a small letter. When you want to concatenate words into one class name or one property name, you can do that with camelCasing the words. Read more about schema classes, properties and data types [here](/developers/weaviate/configuration/schema-configuration.md#data-objects-and-structure).
+Classes always start with a capital letter. Properties always begin with a small letter. When you want to concatenate words into one class name or one property name, you can do that with camelCasing the words. Read more about schema classes, properties and data types [here](/developers/weaviate/config-refs/schema.md).
 
 Let's define the class `Publication` with the properties `name`, `hasArticles` and `headquartersGeoLocation` in JSON format. `name` will be the name of the `Publication`, in string format. `hasArticles` will be a reference to Article objects. We need to define the class `Articles` in the same schema to make sure the reference is possible. `headquartersGeoLocation` will be of the special dataType `geoCoordinates`.
 
-Note that the property `"title"` of the class `"Article"` has dataType `"string"`, while the property `"content"` is of dataType `"text"`. `string` values and `text` values are tokenized differently to each other. 
+Note that the property `"title"` of the class `"Article"` has dataType `"string"`, while the property `"content"` is of dataType `"text"`. `string` values and `text` values are tokenized differently to each other.
 
 ```json
 {
@@ -71,7 +71,7 @@ Note that the property `"title"` of the class `"Article"` has dataType `"string"
   "properties": [
     {
       "dataType": [
-        "string"
+        "text"
       ],
       "description": "Name of the publication",
       "name": "name"
@@ -103,7 +103,7 @@ Add the classes `Article` and `Author` to the same schema, so you will end up wi
   "properties": [
     {
       "dataType": [
-        "string"
+        "text"
       ],
       "description": "Name of the publication",
       "name": "name"
@@ -129,7 +129,7 @@ Add the classes `Article` and `Author` to the same schema, so you will end up wi
   "properties": [
     {
       "dataType": [
-        "string"
+        "text"
       ],
       "description": "Title of the article",
       "name": "title"
@@ -148,7 +148,7 @@ Add the classes `Article` and `Author` to the same schema, so you will end up wi
   "properties": [
       {
         "dataType": [
-            "string"
+            "text"
         ],
         "description": "Name of the author",
         "name": "name"
@@ -181,7 +181,7 @@ Now, add this list of classes to the schema, which will look like this:
     "properties": [
       {
         "dataType": [
-          "string"
+          "text"
         ],
         "description": "Name of the publication",
         "name": "name"
@@ -207,7 +207,7 @@ Now, add this list of classes to the schema, which will look like this:
     "properties": [
       {
         "dataType": [
-          "string"
+          "text"
         ],
         "description": "Title of the article",
         "name": "title"
@@ -226,7 +226,7 @@ Now, add this list of classes to the schema, which will look like this:
     "properties": [
       {
         "dataType": [
-            "string"
+            "text"
         ],
         "description": "Name of the author",
         "name": "name"

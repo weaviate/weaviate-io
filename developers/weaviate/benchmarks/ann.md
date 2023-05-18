@@ -20,7 +20,7 @@ solutions.
 To make the most of this benchmark, you can look at it from different perspectives:
 
 - **The overall performance** – Review the [benchmark result section below](#results) to draw conclusions about what to expect from Weaviate in a production setting.
-- **Expectation for your use case** – Find the dataset closest to your production use case, and estimate Weaviate's expected performance for your use case. 
+- **Expectation for your use case** – Find the dataset closest to your production use case, and estimate Weaviate's expected performance for your use case.
 - **Fine Tuning** – If you don't get the results you expect. Find the optimal combinations of the config parameters (efConstruction, maxConnections and ef) to achieve the best results for your production configuration.
 
 ## What is being measured?
@@ -34,13 +34,13 @@ For each benchmark test, we picked parameters of:
 
 For each set of parameters we've run 10000 requests and we measured:
 
-- The **Recall@1**, **Recall@10**, **Recall@100** - by comparing Weaviate's results to the 
+- The **Recall@1**, **Recall@10**, **Recall@100** - by comparing Weaviate's results to the
   ground truths specified in each dataset
 - **Multi-threaded Queries per Second (QPS)** - The overall throughput you can
   achieve with each configuration
 - **Individual Request Latency (mean)** - The mean latency over all 10,000 requests
 - **P99 Latency** - 99% of all requests (9.900 out of 10.000) have a latency that
-  is lower than or equal to this number – this shows how fast 
+  is lower than or equal to this number – this shows how fast
 - **Import time** - Since varying build parameters has an effect on import
   time, the import time is also included
 
@@ -102,7 +102,7 @@ recommend using the [Go](/developers/weaviate/client-libraries/go.md) or
 
 The complete import and test scripts are available [here](https://github.com/weaviate/weaviate-benchmarking).
 
-# Results
+## Results
 
 :::info A guide for picking the right dataset
    The following results section contains multiple datasets. To get the most of
@@ -134,11 +134,11 @@ For each dataset, there is a highlighted configuration. The highlighted
 configuration is an opinionated pick about a good recall/latency/throughput
 trade-off. The highlight sections will give you a good overview of Weaviate's
 performance with the respective dataset. Below the highlighted configuration,
-you can find alternative configurations. 
+you can find alternative configurations.
 
-## SIFT1M (1M 128d vectors, L2 distance)
+### SIFT1M (1M 128d vectors, L2 distance)
 
-### Highlighted Configuration
+#### Highlighted Configuration
 
 <!-- TODO: Add formatting to table if desired -->
 | **1.0M** | **128** | **l2** | **128** | **32** | **64** |
@@ -149,7 +149,7 @@ you can find alternative configurations.
 | --- | --- | --- | --- |
 | Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
 
-### All Results
+#### All Results
 
 #### QPS vs Recall
 
@@ -163,9 +163,9 @@ import AnnReadResultsTable from '/_includes/ann-read-results-table.mdx';
 
 <AnnReadResultsTable/>
 
-## Glove-25 (1.2M 25d vectors, cosine distance)
+### Glove-25 (1.2M 25d vectors, cosine distance)
 
-### Highlighted Configuration
+#### Highlighted Configuration
 
 | **1.28M** | **35** | **cosine** | **64** | **16** | **64** |
 | --- | --- | --- | --- | --- |
@@ -175,7 +175,7 @@ import AnnReadResultsTable from '/_includes/ann-read-results-table.mdx';
 | --- | --- | --- | --- |
 | Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
 
-### All Results
+#### All Results
 
 #### QPS vs Recall
 
@@ -187,9 +187,9 @@ import AnnGlove25 from '/_includes/ann-glove-25.mdx';
 
 <AnnReadResultsTable/>
 
-## Deep Image 96 (9.99M 96d vectors, cosine distance)
+### Deep Image 96 (9.99M 96d vectors, cosine distance)
 
-### Highlighted Configuration
+#### Highlighted Configuration
 
 | **9.99M** | **96** | **cosine** | **128** | **32** | **64** |
 | --- | --- | --- | --- | --- |
@@ -199,7 +199,7 @@ import AnnGlove25 from '/_includes/ann-glove-25.mdx';
 | --- | --- | --- | --- |
 | Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
 
-### All Results
+#### All Results
 
 #### QPS vs Recall
 
@@ -211,9 +211,9 @@ import AnnDeep96 from '/_includes/ann-deep-96.mdx';
 
 <AnnReadResultsTable/>
 
-## GIST 960 (1.0M 960d vectors, cosine distance)
+### GIST 960 (1.0M 960d vectors, cosine distance)
 
-### Highlighted Configuration
+#### Highlighted Configuration
 
 | **1.00M** | **960** | **cosine** | **512** | **32** | **128** |
 | --- | --- | --- | --- | --- |
@@ -223,7 +223,7 @@ import AnnDeep96 from '/_includes/ann-deep-96.mdx';
 | --- | --- | --- | --- |
 | Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
 
-### All Results
+#### All Results
 
 #### QPS vs Recall
 
@@ -235,9 +235,9 @@ import AnnGist960 from '/_includes/ann-gist-960.mdx';
 
 <AnnReadResultsTable/>
 
-# Learn more & FAQ
+## Learn more & FAQ
 
-## What is the difference between latency and throughput?
+### What is the difference between latency and throughput?
 
 The latency refers to the time it takes to complete a single request. This
 is typically measured by taking a mean or percentile distribution of all
@@ -252,14 +252,14 @@ would mean that 200 requests can be answered in a second.
 However, in reality, you often don't have a single user sending one query after
 another. Instead, you have multiple users sending queries. This makes the
 querying-side concurrent. Similarly, Weaviate can handle concurrent incoming
-requests. We can identify how many concurrent requests can be served by measuring 
+requests. We can identify how many concurrent requests can be served by measuring
 the throughput.
 
 We can take our single-thread calculation from before and multiply it with the
 number of server CPU cores. This will give us a rough estimate of what the
 server can handle concurrently. However, it would be best never to trust this
 calculation alone and continuously measure the actual throughput. This is because
-such scaling may not always be linear. For example, there may be synchronization 
+such scaling may not always be linear. For example, there may be synchronization
 mechanisms used to make concurrent access safe, such as locks. Not only do
 these mechanisms have a cost themselves, but if implemented incorrectly, they
 can also lead to congestion which would further decrease the concurrent
@@ -269,7 +269,7 @@ extrapolate what the numbers would be like in a multi-threaded setting.
 All throughput numbers ("QPS") outlined in this benchmark are actual
 multi-threaded measurements on a 30-core machine, not estimations.
 
-## What is a p99 latency?
+### What is a p99 latency?
 
 The mean latency gives you an average value of all requests measured. This is a
 good indication of how long a user will have to wait on average for
@@ -297,7 +297,7 @@ The higher the percentile (e.g. p99 over p95) the "safer" the quoted
 latency becomes. We have thus decided to use p99-latencies instead of
 p95-latencies in our measurements.
 
-## What happens if I run with fewer or more CPU cores than on the example test machine?
+### What happens if I run with fewer or more CPU cores than on the example test machine?
 
 The benchmark outlines a QPS per core measurement. This can help you make a
 rough estimation of how the throughput would vary on smaller or larger
@@ -306,14 +306,14 @@ cores. If you need more throughput, you can run with more CPU cores.
 
 Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks. Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be [available in Weaviate soon](/developers/weaviate/roadmap/index.md).
 
-## What are ef, efConstruction, and maxConnections?
+### What are ef, efConstruction, and maxConnections?
 
 These parameters refer to the [HNSW build and query
 parameters](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw).
 They represent a trade-off between recall, latency & throughput, index size, and
 memory consumption. This trade-off is highlighted in the benchmark results.
 
-## I can't match the same latencies/throughput in my own setup, how can I debug this?
+### I can't match the same latencies/throughput in my own setup, how can I debug this?
 
 If you are encountering other numbers in your own dataset, here are a couple of
 hints to look at:
@@ -330,7 +330,7 @@ hints to look at:
   generated vectors. If you cannot achieve the performance (or recall)
   outlined above with random vectors, switch to an actual dataset.
 
-* Are your disks fast enough? While the ANN search itself is CPU-bound, the objects 
+* Are your disks fast enough? While the ANN search itself is CPU-bound, the objects
   must be read from disk after the search has been completed. Weaviate
   uses memory-mapped files to speed this process up. However, if not enough
   memory is present or the operating system has allocated the cached pages
@@ -338,10 +338,9 @@ hints to look at:
   it could then be that your benchmark is bottlenecked by those disks.
 
 * Are you using more than 2 million vectors? If yes, make sure to set the
-  [vector cache large
-  enough](/developers/weaviate/concepts/resources.md#imports-slowed-down-after-crossing-2m-objects---what-can-i-do)
+  [vector cache large enough](/developers/weaviate/concepts/resources.md#vector-cache)
   for maximum performance.
 
-## Where can I find the scripts to run this benchmark myself?
+### Where can I find the scripts to run this benchmark myself?
 
 The [repository is located here](https://github.com/weaviate/weaviate-benchmarking).

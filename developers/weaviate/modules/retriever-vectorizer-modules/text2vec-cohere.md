@@ -8,15 +8,15 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## Introduction
+## In short
 
-The `text2vec-cohere` module allows you to use the [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) directly in the Weaviate vector search engine as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using Cohere's models.
-
-:::note
 * This module uses a third-party API and may incur costs.
 * Make sure to check the Cohere [pricing page](https://cohere.ai/pricing) before vectorizing large amounts of data.
 * Weaviate automatically parallelizes requests to the Cohere-API when using the batch endpoint.
-:::
+
+## Introduction
+
+The `text2vec-cohere` module enables you to use [Cohere embeddings](https://docs.cohere.ai/docs/embeddings) in Weaviate to represent data objects and run semantic (`nearText`) queries.
 
 ## How to enable
 
@@ -45,7 +45,7 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       DEFAULT_VECTORIZER_MODULE: text2vec-cohere
       ENABLE_MODULES: text2vec-cohere
-      COHERE_APIKEY: sk-foobar # request a key on cohere.ai, setting this parameter is optional, you can also provide the API key on runtime
+      COHERE_APIKEY: sk-foobar # request a key on cohere.ai, setting this parameter is optional, you can also provide the API key at runtime
       CLUSTER_HOSTNAME: 'node1'
 ...
 ```
@@ -61,7 +61,7 @@ In your Weaviate schema, you must define how you want this module to vectorize y
 The following schema configuration tells Weaviate to vectorize the `Document` class with `text2vec-cohere`, using the `multilingual-22-12` model and without input truncation by the Cohere API.
 
 :::info
-The multilingual models use dot product, and the English model uses cosine. Make sure to set this accordingly in your Weaviate schema. You can see supported distance metrics [here](../../configuration/distances.md).
+The multilingual models use dot product, and the English model uses cosine. Make sure to set this accordingly in your Weaviate schema. You can see supported distance metrics [here](../../config-refs/distances.md).
 :::
 
 ```json
@@ -100,9 +100,9 @@ The multilingual models use dot product, and the English model uses cosine. Make
 }
 ```
 
-## How to use
+## Usage
 
-* If the Cohere API key is not set in the `text2vec-cohere` module, you can set the API key at query time by adding the following to the HTTP header: `X-Cohere-Api-Key: <cohere-api-key>`.
+* If the Cohere API key is not set in the `text2vec-cohere` module, you can set the API key at query time by adding the following to the HTTP header: `X-Cohere-Api-Key: YOUR-COHERE-API-KEY`.
 * Using this module will enable [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
 
 ### Example
@@ -158,9 +158,9 @@ If you run into rate limits, you can also decide to throttle the import in your 
 
 E.g., in Python and Go using the Weaviate client.
 
-import Text2VecCohereExample from '/_includes/code/text2vec-cohere.example.mdx';
+import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.example.mdx';
 
-<Text2VecCohereExample/>
+<CodeThrottlingExample />
 
 ## More resources
 

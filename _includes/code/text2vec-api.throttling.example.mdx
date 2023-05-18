@@ -1,0 +1,104 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+from weaviate import Client
+import time
+
+def configure_batch(client: Client, batch_size: int, batch_target_rate: int):
+    """
+    Configure the weaviate client's batch so it creates objects at `batch_target_rate`.
+
+    Parameters
+    ----------
+    client : Client
+        The Weaviate client instance.
+    batch_size : int
+        The batch size.
+    batch_target_rate : int
+        The batch target rate as # of objects per second.
+    """
+
+    def callback(batch_results: dict) -> None:
+
+        # you could print batch errors here
+        time_took_to_create_batch = batch_size * (client.batch.creation_time/client.batch.recommended_num_objects)
+        time.sleep(
+            max(batch_size/batch_target_rate - time_took_to_create_batch + 1, 0)
+        )
+
+    client.batch.configure(
+        batch_size=batch_size,
+        timeout_retries=5,
+        callback=callback,
+    )
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+	"time"
+
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate/entities/models"
+)
+
+var (
+	// adjust to your liking
+	targetRatePerMin = 600
+	batchSize        = 50
+)
+
+func main() {
+	cfg := weaviate.Config{
+		Host:   "localhost:8080",
+		Scheme: "http",
+	}
+	client, err := weaviate.NewClient(cfg)
+	if err != nil {
+		panic(err)
+	}
+
+	// replace those 10000 empty objects with your actual data
+	objects := make([]*models.Object, 10000)
+
+	// we aim to send one batch every tickInterval second.
+	tickInterval := time.Duration(batchSize/targetRatePerMinute) * time.Minute
+	t := time.NewTicker(tickInterval)
+	before := time.Now()
+
+	for i := 0; i < len(objects); i += batchSize {
+
+		// create a fresh batch
+		batch := client.Batch().ObjectsBatcher()
+
+		// add batchSize objects to the batch
+		for j := i; j < i+batchSize; j++ {
+			batch = batch.WithObject(objects[i+j])
+		}
+
+		// send off batch
+		res, err := batch.Do(context.Background())
+		// TODO: inspect result for individual errors
+		_ = res
+		// TODO: check request error
+		_ = err
+
+		// we wait for the next tick. If the previous batch took longer than
+		// tickInterval, we won't need to wait, effectively making this an
+		// unthrottled import.
+		<-t.C
+	}
+}
+```
+
+</TabItem>
+</Tabs>

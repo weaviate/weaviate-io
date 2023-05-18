@@ -16,6 +16,13 @@
   pre code {
     max-height: 700px;
   }
+
+  // fix font-size: for lists in blogs and docs;
+  article ul:not(.tabs),
+  article li:not(.tabs) {
+    font-family: var(--site-font-base-family);
+    font-size: 1.2rem;
+  }
 }
 
 // Set Background
@@ -23,7 +30,7 @@
   #__docusaurus {
     background-image: none;
   }
-  
+
   #__docusaurus, .navbar {
     background: var(--site-background);
   }

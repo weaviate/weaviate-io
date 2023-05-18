@@ -14,7 +14,7 @@ The current Python client version is `v||site.python_client_version||`
 
 ## Installation and setup
 
-The Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher. 
+The Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher.
 
 ```bash
 $ pip install weaviate-client
@@ -25,9 +25,28 @@ Now you can use the client in your Python scripts as follows:
 ```python
 import weaviate
 
-client = weaviate.Client("http://localhost:8080") # or another location where your Weaviate instance is running
+client = weaviate.Client("https://some-endpoint.weaviate.network")  # Replace the URL with that of your Weaviate instance
 
-client.schema.get() # get the full schema as example
+client.schema.get()  # Get the schema to test connection
+```
+
+Or, with additional arguments such as those below:
+
+```python
+import weaviate
+
+client = weaviate.Client(
+  url="https://some-endpoint.weaviate.network",  # URL of your Weaviate instance
+  auth_client_secret=auth_config,  # (Optional) If the Weaviate instance requires authentication
+  timeout_config=(5, 15),  # (Optional) Set connection timeout & read timeout time in seconds
+  additional_headers={  # (Optional) Any additional headers; e.g. keys for API inference services
+    "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",            # Replace with your Cohere key
+    "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  # Replace with your Hugging Face key
+    "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",            # Replace with your OpenAI key
+  }
+)
+
+client.schema.get()  # Get the schema to test connection
 ```
 
 ## Authentication
@@ -42,7 +61,34 @@ import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/cli
 
 <ClientAuthWCS />
 
-### Resource Owner Password Flow
+### API key authentication
+
+:::info Available in Weaviate Python client versions `3.14.0` and higher.
+:::
+
+import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
+
+<ClientAuthApiKey />
+
+```python
+import weaviate
+
+auth_config = weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate instance API key
+
+# Instantiate the client with the auth config
+client = weaviate.Client(
+    url="https://some-endpoint.weaviate.network",  # Replace w/ your endpoint
+    auth_client_secret=auth_config
+)
+```
+
+### OIDC authentication
+
+import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_components/client.auth.oidc.introduction.mdx'
+
+<ClientAuthOIDCIntro />
+
+#### <i class="fa-solid fa-key"></i> Resource Owner Password Flow
 
 import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
 
@@ -52,16 +98,16 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 import weaviate
 
 resource_owner_config = weaviate.AuthClientPassword(
-  username = "user", 
-  password = "pass", 
+  username = "user",
+  password = "pass",
   scope = "offline_access" # optional, depends on the configuration of your identity provider (not required with WCS)
   )
 
 # Initiate the client with the auth config
-client = weaviate.Client("https://localhost:8080", auth_client_secret=resource_owner_config)
+client = weaviate.Client("http://localhost:8080", auth_client_secret=resource_owner_config)
 ```
 
-### Client credentials flow
+#### <i class="fa-solid fa-key"></i> Client Credentials flow
 
 import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
 
@@ -71,7 +117,7 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 import weaviate
 
 client_credentials_config = weaviate.AuthClientCredentials(
-  client_secret = "client_secret", 
+  client_secret = "client_secret",
   scope = "scope1 scope2" # optional, depends on the configuration of your identity provider (not required with WCS)
   )
 
@@ -79,7 +125,7 @@ client_credentials_config = weaviate.AuthClientCredentials(
 client = weaviate.Client("https://localhost:8080", auth_client_secret=client_credentials_config)
 ```
 
-### Refresh Token flow
+#### <i class="fa-solid fa-key"></i> Refresh Token flow
 
 import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
 
@@ -98,13 +144,13 @@ bearer_config = weaviate.AuthBearerToken(
 client = weaviate.Client("https://localhost:8080", auth_client_secret=bearer_config)
 ```
 
-## Custom headers 
+## Custom headers
 
 You can pass custom headers to the client, which are added at initialization:
 
 ```python
 client = weaviate.Client(
-  url="https://localhost:8080", 
+  url="https://localhost:8080",
   additional_headers={"HeaderKey": "HeaderValue"},
 )
 ```
@@ -135,7 +181,7 @@ schema = {
     "properties": [
       {
         "dataType": [
-          "string"
+          "text"
         ],
         "description": "Name of the publication",
         "name": "name"
@@ -161,7 +207,7 @@ schema = {
     "properties": [
       {
         "dataType": [
-          "string"
+          "text"
         ],
         "description": "Title of the article",
         "name": "title"
@@ -180,7 +226,7 @@ schema = {
     "properties": [
       {
         "dataType": [
-            "string"
+            "text"
         ],
         "description": "Name of the author",
         "name": "name"
@@ -208,7 +254,7 @@ client.schema.create(schema)
 
 #### Example: Blog Post on How to get started with Weaviate and the Python client
 
-A full example of how to use the Python client for Weaviate can be found in [this article on Towards Data Science](https://towardsdatascience.com/quickstart-with-weaviate-python-client-e85d14f19e4f). 
+A full example of how to use the Python client for Weaviate can be found in [this article on Towards Data Science](https://towardsdatascience.com/quickstart-with-weaviate-python-client-e85d14f19e4f).
 
 ## Batching
 
@@ -218,8 +264,12 @@ Batching is a way of importing/creating `objects` and `references` in bulk using
 2. ***Dynamic-batching***
 3. ***Manual-batching***
 
-## New: Multi-threading batch import (weaviate-client>=3.9.0)
-Python client version `3.9.0` introduces Multi-threading Batch import which works with both `Auto-batching` and `Dynamic-batching`. 
+## Multi-threading batch import
+
+:::info Available in Weaviate Python client versions `3.9.0` and higher.
+:::
+
+Multi-threading Batch import works with both `Auto-batching` and `Dynamic-batching`.
 
 To use it, set the number of workers (threads) using the `.configure(...)` (same as `.__call__(...)`) by setting the argument `num_workers` in batch configuration. See also *Batch-configuration* below.
 
@@ -252,7 +302,7 @@ schema = {
       "properties": [
         {
           "name": "name",
-          "dataType": ["string"]
+          "dataType": ["text"]
         },
         {
           "name": "wroteBooks",
@@ -369,7 +419,7 @@ schema = {
       "properties": [
         {
           "name": "name",
-          "dataType": ["string"]
+          "dataType": ["text"]
         },
         {
           "name": "wroteBooks",
@@ -486,7 +536,7 @@ schema = {
       "properties": [
         {
           "name": "name",
-          "dataType": ["string"]
+          "dataType": ["text"]
         },
         {
           "name": "wroteBooks",
@@ -714,7 +764,7 @@ query_result = client.query\
 print(query_result)
 ```
 
-Note that you need to use the `.do()` method to execute the query. 
+Note that you need to use the `.do()` method to execute the query.
 
 ## Change logs
 

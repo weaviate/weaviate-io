@@ -1,3 +1,10 @@
+# For testing
+.venv
+nohup.out
+tests/temp.*
+**/.ipynb
+**/.ipynb_checkpoints/*
+
 # Dependencies
 /node_modules
 
@@ -12,7 +19,7 @@
 .cache-loader
 
 # Ignore Academy for now
-/developers/academy
+# /developers/academy
 
 # IDEs
 .idea
@@ -31,3 +38,4 @@ package-lock.json
 yarn.lock
 
 .python-version
+__pycache__

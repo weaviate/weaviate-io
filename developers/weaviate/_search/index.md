@@ -22,8 +22,8 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 We cover these types of searches:
 
-- [Query basics](./how-to-query-data.md): The basics of performing queries with Weaviate. 
-- [Vector/Semantic](./how-to-perform-a-semantic-search.md): Based on the concept of "similarity" of information; comparing objects in their AI-encoded "*vector space*".  
+- [Query basics](./how-to-query-data.md): The basics of performing queries with Weaviate.
+- [Vector/Semantic](./how-to-perform-a-semantic-search.md): Based on the concept of "similarity" of information; comparing objects in their AI-encoded "*vector space*".
 - [Hybrid](./hybrid-search.md): Combines scalar and vector search principles.
 - [BM25](./bm25.md): A word "weight" based search algorithm, suitable for long documents.
 

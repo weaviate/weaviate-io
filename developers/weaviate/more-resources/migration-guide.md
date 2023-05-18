@@ -8,7 +8,13 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-# Changelog for version v1.9.0
+## Migration for version 1.19.0
+
+This version introduces `indexFilterable` and `indexSearchable` variables for the new text indexes, whose values will be set based on the value of `indexInverted`.
+
+Since filterable & searchable are separate indexes, filterable does not exist in Weaviate instances upgraded from pre-`v1.19` to `v1.19`. The missing `filterable` index can be created though on startup for all `text/text[]` properties if env variable `INDEX_MISSING_TEXT_FILTERABLE_AT_STARTUP` is set.
+
+## Changelog for version v1.9.0
 
 * no breaking changes
 
@@ -41,7 +47,7 @@ import Badges from '/_includes/badges.mdx';
         "properties": [
           {
             "dataType": [
-              "string"
+              "text"
             ],
             "name": "name"
           },
@@ -70,18 +76,18 @@ import Badges from '/_includes/badges.mdx';
   * fix an issue where a class could not be deleted on some file system (e.g. AWS EFS) (#1757)
 
 
-# Migration to version v1.8.0
+## Migration to version v1.8.0
 
-## Migration Notice
+### Migration Notice
 
 Version `v1.8.0` introduces multi-shard indices and horizontal scaling. As a
-result the dataset needs to be migrated. This migration is performed automatically - 
+result the dataset needs to be migrated. This migration is performed automatically -
 without user interaction - when first starting up with Weaviate version
 `v1.8.0`. However, it cannot be reversed. We, therefore, recommend carefully
 reading the following migration notes and making a case-by-case decision about the
 best upgrade path for your needs.
 
-### Why is a data migration necessary?
+#### Why is a data migration necessary?
 
 Prior to `v1.8.0` Weaviate did not support multi-shard indices. The feature was
 already planned, therefore data was already contained in a single shard with a
@@ -120,7 +126,7 @@ If you see the error message `"shard Knuw6a360eCY: resolve node name
 \"5b6030dbf9ea\" to host"`, you can make Weaviate usable again, by setting
 `5b6030dbf9ea` as the host name: `CLUSTER_HOSTNAME=5b6030dbf9ea`.
 
-### Should you upgrade or reimport?
+#### Should you upgrade or reimport?
 
 Please note that besides new features, `v1.8.0` also contains a large
 collection of bugfixes. Some of those bugs also affected how the HNSW index was
@@ -129,17 +135,17 @@ subpar quality compared to a freshly built index in version `v1.8.0`.
 As such, if you can import using a script, we generally recommend starting
 with a fresh `v1.8.0` setup and reimporting instead of migrating.
 
-### Is downgrading possible after upgrading?
+#### Is downgrading possible after upgrading?
 
 Note that the data migration which happens at the first startup of v1.8.0 is
 not automatically reversible. If you plan on downgrading to `v1.7.x` again
 after upgrading, you must explicitly create a backup of the state prior to
 upgrading.
 
-## Changelog
+### Changelog
 
 
-# Changelog for version v1.7.2
+## Changelog for version v1.7.2
 * No breaking changes
 * New features
   * ### Array Datatypes (#1691)
@@ -150,16 +156,16 @@ upgrading.
   * ### Aggregation on array data type (#1686)
 
 
-# Changelog for version v1.7.0
+## Changelog for version v1.7.0
 * No breaking changes
 * New features
   * ### Array Datatypes (#1611)
     Starting with this release, primitive object properties are no longer limited to individual properties, but can also include lists of primitives. Array types can be stored, filtered and aggregated in the same way as other primitives.
 
-    Auto-schema will automatically recognize lists of `string`/`text` and `number`/`int`. You can also explicitly specify lists in the schema by using the following data types `string[]`, `text[]`, `int[]`, `number[]`. A type that is assigned to be an array, must always stay an array, even if it only contains a single element. 
+    Auto-schema will automatically recognize lists of `string`/`text` and `number`/`int`. You can also explicitly specify lists in the schema by using the following data types `string[]`, `text[]`, `int[]`, `number[]`. A type that is assigned to be an array, must always stay an array, even if it only contains a single element.
 
   * ### New Module: `text-spellcheck` - Check and autocorrect misspelled search terms (#1606)
-    Use the new spellchecker module to verify user-provided search queries (in existing `nearText` or `ask` functions) are spelled correctly and even suggest alternative, correct spellings. Spell-checking happens at query time. 
+    Use the new spellchecker module to verify user-provided search queries (in existing `nearText` or `ask` functions) are spelled correctly and even suggest alternative, correct spellings. Spell-checking happens at query time.
 
     There are two ways to use this module:
     1. It provides a new additional property which can be used to check (but not alter) the provided queries:
@@ -186,9 +192,9 @@ upgrading.
       }
     }
     ```
-    
+
     will produce results similar to the following:
-    
+
     ```
       "_additional": {
         "spellCheck": [
@@ -266,14 +272,14 @@ upgrading.
 * Bug fixes
   * Aggregation can get stuck when aggregating `number` datatypes (#1660)
 
-# Changelog for version 1.6.0
+## Changelog for version 1.6.0
 * No breaking changes
 * No new features
  * **Zero Shot Classification (#1603)** This release adds a new classification type `zeroshot` that works with any `vectorizer` or custom vectors. It picks the label objects that have the lowest distance to the source objects. The link is made using cross-references, similar to existing classifications in Weaviate. To start a `zeroshot` classification use `"type": "zeroshot"` in your `POST /v1/classficiations` request and specify the properties you want classified normally using `"classifyProperties": [...]`. As zero shot involves no training data, you cannot set `trainingSetWhere` filters, but can filter both source (`"sourceWhere"`) and label objects (`"targetWhere"`) directly.
 * Bug fixes
 
 
-# Changelog for version 1.5.2
+## Changelog for version 1.5.2
 
 * No breaking changes
 * No new features
@@ -281,7 +287,7 @@ upgrading.
 * ### Fix possible data races (`short write`) (#1643)
   This release fixes various possible data races that could in the worst case lead to an unrecoverable error `"short write"`. The possibility for those races was introduced in `v.1.5.0` and we highly recommend anyone running on the `v1.5.x` timeline to upgrade to `v1.5.2` immediately.
 
-# Changelog for version 1.5.1
+## Changelog for version 1.5.1
 
 * No breaking changes
 * No new features
@@ -295,12 +301,12 @@ upgrading.
 * ### Fix potential data race in Auto Schema features (#1636)
   This fix improves incorrect synchronization on the auto schema feature which in extreme cases could lead to a data race.
 
-# Migration to version 1.5.0
+## Migration to version 1.5.0
 
-## Migration Notice
+### Migration Notice
 *This release does not contain any API-level breaking changes, however, it changes the entire storage mechanism inside Weaviate. As a result, an in-place update is not possible. When upgrading from previous versions, a new setup needs to be created and all data reimported. Prior backups are not compatible with this version.*
 
-## Changelog
+### Changelog
 * No breaking changes
 * New Features:
   * *LSM-Tree based Storage*. Previous releases of Weaviate used a B+Tree based storage mechanism. This was not fast enough to keep up with the high write speed requirements of a large-scale import. This release completely rewrites the storage layer of Weaviate to use a custom LSM-tree approach. This leads to considerably faster import times, often more than 100% faster than the previous version.
@@ -309,10 +315,10 @@ upgrading.
   * *Improve Aggregation Queries*. Reduces the amount of allocations required for some aggregation queries, speeding them up and reduces the amount of timeouts encountered during aggregations.
 
 
-Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.5.0) for all the changes. 
+Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.5.0) for all the changes.
 
 
-# Changelog for version 1.4.0
+## Changelog for version 1.4.0
 
 * No breaking changes
 * New Features:
@@ -329,46 +335,46 @@ Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.5.
   * Detect schema settings that will most likely lead to duplicate vectors and print warning
   * Fix missing schema validation on transformers module
 
-Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.4.0) for all the changes. 
+Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.4.0) for all the changes.
 
 
-# Changelog for version 1.3.0
+## Changelog for version 1.3.0
 
 * No breaking changes
 * New feature: [Question Answering (Q&A) Module](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md)
 * New feature: New Meta Information for all transformer-based modules
-  
-Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.3.0) for all the changes. 
 
-# Changelog for version 1.2.0
+Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.3.0) for all the changes.
+
+## Changelog for version 1.2.0
 
 * No breaking changes
 * New feature: Introduction of the [Transformer Module](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md)
 
-Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.2.0) for all the changes. 
+Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.2.0) for all the changes.
 
-# Changelog for version 1.1.0
+## Changelog for version 1.1.0
 
 * No breaking changes
 * New feature: GraphQL `nearObject` search to get most similar object.
 * Architectural  update: Cross-reference batch import speed improvements.
- 
-Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.1.0) for all the changes. 
 
-# Migration to version 1.0.0
+Check [this github page](https://github.com/weaviate/weaviate/releases/tag/v1.1.0) for all the changes.
 
-Weaviate version 1.0.0 was released on 12 January 2021, and consists of the major update of modularization. From version 1.0.0, Weaviate is modular, meaning that the underlying structure relies on a *pluggable* vector index, *pluggable* vectorization modules with possibility to extend with *custom* modules. 
+## Migration to version 1.0.0
 
-Weaviate release 1.0.0 from 0.23.2 comes with a significant amount of breaking changes in the data schema, API and clients. Here is an overview of all (breaking) changes. 
+Weaviate version 1.0.0 was released on 12 January 2021, and consists of the major update of modularization. From version 1.0.0, Weaviate is modular, meaning that the underlying structure relies on a *pluggable* vector index, *pluggable* vectorization modules with possibility to extend with *custom* modules.
 
-For client library specific changes, take a look at the change logs of the specific client ([Go](/developers/weaviate/client-libraries/go.md#v20x), [Python](/developers/weaviate/client-libraries/python.md#20x), [JavaScript](/developers/weaviate/client-libraries/javascript.md#v200) and the [CLI](/developers/weaviate/client-libraries/cli.md#200)).
+Weaviate release 1.0.0 from 0.23.2 comes with a significant amount of breaking changes in the data schema, API and clients. Here is an overview of all (breaking) changes.
 
-Moreover, a new version of the Console is released. Visit the Console documentation for more information. 
+For client library specific changes, take a look at the change logs of the specific client ([Go](/developers/weaviate/client-libraries/go.md#change-logs), [Python](/developers/weaviate/client-libraries/python.md#change-logs), [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx#changelog) and the [CLI](/developers/weaviate/client-libraries/cli.md#change-logs)).
 
-## Summary
+Moreover, a new version of the Console is released. Visit the Console documentation for more information.
+
+### Summary
 This contains most overall changes, but not all details. Those are documented in ["Changes"](#changes).
 
-### All RESTful API changes
+#### All RESTful API changes
 * from `/v1/schema/things/{ClassName}` to `/v1/schema/{ClassName}`
 * from `/v1/schema/actions/{ClassName} `to `/v1/schema/{ClassName}`from `/v1/schema/actions/{ClassName} `to `/v1/schema/{ClassName}`
 * from `/v1/things` to `/v1/objects`
@@ -380,7 +386,7 @@ This contains most overall changes, but not all details. Those are documented in
 * The `/v1/modules/` endpoint is introduced.
 * the `/v1/meta/` endpoint now contains module specific information in `"modules"`
 
-### All GraphQL API changes
+#### All GraphQL API changes
 * Removal of Things and Actions layer in query hierarchy
 * Reference properties of data objects are lowercase (previously uppercased)
 * Underscore properties, uuid and certainty are now grouped in the object `_additional`
@@ -388,27 +394,27 @@ This contains most overall changes, but not all details. Those are documented in
 * `nearVector(vector:[])` filter is introduced in `Get{}` query
 * `Explore (concepts: ["foo"]){}` query is changed to `Explore (near<MediaType>: ... ) {}`.
 
-### All data schema changes
+#### All data schema changes
 * Removal of Things and Actions
 * Per class and per property configuration is changed to support modules and vector index type settings.
 
-### All data object changes
+#### All data object changes
 * From `schema` to `properties` in the data object.
 
-### Contextionary
+#### Contextionary
 * Contextionary is renamed to the module `text2vec-contextionary`
 * `/v1/c11y/concepts` to `/v1/modules/text2vec-contextionary/concepts`
 * `/v1/c11y/extensions` to `/v1/modules/text2vec-contextionary/extensions`
-* `/v1/c11y/corpus` is removed 
+* `/v1/c11y/corpus` is removed
 
-### Other
+#### Other
 * Removal of `/things` and `/actions` in short and long beacons
 * Classification body is changed to support modularization
 * `DEFAULT_VECTORIZER_MODULE` is a new environment variable
 
-## Changes
+### Changes
 
-### Removal of Things and Actions
+#### Removal of Things and Actions
 `Things` and `Actions` are removed from the Data Schema. This comes with the following changes in the schema definition and API endpoints:
 1. **Data schema:** The `semantic kind` (`Things` and `Actions`) is removed from the Schema Endpoint. This means the URLs will change:
   * from `/v1/schema/things/{ClassName}` to `/v1/schema/{ClassName}`
@@ -418,55 +424,55 @@ This contains most overall changes, but not all details. Those are documented in
   * from `/v1/actions` to `/v1/objects`
   * from `/v1/batching/things`to `/v1/batch/objects` (see also the [change in batching](#renaming-batching-to-batch))
   * from `/v1/batching/actions`to `/v1/batch/objects` (see also the [change in batching](#renaming-batching-to-batch))
-1. **GraphQL:** The `Semantic Kind` "level" in the query hierarchy will be removed without replacement (In `Get` and `Aggregate` queries), i.e. 
+1. **GraphQL:** The `Semantic Kind` "level" in the query hierarchy will be removed without replacement (In `Get` and `Aggregate` queries), i.e.
    ```graphql
-   { 
-     Get { 
-       Things { 
-         ClassName { 
-           propName 
+   {
+     Get {
+       Things {
+         ClassName {
+           propName
          }
        }
-     } 
+     }
    }
-   ``` 
+   ```
 
    will become
 
    ```graphql
-   { 
-     Get { 
-       ClassName { 
-         propName 
+   {
+     Get {
+       ClassName {
+         propName
        }
-     } 
+     }
    }
-   ``` 
+   ```
 1. **Data Beacons:** The `Semantic Kind` will be removed from beacons:
    * **Short-form Beacon:**
-  
+
      * `weaviate://localhost/things/4fbacd6e-1153-47b1-8cb5-f787a7f01718`
-    
+
      to
-    
+
      * `weaviate://localhost/4fbacd6e-1153-47b1-8cb5-f787a7f01718`
 
    * **Long-form Beacon:**
-  
+
      * `weaviate://localhost/things/ClassName/4fbacd6e-1153-47b1-8cb5-f787a7f01718/propName`
-    
+
      to
-    
+
      * `weaviate://localhost/ClassName/4fbacd6e-1153-47b1-8cb5-f787a7f01718/propName`
 
-### Renaming /batching/ to /batch/
+#### Renaming /batching/ to /batch/
 
 * `/v1/batching/things` to `/v1/batch/objects`
 * `/v1/batching/actions` to `/v1/batch/objects`
 * `/v1/batching/references` to `/v1/batch/references`
 
 
-### From "schema" to "properties" in data object
+#### From "schema" to "properties" in data object
 
 The name "schema" on the data object is not intuitive and is replaced by "properties". The change looks like:
 
@@ -490,13 +496,13 @@ to
 }
 ```
 
-### Consistent casing in GraphQL properties
+#### Consistent casing in GraphQL properties
 
 Previously, reference properties in the schema definitions are always lowercase, yet in graphQL they needed to be uppercased. E.g.: `Article { OfAuthor { … on Author { name } } } }`, even though the property is defined as ofAuthor. New is that the casing in GraphQL reflects exactly the casing in the schema definition, thus the above example would become: `Article { ofAuthor { … on Author { name } } } }`
 
-### Additional data properties in GraphQL and RESTful API
+#### Additional data properties in GraphQL and RESTful API
 Since modularization, a module can contribute to the additional properties of a data object (thus are not fixed), which should be retrievable by the GraphQL and/or RESTful API.
-1. **REST**: `additional` properties (formerly named `"underscore"` properties) can be included in RESTful query calls like `?include=...`, e.g. `?include=classification`. The underscores will thus be removed from the names (e.g. `?include=_classification` is deprecated). In the Open API specifications, all additional properties will be grouped in the object `additional`. For example: 
+1. **REST**: `additional` properties (formerly named `"underscore"` properties) can be included in RESTful query calls like `?include=...`, e.g. `?include=classification`. The underscores will thus be removed from the names (e.g. `?include=_classification` is deprecated). In the Open API specifications, all additional properties will be grouped in the object `additional`. For example:
     ```json
     {
       "class": "Article",
@@ -519,11 +525,11 @@ Since modularization, a module can contribute to the additional properties of a 
 2. **GraphQL**: `"underscore"` properties are renamed to `additional` properties in GraphQL queries.
    1. All former `"underscore"` properties of a data object (e.g. `_certainty`) are now grouped in the `_additional {}` object (e.g. `_additional { certainty } `).
    2. The `uuid` property is now also placed in the `_additional {}` object and renamed to `id` (e.g. `_additional { id } `).
-   This example covers both changes: 
+   This example covers both changes:
 
    From
 
-   ```graphql 
+   ```graphql
     {
       Get {
         Things {
@@ -539,7 +545,7 @@ Since modularization, a module can contribute to the additional properties of a 
    ```
 
    to
-  
+
    ```graphql
    {
      Get {
@@ -555,20 +561,20 @@ Since modularization, a module can contribute to the additional properties of a 
    }
    ```
 
-### Modules RESTful endpoint
+#### Modules RESTful endpoint
 With the modularization of Weaviate, the `v1/modules/` endpoint is introduced.
 
-### GraphQL semantic search
+#### GraphQL semantic search
 
 With the modularization, it becomes possible to vectorize non-text objects. Search is no longer restricted to use the Contextionary's vectorization of text and data objects, but could also be applied to non-text objects or raw vectors. The formerly 'explore' filter in Get queries and 'Explore' queries in GraphQL were tied to text, but the following changes are made to this filter with the new version of Weaviate:
 
-1. The filter `Get ( explore: {} ) {}` is renamed to `Get ( near<MediaType>: {} ) {}`. 
+1. The filter `Get ( explore: {} ) {}` is renamed to `Get ( near<MediaType>: {} ) {}`.
    1. New: `Get ( nearVector: { vector: [.., .., ..] } ) {}` is module independent and will thus always be available.
    2. `Get ( explore { concepts: ["foo"] } ) {}` will become `Get ( nearText: { concepts: ["foo"] } ) {}` and is only available if the `text2vec-contextionary` module is attached.
 
     From
 
-    ```graphql 
+    ```graphql
       {
         Get {
           Things {
@@ -581,7 +587,7 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
     ```
 
     to
-    
+
     ```graphql
     {
       Get {
@@ -593,10 +599,10 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
     ```
 
 2. Similarly to the explore sorter that is used in the `Get {}` API, the `Explore {}` API also assumes text. The following change is applied:
-   
+
    From
 
-   ```graphql 
+   ```graphql
     {
       Explore (concepts: ["foo"]) {
         beacon
@@ -605,8 +611,8 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
    ```
 
    to
-  
-   ```graphql 
+
+   ```graphql
     {
       Explore (near<MediaType>: ... ) {
         beacon
@@ -614,19 +620,19 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
     }
    ```
 
-### Data schema configuration
+#### Data schema configuration
 1. **Per-class configuration**
-    
+
     With modularization, it is possible to configure per class the vectorizer module, module-specific configuration for the overall class, vector index type, and vector index type specific configuration:
     * The `vectorizer` indicates which module (if any) are responsible for vectorization.
     * The `moduleConfig` allows configuration per module (by name).
-      * See [here](#text2vec-contextionary) for Contextionary specific property configuration. 
+      * See [here](#text2vec-contextionary) for Contextionary specific property configuration.
     * The `vectorIndexType` allows the choosing the vector index (defaults to [HNSW](/developers/weaviate/concepts/vector-index.md#hnsw))
     * The `vectorIndexConfig` is an arbitrary object passed to the index for config (defaults can be found [here](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) )
 
     All changes are in this example:
 
-    ```json 
+    ```json
     {
       "class": "Article",
       "vectorizeClassName": true,
@@ -636,7 +642,7 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
     ```
 
     will become
-    
+
     ```json
     {
       "class": "Article",
@@ -645,7 +651,7 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
         "efConstruction": 100
       },
       "moduleConfig": {
-        "text2vec-contextionary": {  
+        "text2vec-contextionary": {
           "vectorizeClassName": true
         },
         "encryptor5000000": { "enabled": true }  # example
@@ -660,14 +666,14 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
 
   With modularization, it is possible to configure per property module-specific configuration per property if available and it can be specified if a property should be included in the inverted index.
   * The `moduleConfig` allows configuration per module (by name).
-    * See [here](#text2vec-contextionary) for Contextionary specific property configuration. 
+    * See [here](#text2vec-contextionary) for Contextionary specific property configuration.
   * `index` will become `indexInverted`: a boolean that indicates whether a property should be indexed in the inverted index.
 
   All changes are in this example:
 
-  ```json 
+  ```json
   {
-    "dataType": [ "string" ],
+    "dataType": [ "text" ],
     "description": "string",
     "cardinality": "string",
     "vectorizePropertyName": true,
@@ -678,10 +684,10 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
   ```
 
   will become
-  
+
   ```json
   {
-    "dataType": [ "string" ],
+    "dataType": [ "text" ],
     "description": "string",
     "moduleConfig": {
       "text2vec-contextionary": {
@@ -694,9 +700,9 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
   }
   ```
 
-### RESTful /meta endpoint
+#### RESTful /meta endpoint
 
-The `/v1/meta` object now contains module specific information at in the newly introduced namespaced `modules.<moduleName>` property: 
+The `/v1/meta` object now contains module specific information at in the newly introduced namespaced `modules.<moduleName>` property:
 
 From
 
@@ -709,7 +715,7 @@ From
 }
 ```
 
-to 
+to
 
 ```json
 {
@@ -724,9 +730,9 @@ to
 }
 ```
 
-### Modular classification
+#### Modular classification
 
-Some classification types are tied to modules (e.g. the former "contextual" classification is tied to the `text2vec-contextionary` module. We make a distinction between fields which are always present and those which are type dependent. Additionally the API is improved by grouping `settings` and `filters` in separate properties. kNN classification is the only type of classification that is present with Weaviate Core without dependency on modules. The former "contextual" classification is tied to the `text2vec-contextionary` module, see [here](#text2vec-contextionary). An example of how the change looks like in the classification API POST body: 
+Some classification types are tied to modules (e.g. the former "contextual" classification is tied to the `text2vec-contextionary` module. We make a distinction between fields which are always present and those which are type dependent. Additionally the API is improved by grouping `settings` and `filters` in separate properties. kNN classification is the only type of classification that is present with Weaviate Core without dependency on modules. The former "contextual" classification is tied to the `text2vec-contextionary` module, see [here](#text2vec-contextionary). An example of how the change looks like in the classification API POST body:
 
 From
 
@@ -755,7 +761,7 @@ To
   "settings": {
     "k": 3
   },
-  "filters": {  
+  "filters": {
     "sourceWhere": { … },
     "trainingSetWhere": { … },
     "targetWhere": { … },
@@ -763,7 +769,7 @@ To
 }
 ```
 
-And the API GET body: 
+And the API GET body:
 
 From
 
@@ -797,7 +803,7 @@ To
   "settings": {
     "k": 3
   },
-  "filters": {  
+  "filters": {
     "sourceWhere": { … },
     "trainingSetWhere": { … },
     "targetWhere": { … },
@@ -805,25 +811,20 @@ To
 }
 ```
 
-
-
-
-
-
-### text2vec-contextionary
+#### text2vec-contextionary
 The Contextionary becomes the first vectorization module of Weaviate, renamed to `text2vec-contextionary` in formal use. This brings the following changes:
 1. **RESTful** endpoint `/v1/c11y` changes to `v1/modules/text2vec-contextionary`:
    * `/v1/c11y/concepts` to `/v1/modules/text2vec-contextionary/concepts`
    * `/v1/c11y/extensions` to `/v1/modules/text2vec-contextionary/extensions`
-   * `/v1/c11y/corpus` is removed 
+   * `/v1/c11y/corpus` is removed
 2. **Data schema:** `text2vec-contextionary`-specific module configuration options in the schema definition
    1. **Per-class**. `"vectorizeClassName"` indicates whether the class name should be taken into the vector calculation of data objects.
-    
+
     ```json
     {
       "class": "Article",
       "moduleConfig": {
-        "text2vec-contextionary": {  
+        "text2vec-contextionary": {
           "vectorizeClassName": true
         }
       },
@@ -834,10 +835,10 @@ The Contextionary becomes the first vectorization module of Weaviate, renamed to
     ```
 
    2. **Per-property.** `skip` tells whether to skip the entire property (including value) from the vector position of the data object. `vectorizePropertyName` indicates whether the property name should be taken into the vector calculation of data objects.
-    
+
     ```json
     {
-      "dataType": [ "string" ],
+      "dataType": [ "text" ],
       "description": "string",
       "moduleConfig": {
         "text2vec-contextionary": {
@@ -850,7 +851,7 @@ The Contextionary becomes the first vectorization module of Weaviate, renamed to
     }
     ```
 3. **Contextual classification**. Contextual classification is dependent on the module `text2vec-contextionary`. It can be activated in `/v1/classifications/` the following with the classification name `text2vec-contextionary-contextual`:
-   
+
 From
 
 ```json
@@ -891,12 +892,12 @@ To
 }
 ```
 
-### Default vectorizer module
+#### Default vectorizer module
 The default vectorizer module can be specified in a new environment variable so that this doesn't have to be specified on every data class in the schema. The environment variable is `DEFAULT_VECTORIZER_MODULE`, which can be set to for example `DEFAULT_VECTORIZER_MODULE="text2vec-contextionary"`.
 
 
-# Official release notes
-Official release notes can be found on [GitHub](https://github.com/weaviate/weaviate/releases/tag/0.23.0). 
+### Official release notes
+Official release notes can be found on [GitHub](https://github.com/weaviate/weaviate/releases/tag/0.23.0).
 
 
 ## More Resources

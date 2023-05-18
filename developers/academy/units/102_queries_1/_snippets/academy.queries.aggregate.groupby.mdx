@@ -1,0 +1,47 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.aggregate(
+    "JeopardyQuestion",
+).with_group_by_filter(
+    "round"
+).with_fields(
+    "groupedBy {path value}"
+).with_near_text(
+    {"concepts": ["Intergalactic travel"], "distance": 0.2}
+).with_meta_count().do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Aggregate {
+    JeopardyQuestion (
+      nearText: {
+        concepts: ["Intergalactic travel"],
+        distance: 0.2
+      }
+      groupBy: ["round"]
+      ) {
+      groupedBy {
+        path
+        value
+      }
+      meta {
+        count
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

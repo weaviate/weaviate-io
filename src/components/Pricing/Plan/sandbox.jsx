@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.scss';
 
-export default function PricingSandbox() {
+export default function PricingSandBox() {
   return (
     <div className={styles.sandbox}>
       <div className={styles.title}>
@@ -9,20 +9,20 @@ export default function PricingSandbox() {
       </div>
       <div className={styles.featuresLong}>
         <li>
-          <i className="fas fa-circle-check"></i>{' '}
+          <div className={styles.checkIcon}></div>
           <span> Round robin region: AWS, Azure, GCP</span>
         </li>
         <li>
-          <i className="fas fa-circle-check"></i> 30 days lifetime
+          <div className={styles.checkIcon}></div> 14 days lifetime
         </li>
       </div>
       <div className={styles.features}>
         <li>
-          <i className="fas fa-circle-check"></i> Monitoring
+          <div className={styles.checkIcon}></div> Monitoring
         </li>
         <li>
-          <i className="fas fa-circle-check"></i>
-          <a href="https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw">
+          <div className={styles.checkIcon}></div>
+          <a href="https://weaviate.io/slack">
             {' '}
             Public Slack
           </a>
@@ -30,12 +30,11 @@ export default function PricingSandbox() {
       </div>
       <div className={styles.features}>
         <li>
-          {' '}
-          <i className="fas fa-circle-check"></i> Community support
+          <div className={styles.checkIcon}></div>
+          <span>Community support</span>
         </li>
         <li>
-          {' '}
-          <i className="fas fa-circle-check"></i> Single AZ
+          <div className={styles.checkIcon}></div> Single AZ
         </li>
       </div>
     </div>

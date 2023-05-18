@@ -40,7 +40,7 @@ import weaviate
 client = weaviate.Client(
     url="http://localhost:8080",
     additional_headers={
-        "X-Cohere-Api-Key": "<THE-KEY>"
+        "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY"
     }
 )
 
@@ -77,7 +77,7 @@ const weaviate = require('weaviate-client');
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
-  headers: {'X-Cohere-Api-Key': '<THE-KEY>'},
+  headers: {'X-Cohere-Api-Key': 'YOUR-COHERE-API-KEY'},
 });
 
 client.graphql
@@ -119,9 +119,12 @@ func main() {
   cfg := weaviate.Config{
     Host:    "localhost:8080",
     Scheme:  "http",
-    Headers: map[string]string{"X-Cohere-Api-Key": "<THE-KEY>"},
+    Headers: map[string]string{"X-Cohere-Api-Key": "YOUR-COHERE-API-KEY"},
   }
-  client := weaviate.New(cfg)
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
   className := "Publication"
 
@@ -168,15 +171,15 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
-import technology.semi.weaviate.client.v1.graphql.query.argument.NearTextArgument;
-import technology.semi.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
-import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
+import io.weaviate.client.v1.graphql.query.fields.Field;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -184,7 +187,7 @@ import java.util.Map;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-Cohere-Api-Key", "<THE-KEY>");
+      put("X-Cohere-Api-Key", "YOUR-COHERE-API-KEY");
     } };
     Config config = new Config("http", "localhost:8080", headers);
     WeaviateClient client = new WeaviateClient(config);
@@ -258,7 +261,7 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-Cohere-Api-Key: <THE-KEY>" \
+    -H "X-Cohere-Api-Key: YOUR-COHERE-API-KEY" \
     -d @- \
     http://localhost:8080/v1/graphql
 ```

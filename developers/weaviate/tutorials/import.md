@@ -1,7 +1,7 @@
 ---
 title: Imports in detail
 sidebar_position: 4
-image: og/docs/quickstart-tutorial.jpg
+image: og/docs/tutorials.jpg
 # tags: ['import']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -11,21 +11,21 @@ import { DownloadButton } from '/src/theme/Buttons';
 
 ## Overview
 
-In this section, we will explore data import, including details of the batch import process. We will discuss points such as how are vectors imported, what a batch import is, how to manage errors, and some advice on optimization.
+In this section, we will explore data import, including details of the batch import process. We will discuss points such as how vectors are imported, what a batch import is, how to manage errors, and some advice on optimization.
 
-## Prerequisites 
+## Prerequisites
 
-We recommend you complete the [Quickstart tutorial](../quickstart/index.md) first. 
+We recommend you complete the [Quickstart tutorial](../quickstart/index.md) first.
 
 Before you start this tutorial, you should follow the steps in the tutorials to have:
 
-- An instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.io)),
+- An instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.cloud)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
 - Installed your preferred Weaviate client library, and
-- Set up a `Question` class in your schema. 
+- Set up a `Question` class in your schema.
     - You can follow the Quickstart guide, or the [schema tutorial](./schema.md) to construct the Question class if you have not already.
 
-We will use the below dataset. We suggest that you download it to your working directory.
+We will use the dataset below. We suggest that you download it to your working directory.
 
 <p>
   <DownloadButton link="https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json">Download jeopardy_tiny.json</DownloadButton>
@@ -33,13 +33,13 @@ We will use the below dataset. We suggest that you download it to your working d
 
 ## Import setup
 
-As mentioned in the [schema tutorial](./schema.md), the `schema` specifies the data structure for Weaviate. 
+As mentioned in the [schema tutorial](./schema.md), the `schema` specifies the data structure for Weaviate.
 
 So the data import must map properties of each record to those of the relevant class in the schema. In this case, the relevant class is **Question** as defined in the previous section.
 
 ### Data object structure
 
-Each Weaviate data object is structured as below:
+Each Weaviate data object is structured as follows:
 
 ```json
 {
@@ -51,9 +51,9 @@ Each Weaviate data object is structured as below:
 }
 ```
 
-Most commonly, Weaviate users import data through a Weaviate client library. 
+Most commonly, Weaviate users import data through a Weaviate client library.
 
-It is worth noting, however, that data is ultimately added through the RESTful API, either through the [`objects` endpoint](../api/rest/objects.md) or the [`batch` endpoint](../api/rest/batch.md). 
+It is worth noting, however, that data is ultimately added through the RESTful API, either through the [`objects` endpoint](../api/rest/objects.md) or the [`batch` endpoint](../api/rest/batch.md).
 
 As the names suggest, the use of these endpoints depend on whether objects are being imported as batches or individually.
 
@@ -81,11 +81,11 @@ import CodeImportQuestions from '/_includes/code/quickstart.import.questions.mdx
 
 <CodeImportQuestions />
 
-There are a couple of things to note here. 
+There are a couple of things to note here.
 
 #### Batch size
 
-Some clients include this as a parameter (e.g. `batch_size` in the Python client), or it can be manually set by periodically flushing the batch. 
+Some clients include this as a parameter (e.g. `batch_size` in the Python client), or it can be manually set by periodically flushing the batch.
 
 Typically, a size between 20 and 100 is a reasonable starting point, although this depends on the size of each data object. A smaller size may be preferable for larger data objects, such as if vectors are included in each object upload.
 
@@ -93,15 +93,15 @@ Typically, a size between 20 and 100 is a reasonable starting point, although th
 
 You may have noticed that we do not provide a vector. As a `vectorizer` is specified in our schema, Weaviate will send a request to the appropriate module (`text2vec-openai` in this case) to vectorize the data, and the vector in the response will be indexed and saved as a part of the data object.
 
-### Bring your own vector
+### Bring your own vectors
 
-If you wish to upload your own vector, you can do so with Weaviate. Refer to the [`batch` data object API documentation](../api/rest/batch.md#batch-create-objects). The object parameters correspond to those of the [individual objects](../api/rest/objects.md#object-fields).
+If you wish to upload your own vectors, you can do so with Weaviate. Refer to the [`batch` data object API documentation](../api/rest/batch.md#batch-create-objects). The object fields correspond to those of the [individual objects](../api/rest/objects.md#parameters-1).
 
-You can even manually upload existing vectors and use a vectorizer module for vectorizing queries.
+You can also manually upload existing vectors and use a vectorizer module for vectorizing queries.
 
 ## Confirm data import
 
-You can quickly check the imported object by opening – `weaviate-endpoint/v1/objects` in a browser, like this (replace with your endpoint):
+You can quickly check the imported object by opening `<weaviate-endpoint>/v1/objects` in a browser, like this (replace with your endpoint):
 
 ```
 https://some-endpoint.semi.network/v1/objects
@@ -129,10 +129,10 @@ The result should look something like this:
 
 When importing large datasets, it may be worth planning out an optimized import strategy. Here are a few things to keep in mind.
 
-1. The most likely bottleneck is the import script. Accordingly, aim to max out all the CPUs available. 
+1. The most likely bottleneck is the import script. Accordingly, aim to max out all the CPUs available.
   1. Use `htop` when importing to see if all CPUs are maxed out.
 1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
-1. For Kubernetes, fewer large machines are faster than more small machines. Just because of network latency.
+1. For Kubernetes, fewer large machines are faster than more small machines (due to network latency).
 
 Our rules of thumb are:
 * You should always use batch import.
@@ -145,7 +145,7 @@ Our rules of thumb are:
 We recommend that you implement error handling at an object level, such as in [this example](../api/rest/batch.md#error-handling).
 
 :::tip `200` status code != 100% batch success
-It is important to note that an HTTP `200` status code only indicates that the **request** has been successfully sent to Weaviate. In other words, there were no issues with the connection or processing of the batch and no malformed request. 
+It is important to note that an HTTP `200` status code only indicates that the **request** has been successfully sent to Weaviate. In other words, there were no issues with the connection or processing of the batch and no malformed request.
 
 A request with a `200` response may still include object-level errors, which is why error handling is critical.
 :::
@@ -161,7 +161,7 @@ A request with a `200` response may still include object-level errors, which is 
 - [Tutorial: Schemas in detail](./schema.md)
 - [Tutorial: Queries in detail](./query.md)
 - [Tutorial: Introduction to modules](./modules.md)
-- [Tutorial: Introduction to Weaviate Console](./console.md)
+- [Tutorial: Introduction to Weaviate Console](../../wcs/guides/console.mdx)
 
 ### Other object operations
 

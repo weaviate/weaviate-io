@@ -6,10 +6,6 @@ See our [CONTRIBUTING.md](/CONTRIBUTING.md) for information how to contribute.
 Thanks again!
 -->
 
-### Why:
-
-This PR fixes: [issue link]
-
 ### What's being changed:
 
 <!-- Share artifacts of the changes, be they code snippets, GIFs or screenshots; whatever shares the most context. -->
@@ -18,10 +14,17 @@ This PR fixes: [issue link]
 
 <!--Please delete options that are not relevant.-->
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] Feature or enhancements (non-breaking change which adds functionality)
-- [ ] Documentation updates (non-breaking change which updates documents)
+- [ ] **Documentation** updates (non-breaking change to fix/update documentation)
+- [ ] **Website** updates (non-breaking change to update main page, company pages, pricing, etc)
+- [ ] **Content** updates – **blog**, **podcast** (non-breaking change to add/update content)
+- [ ] **Bug fix** (non-breaking change to fixes an issue with the site)
+- [ ] **Feature** or **enhancements** (non-breaking change to add functionality)
 
 ### How Has This Been Tested?
 
-<!--Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration-->
+<!-- Please select all options that apply -->
+
+- [ ] **Github action** – automated build completed without errors
+- [ ] **Local build** - the site works as expected when running `yarn start`
+
+> note, you can run `yarn verify-links` to test site links locally

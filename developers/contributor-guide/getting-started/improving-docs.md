@@ -6,19 +6,19 @@ image: og/contributor-guide/getting-started.jpg
 ---
 ## Introduction
 
-Maintaining consistent, accurate and readable documentation is way to improve the user experience for everybody, including experienced users. 
+Maintaining consistent, accurate and readable documentation is way to improve the user experience for everybody, including experienced users.
 
-The truth is that while we try our best, mistakes happen (we are not perfect! 😅). And if you found something difficult to understand, others may have too, which presents an opportunity for improvement. 
+The truth is that while we try our best, mistakes happen (we are not perfect! 😅). And if you found something difficult to understand, others may have too, which presents an opportunity for improvement.
 
 So if you spot any typos, errors, unclear explanations, missing references or anything that stands out, please let us know, and we can work on it together.
 
 ## How Weaviate documentation is built
 
-Weaviate's documentation is built with a static site builder (Docusaurus) with data from our [GitHub repository](https://github.com/weaviate/weaviate-io). Before you get started, we suggest you set up a local development environment first. This will allow you to preview any changes on your computer as you work on it. 
+Weaviate's documentation is built with a static site builder (Docusaurus) with data from our [GitHub repository](https://github.com/weaviate/weaviate-io). Before you get started, we suggest you set up a local development environment first. This will allow you to preview any changes on your computer as you work on it.
 
 For instructions on setting up the development environment, please take a look at this [README file](https://github.com/weaviate/weaviate-io/blob/main/README.md).
 
-Once your local environment is set up, you can make your proposed changes, preview them locally, and submit them for review. 
+Once your local environment is set up, you can make your proposed changes, preview them locally, and submit them for review.
 
 <!-- ## Documentation folders
 
@@ -28,15 +28,15 @@ The documentation repository is structured as below:
 ├── .github/                            #contains GitHub template files for issues and pull requests
 ├── _data/                              #contains site's data files
 ├── _includes/                          #contains numerous templates like header, footer, navbar, etc
-│   ├── benchmarks/                     
-│   ├── code/                     
+│   ├── benchmarks/
+│   ├── code/
 ├── _layouts/                           #contains layouts for documentation and posts
 ├── _posts/                             #contains blog posts
-├── _python/                        
+├── _python/
 ├── developers/                         #contains documentation
 │   ├── assets/                         #contains clipboard functionality
 │   ├── contributor-guide/              #contains contributor guide for Weaviate
-│   ├── weaviate/                       #contains files and folder for product documentation 
+│   ├── weaviate/                       #contains files and folder for product documentation
 ├── img/                                #contains all site images
 ├── js/                                 #contains JS files for various functionalities
 ├── resources/                          #contains additional site pages like gsoc, gsod
@@ -85,7 +85,7 @@ Here are some syntax which we commonly use in our code:
 This executes the block of code only if the given condition is true. For example: -->
 
 <!-- Using html rather than liquid code block as display style for liquid/jinja does not use a black background -->
-<!-- ```html 
+<!-- ```html
 {% raw %}
 Published on {{ page.date | date: '%B %d, %Y' }}
 {% if page.canonical-name %}

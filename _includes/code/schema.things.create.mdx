@@ -14,18 +14,14 @@ class_obj = {
     "description": "A written text, for example a news article or blog post",
     "properties": [
         {
-        "dataType": [
-            "string"
-        ],
-        "description": "Title of the article",
-        "name": "title",
+            "dataType": ["text"],
+            "description": "Title of the article",
+            "name": "title",
         },
         {
-        "dataType": [
-            "text"
-        ],
-        "description": "The content of the article",
-        "name": "content"
+            "dataType": ["text"],
+            "description": "The content of the article",
+            "name": "content"
         }
     ]
 }
@@ -45,27 +41,23 @@ const client = weaviate.client({
 });
 
 let classObj = {
-    'class': 'Article',
-    'description': 'A written text, for example a news article or blog post',
-    'vectorizeClassName': true,
-    'properties': [
-        {
-        'dataType': [
-            'string'
-        ],
-        'description': 'Title of the article',
-        'name': 'title',
-        'vectorizePropertyName': true,
-        'index': true
-        },
-        {
-        'dataType': [
-            'text'
-        ],
-        'description': 'The content of the article',
-        'name': 'content'
-        }
-    ]
+  'class': 'Article',
+  'description': 'A written text, for example a news article or blog post',
+  'vectorizeClassName': true,
+  'properties': [
+    {
+      'name': 'title',
+      'dataType': [ 'string' ],
+      'description': 'Title of the article',
+      'vectorizePropertyName': true,
+      'index': true
+    },
+    {
+      'name': 'content',
+      'dataType': [ 'text' ],
+      'description': 'The content of the article'
+    }
+  ]
 }
 
 client
@@ -99,7 +91,10 @@ func main() {
         Host:   "localhost:8080",
         Scheme: "http",
     }
-    client := weaviate.New(cfg)
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+      panic(err)
+    }
 
     classObj := &models.Class{
         Class:       "Article",
@@ -129,15 +124,15 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
 import java.util.ArrayList;
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.schema.model.DataType;
-import technology.semi.weaviate.client.v1.schema.model.Property;
-import technology.semi.weaviate.client.v1.schema.model.WeaviateClass;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {

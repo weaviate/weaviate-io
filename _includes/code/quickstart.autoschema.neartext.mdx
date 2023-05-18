@@ -1,19 +1,24 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
+import EndToEndJSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.js';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
 
 <Tabs groupId="languages">
 {/* <TabItem value="graphql" label="GraphQL">
 
 ```graphql
 {
-  Get{
+  Get {
     Question(
       nearText: {
         concepts: ["biology"],
       }
-    ){
+    ) {
       question
       answer
+      category
     }
   }
 }
@@ -22,59 +27,35 @@ import TabItem from '@theme/TabItem';
 </TabItem> */}
 <TabItem value="py" label="Python">
 
-```python
-import weaviate
-import json
-
-client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
-    additional_headers={
-        "X-OpenAI-Api-Key": "<THE-KEY>"  # Replace with your API key
-    }
-)
-
-nearText = {"concepts": ["biology"]}
-
-result = (
-    client.query
-    .get("Question", ["question", "answer", "category"])
-    .with_near_text(nearText)
-    .with_limit(2)
-    .do()
-)
-
-print(json.dumps(result, indent=4))
-```
+<FilteredTextBlock
+  text={EndToEndPyCode}
+  startMarker="# NearTextExample"
+  endMarker="# END NearTextExample"
+  language="py"
+/>
 
 </TabItem>
 <TabItem value="js" label="JavaScript">
 
-```js
-const weaviate = require("weaviate-client");
-
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network/',  // Replace with your endpoint
-  headers: {'X-OpenAI-Api-Key': '<THE-KEY>'},  // Replace with your API key
-});
-
-client.graphql
-  .get()
-  .withClassName('Question')
-  .withFields('question answer category')
-  .withNearText({concepts: ["biology"]})
-  .withLimit(2)
-  .do()
-  .then(res => {
-    console.log(JSON.stringify(res, null, 2))
-  })
-  .catch(err => {
-    console.error(err)
-  });
-```
+<FilteredTextBlock
+  text={EndToEndJSCode}
+  startMarker="// NearTextExample"
+  endMarker="// END NearTextExample"
+  language="js"
+/>
 
 </TabItem>
-{/* <TabItem value="go" label="Go">
+<TabItem value="ts" label="TypeScript">
+
+<FilteredTextBlock
+  text={EndToEndTSCode}
+  startMarker="// NearTextExample"
+  endMarker="// END NearTextExample"
+  language="ts"
+/>
+
+</TabItem>
+<TabItem value="go" label="Go">
 
 ```go
 package main
@@ -91,48 +72,51 @@ func main() {
   cfg := weaviate.Config{
     Host:    "some-endpoint.weaviate.network/",  // Replace with your endpoint
     Scheme:  "https",
-    Headers: map[string]string{"X-OpenAI-Api-Key": "<THE-KEY>"},
+    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},  // Replace with your inference API key
   }
-  client := weaviate.New(cfg)
-
-  className := "Question"
-
-  question := graphql.Field{Name: "question"}
-  answer := graphql.Field{Name: "answer"}
-
-  concepts := []string{"biology"}
-  nearText := client.GraphQL().NearTextArgBuilder().
-    WithConcepts(concepts).
-
-  ctx := context.Background()
-
-  result, err := client.GraphQL().Get().
-    WithClassName(className).
-    WithFields(question, answer).
-    WithNearText(nearText).
-    WithLimit(2).
-    Do(ctx)
-
+  client, err := weaviate.NewClient(cfg)
   if err != nil {
     panic(err)
   }
+
+  fields := []graphql.Field{
+    {Name: "question"},
+    {Name: "answer"},
+    {Name: "category"},
+  }
+
+  nearText := client.GraphQL().
+    NearTextArgBuilder().
+    WithConcepts([]string{"biology"})
+
+  result, err := client.GraphQL().Get().
+    WithClassName("Question").
+    WithFields(fields...).
+    WithNearText(nearText).
+    WithLimit(2).
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+
   fmt.Printf("%v", result)
 }
 ```
 
-</TabItem> */}
+</TabItem>
 {/* <TabItem value="java" label="Java">
 
 ```java
-package technology.semi.weaviate;
+package io.weaviate;
 
-import technology.semi.weaviate.client.Config;
-import technology.semi.weaviate.client.WeaviateClient;
-import technology.semi.weaviate.client.base.Result;
-import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
-import technology.semi.weaviate.client.v1.graphql.query.argument.NearTextArgument;
-import technology.semi.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
-import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
+import io.weaviate.client.v1.graphql.query.fields.Field;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -140,7 +124,7 @@ import java.util.Map;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-OpenAI-Api-Key", "<THE-KEY>");
+      put("X-OpenAI-Api-Key", "YOUR-OPENAI-API-KEY");
     } };
     Config config = new Config("https", "some-endpoint.weaviate.network/", headers);  // Replace with your endpoint
     WeaviateClient client = new WeaviateClient(config);
@@ -160,7 +144,7 @@ public class App {
       .build();
 
     Field question = Field.builder().name("question").build();
-    Field answer = Field.builder().name("answer").build();    
+    Field answer = Field.builder().name("answer").build();
 
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName("Question")
@@ -179,30 +163,31 @@ public class App {
 ```
 
 </TabItem> */}
-{/* <TabItem value="curl" label="Curl">
+<TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get{
-      Question(
+      Question (
+        limit: 2
         nearText: {
           concepts: [\"biology\"],
-        },
-        limit: 1
+        }
       ){
         question
         answer
+        category
       }
     }
   }"
-}' | curl \
+}' | tr -d "\n" | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-OpenAI-Api-Key: <THE-KEY>" \
+    -H "X-OpenAI-Api-Key: <OpenAI-API-Token>" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://some-endpoint.weaviate.network/v1/graphql  # Replace this with your endpoint
 ```
 
-</TabItem> */}
+</TabItem>
 </Tabs>

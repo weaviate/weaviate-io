@@ -43,17 +43,13 @@ export default function ContactUsForm() {
   };
 
   return (
-    <div className="container" id="register">
+    <div className="container">
       <form className={styles.form} id="contact-sales" onSubmit={handleSubmit}>
         <div className={styles.intro}>
-          <h2>Register for Private Beta</h2>
+          <div className={styles.hybridPng} />
+          <h2 id="contact-sales">Get Started with Weaviate Hybrid-SaaS</h2>
           <p>
-            We are currently onboarding customers onto the Weaviate Cloud
-            Services via the Private Beta program. Please leave your contact
-            details below if you want to join the first wave of managed vector
-            search users. After leaving your details, a representative will
-            reach out to you within 24 hours to investigate if you qualify for
-            the private beta program.
+            Please leave your contact details below and one of our sales representatives will reach out to you within 24 hours.
           </p>
         </div>
         <div className={styles.formWrapper}>
@@ -79,24 +75,26 @@ export default function ContactUsForm() {
           />
         </div>
         <div className={styles.selectWrapper}>
-          <label htmlFor="foundHow">How did you hear about Weaviate?</label>
+          <label htmlFor="foundHow">How did you find us:</label>
 
           <select
             value={selected}
             onChange={handleChange}
             className={styles.select}
           >
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.text}
-              </option>
-            ))}
+            {options.map((option, index) => {
+              return (
+                <option key={option.value} value={option.value}>
+                  {option.text}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div className={styles.actionBtn}>
           {thx === false && (
             <button className={styles.button} type="submit">
-              Sign Up for the Private Beta
+              Complete registration
             </button>
           )}
           {thx === true && (

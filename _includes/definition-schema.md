@@ -1,1 +1,3 @@
-Weaviate's schema defines its data structure in a formal language. In other words, it is a blueprint of how the data is to be organized and stored. For example, classes of data objects and properties within each class are defined in the schema. The schema also specifies data types of each class property, possible graph links between data objects, and vectorizer module to be used for each class. 
+Weaviate's schema defines its data structure in a formal language. In other words, it is a blueprint of how the data is to be organized and stored.
+
+The schema defines data classes (i.e. collections of objects), the properties within each class (name, type, description, settings), possible graph links between data objects (cross-references), and the vectorizer module (if any) to be used for the class, as well as settings such as the vectorizer module, and index configurations.

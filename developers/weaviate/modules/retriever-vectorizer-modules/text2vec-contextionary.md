@@ -28,7 +28,7 @@ When a new class object is created, it will be added to a Weaviate.
 
 ### Available modules and languages
 
-* Trained with on CommonCrawl and Wiki, using GloVe 
+* Trained with on CommonCrawl and Wiki, using GloVe
   * English
   * Dutch
   * German
@@ -129,9 +129,40 @@ For example
 }
 ```
 
-:::note Schema note
+### Schema Configuration
+
 If you are using this module and are vectorizing the class or property name, the name(s) must be a part of the `text2vec-contextionary`.
-:::
+
+#### Class/property names
+
+Sometimes you might want to use multiple words to set as a class or property
+definition. For example, the year a person is born in, you might want to define
+with the two words: `born` and `in`. You can do this by capitalizing per word
+(CamelCase), for example, `bornIn`. When using the `text2vec-contextionary`
+module, the camel case words will be split up to try and derive its semantic
+meaning. Without this particular module there is no semantic meaning to
+camel-casing. Starting with `v1.7.2` you can also use underscores in properties
+names (`snake_case`), e.g. `has_articles`, `publication_date`, etc.
+
+For example:
+
+```yaml
+Publication
+  name
+  hasArticles
+Article
+  title
+  summary
+  wordCount
+  url
+  hasAuthors
+  inPublication        # CamelCase (all versions)
+  publication_date     # snake_case (from v1.7.2 on)
+Author
+  name
+  wroteArticles
+  writesFor
+```
 
 ## How to use
 
@@ -151,13 +182,13 @@ import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
 
 ### Find concepts
 
-To find concepts or words or to check if a concept is part of the Contextionary, use the `v1/modules/text2vec-contextionary/concepts/<concept>` endpoint. 
+To find concepts or words or to check if a concept is part of the Contextionary, use the `v1/modules/text2vec-contextionary/concepts/<concept>` endpoint.
 
 ```js
 GET /v1/modules/text2vec-contextionary/concepts/<concept>
 ```
 
-### Parameters 
+### Parameters
 
 The only parameter `concept` is a string that should be camelCased in case of compound words or a list of words.
 
@@ -250,7 +281,7 @@ The same fields as the input parameters will be in the response body if the exte
 
 ### Example
 
-Let's add the concept `"weaviate"` to the Contextionary. 
+Let's add the concept `"weaviate"` to the Contextionary.
 
 import CodeContextionaryExtensions from '/_includes/code/contextionary.extensions.mdx';
 
@@ -286,42 +317,23 @@ Note that stopwords are automatically removed from camelCased and CamelCased nam
 
 ### What stopwords are and why they matter
 
-Stopwords are words that don't add semantic meaning to your concepts and are
-extremely common in texts across different contexts. For example, the sentence
-"a car is parked on the street" contains the following stopwords: "a", "is",
-"on", "the". If we look at the sentence "a banana is lying on
-the table", you would find the exact same stop words. So in those two sentences,
-over 50% of the words overlap. Therefore they would be considered somewhat
-similar (based on the overall vector position).
+Stopwords are words that don't add semantic meaning to your concepts and are extremely common in texts across different contexts. For example, the sentence "a car is parked on the street" contains the following stopwords: "a", "is", "on", "the". If we look at the sentence "a banana is lying on the table", you would find the exact same stop words. So in those two sentences, over 50% of the words overlap. Therefore they would be considered somewhat similar (based on the overall vector position).
 
-However, if we remove stopwords from both sentences, they become "car parked
-street" and "banana lying table". Suddenly there are 0% identical words in the
-sentences, so it becomes easier to perform vector comparisons. Note at this
-point we cannot say whether both sentences are related or not. For this we'd
-need to know how close the vector position of the sentence "car parked street"
-is to the vector position of "banana lying table". But we do know that the
-result can now be calculated with a lot less noise.
+However, if we remove stopwords from both sentences, they become "car parked street" and "banana lying table". Suddenly there are 0% identical words in the sentences, so it becomes easier to perform vector comparisons. Note at this point we cannot say whether both sentences are related or not. For this we'd need to know how close the vector position of the sentence "car parked street" is to the vector position of "banana lying table". But we do know that the result can now be calculated with a lot less noise.
 
 ### Behavior around stop words
 
-Stopwords are useful for humans, so we don't want to encourage you to leave
-them out completely. Instead Weaviate will remove them whenever your schema
-information is translated to vector positions.
+Stopwords are useful for humans, so we don't want to encourage you to leave them out completely. Instead Weaviate will remove them whenever your schema information is translated to vector positions.
 
-In most cases you won't even notice that this happens in the background,
-however, there are a few edge cases that might cause a validation error:
+In most cases you won't even notice that this happens in the background, however, there are a few edge cases that might cause a validation error:
 
-* If your camelCased class or property name consists **only** of stopwords,
-  validation will fail. Example: `TheInA` is not a valid class name, however,
-  `TheCarInAField` is (and would internally be represented as `CarField`).
+* If your camelCased class or property name consists **only** of stopwords, validation will fail. Example: `TheInA` is not a valid class name, however, `TheCarInAField` is (and would internally be represented as `CarField`).
 
-* If your keyword list contains stop words, they will be removed. However, if
-  every single keyword is a stop word, validation will fail.
+* If your keyword list contains stop words, they will be removed. However, if every single keyword is a stop word, validation will fail.
 
 ### How does Weaviate decide whether a word is a stop word or not?
 
-The list of stopwords is derived from the Contextionary version used and is
-published alongside the Contextionary files.
+The list of stopwords is derived from the Contextionary version used and is published alongside the Contextionary files.
 
 ## Compound splitting
 

@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import faq from './faq.json';
 
 export default function PricingFAQ() {
+  const [more, setMore] = useState(false);
+
   return (
     <div className="container">
       <div className={styles.intro}>
         <h2>Frequently asked questions</h2>
         <p>Let us help answer the most common questions you might have.</p>
       </div>
+
       <div className={styles.boxGrid}>
-        {faq.map((item) => {
+        {faq.map((item, index) => {
+          if (!more && index > 1) {
+            return;
+          }
           return (
             <div key={item.question} className={styles.box}>
               <h3
@@ -32,6 +38,13 @@ export default function PricingFAQ() {
           );
         })}
       </div>
+      {!more && (
+        <div className={styles.buttons}>
+          <div className={styles.buttonOutline} onClick={() => setMore(true)}>
+            Load more
+          </div>
+        </div>
+      )}
     </div>
   );
 }

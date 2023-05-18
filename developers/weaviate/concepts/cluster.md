@@ -32,10 +32,6 @@ Instead of sharding across multiple nodes, you can replicate (the same data) acr
 
 **Solution: Replicate your classes across multiple nodes in a cluster**
 
-:::note
-The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/developers/weaviate/roadmap/index.md)
-:::
-
 ### Motivation 3: High Availability
 
 When serving critical loads with Weaviate, it may be desirable to be able to keep serving queries even if a node fails completely. Such a failure could be either due to a software or OS-level crash or even a hardware issue. Other than unexpected crashes, a highly available setup can also tolerate zero-downtime updates and other maintenance tasks.
@@ -44,19 +40,11 @@ To run a highly available setup, classes must be replicated among multiple nodes
 
 **Solution: Replicate your classes across multiple nodes in a cluster**
 
-:::note
-The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/developers/weaviate/roadmap/index.md)
-:::
-
 ## Sharding vs Replication
 The motivation sections above outline when it is desirable to shard your classes across multiple nodes and when it is desirable to replicate your classes - or both. This section highlights the implications of a sharded and/or replicated setup.
 
 :::note
 All of the scenarios below assume that - as sharding or replication is increased - the cluster size is adapted accordingly. If the number of shards or the replication factor is lower than the number of nodes in the cluster, the advantages no longer apply.*
-:::
-
-:::note
-The ability to replicate classes is currently under development and subject to a future release. See Weaviate's [Architectural Roadmap](/developers/weaviate/roadmap/index.md)*
 :::
 
 ### Advantages when increasing sharding
@@ -90,13 +78,22 @@ The groundwork to be able to re-shard has been laid by using Weaviate's Virtual 
 
 Nodes in a cluster use a gossip-like protocol through [Hashicorp's Memberlist](https://github.com/hashicorp/memberlist) to communicate node state and failure scenarios.
 
-Weaviate - especially when running as a cluster - is optimized to run on Kubernetes. The [Weaviate Helm chart](/developers/weaviate/quickstart/installation.md#kubernetes-k8s) makes use of a `StatefulSet` and a headless `Service` that automatically configures node discovery. All you have to do is specify the desired node count.
+Weaviate - especially when running as a cluster - is optimized to run on Kubernetes. The [Weaviate Helm chart](/developers/weaviate/installation/kubernetes.md#weaviate-helm-chart) makes use of a `StatefulSet` and a headless `Service` that automatically configures node discovery. All you have to do is specify the desired node count.
 
 ## Node affinity of shards and/or replication shards
 
-As of `v1.8.0`, users cannot specify the node-affinity of a specific shard or replication shard. Shards are assigned to 'live' nodes in a round-robin fashion starting with a random node. There are not yet any mechanisms in place to make sure that a new class' shards are owned by the node that currently has the least work. Similarly, there is no way to assign specific classes to specific nodes if nodes aren't equally sized in the cluster.
+Weaviate tries to select the node with the most available disk space.
 
-Such node-affinity labels and/or rules may be added in future releases.
+This only applies when creating a new class, rather than when adding more data to an existing single class.
+
+<details>
+  <summary>Pre-<code>v1.18.1</code> behavior</summary>
+
+In versions `v1.8.0`-`v1.18.0`, users could not specify the node-affinity of a specific shard or replication shard.
+
+Shards were assigned to 'live' nodes in a round-robin fashion starting with a random node.
+
+</details>
 
 ## Consistency and current limitations
 

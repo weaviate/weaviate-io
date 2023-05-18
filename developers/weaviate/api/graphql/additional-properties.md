@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-GraphQL additional properties can be used on data objects in Get{} Queries to get additional information about the returned data objects. Which additional properties are available depends on the modules that are attached to Weaviate. The fields `id`, `certainty`, `featureProjection` and `classification` are available from Weaviate Core. On nested GraphQL fields (references to other data classes), only the `id` can be returned. Explanation on specific additional properties can be found on the module pages, see for example [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#additional-graphql-api-properties).
+GraphQL additional properties can be used on data objects in Get{} Queries to get additional information about the returned data objects. Which additional properties are available depends on the modules that are attached to Weaviate. The fields `id`, `vector`, `certainty`, `featureProjection` and `classification` are available from Weaviate Core. On nested GraphQL fields (references to other data classes), only the `id` can be returned. Explanation on specific additional properties can be found on the module pages, see for example [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#additional-graphql-api-properties).
 
 ## Example
 
@@ -109,14 +109,14 @@ The `lastUpdateTimeUnix` field is the timestamp of when the data object was last
 }
 ```
 
-### distance 
+### distance
 
 Any time a vector search is involved, the `distance` can be displayed to show
 the distance between the query vector and each result. The distance is the raw
 distance metric that was used as part of the vector search. For example, if the
 distance metric is `cosine`, distance will return a number between 0 and 2. See
 the full overview of [distance metrics and the expected distance
-ranges](/developers/weaviate/configuration/distances.md).
+ranges](/developers/weaviate/config-refs/distances.md).
 
 A distance would be typical in any place that you retrieve objects using a
 vector, for example `Get {}` with `nearObject`, `nearVector`, or `near<Media>`.
@@ -128,7 +128,7 @@ another, than a higher value. Depending on the distance metric used, this can
 also mean that distances would return negative values. For example, if dot
 product distance is used, a distance of `-50` would indicate more similarity
 between a vector pair than `20`. See [the distances
-page](/developers/weaviate/configuration/distances.md) for details and exact
+page](/developers/weaviate/config-refs/distances.md) for details and exact
 definitions.
 
 *Note that the distance field was introduced in `v1.14.0`.*
@@ -138,7 +138,7 @@ definitions.
 Prior to `v1.14`, certainty was the only way to display vector similarity in
 the results. `certainty` is an opinionated measure that always returns a number
 between 0 and 1. It is therefore only usable with fixed-range distance metrics,
-such as `cosine`. 
+such as `cosine`.
 
 For a class with `cosine` distance metrics, the `certainty` is a
 normalization of the distance using the formula:
@@ -171,7 +171,7 @@ To tweak the feature projection optional parameters (currently GraphQL-only) can
 
 | Parameter | Type | Default | Implication |
 |--|--|--|--|
-| `dimensions` | `int` | `2` | Target dimensionality, usually `2` or `3` | 
+| `dimensions` | `int` | `2` | Target dimensionality, usually `2` or `3` |
 | `algorithm` | `string` | `tsne` | Algorithm to be used, currently supported: `tsne` |
 | `perplexity` | `int` | `min(5, len(results)-1)` | The `t-SNE` perplexity value, must be smaller than the `n-1` where `n` is the number of results to be visualized |
 | `learningRate` | `int` | `25` | The `t-SNE` learning rate |

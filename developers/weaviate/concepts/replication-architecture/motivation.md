@@ -11,7 +11,7 @@ import Badges from '/_includes/badges.mdx';
 On this page you will find four use cases which motivate replication for Weaviate. Each of them serves a different purpose and, as a result, may require different configuration.
 
 ## High Availability (Redundancy)
-High availability of a database means that the database is designed to operate continuously without service interruptions. That means that the database system should be tolerant to failures and errors, which should be handled automatically. This is solved by replication, where redundant nodes can handle requests when other nodes fail. Within a distributed database structure, read or write queries may still be available when a node goes down, so single points of failure are eliminated. Users' queries will be automatically (unnoticeably) redirected to an available replica node. 
+High availability of a database means that the database is designed to operate continuously without service interruptions. That means that the database system should be tolerant to failures and errors, which should be handled automatically. This is solved by replication, where redundant nodes can handle requests when other nodes fail. Within a distributed database structure, read or write queries may still be available when a node goes down, so single points of failure are eliminated. Users' queries will be automatically (unnoticeably) redirected to an available replica node.
 
 Weaviate considers schema operations critical, so it has a strongly consistent schema. Therefore, all nodes are needed for a schema operation. When one or more nodes are down, schema operations are temporarily not possible.
 
@@ -22,12 +22,12 @@ Examples of applications where High Availability is desired are emergency servic
 
 High Availability can be illustrated by the following configuration examples:
 1. Write `ALL`, Read `ONE` - There is no High Availability during writing because `ALL` nodes need to respond to write requests. There is High Availability on read requests: all nodes can go down except one while reading and the read operations are still available.
-2. Write `QUORUM`, Read `QUORUM` (n/2+1) - A minority of nodes could go down, the majority of nodes should be up and running, and you can still do both reading and writing. 
+2. Write `QUORUM`, Read `QUORUM` (n/2+1) - A minority of nodes could go down, the majority of nodes should be up and running, and you can still do both reading and writing.
 3. Write `ONE`, Read `ONE` - This is the most available configuration. All but one node can go down and both read and write operations are still possible. Note that this super High Availability comes with a cost of Low Consistency guarantees. Due to eventual consistency, your application must be able to deal with temporarily showing out-of-date data.
 
 
 ## Increased (Read) Throughput
-When you have many read requests on your Weaviate instance, for example because you're building an application for many users, the database setup should be able to support high throughput. Throughput is measured in Queries Per Second (QPS). Adding extra server nodes to your database setup means that the throughput scales with it. The more server nodes, the more users (read operations) the system will be able to handle. Thus, replicating your Weaviate instance increases throughput. 
+When you have many read requests on your Weaviate instance, for example because you're building an application for many users, the database setup should be able to support high throughput. Throughput is measured in Queries Per Second (QPS). Adding extra server nodes to your database setup means that the throughput scales with it. The more server nodes, the more users (read operations) the system will be able to handle. Thus, replicating your Weaviate instance increases throughput.
 
 When reading is set to a low consistency level (i.e. `ONE`), then scaling the replication factor (i.e. the number of database server nodes) increases the throughput linearly. For example, when the read consistency level is `ONE`, if one node can reach 10,000 QPS, then a setup with 3 replica nodes can receive 30,000 QPS.
 
@@ -44,9 +44,9 @@ As an example, consider you're updating the version of a Weaviate instance from 
 3. Node image is replaced with newer version
 4. Node is restarted
 5. Node takes time to be ready
-6. Node is ready to serve traffic. 
+6. Node is ready to serve traffic.
 
-From step 2 until step 6 the Weaviate server cannot receive and respond to any requests. This leads to bad user experience. 
+From step 2 until step 6 the Weaviate server cannot receive and respond to any requests. This leads to bad user experience.
 
 With replication (e.g. replication factor of 3), upgrades to the Weaviate version are done using a rolling update. At most one node will be unavailable at the same time, so all other nodes can still serve traffic.
 1. 3 nodes ready to serve traffic
@@ -64,13 +64,13 @@ When users are located in different regional areas (e.g. Iceland and Australia a
    All users will have relatively high latency, since data needs to travel between Iceland and India, and Australia and India.
 
     <p align="center"><img src="/img/docs/replication-architecture/replication-regional-proximity-1.png" alt="Cluster in the geographical middle" width="75%"/></p>
-   
+
 2. Option 2 - Put the cluster close to one user group (e.g. Iceland)<br/>
    Users from Iceland have very low latency while users from Australia experience relatively high latency since data needs to travel a long distance.
 
    Another option arises when you have the option to replicate your data cluster to two different geographical locations. This is called Multi-Datacenter (Multi-DC) replication.
 3. Option 3 - Multi-DC replication with server clusters in both Iceland and Australia.<br/>
-   Users from Iceland and Australia now both experience low latency, because each user group is served from local clusters. 
+   Users from Iceland and Australia now both experience low latency, because each user group is served from local clusters.
 
     <p align="center"><img src="/img/docs/replication-architecture/replication-regional-proximity-3.png" alt="Replication multi-dc" width="75%"/></p>
 

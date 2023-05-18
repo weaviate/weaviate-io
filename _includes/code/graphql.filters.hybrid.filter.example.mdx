@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
     Article (
       hybrid: {query: "how to fish", alpha: 0.5}
     # highlight-start
-      where: {path: ["wordCount"], operator: LessThan, valueInt: 1000}
+      where: { path: ["wordCount"], operator: LessThan, valueInt: 1000 }
     # highlight-end
-    ){
+    ) {
       title
       summary
     }
@@ -75,7 +75,7 @@ WithPath([]string{"content"}).
   WithValueString("Alaskan")  // All results must have "Alaskan" in the content property
 // highlight-end
 
-name = graphql.Field{Name: "summary"} 
+name = graphql.Field{Name: "summary"}
 
 hybrid := &graphql.HybridArgumentBuilder{}
 hybrid.WithQuery("How to catch an Alaskan Pollock").WithAlpha(0.5)

@@ -29,7 +29,6 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
 - `Operator` (which takes one of the following values)
   - `And`
   - `Or`
-  - `Not`
   - `Equal`
   - `NotEqual`
   - `GreaterThan`
@@ -57,7 +56,7 @@ the path selector for `name` will be `["inPublication", "Publication", "name"]`.
 - `valueString`: The string value that the last property in `Path` should be compared to.
 - `valueText`: The text value that the last property in `Path` should be compared to.
 - `valueNumber`: The number (float) value that the last property in `Path` should be compared to.
-- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339)) value that the last property  in `Path` should be compared to.
+- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/)) value that the last property  in `Path` should be compared to.
 
 ```graphql
 {
@@ -89,11 +88,11 @@ the path selector for `name` will be `["inPublication", "Publication", "name"]`.
 
 The behavior for the `Equal` operator on multi-word textual properties in `where` filters depends on the property type (`string` or `text`), and the `tokenization` property.
 
-Refer to [this section](../../configuration/schema-configuration.md#property-tokenization) on the difference between the two types.
+Refer to [this section](../../config-refs/schema.md#property-tokenization) on the difference between the two types.
 
 #### Stopwords in `text`/`string` filter values
 
-Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--stopwords-stopword-lists).
+Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](/developers/weaviate/config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists).
 
 ### Single operand
 
@@ -155,10 +154,10 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
 
 ### Filter by timestamps
 
-Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
+Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
 
 :::info
-Filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indextimestamps) for details.
+Filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indextimestamps) for details.
 :::
 
 import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where.timestamps.mdx';
@@ -206,7 +205,7 @@ The length of properties is calculated differently depending on the type:
 Supported operators are `(not) equal` and `greater/less than (equal)` and values need to be 0 or larger.
 
 :::note
-Filtering by property length requires the target class to be configured to index the length. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indexpropertylength) for details.
+Filtering by property length requires the target class to be configured to index the length. See [here](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indexpropertylength) for details.
 :::
 
 
@@ -217,7 +216,7 @@ You can set multiple operands by providing an array.
 For example, these filters select based on the class Article with a wordCount higher than 1000 and who are published before January 1st 2020.
 
 :::tip
-You can filter datetimes similarly to numbers, with the `valueDate` given as `string` in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) format.
+You can filter datetimes similarly to numbers, with the `valueDate` given as `string` in [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) format.
 :::
 
 import GraphQLFiltersWhereOperands from '/_includes/code/graphql.filters.where.operands.mdx';
@@ -343,10 +342,10 @@ Using the `IsNull` operator allows you to do filter for objects where given prop
 ```
 
 :::note
-Filtering by null-state requires the target class to be configured to index this. See [here](/developers/weaviate/configuration/schema-configuration.md#invertedindexconfig--indexnullstate) for details.
+Filtering by null-state requires the target class to be configured to index this. See [here](../../config-refs/schema.md#invertedindexconfig--indexnullstate) for details.
 :::
 
-# Sorting
+## Sorting
 
 :::info
 Support for sorting was added in `v1.13.0`.
@@ -354,7 +353,7 @@ Support for sorting was added in `v1.13.0`.
 
 You can sort results by any primitive property, typically a `text`, `string`, `number`, or `int` property. When a query has a natural order (e.g. because of a `near<Media>` vector search), adding a sort operator will override the order.
 
-## Cost of sorting / architecture
+### Cost of sorting / architecture
 
 Weaviate's sorting implementation is built in a way that it does not lead to massive memory spikes; it does not need to load all objects to be sorted into memory completely. Only the property value being sorted is kept in memory.
 
@@ -379,9 +378,24 @@ Examples:
 - `[2, 2] > [1, 2, 3, 4]`
 - `[1, 2, 3] < [1, 2, 3, 4]`
 
-## Sorting API
+### Sorting API
 
 import GraphQLGetSorting from '/_includes/code/graphql.get.sorting.mdx';
+
+### Additional properties
+
+Sometimes sorting by an additional property is required, such as `id`, `creationTimeUnix`, or `lastUpdateTimeUnix`.  This can be achieved by prefixing the property name with an underscore.
+
+For example:
+```graphql
+{
+  Get {
+    Article(sort: [{path: ["_creationTimeUnix"], order: asc}]) {
+      title
+    }
+  }
+}
+```
 
 <GraphQLGetSorting/>
 
@@ -482,7 +496,7 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 
 ## Cursor with `after`
 
-From version `1.18`, the `after` parameter can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
+Starting with version `1.18`, the `after` parameter can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
 
 The `after` parameter relies on the order of ids. It can therefore only be applied to list queries without any search operators. In other words, `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, etc.
 
@@ -495,7 +509,7 @@ import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 <GraphQLFiltersAfter/>
 
 :::note
-The `after` cursor is available on both single-shard and multi-shard set-ups.  
+The `after` cursor is available on both single-shard and multi-shard set-ups.
 :::
 
 ## More Resources

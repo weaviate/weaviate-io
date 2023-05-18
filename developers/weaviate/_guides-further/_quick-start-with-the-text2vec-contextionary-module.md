@@ -26,11 +26,11 @@ docker-compose up
 Weaviate will be available and preloaded with the news article demo dataset on:
 
 - `http://localhost:8080/v1`
-- [Via the Console](https://console.weaviate.io).
+- [Via the Console](https://console.weaviate.cloud).
 
 # **Query via the Weaviate console**
 
-You can query your local machine via the [Weaviate console](https://console.weaviate.io). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` (you will get redirected to the "http" version of the client).
+You can query your local machine via the [Weaviate console](https://console.weaviate.cloud). In the "Self-hosted Weaviate" input box, fill in `http://localhost:8080/` (you will get redirected to the "http" version of the client).
 
 # **Validate via the RESTful API**
 
@@ -91,7 +91,7 @@ The output will look something like this:
             "properties": [
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "Name of the publication",
                     "moduleConfig": {
@@ -146,7 +146,7 @@ The output will look something like this:
             "properties": [
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "Name of the author",
                     "moduleConfig": {
@@ -195,10 +195,11 @@ The output will look something like this:
             "properties": [
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "title of the article",
-                    "indexInverted": true,
+                    "indexFilterable": true,
+                    "indexSearchable": true,
                     "moduleConfig": {
                         "text2vec-contextionary": {
                             "skip": false,
@@ -209,10 +210,11 @@ The output will look something like this:
                 },
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "url of the article",
-                    "indexInverted": false,
+                    "indexFilterable": false,
+                    "indexSearchable": false,
                     "moduleConfig": {
                         "text2vec-contextionary": {
                             "skip": false,
@@ -320,7 +322,7 @@ The output will look something like this:
             "properties": [
                 {
                     "dataType": [
-                        "string"
+                        "text"
                     ],
                     "description": "category name",
                     "indexInverted": true,
@@ -693,11 +695,11 @@ The output will look something like this:
 
 # Query the dataset with GraphQL
 
-When querying Weaviate, you will always be using the GraphQL API. Weaviate has a publicly available graphical user interface (GUI) called [the Console](https://console.weaviate.io), which you can use to query.
+When querying Weaviate, you will always be using the GraphQL API. Weaviate has a publicly available graphical user interface (GUI) called [the Console](https://console.weaviate.cloud), which you can use to query.
 
 ### Accessing the Console
 
-Go to [console.weaviate.io](https://console.weaviate.io). Log in and connect to your Weaviate instance (e.g. on `http://localhost:8080`), and then go to 'Query' in the left menu.
+Go to [console.weaviate.cloud](https://console.weaviate.cloud). Log in and connect to your Weaviate instance (e.g. on `http://localhost:8080`), and then go to 'Query' in the left menu.
 
 ### Your First Query
 
@@ -843,7 +845,7 @@ You can also combine filters!
       nearText: {
         concepts: ["rideSharing"]
       }
-      where:{ 
+      where:{
         operator:And
         operands: [{
           operator: GreaterThan
@@ -950,10 +952,10 @@ curl -k http://localhost:8080/v1/classifications/{CLASSIFICATION ID} | jq .
 
 # What's next
 In this tutorial you learned about how to quickly set up a Weaviate with a demo dataset, use semantic search and classification. Next, check out the following:
-- Check out how to [spin up a Weaviate](/developers/weaviate/quickstart/installation.md) with your own [schema](../tutorials/schema.md) and [import](../tutorials/how-to-import-data.md).
+- Check out how to [spin up a Weaviate](/developers/weaviate/installation/index.md) with your own [schema](../tutorials/schema.md) and [import](../tutorials/how-to-import-data.md).
 - Learn more about [authentication](/developers/weaviate/configuration/authentication.md) and [authorization](/developers/weaviate/configuration/authorization.md).
 - Install one of the [client libraries](/developers/weaviate/client-libraries/index.md) for smooth interaction with the Weaviate APIs.
-- Consult the [RESTful API references](/developers/weaviate/api/rest/index.md) and the [GraphQL references](../api/graphql/index.md) to learn about all interaction possibilities with Weaviate. 
+- Consult the [RESTful API references](/developers/weaviate/api/rest/index.md) and the [GraphQL references](../api/graphql/index.md) to learn about all interaction possibilities with Weaviate.
 
 ## More Resources
 

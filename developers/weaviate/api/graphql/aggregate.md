@@ -15,7 +15,7 @@ This example shows how to aggregate over the entire database. [Below](#aggregati
 ```graphql
 {
   Aggregate {
-    <Class> (groupBy:[<property>]) { 
+    <Class> (groupBy:[<property>]) {
       groupedBy { # requires `groupBy` filter
           path
           value
@@ -113,15 +113,16 @@ The above query will result in something like the following:
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
 :::tip `meta` count will return the query object count
-As such, this `Aggregate` GraphQL query will retrieve the total object count in a class.
+As such, this `Aggregate` query will retrieve the total object count in a class.
 
 <HowToGetObjectCount/>
 :::
 
-### GroupBy Argument
+### groupBy argument
+
 You can use a groupBy argument to get meta information about groups of data objects.
 
-The `groupBy{}` argument is structured as follows for the `Get{}` function:
+The `groupBy{}` argument is structured as follows for the `Aggregate{}` function:
 
 ```graphql
 {
@@ -193,7 +194,7 @@ The above query will result in something like the following:
 ```
 
 
-### Additional filters 
+### Additional filters
 
 `Aggregate{}` functions can be extended with search filters. Because the filters work on multiple core functions (like `Get{}`) there is a [specific documentation page dedicated to filters](filters.md).
 
@@ -221,7 +222,7 @@ If neither an `objectLimit`, nor a `certainty` is set the query will error.
 
 ### API
 
-Below are examples for `nearObject`, `nearVector`, and `nearText`. 
+Below are examples for `nearObject`, `nearVector`, and `nearText`.
 Any `near<Media>` will work.
 
 #### nearObject
