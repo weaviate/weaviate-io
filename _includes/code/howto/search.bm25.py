@@ -36,14 +36,8 @@ response = (
 print(json.dumps(response, indent=2))
 # END BM25BasicPython
 
-# Tests
-assert "JeopardyQuestion" in response["data"]["Get"]
-assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
-assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
-# End test
 
-
-expected_results = """
+expected_response = (
 # Expected BM25Basic results
 {
   "data": {
@@ -66,8 +60,10 @@ expected_results = """
   }
 }
 # END Expected BM25Basic results
-"""
-
+)
+# Tests
+assert response == expected_response
+# End test
 
 
 gql_query = """
@@ -90,10 +86,9 @@ gql_query = """
 # END BM25BasicGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
-def test_gqlresponse(response_in, gqlresponse_in):
-    for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
-        assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
-test_gqlresponse(response, gqlresponse)
+# Tests
+assert gqlresponse == expected_response
+# End test
 
 
 # ==========================================
@@ -125,7 +120,7 @@ assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {
 # End test
 
 
-expected_results = """
+expected_response = (
 # Expected BM25WithScore results
 {
   "data": {
@@ -157,7 +152,7 @@ expected_results = """
   }
 }
 # END Expected BM25WithScore results
-"""
+)
 
 
 
@@ -215,7 +210,6 @@ print(json.dumps(response, indent=2))
 # END BM25WithPropertiesPython
 
 # Tests
-assert "JeopardyQuestion" in response["data"]["Get"]
 assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
 assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
 assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
@@ -224,7 +218,7 @@ for i, result in enumerate(response["data"]["Get"]["JeopardyQuestion"]):
 # End test
 
 
-expected_results = """
+expected_response = (
 # Expected BM25WithProperties results
 {
   "data": {
@@ -256,7 +250,7 @@ expected_results = """
   }
 }
 # END Expected BM25WithProperties results
-"""
+)
 
 
 
@@ -318,7 +312,7 @@ assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {
 # End test
 
 
-expected_results = """
+expected_response = (
 # Expected BM25WithBoostedProperties results
 {
   "data": {
@@ -350,7 +344,7 @@ expected_results = """
   }
 }
 # END Expected BM25WithBoostedProperties results
-"""
+)
 
 
 
@@ -417,7 +411,7 @@ for q in response["data"]["Get"]["JeopardyQuestion"]:
 # End test
 
 
-expected_results = """
+expected_response = (
 # Expected BM25WithFilter results
 {
   "data": {
@@ -452,7 +446,7 @@ expected_results = """
   }
 }
 # END Expected BM25WithFilter results
-"""
+)
 
 
 

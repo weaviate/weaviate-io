@@ -45,8 +45,8 @@ See [this page](../api/graphql/filters.md#filter-structure) for the list of avai
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={JavaScriptCode}
-  startMarker="// searchBM25Basic"
-  endMarker="// END searchBM25Basic"
+  startMarker="// searchSingleFilter"
+  endMarker="// END searchSingleFilter"
   language="js"
 />
 </TabItem>
@@ -92,8 +92,8 @@ The following example adds a `points` filter to a `nearText` query, where the `p
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={JavaScriptCode}
-  startMarker="// searchBM25Basic"
-  endMarker="// END searchBM25Basic"
+  startMarker="// searchFilterNearText"
+  endMarker="// END searchFilterNearText"
   language="js"
 />
 </TabItem>
@@ -143,8 +143,8 @@ The following example filters for objects including the text `inter` in any part
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={JavaScriptCode}
-  startMarker="// searchBM25Basic"
-  endMarker="// END searchBM25Basic"
+  startMarker="// searchLikeFilter"
+  endMarker="// END searchLikeFilter"
   language="js"
 />
 </TabItem>
@@ -192,8 +192,8 @@ The following example specifies that:
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={JavaScriptCode}
-  startMarker="// searchBM25Basic"
-  endMarker="// END searchBM25Basic"
+  startMarker="// searchMultipleFiltersAnd"
+  endMarker="// END searchMultipleFiltersAnd"
   language="js"
 />
 </TabItem>
@@ -241,8 +241,8 @@ The following example specifies that:
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={JavaScriptCode}
-  startMarker="// searchBM25Basic"
-  endMarker="// END searchBM25Basic"
+  startMarker="// searchMultipleFiltersNested"
+  endMarker="// END searchMultipleFiltersNested"
   language="js"
 />
 </TabItem>

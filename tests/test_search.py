@@ -28,7 +28,8 @@ def test_py(empty_weaviates, script_loc):
         "./_includes/code/howto/search.basics.js",
         "./_includes/code/howto/search.similarity.js",
         "./_includes/code/howto/search.bm25.js",
-        "./_includes/code/howto/search.hybrid.js"
+        "./_includes/code/howto/search.hybrid.js",
+        "./_includes/code/howto/search.filters.js"
     ],
 )
 def test_js(empty_weaviates, script_loc):

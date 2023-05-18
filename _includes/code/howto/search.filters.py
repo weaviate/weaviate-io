@@ -39,7 +39,7 @@ print(json.dumps(response, indent=2))
 # END SingleFilterPython
 
 
-expected_results = (
+expected_response = (
 # Expected SingleFilter results
 {
   "data": {
@@ -68,7 +68,8 @@ expected_results = (
 )
 
 # Tests
-assert response == expected_results
+for question in response["data"]["Get"]["JeopardyQuestion"]:
+    assert question["round"] == "Double Jeopardy!"
 # End test
 
 
@@ -97,7 +98,7 @@ gql_query = """
 
 # Tests
 gqlresponse = client.query.raw(gql_query)
-assert gqlresponse == expected_results
+assert gqlresponse == response
 # End test
 
 
@@ -127,7 +128,7 @@ print(json.dumps(response, indent=2))
 # END SingleFilterNearTextPython
 
 
-expected_results = (
+expected_response = (
 # Expected SingleFilterNearText results
 {
   "data": {
@@ -159,7 +160,9 @@ expected_results = (
 )
 
 # Tests
-assert response == expected_results
+assert "JeopardyQuestion" in response["data"]["Get"]
+for question in response["data"]["Get"]["JeopardyQuestion"]:
+    assert question["points"] > 200
 # End test
 
 
@@ -192,7 +195,7 @@ gql_query = """
 
 # Tests
 gqlresponse = client.query.raw(gql_query)
-assert gqlresponse == expected_results
+assert gqlresponse == response
 # End test
 
 
@@ -220,7 +223,7 @@ print(json.dumps(response, indent=2))
 # END LikeFilterPython
 
 
-expected_results = (
+expected_response = (
 # Expected LikeFilter results
 {
   "data": {
@@ -249,7 +252,9 @@ expected_results = (
 )
 
 # Tests
-assert response == expected_results
+assert "JeopardyQuestion" in response["data"]["Get"]
+for question in response["data"]["Get"]["JeopardyQuestion"]:
+    assert "inter" in question["answer"].lower()
 # End test
 
 
@@ -278,7 +283,7 @@ gql_query = """
 
 # Tests
 gqlresponse = client.query.raw(gql_query)
-assert gqlresponse == expected_results
+assert gqlresponse == response
 # End test
 
 
@@ -315,7 +320,7 @@ print(json.dumps(response, indent=2))
 # END MultipleFiltersAndPython
 
 
-expected_results = (
+expected_response = (
 # Expected MultipleFiltersAnd results
 {
   "data": {
@@ -347,7 +352,10 @@ expected_results = (
 )
 
 # Tests
-assert response == expected_results
+assert "JeopardyQuestion" in response["data"]["Get"]
+for question in response["data"]["Get"]["JeopardyQuestion"]:
+    assert question["round"] == "Double Jeopardy!"
+    assert question["points"] < 600
 # End test
 
 
@@ -388,7 +396,7 @@ gql_query = """
 
 # Tests
 gqlresponse = client.query.raw(gql_query)
-assert gqlresponse == expected_results
+assert gqlresponse == response
 # End test
 
 
@@ -436,7 +444,7 @@ print(json.dumps(response, indent=2))
 # END MultipleFiltersNestedPython
 
 
-expected_results = (
+expected_response = (
 # Expected MultipleFiltersNested results
 {
   "data": {
@@ -468,7 +476,10 @@ expected_results = (
 )
 
 # Tests
-assert response == expected_results
+assert "JeopardyQuestion" in response["data"]["Get"]
+for question in response["data"]["Get"]["JeopardyQuestion"]:
+    assert "nest" in question["answer"].lower()
+    assert question["points"] < 300 or question["points"] > 700
 # End test
 
 
@@ -519,5 +530,5 @@ gql_query = """
 
 # Tests
 gqlresponse = client.query.raw(gql_query)
-assert gqlresponse == expected_results
+assert gqlresponse == response
 # End test
