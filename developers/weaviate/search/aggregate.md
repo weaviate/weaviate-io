@@ -12,7 +12,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
-import JSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.js';
+import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 
 ## Overview
 
@@ -35,7 +35,7 @@ To use `Aggregate`, specify at least:
   - the `groupedBy` property if the `groupBy` argument was passed to the class
 
 
-TODO: Add ref to available grouped props
+TODO: "Add ref to available grouped props"
 
 ## Available properties
 
@@ -64,12 +64,12 @@ This is the simplest property, and returns the count of objects matched by the a
   />
 
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="TypeScript">
 
   <FilteredTextBlock
-    text={JSCode}
-    startMarker="// MetaCount JS"
-    endMarker="// END MetaCount JS"
+    text={TSCode}
+    startMarker="// MetaCount TS"
+    endMarker="// END MetaCount TS"
     language="js"
   />
 
@@ -91,7 +91,7 @@ This is the simplest property, and returns the count of objects matched by the a
 
 ### Any text property from the class
 
-For any text property of the class, you can list how many times it appears, as well as some statistics TODO
+For any text property of the class, you can list how many times it appears, as well as information about the top occurrences:
 
 <Tabs groupId="languages">
   <TabItem value="graphql" label="GraphQL">
@@ -114,12 +114,12 @@ For any text property of the class, you can list how many times it appears, as w
   />
 
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="TypeScript">
 
   <FilteredTextBlock
-    text={JSCode}
-    startMarker="// TextProp JS"
-    endMarker="// END TextProp JS"
+    text={TSCode}
+    startMarker="// TextProp TS"
+    endMarker="// END TextProp TS"
     language="js"
   />
 
@@ -164,12 +164,12 @@ For numeric properties, you can display the count as usual, plus some arithmetic
   />
 
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="TypeScript">
 
   <FilteredTextBlock
-    text={JSCode}
-    startMarker="// NumberProp JS"
-    endMarker="// END NumberProp JS"
+    text={TSCode}
+    startMarker="// NumberProp TS"
+    endMarker="// END NumberProp TS"
     language="js"
   />
 
@@ -215,12 +215,12 @@ To count how many objects would match a `near<Media>` query "well enough", you c
   />
 
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="TypeScript">
 
   <FilteredTextBlock
-    text={JSCode}
-    startMarker="// nearXXX JS"
-    endMarker="// END nearXXX JS"
+    text={TSCode}
+    startMarker="// nearXXX TS"
+    endMarker="// END nearXXX TS"
     language="js"
   />
 
@@ -266,12 +266,12 @@ If you want to limit the *number* (rather than the quality, as in `distance`) of
   />
 
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="TypeScript">
 
   <FilteredTextBlock
-    text={JSCode}
-    startMarker="// objectLimit JS"
-    endMarker="// END objectLimit JS"
+    text={TSCode}
+    startMarker="// objectLimit TS"
+    endMarker="// END objectLimit TS"
     language="js"
   />
 
@@ -319,12 +319,12 @@ To group results and list aggregate data about the result set, use the `groupBy`
   />
 
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="TypeScript">
 
   <FilteredTextBlock
-    text={JSCode}
-    startMarker="// groupBy JS"
-    endMarker="// END groupBy JS"
+    text={TSCode}
+    startMarker="// groupBy TS"
+    endMarker="// END groupBy TS"
     language="js"
   />
 
@@ -371,12 +371,12 @@ To list aggregate data about a filtered result set, pass the `where` variable to
   />
 
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="TypeScript">
 
   <FilteredTextBlock
-    text={JSCode}
-    startMarker="// whereFilter JS"
-    endMarker="// END whereFilter JS"
+    text={TSCode}
+    startMarker="// whereFilter TS"
+    endMarker="// END whereFilter TS"
     language="js"
   />
 
