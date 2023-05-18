@@ -125,7 +125,7 @@ It should produce a response like the one below:
 
 With `text` data type properties, you can use the `Like` operator to filter by partial matches.
 
-The following example filters for objects including the text `inter` in any part of a token in the `answer` property.
+The following example filters for objects including the text `"inter"` in any part of a token in the `answer` property.
 
 :::tip `*` vs `?`
 `*` matches zero or more characters, whereas `?` matches exactly one unknown character.
@@ -174,10 +174,10 @@ It should produce a response like the one below:
 
 ## Multiple-condition filters
 
-To add a multiple-condition filter, you must set the operator to `And` or `Or`, and two or more conditions under the `operands` parameter.
+To add a multiple-condition filter, you must set the operator to `And` or `Or`, and set two or more conditions under the corresponding `operands` parameter.
 
-The following example specifies that:
-- the `round` property must equal `"Double Jeopardy!"`, `And`
+The following example specifies and `And` condition, so that both:
+- the `round` property must equal `"Double Jeopardy!"`, and
 - the `points` property must be less than 600.
 
 <Tabs groupId="languages">
@@ -223,7 +223,7 @@ It should produce a response like the one below:
 
 ### Nested multiple conditions
 
-Conditional filters can be nested in Weaviate. To do so, set the `operator` of the outer `operands` to `And` or `Or`. Then, you can provide two or more conditions to the inner `operands`.
+Conditional filters can be nested in Weaviate. To do so, set the `operator` of an outer `operands` value to `And` or `Or`. Then, you can provide two or more conditions to the inner `operands`.
 
 The following example specifies that:
 - the `answer` property must contain a substring `"nest"`, `And`
