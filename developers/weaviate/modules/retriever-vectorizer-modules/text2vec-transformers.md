@@ -14,9 +14,17 @@ The `text2vec-transformers` module allows you to run your own inference containe
 
 With the `text2vec-transformers` module, you can use one of any number of pretrained NLP models specific to your use case. This means models like `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. can be used out-of-the box with Weaviate.
 
-The models are encapsulated in Docker containers. This allows for efficient scaling and resource planning. Neural-Network-based models run most efficiently on GPU-enabled servers, yet Weaviate is CPU-optimized. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware.
+The models are encapsulated in Docker containers. This allows for efficient scaling and resource planning. To choose your specific model, select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware, as  Weaviate is CPU-optimized.
 
-To choose your specific model, select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile.
+:::tip Significant GPU/CPU speed differences
+Transformer architecture models run *much* faster with GPUs, even for inference (10x+ speeds typically). 
+
+Without a GPU, import or `nearText` queries may become bottlenecks in production if using `text2vec-transformers`.
+
+If this is the case, we recommend:
+- An API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md), or 
+- The [`text2vec-contextionary`](./text2vec-contextionary.md) module if you prefer a local inference container.
+:::
 
 ## How to enable
 
@@ -61,7 +69,9 @@ services:
       ENABLE_CUDA: 0 # set to 1 to enable
 ```
 
-Note that running Weaviate with a text2vec-transformer module but without GPU will be slow. Enable CUDA if you have a GPU available (`ENABLE_CUDA=1`).
+:::note Have you enabled CUDA?
+The `text2vec-transformer` module will benefit greatly from GPU usage. Make sure to enable CUDA if you have a compatible GPU available (`ENABLE_CUDA=1`).
+:::
 
 ### Alternative: configure your custom setup
 
