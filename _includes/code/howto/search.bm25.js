@@ -1,4 +1,4 @@
-// Howto: BM25 search - TypeScript examples
+// Howto: BM25 search - JavaScript examples
 
 const assert = require('assert');
 

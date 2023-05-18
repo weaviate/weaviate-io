@@ -1,4 +1,4 @@
-// Howto: hybrid search - TypeScript examples
+// Howto: hybrid search - JavaScript examples
 
 const assert = require('assert');
 
