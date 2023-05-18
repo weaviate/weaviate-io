@@ -1,5 +1,93 @@
 [
   {
+    "title": "ChatArena",
+    "description": "Yuxiang Wu explains ChatArena, a software library to enable LLMs to talk with each other",
+    "youtube": "_0ww8Q0Bq2w",
+    "date": "2023-05-17",
+    "cover_image": "/img/podcasts/podcast-47.png",
+    "is_use_case": false
+  },
+  {
+    "title": "HyperDB",
+    "description": "John Dagdelen is interviewed by Bob van Luijt and Etienne Dilocker on HyperDB",
+    "youtube": "85VZFQw_7Oc",
+    "date": "2023-05-10",
+    "cover_image": "/img/podcasts/podcast-46.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Generative Feedback Loops",
+    "description": "Bob van Luijt discusses Generative Feedback Loops and their impact on Vector Databases",
+    "youtube": "1RALju6ZJz0",
+    "date": "2023-05-04",
+    "cover_image": "/img/podcasts/podcast-45.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate 1.19 Release Podcast",
+    "description": "Etienne Dilocker explains the latest changes in Weaviate 1.19!",
+    "youtube": "Du6IphCcCec",
+    "date": "2023-04-24",
+    "cover_image": "/img/podcasts/podcast-44.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Recommendation and Metarank",
+    "description": "Erika Cardenas, Roman Grebennikov, and Vsevolod Goloviznin discuss the latest on Recommendation!",
+    "youtube": "aLY0q6V01G4",
+    "date": "2023-03-22",
+    "cover_image": "/img/podcasts/podcast-43.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Mixpeek and the AI landscape",
+    "description": "Ethan Steininger explains his entrepeneurial journey in the world of AI!",
+    "youtube": "EDPk1umuge0",
+    "date": "2023-03-15",
+    "cover_image": "/img/podcasts/podcast-42.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Mem and LLMs!",
+    "description": "Dennis Xu explains how Mem is using the latest advances in LLMs and AI to revolutionize information management!",
+    "youtube": "RujNYB5ZE2c",
+    "date": "2023-03-09",
+    "cover_image": "/img/podcasts/podcast-41.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate 1.18 Release Podcast",
+    "description": "Etienne Dilocker explains the latest changes in Weaviate 1.18!",
+    "youtube": "Q7f2JeuMN7E",
+    "date": "2023-03-02",
+    "cover_image": "/img/podcasts/podcast-40.png",
+    "is_use_case": false
+  },
+  {
+    "title": "OpenVerkiezingenNL",
+    "description": "Floris Hoogenboom explains how OpenVerkiezingenNL was built with Weaviate!",
+    "youtube": "5kHbCQYq-Z8",
+    "date": "2023-03-01",
+    "cover_image": "/img/podcasts/podcast-39.png",
+    "is_use_case": true
+  },
+  {
+    "title": "Information Retrieval Science",
+    "description": "Leo Boystov explains the science of information retrieval and new ideas!",
+    "youtube": "X-VFkq6fHDY",
+    "date": "2023-02-28",
+    "cover_image": "/img/podcasts/podcast-38.png",
+    "is_use_case": false
+  },
+  {
+    "title": "LlamaIndex and Weaviate",
+    "description": "Jerry Liu and Bob van Luijt discuss the new ideas behind Llama Index!",
+    "youtube": "jbQ2UbnU7vQ",
+    "date": "2023-02-21",
+    "cover_image": "/img/podcasts/podcast-37.png",
+    "is_use_case": false
+  },
+  {
     "title": "LangChain and Weaviate",
     "description": "Harrison Chase and Bob van Luijt discuss the new ideas in LangChain and its collaboration with Weaviate!",
     "youtube": "lhby7Ql7hbk",
