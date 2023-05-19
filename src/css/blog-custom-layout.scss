@@ -166,3 +166,19 @@
     background-color: #D4498C;
   }
 }
+
+[data-theme='light'] {
+  .blogTags {
+    .tag {
+      border: 1px solid #C3C5D8;
+    }
+
+    .tag a {
+      color: #130C49
+    }
+
+    .dot {
+      border: 0.5px solid rgb(0, 0, 0, 0.5);
+    }
+  }
+}
