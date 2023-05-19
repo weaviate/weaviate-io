@@ -4,6 +4,7 @@
 
 # ===== Instantiation shown on snippet
 import weaviate
+import json
 
 client = weaviate.Client(
     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
@@ -390,4 +391,73 @@ gql_query = """
 gqlresponse = client.query.raw(gql_query)
 # Test results
 assert gqlresponse == response
+# END Test results
+
+
+# ==============================
+# ===== GET WITH CROSS-REF EXAMPLES =====
+# ==============================
+
+# GetWithCrossRefsPython
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question", "hasCategory { ... on JeopardyCategory { title } }"])
+    .with_limit(2)
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END GetWithCrossRefsPython
+
+
+expected_response = (
+# GetWithCrossRefs Expected Results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "hasCategory": [
+            {
+              "title": "THE BIBLE"
+            }
+          ],
+          "question": "This prophet passed the time he spent inside a fish offering up prayers"
+        },
+        {
+          "hasCategory": [
+            {
+              "title": "ANIMALS"
+            }
+          ],
+          "question": "Pythons are oviparous, meaning they do this"
+        }
+      ]
+    }
+  }
+}
+# END GetWithCrossRefs Expected Results
+)
+
+
+gql_query = """
+# GetWithCrossRefsGraphQL
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+    )
+    {
+      question
+      hasCategory { ... on JeopardyCategory { title } }
+    }
+  }
+}
+# END GetWithCrossRefsGraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+# Test results
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "hasCategory"}
+assert gqlresponse == response
+assert expected_response == response
 # END Test results
