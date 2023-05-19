@@ -1,4 +1,4 @@
-// Howto: semantic search - TypeScript examples
+// Howto: semantic search - JavaScript examples
 
 const assert = require('assert');
 

@@ -36,7 +36,7 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 ## Cohere API key
 
-`generative-cohere` requires an [Cohere API key](https://dashboard.cohere.ai/welcome/login) to perform the generation task.
+`generative-cohere` requires an [Cohere API key](https://dashboard.cohere.com/welcome/login) to perform the generation task.
 
 ### Providing the key to Weaviate
 

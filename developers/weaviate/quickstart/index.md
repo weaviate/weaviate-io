@@ -90,7 +90,7 @@ To create vector embeddings for data objects, you will be using an API service. 
 
 To follow along with the tutorial, we recommend creating an account with an inference API provider such as:
 * [OpenAI](https://platform.openai.com/docs/guides/embeddings),
-* [Cohere](https://docs.cohere.ai/reference/embed), or
+* [Cohere](https://docs.cohere.com/reference/embed), or
 * [Hugging Face](https://huggingface.co/docs/api-inference/index).
 
 :::tip Use the free tiers of these accounts
