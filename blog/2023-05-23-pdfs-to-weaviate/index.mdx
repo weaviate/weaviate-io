@@ -1,7 +1,7 @@
 ---
 title: Ingesting PDFs into Weaviate
 slug: ingesting-pdfs-into-weaviate
-authors: [shukri, erika]
+authors: [erika, shukri]
 date: 2023-05-23
 image: ./img/hero.png
 tags: ['integrations','how-to']
@@ -13,11 +13,9 @@ description: "Demo on how to ingest PDFs into Weaviate using Unstructured."
 
 <!-- truncate -->
 
-Since the release of ChatGPT, and the subsequent realization of pairing Vector DBs with ChatGPT, one of the most compelling applications has been chatting with your PDFs (i.e. [ChatPDF](https://www.chatpdf.com/), [ChatDOC](https://chatdoc.com/)). Why PDFs? Countless research papers, letters, and resumes capture all sorts of diverse information that is understandable to humans, but incomprehensible to computers.
+Since the release of ChatGPT, and the subsequent realization of pairing Vector DBs with ChatGPT, one of the most compelling applications has been chatting with your PDFs (i.e. [ChatPDF](https://www.chatpdf.com/) or [ChatDOC](https://chatdoc.com/)). Why PDFs? PDFs are fairly universal for visual documents, encompassing research papers, resumes, powerpoints, letters, and many more. In our [latest Weaviate Podcast](https://www.youtube.com/watch?v=b84Q2cJ6po8) with Unstructured Founder Brian Raymond, Brian motivates this kind of data by saying “Imagine you have a non-disclosure agreement in a PDF and want to train a classifier”. Although PDFs are great for human understanding, they have been very hard to process with computers. PDF documents contain valuable insights and information that are key to unlocking text information for businesses. With the latest advancements in multimodal deep learning (models that process both images and text), it is now possible to extract high quality data from PDF documents and add it to your Weaviate workflow.
 
-The task of reading and understanding PDF documents has mostly remained a human task. These documents contain valuable insights and information that are key to unlocking text information for businesses. With the latest advancements in multimodal deep learning, it is now possible to extract high quality data from PDF documents and add it to your Weaviate workflow.
-
-[Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition) (OCR) describes technology that converts different types of visual documents (research papers, letters, etc.) into a machine readable format. [RVL-CDIP](https://huggingface.co/datasets/aharley/rvl_cdip) is a benchmark that tests the performance of classifying document images. New models like [LayoutLMv3](https://huggingface.co/docs/transformers/main/en/model_doc/layoutlmv3) and [Donut](https://huggingface.co/docs/transformers/model_doc/donut) leverage both the text and visual information by using a multimodal Transformer. These models have the best performance because it uses more information than just the text.
+[Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition) (OCR) describes technology that converts different types of visual documents (research papers, letters, etc.) into a machine readable format. [RVL-CDIP](https://huggingface.co/datasets/aharley/rvl_cdip) is a benchmark that tests the performance of classifying document images. New models like [LayoutLMv3](https://huggingface.co/docs/transformers/main/en/model_doc/layoutlmv3) and [Donut](https://huggingface.co/docs/transformers/model_doc/donut) leverage both the text and visual information by using a multimodal transformer. These models are reaching new heights in performance because they leverage visual information, not just text.
 
 <figure>
 
@@ -26,12 +24,14 @@ The task of reading and understanding PDF documents has mostly remained a human 
 </figure>
 
 
-## Ingesting PDFs with Unstructured
+## About Unstructured
 [Unstructured](https://www.unstructured.io/) is an open-source company working at the cutting edge of PDF processing and more. They allow businesses to ingest their diverse data sources, whether this be a `PDF`, `JPEG`, or `PPT`, and convert it into data that can be passed to a LLM. This means that you could take private documents from your company and pass it to a LLM to chat with your PDFs.
 
-Unstructured’s open-source [core library](https://github.com/Unstructured-IO/unstructured) is powered by document understanding models. Document understanding techniques use an encoder-decoder pipeline that leverages the power of both computer vision and natural language processing methods
+Unstructured’s open-source [core library](https://github.com/Unstructured-IO/unstructured) is powered by document understanding models. Document understanding techniques use an encoder-decoder pipeline that leverages the power of both computer vision and natural language processing methods.
 
-Unstructured simplifies the process of importing a PDF and converting it into text. The core abstraction of Unstructured are their [API bricks](https://unstructured-io.github.io/unstructured/bricks.html) for document pre-processing: 1. Partitioning 2. Cleaning, 3. Staging. Partitioning bricks take an unstructured document and extract structured content from it. It takes the document and breaks it down into elements like Title, Abstract, and Introduction. Cleaning the data is an important step before passing it to an NLP model. The cleaning brick can ‘sanitize’ your text data by removing bullet points, extra whitespaces, and more. Staging is the last brick and it helps to prepare your data as input into downstream systems. It takes a list of document elements as input and returns a formatted dictionary as output.
+On the Weaviate Podcast, Brian Raymond described one of the founding motivations of Unstructured as follows: “Hey, HuggingFace is exploding over here with 10s of thousands of models and an incredible community. What if we did something similar to the left of HuggingFace, and we made it cheap, fast, and easy for data scientists to get through that data engineering step, so they can consume more of that!” Now that the stage is set, let’s explore how Unstructured works.
+
+Unstructured simplifies the process of importing a PDF and converting it into text. The core abstraction of Unstructured are their [API bricks](https://unstructured-io.github.io/unstructured/bricks.html) for document pre-processing: 1. Partitioning 2. Cleaning, 3. Staging. Partitioning bricks take an unstructured document and extract structured content from it. It takes the document and breaks it down into elements like `Title`, `Abstract`, and `Introduction`. Later on you will see an example of how the partitioning bricks identified the elements in a research paper. Cleaning the data is an important step before passing it to an NLP model. The cleaning brick can ‘sanitize’ your text data by removing bullet points, extra whitespaces, and more. Staging is the last brick and it helps to prepare your data as input into downstream systems. It takes a list of document elements as input and returns a formatted dictionary as output.
 
 In this blog post, we will show you how to ingest PDF documents with Unstructured and query in Weaviate.
 
@@ -39,7 +39,7 @@ In this blog post, we will show you how to ingest PDF documents with Unstructure
 To follow along with this blog post, check out this [repository](https://github.com/weaviate/how-to-ingest-pdfs-with-unstructured).
 :::
 
-### The Basics
+## The Basics
 The data we’re using are two research papers that are publicly available. We first want to convert the PDF to text in order to load it into Weaviate. Starting with the first brick (partitioning), we need to partition the document into text. This is done with:
 
 ```python
@@ -118,9 +118,9 @@ for index, elem in enumerate(narrative_texts[:5]):
     print("\n" + "-" * 70 + "\n")
 ```
 
-You now have the option to this data, vectorize it and store it in Weaviate!
+You can then take this data, vectorize it and store it in Weaviate.
 
-### End-to-End Example
+## End-to-End Example
 Now that we’ve introduced the basics of using Unstructured, we want to provide an end-to-end example. We’ll read a folder containing the two research papers, extract their abstracts and store them in Weaviate.
 
 Starting with importing the necessary libraries:
@@ -142,7 +142,7 @@ client = weaviate.Client(
 )
 ```
 
-#### Configure the Schema
+### Configure the Schema
 
 Now we need to configure our schema. We have the `document` class along with the `abstract` property.
 
@@ -174,7 +174,7 @@ schema = {
 client.schema.create_class(schema)
 ```
 
-#### Read/Import the documents
+### Read/Import the documents
 
 Now that our schema is defined, we want to build the objects that we want to store in Weaviate. We wrote a helper class,  `AbstractExtractor` to aggregate the element class. We will call this in order to grab the abstract element along with the content.
 
@@ -268,7 +268,7 @@ with client.batch as batch:
         batch.add_data_object(data_object, "Document")
 ```
 
-#### Query Time
+### Query Time
 
 Now that we have imported our two documents, we can run some queries! Starting with a simple BM25 search. We want to find a document that discusses house prices.
 
@@ -333,7 +333,7 @@ representations of house descriptions.
 
 </details>
 
-#### Limitations
+## Limitations
 There are a few limitations when it comes to a document that has two columns. For example, if a document is structured with two columns, then the text doesn’t extract perfectly. The workaround for this is to set `strategy="ocr_only"` or `strategy="fast"` into `partition_pdf`. There is a [GitHub issue](https://github.com/Unstructured-IO/unstructured/issues/356) on fixing multi-column documents; make sure to give this issue a 👍 up!
 
 <details>
@@ -358,13 +358,13 @@ abstract_extractor.consume_elements(elements)
 
 </details>
 
-### Weaviate Brick in Unstructured
+## Weaviate Brick in Unstructured
 There is a [GitHub issue](https://github.com/Unstructured-IO/unstructured/issues/566) to add a Weaviate staging brick! The goal of this integration is to add a Weaviate section to the documentation and show how to load unstructured outputs into Weaviate. Make sure to give this issue a 👍 up!
 
 ## Last Thought
 This demo introduced how you can ingest PDFs into Weaviate. In this example we used two research papers; however, there is the possibility to add Powerpoint presentations or even scanned letters to your Weaviate instance. Unstructured has really simplified the process of using visual document parsing for diverse document types.
 
-We tested a few queries above, but we can take this one step further by using [LangChain](https://github.com/hwchase17/langchain/blob/master/langchain/vectorstores/weaviate.py). Once we’ve imported the documents into Weaviate, you can build a simple chatbot by using LangChain’s vectorstore! An example project on how we did this with the Podcast Search can be found [here](https://github.com/weaviate/weaviate-podcast-search).
+We tested a few queries above, but we can take this one step further by using [LangChain](https://github.com/hwchase17/langchain/blob/master/langchain/vectorstores/weaviate.py). Once the documents are imported into Weaviate, you can build a simple chatbot to chat with your pdfs by using LangChain’s vectorstore.
 
 ```python
 from langchain.vectorstores.weaviate import Weaviate
@@ -389,7 +389,6 @@ while True:
     print(result["answer"])
     chat_history = [(query, result["answer"])]
 ```
-
 
 import WhatNext from '/_includes/what-next.mdx'
 
