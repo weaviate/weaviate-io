@@ -358,10 +358,10 @@ abstract_extractor.consume_elements(elements)
 
 </details>
 
-#### Weaviate Brick in Unstructured
+### Weaviate Brick in Unstructured
 There is a [GitHub issue](https://github.com/Unstructured-IO/unstructured/issues/566) to add a Weaviate staging brick! The goal of this integration is to add a Weaviate section to the documentation and show how to load unstructured outputs into Weaviate. Make sure to give this issue a 👍 up!
 
-### Last Thought
+## Last Thought
 This demo introduced how you can ingest PDFs into Weaviate. In this example we used two research papers; however, there is the possibility to add Powerpoint presentations or even scanned letters to your Weaviate instance. Unstructured has really simplified the process of using visual document parsing for diverse document types.
 
 We tested a few queries above, but we can take this one step further by using [LangChain](https://github.com/hwchase17/langchain/blob/master/langchain/vectorstores/weaviate.py). Once we’ve imported the documents into Weaviate, you can build a simple chatbot by using LangChain’s vectorstore! An example project on how we did this with the Podcast Search can be found [here](https://github.com/weaviate/weaviate-podcast-search).
