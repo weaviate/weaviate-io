@@ -343,7 +343,62 @@ It should produce a response like the one below:
 
 </details>
 
-<!-- TODO - add info on how to retrieve cross-reference properties. -->
+
+### Retrieve cross-referenced properties
+
+You can retrieve any properties of cross-referenced objects by specifying:
+- The cross-reference property,
+- The target cross-referenced object class, and
+- The desired properties to retrieve (of the cross-referenced objects).
+
+The following example, retrieves for each `JeopardyQuestion` object the cross-referenced `JeopardyCategory` object, and the `JeopardyCategory` object's `title` property is returned.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetWithCrossRefsPython"
+  endMarker="# END GetWithCrossRefsPython"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+
+<FilteredTextBlock
+  text={JSCode}
+  startMarker="// GetWithCrossRefs"
+  endMarker="// END GetWithCrossRefs"
+  language="js"
+/>
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetWithCrossRefsGraphQL"
+  endMarker="# END GetWithCrossRefsGraphQL"
+  language="graphql"
+/>
+
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GetWithCrossRefs Expected Results"
+  endMarker="# END GetWithCrossRefs Expected Results"
+  language="json"
+/>
+
+</details>
 
 ## More Resources
 
