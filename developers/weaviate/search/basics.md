@@ -19,15 +19,13 @@ This section includes the essentials of performing searches and retrieving objec
 - [API References: GraphQL: Get](../api/graphql/get.md)
 :::
 
-## Search syntax
-
-### `Get` function requirements
+## `Get` function requirements
 
 To retrieve objects from Weaviate, you must use the [`Get` function](../api/graphql/get.md) and specify at least:
 - The target `class` to search, and
 - One or more `properties` to retrieve.
 
-### Simple `Get` example
+## Simple `Get` example
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -80,7 +78,7 @@ It should produce a response like the one below:
 The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRUD operations and not capable of performing searches.
 :::
 
-### `limit` returned objects
+## `limit` returned objects
 
 Often, you will only want the top `n` results from the query. This can be achieved by setting a `limit` as shown below.
 
@@ -131,7 +129,7 @@ It should produce a response like the one below:
 
 </details>
 
-### Paginate with `limit` and `offset`
+## Paginate with `limit` and `offset`
 
 If you only want the `n` results after the first `m` results from the query, you can do this with `limit` and `offset` as shown below.
 
@@ -344,6 +342,8 @@ It should produce a response like the one below:
 />
 
 </details>
+
+<!-- TODO - add info on how to retrieve cross-reference properties. -->
 
 ## More Resources
 

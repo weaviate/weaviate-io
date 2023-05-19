@@ -9,8 +9,8 @@ import weaviate from 'weaviate-ts-client';
 // ===== Instantiation shown on snippet
 const client = weaviate.client({
   scheme: 'https',
-  host: 'your-cluster.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-KEY'),  // # If auth is on, replace w/ your Weaviate instance API key
+  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
+  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // # If auth is on, replace w/ your Weaviate instance API key
   headers: {
     'X-OpenAI-API-Key': 'YOUR-OPENAI-API-KEY',  // for the nearText example
   },
@@ -29,7 +29,7 @@ result = await client
   .withClassName('JeopardyQuestion')
   .withFields('meta { count }')
   .do();
-console.log(result.data['Aggregate']['JeopardyQuestion'][0]['meta']['count']);
+console.log(result);
 // END MetaCount TS
 
 // Test
@@ -48,25 +48,25 @@ result = await client
   .aggregate()
   .withClassName('JeopardyQuestion')
   // highlight-start
-  .withFields('question { count type topOccurrences { occurs value } }')
+  .withFields('answer { count type topOccurrences { occurs value } }')
   // highlight-end
   .do();
-console.log(result.data['Aggregate']['JeopardyQuestion']);
+console.log(result);
 // END TextProp TS
 
 // Test
 assert('JeopardyQuestion' in result.data.Aggregate);
 assert.equal(result.data.Aggregate.JeopardyQuestion.length, 1);
-const questionKeys = new Set(Object.keys(result.data.Aggregate.JeopardyQuestion[0]['question']));
+const questionKeys = new Set(Object.keys(result.data.Aggregate.JeopardyQuestion[0]['answer']));
 assert.deepEqual(questionKeys, new Set(['count', 'type', 'topOccurrences']));
 // End test
 
 
 // ====================================
-// ===== Number property EXAMPLES =====
+// ===== Int/Number property EXAMPLES =====
 // ====================================
 
-// NumberProp TS
+// IntProp TS
 result = await client
   .graphql
   .aggregate()
@@ -75,67 +75,13 @@ result = await client
   .withFields('points { count sum }')
   // highlight-end
   .do();
-console.log(result.data['Aggregate']['JeopardyQuestion']);
-// END NumberProp TS
+console.log(result);
+// END IntProp TS
 
 // Test
 assert('JeopardyQuestion' in result.data.Aggregate);
 assert.equal(result.data.Aggregate.JeopardyQuestion.length, 1);
 assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { count: 10000, sum: 6324100 } });
-// End test
-
-
-// ============================
-// ===== nearXXX EXAMPLES =====
-// ============================
-
-// nearXXX TS
-result = await client
-  .graphql
-  .aggregate()
-  .withClassName('JeopardyQuestion')
-  // highlight-start
-  .withNearText({
-    concepts: ['animals in space'],
-    distance: 0.19,
-  })
-  // highlight-end
-  .withFields('meta { count }')
-  .do();
-console.log(result.data['Aggregate']['JeopardyQuestion']);
-// END nearXXX TS
-
-// Test
-assert('JeopardyQuestion' in result.data.Aggregate);
-assert.equal(result.data.Aggregate.JeopardyQuestion.length, 1);
-assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { meta: { count: 6 } });
-// End test
-
-
-// =========================================
-// ===== nearText.objectLimit EXAMPLES =====
-// =========================================
-
-// objectLimit TS
-result = await client
-  .graphql
-  .aggregate()
-  .withClassName('JeopardyQuestion')
-  .withNearText({
-    concepts: ['animals in space'],
-  })
-  // highlight-start
-  .withObjectLimit(10)
-  // highlight-end
-  .withFields('points { sum }')
-  .do();
-console.log(result.data['Aggregate']['JeopardyQuestion']);
-// END objectLimit TS
-
-// Test
-assert('JeopardyQuestion' in result.data.Aggregate);
-assert.equal(result.data.Aggregate.JeopardyQuestion.length, 1);
-assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 4600 } });
 // End test
 
 
@@ -153,7 +99,7 @@ result = await client
   .withFields('groupedBy { value } meta { count }')
   // highlight-end
   .do();
-console.log(result.data['Aggregate']['JeopardyQuestion']);
+console.log(result);
 // END groupBy TS
 
 // Test
@@ -164,6 +110,60 @@ assert.deepEqual(new Set(result.data.Aggregate.JeopardyQuestion), new Set([
   { groupedBy: { value: 'Jeopardy!' }, meta: { count: 4522 } },
   { groupedBy: { value: 'Final Jeopardy!' }, meta: { count: 285 } },
 ]));
+// End test
+
+
+// =========================================
+// ===== nearTextWithLimit EXAMPLES =====
+// =========================================
+
+// nearTextWithLimit TS
+result = await client
+  .graphql
+  .aggregate()
+  .withClassName('JeopardyQuestion')
+  .withNearText({
+    concepts: ['animals in space'],
+  })
+  // highlight-start
+  .withObjectLimit(10)
+  // highlight-end
+  .withFields('points { sum }')
+  .do();
+console.log(result);
+// END nearTextWithLimit TS
+
+// Test
+assert('JeopardyQuestion' in result.data.Aggregate);
+assert.equal(result.data.Aggregate.JeopardyQuestion.length, 1);
+assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 4600 } });
+// End test
+
+
+// ============================
+// ===== nearTextWithDistance EXAMPLES =====
+// ============================
+
+// nearTextWithDistance TS
+result = await client
+  .graphql
+  .aggregate()
+  .withClassName('JeopardyQuestion')
+  // highlight-start
+  .withNearText({
+    concepts: ['animals in space'],
+    distance: 0.19,
+  })
+  // highlight-end
+  .withFields('points { sum }')
+  .do();
+console.log(result);
+// END nearTextWithDistance TS
+
+// Test
+assert('JeopardyQuestion' in result.data.Aggregate);
+assert.equal(result.data.Aggregate.JeopardyQuestion.length, 1);
+assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 3000 } });
 // End test
 
 
@@ -185,7 +185,7 @@ result = await client
   // highlight-end
   .withFields('meta { count }')
   .do();
-console.log(result.data['Aggregate']['JeopardyQuestion']);
+console.log(result);
 // END whereFilter TS
 
 // Test

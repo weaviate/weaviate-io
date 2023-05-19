@@ -2,14 +2,15 @@
 # ===== INSTANTIATION-COMMON =====
 # ================================
 
-# ===== Instantiation shown on snippet
 import weaviate
+import json
 
+# Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    "https://your-cluster.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-KEY"),  # If auth on, replace w/ Weaviate instance API key
-    additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # for the nearText example
+    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    additional_headers = {
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
 )
 
@@ -25,13 +26,8 @@ response = (
     .do()
 )
 
-print(response["data"]["Aggregate"]["JeopardyQuestion"][0]["meta"]["count"])
+print(json.dumps(response, indent=2))
 # END MetaCount Python
-
-# Test results
-assert "JeopardyQuestion" in response["data"]["Aggregate"]
-assert response["data"]["Aggregate"]["JeopardyQuestion"][0].keys() == {"meta"}
-# End test
 
 
 gql_query = """
@@ -49,12 +45,15 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
+assert "JeopardyQuestion" in response["data"]["Aggregate"]
+assert response["data"]["Aggregate"]["JeopardyQuestion"][0].keys() == {"meta"}
 assert gqlresponse == response
 # END Test results
 
+
 # Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
-expected_response = """
-// MetaCount Expected Results
+expected_response = (
+# MetaCount Expected Results
 {
   "data": {
     "Aggregate": {
@@ -68,8 +67,9 @@ expected_response = """
     }
   }
 }
-// END MetaCount Expected Results
-"""
+# END MetaCount Expected Results
+)
+assert response == expected_response
 
 
 # ==================================
@@ -81,21 +81,13 @@ response = (
     client.query
     .aggregate("JeopardyQuestion")
     # highlight-start
-    .with_fields("question { count type topOccurrences { occurs value } }")
+    .with_fields("answer { count type topOccurrences { occurs value } }")
     # highlight-end
     .do()
 )
 
-print(response["data"]["Aggregate"]["JeopardyQuestion"][0])
+print(json.dumps(response, indent=2))
 # END TextProp Python
-
-# Test results
-assert "JeopardyQuestion" in response["data"]["Aggregate"]
-assert len(response["data"]["Aggregate"]["JeopardyQuestion"]) == 1
-assert response["data"]["Aggregate"]["JeopardyQuestion"][0].keys() == {"question"}
-assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["question"]["count"] == 10000
-# End test
-
 
 gql_query = """
 # TextProp GraphQL
@@ -103,7 +95,7 @@ gql_query = """
   Aggregate {
     JeopardyQuestion {
       # highlight-start
-      question {
+      answer {
         count
         type
         topOccurrences {
@@ -119,39 +111,39 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
+assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["answer"]["count"] == 10000
 assert gqlresponse == response
 # END Test results
 
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
-expected_response = """
-// TextProp Expected Results
+expected_response = (
+# TextProp Expected Results
 {
   "data": {
     "Aggregate": {
       "JeopardyQuestion": [
         {
-          "question": {
+          "answer": {
             "count": 10000,
             "topOccurrences": [
               {
-                "occurs": 2,
-                "value": "A fake foot covering"
+                "occurs": 19,
+                "value": "Australia"
               },
               {
-                "occurs": 2,
-                "value": "A noisy cumulonimbus"
+                "occurs": 18,
+                "value": "Hawaii"
               },
               {
-                "occurs": 2,
-                "value": "A special flower for April, it can be oxeye or shasta"
+                "occurs": 16,
+                "value": "Boston"
               },
               {
-                "occurs": 2,
-                "value": "A whole lot of shakin' goes on in this science that deals almost exclusively with earthquakes"
+                "occurs": 15,
+                "value": "French"
               },
               {
-                "occurs": 2,
-                "value": "Behaviorists \\u0026 dogs drool over the work of this Russian physiologist"
+                "occurs": 15,
+                "value": "India"
               }
             ],
             "type": "text"
@@ -161,16 +153,18 @@ expected_response = """
     }
   }
 }
-// END TextProp Expected Results
-"""
-
+# END TextProp Expected Results
+)
+for i, row in enumerate(expected_response["data"]["Aggregate"]["JeopardyQuestion"][0]["answer"]["topOccurrences"]):
+    for k in ["occurs", "value"]:
+      assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["answer"]["topOccurrences"][i][k] == row[k]
 
 
 # ====================================
-# ===== Number property EXAMPLES =====
+# ===== int property EXAMPLES =====
 # ====================================
 
-# NumberProp Python
+# IntProp Python
 response = (
     client.query
     .aggregate("JeopardyQuestion")
@@ -179,19 +173,11 @@ response = (
     # highlight-end
     .do()
 )
-print(response["data"]["Aggregate"]["JeopardyQuestion"])
-# END NumberProp Python
-
-# Test results
-assert "JeopardyQuestion" in response["data"]["Aggregate"]
-assert len(response["data"]["Aggregate"]["JeopardyQuestion"]) == 1
-assert response["data"]["Aggregate"]["JeopardyQuestion"][0].keys() == {"points"}
-assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"]["sum"] == 6324100
-# End test
-
+print(json.dumps(response, indent=2))
+# END IntProp Python
 
 gql_query = """
-# NumberProp GraphQL
+# IntProp GraphQL
 {
   Aggregate {
     JeopardyQuestion {
@@ -204,16 +190,16 @@ gql_query = """
     }
   }
 }
-# END NumberProp GraphQL
+# END IntProp GraphQL
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
+assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"]["sum"] == 6324100
 assert gqlresponse == response
 # END Test results
 
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
-expected_response = """
-// NumberProp Expected Results
+expected_response = (
+# IntProp Expected Results
 {
   "data": {
     "Aggregate": {
@@ -228,153 +214,12 @@ expected_response = """
     }
   }
 }
-// END NumberProp Expected Results
-"""
-
-
-# ============================
-# ===== nearXXX EXAMPLES =====
-# ============================
-
-# nearXXX Python
-response = (
-    client.query
-    .aggregate("JeopardyQuestion")
-    # highlight-start
-    .with_near_text({
-        "concepts": ["animals in space"],
-        "distance": 0.19
-    })
-    # highlight-end
-    .with_meta_count()
-    .do()
+# END IntProp Expected Results
 )
+assert response == expected_response
 
-print(response["data"]["Aggregate"])
-# END nearXXX Python
-
-# Test results
-assert "JeopardyQuestion" in response["data"]["Aggregate"]
-assert len(response["data"]["Aggregate"]["JeopardyQuestion"]) == 1
-assert response["data"]["Aggregate"]["JeopardyQuestion"][0] == {"meta": {"count": 6}}
-# End test
-
-
-gql_query = """
-# nearXXX GraphQL
-{
-  Aggregate {
-    JeopardyQuestion(
-      # highlight-start
-      nearText: {
-        concepts: ["animals in space"]
-        distance: 0.19
-      }
-      # highlight-end
-    ) {
-      meta {
-        count
-      }
-    }
-  }
-}
-# END nearXXX GraphQL
-"""
-gqlresponse = client.query.raw(gql_query)
-# Test results
-assert gqlresponse == response
-# END Test results
-
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
-expected_response = """
-// nearXXX Expected Results
-{
-  "data": {
-    "Aggregate": {
-      "JeopardyQuestion": [
-        {
-          "meta": {
-            "count": 6
-          }
-        }
-      ]
-    }
-  }
-}
-// END nearXXX Expected Results
-"""
-
-
-# =========================================
-# ===== nearText.objectLimit EXAMPLES =====
-# =========================================
-
-# objectLimit Python
-response = (
-    client.query
-    .aggregate("JeopardyQuestion")
-    .with_near_text({
-        "concepts": ["animals in space"]
-    })
-    # highlight-start
-    .with_object_limit(10)
-    # highlight-end
-    .with_fields("points { sum }")
-    .do()
-)
-print(response["data"]["Aggregate"]["JeopardyQuestion"])
-# END objectLimit Python
-
-# Test results
-assert "JeopardyQuestion" in response["data"]["Aggregate"]
-assert len(response["data"]["Aggregate"]["JeopardyQuestion"]) == 1
-assert response["data"]["Aggregate"]["JeopardyQuestion"][0] == {"points": {"sum": 4600}}
-# End test
-
-
-gql_query = """
-# objectLimit GraphQL
-{
-  Aggregate {
-    JeopardyQuestion(
-      nearText: {
-        concepts: ["animals in space"]
-      }
-      # highlight-start
-      objectLimit: 10
-      # highlight-end
-    ) {
-      points {
-        sum
-      }
-    }
-  }
-}
-# END objectLimit GraphQL
-"""
-gqlresponse = client.query.raw(gql_query)
-# Test results
-assert gqlresponse == response
-# END Test results
-
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
-expected_response = """
-// objectLimit Expected Results
-{
-  "data": {
-    "Aggregate": {
-      "JeopardyQuestion": [
-        {
-          "points": {
-            "sum": 4600
-          }
-        }
-      ]
-    }
-  }
-}
-// END objectLimit Expected Results
-"""
+for k, v in expected_response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"].items():
+    assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"][k] == v
 
 
 # ============================
@@ -392,15 +237,8 @@ response = (
     .with_meta_count()
     .do()
 )
-print(response["data"]["Aggregate"]["JeopardyQuestion"])
+print(json.dumps(response, indent=2))
 # END groupBy Python
-
-# Test results
-assert "JeopardyQuestion" in response["data"]["Aggregate"]
-assert len(response["data"]["Aggregate"]["JeopardyQuestion"]) == 3
-assert "groupedBy" in response["data"]["Aggregate"]["JeopardyQuestion"][0]
-assert "meta" in response["data"]["Aggregate"]["JeopardyQuestion"][2]
-# End test
 
 
 gql_query = """
@@ -423,12 +261,15 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
+assert len(response["data"]["Aggregate"]["JeopardyQuestion"]) == 3
+assert "groupedBy" in response["data"]["Aggregate"]["JeopardyQuestion"][0]
+assert "meta" in response["data"]["Aggregate"]["JeopardyQuestion"][2]
 assert gqlresponse == response
 # END Test results
 
 # Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
-expected_response = """
-// groupBy Expected Results
+expected_response = (
+# groupBy Expected Results
 {
   "data": {
     "Aggregate": {
@@ -461,8 +302,151 @@ expected_response = """
     }
   }
 }
-// END groupBy Expected Results
+# END groupBy Expected Results
+)
+for i, group in enumerate(response["data"]["Aggregate"]["JeopardyQuestion"]):
+    expected_group = expected_response["data"]["Aggregate"]["JeopardyQuestion"][i]
+    for k, v in group.items():
+        assert v == expected_group[k]
+
+
+
+# =========================================
+# ===== nearTextWithLimit EXAMPLES =====
+# =========================================
+
+# nearTextWithLimit Python
+response = (
+    client.query
+    .aggregate("JeopardyQuestion")
+    .with_near_text({
+        "concepts": ["animals in space"]
+    })
+    # highlight-start
+    .with_object_limit(10)
+    # highlight-end
+    .with_fields("points { sum }")
+    .do()
+)
+print(json.dumps(response, indent=2))
+# END nearTextWithLimit Python
+
+
+gql_query = """
+# nearTextWithLimit GraphQL
+{
+  Aggregate {
+    JeopardyQuestion(
+      nearText: {
+        concepts: ["animals in space"]
+      }
+      # highlight-start
+      objectLimit: 10
+      # highlight-end
+    ) {
+      points {
+        sum
+      }
+    }
+  }
+}
+# END nearTextWithLimit GraphQL
 """
+gqlresponse = client.query.raw(gql_query)
+# Test results
+assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"]["sum"] == 4600
+assert gqlresponse == response
+# END Test results
+
+expected_response = (
+# nearTextWithLimit Expected Results
+{
+  "data": {
+    "Aggregate": {
+      "JeopardyQuestion": [
+        {
+          "points": {
+            "sum": 4600
+          }
+        }
+      ]
+    }
+  }
+}
+# END nearTextWithLimit Expected Results
+)
+for k, v in expected_response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"].items():
+    assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"][k] == v
+
+
+# ============================
+# ===== nearTextWithDistance EXAMPLES =====
+# ============================
+
+# nearTextWithDistance Python
+response = (
+    client.query
+    .aggregate("JeopardyQuestion")
+    # highlight-start
+    .with_near_text({
+        "concepts": ["animals in space"],
+        "distance": 0.19
+    })
+    # highlight-end
+    .with_fields("points { sum }")
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END nearTextWithDistance Python
+
+
+gql_query = """
+# nearTextWithDistance GraphQL
+{
+  Aggregate {
+    JeopardyQuestion(
+      # highlight-start
+      nearText: {
+        concepts: ["animals in space"]
+        distance: 0.19
+      }
+      # highlight-end
+    ) {
+      points {
+        sum
+      }
+    }
+  }
+}
+# END nearTextWithDistance GraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+# Test results
+assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"]["sum"] == 3000
+assert gqlresponse == response
+# END Test results
+
+# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
+expected_response = (
+# nearTextWithDistance Expected Results
+{
+  "data": {
+    "Aggregate": {
+      "JeopardyQuestion": [
+        {
+          "points": {
+            "sum": 3000
+          }
+        }
+      ]
+    }
+  }
+}
+# END nearTextWithDistance Expected Results
+)
+for k, v in expected_response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"].items():
+    assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"][k] == v
 
 
 # =================================
@@ -483,14 +467,9 @@ response = (
     .with_meta_count()
     .do()
 )
-print(response["data"]["Aggregate"]["JeopardyQuestion"])
-# END whereFilter Python
 
-# Test results
-assert "JeopardyQuestion" in response["data"]["Aggregate"]
-assert len(response["data"]["Aggregate"]["JeopardyQuestion"]) == 1
-assert response["data"]["Aggregate"]["JeopardyQuestion"][0] == {"meta": {"count": 285}}
-# End test
+print(json.dumps(response, indent=2))
+# END whereFilter Python
 
 
 gql_query = """
@@ -514,12 +493,12 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
+assert response["data"]["Aggregate"]["JeopardyQuestion"][0] == {"meta": {"count": 285}}
 assert gqlresponse == response
 # END Test results
 
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
-expected_response = """
-// whereFilter Expected Results
+expected_response = (
+# whereFilter Expected Results
 {
   "data": {
     "Aggregate": {
@@ -533,5 +512,6 @@ expected_response = """
     }
   }
 }
-// END whereFilter Expected Results
-"""
+# END whereFilter Expected Results
+)
+assert response == expected_response
