@@ -21,6 +21,8 @@ Then, move onto a how-to guide of your choice. We have separate how-to guides fo
 - [Similarity](./similarity.md): Covers `nearXXX` searches, which work by searching for objects with the most similar vector representation to the query.
 - [BM25](./bm25.md): A keyword search that ranks results with the BM25F search function.
 - [Hybrid](./hybrid.md): Combines BM25 and similarity search to rank results.
+- [Aggregate](./aggregate.md): Aggregate data from a results set.
+- [Filters](./filters.md): Apply conditional filters to the search.
 
 Each guide is self-contained. So you can read them in any order.
 
