@@ -1,0 +1,5 @@
+{
+  "name": "ts-code-samples",
+  "description": "This file exists to enable type: module in the code samples directory",
+  "type": "module"
+}
