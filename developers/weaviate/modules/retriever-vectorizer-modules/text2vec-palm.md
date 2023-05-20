@@ -171,7 +171,7 @@ Set property-level vectorizer behavior using the `moduleConfig` section under ea
       },
       "properties": [
         {
-          "dataType": ["text"],
+          "dataType": ["string"],
           "description": "Content that will be vectorized",
           "moduleConfig": {
             // highlight-start

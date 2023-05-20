@@ -36,19 +36,19 @@ class_obj = {
         {
             "name": "title",
             # highlight-start
-            "dataType": ["text"],
+            "dataType": ["string"],
             # highlight-end
         },
         {
             "name": "body",
             # highlight-start
-            "dataType": ["text"],
+            "dataType": ["string"],
             # highlight-end
         },
         {
             "name": "url",
             # highlight-start
-            "dataType": ["text"],
+            "dataType": ["string"],
             # highlight-end
         },
     ],
@@ -64,7 +64,7 @@ datatypes = [c["dataType"] for c in client.schema.get("Article")["properties"]]
 assert "Article" in classes
 for p in ["title", "body", "url"]:
     assert p in property_names
-assert datatypes == [["text"], ["text"], ["text"]]
+assert datatypes == [["string"], ["string"], ["string"]]
 
 # ===== NOT SHOWN - Delete the class =====
 client.schema.delete_class("Article")
@@ -87,15 +87,15 @@ class_obj = {
     "properties": [
         {
             "name": "title",
-            "dataType": ["text"],
+            "dataType": ["string"],
         },
         {
             "name": "body",
-            "dataType": ["text"],
+            "dataType": ["string"],
         },
         {
             "name": "url",
-            "dataType": ["text"],
+            "dataType": ["string"],
         },
     ],
     # highlight-start
@@ -114,7 +114,7 @@ vectorizer = client.schema.get("Article")["vectorizer"]
 assert "Article" in classes
 for p in ["title", "body", "url"]:
     assert p in property_names
-assert datatypes == [["text"], ["text"], ["text"]]
+assert datatypes == [["string"], ["string"], ["string"]]
 assert vectorizer == "text2vec-openai"
 
 # ===== NOT SHOWN - Delete the class =====
@@ -134,22 +134,22 @@ class_obj = {
             "vectorizeClassName": False,
             "model": "ada",
             "modelVersion": "002",
-            "type": "text"
+            "type": "string"
         }
     },
     # highlight-end
     "properties": [
         {
             "name": "title",
-            "dataType": ["text"],
+            "dataType": ["string"],
         },
         {
             "name": "body",
-            "dataType": ["text"],
+            "dataType": ["string"],
         },
         {
             "name": "url",
-            "dataType": ["text"],
+            "dataType": ["string"],
         },
     ],
     "vectorizer": "text2vec-openai"
@@ -167,7 +167,7 @@ module_config = client.schema.get("Article")["moduleConfig"]
 assert "Article" in classes
 for p in ["title", "body", "url"]:
     assert p in property_names
-assert datatypes == [["text"], ["text"], ["text"]]
+assert datatypes == [["string"], ["string"], ["string"]]
 assert vectorizer == "text2vec-openai"
 assert module_config[vectorizer]["vectorizeClassName"] == False
 assert module_config[vectorizer]["model"] == "ada"
@@ -189,17 +189,17 @@ class_obj = {
             "vectorizeClassName": False,
             "model": "ada",
             "modelVersion": "002",
-            "type": "text"
+            "type": "string"
         }
     },
     "properties": [
         {
             "name": "title",
-            "dataType": ["text"],
+            "dataType": ["string"],
         },
         {
             "name": "body",
-            "dataType": ["text"],
+            "dataType": ["string"],
             # highlight-start
             "moduleConfig": {
                 "text2vec-openai": {
@@ -211,7 +211,7 @@ class_obj = {
         },
         {
             "name": "url",
-            "dataType": ["text"],
+            "dataType": ["string"],
             # highlight-start
             "moduleConfig": {
                 "text2vec-openai": {
@@ -236,7 +236,7 @@ module_config = client.schema.get("Article")["moduleConfig"]
 assert "Article" in classes
 for p in ["title", "body", "url"]:
     assert p in property_names
-assert datatypes == [["text"], ["text"], ["text"]]
+assert datatypes == [["string"], ["string"], ["string"]]
 assert vectorizer == "text2vec-openai"
 assert module_config[vectorizer]["vectorizeClassName"] == False
 assert module_config[vectorizer]["model"] == "ada"

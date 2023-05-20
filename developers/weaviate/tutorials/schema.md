@@ -126,14 +126,14 @@ The result should look something like this:
                 "text2vec-openai": {
                     "model": "ada",
                     "modelVersion": "002",
-                    "type": "text",
+                    "type": "string",
                     "vectorizeClassName": true
                 }
             },
             "properties": [
                 {
                     "dataType": [
-                        "text"
+                        "string"
                     ],
                     "description": "The question",
                     "moduleConfig": {
@@ -147,7 +147,7 @@ The result should look something like this:
                 },
                 {
                     "dataType": [
-                        "text"
+                        "string"
                     ],
                     "description": "The answer",
                     "moduleConfig": {
@@ -161,7 +161,7 @@ The result should look something like this:
                 },
                 {
                     "dataType": [
-                        "text"
+                        "string"
                     ],
                     "description": "The category",
                     "moduleConfig": {
@@ -242,7 +242,7 @@ So for example, you might specify a schema like the one below:
     },
     "properties": [
         {
-            "dataType": ["text"],
+            "dataType": ["string"],
             "description": "The question",
             "moduleConfig": {
                 "text2vec-openai": {

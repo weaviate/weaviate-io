@@ -85,7 +85,7 @@ Set the vectorizer model using parameters `model`, `modelVersion` and `type` in 
         "text2vec-openai": {
           "model": "ada",
           "modelVersion": "002",
-          "type": "text"
+          "type": "string"
         }
       },
     }
@@ -130,12 +130,12 @@ Set property-level vectorizer behavior using the `moduleConfig` section under ea
         "text2vec-openai": {
           "model": "ada",
           "modelVersion": "002",
-          "type": "text"
+          "type": "string"
         }
       },
       "properties": [
         {
-          "dataType": ["text"],
+          "dataType": ["string"],
           "description": "Content that will be vectorized",
           "moduleConfig": {
             "text2vec-openai": {
@@ -191,7 +191,7 @@ The default model is `text-embedding-ada-002` but you can also specify it in you
         "text2vec-openai": {
           "model": "ada",
           "modelVersion": "002",
-          "type": "text"
+          "type": "string"
         }
       }
     }
@@ -225,7 +225,7 @@ Example (as part of a class definition):
         "text2vec-openai": {
           "model": "ada",
           "modelVersion": "002",
-          "type": "text"
+          "type": "string"
         }
       }
     }

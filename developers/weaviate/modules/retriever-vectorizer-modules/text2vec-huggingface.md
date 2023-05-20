@@ -76,7 +76,7 @@ For example, the following schema configuration will set Weaviate to vectorize t
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "Content that will be vectorized",
           "moduleConfig": {

@@ -48,7 +48,7 @@ The following are not allowed:
 
 A class describes a data object, such as in the form of a noun (e.g., *Person*, *Product*, *Timezone*) or a verb (e.g., *Move*, *Buy*, *Eat*).
 
-Classes are always written with a **capital letter** first. This helps in distinguishing classes from primitive data types when used in properties. For example, `dataType: ["text"]` means that a property is a text, whereas `dataType: ["Text"]` means that a property is a cross-reference type to a class named `Text`.
+Classes are always written with a **capital letter** first. This helps in distinguishing classes from primitive data types when used in properties. For example, `dataType: ["string"]` means that a property is a text, whereas `dataType: ["string"]` means that a property is a cross-reference type to a class named `Text`.
 
 After the first letter, classes may use any GraphQL-compatible characters. The current (as of `v1.10.0+`) class name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
 
@@ -85,7 +85,7 @@ An example of a complete class object including properties:
       "name": "string",                     // The name of the property
       "description": "string",              // A description for your reference
       "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple data types, hence the array syntax.
-        "text"
+        "string"
       ],
       "moduleConfig": {                     // Module-specific settings
         "text2vec-contextionary": {
@@ -327,7 +327,7 @@ If necessary, they can be configured in the schema per class, and can optionally
       "name": "title",
       "description": "title of the article",
       "dataType": [
-        "text"
+        "string"
       ],
       # Property-level settings override the class-level settings
       "invertedIndexConfig": {
@@ -354,7 +354,7 @@ An example of a complete property object:
     "name": "string",                     // The name of the property
     "description": "string",              // A description for your reference
     "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes.
-      "text"
+      "string"
     ],
     "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See Property Tokenization below for more detail.
     "moduleConfig": {                     // Module-specific settings
@@ -379,7 +379,7 @@ You can customize how `text` data is tokenized and indexed in the inverted index
       "class": "Question",
       "properties": [
         {
-          "dataType": ["text"],
+          "dataType": ["string"],
           "name": "question",
           // highlight-start
           "tokenization": "word"

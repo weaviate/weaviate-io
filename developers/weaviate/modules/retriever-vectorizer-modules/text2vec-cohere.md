@@ -83,7 +83,7 @@ The multilingual models use dot product, and the English model uses cosine. Make
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "Content that will be vectorized",
           "moduleConfig": {

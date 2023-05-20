@@ -107,7 +107,7 @@ INDEX_NAME = "Document"
 SCHEMA = {
     "class": INDEX_NAME,
     "properties": [
-        {"name": "text", "dataType": ["text"]},
+        {"name": "string", "dataType": ["string"]},
         {"name": "document_id", "dataType": ["string"]},
     ],
 }
@@ -176,11 +176,11 @@ We developed these three endpoints through test driven development, as such we w
 @pytest.fixture
 def documents(weaviate_client):
     docs = [
-        {"text": "The lion is the king of the jungle", "document_id": "1"},
-        {"text": "The lion is a carnivore", "document_id": "2"},
-        {"text": "The lion is a large animal", "document_id": "3"},
-        {"text": "The capital of France is Paris", "document_id": "4"},
-        {"text": "The capital of Germany is Berlin", "document_id": "5"},
+        {"string": "The lion is the king of the jungle", "document_id": "1"},
+        {"string": "The lion is a carnivore", "document_id": "2"},
+        {"string": "The lion is a large animal", "document_id": "3"},
+        {"string": "The capital of France is Paris", "document_id": "4"},
+        {"string": "The capital of Germany is Berlin", "document_id": "5"},
     ]
 
     for doc in docs:
@@ -195,12 +195,12 @@ Here's the test that carries this out:
 
 ```python
 def test_upsert(weaviate_client):
-    response = client.post("/upsert", json={"text": "Hello World", "document_id": "1"})
+    response = client.post("/upsert", json={"string": "Hello World", "document_id": "1"})
     assert response.status_code == 200
 
     docs = weaviate_client.data_object.get(with_vector=True)["objects"]
     assert len(docs) == 1
-    assert docs[0]["properties"]["text"] == "Hello World"
+    assert docs[0]["properties"]["string"] == "Hello World"
     assert docs[0]["properties"]["document_id"] == "1"
     assert docs[0]["vector"] is not None
 ```
@@ -234,13 +234,13 @@ For this endpoint we mainly want to check that it returns the right number of ob
 ```python
 def test_query(documents):
     LIMIT = 3
-    response = client.post("/query", json={"text": "lion", "limit": LIMIT})
+    response = client.post("/query", json={"string": "lion", "limit": LIMIT})
 
     results = response.json()
 
     assert len(results) == LIMIT
     for result in results:
-        assert "lion" in result["document"]["text"]
+        assert "lion" in result["document"]["string"]
 ```
 
 The implementation below will take in a query and return a list of retrieved documents and metadata.
@@ -254,7 +254,7 @@ def query(query: Query, client=Depends(get_weaviate_client)) -> List[Document]:
     query_vector = get_embedding(query.text)
 
     results = (
-        client.query.get(INDEX_NAME, ["document_id", "text"])
+        client.query.get(INDEX_NAME, ["document_id", "string"])
         .with_near_vector({"vector": query_vector})
         .with_limit(query.limit)
         .with_additional("certainty")
@@ -265,7 +265,7 @@ def query(query: Query, client=Depends(get_weaviate_client)) -> List[Document]:
 
     return [
         QueryResult(
-            document={"text": doc["text"], "document_id": doc["document_id"]},
+            document={"string": doc["string"], "document_id": doc["document_id"]},
             score=doc["_additional"]["certainty"],
         )
         for doc in docs

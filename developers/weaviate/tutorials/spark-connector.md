@@ -120,19 +120,19 @@ client.schema.create_class(
         "properties": [
             {
                 "name": "raw",
-                "dataType": ["text"]
+                "dataType": ["string"]
             },
             {
                 "name": "sha",
-                "dataType": ["text"]
+                "dataType": ["string"]
             },
             {
                 "name": "title",
-                "dataType": ["text"]
+                "dataType": ["string"]
             },
             {
                 "name": "url",
-                "dataType": ["text"]
+                "dataType": ["string"]
             },
         ],
     }

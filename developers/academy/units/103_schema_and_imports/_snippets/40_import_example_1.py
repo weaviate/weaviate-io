@@ -20,7 +20,7 @@ class_obj = {
     "properties": [
         {
             "name": "round",
-            "dataType": ["text"],
+            "dataType": ["string"],
             # Property-level module configuration for `round`
             "moduleConfig": {
                 "text2vec-openai": {
@@ -35,11 +35,11 @@ class_obj = {
         },
         {
             "name": "question",
-            "dataType": ["text"],
+            "dataType": ["string"],
         },
         {
             "name": "answer",
-            "dataType": ["text"],
+            "dataType": ["string"],
         },
     ],
 
@@ -52,7 +52,7 @@ class_obj = {
             "vectorizeClassName": False,
             "model": "ada",
             "modelVersion": "002",
-            "type": "text"
+            "type": "string"
         }
     },
 }
@@ -130,14 +130,14 @@ client.schema.get("JeopardyQuestion")
     "text2vec-openai": {
       "model": "ada",
       "modelVersion": "002",
-      "type": "text",
+      "type": "string",
       "vectorizeClassName": false
     }
   },
   "properties": [
     {
       "dataType": [
-        "text"
+        "string"
       ],
       "indexFilterable": true,
       "indexSearchable": true,
@@ -166,7 +166,7 @@ client.schema.get("JeopardyQuestion")
     },
     {
       "dataType": [
-        "text"
+        "string"
       ],
       "indexFilterable": true,
       "indexSearchable": true,
@@ -181,7 +181,7 @@ client.schema.get("JeopardyQuestion")
     },
     {
       "dataType": [
-        "text"
+        "string"
       ],
       "indexFilterable": true,
       "indexSearchable": true,

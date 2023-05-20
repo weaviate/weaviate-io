@@ -118,7 +118,7 @@ Here is a schema example using the text2vec-openai vectorizer:
         {
             "name": "content",
             "description": "content that will be vectorized",
-            "dataType": ["text"]
+            "dataType": ["string"]
         }
       ]
     }

@@ -54,7 +54,7 @@ Example of a class [vector index configuration in your data schema](/developers/
     {
       "name": "title",
       "description": "string",
-      "dataType": ["text"]
+      "dataType": ["string"]
     }
   ],
   "vectorIndexType": " ... ",

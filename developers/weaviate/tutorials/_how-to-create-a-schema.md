@@ -62,7 +62,7 @@ Classes always start with a capital letter. Properties always begin with a small
 
 Let's define the class `Publication` with the properties `name`, `hasArticles` and `headquartersGeoLocation` in JSON format. `name` will be the name of the `Publication`, in string format. `hasArticles` will be a reference to Article objects. We need to define the class `Articles` in the same schema to make sure the reference is possible. `headquartersGeoLocation` will be of the special dataType `geoCoordinates`.
 
-Note that the property `"title"` of the class `"Article"` has dataType `"string"`, while the property `"content"` is of dataType `"text"`. `string` values and `text` values are tokenized differently to each other.
+Note that the property `"title"` of the class `"Article"` has dataType `"string"`, while the property `"content"` is of dataType `"string"`. `string` values and `text` values are tokenized differently to each other.
 
 ```json
 {
@@ -71,7 +71,7 @@ Note that the property `"title"` of the class `"Article"` has dataType `"string"
   "properties": [
     {
       "dataType": [
-        "text"
+        "string"
       ],
       "description": "Name of the publication",
       "name": "name"
@@ -103,7 +103,7 @@ Add the classes `Article` and `Author` to the same schema, so you will end up wi
   "properties": [
     {
       "dataType": [
-        "text"
+        "string"
       ],
       "description": "Name of the publication",
       "name": "name"
@@ -129,14 +129,14 @@ Add the classes `Article` and `Author` to the same schema, so you will end up wi
   "properties": [
     {
       "dataType": [
-        "text"
+        "string"
       ],
       "description": "Title of the article",
       "name": "title"
     },
     {
       "dataType": [
-        "text"
+        "string"
       ],
       "description": "The content of the article",
       "name": "content"
@@ -148,7 +148,7 @@ Add the classes `Article` and `Author` to the same schema, so you will end up wi
   "properties": [
       {
         "dataType": [
-            "text"
+            "string"
         ],
         "description": "Name of the author",
         "name": "name"
@@ -181,7 +181,7 @@ Now, add this list of classes to the schema, which will look like this:
     "properties": [
       {
         "dataType": [
-          "text"
+          "string"
         ],
         "description": "Name of the publication",
         "name": "name"
@@ -207,14 +207,14 @@ Now, add this list of classes to the schema, which will look like this:
     "properties": [
       {
         "dataType": [
-          "text"
+          "string"
         ],
         "description": "Title of the article",
         "name": "title"
       },
       {
         "dataType": [
-          "text"
+          "string"
         ],
         "description": "The content of the article",
         "name": "content"
@@ -226,7 +226,7 @@ Now, add this list of classes to the schema, which will look like this:
     "properties": [
       {
         "dataType": [
-            "text"
+            "string"
         ],
         "description": "Name of the author",
         "name": "name"

@@ -114,7 +114,7 @@ You will see that the class and property names are not indexed, but the article 
             "properties": [
                 {
                     "dataType": [
-                        "text"
+                        "string"
                     ],
                     "description": "title of the article",
                     "indexFilterable": true,
@@ -130,7 +130,7 @@ You will see that the class and property names are not indexed, but the article 
                 },
                 {
                     "dataType": [
-                        "text"
+                        "string"
                     ],
                     "description": "url of the article",
                     "indexFilterable": true,
@@ -146,7 +146,7 @@ You will see that the class and property names are not indexed, but the article 
                 },
                 {
                     "dataType": [
-                        "text"
+                        "string"
                     ],
                     "description": "summary of the article",
                     "indexFilterable": true,

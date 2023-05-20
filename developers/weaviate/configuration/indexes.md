@@ -59,7 +59,7 @@ Example of a class could be [configured in your data schema](/developers/weaviat
     {
       "name": "title",
       "description": "string",
-      "dataType": ["text"]
+      "dataType": ["string"]
     }
   ],
   "vectorIndexType": "hnsw",
@@ -122,7 +122,7 @@ You can set these keys in the schema like shown below, at a property level:
             "indexFilterable": false,  // <== turn off the filterable (Roaring Bitmap index) by setting `indexFilterable` to false
             "indexSearchable": false,  // <== turn off the searchable (for BM25/hybrid) by setting `indexSearchable` to false
             "dataType": [
-                "text"
+                "string"
             ],
             "name": "name"
         }
@@ -168,7 +168,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
             "indexFilterable": false,  // <== disable filterable index for this property
             "indexSearchable": false,  // <== disable searchable index for this property
             "dataType": [
-                "text"
+                "string"
             ],
             "description": "The name of the Author",
             "name": "name"
@@ -201,7 +201,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
             "indexFilterable": false,  // <== disable filterable index for this property
             "indexSearchable": false,  // <== disable searchable index for this property
             "dataType": [
-                "text"
+                "string"
             ],
             "description": "A description of the author",
             "name": "description"

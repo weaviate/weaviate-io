@@ -146,7 +146,7 @@ expected_response = (
                 "value": "India"
               }
             ],
-            "type": "text"
+            "type": "string"
           }
         }
       ]

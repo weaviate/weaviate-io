@@ -44,7 +44,7 @@ import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "category name",
           "indexFilterable": true,
@@ -71,7 +71,7 @@ import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "Name of the publication",
           "name": "name"
@@ -112,7 +112,7 @@ import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "Name of the author",
           "name": "name"
@@ -139,7 +139,7 @@ import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "title of the article",
           "indexFilterable": true,
@@ -153,7 +153,7 @@ import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
         },
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "url of the article",
           "indexFilterable": true,
@@ -167,7 +167,7 @@ import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
         },
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "summary of the article",
           "indexFilterable": true,

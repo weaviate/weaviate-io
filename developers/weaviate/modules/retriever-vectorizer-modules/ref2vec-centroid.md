@@ -79,7 +79,7 @@ Although this example uses text2vec-contextionary to generate vectors for the `P
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "Title of the article",
           "name": "title"
@@ -101,7 +101,7 @@ Although this example uses text2vec-contextionary to generate vectors for the `P
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "Content that will be vectorized",
           "moduleConfig": {

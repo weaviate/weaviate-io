@@ -37,7 +37,7 @@ result = model.transcribe("20.mp3")
 print(f"Transcribed in {time.time() - start} seconds.")
 
 f = open("20-text-dump.txt", "w+")
-f.write(result["text"])
+f.write(result["string"])
 f.close()
 ```
 

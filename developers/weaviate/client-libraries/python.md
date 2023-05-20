@@ -181,7 +181,7 @@ schema = {
     "properties": [
       {
         "dataType": [
-          "text"
+          "string"
         ],
         "description": "Name of the publication",
         "name": "name"
@@ -207,14 +207,14 @@ schema = {
     "properties": [
       {
         "dataType": [
-          "text"
+          "string"
         ],
         "description": "Title of the article",
         "name": "title"
       },
       {
         "dataType": [
-          "text"
+          "string"
         ],
         "description": "The content of the article",
         "name": "content"
@@ -226,7 +226,7 @@ schema = {
     "properties": [
       {
         "dataType": [
-            "text"
+            "string"
         ],
         "description": "Name of the author",
         "name": "name"
@@ -302,7 +302,7 @@ schema = {
       "properties": [
         {
           "name": "name",
-          "dataType": ["text"]
+          "dataType": ["string"]
         },
         {
           "name": "wroteBooks",
@@ -315,7 +315,7 @@ schema = {
       "properties": [
         {
           "name": "title",
-          "dataType": ["text"]
+          "dataType": ["string"]
         },
         {
           "name": "ofAuthor",
@@ -419,7 +419,7 @@ schema = {
       "properties": [
         {
           "name": "name",
-          "dataType": ["text"]
+          "dataType": ["string"]
         },
         {
           "name": "wroteBooks",
@@ -432,7 +432,7 @@ schema = {
       "properties": [
         {
           "name": "title",
-          "dataType": ["text"]
+          "dataType": ["string"]
         },
         {
           "name": "ofAuthor",
@@ -536,7 +536,7 @@ schema = {
       "properties": [
         {
           "name": "name",
-          "dataType": ["text"]
+          "dataType": ["string"]
         },
         {
           "name": "wroteBooks",
@@ -549,7 +549,7 @@ schema = {
       "properties": [
         {
           "name": "title",
-          "dataType": ["text"]
+          "dataType": ["string"]
         },
         {
           "name": "ofAuthor",

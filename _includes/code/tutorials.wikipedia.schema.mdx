@@ -17,7 +17,7 @@ article_class = {
         "text2vec-openai": {
             "model": "ada",
             "modelVersion": "002",
-            "type": "text",
+            "type": "string",
             "vectorizeClassName": False
         }
     },
@@ -25,14 +25,14 @@ article_class = {
         {
             "name": "title",
             "description": "The title of the article",
-            "dataType": ["text"],
+            "dataType": ["string"],
             # Don't vectorize the title
             "moduleConfig": {"text2vec-openai": {"skip": True}}
         },
         {
             "name": "content",
             "description": "The content of the article",
-            "dataType": ["text"],
+            "dataType": ["string"],
         }
     ]
 }

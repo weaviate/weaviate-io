@@ -170,14 +170,14 @@ The response will be a JSON object, such as the example shown below.
         "text2vec-openai": {
           "model": "ada",
           "modelVersion": "002",
-          "type": "text",
+          "type": "string",
           "vectorizeClassName": true
         }
       },
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "moduleConfig": {
             "text2vec-openai": {
@@ -190,7 +190,7 @@ The response will be a JSON object, such as the example shown below.
         },
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "moduleConfig": {
             "text2vec-openai": {

@@ -86,7 +86,7 @@ As of Weaviate 1.18, the `text2vec-openai` vectorizer uses by default the same m
     "text2vec-openai": {
       "model": "ada",
       "modelVersion": "002",
-      "type": "text"
+      "type": "string"
     }
   }
 }

@@ -111,7 +111,7 @@ For example
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "Content that will be vectorized",
           "moduleConfig": {

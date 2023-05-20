@@ -47,7 +47,7 @@ Since filterable & searchable are separate indexes, filterable does not exist in
         "properties": [
           {
             "dataType": [
-              "text"
+              "string"
             ],
             "name": "name"
           },
@@ -673,7 +673,7 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
 
   ```json
   {
-    "dataType": [ "text" ],
+    "dataType": [ "string" ],
     "description": "string",
     "cardinality": "string",
     "vectorizePropertyName": true,
@@ -687,7 +687,7 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
 
   ```json
   {
-    "dataType": [ "text" ],
+    "dataType": [ "string" ],
     "description": "string",
     "moduleConfig": {
       "text2vec-contextionary": {
@@ -838,7 +838,7 @@ The Contextionary becomes the first vectorization module of Weaviate, renamed to
 
     ```json
     {
-      "dataType": [ "text" ],
+      "dataType": [ "string" ],
       "description": "string",
       "moduleConfig": {
         "text2vec-contextionary": {

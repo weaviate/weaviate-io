@@ -139,7 +139,7 @@ The following schema configuration uses the `text-davinci-002` model.
       "properties": [
         {
           "dataType": [
-            "text"
+            "string"
           ],
           "description": "Content that will be vectorized",
           "name": "content"

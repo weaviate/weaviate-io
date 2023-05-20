@@ -102,11 +102,11 @@ To use a new inference model (part 2) with an existing Weaviate interface (part 
 
 Request:
 ```bash
-curl localhost:8090/vectors/ -H "Content-Type: application/json" -d '{"text":"hello world"}'
+curl localhost:8090/vectors/ -H "Content-Type: application/json" -d '{"string":"hello world"}'
 ```
 Response:
 ```bash
-{"text":"hello world","vector":[-0.08469954133033752,0.4564870595932007, ..., 0.14153483510017395],"dim":384}
+{"string":"hello world","vector":[-0.08469954133033752,0.4564870595932007, ..., 0.14153483510017395],"dim":384}
 ```
 
 ### B. Build a completely new module
