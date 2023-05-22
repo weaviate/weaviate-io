@@ -1,6 +1,6 @@
 ---
 title: GraphQL - Vector search parameters
-sidebar_position: 5
+sidebar_position: 7
 image: og/docs/api.jpg
 # tags: ['graphql', 'vector search parameters']
 ---
