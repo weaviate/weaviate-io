@@ -151,7 +151,7 @@ A: Two words, user experience. We want to make it as simple as possible to integ
 
 A: Yes, Weaviate supports cursor-based iteration as well as pagination through a result set.
 
-To iterate through all objects, you can use the `after` parameter with both [REST](../api/rest/objects.md#exhaustive-retrieval-after) and [GraphQL](../api/graphql/filters.md#cursor-with-after).
+To iterate through all objects, you can use the `after` parameter with both [REST](../api/rest/objects.md#exhaustive-listing-using-a-cursor-after) and [GraphQL](../api/graphql/filters.md#cursor-with-after).
 
 For pagination through a result set, you can use the `offset` and `limit` parameters for GraphQL API calls. Take a look at [this page](../api/graphql/filters.md#pagination-with-offset) which describes how to use these parameters, including tips on performance and limitations.
 
