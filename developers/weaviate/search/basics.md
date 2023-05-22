@@ -351,7 +351,7 @@ You can retrieve any properties of cross-referenced objects by specifying:
 - The target cross-referenced object class, and
 - The desired properties to retrieve (of the cross-referenced objects).
 
-The following example, retrieves for each `JeopardyQuestion` object the cross-referenced `JeopardyCategory` object, and the `JeopardyCategory` object's `title` property is returned.
+The following example, retrieves for each `JeopardyQuestion` object the cross-referenced `JeopardyCategory` object, and the `JeopardyCategory` object's `title` property is returned. The property is accessed using the [inline fragment](http://spec.graphql.org/June2018/#sec-Inline-Fragments) GraphQL syntax.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -364,7 +364,7 @@ The following example, retrieves for each `JeopardyQuestion` object the cross-re
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="TypeScript">
 
 <FilteredTextBlock
   text={JSCode}
