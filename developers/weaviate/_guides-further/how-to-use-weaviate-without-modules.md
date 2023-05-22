@@ -81,7 +81,7 @@ Weaviate allows the user to specify a Weaviate vectorizer to be used at class le
       "vectorizer": "none",  # explicitly tell Weaviate not to vectorize anything, we are providing the vectors ourselves
       "properties": [{
           "name": "content",
-          "dataType": ["text"],
+          "dataType": ["text"]
       }]
   }]
 }

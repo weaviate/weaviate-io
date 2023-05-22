@@ -41,20 +41,20 @@ result = (
 <TabItem value="js" label="JavaScript">
 
 ```js
-
 client.graphql
   .get()
   .withClassName('Article')
   .withFields('title summary _additional{ score explainScore }')
   .withHybrid({
-      query: 'Fisherman that catches salmon'
-      alpha: 0.5, // optional, defaults to 0.75
+      query: 'Fisherman that catches salmon',
+      alpha: 0.5,  // optional, defaults to 0.75
      }
   })
   .do()
-  .then(console.log)
+  .then(res => {
+    console.log(JSON.stringify(res, null, 2))
+  })
   .catch(console.error);
-
 ```
 
 </TabItem>
@@ -113,7 +113,6 @@ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
-
 ```
 
 </TabItem>
