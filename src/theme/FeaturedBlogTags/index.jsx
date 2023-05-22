@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
-const featuredTags=[
+const featuredTags = [
   'concepts',
   'engineering',
   'integrations',
@@ -16,9 +16,9 @@ export default function FeaturedBlogTags() {
     <div className={styles.featuredTags}>
       <h3 className={styles.label}>Featured Tags:</h3>
       <div className={styles.tags}>
-        {featuredTags.map(tag=>(
+        {featuredTags.map(tag =>(
           <div className={styles.tag}>
-            <a href={`/blog/tags/${tag}`}>{tag}</a>
+            <a href={`/blog/tags/${tag}`}>{tag} <div className={`${styles.dot} ${styles[tag]}`}></div></a>
           </div>
         ))}
       </div>

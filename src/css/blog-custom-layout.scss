@@ -33,12 +33,14 @@
     grid-template-columns: 1fr 1fr;
     column-gap: 25px;
     row-gap: 0px;
+    margin-top: 40px;
   }
 }
 
 @media (min-width:1440px) {
   .blogs {
     grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 40px;
   }
 }
 
@@ -47,8 +49,8 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
-    "title"
     "image"
+    "title"
     "shortText"
     "info";
 }
@@ -65,7 +67,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
   }
 }
 
@@ -74,6 +75,7 @@
 
   img {
     width: 100%;
+    border-radius: var(--ifm-global-radius);
   }
 }
 
@@ -95,10 +97,13 @@
 
   display: flex;
   align-items: center;
+  padding: 5px 0;
 }
 
 .blogTags {
   padding: 8px 0;
+  display: flex;
+  flex-wrap: wrap;
 
   .blogTag {
     font-size: smaller;
@@ -106,5 +111,74 @@
     border: 1px solid;
     margin: 0px 4px;
     padding: 4px;
+  }
+
+  .tag {
+    font-size: large;
+    border-radius: var(--ifm-global-radius);
+    border: 1px solid;
+    margin: 5px 5px;
+  }
+
+  .tag a {
+    color: #fff;
+    text-transform: capitalize;
+    padding: 4px 9px;
+
+    display: flex;
+    justify-self: center;
+    align-items: center;
+  }
+
+  .dot {
+    height: 10px;
+    width: 10px;
+    background-color: green;
+    border-radius: 50%;
+    margin-left: 7px;
+  }
+
+  .concepts {
+    background-color: #20E220;
+  }
+
+  .engineering {
+    background-color: #FFCB00;
+  }
+
+  .integrations {
+    background-color: #00B7E2;
+  }
+
+  .how-to {
+    background-color: #00998B;
+  }
+
+  .release {
+    background-color: #FFFF00;
+  }
+
+  .research {
+    background-color: #7C69EF;
+  }
+
+  .search {
+    background-color: #D4498C;
+  }
+}
+
+[data-theme='light'] {
+  .blogTags {
+    .tag {
+      border: 1px solid #C3C5D8;
+    }
+
+    .tag a {
+      color: #130C49
+    }
+
+    .dot {
+      border: 0.5px solid rgb(0, 0, 0, 0.5);
+    }
   }
 }
