@@ -160,7 +160,7 @@ const siteRedirects = {
         // Howto redirects
         {
             to: '/developers/weaviate/manage-data/read-all-objects',
-            from: 'developers/weaviate/manage-data/exhaustive-retrieval',
+            from: '/developers/weaviate/manage-data/exhaustive-retrieval',
         },
 
         // Blog redirects
