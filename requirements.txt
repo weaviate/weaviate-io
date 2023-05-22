@@ -29,5 +29,5 @@ typing_extensions==4.5.0
 tzdata==2023.3
 urllib3==1.26.14
 validators==0.19.0
-weaviate-client==3.11.0
-weaviate-demo-datasets==0.0.13
+weaviate-client>=3.18.0
+weaviate-demo-datasets==0.0.14
