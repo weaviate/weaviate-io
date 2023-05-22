@@ -195,17 +195,32 @@ getObjectIdQuery();
 // Test
 getObjectIdQuery().then(res => {
   assert('JeopardyQuestion' in res.data.Get);
-  assert.deepEqual(res.data.Get.JeopardyQuestion.length, 1)
+  assert.deepEqual(res.data.Get.JeopardyQuestion.length, 1);
   const additionalKeys = new Set(Object.keys(res.data.Get.JeopardyQuestion[0]._additional));
   assert.deepEqual(additionalKeys, new Set(['id']));
 });
 // End test
 
-// ==================================
+// =======================================
 // ===== GET WITH CROSS-REF EXAMPLES =====
-// ==================================
+// =======================================
 
 
 // GetWithCrossRefsJS
-// Coming soon
+const response = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  // highlight-start
+  .withFields(`
+  question
+  hasCategory {
+    ... on JeopardyCategory {
+      title
+    }
+  }`)
+  // highlight-end
+  .withLimit(2)
+  .do();
+
+console.log(JSON.stringify(response, null, 2));
 // END GetWithCrossRefsJS
