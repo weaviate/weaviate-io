@@ -194,7 +194,7 @@ In addition to enabling the module, you need to configure it using environment v
 
 ### Other Backup Backends
 
-Weaviate uses its [module system](/developers/weaviate/configuration/modules.md) to decouple the backup orchestration from the remote backup storage backends. It is easy to add new providers and use them with the existing backup API. If you are missing your desired backup module, you can open a feature request or contribute it yourself. For either option, join our Slack community to have  a quick chat with us on how to get started.
+Weaviate uses its [module system](/developers/weaviate/configuration/modules.md) to decouple the backup orchestration from the remote backup storage backends. It is easy to add new providers and use them with the existing backup API. If you are missing your desired backup module, you can open a feature request or contribute it yourself. For either option, join our Slack community to have a quick chat with us on how to get started.
 
 ## API
 

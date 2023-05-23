@@ -252,6 +252,10 @@ const config = {
                                 label: 'Slack',
                                 href: 'https://weaviate.io/slack',
                             },
+                            {
+                                label: '🆕 Forum',
+                                href: 'https://forum.weaviate.io',
+                            },
                         ],
                     },
                     {

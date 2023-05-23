@@ -254,7 +254,7 @@ You have:
 
 Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us.
 
-Also, please feel free to reach out to us on our community [Slack](https://weaviate.io/slack). We love to hear from our users.
+Also, please feel free to reach out to us on our community [Slack](https://weaviate.io/slack) or [forum](https://forum.weaviate.io/). We love to hear from our users.
 
 ## Next
 
