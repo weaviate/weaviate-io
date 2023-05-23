@@ -55,29 +55,28 @@ const client = weaviate.client({
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
 });
 
-// we will create the class 'Question'
-
+// We will create the class 'Question'
 let classObj = {
-  'class': 'Question',
-  'description': 'Information from a Jeopardy! question',  // description of the class
-  'properties': [
+  class: 'Question',
+  description: 'Information from a Jeopardy! question',  // description of the class
+  properties: [
       {
-          'dataType': ['text'],
-          'description': 'The question',
-          'name': 'question',
+          dataType': ['text'],
+          description: 'The question',
+          name: 'question',
       },
       {
-          'dataType': ['text'],
-          'description': 'The answer',
-          'name': 'answer',
+          dataType: ['text'],
+          description: 'The answer',
+          name: 'answer',
       },
       {
-          'dataType': ['text'],
-          'description': 'The category',
-          'name': 'category',
+          dataType: ['text'],
+          description: 'The category',
+          name: 'category',
       },
   ],
-  'vectorizer': 'text2vec-openai',
+  vectorizer: 'text2vec-openai',
 }
 
 // add the schema
@@ -110,62 +109,51 @@ client
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
 });
 
-// we will create the class 'Question'
-
+// We will create the class 'Question'
 let classObj = {
-  'class': 'Question',
-  'description': 'Information from a Jeopardy! question',  // description of the class
-  'properties': [
+  class: 'Question',
+  description: 'Information from a Jeopardy! question',  // description of the class
+  properties: [
       {
-          'dataType': ['text'],
-          'description': 'The question',
-          'name': 'question',
+          dataType: ['text'],
+          description: 'The question',
+          name: 'question',
       },
       {
-          'dataType': ['text'],
-          'description': 'The answer',
-          'name': 'answer',
+          dataType: ['text'],
+          description: 'The answer',
+          name: 'answer',
       },
       {
-          'dataType': ['text'],
-          'description': 'The category',
-          'name': 'category',
+          dataType: ['text'],
+          description: 'The category',
+          name: 'category',
       },
   ],
-  'vectorizer': 'text2vec-openai',
+  vectorizer: 'text2vec-openai',
 }
 
-// add the schema
-client
+// Add the schema
+await client
   .schema
   .classCreator()
   .withClass(classObj)
-  .do()
-  .then((res: any) => {
-    console.log(res)
-  })
-  .catch((err: Error) => {
-    console.error(err)
-  });
+  .do();
 
-// get and print the schema
-client
+// Get and print the schema
+const result = await client
   .schema
   .getter()
-  .do()
-  .then((res: any) => {
-    console.log(res)
-  })
-  .catch((err: Error) => {
-    console.error(err)
-  });
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
 ```
 
 </TabItem>
