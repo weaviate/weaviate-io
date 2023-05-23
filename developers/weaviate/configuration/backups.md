@@ -293,6 +293,8 @@ The request takes a json object with the following properties:
 
 *Note 2: `include` and `exclude` are relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
 
+*Note 3: `include` and `exclude` support prefix/suffix wildcards e.g. `"include": ["data-202212*"]` will include all classes with names beginning "data-202212".*
+
 import CodeBackupRestore from '/_includes/code/backup.restore.mdx';
 
 <CodeBackupRestore />
