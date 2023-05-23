@@ -45,7 +45,7 @@ how a module can provide such a capability. The capabilities we need are:
 Weaviate is written in Go and so is the module. But what happens if our model
 only has Python bindings? The module can decide to make RPC calls (REST, gRPC,
 etc.) to other services. In the case of the `text2vec-transformers` module, the
-module also provides a a python container which wraps the respective model with
+module also provides a python container which wraps the respective model with
 a simple REST API, which it can then call from within the module.
 
 This split into several containers (often referred to as a microservice
