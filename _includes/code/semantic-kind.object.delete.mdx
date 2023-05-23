@@ -31,7 +31,7 @@ client.data
       .deleter()
       .withClassName('MyClass')
       .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
-      .withConsistencyLevel(weaviate.replication.ConsistencyLevel.QUORUM)
+      .withConsistencyLevel('QUORUM')
       .do()
       .then(res => {
           console.log(res)

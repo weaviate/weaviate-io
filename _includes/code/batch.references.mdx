@@ -79,7 +79,7 @@ client.batch
         to: `weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32`,
         // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
       })
-      .withConsistencyLevel(weaviate.replication.ConsistencyLevel.ALL)  // default QUORUM
+      .withConsistencyLevel('ALL')  // default QUORUM
       .do()
       .then(res => {
         console.log(res)
@@ -128,7 +128,7 @@ client.batch
           .withToId('b72912b9-e5d7-304e-a654-66dc63c55b32')
           .payload()
       )
-      .withConsistencyLevel(weaviate.replication.ConsistencyLevel.ALL)  // default QUORUM
+      .withConsistencyLevel('ALL')  // default QUORUM
       .do()
       .then(res => {
         console.log(res)
