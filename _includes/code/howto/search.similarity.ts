@@ -1,30 +1,31 @@
-// Howto: semantic search - JavaScript examples
+// Howto: semantic search - TypeScript examples
 
-const assert = require('assert');
+import assert from 'assert';
 
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-const { default: weaviate } = require('weaviate-ts-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
   apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
   headers: {
-    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'
-  }
+    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',
+  },
 });
 
-// ================================
+let result;
+
+// =========================
 // ===== With NearText =====
-// ================================
+// =========================
 
 // https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
 // GetNearText
-async function getNearText() {
-  let response = await client.graphql
+result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
 // highlight-start
@@ -33,19 +34,16 @@ async function getNearText() {
   .withLimit(2)
   .withFields('question answer _additional { distance }')
   .do();
-  console.log(response['data']['Get']['JeopardyQuestion']);
-  // END GetNearText
 
-  // Tests
-  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
-  assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
-  assert.deepEqual(response.data.Get.JeopardyQuestion.length, 2)
+console.log(JSON.stringify(result, null, 2));
+// END GetNearText
 
-  // GetNearText
-  return response;
-}
+// Tests
+let questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 
-getNearText();
+// GetNearText
 // END GetNearText
 
 // ================================
@@ -54,8 +52,7 @@ getNearText();
 
 // https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
 // GetNearVector
-async function getNearVector() {
-  let response = await client.graphql
+result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
   // highlight-start
@@ -64,20 +61,15 @@ async function getNearVector() {
   .withLimit(2)
   .withFields('question answer _additional { distance }')
   .do();
-  // END GetNearVector
 
-  // Tests
-  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
-  assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
-  assert.deepEqual(response.data.Get.JeopardyQuestion.length, 2)
-
-  // GetNearVector
-  console.log(response['data']['Get']['JeopardyQuestion']);
-}
-
-getNearVector();
-
+console.log(JSON.stringify(result, null, 2));
 // END GetNearVector
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+
 
 // ================================
 // ===== With NearObject =====
@@ -85,8 +77,7 @@ getNearVector();
 
 // https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearobject
 // GetNearObject
-async function getNearObject() {
-  let response = await client.graphql
+result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
 // highlight-start
@@ -95,94 +86,84 @@ async function getNearObject() {
   .withLimit(2)
   .withFields('question answer _additional { distance }')
   .do();
-  // END GetNearObject
-  // Tests
-  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
-  assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
-  assert.deepEqual(response.data.Get.JeopardyQuestion.length, 2)
-  // GetNearObject
-  console.log(response['data']['Get']['JeopardyQuestion']);
-}
 
-getNearObject();
+console.log(JSON.stringify(result, null, 2));
 // END GetNearObject
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 
 // Limit - https://weaviate.io/developers/weaviate/api/graphql/filters#limit-argument
 // GetLimitOffset
-async function getLimitOffset() {
-  let response = await client.graphql
+result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
   .withNearText({ concepts: ['animals in movies'] })
 // highlight-start
-  .withLimit(2).withOffset(1)
+  .withLimit(2)
+  .withOffset(1)
 // highlight-end
   .withFields('question answer _additional { distance }')
   .do();
-  // END GetLimitOffset
 
-  // Tests
-  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
-  assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
-  assert.deepEqual(response.data.Get.JeopardyQuestion.length, 2)
-
-  // GetLimitOffset
-  console.log(response['data']['Get']['JeopardyQuestion']);
-}
-
-getLimitOffset();
+console.log(JSON.stringify(result, null, 2));
 // END GetLimitOffset
 
-// ================================
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+
+
+// =========================
 // ===== With Distance =====
-// ================================
+// =========================
 
 // Distance - http://weaviate.io/developers/weaviate/config-refs/distances
 // GetWithDistance
-async function getWithDistance() {
-  let response = await client.graphql
+// highlight-start
+const maxDistance = 0.18;
+// highlight-end
+result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
   .withNearText({
     concepts: ['animals in movies'],
     // highlight-start
-    distance: 0.18
+    distance: maxDistance,
     // highlight-end
   })
   .withFields('question answer _additional { distance }')
   .do();
-  // END GetWithDistance
 
-  // Tests
-  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
-  assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
-
-  // GetWithDistance
-  console.log(response['data']['Get']['JeopardyQuestion']);
-}
-
-getWithDistance();
+console.log(JSON.stringify(result, null, 2));
 // END GetWithDistance
 
-// ================================
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+
+
+// ========================
 // ===== With GroupBy =====
-// ================================
+// ========================
 
 // groupBy - https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
 // GetWithGroupBy
-async function getWithGroupBy() {
-  let response = await client.graphql
+result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
   .withNearText({
-    concepts: ['animals in movies']
+    concepts: ['animals in movies'],
   })
   // highlight-start
   .withLimit(10)
   .withGroupBy({
-      path: ["round"],
-      groups: 2,
-      objectsPerGroup: 2
+    path: ['round'],
+    groups: 2,
+    objectsPerGroup: 2,
   })
   .withFields(`
     _additional {
@@ -204,30 +185,25 @@ async function getWithGroupBy() {
   `)
   // highlight-end
   .do();
-  // END GetWithGroupBy
 
-  // Tests
-  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]['_additional']));
-  assert.deepEqual(questionKeys, new Set(['group']));
-  assert.deepEqual(response.data.Get.JeopardyQuestion[0]['_additional']['group']['hits'].length, 2)
-  assert.deepEqual(response.data.Get.JeopardyQuestion.length, 2)
-
-  // GetWithGroupBy
-  // For each group, display the properties under _additiona.group
-  for (const group of response['data']['Get']['JeopardyQuestion'])
-    console.log(group['_additional']['group']);
-}
-
-getWithGroupBy();
+// For each group, display the properties under _additional.group
+for (const group of result.data.Get.JeopardyQuestion)
+  console.log(group['_additional']['group']);
 // END GetWithGroupBy
 
-// ================================
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]['_additional']));
+assert.deepEqual(questionKeys, new Set(['group']));
+assert.deepEqual(result.data.Get.JeopardyQuestion[0]['_additional']['group']['hits'].length, 2);
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+
+
+// =======================
 // ===== With Filter =====
-// ================================
+// =======================
 
 // GetWithFilter
-async function GetWithFilter() {
-  let response = await client.graphql
+result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
 
@@ -235,25 +211,19 @@ async function GetWithFilter() {
   .withLimit(2)
   // highlight-start
   .withWhere({
-    'path': ['round'],
-    'operator': 'Equal',
-    'valueText': 'Double Jeopardy!'
+    path: ['round'],
+    operator: 'Equal',
+    valueText: 'Double Jeopardy!',
   })
   // highlight-end
   .withFields('question answer round _additional { distance }')
   .do();
-  // END GetWithFilter
 
-  // Tests
-  const questionKeys = new Set(Object.keys(response.data.Get.JeopardyQuestion[0]));
-  assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', '_additional']));
-  assert.deepEqual(response.data.Get.JeopardyQuestion[0]['round'], 'Double Jeopardy!')
-  assert.deepEqual(response.data.Get.JeopardyQuestion.length, 2)
-
-  // GetWithFilter
-  console.log(response['data']['Get']['JeopardyQuestion']);
-  return response;
-}
-
-GetWithFilter();
+console.log(JSON.stringify(result, null, 2));
 // END GetWithFilter
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', '_additional']));
+assert.deepEqual(result.data.Get.JeopardyQuestion[0]['round'], 'Double Jeopardy!');
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);

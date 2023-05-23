@@ -29,7 +29,7 @@ result = await client
   .withClassName('JeopardyQuestion')
   .withFields('meta { count }')
   .do();
-console.log(result);
+console.log(JSON.stringify(result, null, 2));
 // END MetaCount TS
 
 // Test
@@ -51,7 +51,7 @@ result = await client
   .withFields('answer { count type topOccurrences { occurs value } }')
   // highlight-end
   .do();
-console.log(result);
+console.log(JSON.stringify(result, null, 2));
 // END TextProp TS
 
 // Test
@@ -75,7 +75,7 @@ result = await client
   .withFields('points { count sum }')
   // highlight-end
   .do();
-console.log(result);
+console.log(JSON.stringify(result, null, 2));
 // END IntProp TS
 
 // Test
@@ -99,7 +99,7 @@ result = await client
   .withFields('groupedBy { value } meta { count }')
   // highlight-end
   .do();
-console.log(result);
+console.log(JSON.stringify(result, null, 2));
 // END groupBy TS
 
 // Test
@@ -130,7 +130,7 @@ result = await client
   // highlight-end
   .withFields('points { sum }')
   .do();
-console.log(result);
+console.log(JSON.stringify(result, null, 2));
 // END nearTextWithLimit TS
 
 // Test
@@ -157,7 +157,7 @@ result = await client
   // highlight-end
   .withFields('points { sum }')
   .do();
-console.log(result);
+console.log(JSON.stringify(result, null, 2));
 // END nearTextWithDistance TS
 
 // Test
@@ -185,7 +185,7 @@ result = await client
   // highlight-end
   .withFields('meta { count }')
   .do();
-console.log(result);
+console.log(JSON.stringify(result, null, 2));
 // END whereFilter TS
 
 // Test
