@@ -44,7 +44,7 @@ Each Weaviate data object is structured as follows:
 ```json
 {
   "class": "<class name>",  // as defined during schema creation
-  "id": "<UUID>",     // optional, should be in UUID format.
+  "id": "<UUID>",     // optional, must be in UUID format.
   "properties": {
     "<property name>": "<property value>", // specified in dataType defined during schema creation
   }
