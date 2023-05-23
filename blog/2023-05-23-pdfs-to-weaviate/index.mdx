@@ -120,6 +120,9 @@ for index, elem in enumerate(narrative_texts[:5]):
 
 You can then take this data, vectorize it and store it in Weaviate.
 
+![PDFs to Weaviate](./img/Weaviate-ingesting-dark.png#gh-dark-mode-only)
+![PDFs to Weaviate](./img/Weaviate-ingesting-light.png#gh-light-mode-only)
+
 ## End-to-End Example
 Now that we’ve introduced the basics of using Unstructured, we want to provide an end-to-end example. We’ll read a folder containing the two research papers, extract their abstracts and store them in Weaviate.
 
@@ -334,7 +337,7 @@ representations of house descriptions.
 </details>
 
 ## Limitations
-There are a few limitations when it comes to a document that has two columns. For example, if a document is structured with two columns, then the text doesn’t extract perfectly. The workaround for this is to set `strategy="ocr_only"` or `strategy="fast"` into `partition_pdf`. There is a [GitHub issue](https://github.com/Unstructured-IO/unstructured/issues/356) on fixing multi-column documents; make sure to give this issue a 👍 up!
+There are a few limitations when it comes to a document that has two columns. For example, if a document is structured with two columns, then the text doesn’t extract perfectly. The workaround for this is to set `strategy="ocr_only"` or `strategy="fast"` into `partition_pdf`. There is a [GitHub issue](https://github.com/Unstructured-IO/unstructured/issues/356) on fixing multi-column documents, give it a 👍 up!
 
 <details>
   <summary>strategy="ocr_only"</summary>
