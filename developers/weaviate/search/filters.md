@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
-import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.js';
+import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 
 ## Overview
 
