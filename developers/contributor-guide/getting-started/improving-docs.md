@@ -142,4 +142,4 @@ We've adopted a code sample structure that lets us both test and expose the samp
 />
 ```
 
-To learn how to run tests, see [the /tests/ README](/tests/README.md).
+To learn how to run tests, see the `README.md` file in `/tests/`.
