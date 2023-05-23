@@ -136,7 +136,7 @@ If you only want the `n` results after the first `m` results from the query, you
 Be aware that although you will only see `n` results, this could become an expensive operation as `m` grows larger, as Weaviate must fetch `n+m` results.
 
 :::tip For exhaustive retrieval, use `after` instead.
-If you want to list and retrieve all objects from a `class`, use the cursor API instead with the `after` parameter. Read [this guide](../manage-data/exhaustive-retrieval.mdx) for more information on how.
+If you want to list and retrieve all objects from a `class`, use the cursor API instead with the `after` parameter. Read [this guide](../manage-data/read-all-objects.mdx) for more information on how.
 :::
 
 <Tabs groupId="languages">
