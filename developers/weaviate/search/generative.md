@@ -15,41 +15,23 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
 This page shows you how to perform `generative` searches using Weaviate.
 
-Weaviate's `generative` search works by
-1. performing a search,
-1. generating a LLM response from a prompt and the search results, and
-1. returning the query results as well as the generated response to the user.
-
 :::info Related pages
 - [API References: GraphQL: Generative search](../api/graphql/get.md)
 :::
 
-## Requirements
-
-### Configuration
-
-Before you can use the generative search feature with Weaviate, you must have:
-- A [generative module](../modules/reader-generator-modules/index.md) that is enabled in your Weaviate instance and configured for the relevant class, and
-- Specify an inference API key if the generative module requires it.
-
-:::tip `generative` API provider unrelated to `text2vec` API provider
-The `generative` inference API is separate to any `text2vec` configuration. Accordingly, your choice of the `text2vec` module does not restrict your choice of `generative` module.
-:::
-
-### Usage
-
-Then, to use the generative search feature, you must:
+To use the generative search feature, you must:
 - Specify a query to retrieve one or more objects, and
-- Provide a `single prompt` or a `grouped task` to the module.
+- Provide a [`single prompt`](#single-prompt) or a [`grouped task`](#grouped-task) to the module.
 
 ## Single prompt
 
-A `single prompt` type task works by generating a response for each object in the query results. When using generative search with single prompts, you must specify which object `properties` to use in the prompt.
+A `single prompt` generative search returns a generated response for each object in the query results. For `single prompt` generative searches, you must specify which object `properties` to use in the prompt.
 
 In the below example, the query:
-1. Retrieves two `JeopardyQuestion` objects,
-1. Prepares a prompt for each object, based on its `question` property, and
-1. Retrieves generated text from these prompts, which is included in the response to the user.
+1. Retrieves two `JeopardyQuestion` objects related to `World history`,
+1. Prepares a prompt for each object, based on the prompt `"Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}.".` where `{question}` is an object property, and
+1. Retrieves a generated text for each object (2 total), and
+1. Returns the generated text as a part of each object, along with the `question` property.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -98,16 +80,17 @@ It should produce a response like the one below:
 
 </details>
 
-### Property selection
+### Single prompt property selection
 
 When using generative search with single prompts, you must specify which object `properties` to use in the prompt.
 
 The `properties` to use as a part of the prompt does *not* need to be one of the properties retrieved in the query.
 
 In the below example, the query:
-1. Retrieves two `JeopardyQuestion` objects without any properties specified,
-1. Prepares a prompt for each object, based on its `question` and `answer` properties, and
-1. Retrieves generated text from these prompts, which is included in the response to the user.
+1. Retrieves two `JeopardyQuestion` objects related to `World history`,
+1. Prepares a prompt for each object, based on the prompt `"Convert this quiz question: {question} and answer: {answer} into a trivia tweet.` where `{question}` and `{answer}` are object properties, and
+1. Retrieves a generated text for each object (2 total), and
+1. Returns the generated text as a part of each object.
 
 Note that the `question` and `answer` properties are not retrieved in the query, but are used in the prompt.
 
@@ -160,12 +143,17 @@ It should produce a response like the one below:
 
 ## Grouped task
 
-A `grouped task` works by generating a response for the entire query results set. When using generative search with grouped task, it is optional to specify which properties to use in the task.
+A `grouped task` works by generating a response for the entire query results set.
+
+When using generative search with a `grouped task` the required parameter is the user prompt. By default, the entire set of properties are included in the combined prompt unless [specified otherwise](#grouped-task-property-selection).
+
+### Example
 
 In the below example, the query:
 1. Retrieves three `JeopardyQuestion` objects related to `cute animals`,
-1. Prepares a prompt for the whole dataset, and
-1. Retrieves generated text the one prompt, which is included in the response to the user.
+1. Combines the user prompt with the set of retrieved objects to build the grouped task,
+1. Retrieves one generated text using the grouped task, and
+1. Returns the generated text as a part of the first object returned, as well as the requested `points` property.
 
 Note that the prompt includes information about the type of the animal (from the `answer` property), even though the `answer` property is not explicitly retrieved.
 
@@ -216,7 +204,7 @@ It should produce a response like the one below:
 
 </details>
 
-### Property selection
+### Grouped task property selection
 
 :::info Requires Weaviate `v1.18.3` or higher
 :::
@@ -225,9 +213,7 @@ You can also specify which properties to use in the prompt when using generative
 
 In the below example, the prompt will only include the `question` and `answer` properties. Note that `answer` property is not explicitly retrieved in the query, but used in the prompt.
 
-:::note Feature not yet supported by clients
-This feature is currently not supported by the clients.
-:::
+<!-- TODO - add client code when made available -->
 
 <Tabs groupId="languages">
 <TabItem value="graphql" label="GraphQL">
@@ -255,3 +241,10 @@ It should produce a response like the one below:
 />
 
 </details>
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
+

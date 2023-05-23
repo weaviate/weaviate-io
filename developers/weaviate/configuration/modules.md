@@ -21,9 +21,11 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-Weaviate is modularized, which provides it and its users a great deal of flexibility. This also requires users to specify the desired optional Weaviate modules to be used the relevant configuration file, by setting appropriate [environment variables](../config-refs/env-vars.md).
+Weaviate is modularized for flexibility. You can enable and configure Weaviate's modules by setting appropriate [environment variables](../config-refs/env-vars.md) as shown below.
 
-Some of the key environment variables in relation to module use are explained below.
+:::tip WCS instances come with modules pre-configured
+Weaviate Cloud Services instances come with modules pre-configured. See [this page](../../wcs/index.mdx#configuration) for details.
+:::
 
 ### Enable modules
 
@@ -42,31 +44,71 @@ If multiple modules are to be used, each of them should be separate by a comma a
 services:
   weaviate:
     environment:
-      ENABLE_MODULES: 'text2vec-contextionary,ner-transformers'
+      ENABLE_MODULES: 'text2vec-huggingface,generative-cohere,qna-openai'
 ```
-
-### Default vectorizer module
-
-You can specify a default vectorization module in Weaviate's configuration with the environment variable `DEFAULT_VECTORIZER_MODULE` as below.
-
-``` yaml
-services:
-  weaviate:
-    environment:
-      DEFAULT_VECTORIZER_MODULE: text2vec-contextionary
-```
-
-If a default vectorizer module is not set, you will need to specify for each class the vectorization module to be used (or use your own vectors).
-
-:::caution Multiple vectorization modules
-At the moment, text vectorization modules can be combined in a single setup, but this will disable `Explore{}`. You can't use multiple models of the same module yet, this will be part of a future release (i.e. you can’t run `all-mpnet-base` and `t5` (both transformers models) in the same setup yet.
-:::
 
 ### Module-specific variables
 
 Many of the available modules must be configured by setting additional environment variables. For example, the `backup-s3` module requires the backup S3 bucket to be set via `BACKUP_S3_BUCKET` , and the `text2vec-contextionary` module requires the inference API location via `TRANSFORMERS_INFERENCE_API`.
 
 These variables and associated instructions are available in the [Modules](../modules/index.md) section, or in the relevant page within the current [Configuration](./index.md) section of the documentation.
+
+## Vectorizer modules
+
+Weaviate's [vectorization modules](../modules/retriever-vectorizer-modules/index.md) can be used to vectorize data at import, or perform [`near<Media>`](../search/similarity.md#an-input-medium) searches such as `nearText`.
+
+### Enable vectorizer modules
+
+Vectorizer modules can be enabled by adding the desired module to the `ENABLE_MODULES` environment variable. For example, the below will enable the `text2vec-cohere`, `text2vec-huggingface` and `text2vec-openai` vectorizer modules.
+
+```yaml
+services:
+  weaviate:
+    environment:
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai'
+```
+
+You can find a list of available vectorizer modules [in this section](../modules/retriever-vectorizer-modules/index).
+
+### Default vectorizer module
+
+You can specify a default vectorization module with the `DEFAULT_VECTORIZER_MODULE` variable as below.
+
+If a default vectorizer module is not set, you must set a vectorizer in the schema before you can use `near<Media>` or vectorization at import time.
+
+The below will set `text2vec-huggingface` as the default vectorizer. Thus, `text2vec-huggingface` module will be used unless another vectorizer is specified for that class.
+
+``` yaml
+services:
+  weaviate:
+    environment:
+      DEFAULT_VECTORIZER_MODULE: text2vec-huggingface
+```
+
+:::caution Multiple vectorization modules & `Explore`
+Combining text vectorization modules will disable `Explore{}`.
+:::
+
+## Generative modules
+
+You can configure a [generative module](../modules/reader-generator-modules/index.md) to enable [generative search](../search/generative.md) functions in Weaviate.
+
+You can see the list of available `generative-xxx` modules [in this section](../modules/reader-generator-modules/index.md)
+
+### Enable a generative module
+
+Generative modules can be enabled by adding the desired module to the `ENABLE_MODULES` environment variable. For example, the below will enable the `generative-cohere` module along with `text2vec-huggingface` vectorizer.
+
+```yaml
+services:
+  weaviate:
+    environment:
+      ENABLE_MODULES: 'text2vec-huggingface,generative-cohere'
+```
+
+:::tip `generative` API provider unrelated to `text2vec` API provider
+The `generative` inference API is separate to any `text2vec` configuration. Accordingly, your choice of the `text2vec` module does not restrict your choice of `generative` module.
+:::
 
 ## Custom modules
 See [here](../modules/other-modules/custom-modules.md) how you can create and use your own modules.
