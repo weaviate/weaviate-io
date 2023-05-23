@@ -78,6 +78,7 @@ result = await client
   .withOffset(1)
   // highlight-end
   .do();
+
 console.log(JSON.stringify(result, null, 2));
 // END GetWithLimitOffsetJS
 
@@ -106,6 +107,7 @@ result = await client
   // highlight-end
   .withLimit(1)
   .do();
+
 console.log(JSON.stringify(result, null, 2));
 // END GetPropertiesJS
 
@@ -139,6 +141,7 @@ result = await client
   // highlight-end
   .withLimit(1)
   .do();
+
 console.log(JSON.stringify(result, null, 2));
 // END GetObjectVectorJS
 
@@ -164,6 +167,7 @@ result = await client
   // highlight-end
   .withLimit(1)
   .do();
+
 console.log(JSON.stringify(result, null, 2));
 // END GetObjectIdJS
 
