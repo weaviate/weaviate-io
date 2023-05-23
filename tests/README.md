@@ -37,8 +37,8 @@ Thus, tests can be run against a permanent WCS instance, or one of these two eph
 
 See more in individual `test_xxx.py` scripts.
 
-#### ☕️ Run TypeScript tests separately
+#### (Optional) ☕️ Run TypeScript tests separately
 
 As we're migrating from JavaScript to TypeScript, examples are gradually being migrated into `_includes/code/*` directories. You can already see there tests for the [Search howtos](/developers/weaviate/search). The `_includes/code/` directory contains a local `package.json` file for the code samples, which sets the "type" to "module" to enable `import` statements.
 
-To run tests for the TypeScript examples, execute `npm test` in the `_includes/code/` directory. (You may have to replace sample API keys and host URLs like `YOUR-OPENAI-API-KEY` or `some-endpoint.weaviate.network` in files that don't use environment variables.) 
+To run tests for the TypeScript examples, execute `npm test` in the `_includes/code/` directory. (You may have to replace sample API keys and host URLs like `YOUR-OPENAI-API-KEY` or `some-endpoint.weaviate.network` in files that don't use environment variables.)
