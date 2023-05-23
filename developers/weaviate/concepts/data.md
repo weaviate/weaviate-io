@@ -132,7 +132,7 @@ Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Unive
 ### Cross-references
 
 :::note Cross-references do not affect vectors
-Creating cross-references do not affect object vectors in either direction.
+Creating cross-references does not affect object vectors in either direction.
 :::
 
 Where data objects have relationships with each other, they can be represented in Weaviate with cross-references.
@@ -152,7 +152,7 @@ So, given the following `Publication` object for the New York Times:
 }
 ```
 
-We can identify it with its `UUID`, and specify it to the `writesFor` property for the `Author` like this:
+We can identify it with its `UUID`, and specify it in the `writesFor` property for the `Author` like this:
 
 ```json
 {
@@ -161,12 +161,14 @@ We can identify it with its `UUID`, and specify it to the `writesFor` property f
     "properties": {
         "name": "Paul Krugman",
         ...
+// highlight-start
         "writesFor": [
             {
                 "beacon": "weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
                 "href": "/v1/objects/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6"
             }
-        ]
+        ],
+// highlight-end
     },
     "vector": [...]
 }
@@ -179,7 +181,7 @@ So, in addition to the `Author` class having a `writesFor` property that points 
 Cross-references in Weaviate can be best thought of as links to help you retrieve related information. Cross-references do not affect the vector of the `from`, or the `to` object.
 
 :::tip `Hrefs` vs `beacons`
-`Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. We w ill discuss the difference further as we go forward.
+`Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. We will discuss the difference further as we go forward.
 :::
 
 ## Weaviate Schema
