@@ -38,7 +38,7 @@ client.data
   .checker()
   .withClassName('MyClass')
   .withId('df48b9f6-ba48-470c-bf6a-57657cb07390')
-  .withConsistencyLevel(weaviate.replication.ConsistencyLevel.QUORUM)
+  .withConsistencyLevel('QUORUM')
   .do()
   .then((exists) => {
     console.log(exists)

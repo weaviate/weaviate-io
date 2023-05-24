@@ -58,7 +58,7 @@ client.data
             .withId(id)
             .withClassName(thingClassName)
             .withProperties(schema)
-            .withConsistencyLevel(weaviate.replication.ConsistencyLevel.ALL)  // default QUORUM
+            .withConsistencyLevel('ALL')  // default QUORUM
             .do();
         })
     .then(res => {
