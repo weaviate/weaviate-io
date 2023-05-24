@@ -70,7 +70,7 @@ services:
       ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai'
 ```
 
-You can find a list of available vectorizer modules [in this section](../modules/retriever-vectorizer-modules/index).
+You can find a list of available vectorizer modules [in this section](../modules/retriever-vectorizer-modules/index.md).
 
 ### Default vectorizer module
 
