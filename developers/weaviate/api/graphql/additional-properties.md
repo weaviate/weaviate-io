@@ -75,6 +75,36 @@ The `vector` fields contains the vector representation of the data object
 }
 ```
 
+### generate
+
+:::info Requires a `generative-xxx` module
+:::
+
+The `generate` field can be used to perform a [generative search](../../search/generative.md).
+
+```graphql
+{
+  Get {
+    Class {
+      property
+      _additional {
+        generate(
+          singleResult: {
+            prompt: """
+            LLM Prompt:
+
+            {property_a} - {property_b}
+            """
+          }
+        ) {
+          singleResult
+          error
+        }
+    }
+  }
+}
+```
+
 ### creationTimeUnix
 
 The `creationTimeUnix` field is the timestamp of when the data object was created.

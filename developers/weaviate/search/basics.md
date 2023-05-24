@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
-import JSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
+import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
 ## Overview
 
@@ -41,7 +41,7 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// BasicGetJS"
   endMarker="// END BasicGetJS"
   language="js"
@@ -96,7 +96,7 @@ Often, you will only want the top `n` results from the query. This can be achiev
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetWithLimitJS"
   endMarker="// END GetWithLimitJS"
   language="js"
@@ -153,7 +153,7 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetWithLimitOffsetJS"
   endMarker="// END GetWithLimitOffsetJS"
   language="js"
@@ -208,7 +208,7 @@ You can specify object properties as below.
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetPropertiesJS"
   endMarker="// END GetPropertiesJS"
   language="js"
@@ -259,7 +259,7 @@ To retrieve the object vector, request the `_additional` property and `vector` s
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetObjectVectorJS"
   endMarker="// END GetObjectVectorJS"
   language="js"
@@ -310,7 +310,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetObjectIdJS"
   endMarker="// END GetObjectIdJS"
   language="js"
@@ -367,7 +367,7 @@ The following example, retrieves for each `JeopardyQuestion` object the cross-re
 <TabItem value="js" label="TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetWithCrossRefs"
   endMarker="// END GetWithCrossRefs"
   language="js"
