@@ -21,7 +21,7 @@ This page shows you how to perform `generative` searches using Weaviate.
 
 To use the generative search feature, you must:
 - Specify a query to retrieve one or more objects, and
-- Provide a [`single prompt`](#single-prompt) or a [`grouped task`](#grouped-task) to the module.
+- Provide a [`single prompt`](#single-prompt) or a [`grouped task`](#grouped-task) to generate text from.
 
 ## Single prompt
 
@@ -29,7 +29,7 @@ A `single prompt` generative search returns a generated response for each object
 
 In the below example, the query:
 1. Retrieves two `JeopardyQuestion` objects related to `World history`,
-1. Prepares a prompt for each object, based on the prompt `"Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}.".` where `{question}` is an object property, and
+1. Prepares a prompt for each object, based on the prompt `"Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."`, where `{question}` is an object property, and
 1. Retrieves a generated text for each object (2 total), and
 1. Returns the generated text as a part of each object, along with the `question` property.
 
@@ -209,9 +209,9 @@ It should produce a response like the one below:
 :::info Requires Weaviate `v1.18.3` or higher
 :::
 
-You can also specify which properties to use in the prompt when using generative search with grouped tasks. This may be useful to control the type of information provided in the prompt, and to ensure that the prompt is not too long.
+You can specify which properties will be included in the `grouped task` prompt. Use this to limit the information provided in the prompt, and to reduce the prompt length.
 
-In the below example, the prompt will only include the `question` and `answer` properties. Note that `answer` property is not explicitly retrieved in the query, but used in the prompt.
+In the below example, the prompt will only include the `question` and `answer` properties. Note that the `answer` property is not explicitly retrieved in the query, but used in the prompt.
 
 <!-- TODO - add client code when made available -->
 
