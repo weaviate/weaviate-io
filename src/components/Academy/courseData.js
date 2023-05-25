@@ -78,15 +78,15 @@ export const courseData = {
   //     "TBC"
   //   ]
   // },
-  // "standalone": {
-  //   title: "Standalone units",
-  //   courseId: "0",
-  //   body: "Bite-sized, standalone units that can be reviewed by themselves.",
-  //   buttonType: "Notify",
-  //   badgeType: "course",
-  //   isCourse: false,
-  //   units: [
-  //     "clients", "docker", "reader_generator", "beyond_text", "vectorizer_text_overview"
-  //   ]
-  // }
+  "standalone": {
+    title: "Standalone units",
+    courseId: "0",
+    body: "Bite-sized, standalone units that can be reviewed by themselves.",
+    buttonType: "Notify",
+    badgeType: "course",
+    isCourse: false,
+    units: [
+      "beyond_text", "chunking"
+    ]
+  }
 };

@@ -473,23 +473,37 @@ export const unitData = {
   //   owner: "jp",
   //   reviewer: "jp"
   // },
-  // beyond_text: {
-  //   title: "Weaviate: Beyond text",
-  //   body: "How to use Weaviate with non-text media, such as image or audio.",
-  //   buttonType: "Notify",
-  //   badgeType: "mixed",
-  //   learningGoals: [
-  //     "What media types are currently supported, and how to use Weaviate with each media type and appropriate module."
-  //   ],
-  //   learningOutcomes: [
-  //     "Select an appropriate module for vectorizing non-text data given the data type and use case.",
-  //     "Construct a schema for non-text data types such as images.",
-  //     "Use Weaviate to catalog text and non-text data in the same vector space.",
-  //     "Implement a Weaviate instance with vectorized non-text data.",
-  //   ],
-  //   owner: "jp",
-  //   reviewer: "jp"
-  // },
+  beyond_text: {
+    title: "Weaviate: Beyond text",
+    body: "How to use Weaviate with non-text media, such as images. What models are available, and how can you use them?",
+    buttonType: "TBD",
+    badgeType: "mixed",
+    learningGoals: [
+      "What media types are currently supported, and how to use Weaviate with each media type and appropriate module."
+    ],
+    learningOutcomes: [
+      "Select an appropriate module for vectorizing non-text data given the data type and use case.",
+      "Construct a schema for non-text data types such as images.",
+      "Use Weaviate to catalog text and non-text data in the same vector space.",
+      "Implement a Weaviate instance with vectorized non-text data.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  chunking: {
+    title: "Document chunking and vectorization",
+    body: "Documents often far exceed transformer models' maximum input token lengths. Chunking can help, but how to do it - and what are some rules of thumb? Let's discuss.",
+    buttonType: "TBD",
+    badgeType: "mixed",
+    learningGoals: [
+      "TBC"
+    ],
+    learningOutcomes: [
+      "TBC",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
   // vectorizer_text_overview: {
   //   title: "Text vectorizers: An overview",
   //   body: "An overview of models - from bag-of-words to word2vec and all the way to transformers.",
