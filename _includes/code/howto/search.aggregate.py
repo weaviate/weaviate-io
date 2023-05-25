@@ -50,8 +50,6 @@ assert response["data"]["Aggregate"]["JeopardyQuestion"][0].keys() == {"meta"}
 assert gqlresponse == response
 # END Test results
 
-
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
 expected_response = (
 # MetaCount Expected Results
 {
@@ -267,7 +265,6 @@ assert "meta" in response["data"]["Aggregate"]["JeopardyQuestion"][2]
 assert gqlresponse == response
 # END Test results
 
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
 expected_response = (
 # groupBy Expected Results
 {
@@ -427,7 +424,6 @@ assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"]["sum"] == 
 assert gqlresponse == response
 # END Test results
 
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
 expected_response = (
 # nearTextWithDistance Expected Results
 {

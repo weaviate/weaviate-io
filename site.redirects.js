@@ -107,7 +107,7 @@ const siteRedirects = {
             from: '/developers/weaviate/quickstart/console',
         },
 
-        // Quickstart redirects
+        // Old Quickstart redirects
         {
             to: '/developers/weaviate/tutorials/schema',
             from: '/developers/weaviate/current/quickstart/schema',
@@ -155,6 +155,12 @@ const siteRedirects = {
                 '/developers/weaviate/current/tutorials/other-examples',
                 '/developers/weaviate/current/tutorials/quick-start-with-the-text2vec-contextionary-module',
             ],
+        },
+
+        // Howto redirects
+        {
+            to: '/developers/weaviate/manage-data/read-all-objects',
+            from: '/developers/weaviate/manage-data/exhaustive-retrieval',
         },
 
         // Blog redirects

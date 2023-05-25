@@ -10,9 +10,9 @@ import weaviate from 'weaviate-ts-client';
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // # If auth is on, replace w/ your Weaviate instance API key
+  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth is on. Replace w/ your Weaviate instance API key.
   headers: {
-    'X-OpenAI-API-Key': 'YOUR-OPENAI-API-KEY',  // for the nearText example
+    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',  // for the nearText example
   },
 });
 
@@ -29,7 +29,8 @@ result = await client
   .withClassName('JeopardyQuestion')
   .withFields('meta { count }')
   .do();
-console.log(result);
+
+console.log(JSON.stringify(result, null, 2));
 // END MetaCount TS
 
 // Test
@@ -51,7 +52,8 @@ result = await client
   .withFields('answer { count type topOccurrences { occurs value } }')
   // highlight-end
   .do();
-console.log(result);
+
+console.log(JSON.stringify(result, null, 2));
 // END TextProp TS
 
 // Test
@@ -75,7 +77,8 @@ result = await client
   .withFields('points { count sum }')
   // highlight-end
   .do();
-console.log(result);
+
+console.log(JSON.stringify(result, null, 2));
 // END IntProp TS
 
 // Test
@@ -99,7 +102,8 @@ result = await client
   .withFields('groupedBy { value } meta { count }')
   // highlight-end
   .do();
-console.log(result);
+
+console.log(JSON.stringify(result, null, 2));
 // END groupBy TS
 
 // Test
@@ -130,7 +134,8 @@ result = await client
   // highlight-end
   .withFields('points { sum }')
   .do();
-console.log(result);
+
+console.log(JSON.stringify(result, null, 2));
 // END nearTextWithLimit TS
 
 // Test
@@ -157,7 +162,8 @@ result = await client
   // highlight-end
   .withFields('points { sum }')
   .do();
-console.log(result);
+
+console.log(JSON.stringify(result, null, 2));
 // END nearTextWithDistance TS
 
 // Test
@@ -185,7 +191,8 @@ result = await client
   // highlight-end
   .withFields('meta { count }')
   .do();
-console.log(result);
+
+console.log(JSON.stringify(result, null, 2));
 // END whereFilter TS
 
 // Test

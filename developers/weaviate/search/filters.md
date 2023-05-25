@@ -1,6 +1,6 @@
 ---
 title: Filters
-sidebar_position: 80
+sidebar_position: 90
 image: og/docs/howto.jpg
 # tags: ['how to', 'apply conditional filters']
 ---
@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
-import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.js';
+import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 
 ## Overview
 

@@ -401,7 +401,12 @@ assert gqlresponse == response
 # GetWithCrossRefsPython
 response = (
     client.query
-    .get("JeopardyQuestion", ["question", "hasCategory { ... on JeopardyCategory { title } }"])
+    # highlight-start
+    .get("JeopardyQuestion", [
+      "question",
+      "hasCategory { ... on JeopardyCategory { title } }"
+    ])
+    # highlight-end
     .with_limit(2)
     .do()
 )
@@ -447,10 +452,16 @@ gql_query = """
     JeopardyQuestion (
       limit: 2
     )
+    # highlight-start
     {
       question
-      hasCategory { ... on JeopardyCategory { title } }
+      hasCategory {
+        ... on JeopardyCategory {
+          title
+        }
+      }
     }
+    # highlight-end
   }
 }
 # END GetWithCrossRefsGraphQL

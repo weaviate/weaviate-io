@@ -123,7 +123,7 @@ This pattern would capture and print any object-level errors found during the im
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;ID
 
-Each object in Weaviate has a unique identifier. This ID can be user-provided, but if not, Weaviate will generate a random [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+Each object in Weaviate has a unique identifier. This ID must be a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), and can be user-provided, but if not, Weaviate will generate a random UUID.
 
 Weaviate does not check if a duplicate object is being created. As a result, using a deterministic uuid may prevent accidental creation of duplicate objects.
 

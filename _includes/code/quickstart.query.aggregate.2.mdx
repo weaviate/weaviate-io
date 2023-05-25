@@ -5,7 +5,21 @@ import TabItem from '@theme/TabItem';
 <TabItem value="graphql" label="GraphQL">
 
 ```graphql
-TBC
+{
+  Aggregate {
+    Question(
+      where: {
+        path: "category"
+        operator: Equal
+        valueString: "ANIMALS"
+      }
+    ) {
+      meta {
+        count
+      }
+    }
+  }
+}
 ```
 
 </TabItem>
@@ -18,7 +32,7 @@ import json
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
     additional_headers={
-        "X-OpenAI-Api-Key": api_tkn  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
     }
 )
 
@@ -31,7 +45,7 @@ where_filter = {
 result = (
     client.query
     .aggregate("Question")
-    .with_fields("meta {count}")
+    .with_fields("meta { count }")
     .with_where(where_filter)
     .do()
 )
@@ -52,9 +66,9 @@ const client = weaviate.client({
 });
 
 const where_filter = {
-  'path': ['category'],
-  'operator': 'Equal',
-  'valueText': 'ANIMALS',
+  path: ['category'],
+  operator: 'Equal',
+  valueText: 'ANIMALS',
 }
 
 client.graphql
@@ -75,7 +89,7 @@ client.graphql
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+import weaviate, { WeaviateClient, WhereFilter } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
@@ -83,24 +97,20 @@ const client: WeaviateClient = weaviate.client({
   headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
 });
 
-const where_filter = {
-  'path': ['category'],
-  'operator': 'Equal',
-  'valueText': 'ANIMALS',
+const where_filter: WhereFilter = {
+  path: ['category'],
+  operator: 'Equal',
+  valueText: 'ANIMALS',
 }
 
-client.graphql
+const response = await client.graphql
   .aggregate()
   .withClassName('Question')
   .withFields('meta { count }')
   .withWhere(where_filter)
-  .do()
-  .then((res: any) => {
-    console.log(JSON.stringify(res, null, 2))
-  })
-  .catch((err: Error) => {
-    console.error(err)
-  });
+  .do();
+
+console.log(response.data.Aggregate['Question']);
 ```
 
 </TabItem>

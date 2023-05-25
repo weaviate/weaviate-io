@@ -16,25 +16,27 @@ export default function BlogPostItems({
           <BlogPostItemComponent>
             <div className={styles.blogCard}>
 
-              <a className={styles.blogCardTitle} href={BlogPostContent.metadata.permalink}>
-                <h2>{BlogPostContent.metadata.title}</h2>
-              </a>
-
               <a className={styles.blogCardImage} href={BlogPostContent.metadata.permalink}>
                 <img
                   src={BlogPostContent.assets.image}
                   alt="alt"
                 />
-              </a>
+             </a>
+
+            <a className={styles.blogCardTitle} href={BlogPostContent.metadata.permalink}>
+                <h2>{BlogPostContent.metadata.title}</h2>
+            </a>
+
               <p className={styles.blogCardDescription}>
                 {BlogPostContent.metadata.description}
               </p>
 
               {BlogPostContent.metadata.tags.length > 0 &&
               <div className={styles.blogTags}>
-                <span className={styles.blogTagsLabel}>Tags:</span>
                 {BlogPostContent.metadata.tags.map(tag=>(
-                  <a className={styles.blogTag} href={tag.permalink}>{tag.label}</a>
+                    <div className={styles.tag}>
+                        <a href={`${tag.permalink}`}>{tag.label} <div className={`${styles.dot} ${styles[tag.label]}`}></div></a>
+                    </div>
                 ))}
               </div>
               }

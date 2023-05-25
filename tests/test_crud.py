@@ -49,7 +49,7 @@ def test_ts(empty_weaviates, script_loc):
         lang="ts",
         custom_replace_pairs=utils.edu_readonly_replacements
     )
-    command = ["npx", "ts-node", "-O", '{ "module": "commonjs" }', temp_proc_script_loc]
+    command = ["node", " --loader=ts-node/esm", temp_proc_script_loc]
 
     try:
         # If the script throws an error, this will raise a CalledProcessError

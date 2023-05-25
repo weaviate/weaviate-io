@@ -128,3 +128,18 @@ The assign tag is used to create a new variable. For example:
 {% assign sortedResources = site.data.podcasts | sort: 'date' %}
 {% endraw %}
 ```   -->
+
+## Tests
+
+We've adopted a code sample structure that lets us both test and expose the samples without duplicating code. This is done using the `FilteredTextBlock` component, which loads arbitrary files and extract lines between a start marker and an end marker. You'll see statements like `import JSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';` in `.md` files, followed by
+
+```mdxjs
+<FilteredTextBlock
+  text={JSCode}
+  startMarker="// BasicGetJS"
+  endMarker="// END BasicGetJS"
+  language="js"
+/>
+```
+
+To learn how to run tests, see the `README.md` file in `/tests/`.
