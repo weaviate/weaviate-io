@@ -1,0 +1,134 @@
+---
+title: Import objects
+sidebar_position: 5
+image: og/docs/howto.jpg
+# tags: ['how-to', 'import']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import';
+
+## Overview
+
+This page explains how to add data objects to Weaviate.
+
+In a Weaviate collection, each object has a unique [ID](../api/graphql/additional-properties.md#id), in [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format. If not supplied at object creation time, Weaviate will generate a UUID. Classes generally act like namespaces, so it is feasible to have duplicate IDs across classes.
+
+For importing data, we strongly suggest that you use [batch imports](../tutorials/import.md#to-batch-or-not-to-batch) even for small datasets, unless you have a specific reason not to. A batch import drastically improves import speed by processing multiple objects per request, and clients can parallelize requests.
+
+
+## Requirements
+
+To import objects in batch using a Weaviate client,
+1. Configure the batcher settings, e.g. the batch size
+2. Prepare or load your source data so that you can access one object at a time
+3. For each source data object,
+   * Build a data object for Weaviate with the desired properties
+   * Add it to your desired class using the batcher
+   * Optionally, you can specify manually:
+     * An object ID, and/or
+     * A vector for the object
+4. Flush the batch
+
+
+## Best-practice batch import
+
+A good practice for importing large datasets is to stream the input file rather than risking running out of memory by loading it all at once. For Python, this can be achieved with libraries like [ijson](https://pypi.org/project/ijson/) for JSON files and [pandas for CSV files](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html). For Node, a streams-based solution is presented below.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python - JSON">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START JSON streaming"
+    endMarker="# END JSON streaming"
+    language="py"
+  />
+
+  </TabItem>
+  <TabItem value="pycsv" label="Python - CSV">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CSV streaming"
+    endMarker="# END CSV streaming"
+    language="py"
+  />
+
+  </TabItem>
+  <TabItem value="js" label="TypeScript - JSON">
+
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// START JSON streaming"
+    endMarker="// END JSON streaming"
+    language="ts"
+  />
+
+  </TabItem>
+  <TabItem value="jscsv" label="TypeScript - CSV">
+
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// START CSV streaming"
+    endMarker="// END CSV streaming"
+    language="ts"
+  />
+
+  </TabItem>
+</Tabs>
+
+
+## Batch parameters
+
+The Python client supports three types of batching:
+* auto - you simply add objects and cross-references to the batch, specify a batch size, and when the number of objects + cross-references has reached that `batch_size`, the batch is automatically flushed to the database and becomes ready to take a new set of objects. Weaviate automatically creates the objects and the cross-references.
+* dynamic - same as auto, but the `batch_size` will be dynamically adjusted from the value provided initially
+* manual - full manual control over the batch. You can control when to create the objects and cross-references.
+
+The most frequently used batch parameters are `batch_size` (default `None` for manual batching), `dynamic`, and `num_workers` for parallelization.
+
+For a complete list of batch parameters and details about the types of batching, see the [Python client batching](../client-libraries/python.md#batching) section.
+
+The TypeScript client does not support batch parameters at the moment, and manual flushing is required.
+
+
+### How to set batch parameters
+
+The Python client can take batch parameters in two ways:
+
+* via `client.batch()`, useful with a context manager, which has the advantage of automatically flushing the batch when exiting the context manager. Below we'll configure auto-batching:
+
+    ```python
+    with client.batch(
+        batch_size=200,  # Specify the batch size for auto batching
+        num_workers=2,   # Maximum number of parallel threads used during import
+    ) as batch:
+    ```
+
+* via `client.batch.configure`, which calls the same function underneath. Below we'll configure dynamic batching:
+
+    ```python
+    client.batch.configure(
+        batch_size=100,  # Specify the batch size...
+        dynamic=True,    # ...for dynamic batching
+        num_workers=4,   # Parallelize the process
+    )
+    ```
+
+
+## Managing potential duplication
+
+Note that an object's ID is the only unique key in the collection. Weaviate does not check if you are uploading items with the same properties as ones that exist already. Therefore, unless the same object ID is used when importing these objects, duplicate objects will be inserted. If the import script does not provide an ID for the object, Weaviate will assign a new, random, UUID.
+
+TODO: refer to the "managing IDs" section.
+
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
