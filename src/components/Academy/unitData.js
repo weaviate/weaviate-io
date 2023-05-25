@@ -26,7 +26,7 @@ export const unitData = {
     body: "Learn how to retrieve data from Weaviate using vector searches and scalar filters.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/units/search_1",
+    buttonURL: "/developers/academy/units/queries_1",
     learningGoals: [
       "How to retrieve objects and properties.",
       "The structure of returned responses from Weaviate.",
@@ -51,7 +51,7 @@ export const unitData = {
     body: "Learn what role the schema plays in Weaviate, and how to define it",
     buttonType: "Click here",
     badgeType: "mixed",
-    buttonURL: "/developers/academy/units/schema_1",
+    buttonURL: "/developers/academy/units/schema_and_imports",
     learningGoals: [
       "How Weaviate organizes and stores data.",
       "An overview of indexes used in Weaviate.",
@@ -70,9 +70,63 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
+  queries_2: {
+    title: "Queries 2",
+    body: "Queries 2.",
+    buttonType: "Click here",
+    badgeType: "practical",
+    buttonURL: "/developers/academy/units/queries_2",
+    learningGoals: [
+      "BM25 searches - how they work and how to use them.",
+      "Hybrid searches - how they work and how to use them.",
+      "Generative searches - how they work and how to use them.",
+      "Question & Answer (QnA) searches - how they work and how to use them.",
+    ],
+    learningOutcomes: [
+      "Perform BM25 searches.",
+      "Perform hybrid searches.",
+      "Perform generative searches.",
+      "Perform QnA searches.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  crud_operations: {
+    title: "CRUD operations",
+    body: "How to perform object manipulation operations in Weaviate.",
+    buttonType: "Notify",
+    buttonURL: "/developers/academy/units/crud_operations",
+    badgeType: "practical",
+    learningGoals: [
+      "Learn how to handle data objects in Weaviate, with Create, Read, Update and Delete (CRUD) operations for data objects via its RESTful endpoint."
+    ],
+    learningOutcomes: [
+      "Use the RESTful objects endpoint (GET) to collect data objects from Weaviate.",
+      "Use the RESTful objects endpoint (GET) to retrieve data objects with query parameters like limit, sort, order, offset and including fields like the object's vector",
+      "Use the RESTful objects endpoint (PUT/PATCH) to update data objects in Weaviate.",
+      "Use the RESTful objects endpoint (HEAD) to check and validate if data objects exists without retrieving it."
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
 
-
-
+  chunking: {
+    title: "Chunking overview",
+    body: ".",
+    buttonType: "Click here",
+    badgeType: "practical",
+    buttonURL: "/developers/academy/units/chunking",
+    learningGoals: [
+      "What is chunking",
+      "About how to chunk.",
+      "How it affects results"
+    ],
+    learningOutcomes: [
+      "...",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
 
 
 
@@ -118,38 +172,6 @@ export const unitData = {
       "Describe available batching parameters and their purpose.",
       "Distinguish between object-level and batch-level errors occurring during import.",
       "Identify object-level import errors and implement error handling through the Weaviate client.",
-    ],
-    owner: "jp",
-    reviewer: "jp"
-  },
-  queries_2: {
-    title: "Queries 2",
-    body: "Queries 2.",
-    buttonType: "Notify",
-    badgeType: "practical",
-    learningGoals: [
-      "TBD"
-    ],
-    learningOutcomes: [
-      "TBD",
-    ],
-    owner: "jp",
-    reviewer: "jp"
-  },
-  crud_operations: {
-    title: "CRUD operations",
-    body: "How to perform object manipulation operations in Weaviate.",
-    buttonType: "Notify",
-    buttonURL: "/developers/academy/units/crud_operations",
-    badgeType: "practical",
-    learningGoals: [
-      "Learn how to handle data objects in Weaviate, with Create, Read, Update and Delete (CRUD) operations for data objects via its RESTful endpoint."
-    ],
-    learningOutcomes: [
-      "Use the RESTful objects endpoint (GET) to collect data objects from Weaviate.",
-      "Use the RESTful objects endpoint (GET) to retrieve data objects with query parameters like limit, sort, order, offset and including fields like the object's vector",
-      "Use the RESTful objects endpoint (PUT/PATCH) to update data objects in Weaviate.",
-      "Use the RESTful objects endpoint (HEAD) to check and validate if data objects exists without retrieving it."
     ],
     owner: "jp",
     reviewer: "jp"
