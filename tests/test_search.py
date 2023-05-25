@@ -6,12 +6,12 @@ import subprocess
 @pytest.mark.parametrize(
     "script_loc",
     [
-        # "./_includes/code/howto/search.basics.py",
-        # "./_includes/code/howto/search.similarity.py",
-        # "./_includes/code/howto/search.bm25.py",
-        # "./_includes/code/howto/search.hybrid.py",
-        # "./_includes/code/howto/search.filters.py",
-        # "./_includes/code/howto/search.aggregate.py",
+        "./_includes/code/howto/search.basics.py",
+        "./_includes/code/howto/search.similarity.py",
+        "./_includes/code/howto/search.bm25.py",
+        "./_includes/code/howto/search.hybrid.py",
+        "./_includes/code/howto/search.filters.py",
+        "./_includes/code/howto/search.aggregate.py",
         "./_includes/code/howto/search.generative.py",
     ],
 )
@@ -27,12 +27,12 @@ def test_py(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-        # "./_includes/code/howto/search.basics.ts",
-        # "./_includes/code/howto/search.similarity.ts",
-        # "./_includes/code/howto/search.bm25.ts",
-        # "./_includes/code/howto/search.hybrid.ts",
-        # "./_includes/code/howto/search.filters.ts",
-        # "./_includes/code/howto/search.aggregate.ts"
+        "./_includes/code/howto/search.basics.ts",
+        "./_includes/code/howto/search.similarity.ts",
+        "./_includes/code/howto/search.bm25.ts",
+        "./_includes/code/howto/search.hybrid.ts",
+        "./_includes/code/howto/search.filters.ts",
+        "./_includes/code/howto/search.aggregate.ts"
     ],
 )
 def test_ts(empty_weaviates, script_loc):

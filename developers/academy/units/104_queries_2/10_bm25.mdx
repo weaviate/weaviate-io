@@ -23,14 +23,14 @@ When a user submits a BM25 query, Weaviate will look for objects that contain th
 
 In this way, a BM25 query is different to keyword-based filtering, which simply includes or excludes objects based on the provided set of conditions.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`bm25` Query syntax
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`bm25` query syntax
 
-An BM25 query is shown below. Each BM25 query:
+A BM25 query is shown below. Each BM25 query:
 
 - **Must** include a query string, which can be any length,
-- **Can optionally** include a list of properties to search,
+- **Can optionally** include a list of `properties` to search,
 - **Can optionally** include weights for each searched property, and
-- **Can optionally** request a score for each result.
+- **Can optionally** request a `score` for each result.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -68,6 +68,10 @@ Try varying the boost factor, and the query string. What happens to the results?
 In an earlier unit, we briefly discussed [the inverted index](../103_schema_and_imports/10_data_structure.mdx#inverted-index), and that it stores a "tokenized" index of data.
 
 When a BM25 query is submitted, Weaviate will search each property according to its tokenization property. For example, if a property is tokenized with the `word` tokenization option, it will tokenize the query string into its constituent, lowercase, words, and search for each word in the index. On the other hand, if a property uses a `field` tokenization, Weaviate will look for the entire query string in the index.
+
+:::tip This applies to the inverted index only
+This is different to any tokenization in the context of, for example, language models or vectorization models. Tokenization in the context of the current section only applies to the inverted index.
+:::
 
 More concretely, let's take a look at some examples.
 
@@ -147,15 +151,9 @@ If you would like to delve into the details of the exact algorithm, you can revi
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
-<Quiz questions={varName} />
+<Quiz questions={Bm25Question} />
 
-Any quiz questions
-
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
-
-:::note <i class="fa-solid fa-square-terminal"></i> Exercise
-Try out ...
-:::
+<Quiz questions={wordTokenizationQuestion} />
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
@@ -170,23 +168,43 @@ import { GiscusDocComment } from '/src/components/GiscusComment';
 <GiscusDocComment />
 
 import Quiz from '/src/components/Academy/quiz.js'
-const varName = [{
-  questionText: 'questionText',
+const Bm25Question = [{
+  questionText: 'What does a BM25 search do?',
   answerOptions: [
     {
-      answerText: 'answerOne',
-      isCorrect: false,
-      feedback: 'feedbackOne',
+      answerText: 'Matches search terms between the query and data objects in the index and ranks results based on the frequency of those terms.',
+      isCorrect: true,
+      feedback: 'It is a keyword search with ranking based on term frequency.',
     },
     {
-      answerText: 'answerTwo',
+      answerText: 'Excludes objects based on the provided set of conditions.',
       isCorrect: false,
-      feedback: 'feedbackTwo',
+      feedback: 'This describes a filter.',
     },
     {
-      answerText: 'answerThree',
+      answerText: 'Searches for exact matches of the entire query string in the index.',
       isCorrect: false,
-      feedback: 'feedbackThree',
+      feedback: 'This is describing a form of tokenization (field tokenization), not BM25 search.',
+    },
+  ]
+}];
+const wordTokenizationQuestion = [{
+  questionText: 'What does the `word` tokenization option do?',
+  answerOptions: [
+    {
+      answerText: 'Lowercases the query string and splits it by whitespace.',
+      isCorrect: false,
+      feedback: 'This is only partially true.',
+    },
+    {
+      answerText: 'Indexes each string as-is.',
+      isCorrect: false,
+      feedback: 'This is the `field` tokenization.',
+    },
+    {
+      answerText: 'Lowercases the query string, keeps alpha-numeric characters and splits it by whitespace.',
+      isCorrect: true,
+      feedback: 'Understanding different tokenization options and their impact can be very useful.',
     },
   ]
 }];
