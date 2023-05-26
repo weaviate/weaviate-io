@@ -57,14 +57,13 @@ def test_js(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-
+        # "./_includes/code/howto/manage-data.cross-refs.ts"
     ],
 )
 def test_ts(empty_weaviates, script_loc):
     temp_proc_script_loc = utils.load_and_prep_temp_file(
         script_loc,
         lang="ts",
-        custom_replace_pairs=utils.edu_readonly_replacements
     )
     command = ["node", " --loader=ts-node/esm", temp_proc_script_loc]
 

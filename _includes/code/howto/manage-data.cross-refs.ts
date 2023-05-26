@@ -6,11 +6,11 @@ import assert from 'assert';
 
 import weaviate from 'weaviate-ts-client';
 
-// ===== Instantiation shown on snippet
+// ===== Instantiation code
 const client = weaviate.client({
   scheme: 'http',
-  host: 'localhost:8080',  // Replace with your Weaviate URL
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth is on. Replace w/ your Weaviate instance API key.
+  host: 'localhost:8090',  // Replace with your Weaviate URL
+  // apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth is on. Replace w/ your Weaviate instance API key.
 });
 
 const sfId = '00ff6900-e64f-5d94-90db-c8cfa3fc851b';
@@ -195,14 +195,12 @@ assert((sf.properties['hasCategory'] as object[]).find(xref => xref['href'] === 
 assert((sf.properties['hasCategory'] as object[]).find(xref => xref['href'] === `/v1/objects/JeopardyCategory/${museumsId}`));
 // End test
 
-/*
 // =============================
 // ===== Delete cross-refs =====
 // =============================
 
 // Delete TS
 // From the "San Francisco" JeopardyQuestion object, delete the "MUSEUMS" category cross-reference
-// TODO: 💥 blows up, see the Python code
 await client.data
   .referenceDeleter()
   .withClassName('JeopardyQuestion').withId('00ff6900-e64f-5d94-90db-c8cfa3fc851b')
@@ -226,16 +224,13 @@ assert.deepEqual(sf.properties['hasCategory'], [{
   href: `/v1/objects/JeopardyCategory/${usCitiesId}`,
 }]);
 // End test
-*/
 
-/*
 // =============================
 // ===== Update cross-refs =====
 // =============================
 
 // Update TS
 // In the "San Francisco" JeopardyQuestion object, set the "hasCategory" cross-reference only to "MUSEUMS"
-// TODO: 💥 also blows up, see the Python code
 await client.data
   .referenceReplacer()
   .withClassName('JeopardyQuestion').withId('00ff6900-e64f-5d94-90db-c8cfa3fc851b')
@@ -259,4 +254,3 @@ assert.deepEqual(sf.properties['hasCategory'], [{
   href: `/v1/objects/JeopardyCategory/${museumsId}`,
 }]);
 // End test
-*/
