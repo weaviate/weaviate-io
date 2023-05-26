@@ -13,7 +13,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs';
 
 ## Overview
 
-You can use cross-references to establish directional relationships between classes, for example from a `Book` to its `Author`, or from an `Author` to their `Book`s. To define a cross-reference, you must:
+You can use cross-references to establish directional relationships between classes, for example from a `Book` to its `Author`, or from an `Author` to their `Book`s.
+
+To define a cross-reference, you must:
 1. At the class level, set up a [`cross-reference` property](../config-refs/datatypes.md#datatype-cross-reference) in one class (`from`) referring to another (`to`) class, then
 2. For individual objects, establish the cross-reference between a particular object of the `from` class, to an object of the `to` class, using their [id](../api/graphql/additional-properties.md#id)s.
 
@@ -23,7 +25,10 @@ Creating cross-references does not affect object vectors in either direction.
 
 ### Data set
 
-The example for this howto is a dataset consisting of 1000 questions & answers from the popular quiz show "Jeopardy!" (available in the [weaviate-demo-datasets](https://pypi.org/project/weaviate-demo-datasets/) Python package). Each object has an associated vector embedding computed with the OpenAI `text-embedding-ada-002` model. The two classes of interest are: `JeopardyQuestion` and `JeopardyCategory`. Let's pick some objects of interest:
+<!-- Commented this out for now as the package is unofficial -->
+<!-- (available in the [weaviate-demo-datasets](https://pypi.org/project/weaviate-demo-datasets/) Python package) -->
+
+The example for this howto is a dataset consisting of 1000 questions & answers from the popular quiz show "Jeopardy!". The two classes of interest are: `JeopardyQuestion` and `JeopardyCategory`. Let's pick some objects of interest:
 
 Questions:
 
@@ -59,7 +64,11 @@ Categories:
 
 ## Add a one-way cross-reference property
 
-To add a cross-reference property in the class definition, specify its `dataType` as the name of another class in the [schema](../tutorials/schema.md). For example to specify the cross-reference from `JeopardyQuestion` to `JeopardyCatgory`:
+This requires adding one reference property `from` a class referring `to` another, and adding one cross-reference per object pair.
+
+To add a cross-reference property in the class definition, specify its `dataType` as the name of another class in the [schema](../tutorials/schema.md).
+
+For example to specify the cross-reference from `JeopardyQuestion` to `JeopardyCatgory`:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -95,6 +104,8 @@ To add a cross-reference from an object to another, specify its source class and
 
 
 ## Add two-way cross-references
+
+This requires adding reference properties in both directions, and adding two cross-reference per object pair (`from` A -> `to` B and `from` B -> `to` A).
 
 To define a bidirectional reference between two classes, add a property to each class with the `dataType` set to the name of the other class:
 
@@ -152,7 +163,9 @@ To set up a two-way cross-reference between two objects, set each cross-referenc
 
 ## Add multiple (one-to-many) cross-references
 
-Adding one-to-many cross-reference relationship is simple: just add to the source object each of the cross-references to the target objects that you need. For example, to mark that the "San Francisco" Q&A belongs to multiple categories, e.g. "US. CITIES" and "MUSEUMS":
+To add a one-to-many cross-reference relationship, add to the source object each of the cross-references to the target objects that you need.
+
+For example, to mark that the "San Francisco" Q&A belongs to multiple categories, e.g. "US. CITIES" and "MUSEUMS":
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -179,6 +192,8 @@ Adding one-to-many cross-reference relationship is simple: just add to the sourc
 
 
 ## Delete a cross-reference
+
+Deleting a cross-reference requires specifying the parameters that define the cross-reference.
 
 To delete a cross-reference, specify the class, id and cross-reference property name of the source object, and the class and id of the target object:
 

@@ -46,7 +46,7 @@ class_definitions = [
         "description": "A Jeopardy! question",
         "properties": [
             {"name": "question", "dataType": ["text"]},
-            {"name": "answer", "dataType": ['text']},
+            {"name": "answer", "dataType": ["text"]},
             # highlight-start
             {
                 "name": "hasCategory",
