@@ -27,24 +27,6 @@ client.schema.delete_class("YourClassName")  # Replace with your class name - e.
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
-
-```js
-var className = 'YourClassName';  // Replace with your class name
-
-client.schema
-  .classDeleter()
-  .withClassName(className)
-  .do()
-  .then(res => {
-  console.log(res);
-  })
-  .catch(err => {
-  console.error(err)
-  });
-```
-
-</TabItem>
 <TabItem value="ts" label="TypeScript">
 
 ```ts
