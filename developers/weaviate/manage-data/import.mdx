@@ -1,0 +1,245 @@
+---
+title: (Batch) Import items
+sidebar_position: 5
+image: og/docs/howto.jpg
+# tags: ['how-to', 'import']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import';
+
+## Overview
+
+This page shows how to efficiently add data objects and cross-references to Weaviate. We will collectively refer to these as "items".
+
+We suggest you use [batch imports](../tutorials/import.md#to-batch-or-not-to-batch) unless you have a specific reason not to. A batch import drastically improves import speed by processing multiple items per request, and clients can parallelize requests.
+
+
+## Requirements
+
+To import items in batches using a Weaviate client,
+1. Initialize a batcher,
+1. For each source data row:
+   * Build an item (object or cross-reference) for Weaviate,
+   * Specify the class to add to, and
+   * Add it to the batcher.
+1. Ensure that the batches are flushed. (Some clients require manual flushing.)
+
+Depending on the client, there may be auto-flushing of batches available, or additional settings may be available.
+
+
+## Basic batch import example
+
+The following example will add objects to `YourClassName` class using a batch import.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# BasicBatchImportExample"
+    endMarker="# END BasicBatchImportExample"
+    language="py"
+  />
+
+  </TabItem>
+</Tabs>
+
+:::note Where is the class definition?
+In this example, if the class `YourClassName` does not already exist, it will be created by Weaviate with its auto-schema feature.
+:::
+
+
+## Optional object parameters
+
+The following apply to objects only (not to cross-references).
+
+### `id`
+
+You can optionally specify an ID in UUID format. Otherwise, Weaviate will generate a random UUID.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# BatchImportWithIDExample"
+    endMarker="# END BatchImportWithIDExample"
+    language="py"
+  />
+
+  </TabItem>
+</Tabs>
+
+### `vector`
+
+You can optionally specify a vector to represent each object. Otherwise, Weaviate will follow the relevant vectorizer setting.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# BatchImportWithVectorExample"
+    endMarker="# END BatchImportWithVectorExample"
+    language="py"
+  />
+
+  </TabItem>
+</Tabs>
+
+
+## Batch parameters - Python client
+
+### Performance parameters
+
+The following parameters will have the greatest impact on the batch import speed:
+- `batch_size` (int) - the number of items to batch before flushing
+- `num_workers` (int) - the number of parallel workers to use for the batch
+- `dynamic` (bool) - whether to dynamically adjust the `batch_size` based on the number of items in the batch
+
+We recommend starting with batch sizes of 100-300 typically, and the number of workers at 1-4. The `dynamic` parameter is useful if you are not sure what the optimal batch size is.
+
+Unless `batch_size` is set to `None`, the batch will be flushed when the number of items in the batch reaches `batch_size`.
+
+Using these parameters, you can set dynamic or automatic batching:
+
+<Tabs groupId="languages">
+<TabItem value="auto" label="Automatic">
+
+```python
+with client.batch(
+    batch_size=100,  # Specify the batch size
+    num_workers=2,   # Parallelize the process
+    # dynamic=False  # By default
+) as batch:
+# Add objects to batch
+```
+
+</TabItem>
+<TabItem value="dynamic" label="Dynamic">
+
+```python
+with client.batch(
+    batch_size=100,  # Specify the batch size
+    num_workers=2,   # Parallelize the process
+    dynamic=True,    # Weaviate will dynamically adjust the batch size
+) as batch:
+# Add objects to batch
+```
+
+</TabItem>
+</Tabs>
+
+### Error handling parameters
+
+The following parameters will most impact error handling:
+- `timeout_retries` (int) & `connection_error_retries` (int) - Batch-level numbers of retries
+- `weaviate_error_retries` (int) - Object-level number of retries for an error originating from Weaviate (for example inference / transformer timeouts)
+- `callback` - Call a function at the end of batching - for example to inspect the response
+    - The default is `weaviate.util.check_batch_result`
+
+For a complete list of batch parameters and details about the types of batching, see the [Python client batching](../client-libraries/python.md#batching) section.
+
+### How to set batch parameters
+
+We recommend setting batch parameters via the `client.batch()` context manager, which will also automatically flush the batch when exiting.
+
+The below example specifies a batch size of 200 and parallelizes the import process with 2 threads:
+
+```python
+with client.batch(
+    batch_size=200,  # Specify the batch size for auto batching
+    num_workers=2,   # Maximum number of parallel threads used during import
+) as batch:
+```
+
+<!-- I hid this as it seems like an unnecessary option without any benefit? Wdyt -->
+<!-- <details>
+  <summary>`client.batch.configure`</summary>
+
+You can also use `client.batch.configure`, which calls the same function underneath. The below example configures dynamic batching:
+
+```python
+client.batch.configure(
+    batch_size=100,  # Specify the batch size...
+    dynamic=True,    # ...for dynamic batching
+    num_workers=4,   # Parallelize the process
+)
+```
+
+</details> -->
+
+
+## Batch parameters - other clients
+
+At this point in time, the other clients do not support batch parameters at the moment, and manual flushing is required.
+
+
+## Managing potential duplication
+
+In a Weaviate collection, each object has a unique [ID](../api/graphql/additional-properties.md#id), in [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format. If not supplied at object creation time, Weaviate will generate a UUID.
+
+Weaviate does not check if you are uploading items with the same properties as ones that exist already. So, to avoid duplication, we recommend using a deterministic ID generation method, such as the `generate_uuid5` function in the Python client.
+
+:::tip Duplicate IDs possible across classes
+Classes generally act like namespaces, so it is possible to have duplicate IDs across classes.
+:::
+
+
+## Tip: Stream data from large file
+
+A good practice for importing large datasets is to stream the input file rather than risking running out of memory by loading it all at once. For Python, this can be achieved with libraries like [ijson](https://pypi.org/project/ijson/) for JSON files and [pandas for CSV files](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html). For Node, a streams-based solution is presented below.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python - JSON">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START JSON streaming"
+    endMarker="# END JSON streaming"
+    language="py"
+  />
+
+  </TabItem>
+  <TabItem value="pycsv" label="Python - CSV">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CSV streaming"
+    endMarker="# END CSV streaming"
+    language="py"
+  />
+
+  </TabItem>
+  <TabItem value="js" label="TypeScript - JSON">
+
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// START JSON streaming"
+    endMarker="// END JSON streaming"
+    language="ts"
+  />
+
+  </TabItem>
+  <TabItem value="jscsv" label="TypeScript - CSV">
+
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// START CSV streaming"
+    endMarker="// END CSV streaming"
+    language="ts"
+  />
+
+  </TabItem>
+</Tabs>
+
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
