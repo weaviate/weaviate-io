@@ -132,15 +132,14 @@ Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Unive
 ### Cross-references
 
 :::note Cross-references do not affect vectors
-Creating cross-references do not affect object vectors in either direction.
+Creating cross-references does not affect object vectors in either direction.
 :::
 
-In some cases we need to link data objects with each other.
+Where data objects have relationships with each other, they can be represented in Weaviate with cross-references.
 
-For example: *"Paul Krugman writes for the New York Times"*.<br/>
-To represent this relationship between the `Author` and the `Publication`, we need to cross-reference the objects.
+For example, let's say that we want to represent the fact that *"Paul Krugman writes for the New York Times"*. We can do this by establishing a cross-reference relationship that Paul Krugman writes for the New York Times. More specifically, a `Publication` object representing the New York Times can have a cross-reference to an `Author` object representing Paul Krugman.
 
-Let's say we have a *New York Times* object, like this:
+So, given the following `Publication` object for the New York Times:
 
 ```json
 {
@@ -153,11 +152,7 @@ Let's say we have a *New York Times* object, like this:
 }
 ```
 
-Then we can use the `UUID` from the above object, to attach it to the `Author` like this (see `"writesFor"`):
-
-<!-- TODO: check if the href format is correct. Shouldn't this include /Publication ?
- "href": "/v1/objects/Publication/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6"
- -->
+We can identify it with its `UUID`, and specify it in the `writesFor` property for the `Author` like this:
 
 ```json
 {
@@ -166,16 +161,24 @@ Then we can use the `UUID` from the above object, to attach it to the `Author` l
     "properties": {
         "name": "Paul Krugman",
         ...
+// highlight-start
         "writesFor": [
             {
                 "beacon": "weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
                 "href": "/v1/objects/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6"
             }
-        ]
+        ],
+// highlight-end
     },
     "vector": [...]
 }
 ```
+
+Each cross-reference relationship in Weaviate is directional.
+
+So, in addition to the `Author` class having a `writesFor` property that points to the `Publication` class, you could have a `hasAuthors` property in the `Publication` class that points to the `Author` class.
+
+Cross-references in Weaviate can be best thought of as links to help you retrieve related information. Cross-references do not affect the vector of the `from`, or the `to` object.
 
 :::tip `Hrefs` vs `beacons`
 `Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. We will discuss the difference further as we go forward.

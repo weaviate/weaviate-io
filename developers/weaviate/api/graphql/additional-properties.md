@@ -43,7 +43,7 @@ For example:
 
 ### id
 
-The `id` field contains the unique uuid of the data object.
+The `id` field contains the unique [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) of the data object.
 
 ```graphql
 {
