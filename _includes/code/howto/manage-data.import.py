@@ -9,21 +9,13 @@ MAX_ROWS_TO_IMPORT = 50  # limit vectorization calls
 # START JSON streaming  # START CSV streaming
 import weaviate
 # END JSON streaming  # END CSV streaming
-# START JSON streaming
-import ijson
-# END JSON streaming
-# START CSV streaming
-import pandas as pd
-# END CSV streaming
-
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
     'http://localhost:8080',  # Replace with your Weaviate URL
-    # Replace w/ your Weaviate instance API key. Delete if authentication is disabled.
     # auth_client_secret=weaviate.AuthApiKey('YOUR-WEAVIATE-API-KEY'),
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']  # Replace w/ your OPENAI API key
+        'X-OpenAI-Api-Key': os.environ['OPENAI_APIKEY']  # Replace w/ your OPENAI API key
     }
 )
 
@@ -44,9 +36,104 @@ if not client.schema.exists('JeopardyQuestion'):
     client.schema.create_class(class_definition)
 
 
+# ==============================
+# ===== Basic batch import =====
+# ==============================
+
+# BasicBatchImportExample
+class_name = "YourClassName"  # Replace with your class name
+data_objs = [
+    {"title": f"Object {i+1}"} for i in range(5)
+]
+# highlight-start
+with client.batch() as batch:
+    for data_obj in data_objs:
+        batch.add_data_object(
+            data_obj,
+            class_name
+        )
+# highlight-end
+# END BasicBatchImportExample
+
+response = client.query.aggregate(class_name).with_meta_count().do()
+assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+client.schema.delete_class(class_name)
+
+# =======================================
+# ===== Batch import with custom ID =====
+# =======================================
+
+# BatchImportWithIDExample
+# highlight-start
+from weaviate.util import generate_uuid5
+# highlight-end
+
+class_name = "YourClassName"  # Replace with your class name
+data_objs = [
+    {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
+]
+with client.batch() as batch:
+    for data_obj in data_objs:
+        batch.add_data_object(
+            data_obj,
+            class_name,
+            # highlight-start
+            uuid=generate_uuid5(data_obj)  # Optional: Specify an object ID
+            # highlight-end
+        )
+# END BatchImportWithIDExample
+
+response = client.query.aggregate(class_name).with_meta_count().do()
+assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+response = client.query.get(class_name, ["title"]).with_additional(["id"]).do()
+for obj in response["data"]["Get"][class_name]:
+    src_obj = {k: v for k, v in obj.items() if k != "_additional"}
+    gen_uuid = generate_uuid5(src_obj)
+    assert obj["_additional"]["id"] == gen_uuid
+client.schema.delete_class(class_name)
+
+# ===========================================
+# ===== Batch import with custom vector =====
+# ===========================================
+
+# BatchImportWithVectorExample
+class_name = "YourClassName"  # Replace with your class name
+data_objs = [
+    {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
+]
+vectors = [
+    [0.25 + i/100] * 10 for i in range(5)  # Replace with your actual vectors
+]
+with client.batch() as batch:
+    for i, data_obj in enumerate(data_objs):
+        batch.add_data_object(
+            data_obj,
+            class_name,
+            # highlight-start
+            vector=vectors[i]  # Optional: Specify an object vector
+            # highlight-end
+        )
+# END BatchImportWithVectorExample
+
+response = client.query.aggregate(class_name).with_meta_count().do()
+assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+response = client.query.get(class_name, ["title"]).with_additional(["vector"]).do()
+for obj in response["data"]["Get"][class_name]:
+    assert obj["_additional"]["vector"][0] >= 0.25
+    assert obj["_additional"]["vector"][0] < 0.3
+client.schema.delete_class(class_name)
+
 # ============================
 # ===== Streaming import =====
 # ============================
+'''
+Will test later on
+# START JSON streaming
+import ijson
+# END JSON streaming
+# START CSV streaming
+import pandas as pd
+# END CSV streaming
 
 # START JSON streaming  # START CSV streaming
 
@@ -122,3 +209,4 @@ response = client.query.aggregate('JeopardyQuestion').with_meta_count().do()
 actual_count = response['data']['Aggregate']['JeopardyQuestion'][0]['meta']['count']
 assert actual_count == MAX_ROWS_TO_IMPORT * 2, f'Expected {MAX_ROWS_TO_IMPORT * 2} but got {actual_count}'
 # END test
+'''

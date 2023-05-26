@@ -6,7 +6,8 @@ import subprocess
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/howto/manage-data.cross-refs.py"
+        "./_includes/code/howto/manage-data.cross-refs.py",
+        "./_includes/code/howto/manage-data.import.py"
     ],
 )
 def test_python_script(empty_weaviates, script_loc):
