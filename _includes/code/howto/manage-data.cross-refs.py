@@ -8,9 +8,15 @@ import weaviate
 import weaviate_datasets
 import json
 
+# OneWay Python  # TwoWay Python  # Multiple Python  # Delete Python  # Update Python
 sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
+# END OneWay Python  # END TwoWay Python # END Multiple Python  # END Delete Python  # END Update Python
+# OneWay Python  # TwoWay Python  # Multiple Python
 us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"
+# END OneWay Python  # END TwoWay Python # END Multiple Python  # END Delete Python
+# Multiple Python  # Delete Python  # Update Python
 museums_id = "fec50326-dfa1-53c9-90e8-63d0240bd933"
+# END Multiple Python  # END Delete Python  # END Update Python
 
 
 # https://stackoverflow.com/questions/76171703/in-weaviate-how-to-remove-a-property-in-existing-class/76177363#76177363
@@ -19,7 +25,7 @@ def del_prop(uuid: str, prop_name: str, class_name: str) -> None:
     global client
     object_data = client.data_object.get(uuid, class_name=class_name)
     if prop_name in object_data["properties"]:
-        object_data["properties"].pop(prop_name)
+        del object_data["properties"][prop_name]
     client.data_object.replace(object_data["properties"], class_name, uuid)
 
 
@@ -70,6 +76,7 @@ if not client.schema.contains({"classes": class_definitions}):
 # =================================
 
 # OneWay Python
+
 client.data_object.reference.add(
     from_class_name="JeopardyQuestion",
     from_uuid=sf_id,
@@ -96,6 +103,7 @@ del_prop(sf_id, "hasCategory", "JeopardyQuestion")
 del_prop(us_cities_id, "hasQuestion", "JeopardyCategory")
 
 # TwoWay Python
+
 # First, add the "hasQuestion" cross-reference property to the JeopardyCategory class
 client.schema.property.create("JeopardyCategory", {
     "name": "hasQuestion",
@@ -105,19 +113,19 @@ client.schema.property.create("JeopardyCategory", {
 # For the "San Francisco" JeopardyQuestion object, add a cross-reference to the "U.S. CITIES" JeopardyCategory object
 client.data_object.reference.add(
     from_class_name="JeopardyQuestion",
-    from_uuid="00ff6900-e64f-5d94-90db-c8cfa3fc851b",
+    from_uuid=sf_id,
     from_property_name="hasCategory",
     to_class_name="JeopardyCategory",
-    to_uuid="20ffc68d-986b-5e71-a680-228dba18d7ef",
+    to_uuid=us_cities_id,
 )
 
 # For the "U.S. CITIES" JeopardyCategory object, add a cross-reference to "San Francisco"
 client.data_object.reference.add(
     from_class_name="JeopardyCategory",
-    from_uuid="20ffc68d-986b-5e71-a680-228dba18d7ef",
+    from_uuid=us_cities_id,
     from_property_name="hasQuestion",
     to_class_name="JeopardyQuestion",
-    to_uuid="00ff6900-e64f-5d94-90db-c8cfa3fc851b",
+    to_uuid=sf_id,
 )
 # END TwoWay Python
 
@@ -142,22 +150,23 @@ assert f"/v1/objects/JeopardyQuestion/{sf_id}" in xrefs
 del_prop(sf_id, "hasCategory", "JeopardyQuestion")
 
 # Multiple Python
+
 # Add to "San Francisco" the "U.S. CITIES" category
 client.data_object.reference.add(
     from_class_name="JeopardyQuestion",
-    from_uuid="00ff6900-e64f-5d94-90db-c8cfa3fc851b",
+    from_uuid=sf_id,
     from_property_name="hasCategory",
     to_class_name="JeopardyCategory",
-    to_uuid="20ffc68d-986b-5e71-a680-228dba18d7ef",
+    to_uuid=us_cities_id,
 )
 
 # Add the "MUSEUMS" category as well
 client.data_object.reference.add(
     from_class_name="JeopardyQuestion",
-    from_uuid="00ff6900-e64f-5d94-90db-c8cfa3fc851b",
+    from_uuid=sf_id,
     from_property_name="hasCategory",
     to_class_name="JeopardyCategory",
-    to_uuid="fec50326-dfa1-53c9-90e8-63d0240bd933",
+    to_uuid=museums_id,
 )
 # END Multiple Python
 
@@ -175,20 +184,18 @@ assert f"/v1/objects/JeopardyCategory/{museums_id}" in xrefs
 # ============================
 
 # Delete Python
+
 # From the "San Francisco" JeopardyQuestion object, delete the "MUSEUMS" category cross-reference
 # https://weaviate-python-client.readthedocs.io/en/stable/weaviate.data.references.html#weaviate.data.references.Reference.delete
-
-# TODO: 💥 blows up with 'repo.putobject code:500 err:import into index jeopardyquestion: shard jeopardyquestion_wuyf2SngXb8a: Validate vector index for [0 255 105 0 230 79 93 148 144 219 200 207 163 252 133 27]: new node has a vector with length 0. Existing nodes have vectors with length 1536'
-#  before, the objects look OK:
-sf = client.data_object.get(uuid=sf_id, class_name="JeopardyQuestion"); print(json.dumps(sf, indent=2))  # has the reference to fec50326-dfa1-53c9-90e8-63d0240bd933
-cat = client.data_object.get(uuid="fec50326-dfa1-53c9-90e8-63d0240bd933", class_name="JeopardyCategory"); print(json.dumps(cat, indent=2))  # exists
+sf = client.data_object.get(uuid=sf_id, class_name="JeopardyQuestion")
+cat = client.data_object.get(uuid=museums_id, class_name="JeopardyCategory")
 
 client.data_object.reference.delete(
     from_class_name="JeopardyQuestion",
-    from_uuid="00ff6900-e64f-5d94-90db-c8cfa3fc851b",
+    from_uuid=sf_id,
     from_property_name="hasCategory",
     to_class_name="JeopardyCategory",
-    to_uuid="fec50326-dfa1-53c9-90e8-63d0240bd933",
+    to_uuid=museums_id,
 )
 # END Delete Python
 
@@ -207,16 +214,15 @@ assert sf["properties"]["hasCategory"] == [{
 # # ============================
 
 # Update Python
+
 # In the "San Francisco" JeopardyQuestion object, set the "hasCategory" cross-reference only to "MUSEUMS"
 # https://weaviate-python-client.readthedocs.io/en/stable/weaviate.data.references.html#weaviate.data.references.Reference.update
-
-# TODO: also 💥blows up with 'repo.putobject code:500 err:import into index jeopardyquestion: shard jeopardyquestion_X7SHjqOnQRlL: Validate vector index for [0 255 105 0 230 79 93 148 144 219 200 207 163 252 133 27]: new node has a vector with length 0. Existing nodes have vectors with length 1536'
 client.data_object.reference.update(
     from_class_name="JeopardyQuestion",
-    from_uuid="00ff6900-e64f-5d94-90db-c8cfa3fc851b",
+    from_uuid=sf_id,
     from_property_name="hasCategory",
     to_class_names=["JeopardyCategory"],
-    to_uuids=["fec50326-dfa1-53c9-90e8-63d0240bd933"],
+    to_uuids=[museums_id],
 )
 # END Update Python
 

@@ -252,3 +252,15 @@ To update the cross-references stored in a property of an object, specify the ob
 
   </TabItem>
 </Tabs>
+
+## Retrieve cross-references
+
+Cross-references in Weaviate are not themselves objects, but properties of objects. As such, you can retrieve cross-reference in one of two ways:
+1. [Retrieve the object](../api/rest/objects.md#get-a-data-object) that it belongs to. This will return the cross-reference as a property of the object.
+1. [Retrieve the cross-reference](../search/basics.md#retrieve-cross-referenced-properties) as a part of a query. Just as you can retrieve any other property of search results, you can retrieve cross-reference properties.
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
