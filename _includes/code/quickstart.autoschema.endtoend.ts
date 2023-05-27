@@ -12,7 +12,7 @@ const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your inference API key
+  headers: {'X-HuggingFace-Api-Key': 'YOUR-HUGGINGFACE-API-KEY'},  // Replace with your inference API key
 });
 
 // END EndToEndExample  // END InstantiationExample  // END NearTextExample
@@ -25,7 +25,7 @@ const client: WeaviateClient = weaviate.client({
 // Add the schema
 let classObj = {
     'class': 'Question',
-    'vectorizer': 'text2vec-openai'  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+    'vectorizer': 'text2vec-huggingface'  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
 }
 
 async function addSchema() {

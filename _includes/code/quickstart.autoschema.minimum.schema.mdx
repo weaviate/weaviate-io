@@ -30,7 +30,7 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 ```go
 classObj := &models.Class{
     Class:      "Question",
-    Vectorizer: "text2vec-openai",  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+    Vectorizer: "text2vec-huggingface",  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
 }
 
 // add the schema
@@ -64,7 +64,7 @@ public class App {
     // we will create the class "Question" and the properties
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Question")
-      .vectorizer("text2vec-openai")  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+      .vectorizer("text2vec-huggingface")  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
       .build();
 
     // add the schema
@@ -83,7 +83,7 @@ public class App {
 ```bash
 echo '{
   "class": "Question",
-  "vectorizer": "text2vec-openai"
+  "vectorizer": "text2vec-huggingface"
 }' | curl \
   -X POST \
   -H "Content-Type: application/json" \

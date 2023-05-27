@@ -8,12 +8,17 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import registerImg from '../../wcs/img/register.png';
 import WCSoptionsWithAuth from '../../wcs/img/wcs-options-with-auth.png';
 import WCScreateButton from '../../wcs/img/wcs-create-button.png';
 import WCScreate from '../../wcs/img/wcs-create.png';
 import WCScreationProgress from '../../wcs/img/wcs-creation-progress.png';
 import WCSApiKeyLocation from '../../wcs/img/wcs-apikey-location.png';
+
+## Overview
 
 Welcome to the **Quickstart tutorial**. Here, you will:
 - Create a vector database with Weaviate Cloud Services (WCS),
@@ -22,7 +27,37 @@ Welcome to the **Quickstart tutorial**. Here, you will:
 
 There are no prerequisites.
 
+### Data import - vector creation
+
+Here, we will show you two different ways to create vector representations in Weaviate:
+1. **Have Weaviate create vectors**, and
+1. Use **user-specified vectors**.
+
+### Data used
+
+We will use a (tiny) dataset from a TV quiz show ("Jeopardy!").
+
+<details>
+  <summary>Take a look at the dataset</summary>
+
+|    | Category   | Question                                                                                                          | Answer                  |
+|---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------|
+|  0 | SCIENCE    | This organ removes excess glucose from the blood & stores it as glycogen                                          | Liver                   |
+|  1 | ANIMALS    | It's the only living mammal in the order Proboseidea                                                              | Elephant                |
+|  2 | ANIMALS    | The gavial looks very much like a crocodile except for this bodily feature                                        | the nose or snout       |
+|  3 | ANIMALS    | Weighing around a ton, the eland is the largest species of this animal in Africa                                  | Antelope                |
+|  4 | ANIMALS    | Heaviest of all poisonous snakes is this North American rattlesnake                                               | the diamondback rattler |
+|  5 | SCIENCE    | 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification | species                 |
+|  6 | SCIENCE    | A metal that is "ductile" can be pulled into this while cold & under pressure                                     | wire                    |
+|  7 | SCIENCE    | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance              | DNA                     |
+|  8 | SCIENCE    | Changes in the tropospheric layer of this are what gives us weather                                               | the atmosphere          |
+|  9 | SCIENCE    | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it                                      | Sound barrier           |
+
+</details>
+
 ## Create a Weaviate instance
+
+You need a Weaviate instance to add data to. We recommend using a free WCS instance. To create one:
 
 1. Go to the [Weaviate Cloud Console](https://console.weaviate.cloud), and
     1. Click on "Sign in with the Weaviate Cloud Services".
@@ -44,7 +79,7 @@ Your selections should look like this:
 
 Finally, click on **Create**. You will see a tick ✔️ (in 2 minutes or so), when the instance has been created.
 
-Under "Details", you will find the Weaviate instance related information like the API key (see the highlighted see button), cluster URL and so on.
+Under "Details", you will find the Weaviate instance related information like the **API key** (see the highlighted button), **URL** and so on.
 
 <img src={WCSApiKeyLocation} width="60%" alt="Instance API key location"/>
 
@@ -67,29 +102,100 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 <CodeClientInstall />
 
-## Import data
+## Connect to Weaviate
 
-We will use a (tiny) dataset from a TV quiz show.
+Let's connect to your Weaviate instance. From the "Details" screen above in WCS, you will need:
+- The Weaviate instance **API key**, and
+- The Weaviate instance **URL**.
+
+We will also use an inference service API to generate our vectors (see the `vectorizer` setting below). For this, we must provide:
+- An additional **inference API key**.
+
+The inference API key will be provided to Weaviate as an additional header.
 
 <details>
-  <summary>Take a look at the dataset</summary>
+  <summary>Which vectorizer module to use?</summary>
 
-|    | Category   | Question                                                                                                          | Answer                  |
-|---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------|
-|  0 | SCIENCE    | This organ removes excess glucose from the blood & stores it as glycogen                                          | Liver                   |
-|  1 | ANIMALS    | It's the only living mammal in the order Proboseidea                                                              | Elephant                |
-|  2 | ANIMALS    | The gavial looks very much like a crocodile except for this bodily feature                                        | the nose or snout       |
-|  3 | ANIMALS    | Weighing around a ton, the eland is the largest species of this animal in Africa                                  | Antelope                |
-|  4 | ANIMALS    | Heaviest of all poisonous snakes is this North American rattlesnake                                               | the diamondback rattler |
-|  5 | SCIENCE    | 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification | species                 |
-|  6 | SCIENCE    | A metal that is "ductile" can be pulled into this while cold & under pressure                                     | wire                    |
-|  7 | SCIENCE    | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance              | DNA                     |
-|  8 | SCIENCE    | Changes in the tropospheric layer of this are what gives us weather                                               | the atmosphere          |
-|  9 | SCIENCE    | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it                                      | Sound barrier           |
+You can choose any vectorizer module for this tutorial, as long as:
+- The module is available in the Weaviate instance you are using, and
+- You have an API key (if necessary) for that module.
+
+For this tutorial, we will use the `text2vec-huggingface` module. But you can use any of the following modules, all of which are available in the free sandbox:
+
+<Tabs groupId="inferenceAPIs">
+<TabItem value="cohere" label="Cohere">
+
+```json
+class_obj = {
+  "class": "Question",
+  "vectorizer": "text2vec-cohere",
+}
+```
+
+</TabItem>
+<TabItem value="huggingface" label="Hugging Face">
+
+```js
+class_obj = {
+  "class": "Question",
+  "vectorizer": "text2vec-huggingface",
+  "moduleConfig": {
+    "text2vec-huggingface": {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",  // Can be any public or private Hugging Face model.
+      "options": {
+        "waitForModel": true,
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="openai" label="OpenAI">
+
+```js
+class_obj = {
+  "class": "Question",
+  "vectorizer": "text2vec-openai",
+  "moduleConfig": {
+    "text2vec-openai": {
+      "model": "ada",
+      "modelVersion": "002",
+      "type": "text"
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="palm" label="PaLM">
+
+```js
+class_obj = {
+  "class": "Question",
+  "vectorizer": "text2vec-palm",
+  "moduleConfig": {
+    "text2vec-palm": {
+      "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
+      "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
+      "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko".
+    },
+  }
+}
+```
+
+</TabItem>
+</Tabs>
 
 </details>
 
-### Define a class
+You can instantiate the client as below:
+
+import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
+
+<ConnectToWeaviateWithKey />
+
+## Define a class
 
 We'll define a data collection, called a "class", to store data objects.
 
@@ -124,7 +230,7 @@ You should see:
         {
             "class": "Question",
             ...  // truncated additional information here
-            "vectorizer": "text2vec-openai"
+            "vectorizer": "text2vec-huggingface"
         }
     ]
 }
@@ -149,34 +255,32 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 </details>
 
-### Connect to Weaviate
+## Add objects
 
-Let's connect to your Weaviate instance. From the "Details" screen above in WCS, you will need:
-- The Weaviate instance **API key**, and
-- The Weaviate instance **URL**.
+We use a **batch import** here. You should use batch imports unless you have a good reason not to, as it will significantly improve the import speeds.
 
-And for using an inference service API, we must provide:
-- An additional **inference API key**
+Now, we will load our dataset and batch import it into Weaviate. The steps are to:
+- Load objects
+- Initialize a batch process
+- Add objects one by one, specifying the class (in this case, `Question`) to add to
 
-So that Weaviate can talk to the inference API.
-
-Pass the inference API key to Weaviate as an additional header as shown below, .
-
-import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
-
-<ConnectToWeaviateWithKey />
-
-### Add data objects
-
-Now, we can load our dataset and batch import it into Weaviate, like this:
+### Use the `vectorizer`
 
 import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.mdx'
 
 <CodeAutoschemaImport />
 
-We use a **batch import** here. You should use batch imports unless you have a good reason not to, as it will significantly improve the import speeds.
+Because we have not provided vector embeddings, Weaviate uses the `vectorizer` specified in the class definition to create vector embeddings for us.
 
-### Putting it together
+### Specify `vector` embeddings
+
+Instead of using a `vectorizer`, you can also specify your own vectors to Weaviate. Regardless of whether a `vectorizer` is set, if a vector is specified, Weaviate will use it to represent the object.
+
+import CodeAutoschemaImportCustomVectors from '/_includes/code/quickstart.autoschema.import.custom.vectors.mdx'
+
+<CodeAutoschemaImportCustomVectors />
+
+## Putting it together
 
 The following code puts it all together (remember to replace your **URL**, **Weaviate API key** and **inference API key**). You can copy and paste this into your own code editor, and run it. Doing so will import the data into your Weaviate instance.
 
@@ -231,7 +335,7 @@ import BiologyQuestionsJson from '/_includes/code/quickstart.biology.questions.m
 
 <BiologyQuestionsJson />
 
-Even though the word `biology` does not appear anywhere, Weaviate has returned biology-related entries (on DNA and species) as the closest results.
+Even though the word `biology` does not appear anywhere, Weaviate has returned biology-related entries as the closest results.
 
 That is a simple example that shows why vector searches are powerful. Vectorized data objects allow for searches based on degrees of similarity, as shown here.
 
@@ -261,7 +365,6 @@ We want you to have the best experience possible here. So if you find that somet
 import WhatNext from '/_includes/quickstart.what-next.mdx';
 
 <WhatNext />
-
 
 ## More Resources
 
