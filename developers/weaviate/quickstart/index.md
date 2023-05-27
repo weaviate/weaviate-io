@@ -148,7 +148,7 @@ class_obj = {
     "text2vec-huggingface": {
       "model": "sentence-transformers/all-MiniLM-L6-v2",  // Can be any public or private Hugging Face model.
       "options": {
-        "waitForModel": true,
+        "waitForModel": true,  // Try this if you get a "model not ready" error
       }
     }
   }
@@ -333,7 +333,7 @@ Now that you've built a database, let's try some queries.
 
 ### Text similarity search
 
-We'll try a text similarity search. As we have a `text2vec` module enabled, we can use text-based similarity searche. Let's look for quiz items related to `biology`.
+We'll try a text similarity search. As we have a `text2vec` module enabled, we can use text-based similarity search. Let's look for quiz items related to `biology`.
 
 You can carry out text-based similarity searches with the `nearText` parameter like below, specifying the query text in the `concept` field.
 
@@ -341,7 +341,7 @@ import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.nearte
 
 <CodeAutoschemaNeartext />
 
-You should see:
+You should see something like this (the results may vary depending on the model used):
 
 import BiologyQuestionsJson from '/_includes/code/quickstart.biology.questions.mdx'
 

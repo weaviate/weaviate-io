@@ -24,8 +24,13 @@ const client: WeaviateClient = weaviate.client({
 // EndToEndExample  // CustomVectorExample
 // Add the schema
 let classObj = {
-    'class': 'Question',
-    'vectorizer': 'text2vec-huggingface'  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+  'class': 'Question',
+  'vectorizer': 'text2vec-huggingface',  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+  'moduleConfig': {
+    'text2vec-huggingface': {
+        'model': 'sentence-transformers/all-MiniLM-L6-v2',  // Can be any public or private Hugging Face model.
+    }
+  }
 }
 
 async function addSchema() {
