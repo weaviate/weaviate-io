@@ -16,7 +16,15 @@ client = weaviate.Client(
 # ===== add schema =====
 class_obj = {
     "class": "Question",
-    "vectorizer": "text2vec-huggingface"  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+    "vectorizer": "text2vec-huggingface",  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+    "moduleConfig": {
+        "text2vec-huggingface": {
+            "model": "sentence-transformers/all-MiniLM-L6-v2",  # Can be any public or private Hugging Face model.
+            "options": {
+                "waitForModel": True,
+            }
+        }
+    }
 }
 
 client.schema.create_class(class_obj)
@@ -57,7 +65,7 @@ assert obj_count["data"]["Aggregate"]["Question"][0]["meta"]["count"] == 10
 # NearTextExample
 nearText = {"concepts": ["biology"]}
 
-result = (
+response = (
     client.query
     .get("Question", ["question", "answer", "category"])
     .with_near_text(nearText)
@@ -65,21 +73,25 @@ result = (
     .do()
 )
 
-print(json.dumps(result, indent=4))
+print(json.dumps(response, indent=4))
 # END NearTextExample
 
-# ===== Test query results =====
-assert len(result["data"]["Get"]["Question"]) == 2
-assert result["data"]["Get"]["Question"][0]["answer"] == "DNA"
+# ===== Test query responses =====
+assert len(response["data"]["Get"]["Question"]) == 2
+assert response["data"]["Get"]["Question"][0]["answer"] == "DNA"
 
 client.schema.delete_class("Question")  # Cleanup after
+
 
 # ===== import with custom vectors =====
 # Load data
 import requests
-url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json'
+# highlight-start
+fname = "jeopardy_tiny_with_vectors_all-MiniLM-L6-v2.json"  # This file includes vectors, created using `all-MiniLM-L6-v2`
+url = f'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}'
 resp = requests.get(url)
 data = json.loads(resp.text)
+# highlight-end
 
 # Configure a batch process
 with client.batch(
@@ -95,11 +107,22 @@ with client.batch(
             "category": d["Category"],
         }
 
+        # highlight-start
+        custom_vector = d["vector"]
+        # highlight-end
         client.batch.add_data_object(
             properties,
             "Question",
             # highlight-start
-            vector=[0.125, 0.126, 0.127]  # Add custom vector
+            vector=custom_vector  # Add custom vector
             # highlight-end
         )
 # ===== END import with custom vectors =====
+
+schema = client.schema.get()
+obj_count = client.query.aggregate("Question").with_meta_count().do()
+
+assert "Question" in [c["class"] for c in schema["classes"]]
+assert obj_count["data"]["Aggregate"]["Question"][0]["meta"]["count"] == 10
+
+client.schema.delete_class("Question")  # Cleanup after

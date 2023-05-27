@@ -24,13 +24,15 @@ Welcome to the **Quickstart tutorial**. Here, you will:
 
 There are no prerequisites.
 
-### Data import - vector creation
+### Vector options
 
 Here, we will show you two different ways to create vector representations in Weaviate:
-1. **Have Weaviate create vectors**, and
-1. Use **user-specified vectors**.
+- **Have Weaviate create vectors**, and
+- Use **user-specified vectors**.
 
-### Data used
+You can use either or both of the options with Weaviate.
+
+### Source data
 
 We will use a (tiny) dataset from a TV quiz show ("Jeopardy!").
 
@@ -110,6 +112,12 @@ We will also use an inference service API to generate our vectors (see the `vect
 
 The inference API key will be provided to Weaviate as an additional header.
 
+You can instantiate the client as below:
+
+import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
+
+<ConnectToWeaviateWithKey />
+
 <details>
   <summary>Which vectorizer module to use?</summary>
 
@@ -117,7 +125,7 @@ You can choose any vectorizer module for this tutorial, as long as:
 - The module is available in the Weaviate instance you are using, and
 - You have an API key (if necessary) for that module.
 
-For this tutorial, we will use the `text2vec-huggingface` module. But you can use any of the following modules, all of which are available in the free sandbox:
+We use the `text2vec-huggingface` module by default. But you can use any of the following modules, all of which are available in the free sandbox. We have provided suggested `vectorizer` module configurations for you to use.
 
 <Tabs groupId="inferenceAPIs">
 <TabItem value="cohere" label="Cohere">
@@ -184,13 +192,16 @@ class_obj = {
 </TabItem>
 </Tabs>
 
+And then, make sure to pass on the API key for the inference service by setting the header at instantiation like so, remembering to replace the placeholder with your actual key:
+
+```js
+"X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",  // For Cohere
+"X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // For Hugging Face
+"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // For OpenAI
+"X-Palm-Api-Key": "YOUR-PALM-API-KEY",  // For PaLM
+```
+
 </details>
-
-You can instantiate the client as below:
-
-import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
-
-<ConnectToWeaviateWithKey />
 
 ## Define a class
 
@@ -204,7 +215,7 @@ In the class definition, let's specify a `vectorizer`. This will allow Weaviate 
     - If you do not wish to, you can set this to `none`.
 :::
 
-Create a `Question` class with a vectorizer as shown below. We will use an inference service API, which will create vector embeddings for us.
+Create a `Question` class with a vectorizer as shown below. We will use an inference service API, which will create vector embeddings for us. The class definition includes suggested basic configurations to get started with.
 
 import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
 
@@ -261,7 +272,7 @@ Now, we will load our dataset and batch import it into Weaviate. The steps are t
 - Initialize a batch process
 - Add objects one by one, specifying the class (in this case, `Question`) to add to
 
-### Use the `vectorizer`
+### *Option 1*: Use the `vectorizer`
 
 import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.mdx'
 
@@ -269,13 +280,17 @@ import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.m
 
 Because we have not provided vector embeddings, Weaviate uses the `vectorizer` specified in the class definition to create vector embeddings for us.
 
-### Specify `vector` embeddings
+### *Option 2*: Specify `vector`s
 
-Instead of using a `vectorizer`, you can also specify your own vectors to Weaviate. Regardless of whether a `vectorizer` is set, if a vector is specified, Weaviate will use it to represent the object.
+Alternatively, you can also specify your own vectors to Weaviate. Regardless of whether a `vectorizer` is set, if a vector is specified, Weaviate will use it to represent the object.
+
+In the below example, we load pre-computed vectors, and add them to Weaviate with each object.
 
 import CodeAutoschemaImportCustomVectors from '/_includes/code/quickstart.autoschema.import.custom.vectors.mdx'
 
 <CodeAutoschemaImportCustomVectors />
+
+If you are using a `vectorizer`, make sure that the vector comes from the same model as one specified in the `vectorizer`. In this case, they come from `sentence-transformers/all-MiniLM-L6-v2`.
 
 ## Putting it together
 
@@ -334,28 +349,19 @@ import BiologyQuestionsJson from '/_includes/code/quickstart.biology.questions.m
 
 Even though the word `biology` does not appear anywhere, Weaviate has returned biology-related entries as the closest results.
 
-That is a simple example that shows why vector searches are powerful. Vectorized data objects allow for searches based on degrees of similarity, as shown here.
-
-Try it out yourself with different strings, by changing the string from `biology`.
+This example shows why vector searches are powerful. Vectorized data objects allow for searches based on degrees of similarity, as shown here.
 
 ## Recap
 
 Well done. You have successfully built a fully functioning vector database, including running your first queries.
 
 You have:
-- Vectorized your dataset through an inference API,
-- Populated your Weaviate instance with the vectorized data, and
+- Created your own Weaviate instance
+- Populated your Weaviate instance with data,
+    - Used an inference API in the process, and
 - Performed text similarity searches.
 
-Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us.
-
-Also, please feel free to reach out to us on our community [Slack](https://weaviate.io/slack). We love to hear from our users.
-
-:::info Is something broken?
-We want you to have the best experience possible here. So if you find that something here doesn't work, or doesn't make sense, please let us know! You can:
-- File an [issue on GitHub](https://github.com/weaviate/weaviate-io/issues), or
-- Talk to us on [Slack](https://weaviate.io/slack)
-:::
+Where next is up to you. We include a few links below - or you can check out the sidebar.
 
 ## Next
 
