@@ -16,7 +16,7 @@ client = weaviate.Client(
 # ===== add schema =====
 class_obj = {
     "class": "Question",
-    "vectorizer": "text2vec-openai"
+    "vectorizer": "text2vec-openai"  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
 }
 
 client.schema.create_class(class_obj)
@@ -29,8 +29,9 @@ resp = requests.get(url)
 data = json.loads(resp.text)
 
 # Configure a batch process
-with client.batch as batch:
-    batch.batch_size=100
+with client.batch(
+    batch_size=100
+) as batch:
     # Batch import all Questions
     for i, d in enumerate(data):
         print(f"importing question: {i+1}")
@@ -41,7 +42,10 @@ with client.batch as batch:
             "category": d["Category"],
         }
 
-        client.batch.add_data_object(properties, "Question")
+        client.batch.add_data_object(
+            properties,
+            "Question"
+        )
 
 # END EndToEndExample    # Test import
 schema = client.schema.get()

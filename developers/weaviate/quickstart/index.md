@@ -15,10 +15,8 @@ import WCScreate from '../../wcs/img/wcs-create.png';
 import WCScreationProgress from '../../wcs/img/wcs-creation-progress.png';
 import WCSApiKeyLocation from '../../wcs/img/wcs-apikey-location.png';
 
-## Overview
-
-Welcome to the **Quickstart tutorial** for Weaviate. Here, you will:
-- Spin up a Weaviate instance with Weaviate Cloud Services (WCS),
+Welcome to the **Quickstart tutorial**. Here, you will:
+- Create a vector database with Weaviate Cloud Services (WCS),
 - Import data, and
 - Perform searches
 
@@ -26,27 +24,27 @@ There are no prerequisites.
 
 ## Create a Weaviate instance
 
-1. Access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.cloud), and
+1. Go to the [Weaviate Cloud Console](https://console.weaviate.cloud), and
     1. Click on "Sign in with the Weaviate Cloud Services".
-    1. If you don't have an account with WCS yet, click on the "Register" button and create a new account.
-1. Then, sign in with your WCS username and password.
-1. Now, click the "Create cluster" button.
+    1. If you don't have a WCS account with WCS, click on "Register" and create a new account.
+1. Sign in with your WCS username and password.
+1. Click on "Create cluster".
 
 <img src={WCScreateButton} width="100%" alt="Button to create WCS instance"/>
 
 Then:
 
 1. Select the **Free sandbox** *plan tier*.
-1. Provide a *cluster name*, which will become a part of its URL. A suffix will be added to this to ensure uniqueness.
+1. Provide a *cluster name*, which will become a part of its URL (with a suffix).
 1. Set the `Enable Authentication?` option to `YES`.
 
 Your selections should look like this:
 
 <img src={WCSoptionsWithAuth} width="100%" alt="Instance configuration"/>
 
-Finally, press **Create** to create your sandbox instance. You will see a tick ✔️ when it's done, indicating that the instance is ready.
+Finally, click on **Create**. You will see a tick ✔️ (in 2 minutes or so), when the instance has been created.
 
-Find the Weaviate instance's API key here, as you will need it to access Weaviate.
+Under "Details", you will find the Weaviate instance related information like the API key (see the highlighted see button), cluster URL and so on.
 
 <img src={WCSApiKeyLocation} width="60%" alt="Instance API key location"/>
 
@@ -61,49 +59,17 @@ import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 ## Install a client library
 
-We also recommend that you use a Weaviate client library for the best experience with Weaviate. Currently they are available in [Python](../client-libraries/python.md), [TypeScript/JavaScript](../client-libraries/typescript.mdx), [Go](../client-libraries/go.md) and [Java](../client-libraries/go.md).
+We recommend you use a Weaviate client library. Currently they are available for [Python](../client-libraries/python.md), [TypeScript/JavaScript](../client-libraries/typescript.mdx), [Go](../client-libraries/go.md) and [Java](../client-libraries/go.md).
 
-Install your preferred client by following the relevant instructions below:
+Install your preferred client by following the below:
 
 import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 <CodeClientInstall />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Connect to Weaviate
-
-import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
-
-Before going further, let's make sure that you can connect to your Weaviate instance with the Weaviate client.
-
-<WCSAuthenticationApiKey/>
-
-
 ## Import data
 
-### Data
-
-We will start with a (tiny) dataset consisting of questions from the popular quiz show "Jeopardy!".
+We will use a (tiny) dataset from a TV quiz show.
 
 <details>
   <summary>Take a look at the dataset</summary>
@@ -123,43 +89,28 @@ We will start with a (tiny) dataset consisting of questions from the popular qui
 
 </details>
 
+### Define a class
 
-As a vector database, Weaviate operates using vector representations, also known as "embeddings", of data objects.
+We'll define a data collection, called a "class", to store data objects.
 
-To generate these vector embeddings, you can employ a Weaviate ["vectorizer" module](../modules/retriever-vectorizer-modules/index.md), which can generate vectors at the time of import. Alternatively, you're welcome to supply your own "custom" vector embeddings.
+In the class definition, let's specify a `vectorizer`. This will allow Weaviate to create vector representations of the data objects in that class.
 
-If you choose to use a vectorizer module, you don't need to worry about vectorization other than choosing an appropriate vectorizer and passing the data to Weaviate.
-
-:::tip Prefer to use custom vectors?
-See the ["Bring Your Own Vectors" Quickstart guide](./custom-vectors.mdx) or [this reference](../api/rest/objects.md#with-a-custom-vector) for more information if you would like to use your own vectors instead of using a vectorizer module.
+:::tip Custom vectors
+- You always have the option of providing vector embeddings yourself.
+- Setting a `vectorizer` gives Weaviate the option of creating vector embeddings for you.
+    - If you do not wish to, you can set this to `none`.
 :::
 
-Using an inference API is one good way to do this. To do so:
-
-- Specify a vectorizer module (e.g. `text2vec-openai`)
-- Provide the API key
-- Load & import data into Weaviate
-
-### Specify a vectorizer
-
-First, we must define the class objects to store the data and specify what vectorizer to use. The following will create a `Question` class with the given vectorizer, and add it to the schema:
-
-:::note Which inference API?
-This tutorial uses the OpenAI API to obtain vectors. But you can use any of Cohere, Hugging Face or OpenAI inference APIs with WCS, as the relevant [Weaviate modules](../modules/retriever-vectorizer-modules/index.md) for those are already built in by default.
-
-Change the vectorizer setting below to point to your preferred module.
-:::
+Create a `Question` class with a vectorizer as shown below. We will use an inference service API, which will create vector embeddings for us.
 
 import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
 
 <CodeAutoschemaMinimumSchema />
 
-Weaviate will infer any further schema information from the given data. If you would like to know more, check out [this tutorial](../tutorials/schema.md) which covers schemas in more detail.
-
 <details>
   <summary>Confirm schema creation</summary>
 
-After you have added the class to the schema, you can confirm that it has been created by visiting the [`schema` endpoint](../api/rest/schema.md). You can inspect the Weaviate schema here (replace the URL with your actual endpoint):
+You can confirm that it has been created by visiting the [`schema` endpoint](../api/rest/schema.md) here (replace the URL with your actual endpoint):
 
 ```
 https://some-endpoint.weaviate.network/v1/schema
@@ -187,16 +138,10 @@ Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful AP
 
 </details>
 
-:::note If you see this error: `Name 'Question' already used as a name for an Object class`
-You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions.
-:::
-
-### Deleting classes
-
 <details>
-  <summary>
-    See how you can delete classes.
-  </summary>
+  <summary>If you see <code>Error: Name 'Question' already used as a name for an Object class</code></summary>
+
+You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions.
 
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
@@ -204,39 +149,40 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 </details>
 
-<hr />
+### Connect to Weaviate
 
-### Provide the inference API key
+Let's connect to your Weaviate instance. From the "Details" screen above in WCS, you will need:
+- The Weaviate instance **API key**, and
+- The Weaviate instance **URL**.
 
-import ProvideOpenAIAPIKey from '/_includes/provide-openai-api-key-headers.mdx'
+And for using an inference service API, we must provide:
+- An additional **inference API key**
 
-<ProvideOpenAIAPIKey />
+So that Weaviate can talk to the inference API.
 
-:::note Not using OpenAI?
-If you are not using OpenAI, change the API key parameter in the code examples from `X-OpenAI-Api-Key` to one relevant to your chosen inference API, such as `X-Cohere-Api-Key` for Cohere or `X-HuggingFace-Api-Key` for Hugging Face.
-:::
+Pass the inference API key to Weaviate as an additional header as shown below, .
 
-### Load & import data
+import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
 
-Now, we can load our dataset and import it into Weaviate. The code looks roughly like this:
+<ConnectToWeaviateWithKey />
+
+### Add data objects
+
+Now, we can load our dataset and batch import it into Weaviate, like this:
 
 import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.mdx'
 
 <CodeAutoschemaImport />
 
-Note that we use a batch import process, so that each request to the inference API contains multiple objects. You should use batch imports unless you have a good reason not to, as it will significantly improve the speed of data ingestion.
+We use a **batch import** here. You should use batch imports unless you have a good reason not to, as it will significantly improve the import speeds.
 
 ### Putting it together
 
-The following code puts it all together, taking care of everything from schema definition to data import. Remember to replace the endpoint and inference API key (and API key name if necessary).
+The following code puts it all together (remember to replace your **URL**, **Weaviate API key** and **inference API key**). You can copy and paste this into your own code editor, and run it. Doing so will import the data into your Weaviate instance.
 
 import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoend.mdx'
 
 <CodeAutoschemaEndToEnd />
-
-And that should have populated Weaviate with the data, including corresponding vectors!
-
-Note again that we did not provide any vectors to Weaviate. That's all managed by Weaviate, which calls the inference API for you and obtains a vector corresponding to your object at import time.
 
 <details>
   <summary>Confirm data import</summary>
@@ -263,37 +209,37 @@ Where you should be able to confirm that you have imported all `10` objects.
 
 </details>
 
+Congratulations, you've successfully built a vector database and populated it with data!
+
 ## Query Weaviate
 
 Now that you've built a database, let's try some queries.
 
 ### Text similarity search
 
-One of the most common use cases is text similarity search. As we have a `text2vec` module enabled, we can use the `nearText` parameter for this purpose.
+We'll try a text similarity search. As we have a `text2vec` module enabled, we can use text-based similarity searche. Let's look for quiz items related to `biology`.
 
-If you wanted to find entries related to biology, you can apply the `nearText` parameter like so:
+You can carry out text-based similarity searches with the `nearText` parameter like below, specifying the query text in the `concept` field.
 
 import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
 
 <CodeAutoschemaNeartext />
 
-Note that we use the `Get` function (or the relevant client implementation) to fetch objects, and the query text is specified in the `concept` field.
-
-You should see something like this:
+You should see:
 
 import BiologyQuestionsJson from '/_includes/code/quickstart.biology.questions.mdx'
 
 <BiologyQuestionsJson />
 
-Note that even though the word 'biology' does not appear anywhere, Weaviate has returned biology-related entries (on DNA and species) as the closest results. Also, it has returned these entries over and above many entries otherwise related to animals in general.
+Even though the word `biology` does not appear anywhere, Weaviate has returned biology-related entries (on DNA and species) as the closest results.
 
-That's a simple but powerful outcome, which shows a big reason behind the popularity of vector searches. Vectorized data objects allow for searches based on degrees of similarity, such as semantic similarity of text as we did here.
+That is a simple example that shows why vector searches are powerful. Vectorized data objects allow for searches based on degrees of similarity, as shown here.
 
-Try it out yourself with different strings, by changing the string from "biology".
+Try it out yourself with different strings, by changing the string from `biology`.
 
 ## Recap
 
-If you made it here - well done. We have covered a lot in just a couple of pages, and you've successfully built a fully functioning vector database! 🥳
+Well done. You have successfully built a fully functioning vector database, including running your first queries.
 
 You have:
 - Vectorized your dataset through an inference API,
@@ -303,8 +249,6 @@ You have:
 Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us.
 
 Also, please feel free to reach out to us on our community [Slack](https://weaviate.io/slack). We love to hear from our users.
-
-
 
 :::info Is something broken?
 We want you to have the best experience possible here. So if you find that something here doesn't work, or doesn't make sense, please let us know! You can:

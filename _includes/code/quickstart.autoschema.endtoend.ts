@@ -25,7 +25,7 @@ const client: WeaviateClient = weaviate.client({
 // Add the schema
 let classObj = {
     'class': 'Question',
-    'vectorizer': 'text2vec-openai'
+    'vectorizer': 'text2vec-openai'  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
 }
 
 async function addSchema() {

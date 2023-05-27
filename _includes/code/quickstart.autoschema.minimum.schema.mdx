@@ -2,7 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
-import EndToEndJSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.js';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
 
 <Tabs groupId="languages">
@@ -31,7 +30,7 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 ```go
 classObj := &models.Class{
     Class:      "Question",
-    Vectorizer: "text2vec-openai",  // Or "text2vec-cohere" or "text2vec-huggingface"
+    Vectorizer: "text2vec-openai",  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
 }
 
 // add the schema
@@ -65,7 +64,7 @@ public class App {
     // we will create the class "Question" and the properties
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Question")
-      .vectorizer("text2vec-openai")  // Or "text2vec-cohere" or "text2vec-huggingface"
+      .vectorizer("text2vec-openai")  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
       .build();
 
     // add the schema
