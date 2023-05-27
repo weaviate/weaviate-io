@@ -1,5 +1,5 @@
 ---
-title: Weaviate Quickstart
+title: Quickstart Tutorials
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
@@ -11,11 +11,8 @@ import Badges from '/_includes/badges.mdx';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import registerImg from '../../wcs/img/register.png';
 import WCSoptionsWithAuth from '../../wcs/img/wcs-options-with-auth.png';
 import WCScreateButton from '../../wcs/img/wcs-create-button.png';
-import WCScreate from '../../wcs/img/wcs-create.png';
-import WCScreationProgress from '../../wcs/img/wcs-creation-progress.png';
 import WCSApiKeyLocation from '../../wcs/img/wcs-apikey-location.png';
 
 ## Overview
