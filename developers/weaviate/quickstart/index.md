@@ -1,5 +1,5 @@
 ---
-title: Quickstart Tutorials
+title: Quickstart Tutorial
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']

@@ -1,6 +1,6 @@
 ---
 title: Modules - an introduction
-sidebar_position: 9
+sidebar_position: 90
 image: og/docs/tutorials.jpg
 # tags: ['modules']
 ---

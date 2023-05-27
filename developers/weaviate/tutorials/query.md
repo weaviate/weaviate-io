@@ -1,6 +1,6 @@
 ---
 title: Queries in detail
-sidebar_position: 10
+sidebar_position: 50
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---

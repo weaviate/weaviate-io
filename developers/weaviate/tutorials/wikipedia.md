@@ -1,6 +1,6 @@
 ---
-title: Importing custom vectors
-sidebar_position: 5
+title: Wikipedia with custom vectors
+sidebar_position: 50
 image: og/docs/tutorials.jpg  # TODO
 # tags: ['import']
 ---

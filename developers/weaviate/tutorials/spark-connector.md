@@ -1,6 +1,6 @@
 ---
-title: Loading data into Weaviate using Spark
-sidebar_position: 2
+title: Load data into Weaviate with Spark
+sidebar_position: 80
 image: og/docs/tutorials.jpg
 # tags: ['how to', 'spark connector', 'spark']
 ---
