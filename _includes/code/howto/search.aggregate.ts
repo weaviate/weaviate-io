@@ -12,7 +12,7 @@ const client = weaviate.client({
   host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
   apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth is on. Replace w/ your Weaviate instance API key.
   headers: {
-    'X-OpenAI-API-Key': 'YOUR-OPENAI-API-KEY',  // for the nearText example
+    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',  // for the nearText example
   },
 });
 

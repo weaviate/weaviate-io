@@ -56,7 +56,7 @@ People all over Twitter have shared multiple demos of what they’ve built with 
 
 Auto-GPT has both a short-term and long-term memory. By connecting to a vector database, like Weaviate, you enable the application to retrieve specific data. This extension is great if you’re asking Auto-GPT to complete a task that it wasn’t trained on. For example, if you have data about your customer base in Boston and would like to form an ad, Auto-GPT wouldn’t be able to do that because this wasn’t included in the training data. The solution to this problem is to connect to your Weaviate instance so that Auto-GPT can fetch the necessary information. Additionally, Auto-GPT can save and recall its actions for future use.
 
-[Here](https://github.com/Significant-Gravitas/Auto-GPT/blob/master/autogpt/memory/weaviate.py) is the codebase to see how Weaviate is integrated in Auto-GPT.
+[Here](https://github.com/Significant-Gravitas/Auto-GPT/blob/stable/autogpt/memory/weaviate.py) is the codebase to see how Weaviate is integrated in Auto-GPT.
 
 The easiest way to use Weaviate with Auto-GPT is with a [WCS](https://console.weaviate.cloud) instance. Create a Sandbox instance by following [these steps](https://weaviate.io/developers/wcs/quickstart#create-a-weaviate-cluster), and install Auto-GPT using the latest instructions from the repo, with the following notes in mind.
 

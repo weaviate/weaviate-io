@@ -43,7 +43,7 @@ client.data
           .withId('6bb06a43-e7f0-393e-9ecf-3c0f4e129064')
           .payload(),
       )
-      .withConsistencyLevel(weaviate.replication.ConsistencyLevel.ALL)  // default QUORUM
+      .withConsistencyLevel('ALL')  // default QUORUM
       .do()
       .then(res => {
           console.log(res)

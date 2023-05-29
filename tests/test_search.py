@@ -11,7 +11,8 @@ import subprocess
         "./_includes/code/howto/search.bm25.py",
         "./_includes/code/howto/search.hybrid.py",
         "./_includes/code/howto/search.filters.py",
-        "./_includes/code/howto/search.aggregate.py"
+        "./_includes/code/howto/search.aggregate.py",
+        "./_includes/code/howto/search.generative.py",
     ],
 )
 def test_py(empty_weaviates, script_loc):

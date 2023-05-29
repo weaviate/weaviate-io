@@ -1,4 +1,4 @@
-const assert = require('assert');
+import assert from 'assert';
 
 // ================================
 // ===== INSTANTIATION-COMMON =====
@@ -137,7 +137,7 @@ async function run() {
 // END EndToEndExample  // END NearTextExample
 
 // EndToEndExample
-run();
+await run();
 // END EndToEndExample
 
 
