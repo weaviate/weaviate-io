@@ -47,7 +47,7 @@ client.batch
     path: ['_creationTimeUnix'],
     valueString: '1651514874263',
   })
-  .withConsistencyLevel(weaviate.replication.ConsistencyLevel.ALL)  // default QUORUM
+  .withConsistencyLevel('ALL')  // default QUORUM
   .do()
   .then(console.log)
   .catch(console.error);

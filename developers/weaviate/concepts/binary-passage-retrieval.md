@@ -83,7 +83,7 @@ From a purely technical perspective, there is no impediment to using any model w
 
 #### How can I stay up-to-date with this exciting development?
 
-Make sure to [join our Slack-channel](https://weaviate.io/slack) for regular updates.
+Subscribe to the [Announcements category on our forum](https://forum.weaviate.io/c/announcements/7), or [join our Slack-channel](https://weaviate.io/slack) for regular updates.
 
 ## More Resources
 

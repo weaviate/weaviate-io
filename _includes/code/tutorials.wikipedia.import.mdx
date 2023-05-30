@@ -56,10 +56,13 @@ print(f"Finished importing {counter} articles.")
 
 ```js
 // ===== Import data =====
+import fs from 'fs';
+import csv from 'csv-parser';
+
 async function importCSV(filePath) {
   let batcher = client.batch.objectsBatcher();
   let counter = 0;
-  let batchSize = 100;
+  const batchSize = 100;
 
   return new Promise((resolve, reject) => {
     fs.createReadStream(filePath)

@@ -9,7 +9,7 @@ import json
 client = weaviate.Client(
     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
     auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-    additional_headers = {
+    additional_headers={
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
 )
@@ -50,8 +50,6 @@ assert response["data"]["Aggregate"]["JeopardyQuestion"][0].keys() == {"meta"}
 assert gqlresponse == response
 # END Test results
 
-
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
 expected_response = (
 # MetaCount Expected Results
 {
@@ -267,7 +265,6 @@ assert "meta" in response["data"]["Aggregate"]["JeopardyQuestion"][2]
 assert gqlresponse == response
 # END Test results
 
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
 expected_response = (
 # groupBy Expected Results
 {
@@ -427,7 +424,6 @@ assert response["data"]["Aggregate"]["JeopardyQuestion"][0]["points"]["sum"] == 
 assert gqlresponse == response
 # END Test results
 
-# Only used by FilteredTextBlock because literal comparisons are unreliable due to unpredictable key order in responses
 expected_response = (
 # nearTextWithDistance Expected Results
 {

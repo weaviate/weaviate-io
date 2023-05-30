@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
-import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.similarity.js';
+import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 ## Overview
 

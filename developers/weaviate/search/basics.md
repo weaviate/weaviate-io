@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
-import JSCode from '!!raw-loader!/_includes/code/howto/search.basics.js';
+import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
 ## Overview
 
@@ -41,7 +41,7 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// BasicGetJS"
   endMarker="// END BasicGetJS"
   language="js"
@@ -96,7 +96,7 @@ Often, you will only want the top `n` results from the query. This can be achiev
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetWithLimitJS"
   endMarker="// END GetWithLimitJS"
   language="js"
@@ -136,7 +136,7 @@ If you only want the `n` results after the first `m` results from the query, you
 Be aware that although you will only see `n` results, this could become an expensive operation as `m` grows larger, as Weaviate must fetch `n+m` results.
 
 :::tip For exhaustive retrieval, use `after` instead.
-If you want to list and retrieve all objects from a `class`, use the cursor API instead with the `after` parameter. Read [this guide](../manage-data/exhaustive-retrieval.mdx) for more information on how.
+If you want to list and retrieve all objects from a `class`, use the cursor API instead with the `after` parameter. Read [this guide](../manage-data/read-all-objects.mdx) for more information on how.
 :::
 
 <Tabs groupId="languages">
@@ -153,7 +153,7 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetWithLimitOffsetJS"
   endMarker="// END GetWithLimitOffsetJS"
   language="js"
@@ -208,7 +208,7 @@ You can specify object properties as below.
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetPropertiesJS"
   endMarker="// END GetPropertiesJS"
   language="js"
@@ -259,7 +259,7 @@ To retrieve the object vector, request the `_additional` property and `vector` s
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetObjectVectorJS"
   endMarker="// END GetObjectVectorJS"
   language="js"
@@ -310,7 +310,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 <TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetObjectIdJS"
   endMarker="// END GetObjectIdJS"
   language="js"
@@ -351,7 +351,7 @@ You can retrieve any properties of cross-referenced objects by specifying:
 - The target cross-referenced object class, and
 - The desired properties to retrieve (of the cross-referenced objects).
 
-The following example, retrieves for each `JeopardyQuestion` object the cross-referenced `JeopardyCategory` object, and the `JeopardyCategory` object's `title` property is returned.
+The following example, retrieves for each `JeopardyQuestion` object the cross-referenced `JeopardyCategory` object, and the `JeopardyCategory` object's `title` property is returned. The property is accessed using the [inline fragment](http://spec.graphql.org/June2018/#sec-Inline-Fragments) GraphQL syntax.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -364,10 +364,10 @@ The following example, retrieves for each `JeopardyQuestion` object the cross-re
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="TypeScript">
 
 <FilteredTextBlock
-  text={JSCode}
+  text={TSCode}
   startMarker="// GetWithCrossRefs"
   endMarker="// END GetWithCrossRefs"
   language="js"

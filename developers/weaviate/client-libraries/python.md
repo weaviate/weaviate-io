@@ -258,22 +258,24 @@ A full example of how to use the Python client for Weaviate can be found in [thi
 
 ## Batching
 
-Batching is a way of importing/creating `objects` and `references` in bulk using a single API request to the Weaviate Server. With python this can be done using 3 different methods:
+Batching is a way of importing/creating `objects` and `references` in bulk using a single API request to the Weaviate server. With Python this can be done using 3 different methods:
 
 1. ***Auto-batching***
 2. ***Dynamic-batching***
 3. ***Manual-batching***
 
-## Multi-threading batch import
+### Multi-threading batch import
 
 :::info Available in Weaviate Python client versions `3.9.0` and higher.
 :::
 
 Multi-threading Batch import works with both `Auto-batching` and `Dynamic-batching`.
 
-To use it, set the number of workers (threads) using the `.configure(...)` (same as `.__call__(...)`) by setting the argument `num_workers` in batch configuration. See also *Batch-configuration* below.
+To use it, set the number of workers (threads) using the `.configure(...)` (same as `.__call__(...)`) by setting the argument `num_workers` in the batch configuration. See also [Batch configuration](#batch-configuration) below.
 
-**NOTE: *Multithreading is disabled by default (num_workers=1). Use with care to not overload your weaviate instance.***
+:::warning
+Multithreading is disabled by default (num_workers=1). Use with care to not overload your Weaviate instance.
+:::
 
 **Example**
 
@@ -287,7 +289,7 @@ client.batch(  # or client.batch.configure(
 
 ### Auto-batching
 
-This method allows the python-client to handle all the `object` and `reference` import/creation. This means that the user does NOT have to explicitly import/create `objects`and `reference`, all the user has to do is add everything he want to be imported/created to the `Batch`, and the `Batch` is going to take care of it. To enable auto-batching we need to configure `batch_size` to be a positive integer (by default `None`)(see `Batch-configuration` below for more information). The `Batch` is going to import/create objects then references, if number of objects + number of references == `batch_size`. See example below:
+This method allows the Python client to handle all the `object` and `reference` import/creation. This means that you do NOT have to explicitly import/create objects and cross-references. All you need to do is add everything you want imported/created to the `Batch`, and the `Batch` is going to take care of creating the objects and cross-references among them. To enable auto-batching we need to configure `batch_size` to be a positive integer (by default `None`) (see [Batch configuration](#batch-configuration) below for more information). The `Batch` is going to import/create objects, then create cross-references, if the number of objects + number of references == `batch_size`. See example below:
 
 ```python
 import weaviate
@@ -403,7 +405,7 @@ with client.batch as batch:
 
 ### Dynamic-batching
 
-This method allows the python-client to handle all the `object` and `reference` import/creation in a dynamic manner. This means that the user does NOT have to explicitly import/create `objects`and `reference`, all the user has to do is add everything he want to be imported/created to the `Batch`, and the `Batch` is going to take care of it (same as `Auto-batching`). To enable dynamic-batching we need to configure `batch_size` to be a positive integer (by default `None`) AND `dynamic` to be `True`(by default `False`)(see `Batch-configuration` below for more information). For this method the `Batch` is going to compute the `recommended_num_objects` and `recommended_num_references` after the first `Batch` creation, where the `batch_size` is used for `recommended_num_objects` and `recommended_num_references` as the initial value. The `Batch` is going to import/create objects then references, if current number of objects reached `recommended_num_objects` OR current number of reference reached `recommended_num_references`. See example below:
+This method allows the Python client to handle all object and cross-reference import/creations in a dynamic manner. This means that the user does NOT have to explicitly import/create objects and cross-reference (same as with [Auto-batching](#auto-batching). To enable dynamic-batching we need to configure `batch_size` to be a positive integer (by default `None`) AND set `dynamic` to `True` (by default `False`) (see [Batch-configuration](#batch-configuration) below for more information). For this method the `Batch` is going to compute the `recommended_num_objects` and `recommended_num_references` after the first `Batch` creation, where the `batch_size` is used for `recommended_num_objects` and `recommended_num_references` as the initial value. The `Batch` is going to import/create objects then references, if current number of objects reached `recommended_num_objects` OR current number of reference reached `recommended_num_references`. See example below:
 
 
 ```python
@@ -643,16 +645,16 @@ with client.batch as batch:
 # done, everything is imported/created
 ```
 
-### Batch-configuration
-The `Batch` object can be configured using the `batch.configure()` method or the `batch()` (i.e. call batch object, `__call__` method), they are the same function. In the examples above we saw that we can configure the `batch_size` and `dynamic`, but it allows to set more configurations:
+### Batch configuration
+The `Batch` object can be configured using the `batch.configure()` method or the `batch()` (i.e. call batch object, `__call__`) method. They are the same function. In the examples above we saw that we can configure the `batch_size` and `dynamic` parameters. Here are more available parameters:
 
-- `batch_size` - (`int` or `None`: default `None`): If it is `int` then auto-/dynamic-batching is enabled. For Auto-batching, if number of objects + number of references == `batch_size` then the `Batch` is going to import/create current objects then references (see Auto-batching for more info). For Dynamic-batching it is used as the initial value for `recommended_num_objects` and `recommended_num_references` (see Dynamic-batching for more info). `None` value means it is Manual-batching, no automatic object/reference import/creation.
-- `dynamic` - (`bool`: default: `False`): Enables/disables Dynamic-batching. Does not have any effect if `batch_size` is `None`.
-- `creation_time` - (`int` or `float`; default: `10`): It is the interval of time in which the batch import/create should be done. It used to compute `recommended_num_objects` and `recommended_num_references`, consequently has an impact for Dynamic-batching.
-- `callback` (Optional[Callable[[dict], None]]: default `weaviate.util.check_batch_result`): It is a callback function on the results of the `batch.create_objects()` and `batch.create_references()`. It is used for Error Handling for Auto-/Dynamic-batching. Has no effect if `batch_size` is `None`.
-- `timeout_retries` - (`int`: default `3`): Number of attempts to import/create a batch before resulting in `TimeoutError`.
-- `connection_error_retries` - (`int`: default `3`): Number of attempts to import/create a batch before resulting in `ConnectionError`. **NOTE:** Available in `weaviate-client>=3.9.0`.
-- `num_workers` - (`int`: default `1`): The maximal number of concurrent threads to run batch import. Only used for non-MANUAL batching. i.e. is used only with AUTO or DYNAMIC batching. ***Use with care to not overload your weaviate instance.*** **NOTE:** Available in `weaviate-client>=3.9.0`.
+- `batch_size` - (`int` or `None`: default `None`): If it is `int` then auto-/dynamic-batching is enabled. For Auto-batching, if number of objects + number of references == `batch_size` then the `Batch` is going to import/create current objects then references (see [Auto-batching](#auto-batching) for more info). For Dynamic-batching it is used as the initial value for `recommended_num_objects` and `recommended_num_references` (see [Dynamic batching](#dynamic-batching) for more info). A value of `None` means it is Manual-batching—no automatic object/reference import/creation.
+- `dynamic` - (`bool`, default: `False`): Enables/disables Dynamic-batching. Does not have any effect if `batch_size` is `None`.
+- `creation_time` - (`int` or `float`, default: `10`): It is the interval of time in which the batch import/create should be done. It used to compute `recommended_num_objects` and `recommended_num_references`, consequently has an impact for Dynamic-batching.
+- `callback` (Optional[Callable[[dict], None]], default `weaviate.util.check_batch_result`): It is a callback function on the results of the `batch.create_objects()` and `batch.create_references()`. It is used for error handling for Auto-/Dynamic-batching. Has no effect if `batch_size` is `None`.
+- `timeout_retries` - (`int`, default `3`): Number of attempts to import/create a batch before resulting in `TimeoutError`.
+- `connection_error_retries` - (`int`, default `3`): Number of attempts to import/create a batch before resulting in `ConnectionError`. **NOTE:** Available in `weaviate-client>=3.9.0`.
+- `num_workers` - (`int`, default `1`): The maximal number of concurrent threads to run batch import. Only used for non-MANUAL batching. i.e. is used only with AUTO or DYNAMIC batching. ***Use with care to not overload your Weaviate instance.*** **NOTE:** Available in `weaviate-client>=3.9.0`.
 
 NOTE: You have to specify all the configurations that you want at each call of this method, otherwise some setting are going to be replaced by default values.
 ```python
@@ -768,7 +770,7 @@ Note that you need to use the `.do()` method to execute the query.
 
 ## Change logs
 
-Check the [change logs on GitHub](https://github.com/weaviate/weaviate-python-client/releases) or [readthedocs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html) for updates on the latest `Python client` changes.
+Check the [change logs on GitHub](https://github.com/weaviate/weaviate-python-client/releases) or [readthedocs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html) for updates on the latest Python client changes.
 
 ## More Resources
 

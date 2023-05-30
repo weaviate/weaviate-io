@@ -48,7 +48,7 @@ We suggest you browse through the [concepts](./concepts/index.md) section if you
 :::info Help us to help you!
 If the documentation does not quite suit **your** needs, we would love to hear from you.
 
-Please reach out on [Slack](https://weaviate.io/slack) - we can help you with your specific problem, and help make the documentation better. Plus you'll meet our amazing, helpful community of users just like you!
+Please reach out on our [forum](https://forum.weaviate.io) - we can help you with your specific problem, and help make the documentation better. Plus you'll meet our amazing, helpful community of users just like you!
 :::
 
 :::note

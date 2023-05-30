@@ -1,6 +1,6 @@
 ---
 title: GraphQL - Additional properties
-sidebar_position: 6
+sidebar_position: 9
 image: og/docs/api.jpg
 # tags: ['graphql', 'additional properties', 'additional', 'underscore']
 ---
@@ -43,7 +43,7 @@ For example:
 
 ### id
 
-The `id` field contains the unique uuid of the data object.
+The `id` field contains the unique [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) of the data object.
 
 ```graphql
 {
@@ -70,6 +70,36 @@ The `vector` fields contains the vector representation of the data object
       _additional {
         vector
       }
+    }
+  }
+}
+```
+
+### generate
+
+:::info Requires a `generative-xxx` module
+:::
+
+The `generate` field can be used to perform a [generative search](../../search/generative.md).
+
+```graphql
+{
+  Get {
+    Class {
+      property
+      _additional {
+        generate(
+          singleResult: {
+            prompt: """
+            LLM Prompt:
+
+            {property_a} - {property_b}
+            """
+          }
+        ) {
+          singleResult
+          error
+        }
     }
   }
 }

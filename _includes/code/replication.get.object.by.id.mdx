@@ -41,7 +41,7 @@ client
     .getterById()
     .withClassName('MyClass')
     .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
-    .withConsistencyLevel(weaviate.replication.ConsistencyLevel.ONE)  // default QUORUM
+    .withConsistencyLevel('ONE')  // default QUORUM
     .do()
     .then(res => {
         console.log(res)
@@ -51,9 +51,9 @@ client
     });
 
 // The parameter passed to `withConsistencyLevel` can be one of:
-// * weaviate.replication.ConsistencyLevel.ALL,
-// * weaviate.replication.ConsistencyLevel.QUORUM (default), or
-// * weaviate.replication.ConsistencyLevel.ONE.
+// * 'ALL',
+// * 'QUORUM' (default), or
+// * 'ONE'.
 //
 // It determines how many replicas must acknowledge a request
 // before it is considered successful.

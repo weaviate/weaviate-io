@@ -10,9 +10,9 @@ import Badges from '/_includes/badges.mdx';
 
 Most use cases of Weaviate benefit from the following two core concepts:
 
-1. **Semantic search.**\
+1. **Semantic search.**  
   [80% of data is unstructured](https://www.forbes.com/sites/forbestechcouncil/2019/01/29/the-80-blind-spot-are-you-ignoring-unstructured-organizational-data/) and the largest search engine in the world has only indexed [0.004%](https://www.seeker.com/how-much-of-the-internet-is-hidden-1792697912.html) of all data available. With Weaviate and its Contextionary, semantic search in unstructured data becomes possible. Various use cases benefit from unlocking this potential of unstructured data by semantic search, see [Document search and analysis](#document-search-and-analysis) and [Product search for E-commerce](#product-search-for-e-commerce).
-2. **Automatic classification.**\
+2. **Automatic classification.**  
    With your data represented by their meaning in a high dimensional vector space, it becomes possible to automatically find relations between objects and concepts. This can be based on its context, or existing neighboring data objects in your data. See [Classification for ERP](#classification-for-erp) and [Cybersecurity analysis](#cybersecurity-analysis) for examples.
 
 ## Document search and analysis
@@ -29,7 +29,7 @@ Most use cases of Weaviate benefit from the following two core concepts:
 
 ## Classification for ERP
 
-**Challenge**: Business users create reports (e.g., financial) based on how data is structured in ERP systems. For example, a flight ticket from an airline needs to be classified as "international travel" but this is often not done correctly, not done at all or not done in a way that it works for a specific business question (e.g., an airline ticket classified as "international travel" can't answer the question "How much money has been spend on non-ground travel"). This is currently often solved by manually classifying the data, or hiring data scientists, which is expensive and time-consuming.
+**Challenge**: Business users create reports (e.g., financial) based on how data is structured in ERP systems. For example, a flight ticket from an airline needs to be classified as "international travel" but this is often not done correctly, not done at all or not done in a way that it works for a specific business question (e.g., an airline ticket classified as "international travel" can't answer the question "How much money has been spent on non-ground travel"). This is currently often solved by manually classifying the data, or hiring data scientists, which is expensive and time-consuming.
 
 **Solution with Weaviate**: Weaviate understands the context of concepts, which allows automatic, real-time classification of unseen, new concepts. For example, because Weaviate knows what "international travel" and "air travel" means, airline tickets can automatically be classified as "travel expenses" or "flight tickets", and "national travel" or "international travel".
 

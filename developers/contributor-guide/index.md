@@ -28,13 +28,13 @@ This guide also includes the following sections on specific areas. You can think
 
 ## Join the Weaviate Community
 
-A lot of community discussion happens on the [Weaviate Community Slack](https://weaviate.io/slack). Everyone is welcome to [join](https://weaviate.io/slack).
+A lot of community chat happens on the [Weaviate Community Slack](https://weaviate.io/slack), with longer-form discussions taking place on the [forum](https://forum.weaviate.io)
 
-Many members of our Slack community help us by giving feedback, asking questions, or proposing ideas. To get involved in our community, please make sure to familiarize yourself with the project's [Code of Conduct](/service/code-of-conduct).
+Many members of our community help us by giving feedback, asking questions, or proposing ideas. To get involved in our community, please make sure to familiarize yourself with the project's [Code of Conduct](/service/code-of-conduct).
 
-Please set your Slack workspace display name to your name. This will make it easier to connect with other community members. Then reach out to members of the community, introduce yourself, and share your ideas/questions. Tell us about your areas of interest and what technologies you are using to build your projects. The more we know about you, the better we will be able to match project requirements to your interests and abilities.
+Please set your forum or Slack workspace display name to your name. This will make it easier to connect with other community members. Then reach out to members of the community, introduce yourself, and share your ideas/questions. Tell us about your areas of interest and what technologies you are using to build your projects. The more we know about you, the better we will be able to match project requirements to your interests and abilities.
 
-If at any time you face any difficulties, don't hesitate to reach out in the `#general` channel on our Slack. Our team and the community will help you solve your problem.
+If at any time you face any difficulties, don't hesitate to reach out in the `#general` channel on our Slack for quick help, or in the [General category of the forum](https://forum.weaviate.io/c/general/4) for more complex issues. Our team and the community will help you solve your problem.
 
 ## License
 

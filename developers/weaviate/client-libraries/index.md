@@ -23,7 +23,7 @@ import JavaScriptMaintenanceWarning from '/_includes/javascript-maintenance-warn
 <JavaScriptMaintenanceWarning />
 
 :::note Don't see your preferred language?
-If you want to contribute one or request for us to work on a particular client, please let us know on [Slack](https://weaviate.io/slack)
+If you want to contribute one or request for us to work on a particular client, please let us know on [the forum](https://forum.weaviate.io/)
 :::
 
 import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'

@@ -18,7 +18,7 @@ import json
 client = weaviate.Client(
     url="https://some-endpoint.semi.network",
     additional_headers={
-        'X-OpenAI-Api-Key': api_tkn
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
     }
 )
 
@@ -52,9 +52,9 @@ const client = weaviate.client({
 });
 
 const where_filter = {
-  'path': ['category'],
-  'operator': 'Equal',
-  'valueText': 'ANIMALS',
+  path: ['category'],
+  operator: 'Equal',
+  valueText: 'ANIMALS',
 };
 
 client.graphql
@@ -85,9 +85,9 @@ const client: WeaviateClient = weaviate.client({
 });
 
 const where_filter = {
-  'path': ['category'],
-  'operator': 'Equal',
-  'valueText': 'ANIMALS',
+  path: ['category'],
+  operator: 'Equal',
+  valueText: 'ANIMALS',
 };
 
 client.graphql

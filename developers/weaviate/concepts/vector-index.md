@@ -67,7 +67,7 @@ Note that the vector index type only specifies how the vectors of data objects a
 ## Can Weaviate support multiple vector index (ANN) types?
 
 * The short answer: _yes_
-* The longer answer: currently, we have a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of HNSW to have [full CRUD-support](https://db-engines.com/en/blog_post/87) in Weaviate. In principle, if an ANN algorithm allows for full CRUD support, Weaviate can support it. If you have ideas, suggestions, or plans (e.g., for a research project) for another ANN index type besides HNSW, please let us know in our [Slack channel](https://weaviate.io/slack).
+* The longer answer: currently, we have a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of HNSW to have [full CRUD-support](https://db-engines.com/en/blog_post/87) in Weaviate. In principle, if an ANN algorithm allows for full CRUD support, Weaviate can support it. If you have ideas, suggestions, or plans (e.g., for a research project) for another ANN index type besides HNSW, please let us know in our [forum](https://forum.weaviate.io).
 
 
 ## HNSW

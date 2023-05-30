@@ -27,10 +27,9 @@ def preprocess_codeblock(raw_codeblock: str, lang: str="py", custom_replace_pair
     proc_codeblock = raw_codeblock
 
     common_replace_pairs = [
-        ["http://localhost:8080", "http://localhost:8099"],  # Specify different port to usual to avoid confusion
+        ["http://localhost:8080", "http://localhost:8099"],  # Specify different port from usual to avoid confusion
         ["https://some-endpoint.weaviate.network", "http://localhost:8099"],
         ["https://anon-endpoint.weaviate.network", "http://localhost:8090"],
-        ["<YOUR-WEAVIATE-API-KEY>", "secr3tk3y"],
         ["YOUR-WEAVIATE-API-KEY", "secr3tk3y"],
     ]
 

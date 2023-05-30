@@ -49,7 +49,7 @@ The inference model is a service that provides at least four API endpoints:
 3. `GET /meta` -> which should respond meta information about the inference model
 4. `POST /<foo>` (at least 1) -> which is the endpoint that the Weaviate Module uses for inference. For a vectorizer this might for example be `POST /vectors`, which takes a JSON body with the data to vectorize. A vector will be returned (in JSON format). The Question Answering model, on the other hand, has an endpoint `POST /answers`, which takes a JSON body with the text to tokenize and returns a list of tokens found in the text (also formatted as JSON).
 
-You can always ask us on [Slack](https://weaviate.io/slack) or [GitHub](https://github.com/weaviate/weaviate/issues) to get help with the design.
+You can always ask us on [the forum](https://forum.weaviate.io/), [Slack](https://weaviate.io/slack) or [GitHub](https://github.com/weaviate/weaviate/issues) to get help with the design.
 
 # How to build a custom module - guidelines
 

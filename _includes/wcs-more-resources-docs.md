@@ -1,6 +1,6 @@
 ### Support & Troubleshooting
 
-All Weaviate users are welcome to join our community [Slack](https://weaviate.io/slack).
+All Weaviate users are welcome to join our community [Slack](https://weaviate.io/slack) and [forum](https://forum.weaviate.io/).
 
 Additionally, paid customers can also contact support via channels provided during cluster creation and/or on-boarding.
 
