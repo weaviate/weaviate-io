@@ -197,9 +197,9 @@ assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generat
 # End test
 
 
-# ====================================
+# ======================================
 # ===== GROUPED GENERATIVE EXAMPLE =====
-# ====================================
+# ======================================
 
 # GroupedGenerativePython
 generatePrompt = "What do these animals have in common, if anything?"
@@ -207,7 +207,9 @@ generatePrompt = "What do these animals have in common, if anything?"
 response = (
   client.query
   .get("JeopardyQuestion", ["points"])
+  # highlight-start
   .with_generate(grouped_task=generatePrompt)
+  # highlight-end
   .with_near_text({
     "concepts": ["Cute animals"]
   })
@@ -270,6 +272,7 @@ gql_query = '''
     ) {
       points
       _additional {
+        # highlight-start
         generate(
           groupedResult: {
             task: """
@@ -280,6 +283,7 @@ gql_query = '''
           groupedResult
           error
         }
+        # highlight-end
       }
     }
   }
@@ -293,9 +297,9 @@ assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generat
 # End test
 
 
-# =====================================================
+# ======================================================
 # ===== GROUPED GENERATIVE EXAMPLE WITH PROPERTIES =====
-# =====================================================
+# ======================================================
 
 expected_response = """
 # GroupedGenerativeProperties Expected Results

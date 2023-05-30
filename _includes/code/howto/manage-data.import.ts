@@ -25,7 +25,6 @@ import csv from 'csv-parser';
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',  // Replace with your Weaviate URL
-  // Replace w/ your Weaviate instance API key. Delete if authentication is disabled.
   // apiKey: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),  // If auth is on. Replace w/ your Weaviate instance API key.
   headers: {
     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY,  // Replace w/ your OPENAI API key
