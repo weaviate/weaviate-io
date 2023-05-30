@@ -126,7 +126,34 @@ for (const g of genResults.slice(1)) {
 // ======================================================
 
 // GroupedGenerativeProperties
+generatePrompt = 'What do these animals have in common, if anything?';
 
-// TODO - add client code when made available
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withGenerate({
+    groupedTask: generatePrompt,
+    // highlight-start
+    groupedProperties: ['answer', 'question'],  // available since client version 1.3.2
+    // highlight-end
+  })
+  .withNearText({
+    concepts: ['Australian animals'],
+  })
+  .withFields('question points')
+  .withLimit(3)
+  .do();
 
+console.log(JSON.stringify(result, null, 2));
 // END GroupedGenerativeProperties
+
+// Tests
+genResults = result.data.Get.JeopardyQuestion;
+assert.equal(genResults.length, 3);
+assert.equal(genResults[0]._additional.generate.error, null);
+assert.ok(genResults[0]._additional.generate.groupedResult.includes('Australia'));
+for (const g of genResults.slice(1)) {
+  assert.equal(g._additional.generate, null);
+  assert.equal(typeof g.points, 'number');
+  assert.equal(typeof g.question, 'string');
+}

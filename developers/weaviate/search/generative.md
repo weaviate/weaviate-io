@@ -211,21 +211,42 @@ It should produce a response like the one below:
 
 You can specify which properties will be included in the `grouped task` prompt. Use this to limit the information provided in the prompt, and to reduce the prompt length.
 
-In the below example, the prompt will only include the `question` and `answer` properties. Note that the `answer` property is not explicitly retrieved in the query, but used in the prompt.
+In the below example, the prompt will only include the `question` and `answer` properties. Note that the `answer` property is not explicitly retrieved in the query, but is used by the prompt.
 
 <!-- TODO - add client code when made available -->
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
+  <TabItem value="python" label="Python">
+  
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# GroupedGenerativeProperties Python"
+    endMarker="# END GroupedGenerativeProperties Python"
+    language="py"
+  />
+  
+  </TabItem>
+  <TabItem value="js" label="JavaScript/TypeScript">
+  
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// GroupedGenerativeProperties"
+    endMarker="// END GroupedGenerativeProperties"
+    language="ts"
+  />
+  
+  </TabItem>
 
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GroupedGenerativePropertiesGraphQL"
-  endMarker="# END GroupedGenerativePropertiesGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
+  <TabItem value="graphql" label="GraphQL">
+  
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# GroupedGenerativePropertiesGraphQL"
+    endMarker="# END GroupedGenerativePropertiesGraphQL"
+    language="graphql"
+  />
+  
+  </TabItem>
 </Tabs>
 
 <details>
