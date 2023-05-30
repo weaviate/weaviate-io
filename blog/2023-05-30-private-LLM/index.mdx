@@ -15,7 +15,7 @@ description: "A discussion on data privacy and privacy-preserving machine learni
 
 Large Language Models (LLM’s) have revolutionized how we access and consume information shifting the pendulum from a search engine market that was predominantly retrieval based (where we asked for source documents containing concepts relevant to our search query) to one now that is growingly memory based and performs generative search (where we ask LLMs to generate answers to questions based on their knowledge of and training on massive datasets). More importantly, what’s different this time is that with the advent of widely accessible products, like ChatGPT that have exposed the underlying technology of these models to the wider consumer market, we’re seeing these models revolutionize how we work, learn and interact on a scale never seen before.
 
-It is due to this wide-scale adoption of LLM’s that makes the concerns and challenges around privacy and data security are paramount and ones each organization needs to address. In this blog post we will explore some of the different potential approaches organizations can take to ensure robust data privacy while harnessing the power of these LLM’s.
+It is due to this wide-scale adoption of LLM’s that makes the concerns and challenges around privacy and data security paramount and ones that each organization needs to address. In this blog post we will explore some of the different potential approaches organizations can take to ensure robust data privacy while harnessing the power of these LLM’s.
 
 ## Understanding the Privacy Challenge
 
@@ -47,7 +47,7 @@ In traditional encryption, encrypted data can only be operated on in its decrypt
 
 HE enables the secure outsourcing of data processing tasks to third-party service providers or cloud platforms. Data owners can delegate computations without revealing the underlying data, ensuring confidentiality while benefiting from the superior computational resources available by large cloud providers. By allowing computations on encrypted data, it enables training and inference on sensitive datasets without revealing their contents. HE seems to be a very promising way of achieving privacy-preserving LLMs usage simply by encrypting the prompt token and decrypting the generated response.
 
-On a practical level however HE does have some disadvantages: It is much harder to implement LLM training and inference with HE data than on unencrypted data, and more computing is required to process encrypted data which increases processing times and further increases compute requirements which are already very high, you also lose out on model quality and accuracy when training/inferencing on encrypted data(this is because the encryption process adds noise to the data) and thus you have to balance privacy vs model performance/utility.
+On a practical level however HE does have some disadvantages: It is much harder to implement LLM training and inference with HE data than on unencrypted data, and more compute is required to process encrypted data which increases processing times and further increases compute requirements which are already very high, you also lose out on model quality and accuracy when training/inferencing on encrypted data(this is because the encryption process adds noise to the data) and thus you have to balance privacy vs model performance/utility.
 
 ### Locally Deployed LLMs
 
