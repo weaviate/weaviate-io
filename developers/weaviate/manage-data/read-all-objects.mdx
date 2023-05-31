@@ -2,13 +2,14 @@
 title: Read all objects
 sidebar_position: 40
 image: og/docs/howto.jpg
-# tags: ['how-to', 'retrieve all objects']
+# tags: ['how-to', 'cursor']
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCodeExample from '!!raw-loader!/_includes/code/howto.exhausive.retrieval.py';
+import PythonCode from '!!raw-loader!/_includes/code/howto/read-all-objects.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/read-all-objects.ts';
 
 ## Overview
 
@@ -29,62 +30,99 @@ You can list (i.e. retrieve) every object as shown in the below example, looping
 The below example connects to a "source" instance at `https://some-endpoint.weaviate.network`. It also defines a function that will fetch a group of objects (and their `title` property) in the `WineReview` class from using the ID of the last object retrieved as the cursor:
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCodeExample}
-  startMarker="# Retrieve data"
-  endMarker="# Use this function to retrieve data"
-  language="py"
-/>
-</TabItem>
+
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# Retrieve data"
+      endMarker="# Use this function to retrieve data"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// Retrieve data"
+      endMarker="// Use this function to retrieve data"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Fetch the schema
 
-You can fetch the existing schema like this:
+You can fetch the existing class definition like this:
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCodeExample}
-  startMarker="# Fetch the schema"
-  endMarker="# Finished fetching the schema"
-  language="py"
-/>
-</TabItem>
+  <TabItem value="py" label="Python">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# Fetch the schema"
+    endMarker="# Finished fetching the schema"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="TypeScript">
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// Fetch the schema"
+    endMarker="// Finished fetching the schema"
+    language="ts"
+  />
+  </TabItem>
 </Tabs>
 
 ### Restore to a target instance
 
 And then restore to a target instance, by:
-- Creating the same class in the target instance using the fetched schema, and
+- Creating the same class in the target instance using the fetched class definition, and
 - Then streaming the objects from the source instance to the target instance using batch imports.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCodeExample}
-  startMarker="# Restore to a new (target) instance"
-  endMarker="# Finished restoring to the target instance"
-  language="py"
-/>
-</TabItem>
+  <TabItem value="py" label="Python">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# Restore to a new (target) instance"
+    endMarker="# Finished restoring to the target instance"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="TypeScript">
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// Restore to a new (target) instance"
+    endMarker="// Finished restoring to the target instance"
+    language="ts"
+  />
+  </TabItem>
 </Tabs>
+
 
 ### Putting it together
 
 Putting the pieces together, the below example will retrieve all objects and the schema from the `WineReview` class from `https://some-endpoint.weaviate.network` and populate `https://anon-endpoint.weaviate.network` with the same:
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCodeExample}
-  startMarker="# CursorExample"
-  endMarker="# END CursorExample"
-  language="py"
-/>
-</TabItem>
+  <TabItem value="py" label="Python">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# CursorExample"
+    endMarker="# END CursorExample"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="TypeScript">
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// CursorExample"
+    endMarker="// END CursorExample"
+    language="ts"
+  />
+  </TabItem>
 </Tabs>
+
 
 ## More Resources
 
