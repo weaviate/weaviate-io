@@ -449,7 +449,7 @@ For example, this data object,
 
 ```js
 Article = {
-  summery: "Cows lose their jobs as milk prices drop",
+  summary: "Cows lose their jobs as milk prices drop",
   text: "As his 100 diary cows lumbered over for their Monday..."
 }
 ```
@@ -457,7 +457,7 @@ Article = {
 will be vectorized as:
 
 ```md
-article cows lose their jobs as milk prices drop summary as his diary cows lumbered over for their monday...
+article cows lose their jobs as milk prices drop as his diary cows lumbered over for their monday...
 ```
 
 By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. The vectorization behavior can be configured on a per-class basis with `vectorizeClassName` and per-property basis with `skip` and `vectorizePropertyName`.
