@@ -19,12 +19,12 @@ client = weaviate.Client(
 # =====================================
 
 # SingleGenerativePython
-generatePrompt = "Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."
+generate_prompt = "Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."
 
 response = (
   client.query
   .get("JeopardyQuestion", ["question"])
-  .with_generate(single_prompt=generatePrompt)
+  .with_generate(single_prompt=generate_prompt)
   .with_near_text({
     "concepts": ["World history"]
   })
@@ -112,12 +112,12 @@ assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generat
 # =====================================================
 
 # SingleGenerativePropertiesPython
-generatePrompt = "Convert this quiz question: {question} and answer: {answer} into a trivia tweet."
+generate_prompt = "Convert this quiz question: {question} and answer: {answer} into a trivia tweet."
 
 response = (
   client.query
   .get("JeopardyQuestion")
-  .with_generate(single_prompt=generatePrompt)
+  .with_generate(single_prompt=generate_prompt)
   .with_near_text({
     "concepts": ["World history"]
   })
@@ -197,17 +197,19 @@ assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generat
 # End test
 
 
-# ====================================
+# ======================================
 # ===== GROUPED GENERATIVE EXAMPLE =====
-# ====================================
+# ======================================
 
 # GroupedGenerativePython
-generatePrompt = "What do these animals have in common, if anything?"
+generate_prompt = "What do these animals have in common, if anything?"
 
 response = (
   client.query
   .get("JeopardyQuestion", ["points"])
-  .with_generate(grouped_task=generatePrompt)
+  # highlight-start
+  .with_generate(grouped_task=generate_prompt)
+  # highlight-end
   .with_near_text({
     "concepts": ["Cute animals"]
   })
@@ -270,6 +272,7 @@ gql_query = '''
     ) {
       points
       _additional {
+        # highlight-start
         generate(
           groupedResult: {
             task: """
@@ -280,6 +283,7 @@ gql_query = '''
           groupedResult
           error
         }
+        # highlight-end
       }
     }
   }
@@ -293,9 +297,38 @@ assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generat
 # End test
 
 
-# =====================================================
+# ======================================================
 # ===== GROUPED GENERATIVE EXAMPLE WITH PROPERTIES =====
-# =====================================================
+# ======================================================
+
+# GroupedGenerativeProperties Python
+generate_prompt = 'What do these animals have in common, if anything?'
+
+response = (
+  client.query
+  .get('JeopardyQuestion', ['question points'])
+  .with_generate(
+      grouped_task=generate_prompt,
+      # highlight-start
+      grouped_properties=['answer', 'question']  # available since client version 3.19.2
+      # highlight-end
+  )
+  .with_near_text({
+    'concepts': ['Australian animals']
+  })
+  .with_limit(3)
+).do()
+
+print(json.dumps(response, indent=2))
+# END GroupedGenerativeProperties Python
+
+# Test results
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'points', '_additional'}
+assert "Australia" in response['data']['Get']['JeopardyQuestion'][0]['_additional']['generate']['groupedResult']
+assert response['data']['Get']['JeopardyQuestion'][1].keys() == {'question', 'points', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][2]['_additional'] == {'generate': None}
+# End test
+
 
 expected_response = """
 # GroupedGenerativeProperties Expected Results
@@ -352,7 +385,9 @@ gql_query = '''
             task: """
               What do these animals have in common, if anything?
             """
+            # highlight-start
             properties: ["answer", "question"]
+            # highlight-end
           }
         ) {
           groupedResult
@@ -369,6 +404,6 @@ gqlresponse = client.query.raw(gql_query)
 print(json.dumps(gqlresponse, indent=2))
 
 # Test results
-assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0].keys() == {"points", "_additional"}
-assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["groupedResult"] is not None
+assert gqlresponse['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'points', '_additional'}
+assert 'Australia' in gqlresponse['data']['Get']['JeopardyQuestion'][0]['_additional']['generate']['groupedResult']
 # End test
