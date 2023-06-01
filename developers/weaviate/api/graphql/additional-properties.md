@@ -8,6 +8,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
+
+<TryEduDemo />
+
 ## Introduction
 
 GraphQL additional properties can be used on data objects in Get{} Queries to get additional information about the returned data objects. Which additional properties are available depends on the modules that are attached to Weaviate. The fields `id`, `vector`, `certainty`, `featureProjection` and `classification` are available from Weaviate Core. On nested GraphQL fields (references to other data classes), only the `id` can be returned. Explanation on specific additional properties can be found on the module pages, see for example [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#additional-graphql-api-properties).
@@ -19,6 +23,37 @@ An example query getting the [UUID](#id) and the [distance](#distance).
 import GraphQLUnderscoreDistance from '/_includes/code/graphql.underscoreproperties.distance.mdx';
 
 <GraphQLUnderscoreDistance/>
+
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "_additional": {
+            "distance": 0.15422738,
+            "id": "e76ec9ae-1b84-3995-939a-1365b2215312"
+          },
+          "title": "How to Dress Up For an Untraditional Holiday Season"
+        },
+        {
+          "_additional": {
+            "distance": 0.15683109,
+            "id": "a2d51619-dd22-337a-8950-e1a407dab3d2"
+          },
+          "title": "2020's biggest fashion trends reflect a world in crisis"
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ## _additional property
 
@@ -208,6 +243,45 @@ An example with default settings:
 import GraphQLUnderscoreFeature from '/_includes/code/graphql.underscoreproperties.featureprojection.mdx';
 
 <GraphQLUnderscoreFeature/>
+
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "_additional": {
+            "featureProjection": {
+              "vector": [
+                -115.17981,
+                -16.873344
+              ]
+            }
+          },
+          "title": "Opinion | John Lennon Told Them \u2018Girls Don\u2019t Play Guitar.\u2019 He Was So Wrong."
+        },
+        {
+          "_additional": {
+            "featureProjection": {
+              "vector": [
+                -117.78348,
+                -21.845968
+              ]
+            }
+          },
+          "title": "Opinion | John Lennon Told Them \u2018Girls Don\u2019t Play Guitar.\u2019 He Was So Wrong."
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 The above result can be plotted as follows (where the result in red is the first result):
 
