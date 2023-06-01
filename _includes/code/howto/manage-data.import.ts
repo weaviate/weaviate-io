@@ -45,10 +45,116 @@ const classDefinition = {
 // Clean slate
 try {
   await client.schema.classDeleter().withClassName('JeopardyQuestion').do();
+  await client.schema.classDeleter().withClassName('YourClassName').do();
 } catch { }
 finally {
   await client.schema.classCreator().withClass(classDefinition).do();
 }
+
+
+// ==============================
+// ===== Basic batch import =====
+// ==============================
+
+// BasicBatchImportExample
+let className = 'YourClassName';  // Replace with your class name
+let dataObjs = [];
+for (let i = 1; i <= 5; i++)
+  dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
+
+// highlight-start
+let batcher5 = client.batch.objectsBatcher();
+for (const dataObj of dataObjs)
+  batcher5 = batcher5.withObject({
+    class: className,
+    properties: dataObj,
+  });
+
+// Flush
+await batcher5.do();
+// highlight-end
+// END BasicBatchImportExample
+
+let result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
+assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
+
+await client.schema.classDeleter().withClassName(className).do();
+
+
+// =======================================
+// ===== Batch import with custom ID =====
+// =======================================
+
+// BatchImportWithIDExample
+// highlight-start
+import { generateUuid5 } from 'weaviate-ts-client';  // requires v1.3.2+
+// highlight-end
+className = 'YourClassName';  // Replace with your class name
+dataObjs = [];
+for (let i = 1; i <= 5; i++)
+  dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
+
+// highlight-start
+let batcherId = client.batch.objectsBatcher();
+for (const dataObj of dataObjs)
+  batcherId = batcherId.withObject({
+    class: className,
+    properties: dataObj,
+    // highlight-start
+    id: generateUuid5(dataObj.title),
+    // highlight-end
+  });
+
+// Flush
+await batcherId.do();
+// END BatchImportWithIDExample
+
+result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
+assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
+result = await client.graphql.get().withClassName(className).withFields('title _additional { id }').do();
+for (const obj of result.data.Get[className])
+  assert.equal(obj['_additional']['id'], generateUuid5(obj['title']));
+
+await client.schema.classDeleter().withClassName(className).do();
+
+
+// ===========================================
+// ===== Batch import with custom vector =====
+// ===========================================
+
+// BatchImportWithVectorExample
+className = 'YourClassName';  // Replace with your class name
+dataObjs = [];
+const vectors = [];
+for (let i = 1; i <= 5; i++) {
+  dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
+  vectors.push(Array(10).fill(0.25 + i / 100));  // Replace with your actual vectors
+}
+
+// highlight-start
+let batcherVectors = client.batch.objectsBatcher();
+for (let i = 0; i < 5; i++)
+  batcherVectors = batcherVectors.withObject({
+    class: className,
+    properties: dataObjs[i],
+    // highlight-start
+    vector: vectors[i],
+    // highlight-end
+  });
+
+// Flush
+await batcherVectors.do();
+// END BatchImportWithVectorExample
+
+result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
+assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
+result = await client.graphql.get().withClassName(className).withFields('_additional { vector }').do();
+for (const obj of result.data.Get[className]) {
+  assert.ok(obj['_additional']['vector'][0] > 0.25);
+  assert.ok(obj['_additional']['vector'][9] <= 0.3);
+}
+
+await client.schema.classDeleter().withClassName(className).do();
 
 
 // ============================
@@ -137,7 +243,7 @@ console.log(`Finished importing ${counter} articles.`);
 // END JSON streaming  // END CSV streaming
 
 // Test
-const result = await client.graphql.aggregate().withClassName('JeopardyQuestion').withFields('meta { count }').do();
+result = await client.graphql.aggregate().withClassName('JeopardyQuestion').withFields('meta { count }').do();
 assert.deepEqual(result.data['Aggregate']['JeopardyQuestion'], [{ meta: { count: MAX_ROWS_TO_IMPORT * 2 } }]);
 const tokyoRose = await client.graphql.get().withClassName('JeopardyQuestion').withWhere({
   path: ['answer'],
@@ -146,3 +252,4 @@ const tokyoRose = await client.graphql.get().withClassName('JeopardyQuestion').w
 }).withFields('answer').do();
 assert.equal(tokyoRose.data.Get['JeopardyQuestion'].length, 2);
 // End test
+
