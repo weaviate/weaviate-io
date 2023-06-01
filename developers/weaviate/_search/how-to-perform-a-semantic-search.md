@@ -38,10 +38,6 @@ import HowtoSemanticSearchFilter from '/_includes/code/howto.semanticsearch.filt
 
 <HowtoSemanticSearchFilter/>
 
-import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
-
-<MoleculeGQLDemo query='%7B%0D%0A++Get%7B%0D%0A++++Publication%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++++certainty%3A+0.7%2C%0D%0A++++++++moveAwayFrom%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++++force%3A+0.45%0D%0A++++++++%7D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++++force%3A+0.85%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-
 This will result in something like the following. Vogue was selected as only result, because there were no other publications related enough to "fashion" and "haute couture".
 
 ```json
@@ -69,8 +65,6 @@ Let's search for data object about fashion again, but now we are not only intere
 import HowtoSemanticSearchFunction from '/_includes/code/howto.semanticsearch.function.mdx';
 
 <HowtoSemanticSearchFunction/>
-
-<MoleculeGQLDemo query='%7B%0D%0A++Explore+%28%0D%0A++++nearText%3A+%7B%0D%0A++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++certainty%3A+0.7%2C%0D%0A++++++moveTo%3A+%7B%0D%0A++++++++concepts%3A+%5B%22haute+couture%22%5D%2C%0D%0A++++++++force%3A+0.45%0D%0A++++++%7D%2C%0D%0A++++++moveAwayFrom%3A+%7B%0D%0A++++++++concepts%3A+%5B%22finance%22%5D%2C%0D%0A++++++++force%3A+0.85%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%29+%7B%0D%0A++++beacon%0D%0A++++certainty%0D%0A++++className%0D%0A++%7D%0D%0A%7D'/>
 
 As you can see, the same arguments are applied in the "explore" filter and the `Explore{}` function. There is however no class specified. Instead, the `className` is returned as one of the GraphQL fields. The result of this query contains both data objects from the class `Publication` and `Article`:
 

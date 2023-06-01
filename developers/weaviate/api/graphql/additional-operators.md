@@ -32,8 +32,6 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
 <GraphQLFiltersLimit/>
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28limit%3A5%29+%7B%0D%0A++++++title%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-
 #### Example response
 
 ```json
@@ -74,8 +72,6 @@ An example of a stand-alone `limit` filter:
 import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
 
 <GraphQLFiltersOffset/>
-
-<MoleculeGQLDemo query='%7B%0A%20%20Get%20%7B%0A%20%20%20%20Article(%0A%20%20%20%20%20%20limit%3A%205%2C%0A%20%20%20%20%20%20offset%3A%202%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20title%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D'/>
 
 #### Example response
 
@@ -184,8 +180,6 @@ For example:
 ```
 
 <GraphQLGetSorting/>
-
-<MoleculeGQLDemo query='%7B%0A++Get+%7B%0A++++Article%28sort%3A+%5B%7B%0A++++++path%3A+%5B%22title%22%5D%0A++++++order%3A+asc%0A++++%7D%5D%29+%7B%0A++++++title%0A++++++url%0A++++++wordCount%0A++++%7D%0A++%7D%0A%7D'/>
 
 ## More Resources
 
