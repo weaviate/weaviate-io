@@ -1,5 +1,5 @@
-// How-to: Manage data -> Import objects - TypeScript examples
-// run with: node --loader=ts-node/esm --experimental-specifier-resolution=node manage-data.imports.ts
+// How-to: Manage data -> (Batch) Import items - TypeScript examples
+// run with: node --loader=ts-node/esm --experimental-specifier-resolution=node manage-data.import.ts
 import assert from 'assert';
 const MAX_ROWS_TO_IMPORT = 50;  // limit vectorization calls
 
@@ -46,8 +46,9 @@ const classDefinition = {
 try {
   await client.schema.classDeleter().withClassName('JeopardyQuestion').do();
   await client.schema.classDeleter().withClassName('YourClassName').do();
-} catch { }
-finally {
+} catch {
+  // ignore error if class doesn't exist
+} finally {
   await client.schema.classCreator().withClass(classDefinition).do();
 }
 
