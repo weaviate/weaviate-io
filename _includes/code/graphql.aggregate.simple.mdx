@@ -2,35 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Aggregate {
-    Article {
-      meta {
-        count
-      }
-      inPublication {
-        pointingTo
-        type
-      }
-      wordCount {
-        count
-        maximum
-        mean
-        median
-        minimum
-        mode
-        sum
-        type
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -38,10 +9,15 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-result = client.query.aggregate("Article") \
-    .with_meta_count() \
-    .with_fields("wordCount {count maximum mean median minimum mode sum type}") \
+response = (
+    client.query
+    .aggregate("Article")
+    .with_meta_count()
+    .with_fields("wordCount {count maximum mean median minimum mode sum type}")
     .do()
+)
+
+print(response)
 ```
 
 </TabItem>
@@ -207,6 +183,35 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Aggregate {
+    Article {
+      meta {
+        count
+      }
+      inPublication {
+        pointingTo
+        type
+      }
+      wordCount {
+        count
+        maximum
+        mean
+        median
+        minimum
+        mode
+        sum
+        type
+      }
+    }
+  }
+}
 ```
 
 </TabItem>

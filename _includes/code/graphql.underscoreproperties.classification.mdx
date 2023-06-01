@@ -2,32 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Article (
-      nearText: {
-        concepts: ["fashion"],
-      }
-    ) {
-      title
-      _additional {
-        classification {
-          basedOn
-          classifiedFields
-          completed
-          id
-          scope
-        }
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -204,6 +178,32 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article (
+      nearText: {
+        concepts: ["fashion"],
+      }
+    ) {
+      title
+      _additional {
+        classification {
+          basedOn
+          classifiedFields
+          completed
+          id
+          scope
+        }
+      }
+    }
+  }
+}
 ```
 
 </TabItem>

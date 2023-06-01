@@ -2,22 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Article (consistencyLevel: ONE) {
-      name
-      _additional {
-        isConsistent
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -103,6 +87,22 @@ Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName("Article").withConsistencyLevel(ConsistencyLevel.ONE)
       .withFields(name, _additional)
       .run();
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article (consistencyLevel: ONE) {
+      name
+      _additional {
+        isConsistent
+      }
+    }
+  }
+}
 ```
 
 </TabItem>
