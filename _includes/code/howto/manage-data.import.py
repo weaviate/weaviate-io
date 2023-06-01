@@ -59,6 +59,7 @@ response = client.query.aggregate(class_name).with_meta_count().do()
 assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
 client.schema.delete_class(class_name)
 
+
 # =======================================
 # ===== Batch import with custom ID =====
 # =======================================
@@ -92,6 +93,7 @@ for obj in response["data"]["Get"][class_name]:
     assert obj["_additional"]["id"] == gen_uuid
 client.schema.delete_class(class_name)
 
+
 # ===========================================
 # ===== Batch import with custom vector =====
 # ===========================================
@@ -122,6 +124,7 @@ for obj in response["data"]["Get"][class_name]:
     assert obj["_additional"]["vector"][0] >= 0.25
     assert obj["_additional"]["vector"][0] < 0.3
 client.schema.delete_class(class_name)
+
 
 # ============================
 # ===== Streaming import =====
