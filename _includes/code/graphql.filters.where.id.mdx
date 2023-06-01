@@ -2,27 +2,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Article(where: {
-        path: ["id"],
-        operator: Equal,
-        valueText: "00037775-1432-35e5-bc59-443baaef7d80"
-      }) {
-      title
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
 import weaviate
+import json
 
 client = weaviate.Client("http://localhost:8080")
 
@@ -32,14 +16,14 @@ where_filter = {
   "valueText": "00037775-1432-35e5-bc59-443baaef7d80"
 }
 
-query_result = (
+response = (
   client.query
   .get("Article", "title")
   .with_where(where_filter)
   .do()
 )
 
-print(query_result)
+print(json.dumps(response, indent=2))
 ```
 
 </TabItem>
@@ -180,6 +164,23 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(where: {
+        path: ["id"],
+        operator: Equal,
+        valueText: "00037775-1432-35e5-bc59-443baaef7d80"
+      }) {
+      title
+    }
+  }
+}
 ```
 
 </TabItem>

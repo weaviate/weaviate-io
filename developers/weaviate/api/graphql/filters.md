@@ -9,6 +9,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
+
+<TryEduDemo />
+
 ## Overview
 
 Conditional filters can be added to queries on the class level. The operator used for filtering is also called a `where` filter.
@@ -29,10 +33,6 @@ For example, this filter will only allow objects from the class `Article` with a
 import GraphQLFiltersWhereSimple from '/_includes/code/graphql.filters.where.simple.mdx';
 
 <GraphQLFiltersWhereSimple/>
-
-import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
-
-<TryEduDemo />
 
 <details>
   <summary>Expected response</summary>
@@ -163,7 +163,8 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
 
 <GraphQLFiltersWhereId/>
 
-### Example response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -179,6 +180,8 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
 }
 ```
 
+</details>
+
 ## Filter by timestamps
 
 Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueText`, and an RFC3339 datetime should be a `valueDate`.
@@ -191,7 +194,8 @@ import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where
 
 <GraphQLFiltersWhereTimestamps />
 
-### Example Response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -199,14 +203,16 @@ import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where
     "Get": {
       "Article": [
         {
-          "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
-        }
+          "title": "Army builds new body armor 14-times stronger in the face of enemy fire"
+        },
+        ...
       ]
     }
-  },
-  "errors": null
+  }
 }
 ```
+
+</details>
 
 ## Filter by property length
 
@@ -248,7 +254,30 @@ import GraphQLFiltersWhereOperands from '/_includes/code/graphql.filters.where.o
 
 <GraphQLFiltersWhereOperands />
 
-<TryEduDemo />
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "title": "China\u2019s long-distance lorry drivers are unsung heroes of its economy"
+        },
+        {
+          "title": "\u2018It\u2019s as if there\u2019s no Covid\u2019: Nepal defies pandemic amid a broken economy"
+        },
+        {
+          "title": "A tax hike threatens the health of Japan\u2019s economy"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ## Like operator
 
@@ -267,7 +296,8 @@ import GraphQLFiltersWhereLike from '/_includes/code/graphql.filters.where.like.
 ### Notes
 Each query using the `Like` operator iterates over the entire inverted index for that property. The search time will go up linearly with the dataset size. Be aware that there might be a point where this query is too expensive and will not work anymore. We will improve this implementation in a future release. You can leave feedback or feature requests in a [GitHub issue](https://github.com/weaviate/weaviate/issues).
 
-### Example response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -292,7 +322,7 @@ Each query using the `Like` operator iterates over the entire inverted index for
 }
 ```
 
-<TryEduDemo />
+</details>
 
 ## Beacon (reference) filters
 
@@ -304,6 +334,39 @@ import GraphQLFiltersWhereBeacon from '/_includes/code/graphql.filters.where.bea
 
 <GraphQLFiltersWhereBeacon/>
 
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "inPublication": [
+            {
+              "name": "New Yorker"
+            }
+          ],
+          "title": "The Hidden Costs of Automated Thinking"
+        },
+        {
+          "inPublication": [
+            {
+              "name": "New Yorker"
+            }
+          ],
+          "title": "The Real Deal Behind the U.S.\u2013Iran Prisoner Swap"
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
+
 ## Filter objects by count of reference
 
 Above example shows how filter by reference can solve straightforward questions like "Find all articles that are published by New Yorker". But questions like "Find all articles that are written by authors that wrote at least two articles", cannot be answered by the above query structure. It is however possible to filter by reference count. To do so, simply provide one of the existing compare operators (`Equal`, `LessThan`, `LessThanEqual`, `GreaterThan`, `GreaterThanEqual`) and use it directly on the reference element. For example:
@@ -311,6 +374,45 @@ Above example shows how filter by reference can solve straightforward questions 
 import GraphQLFiltersWhereBeaconCount from '/_includes/code/graphql.filters.where.beacon.count.mdx';
 
 <GraphQLFiltersWhereBeaconCount/>
+
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Author": [
+        {
+          "name": "Agam Shah",
+          "writesFor": [
+            {
+              "name": "Wall Street Journal"
+            },
+            {
+              "name": "Wall Street Journal"
+            }
+          ]
+        },
+        {
+          "name": "Costas Paris",
+          "writesFor": [
+            {
+              "name": "Wall Street Journal"
+            },
+            {
+              "name": "Wall Street Journal"
+            }
+          ]
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ## GeoCoordinates filter
 
@@ -322,7 +424,8 @@ import GraphQLFiltersWhereGeocoords from '/_includes/code/graphql.filters.where.
 
 <GraphQLFiltersWhereGeocoords/>
 
-### Example response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -345,10 +448,11 @@ import GraphQLFiltersWhereGeocoords from '/_includes/code/graphql.filters.where.
         }
       ]
     }
-  },
-  "errors": null
+  }
 }
 ```
+
+</details>
 
 ## Filter by null state
 

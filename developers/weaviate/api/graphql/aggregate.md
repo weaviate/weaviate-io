@@ -8,6 +8,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
+
+<TryEduDemo />
+
 ## Aggregate{} syntax and query structure
 
 This example shows how to aggregate over the entire database. [Below](#aggregating-a-vector-search--faceted-vector-search) you will find examples of how to dynamically retrieve objects using a vector search and then aggregating only the matches. The `Aggregate{}` function is structured as follows:
@@ -70,10 +74,6 @@ Below is an example query to obtain meta information about the data in the class
 import GraphQLAggregateSimple from '/_includes/code/graphql.aggregate.simple.mdx';
 
 <GraphQLAggregateSimple/>
-
-import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
-
-<TryEduDemo />
 
 The above query will result in something like the following:
 
@@ -142,13 +142,14 @@ The `groupBy{}` argument is structured as follows for the `Aggregate{}` function
 }
 ```
 
-In the following example, the articles are grouped by the property `isAccessible`, where one group contains accessible articles, and the second group contains articles of which the `isAccessible` property is set to False.
+In the following example, the articles are grouped by the property `inPublication`, referring to the article's publisher.
 
 import GraphQLAggGroupby from '/_includes/code/graphql.aggregate.groupby.mdx';
 
 <GraphQLAggGroupby/>
 
-The above query will result in something like the following:
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -158,38 +159,39 @@ The above query will result in something like the following:
         {
           "groupedBy": {
             "path": [
-              "isAccessible"
+              "inPublication"
             ],
-            "value": "True"
+            "value": "weaviate://localhost/Publication/16476dca-59ce-395e-b896-050080120cd4"
           },
           "meta": {
-            "count": 1523
+            "count": 829
           },
           "wordCount": {
-            "mean": 636
+            "mean": 604.6537997587454
           }
         },
         {
           "groupedBy": {
             "path": [
-              "isAccessible"
+              "inPublication"
             ],
-            "value":"False"
+            "value": "weaviate://localhost/Publication/c9a0e53b-93fe-38df-a6ea-4c8ff4501783"
           },
           "meta": {
-            "count": 350
+            "count": 618
           },
           "wordCount": {
-            "mean": 462
+            "mean": 917.1860841423949
           }
-        }
+        },
+        ...
       ]
     }
-  },
-  "errors": null
+  }
 }
 ```
 
+</details>
 
 ### Additional filters
 
@@ -229,6 +231,10 @@ import GraphQLAggNearObject from '/_includes/code/graphql.aggregate.nearObject.m
 <GraphQLAggNearObject/>
 
 #### nearVector
+
+:::tip Replace placeholder vector
+To run this query, replace the placeholder vector with a real vector from the same vectorizer that used to generate object vectors.
+:::
 
 import GraphQLAggNearVector from '/_includes/code/graphql.aggregate.nearVector.mdx';
 
