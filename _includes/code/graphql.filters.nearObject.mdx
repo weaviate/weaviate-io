@@ -2,28 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get{
-    Publication(
-      nearObject: {
-        id: "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6", # or weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6
-        distance: 0.6 # prior to v1.14, use certainty: 0.7
-      }
-    ){
-      name
-      _additional {
-        certainty # only works if distance==cosine
-        distance  # always works
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -189,6 +167,28 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get{
+    Publication(
+      nearObject: {
+        id: "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6", # or weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6
+        distance: 0.6 # prior to v1.14, use certainty: 0.7
+      }
+    ){
+      name
+      _additional {
+        certainty # only works if distance==cosine
+        distance  # always works
+      }
+    }
+  }
+}
 ```
 
 </TabItem>

@@ -8,6 +8,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
+
+<TryEduDemo />
+
 ## Setting search parameters
 
 Vector search parameters are added to GraphQL queries on the class level.
@@ -90,6 +94,47 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 
 <GraphQLFiltersNearObject/>
 
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Publication": [
+        {
+          "_additional": {
+            "distance": -1.1920929e-07
+          },
+          "name": "The New York Times Company"
+        },
+        {
+          "_additional": {
+            "distance": 0.059879005
+          },
+          "name": "New York Times"
+        },
+        {
+          "_additional": {
+            "distance": 0.09176409
+          },
+          "name": "International New York Times"
+        },
+        {
+          "_additional": {
+            "distance": 0.13954824
+          },
+          "name": "New Yorker"
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
+
 ## hybrid
 This filter allows you to combine [BM25](#bm25) and vector search to get the best of both search methods. It's supported by the `Get{}` function.
 
@@ -125,10 +170,6 @@ The `_additional` property in the GraphQL result exposes the `score`. Results ar
 import GraphQLFiltersHybrid from '/_includes/code/graphql.filters.hybrid.mdx';
 
 <GraphQLFiltersHybrid/>
-
-import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
-
-<TryEduDemo />
 
 ### Example with vector parameter
 If you're providing your own embeddings, you can supply the vector query to the `vector` variable. If Weaviate is handling the vectorization, then you can ignore the `vector` variable and use the example code snippets above.
@@ -199,7 +240,8 @@ The `_additional` property in the GraphQL result exposes the score:
 }
 ```
 
-### Example response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -221,12 +263,40 @@ The `_additional` property in the GraphQL result exposes the score:
 }
 ```
 
+</details>
+
 ### BM25 with Where Filter
 Introduced in `v1.18`, you can now use [`where` filters](../graphql/filters.md#where-filter) with `bm25`.
 
 import GraphQLFiltersBM25FilterExample from '/_includes/code/graphql.filters.bm25.filter.example.mdx';
 
 <GraphQLFiltersBM25FilterExample/>
+
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "summary": "Sometimes, the hardest part of setting a fishing record is just getting the fish weighed. A Kentucky fisherman has officially set a new record in the state after reeling in a 9.05-pound saugeye. While getting the fish in the boat was difficult, the angler had just as much trouble finding an officially certified scale to weigh it on. In order to qualify for a state record, fish must be weighed on an officially certified scale. The previous record for a saugeye in Kentucky ws an 8 pound, 8-ounce fish caught in 2019.",
+          "title": "Kentucky fisherman catches record-breaking fish, searches for certified scale"
+        },
+        {
+          "summary": "Unpaid last month because there wasn\u2019t enough money. Ms. Hunt picks up shifts at JJ Fish & Chicken, bartends and babysits. three daughters is subsidized,and cereal fromErica Hunt\u2019s monthly budget on $12 an hourErica Hunt\u2019s monthly budget on $12 an hourExpensesIncome and benefitsRent, $775Take-home pay, $1,400Varies based on hours worked. Daycare, $600Daycare for Ms. Hunt\u2019s three daughters is subsidized, as are her electricity and internet costs. Household goods, $300Child support, $350Ms. Hunt picks up shifts at JJ Fish & Chicken, bartends and babysits to make more money.",
+          "title": "Opinion | What to Tell the Critics of a $15 Minimum Wage"
+        },
+        ...
+      ]
+    }
+  }
+}
+
+```
+
+</details>
 
 ## group
 
@@ -245,9 +315,10 @@ import GraphQLFiltersGroup from '/_includes/code/graphql.filters.group.mdx';
 
 <GraphQLFiltersGroup/>
 
-<!-- {% include graphql.filters.group-gql-demo.html encoded_query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28%0D%0A++++++group%3A%7B%0D%0A++++++++type%3A+merge%2C%0D%0A++++++++force%3A0.05%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D' %} -->
-
 This results in the following. Note that publications `International New York Times`, `The New York Times Company` and `New York Times` are merged. The property values that do not have an exact overlap will all be shown, with the value of the most central concept before the brackets.
+
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -255,44 +326,45 @@ This results in the following. Note that publications `International New York Ti
     "Get": {
       "Publication": [
         {
-          "name": "Vogue"
+          "name": "Fox News"
         },
         {
           "name": "Wired"
         },
         {
-          "name": "Financial Times"
-        },
-        {
-          "name": "New Yorker"
-        },
-        {
-          "name": "The Economist"
-        },
-        {
-          "name": "International New York Times (The New York Times Company, New York Times)"
-        },
-        {
-          "name": "Wall Street Journal"
-        },
-        {
-          "name": "CNN"
+          "name": "The New York Times Company (New York Times, International New York Times)"
         },
         {
           "name": "Game Informer"
         },
         {
+          "name": "New Yorker"
+        },
+        {
+          "name": "Wall Street Journal"
+        },
+        {
+          "name": "Vogue"
+        },
+        {
+          "name": "The Economist"
+        },
+        {
+          "name": "Financial Times"
+        },
+        {
           "name": "The Guardian"
         },
         {
-          "name": "Fox News"
+          "name": "CNN"
         }
       ]
     }
-  },
-  "errors": null
+  }
 }
 ```
+
+</details>
 
 ## nearText
 
@@ -333,11 +405,42 @@ import GraphQLFiltersNearText from '/_includes/code/graphql.filters.nearText.mdx
 
 ### Example II
 
-You can also bias results toward other data objects' vector representations. For example, in this dataset, we have an ambiguous query on our news article dataset, which we bias towards an article called: ["Tohoku: A Japan destination for all seasons."](https://link.weaviate.io/3l8T738)
+You can also bias results toward other data objects' vector representations. For example, in this query, we move our query about "travelling in asia", towards an article on food. 
 
 import GraphQLFiltersNearText2Obj from '/_includes/code/graphql.filters.nearText.2obj.mdx';
 
 <GraphQLFiltersNearText2Obj/>
+
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "_additional": {
+            "certainty": 0.9619976580142975
+          },
+          "summary": "We've scoured the planet for what we think are 50 of the most delicious foods ever created. A Hong Kong best food, best enjoyed before cholesterol checks. When you have a best food as naturally delicious as these little fellas, keep it simple. Courtesy Matt@PEK/Creative Commons/FlickrThis best food Thai masterpiece teems with shrimp, mushrooms, tomatoes, lemongrass, galangal and kaffir lime leaves. It's a result of being born in a land where the world's most delicious food is sold on nearly every street corner.",
+          "title": "World food: 50 best dishes"
+        },
+        {
+          "_additional": {
+            "certainty": 0.9297388792037964
+          },
+          "summary": "The look reflects the elegant ambiance created by interior designer Joyce Wang in Hong Kong, while their mixology program also reflects the original venue. MONO Hong Kong , 5/F, 18 On Lan Street, Central, Hong KongKoral, The Apurva Kempinski Bali, IndonesiaKoral's signature dish: Tomatoes Bedugul. Esterre at Palace Hotel TokyoLegendary French chef Alain Ducasse has a global portfolio of restaurants, many holding Michelin stars. John Anthony/JW Marriott HanoiCantonese cuisine from Hong Kong is again on the menu, this time at the JW Marriott in Hanoi. Stanley takes its name from the elegant Hong Kong waterside district and the design touches reflect this legacy with Chinese antiques.",
+          "title": "20 best new Asia-Pacific restaurants to try in 2020"
+        }
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ### Additional information
 
