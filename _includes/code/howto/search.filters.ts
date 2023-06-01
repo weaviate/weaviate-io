@@ -1,4 +1,4 @@
-// Howto: Filters - TypeScript examples
+// Howto: Search -> Filters - TypeScript examples
 
 import assert from 'assert';
 
@@ -11,7 +11,7 @@ import weaviate from 'weaviate-ts-client';
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
+  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key.
   headers: {
     'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',
   },
@@ -19,9 +19,9 @@ const client = weaviate.client({
 
 let result;
 
-// ================================
+// =========================
 // ===== Single Filter =====
-// ================================
+// =========================
 
 // searchSingleFilter
 result = await client.graphql

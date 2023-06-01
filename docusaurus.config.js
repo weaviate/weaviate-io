@@ -171,12 +171,6 @@ const config = {
                                 label: 'Pricing',
                                 to: '/pricing',
                             },
-                            // {
-                            //     label: 'Documentation',
-                            //     docId: 'wcs/index',
-                            //     sidebarid: 'wcsSidebar',
-                            //     type: 'doc',
-                            // },
                             {
                                 label: 'Weaviate Cloud console',
                                 href: 'https://console.weaviate.cloud',
@@ -252,6 +246,10 @@ const config = {
                                 label: 'Slack',
                                 href: 'https://weaviate.io/slack',
                             },
+                            {
+                                label: 'Forum',
+                                href: 'https://forum.weaviate.io',
+                            },
                         ],
                     },
                     {
@@ -260,6 +258,13 @@ const config = {
                         position: 'right',
                         target: '_blank',
                         className: 'fab fa-lg fa-slack',
+                    },
+                    {
+                        to: 'https://forum.weaviate.io',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fab fa-lg fa-discourse',
                     },
                     {
                         to: 'https://github.com/weaviate/weaviate',
@@ -289,13 +294,6 @@ const config = {
                         position: 'right',
                         // target: '_blank',
                         className: 'fas fa-lg fa-microphone',
-                    },
-                    {
-                        to: 'https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fab fa-lg fa-spotify',
                     },
                     {
                         type: 'search',

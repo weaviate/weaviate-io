@@ -17,5 +17,6 @@ module.exports = {
     'prefer-const': 'warn',
     'no-use-before-define': 'error',
     'no-shadow': 'warn',
+    'no-constant-condition': ['warn', { checkLoops: false }],
   }
 };

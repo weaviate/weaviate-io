@@ -2,39 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Aggregate {
-    Article(nearVector:{
-      vector: [0.1, 0.2, -0.3]
-      certainty: 0.7       # at least one of "objectLimit",
-    },                     # and/or "certainty" must be set
-    objectLimit: 200) {    # when using near<Media>
-      meta {
-        count
-      }
-      inPublication {
-        pointingTo
-        type
-      }
-      wordCount {
-        count
-        maximum
-        mean
-        median
-        minimum
-        mode
-        sum
-        type
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -242,6 +209,39 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Aggregate {
+    Article(nearVector:{
+      vector: [0.1, 0.2, -0.3]
+      certainty: 0.7       # at least one of "objectLimit",
+    },                     # and/or "certainty" must be set
+    objectLimit: 200) {    # when using near<Media>
+      meta {
+        count
+      }
+      inPublication {
+        pointingTo
+        type
+      }
+      wordCount {
+        count
+        maximum
+        mean
+        median
+        minimum
+        mode
+        sum
+        type
+      }
+    }
+  }
+}
 ```
 
 </TabItem>

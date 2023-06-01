@@ -2,7 +2,7 @@
 title: Generative search
 sidebar_position: 80
 image: og/docs/howto.jpg
-# tags: ['how to', 'perform a semantic search']
+# tags: ['how to', 'generative']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -25,7 +25,7 @@ To use the generative search feature, you must:
 
 ## Single prompt
 
-A `single prompt` generative search returns a generated response for each object in the query results. For `single prompt` generative searches, you must specify which object `properties` to use in the prompt.
+A **single prompt** generative search returns a generated response for each object in the query results. For **single prompt** generative searches, you must specify which object *properties* to use in the prompt.
 
 In the below example, the query:
 1. Retrieves two `JeopardyQuestion` objects related to `World history`,
@@ -48,8 +48,8 @@ In the below example, the query:
 
 <FilteredTextBlock
   text={TSCode}
-  startMarker="// SingleGenerative"
-  endMarker="// END SingleGenerative"
+  startMarker="// SingleGenerative TS"
+  endMarker="// END SingleGenerative TS"
   language="js"
 />
 
@@ -82,9 +82,9 @@ It should produce a response like the one below:
 
 ### Single prompt property selection
 
-When using generative search with single prompts, you must specify which object `properties` to use in the prompt.
+When using generative search with single prompts, you must specify which object _properties_ to use in the prompt.
 
-The `properties` to use as a part of the prompt does *not* need to be one of the properties retrieved in the query.
+The properties to use as a part of the prompt do *not* need to be among the properties retrieved in the query.
 
 In the below example, the query:
 1. Retrieves two `JeopardyQuestion` objects related to `World history`,
@@ -109,8 +109,8 @@ Note that the `question` and `answer` properties are not retrieved in the query,
 
 <FilteredTextBlock
   text={TSCode}
-  startMarker="// SingleGenerativeProperties"
-  endMarker="// END SingleGenerativeProperties"
+  startMarker="// SingleGenerativeProperties TS"
+  endMarker="// END SingleGenerativeProperties TS"
   language="js"
 />
 
@@ -143,9 +143,9 @@ It should produce a response like the one below:
 
 ## Grouped task
 
-A `grouped task` works by generating a response for the entire query results set.
+A **grouped task** works by generating a response for the entire query results set.
 
-When using generative search with a `grouped task` the required parameter is the user prompt. By default, the entire set of properties are included in the combined prompt unless [specified otherwise](#grouped-task-property-selection).
+When using generative search with a **grouped task**, the required parameter is the user prompt. By default, the entire set of properties are included in the combined prompt unless [specified otherwise](#grouped-task-property-selection).
 
 ### Example
 
@@ -172,8 +172,8 @@ Note that the prompt includes information about the type of the animal (from the
 
 <FilteredTextBlock
   text={TSCode}
-  startMarker="// GroupedGenerative"
-  endMarker="// END GroupedGenerative"
+  startMarker="// GroupedGenerative TS"
+  endMarker="// END GroupedGenerative TS"
   language="js"
 />
 
@@ -211,21 +211,42 @@ It should produce a response like the one below:
 
 You can specify which properties will be included in the `grouped task` prompt. Use this to limit the information provided in the prompt, and to reduce the prompt length.
 
-In the below example, the prompt will only include the `question` and `answer` properties. Note that the `answer` property is not explicitly retrieved in the query, but used in the prompt.
+In the below example, the prompt will only include the `question` and `answer` properties. Note that the `answer` property is not explicitly retrieved in the query, but is used by the prompt.
 
 <!-- TODO - add client code when made available -->
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
+  <TabItem value="python" label="Python">
+  
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# GroupedGenerativeProperties Python"
+    endMarker="# END GroupedGenerativeProperties Python"
+    language="py"
+  />
+  
+  </TabItem>
+  <TabItem value="js" label="JavaScript/TypeScript">
+  
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// GroupedGenerativeProperties"
+    endMarker="// END GroupedGenerativeProperties"
+    language="ts"
+  />
+  
+  </TabItem>
 
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GroupedGenerativePropertiesGraphQL"
-  endMarker="# END GroupedGenerativePropertiesGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
+  <TabItem value="graphql" label="GraphQL">
+  
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# GroupedGenerativePropertiesGraphQL"
+    endMarker="# END GroupedGenerativePropertiesGraphQL"
+    language="graphql"
+  />
+  
+  </TabItem>
 </Tabs>
 
 <details>

@@ -2,28 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get{
-    Publication(
-      nearObject: {
-        id: "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf", # or weaviate://localhost/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf
-        distance: 0.6 # prior to v1.14, use certainty: 0.7
-      }
-    ){
-      name
-      _additional {
-        certainty # only works if distance==cosine
-        distance  # always works
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -31,7 +9,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-nearObject = {"id": "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"} # or {"beacon": "weaviate://localhost/e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"}
+nearObject = {"id": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6"} # or {"beacon": "weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6"}
 
 result = (
   client.query
@@ -59,7 +37,7 @@ client.graphql
       .get()
       .withClassName('Publication')
       .withFields('name _additional {certainty distance}}') # certainty only supported if distance==cosine
-      .withNearObject({id: 'e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf'})
+      .withNearObject({id: '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6'})
       .do()
       .then(res => {
         console.log(res)
@@ -101,7 +79,7 @@ func main() {
       {Name: "distance"},  // distance always supported
     }},
   }
-  nearObject := client.GraphQL().NearObjectArgBuilder().WithID("e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf")
+  nearObject := client.GraphQL().NearObjectArgBuilder().WithID("32d5a368-ace8-3bb7-ade7-9f7ff03eddb6")
   ctx := context.Background()
 
   result, err := client.GraphQL().Get().
@@ -145,7 +123,7 @@ public class App {
       }).build();
 
     NearObjectArgument nearObject = client.graphQL().arguments().nearObjectArgBuilder()
-      .id("e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf")
+      .id("32d5a368-ace8-3bb7-ade7-9f7ff03eddb6")
       .build();
 
     Result<GraphQLResponse> result = client.graphQL().get()
@@ -172,7 +150,7 @@ $ echo '{
     Get{
       Publication(
         nearObject: {
-          id: "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf",
+          id: "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
           distance: 0.6 # prior to v1.14 use certainty instead of distance
         }
       ){
@@ -189,6 +167,28 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get{
+    Publication(
+      nearObject: {
+        id: "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6", # or weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6
+        distance: 0.6 # prior to v1.14, use certainty: 0.7
+      }
+    ){
+      name
+      _additional {
+        certainty # only works if distance==cosine
+        distance  # always works
+      }
+    }
+  }
+}
 ```
 
 </TabItem>

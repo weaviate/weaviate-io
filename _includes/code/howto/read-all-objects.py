@@ -3,7 +3,7 @@
 import weaviate
 
 source_client = weaviate.Client(
-    url = "https://some-endpoint.weaviate.network",  # Replace with your endpoint
+    url="https://some-endpoint.weaviate.network",  # Replace with your endpoint
     auth_client_secret=weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # If auth enabled. Replace w/ your Weaviate instance API key
 )
 
@@ -11,6 +11,7 @@ batch_size = 20
 class_name = "WineReview"
 class_properties = ["title"]
 cursor = None
+
 
 def get_batch_with_cursor(client, class_name, class_properties, batch_size, cursor=None):
 
@@ -26,13 +27,14 @@ def get_batch_with_cursor(client, class_name, class_properties, batch_size, curs
         return query.do()
 # Use this function to retrieve data
 
+
 # Fetch the schema
 class_schema = source_client.schema.get(class_name)
 # Finished fetching the schema
 
 # Restore to a new (target) instance
 target_client = weaviate.Client(
-    url = "https://anon-endpoint.weaviate.network",  # Replace with your endpoint
+    url="https://anon-endpoint.weaviate.network",  # Replace with your endpoint
 )
 
 target_client.schema.create_class(class_schema)
@@ -52,7 +54,7 @@ with target_client.batch(
     batch_size=50,
 ) as batch:
 
-    # Batch import all Questions to the target instance
+    # Batch import all objects to the target instance
     while True:
         # From the SOURCE instance, get the next group of objects
         results = get_batch_with_cursor(source_client, class_name, class_properties, batch_size, cursor)
@@ -75,8 +77,8 @@ with target_client.batch(
         cursor = results["data"]["Get"][class_name][-1]["_additional"]["id"]
 # Finished restoring to the target instance  # END CursorExample
 
-# ===== Tests - pre-population =====
+# ===== Tests - post-population =====
 target_aggregate_resp = target_client.query.aggregate("WineReview").with_meta_count().do()
 target_aggregate_count = target_aggregate_resp["data"]["Aggregate"]["WineReview"][0]["meta"]["count"]
 assert target_aggregate_count == aggregate_count
-# ===== END Tests - pre-population =====
+# ===== END Tests - post-population =====

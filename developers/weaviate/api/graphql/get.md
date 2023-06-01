@@ -9,6 +9,10 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 
 <Badges/>
 
+import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
+
+<TryEduDemo />
+
 ## Get{} syntax and query structure
 
 The `Get{}` function fetches fields described in the schema. For example, if you've created a schema with a class `JeopardyQuestion` which has the properties `question`, `answer` and `points`, you can query it as follows:
@@ -16,11 +20,6 @@ The `Get{}` function fetches fields described in the schema. For example, if you
 import GraphQLGetSimple from '/_includes/code/graphql.get.simple.mdx';
 
 <GraphQLGetSimple/>
-
-<!-- TODO: remove for good, or get link to edu-demo?
-import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
-
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
 
 The above query will result in something like the following:
 
@@ -223,7 +222,7 @@ Will result in the following response:
 :::info Available from `v1.19` onwards
 :::
 
-The `Get{}` function can be configured to return results with different levels of consistency. This is useful when you want to retrieve the most up-to-date data, or when you want to retrieve data as fast as possible.
+Where replication is configured, the `Get{}` function can be configured to return results with different levels of consistency. This is useful when you want to retrieve the most up-to-date data, or when you want to retrieve data as fast as possible.
 
 Read more about consistency levels [here](../../concepts/replication-architecture/consistency.md).
 
@@ -239,11 +238,10 @@ import GraphQLGetBeacon from '/_includes/code/graphql.get.beacon.mdx';
 
 <GraphQLGetBeacon/>
 
-<!-- <MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%7B%0D%0A++++++title%0D%0A++++++url%0D%0A++++++wordCount%0D%0A++++++inPublication+%7B+++++++++++%23+the+reference%0D%0A++++++++...+on+Publication+%7B++++%23+you+always+set+the+destination+class%0D%0A++++++++++name++++++++++++++++++%23+the+property+related+to+target+class%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
-
-The above query will result in something like the following:
-
 import GraphQLGetBeaconUnfiltered from '!!raw-loader!/_includes/code/graphql.get.beacon.py';
+
+<details>
+  <summary>Expected response</summary>
 
 <FilteredTextBlock
   text={GraphQLGetBeaconUnfiltered}
@@ -251,6 +249,8 @@ import GraphQLGetBeaconUnfiltered from '!!raw-loader!/_includes/code/graphql.get
   endMarker="// ===== END EXPECTED RESULT ====="
   language="json"
 />
+
+</details>
 
 ## Additional properties
 

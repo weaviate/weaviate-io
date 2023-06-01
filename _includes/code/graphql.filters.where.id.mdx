@@ -2,44 +2,28 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Article(where: {
-        path: ["id"],
-        operator: Equal,
-        valueString: "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
-      }) {
-      title
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
 import weaviate
+import json
 
 client = weaviate.Client("http://localhost:8080")
 
 where_filter = {
   "path": ["id"],
   "operator": "Equal",
-  "valueString": "e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf"
+  "valueText": "00037775-1432-35e5-bc59-443baaef7d80"
 }
 
-query_result = (
+response = (
   client.query
   .get("Article", "title")
   .with_where(where_filter)
   .do()
 )
 
-print(query_result)
+print(json.dumps(response, indent=2))
 ```
 
 </TabItem>
@@ -60,7 +44,7 @@ client.graphql
       .withWhere({
         operator: 'Equal',
         path: ['id'],
-        valueString: 'e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf',
+        valueText: '00037775-1432-35e5-bc59-443baaef7d80',
       })
       .do()
       .then(res => {
@@ -100,7 +84,7 @@ func main() {
 	where := filters.Where().
 		WithPath([]string{"id"}).
 		WithOperator(filters.Equal).
-		WithValueString("e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf")
+		WithValueText("00037775-1432-35e5-bc59-443baaef7d80")
 
 	ctx := context.Background()
 
@@ -141,7 +125,7 @@ public class App {
         WhereFilter where = WhereFilter.builder()
                 .path(new String[]{ "id" })
                 .operator(Operator.Equal)
-                .valueString("e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf")
+                .valueText("00037775-1432-35e5-bc59-443baaef7d80")
                 .build();
 
         Result<GraphQLResponse> result = client.graphQL().get()
@@ -169,7 +153,7 @@ $ echo '{
       Article(where: {
           path: [\"id\"],
           operator: Equal,
-          valueString: \"e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf\"
+          valueText: \"00037775-1432-35e5-bc59-443baaef7d80\"
         }) {
         title
       }
@@ -180,6 +164,23 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(where: {
+        path: ["id"],
+        operator: Equal,
+        valueText: "00037775-1432-35e5-bc59-443baaef7d80"
+      }) {
+      title
+    }
+  }
+}
 ```
 
 </TabItem>

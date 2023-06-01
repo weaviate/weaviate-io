@@ -2,23 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Article(where: {
-        path: ["_creationTimeUnix"],
-        operator: GreaterThan,
-        valueDate: "2022-03-18T20:29:19.063-0500" // can also use `valueString: "1647653359063"`
-      }) {
-      title
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -29,17 +12,18 @@ client = weaviate.Client("http://localhost:8080")
 where_filter = {
   "path": ["_creationTimeUnix"],
   "operator": "GreaterThan",
-  "valueDate": "2022-03-18T20:26:34.586-0500"
+  # "valueDate": "2022-03-18T20:26:34.586-0500",
+  "valueText": "1647653359063"
 }
 
-query_result = (
+response = (
   client.query
   .get("Article", "title")
   .with_where(where_filter)
   .do()
 )
 
-print(query_result)
+print(response)
 ```
 
 </TabItem>
@@ -193,6 +177,23 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(where: {
+        path: ["_creationTimeUnix"],
+        operator: GreaterThan,
+        valueText: "1647653359063"  # Can also use valueDate: "2022-03-18T20:29:19.063-0500"
+      }) {
+      title
+    }
+  }
+}
 ```
 
 </TabItem>
