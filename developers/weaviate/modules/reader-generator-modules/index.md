@@ -10,4 +10,4 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-This section includes reference guides for reader & generator modules, such as the [QA module](./qna-transformers.md), [NER module](./ner-transformers.md) and the [Summerization module](./sum-transformers.md).
+This section includes reference guides for reader & generator modules, such as the [QA module](./qna-transformers.md), [NER module](./ner-transformers.md) and the [Summarization module](./sum-transformers.md).
