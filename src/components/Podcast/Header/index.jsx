@@ -26,7 +26,7 @@ export default function PodcastHeader() {
           color="outlined"
           link="https://podcasts.apple.com/gb/podcast/weaviate-podcast/id1680897946"
         >
-          Apple podcasts <i class="fa-solid fa-podcast"></i>
+          Apple Podcasts <i class="fa-solid fa-podcast"></i>
         </LinkButton>
         <LinkButton
           color="outlined"
