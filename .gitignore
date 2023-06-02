@@ -6,7 +6,7 @@ tests/temp.*
 **/.ipynb_checkpoints/*
 
 # Dependencies
-/node_modules
+**/node_modules
 
 # Production
 /build

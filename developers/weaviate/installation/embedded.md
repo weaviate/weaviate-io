@@ -4,6 +4,9 @@ sidebar_position: 4
 image: og/docs/installation.jpg
 # tags: ['installation', 'embedded', 'client']
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Overview
 
 Embedded Weaviate is a new deployment model, which allows you to start a Weaviate instance, straight in your application code using a Weaviate Client library.
@@ -16,7 +19,7 @@ Some of the APIs and parameters might change over time, as we work towards a per
 
 ### How does it work?
 
-With every Weaviate [release](https://github.com/weaviate/weaviate/releases) we also publish executable Linux binaries ([see assets](https://github.com/weaviate/weaviate/releases)).
+With every Weaviate release we also publish executable Linux binaries (see the **Assets** section on the [releases](https://github.com/weaviate/weaviate/releases) page).
 
 This allows launching the Weaviate database server from the client instantiation call, which makes the "installation" step invisible by pushing it to the background:
 
@@ -32,7 +35,7 @@ The Weaviate server spawned from the client can be configured via parameters pas
 | --------- | ---- | ----------- | ------------- |
 | persistence_data_path | string | Directory where the files making up the database are stored. | When the `XDG_DATA_HOME` env variable is set, the default value is:<br/>`XDG_DATA_HOME/weaviate/`<br/><br/>Otherwise it is:<br/>`~/.local/share/weaviate` |
 | binary_path | string | Directory where to download the binary. If deleted, the client will download the binary again. | When the `XDG_CACHE_HOME` env variable is set, the default value is:<br/>`XDG_CACHE_HOME/weaviate-embedded/`<br/><br/>Otherwise it is:<br/>`~/.cache/weaviate-embedded` |
-| version | string | Version takes two types of input:<br/>- **version number** - for example `"1.18.3"` or `"latest"`<br/>- **full URL** pointing to a Linux AMD64 or ARM64 binary | Latest stable version |
+| version | string | Version takes two types of input:<br/>- **version number** - for example `"1.19.6"` or `"latest"`<br/>- **full URL** pointing to a Linux AMD64 or ARM64 binary | Latest stable version |
 | port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 6666 |
 | hostname | string | Hostname/IP to bind to. | 127.0.0.1 |
 | additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. |
@@ -45,9 +48,9 @@ It is **not recommended** to modify the `XDG_DATA_HOME` and `XDG_CACHE_HOME` env
 To find the **full URL** for `version`:
 * head to [Weaviate releases](https://github.com/weaviate/weaviate/releases),
 * find the **Assets** section for the required Weaviate version
-* and copy the link to required `(name).tar.gz` file.
+* and copy the link to the `(name).tar.gz` file for the desired architecture.
 
-For example, here is the URL of the Weaviate `1.18.2` `AMD64` binary: `https://github.com/weaviate/weaviate/releases/download/v1.18.2/weaviate-v1.18.2-linux-amd64.tar.gz`.
+For example, here is the URL of the Weaviate `1.19.6` `AMD64` binary: `https://github.com/weaviate/weaviate/releases/download/v1.19.6/weaviate-v1.19.6-linux-amd64.tar.gz`.
 :::
 
 ### Default modules
@@ -62,32 +65,41 @@ The following modules are enabled by default:
 
 Additional modules can be enabled by setting additional environment variables as [laid out above](#embedded-options). For instance, to add a module called `backup-s3` to the set, you would pass it at instantiation as follows:
 
-Python:
-```python
-import weaviate
-from weaviate.embedded import EmbeddedOptions
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
 
-client = weaviate.Client(
-    embedded_options=EmbeddedOptions(
-        additional_env_vars={
-        "ENABLE_MODULES":
-        "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai"}
-    )
-)
-```
+  ```python
+  import weaviate
+  from weaviate.embedded import EmbeddedOptions
+  
+  client = weaviate.Client(
+      embedded_options=EmbeddedOptions(
+          additional_env_vars={
+          "ENABLE_MODULES":
+          "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai"}
+      )
+  )
+  ```
 
-TypeScript:
-```ts
-import weaviate, { EmbeddedClient, EmbeddedOptions } from 'weaviate-ts-embedded';
+  </TabItem>
 
-const client: EmbeddedClient = weaviate.client(
-  new EmbeddedOptions({
-    env: {
-      ENABLE_MODULES: "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai",
-    },
-  })
-);
-```
+  <TabItem value="js" label="TypeScript">
+
+  ```js
+  import weaviate, { EmbeddedClient, EmbeddedOptions } from 'weaviate-ts-embedded';
+  
+  const client: EmbeddedClient = weaviate.client(
+    new EmbeddedOptions({
+      env: {
+        ENABLE_MODULES: "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai",
+      },
+    })
+  );
+  ```
+
+  </TabItem>
+</Tabs>
+
 
 ## Starting Embedded Weaviate under the hood
 
