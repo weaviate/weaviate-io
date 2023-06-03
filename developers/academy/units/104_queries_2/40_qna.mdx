@@ -2,51 +2,108 @@
 title: Question and Answering (QnA)
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCodeExample from '!!raw-loader!./_snippets/40_qna.py';
+
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;TOP LEVEL HEADING
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
-Some text
+A question and answering (QnA) module does exactly what its name suggests. It will answer a question from you, based on the data present in the search results.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Theory subhead
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Practical subhead
+This is a more specific type of data transformation than one performed by a generative module. A QnA module looks to extract an answer to the question from the search data.
 
-Some text
+To this end, a QnA module may not provide an answer at all.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Theory subhead
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Practical subhead
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Configuration
 
-Some text
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Enable modules
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;TOP LEVEL HEADING
+To use QnA functionality, a `qna-xxx` module must be enabled in the Weaviate instance.
 
-Some text
+If you are using WCS, a `qna` module is enabled by default ([see docs](/developers/wcs#configuration). Otherwise, you must configure your Weaviate instance to make sure that a `qna-xxx` module is enabled.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Theory subhead
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Practical subhead
+This is outside the scope of this unit, but you can refer to the [module configuration](/developers/weaviate/modules/reader-generator-modules/index.md) for information on how to configure each module.
 
-Some text
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Configure classes
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Theory subhead
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Practical subhead
+If only one qna module is enabled for the Weaviate instance, Weaviate will automatically use that module for all qna tasks.
 
-Some text
+On the other hand, if multiple qna modules are configured, you must define for each class which qna model to use, such as shown below.
 
+```json
+{
+  "classes": [
+    {
+      "class": "JeopardyQuestion",
+      "moduleConfig": {
+        "qna-openai": {
+          "model": "text-davinci-002"
+        }
+      }
+    }
+  ]
+}
+```
 
+Use of QnA functionality also requires that the target class be configured with a vectorizer (`text2vec`) module.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;About QnA queries
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;How it works
+
+Similarly to generative modules, a QnA search involves two steps, involving:
+1. Perform a search; and then
+1. Attempt to extract an answer using the search results and the question.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;QnA syntax
+
+In a generative search, the same question text is used to both:
+- Perform the search, and
+- Extract the answer.
+
+So, in the below example - the query `"How many championships does Lewis Hamilton have?"` is used to find the nearest objects, from which Weaviate attempts to extract an answer to the question.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# SimpleAskQuery"
+  endMarker="# END SimpleAskQuery"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+Depending on whether a suitable answer was found, the `answer` sub-property may contain the answer and its position in the text, or none.
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Expected SimpleAskQuery results"
+  endMarker="# END Expected SimpleAskQuery results"
+  language="py"
+/>
+
+</details>
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;How to specify properties
+
+You can specify the object properties in which the QnA module is to search through for the answer.
+
+:::note `nearText` search unaffected
+Specifying properties to search only affects the answer extraction part of the query, as the underlying object vectors do not change.
+:::
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Object limits
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
-
-<Quiz questions={varName} />
-
-Any quiz questions
-
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
-
-:::note <i class="fa-solid fa-square-terminal"></i> Exercise
-Try out ...
-:::
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
@@ -57,25 +114,3 @@ Add summary
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
 <GiscusDocComment />
-
-import Quiz from '/src/components/Academy/quiz.js'
-const varName = [{
-  questionText: 'questionText',
-  answerOptions: [
-    {
-      answerText: 'answerOne',
-      isCorrect: false,
-      feedback: 'feedbackOne',
-    },
-    {
-      answerText: 'answerTwo',
-      isCorrect: false,
-      feedback: 'feedbackTwo',
-    },
-    {
-      answerText: 'answerThree',
-      isCorrect: false,
-      feedback: 'feedbackThree',
-    },
-  ]
-}];
