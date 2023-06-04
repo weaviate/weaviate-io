@@ -29,7 +29,7 @@ If you are after a practical guide, try the [quickstart tutorial](/developers/we
 
 ### [Data structure](./data.md)
 
-How Weaviate deals with data objects, including how they are stores, represented, and linked to each other.
+How Weaviate deals with data objects, including how they are stored, represented, and linked to each other.
 
 ### [Modules](./modules.md)
 
