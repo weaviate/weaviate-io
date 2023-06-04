@@ -13,7 +13,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
 
 ## Overview
 
-This page will show you how to create individual objects in Weaviate. Note that whenever you want to create more than one object at once, it's best to use [batch operations](../import).
+This page will show you how to create individual objects in Weaviate. Note that whenever you want to create more than one object at once, it's best to use [batch operations](./import.mdx).
 
 If a vectorizer is defined, [Weaviate will use the text properties](../modules/retriever-vectorizer-modules/index.md#vectorization-with-text2vec--modules) of the object (except those with `skip` set) to create the corresponding vector embedding.
 
@@ -77,7 +77,7 @@ Optionally, you can specify,
 
 ## Preventing duplicates
 
-To prevent duplicates, you can [efficiently check if an object exists](../read/#check-object-existence) given its [id](../api/graphql/additional-properties.md#id). Note that Weaviate allows identical objects (in terms of property values), so the id is the only differentiator.
+To prevent duplicates, you can [efficiently check if an object exists](./read.mdx/#check-object-existence) given its [id](../api/graphql/additional-properties.md#id). Note that Weaviate allows identical objects (in terms of property values), so the id is the only differentiator.
 
 
 ## Validating before creation
