@@ -1,8 +1,8 @@
 export const courseData = {
   "zero_to_mvp": {
-    title: "Zero to MVP",
+    title: "Zero to MVP: The basics",
     courseId: "1",
-    body: "Start here: This course will help you get started with all the core knowledge and essential skills you need to build a minimum viable product with Weaviate.",
+    body: "Start here: Get started with all the core knowledge and essential skills for building with Weaviate. Learn how to build a Weaviate database and effectively perform queries to find the right data.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/courses/zero_to_mvp",
     badgeType: "course",

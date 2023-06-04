@@ -72,7 +72,7 @@ export const unitData = {
   },
   queries_2: {
     title: "Queries 2",
-    body: "Learn even more queries, from hybrid searches that combine keyword and vector searches to generative searches that transform your data at retrieval.",
+    body: "Learn about even more query types, from hybrid searches that combine keyword and vector searches to generative searches that transform your data at retrieval.",
     buttonType: "Click here",
     badgeType: "practical",
     buttonURL: "/developers/academy/units/queries_2",
