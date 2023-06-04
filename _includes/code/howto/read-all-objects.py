@@ -71,7 +71,11 @@ with target_client.batch(
             new_object = dict()
             for prop in class_properties:
                 new_object[prop] = retrieved_object[prop]
-            target_client.batch.add_data_object(new_object, class_name=class_name)
+            target_client.batch.add_data_object(
+                new_object,
+                class_name=class_name,
+                # vector=...  # optionally update the vector
+            )
 
         # Update the cursor
         cursor = results["data"]["Get"][class_name][-1]["_additional"]["id"]
