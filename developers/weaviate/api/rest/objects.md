@@ -161,7 +161,7 @@ The response of a `GET` query of a data object will give you information about a
 | `properties` > `{crefPropertyName}` > `classification` > `meanWinningDistance` | float | `classification` | The mean distance of the winning group. It is a normalized distance (between 0 and 1), where 0 means equal and 1 would mean a perfect opposite. |
 | `properties` > `{crefPropertyName}` > `classification` > `overallCount` | integer | `classification` | Overall neighbors checked as part of the classification. In most cases this will equal `k`, but could be lower than `k` - for example if not enough data was present. |
 | `properties` > `{crefPropertyName}` > `classification` > `winningCount` | integer | `classification` | Size of the winning group, a number between 1 and `k`. |
-| `vector` | list of floats | `vector` | The long vector of the location of the object in the 300-dimensional space. |
+| `vector` | list of floats | `vector` | The vector embedding computed for the object. |
 | `classification` > `basedOn` | string |  `classification` | The property name where the classification was based on. |
 | `classification` > `classifiedFields` | string |  `classification` | The classified property. |
 | `classification` > `completed` | timestamp |  `classification` | The time of classification completion. |
