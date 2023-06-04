@@ -22,6 +22,8 @@ def test_against_blank_weaviate(empty_weaviates, script_loc):
     [
         "./developers/academy/units/104_queries_2/_snippets/10_bm25.py",
         "./developers/academy/units/104_queries_2/_snippets/20_hybrid.py",
+        "./developers/academy/units/104_queries_2/_snippets/30_generative.py",
+        "./developers/academy/units/104_queries_2/_snippets/40_qna.py",
     ],
 )
 def test_against_edu_demo(empty_weaviates, script_loc):
