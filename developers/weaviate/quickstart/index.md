@@ -23,11 +23,11 @@ Welcome to the **Quickstart tutorial**. Here, you will:
 - Perform a vector search
 
 :::info Object vectors
-When you import data into Weaviate, you can:
+When you import data into Weaviate, you can optionally:
 - Have **Weaviate create vectors**, or
 - Specify **custom vectors**.
 
-This tutorial covers both methods. 
+This tutorial demonstrates both methods. For the first method, we will use an **inference API**, and show you how you can change it.
 :::
 
 ### Source data
@@ -54,50 +54,56 @@ We will use a (tiny) dataset from a TV quiz show ("Jeopardy!").
 
 ## Create a Weaviate instance
 
-First, create a Weaviate database instance. We'll use a free instance from Weaviate Cloud Services (WCS). To create one:
+First, create a Weaviate database instance. We'll use a free instance from Weaviate Cloud Services (WCS).
 
 1. Go to the [WCS Console](https://console.weaviate.cloud), and
     1. Click on <kbd>Sign in with the Weaviate Cloud Services</kbd>.
-    1. If you don't have a WCS account, click on <kbd>Register</kbd> to do so.
+    1. If you don't have a WCS account, click on <kbd>Register</kbd>.
 1. Sign in with your WCS username and password.
 1. Click on <kbd>Create cluster</kbd>.
 
+<details>
+  <summary>See screenshot</summary>
+
+To create a WCS instance:
+
 <img src={WCScreateButton} width="100%" alt="Button to create WCS instance"/>
+
+</details>
 
 Then:
 
 1. Select the <kbd>Free sandbox</kbd> plan tier.
-1. Provide a *Cluster name*, which will become a part of its URL (with a suffix).
+1. Provide a *Cluster name*. This plus a suffix will be your URL.
 1. Set the *Enable Authentication?* option to <kbd>YES</kbd>.
+
+<details>
+  <summary>See screenshot</summary>
 
 Your selections should look like this:
 
 <img src={WCSoptionsWithAuth} width="100%" alt="Instance configuration"/>
 
-Finally, click on <kbd>Create</kbd>. You will see a tick ✔️ (in 2 minutes or so), when the instance has been created.
+</details>
+
+Finally, click on <kbd>Create</kbd>. A tick ✔️ will appear (in ~2 minutes) when the instance has been created.
 
 ### Make note of cluster details
 
-You will need the cluster URL, and authentication details.
-
-The <kbd>Details</kbd> button will reveal them. The authentication details (**Weaviate API key**) can be found by clicking on the key button.
-
-<img src={WCSApiKeyLocation} width="60%" alt="Instance API key location"/>
+You will need the cluster URL, and authentication details. Click on the <kbd>Details</kbd> button to see them. The authentication details (**Weaviate API key**) can be found by clicking on the key button.
 
 <details>
-  <summary>Note: Sandbox expiry & options</summary>
+  <summary>See screenshot</summary>
 
-import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+Your cluster details should look like this:
 
-<SandBoxExpiry/>
+<img src={WCSApiKeyLocation} width="60%" alt="Instance API key location"/>
 
 </details>
 
 ## Install a client library
 
-We recommend you use a Weaviate client library. Currently they are available for [Python](../client-libraries/python.md), [TypeScript/JavaScript](../client-libraries/typescript.mdx), [Go](../client-libraries/go.md) and [Java](../client-libraries/go.md).
-
-Install your preferred client by following the below:
+We recommend you use a Weaviate client library. Currently they are available for [Python](../client-libraries/python.md), [TypeScript/JavaScript](../client-libraries/typescript.mdx), [Go](../client-libraries/go.md) and [Java](../client-libraries/go.md). Install your preferred client as follows:
 
 import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
@@ -105,12 +111,12 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 ## Connect to Weaviate
 
-Now you can connect to your Weaviate instance. From the <kbd>Details</kbd> tab shown above in WCS, you will need:
+Now connect to your Weaviate instance. From the <kbd>Details</kbd> tab in WCS, get:
 - The Weaviate instance **API key**, and
 - The Weaviate instance **URL**.
 
-Since we will use the inference service API to generate vectors, we must provide:
-- An additional **inference API key** as an additional header.
+And if you want to use the inference service API to generate vectors, you must provide:
+- An additional **inference API key** in the header.
 
 :::tip Choose your own vectorizer module
 In this example, we use the `Hugging Face` inference API. But you can use others:
@@ -118,11 +124,11 @@ In this example, we use the `Hugging Face` inference API. But you can use others
 <details>
   <summary>What if I want to use a different vectorizer module?</summary>
 
-You can choose any vectorizer module for this tutorial, as long as:
+You can choose any vectorizer (`text2vec-xxx`) module for this tutorial, as long as:
 - The module is available in the Weaviate instance you are using, and
 - You have an API key (if necessary) for that module.
 
-We use the `text2vec-huggingface` module by default. But any of the following modules are available in the free sandbox. 
+We use the `text2vec-huggingface` module in the Quickstart, but all of the following modules are available in the free sandbox. 
 
 - `text2vec-cohere`
 - `text2vec-huggingface`
@@ -147,19 +153,23 @@ import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.conn
 
 <ConnectToWeaviateWithKey />
 
-Now you are able to connect to your Weaviate instance.
+Now you are connected to your Weaviate instance.
 
 ## Define a class
 
-Before adding data, first we need to define a data collection, called a "class", to store objects. In the class definition, we will specify a `vectorizer`. This will allow Weaviate to convert data objects to vectors.
+Next, we need to define a data collection (a "class" in Weaviate) to store objects in. 
 
-Create a `Question` class with a vectorizer configured as shown below. It includes the inference service setting to create vector embeddings. The class definition includes a suggested basic configuration for the module.
+Create a `Question` class with a `vectorizer` configured as shown below. This will allow Weaviate to convert data objects to vectors. It also includes the inference service setting to create vector embeddings. The class definition includes a suggested basic configuration for the module.
 
 :::tip Is a `vectorizer` setting mandatory?
 - No. You always have the option of providing vector embeddings yourself.
 - Setting a `vectorizer` gives Weaviate the option of creating vector embeddings for you.
     - If you do not wish to, you can set this to `none`.
 :::
+
+import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
+
+<CodeAutoschemaMinimumSchema />
 
 <details>
   <summary>If you are using a different vectorizer</summary>
@@ -233,61 +243,14 @@ class_obj = {
 
 </details>
 
-import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
-
-<CodeAutoschemaMinimumSchema />
-
-<details>
-  <summary>If you see <code>Error: Name 'Question' already used as a name for an Object class</code></summary>
-
-You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions.
-
-import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
-
-<CautionSchemaDeleteClass />
-
-</details>
-
-### Optional: Confirm class creation
-
-You can confirm that the class has been created by visiting the [`schema` endpoint](../api/rest/schema.md) here (replace the URL with your actual endpoint):
-
-```
-https://some-endpoint.weaviate.network/v1/schema
-```
-
-
-<details>
-  <summary>Expected response</summary>
-
-You should see:
-
-```json
-{
-    "classes": [
-        {
-            "class": "Question",
-            ...  // truncated additional information here
-            "vectorizer": "text2vec-huggingface"
-        }
-    ]
-}
-```
-
-Where the schema should indicate that the `Question` class has been added.
-
-:::note REST & GraphQL in Weaviate
-Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API endpoints can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
-:::
-
-</details>
-
 ## Add objects
 
-Now, add objects using a **batch import** process. You can do so as follows:
-- Load objects
-- Initialize a batch process
+Now, we'll add objects using a **batch import** process. We will:
+- Load objects,
+- Initialize a batch process, and
 - Add objects one by one, specifying the class (in this case, `Question`) to add to.
+
+We'll show both options, first using the `vectorizer` to create object vectors, and then providing custom vectors. 
 
 ### *Option 1*: Use the `vectorizer`
 
@@ -297,7 +260,7 @@ import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.m
 
 <CodeAutoschemaImport />
 
-### *Option 2*: Specify `vector`s
+### *Option 2*: Specify custom `vector`s
 
 Alternatively, you can also provide your own vectors to Weaviate. Regardless of whether a `vectorizer` is set, if a vector is specified, Weaviate will use it to represent the object.
 
@@ -307,7 +270,14 @@ import CodeAutoschemaImportCustomVectors from '/_includes/code/quickstart.autosc
 
 <CodeAutoschemaImportCustomVectors />
 
-If you are using a `vectorizer`, make sure that the vector comes from the same model as one specified in the `vectorizer`. In this case, they come from `sentence-transformers/all-MiniLM-L6-v2`.
+<details>
+  <summary>Custom vectors with a <code>vectorizer</code></summary>
+
+Note that you can specify a `vectorizer` and still provide a custom vector. In this scenario, make sure that the vector comes from the same model as one specified in the `vectorizer`. <p><br/></p>
+
+In this tutorial, they come from `sentence-transformers/all-MiniLM-L6-v2` - the same as specified in the vectorizer configuration.
+
+</details>
 
 :::tip (Almost) Alwaus use batch imports
 Batch imports provide significantly improved import performance, so you should almost always use batch imports unless you have a good reason not to, such as single object creation.
@@ -315,7 +285,7 @@ Batch imports provide significantly improved import performance, so you should a
 
 ## Putting it together
 
-The following code puts it all together. You can copy and paste this into your own code editor, and run it. Doing so will import the data into your Weaviate instance.
+The following code puts it all together. Try running it yourself to will import the data into your Weaviate instance.
 
 :::tip Remember to replace the **URL**, **Weaviate API key** and **inference API key**
 :::
@@ -323,31 +293,6 @@ The following code puts it all together. You can copy and paste this into your o
 import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoend.mdx'
 
 <CodeAutoschemaEndToEnd />
-
-<details>
-  <summary>Confirm data import</summary>
-
-To confirm successful data import, navigate to the [`objects` endpoint](../api/rest/objects.md) to check that all objects have been imported (replace with your actual endpoint):
-
-```
-https://some-endpoint.weaviate.network/v1/objects
-```
-
-You should see:
-
-```json
-{
-    "deprecations": null,
-    "objects": [
-        ...  // Details of each object
-    ],
-    "totalResults": 10  // You should see 10 results here
-}
-```
-
-Where you should be able to confirm that you have imported all `10` objects.
-
-</details>
 
 Congratulations, you've successfully built a vector database!
 
@@ -385,6 +330,82 @@ Well done. You have:
 - Performed a text similarity search.
 
 Where next is up to you. We include a few links below - or you can check out the sidebar.
+
+<details>
+  <summary>Note: Sandbox expiry & options</summary>
+
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/>
+
+</details>
+
+## Troubleshooting
+
+We provide answers to some common questions, or potential issues below.
+
+### Confirm class creation
+
+If you are not sure whether the class has been created, you can confirm it by visiting the [`schema` endpoint](../api/rest/schema.md) here (replace the URL with your actual endpoint):
+
+```
+https://some-endpoint.weaviate.network/v1/schema
+```
+
+<details>
+  <summary>Expected response</summary>
+
+You should see:
+
+```json
+{
+    "classes": [
+        {
+            "class": "Question",
+            ...  // truncated additional information here
+            "vectorizer": "text2vec-huggingface"
+        }
+    ]
+}
+```
+
+Where the schema should indicate that the `Question` class has been added.
+
+:::note REST & GraphQL in Weaviate
+Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API endpoints can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
+:::
+
+</details>
+
+### If you see <code>Error: Name 'Question' already used as a name for an Object class</code>
+
+You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions.
+
+import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
+
+<CautionSchemaDeleteClass />
+
+### Confirm data import
+
+To confirm successful data import, navigate to the [`objects` endpoint](../api/rest/objects.md) to check that all objects have been imported (replace with your actual endpoint):
+
+```
+https://some-endpoint.weaviate.network/v1/objects
+```
+
+You should see:
+
+```json
+{
+    "deprecations": null,
+    "objects": [
+        ...  // Details of each object
+    ],
+    "totalResults": 10  // You should see 10 results here
+}
+```
+
+Where you should be able to confirm that you have imported all `10` objects.
 
 ## Next
 
