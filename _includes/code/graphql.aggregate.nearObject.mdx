@@ -2,43 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Aggregate {
-    Article(
-      nearObject: {
-        id: "9199ee38-b0db-4800-b146-dea8cfc62351"
-        # prior to v1.14, use `certainty` instead of `distance`
-        distance: 0.6
-      },
-      # at least one of "objectLimit" and/or "distance" must be set when using near<Media>
-      objectLimit: 200
-    ) {
-      meta {
-        count
-      }
-      inPublication {
-        pointingTo
-        type
-      }
-      wordCount {
-        count
-        maximum
-        mean
-        median
-        minimum
-        mode
-        sum
-        type
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -52,7 +15,7 @@ result = (
   .with_meta_count()
   .with_fields("wordCount { count maximum mean median minimum mode sum type } inPublication { pointingTo type }")
   # prior to v1.14, use certainty instead of distance
-  .with_near_object({"id": "9199ee38-b0db-4800-b146-dea8cfc62351", "distance": 0.6})
+  .with_near_object({"id": "00037775-1432-35e5-bc59-443baaef7d80", "distance": 0.6})
   .with_object_limit(200)
   .do()
 )
@@ -76,7 +39,7 @@ client.graphql
       .withClassName('Article')
       .withFields('meta { count } wordCount { count maximum mean median minimum mode sum type } inPublication { pointingTo type }')
       // prior to v1.14, use certainty instead of distance
-      .withNearObject({ id: 'abefd256-8574-442b-9293-9205193737ee', distance: 0.6 })
+      .withNearObject({ id: '00037775-1432-35e5-bc59-443baaef7d80', distance: 0.6 })
       .withObjectLimit(100)
       .do()
       .then(res => {
@@ -134,7 +97,7 @@ func main() {
   // nearObject
   withNearObject := client.GraphQL().NearObjectArgBuilder().
     WithDistance(0.85). // At least one of distance or objectLimit need to be set
-    WithID("9ac36e33-6611-4fb3-bade-4b1e409c6564")
+    WithID("00037775-1432-35e5-bc59-443baaef7d80")
 
   result, err := client.GraphQL().
     Aggregate().
@@ -193,7 +156,7 @@ public class App {
     NearObjectArgument nearObject = NearObjectArgument.builder()
       // prior to v1.14 use certainty instead of distance
       .distance(0.6f) // at least one of certainty or objectLimit need to be set
-      .id("9199ee38-b0db-4800-b146-dea8cfc62351")
+      .id("00037775-1432-35e5-bc59-443baaef7d80")
       .build();
 
     Result<GraphQLResponse> result = client.graphQL().aggregate()
@@ -219,7 +182,7 @@ echo '{
     "query": "{
       Aggregate {
         Article(nearObject:{
-          id: \"9199ee38-b0db-4800-b146-dea8cfc62351\"
+          id: \"00037775-1432-35e5-bc59-443baaef7d80\"
           distance: 0.6
         },
         objectLimit: 200) {
@@ -248,6 +211,43 @@ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Aggregate {
+    Article(
+      nearObject: {
+        id: "00037775-1432-35e5-bc59-443baaef7d80"
+        # prior to v1.14, use `certainty` instead of `distance`
+        distance: 0.6
+      },
+      # at least one of "objectLimit" and/or "distance" must be set when using near<Media>
+      objectLimit: 200
+    ) {
+      meta {
+        count
+      }
+      inPublication {
+        pointingTo
+        type
+      }
+      wordCount {
+        count
+        maximum
+        mean
+        median
+        minimum
+        mode
+        sum
+        type
+      }
+    }
+  }
+}
 ```
 
 </TabItem>

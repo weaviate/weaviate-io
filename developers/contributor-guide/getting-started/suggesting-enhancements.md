@@ -22,6 +22,6 @@ Suggestions are tracked as GitHub issues, such as these in [Weaviate core]](http
 
 ## Working on your own suggestion
 
-You are welcome to implement your own suggestion and submit it! If you have any questions, feel free to reach out to us and the wider community on [Slack](https://weaviate.io/slack).
+You are welcome to implement your own suggestion and submit it! If you have any questions, feel free to reach out to us and the wider community on the [forum](https://forum.weaviate.io).
 
 For this, you will need a local development setup. Please follow the instructions in the [Weaviate development setup](../weaviate-core/setup.md) documentation.

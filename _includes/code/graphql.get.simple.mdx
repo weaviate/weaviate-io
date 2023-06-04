@@ -5,16 +5,6 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import UnfilteredCode from '!!raw-loader!/_includes/code/graphql.get.simple.py';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-<FilteredTextBlock
-  text={UnfilteredCode}
-  startMarker="# ===== GRAPHQL EXAMPLE ====="
-  endMarker="# ===== END GRAPHQL EXAMPLE ====="
-  language="py"
-/>
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
@@ -142,6 +132,16 @@ $ echo '{
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql
 ```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+<FilteredTextBlock
+  text={UnfilteredCode}
+  startMarker="# ===== GRAPHQL EXAMPLE ====="
+  endMarker="# ===== END GRAPHQL EXAMPLE ====="
+  language="py"
+/>
 
 </TabItem>
 </Tabs>

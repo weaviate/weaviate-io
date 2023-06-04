@@ -2,30 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Author(
-      where:{
-        valueInt: 2,
-        operator: GreaterThanEqual,
-        path: ["wroteArticles"]
-      }
-    ) {
-      name
-      wroteArticles {
-        ... on Article {
-          title
-        }
-      }
-    }
-  }
- }
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -36,17 +12,46 @@ client = weaviate.Client("http://localhost:8080")
 where_filter = {
   "valueInt": 2,
   "operator": "GreaterThanEqual",
-  "path": ["WroteArticles"]
+  "path": ["writesFor"]
 }
 
-query_result = (
+response = (
   client.query
-  .get("Author", ["name", "wroteArticles {... on Article {title}}"])
+  .get("Author", ["name", "writesFor {... on Publication { name }}"])
   .with_where(where_filter)
   .do()
 )
 
 print(query_result)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const weaviate = require('weaviate-client');
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+client.graphql
+      .get()
+      .withClassName('Author')
+      .withFields('name writesFor {... on Publication {name}}')
+      .withWhere({
+        valueInt: 2,
+        operator: 'GreaterThanEqual',
+        path: ['writesFor']
+      })
+      .do()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      });
 ```
 
 </TabItem>
@@ -70,19 +75,19 @@ public class App {
 
         Field name = Field.builder().name("name").build();
         Field wroteArticles = Field.builder()
-                .name("wroteArticles")
+                .name("writesFor")
                 .fields(new Field[]{
                         Field.builder()
-                                .name("... on Article")
+                                .name("... on Publication")
                                 .fields(new Field[]{
-                                        Field.builder().name("title").build()
+                                        Field.builder().name("name").build()
                                 })
                                 .build()
                 })
                 .build();
 
         WhereFilter where = WhereFilter.builder()
-                .path(new String[]{"wroteArticles"})
+                .path(new String[]{"writesFor"})
                 .operator(Operator.GreaterThanEqual)
                 .valueInt(2)
                 .build();
@@ -100,35 +105,6 @@ public class App {
         System.out.println(result.getResult());
     }
 }
-```
-
-</TabItem>
-<TabItem value="js" label="JavaScript">
-
-```js
-const weaviate = require('weaviate-client');
-
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-});
-
-client.graphql
-      .get()
-      .withClassName('Author')
-      .withFields('name wroteArticles {... on Article {title}}')
-      .withWhere({
-        valueInt: 2,
-        operator: 'GreaterThanEqual',
-        path: ['WroteArticles']
-      })
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
 ```
 
 </TabItem>
@@ -158,15 +134,15 @@ func main() {
 
 	fields := []graphql.Field{
 		{Name: "name"},
-		{Name: "wroteArticles", Fields: []graphql.Field{
-			{Name: "... on Article", Fields: []graphql.Field{
-				{Name: "title"},
+		{Name: "writesFor", Fields: []graphql.Field{
+			{Name: "... on Publication", Fields: []graphql.Field{
+				{Name: "name"},
 			}},
 		}},
 	}
 
 	where := filters.Where().
-		WithPath([]string{"wroteArticles"}).
+		WithPath([]string{"writesFor"}).
 		WithOperator(filters.GreaterThanEqual).
 		WithValueInt(2)
 
@@ -196,13 +172,13 @@ $ echo '{
         where:{
           valueInt: 2
           operator: GreaterThanEqual
-          path: [\"wroteArticles\"]
+          path: [\"writesFor\"]
         }
       ) {
         name
-        wroteArticles {
-          ... on Article {
-            title
+        writesFor {
+          ... on Publication {
+            name
           }
         }
       }
@@ -213,6 +189,30 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Author(
+      where:{
+        valueInt: 2,
+        operator: GreaterThanEqual,
+        path: ["writesFor"]
+      }
+    ) {
+      name
+      writesFor {
+        ... on Publication {
+          name
+        }
+      }
+    }
+  }
+ }
 ```
 
 </TabItem>

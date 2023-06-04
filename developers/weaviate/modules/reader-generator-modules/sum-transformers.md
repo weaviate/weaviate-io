@@ -108,13 +108,6 @@ import CodeSumTransformer from '/_includes/code/sum-transformers-module.mdx';
 
 <CodeSumTransformer />
 
-<!-- TODO: Update the live working example
-  We need to add the Summarizer to the cloud instance
-
-<!-- import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
-
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28%0D%0A++++++limit%3A+1%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional%7B%0D%0A++++++++tokens%28%0D%0A++++++++++properties%3A+%5B%22title%22%5D%2C%0D%0A++++++++++limit%3A+10%2C%0D%0A++++++++++certainty%3A+0.7%0D%0A++++++++%29+%7B%0D%0A++++++++++certainty%0D%0A++++++++++endPosition%0D%0A++++++++++entity%0D%0A++++++++++property%0D%0A++++++++++startPosition%0D%0A++++++++++word%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/> -->
-
 ### GraphQL response
 
 The answer is contained in a new GraphQL `_additional` property called `summary`, which returns a list of tokens. It contains the following fields:

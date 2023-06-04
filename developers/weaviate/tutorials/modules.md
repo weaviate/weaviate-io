@@ -80,12 +80,11 @@ If you don't want to vectorize a property at all, you can simply skip it.
 
 ## Example
 
-<!-- TODO: Update this to the new domain but https://edu-demo.weaviate.network/v1/schema doesn't have anonymous access enabled. -->
-If you [look at the schema](https://demo.dataset.playground.semi.technology/v1/schema) of the article demo dataset, you can see a complete example.
+The below is a complete example of a schema.
 
-Let's take a look at the schema item for the Article class. Look for the `"moduleConfig"` entries on the class and on the property level.
+Let's take a look at the definition for the `Article` class. Look for the `"moduleConfig"` entries on the class and on the property level.
 
-You will see that the class and property names are not indexed, but the article _itself_ is. So if you now retrieve a single article (like you can do [here](https://link.weaviate.io/3FeIwKU)), you know that the vector comes from the transformers module.
+You will see that the class and property names are not indexed, but the article _itself_ is. So if you now retrieve a single article, you know that the vector comes from the transformers module.
 
 ```json
 {
@@ -297,8 +296,6 @@ Like retrievers & vectorizers, the modules can extend the GraphQL-API. The quest
   }
 }
 ```
-
-You can try this query in real time [here](https://link.weaviate.io/3HGe3qv).
 
 ## Recap
 

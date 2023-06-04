@@ -8,6 +8,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
+
+<TryEduDemo />
+
 ## Introduction
 
 GraphQL additional properties can be used on data objects in Get{} Queries to get additional information about the returned data objects. Which additional properties are available depends on the modules that are attached to Weaviate. The fields `id`, `vector`, `certainty`, `featureProjection` and `classification` are available from Weaviate Core. On nested GraphQL fields (references to other data classes), only the `id` can be returned. Explanation on specific additional properties can be found on the module pages, see for example [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#additional-graphql-api-properties).
@@ -19,6 +23,37 @@ An example query getting the [UUID](#id) and the [distance](#distance).
 import GraphQLUnderscoreDistance from '/_includes/code/graphql.underscoreproperties.distance.mdx';
 
 <GraphQLUnderscoreDistance/>
+
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "_additional": {
+            "distance": 0.15422738,
+            "id": "e76ec9ae-1b84-3995-939a-1365b2215312"
+          },
+          "title": "How to Dress Up For an Untraditional Holiday Season"
+        },
+        {
+          "_additional": {
+            "distance": 0.15683109,
+            "id": "a2d51619-dd22-337a-8950-e1a407dab3d2"
+          },
+          "title": "2020's biggest fashion trends reflect a world in crisis"
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ## _additional property
 
@@ -189,10 +224,6 @@ import GraphQLUnderscoreClassification from '/_includes/code/graphql.underscorep
 
 <GraphQLUnderscoreClassification/>
 
-import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
-
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A+%7B%0D%0A++++++++concepts%3A+%5B%22fashion%22%5D%2C%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++classification+%7B%0D%0A++++++++++basedOn%0D%0A++++++++++classifiedFields%0D%0A++++++++++completed%0D%0A++++++++++id%0D%0A++++++++++scope%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-
 ### Feature Projection
 
 Because Weaviate stores all data in a vector space, you can visualize the results according to the results of your query. The feature projection is intended to reduce the dimensionality of the object's vector into something easily suitable for visualizing, such as 2d or 3d. The underlying algorithm is exchangeable, the first algorithm to be provided is [t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding).
@@ -213,7 +244,44 @@ import GraphQLUnderscoreFeature from '/_includes/code/graphql.underscoreproperti
 
 <GraphQLUnderscoreFeature/>
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article+%28%0D%0A++++++nearText%3A%7B+%0D%0A++++++++concepts%3A%5B%22music%22%5D%2C%0D%0A++++++++moveTo%3A+%7B%0D%0A++++++++++concepts%3A+%5B%22beatles%22%5D%2C%0D%0A++++++++++force%3A+0.5%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++title%0D%0A++++++_additional+%7B%0D%0A++++++++featureProjection%28dimensions%3A+2%29+%7B%0D%0A++++++++++vector%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "_additional": {
+            "featureProjection": {
+              "vector": [
+                -115.17981,
+                -16.873344
+              ]
+            }
+          },
+          "title": "Opinion | John Lennon Told Them \u2018Girls Don\u2019t Play Guitar.\u2019 He Was So Wrong."
+        },
+        {
+          "_additional": {
+            "featureProjection": {
+              "vector": [
+                -117.78348,
+                -21.845968
+              ]
+            }
+          },
+          "title": "Opinion | John Lennon Told Them \u2018Girls Don\u2019t Play Guitar.\u2019 He Was So Wrong."
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 The above result can be plotted as follows (where the result in red is the first result):
 

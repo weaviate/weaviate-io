@@ -2,31 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Article(where: {
-      operator: And,
-      operands: [{
-          path: ["wordCount"],
-          operator: GreaterThan,
-          valueInt: 1000
-        }, {
-          path: ["publicationDate"],
-          operator: LessThan,
-          valueDate:"2020-01-01T00:00:00-07:00"
-        }]
-      }) {
-      title
-      wordCount
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -41,20 +16,20 @@ where_filter = {
         "operator": "GreaterThan",
         "valueInt": 1000
       }, {
-        "path": ["publicationDate"],
-        "operator": "LessThan",
-        "valueDate": "2020-01-01T00:00:00-07:00",
+        "path": ["title"],
+        "operator": "Like",
+        "valueText": "*economy*",
       }]
 }
 
-query_result = (
+response = (
   client.query
   .get("Article", "title")
   .with_where(where_filter)
   .do()
 )
 
-print(query_result)
+print(response)
 ```
 
 </TabItem>
@@ -79,9 +54,9 @@ client.graphql
           operator: 'GreaterThan',
           valueInt: 1000
         }, {
-          path: ['publicationDate'],
-          operator: LessThan,
-          valueDate:'2020-01-01T00:00:00-07:00'
+          path: ['title'],
+          operator: Like,
+          valueText:'*economy*'
         }]
       })
       .do()
@@ -121,8 +96,7 @@ func main() {
 
 	title := graphql.Field{Name: "title"}
 
-	dateString := "2014-11-12T11:45:26.371Z"
-	date, err := time.Parse(time.RFC3339, dateString)
+	filterString := "*economy*"
 	if err != nil {
 		panic(err)
 	}
@@ -135,9 +109,9 @@ func main() {
 				WithOperator(filters.GreaterThan).
 				WithValueInt(1000),
 			filters.Where().
-				WithPath([]string{"publicationDate"}).
-				WithOperator(filters.LessThan).
-				WithValueDate(date),
+				WithPath([]string{"title"}).
+				WithOperator(filters.Like).
+				WithValueText(filterString),
 		})
 
 	ctx := context.Background()
@@ -186,22 +160,14 @@ public class App {
                 .valueInt(1000)
                 .build();
 
-        Date date;
-        try {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-            date = df.parse("2020-01-01T00:00:00-0700");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-
-        WhereFilter wordCountLessThen = WhereFilter.builder()
-                .path(new String[]{ "wordCount" })
-                .operator(Operator.LessThan)
-                .valueDate(date)
+        WhereFilter wordCountLike = WhereFilter.builder()
+                .path(new String[]{ "title" })
+                .operator(Operator.Like)
+                .valueText("*economy*")
                 .build();
         WhereFilter where = WhereFilter.builder()
                 .operator(Operator.And)
-                .operands(new WhereFilter[]{ wordCountGreaterThen, wordCountLessThen })
+                .operands(new WhereFilter[]{ wordCountGreaterThen, wordCountLike })
                 .build();
 
         Result<GraphQLResponse> result = client.graphQL().get()
@@ -233,13 +199,12 @@ $ echo '{
               operator: GreaterThan,
               valueInt: 1000
             }, {
-              path: ["publicationDate"],
-              operator: LessThan,
-              valueDate:"2020-01-01T00:00:00-07:00"
+              path: ["title"],
+              operator: Like,
+              valueText:"*economy*"
             }]
           }) {
           title
-          wordCount
         }
       }
     }"
@@ -248,6 +213,30 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(where: {
+      operator: And,
+      operands: [{
+          path: ["wordCount"],
+          operator: GreaterThan,
+          valueInt: 1000
+        }, {
+          path: ["title"],
+          operator: Like,
+          valueText:"*economy*"
+        }]
+      }) {
+      title
+    }
+  }
+}
 ```
 
 </TabItem>

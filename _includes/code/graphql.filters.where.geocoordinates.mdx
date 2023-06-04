@@ -2,35 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Publication(where: {
-      operator: WithinGeoRange,
-      valueGeoRange: {
-        geoCoordinates: {
-          latitude: 51.51,    # latitude
-          longitude: -0.09    # longitude
-        },
-        distance: {
-          max: 2000           # distance in meters
-        }
-      },
-      path: ["headquartersGeoLocation"] # property needs to be of geoLocation type.
-    }) {
-      name
-      headquartersGeoLocation {
-        latitude
-        longitude
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -251,6 +222,35 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Publication(where: {
+      operator: WithinGeoRange,
+      valueGeoRange: {
+        geoCoordinates: {
+          latitude: 51.51,    # latitude
+          longitude: -0.09    # longitude
+        },
+        distance: {
+          max: 2000           # distance in meters
+        }
+      },
+      path: ["headquartersGeoLocation"] # property needs to be of geoLocation type.
+    }) {
+      name
+      headquartersGeoLocation {
+        latitude
+        longitude
+      }
+    }
+  }
+}
 ```
 
 </TabItem>

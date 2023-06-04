@@ -2,24 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Article(sort: [{
-      path: ["title"]     # Path to the property that should be used
-      order: asc          # Sort order, possible values: asc, desc
-    }]) {
-      title
-      url
-      wordCount
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -27,34 +9,10 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-# one sorting configurations
 result = (
   client.query
   .get("Article", ["title", "url", "wordCount"])
-  .with_sort({ path: ["title"], order: "asc" })
-  .do()
-)
-print(result)
-
-# multiple sorting configurations
-result = (
-  client.query
-  .get("Article", ["title", "url", "wordCount"])
-  .with_sort([
-    { path: ["title"], order: "asc" },
-    { path: ["wordCount"], order: "desc" },
-  ])
-  .do()
-)
-print(result)
-
-# or
-
-result = (
-  client.query
-  .get("Article", ["title", "url", "wordCount"])
-  .with_sort({ path: ["title"], order: "asc" })
-  .with_sort({ path: ["wordCount"], order: "desc" })
+  .with_sort({"path": ["title"], "order": "asc" })
   .do()
 )
 print(result)
@@ -194,6 +152,24 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(sort: [{
+      path: ["title"]     # Path to the property that should be used
+      order: asc          # Sort order, possible values: asc, desc
+    }]) {
+      title
+      url
+      wordCount
+    }
+  }
+}
 ```
 
 </TabItem>

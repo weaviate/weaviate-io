@@ -18,7 +18,7 @@ These **further** tutorials are somewhat narrower in scope, to show you how to a
 Whether you read these tutorials will be mostly dependent on whether you would like to make the specific dish - that is, whether the topic of the tutorial is relevant to you. It can also be a great way to see what Weaviate is capable of.
 
 :::info What would you like to know?
-If you would like to see particular tutorial - let us know on [Slack](https://weaviate.io/slack)! We can help you with your specific problem, and help make the documentation better.
+If you would like to see particular tutorial - let us know on [the forum](https://forum.weaviate.io/)! We can help you with your specific problem, and help make the documentation better.
 :::
 
 import BasicPrereqs from '/_includes/prerequisites-quickstart.md';

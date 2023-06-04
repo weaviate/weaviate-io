@@ -2,36 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get{
-    Article(
-      nearText: {
-        concepts: ["traveling in Asia"],
-        certainty: 0.7,
-        moveTo: {
-          objects: [{
-            # this ID is of the article:
-            # "Tohoku: A Japan destination for all seasons."
-            id: "2faf2b7d-f185-30c0-8c80-a01b7cfeefb4"
-          }]
-          force: 0.85
-        }
-      }
-    ){
-      title
-      summary
-      _additional {
-        certainty
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -40,10 +10,10 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 nearText = {
-  "concepts": ["traveling in Asia"],
+  "concepts": ["travelling in Asia"],
   "certainty": 0.7,
   "moveTo": {
-    "objects": [{"id": "2faf2b7d-f185-30c0-8c80-a01b7cfeefb4"}],
+    "objects": [{"id": "c4209549-7981-3699-9648-61a78c2124b9"}],
     "force": 0.85
   }
 }
@@ -74,11 +44,11 @@ client.graphql
   .withClassName('Article')
   .withFields('title summary _additional { certainty }')
   .withNearText({
-    concepts: ['traveling in Asia'],
+    concepts: ['travelling in Asia'],
     certainty: 0.7,
     moveTo: {
       // this ID is of the article: "Tohoku: A Japan destination for all seasons."
-      objects: [{ id: '2faf2b7d-f185-30c0-8c80-a01b7cfeefb4' }],
+      objects: [{ id: 'c4209549-7981-3699-9648-61a78c2124b9' }],
       force: 0.85
     }
   })
@@ -121,12 +91,12 @@ func main() {
     },
   }
 
-  concepts := []string{"traveling in Asia"}
+  concepts := []string{"travelling in Asia"}
   certainty := float32(0.7)
   moveTo := &graphql.MoveParameters{
     Objects: []graphql.MoverObject{
 	  // this ID is of the article: "Tohoku: A Japan destination for all seasons."
-      {ID: "2faf2b7d-f185-30c0-8c80-a01b7cfeefb4"},
+      {ID: "c4209549-7981-3699-9648-61a78c2124b9"},
     },
     Force: 0.85,
   }
@@ -172,13 +142,13 @@ public class App {
     NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
       .objects(new NearTextMoveParameters.ObjectMove[]{
         // this ID is of the article: "Tohoku: A Japan destination for all seasons."
-        NearTextMoveParameters.ObjectMove.builder().id("2faf2b7d-f185-30c0-8c80-a01b7cfeefb4").build()
+        NearTextMoveParameters.ObjectMove.builder().id("c4209549-7981-3699-9648-61a78c2124b9").build()
       })
       .force(0.85f)
       .build();
 
     NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
-      .concepts(new String[]{ "traveling in Asia" })
+      .concepts(new String[]{ "travelling in Asia" })
       .certainty(0.7f)
       .moveTo(moveTo)
       .build();
@@ -214,13 +184,13 @@ $ echo '{
   Get{
     Article(
       nearText: {
-        concepts: [\"traveling in Asia\"],
+        concepts: [\"travelling in Asia\"],
         certainty: 0.7,
         moveTo: {
           objects: [{
             # this ID is of the article:
             # "Tohoku: A Japan destination for all seasons."
-            id: \"2faf2b7d-f185-30c0-8c80-a01b7cfeefb4\"
+            id: \"c4209549-7981-3699-9648-61a78c2124b9\"
           }]
           force: 0.85
         }
@@ -238,6 +208,36 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get{
+    Article(
+      nearText: {
+        concepts: ["travelling in Asia"],
+        certainty: 0.7,
+        moveTo: {
+          objects: [{
+            # this ID is of the article:
+            # "Tohoku: A Japan destination for all seasons."
+            id: "c4209549-7981-3699-9648-61a78c2124b9"
+          }]
+          force: 0.85
+        }
+      }
+    ){
+      title
+      summary
+      _additional {
+        certainty
+      }
+    }
+  }
+}
 ```
 
 </TabItem>

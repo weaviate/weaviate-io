@@ -9,6 +9,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
+
+<TryEduDemo />
+
 ## Overview
 
 Conditional filters can be added to queries on the class level. The operator used for filtering is also called a `where` filter.
@@ -30,10 +34,28 @@ import GraphQLFiltersWhereSimple from '/_includes/code/graphql.filters.where.sim
 
 <GraphQLFiltersWhereSimple/>
 
-import MoleculeGQLDemo from '/_includes/molecule-gql-demo.mdx';
+<details>
+  <summary>Expected response</summary>
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28where%3A+%7B%0D%0A++++++++path%3A+%5B%22wordCount%22%5D%2C++++%23+Path+to+the+property+that+should+be+used%0D%0A++++++++operator%3A+GreaterThan%2C++%23+operator%0D%0A++++++++valueInt%3A+1000++++++++++%23+value+%28which+is+always+%3D+to+the+type+of+the+path+property%29%0D%0A++++++%7D%29+%7B%0D%0A++++++title%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-<br/>
+```
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "title": "Anywhere but Washington: an eye-opening journey in a deeply divided nation"
+        },
+        {
+          "title": "The world is still struggling to implement meaningful climate policy"
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ## Filter structure
 
@@ -101,7 +123,7 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
 
 - `valueInt`: The integer value that the last property in the `Path` selector should be compared to.
 - `valueBoolean`: The boolean value that the last property in `Path` should be compared to.
-- `valueString`: The string value that the last property in `Path` should be compared to.
+- `valueString`: The string value that the last property in `Path` should be compared to. (Note: `string` has been deprecated.)
 - `valueText`: The text value that the last property in `Path` should be compared to.
 - `valueNumber`: The number (float) value that the last property in `Path` should be compared to.
 - `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/)) value that the last property  in `Path` should be compared to.
@@ -135,16 +157,14 @@ Starting with `v1.12.0` you can configure your own [stopword lists for the inver
 
 ## Filter by id
 
-You can filter object by their unique id or uuid, where you give the `id` as `valueString`.
+You can filter object by their unique id or uuid, where you give the `id` as `valueText`.
 
 import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx';
 
 <GraphQLFiltersWhereId/>
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28where%3A+%7B%0D%0A++++++++path%3A+%5B%22id%22%5D%2C%0D%0A++++++++operator%3A+Equal%2C%0D%0A++++++++valueString%3A+%22e5dc4a4c-ef0f-3aed-89a3-a73435c6bbcf%22%0D%0A++++++%7D%29+%7B%0D%0A++++++title%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-<br/>
-
-### Example response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -152,18 +172,19 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
     "Get": {
       "Article": [
         {
-          "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
+          "title": "Backs on the rack - Vast sums are wasted on treatments for back pain that make it worse"
         }
       ]
     }
-  },
-  "errors": null
+  }
 }
 ```
 
+</details>
+
 ## Filter by timestamps
 
-Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueString`, and an RFC3339 datetime should be a `valueDate`.
+Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueText`, and an RFC3339 datetime should be a `valueDate`.
 
 :::info
 Filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indextimestamps) for details.
@@ -171,12 +192,10 @@ Filtering by timestamp requires the target class to be configured to index  time
 
 import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where.timestamps.mdx';
 
-<GraphQLFiltersWhereTimestamps/>
+<GraphQLFiltersWhereTimestamps />
 
-<MoleculeGQLDemo query='%7B%0A++Get+%7B%0A++++Article(where%3A+%7B%0A++++++++path%3A+%5B%22_creationTimeUnix%22%5D%2C%0A++++++++operator%3A+Equal%2C%0A++++++++valueString%3A+%221647653194586%22%0A++++++%7D)+%7B%0A++++++title%0A++++%7D%0A++%7D%0A%7D'/>
-<br/>
-
-### Example Response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -184,14 +203,16 @@ import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where
     "Get": {
       "Article": [
         {
-          "title": "9 home improvement projects that are easier – and often cheaper – in the winter"
-        }
+          "title": "Army builds new body armor 14-times stronger in the face of enemy fire"
+        },
+        ...
       ]
     }
-  },
-  "errors": null
+  }
 }
 ```
+
+</details>
 
 ## Filter by property length
 
@@ -231,10 +252,32 @@ You can filter datetimes similarly to numbers, with the `valueDate` given as `st
 
 import GraphQLFiltersWhereOperands from '/_includes/code/graphql.filters.where.operands.mdx';
 
-<GraphQLFiltersWhereOperands/>
+<GraphQLFiltersWhereOperands />
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28where%3A+%7B%0D%0A++++++operator%3A+And%2C%0D%0A++++++operands%3A+%5B%7B%0D%0A++++++++++path%3A+%5B%22wordCount%22%5D%2C%0D%0A++++++++++operator%3A+GreaterThan%2C%0D%0A++++++++++valueInt%3A+1000%0D%0A++++++++%7D%2C+%7B%0D%0A++++++++++path%3A+%5B%22wordCount%22%5D%2C%0D%0A++++++++++operator%3A+LessThan%2C%0D%0A++++++++++valueInt%3A+1500%0D%0A++++++++%7D%5D%0D%0A++++++%7D%29+%7B%0D%0A++++++title%0D%0A++++++wordCount%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-<br/>
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "title": "China\u2019s long-distance lorry drivers are unsung heroes of its economy"
+        },
+        {
+          "title": "\u2018It\u2019s as if there\u2019s no Covid\u2019: Nepal defies pandemic amid a broken economy"
+        },
+        {
+          "title": "A tax hike threatens the health of Japan\u2019s economy"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ## Like operator
 
@@ -250,13 +293,11 @@ import GraphQLFiltersWhereLike from '/_includes/code/graphql.filters.where.like.
 
 <GraphQLFiltersWhereLike/>
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28where%3A+%7B%0D%0A++++++++++path%3A+%5B%22name%22%5D%2C%0D%0A++++++++++operator%3A+Like%2C%0D%0A++++++++++valueString%3A+%22New+%2A%22%0D%0A++++++%7D%29+%7B%0D%0A++++++name%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-<br/>
-
 ### Notes
 Each query using the `Like` operator iterates over the entire inverted index for that property. The search time will go up linearly with the dataset size. Be aware that there might be a point where this query is too expensive and will not work anymore. We will improve this implementation in a future release. You can leave feedback or feature requests in a [GitHub issue](https://github.com/weaviate/weaviate/issues).
 
-### Example response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -264,17 +305,24 @@ Each query using the `Like` operator iterates over the entire inverted index for
     "Get": {
       "Publication": [
         {
-          "name": "New Yorker"
+          "name": "The New York Times Company"
+        },
+        {
+          "name": "International New York Times"
         },
         {
           "name": "New York Times"
+        },
+        {
+          "name": "New Yorker"
         }
       ]
     }
-  },
-  "errors": null
+  }
 }
 ```
+
+</details>
 
 ## Beacon (reference) filters
 
@@ -286,8 +334,38 @@ import GraphQLFiltersWhereBeacon from '/_includes/code/graphql.filters.where.bea
 
 <GraphQLFiltersWhereBeacon/>
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28where%3A+%7B%0D%0A++++++++path%3A+%5B%22inPublication%22%2C+%22Publication%22%2C+%22name%22%5D%2C%0D%0A++++++++operator%3A+Equal%2C%0D%0A++++++++valueString%3A+%22New+Yorker%22%0D%0A++++++%7D%29+%7B%0D%0A++++++title%0D%0A++++++inPublication%7B%0D%0A++++++++...+on+Publication%7B%0D%0A++++++++++name%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-<br/>
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "inPublication": [
+            {
+              "name": "New Yorker"
+            }
+          ],
+          "title": "The Hidden Costs of Automated Thinking"
+        },
+        {
+          "inPublication": [
+            {
+              "name": "New Yorker"
+            }
+          ],
+          "title": "The Real Deal Behind the U.S.\u2013Iran Prisoner Swap"
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ## Filter objects by count of reference
 
@@ -297,8 +375,44 @@ import GraphQLFiltersWhereBeaconCount from '/_includes/code/graphql.filters.wher
 
 <GraphQLFiltersWhereBeaconCount/>
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Author%28%0D%0A++++++where%3A%7B%0D%0A++++++++valueInt%3A+2%2C%0D%0A++++++++operator%3A+GreaterThanEqual%2C%0D%0A++++++++path%3A+%5B%22wroteArticles%22%5D%0D%0A++++++%7D%0D%0A++++%29+%7B%0D%0A++++++name%0D%0A++++++wroteArticles+%7B%0D%0A++++++++...+on+Article+%7B%0D%0A++++++++++title%0D%0A++++++++%7D%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A+%7D'/>
-<br/>
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Author": [
+        {
+          "name": "Agam Shah",
+          "writesFor": [
+            {
+              "name": "Wall Street Journal"
+            },
+            {
+              "name": "Wall Street Journal"
+            }
+          ]
+        },
+        {
+          "name": "Costas Paris",
+          "writesFor": [
+            {
+              "name": "Wall Street Journal"
+            },
+            {
+              "name": "Wall Street Journal"
+            }
+          ]
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ## GeoCoordinates filter
 
@@ -310,10 +424,8 @@ import GraphQLFiltersWhereGeocoords from '/_includes/code/graphql.filters.where.
 
 <GraphQLFiltersWhereGeocoords/>
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Publication%28where%3A+%7B%0D%0A++++++operator%3A+WithinGeoRange%2C%0D%0A++++++valueGeoRange%3A+%7B%0D%0A++++++++geoCoordinates%3A+%7B%0D%0A++++++++++latitude%3A+51.51%2C++++%23+latitude%0D%0A++++++++++longitude%3A+-0.09++++%23+longitude%0D%0A++++++++%7D%2C%0D%0A++++++++distance%3A+%7B%0D%0A++++++++++max%3A+2000+++++++++++%23+distance+in+meters%0D%0A++++++++%7D%0D%0A++++++%7D%2C%0D%0A++++++path%3A+%5B%22headquartersGeoLocation%22%5D+%23+property+needs+to+be+of+geoLocation+type.%0D%0A++++%7D%29+%7B%0D%0A++++++name%0D%0A++++++headquartersGeoLocation+%7B%0D%0A++++++++latitude%0D%0A++++++++longitude+%0D%0A++++++%7D%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-<br/>
-
-### Example response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -336,10 +448,11 @@ import GraphQLFiltersWhereGeocoords from '/_includes/code/graphql.filters.where.
         }
       ]
     }
-  },
-  "errors": null
+  }
 }
 ```
+
+</details>
 
 ## Filter by null state
 

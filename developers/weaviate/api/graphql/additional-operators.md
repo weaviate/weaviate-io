@@ -9,6 +9,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
+
+<TryEduDemo />
+
 ## Syntax
 
 Additional operators such as `limit`, `after` and `sort` are available to modify queries at the class level.
@@ -32,9 +36,8 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
 <GraphQLFiltersLimit/>
 
-<MoleculeGQLDemo query='%7B%0D%0A++Get+%7B%0D%0A++++Article%28limit%3A5%29+%7B%0D%0A++++++title%0D%0A++++%7D%0D%0A++%7D%0D%0A%7D'/>
-
-#### Example response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -42,26 +45,27 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
     "Get": {
       "Article": [
         {
-          "title": "The War Vet, the Dating Site, and the Phone Call From Hell"
+          "title": "Backs on the rack - Vast sums are wasted on treatments for back pain that make it worse"
         },
         {
-          "title": "Opinion | John Lennon Told Them ‘Girls Don't Play Guitar.' He Was So Wrong."
+          "title": "Graham calls for swift end to impeachment trial, warns Dems against calling witnesses"
         },
         {
-          "title": "The press pressed - Brazilian prosecutors go after Glenn Greenwald, an American journalist"
+          "title": "Through a cloud, brightly - Obituary: Paul Volcker died on December 8th"
         },
         {
-          "title": "Not to Ruin the Super Bowl, but the Sea Is Consuming Miami"
+          "title": "Google Stadia Reviewed \u2013 Against The Stream"
         },
         {
-          "title": "Coca-Cola Resurrects Post of Chief Marketing Officer"
+          "title": "Managing Supply Chain Risk"
         }
       ]
     }
-  },
-  "errors": null
+  }
 }
 ```
+
+</details>
 
 ## Pagination with `offset`
 
@@ -75,9 +79,8 @@ import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
 
 <GraphQLFiltersOffset/>
 
-<MoleculeGQLDemo query='%7B%0A%20%20Get%20%7B%0A%20%20%20%20Article(%0A%20%20%20%20%20%20limit%3A%205%2C%0A%20%20%20%20%20%20offset%3A%202%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20title%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D'/>
-
-#### Example response
+<details>
+  <summary>Expected response</summary>
 
 ```json
 {
@@ -85,25 +88,27 @@ import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
     "Get": {
       "Article": [
         {
-          "title": "Hong Kong tries its best to spoil China's big anniversary"
+          "title": "Through a cloud, brightly - Obituary: Paul Volcker died on December 8th"
         },
         {
-          "title": "‘People don't want any of them': Peru election sees unpredictable contest"
+          "title": "Google Stadia Reviewed \u2013 Against The Stream"
         },
         {
-          "title": "Brazil: homes of Bolsonaro associates raided in sweeping anti-corruption operation"
+          "title": "Managing Supply Chain Risk"
         },
         {
-          "title": "If Convicting Trump Is Out of Reach, Managers Seek a Verdict From the Public and History"
+          "title": "Playing College Football In Madden"
         },
         {
-          "title": "Watch The Juliana Plaintiffs Vic Barrett, Kelsey Juliana, and Levi Draheim in Conversation with Sandra Upson | Wired Video | CNE | Wired.com"
+          "title": "The 50 best albums of 2019, No 3: Billie Eilish \u2013 When We All Fall Asleep, Where Do We Go?"
         }
       ]
     }
   }
 }
 ```
+
+</details>
 
 ### Performance and resource considerations & limitations
 
@@ -126,6 +131,52 @@ An example of the `after` parameter usage:
 import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 
 <GraphQLFiltersAfter/>
+
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "_additional": {
+            "id": "00313a4c-4308-30b0-af4a-01773ad1752b"
+          },
+          "title": "Managing Supply Chain Risk"
+        },
+        {
+          "_additional": {
+            "id": "0042b9d0-20e4-334e-8f42-f297c150e8df"
+          },
+          "title": "Playing College Football In Madden"
+        },
+        {
+          "_additional": {
+            "id": "0047c049-cdd6-3f6e-bb89-84ae20b74f49"
+          },
+          "title": "The 50 best albums of 2019, No 3: Billie Eilish \u2013 When We All Fall Asleep, Where Do We Go?"
+        },
+        {
+          "_additional": {
+            "id": "00582185-cbf4-3cd6-8c59-c2d6ec979282"
+          },
+          "title": "How artificial intelligence is transforming the global battle against human trafficking"
+        },
+        {
+          "_additional": {
+            "id": "0061592e-b776-33f9-8109-88a5bd41df78"
+          },
+          "title": "Masculine, feminist or neutral? The language battle that has split Spain"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 :::note
 The `after` cursor is available on both single-shard and multi-shard set-ups.
@@ -185,7 +236,32 @@ For example:
 
 <GraphQLGetSorting/>
 
-<MoleculeGQLDemo query='%7B%0A++Get+%7B%0A++++Article%28sort%3A+%5B%7B%0A++++++path%3A+%5B%22title%22%5D%0A++++++order%3A+asc%0A++++%7D%5D%29+%7B%0A++++++title%0A++++++url%0A++++++wordCount%0A++++%7D%0A++%7D%0A%7D'/>
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "title": "#DesignforATL: This Instagram Fundraiser Is Raffling Off Home Goods to Help the Atlanta Spa Shooting\u2019s Victims and Families",
+          "url": "https://www.vogue.com/article/designforatl-instagram-fundraiser",
+          "wordCount": 366
+        },
+        {
+          "title": "$400 for a Five Guys meal? Welcome to New Year's Eve in Dubai",
+          "url": "https://edition.cnn.com/travel/article/new-year-eve-dubai-most-expensive-restaurants/index.html",
+          "wordCount": 1203
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ## More Resources
 
