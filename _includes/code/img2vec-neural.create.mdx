@@ -14,10 +14,7 @@ data_properties = {
     "image": "iVBORw0KGgoAAAANS..."
 }
 
-result = (
-  client.data_object
-  .create(data_properties, "FashionItem", "36ddd591-2dee-4e7e-a3cc-eb86d30a4302")
-)
+result = client.data_object.create(data_properties, "FashionItem")
 
 print(result)
 ```
@@ -26,28 +23,23 @@ print(result)
 <TabItem value="js" label="JavaScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.data
-      .creator()
-      .withClassName('FashionItem')
-      .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4302')
-      .withProperties({
-        'labelName': 'Mickey Mouse T-shirt'
-        'image': 'iVBORw0KGgoAAAANS...'
-    })
-      .do()
-      .then(res => {
-          console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+const object = await client.data
+  .creator()
+  .withClassName('FashionItem')
+  .withProperties({
+    labelName: 'Mickey Mouse T-shirt'
+    image: 'iVBORw0KGgoAAAANS...'
+  })
+.do();
+
+console.log(JSON.stringify(object, null, 2));
 ```
 
 </TabItem>
@@ -80,7 +72,6 @@ func main() {
 
   created, err := client.Data().Creator().
     WithClassName("FashionItem").
-    WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4302").
     WithProperties(dataSchema).
     Do(context.Background())
   if err != nil {
@@ -114,7 +105,6 @@ public class App {
 
     Result<WeaviateObject> result = client.data().creator()
       .withClassName("FashionItem")
-      .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4302")
       .withProperties(dataSchema)
       .run();
 
@@ -136,7 +126,6 @@ $ curl \
     -H "Content-Type: application/json" \
     -d '{
       "class": "FashionItem",
-      "id": "36ddd591-2dee-4e7e-a3cc-eb86d30a4302",
       "properties": {
         "labelName": "Mickey Mouse T-shirt"
         "image": "iVBORw0KGgoAAAANS..."

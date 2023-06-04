@@ -27,7 +27,7 @@ This blog post assumes you are familiar with vector search, as well as with spin
 
 [Check out this article](/blog/why-is-vector-search-so-fast) to learn more about why vector databases are so fast and how they work.
 
-We will provide code snippets in this post, but you can check out the full code base in the [GitHub repository](https://github.com/weaviate/weaviate-examples) under the `nearest-neighbor-dog-search` directory. We encourage you to follow along with us by cloning the repository!
+We will provide code snippets in this post, but you can check out the full code base in the [Weaviate Examples GitHub repo](https://github.com/weaviate/weaviate-examples) under the `nearest-neighbor-dog-search` directory. We encourage you to follow along with us by cloning the repository!
 
 This blog post covers:
 1. [Image Vectorization](#image-vectorization)
@@ -45,7 +45,7 @@ For a use case like ours, where we would like to identify similar types of dogs,
 The `img2vec-neural` module in Weaviate is designed to solve this exact problem! The module vectorizes each image to something that represents its contents, so that we can search images based on their semantic similarity. In other words, we can use `img2vec-neural` to query our database to see how similar the dogs are based on the image.
 
 ### Img2vec-neural Module
-[Weaviate's img2vec-neural module](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural) is a flexible vectorizer that enables conversion of images to meaningful vectors. `ResNet-50` is the first model that is supported on Weaviate. `ResNet-50` is a Convolutional Neural Network (CNN) that was trained on the ImageNet database. The model was trained on more than 10 million images and 20,000 classes.
+[Weaviate's img2vec-neural module](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural) is a flexible vectorizer that enables conversion of images to meaningful vectors. `ResNet-50` is the first model that is supported on Weaviate. `ResNet-50` is a Convolutional Neural Network (CNN) that was trained on the [ImageNet database](https://www.image-net.org/). The model was trained on more than 10 million images and 20,000 classes.
 
 ## Weaviate Database
 ### Setup
@@ -73,7 +73,7 @@ This includes the class name, which in our case is "Dog" and the properties, suc
 
 We will tell Weaviate that breed and filepath values are strings, weight is stored as an integer, and images are stored as a `blob` dataType. Putting it all together, the schema definition should look like the following;
 
-```
+```python
 schema = {
    "classes": [
        {
@@ -121,7 +121,7 @@ python create-schema.py
 ```
 
 ### Images to Base64
-We are almost ready to populate our Weaviate database full of cute dogs! We first need to encode the images to base64 values. Encoding the images to base64 is a requirement for using the blob dataType, which we defined in the schema.
+We are almost ready to populate our Weaviate database full of cute dogs! We first need to encode the images to base64 values. Encoding the images to base64 is a requirement for using the [blob dataType](/developers/weaviate/config-refs/datatypes), which we defined in the schema.
 
 The ten images in the dataset are stored in the `flask-app/static/img` folder. To convert the images to base64 run:
 
@@ -136,7 +136,7 @@ Now that we have defined the schema and converted the images to base64 values, w
 
 When uploading your data objects to Weaviate, you want to import your data in batches. The import speed is faster than uploading the objects one by one. Let's configure the batch process to upload in batches of 100, just in case we add more images.
 
-```
+```python
 def set_up_batch():
    client.batch.configure(
        batch_size=100,
@@ -152,7 +152,7 @@ We will need to define the data properties that we want to upload. The function 
 3. Set the property values, as defined in the schema.
 4. Upload new data objects to Weaviate
 
-```
+```python
 def import_data():
 
    with client.batch as batch:
@@ -181,7 +181,7 @@ def import_data():
 ```
 
 Now we will connect to the local host and upload the data objects.
-```
+```python
 client = weaviate.Client("http://localhost:8080")
 set_up_batch()
 clear_up_dogs()
@@ -208,15 +208,15 @@ Here is a recap of what we've done so far:
 ### Application File
 First, we will need to create our Flask application and connect it to our Weaviate client.
 
-```
+```python
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = "/temp_images"
 client = weaviate.Client("http://localhost:8080")
 ```
 
-We will use the `nearImage` operator in Weaviate, so that it will search for images closest to the users' upload image. To do this we will construct the `weaviate_img_search` function to get the relevant results. The response from our search query will include the closest objects in the Dog class. From the response, the function will output the dog image with the breed name and filepath. Note that the query is also formulated so that the response is limited to two results.
+We will use the [`nearImage`](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural#nearimage-search) operator in Weaviate, so that it will search for images closest to the image uploaded by the user. To do this we will construct the `weaviate_img_search` function to get the relevant results. The response from our search query will include the closest objects in the Dog class. From the response, the function will output the dog image with the breed name and filepath. Note that the query is also formulated so that the response is limited to two results.
 
-```
+```python
 def weaviate_img_search(img_str):
    sourceImage = { "image": img_str}
 
@@ -240,7 +240,7 @@ The code block below will:
 2. Save the uploaded image and convert it to base64
 3. Return the `nearImage` results from Weaviate to return the filepaths and breeds
 
-```
+```python
 @app.route("/") # defining the pages that will be on the website
    def home(): # home page
        return render_template("index.html", content = list_images())
@@ -269,7 +269,7 @@ The code block below will:
 
 Our `index.html` template has been set up to show images of the returned dog breeds.
 
-```
+```html
 { % for x in content % }
 <div class="imgCard">
     <img src = "./static/img/" + x["path"] > </img>
@@ -279,7 +279,7 @@ Our `index.html` template has been set up to show images of the returned dog bre
 ```
 
 We then run the application as follows:
-```
+```python
 if __name__ == "__main__":
    app.run()
 ```

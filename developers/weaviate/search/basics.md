@@ -2,7 +2,7 @@
 title: Search basics
 sidebar_position: 10
 image: og/docs/howto.jpg
-# tags: ['how to', 'perform a semantic search']
+# tags: ['how to', 'semantic search']
 ---
 
 import Tabs from '@theme/Tabs';
