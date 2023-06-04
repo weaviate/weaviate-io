@@ -1,0 +1,112 @@
+---
+title: Create objects
+sidebar_position: 2
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'create']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.create.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
+
+## Overview
+
+This page will show you how to create individual objects in Weaviate. Note that whenever you want to create more than one object at once, it's best to use [batch operations](../import).
+
+If a vectorizer is defined, [Weaviate will use the text properties](../modules/retriever-vectorizer-modules/index.md#vectorization-with-text2vec--modules) of the object (except those with `skip` set) to create the corresponding vector embedding.
+
+
+## Requirements
+
+To create an object, you'll need:
+* Values for a subset of its properties (of various [data types](../config-refs/datatypes.md#introduction)) matching its class definition in the schema. It's OK to omit properties - they won't be included in the object.
+* The name of the object's class.
+
+
+If you specify properties not in the class definition when creating the object, the [auto-schema feature](../config-refs/schema.md#autoschema) will autodetect the property types, and add them to the schema (as well as the object). If this isn't desired, you can [validate](#validating-before-creation) that the object does not contain any extra properties vs. the class definition.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CreateObject START"
+      endMarker="# CreateObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// CreateObject START"
+      endMarker="// CreateObject END"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Optional parameters
+
+Optionally, you can specify,
+* a custom [id](../api/graphql/additional-properties.md#id), and/or
+* a custom vector.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CreateObjectWithIdAndVector START"
+      endMarker="# CreateObjectWithIdAndVector END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// CreateObjectWithIdAndVector START"
+      endMarker="// CreateObjectWithIdAndVector END"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Preventing duplicates
+
+To prevent duplicates, you can [efficiently check if an object exists](../read/#check-object-existence) given its [id](../api/graphql/additional-properties.md#id). Note that Weaviate allows identical objects (in terms of property values), so the id is the only differentiator.
+
+
+## Validating before creation
+
+To make sure the creation of an object will succeed, and that it doesn't have any extra properties vs. the schema, you can [validate](../api/rest/objects.md#validate-a-data-object) an object against the class definition before creating it.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# ValidateObject START"
+      endMarker="# ValidateObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// ValidateObject START"
+      endMarker="// ValidateObject END"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
