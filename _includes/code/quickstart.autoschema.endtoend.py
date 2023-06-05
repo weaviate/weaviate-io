@@ -20,6 +20,9 @@ class_obj = {
     "moduleConfig": {
         "text2vec-huggingface": {
             "model": "sentence-transformers/all-MiniLM-L6-v2",  # Can be any public or private Hugging Face model.
+            "options": {
+                "waitForModel": True
+            }
         }
     }
 }
