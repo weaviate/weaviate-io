@@ -34,6 +34,9 @@ classObj := &models.Class{
     ModuleConfig: map[string]interface{}{
       "text2vec-huggingface": map[string]interface{}{
         "model": "sentence-transformers/paraphrase-MiniLM-L6-v2",
+        "options": {
+            "waitForModel": true
+        }
       },
     },
 }
@@ -92,6 +95,9 @@ echo '{
   "moduleConfig": {
       "text2vec-huggingface": {
           "model": "sentence-transformers/all-MiniLM-L6-v2",
+          "options": {
+              "waitForModel": true
+          }
       }
   }
 }' | curl \
