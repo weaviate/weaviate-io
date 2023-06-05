@@ -63,7 +63,7 @@ func main() {
     Host:    "some-endpoint.weaviate.network/",  // Replace with your endpoint
     Scheme:  "https",
     AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
-    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},  // Replace with your inference API key
+    Headers: map[string]string{"X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY"},  // Replace with your inference API key
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -114,7 +114,7 @@ import java.util.Map;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-OpenAI-Api-Key", "YOUR-OPENAI-API-KEY");
+      put("X-HuggingFace-Api-Key", "YOUR-HUGGINGFACE-API-KEY");
     } };
     Config config = new Config("https", "some-endpoint.weaviate.network/", headers);  // Replace with your endpoint
     WeaviateClient client = new WeaviateClient(config);
@@ -174,7 +174,7 @@ echo '{
 }' | tr -d "\n" | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-OpenAI-Api-Key: <OpenAI-API-Token>" \
+    -H "X-HuggingFace-Api-Key: YOUR_HUGGINGFACE_API_KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql  # Replace this with your endpoint
 ```
