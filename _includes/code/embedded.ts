@@ -1,8 +1,7 @@
 // Blog: 2023-06-06, embedded-local-weaviate
 // run with: node --loader=ts-node/esm embedded.ts
-import assert from 'assert';
-
 // START example
+import assert from 'assert';
 import weaviate, { EmbeddedOptions } from 'weaviate-ts-embedded';
 
 const client = weaviate.client(new EmbeddedOptions());
@@ -19,8 +18,7 @@ const createdObject = await client.data
 
 console.log(JSON.stringify(createdObject, null, 2));
 
+assert.equal(createdObject.properties['hello'], 'World!');  // test
+
 await client.embedded.stop();
 // END example
-
-// Test
-assert.equal(createdObject.properties['hello'], 'World!');

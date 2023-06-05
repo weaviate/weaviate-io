@@ -1,6 +1,5 @@
 # Blog: 2023-06-06, embedded-local-weaviate
 # START example
-import json
 import weaviate
 
 client = weaviate.Client(
@@ -13,8 +12,7 @@ uuid = client.data_object.create({
 
 obj = client.data_object.get_by_id(uuid, class_name='MyClass')
 
-print(json.dumps(obj, indent=4))
-# END example
+print(obj)
 
-# Test
-assert obj['properties']['hello'] == 'World!'
+assert obj['properties']['hello'] == 'World!'  # test
+# END example
