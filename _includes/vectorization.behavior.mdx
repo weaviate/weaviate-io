@@ -1,9 +1,9 @@
-You can use `text2vec` modules with Weaviate to generate vector data for each object. To produce the string to be vectorized, Weaviate follows schema configuration for the relevant class.
+Weaviate generates vector embeddings at the object level (rather than for individual properties). For instance `text2vec-*` modules can generate vectors from text objects. To produce the string to be vectorized from each object, Weaviate follows the schema configuration for the relevant class.
 
-Unless specified otherwise, the default behavior is to:
+Unless specified otherwise in the schema, the default behavior is to:
 
-- Only vectorize properties that use the `text` data type
+- Only vectorize properties that use the `text` data type (unless [skip](/developers/weaviate/configuration/schema-configuration#property-level-module-settings)ped)
 - Sort properties in alphabetical (a-z) order before concatenating values
-- Prepend the class name to the value
-- Join properties with spaces, and
+- Prepend the property name to each property value (unless `vectorizePropertyName` is false) then join them with spaces, and
+- Prepend the class name (unless `vectorizeClassName` is false)
 - Convert the produced string to lowercase
