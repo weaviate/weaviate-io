@@ -13,19 +13,22 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
 
 ## Overview
 
-This page will show you how to create individual objects in Weaviate. Note that whenever you want to create more than one object at once, it's best to use [batch operations](./import.mdx).
-
-If a vectorizer is defined, [Weaviate will use the text properties](../modules/retriever-vectorizer-modules/index.md#vectorization-with-text2vec--modules) of the object (except those with `skip` set) to create the corresponding vector embedding.
+This page will show you how to create individual objects in Weaviate. Note that whenever you want to create multiple objects, it's best to use [batch operations](./import.mdx).
 
 
 ## Requirements
 
-To create an object, you'll need:
-* Values for a subset of its properties (of various [data types](../config-refs/datatypes.md#introduction)) matching its class definition in the schema. It's OK to omit properties - they won't be included in the object.
-* The name of the object's class.
+To create an object, specify:
+* The object to be added, and
+* The target class.
 
+### Object construction
 
-If you specify properties not in the class definition when creating the object, the [auto-schema feature](../config-refs/schema.md#autoschema) will autodetect the property types, and add them to the schema (as well as the object). If this isn't desired, you can [validate](#validating-before-creation) that the object does not contain any extra properties vs. the class definition.
+You do not need to specify data for all defined object properties.
+
+If you specify data for any new properties when creating the object, the [auto-schema feature](../config-refs/schema.md#autoschema) will add them to the schema during creation. If this isn't desired, you can [validate](#validating-before-creation) that the object does not contain any extra properties vs. the class definition.
+
+### Example
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -74,6 +77,7 @@ Optionally, you can specify,
   </TabItem>
 </Tabs>
 
+If a vectorizer is defined, and a custom vector is not supplied, Weaviate wil use the vectorizer to create a corresponding vector embedding.
 
 ## Preventing duplicates
 
