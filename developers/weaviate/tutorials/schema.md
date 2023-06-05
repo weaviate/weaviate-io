@@ -1,6 +1,6 @@
 ---
 title: Schemas in detail
-sidebar_position: 3
+sidebar_position: 10
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---

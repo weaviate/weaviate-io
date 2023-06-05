@@ -14,7 +14,7 @@ schema = {"name": "New York Times"}
 valid_thing = client.data_object.validate(
   schema,
   "Publication",
-  "f81bfe5e-16ba-4615-a516-46c2ae2e5a80"
+  "12345678-1234-1234-1234-123456789012"
 )
 print(valid_thing)
 ```
@@ -30,20 +30,22 @@ const client = weaviate.client({
   host: 'localhost:8080',
 });
 
-var schema = {'name': 'New York Times'};
+const schema = {
+  name: 'New York Times'
+};
 
 client.data
-      .validator()
-      .withId('f81bfe5e-16ba-4615-a516-46c2ae2e5a80')
-      .withClassName('Publication')
-      .withProperties(schema)
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+  .validator()
+  .withId('12345678-1234-1234-1234-123456789012')
+  .withClassName('Publication')
+  .withProperties(schema)
+  .do()
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err)
+  });
 ```
 
 </TabItem>
@@ -73,7 +75,7 @@ func main() {
   }
 
   err := client.Data().Validator().
-    WithID("f81bfe5e-16ba-4615-a516-46c2ae2e5a80").
+    WithID("12345678-1234-1234-1234-123456789012").
     WithClassName("Publication").
     WithProperties(dataSchema).
     Do(context.Background())
@@ -105,7 +107,7 @@ public class App {
     dataSchema.put("name", "New York Times");
 
     Result<Boolean> result = client.data().validator()
-      .withID("f81bfe5e-16ba-4615-a516-46c2ae2e5a80")
+      .withID("12345678-1234-1234-1234-123456789012")
       .withClassName("Publication")
       .withProperties(dataSchema)
       .run();
@@ -123,12 +125,12 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
         "class": "Publication",
-        "id": "f81bfe5e-16ba-4615-a516-46c2ae2e5a80",
+        "id": "12345678-1234-1234-1234-123456789012",
         "properties": {
             "name": "New York Times"
         }

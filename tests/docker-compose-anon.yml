@@ -9,7 +9,7 @@ services:
     - '8090'  # Specify different port to avoid confusion
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.19.2
+    image: semitechnologies/weaviate:1.19.6
     ports:
     - 8090:8090
     restart: on-failure:0
@@ -19,6 +19,6 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
-      ENABLE_MODULES: 'text2vec-openai,text2vec-cohere,generative-openai'
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai,generative-openai'
       CLUSTER_HOSTNAME: 'node1'
 ...

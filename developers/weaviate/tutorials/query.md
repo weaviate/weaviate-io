@@ -1,6 +1,6 @@
 ---
 title: Queries in detail
-sidebar_position: 10
+sidebar_position: 50
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-In this section, we will explore different queries that you can perform with Weaviate. Here, we will expand on the `nearText` queries that you may have seen in the [Quickstart tutorial](../quickstart/end-to-end.md) to show you different query types, filters and metrics that can be used.
+In this section, we will explore different queries that you can perform with Weaviate. Here, we will expand on the `nearText` queries that you may have seen in the [Quickstart tutorial](../quickstart/index.md) to show you different query types, filters and metrics that can be used.
 
 By the end of this section, you will have performed vector and scalar searches separately as well as in combination to retrieve individual objects and aggregations.
 
@@ -56,7 +56,7 @@ import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.nearte
 
 <CodeAutoschemaNeartext />
 
-This might also look familiar, as it was used in the [Quickstart tutorial](../quickstart/end-to-end.md). But let's break it down a little.
+This might also look familiar, as it was used in the [Quickstart tutorial](../quickstart/index.md). But let's break it down a little.
 
 Here, we are using a `nearText` parameter. What we are doing is to provide Weaviate with a query `concept` of `biology`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example) and uses that vector as the basis for a vector search.
 

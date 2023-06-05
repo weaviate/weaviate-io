@@ -45,22 +45,22 @@ const client = weaviate.client({
 });
 
 let classObj = {
-  'class': 'Publication',
-  'description': 'A publication with an online source',
-  'properties': [
+  class: 'Publication',
+  description: 'A publication with an online source',
+  properties: [
     {
-      'dataType': [
+      dataType: [
         'string'
       ],
-      'description': 'Name of the publication',
-      'name': 'name'
+      description: 'Name of the publication',
+      name: 'name'
     },
     {
-      'dataType': [
+      dataType: [
           'geoCoordinates'
       ],
-      'description': 'Geo location of the HQ',
-      'name': 'headquartersGeoLocation'
+      description: 'Geo location of the HQ',
+      name: 'headquartersGeoLocation'
     }
   ]
 };

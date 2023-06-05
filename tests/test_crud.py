@@ -24,7 +24,7 @@ def test_python_script(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/howto.exhausive.retrieval.py"
+        "./_includes/code/howto/read-all-objects.py"
     ],
 )
 def test_py(empty_weaviates, script_loc):
