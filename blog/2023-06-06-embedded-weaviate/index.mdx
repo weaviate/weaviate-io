@@ -64,7 +64,7 @@ Embedded DB support for macOS is in the works (you can track progress in [this i
   <TabItem value="ts" label="TypeScript">
 
   ```bash
-  npm install weaviate-ts-embedded ts-node  # also install support for TypeScript
+  npm install weaviate-ts-embedded ts-node jest  # also install support for TypeScript and Jest testing
   ```
 
   </TabItem>
@@ -100,8 +100,6 @@ Embedded DB support for macOS is in the works (you can track progress in [this i
   />
   </TabItem>
 </Tabs>
-
-The script will exit with an exit code of `0` if the test passed.
 
 
 ## <i class="fa-solid fa-screwdriver-wrench"></i> How does this work?
@@ -144,7 +142,7 @@ You can use Embedded Weaviate in automated tests, where you can run integration 
 
   <TabItem value="ts" label="TypeScript">
 
-  Save as `embedded.ts` and run `node --loader=ts-node/esm embedded.ts`:
+  Save as `embedded_test.ts` and run `npx jest`:
   <br/>
 
   <FilteredTextBlock
