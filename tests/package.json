@@ -1,5 +1,7 @@
 {
   "name": "ts-code-samples",
+  "private": true,
+  "license": "BSD-3-Clause",
   "description": "This file exists to enable type: module in the code samples directory",
   "type": "module",
   "scripts": {
