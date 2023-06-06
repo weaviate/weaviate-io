@@ -28,6 +28,17 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 <TabItem value="go" label="Go">
 
 ```go
+package main
+
+import (
+  "context"
+  "encoding/json"
+  "net/http"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
+)
+
 cfg := weaviate.Config{
   Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
   Scheme: "https",
