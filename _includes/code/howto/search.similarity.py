@@ -26,11 +26,11 @@ client = weaviate.Client(
 response = (
     client.query
     .get("JeopardyQuestion", ["question", "answer"])
-# highlight-start
+    # highlight-start
     .with_near_text({
         "concepts": ["animals in movies"]
     })
-# highlight-end
+    # highlight-end
     .with_limit(2)
     .with_additional(["distance"]).do()
 )

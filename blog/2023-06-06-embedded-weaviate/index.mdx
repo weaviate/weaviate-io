@@ -19,10 +19,14 @@ Yes, 10 Python lines of code, generously formatted with whitespace. Or 14 for Ty
 
 <!-- truncate -->
 
-<details>
-  <summary>macOS support</summary>
+:::info macOS support
+Embedded DB support for macOS is in the works (you can track progress in [this issue](https://github.com/weaviate/weaviate-python-client/issues/239)).
+:::
 
-  macOS support for Embedded DB is in the works (you can track progress in [this issue](https://github.com/weaviate/weaviate-python-client/issues/239)). For now, you can use a Linux Docker image to follow along, for example if you want to dry-run a CI/CD pipeline. [Install Docker](https://docs.docker.com/desktop/install/mac-install/), then run this command to land in a bash Linux prompt:
+<details>
+  <summary>Running Embedded DB on macOS right now</summary>
+
+   You can use a Linux Docker image to follow along, for example if you want to dry-run a CI/CD pipeline. [Install Docker](https://docs.docker.com/desktop/install/mac-install/), then run this command to land in a bash Linux prompt:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -42,9 +46,7 @@ Yes, 10 Python lines of code, generously formatted with whitespace. Or 14 for Ty
   </TabItem>
 </Tabs>
 
-  This will create a Docker container named `wembed` and will map your current directory to `/usr/src/myapp` in the container.
-
-  From now on, the remaining steps are the same.
+  This will create a Docker container named `wembed` and will map your current directory to `/usr/src/myapp` in the container. From then on, the remaining steps will be the same.
 </details>
 
 
@@ -79,8 +81,8 @@ Yes, 10 Python lines of code, generously formatted with whitespace. Or 14 for Ty
 
   <FilteredTextBlock
     text={PyCode}
-    startMarker="# START example"
-    endMarker="# END example"
+    startMarker="# START 10lines"
+    endMarker="# END 10lines"
     language="py"
   />
   </TabItem>
@@ -92,8 +94,8 @@ Yes, 10 Python lines of code, generously formatted with whitespace. Or 14 for Ty
 
   <FilteredTextBlock
     text={TSCode}
-    startMarker="// START example"
-    endMarker="// END example"
+    startMarker="// START 10lines"
+    endMarker="// END 10lines"
     language="js"
   />
   </TabItem>
@@ -113,11 +115,46 @@ You can learn more about running Weaviate locally from client code on the [Embed
 
 What can you do with Embedded Weaviate? Quite a few things!
 
-* Get started very quickly with Weaviate on your local machine, without having to explicitly download, install or instantiate a server.
-* Use Weaviate from Jupyter notebooks.
-* Play with Weaviate on Google Colaboratory. Here is the example above as [Colab notebook](https://colab.research.google.com/drive/1XAJc9OvkKhsJRmheqWZmjYU707dqEIl8?usp=sharing).
+First off, you can get started very quickly with Weaviate on your local machine, without having to explicitly download, install or instantiate a server.
+
+
+### Jupyter notebooks
+
+You can also use Embedded Weaviate from Jupyter notebooks, including on Google Colaboratory. Here is the example above as [Google Colab notebook](https://colab.research.google.com/drive/1XAJc9OvkKhsJRmheqWZmjYU707dqEIl8?usp=sharing).
+
   ![Colab screenshot](./img/colab.png)
-* Use Weaviate in CI/CD pipelines, where you can run integration tests without having to manage a separate server instance.
+
+### Use Weaviate in CI/CD pipelines
+
+You can use Embedded Weaviate in automated tests, where you can run integration tests without having to manage a separate server instance. Here is the example above slightly modified to perform similarity search and test that the added object was found.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  Save as `embedded_test.py` and run `pytest`. (If you don't have pytest, run `pip install pytest`.)
+  <br/>
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# START TestExample"
+    endMarker="# END TestExample"
+    language="py"
+  />
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+
+  Save as `embedded.ts` and run `node --loader=ts-node/esm embedded.ts`:
+  <br/>
+
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// START TestExample"
+    endMarker="// END TestExample"
+    language="js"
+  />
+  </TabItem>
+</Tabs>
 
 Have you found other use cases for embedded Weaviate? Let us know in the comments below!
 
