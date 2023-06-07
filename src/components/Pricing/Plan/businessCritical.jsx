@@ -28,9 +28,6 @@ export default function PricingBusinessCritical() {
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>
-          <div className={styles.checkIcon}></div> <span>Always on</span>
-        </li>
-        <li>
           <div className={styles.checkIcon}></div> <span>Monitoring</span>
         </li>
         <li>
