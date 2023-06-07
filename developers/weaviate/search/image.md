@@ -13,7 +13,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 
 ## Overview
 
-This page shows you how to search for similar images in Weaviate.
+Content in [similarity search](./similarity.md) applies to image similarity searches.  
+
+This page shows you how to search for similar images in Weaviate. 
 
 
 ## Requirements
