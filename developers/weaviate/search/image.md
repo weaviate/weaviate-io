@@ -1,6 +1,6 @@
 ---
 title: Image search
-sidebar_position: 100
+sidebar_position: 25
 image: og/docs/howto.jpg
 # tags: ['how to', 'image']
 ---

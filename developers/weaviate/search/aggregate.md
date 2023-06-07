@@ -1,6 +1,6 @@
 ---
 title: Aggregate data
-sidebar_position: 70
+sidebar_position: 85
 image: og/docs/howto.jpg
 # tags: ['how to', 'aggregate data']
 ---
