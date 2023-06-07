@@ -1,5 +1,37 @@
 [
   {
+    "title": "LLM Agents",
+    "description": "Greg Kamradt and Colin Harmon explain the latest on LLM Agents!",
+    "youtube": "iB4ki6gdAdc",
+    "date": "2023-06-07",
+    "cover_image": "/img/podcasts/podcast-51.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Kapa AI",
+    "description": "Emil Sorensen and Finn Bauer explain the technology behind Kapa AI!",
+    "youtube": "cjAhve_DopY",
+    "date": "2023-05-31",
+    "cover_image": "/img/podcasts/podcast-50.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Neurosymbolic AI",
+    "description": "Professor Laura Dietz explains the state of Neurosymbolic AI methods in Search!",
+    "youtube": "2s_GGMZ_Zgs",
+    "date": "2023-05-24",
+    "cover_image": "/img/podcasts/podcast-49.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Unstructured",
+    "description": "Brain Raymond explains the vision behind Unstructured!",
+    "youtube": "b84Q2cJ6po8",
+    "date": "2023-05-23",
+    "cover_image": "/img/podcasts/podcast-48.png",
+    "is_use_case": false
+  },
+  {
     "title": "ChatArena",
     "description": "Yuxiang Wu explains ChatArena, a software library to enable LLMs to talk with each other",
     "youtube": "_0ww8Q0Bq2w",
@@ -158,7 +190,7 @@
     "date": "2022-11-23",
     "cover_image": "/img/podcasts/podcast-28.png",
     "is_use_case": false
-  },  
+  },
   {
     "title": "Neural Magic in Weaviate",
     "description": "Michael Goin explains how Neural Magic uses Sparsity to achieve faster and cheaper Deep Learning inference on CPUs!",
