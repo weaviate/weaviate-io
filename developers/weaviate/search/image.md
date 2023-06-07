@@ -13,19 +13,25 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 
 ## Overview
 
-Content in [similarity search](./similarity.md) applies to image similarity searches.  
+This page covers additional, unique aspects related to similarity searches using an image as an input.
 
-This page shows you how to search for similar images in Weaviate. 
+If you wish to search for images using a vector or another object, please refer to the [How-to: similarity search ](./similarity.md) page.
 
+:::info Not available in WCS
+Image-based search is currently not available in WCS, as the required modules are not available.
+:::
+
+### Target object types
+
+To search using an image as an input, you must use the `img2vec-neural` or the `multi2vec-clip` vectorizer module. More specifically:
+- To find similar images, you can use `img2vec-neural` or `multi2vec-clip`
+- To find related text and image objects (i.e. for multi-modal search), you must use `multi2vec-clip`
 
 ## Requirements
 
-To search for similar images, you must
-* have installed the `img2vec-neural` module in the Weaviate cluster
-* have configured a class in the schema to use the `img2vec-neural` vectorizer
-* have defined the [image field(s)](../modules/retriever-vectorizer-modules/img2vec-neural.md#schema-configuration) in the module configuration
-* prepare an image to search for, OR
-  * a based64 representation of an image
+To search using an images, you must:
+* configure the target class with the desired vectorizer module (`img2vec-neural` or `multi2vec-clip`)
+* configure the vectorizer module at the class leel with the [image field(s)](../modules/retriever-vectorizer-modules/img2vec-neural.md#schema-configuration)
 
 :::info Related pages
 - [img2vec-neural vectorizer module](../modules/retriever-vectorizer-modules/img2vec-neural.md)
@@ -34,7 +40,9 @@ To search for similar images, you must
 
 ## base64 nearImage search
 
-The most general way to search for similar images is to perform a [`nearImage`](../modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) search for the based64-encoded representation of the image. You can obtain this representation (a long string) using various programming language library functions or operating system commands:
+You can find similar images by performing a [`nearImage`](../modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) search for the based64-encoded representation of the image. 
+
+You can obtain this representation (a long string) as below:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -58,7 +66,7 @@ The most general way to search for similar images is to perform a [`nearImage`](
 </Tabs>
 
 
-Once you have this base64-encoded representation of the image, you can search for similar images as follows:
+Then, you can search for similar images as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -96,7 +104,7 @@ Once you have this base64-encoded representation of the image, you can search fo
 
 ## Specify image by filename
 
-If your target image is stored in a file, the Python client offers a [convenience method to search for the image](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.gql.html#weaviate.gql.get.GetBuilder.with_near_image) by simply passing its filename. The client will read the file and do the base64 conversion automatically:
+If your target image is stored in a file, you can [use the Python client to search for the image](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.gql.html#weaviate.gql.get.GetBuilder.with_near_image) by its filename.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -127,43 +135,70 @@ If your target image is stored in a file, the Python client offers a [convenienc
 
 </details>
 
+[//]: # (## Distance threshold)
 
-## Distance threshold
+[//]: # ()
+[//]: # (You can set a threshold for similarity search by setting a maximum `distance`. The distance indicates how dissimilar two images are.)
 
-You can set a threshold for similarity search by setting a maximum `distance`. The distance indicates how dissimilar two images are.
+[//]: # ()
+[//]: # (<Tabs groupId="languages">)
 
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# Distance START"
-      endMarker="# Distance END"
-      language="py"
-    />
-  </TabItem>
+[//]: # (  <TabItem value="py" label="Python">)
 
-  <TabItem value="js" label="TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// Distance START"
-      endMarker="// Distance END"
-      language="ts"
-    />
-  </TabItem>
-</Tabs>
+[//]: # (    <FilteredTextBlock)
 
+[//]: # (      text={PyCode})
 
-<details>
-  <summary>Example response</summary>
+[//]: # (      startMarker="# Distance START")
 
-  <FilteredTextBlock
-    text={PyCode}
-    startMarker="# Expected Distance results START"
-    endMarker="# Expected Distance results END"
-    language="json"
-  />
+[//]: # (      endMarker="# Distance END")
 
-</details>
+[//]: # (      language="py")
+
+[//]: # (    />)
+
+[//]: # (  </TabItem>)
+
+[//]: # ()
+[//]: # (  <TabItem value="js" label="TypeScript">)
+
+[//]: # (    <FilteredTextBlock)
+
+[//]: # (      text={TSCode})
+
+[//]: # (      startMarker="// Distance START")
+
+[//]: # (      endMarker="// Distance END")
+
+[//]: # (      language="ts")
+
+[//]: # (    />)
+
+[//]: # (  </TabItem>)
+
+[//]: # (</Tabs>)
+
+[//]: # ()
+[//]: # ()
+[//]: # (<details>)
+
+[//]: # (  <summary>Example response</summary>)
+
+[//]: # ()
+[//]: # (  <FilteredTextBlock)
+
+[//]: # (    text={PyCode})
+
+[//]: # (    startMarker="# Expected Distance results START")
+
+[//]: # (    endMarker="# Expected Distance results END")
+
+[//]: # (    language="json")
+
+[//]: # (  />)
+
+[//]: # ()
+[//]: # (</details>)
 
 ## More Resources
 
