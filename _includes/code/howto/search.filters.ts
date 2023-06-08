@@ -219,3 +219,36 @@ for (const question of result.data.Get.JeopardyQuestion) {
 }
 // searchMultipleFiltersNested
 // END searchMultipleFiltersNested
+
+
+// ===================================================
+// ===== Filters using Cross-referenced property =====
+// ===================================================
+
+// searchCrossReference
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+// highlight-start
+  .withWhere({
+    path: ['hasCategory', 'JeopardyCategory', 'title'],
+    operator: 'Like',
+    valueText: '*Sport*',
+  })
+// highlight-end
+  .withLimit(3)
+  .withFields('question answer round hasCategory {... on JeopardyCategory { title } }')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END searchCrossReference
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', 'hasCategory']));
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
+for (const question of result.data.Get.JeopardyQuestion) {
+  assert.ok(question.hasCategory[0].title.toLowerCase().includes('sport'));
+}
+// searchCrossReference
+// END searchCrossReference
