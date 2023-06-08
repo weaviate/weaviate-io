@@ -29,21 +29,29 @@ To search using an image as an input, you must use the `img2vec-neural` or the `
 
 ## Requirements
 
-To search using an images, you must:
-* configure Weaviate with image vectorizer module (`img2vec-neural` or `multi2vec-clip`),
-* configure the target class by specifying the vectorizer module, and the [image field(s)](../modules/retriever-vectorizer-modules/img2vec-neural.md#schema-configuration) for the module
-
-:::info Related pages
-- [img2vec-neural vectorizer module](../modules/retriever-vectorizer-modules/img2vec-neural.md)
-- [multi2vec-clip vectorizer module](../modules/retriever-vectorizer-modules/multi2vec-clip.md)
-:::
+To search using an input image, you must:
+* Configure Weaviate with an image vectorizer module (`img2vec-neural` or `multi2vec-clip`), and
+* Configure the target class to use the image vectorizer module
 
 <details>
-  <summary>How do I configure Weaviate with an image vectorizer module?</summary>
+  <summary>How do I <strong>configure Weaviate</strong> with an image vectorizer module?</summary>
 
 You must enable the desired vectorizer module and specify the inference API address in the relevant configuration file (e.g. `docker-compose.yml`). 
 
-For example, to enable the `multi2vec-clip` module, configure it as follows:
+An example `img2vec-neural` module is shown below:
+
+```yaml
+services:
+  weaviate:
+    environment:
+      IMAGE_INFERENCE_API: "http://i2v-neural:8080"
+      DEFAULT_VECTORIZER_MODULE: 'img2vec-neural'
+      ENABLE_MODULES: 'img2vec-neural'
+  i2v-neural:
+    image: semitechnologies/img2vec-pytorch:resnet50
+```
+
+And an example `multi2vec-clip` module is shown below:
 
 ```yaml
 services:
@@ -58,24 +66,81 @@ services:
       ENABLE_CUDA: '0'
 ```
 
-And 
-
-
 </details>
 
 <details>
-  <summary>How do I configure the vectorizer module with an Image field?</summary>
+  <summary>How do I <strong>configure the target class</strong> with the image vectorizer module?</summary>
 
-Add 
+You must configure the target class to:
+- Ensure that the target class configured to use the image vectorizer module, such as by explicitly setting it as the vectorizer for the class. And
+- Specify `imageFields` property to specify field(s) that will store the images.
 
-```yaml
-services:
-  weaviate:
-    environment:
-      ENABLE_MODULES: 'text2vec-transformers,multi2vec-clip'
+For using `img2vec-neural`, an example class definition may look as follows: 
+
+```json
+{
+  "classes": [
+    {
+      "class": "ImageExample",
+      "moduleConfig": {
+        "img2vec-neural": {
+          "imageFields": [
+            "image"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "dataType": [
+            "blob"
+          ],
+          "description": "Grayscale image",
+          "name": "image"
+        }
+      ],
+      "vectorizer": "img2vec-neural"
+    }
+  ]
+}
 ```
 
+For using `multi2vec-clip`, an example class definition may look as follows:
+
+```json
+{
+  "classes": [
+    {
+      "class": "ClipExample",
+      "moduleConfig": {
+        "multi2vec-clip": {
+          "imageFields": [
+            "image"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "dataType": [
+            "blob"
+          ],
+          "name": "image"
+        }
+      ],
+      "vectorizer": "multi2vec-clip"
+    }
+  ]
+}
+```
+
+Note that for the [multi2vec-clip vectorizer module](../modules/retriever-vectorizer-modules/multi2vec-clip.md), there are additional settings available such as how to balance text and image-derived vectors.
+
 </details>
+
+:::info For more detail
+See the relevant module page for:
+- [img2vec-neural](../modules/retriever-vectorizer-modules/img2vec-neural.md)
+- [multi2vec-clip](../modules/retriever-vectorizer-modules/multi2vec-clip.md)
+:::
 
 ## base64 nearImage search
 
