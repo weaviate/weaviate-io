@@ -30,13 +30,52 @@ To search using an image as an input, you must use the `img2vec-neural` or the `
 ## Requirements
 
 To search using an images, you must:
-* configure the target class with the desired vectorizer module (`img2vec-neural` or `multi2vec-clip`)
-* configure the vectorizer module at the class leel with the [image field(s)](../modules/retriever-vectorizer-modules/img2vec-neural.md#schema-configuration)
+* configure Weaviate with image vectorizer module (`img2vec-neural` or `multi2vec-clip`),
+* configure the target class by specifying the vectorizer module, and the [image field(s)](../modules/retriever-vectorizer-modules/img2vec-neural.md#schema-configuration) for the module
 
 :::info Related pages
 - [img2vec-neural vectorizer module](../modules/retriever-vectorizer-modules/img2vec-neural.md)
+- [multi2vec-clip vectorizer module](../modules/retriever-vectorizer-modules/multi2vec-clip.md)
 :::
 
+<details>
+  <summary>How do I configure Weaviate with an image vectorizer module?</summary>
+
+You must enable the desired vectorizer module and specify the inference API address in the relevant configuration file (e.g. `docker-compose.yml`). 
+
+For example, to enable the `multi2vec-clip` module, configure it as follows:
+
+```yaml
+services:
+  weaviate:
+    environment:
+      CLIP_INFERENCE_API: 'http://multi2vec-clip:8080'
+      DEFAULT_VECTORIZER_MODULE: 'multi2vec-clip'
+      ENABLE_MODULES: 'multi2vec-clip'
+  multi2vec-clip:
+    image: semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
+    environment:
+      ENABLE_CUDA: '0'
+```
+
+And 
+
+
+</details>
+
+<details>
+  <summary>How do I configure the vectorizer module with an Image field?</summary>
+
+Add 
+
+```yaml
+services:
+  weaviate:
+    environment:
+      ENABLE_MODULES: 'text2vec-transformers,multi2vec-clip'
+```
+
+</details>
 
 ## base64 nearImage search
 
