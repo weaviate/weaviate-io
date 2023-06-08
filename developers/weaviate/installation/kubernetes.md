@@ -124,10 +124,9 @@ You can deploy the helm charts as follows:
 $ kubectl create namespace weaviate
 
 # Deploy
-$ helm install \
+$ helm upgrade --install \
   "weaviate" \
   weaviate/weaviate \
-  --install \
   --namespace "weaviate" \
   --values ./values.yaml
 ```
