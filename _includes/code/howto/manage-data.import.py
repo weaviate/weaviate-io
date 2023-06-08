@@ -1,4 +1,4 @@
-# How-to: Manage-data -> Import objects - Python examples
+# How-to: Manage-data -> (Batch) Import items - Python examples
 import os
 MAX_ROWS_TO_IMPORT = 50  # limit vectorization calls
 

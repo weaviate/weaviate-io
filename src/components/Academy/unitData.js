@@ -440,7 +440,7 @@ export const unitData = {
     buttonType: "Notify",
     badgeType: "mixed",
     learningGoals: [
-      "Learn about reader and generator modules like question answering, summerization and NER in a Weaviate pipeline, and how to use them."
+      "Learn about reader and generator modules like question answering, summarization and NER in a Weaviate pipeline, and how to use them."
     ],
     learningOutcomes: [
       "Describe what reader and generator modules are.",

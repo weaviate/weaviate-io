@@ -157,16 +157,13 @@ Producing:
 
 Performing the `nearVector` search again results in zero distance (`1.788e-07` - effectively zero)!
 
-In other words - we have manually reproduced Weaviate's default vectorization process. It's not overly complex, but knowing it can certainly be helpful. Let's recap exactly what Weaviate does..
+In other words - we have manually reproduced Weaviate's default vectorization process. It's not overly complex, but knowing it can certainly be helpful. Let's recap exactly what Weaviate does.
 
 ### Text vectorization in Weaviate
 
-Unless specified otherwise, Weaviate follows the following logic in order to produce a string to be vectorized:
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
-- Only vectorizes properties that use `string` or `text` data types
-- Sorts properties in alphabetical (a-z) order before concatenating values
-- Prepends the class name
-- And converts the whole string to lowercase
+<VectorizationBehavior/>
 
 Now that we understand this, you might be asking - is it possible to customize the vectorization process? The answer is, yes, of course.
 

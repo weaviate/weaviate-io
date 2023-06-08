@@ -27,21 +27,21 @@ If you are after a practical guide, try the [quickstart tutorial](/developers/we
 
 ## Core concepts
 
-### [Data structure](./data.md)
+**[Data structure](./data.md)**
 
-How Weaviate deals with data objects, including how they are stores, represented, and linked to each other.
+- How Weaviate deals with data objects, including how they are stores, represented, and linked to each other.
 
-### [Modules](./modules.md)
+**[Modules](./modules.md)**
 
-An overview of Weaviate's module system, including what can be done with modules, existing module types, and custom modules.
+- An overview of Weaviate's module system, including what can be done with modules, existing module types, and custom modules.
 
-### [Indexing](./indexing.md)
+**[Indexing](./indexing.md)**
 
-Read how data is indexed within Weaviate using inverted and ANN indices, and about configurable settings.
+- Read how data is indexed within Weaviate using inverted and ANN indices, and about configurable settings.
 
-### [Vector indexing](./vector-index.md)
+**[Vector indexing](./vector-index.md)**
 
-Read more about Weaviate's vector indexing architecture, such as the HNSW algorithm, distance metrics, and configurable settings.
+- Read more about Weaviate's vector indexing architecture, such as the HNSW algorithm, distance metrics, and configurable settings.
 
 ## Weaviate Architecture
 
@@ -51,32 +51,32 @@ The figure below gives a 30,000 feet view of Weaviate's architecture.
 
 You can learn more about the individual components in this figure by following the below guides:
 
-### [Learn about storage inside a shard](./storage.md)
+**[Learn about storage inside a shard](./storage.md)**
   * How Weaviate stores data
   * How Weaviate makes writes durable
   * How an inverted index, a vector index and an object store interact with each other
 
-### [Ways to scale Weaviate horizontally](./cluster.md)
+**[Ways to scale Weaviate horizontally](./cluster.md)**
   * Different motivations to scale
   * Sharding vs. Replication
   * Configuring a cluster
   * Consistency
 
-### [How to plan resources](./resources.md)
+**[How to plan resources](./resources.md)**
   * The roles of CPU, Memory and GPUs
   * How to size a cluster correctly
   * Speeding up specific processes
   * Preventing bottlenecks
 
-### [Filtered vector search](./prefiltering.md)
+**[Filtered vector search](./prefiltering.md)**
   * Combine vector search with filters
   * Learn how combining an HNSW with an inverted index leads to high-recall, high-speed filtered queries
 
-### [User-facing interfaces](./interface.md)
+**[User-facing interfaces](./interface.md)**
   * Design philosophy behind user-facing APIs
   * Role of the REST and GraphQL APIs
 
-### [Replication architecture](./replication-architecture/index.md)
+**[Replication architecture](./replication-architecture/index.md)**
   * About replication
   * Weaviate's implementation
   * Use cases

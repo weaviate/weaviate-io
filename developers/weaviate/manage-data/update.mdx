@@ -1,0 +1,136 @@
+---
+title: Update objects
+sidebar_position: 30
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'update']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.update.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.update.ts';
+
+## Overview
+
+This page will show you how to update objects in Weaviate, either in their entirety, or specific properties.
+
+
+## Requirements
+
+To update an object, you'll need:
+1. Its [id](../api/graphql/additional-properties.md#id)
+2. The name of its class
+3. The properties to update, in particular the entire object
+
+
+## Update object properties
+
+To update the values of a list of properties in an object, [make a `PATCH` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` properties are updated, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../configuration/schema-configuration.md#property-level-module-settings)ed).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# UpdateProps START"
+      endMarker="# UpdateProps END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// UpdateProps START"
+      endMarker="// UpdateProps END"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+### Specify the vector
+
+If you want to update an object's vector embedding, you can specify the vector property:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# UpdateVector START"
+      endMarker="# UpdateVector END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+
+  >  Coming soon (vote for the [feature request](https://github.com/weaviate/typescript-client/issues/64))
+
+  </TabItem>
+</Tabs>
+
+
+## Update (replace) an entire object
+
+To replace an object in its entirety, [make a `PUT` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` property is replaced with a different value, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../configuration/schema-configuration.md#property-level-module-settings)ed).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# Replace START"
+      endMarker="# Replace END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// Replace START"
+      endMarker="// Replace END"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Add a new property
+
+Weaviate does not support adding an extra property to an object if the property isn't listed in the schema class definition. You can update the values of existing class properties as seen above, or you can [add the property to the class first](../configuration/schema-configuration.md/#add-a-property), then [update](#update-object-properties) it for the desired object(s).
+
+
+## Delete a property
+
+Weaviate does not yet support deleting or updating properties in the schema, but you can [vote for this feature request](https://github.com/weaviate/weaviate/issues/2848).
+
+To "delete" a text property, you could [update](#update-object-properties) it to an empty string.
+
+To delete properties from a specific object, you can replace the object with a copy that has those properties deleted:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# DelProps START"
+      endMarker="# DelProps END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// DelProps START"
+      endMarker="// DelProps END"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
