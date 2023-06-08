@@ -1,6 +1,6 @@
 ---
 title: Generative search
-sidebar_position: 80
+sidebar_position: 60
 image: og/docs/howto.jpg
 # tags: ['how to', 'generative']
 ---

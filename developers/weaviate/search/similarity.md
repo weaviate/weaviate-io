@@ -31,8 +31,9 @@ These parameters are available:
     * E.g.: Use it to find text objects most similar to `cute animals`, or images most similar to a particular image.
 * [`nearObject`](#an-object) - Finds objects closest to another Weaviate object:
     * E.g.: Use it to find Weaviate objects most similar to object `56b9449e-65db-5df4-887b-0a4773f52aa7`.
-* [`nearVector`](#a-vector) - Find objects closest to an input vector.
+* [`nearVector`](#a-vector) - [Find objects closest to an input vector](./vector.md).
     * E.g.: Use it to find Weaviate objects most similar to vector `[-0.368, 0.1397, ... , 0.0971]`.
+
 
 ### An input medium
 
@@ -124,45 +125,12 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 <!-- Possibly add: you can technically pass the ID of an object outside of the collection in order to find similar objects across collections. -->
 
 
-### A vector
-
-You can use the [`nearVector` parameter](../api/graphql/vector-search-parameters.md#nearvector) to find objects most similar to an input vector (e.g. `[-0.368, 0.1397, ... , 0.0971]`).
-
-The example below searches the `JeopardyQuestion` class for the top 2 objects best matching the object with the provided vector, using `nearVector`:
-
-<Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearVectorPython"
-  endMarker="# END GetNearVectorPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={JavaScriptCode}
-  startMarker="// GetNearVector"
-  endMarker="// END GetNearVector"
-  language="ts"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearVectorGraphQL"
-  endMarker="# END GetNearVectorGraphQL"
-  language="graphql"
-/>
-</TabItem>
-</Tabs>
-
-
 ## Limit the results
 
 You can set a limit on:
 - The number of results returned (with `limit`), or
 - How similar the results are to the query (with `distance`).
+
 
 ### Number of results
 
@@ -342,6 +310,7 @@ It should produce a response like the one below:
 />
 
 </details>
+
 
 ## More Resources
 
