@@ -136,6 +136,8 @@ have only namespace-level permissions, you can skip creating a new
 namespace and adjust the namespace argument on `helm upgrade` according to the
 name of your pre-configured namespace.
 
+Optionally, you can provide the `--create-namespace` parameter which will create the namespace if not present. 
+
 ### Updating the installation after the initial deployment
 
 The above command (`helm upgrade...`) is idempotent, you can run it again, for
