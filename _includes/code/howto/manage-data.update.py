@@ -6,7 +6,6 @@ import os
 # ================================
 
 import weaviate
-import json
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
