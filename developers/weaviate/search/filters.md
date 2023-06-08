@@ -271,6 +271,59 @@ It should produce a response like the one below:
 </details>
 
 
+## Filter using cross-references
+
+You can filter objects using properties from a cross-referenced object.
+
+The following example filters `JeopardyQuestion` objects using properties of `JeopardyCategory` that they are cross-referencing.
+
+More speficially, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`. 
+
+:::note Case-sensitivity
+The results are case-insensitive here, as the `title` property is defined with [`word` tokenization](../config-refs/schema.md#property-tokenization).
+:::
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# CrossReferencePython"
+  endMarker="# END CrossReferencePython"
+  language="python"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={JavaScriptCode}
+  startMarker="// searchSingleFilter"
+  endMarker="// END searchSingleFilter"
+  language="js"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# CrossReferenceGraphQL"
+  endMarker="# END CrossReferenceGraphQL"
+  language="graphql"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Expected CrossReferencePython results"
+  endMarker="# END Expected CrossReferencePython results"
+  language="json"
+/>
+
+</details>
+
 
 ## More Resources
 

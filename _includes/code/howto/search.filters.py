@@ -400,7 +400,6 @@ assert gqlresponse == response
 # End test
 
 
-
 # ==========================================
 # ===== Multiple Filters with Nesting =====
 # ==========================================
@@ -526,6 +525,109 @@ gql_query = """
   }
 }
 # END MultipleFiltersNestedGraphQL
+"""
+
+# Tests
+gqlresponse = client.query.raw(gql_query)
+assert gqlresponse == response
+# End test
+
+# ===================================================
+# ===== Filters using Cross-referenced property =====
+# ===================================================
+
+# CrossReferencePython
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question", "answer", "round", "hasCategory {... on JeopardyCategory { title } }"])
+    # highlight-start
+    .with_where({
+        "path": ["hasCategory", "JeopardyCategory", "title"],
+        "operator": "Like",
+        "valueText": "*Sport*"
+    })
+    # highlight-end
+    .with_limit(3)
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END CrossReferencePython
+
+
+expected_response = (
+# Expected CrossReferencePython results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "Sampan",
+          "hasCategory": [
+            {
+              "title": "TRANSPORTATION"
+            }
+          ],
+          "question": "Smaller than a junk, this Oriental boat usually has a cabin with a roof made of mats",
+          "round": "Jeopardy!"
+        },
+        {
+          "answer": "Emmitt Smith",
+          "hasCategory": [
+            {
+              "title": "SPORTS"
+            }
+          ],
+          "question": "In 1994 this Dallas Cowboy scored 22 touchdowns; in 1995 he topped that with 25",
+          "round": "Jeopardy!"
+        },
+        {
+          "answer": "Lee Iacocca",
+          "hasCategory": [
+            {
+              "title": "TRANSPORTATION"
+            }
+          ],
+          "question": "Chrysler executive who developed the Ford Mustang",
+          "round": "Jeopardy!"
+        }
+      ]
+    }
+  }
+}
+# END Expected CrossReferencePython results
+)
+
+
+# Tests
+assert "JeopardyQuestion" in response["data"]["Get"]
+for question in response["data"]["Get"]["JeopardyQuestion"]:
+    assert "sport" in question["hasCategory"][0]["title"].lower()
+# End test
+
+
+gql_query = """
+# CrossReferenceGraphQL
+{
+  Get {
+    JeopardyQuestion(
+      limit: 3
+# highlight-start
+      where: {
+        path: ["hasCategory", "JeopardyCategory", "title"],
+        operator: Like,
+        valueText: "*Sport*"
+      }
+# highlight-end
+    ) {
+      question
+      answer
+      round
+      hasCategory {... on JeopardyCategory { title } }
+    }
+  }
+}
+# END CrossReferenceGraphQL
 """
 
 # Tests
