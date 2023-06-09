@@ -19,6 +19,10 @@
   --site-font-header-color: #2C3854;
   --site-font-accent-color: #00A142;
   --site-font-link-color: #00A142;
+
+  --docs-base-color: #000000;
+  --docs-header-color: #160f52;
+  --docs-sidebar-bg: #ffffff;
 }
 [data-theme='dark'] {
   --site-base-color: #F7F9FD;
@@ -35,6 +39,10 @@
   --site-font-header-color: #F7F9FD;
   --site-font-accent-color: #00C342;
   --site-font-link-color: #00C342;
+
+  --docs-base-color: #ffffff;
+  --docs-header-color: #dddddd;
+  --docs-sidebar-bg: #000000;
 }
 
 //********************* FONTS *********************
