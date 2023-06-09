@@ -4,7 +4,7 @@ export const courseData = {
     courseId: "1",
     body: "Start here: Get started with all the core knowledge and essential skills for building with Weaviate. Learn how to build a Weaviate database and effectively perform queries to find the right data.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/courses/zero_to_mvp",
+    buttonURL: "/developers/academy/zero_to_mvp",
     badgeType: "course",
     isCourse: true,
     units: [
@@ -86,7 +86,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: false,
     units: [
-      "beyond_text", "chunking"
+      "vectorizer_selection_1", "beyond_text", "chunking"
     ]
   }
 };

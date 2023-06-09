@@ -3,7 +3,7 @@ export const unitData = {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features, as well as about vectors that power Weaviate.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/units/hello_weaviate",
+    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
     badgeType: "mixed",
     learningGoals: [
       "What Weaviate is, and what it does.",
@@ -26,7 +26,7 @@ export const unitData = {
     body: "Learn how queries work in Weaviate, how to use similarity searches and use filters, as well as how search works under the hood.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/units/queries_1",
+    buttonURL: "/developers/academy/zero_to_mvp/queries_1",
     learningGoals: [
       "How to retrieve objects and properties.",
       "The structure of returned responses from Weaviate.",
@@ -51,7 +51,7 @@ export const unitData = {
     body: "Learn what role the schema plays in Weaviate, and how to define it, before learning how to effectively populate Weaviate with data.",
     buttonType: "Click here",
     badgeType: "mixed",
-    buttonURL: "/developers/academy/units/schema_and_imports",
+    buttonURL: "/developers/academy/zero_to_mvp/schema_and_imports",
     learningGoals: [
       "How Weaviate organizes and stores data.",
       "An overview of indexes used in Weaviate.",
@@ -75,7 +75,7 @@ export const unitData = {
     body: "Learn about even more query types, from hybrid searches that combine keyword and vector searches to generative searches that transform your data at retrieval.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/units/queries_2",
+    buttonURL: "/developers/academy/zero_to_mvp/queries_2",
     learningGoals: [
       "How to formulate and perform keyword or BM25 searches.",
       "What Hybrid searches are, how they are ranked and how to use them.",
@@ -105,24 +105,6 @@ export const unitData = {
   //     "Use the RESTful objects endpoint (GET) to retrieve data objects with query parameters like limit, sort, order, offset and including fields like the object's vector",
   //     "Use the RESTful objects endpoint (PUT/PATCH) to update data objects in Weaviate.",
   //     "Use the RESTful objects endpoint (HEAD) to check and validate if data objects exists without retrieving it."
-  //   ],
-  //   owner: "jp",
-  //   reviewer: "jp"
-  // },
-
-  // chunking: {
-  //   title: "Chunking overview",
-  //   body: ".",
-  //   buttonType: "Click here",
-  //   badgeType: "practical",
-  //   buttonURL: "/developers/academy/units/chunking",
-  //   learningGoals: [
-  //     "What is chunking",
-  //     "About how to chunk.",
-  //     "How it affects results"
-  //   ],
-  //   learningOutcomes: [
-  //     "...",
   //   ],
   //   owner: "jp",
   //   reviewer: "jp"
@@ -197,27 +179,6 @@ export const unitData = {
 
 
 
-  // vectorizer_selection_1: {
-  //   title: "Vectorizer selection 1",
-  //   body: "How to find a good baseline vectorizer for given data and task types.",
-  //   buttonType: "Click here",
-  //   badgeType: "theory",
-  //   buttonURL: "/developers/academy/units/vectorizer_selection_1",
-  //   learningGoals: [
-  //     "Theory and heuristics for selecting appropriate, robust vectorizers for the data type and task at hand and how to set the vectorizer appropriately in Weaviate.",
-  //   ],
-  //   learningOutcomes: [
-  //     "Describe key considerations in vectorizer selection.",
-  //     "List types of vectorizer modules available with Weaviate.",
-  //     "Identify key differences between using an inference service and a local model.",
-  //     "Describe situations in which a fine-tuned model may significantly outperform a pretrained model.",
-  //     "Select an appropriate vectorizer model for a given data and task type.",
-  //     "Demonstrate ability to change the default vectorizer in Weaviate.",
-  //     "Demonstrate ability to change the class vectorizer in Weaviate.",
-  //   ],
-  //   owner: "jp",
-  //   reviewer: "jp"
-  // },
   // search_theory: {
   //   title: "Vector search theory",
   //   body: "Vector search powers Weaviate - but what is it and how does it work?",
@@ -473,6 +434,26 @@ export const unitData = {
   //   owner: "jp",
   //   reviewer: "jp"
   // },
+  vectorizer_selection_1: {
+    title: "Vectorizer selection 1",
+    body: "This unit will discuss the basics on how to select a good baseline vectorizer for given data and task types.",
+    buttonType: "TBD",
+    badgeType: "theory",
+    learningGoals: [
+      "Theory and heuristics for selecting appropriate, robust vectorizers for the data type and task at hand and how to set the vectorizer appropriately in Weaviate.",
+    ],
+    learningOutcomes: [
+      "Describe key considerations in vectorizer selection.",
+      "List types of vectorizer modules available with Weaviate.",
+      "Identify key differences between using an inference service and a local model.",
+      "Describe situations in which a fine-tuned model may significantly outperform a pretrained model.",
+      "Select an appropriate vectorizer model for a given data and task type.",
+      "Demonstrate ability to change the default vectorizer in Weaviate.",
+      "Demonstrate ability to change the class vectorizer in Weaviate.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
   beyond_text: {
     title: "Weaviate: Beyond text",
     body: "How to use Weaviate with non-text media, such as images. What models are available, and how can you use them?",
@@ -490,13 +471,16 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
+
   chunking: {
     title: "Document chunking and vectorization",
-    body: "Documents often far exceed transformer models' maximum input token lengths. Chunking can help, but how to do it - and what are some rules of thumb? Let's discuss.",
+    body: "Chunking can help to vectorize long documents, but how to best do it? And what are some rules of thumb?.",
     buttonType: "TBD",
-    badgeType: "mixed",
+    badgeType: "practical",
     learningGoals: [
-      "TBC"
+      "What is chunking",
+      "About how to chunk.",
+      "How it affects results"
     ],
     learningOutcomes: [
       "TBC",
