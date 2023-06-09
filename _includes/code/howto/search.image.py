@@ -1,5 +1,9 @@
 # How-to: Search -> Image search - Python examples
 
+# This test requires the Dogs image collection to have been imported. Check out the https://github.com/weaviate/weaviate-examples repo
+# and follow the steps at https://github.com/weaviate/weaviate-examples/tree/main/nearest-neighbor-dog-searchpython create-schema.py.
+# For multi2vec-clip, change in `create-schema.py` the vectorizer and its moduleConfig from `img2vec-neural` to multi2vec-clip.
+
 # ===========================================
 # ===== Search by base64 representation =====
 # ===========================================
@@ -12,7 +16,7 @@ import json
 
 client = weaviate.Client(
     'http://localhost:8080',  # Replace with your Weaviate URL
-    # If authentication is on. Replace w/ your Weaviate instance API key
+    # Uncomment if authentication is on and replace w/ your Weaviate instance API key.
     # auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),
 )
 
@@ -138,7 +142,7 @@ expected_results = """
 """
 
 # Tests
-assert response['data']['Get']['Dog'] == [{'breed': 'Corgi', '_additional': {'distance': 0.1056757}}]
+assert response['data']['Get']['Dog'][0]['breed'] == 'Corgi'
 
 
 # weaviate.util.image_encoder_b64 has questionable utility, since .with_near_image has `encode=True` by default
