@@ -1,6 +1,6 @@
 ---
 title: Filters
-sidebar_position: 80
+sidebar_position: 90
 image: og/docs/howto.jpg
 # tags: ['how to', 'apply conditional filters']
 ---

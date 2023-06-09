@@ -1,6 +1,6 @@
 ---
 title: Generative search
-sidebar_position: 80
+sidebar_position: 70
 image: og/docs/howto.jpg
 # tags: ['how to', 'generative']
 ---
@@ -268,4 +268,3 @@ It should produce a response like the one below:
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
-
