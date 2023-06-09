@@ -10,7 +10,7 @@ function CourseCardSet(props) {
   for (let k in cardData) {
     if (cardData[k].isCourse) {
       cardItems.push(
-        <div class="col col--4">
+        <div class="col col--6">
           <AcademyCard
             title={cardData[k].courseId + ". " + cardData[k].title}
             body={cardData[k].body}
