@@ -76,7 +76,7 @@ while (true) {
     targetBatcher = targetBatcher.withObject({
       class: className,
       properties: newObject,
-      vector: retrievedObject['_additional']['vector'],
+      vector: retrievedObject['_additional']['vector'],  // can update the vector here
     });
 
     // When the batch counter reaches batchSize, push the objects to Weaviate

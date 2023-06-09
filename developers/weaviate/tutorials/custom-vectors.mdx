@@ -1,6 +1,6 @@
 ---
-title: Bring Your Own Vectors
-sidebar_position: 60
+title: Custom vectors tutorial
+sidebar_position: 10
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 ---
@@ -10,10 +10,6 @@ As a vector database, Weaviate operates using vector representations, also known
 To generate these vector embeddings, you can employ a Weaviate ["vectorizer" module](../modules/retriever-vectorizer-modules/index.md), which can generate vectors at the time of import. Alternatively, you're welcome to supply your own "custom" vector embeddings.
 
 In this tutorial, we'll guide you through the process of using Weaviate with your own vectors.
-
-:::tip Interested in using a vectorizer?
-See the ["End-to-End Quickstart"](./end-to-end.md) if you would like to use a vectorizer module instead of specifying your own vectors.
-:::
 
 If you choose to specify your own vector embeddings, performing a vector search with Weaviate looks like this:
 
@@ -116,7 +112,6 @@ import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questi
 ## Query
 
 Let's say you want to find questions related to biology. We can do that by obtaining a vector embedding for "biology", and finding objects nearest to it.
-
 In this example, we've used the OpenAI API to generate it, with the same [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Then, in the following query, we pass that vector to the [`nearVector` parameter](../api/graphql/vector-search-parameters.md#nearvector):
 
 import NearVector from '/_includes/code/quickstart.query.nearVector.mdx';

@@ -62,7 +62,7 @@ if err != nil {
 }
 for _, res := range batchRes {
   if res.Result.Errors != nil {
-    panic("batch load failed: %v", res.Result.Errors.Error)
+    panic(res.Result.Errors.Error)
   }
 }
 ```

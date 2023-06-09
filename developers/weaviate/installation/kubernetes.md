@@ -124,10 +124,9 @@ You can deploy the helm charts as follows:
 $ kubectl create namespace weaviate
 
 # Deploy
-$ helm install \
+$ helm upgrade --install \
   "weaviate" \
   weaviate/weaviate \
-  --install \
   --namespace "weaviate" \
   --values ./values.yaml
 ```
@@ -136,6 +135,8 @@ The above assumes that you have permissions to create a new namespace. If you
 have only namespace-level permissions, you can skip creating a new
 namespace and adjust the namespace argument on `helm upgrade` according to the
 name of your pre-configured namespace.
+
+Optionally, you can provide the `--create-namespace` parameter which will create the namespace if not present. 
 
 ### Updating the installation after the initial deployment
 

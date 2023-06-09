@@ -46,7 +46,7 @@ func main() {
     Scheme: "https",
     AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
     Headers: map[string]string{
-      "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
+      "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // Replace with your inference API key
     },
   }
   client, err := weaviate.NewClient(cfg)
@@ -58,6 +58,11 @@ func main() {
   classObj := &models.Class{
     Class:      "Question",
     Vectorizer: "text2vec-openai",
+    ModuleConfig: map[string]interface{}{
+      "text2vec-huggingface": map[string]interface{}{
+        "model": "sentence-transformers/paraphrase-MiniLM-L6-v2",
+      },
+    },
   }
 
   if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
@@ -171,7 +176,7 @@ function send_data() {
   curl --no-progress-meter -X POST "$BATCH_API_URL" \
        -H "Content-Type: application/json" \
        -H "Authorization: Bearer $WEAVIATE_API_KEY" \
-       -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+       -H "X-HuggingFace-Api-Key: $HUGGINGFACE_API_KEY" \
        -d "$1" \
        -o /dev/null  # suppress the output because vectors are long
 }
@@ -182,7 +187,12 @@ curl -X DELETE $SCHEMA_API_URL/Question -H "Authorization: Bearer $WEAVIATE_API_
 echo "Creating the schema. Weaviate's autoschema feature will infer class properties when importing..."
 echo '{
   "class": "Question",
-  "vectorizer": "text2vec-openai"
+  "vectorizer": "text2vec-huggingface",
+  "moduleConfig": {
+      "text2vec-huggingface": {
+          "model": "sentence-transformers/all-MiniLM-L6-v2",
+      }
+  }
 }' | curl --no-progress-meter \
   -X POST \
   -H "Content-Type: application/json" \

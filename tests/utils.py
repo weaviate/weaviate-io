@@ -3,13 +3,20 @@ import re
 from pathlib import Path
 
 
-def populate_openai_key(codeblock_in: str) -> str:
-    # Replace OpenAI key
-    pattern = r'(["\'])X-OpenAI-Api-Key\1: \1(.+?)\1'
-    my_api_key = os.environ["OPENAI_APIKEY"]
-    codeblock_out = re.sub(
-        pattern, r'\1X-OpenAI-Api-Key\1: \1' + my_api_key + r'\1', codeblock_in
-    )
+def populate_inference_api_keys(codeblock_in: str) -> str:
+
+    codeblock_out = codeblock_in
+    for pattern, my_env_var, repl_pattern in [
+        (r'(["\'])X-Cohere-Api-Key\1: \1(.+?)\1', "COHERE_APIKEY", r'\1X-Cohere-Api-Key\1: \1'),
+        (r'(["\'])X-OpenAI-Api-Key\1: \1(.+?)\1', "OPENAI_APIKEY", r'\1X-OpenAI-Api-Key\1: \1'),
+        (r'(["\'])X-HuggingFace-Api-Key\1: \1(.+?)\1', "HUGGINGFACE_APIKEY", r'\1X-HuggingFace-Api-Key\1: \1')
+    ]:
+        my_api_key = os.environ[my_env_var]
+        if re.search(pattern, codeblock_out) is not None:
+            # Replace key
+            codeblock_out = re.sub(
+                pattern, repl_pattern + my_api_key + r'\1', codeblock_out
+            )
     return codeblock_out
 
 
@@ -49,7 +56,7 @@ def preprocess_codeblock(raw_codeblock: str, lang: str="py", custom_replace_pair
 
         proc_codeblock = re.sub(pattern, replacement, proc_codeblock, flags=re.DOTALL)
 
-    proc_codeblock = populate_openai_key(proc_codeblock)
+    proc_codeblock = populate_inference_api_keys(proc_codeblock)
 
     return proc_codeblock
 

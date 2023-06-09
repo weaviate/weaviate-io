@@ -2,7 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
-import EndToEndJSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.js';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
 
 <Tabs groupId="languages">
@@ -29,12 +28,23 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 <TabItem value="go" label="Go">
 
 ```go
+package main
+
+import (
+  "context"
+  "encoding/json"
+  "net/http"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
+)
+
 cfg := weaviate.Config{
   Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
   Scheme: "https",
   AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
   Headers: map[string]string{
-    "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
+    "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // Replace with your inference API key
   },
 }
 
@@ -45,7 +55,7 @@ if err != nil {
 
 classObj := &models.Class{
     Class:      "Question",
-    Vectorizer: "text2vec-openai",
+    Vectorizer: "text2vec-huggingface",
 }
 
 if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
@@ -77,7 +87,7 @@ public class App {
     // we will create the class "Question" and the properties
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Question")
-      .vectorizer("text2vec-openai")
+      .vectorizer("text2vec-huggingface")
       .build();
 
     // add the schema
@@ -103,7 +113,7 @@ echo '{
     -X POST \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
-    -H "X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY" \
+    -H "X-HuggingFace-Api-Key: YOUR-HUGGINGFACE-API-KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql
 ```

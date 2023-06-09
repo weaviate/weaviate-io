@@ -1,8 +1,8 @@
 ---
 title: Hybrid search
-sidebar_position: 30
+sidebar_position: 40
 image: og/docs/howto.jpg
-# tags: ['how to', 'perform a hybrid search']
+# tags: ['how to', 'hybrid search']
 ---
 
 import Tabs from '@theme/Tabs';
