@@ -10,12 +10,12 @@ import weaviate
 client = weaviate.Client("http://localhost:8080")
 
 class_obj = {
-    "class": "Article",
+    "class": "Article",  # immutable - must be kept the same, or omitted
     "description": "A written text, for example a news article or blog post",
     "properties": [
         {
         "dataType": [
-            "string"
+            "text"
         ],
         "description": "Title of the article",
         "name": "title",
@@ -46,7 +46,7 @@ $ curl \
         "properties": [
             {
             "dataType": [
-                "string"
+                "text"
             ],
             "description": "Title of the article",
             "name": "title"

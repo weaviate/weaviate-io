@@ -176,8 +176,8 @@ Then, you can search for similar images as follows:
   <TabItem value="py" label="Python">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# base64 START"
-      endMarker="# base64 END"
+      startMarker="# START base64"
+      endMarker="# END base64"
       language="py"
     />
   </TabItem>
@@ -185,8 +185,8 @@ Then, you can search for similar images as follows:
   <TabItem value="js" label="TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// base64 START"
-      endMarker="// base64 END"
+      startMarker="// START base64"
+      endMarker="// END base64"
       language="ts"
     />
   </TabItem>
@@ -198,8 +198,8 @@ Then, you can search for similar images as follows:
 
   <FilteredTextBlock
     text={PyCode}
-    startMarker="# Expected base64 results START"
-    endMarker="# Expected base64 results END"
+    startMarker="# START Expected base64 results"
+    endMarker="# END Expected base64 results"
     language="json"
   />
 
@@ -214,15 +214,22 @@ If your target image is stored in a file, you can [use the Python client to sear
   <TabItem value="py" label="Python">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# ImageFileSearch START"
-      endMarker="# ImageFileSearch END"
+      startMarker="# START ImageFileSearch"
+      endMarker="# END ImageFileSearch"
       language="py"
     />
   </TabItem>
 
   <TabItem value="js" label="TypeScript">
 
-  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65).
+  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
+
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// START ImageFileSearch"
+    endMarker="// END ImageFileSearch"
+    language="ts"
+  />
 
   </TabItem>
 </Tabs>
@@ -232,8 +239,8 @@ If your target image is stored in a file, you can [use the Python client to sear
 
   <FilteredTextBlock
     text={PyCode}
-    startMarker="# Expected base64 results START"
-    endMarker="# Expected base64 results END"
+    startMarker="# START Expected base64 results"
+    endMarker="# END Expected base64 results"
     language="json"
   />
 
