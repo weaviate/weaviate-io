@@ -6,7 +6,6 @@
 
 import weaviate
 import weaviate_datasets
-import json
 
 # OneWay Python  # TwoWay Python  # Multiple Python  # Delete Python  # Update Python
 sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"

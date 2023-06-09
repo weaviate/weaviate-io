@@ -45,7 +45,7 @@ services:
     # etc
 ```
 
-Make sure to run `$ docker-compose down` when shutting down, this writes all the files from memory to disk.
+Make sure to run `docker-compose down` when shutting down. This writes all the files from memory to disk.
 
 ### Weaviate without any modules
 

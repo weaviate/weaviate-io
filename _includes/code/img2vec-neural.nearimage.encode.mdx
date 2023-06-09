@@ -43,12 +43,12 @@ client = weaviate.Client("http://localhost:8080")
 
 encoded_image = weaviate.util.image_encoder_b64("my_image_path.png")
 
-nearImage = {"image": "encoded_image"}
+nearImage = {'image': 'encoded_image'}
 
 result = (
   client.query
-  .get("FashionItem", "image")
-  .with_near_image(nearImage)
+  .get('FashionItem', 'image')
+  .with_near_image(nearImage, encode=False)
   .do()
 )
 
@@ -56,30 +56,26 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="TypeScript">
 
 ```js
-// The JavaScript client doesn't support image encoding via a helper function, you need to give the input image as base64 format yourself
+// The TypeScript client doesn't have a helper function for base64 image encoding
 
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .get()
-      .withClassName('FashionItem')
-      .withFields('image')
-      .withNearImage({image: '/9j/4AAQSkZJRgABAgE...'})
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('FashionItem')
+  .withFields('image')
+  .withNearImage({ image: '/9j/4AAQSkZJRgABAgE...' })
+  .do();
+
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

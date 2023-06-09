@@ -32,7 +32,8 @@ response = (
     })
     # highlight-end
     .with_limit(2)
-    .with_additional(["distance"]).do()
+    .with_additional(["distance"])
+    .do()
 )
 
 print(json.dumps(response, indent=2))

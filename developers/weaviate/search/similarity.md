@@ -2,7 +2,7 @@
 title: Similarity search
 sidebar_position: 20
 image: og/docs/howto.jpg
-# tags: ['how to', 'perform a similarity search']
+# tags: ['how to', 'similarity search']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -39,7 +39,7 @@ These parameters are available:
 :::tip This is only available for classes with a [vectorizer](../modules/retriever-vectorizer-modules/index.md) configured.
 :::
 
-You can use these parameters to find objects most similar to a raw (un-vectorized) input, such as text or image. For text objects, you can provide an input text to [`nearText`](../api/graphql/vector-search-parameters.md#neartext), and for image objects, you can provide an input image to [`nearImage`](../modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search). (Or either if you are using [CLIP](../modules/retriever-vectorizer-modules/multi2vec-clip.md).)
+You can use these parameters to find objects most similar to a raw (un-vectorized) input, such as text or image. For text objects, you can provide an input text to [`nearText`](../api/graphql/vector-search-parameters.md#neartext), and for image objects, you can provide an input image to [`nearImage`](./image.md). (Or either if you are using [CLIP](../modules/retriever-vectorizer-modules/multi2vec-clip.md).)
 
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching `"animals in movies"`, using `nearText`:
 
