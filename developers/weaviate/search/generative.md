@@ -16,12 +16,75 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 This page shows you how to perform `generative` searches using Weaviate.
 
 :::info Related pages
-- [API References: GraphQL: Generative search](../api/graphql/get.md)
+- [API References: GraphQL: Get](../api/graphql/get.md)
 :::
 
+## Requirements
+
 To use the generative search feature, you must:
-- Specify a query to retrieve one or more objects, and
-- Provide a [`single prompt`](#single-prompt) or a [`grouped task`](#grouped-task) to generate text from.
+1. Configure Weaviate to use a generator module ([`generative-openai`](../modules/reader-generator-modules/generative-openai.md), [`generative-cohere`](../modules/reader-generator-modules/generative-cohere.md), [`generative-palm`](../modules/reader-generator-modules/generative-palm.md)),
+2. Configure the parameters for the `generative-*` module in the target class,
+3. Specify a query to retrieve one or more objects, and
+4. Provide a [`single prompt`](#single-prompt) or a [`grouped task`](#grouped-task) to generate text from.
+
+
+<details>
+  <summary>How do I <strong>configure Weaviate</strong> with a generator module?</summary>
+
+  You must enable the desired generative search module and (optionally) specify the corresponding inference service (OpenAI, Cohere, PaLM) API key in the relevant configuration file (e.g. `docker-compose.yml`), or (recommended) request that client code provide it with every request. You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
+  
+  Here are the relevant settings from the configuration file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$PALM_APIKEY`), unless you want the client to supply the API key (recommended).
+
+  <Tabs groupId="modules">
+<TabItem value="OpenAI" label="OpenAI">
+
+```yaml
+services:
+  weaviate:
+    environment:
+      OPENAI_APIKEY: $OPENAI_APIKEY
+      ENABLE_MODULES: '...,generative-openai,...'
+```
+
+</TabItem>
+<TabItem value="Cohere" label="Cohere">
+
+```yaml
+services:
+  weaviate:
+    environment:
+      COHERE_APIKEY: $COHERE_APIKEY
+      ENABLE_MODULES: '...,generative-cohere,...'
+```
+
+</TabItem>
+<TabItem value="PaLM" label="PaLM">
+
+```yaml
+services:
+  weaviate:
+    environment:
+      PALM_APIKEY: $PALM_APIKEY
+      ENABLE_MODULES: '...,generative-palm,...'
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+<details>
+  <summary>How do I <strong>configure the generative module</strong> in the target class?</summary>
+
+You can configure parameters for the generative search module in the target class via the `moduleConfig.generative-*` property. Please refer to the "Schema configuration" section in the relevant module page.
+</details>
+
+:::info For more detail
+See the relevant module page for:
+- [generative-openai](../modules/reader-generator-modules/generative-openai.md)
+- [generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
+- [generative-palm](../modules/reader-generator-modules/generative-palm.md)
+:::
+
 
 ## Single prompt
 
