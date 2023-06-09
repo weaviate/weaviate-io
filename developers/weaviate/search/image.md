@@ -36,9 +36,9 @@ To search using an input image, you must:
 <details>
   <summary>How do I <strong>configure Weaviate</strong> with an image vectorizer module?</summary>
 
-You must enable the desired vectorizer module and specify the inference API address in the relevant configuration file (e.g. `docker-compose.yml`). 
+You must enable the desired vectorizer module and specify the inference API address in the relevant configuration file (e.g. `docker-compose.yml`). You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
 
-An example `img2vec-neural` module is shown below:
+An example `img2vec-neural` configuration is shown below:
 
 ```yaml
 services:
@@ -51,7 +51,7 @@ services:
     image: semitechnologies/img2vec-pytorch:resnet50
 ```
 
-And an example `multi2vec-clip` module is shown below:
+And an example `multi2vec-clip` configuration is shown below:
 
 ```yaml
 services:
@@ -72,8 +72,8 @@ services:
   <summary>How do I <strong>configure the target class</strong> with the image vectorizer module?</summary>
 
 You must configure the target class to:
-- Ensure that the target class configured to use the image vectorizer module, such as by explicitly setting it as the vectorizer for the class. And
-- Specify `imageFields` property to specify field(s) that will store the images.
+- Ensure that the target class is configured to use the image vectorizer module, such as by explicitly setting it as the vectorizer for the class. And
+- Specify in the `imageFields` property the [blob](../config-refs/datatypes.md#datatype-blob) field(s) that will store the images.
 
 For using `img2vec-neural`, an example class definition may look as follows: 
 
@@ -239,70 +239,11 @@ If your target image is stored in a file, you can [use the Python client to sear
 
 </details>
 
-[//]: # (## Distance threshold)
+## Distance threshold
 
-[//]: # ()
-[//]: # (You can set a threshold for similarity search by setting a maximum `distance`. The distance indicates how dissimilar two images are.)
+You can set a threshold for similarity search by setting a maximum `distance`. The distance indicates how dissimilar two images are.
+The syntax is the same as for [the other `nearXXX` operators](./similarity.md#distance-threshold).
 
-[//]: # ()
-[//]: # (<Tabs groupId="languages">)
-
-[//]: # (  <TabItem value="py" label="Python">)
-
-[//]: # (    <FilteredTextBlock)
-
-[//]: # (      text={PyCode})
-
-[//]: # (      startMarker="# Distance START")
-
-[//]: # (      endMarker="# Distance END")
-
-[//]: # (      language="py")
-
-[//]: # (    />)
-
-[//]: # (  </TabItem>)
-
-[//]: # ()
-[//]: # (  <TabItem value="js" label="TypeScript">)
-
-[//]: # (    <FilteredTextBlock)
-
-[//]: # (      text={TSCode})
-
-[//]: # (      startMarker="// Distance START")
-
-[//]: # (      endMarker="// Distance END")
-
-[//]: # (      language="ts")
-
-[//]: # (    />)
-
-[//]: # (  </TabItem>)
-
-[//]: # (</Tabs>)
-
-[//]: # ()
-[//]: # ()
-[//]: # (<details>)
-
-[//]: # (  <summary>Example response</summary>)
-
-[//]: # ()
-[//]: # (  <FilteredTextBlock)
-
-[//]: # (    text={PyCode})
-
-[//]: # (    startMarker="# Expected Distance results START")
-
-[//]: # (    endMarker="# Expected Distance results END")
-
-[//]: # (    language="json")
-
-[//]: # (  />)
-
-[//]: # ()
-[//]: # (</details>)
 
 ## More Resources
 

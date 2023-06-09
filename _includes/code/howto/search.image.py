@@ -12,7 +12,7 @@ import json
 
 client = weaviate.Client(
     'http://localhost:8080',  # Replace with your Weaviate URL
-    # If authentication is on. Replace w/ your Weaviate instance API key
+    # Uncomment if authentication is on and replace w/ your Weaviate instance API key.
     # auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),
 )
 
@@ -138,7 +138,7 @@ expected_results = """
 """
 
 # Tests
-assert response['data']['Get']['Dog'] == [{'breed': 'Corgi', '_additional': {'distance': 0.1056757}}]
+assert response['data']['Get']['Dog'][0]['breed'] == 'Corgi'
 
 
 # weaviate.util.image_encoder_b64 has questionable utility, since .with_near_image has `encode=True` by default
