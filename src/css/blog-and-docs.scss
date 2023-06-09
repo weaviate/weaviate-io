@@ -2,18 +2,6 @@
 @import 'blog-custom-layout.scss';
 
 // Set Fonts
-.docs-doc-page {
-  font-family: var(--site-font-base-family);
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--site-font-base-family);
-    font-weight: 600;
-  };
-  h4 {
-    font-size: 1.2rem;
-  };
-}
-
-// Set Fonts
 // .blog-post-page, .blog-list-page, .docs-doc-page {
 .blog-post-page, .docs-doc-page, .podcast-page {
   // Set Fonts for Blogs and Docs - content
@@ -53,4 +41,24 @@
     border-width: 1px;
     border-bottom-color: var(--ifm-toc-border-color);
   }
+}
+
+// Set Fonts
+.docs-doc-page {
+  font-family: var(--site-font-base-family);
+  color: var(--docs-base-color);
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--site-font-base-family);
+    font-weight: 600;
+    color: var(--docs-header-color);
+  };
+  h4 {
+    font-size: 1.2rem;
+  };
+  // .theme-doc-sidebar-container, .navbar {
+  //   background: var(--site-background);
+  // }
+  // #__docusaurus {
+  //   background: var(--docs-sidebar-bg);
+  // }
 }
