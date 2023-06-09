@@ -1,5 +1,9 @@
 # How-to: Search -> Image search - Python examples
 
+# This test requires the Dogs image collection to have been imported. Check out the https://github.com/weaviate/weaviate-examples repo
+# and follow the steps at https://github.com/weaviate/weaviate-examples/tree/main/nearest-neighbor-dog-searchpython create-schema.py.
+# For multi2vec-clip, change in `create-schema.py` the vectorizer and its moduleConfig from `img2vec-neural` to multi2vec-clip.
+
 # ===========================================
 # ===== Search by base64 representation =====
 # ===========================================
