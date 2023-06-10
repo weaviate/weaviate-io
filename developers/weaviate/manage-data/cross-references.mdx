@@ -68,7 +68,7 @@ This requires adding one reference property `from` a class referring `to` anothe
 
 To add a cross-reference property in the class definition, specify its `dataType` as the name of another class in the [schema](../tutorials/schema.md).
 
-For example to specify the cross-reference from `JeopardyQuestion` to `JeopardyCatgory`:
+For example to specify the cross-reference from `JeopardyQuestion` to `JeopardyCategory`:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -105,7 +105,7 @@ To add a cross-reference from an object to another, specify its source class and
 
 ## Add two-way cross-references
 
-This requires adding reference properties in both directions, and adding two cross-reference per object pair (`from` A -> `to` B and `from` B -> `to` A).
+This requires adding reference properties in both directions, and adding two cross-references per object pair (`from` A -> `to` B and `from` B -> `to` A).
 
 To define a bidirectional reference between two classes, add a property to each class with the `dataType` set to the name of the other class:
 
