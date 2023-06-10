@@ -18,7 +18,7 @@ source_where = {
 target_where = {
   "path": ["name"],
   "operator": "NotEqual",
-  "valueString": "Government"
+  "valueText": "Government"
 }
 
 client.classification.schedule()\
@@ -152,7 +152,7 @@ public class App {
                 .build();
 
         WhereFilter targetSetWhere = WhereFilter.builder()
-                .valueString("Government")
+                .valueText("Government")
                 .operator("NotEqual")
                 .path(new String[]{ "name" })
                 .build();
@@ -193,7 +193,7 @@ $ curl \
         ],
         "filters": {
           "sourceWhere": {"path": ["wordCount"], "operator": "GreaterThan", "valueInt": 100},
-          "targetWhere": {"path": ["name"], "operator": "NotEqual", "valueString": "Government"}
+          "targetWhere": {"path": ["name"], "operator": "NotEqual", "valueText": "Government"}
         }
     }' \
     http://localhost:8080/v1/classifications

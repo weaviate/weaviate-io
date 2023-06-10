@@ -36,7 +36,7 @@ Migrated from "How to query data" tutorial from Weaviate Docs Classic
       Get {
         Article ( where: {
           operator:Equal,
-          valueString:"Wired",
+          valueText:"Wired",
           path: ["inPublication", "Publication", "name"]
         }) {
           title

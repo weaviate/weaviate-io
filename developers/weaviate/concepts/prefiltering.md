@@ -108,7 +108,7 @@ Example:
 where: {
   operator: Equal
   path: ["publication"]
-  valueString: "NYT"
+  valueText: "NYT"
 }
 nearText: {
   concepts: ["housing prices in the western world"]
@@ -118,7 +118,7 @@ nearText: {
 where: {
   operator: Equal
   path: ["publication"]
-  valueString: "NYT"
+  valueText: "NYT"
 }
 nearText: {
   concepts: ["where do the best wines come from?"]
