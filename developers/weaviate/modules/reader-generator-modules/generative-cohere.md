@@ -120,6 +120,7 @@ For example, the following schema configuration will set Weaviate to use the `ge
       "description": "A class called document",
       ...,
       "moduleConfig": {
+        // highlight-start
         "generative-cohere": {
           "model": "command-xlarge-nightly",  // Optional - Defaults to `command-xlarge-nightly`. Can also use`command-xlarge-beta` and `command-xlarge`
           "temperatureProperty": <temperature>,  // Optional
@@ -127,7 +128,8 @@ For example, the following schema configuration will set Weaviate to use the `ge
           "kProperty": <k>, // Optional
           "stopSequencesProperty": <stopSequences>, // Optional
           "returnLikelihoodsProperty": <returnLikelihoods>, // Optional
-        }
+        },
+        // highlight-end
       }
     }
   ]

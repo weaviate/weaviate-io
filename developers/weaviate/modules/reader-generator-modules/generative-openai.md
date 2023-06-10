@@ -136,6 +136,7 @@ For example, the following schema configuration will set Weaviate to use the `ge
       "description": "A class called document",
       ...,
       "moduleConfig": {
+        // highlight-start
         "generative-openai": {
           "model": "gpt-3.5-turbo",  // Optional - Defaults to `gpt-3.5-turbo`
           "resourceName": "<YOUR-RESOURCE-NAME>",  // For Azure OpenAI - Required
@@ -145,7 +146,8 @@ For example, the following schema configuration will set Weaviate to use the `ge
           "frequencyPenaltyProperty": <frequency_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
           "presencePenaltyProperty": <presence_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
           "topPProperty": <top_p>,  // Optional, applicable to both OpenAI and Azure OpenAI
-        }
+        },
+        // highlight-end
       }
     }
   ]
