@@ -226,12 +226,12 @@ const config = {
                                 sidebarid: 'wcsSidebar',
                                 type: 'doc',
                             },
-                            // {
-                            //     label: 'Academy',
-                            //     docId: 'academy/index',
-                            //     sidebarid: 'academySidebar',
-                            //     type: 'doc',
-                            // },
+                            {
+                                label: 'Academy',
+                                docId: 'academy/index',
+                                sidebarid: 'academySidebar',
+                                type: 'doc',
+                            },
                             {
                                 label: 'Contributor Guide',
                                 docId: 'contributor-guide/index',
@@ -251,6 +251,13 @@ const config = {
                                 href: 'https://forum.weaviate.io',
                             },
                         ],
+                    },
+                    {
+                        to: '/developers/academy',
+                        label: ' ',
+                        position: 'right',
+                        target: '_blank',
+                        className: 'fas fa-lg fa-graduation-cap',
                     },
                     {
                         to: 'https://weaviate.io/slack',

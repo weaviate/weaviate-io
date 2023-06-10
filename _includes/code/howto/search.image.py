@@ -8,7 +8,7 @@
 # ===== Search by base64 representation =====
 # ===========================================
 
-# base64 START  # ImageFileSearch START
+# START base64  # START ImageFileSearch
 import weaviate
 import requests
 import base64
@@ -25,9 +25,9 @@ image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorg
 image_response = requests.get(image_url)
 content = image_response.content
 
-# base64 END  # ImageFileSearch END
+# END base64  # END ImageFileSearch
 
-# base64 START
+# START base64
 # Encode content into base64 string
 base64_string = base64.b64encode(content).decode('utf-8')
 
@@ -46,10 +46,10 @@ response = (
 )
 
 print(json.dumps(response, indent=2))
-# base64 END
+# END base64
 
 expected_results = """
-# Expected base64 results START
+# START Expected base64 results
 {
   "data": {
     "Get": {
@@ -61,7 +61,7 @@ expected_results = """
     }
   }
 }
-# Expected base64 results END
+# START Expected base64 results
 """
 
 # Tests
@@ -72,7 +72,7 @@ assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
 # ===== Search by image filename =====
 # ====================================
 
-# ImageFileSearch START
+# START ImageFileSearch
 # Save content to file
 filename = 'image.jpg'
 with open(filename, 'wb') as file:
@@ -90,7 +90,7 @@ response = (
 )
 
 print(json.dumps(response, indent=2))
-# ImageFileSearch END
+# END ImageFileSearch
 
 # Tests
 assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
@@ -100,7 +100,7 @@ assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
 # ===== Maximum distance =====
 # ============================
 
-# Distance START
+# START Distance
 response = (
     client.query
     .get('Dog', 'breed')
@@ -120,10 +120,10 @@ response = (
 )
 
 print(json.dumps(response, indent=2))
-# Distance END
+# END Distance
 
 expected_results = """
-# Expected Distance results START
+# START Expected Distance results
 {
   "data": {
     "Get": {
@@ -138,13 +138,14 @@ expected_results = """
     }
   }
 }
-# Expected Distance results END
+# END Expected Distance results
 """
 
 # Tests
 assert response['data']['Get']['Dog'][0]['breed'] == 'Corgi'
 
 
+# START HelperFunction
 # weaviate.util.image_encoder_b64 has questionable utility, since .with_near_image has `encode=True` by default
 # encoded_image = weaviate.util.image_encoder_b64(filename)
 # response = (
@@ -154,5 +155,4 @@ assert response['data']['Get']['Dog'][0]['breed'] == 'Corgi'
 #     .with_limit(1)
 #     .do()
 # )
-
-# HelperFunction END
+# END HelperFunction

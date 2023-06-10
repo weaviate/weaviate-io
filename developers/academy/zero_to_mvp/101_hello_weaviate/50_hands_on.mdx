@@ -1,0 +1,251 @@
+---
+title: Getting hands-on
+---
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Preparation
+
+:::note Obtain a free trial OpenAI API key
+This section includes queries using the OpenAI inference endpoint. So, we recommend obtaining an OpenAI account, and obtaining a **free API key which should be sufficient** for all of the below.
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer url='https://youtu.be/8aHIAM3665c' controls='true'/>
+<br/>
+
+Now that you've set up your own Weaviate instance and installed a client, let's get hands-on with Weaviate.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Client instantiation
+
+A `client` object can be instantiated for convenient access to your instance of Weaviate. You can set the following parameters:
+
+#### <i class="fa-solid fa-code-simple"></i> Host URL (required):
+
+This is the location of your Weaviate instance, such as `https://example.weaviate.network`
+
+#### <i class="fa-solid fa-code-simple"></i> Authentication information (optional)
+
+If authentication is enabled, you MUST provide your authentication information here. Otherwise the Weaviate instance will not provide access.
+
+#### <i class="fa-solid fa-code-simple"></i> Additional headers (optional)
+
+You can provide additional headers here. This is used to provide API keys for inference services such as Cohere, Hugging Face or OpenAI.
+
+:::note
+Parameter names may vary across libraries
+:::
+
+Putting it together, a client can be instantiated as below:
+
+<!-- TODO - add client code examples -->
+
+import ClientInstantiationCode from './_snippets/academy.hello.client.instantiation.mdx';
+
+<ClientInstantiationCode/>
+
+:::tip API keys
+In your own code, you would only need to specify the API keys for the service(s) that you are using.
+:::
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Try it out
+
+Now, try running the below, making sure to replace the Weaviate URL and the API key with those from **your** WCS instance.
+
+import ClientCheckConnection from './_snippets/academy.hello.check.connection.mdx';
+
+<ClientCheckConnection/>
+
+Congratulations! You've made your first request to a Weaviate API; more specifically to the `meta` REST endpoint. The Weaviate API allows you to do quite a bit - take a look.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Weaviate API and the client
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Available APIs
+
+Weaviate uses two API types - REST and GraphQL. They work together to provide a rich set of functionality.
+
+:::tip REST vs GraphQL APIs
+The **REST API** is used to:
+- Interact with Weaviate for CRUD (Create, Read, Update and Delete) operations, and
+- To obtain metadata about the database.
+
+The **GraphQL API** is used to:
+- Interact with Weaviate for data searches.
+- For example, it can be used to retrieve data objects, aggregate information, and explore vector spaces.
+:::
+
+You will learn about them over the course of these units.
+
+<details>
+  <summary>What is REST?</summary>
+
+REST is an acronym for **RE**presentational **S**tate **T**ransfer.
+
+A REST API provides multiple endpoints, each with its own URL, that can be used to interact with the API.
+
+The endpoints are organized into a hierarchy, with each endpoint representing a resource. The client can then request information about these resources by sending a request to the server.
+
+</details>
+
+<details>
+  <summary>What is GraphQL?</summary>
+
+GraphQL is a query language for APIs.
+
+First released by Facebook in 2015, it is now maintained by the GraphQL Foundation.
+
+GraphQL is a specification for a query language that can be used to request information from a server. GraphQL is a **strongly typed** language, which means that the client must specify the type of data that it wants to receive.
+
+</details>
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Accessing the REST API
+
+Both REST and GraphQL APIs can be accessed using client libraries.
+
+Take the commands shown below. In both examples, the code in each tab are functionally the same:
+
+#### <i class="fa-solid fa-code-simple"></i> Example 1: REST vs client requests
+
+import ClientRESTObjectGet from './_snippets/academy.clients.rest.object.get.mdx';
+
+<ClientRESTObjectGet />
+
+#### <i class="fa-solid fa-code-simple"></i> Example 2: GraphQL vs client requests
+
+import ClientGraphqlGet from './_snippets/academy.clients.graphql.get.mdx';
+
+<ClientGraphqlGet />
+
+Now, let's try out more substantive queries.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Running queries
+
+<!-- <img src={imageUrl} alt="Image alt" width="75%"/> -->
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Connect to our demo instance
+
+We will connect to a demo Weaviate instance containing data, and run queries ourselves. The instance has these details:
+
+:::info Demo instance details
+- `url`: `https://edu-demo.weaviate.network`
+- `Weaviate API key`: `readonly-demo`
+:::
+
+With these details see if you can:
+- Instantiate a Weaviate client, and
+- Check that it works by fetching the metadata as we did above.
+
+Bonus points if you can do it without looking at the snippet below:
+
+import ClientCheckConnectionEdudemo from './_snippets/academy.hello.check.connection.edudemo.mdx';
+
+<details>
+  <summary>Connect to the demo instance</summary>
+
+<ClientCheckConnectionEdudemo/>
+
+</details>
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Vector searches
+
+Try running the following query. This will search the `WikiCity` objects for those closest to the specified text, which is in this case "Major European city".
+
+import QueryVectorSearch from './_snippets/academy.hello.query.vector.search.mdx';
+
+<QueryVectorSearch/>
+
+:::tip Exercise
+Try varying the query concept from "Major European city" to another - what do you see? Is it in line with what you expected?
+:::
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Question answering
+
+The below example will search the `WikiCity` objects to look for an answer to the question "When was the London Olympics?". Try it out yourself.
+
+import QueryQuestionAnswering from './_snippets/academy.hello.query.question.answering.mdx';
+
+<QueryQuestionAnswering/>
+
+:::tip Exercise
+Try varying the question from "When was the London Olympics?" to another, city-related, question. What do you see?
+
+Try to see what types of questions work better than others. Do you notice any patterns?
+:::
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Generative search
+
+The below example will search the `WikiCity` objects, and then transform the results through the `generative-openai` module. Try it out:
+
+import QueryGenerativeSearch from './_snippets/academy.hello.query.generative.search.mdx';
+
+<QueryGenerativeSearch/>
+
+:::tip Exercise
+Try varying the prompt from "Write a tweet with a potentially surprising fact from {wiki_summary}" to another. (What happens if you remove {wiki_summary}?)
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+
+### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+
+<Quiz questions={apiRecap} />
+
+<Quiz questions={clientLimits} />
+
+### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+
+- Weaviate uses two API types, REST and GraphQL. REST is used for CRUD operations and metadata, while GraphQL is used for data searches, retrieving data objects, and exploring vector spaces.
+- Client libraries are used to access both REST and GraphQL APIs, providing a convenient way to interact with Weaviate instances.
+- You have connected to a demo Weaviate instance to run vector searches, question-answering queries, and generative searches.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
+import Quiz from '/src/components/Academy/quiz.js'
+const apiRecap = [{
+  questionText: 'Which of the following is not true about the Weaviate API?',
+  answerOptions: [
+    {
+      answerText: 'Weaviate users can use both REST and GraphQL.',
+      isCorrect: false,
+      feedback: 'They are both available for all users, and serve complementary roles in communicating with Weaviate.',
+    },
+    {
+      answerText: 'The REST API can be used to retrieve the current schema.',
+      isCorrect: false,
+      feedback: 'the `schema` endpoint is available for this purpose.',
+    },
+    {
+      answerText: 'Both GraphQL and REST APIs can be used in Weaviate to perform vector searches.',
+      isCorrect: true,
+      feedback: 'Only GraphQL is available to perform vector searches with.',
+    },
+    {
+      answerText: 'None of the above.',
+      isCorrect: false,
+      feedback: 'The truth is out there!',
+    },
+  ]
+}];
+const clientLimits = [{
+  questionText: 'Weaviate clients cannot do which of the following?',
+  answerOptions: [
+    {
+      answerText: 'Perform analysis on the retrieved results.',
+      isCorrect: true,
+      feedback: 'They cannot perform any data analysis.',
+    },
+    {
+      answerText: 'Communicate with the Weaviate REST API.',
+      isCorrect: false,
+      feedback: 'They can all perform REST requests.',
+    },
+    {
+      answerText: 'Communicate with the Weaviate GraphQL API.',
+      isCorrect: false,
+      feedback: 'They can all perform GraphQL requests.',
+    },
+  ]
+}];

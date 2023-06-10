@@ -18,21 +18,21 @@ function AcademyCard(props) {
     badgeTxt = "Practical";
   } else if (props.badgeType == "course") {
     badgeClass = "badge badge--primary";
-    badgeTxt = "Course";    
+    badgeTxt = "Course";
   } else if (props.badgeType == "mixed") {
     badgeClass = "badge badge--warning";
-    badgeTxt = "Mixed";    
+    badgeTxt = "Mixed";
   } else {
     badgeClass = "badge badge--secondary";
     badgeTxt = "Other";
   };
-  
+
   if (props.buttonType == "Notify") {
     btnClass = "button button--outline button--secondary button--block";
     btnTxt = "Notify me when ready";
   } else if (props.buttonType == "TBD") {
-    btnClass = "button button--secondary button--block";
-    btnTxt = "To be done";    
+    btnClass = "button button--outline button--secondary button--block";
+    btnTxt = "Coming soon";
   } else {
     btnClass = "button button--primary button--block";
     btnTxt = props.buttonType;
