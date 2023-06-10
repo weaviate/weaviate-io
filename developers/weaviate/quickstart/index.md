@@ -279,7 +279,7 @@ In this tutorial, they come from `sentence-transformers/all-MiniLM-L6-v2` - the 
 
 </details>
 
-:::tip (Almost) Alwaus use batch imports
+:::tip (Almost) Always use batch imports
 Batch imports provide significantly improved import performance, so you should almost always use batch imports unless you have a good reason not to, such as single object creation.
 :::
 
