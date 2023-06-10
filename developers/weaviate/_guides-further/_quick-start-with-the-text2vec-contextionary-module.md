@@ -854,7 +854,7 @@ You can also combine filters!
         }, {
           operator:Like
           path:["title"]
-          valueString:"*tax*"
+          valueText:"*tax*"
         }]
       }
       limit: 10

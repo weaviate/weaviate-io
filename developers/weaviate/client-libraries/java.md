@@ -303,7 +303,7 @@ Before:
 // import io.weaviate.client.v1.graphql.query.argument.WhereOperator;
 
 WhereArgument where = WhereArgument.builder()
-    .valueString("txt")
+    .valueText("txt")
     .operator(WhereOperator.Equal)
     .path(new String[]{ "add" })
     .build();
@@ -317,7 +317,7 @@ After:
 // import io.weaviate.client.v1.filters.WhereFilter;
 
 WhereFilter where = WhereFilter.builder()
-    .valueString("txt")
+    .valueText("txt")
     .operator(Operator.Equal)
     .path(new String[]{ "add" })
     .build();
@@ -339,7 +339,7 @@ WhereArgument where = WhereArgument.builder()
             .operator(WhereOperator.LessThanEqual)
             .build(),
         WhereFilter.builder()
-            .valueString("word")
+            .valueText("word")
             .path(new String[]{ "word" })
             .operator(WhereOperator.LessThan)
             .build()
@@ -363,7 +363,7 @@ WhereFilter where = WhereFilter.builder()
             .operator(Operator.LessThanEqual)
             .build(),
         WhereFilter.builder()
-            .valueString("word")
+            .valueText("word")
             .path(new String[]{ "word" })
             .operator(Operator.LessThan)
             .build(),

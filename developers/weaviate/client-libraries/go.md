@@ -244,7 +244,7 @@ Before:
 where := `where :{
   operator: Equal
   path: ["id"]
-  valueString: "5b6a08ba-1d46-43aa-89cc-8b070790c6f2"
+  valueText: "5b6a08ba-1d46-43aa-89cc-8b070790c6f2"
 }`
 
 client.GraphQL().Get().
@@ -309,7 +309,7 @@ Before:
 
 ```go
 valueInt := 100
-valueString  := "Government"
+valueText  := "Government"
 
 sourceWhere := &models.WhereFilter{
   ValueInt: &valueInt,
@@ -318,7 +318,7 @@ sourceWhere := &models.WhereFilter{
 }
 
 targetWhere := &models.WhereFilter{
-  ValueString: &valueString,
+  ValueString: &valueText,
   Operator:    string(graphql.NotEqual),
   Path:        []string{"name"},
 }

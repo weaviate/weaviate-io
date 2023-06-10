@@ -12,7 +12,7 @@ client = weaviate.Client("http://localhost:8080")
 where_filter = {
   "path": ["inPublication", "Publication", "name"],
   "operator": "Equal",
-  "valueString": "New Yorker"
+  "valueText": "New Yorker"
 }
 
 query_result = (
@@ -43,7 +43,7 @@ client.graphql
       .withWhere({
         path: ['inPublication', 'Publication', 'name'],
         operator: 'Equal',
-        valueString: 'New Yorker'
+        valueText: 'New Yorker'
       })
       .do()
       .then(res => {
@@ -142,7 +142,7 @@ public class App {
         WhereFilter where = WhereFilter.builder()
                 .path(new String[]{ "inPublication", "Publication", "name" })
                 .operator(Operator.Equal)
-                .valueString("New Yorker")
+                .valueText("New Yorker")
                 .build();
 
         Result<GraphQLResponse> result = client.graphQL().get()
@@ -170,7 +170,7 @@ $ echo '{
         Article(where: {
             path: [\"inPublication\", \"Publication\", \"name\"],
             operator: Equal,
-            valueString: \"New Yorker\"
+            valueText: \"New Yorker\"
           }) {
           title
           inPublication{
@@ -197,7 +197,7 @@ $ echo '{
     Article(where: {
         path: ["inPublication", "Publication", "name"],
         operator: Equal,
-        valueString: "New Yorker"
+        valueText: "New Yorker"
       }) {
       title
       inPublication{

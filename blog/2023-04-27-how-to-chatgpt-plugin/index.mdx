@@ -305,7 +305,7 @@ def delete(delete_request: DeleteRequest, client=Depends(get_weaviate_client)):
         where={
             "operator": "Equal",
             "path": ["document_id"],
-            "valueString": delete_request.document_id,
+            "valueText": delete_request.document_id,
         },
     )
 

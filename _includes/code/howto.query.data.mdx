@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
   Get {
     Article  (where: {
       operator:Equal,
-      valueString:"Wired",
+      valueText:"Wired",
       path: ["inPublication", "Publication", "name"]
     }){
       title
@@ -35,7 +35,7 @@ client = weaviate.Client("http://localhost:8080")
 
 where_filter = {
   "operator": "Equal",
-  "valueString": "Wired",
+  "valueText": "Wired",
   "path": ["inPublication", "Publication", "name"]
 }
 
@@ -66,7 +66,7 @@ client.graphql
       .withWhere({
         operator: 'Equal',
         path: ['inPublication', 'Publication', 'name'],
-        valueString:'Wired'
+        valueText:'Wired'
       })
       .do()
       .then(res => {
@@ -167,7 +167,7 @@ public class App {
         WhereFilter where = WhereFilter.builder()
                 .path(new String[]{ "inPublication", "Publication", "name" })
                 .operator(Operator.Equal)
-                .valueString("Wired")
+                .valueText("Wired")
                 .build();
 
         Result<GraphQLResponse> result = client.graphQL().get()
@@ -194,7 +194,7 @@ $ echo '{
       Get {
         Article (where: {
           operator: Equal,
-          valueString:\"Wired\",
+          valueText:\"Wired\",
           path: [\"inPublication\", \"Publication\", \"name\"]
         }){
           title
