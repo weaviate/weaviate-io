@@ -343,6 +343,15 @@ It should produce a response like the one below:
 
 </details>
 
+## Find least similar results
+
+Sometimes you may want to find objects that are the least similar to a given input. This might be possible for some distance metrics:
+
+- For cosine distances, perform a similarity search for a negative of a vector to find least.
+- For Euclidean or dot distances, the definition of "least similar" vector is not as clear-cut.
+
+Accordingly, we generally recommend using cosine distance for this use case, and searching for a *negative* of your input vector with `nearVector`.
+
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
