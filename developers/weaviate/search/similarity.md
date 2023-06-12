@@ -246,14 +246,18 @@ If the distance metric is set as `cosine` the [`certainty`](../config-refs/dista
 :::
 
 
-## Group results by a property
+## Group results by a property or cross-reference
 
 :::info Requires Weaviate `v1.19.0` or higher.
 :::
 
-You can group search results by any arbitrary property.
+You can group search results by any arbitrary property or cross-reference.
 
 The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, fetching the 10 closest results. Then those results are grouped by `round`, returning a maximum of two groups, each group with a maximum of two results (`hits`):
+
+:::tip Grouping by cross-references
+To group results by a cross-reference, try replacing the `path` value from `round` to `hasCategory` in the example below.
+:::
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
