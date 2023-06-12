@@ -1,0 +1,60 @@
+---
+title: Delete objects
+sidebar_position: 35
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'delete']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.ts';
+
+## Overview
+
+This page will show you how to delete individual objects in Weaviate.
+
+
+## Requirements
+
+To delete an object, you'll need its [id](../api/graphql/additional-properties.md#id) and class name.
+
+import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
+
+<details>
+  <summary>Why specify the class name?</summary>
+  <RestObjectsCRUDClassnameNote/>
+</details>
+
+
+## Delete object by id
+
+To delete an object, [make a `DELETE` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#delete-a-data-object), or use the client code below. If the id doesn't exist in the specified class, a 404 error will be returned.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeleteObject"
+      endMarker="# END DeleteObject"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DeleteObject"
+      endMarker="// END DeleteObject"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
