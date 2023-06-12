@@ -81,7 +81,7 @@ As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference
 
 Take a collection of `Passage` objects for example, each object belonging to a `Document`. If searching through `Passage` objects, you can group the results according to any property of the `Passage`, including the cross-reference property that represents the `Document` each `Passage` is associated with.
 
-The `groups` and `objectsPerGroup` limits are customizable. So in this example, you could retrieve the top 1000 objects and group them to identify the 3 most relevant `Document` objects, based on the top 3 `Passage` objects from each `Document`.
+The `groups` and `objectsPerGroup` limits are customizable. So in this example, you could retrieve the top 100 objects and group them to identify the 2 most relevant `Document` objects, based on the top 2 `Passage` objects from each `Document`.
 
 More concretely, a query such as below:
 
