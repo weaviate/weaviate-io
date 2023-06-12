@@ -152,12 +152,12 @@ You can use the same approach as for `text2vec-transformers`, see [here](/develo
 
 ## How it works (under the hood)
 
-Under the hood, the model uses a two-step approach. First it performs a semantic search with `k=1` to find the document (e.g. a Sentence, Paragraph, Article, etc.) which is most likely to contain the answer. This step has no certainty threshold and as long as at least one document is present, it will be fetched and selected as the one most likely containing the answer. In a second step, a BERT-style answer extraction is performed on all `text` and `string` properties of the document. There are now three possible outcomes:
+Under the hood, the model uses a two-step approach. First it performs a semantic search to find the documents (e.g. a Sentence, Paragraph, Article, etc.) most likely to contain the answer. In a second step, a BERT-style answer extraction is performed on all `text` and `string` properties of the document. There are now three possible outcomes:
 1.  No answer was found because the question can not be answered,
 2.  An answer was found, but did not meet the user-specified minimum certainty, so it was discarded (typically the case when the document is on topic, but does not contain an actual answer to the question), and
 3.  An answer was found that matches the desired certainty. It is returned to the user.
 
-The module performs a semantic search under the hood, so a `text2vec-...` module is required. It does not need to be transformers-based and you can also combine it with `text2vec-contextionary`. However, we expect that you will receive the best results by combining it with a well-fitting transformers model by using the appropriate configured `text2vec-transformers` module.
+The module performs a semantic search under the hood, so a `text2vec-...` module is required. It does not need to be of the same type as the `qna-...` module. For example, you can use a `text2vec-contextionary` module to perform the semantic search, and a `qna-transformers` module to extract the answer.
 
 ### Automatic sliding window for long documents
 
