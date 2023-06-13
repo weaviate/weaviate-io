@@ -114,7 +114,7 @@ Another emerging problem LLMs are solving in this space is the continual mainten
 ## LLMs in Re-Ranking
 Search typically operates in pipelines, a common term to describe directed acyclic graph (DAG) computation. As discussed previously, `Query Understanding` is the first step in this pipeline, typically followed by retrieval and re-ranking.
 
-As described in our [previous article](https://weaviate.io/blog/ranking-models-for-better-search), re-ranking models are new to the scene of zero-shot generalization. The story of re-rankers has mostly been tabular user features combined with tabular product or item features, fed to XGBoost models. This required a significant amount of user data to achieve, which zero-shot generalization may stand to disrupt.
+As described in our [previous article](/blog/ranking-models-for-better-search), re-ranking models are new to the scene of zero-shot generalization. The story of re-rankers has mostly been tabular user features combined with tabular product or item features, fed to XGBoost models. This required a significant amount of user data to achieve, which zero-shot generalization may stand to disrupt.
 
 Cross encoders have gained popularity by taking as input a `(query, document)` pair and outputting a high precision relevance score. This can be easily generalized to recommendation as well, in which the ranker takes as input a `(user description, item description)` pair.
 
