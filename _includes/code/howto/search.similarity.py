@@ -354,9 +354,6 @@ test_gqlresponse(response, gqlresponse)
 # ===== QUERY WITH GROUPBY =====
 # ==========================================
 
-# NOTE - CHECKING w/ MARCIN TO SEE WHETHER GROUPBY IS AVAILABLE JUST FOR NEARxx OR ALSO FOR HYBRID/BM25/ETC.
-# IF AVAILABLE FOR ALL, MOVE TO A NEW PAGE
-
 
 # https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
 # GetWithGroupbyPython
@@ -364,7 +361,7 @@ max_groups = 2
 max_objects_per_group = 2
 response = (
     client.query
-    .get("JeopardyQuestion", ["question", "answer"])
+    .get("JeopardyQuestion")
     .with_near_text({
         "concepts": ["animals in movies"]})
     # highlight-start
@@ -435,15 +432,15 @@ expected_results = """
                 }
               ],
               "id": 0,
-              "maxDistance": 0.17837858,
-              "minDistance": 0.17592645
+              "maxDistance": 0.17842054,
+              "minDistance": 0.17602539
             }
           }
         },
         {
           "_additional": {
             "group": {
-              "count": 2,
+              "count": 1,
               "groupedBy": {
                 "path": [
                   "round"
@@ -454,15 +451,11 @@ expected_results = """
                 {
                   "answer": "fox",
                   "question": "In titles, animal associated with both Volpone and Reynard"
-                },
-                {
-                  "answer": "Swan",
-                  "question": "In a Tchaikovsky ballet, Prince Siegfried goes hunting for these animals & falls in love with 1 of them"
                 }
               ],
               "id": 1,
-              "maxDistance": 0.19532347,
-              "minDistance": 0.18759078
+              "maxDistance": 0.18770188,
+              "minDistance": 0.18770188
             }
           }
         }
@@ -515,8 +508,9 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
+assert gqlresponse == response
 assert "JeopardyQuestion" in gqlresponse["data"]["Get"]
-assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"][0]) <= max_groups
+assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"]) <= max_groups
 assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["group"].keys() == {"count", "groupedBy", "hits", "id", "maxDistance", "minDistance"}
 assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["group"]["hits"]) <= max_objects_per_group
 # End test
