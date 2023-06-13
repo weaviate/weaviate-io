@@ -220,7 +220,7 @@ Filtering can be performed with the length of properties.
 
 The length of properties is calculated differently depending on the type:
 - array types: the number of entries in the array is used, where null (property not present) and empty arrays both have the length 0.
-- strings and texts: the number of characters, unicode characters such as 世 count as one character.
+- strings and texts: the number of characters (unicode characters such as 世 count as one character).
 - numbers, booleans, geo-coordinates, phone-numbers and data-blobs are not supported.
 
 ```graphql
@@ -236,7 +236,7 @@ The length of properties is calculated differently depending on the type:
 Supported operators are `(not) equal` and `greater/less than (equal)` and values need to be 0 or larger.
 
 :::note
-Filtering by property length requires the target class to be configured to index the length. See [here](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indexpropertylength) for details.
+Filtering by property length requires the target class to be [configured to index the length](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indexpropertylength).
 :::
 
 
