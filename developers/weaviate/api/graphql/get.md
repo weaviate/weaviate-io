@@ -33,7 +33,7 @@ import GraphQLGetSimpleUnfiltered from '!!raw-loader!/_includes/code/graphql.get
 />
 
 :::info Get query without arguments
-The order of object retrieval is not guaranteed in a `Get` query without any search parameters or filters. Accordingly, such a `Get` query is not suitable for any substantive object retrieval strategy. Consider the [Cursor API](./filters.md#cursor-with-after) for that purpose.
+The order of object retrieval is not guaranteed in a `Get` query without any search parameters or filters. Accordingly, such a `Get` query is not suitable for any substantive object retrieval strategy. Consider the [Cursor API](./additional-operators.md#cursor-with-after) for that purpose.
 :::
 
 ### groupBy argument
