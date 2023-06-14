@@ -242,7 +242,7 @@ Filtering by property length requires the target class to be configured to index
 
 ## Multiple operands
 
-You can set multiple operands by providing an array.
+You can set multiple operands by providing an array, and you can also [nest conditions](../../search/filters.md#nested-multiple-conditions).
 
 For example, these filters select based on the class Article with a wordCount higher than 1000 and who are published before January 1st 2020.
 
