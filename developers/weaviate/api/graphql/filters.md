@@ -132,7 +132,7 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
 
 The behavior for the `Equal` operator on multi-word textual properties in `where` filters depends on the `tokenization` of the property.
 
-Refer to [this section](../../config-refs/schema.md#property-tokenization) on the difference between the two types.
+See the [Schema property tokenization section](../../config-refs/schema.md#property-tokenization) for the difference between the available tokenization types.
 
 ### Stopwords in `text`/`string` filter values
 
