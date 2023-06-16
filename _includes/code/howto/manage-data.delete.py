@@ -23,30 +23,73 @@ class_name = 'EphemeralObject'
 # =========================
 
 # START DeleteObject
-uuid = '...'  # replace with the id of the object you want to delete
+uuid_to_delete = '...'  # replace with the id of the object you want to delete
 # END DeleteObject
 
-uuid = client.data_object.create({
+uuid_to_delete = client.data_object.create({
     'name': 'Goodbye Cruel World',
 }, 'EphemeralObject')
 
 # START DeleteObject
 
+client.data_object.delete(
+    uuid=uuid_to_delete,
+    class_name='EphemeralObject',
+)
+# END DeleteObject
+
+# Test
+result = client.data_object.get_by_id(uuid_to_delete, class_name=class_name)
+assert result is None  # TODO: this is inconsistent with the TypeScript client, which throws a 404
+
+
+# ==========================
+# ===== Error handling =====
+# ==========================
+
+# START DeleteError
 try:
-    status = client.data_object.delete(
-        uuid=uuid,
+    client.data_object.delete(
+        uuid=uuid_to_delete,
         class_name='EphemeralObject',
     )
     # Returns None on success
-    # END DeleteObject
-    assert status is None
-# START DeleteObject
 except weaviate.exceptions.UnexpectedStatusCodeException as e:
     # 404 error if the id was not found
     print(e)
-    # END DeleteObject
-    assert e is None  # execution should not reach this point
+# END DeleteError
+    # Test
+    assert e.status_code == 404
+
+
+# ========================
+# ===== Batch delete =====
+# ========================
+N = 5
+for _ in range(N):
+    client.data_object.create({
+        'name': 'Goodbye Cruel World',
+    }, 'EphemeralObject')
+
+result = (
+# START DeleteBatch
+client.batch.delete_objects(
+    class_name='EphemeralObject',
+    # Same `where` filter as in the GraphQL API
+    where={
+        'path': ['name'],
+        'operator': 'Equal',
+        'valueText': 'Goodbye Cruel World'
+    },
+)
+# END DeleteBatch
+)
 
 # Test
-result = client.data_object.get_by_id(uuid, class_name=class_name)
-assert result is None  # TODO: this is inconsistent with the TypeScript client, which throws a 404
+assert result['results']['matches'] == N
+result = client.query.get('EphemeralObject', 'name').with_where({
+    'path': ['name'],
+    'operator': 'Equal',
+    'valueText': 'Goodbye Cruel World'
+}).do()
+assert result['data']['Get']['EphemeralObject'] == []

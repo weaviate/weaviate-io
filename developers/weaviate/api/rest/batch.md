@@ -112,7 +112,7 @@ You can use the HTTP verb `DELETE` on the `/v1/batch/objects` endpoint to delete
 
 ### Maximum number of deletes per query
 
-There is an upper limit to how many objects can be deleted using a single query. This protects against unexpected memory surges and very-long-running requests which would be prone to client-side timeouts or network interruptions. If a filter matches many objects, only the first `n` elements are deleted. You can configure `n` by setting `QUERY_MAXIMUM_RESULTS` in Weaviate's config. The default value is 10,000. Objects are deleted in the same order that they would be returned using the same filter in a Get query. To delete more objects than the limit, run the same query multiple times, until no objects are matched anymore.
+There is an upper limit to how many objects can be deleted using a single query. This protects against unexpected memory surges and very-long-running requests which would be prone to client-side timeouts or network interruptions. If a filter matches many objects, only the first `n` elements are deleted. You can configure `n` by setting `QUERY_MAXIMUM_RESULTS` in [Weaviate's config](../../config-refs/env-vars.md). The default value is 10,000. Objects are deleted in the same order that they would be returned in using the same filter in a [Get query](../graphql/get.md). To delete more objects than the limit, run the same query multiple times, until no objects are matched anymore.
 
 
 ### Dry-run before deletion
