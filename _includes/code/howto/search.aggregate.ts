@@ -1,18 +1,14 @@
 import assert from 'assert';
 
-// ================================
-// ===== INSTANTIATION-COMMON =====
-// ================================
-
+// ===== Instantiation, not shown in snippet
 import weaviate from 'weaviate-ts-client';
 
-// ===== Instantiation shown on snippet
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth is on. Replace w/ your Weaviate instance API key.
+  host: 'edu-demo.weaviate.network',
+  apiKey: new weaviate.ApiKey('learn-weaviate'),
   headers: {
-    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',  // for the nearText example
+    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],  // for the nearText example
   },
 });
 

@@ -12,7 +12,7 @@ const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
-  headers: {'X-HuggingFace-Api-Key': 'YOUR-HUGGINGFACE-API-KEY'},  // Replace with your inference API key
+  headers: { 'X-HuggingFace-Api-Key': 'YOUR-HUGGINGFACE-API-KEY' },  // Replace with your inference API key
 });
 
 // END EndToEndExample  // END InstantiationExample  // END NearTextExample  // END CustomVectorExample
