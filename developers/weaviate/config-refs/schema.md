@@ -188,7 +188,7 @@ The meaning of the individual fields in detail:
 
 ### replicationConfig
 
-Replication configurations can be set using the schema, through the `replicationConfig` parameter.
+[Replication](../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
 
 The `factor` parameter sets how many copies of this class will be stored.
 

@@ -179,7 +179,11 @@ The available parameters vary according to the module ([learn more](../modules/i
 
 ### Indexing, sharding and replication settings
 
-You can also set indexing, sharding and replication settings through the schema. For example, a vector index distance metric can be set for a class, can a replication factor can be set as shown below.
+You can also set indexing, sharding and replication settings through the schema. For example, a vector index distance metric can be set for a class, and a replication factor can be set as shown below.
+
+:::note
+You will need a [multi-node setup](../installation/docker-compose.md#multi-node-setup) to test locally replication factors greater than 1.
+:::
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">

@@ -241,7 +241,7 @@ assert.equal(resultProp.name, 'body');
 
 
 // START ModifyParam
-// TODO: create TS client issue
+// Not available yet - https://github.com/weaviate/typescript-client/issues/64
 // END ModifyParam
 
 
