@@ -18,7 +18,7 @@ Large Language Models (LLMs) have revolutionized the way we interact and communi
 This blog post will begin by explaining some of the key concepts introduced in LangChain and end with a demo. The demo will show you how to combine LangChain and Weaviate to build a custom LLM chatbot powered with semantic search!
 
 ## Sequential Chains
-[Chains](https://langchain.readthedocs.io/en/latest/modules/chains/getting_started.html) enable us to combine multiple LLM inferences together. As you can guess from the name, sequential chains execute their links in a sequential order. It takes one input/output and then uses the output for the next step.
+[Chains](https://docs.langchain.com/docs/components/chains/) enable us to combine multiple LLM inferences together. As you can guess from the name, sequential chains execute their links in a sequential order. It takes one input/output and then uses the output for the next step.
 
 Let’s look at an example of sequential chains in a conversation between the bot and me. This visualization shows an example of a step-by-step reasoning to fact check an LLM tasked with question answering:
 
@@ -83,7 +83,7 @@ Refine is a unique technique because it has a local memory. An example of this i
 Map Rerank involves running an initial prompt that asks the model to give a relevance score. It is then passed through the language model and assigns a score based on the certainty of the answer. The documents are then ranked and the top two are stuffed to the language model to output a single response.
 
 ## Tool Use
-The last building block we will cover is tool use. [Tool use](https://langchain.readthedocs.io/en/latest/modules/agents/tools.html?highlight=tool%20use) is a way to augment language models to use tools. For example, we can hook up an LLM to vector databases, calculators, or even code executors. Of course we will dive into the vector databases next, but let’s start with an example of the code executor tool use.
+The last building block we will cover is tool use. [Tool use](https://docs.langchain.com/docs/components/agents/tool) is a way to augment language models to use tools. For example, we can hook up an LLM to vector databases, calculators, or even code executors. Of course we will dive into the vector databases next, but let’s start with an example of the code executor tool use.
 
 <img
     src={require('./img/tool-use.gif').default}
