@@ -19,44 +19,16 @@ Yes, 10 Python lines of code, generously formatted with whitespace. Or 14 for Ty
 
 <!-- truncate -->
 
-:::info macOS support
-Embedded DB support for macOS is in the works (you can track progress in [this issue](https://github.com/weaviate/weaviate-python-client/issues/239)).
-:::
-
-<details>
-  <summary>Running Embedded DB on macOS right now</summary>
-
-   You can use a Linux Docker image to follow along, for example if you want to dry-run a CI/CD pipeline. [Install Docker](https://docs.docker.com/desktop/install/mac-install/), then run this command to land in a bash Linux prompt:
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  ```shell
-  docker run -it --name wembed -v "$PWD":/usr/src/myapp -w /usr/src/myapp python /bin/bash
-  ```
-
-  </TabItem>
-
-  <TabItem value="ts" label="TypeScript">
-
-  ```shell
-  docker run -it --name wembed -v "$PWD":/usr/src/myapp -w /usr/src/myapp node /bin/bash
-  ```
-
-  </TabItem>
-</Tabs>
-
-  This will create a Docker container named `wembed` and will map your current directory to `/usr/src/myapp` in the container. From then on, the remaining steps will be the same.
-</details>
-
 
 ## 1. Install the client library
 
+The Python and TypeScript client libraries support running Weaviate embedded on Linux, and starting with versions 3.21.0 and 1.2.0 respectively, on macOS as well.
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
 
   ```bash
-  pip install weaviate-client
+  pip install weaviate-client  --upgrade
   ```
 
   </TabItem>
@@ -64,7 +36,7 @@ Embedded DB support for macOS is in the works (you can track progress in [this i
   <TabItem value="ts" label="TypeScript">
 
   ```bash
-  npm install weaviate-ts-embedded ts-node jest  # also install support for TypeScript and Jest testing
+  npm install weaviate-ts-embedded typescript ts-node jest  # also install support for TypeScript and Jest testing
   ```
 
   </TabItem>
