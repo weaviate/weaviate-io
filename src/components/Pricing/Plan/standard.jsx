@@ -37,8 +37,7 @@ export default function PricingStandard() {
         <li>
           <div className={styles.checkIcon}></div>
           <span>
-            Severity 1 - max 1h Severity <br /> 2 max 4h Severity <br /> 3
-            Severity 3 max 1bd
+            Severity 1 - max 1h <br /> Severity 2 - max 4h <br /> Severity 3 - max 1bd
           </span>
         </li>
         <li>

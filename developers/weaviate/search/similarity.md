@@ -302,7 +302,7 @@ It should produce a response like the one below:
 
 ## Add a conditional (`where`) filter
 
-You can add a conditional filter to your search results using the `where` argument.
+You can add a conditional filter to your search results using the [`where` argument](../api/graphql/filters.md).
 
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching `"animals in movies"`, as long as their `round` property is exactly `"Double Jeopardy!"`:
 
