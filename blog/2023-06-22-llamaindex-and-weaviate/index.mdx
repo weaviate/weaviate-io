@@ -28,7 +28,7 @@ LlamaIndex is a data framework for building LLM applications. It provides a comp
 On data ingestion, LlamaIndex offers connectors to 100+ data sources, ranging from different file formats (.pdf, .docx, .pptx) to APIs (Notion, Slack, Discord, etc.) to web scrapers (Beautiful Soup, Readability, etc.). These data connectors are primarily hosted on [LlamaHub](https://llamahub.ai/). This makes it easy for users to integrate data from their existing files and applications.
 
 ### Data Indexing
-Once the data is loaded, LlamaIndex offers the ability to index this data with a wide variety of data structures and storage integration options (including Weaviate). We support indexing unstructured, semi-structured, and structured data. A standard way to index unstructured data is to split the source documents into text “chunks”, embed each chunk, and store each chunk/embedding in a vector database.
+Once the data is loaded, LlamaIndex offers the ability to index this data with a wide variety of data structures and storage integration options (including Weaviate). LlamaIndex supports indexing unstructured, semi-structured, and structured data. A standard way to index unstructured data is to split the source documents into text “chunks”, embed each chunk, and store each chunk/embedding in a vector database.
 
 ### Data Querying
 Once your data is ingested/stored, LlamaIndex provides the tools to define an advanced retrieval / query “engine” over your data. Our retriever constructs allow you to retrieve data from your knowledge base given an input prompt. A query engine construct allows you to define an interface that can take in an input prompt, and output a knowledge-augmented response - it can use retrieval and synthesis (LLM) modules under the hood.
