@@ -53,7 +53,6 @@ import weaviate
 
 # connect to your weaviate instance
 client = weaviate.Client("http://localhost:8080")
-
 ```
 
 The next step is to ingest the Weaviate documentation and parse the documents into chunks. You can choose to use one of our many web page readers to scrape any website yourself - but luckily, the downloaded files are already readily available in the recipes repo.
@@ -67,7 +66,6 @@ blogs = SimpleDirectoryReader('./data').load_data()
 # chunk up the blog posts into nodes
 parser = SimpleNodeParser()
 nodes = parser.get_nodes_from_documents(blogs)
-
 ```
 
 Here, we use the SimpleDirectoryReader to load in all documents from a given directory. We then use our `SimpleNodeParser` to chunk up the source documents into Node objects (text chunks).
@@ -94,7 +92,6 @@ Finally, we can define a query engine on top of our index. This query engine wil
 ​​query_engine = index.as_query_engine()
 response = query_engine.query("What is the intersection between LLMs and search?")
 print(response)
-
 ```
 
 You should get an answer like the following:
