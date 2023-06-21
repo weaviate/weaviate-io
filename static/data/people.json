@@ -118,6 +118,13 @@
 		"twitter": "jessie_groot"
 	},
 	{
+		"name": "Jobi George",
+		"title": "Head of Partnerships",
+		"photo": "jobi.png",
+		"linkedin": "jobigeorge",
+		"twitter": "jobig630"
+	},
+	{
 		"name": "John Trengrove",
 		"title": "Solution Engineer",
 		"photo": "john.png",
@@ -174,6 +181,12 @@
 		"photo": "redo.png",
 		"linkedin": "redouan-el-rhazouani-295082111",
 		"github": "redouan-rhazouani"
+	},
+	{
+		"name": "Rodrigo DeCossio",
+		"title": "Head of Sales",
+		"photo": "rodrigo.png",
+		"linkedin": "rodrigodecossio"
 	},
 	{
 		"name": "Sebastian Witalec",

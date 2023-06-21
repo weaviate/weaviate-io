@@ -328,15 +328,9 @@ services:
 
 After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`.
 
+
 ## More questions?
 
-Look at the:
+import DocsMoreResources from '/_includes/more-resources-docs.md';
 
-1. [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
-1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
-1. For issues: [GitHub](https://github.com/weaviate/weaviate/issues). Or,
-1. Ask your question in the [Slack channel](https://weaviate.io/slack).
-
-import { GiscusDocComment } from '/src/components/GiscusComment';
-
-<GiscusDocComment />
+<DocsMoreResources />

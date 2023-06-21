@@ -20,6 +20,8 @@ This page will show you how to delete individual objects in Weaviate.
 
 To delete an object, you'll need its [id](../api/graphql/additional-properties.md#id) and class name.
 
+To delete multiple objects, you'll need their class name, and a filter that matches them.
+
 import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
 
 <details>
@@ -30,7 +32,7 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 
 ## Delete object by id
 
-To delete an object, [make a `DELETE` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#delete-a-data-object), or use the client code below. If the id doesn't exist in the specified class, a 404 error will be returned.
+To delete an object, [make a `DELETE` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#delete-a-data-object), or use the client code below.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -47,6 +49,59 @@ To delete an object, [make a `DELETE` request to the `/v1/objects` REST API endp
       text={TSCode}
       startMarker="// START DeleteObject"
       endMarker="// END DeleteObject"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Error handling
+
+If the id doesn't exist in the specified class, a 404 error will be returned. You can handle errors as follows:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeleteError"
+      endMarker="# END DeleteError"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DeleteError"
+      endMarker="// END DeleteError"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Batch delete multiple objects
+
+To delete multiple objects at once, make a [`DELETE` request to the `/v1/batch/objects` REST API endpoint](../api/rest/batch.md#batch-delete), or use the client code below. Specify which objects to delete using the same kind of [`where` filter](../search/similarity.md) used in similarity search.
+
+For limitations, optional parameters, and the response format, see the [Batch delete API reference](../api/rest/batch.md#batch-delete).
+
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeleteBatch"
+      endMarker="# END DeleteBatch"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DeleteBatch"
+      endMarker="// END DeleteBatch"
       language="ts"
     />
   </TabItem>
