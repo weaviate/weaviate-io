@@ -21,6 +21,10 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 <GraphQLFiltersExample/> -->
 
+:::info Related pages
+- [How-to search: Filters](../../search/filters.md)
+:::
+
 ## Single operand (condition)
 
 Each set of algebraic conditions is called an "operand". For each operand, the required properties are:
