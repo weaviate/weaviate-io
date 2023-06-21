@@ -17,7 +17,7 @@ import weaviate from 'weaviate-ts-client';
 import fetch from 'node-fetch';
 // END base64  // START ImageFileSearch
 import fs from 'fs';
-// END ImageFileSearch  // START base64  // START ImageFileSearch
+// END ImageFileSearch  // START base64
 
 const client = weaviate.client({
   scheme: 'http',
@@ -25,7 +25,7 @@ const client = weaviate.client({
   // Uncomment if authentication is on, and replace w/ your Weaviate instance API key.
   // apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),
 });
-// END base64  // END ImageFileSearch  // START base64
+// END base64  // START base64
 
 const imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG'
 
@@ -62,10 +62,11 @@ fs.writeFileSync('image.jpg', content);
 // START ImageFileSearch
 
 // highlight-start
+// Read the file into a base-64 encoded string
 const contentsBase64 = await fs.promises.readFile('image.jpg', { encoding: 'base64' });
 // highlight-end
 
-// Perform query
+// Query based on base64-encoded image
 result = await client.graphql
   .get()
   .withClassName('Dog')
