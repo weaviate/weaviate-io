@@ -17,7 +17,10 @@ def get_batch_with_cursor(client, class_name, class_properties, batch_size, curs
 
     query = (
         client.query.get(class_name, class_properties)
-        .with_additional(["id"])
+        # highlight-start
+        # Optionally retrieve the vector embedding by adding `vector` to the _additional fields
+        .with_additional(["id vector"])
+        # highlight-end
         .with_limit(batch_size)
     )
 
@@ -74,10 +77,13 @@ with target_client.batch(
             target_client.batch.add_data_object(
                 new_object,
                 class_name=class_name,
-                # vector=...  # optionally update the vector
+                # highlight-start
+                # Can update the vector if it was included in _additional above
+                vector=retrieved_object['_additional']['vector']
+                # highlight-end
             )
 
-        # Update the cursor
+        # Update the cursor to the id of the last retrieved object
         cursor = results["data"]["Get"][class_name][-1]["_additional"]["id"]
 # Finished restoring to the target instance  # END CursorExample
 

@@ -5,8 +5,8 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'edu-demo.weaviate.network',
-  apiKey: new weaviate.ApiKey('learn-weaviate'),
+  host: 'edu-demo.weaviate.network',  // Replace with your Weaviate URL
+  apiKey: new weaviate.ApiKey('learn-weaviate'),  // If auth is on. Replace w/ your Weaviate instance API key.
   headers: {
     'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],  // for the nearText example
   },

@@ -21,6 +21,10 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 <GraphQLFiltersExample/> -->
 
+:::info Related pages
+- [How-to search: Filters](../../search/filters.md)
+:::
+
 ## Single operand (condition)
 
 Each set of algebraic conditions is called an "operand". For each operand, the required properties are:
@@ -242,7 +246,7 @@ Filtering by property length requires the target class to be [configured to inde
 
 ## Multiple operands
 
-You can set multiple operands by providing an array.
+You can set multiple operands by providing an array, and you can also [nest conditions](../../search/filters.md#nested-multiple-conditions).
 
 For example, these filters select based on the class Article with a wordCount higher than 1000 and who are published before January 1st 2020.
 
