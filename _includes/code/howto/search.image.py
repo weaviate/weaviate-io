@@ -8,7 +8,7 @@
 # ===== Search by base64 representation =====
 # ===========================================
 
-# START base64  # START ImageFileSearch
+# START base64
 import weaviate
 import requests
 import base64
@@ -25,7 +25,7 @@ image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorg
 image_response = requests.get(image_url)
 content = image_response.content
 
-# END base64  # END ImageFileSearch
+# END base64
 
 # START base64
 # Encode content into base64 string
@@ -61,7 +61,7 @@ expected_results = """
     }
   }
 }
-# START Expected base64 results
+# END Expected base64 results
 """
 
 # Tests
@@ -72,24 +72,21 @@ assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
 # ===== Search by image filename =====
 # ====================================
 
-# START ImageFileSearch
 # Save content to file
-filename = 'image.jpg'
-with open(filename, 'wb') as file:
+with open('image.jpg', 'wb') as file:
     file.write(content)
 
 # Perform query
+# START ImageFileSearch
 response = (
     client.query
     .get('Dog', 'breed')
     # highlight-start
-    .with_near_image({'image': filename})  # default `encode=True` reads and encodes the file
+    .with_near_image({'image': 'image.jpg'})  # default `encode=True` reads & encodes the file
     # highlight-end
     .with_limit(1)
     .do()
 )
-
-print(json.dumps(response, indent=2))
 # END ImageFileSearch
 
 # Tests
