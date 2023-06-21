@@ -69,7 +69,7 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
 ## Pagination with `offset`
 
-Supported by the `Get{}`, `Explore{}` and `Aggregate{}` function.
+Supported by the `Get{}` and `Explore{}` functions.
 
 The offset parameter works in conjunction with the existing limit parameter. For example, to list the first ten results, set `limit: 10`. Then, to "display the second page of 10", set `offset: 10`, `limit:10` and so on. E.g. to show the 9th page of 10 results, set `offset:80, limit:10` to effectively display results 81-90.
 

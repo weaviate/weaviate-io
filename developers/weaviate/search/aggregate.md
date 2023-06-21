@@ -244,15 +244,15 @@ For example, to list all distinct values of a property, and the counts for each:
 
 ## With `nearXXX`
 
-When using a [similarity search](./similarity.md) parameter (i.e. `nearXXX`) with `Aggregate`, you should include a way to limit the search results. This is because a vector search in itself does not exclude any objects from the results set.
+When using a [similarity search](./similarity.md) parameter (i.e. `nearXXX`) with `Aggregate`, you should include a way to [limit the search results](../api/graphql/aggregate.md#limiting-the-search-space). This is because a vector search in itself does not exclude any objects from the results set - _all_ objects have some degree of similarity to the query.
 
 Thus, for the vector search to affect the `Aggregate` output, you **must** set a limit on:
 - The number of results returned (with `limit`), or
 - How similar the results are to the query (with `distance`).
 
-### Set an object `limit`
+### Set an object limit
 
-You can set the `limit` operator to specify the maximum number of results to be aggregated.
+You can set the `objectLimit` argument to specify the maximum number of results to be aggregated.
 
 The below query retrieves the 10 `question` objects with vectors that are closest to `"animals in space"`, and return the sum total of the `point` property.
 
