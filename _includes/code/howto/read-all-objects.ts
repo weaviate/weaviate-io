@@ -22,7 +22,10 @@ async function getBatchWithCursor(
 ): Promise<{data: any}> {
   const query = client.graphql.get()
     .withClassName(className)
+    // highlight-start
+    // Optionally retrieve the vector embedding by adding `vector` to the _additional fields
     .withFields(classProperties.join(' ') + ' _additional { id vector }')
+    // highlight-end
     .withLimit(batchSize);
 
   if (cursor) {
@@ -76,7 +79,10 @@ while (true) {
     targetBatcher = targetBatcher.withObject({
       class: className,
       properties: newObject,
-      vector: retrievedObject['_additional']['vector'],  // can update the vector here
+      // highlight-start
+      // Can update the vector if it was included in _additional above
+      vector: retrievedObject['_additional']['vector'],
+      // highlight-end
     });
 
     // When the batch counter reaches batchSize, push the objects to Weaviate
@@ -94,7 +100,7 @@ while (true) {
     }
   }
 
-  // Update the cursor
+  // Update the cursor to the id of the last retrieved object
   cursor = results.data.Get[className].at(-1)['_additional']['id'];
 }
 
