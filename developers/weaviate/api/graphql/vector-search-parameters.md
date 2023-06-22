@@ -213,8 +213,8 @@ The `bm25` operator supports the following variables:
 
 | Variables | Required | Description |
 | --------- | -------- | ----------- |
-| `query`   | yes      | the keyword search query |
-| `properties` | no    | array of properties (fields) to search in, defaulting to all properties in the class|
+| `query`   | yes      | The keyword search query. Listing multiple keywords will return all objects that match at least one of the keywords. In other words, the keywords are `OR`ed. |
+| `properties` | no    | Array of properties (fields) to search in, defaulting to all properties in the class. |
 
 :::info Boosting properties
 Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
