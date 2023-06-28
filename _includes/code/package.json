@@ -10,8 +10,8 @@
   "dependencies": {
     "csv-parser": "^3.0.0",
     "stream-chain": "^2.2.5",
-    "stream-json": "^1.7.5",
+    "stream-json": "^1.8.0",
     "ts-node": "^10.9.1",
-    "weaviate-ts-embedded": "^1.1.0"
+    "weaviate-ts-embedded": "^1.2.0"
   }
 }

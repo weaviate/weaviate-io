@@ -1,0 +1,134 @@
+---
+title: Automated testing for Weaviate applications
+slug: automated-testing
+authors: [dan]
+date: 2023-06-29
+image: ./img/hero.png
+tags: ['how-to']
+description: "Writing a CI/CD pipeline for a Weaviate application"
+
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/automated-testing.py';
+import TSCode from '!!raw-loader!/_includes/code/automated-testing.ts';
+
+As a software engineer with experience in test automation, I firmly believe in [Test-Driven Development](https://en.wikipedia.org/wiki/Test-driven_development), and more specifically, incorporating [integration testing](https://en.wikipedia.org/wiki/Integration_testing) from the very early stages of developing an application.
+
+<!-- truncate -->
+
+Integration testing helps early bug detection by verifying the interaction between different modules of a software system, which may function perfectly in isolation (as shown by unit testing), but may run into various types of issues when combined (interface/API mismatch, different data ranges etc.) Besides improving test coverage, integration testing also increases confidence when refactoring, especially when changing the implementation of a particular unit of the system under test, by proving that the system as a whole continues to function as expected.
+
+When it comes to Weaviate applications, an integration test could cover the interaction between the application code, the Weaviate server, and the inference provider (e.g. OpenAI, Cohere, Google PaLM) used via a [vectorizer](/developers/weaviate/modules/retriever-vectorizer-modules) or [generator](/developers/weaviate/modules/reader-generator-modules) module. With the advent of [embedded Weaviate](/developers/weaviate/installation/embedded), integration testing has become much easier, since Weaviate can be instantiated directly from the client code, without the need to set up and tear down a separate server.
+
+
+## Scoping the test
+
+In integration testing, it's important to delineate precisely what should be tested, in order to avoid writing tests for the _units_ of a system, and instead focus on their _integration_. In the case of a typical application built with Weaviate,
+* Search quality depends on the selected model of the [vectorization module](/developers/weaviate/modules/retriever-vectorizer-modules). This should not be the focus of integration testing. In particular, returned [distances](../distance-metrics-in-vector-search) are subject to slight changes.
+* Search itself is a core Weaviate functionality, that is tested by Weaviate's own test suite. Inserting a dummy object and searching for it would duplicate part of this test suite, and wouldn't prove anything about the integration between Weaviate and the application.
+* Integration testing should focus on automatically catching common issues including:
+  * Connection or authentication issues with the inference provider (and with Weaviate, if not using it embedded)
+  * Incomplete or incorrect data imports
+  * Using the correct number of dimensions when [bringing your own vectors](/developers/weaviate/tutorials/custom-vectors)
+  * Schema issues, like invalid class names, properties, or data types
+  * Race conditions or concurrency errors from multiple requests
+
+
+## Sample integration test
+
+To demonstrate the principles above, we'll write an integration test that consists of the following steps:
+
+1. Import a data set into Weaviate using documented best practices ([batching](/developers/weaviate/manage-data/import) and [streaming](/developers/weaviate/manage-data/import#tip-stream-data-from-large-files))
+  a. Have vectorization enabled, so we effectively test a workflow that combines Weaviate and an external API (to control API call costs, we can limit the number of objects imported)
+2. Ensure that all specified data objects have been imported, and no extraneous ones exist
+3. Export back objects along with their vectors (useful for backups and recreating the database without hitting the vectorization provider)
+
+The sample code below imports a specified number of question & answer pairs from the popular quiz game show called *Jeopardy!* in JSON format, using streaming (for CSV streaming, see the [Manage Data -> (Batch) Import items](/developers/weaviate/manage-data/import#tip-stream-data-from-large-files) how-to page). It asserts that all specified question & answer objects have been imported, then it exports them along with the generated vector embeddings.
+
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  Save as `embedded_test.py` and run `pytest`. (If you don't have pytest, run `pip install pytest`.)
+  <br/>
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# START"
+    endMarker="# END"
+    language="py"
+  />
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+
+  To install the dependencies, run `npm install weaviate-ts-embedded stream-json stream-chain typescript ts-node jest`
+
+  Then, save the code as `embedded_test.ts` and run `npx jest`:
+  <br/>
+
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// START"
+    endMarker="// END"
+    language="js"
+  />
+  </TabItem>
+</Tabs>
+
+
+## Continuous integration and deployment (CI/CD)
+
+For CI/CD, we can add a GitHub Actions workflow YAML file to run these tests on every push to the main branch. The YAML file could look something like this:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+    TODO: requirements.txt
+
+```
+name: Run Automated Tests
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: pytest
+```
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+  </TabItem>
+</Tabs>
+
+
+## Data persistence
+
+Running embedded Weaviate will persist the data between runs, in the specified directory. Learn more on the [embedded Weaviate](/developers/weaviate/installation/embedded) page.
+
+
+## Closing thoughts
+
+In this post, we've seen how to write an integration test for an application using Weaviate, in which we import a data set, vectorize it, then export the vectorized objects. The test can be extended with search, insertion, updates, deletes, and other operations that are part of the user journey. Developing a comprehensive integration test suite is important for detecting several categories of issues:
+
+* Regression issues, where a code change unintentionally breaks existing functionality
+* Deployment environment issues, caught by running the tests in a production-like environment
+* Compatibility issues after Weaviate version upgrades
+
+What other aspects of integration testing would you like to learn about? Let us know in the comments below!
+
+
+import WhatNext from  '/_includes/what-next.mdx'
+
+<WhatNext />
