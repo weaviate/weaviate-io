@@ -116,6 +116,8 @@ You can create a multi-node setup with Weaviate using Docker-Compose. To do so, 
 - Configure `CLUSTER_GOSSIP_BIND_PORT` and `CLUSTER_DATA_BIND_PORT` for each node.
 - Optionally, you can set the hostname for each node using `CLUSTER_HOSTNAME`.
 
+(Read more about [horizontal replication in Weaviate](../concepts/cluster.md).)
+
 So, the configuration file will include environment variables for the "founding" member that looks like the below:
 
 ```yaml
@@ -139,7 +141,7 @@ And the other members' configurations may look like this:
       CLUSTER_JOIN: 'weaviate-node-1:7100'  # This must be the service name of the "founding" member node.
 ```
 
-Below is a configuration for a 3-node setup, useful to test [replication](../configuration/replication.md) locally. Read more about [horizontal replication in Weaviate](../concepts/cluster.md).
+Below is a configuration for a three-node setup. You could use this setup to test [replication](../configuration/replication.md) examples locally.
 
 
 <details>
