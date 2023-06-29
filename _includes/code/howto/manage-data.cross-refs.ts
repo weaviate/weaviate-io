@@ -6,11 +6,9 @@ import assert from 'assert';
 
 import weaviate from 'weaviate-ts-client';
 
-// ===== Instantiation code
 const client = weaviate.client({
   scheme: 'http',
-  host: 'localhost:8090',  // Replace with your Weaviate URL
-  // apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth is on. Replace w/ your Weaviate instance API key.
+  host: 'localhost:8090',
 });
 
 const sfId = '00ff6900-e64f-5d94-90db-c8cfa3fc851b';

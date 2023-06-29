@@ -27,21 +27,15 @@ client.schema.delete_class("YourClassName")  # Replace with your class name - e.
 ```
 
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="ts" label="JavaScript/TypeScript">
 
 ```ts
-var className: string = 'YourClassName';  // Replace with your class name
+const className: string = 'YourClassName';  // Replace with your class name
 
-client.schema
+await client.schema
   .classDeleter()
   .withClassName(className)
-  .do()
-  .then((res: any) => {
-  console.log(res);
-  })
-  .catch((err: Error) => {
-  console.error(err)
-  });
+  .do();
 ```
 
 </TabItem>
