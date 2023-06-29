@@ -127,15 +127,14 @@ This is really useful, as it will let you experiment and work with your Weaviate
 
 ### Operating Systems
 
-Embedded Weaviate is currently supported on Linux only.
+Embedded Weaviate is currently supported on Linux and macOS.
 
-We are actively working to provide support for MacOS. We hope to share an update in the near future.
 
 ## Language Clients
 
 ### Python
 
-The [Python client](../client-libraries/python.md) – `v3.15.4` or newer
+[Python client](../client-libraries/python.md) support was added in `v3.15.4` for Linux, and in `v3.21.0` for macOS.
 
 ### TypeScript
 
@@ -147,9 +146,12 @@ The TypeScript embedded client simply extends the original TypeScript client, so
 npm install weaviate-ts-embedded
 ```
 
+macOS support was added in `v1.2.0`.
+
 GitHub repositories:
 * [TypeScript embedded client](https://github.com/weaviate/typescript-embedded)
 * [Original TypeScript client](https://github.com/weaviate/typescript-client)
+
 
 ## More Resources
 
