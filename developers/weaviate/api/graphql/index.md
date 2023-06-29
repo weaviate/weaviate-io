@@ -14,7 +14,7 @@ Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a
 
 ## All references
 
-All references have their individual subpages, click on one of the references below for more information.
+All references have their individual subpages. Click on one of the references below for more information.
 
 - [Get{}](./get.md)
 - [Aggregate{}](./aggregate.md)
