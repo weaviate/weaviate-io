@@ -141,7 +141,7 @@ And the other members' configurations may look like this:
       CLUSTER_JOIN: 'weaviate-node-1:7100'  # This must be the service name of the "founding" member node.
 ```
 
-Below is a configuration for a three-node setup. You could use this setup to test [replication](../configuration/replication.md) examples locally.
+Below is an example configuration for a 3-node setup. You may be able to test [replication](../configuration/replication.md) examples locally using this configuration.
 
 
 <details>
