@@ -4,9 +4,12 @@ sidebar_position: 1
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'schema']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/configure.schema.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/configure.schema.ts';
 
 # How to configure a schema
 
@@ -41,30 +44,81 @@ A class describes a collection of data objects. They are defined as a part of th
 
 As a minimum, you must specify the `class` parameter for the class name.
 
-import CodeSchemaCreateMinimal from '/_includes/code/schema.class.create.minimal.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateClass"
+      endMarker="# END CreateClass"
+      language="py"
+    />
+  </TabItem>
 
-<CodeSchemaCreateMinimal />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateClass"
+      endMarker="// END CreateClass"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 
 ### Property definition
 
 You can use `properties` to specify properties. A class definition can include any number of properties.
 
-import CodeSchemaCreateProperty from '/_includes/code/schema.class.create.property.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START PropertyDefinition"
+      endMarker="# END PropertyDefinition"
+      language="py"
+    />
+  </TabItem>
 
-<CodeSchemaCreateProperty />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START PropertyDefinition"
+      endMarker="// END PropertyDefinition"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 
 In addition to the property name, you can configure parameters such as the data type, inverted index tokenization and more.
 
 - [Property object configuration references](../config-refs/schema.md#property-object)
 - [Available data types](../config-refs/datatypes.md)
 
+
 ### Specify a vectorizer
 
 You can set an optional `vectorizer` for each class, which will override any default values present in the configuration (e.g. in an [environment variable](../config-refs/env-vars.md)). The following sets the `text2vec-openai` module as the vectorizer for the `Article` class.
 
-import CodeSchemaCreateVectorizer from '/_includes/code/schema.class.create.vectorizer.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Vectorizer"
+      endMarker="# END Vectorizer"
+      language="py"
+    />
+  </TabItem>
 
-<CodeSchemaCreateVectorizer />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Vectorizer"
+      endMarker="// END Vectorizer"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 - [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
 - [Vectorizer configuration references](../config-refs/schema.md#vectorizer)
@@ -73,31 +127,86 @@ import CodeSchemaCreateVectorizer from '/_includes/code/schema.class.create.vect
 
 You can set the `moduleConfig` parameter at the class-level to set class-wide settings for module behavior. For example, the vectorizer could be configured to set the model used (`model`), or whether to vectorize the class name (`vectorizeClassName`).
 
-import CodeSchemaCreateVectorizerClass from '/_includes/code/schema.class.create.vectorizer.class.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="py"
+    />
+  </TabItem>
 
-<CodeSchemaCreateVectorizerClass />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 The available parameters vary according to the module ([learn more](../modules/index.md)).
+
 
 ### Property-level module settings
 
 You can also set the `moduleConfig` parameter at the property-level to set property-level settings for module behavior. For example, you could set whether to vectorizer the property name (`vectorizePropertyName`), or whether to skip the property from vectorization altogether (`skip`).
 
-import CodeSchemaCreateVectorizerProperty from '/_includes/code/schema.class.create.vectorizer.property.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START PropModuleSettings"
+      endMarker="# END PropModuleSettings"
+      language="py"
+    />
+  </TabItem>
 
-<CodeSchemaCreateVectorizerProperty />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START PropModuleSettings"
+      endMarker="// END PropModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 The available parameters vary according to the module ([learn more](../modules/index.md)).
 
+
 ### Indexing, sharding and replication settings
 
-You can also set indexing, sharding and replication settings through the schema. For example, a vector index distance metric can be set for a class, can a replication factor can be set as shown below.
+You can also set indexing, sharding and replication settings through the schema. For example, a vector index distance metric can be set for a class, and a replication factor can be set as shown below.
 
-import CodeSchemaIndexingReplication from '/_includes/code/schema.class.create.indexing.and.replication.mdx';
+:::note
+You will need a [multi-node setup](../installation/docker-compose.md#multi-node-setup) to test locally replication factors greater than 1.
+:::
 
-<CodeSchemaIndexingReplication />
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START IndexReplicationSettings"
+      endMarker="# END IndexReplicationSettings"
+      language="py"
+    />
+  </TabItem>
 
-You can read more about various parameters here.
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START IndexReplicationSettings"
+      endMarker="// END IndexReplicationSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+You can read more about the various parameters below:
 
 - [Vector index configuration references](../config-refs/schema.md#vectorindexconfig)
 - [Inverted index configuration references](../config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists)
@@ -120,9 +229,25 @@ The following sections describe how to add a property in a class, or to modify p
 
 A new property can be added to an existing class.
 
-import CodeSchemaAddProperty from '/_includes/code/schema.class.add.property.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AddProp"
+      endMarker="# END AddProp"
+      language="py"
+    />
+  </TabItem>
 
-<CodeSchemaAddProperty />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START AddProp"
+      endMarker="// END AddProp"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 :::info Property removal/change currently not possible
 Currently, a property cannot be removed from a class definition or renamed once it has been added. This is due to the high compute cost associated with reindexing the data in such scenarios.
@@ -132,17 +257,47 @@ Currently, a property cannot be removed from a class definition or renamed once 
 
 You can modify some parameters of a schema as shown below. However, many parameters are immutable and cannot be changed once set.
 
-import CodeSchemaUpdateParameter from '/_includes/code/schema.class.update.parameter.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ModifyParam"
+      endMarker="# END ModifyParam"
+      language="py"
+    />
+  </TabItem>
 
-<CodeSchemaUpdateParameter />
+  <TabItem value="js" label="JavaScript/TypeScript">
+
+  >  Coming soon (vote for the [feature request](https://github.com/weaviate/typescript-client/issues/72))
+
+  </TabItem>
+</Tabs>
+
 
 ## Review schema
 
 If you want to review the schema, you can retrieve it as shown below.
 
-import SchemaDumpSimple from '/_includes/code/schema.dump.simple.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SchemaGet"
+      endMarker="# END SchemaGet"
+      language="py"
+    />
+  </TabItem>
 
-<SchemaDumpSimple />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SchemaGet"
+      endMarker="// END SchemaGet"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 The response will be a JSON object, such as the example shown below.
 
