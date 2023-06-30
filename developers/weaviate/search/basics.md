@@ -75,7 +75,7 @@ It should produce a response like the one below:
 </details>
 
 :::tip `objects` endpoint != search
-The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRUD operations and not capable of performing searches.
+The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRUD operations and is not capable of performing searches.
 :::
 
 ## `limit` returned objects
@@ -128,6 +128,7 @@ It should produce a response like the one below:
 />
 
 </details>
+
 
 ## Paginate with `limit` and `offset`
 
@@ -185,6 +186,7 @@ It should produce a response like the one below:
 />
 
 </details>
+
 
 ## Specify the fetched properties
 

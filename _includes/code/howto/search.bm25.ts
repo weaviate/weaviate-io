@@ -10,10 +10,10 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
+  host: 'edu-demo.weaviate.network',
+  apiKey: new weaviate.ApiKey('learn-weaviate'),
   headers: {
-    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',
+    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
   },
 });
 
@@ -183,3 +183,61 @@ for (const question of result.data.Get.JeopardyQuestion) {
 
 // searchBM25withFilter
 // END searchBM25withFilter
+
+
+// =================================
+// ===== BM25 Query with limit =====
+// =================================
+
+// START limit
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withBm25({
+    query: 'safety',
+  })
+  .withFields('question answer _additional { score }')
+// highlight-start
+  .withLimit(3)
+// highlight-end
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END limit
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+additionalKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]._additional));
+assert.deepEqual(additionalKeys, new Set(['score']));
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
+assert(result.data.Get.JeopardyQuestion[0]['answer'].includes('OSHA'));
+
+
+// ===================================
+// ===== BM25 Query with autocut =====
+// ===================================
+
+// START autocut
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withBm25({
+    query: 'safety',
+  })
+  .withFields('question answer _additional { score }')
+// highlight-start
+  .withAutocut(1)
+// highlight-end
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END autocut
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+additionalKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]._additional));
+assert.deepEqual(additionalKeys, new Set(['score']));
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 1);
+assert(result.data.Get.JeopardyQuestion[0]['answer'].includes('OSHA'));

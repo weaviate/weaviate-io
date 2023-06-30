@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
-import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
+import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 ## Overview
 
@@ -54,7 +54,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// GetNearText"
   endMarker="// END GetNearText"
   language="ts"
@@ -77,7 +77,7 @@ It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# Expected nearText results"
+  startMarker="# START Expected nearText results"
   endMarker="# END Expected nearText results"
   language="json"
 />
@@ -105,7 +105,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// GetNearObject"
   endMarker="// END GetNearObject"
   language="ts"
@@ -141,7 +141,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// GetNearVector"
   endMarker="// END GetNearVector"
   language="ts"
@@ -161,18 +161,19 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 ## Limit the results
 
 You can set a limit on:
-- The number of results returned (with `limit`), or
-- How similar the results are to the query (with `distance`).
+- the number of results returned (with `limit`), or
+- how similar the results are to the query (with [`distance`](#distance-threshold)), or
+- the number of "jumps" in `distance` from the query (with the [`autocut` filter](#autocut)).
+
+`autocut` can be combined with `limit`, to set the maximum number of results returned by `autocut`.
 
 ### Number of results
 
 You can set the maximum number of results returned with `limit` in the same way as shown in the [search basics how-to guide](./basics.md#limit-returned-objects).
 
-Similarly, you can retrieve a maximum `n` objects after the first `m` results by using `limit` with `offset` as shown in the [search basics how-to guide](./basics.md#limit-with-offset).
+Similarly, you can retrieve a maximum `n` objects after the first `m` results by using `limit` with `offset` as shown in the [search basics how-to guide](./basics.md#paginate-with-limit-and-offset).
 
-To limit the number of results returned by a `near...` query, add the limit parameter. To start at a given offset, add the `offset` parameter. For example if we want to obtain the animals in movies #2 and #3 from the [`nearText` example](#an-input-medium) above, we'll need to use `offset: 1, limit: 2`:
-
-The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, skips 1 object (`offset`) and returns the next 2 objects:
+To limit the number of results returned by a `near...` query, add the `limit` parameter. To start at a given offset, add the `offset` parameter. For example if we want to obtain the animals in movies #2 and #3 from the [`nearText` example](#an-input-medium) above, we'll need to use `offset: 1, limit: 2`. The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, skips 1 object (`offset`) and returns the next 2 objects:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -185,7 +186,7 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// GetLimitOffset"
   endMarker="// END GetLimitOffset"
   language="ts"
@@ -221,7 +222,7 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// GetWithDistance"
   endMarker="// END GetWithDistance"
   language="ts"
@@ -244,6 +245,56 @@ The numerical value for `distance` will depend on many factors, including the ve
 :::tip Using `certainty` possible for `cosine` distance metric only
 If the distance metric is set as `cosine` the [`certainty`](../config-refs/distances.md#distance-vs-certainty) variable can be used, which normalizes the complement of distance to a value between 0 and 1.
 :::
+
+
+### Autocut
+
+Another way to limit the results returned by a similarity search is to use the [`autocut` filter](../api/graphql/additional-operators.md#autocut). Autocut takes a positive integer parameter `N`, looks at the [distance](#distance-threshold) between each result and the query, and stops returning results after the `N`th "jump" in distance. For example, if the distances for six objects returned by `nearText` were `[0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]` then `autocut: 1` would return the first three objects, `autocut: 2` would return all but the last object, and `autocut: 3` would return all objects. 
+
+Autocut can be used as follows:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START Autocut Python"
+      endMarker="# END Autocut Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Autocut"
+      endMarker="// END Autocut"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START Autocut GraphQL"
+      endMarker="# END Autocut GraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START Expected nearText results"
+  endMarker="# END Expected nearText results"
+  language="json"
+/>
+
+</details>
 
 
 ## Group results by a property or cross-reference
@@ -270,7 +321,7 @@ To group results by a cross-reference, try replacing the `path` value from `roun
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// GetWithGroupBy"
   endMarker="// END GetWithGroupBy"
   language="ts"
@@ -317,7 +368,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// GetWithFilter"
   endMarker="// END GetWithFilter"
   language="ts"
