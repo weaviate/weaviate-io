@@ -30,13 +30,14 @@ And it returns a `nodes` field containing array of nodes with following fields:
     - `objectCount`: Number of objects on the shard.
 
 ## Example
-The following command:
+
+The following command will retrieve summary information about all nodes in the cluster:
 
 import Nodes from '/_includes/code/nodes.mdx';
 
 <Nodes/>
 
-returns:
+Example output (format may slightly vary depending on the client used):
 
 ```json
 {

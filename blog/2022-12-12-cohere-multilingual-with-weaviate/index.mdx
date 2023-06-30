@@ -45,10 +45,13 @@ After learning from our friends at Cohere that the model can handle over a hundr
 
 So, I’ve created a small dataset with a few objects with descriptions of animals (squirrels, horses, meerkats, etc.), musical instruments, and vehicles. The descriptions for half of the objects are in English, but the remaining objects are written in other languages like German, Italian, Swedish, Spanish etc.
 
-Then, I took 15 minutes to create a small [Python project](https://github.com/weaviate-tutorials/cohere-multilingual-test):
+Then, I took 15 minutes to create a small [Python project](https://github.com/weaviate-tutorials/cohere-wiki-multilingual/). It includes two Jupyter Notebooks to [import data](https://github.com/weaviate-tutorials/cohere-wiki-multilingual/blob/main/wiki-large-setup.ipynb) and [query articles](https://github.com/weaviate-tutorials/cohere-wiki-multilingual/blob/main/wiki-large-query.ipynb).
 
+To follow along, you should:
 1. set up a new Weaviate instance in [WCS](https://console.weaviate.cloud)
 1. request a [Cohere API key](https://dashboard.cohere.com/api-keys)
+
+Then, the notebooks show you how to:
 1. configure data schema to use the Cohere `multilingual-22-12` model
 1. and import a small (handcrafted) dataset.
 
