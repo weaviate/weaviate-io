@@ -197,6 +197,10 @@ import GraphQLAggGroupby from '/_includes/code/graphql.aggregate.groupby.mdx';
 
 `Aggregate{}` functions can be extended with search filters. Because the filters work on multiple core functions (like `Get{}`) there is a [specific documentation page dedicated to filters](filters.md).
 
+### `topOccurrences` property
+
+Aggregating data makes the `topOccurrences` sub-property available. Note that the counts are not dependent on tokenization. The `topOccurrences` count is based on occurrences of the entire property, or one of the values if the property is an array.
+
 ## Aggregating a Vector Search / Faceted Vector Search
 
 :::note
