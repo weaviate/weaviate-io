@@ -408,7 +408,7 @@ Each token will be indexed separately in the inverted index. For example, if you
 | `whitespace`        | Split the text on whitespace. Searches/filters become case-sensitive.        | `Hello,`, `(beautiful)`, `world` | `Beautiful` ❌ `(Beautiful)` ❌ `(beautiful)` ✅ `Hello, world` ✅ |
 | `field`             | Index the whole field after trimming whitespace characters.                  | `Hello, (beautiful) world`       | `Beautiful` ❌ `(Beautiful)` ❌ `(beautiful)` ❌ `Hello, (beautiful) world` ✅ |
 
-#### Filtering implications
+### Tokenization and search / filtering
 
 Tokenization will impact how filters or keywords searches behave. This is because the filter or keyword search is also tokenized before being matched against the inverted index.
 
