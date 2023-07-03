@@ -4,7 +4,13 @@ sidebar_position: 4
 image: og/contributor-guide/weaviate-core.jpg
 # tags: ['contributor-guide']
 ---
-This page describes how to run Weaviate from source (git checkout / tarball) locally. Prerequisites:
+This page describes how to run Weaviate from source (git checkout / tarball) locally.
+
+:::tip
+You can find the source code at the [Weaviate repo](https://github.com/weaviate/weaviate/tree/master).
+:::
+
+Prerequisites:
 * [Go](https://go.dev/dl/) v1.20 or higher
 * (optional) [Docker](https://docs.docker.com/desktop/)
 
@@ -16,13 +22,16 @@ The fastest way to run Weaviate from source is to issue the command below:
 tools/dev/run_dev_server.sh <configuration>
 ```
 
-Replace `<configuration>` with _one_ of the server configuration values in [`/tools/dev/run_dev_server.sh`](https://github.com/weaviate/weaviate/blob/master/tools/dev/run_dev_server.sh#L26), e.g. `debug`, `local-development` (the default), `local-transformers` etc. For example, to run the server locally with the OpenAI module:
-
+Where `<configuration>` is _one_ of the server configuration (`$CONFIG`) values in [`/tools/dev/run_dev_server.sh`](https://github.com/weaviate/weaviate/blob/master/tools/dev/run_dev_server.sh#L26). For example, you can run:
 ```bash
 tools/dev/run_dev_server.sh local-openai
 ```
 
-If you need a more complex configuration (e.g. combining two or more modules), you can clone an entry (`local-all-openai-cohere-palm` is a good start) and add the required [environment variables](../../weaviate/config-refs/env-vars.md).
+To run the server locally with the OpenAI module.
+
+The default configuration is `local-development` which will run the server locally with the `text2vec-contextionary` and `backup-filesystem` modules.
+
+You can also create your own configuration. For instance, you can clone an entry (`local-all-openai-cohere-palm` is a good start) and add the required [environment variables](../../weaviate/config-refs/env-vars.md).
 
 
 ## Running with Docker
@@ -45,7 +54,7 @@ tools/dev/restart_dev_environment.sh --prometheus && tools/dev/run_dev_server.sh
 ```
 
 :::info
-This setup is only meant for contributors, as it requires a local Go runtime. If a user is looking for a Prometheus-enabled example, you can point them either to the [documentation page](/developers/weaviate/configuration/monitoring.md) or straight to the [Weaviate examples repo](https://github.com/weaviate/weaviate-examples/tree/main/monitoring-prometheus-grafana).
+This setup is for contributors to the Weaviate code base. If you are an end-user of Weaviate looking for a Prometheus-enabled example, please see [this documentation page](/developers/weaviate/configuration/monitoring.md) or this [example](https://github.com/weaviate/weaviate-examples/tree/main/monitoring-prometheus-grafana).
 :::
 
 Below are more examples of running Weaviate with Docker.
