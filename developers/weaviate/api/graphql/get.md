@@ -281,7 +281,7 @@ You can sort results by any primitive property, typically a `text`, `string`,
 `number`, or `int` property. When a query has a natural order (e.g. because of a
 `near<Media>` vector search), adding a sort operator will override the order.
 
-See [filters – sorting](./filters.md#sorting) for more information.
+See [filters – sorting](./additional-operators.md#sorting) for more information.
 
 ## More Resources
 
