@@ -29,41 +29,70 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 <TabItem value="go" label="Go">
 
 ```go
-// Retrieve the data
-data, err := http.DefaultClient.Get("https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json")
-if err != nil {
-  panic(err)
-}
-defer data.Body.Close()
+package main
 
-// Decode the data
-var items []map[string]string
-if err := json.NewDecoder(data.Body).Decode(&items); err != nil {
-  panic(err)
-}
+import (
+	"context"
 
-// convert items into a slice of models.Object
-objects := make([]*models.Object, len(items))
-for i := range items {
-  objects[i] = &models.Object{
-    Class: "Question",
-    Properties: map[string]any{
-      "category": items[i]["Category"],
-      "question": items[i]["Question"],
-      "answer":   items[i]["Answer"],
-    },
-  }
-}
+	"encoding/json"
+	"net/http"
 
-// batch write items
-batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(context.Background())
-if err != nil {
-  panic(err)
-}
-for _, res := range batchRes {
-  if res.Result.Errors != nil {
-    panic(res.Result.Errors.Error)
-  }
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
+	"github.com/weaviate/weaviate/entities/models"
+)
+
+func main() {
+	cfg := weaviate.Config{
+		Host:       "some-endpoint.weaviate.network/", // Replace with your endpoint
+		Scheme:     "https",
+		AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+		Headers: map[string]string{
+			"X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY", // Replace with your inference API key
+		},
+	}
+
+	client, err := weaviate.NewClient(cfg)
+	if err != nil {
+		panic(err)
+	}
+
+	// Retrieve the data
+	data, err := http.DefaultClient.Get("https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json")
+	if err != nil {
+		panic(err)
+	}
+	defer data.Body.Close()
+
+	// Decode the data
+	var items []map[string]string
+	if err := json.NewDecoder(data.Body).Decode(&items); err != nil {
+		panic(err)
+	}
+
+	// convert items into a slice of models.Object
+	objects := make([]*models.Object, len(items))
+	for i := range items {
+		objects[i] = &models.Object{
+			Class: "Question",
+			Properties: map[string]any{
+				"category": items[i]["Category"],
+				"question": items[i]["Question"],
+				"answer":   items[i]["Answer"],
+			},
+		}
+	}
+
+	// batch write items
+	batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(context.Background())
+	if err != nil {
+		panic(err)
+	}
+	for _, res := range batchRes {
+		if res.Result.Errors != nil {
+			panic(res.Result.Errors.Error)
+		}
+	}
 }
 ```
 
