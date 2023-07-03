@@ -29,17 +29,17 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 
 ```go
 classObj := &models.Class{
-    Class:      "Question",
-    Vectorizer: "text2vec-huggingface",  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
-    ModuleConfig: map[string]interface{}{
-      "text2vec-huggingface": map[string]interface{}{
-        "model": "sentence-transformers/paraphrase-MiniLM-L6-v2",
-        "options": {
-            "waitForModel": true
-        }
-      },
-    },
-}
+		Class:      "Question",
+		Vectorizer: "text2vec-huggingface",  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+		ModuleConfig: map[string]interface{}{
+			"text2vec-huggingface": map[string]interface{}{
+				"model": "sentence-transformers/paraphrase-MiniLM-L6-v2",
+				"options": map[string]interface{}{
+					"waitForModel": true,
+				},
+			},
+		},
+	}
 
 // add the schema
 err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())

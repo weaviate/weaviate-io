@@ -213,8 +213,8 @@ The `bm25` operator supports the following variables:
 
 | Variables | Required | Description |
 | --------- | -------- | ----------- |
-| `query`   | yes      | the keyword search query |
-| `properties` | no    | array of properties (fields) to search in, defaulting to all properties in the class|
+| `query`   | yes      | The keyword search query. |
+| `properties` | no    | Array of properties (fields) to search in, defaulting to all properties in the class. |
 
 :::info Boosting properties
 Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
@@ -405,7 +405,7 @@ import GraphQLFiltersNearText from '/_includes/code/graphql.filters.nearText.mdx
 
 ### Example II
 
-You can also bias results toward other data objects' vector representations. For example, in this query, we move our query about "travelling in asia", towards an article on food. 
+You can also bias results toward other data objects' vector representations. For example, in this query, we move our query about "travelling in asia", towards an article on food.
 
 import GraphQLFiltersNearText2Obj from '/_includes/code/graphql.filters.nearText.2obj.mdx';
 
