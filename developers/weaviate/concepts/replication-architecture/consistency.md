@@ -8,6 +8,11 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info Related pages
+- [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
+- [API References | REST | Objects](../../api/rest/objects.md)
+:::
+
 Data consistency is a property of a database that refers to whether data in different nodes do or do not match. In Weaviate, availability is generally preferred over strong consistency. This doesn't mean that we don't pay attention to consistency at all. Schema and data consistency are as important as possible. As captured by the [CAP Theorem](./index.md#cap-theorem), consistency and availability are a trade-off. In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C.
 
 Schema consistency is not tunable, but set to a strong consistency protocol.
@@ -116,7 +121,6 @@ Depending on the desired tradeoff between consistency and speed, below are three
 * `QUORUM` / `QUORUM` => balanced write and read latency
 * `ONE` / `ALL` => fast write and slow read (optimized for write)
 * `ALL` / `ONE` => slow write and fast read (optimized for read)
-
 
 ## Repairs
 
