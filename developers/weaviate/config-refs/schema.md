@@ -399,7 +399,7 @@ The tokenization of `text` properties can be customized via the `tokenization` f
 }
 ```
 
-Each token will be indexed separately in the inverted index. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method, and how `bm25`/`hybrid` queries and a `where` filter with an `Equal` operator would behave:
+Each token will be indexed separately in the inverted index. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method:
 
 | Tokenization Method | Explanation                                                                  | Indexed Tokens                   | `where` prop `Equal` or `bm25` query matches ✅/❌ |
 |---------------------|------------------------------------------------------------------------------|----------------------------------|-----------------------------------------------------|
@@ -407,6 +407,22 @@ Each token will be indexed separately in the inverted index. For example, if you
 | `lowercase`         | Lowercase the entire text and split on whitespace.                           | `hello,`, `(beautiful)`, `world` | `Beautiful` ❌ `(Beautiful)` ✅ `(beautiful)` ✅ `hello, world` ✅ |
 | `whitespace`        | Split the text on whitespace. Searches/filters become case-sensitive.        | `Hello,`, `(beautiful)`, `world` | `Beautiful` ❌ `(Beautiful)` ❌ `(beautiful)` ✅ `Hello, world` ✅ |
 | `field`             | Index the whole field after trimming whitespace characters.                  | `Hello, (beautiful) world`       | `Beautiful` ❌ `(Beautiful)` ❌ `(beautiful)` ❌ `Hello, (beautiful) world` ✅ |
+
+#### Filtering implications
+
+Tokenization will impact how filters or keywords searches behave. This is because the filter or keyword search is also tokenized before being matched against the inverted index.
+
+The following table shows an example scenario showing whether a filter or keyword search would identify a `text` property with value `Hello, (beautiful) world` as a hit.
+
+- **Row**: Various tokenization methods.
+- **Column**: Various search strings.
+
+|   | `Beautiful` | `(Beautiful)` | `(beautiful)` | `Hello, (beautiful) world` |
+|---|-------------|---------------|---------------|----------------------------|
+| `word` (default)    | ✅ | ✅ | ✅ | ✅ |
+| `lowercase`         | ❌ | ✅ | ✅ | ✅ |
+| `whitespace`        | ❌ | ❌ | ✅ | ✅ |
+| `field`             | ❌ | ❌ | ❌ | ✅ |
 
 :::caution `string` is deprecated
 The `string` data type has been deprecated from Weaviate `v1.19` onwards. Please use `text` instead.
