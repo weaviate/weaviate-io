@@ -203,6 +203,12 @@ If you plan on importing a large number of objects, it's much more efficient to 
 1. You do not have to do the parallelization yourself, you can use the [`/v1/batch`](./batch.md) endpoint for this. Even if you are sending batches from a single client thread, the objects within a batch will be handled by multiple server threads.
 1. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint.
 
+:::note Idempotence of POST requests in `objects` and `batch`
+The idempotence behavior differs between these two endpoints. POST /batch/objects is idempotent, and will overwrite any existing object given an id. POST /objects will fail if an id is provided which already exists in the class.
+
+To update an existing object with the `objects` endpoint, use the [PUT or PATCH method](#update-a-data-object).
+:::
+
 #### Method and URL
 
 ```http
