@@ -90,6 +90,7 @@ to obtain the metric for the entire Weaviate instance.
 | `vector_index_durations_ms` | Duration of regular vector index operation, such as insert or delete. The operation itself is defined through the `operation` label. The `step` label adds more granularity to each operation. | `operation`, `step`, `class_name`, `shard_name` | Histogram |
 | `startup_durations_ms` | Duration of individual startup operations in ms. The operation itself is defined through the `operation` label. | `operation`, `class_name`, `shard_name` | Histogram |
 | `startup_diskio_throughput` | Disk I/O throughput in bytes/s at startup operations, such as reading back the HNSW index or recovering LSM segments. The operation itself is defined by the `operation` label. | `operation`, `step`, `class_name`, `shard_name` | Histogram |
+| `requests_total` | Metric that tracks all user requests to determine if it was successful or failed. | `api`, `query_type`, `class_name` | `GaugeVec` |
 
 Extending Weaviate with new metrics is very easy and we'd be happy to receive
 your contribution.
