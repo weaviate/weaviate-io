@@ -356,21 +356,27 @@ An example of a complete property object:
     "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes.
       "text"
     ],
-    "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See Property Tokenization below for more detail.
+    "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See "Property tokenization" below for more detail.
     "moduleConfig": {                     // Module-specific settings
       "text2vec-contextionary": {
-          "skip": true,                     // If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped.
-          "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
+          "skip": true,                   // If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped.
+          "vectorizePropertyName": true   // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
       }
     },
-    "indexFilterable": true,                // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
-    "indexSearchable": true,                // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
+    "indexFilterable": true,              // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
+    "indexSearchable": true               // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
 }
 ```
 
 ### Property tokenization
 
-You can customize how `text` data is tokenized and indexed in the inverted index. For example:
+:::note
+This feature was introduced in `v1.12.0`.
+:::
+
+You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../api/graphql/vector-search-parameters#bm25) and [`hybrid`](../api/graphql/vector-search-parameters#hybrid) operators, and [`where` filters](../api/graphql/filters).
+
+The tokenization of `text` properties can be customized via the `tokenization` field in the property definition:
 
 ```json
 {
@@ -393,24 +399,33 @@ You can customize how `text` data is tokenized and indexed in the inverted index
 }
 ```
 
-:::note
-This feature was introduced in `v1.12.0`. This applies to the BM25/hybrid searching and filtering.
-:::
+Each token will be indexed separately in the inverted index. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method:
+
+| Tokenization Method | Explanation                                                                  | Indexed Tokens                   | `where` prop `Equal` or `bm25` query matches ✅/❌ |
+|---------------------|------------------------------------------------------------------------------|----------------------------------|-----------------------------------------------------|
+| `word` (default)    | Keep only alpha-numeric characters, lowercase them, and split by whitespace. | `hello`, `beautiful`, `world`    | `Beautiful` ✅ `(Beautiful)` ✅ `(beautiful)` ✅ `hello world` ✅  |
+| `lowercase`         | Lowercase the entire text and split on whitespace.                           | `hello,`, `(beautiful)`, `world` | `Beautiful` ❌ `(Beautiful)` ✅ `(beautiful)` ✅ `hello, world` ✅ |
+| `whitespace`        | Split the text on whitespace. Searches/filters become case-sensitive.        | `Hello,`, `(beautiful)`, `world` | `Beautiful` ❌ `(Beautiful)` ❌ `(beautiful)` ✅ `Hello, world` ✅ |
+| `field`             | Index the whole field after trimming whitespace characters.                  | `Hello, (beautiful) world`       | `Beautiful` ❌ `(Beautiful)` ❌ `(beautiful)` ❌ `Hello, (beautiful) world` ✅ |
+
+### Tokenization and search / filtering
+
+Tokenization will impact how filters or keywords searches behave. This is because the filter or keyword search is also tokenized before being matched against the inverted index.
+
+The following table shows an example scenario showing whether a filter or keyword search would identify a `text` property with value `Hello, (beautiful) world` as a hit.
+
+- **Row**: Various tokenization methods.
+- **Column**: Various search strings.
+
+|   | `Beautiful` | `(Beautiful)` | `(beautiful)` | `Hello, (beautiful) world` |
+|---|-------------|---------------|---------------|----------------------------|
+| `word` (default)    | ✅ | ✅ | ✅ | ✅ |
+| `lowercase`         | ❌ | ✅ | ✅ | ✅ |
+| `whitespace`        | ❌ | ❌ | ✅ | ✅ |
+| `field`             | ❌ | ❌ | ❌ | ✅ |
 
 :::caution `string` is deprecated
-`string` has been deprecated from Weaviate `v1.19` onwards. Please use `text` instead.
-:::
-
-Tokenization of `text` properties can be customized using `tokenization` property in the schema for the relevant class.
-
-Each token will be indexed separately in the inverted index. This would cause filtering, for example, to behave differently. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method:
-
-| Tokenization Method | Explanation                                                 | Example Input           | Indexed Tokens                                    |
-|---------------------|-------------------------------------------------------------|-------------------------|---------------------------------------------------|
-| `word` (default)    | Keep alpha-numeric characters, lowercase them, and split by whitespace. | `Hello, (beautiful) world` | `hello`, `beautiful`, `world`                   |
-| `whitespace`        | Split the text on whitespace.                               | `Hello, (beautiful) world` | `Hello,`, `(beautiful)`, `world`                |
-| `lowercase`         | Lowercase the text and split on whitespace.                 | `Hello, (beautiful) world` | `hello,`, `(beautiful)`, `world`                |
-| `field`             | Index the whole field after trimming whitespace characters. | `Hello, (beautiful) world` | `Hello, (beautiful) world`                      |
+The `string` data type has been deprecated from Weaviate `v1.19` onwards. Please use `text` instead.
 
 <details>
   <summary>
@@ -438,6 +453,7 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 `text` and `string` properties default to `word` level tokenization for backward-compatibility.
 
 </details>
+:::
 
 ## Configure semantic indexing
 
