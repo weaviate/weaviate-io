@@ -1,12 +1,8 @@
 import assert from 'assert';
 
-// ================================
-// ===== INSTANTIATION-COMMON =====
-// ================================
-
+// ===== Instantiation, not shown in snippet
 import weaviate from 'weaviate-ts-client';
 
-// ===== Instantiation shown on snippet
 const client = weaviate.client({
   scheme: 'https',
   host: 'edu-demo.weaviate.network',  // Replace with your Weaviate URL

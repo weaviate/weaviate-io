@@ -1,5 +1,6 @@
 # Howto: BM25 search - Python examples
 import os
+import re
 
 # ================================
 # ===== INSTANTIATION-COMMON =====
@@ -17,9 +18,9 @@ client = weaviate.Client(
     }
 )
 
-# ==========================================
+# ============================
 # ===== Basic BM25 Query =====
-# ==========================================
+# ============================
 
 # BM25BasicPython
 response = (
@@ -92,9 +93,9 @@ assert gqlresponse == expected_response
 # End test
 
 
-# ==========================================
+# ================================================
 # ===== BM25 Query with score / explainScore =====
-# ==========================================
+# ================================================
 
 # BM25WithScorePython
 response = (
@@ -189,9 +190,9 @@ gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
 
-# ==========================================
+# ===============================================
 # ===== BM25 Query with Selected Properties =====
-# ==========================================
+# ===============================================
 
 
 # BM25WithPropertiesPython
@@ -284,9 +285,9 @@ gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
 
-# ==========================================
+# ==============================================
 # ===== BM25 Query with Boosted Properties =====
-# ==========================================
+# ==============================================
 
 
 # BM25WithBoostedPropertiesPython
@@ -378,9 +379,114 @@ gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
 
-# ==========================================
+# ==================================
+# ===== BM25 multiple keywords =====
+# ==================================
+
+# START MultipleKeywords Python
+response = (
+    client.query
+    .get('JeopardyQuestion', ['question'])
+    .with_bm25(
+      # highlight-start
+      query='food wine',
+      # highlight-end
+      properties=['question']
+    )
+    .with_additional('score')
+    .with_limit(5)
+    .do()
+  )
+
+print(json.dumps(response, indent=2))
+# END MultipleKeywords Python
+
+# Tests
+assert 'JeopardyQuestion' in response['data']['Get']
+assert len(response['data']['Get']['JeopardyQuestion']) == 5
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+
+# Check that 'food' or "wine" appears in the questions
+pattern = re.compile(r'food|wine', re.IGNORECASE)
+for result in response['data']['Get']['JeopardyQuestion']:
+    assert pattern.search(result['question'])
+# End test
+
+
+expected_response = (
+# Expected MultipleKeywords results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "score": "4.4707017"
+          },
+          "question": "Wine, a ship, Croce's time"
+        },
+        {
+          "_additional": {
+            "score": "3.7450757"
+          },
+          "question": "Devil's food & angel food are types of this dessert"
+        },
+        {
+          "_additional": {
+            "score": "3.647569"
+          },
+          "question": "Type of event in Cana at which Jesus turned water into wine"
+        },
+        {
+          "_additional": {
+            "score": "3.4594069"
+          },
+          "question": "A nearer food merchant"
+        },
+        {
+          "_additional": {
+            "score": "3.3400855"
+          },
+          "question": "Sparkling wine sold under the name Champagne must come from this region in Northeast France"
+        }
+      ]
+    }
+  }
+}
+# END Expected MultipleKeywords results
+)
+
+
+gql_query = """
+# START MultipleKeywords GraphQL
+{
+  Get {
+    JeopardyQuestion(
+      limit: 5
+      bm25: {
+        # highlight-start
+        query: "food wine"
+        # highlight-end
+        properties: ["question"]
+      }
+    ) {
+      question
+      _additional {
+        score
+      }
+    }
+  }
+}
+# END MultipleKeywords GraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+test_gqlresponse(response, gqlresponse)
+
+
+# ==================================
 # ===== Basic BM25 With Filter =====
-# ==========================================
+# ==================================
 
 # BM25WithFilterPython
 response = (

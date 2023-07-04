@@ -4,9 +4,16 @@ sidebar_position: 12
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'backups']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/configure.backups.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/configure.backups.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/configure.backups.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/configure.backups.java';
+import CurlCode from '!!raw-loader!/_includes/code/howto/configure.backups.sh';
+
 
 :::info Related pages
 - [References: REST API: Backups](../api/rest/backups.md)
@@ -24,8 +31,9 @@ Weaviate's Backup feature is designed to feel very easy to use and work natively
 * Easy Migration to new environments
 
 :::note
-_The backup functionality was introduced in Weaviate `v1.15`, but for single-node instances only. Support for multi-node backups was introduced in `v1.16`_
+_The backup functionality was introduced in Weaviate `v1.15`, but for single-node instances only. Support for multi-node backups was introduced in `v1.16`_.
 :::
+
 
 ## Configuration
 
@@ -40,13 +48,7 @@ environment variables.
 
 Use the `backup-s3` module to enable backing up to and restoring from any S3-compatible blob storage. This includes AWS S3, and MinIO.
 
-To enable the module set the following environment variable:
-
-```
-ENABLE_MODULES=backup-s3
-```
-
-Modules are comma-separated. So, to combine the module with the `text2vec-transformers` module, set:
+To enable the module, add its name to the `ENABLE_MODULES` environment variable. Modules are comma-separated. To enable the module along with the `text2vec-transformers` module for example, set:
 
 ```
 ENABLE_MODULES=backup-s3,text2vec-transformers
@@ -83,13 +85,7 @@ The backup module will first try to authenticate itself using AWS IAM. If the au
 
 Use the `backup-gcs` module to enable backing up to and restoring from any Google Cloud Storage bucket.
 
-To enable the module set the following environment variable:
-
-```
-ENABLE_MODULES=backup-gcs
-```
-
-Modules are comma-separated. So, to combine the module with the `text2vec-transformers` module, set:
+To enable the module, add its name to the `ENABLE_MODULES` environment variable. Modules are comma-separated. To enable the module along with the `text2vec-transformers` module for example, set:
 
 ```
 ENABLE_MODULES=backup-gcs,text2vec-transformers
@@ -122,13 +118,7 @@ This makes it easy to use the same module in different setups. For example, you 
 
 Use the `backup-azure` module to enable backing up to and restoring from any Microsoft Azure Storage container.
 
-To enable the module set the following environment variable:
-
-```
-ENABLE_MODULES=backup-azure
-```
-
-Modules are comma-separated. So, to combine the module with the `text2vec-transformers` module, set:
+To enable the module, add its name to the `ENABLE_MODULES` environment variable. Modules are comma-separated. To enable the module along with the `text2vec-transformers` module for example, set:
 
 ```
 ENABLE_MODULES=backup-azure,text2vec-transformers
@@ -164,6 +154,7 @@ If both of `AZURE_STORAGE_CONNECTION_STRING` and `AZURE_STORAGE_ACCOUNT` are pro
 At least one of `AZURE_STORAGE_CONNECTION_STRING` or `AZURE_STORAGE_ACCOUNT` must be present.
 :::
 
+
 ### Filesystem
 
 :::caution `backup-filesystem` - limitations
@@ -174,13 +165,7 @@ The filesystem provider is not intended for production use, as its availability 
 
 Instead of backing up to a remote backend, you can also back up to the local filesystem. This may be helpful during development, for example to be able to quickly exchange setups, or to save a state from accidental future changes.
 
-To allow backups to the local filesystem, enable the `backup-filesystem` module like so:
-
-```
-ENABLE_MODULES=backup-filesystem
-```
-
-Modules are comma-separated. So, to combine the module with the `text2vec-transformers` module, set:
+To allow backups to the local filesystem, add `backup-filesystem` to the `ENABLE_MODULES` environment variable. Modules are comma-separated. To enable the module along with the `text2vec-transformers` module for example, set:
 
 ```
 ENABLE_MODULES=backup-filesystem,text2vec-transformers
@@ -195,6 +180,7 @@ In addition to enabling the module, you need to configure it using environment v
 ### Other Backup Backends
 
 Weaviate uses its [module system](/developers/weaviate/configuration/modules.md) to decouple the backup orchestration from the remote backup storage backends. It is easy to add new providers and use them with the existing backup API. If you are missing your desired backup module, you can open a feature request or contribute it yourself. For either option, join our Slack community to have a quick chat with us on how to get started.
+
 
 ## API
 
@@ -212,15 +198,15 @@ POST /v1/backups/{backend}
 
 ##### URL Parameters
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | ---- | ---- |
 | `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 
 ##### Request Body
 
-The request takes a json object with the following properties:
+The request takes a JSON object with the following properties:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | ---- | ---- |
 | `id` | string (lowercase letters, numbers, underscore, minus) | yes | The id of the backup. This string must be provided on all future requests, such as status checking or restoration. |
 | `include` | list of strings | no | An optional list of class names to be included in the backup. If not set, all classes are included. |
@@ -230,13 +216,58 @@ The request takes a json object with the following properties:
 You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.
 :::
 
-import CodeBackupCreate from '/_includes/code/backup.create.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateBackup"
+      endMarker="# END CreateBackup"
+      language="py"
+    />
+  </TabItem>
 
-<CodeBackupCreate />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateBackup"
+      endMarker="// END CreateBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START CreateBackup"
+      endMarker="// END CreateBackup"
+      language="go"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateBackup"
+      endMarker="// END CreateBackup"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="curl" label="curl">
+    <FilteredTextBlock
+      text={CurlCode}
+      startMarker="# START CreateBackup"
+      endMarker="# END CreateBackup"
+      language="bash"
+    />
+  </TabItem>
+</Tabs>
+
 
 While you are waiting for a backup to complete, [Weaviate stays fully usable](#read--write-requests-while-a-backup-is-running).
 
-### Asynchronous Status Checking
+
+#### Asynchronous Status Checking
 
 All client implementations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
 
@@ -250,16 +281,60 @@ GET /v1/backups/{backend}/{backup_id}
 
 ##### URL Parameters
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | ---- | ---- |
 | `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
 
 The response contains a `"status"` field. If the status is `SUCCESS`, the backup is complete. If the status is `FAILED`, an additional error is provided.
 
-import CodeBackupStatusCreate from '/_includes/code/backup.status.create.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START StatusCreateBackup"
+      endMarker="# END StatusCreateBackup"
+      language="py"
+    />
+  </TabItem>
 
-<CodeBackupStatusCreate />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START StatusCreateBackup"
+      endMarker="// END StatusCreateBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START StatusCreateBackup"
+      endMarker="// END StatusCreateBackup"
+      language="go"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START StatusCreateBackup"
+      endMarker="// END StatusCreateBackup"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="curl" label="curl">
+    <FilteredTextBlock
+      text={CurlCode}
+      startMarker="# START StatusCreateBackup"
+      endMarker="# END StatusCreateBackup"
+      language="bash"
+    />
+  </TabItem>
+</Tabs>
+
 
 ### Restore Backup
 You can restore any backup to any machine as long as the name and number of nodes between source and target are identical. The backup does not need to be created on the same instance. Once a backup backend is configured, you can restore a backup with a single HTTP request.
@@ -276,7 +351,7 @@ POST /v1/backups/{backend}/{backup_id}/restore
 
 ##### URL Parameters
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | ---- | ---- |
 | `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
@@ -284,7 +359,7 @@ POST /v1/backups/{backend}/{backup_id}/restore
 ##### Request Body
 The request takes a json object with the following properties:
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | ---- | ---- |
 | `include` | list of strings | no | An optional list of class names to be included in the backup. If not set, all classes are included. |
 | `exclude` | list of strings | no | An optional list of class names to be excluded from the backup. If not set, no classes are excluded. |
@@ -293,13 +368,57 @@ The request takes a json object with the following properties:
 
 *Note 2: `include` and `exclude` are relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
 
-import CodeBackupRestore from '/_includes/code/backup.restore.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RestoreBackup"
+      endMarker="# END RestoreBackup"
+      language="py"
+    />
+  </TabItem>
 
-<CodeBackupRestore />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RestoreBackup"
+      endMarker="// END RestoreBackup"
+      language="ts"
+    />
+  </TabItem>
 
-### Asynchronous Status Checking
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START RestoreBackup"
+      endMarker="// END RestoreBackup"
+      language="go"
+    />
+  </TabItem>
 
-All client implementations have a "wait for completion" option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully).
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START RestoreBackup"
+      endMarker="// END RestoreBackup"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="curl" label="curl">
+    <FilteredTextBlock
+      text={CurlCode}
+      startMarker="# START RestoreBackup"
+      endMarker="# END RestoreBackup"
+      language="bash"
+    />
+  </TabItem>
+</Tabs>
+
+
+#### Asynchronous Status Checking
+
+All client implementations have a "wait for completion" option which will poll the restore status in the background and only return once the restore has completed (successfully or unsuccessfully).
 
 If you set the "wait for completion" option to false, you can also check the status yourself using the Backup Restore Status API.
 
@@ -311,22 +430,64 @@ GET /v1/backups/{backend}/{backup_id}/restore
 
 ##### URL Parameters
 
-| name | type | required | description |
+| Name | Type | Required | Description |
 | ---- | ---- | ---- | ---- |
 | `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
 | `backup_id` | string | yes | The user-provided backup identifier that was used when sending the requests to create and restore the backup. |
 
 The response contains a `"status"` field. If the status is `SUCCESS`, the restore is complete. If the status is `FAILED`, an additional error is provided.
 
-import CodeBackupStatusRestore from '/_includes/code/backup.status.restore.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START StatusRestoreBackup"
+      endMarker="# END StatusRestoreBackup"
+      language="py"
+    />
+  </TabItem>
 
-<CodeBackupStatusRestore />
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START StatusRestoreBackup"
+      endMarker="// END StatusRestoreBackup"
+      language="ts"
+    />
+  </TabItem>
 
-<CodeBackupRestore/>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START StatusRestoreBackup"
+      endMarker="// END StatusRestoreBackup"
+      language="go"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START StatusRestoreBackup"
+      endMarker="// END StatusRestoreBackup"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="curl" label="curl">
+    <FilteredTextBlock
+      text={CurlCode}
+      startMarker="# START StatusRestoreBackup"
+      endMarker="# END StatusRestoreBackup"
+      language="bash"
+    />
+  </TabItem>
+</Tabs>
+
 
 ## Technical Considerations
 
-### Read &amp; Write requests while a backup is running
+### Read & Write requests while a backup is running
 
 The backup process is designed to be minimally invasive to a running setup. Even on very large setups, where terabytes of data need to be copied, Weaviate stays fully usable during backup. It even accepts write requests while a backup process is running. This sections explains how backups work under the hood and why Weaviate can safely accept writes while a backup is copied.
 
