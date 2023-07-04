@@ -106,7 +106,8 @@ An example of a complete class object including properties:
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of class in a multi-node setting, see section below
-  }
+  },
+  "multiTenancyConfig": {"enabled": true}   // Optional, for enabling multi-tenancy for this class (default: false)
 }
 ```
 
@@ -340,6 +341,24 @@ If necessary, they can be configured in the schema per class, and can optionally
       "indexSearchable": true,
     }
   ]
+}
+```
+
+### multiTenancyConfig
+
+:::info Available from `v1.20` onwards
+:::
+
+The `multiTenancyConfig` value will determine whether[multi-tenancy](../concepts/data.md#multi-tenancy) is enabled for this class. If enabled, objects of this class will be isolated for each tenant. It is disabled by default.
+
+To enable it, set the `enabled` key to `true`, as shown below:
+
+```json
+{
+  "class": "MultiTenancyClass",
+  // highlight-start
+  "multiTenancyConfig": {"enabled": true}
+  // highlight-end
 }
 ```
 
