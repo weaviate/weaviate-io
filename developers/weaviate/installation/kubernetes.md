@@ -136,7 +136,7 @@ have only namespace-level permissions, you can skip creating a new
 namespace and adjust the namespace argument on `helm upgrade` according to the
 name of your pre-configured namespace.
 
-Optionally, you can provide the `--create-namespace` parameter which will create the namespace if not present. 
+Optionally, you can provide the `--create-namespace` parameter which will create the namespace if not present.
 
 ### Updating the installation after the initial deployment
 
@@ -147,6 +147,45 @@ example after adjusting your desired configuration.
 
 - [Cannot list resource "configmaps" in API group when deploying Weaviate k8s setup on GCP](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
 - [Error: UPGRADE FAILED: configmaps is forbidden](https://stackoverflow.com/questions/58501558/cannot-list-resource-configmaps-in-api-group-when-deploying-weaviate-k8s-setup)
+
+### Using EFS with Weaviate
+
+In some circumstances, you may wish, or need, to use EFS (Amazon Elastic File System) with Weaviate. And we note in the case of AWS Fargate, you must create the [PV (persistent volume)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) manually, as the PVC will NOT create a PV for you.
+
+To use EFS with Weaviate, you need to:
+
+- Create an EFS file system.
+- Create an EFS access point for every Weaviate replica.
+    - All of the Access Points must have a different root-directory so that Pods do not share the data, otherwise it will fail.
+- Create EFS mount targets for each subnet of the VPC where Weaviate is deployed.
+- Create StorageClass in Kubernetes using EFS.
+- Create Weaviate Volumes, where each volume has a different AccessPoint for VolumeHandle(as mentioned above).
+- Deploy Weaviate.
+
+The below is an example of a PV for `weaviate-0` Pod:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: weaviate-0
+spec:
+  capacity:
+    storage: 8Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: "efs-sc"
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: <FileSystemId>::<AccessPointId-for-weaviate-0-Pod>
+  claimRef:
+    namespace: <namespace where Weaviate is/going to be deployed>
+    name: weaviate-data-weaviate-0
+```
+
+For more, general information on running EFS with Fargate, we recommend reading [this AWS blog](https://aws.amazon.com/blogs/containers/running-stateful-workloads-with-amazon-eks-on-aws-fargate-using-amazon-efs/).
 
 ## Troubleshooting
 

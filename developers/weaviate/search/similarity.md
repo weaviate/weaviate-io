@@ -356,6 +356,17 @@ Sometimes you may want to find objects that are the least similar to a given inp
 
 Accordingly, we generally recommend using cosine distance for this use case, and searching for a *negative* of your input vector with `nearVector`.
 
+<details>
+  <summary>Further discussions</summary>
+
+Here, the concept of `least similar` relates to finding vectors that are opposite to each other in the embedding space.
+
+This may not necessarily mean that these `least similar` results have the opposite meaning in a semantic sense, such as antonyms in words.
+
+Take the words rain and drought for example. While these are opposite concepts, both of them are unrelated to astrophysics. As such, in many models the distance between embeddings for 'rain' and 'astrophysics' will be likely greater than the distance between embeddings for 'rain' and 'drought'. Accordingly, you should consider the context of your use case when interpreting the results.
+
+</details>
+
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

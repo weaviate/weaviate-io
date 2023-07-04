@@ -10,20 +10,20 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key
+  host: 'edu-demo.weaviate.network',
+  apiKey: new weaviate.ApiKey('learn-weaviate'),
   headers: {
-    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',
+    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
   },
 });
 
 let result;
 
-// ================================
+// ============================
 // ===== Basic BM25 Query =====
-// ================================
+// ============================
 
-// searchBM25Basic
+// START Basic
 result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -37,22 +37,19 @@ result = await client.graphql
   .do();
 
 console.log(JSON.stringify(result, null, 2));
-// END searchBM25Basic
+// END Basic
 
 // Tests
 let questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
 assert.deepEqual(questionKeys, new Set(['question', 'answer']));
 assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
 
-// searchBM25Basic
-// END searchBM25Basic
-
 
 // ================================
 // ===== BM25 Query with Score =====
 // ================================
 
-// searchBM25WithScore
+// START Score
 result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -66,7 +63,7 @@ result = await client.graphql
   .do();
 
 console.log(JSON.stringify(result, null, 2));
-// END searchBM25WithScore
+// END Score
 
 // Tests
 questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
@@ -75,15 +72,12 @@ let additionalKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]._ad
 assert.deepEqual(additionalKeys, new Set(['score']));
 assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
 
-// searchBM25WithScore
-// END searchBM25WithScore
 
-
-// ================================
+// ===============================================
 // ===== BM25 Query with Selected Properties =====
-// ================================
+// ===============================================
 
-// searchBM25withProperties
+// START Properties
 result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -98,7 +92,7 @@ result = await client.graphql
   .do();
 
 console.log(JSON.stringify(result, null, 2));
-// END searchBM25withProperties
+// END Properties
 
 // Tests
 questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
@@ -110,15 +104,12 @@ for (const question of result.data.Get.JeopardyQuestion) {
   assert.ok(question.question.includes('food'));
 }
 
-// searchBM25withProperties
-// END searchBM25withProperties
 
-
-// ================================
+// ==============================================
 // ===== BM25 Query with Boosted Properties =====
-// ================================
+// ==============================================
 
-// searchBM25withBoost
+// START Boost
 result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -133,7 +124,7 @@ result = await client.graphql
   .do();
 
 console.log(JSON.stringify(result, null, 2));
-// END searchBM25withBoost
+// END Boost
 
 // Tests
 questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
@@ -142,15 +133,44 @@ additionalKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]._additi
 assert.deepEqual(additionalKeys, new Set(['score']));
 assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
 
-// searchBM25withBoost
-// END searchBM25withBoost
+
+// ==================================
+// ===== BM25 multiple keywords =====
+// ==================================
+
+// START MultipleKeywords
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withBm25({
+    // highlight-start
+    query: 'food wine',
+    // highlight-end
+    properties: ['question'],
+  })
+  .withLimit(5)
+  .withFields('question _additional { score }')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END MultipleKeywords
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', '_additional']));
+additionalKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]._additional));
+assert.deepEqual(additionalKeys, new Set(['score']));
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 5);
+for (const question of result.data.Get.JeopardyQuestion) {
+  assert.ok(question.question.match(/food|wine/i));
+}
 
 
-// ================================
+// ==================================
 // ===== BM25 Query with Filter =====
-// ================================
+// ==================================
 
-// searchBM25withFilter
+// START Filter
 result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -169,7 +189,7 @@ result = await client.graphql
   .do();
 
 console.log(JSON.stringify(result, null, 2));
-// END searchBM25withFilter
+// END Filter
 
 // Tests
 questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
@@ -180,6 +200,3 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
 for (const question of result.data.Get.JeopardyQuestion) {
   assert.deepEqual(question.round, 'Double Jeopardy!');
 }
-
-// searchBM25withFilter
-// END searchBM25withFilter
