@@ -14,6 +14,20 @@
 		"github": "aliszka"
 	},
 	{
+		"name": "Ara Gonzalez",
+		"title": "People Operations Manager",
+		"photo": "ara.jpg",
+		"linkedin": "aranzazugonzalez"
+	},
+	{
+		"name": "Asdine El Hrychy",
+		"title": "Software Engineer",
+		"photo": "asdine.jpg",
+		"linkedin": "asdine",
+		"twitter": "asdine_",
+		"github": "asdine"
+	},
+	{
 		"name": "Bob van Luijt",
 		"title": "Co-founder and CEO",
 		"photo": "bob.png",
@@ -57,6 +71,12 @@
 		"photo": "dirk.png",
 		"linkedin": "dirk-kulawiak",
 		"github": "dirkkul"
+	},
+	{
+		"name": "Emma O'Keefe",
+		"title": "Head of Customer Success",
+		"photo": "emma.png",
+		"linkedin": "emma-o-keefe-03777b80"
 	},
 	{
 		"name": "Edward Schmuhl",
@@ -141,12 +161,25 @@
 		"github": ""
 	},
 	{
+		"name": "Leonie Monigatti",
+		"title": "Developer Advocate",
+		"photo": "leonie.jpg",
+		"linkedin": "804250ab"
+	},
+	{
 		"name": "Marcin Antas",
 		"title": "Core Engineer ",
 		"photo": "marcin.png",
 		"linkedin": "antasmarcin",
 		"twitter": "antas_marcin",
 		"github": "antas-marcin"
+	},
+	{
+		"name": "Mike Wyer",
+		"title": "Site Reliability Engineer",
+		"photo": "mike.jpg",
+		"linkedin": "mikewyer",
+		"twitter": "BigBeardyGeek"
 	},
 	{
 		"name": "Parker Duckworth",
@@ -195,6 +228,12 @@
 		"linkedin": "sebawita",
 		"twitter": "sebawita",
 		"github": "sebawita"
+	},
+	{
+		"name": "Shan Blackwood",
+		"title": "Web Developer",
+		"photo": "shan.jpg",
+		"linkedin": "shan-blackwood-79251876"
 	},
 	{
 		"name": "Shukri Hasan",
