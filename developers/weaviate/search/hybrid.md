@@ -192,15 +192,16 @@ The following example specifies the fusion type of `relativeScoreFusion`.
   text={PythonCode}
   startMarker="# HybridWithFusionTypePython"
   endMarker="# END HybridWithFusionTypePython"
-  language="graphql"
+  language="python"
 />
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
-
-```js
-// Coming soon
-```
-
+<FilteredTextBlock
+  text={JavaScriptCode}
+  startMarker="// searchHybridWithFusionType"
+  endMarker="// END searchHybridWithFusionType"
+  language="ts"
+/>
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
@@ -219,8 +220,8 @@ It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# Expected HybridWithAlpha results"
-  endMarker="# END Expected HybridWithAlpha results"
+  startMarker="# Expected HybridWithFusionType results"
+  endMarker="# END Expected HybridWithFusionType results"
   language="json"
 />
 

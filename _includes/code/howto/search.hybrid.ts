@@ -109,6 +109,22 @@ assert.equal(result.data.Get.JeopardyQuestion.length, 3);
 // END searchHybridWithAlpha
 
 
+// ============================================
+// ===== Hybrid Query with Fusion Methods =====
+// ============================================
+
+// searchHybridWithFusionType
+// JS/TS code coming soon
+
+// END searchHybridWithFusionType
+
+// Tests
+// TODO
+
+// searchHybridWithFusionType
+// END searchHybridWithFusionType
+
+
 // ================================
 // ===== Hybrid Query with Properties =====
 // ================================

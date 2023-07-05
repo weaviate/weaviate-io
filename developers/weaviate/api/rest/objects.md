@@ -672,3 +672,9 @@ import SemanticKindObjectReferenceDelete from '/_includes/code/semantic-kind.obj
 <SemanticKindObjectReferenceDelete/>
 
 If the addition was successful, no content will be returned.
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

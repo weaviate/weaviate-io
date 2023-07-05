@@ -426,7 +426,15 @@ The below example shows how to fetch one object in the `MultiTenancyClass` class
   <TabItem value="js" label="TypeScript">
 
   ```ts
-  // TypeScript code coming soon
+  result = await client
+    .graphql
+    .get()
+    .withClassName('MultiTenancyClass')
+    .withFields(['property1', 'property2'])
+    .withTenant('TenantA')
+    .do();
+
+  console.log(JSON.stringify(result, null, 2));
   ```
 
   </TabItem>
