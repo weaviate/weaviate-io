@@ -230,7 +230,7 @@ questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
 assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
 additionalKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]._additional));
 assert.deepEqual(additionalKeys, new Set(['score']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
+assert.equal(result.data.Get.JeopardyQuestion.length, 3);
 assert(result.data.Get.JeopardyQuestion[0]['answer'].includes('OSHA'));
 
 

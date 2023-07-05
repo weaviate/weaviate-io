@@ -4,11 +4,11 @@ sidebar_position: 5
 image: og/docs/api.jpg
 # tags: ['graphql', 'additional operators']
 ---
-
-import Badges from '/_includes/badges.mdx';
-
-<Badges/>
-
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
@@ -16,7 +16,7 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 ## Syntax
 
-Additional operators such as `limit`, `autocut` and `sort` are available to modify queries at the class level.
+Additional parameters such as `limit`, `autocut` and `sort` are available to modify queries at the class level.
 <!--
 For example:
 
@@ -124,10 +124,55 @@ Starting with Weaviate `v1.20`, the `autocut` filter can be added as an argument
 
 If `autocut` is combined with `limit: N`, then `autocut`'s input will be limited to the first `N` objects.
 
-<!-- TODO: Update with link to blog; also add GQL syntax examples -->
-<!-- For more `autocut` examples and to learn about the motivation behind this filter, see the [v1.20 release blog post](/blog). -->
+<!-- TODO: Update with link to blog:
+For more `autocut` examples and to learn about the motivation behind this filter, see the [v1.20 release blog post](/blog). -->
 
-For client code examples, see [autocut with similarity search](../../search/similarity.md#autocut) and [autocut with `bm25`](../../search/bm25.md#autocut).
+Autocut can be used as follows:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START Autocut Python"
+      endMarker="# END Autocut Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Autocut"
+      endMarker="// END Autocut"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START Autocut GraphQL"
+      endMarker="# END Autocut GraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START Expected nearText results"
+  endMarker="# END Expected nearText results"
+  language="json"
+/>
+
+</details>
+
+For more client code examples for each operator category, see [autocut with similarity search](../../search/similarity.md#autocut), [autocut with `bm25`](../../search/bm25.md#autocut) and [autocut with `hybrid`](../../search/hybrid.md#autocut).
 
 
 ## Cursor with `after`
