@@ -393,7 +393,7 @@ An example of a complete property object:
 This feature was introduced in `v1.12.0`.
 :::
 
-You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../api/graphql/vector-search-parameters#bm25) and [`hybrid`](../api/graphql/vector-search-parameters#hybrid) operators, and [`where` filters](../api/graphql/filters).
+You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../api/graphql/vector-search-parameters.md#bm25) and [`hybrid`](../api/graphql/vector-search-parameters.md#hybrid) operators, and [`where` filters](../api/graphql/filters.md).
 
 The tokenization of `text` properties can be customized via the `tokenization` field in the property definition:
 

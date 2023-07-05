@@ -110,9 +110,10 @@ The `vector` fields contains the vector representation of the data object
 }
 ```
 
+
 ### generate
 
-:::info Requires a `generative-xxx` module
+:::info Requires a [`generative-xxx` module](../../modules/reader-generator-modules/index.md)
 :::
 
 The `generate` field can be used to perform a [generative search](../../search/generative.md).
