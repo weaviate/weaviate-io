@@ -291,14 +291,20 @@ Available since `v1.14` and the preferred way:
 GET /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
+import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
+
+<details>
+  <summary>Getting a data object without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
 ```bash
 GET /v1/objects/{id}
 ```
 
-import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
-
 <RestObjectsCRUDClassnameNote/>
+
+</details>
+
 
 #### URL parameters
 
@@ -330,12 +336,17 @@ Available since `v1.14` and the preferred way:
 HEAD /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
+<details>
+  <summary>Checking if a data object exists without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
 ```bash
 HEAD /v1/objects/{id}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### URL parameters
 
@@ -366,13 +377,18 @@ PUT /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 PATCH /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
+<details>
+  <summary>Updating a data object without a class name are deprecated</summary>
+
+The below are only available for backward compatibility and deprecated:
 ```bash
 PUT /v1/objects/{id}
 PATCH /v1/objects/{id}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 :::info Recalculating vectors on update
 If the class is configured with a vectorizer, Weaviate will only compute a new vector for an updated object if the update changes the underlying text to be vectorized.
@@ -418,12 +434,17 @@ Available since `v1.14` and preferred way:
 DELETE /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Deleting a data object without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 DELETE /v1/objects/{id}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### URL parameters
 
@@ -496,12 +517,17 @@ Available since `v1.14` and the preferred way:
 POST /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Adding a cross-reference without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 POST /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### Parameters
 
@@ -544,12 +570,17 @@ Available since `v1.14` and the preferred way:
 PUT /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Updating a cross-reference without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 PUT /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### Parameters
 
@@ -593,12 +624,17 @@ Available since `v1.14` and the preferred way:
 DELETE /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Deleting a cross-reference without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 DELETE /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### Parameters
 

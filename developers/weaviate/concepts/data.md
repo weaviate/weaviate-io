@@ -218,6 +218,10 @@ Where multi-tenancy is enabled, Weaviate uses partition shards to store each ten
 
 Multi-tenancy is especially useful for use-cases where you want to store data for multiple customers, or where you want to store data for multiple projects.
 
+### Tenancy and IDs
+
+Each tenancy works like a namespace. So, different tenants could have objects with the same IDs. What makes an object’s ID unique is not just the object ID itself, but the combination of the tenant and the object ID.
+
 ### Key features
 
 - Each tenant has a dedicated high-performance vector index providing query speeds as if the tenant was the only user on the cluster.
@@ -226,6 +230,10 @@ Multi-tenancy is especially useful for use-cases where you want to store data fo
 
 :::info
 [Read more about multi-tenancy](/blog/multi-tenancy-vector-search)
+:::
+
+:::tip Monitoring metrics with multi-tenancy
+When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars.md) as `true` so that data across all tenants are grouped together for monitoring.
 :::
 
 <details>

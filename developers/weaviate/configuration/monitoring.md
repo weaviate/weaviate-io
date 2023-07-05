@@ -58,6 +58,10 @@ command. In this setup the following components are used:
   Prometheus instance as a metrics provider. Additionally, it runs a dashboard
   provider that contains a few sample dashboards.
 
+### Multi-tenancy
+
+When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars.md) as `true` so that data across all tenants are grouped together for monitoring.
+
 ## Obtainable Metrics
 
 The list of metrics that are obtainable through Weaviate's metric system is
