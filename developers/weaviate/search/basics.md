@@ -402,6 +402,36 @@ It should produce a response like the one below:
 
 </details>
 
+## Multi-tenancy
+
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you must specify the tenant parameter in each query.
+
+The below example shows how to fetch one object in the `MultiTenancyClass` class from the tenant `tenantA`:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  ```python
+  results = (
+      client.query.get("MultiTenancyClass", ["property1", "property2"])
+      .with_limit(1)
+      # highlight-start
+      .with_tenant("tenantA")
+      # highlight-end
+      .do()
+  )
+  ```
+
+  </TabItem>
+  <TabItem value="js" label="TypeScript">
+
+  ```ts
+  // TypeScript code coming soon
+  ```
+
+  </TabItem>
+</Tabs>
+
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
