@@ -124,7 +124,10 @@ Starting with Weaviate `v1.20`, the `autocut` filter can be added as an argument
 
 If `autocut` is combined with `limit: N`, then `autocut`'s input will be limited to the first `N` objects.
 
-For more `autocut` examples and to learn about the motivation behind this filter, see the [v1.20 release blog post](/blog). <!-- TODO --> For client code examples, see [autocut with similarity search](../../search/similarity.md#autocut) and [autocut with `bm25`](../../search/bm25.md#autocut).
+<!-- TODO: Update with link to blog; also add GQL syntax examples -->
+<!-- For more `autocut` examples and to learn about the motivation behind this filter, see the [v1.20 release blog post](/blog). -->
+
+For client code examples, see [autocut with similarity search](../../search/similarity.md#autocut) and [autocut with `bm25`](../../search/bm25.md#autocut).
 
 
 ## Cursor with `after`
