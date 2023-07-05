@@ -188,9 +188,6 @@ gql_query = """
 # END HybridWithScoreGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
-def test_gqlresponse(response_in, gqlresponse_in):
-    for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
-        assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
 test_gqlresponse(response, gqlresponse)
 
 
@@ -270,9 +267,87 @@ gql_query = """
 # END HybridWithAlphaGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
-def test_gqlresponse(response_in, gqlresponse_in):
-    for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
-        assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
+test_gqlresponse(response, gqlresponse)
+
+
+# ==========================================
+# ===== Hybrid Query with FusionType =====
+# ==========================================
+
+# HybridWithFusionTypePython
+from weaviate.gql.get import HybridFusion
+
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question", "answer"])
+    .with_hybrid(
+        query="food",
+        # highlight-start
+        fusion_type=HybridFusion.RELATIVE_SCORE
+        # highlight-end
+    )
+    .with_limit(3)
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END HybridWithFusionTypePython
+
+# Tests
+# TODO - update tests below
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
+# End test
+
+
+expected_results = """
+# Expected HybridWithFusionType results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "a closer grocer",
+          "question": "A nearer food merchant"
+        },
+        {
+          "answer": "food stores (supermarkets)",
+          "question": "This type of retail store sells more shampoo & makeup than any other"
+        },
+        {
+          "answer": "cake",
+          "question": "Devil's food & angel food are types of this dessert"
+        }
+      ]
+    }
+  }
+}
+# END Expected HybridWithFusionType results
+"""
+
+
+gql_query = """
+# HybridWithFusionTypeGraphQL
+{
+  Get {
+    JeopardyQuestion(
+      limit: 3
+      hybrid: {
+        query: "food"
+        # highlight-start
+        fusionType: "relativeScoreFusion"
+        # highlight-end
+      }
+    ) {
+      question
+      answer
+    }
+  }
+}
+# END HybridWithFusionTypeGraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
 
@@ -354,9 +429,6 @@ gql_query = """
 # END HybridWithPropertiesGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
-def test_gqlresponse(response_in, gqlresponse_in):
-    for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
-        assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
 test_gqlresponse(response, gqlresponse)
 
 
@@ -438,9 +510,6 @@ gql_query = """
 # END HybridWithVectorGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
-def test_gqlresponse(response_in, gqlresponse_in):
-    for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
-        assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
 test_gqlresponse(response, gqlresponse)
 
 
@@ -534,7 +603,4 @@ gql_query = """
 # END HybridWithFilterGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
-def test_gqlresponse(response_in, gqlresponse_in):
-    for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
-        assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
 test_gqlresponse(response, gqlresponse)

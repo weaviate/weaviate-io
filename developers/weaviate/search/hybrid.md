@@ -175,6 +175,58 @@ It should produce a response like the one below:
 
 </details>
 
+## Fusion (ranking) method
+
+:::info Available from `v1.20` onwards
+:::
+
+You can select how the BM25 and vector search results are combined to determine the ranking using the `fusionType` argument.
+
+The default is `rankedFusion`, which adds inverted ranks of the BM25 and vector search methods. Alternatively, you can  use `relativeScoreFusion` which adds normalized (between 0-1) scores of the BM25 and vector search methods.
+
+The following example specifies the fusion type of `relativeScoreFusion`.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithFusionTypePython"
+  endMarker="# END HybridWithFusionTypePython"
+  language="graphql"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+
+```js
+// Coming soon
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithFusionTypeGraphQL"
+  endMarker="# END HybridWithFusionTypeGraphQL"
+  language="graphql"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Expected HybridWithAlpha results"
+  endMarker="# END Expected HybridWithAlpha results"
+  language="json"
+/>
+
+</details>
+
+
 ## Selected properties only
 
 You can specify the object `properties` for the `bm25` portion of the search.

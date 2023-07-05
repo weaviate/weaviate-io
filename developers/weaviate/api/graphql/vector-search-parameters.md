@@ -146,11 +146,16 @@ This filter allows you to combine [BM25](#bm25) and vector search to get the bes
 | `alpha`      | no       | `float`    | weighting for each search algorithm, default 0.75                           |
 | `vector`     | no       | `[float]`  | optional to supply your own vector                                          |
 | `properties` | no       | `[string]` | list of properties to limit the BM25 search to, default all text properties |
+| `fusionType` | no       | `[string]` | the type of hybrid fusion algorithm (available from `v1.20.0`)              |
 
-* Note: `alpha` can be any number from 0 to 1, defaulting to 0.75.
-  * `alpha` = 0 forces using a pure **keyword** search method (BM25)
-  * `alpha` = 1 forces using a pure **vector** search method
-  * `alpha` = 0.5 weighs the BM25 and vector methods evenly
+* Notes:
+    * `alpha` can be any number from 0 to 1, defaulting to 0.75.
+        * `alpha` = 0 forces using a pure **keyword** search method (BM25)
+        * `alpha` = 1 forces using a pure **vector** search method
+        * `alpha` = 0.5 weighs the BM25 and vector methods evenly
+    * `fusionType` can be `rankedFusion` or `relativeScoreFusion`
+        * `rankedFusion` (default) adds inverted ranks of the BM25 and vector search methods
+        * `relativeScoreFusion` adds normalized scores of the BM25 and vector search methods
 
 ### GraphQL response
 
