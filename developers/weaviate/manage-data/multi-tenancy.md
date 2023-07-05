@@ -190,7 +190,7 @@ Code examples are shown below for fetching one object in the `MultiTenancyClass`
 If multi-tenancy is enabled, you must provide the tenant name to Weaviate while creating, updating or deleting cross-references.
 
 You can establish a cross-reference from a multi-tenancy class object to:
-- A single-tenancy class object, or
+- A non-multi-tenancy class object, or
 - A multi-tenancy class object belonging to the same tenant.
 
 Code examples are shown below for creating a cross-reference between two objects. It links an object in the `MTPassage` class that belongs to `tenantA` to an object in the `Document` class:
@@ -219,7 +219,9 @@ Code examples are shown below for creating a cross-reference between two objects
   </TabItem>
 </Tabs>
 
-As described above, the `Document` class object can be either a single-tenancy object or a multi-tenancy object belonging to `tenantA`.
+As described above, the `Document` class object can be either:
+- A non-multi-tenancy object or
+- A multi-tenancy object belonging to `tenantA`.
 
 ## More Resources
 

@@ -171,7 +171,7 @@ Use the `limit` argument to specify the maximum number of results that should be
 
 ### Autocut
 
-Another way to limit the results returned by a hybrid search is to use the [`autocut` filter](../api/graphql/additional-operators.md#autocut). Autocut takes a positive integer parameter `N`, looks at the [score](#score--explainscore) of each result, and stops returning results after the `N`th "drop" in score. Because `hybrid` combines a vector search with a keyword (BM25F) search, their scores/distances cannot be directly compared, so the cut points may not be intuitive. <!-- TODO: add detailed explanation --> 
+Another way to limit the results returned by a hybrid search is to use the [`autocut` filter](../api/graphql/additional-operators.md#autocut). Autocut takes a positive integer parameter `N`, looks at the [score](#score--explainscore) of each result, and stops returning results after the `N`th "drop" in score. Because `hybrid` combines a vector search with a keyword (BM25F) search, their scores/distances cannot be directly compared, so the cut points may not be intuitive. <!-- TODO: add detailed explanation -->
 
 Autocut can be used as follows:
 
@@ -288,7 +288,7 @@ The following example specifies the fusion type of `relativeScoreFusion`.
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// searchHybridWithFusionType"
   endMarker="// END searchHybridWithFusionType"
   language="ts"

@@ -222,6 +222,18 @@ Multi-tenancy is especially useful for use-cases where you want to store data fo
 
 Each tenancy works like a namespace. So, different tenants could have objects with the same IDs. What makes an object’s ID unique is not just the object ID itself, but the combination of the tenant and the object ID.
 
+### Tenancy and cross-references
+
+When using multi-tenancy, cross-references can be made as follows:
+
+- From a multi-tenancy object to a non-multi-tenancy object.
+- From a multi-tenancy object to a multi-tenancy object, as long as they belong to the same tenant.
+
+You **cannot** create cross-references:
+
+- From a non-multi-tenancy object to a multi-tenancy object, or
+- From a multi-tenancy object to a multi-tenancy object, if they belong to different tenants.
+
 ### Key features
 
 - Each tenant has a dedicated high-performance vector index providing query speeds as if the tenant was the only user on the cluster.
