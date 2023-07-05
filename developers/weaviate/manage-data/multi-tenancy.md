@@ -184,6 +184,37 @@ Code examples are shown below for fetching one object in the `MultiTenancyClass`
   </TabItem>
 </Tabs>
 
+## Cross-references
+
+If multi-tenancy is enabled, you must provide the tenant name to Weaviate while creating, updating or deleting cross-references.
+
+As cross-references make use of two classes - the `from` class and the `to` class - both classes have multi-tenancy enabled, and both objects must be associated with the same tenant.
+
+Code examples are shown below for creating a cross-reference between two objects in the `MultiTenancyClass` class. It links an object in the `MTPassage` class to an object in the `MTDocument` class:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  ```python
+  client.data_object.reference.add(
+      from_uuid="38618fc9-534c-5484-807e-f63593287eaa"  # MTPassage object UUID
+      to_uuid="22ff67f5-8534-58ec-b306-f0e76018f07f"  # MTDocument object UUID
+      from_class_name="MTPassage",
+      to_class_name="MTDocument",
+      tenant="tenantA",
+  )
+  ```
+
+  </TabItem>
+  <TabItem value="js" label="TypeScript">
+
+  ```ts
+  // TypeScript code coming soon
+  ```
+
+  </TabItem>
+</Tabs>
+
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

@@ -214,7 +214,7 @@ For now, what's important to know is this:
 
 For use-cases where each Weaviate cluster needs to store segregated data, you can use the multi-tenancy feature. Each class can optionally be configured to isolate data for each `tenant` by providing a tenant key.
 
-Where multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data. This ensures not only data isolation but also fast and efficient querying, as well as easy and robust on/off-boarding. From `v1.20` onwards, shards have become a lot more lightweight, easily allowing 50,000+ active shards per node. This means that you can support 1M concurrently active tenants with just 50 or so nodes.
+Where multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data. This ensures not only data isolation but also fast and efficient querying, as well as easy and robust on/off-boarding. From `v1.20` onwards, shards have become a lot more lightweight, easily allowing 50,000+ active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
 
 Multi-tenancy is especially useful for use-cases where you want to store data for multiple customers, or where you want to store data for multiple projects.
 
@@ -231,11 +231,11 @@ Multi-tenancy is especially useful for use-cases where you want to store data fo
 <details>
   <summary>What is the maximum number of tenants per node?</summary>
 
-Although there is no inherent limit of tenants per node, the current limit is from Linux's open file limit per process. With a class with 6 props, we could store ~70,000 tenants on a single node before running out of file descriptors.
+Although there is no inherent limit of tenants per node, the current limit is from Linux's open file limit per process. With a class with 6 properties, we could store ~70,000 tenants on a single node before running out of file descriptors.
 
-This number may increase in the future if a proposed feature to implement inactive tenants is implemented.
+Concretely, a 9-node cluster using `n1-standard-8` machines in our tests could hold around 170k active tenants, with 18-19k tenants per node.
 
-Practically, a 9-node cluster using `n1-standard-8` machines in our tests could hold around 18-19k active tenants.
+These numbers may increase in the future if a proposed feature to implement inactive tenants is implemented.
 
 </details>
 

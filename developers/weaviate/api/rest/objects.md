@@ -236,6 +236,7 @@ The request body for a new object has the following fields:
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `id` | v4 UUID | no | Optional id for the object |
 | `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
+| `tenant` | `string` | no | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 
@@ -343,6 +344,7 @@ HEAD /v1/objects/{id}
 | `{ClassName}` | path | string | The name of the class that the object belongs to |
 | `{id}` | path | uuid | The uuid of the data object to retrieve |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 
@@ -395,6 +397,7 @@ The request body for replacing (some) properties of an object has the following 
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
+| `tenant` | `string` | no | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 
@@ -429,6 +432,8 @@ DELETE /v1/objects/{id}
 | `{ClassName}` |  path | string | The name of the class that the object belongs to |
 | `{id}` | path | uuid | The uuid of the data object to delete |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
+
 
 #### Example request
 
@@ -508,6 +513,7 @@ The URL includes three required path parameters and supports an optional query p
 | `{id}` | path | uuid | The uuid of the object to add the reference to |
 | `{propertyName}` | path | string | The name of the cross-reference property, e.g. `author` |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 The request body is an object with the following field:
 
@@ -555,6 +561,7 @@ The URL includes three required path parameters and supports an optional query p
 | `{id}` | path | uuid | The uuid of the object to update the reference(s) of |
 | `{propertyName}` | path | string | The name of the cross-reference property |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 The `PUT` request body is a list of beacons:
 
@@ -602,6 +609,7 @@ The URL includes two required path parameters and supports an optional query par
 | `{id}` | path | uuid | The uuid of the object to delete the reference from |
 | `{propertyName}` | path | string | The name of the cross-reference property |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 The request body is a beacon object:
 

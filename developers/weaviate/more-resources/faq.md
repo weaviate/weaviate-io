@@ -71,24 +71,6 @@ import Badges from '/_includes/badges.mdx';
 
 ## Schema and data structure
 
-#### Q: Why does Weaviate have a schema and not an ontology?
-
-<details>
-  <summary>Answer</summary>
-
-> We use a schema because it focusses on the representation of your data (in our case in the GraphQL API) but you can use a Weaviate schema to express an ontology. One of Weaviate's core features is that it semantically interprets your schema (and with that your ontology) so that you can search for concepts rather than formally defined entities.
-
-</details>
-
-#### Q: What is the difference between a Weaviate data schema, ontologies and taxonomies?
-
-<details>
-  <summary>Answer</summary>
-
-> Read about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
-
-</details>
-
 #### Q: Are there any 'best practices' or guidelines to consider when designing a schema?
 
 *(E.g. if I was looking to perform a semantic search over a the content of a Book would I look to have Chapter and Paragraph represented in the schema etc, would this be preferred over including the entire content of the novel in a single property?)*
@@ -125,12 +107,21 @@ import Badges from '/_includes/badges.mdx';
 
 </details>
 
-#### Q: What is the different between `text` and `string` and `valueText` and `valueString`?
+#### Q: What is the difference between `text` and `string` and `valueText` and `valueString`?
 
 <details>
   <summary>Answer</summary>
 
 > The `text` and `string` datatypes differ in tokenization behavior. Note that `string` is now deprecated. Read more in [this section](../config-refs/schema.md#property-tokenization) on the differences.
+
+</details>
+
+#### Q: Do Weaviate classes have namespaces?
+
+<details>
+  <summary>Answer</summary>
+
+Yes. Each class itself acts like namespaces. Additionally, you can use the [multi-tenancy](../concepts/data.md#multi-tenancy) feature to create isolated storage for each tenant. This is especially useful for use cases where one cluster might be used to store data for multiple customers or users.
 
 </details>
 
@@ -152,12 +143,30 @@ import Badges from '/_includes/badges.mdx';
 
 </details>
 
-#### Q: Can I use Weaviate to create a traditional knowledge graph.
+#### Q: Can I use Weaviate to create a traditional knowledge graph?
 
 <details>
   <summary>Answer</summary>
 
 > Yes, you can! Weaviate support ontology, RDF-like definitions in its schema, and it runs out of the box. It is scalable, and the GraphQL API will allow you to query through your knowledge graph easily. But now you are here. We like to suggest you really try its semantic features. After all, you are creating a _knowledge_ graph 😉.
+
+</details>
+
+#### Q: Why does Weaviate have a schema and not an ontology?
+
+<details>
+  <summary>Answer</summary>
+
+> We use a schema because it focusses on the representation of your data (in our case in the GraphQL API) but you can use a Weaviate schema to express an ontology. One of Weaviate's core features is that it semantically interprets your schema (and with that your ontology) so that you can search for concepts rather than formally defined entities.
+
+</details>
+
+#### Q: What is the difference between a Weaviate data schema, ontologies and taxonomies?
+
+<details>
+  <summary>Answer</summary>
+
+> Read about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 
 </details>
 
