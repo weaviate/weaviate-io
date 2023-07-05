@@ -228,8 +228,9 @@ Each tenancy works like a namespace. So, different tenants could have objects wi
 - As each tenant's data is isolated to a dedicated shard, deletes are fast, easy and do not affect other tenants.
 - To scale up, add a new node to your cluster. Weaviate will automatically schedule new tenants on the node with the least resource usage.
 
-:::info
-[Read more about multi-tenancy](/blog/multi-tenancy-vector-search)
+:::info Related pages
+- [How-to: Manage Data | Multi-tenancy operations](../manage-data/multi-tenancy.md)
+- [Multi-tenancy blog](/blog/multi-tenancy-vector-search)
 :::
 
 :::tip Monitoring metrics with multi-tenancy
