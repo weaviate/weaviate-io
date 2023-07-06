@@ -243,6 +243,32 @@ Hybrid search uses results from a keyword (BM25) search and a vector search to p
 
 We are calling this the `relative score fusion` ranking algorithm, as it works by normalizing and summing the BM25 score and vector similarity values to produce an output. This is in contrast to the existing `ranked fusion` algorithm which produced a new rank based on a sum of inverses of the BM25 and vector rankings.
 
+<details>
+  <summary>Example GraphQL query with relative score fusion</summary>
+
+In this example, we perform a hybrid search on the `Question` class, using the query “food”. We specifically tell Weaviate to use the `relative score fusion` algorithm to rank the results.
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 3
+      hybrid: {
+        query: "food"
+        # highlight-start
+        fusionType: "relativeScoreFusion"
+        # highlight-end
+      }
+    ) {
+      question
+      answer
+    }
+  }
+}
+```
+
+</details>
+
 In our internal benchmarks, it showed improved recall performance over the existing algorithm, and we encourage you to try it out. This change also enables the new `AutoCut` feature to be used with hybrid searches, allowing you to automate how the search result threshold is set.
 
 Stay tuned, as we’ll be describing the `relative score fusion` feature in more detail in a separate blog post soon 👀.
@@ -257,20 +283,20 @@ Stay tuned, as we’ll be describing the `relative score fusion` feature in more
 In Weaviate `1.20` we’re rolling out a way to monitor the fraction of requests that succeed/fail due to user errors, and/or server errors. This enables us to track these ratios over time and see if significant updates affect this. Having a code for each request simplifies the log monitoring process!
 
 Given this new way to track each request, we have added a new metric, `requests_total`. There are three possible statuses:
-`ok`: request was successful
-`user_error`: request ended with an error, that is mostly due to *users* wrong API usage
-`server_error`: request ended with an unexpected error
+- `ok`: request was successful
+- `user_error`: request ended with an error, that is mostly due to *users* wrong API usage
+- `server_error`: request ended with an unexpected error
 
 Additionally, there are three labels associated with this metric:
-`api`: `graphql` or `rest`
-`query_type`: name of the endpoint
-`Get` / `Aggregate` / `Explore` / `batch` / `classification` / `misc` / `nodes` / `objects` / `schema` / `backup`
-`class_name`: name of your class
+- `api`: `graphql` or `rest`
+- `query_type`: name of the endpoint
+    - `Get` / `Aggregate` / `Explore` / `batch` / `classification` / `misc` / `nodes` / `objects` / `schema` / `backup`
+- `class_name`: name of your class
 
 <details>
-  <summary>Examples of requests</summary>
+  <summary>Example requests</summary>
 
-Here is an example of a few requests:
+Here are some example requests:
 
 ```
 requests_total{api="graphql",class_name="n/a",query_type="",status="ok"} 839
@@ -296,5 +322,13 @@ The full list of metrics that are offered can be found [here](/developers/weavia
 ### Chaos benchmarks improvements
 
 Scalability and performance are front of mind for us and as such with `1.20` we’ve introduced new chaos engineering style pipelines to help us assess Weaviate's performance and recall on ANN benchmarks including assessing Weaviate performance on PQ compressed vs. uncompressed vectors.
+
+## Summary
+
+That's it from us - we hope you enjoy the new features and improvements in Weaviate `1.20`. As always, the new Weaviate releases are available on [WCS](https://console.weaviate.cloud/) just a short time after the open source release. So it'll be available for you to use/upgrade very soon.
+
+Thanks for reading, and see you next time 👋!
+
+import WhatNext from '/_includes/what-next.mdx'
 
 <WhatNext />
