@@ -5,6 +5,10 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'schema']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -212,6 +216,22 @@ You can read more about the various parameters below:
 - [Inverted index configuration references](../config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists)
 - [Sharding configuration references](../config-refs/schema.md#shardingconfig)
 - [Replication configuration references](../config-refs/schema.md#replicationconfig)
+
+### Multi-tenancy
+
+:::info Available from `v1.20` onwards
+:::
+
+To enable multi-tenancy, you must set the `multiTenancyConfig` key to `{"enabled": true}` in the class definition.
+
+```json
+{
+  "class": "MultiTenancyClass",
+  // highlight-start
+  "multiTenancyConfig": {"enabled": true}
+  // highlight-end
+}
+```
 
 ## Delete a class
 

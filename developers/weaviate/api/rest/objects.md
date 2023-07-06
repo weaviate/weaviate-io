@@ -236,6 +236,7 @@ The request body for a new object has the following fields:
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `id` | v4 UUID | no | Optional id for the object |
 | `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
+| `tenant` | `string` | no | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 
@@ -290,14 +291,20 @@ Available since `v1.14` and the preferred way:
 GET /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
+import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
+
+<details>
+  <summary>Getting a data object without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
 ```bash
 GET /v1/objects/{id}
 ```
 
-import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
-
 <RestObjectsCRUDClassnameNote/>
+
+</details>
+
 
 #### URL parameters
 
@@ -329,12 +336,17 @@ Available since `v1.14` and the preferred way:
 HEAD /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
+<details>
+  <summary>Checking if a data object exists without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
 ```bash
 HEAD /v1/objects/{id}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### URL parameters
 
@@ -343,6 +355,7 @@ HEAD /v1/objects/{id}
 | `{ClassName}` | path | string | The name of the class that the object belongs to |
 | `{id}` | path | uuid | The uuid of the data object to retrieve |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 
@@ -364,13 +377,18 @@ PUT /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 PATCH /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
+<details>
+  <summary>Updating a data object without a class name are deprecated</summary>
+
+The below are only available for backward compatibility and deprecated:
 ```bash
 PUT /v1/objects/{id}
 PATCH /v1/objects/{id}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 :::info Recalculating vectors on update
 If the class is configured with a vectorizer, Weaviate will only compute a new vector for an updated object if the update changes the underlying text to be vectorized.
@@ -395,6 +413,7 @@ The request body for replacing (some) properties of an object has the following 
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
+| `tenant` | `string` | no | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 
@@ -415,12 +434,17 @@ Available since `v1.14` and preferred way:
 DELETE /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Deleting a data object without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 DELETE /v1/objects/{id}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### URL parameters
 
@@ -429,6 +453,8 @@ DELETE /v1/objects/{id}
 | `{ClassName}` |  path | string | The name of the class that the object belongs to |
 | `{id}` | path | uuid | The uuid of the data object to delete |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
+
 
 #### Example request
 
@@ -491,12 +517,17 @@ Available since `v1.14` and the preferred way:
 POST /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Adding a cross-reference without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 POST /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### Parameters
 
@@ -508,6 +539,7 @@ The URL includes three required path parameters and supports an optional query p
 | `{id}` | path | uuid | The uuid of the object to add the reference to |
 | `{propertyName}` | path | string | The name of the cross-reference property, e.g. `author` |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 The request body is an object with the following field:
 
@@ -538,12 +570,17 @@ Available since `v1.14` and the preferred way:
 PUT /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Updating a cross-reference without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 PUT /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### Parameters
 
@@ -555,6 +592,7 @@ The URL includes three required path parameters and supports an optional query p
 | `{id}` | path | uuid | The uuid of the object to update the reference(s) of |
 | `{propertyName}` | path | string | The name of the cross-reference property |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 The `PUT` request body is a list of beacons:
 
@@ -586,12 +624,17 @@ Available since `v1.14` and the preferred way:
 DELETE /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Deleting a cross-reference without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 DELETE /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### Parameters
 
@@ -602,6 +645,7 @@ The URL includes two required path parameters and supports an optional query par
 | `{id}` | path | uuid | The uuid of the object to delete the reference from |
 | `{propertyName}` | path | string | The name of the cross-reference property |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 The request body is a beacon object:
 
@@ -628,3 +672,16 @@ import SemanticKindObjectReferenceDelete from '/_includes/code/semantic-kind.obj
 <SemanticKindObjectReferenceDelete/>
 
 If the addition was successful, no content will be returned.
+
+### Multi-tenancy
+
+When using multi-tenancy, cross-references can only be made:
+
+- From a multi-tenancy object to a non-multi-tenancy object.
+- From a multi-tenancy object to a multi-tenancy object, as long as they belong to the same tenant.
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

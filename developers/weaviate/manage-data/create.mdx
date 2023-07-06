@@ -86,8 +86,9 @@ If a vectorizer is defined, and a custom vector is not supplied, Weaviate wil us
 
 ## Preventing duplicates
 
-To prevent duplicates, you can [efficiently check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id). Note that Weaviate allows identical objects (in terms of property values), so the id is the only differentiator.
+To prevent duplicates, you can [check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id).
 
+Note that [classes](../concepts/data.md#class-collections) and [tenants](../concepts/data.md#multi-tenancy) each work like namespaces, so it is possible to have the same id in different classes and/or tenants.
 
 ## Validating before creation
 

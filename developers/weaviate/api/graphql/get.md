@@ -230,6 +230,32 @@ import GraphQLGetConsistency from '/_includes/code/graphql.get.consistency.mdx';
 
 <GraphQLGetConsistency/>
 
+### Multi-tenancy
+
+:::info Available from `v1.20` onwards
+:::
+
+Where multi-tenancy is configured, the `Get{}` function can be configured to return results from a specific tenant.
+
+You can do so by specifying the `tenant` parameter in the GraphQL query as shown below, or using the equivalent client function.
+
+```graphql
+{
+  Get {
+    Article (
+      tenant: "tenantA"
+      limit: 1
+    ) {
+      name
+    }
+  }
+}
+```
+
+:::tip See HOW-TO guide
+For more information on using multi-tenancy, see the [Multi-tenancy operations guide](../../manage-data/multi-tenancy.md).
+:::
+
 ## Query beacon references
 
 If you've set a beacon reference (cross-reference) in the schema, you can query it as follows:

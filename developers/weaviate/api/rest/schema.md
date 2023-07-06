@@ -269,6 +269,7 @@ Learn more about the schema configuration [here](/developers/weaviate/config-ref
 | `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on querying (stopwords are still indexed).<br/> Since `v1.18`, stopwords can be configured at runtime.<br/>See [more details here](/developers/weaviate/config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists). |
 | `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix`.<br/>See [more details here](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indextimestamps). |
 | `replicationConfig` > `factor` | body | int | The replication factor, aka the number of copies in a replicated Weaviate setup. |
+| `multiTenancyConfig` > `enabled` | body | Boolean | Whether to enable multi-tenancy for this class. (Defaults to `false`.) |
 
 ### Example request for creating a class
 
@@ -455,6 +456,30 @@ PUT v1/schema/{class_name}/shards/{shard_name}
 import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 
 <CodeSchemaShardsUpdate />
+
+## Multi-tenancy
+
+### Add tenant(s)
+
+Pass a payload with an array of tenant objects in the form of `[{"name": TENANT_NAME1}, {"name": TENANT_NAME2}]` to add to the class. Tenants are used to separate data between different users or groups of users.
+
+```js
+POST v1/schema/{class_name}/tenants
+```
+
+### List tenants
+
+```js
+GET v1/schema/{class_name}/tenants
+```
+
+### Remove tenants
+
+Pass a payload with an array of tenant names in the form of `["TENANT_NAME1", "TENANT_NAME2"]` to remove from the class.
+
+```js
+DELETE v1/schema/{class_name}/tenants
+```
 
 ## More Resources
 

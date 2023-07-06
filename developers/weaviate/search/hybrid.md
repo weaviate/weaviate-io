@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
-import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
+import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
 ## Overview
 
@@ -48,7 +48,7 @@ It ranks the results using a combination of the `bm25` and vector search ranking
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// searchHybridBasic"
   endMarker="// END searchHybridBasic"
   language="js"
@@ -97,7 +97,7 @@ The below example adds the two properties to the list of retrieved properties.
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// searchHybridWithScore"
   endMarker="// END searchHybridWithScore"
   language="js"
@@ -128,6 +128,97 @@ It should produce a response like the one below:
 </details>
 
 
+## Limit the results
+
+You can limit the number of results returned by a `hybrid` search,
+- to a fixed number, using the `limit: <N>` parameter
+- to the first N "drops" in `score`, using the `autocut` parameter
+
+`autocut` can be combined with `limit: N`, which would limit autocut's input to the first `N` objects.
+
+### Limiting the number of results
+
+Use the `limit` argument to specify the maximum number of results that should be returned:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START limit Python"
+      endMarker="# END limit Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START limit"
+      endMarker="// END limit"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START limit GraphQL"
+      endMarker="# END limit GraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+### Autocut
+
+Another way to limit the results returned by a hybrid search is to use the [`autocut` filter](../api/graphql/additional-operators.md#autocut). Autocut takes a positive integer parameter `N`, looks at the [score](#score--explainscore) of each result, and stops returning results after the `N`th "drop" in score. Because `hybrid` combines a vector search with a keyword (BM25F) search, their scores/distances cannot be directly compared, so the cut points may not be intuitive. <!-- TODO: add detailed explanation -->
+
+Autocut can be used as follows:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START autocut Python"
+      endMarker="# END autocut Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START autocut"
+      endMarker="// END autocut"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START autocut GraphQL"
+      endMarker="# END autocut GraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START Expected autocut results"
+  endMarker="# END Expected autocut results"
+  language="json"
+/>
+
+</details>
+
+
 ## Weight keyword vs vector results
 
 You can use the `alpha` argument to weight the keyword (`bm25`) or vector search results. An `alpha` of `1` is for a pure vector search and `0` is for a pure keyword search. The default is `0.75`.
@@ -145,7 +236,7 @@ The following example uses an alpha of `0.25`, favoring keyword search results.
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// searchHybridWithAlpha"
   endMarker="// END searchHybridWithAlpha"
   language="js"
@@ -175,6 +266,59 @@ It should produce a response like the one below:
 
 </details>
 
+## Fusion (ranking) method
+
+:::info Available from `v1.20` onwards
+:::
+
+You can select how the BM25 and vector search results are combined to determine the ranking using the `fusionType` argument.
+
+The default is `rankedFusion`, which adds inverted ranks of the BM25 and vector search methods. Alternatively, you can  use `relativeScoreFusion` which adds normalized (between 0-1) scores of the BM25 and vector search methods.
+
+The following example specifies the fusion type of `relativeScoreFusion`.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithFusionTypePython"
+  endMarker="# END HybridWithFusionTypePython"
+  language="python"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// searchHybridWithFusionType"
+  endMarker="// END searchHybridWithFusionType"
+  language="ts"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithFusionTypeGraphQL"
+  endMarker="# END HybridWithFusionTypeGraphQL"
+  language="graphql"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Expected HybridWithFusionType results"
+  endMarker="# END Expected HybridWithFusionType results"
+  language="json"
+/>
+
+</details>
+
+
 ## Selected properties only
 
 You can specify the object `properties` for the `bm25` portion of the search.
@@ -196,7 +340,7 @@ This is not possible as doing so will require the entire database to be re-vecto
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// searchHybridWithProperties"
   endMarker="// END searchHybridWithProperties"
   language="js"
@@ -244,7 +388,7 @@ The below example supplies the vector for "italian food", while using "food" as 
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// searchHybridWithVector"
   endMarker="// END searchHybridWithVector"
   language="js"
@@ -292,7 +436,7 @@ The below example performs a hybrid search for `food` in any field from objects 
 </TabItem>
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
-  text={JavaScriptCode}
+  text={TSCode}
   startMarker="// searchHybridWithFilter"
   endMarker="// END searchHybridWithFilter"
   language="js"

@@ -147,6 +147,33 @@ assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
 
 
 // ========================
+// ===== With Autocut =====
+// ========================
+
+// # http://weaviate.io/developers/weaviate/api/graphql/additional-operators#autocut
+
+// START Autocut
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withNearText({
+    concepts: ['animals in movies'],
+  })
+  // highlight-start
+  .withAutocut(1)
+  // highlight-end
+  .withFields('question answer _additional { distance }')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END Autocut
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+
+
+// ========================
 // ===== With GroupBy =====
 // ========================
 
