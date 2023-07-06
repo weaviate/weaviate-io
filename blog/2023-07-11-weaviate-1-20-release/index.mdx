@@ -11,7 +11,7 @@ description: "Weaviate 1.20 - multi-tenancy, PQ, search re-ranking, autocut, and
 ![Weaviate 1.20](./img/hero.png)
 
 <!-- truncate -->
-Weaviate `v1.20` is here! As always, a brand-new release means a set of brand-new features. Here are the ⭐️*highlights*⭐️:
+Weaviate `1.20` is here! As always, a brand-new release means a set of brand-new features. Here are the ⭐️*highlights*⭐️:
 
 ![Feature highlights](./img/highlights.png)
 
@@ -29,6 +29,8 @@ We hope we've whet your appetite - so what're you waiting for?! Keep scrolling �
 
 ::: -->
 
+<!-- TODO - add links to various doc pages once doc branch merged -->
+
 ## Multi-tenancy
 
 > **Store data from up to millions of tenants in a single setup.**
@@ -38,7 +40,7 @@ We hope we've whet your appetite - so what're you waiting for?! Keep scrolling �
 
 We’ll keep this brief as Etienne covered this in great detail in [this blog post](https://weaviate.io/blog/multi-tenancy-vector-search). The key point, though, is that Weaviate now makes it easy to store data from up to *millions of tenants in a single setup*.
 
-This means that scaling your business or infrastructure to include data from a large group of users is easier and faster than ever. We have worked with our community on this feature to ensure that your compliance needs are met as well as performance needs, while keeping the experience a smooth one for everybody. The Weaviate multi-tenancy implementation allows for huge numbers of diverse users - whether they be large or small, and regardless of how often they access Weaviate.
+This means that scaling your business or infrastructure to include data from a large group of users is easier and faster than ever. We have worked with our community on this feature to ensure that your compliance needs are met as well as performance needs, while keeping the experience a smooth one for everybody. Our multi-tenancy implementation allows for huge numbers of diverse users - whether they be large or small, and regardless of how often they access Weaviate.
 
 The result is a multi-tenancy solution that we are very proud of. This is an opt-in feature, where to use multi-tenancy, you simply enable the feature and add the tenant key for each operation as required.
 
@@ -89,7 +91,7 @@ Previously, if you added a large number of objects prior to enabling quantizatio
 <details>
   <summary>Experiments - Before & After</summary>
 
-Below we provide a small taste of these experiments comparing PQ `v1.18` vs the new and improved PQ of `v1.20`. Firstly we show the performance on an experimental dataset followed by a more real-world dataset.
+Below we provide a small taste of these experiments comparing PQ `1.18` vs the new and improved PQ of `1.20`. Firstly we show the performance on an experimental dataset followed by a more real-world dataset.
 <p><br/></p>
 
 ![Fig 1](./img/fig1_before.png)
@@ -117,7 +119,7 @@ As can be clearly seen above, previously there was a cost to be paid for compres
 ![A cute cartoon of Weaviate presenting results](./img/Weaviate-release-1-20_autocut_light.png#gh-light-mode-only)
 ![A cute cartoon of Weaviate presenting results](./img/Weaviate-release-1-20_autocut_dark.png#gh-dark-mode-only)
 
-Before `v1.20`, limiting the number of search results meant manually specifying a `distance` or the `limit` (max) number of objects. Both of which can be a bit cumbersome to use, especially with no prior knowledge of the dataset.
+Before `1.20`, limiting the number of search results meant manually specifying a `distance` or the `limit` (max) number of objects. Both of which can be a bit cumbersome to use, especially with no prior knowledge of the dataset.
 
 With Autocut, you can solve this by simply specifying the number of groups of results to be returned. Each "group" is determined by reviewing distances between results, so that a "jump" in distance between results is considered a new group.
 
@@ -167,6 +169,10 @@ This example searches the `Article` class for articles related to "america", and
 }
 ```
 
+:::tip See our documentation for more examples
+Please refer to our documentation for more code examples, including for various Weaviate client libraries.
+:::
+
 </details>
 
 <details>
@@ -178,7 +184,7 @@ The first motivation for Autocut was to provide a better experience to human sea
 
 Autocut aims approximate where a user would “cut” the results intuitively after observing N jumps in the distance from the query.
 
-t can be combined with all [vector search operators](/developers/weaviate/api/graphql/get#vector-search-operators): `nearXXX`, `bm25`, and `hybrid`. `autocut` is placed after the operator, at the same level with `limit`/`offset`. It is disabled by default and can be explicitly disabled by setting its value to 0 or a negative number.
+It can be combined with all [vector search operators](/developers/weaviate/api/graphql/get#vector-search-operators): `nearXXX`, `bm25`, and `hybrid`. `autocut` is placed after the operator, at the same level with `limit`/`offset`. It is disabled by default and can be explicitly disabled by setting its value to 0 or a negative number.
 
 ## Search re-ranking
 
@@ -200,7 +206,7 @@ In other words, you can perform a search - for example, a vector search - and th
 <details>
   <summary>An example GraphQL query with a reranker</summary>
 
-You can use reranking in Weaviate’s GraphQL as follows:
+You can use reranking in a GraphQL query as follows:
 
 ```graphql
 {
@@ -224,6 +230,10 @@ You can use reranking in Weaviate’s GraphQL as follows:
 }
 ```
 
+:::tip See our documentation for more examples
+Please refer to our documentation for more code examples, including for various Weaviate client libraries.
+:::
+
 This query retrieves 50 results from the `Product` class, using a hybrid search with the query “What is ref2vec?”. It then re-ranks the results using the `content` property of the `Product` class, and the query “what is ref2vec?”.
 
 You can specify which `property` of the `Product` class you want to pass to the reranker. Note that here, the returned `score` will include the score from the reranker.
@@ -234,14 +244,14 @@ This is just a first step in integrating ranking models with Weaviate. Read [our
 
 ## New hybrid search ranking algorithm
 
-> **Multi-stage search for a better final results set.**
+> **A score-based hybrid results merger algorithm.**
 
 ![A conceptual figure of a hybrid score merger](./img/Weaviate-release-1-20_hybrid_merger_light.png#gh-light-mode-only)
 ![A conceptual figure of a hybrid score merger](./img/Weaviate-release-1-20_hybrid_merger_dark.png#gh-dark-mode-only)
 
 Hybrid search uses results from a keyword (BM25) search and a vector search to produce its final set of results. In `1.20`, we introduce a new, optional, ranking algorithm that takes the BM25 and vector search scores to produce a more nuanced ranking of objects.
 
-We are calling this the `relative score fusion` ranking algorithm, as it works by normalizing and summing the BM25 score and vector similarity values to produce an output. This is in contrast to the existing `ranked fusion` algorithm which produced a new rank based on a sum of inverses of the BM25 and vector rankings.
+We are calling this the `relative score fusion` ranking algorithm, as it works by normalizing and summing the BM25 score and vector similarity values. This is in contrast to the existing `ranked fusion` algorithm which produced a new rank based on a sum of inverses of the BM25 and vector rankings.
 
 <details>
   <summary>Example GraphQL query with relative score fusion</summary>
@@ -267,6 +277,10 @@ In this example, we perform a hybrid search on the `Question` class, using the q
 }
 ```
 
+:::tip See our documentation for more examples
+Please refer to our documentation for more code examples, including for various Weaviate client libraries.
+:::
+
 </details>
 
 In our internal benchmarks, it showed improved recall performance over the existing algorithm, and we encourage you to try it out. This change also enables the new `AutoCut` feature to be used with hybrid searches, allowing you to automate how the search result threshold is set.
@@ -280,7 +294,7 @@ Stay tuned, as we’ll be describing the `relative score fusion` feature in more
 
 ### Request success/failure rate in Prometheus metrics
 
-In Weaviate `1.20` we’re rolling out a way to monitor the fraction of requests that succeed/fail due to user errors, and/or server errors. This enables us to track these ratios over time and see if significant updates affect this. Having a code for each request simplifies the log monitoring process!
+With `1.20` we’re rolling out a way to monitor the fraction of requests that succeed/fail due to user errors, and/or server errors. This enables us to track these ratios over time and see if significant updates affect this. Having a code for each request simplifies the log monitoring process!
 
 Given this new way to track each request, we have added a new metric, `requests_total`. There are three possible statuses:
 - `ok`: request was successful
