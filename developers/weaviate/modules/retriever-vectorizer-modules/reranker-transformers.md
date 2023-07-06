@@ -7,9 +7,9 @@ image: og/docs/modules/text2vec-transformers.jpg
 
 ## Introduction
 
-The `reranker-transformers` module allows you to run your own inference container with a pre-trained language transformer model as a Weaviate reranker module. Note that this is in contrast to an API-based module such as [`reranker-cohere`](./reranker-cohere.md), which uses an external API to rerank your data.
+The `reranker-transformers` module allows you to run your own inference container with a pre-trained language transformer model as a Weaviate reranker module. This is great for experimenting with rerankers in a local setup, in contrast to an API-based module such as [`reranker-cohere`](./reranker-cohere.md), which uses an external API to rerank your data.
 
-<!-- TODO -->
+The reranker-transformers module enables using [sentence transformers models](https://www.sbert.net/docs/pretrained_cross-encoders.html) as a second stage re-ranking for vector, bm25 and hybrid search results. These pre-trained models are open-sourced on Hugging Face. There are 5 pre-trained checkpoints available, which trade-off speed and ranking quality. We currently support the `cross-encoder/ms-marco-MiniLM-L-6-v2` model, which is the second-largest model with roughly the same performance as the largest model (L-12) evaluated on [MS-MARCO](https://microsoft.github.io/msmarco/) (39.01 vs. 39.02).
 
 ## How to enable
 
