@@ -13,7 +13,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
 ## Overview
 
-This page shows you how to rerank a search result set returned by [vector](similarity.md), [bm25](bm25.md), or [hybrid](hybrid.md) operators. Reranking is useful to improve search relevance by reordering the result set returned by a [retriever](../modules/retriever-vectorizer-modules/index.md). This operation comes at a performance cost because reranking uses a different model to score the results. 
+This page shows you how to rerank a search result set returned by [vector](similarity.md), [bm25](bm25.md), or [hybrid](hybrid.md) operators. Reranking is useful to improve search relevance by reordering the result set returned by a [retriever](../modules/retriever-vectorizer-modules/index.md).
+
+Reranking computes a relevance score between the query and each data object, and returns the list of objects sorted from the most to the least relevant. Computing this score for all `(query, data_object)` pairs would be prohibitively slow, which is why reranking is used as a second stage after retrieving the relevant objects first.
 
 Weaviate supports two reranker modules:
 * [reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
@@ -88,8 +90,8 @@ We can see that results pertaining to floating aircraft (balloons/blimps/dirigib
   <TabItem value="py" label="Python">
     <FilteredTextBlock
       text={PythonCode}
-      startMarker="# START nearTextReranker Python"
-      endMarker="# END nearTextReranker Python"
+      startMarker="# START nearTextRerank Python"
+      endMarker="# END nearTextRerank Python"
       language="py"
     />
   </TabItem>
@@ -97,8 +99,8 @@ We can see that results pertaining to floating aircraft (balloons/blimps/dirigib
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START RerankerNearText"
-      endMarker="// END RerankerNearText"
+      startMarker="// START RerankNearText"
+      endMarker="// END RerankNearText"
       language="ts"
     />
   </TabItem>
@@ -106,8 +108,8 @@ We can see that results pertaining to floating aircraft (balloons/blimps/dirigib
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PythonCode}
-      startMarker="# START nearTextReranker GraphQL"
-      endMarker="# END nearTextReranker GraphQL"
+      startMarker="# START nearTextRerank GraphQL"
+      endMarker="# END nearTextRerank GraphQL"
       language="graphql"
     />
   </TabItem>
@@ -120,8 +122,8 @@ The response should look like this:
 
   <FilteredTextBlock
     text={PythonCode}
-    startMarker="# START Expected nearTextReranker results"
-    endMarker="# END Expected nearTextReranker results"
+    startMarker="# START Expected nearTextRerank results"
+    endMarker="# END Expected nearTextRerank results"
     language="json"
   />
 
@@ -132,3 +134,54 @@ We can see in the `rerank`ed result set, that answers are sorted descending by t
 
 ## Reranking bm25 search results
 
+The example below is a uses `rerank` in a `bm25` query to sort towards the top results for the query "paper" that have to do with "publication"s rather than with the material paper.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START bm25Rerank Python"
+      endMarker="# END bm25Rerank Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START bm25Rerank"
+      endMarker="// END bm25Rerank"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START bm25Rerank GraphQL"
+      endMarker="# END bm25Rerank GraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The response should look like this:
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START Expected bm25Rerank results"
+    endMarker="# END Expected bm25Rerank results"
+    language="json"
+  />
+
+</details>
+
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
