@@ -17,21 +17,24 @@ import WCSApiKeyLocation from '../../wcs/img/wcs-apikey-location.png';
 
 ## Overview
 
-Welcome to the **Quickstart tutorial**. Here, you will:
+Welcome to the **Quickstart tutorial**, where you'll a quick taste of what you can do with Weaviate.
+
+You will:
 - Create a vector database with Weaviate Cloud Services (WCS),
-- Import data, and
-- Perform a vector search
+- Import data,
+- Use *semantic search*, and
+- Bring LLMs to your data with *generative search*.
 
 :::tip How long will this take?
 This should take around 20 minutes or so.
 :::
 
 :::info Object vectors
-When you import data into Weaviate, you can optionally:
+With Weaviate, you have options to:
 - Have **Weaviate create vectors**, or
 - Specify **custom vectors**.
 
-This tutorial demonstrates both methods. For the first method, we will use an **inference API**, and show you how you can change it.
+This tutorial demonstrates both methods.
 :::
 
 ### Source data
