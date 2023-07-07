@@ -233,6 +233,8 @@ To enable multi-tenancy, you must set the `multiTenancyConfig` key to `{"enabled
 }
 ```
 
+For more details of multi-tenancy operations, please see the [multi-tenancy operations page](../manage-data/multi-tenancy.md).
+
 ## Delete a class
 
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'

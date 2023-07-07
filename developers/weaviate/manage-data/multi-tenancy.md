@@ -40,6 +40,10 @@ Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig`
 
 To add tenants to a class, you must provide the tenant names to the Weaviate class.
 
+import TenantNameFormat from '/_includes/tenant-names.mdx';
+
+<TenantNameFormat/>
+
 Code examples are shown below in which the tenants `tenantA` and `tenantB` are added to the class `MultiTenancyClass`:
 
 <!-- TODO: Add TS/Go/Java examples -->
