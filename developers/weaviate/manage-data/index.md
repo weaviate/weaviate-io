@@ -22,7 +22,7 @@ We have separate how-to guides for:
 - [Update objects](./update.mdx): Update objects.
 - [Delete objects](./delete.mdx): Delete individual objects or filtered object groups.
 - [Cross-references](./cross-references.mdx): For managing cross-references.
-- [Multi-tenancy operations](./multi-tenancy.mdx): For operations with multi-tenancy enabled.
+- [Multi-tenancy operations](./multi-tenancy.md): For operations with multi-tenancy enabled.
 
 Each guide is self-contained. So you can read them in any order.
 
