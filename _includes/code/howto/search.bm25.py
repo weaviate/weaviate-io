@@ -157,7 +157,6 @@ expected_response = (
 )
 
 
-
 gql_query = """
 # BM25WithScoreGraphQL
 {
@@ -180,12 +179,15 @@ gql_query = """
 }
 # END BM25WithScoreGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
+
+
 def test_gqlresponse(response_in, gqlresponse_in):
     for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
         assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
-test_gqlresponse(response, gqlresponse)
 
+
+gqlresponse = client.query.raw(gql_query)
+test_gqlresponse(response, gqlresponse)
 
 
 # ===============================================
@@ -585,7 +587,170 @@ gql_query = """
 # END BM25WithFilterGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
-def test_gqlresponse(response_in, gqlresponse_in):
-    for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
-        assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
+test_gqlresponse(response, gqlresponse)
+
+
+# =================================
+# ===== BM25 Query with limit =====
+# =================================
+
+# START limit Python
+response = (
+    client.query
+    .get('JeopardyQuestion', ['question', 'answer'])
+    .with_bm25(
+      query='safety'
+    )
+    .with_additional('score')
+    # highlight-start
+    .with_limit(3)
+    # highlight-end
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END limit Python
+
+# Tests
+assert 'JeopardyQuestion' in response['data']['Get']
+assert len(response['data']['Get']['JeopardyQuestion']) == 3
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+assert 'OSHA' in response['data']['Get']['JeopardyQuestion'][0]['answer'], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
+# End test
+
+
+expected_response = (
+# START Expected limit results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "score": "2.6768136"
+          },
+          "answer": "OSHA (Occupational Safety and Health Administration)",
+          "question": "The government admin. was created in 1971 to ensure occupational health & safety standards"
+        },
+        {
+          "_additional": {
+            "score": "2.0213983"
+          },
+          "answer": "France",
+          "question": "Royale, Joseph, and Devil's Islands make up the Safety Islands owned by this country"
+        },
+        {
+          "_additional": {
+            "score": "2.0213983"
+          },
+          "answer": "Devil's Island",
+          "question": "The Safety Islands off French Guiana consist of Royale, Saint-Joseph & this diabolical island"
+        }
+      ]
+    }
+  }
+}
+# END Expected limit results
+)
+
+gql_query = """
+# START limit GraphQL
+{
+  Get {
+    JeopardyQuestion(
+      bm25: {
+        query: "safety"
+      }
+# highlight-start
+      limit: 3
+# highlight-end
+    ) {
+      question
+      answer
+      _additional {
+        score
+      }
+    }
+  }
+}
+# END limit GraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+test_gqlresponse(response, gqlresponse)
+
+
+# ===================================
+# ===== BM25 Query with autocut =====
+# ===================================
+
+# START autocut Python
+response = (
+    client.query
+    .get('JeopardyQuestion', ['question', 'answer'])
+    .with_bm25(
+      query='safety'
+    )
+    .with_additional('score')
+    # highlight-start
+    .with_autocut(1)
+    # highlight-end
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END autocut Python
+
+# Tests
+assert 'JeopardyQuestion' in response['data']['Get']
+assert len(response['data']['Get']['JeopardyQuestion']) == 1
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+assert 'OSHA' in response['data']['Get']['JeopardyQuestion'][0]['answer'], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
+# End test
+
+
+expected_response = (
+# START Expected autocut results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "score": "2.6768136"
+          },
+          "answer": "OSHA (Occupational Safety and Health Administration)",
+          "question": "The government admin. was created in 1971 to ensure occupational health & safety standards"
+        }
+      ]
+    }
+  }
+}
+# END Expected autocut results
+)
+
+gql_query = """
+# START autocut GraphQL
+{
+  Get {
+    JeopardyQuestion(
+      bm25: {
+        query: "safety"
+      }
+# highlight-start
+      autocut: 1
+# highlight-end
+    ) {
+      question
+      answer
+      _additional {
+        score
+      }
+    }
+  }
+}
+# END autocut GraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)

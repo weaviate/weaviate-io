@@ -75,7 +75,7 @@ It should produce a response like the one below:
 </details>
 
 :::tip `objects` endpoint != search
-The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRUD operations and not capable of performing searches.
+The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRUD operations and is not capable of performing searches.
 :::
 
 ## `limit` returned objects
@@ -128,6 +128,7 @@ It should produce a response like the one below:
 />
 
 </details>
+
 
 ## Paginate with `limit` and `offset`
 
@@ -185,6 +186,7 @@ It should produce a response like the one below:
 />
 
 </details>
+
 
 ## Specify the fetched properties
 
@@ -399,6 +401,44 @@ It should produce a response like the one below:
 />
 
 </details>
+
+## Multi-tenancy
+
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you must specify the tenant parameter in each query.
+
+The below example shows how to fetch one object in the `MultiTenancyClass` class from the tenant `tenantA`:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  ```python
+  results = (
+      client.query.get("MultiTenancyClass", ["property1", "property2"])
+      .with_limit(1)
+      # highlight-start
+      .with_tenant("tenantA")
+      # highlight-end
+      .do()
+  )
+  ```
+
+  </TabItem>
+  <TabItem value="js" label="TypeScript">
+
+  ```ts
+  result = await client
+    .graphql
+    .get()
+    .withClassName('MultiTenancyClass')
+    .withFields(['property1', 'property2'])
+    .withTenant('TenantA')
+    .do();
+
+  console.log(JSON.stringify(result, null, 2));
+  ```
+
+  </TabItem>
+</Tabs>
 
 ## More Resources
 

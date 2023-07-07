@@ -201,6 +201,33 @@ import GraphQLAggGroupby from '/_includes/code/graphql.aggregate.groupby.mdx';
 
 Aggregating data makes the `topOccurrences` sub-property available. Note that the counts are not dependent on tokenization. The `topOccurrences` count is based on occurrences of the entire property, or one of the values if the property is an array.
 
+### Multi-tenancy
+
+:::info Available from `v1.20` onwards
+:::
+
+Where multi-tenancy is configured, the `Aggregate{}` function can be configured to aggregate results from a specific tenant.
+
+You can do so by specifying the `tenant` parameter in the GraphQL query as shown below, or using the equivalent client function.
+
+```graphql
+{
+  Aggregate {
+    Article (
+      tenant: "tenantA"
+    ) {
+      meta {
+        count
+      }
+    }
+  }
+}
+```
+
+:::tip See HOW-TO guide
+For more information on using multi-tenancy, see the [Multi-tenancy operations guide](../../manage-data/multi-tenancy.md).
+:::
+
 ## Aggregating a Vector Search / Faceted Vector Search
 
 :::note

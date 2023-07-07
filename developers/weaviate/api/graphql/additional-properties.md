@@ -110,9 +110,10 @@ The `vector` fields contains the vector representation of the data object
 }
 ```
 
+
 ### generate
 
-:::info Requires a `generative-xxx` module
+:::info Requires a [`generative-xxx` module](../../modules/reader-generator-modules/index.md)
 :::
 
 The `generate` field can be used to perform a [generative search](../../search/generative.md).
@@ -135,6 +136,40 @@ The `generate` field can be used to perform a [generative search](../../search/g
           singleResult
           error
         }
+      }
+    }
+  }
+}
+```
+
+
+### rerank
+
+:::info Requires a [`reranker-xxx` module](../../modules/retriever-vectorizer-modules/index.md)
+:::
+
+The `rerank` field can be used to [reorder the search results](../../search/rerank.md). It accepts two parameters:
+
+| Parameter    | Required | Type       | Description  |
+|--------------|----------|------------|--------------|
+| `property`   | yes      | `string`   | Which property to pass to the reranker. For example, you may want to run a similarity search on a Products collection, then rerank specifically on the Name field. |
+| `query`      | no       | `string`    | Optionally specify a different query. |
+
+Syntax:
+
+```graphql
+{
+  Get {
+    Class {
+      property
+      _additional {
+        rerank(
+          property: "..."
+          query: "..."
+        ) {
+          score
+        }
+      }
     }
   }
 }

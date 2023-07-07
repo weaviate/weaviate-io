@@ -207,6 +207,59 @@ For now, what's important to know is this:
 1. You can link classes (even if they use different embeddings) by setting cross-references.
 1. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the [schema tutorial](../tutorials/schema.md)).
 
+## Multi-tenancy
+
+:::info Available from `v1.20` onwards
+:::
+
+For use-cases where each Weaviate cluster needs to store segregated data, you can use the multi-tenancy feature. Each class can optionally be configured to isolate data for each `tenant` by providing a tenant key.
+
+Where multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data. This ensures not only data isolation but also fast and efficient querying, as well as easy and robust on/off-boarding. From `v1.20` onwards, shards have become a lot more lightweight, easily allowing 50,000+ active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
+
+Multi-tenancy is especially useful for use-cases where you want to store data for multiple customers, or where you want to store data for multiple projects.
+
+### Tenancy and IDs
+
+Each tenancy works like a namespace. So, different tenants could have objects with the same IDs. What makes an object’s ID unique is not just the object ID itself, but the combination of the tenant and the object ID.
+
+### Tenancy and cross-references
+
+When using multi-tenancy, cross-references can be made as follows:
+
+- From a multi-tenancy object to a non-multi-tenancy object.
+- From a multi-tenancy object to a multi-tenancy object, as long as they belong to the same tenant.
+
+You **cannot** create cross-references:
+
+- From a non-multi-tenancy object to a multi-tenancy object, or
+- From a multi-tenancy object to a multi-tenancy object, if they belong to different tenants.
+
+### Key features
+
+- Each tenant has a dedicated high-performance vector index providing query speeds as if the tenant was the only user on the cluster.
+- As each tenant's data is isolated to a dedicated shard, deletes are fast, easy and do not affect other tenants.
+- To scale up, add a new node to your cluster. Weaviate will automatically schedule new tenants on the node with the least resource usage.
+
+:::info Related pages
+- [How-to: Manage Data | Multi-tenancy operations](../manage-data/multi-tenancy.md)
+- [Multi-tenancy blog](/blog/multi-tenancy-vector-search)
+:::
+
+:::tip Monitoring metrics with multi-tenancy
+When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars.md) as `true` so that data across all tenants are grouped together for monitoring.
+:::
+
+<details>
+  <summary>What is the maximum number of tenants per node?</summary>
+
+Although there is no inherent limit of tenants per node, the current limit is from Linux's open file limit per process. With a class with 6 properties, we could store ~70,000 tenants on a single node before running out of file descriptors.
+
+Concretely, a 9-node cluster using `n1-standard-8` machines in our tests could hold around 170k active tenants, with 18-19k tenants per node.
+
+These numbers may increase in the future if a proposed feature to implement inactive tenants is implemented.
+
+</details>
+
 ## Recap
 
 * Inside Weaviate, you can store _data objects_ which can be represented by a machine learning vector.
@@ -219,6 +272,7 @@ For now, what's important to know is this:
 * You define classes and properties in the schema.
 * We can query using the GraphQL-interface or -in some cases- the RESTful API.
 * Vectors come from machine learning models that you inference yourself or through a Weaviate module.
+* You can use multi-tenancy to isolate data for each tenant.
 
 ## More Resources
 

@@ -106,7 +106,8 @@ An example of a complete class object including properties:
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of class in a multi-node setting, see section below
-  }
+  },
+  "multiTenancyConfig": {"enabled": true}   // Optional, for enabling multi-tenancy for this class (default: false)
 }
 ```
 
@@ -343,6 +344,24 @@ If necessary, they can be configured in the schema per class, and can optionally
 }
 ```
 
+### multiTenancyConfig
+
+:::info Available from `v1.20` onwards
+:::
+
+The `multiTenancyConfig` value will determine whether[multi-tenancy](../concepts/data.md#multi-tenancy) is enabled for this class. If enabled, objects of this class will be isolated for each tenant. It is disabled by default.
+
+To enable it, set the `enabled` key to `true`, as shown below:
+
+```json
+{
+  "class": "MultiTenancyClass",
+  // highlight-start
+  "multiTenancyConfig": {"enabled": true}
+  // highlight-end
+}
+```
+
 ## Property object
 
 Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.
@@ -374,7 +393,7 @@ An example of a complete property object:
 This feature was introduced in `v1.12.0`.
 :::
 
-You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../api/graphql/vector-search-parameters#bm25) and [`hybrid`](../api/graphql/vector-search-parameters#hybrid) operators, and [`where` filters](../api/graphql/filters).
+You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../api/graphql/vector-search-parameters.md#bm25) and [`hybrid`](../api/graphql/vector-search-parameters.md#hybrid) operators, and [`where` filters](../api/graphql/filters.md).
 
 The tokenization of `text` properties can be customized via the `tokenization` field in the property definition:
 
