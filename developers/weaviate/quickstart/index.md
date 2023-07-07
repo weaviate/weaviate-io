@@ -55,7 +55,7 @@ The data comes from a TV quiz show ("Jeopardy!")
 
 </details>
 
-<br/><hr/><br/>
+<hr/><br/>
 
 ## Create a Weaviate instance
 
@@ -105,7 +105,7 @@ For the Weaviate API key, click on the <kbd><i class="fa-solid fa-key"></i></kbd
 <img src={WCSApiKeyLocation} width="60%" alt="Instance API key location"/>
 :::
 
-<br/><hr/><br/>
+<hr/><br/>
 
 ## Install a client library
 
@@ -119,7 +119,7 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 :::
 
-<br/><hr/><br/>
+<hr/><br/>
 
 ## Connect to Weaviate
 
@@ -165,9 +165,9 @@ import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.conn
 
 <ConnectToWeaviateWithKey />
 
-Now you are connected to your Weaviate instance.
+Now you are connected to your Weaviate instance!
 
-<br/><hr/><br/>
+<hr/><br/>
 
 ## Define a class
 
@@ -259,7 +259,7 @@ This creates a class `Question`, tells Weaviate which `vectorizer` to use, and s
 
 Now you are ready to add objects to Weaviate.
 
-<br/><hr/><br/>
+<hr/><br/>
 
 ## Add objects
 
@@ -310,7 +310,7 @@ In this tutorial, they come from `sentence-transformers/all-MiniLM-L6-v2` - the 
 Do *not* specify object vectors as an object property. This will cause Weaviate to treat it as a regular property, rather than as a vector embedding.
 :::
 
-<br/><hr/><br/>
+<hr/><br/>
 
 ## Putting it together
 
@@ -330,7 +330,7 @@ Congratulations, you've successfully built a vector database!
 
 </details>
 
-<br/><hr/><br/>
+<hr/><br/>
 
 ## Query Weaviate
 
@@ -401,11 +401,11 @@ Here, we see that Weaviate has retrieved the same results as before. But now it 
 Generative search sends retrieved data from Weaviate to a large language model (LLM). This allows you to go beyond simple data retrieval, but transform the data into a more useful form, without ever leaving Weaviate.
 ::: -->
 
-<br/><hr/><br/>
+<hr/><br/>
 
 ## Recap
 
-Well done. You have:
+Well done! You have:
 - Created your own cloud-based vector database with Weaviate,
 - Populated it with data objects,
     - Using an inference API, or
@@ -416,20 +416,11 @@ Where next is up to you. We include a few links below - or you can check out the
 
 <!-- TODO - Provide a few concrete "intermediate" learning paths -->
 
-<details>
-  <summary>Note: Sandbox expiry & options</summary>
-
-import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
-
-<SandBoxExpiry/>
-
-</details>
-
-## Troubleshooting
+## Troubleshooting & FAQs
 
 We provide answers to some common questions, or potential issues below.
 
-#### Confirm class creation
+#### How to confirm class creation
 
 <details>
   <summary>See answer</summary>
@@ -475,20 +466,7 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 </details>
 
-#### `nearText` search not working
-
-<details>
-  <summary>See answer</summary>
-
-To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your class.
-
-Make sure you configured it as shown in [this section](#define-a-class).
-
-If it still doesn't work - please [reach out to us](#more-resources)!
-
-</details>
-
-#### Confirm data import
+#### How to confirm data import
 
 <details>
   <summary>See answer</summary>
@@ -512,6 +490,30 @@ You should see:
 ```
 
 Where you should be able to confirm that you have imported all `10` objects.
+
+</details>
+
+#### If the `nearText` search is not working
+
+<details>
+  <summary>See answer</summary>
+
+To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your class.
+
+Make sure you configured it as shown in [this section](#define-a-class).
+
+If it still doesn't work - please [reach out to us](#more-resources)!
+
+</details>
+
+#### Will my sandbox be deleted?
+
+<details>
+  <summary>Note: Sandbox expiry & options</summary>
+
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/>
 
 </details>
 
