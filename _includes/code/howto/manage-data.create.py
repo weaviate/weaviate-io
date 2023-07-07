@@ -8,12 +8,11 @@ import os
 import weaviate
 import json
 
-# Instantiate the client with the user/password and OpenAI api key
+# Instantiate the client with the OpenAI API key
 client = weaviate.Client(
-    'http://localhost:8080',  # Replace with your Weaviate URL
-    # auth_client_secret=weaviate.AuthApiKey('YOUR-WEAVIATE-API-KEY'),  # Replace w/ your Weaviate API key
+    'http://localhost:8080',
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_APIKEY']  # Replace w/ your OPENAI API key
+        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
     }
 )
 

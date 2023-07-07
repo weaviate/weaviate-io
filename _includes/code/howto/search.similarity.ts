@@ -10,10 +10,10 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'edu-demo.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new weaviate.ApiKey('learn-weaviate'),  // If authentication is on. Replace w/ your Weaviate instance API key.
+  host: 'edu-demo.weaviate.network',
+  apiKey: new weaviate.ApiKey('learn-weaviate'),
   headers: {
-    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',
+    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
   },
 });
 
@@ -140,6 +140,33 @@ result = await client.graphql
 
 console.log(JSON.stringify(result, null, 2));
 // END GetWithDistance
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+
+
+// ========================
+// ===== With Autocut =====
+// ========================
+
+// # http://weaviate.io/developers/weaviate/api/graphql/additional-operators#autocut
+
+// START Autocut
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withNearText({
+    concepts: ['animals in movies'],
+  })
+  // highlight-start
+  .withAutocut(1)
+  // highlight-end
+  .withFields('question answer _additional { distance }')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END Autocut
 
 // Tests
 questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));

@@ -1,6 +1,6 @@
 ---
 title: Persistence
-sidebar_position: 16
+sidebar_position: 45
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'persistence']
 ---

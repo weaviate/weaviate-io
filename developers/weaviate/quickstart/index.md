@@ -22,6 +22,10 @@ Welcome to the **Quickstart tutorial**. Here, you will:
 - Import data, and
 - Perform a vector search
 
+:::tip How long will this take?
+This should take around 20 minutes or so.
+:::
+
 :::info Object vectors
 When you import data into Weaviate, you can optionally:
 - Have **Weaviate create vectors**, or
@@ -128,7 +132,7 @@ You can choose any vectorizer (`text2vec-xxx`) module for this tutorial, as long
 - The module is available in the Weaviate instance you are using, and
 - You have an API key (if necessary) for that module.
 
-We use the `text2vec-huggingface` module in the Quickstart, but all of the following modules are available in the free sandbox. 
+We use the `text2vec-huggingface` module in the Quickstart, but all of the following modules are available in the free sandbox.
 
 - `text2vec-cohere`
 - `text2vec-huggingface`
@@ -157,7 +161,7 @@ Now you are connected to your Weaviate instance.
 
 ## Define a class
 
-Next, we need to define a data collection (a "class" in Weaviate) to store objects in. 
+Next, we need to define a data collection (a "class" in Weaviate) to store objects in.
 
 Create a `Question` class with a `vectorizer` configured as shown below. This will allow Weaviate to convert data objects to vectors. It also includes the inference service setting to create vector embeddings. The class definition includes a suggested basic configuration for the module.
 
@@ -250,7 +254,7 @@ Now, we'll add objects using a **batch import** process. We will:
 - Initialize a batch process, and
 - Add objects one by one, specifying the class (in this case, `Question`) to add to.
 
-We'll show both options, first using the `vectorizer` to create object vectors, and then providing custom vectors. 
+We'll show both options, first using the `vectorizer` to create object vectors, and then providing custom vectors.
 
 ### *Option 1*: Use the `vectorizer`
 
@@ -302,7 +306,7 @@ Now, we can run queries.
 
 ### Text similarity search
 
-As we have a `text2vec` module enabled, Weaviate can perform text-based (`nearText`) similarity searches. 
+As we have a `text2vec` module enabled, Weaviate can perform text-based (`nearText`) similarity searches.
 
 Try the `nearText` search shown below, looking for quiz objects related to `biology`.
 
@@ -325,7 +329,7 @@ This example shows why vector searches are powerful. Vectorized data objects all
 Well done. You have:
 - Created your own cloud-based vector database with Weaviate,
 - Populated it with data objects,
-    - Using an inference API, or 
+    - Using an inference API, or
     - Using custom vectors, and
 - Performed a text similarity search.
 

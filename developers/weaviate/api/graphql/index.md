@@ -14,7 +14,7 @@ Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a
 
 ## All references
 
-All references have their individual subpages, click on one of the references below for more information.
+All references have their individual subpages. Click on one of the references below for more information.
 
 - [Get{}](./get.md)
 - [Aggregate{}](./aggregate.md)
@@ -96,7 +96,7 @@ GraphQL _integer_ data currently only supports `int32`, and does not support `in
 
 ## Consistency level
 
-GraphQL queries are run with a [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency) of `ONE`, which is currently not tunable.
+GraphQL (`Get`) queries are run with a tunable [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency).
 
 ## More Resources
 

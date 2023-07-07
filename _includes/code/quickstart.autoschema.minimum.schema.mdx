@@ -28,23 +28,49 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 <TabItem value="go" label="Go">
 
 ```go
-classObj := &models.Class{
-    Class:      "Question",
-    Vectorizer: "text2vec-huggingface",  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
-    ModuleConfig: map[string]interface{}{
-      "text2vec-huggingface": map[string]interface{}{
-        "model": "sentence-transformers/paraphrase-MiniLM-L6-v2",
-        "options": {
-            "waitForModel": true
-        }
-      },
-    },
-}
+package main
 
-// add the schema
-err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
-if err != nil {
-    panic(err)
+import (
+	"context"
+
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
+	"github.com/weaviate/weaviate/entities/models"
+)
+
+func main() {
+	cfg := weaviate.Config{
+		Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
+		Scheme: "https",
+		AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+		Headers: map[string]string{
+			"X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // Replace with your inference API key
+		},
+	}
+
+	client, err := weaviate.NewClient(cfg)
+	if err != nil {
+		panic(err)
+	}
+
+	classObj := &models.Class{
+			Class:      "Question",
+			Vectorizer: "text2vec-huggingface",  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+			ModuleConfig: map[string]interface{}{
+				"text2vec-huggingface": map[string]interface{}{
+					"model": "sentence-transformers/paraphrase-MiniLM-L6-v2",
+					"options": map[string]interface{}{
+						"waitForModel": true,
+					},
+				},
+			},
+		}
+
+	// add the schema
+	err = client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+	if err != nil {
+		panic(err)
+	}
 }
 ```
 

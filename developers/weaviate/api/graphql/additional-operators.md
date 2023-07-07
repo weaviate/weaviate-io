@@ -4,18 +4,19 @@ sidebar_position: 5
 image: og/docs/api.jpg
 # tags: ['graphql', 'additional operators']
 ---
-
-import Badges from '/_includes/badges.mdx';
-
-<Badges/>
-
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
 
+
 ## Syntax
 
-Additional operators such as `limit`, `after` and `sort` are available to modify queries at the class level.
+Additional parameters such as `limit`, `autocut` and `sort` are available to modify queries at the class level.
 <!--
 For example:
 
@@ -28,9 +29,7 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 Supported by the `Get{}`, `Explore{}` and `Aggregate{}` function.
 
-A `limit` argument limits the number of results.
-
-An example of a stand-alone `limit` filter:
+A `limit` argument limits the number of results to a specified positive integer:
 
 import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
@@ -71,9 +70,9 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
 Supported by the `Get{}` and `Explore{}` functions.
 
-The offset parameter works in conjunction with the existing limit parameter. For example, to list the first ten results, set `limit: 10`. Then, to "display the second page of 10", set `offset: 10`, `limit:10` and so on. E.g. to show the 9th page of 10 results, set `offset:80, limit:10` to effectively display results 81-90.
+The `offset` parameter works in conjunction with the existing `limit` parameter. For example, to list the first ten results, set `limit: 10`. Then, to "display the second page of 10", set `offset: 10`, `limit:10` and so on. E.g. to show the 9th page of 10 results, set `offset: 80, limit: 10` to effectively display results 81-90.
 
-An example of a stand-alone `limit` filter:
+Here's an example of `limit` + `offset`:
 
 import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
 
@@ -118,9 +117,67 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 - Due to the increasing cost of each page outlined above, there is a limit to how many objects can be retrieved using pagination. By default setting the sum of `offset` and `limit` to higher than 10,000 objects, will lead to an error. If you must retrieve more than 10,000 objects, you can increase this limit by setting the environment variable `QUERY_MAXIMUM_RESULTS=<desired-value>`. Warning: Setting this to arbitrarily high values can make the memory consumption of a single query explode and single queries can slow down the entire cluster. We recommend setting this value to the lowest possible value that does not interfere with your users' expectations.
 - The pagination setup is not stateful. If the database state has changed between retrieving two pages there is no guarantee that your pages cover all results. If no writes happened, then pagination can be used to retrieve all possible within the maximum limit. This means asking for a single page of 10,000 objects will lead to the same results overall as asking for 100 pages of 100 results.
 
+
+## Autocut
+
+Starting with Weaviate `v1.20`, the `autocut` filter can be added as an argument to class objects retrieved via the `nearXXX`, `bm25` and `hybrid` operators. `autocut: <N>`, where N is an integer > 0, limits the number of results to those up to the Nth "jump"/"drop" in the distance/score from the query. For example, if the distances for six objects returned by `nearText` were `[0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]` then `autocut: 1` would return the first three objects, `autocut: 2` would return all but the last object, and `autocut: 3` would return all objects. Autocut is disabled by default, and can be disabled explicitly by setting its value to `0` or a negative number.
+
+If `autocut` is combined with `limit: N`, then `autocut`'s input will be limited to the first `N` objects.
+
+<!-- TODO: Update with link to blog:
+For more `autocut` examples and to learn about the motivation behind this filter, see the [v1.20 release blog post](/blog). -->
+
+Autocut can be used as follows:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START Autocut Python"
+      endMarker="# END Autocut Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Autocut"
+      endMarker="// END Autocut"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START Autocut GraphQL"
+      endMarker="# END Autocut GraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START Expected nearText results"
+  endMarker="# END Expected nearText results"
+  language="json"
+/>
+
+</details>
+
+For more client code examples for each operator category, see [autocut with similarity search](../../search/similarity.md#autocut), [autocut with `bm25`](../../search/bm25.md#autocut) and [autocut with `hybrid`](../../search/hybrid.md#autocut).
+
+
 ## Cursor with `after`
 
-Starting with version `1.18`, the `after` parameter can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
+Starting with version `v1.18`, the `after` parameter can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
 
 The `after` parameter relies on the order of ids. It can therefore only be applied to list queries without any search operators. In other words, `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, etc.
 
@@ -181,6 +238,7 @@ import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 :::note
 The `after` cursor is available on both single-shard and multi-shard set-ups.
 :::
+
 
 ## Sorting
 

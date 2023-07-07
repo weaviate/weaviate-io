@@ -11,7 +11,7 @@ client = weaviate.Client(
     'http://localhost:8080',  # Replace with your Weaviate URL
     # auth_client_secret=weaviate.AuthApiKey('YOUR-WEAVIATE-API-KEY'),  # Replace w/ your Weaviate API key
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_APIKEY']  # Replace w/ your OPENAI API key
+        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']  # Replace w/ your OPENAI API key
     }
 )
 
