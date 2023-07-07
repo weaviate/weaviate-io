@@ -9,6 +9,9 @@ import Badges from '/_includes/badges.mdx';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.ts';
+
 
 <Badges/>
 
@@ -39,31 +42,28 @@ To add tenants to a class, you must provide the tenant names to the Weaviate cla
 
 Code examples are shown below in which the tenants `tenantA` and `tenantB` are added to the class `MultiTenancyClass`:
 
-<!-- TODO: Refactor code examples to separate out Python/TS/etc. files -->
 <!-- TODO: Add TS/Go/Java examples -->
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
-
-  ```python
-  # add tenants to that schema
-  from weaviate import Tenant
-
-  client.schema.add_class_tenants(
-      class_name="MultiTenancyClass",  # The class to which the tenants will be added
-      tenants=[Tenant(name="tenantA"), Tenant(name="tenantB")]
-  )
-  ```
-
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START AddTenantsToClass"
+      endMarker="# END AddTenantsToClass"
+      language="py"
+    />
   </TabItem>
-  <TabItem value="js" label="TypeScript">
 
-  ```ts
-  // TypeScript code coming soon
-  ```
-
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START AddTenantsToClass"
+      endMarker="// END AddTenantsToClass"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
+
 
 ### List tenant(s)
 
@@ -73,50 +73,49 @@ Code examples are shown below for listing the existing tenants in the `MultiTena
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
-
-  ```python
-  # Add tenants to a class
-  client.schema.get_class_tenants(
-    class_name="MultiTenancyClass"  # The class from which the tenants will be retrieved
-  )
-  ```
-
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START ListTenants"
+      endMarker="# END ListTenants"
+      language="py"
+    />
   </TabItem>
-  <TabItem value="js" label="TypeScript">
 
-  ```ts
-  // TypeScript code coming soon
-  ```
-
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ListTenants"
+      endMarker="// END ListTenants"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
+
 
 ### Delete tenant(s)
 
 You can delete one or more existing tenants in a class by providing the Weaviate class name.
 
-Code examples are shown below for listing the existing tenants in the `MultiTenancyClass` class:
+If a tenant specified for deletion doesn't belong to the class, it is ignored.
+
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
-
-  ```python
-  # Remove a list of tenants from a class
-  client.schema.remove_class_tenants(
-    class_name="MultiTenancyClass",  # The class from which the tenants will be removed
-    # highlight-start
-    tenants=["tenantA", "tenantX"]  # The tenants to be removed
-    # highlight-end
-  )
-  ```
-
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START RemoveTenants"
+      endMarker="# END RemoveTenants"
+      language="py"
+    />
   </TabItem>
-  <TabItem value="js" label="TypeScript">
 
-  ```ts
-  // TypeScript code coming soon
-  ```
-
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RemoveTenants"
+      endMarker="// END RemoveTenants"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
 
@@ -130,28 +129,24 @@ Code examples are shown below for creating an object in the `MultiTenancyClass` 
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
-
-  ```python
-  client.data_object.create(
-      class_name="MultiTenancyClass",  # The class to which the object will be added
-      data_object={
-          "question": "This vector DB is OSS & supports automatic property type inference on import"
-      },
-      # highlight-start
-      tenant="tenantA"  # The tenant to which the object will be added,
-      # highlight-end
-  )
-  ```
-
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START CreateMtObject"
+      endMarker="# END CreateMtObject"
+      language="py"
+    />
   </TabItem>
-  <TabItem value="js" label="TypeScript">
 
-  ```ts
-  // TypeScript code coming soon
-  ```
-
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateMtObject"
+      endMarker="// END CreateMtObject"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
+
 
 ### Search queries
 
@@ -163,27 +158,24 @@ Code examples are shown below for fetching one object in the `MultiTenancyClass`
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
-
-  ```python
-  results = (
-      client.query.get("MultiTenancyClass", ["property1", "property2"])
-      .with_limit(1)
-      # highlight-start
-      .with_tenant("tenantA")
-      # highlight-end
-      .do()
-  )
-  ```
-
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START Search"
+      endMarker="# END Search"
+      language="py"
+    />
   </TabItem>
-  <TabItem value="js" label="TypeScript">
 
-  ```ts
-  // TypeScript code coming soon
-  ```
-
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Search"
+      endMarker="// END Search"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
+
 
 ## Cross-references
 
@@ -193,33 +185,30 @@ You can establish a cross-reference from a multi-tenancy class object to:
 - A non-multi-tenancy class object, or
 - A multi-tenancy class object belonging to the same tenant.
 
-Code examples are shown below for creating a cross-reference between two objects. It links an object in the `MTPassage` class that belongs to `tenantA` to an object in the `Document` class:
+The example below creates a cross-reference between two objects. It links an object in the `MultiTenancyClass` class that belongs to `tenantA`, to an object in the `JeopardyCategory` class:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
-
-  ```python
-  client.data_object.reference.add(
-      from_uuid="38618fc9-534c-5484-807e-f63593287eaa"  # MTPassage object UUID
-      from_class_name="MTPassage",
-      from_property_name="ofDocument",
-      tenant="tenantA",
-      to_class_name="Document",
-      to_uuid="22ff67f5-8534-58ec-b306-f0e76018f07f"  # Document object UUID
-  )
-  ```
-
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START AddCrossRef"
+      endMarker="# END AddCrossRef"
+      language="py"
+    />
   </TabItem>
-  <TabItem value="js" label="TypeScript">
 
-  ```ts
-  // TypeScript code coming soon
-  ```
-
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START AddCrossRef"
+      endMarker="// END AddCrossRef"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
 
-As described above, the `Document` class object can be either:
+
+As described above, the `JeopardyCategory` class object can be either:
 - A non-multi-tenancy object or
 - A multi-tenancy object belonging to `tenantA`.
 
@@ -228,4 +217,3 @@ As described above, the `Document` class object can be either:
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
-
