@@ -4,7 +4,7 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-// EndToEndExample  // InstantiationExample  // NearTextExample  // CustomVectorExample
+// EndToEndExample  // InstantiationExample  // NearTextExample  // GenerativeSearchExample  // CustomVectorExample
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 import fetch from 'node-fetch';
 
@@ -15,7 +15,7 @@ const client: WeaviateClient = weaviate.client({
   headers: { 'X-HuggingFace-Api-Key': 'YOUR-HUGGINGFACE-API-KEY' },  // Replace with your inference API key
 });
 
-// END EndToEndExample  // END InstantiationExample  // END NearTextExample  // END CustomVectorExample
+// END EndToEndExample  // END InstantiationExample  // END NearTextExample  // END GenerativeSearchExample  // END CustomVectorExample
 
 // ================================
 // ===== END-TO-END EXAMPLE =====
@@ -107,6 +107,44 @@ async function nearTextQuery() {
 
 // END NearTextExample
 
+// NearTextWhereExample
+async function nearTextWhereQuery() {
+  const res = await client.graphql
+    .get()
+    .withClassName('Question')
+    .withFields('question answer category')
+    .withNearText({concepts: ['biology']})
+    .withWhere({
+      'path': ['category'],
+      'operator': 'Equal',
+      'valueText': 'ANIMALS'
+    })
+    .withLimit(2)
+    .do();
+
+  console.log(JSON.stringify(res, null, 2));
+  return res
+}
+
+// END NearTextWhereExample
+
+// GenerativeSearchExample
+async function generativeSearchQuery() {
+  const res = await client.graphql
+    .get()
+    .withClassName('Question')
+    .withFields('question answer category')
+    .withNearText({concepts: ['biology']})
+    .withGenerate({singlePrompt: 'Explain {answer} as you might to a five-year-old.'})
+    .withLimit(2)
+    .do();
+
+  console.log(JSON.stringify(res, null, 2));
+  return res
+}
+
+// END GenerativeSearchExample
+
 // Define test functions
 async function getNumObjects() {
   const res = await client.graphql
@@ -164,6 +202,18 @@ or prevent it from populating the instance when it should not.
 // NearTextExample
 await nearTextQuery();
 // END NearTextExample
+*/
+
+/*
+// NearTextExample
+await nearTextWhereQuery();
+// END NearTextExample
+*/
+
+/*
+// GenerativeSearchExample
+await generativeSearchQuery();
+// END GenerativeSearchExample
 */
 
 
