@@ -463,6 +463,10 @@ import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 
 Pass a payload with an array of tenant objects in the form of `[{"name": TENANT_NAME1}, {"name": TENANT_NAME2}]` to add to the class. Tenants are used to separate data between different users or groups of users.
 
+import TenantNameFormat from '/_includes/tenant-names.mdx';
+
+<TenantNameFormat/>
+
 ```js
 POST v1/schema/{class_name}/tenants
 ```
