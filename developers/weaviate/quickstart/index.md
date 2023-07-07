@@ -130,35 +130,6 @@ From the <kbd>Details</kbd> tab in WCS, get:
 And because we will use the Hugging Face inference API to generate vectors, you need:
 - A Hugging Face **inference API key**.
 
-:::tip Choose your own vectorizer module
-In this example, we use the `Hugging Face` inference API. But you can use others:
-<br/>
-<details>
-  <summary>What if I want to use a different vectorizer module?</summary>
-
-You can choose any vectorizer (`text2vec-xxx`) module for this tutorial, as long as:
-- The module is available in the Weaviate instance you are using, and
-- You have an API key (if necessary) for that module.
-
-We use the `text2vec-huggingface` module in the Quickstart, but all of the following modules are available in the free sandbox.
-
-- `text2vec-cohere`
-- `text2vec-huggingface`
-- `text2vec-openai`
-- `text2vec-palm`
-
-Depending on your choice, make sure to pass on the API key for the inference service by setting the header with an appropriate line from below, remembering to replace the placeholder with your actual key:
-
-```js
-"X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",  // For Cohere
-"X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // For Hugging Face
-"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // For OpenAI
-"X-Palm-Api-Key": "YOUR-PALM-API-KEY",  // For PaLM
-```
-
-</details>
-:::
-
 So, instantiate the client as follows:
 
 import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
@@ -178,9 +149,35 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.m
 <CodeAutoschemaMinimumSchema />
 
 <details>
-  <summary>If you are using a different vectorizer</summary>
+  <summary>What if I want to use a different vectorizer module?</summary>
 
-In case you are using a different vectorizer, we also provide suggested `vectorizer` module configurations.
+In this example, we use the `Hugging Face` inference API. But you can use others.
+
+:::tip Our recommendation
+Vectorizer selection is a big topic - so for now, we suggest sticking to the defaults and focus on learning the basics of Weaviate.
+:::
+
+If you do want to change the vectorizer, you can - as long as:
+- The module is available in the Weaviate instance you are using, and
+- You have an API key (if necessary) for that module.
+
+Each of the following modules is available in the free sandbox.
+
+- `text2vec-cohere`
+- `text2vec-huggingface`
+- `text2vec-openai`
+- `text2vec-palm`
+
+Depending on your choice, make sure to pass on the API key for the inference service by setting the header with an appropriate line from below, remembering to replace the placeholder with your actual key:
+
+```js
+"X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",  // For Cohere
+"X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // For Hugging Face
+"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // For OpenAI
+"X-Palm-Api-Key": "YOUR-PALM-API-KEY",  // For PaLM
+```
+
+Additionally, we also provide suggested `vectorizer` module configurations.
 
 <Tabs groupId="inferenceAPIs">
 <TabItem value="cohere" label="Cohere">
