@@ -17,16 +17,15 @@ import WCSApiKeyLocation from '../../wcs/img/wcs-apikey-location.png';
 
 ## Overview
 
-Welcome to the **Quickstart tutorial**, where you'll a quick taste of what you can do with Weaviate.
+Welcome to the **Quickstart tutorial**, where you'll get a quick taste of what you can do with Weaviate.
 
 You will:
-- Create a vector database with Weaviate Cloud Services (WCS),
+- Create a vector database,
 - Import data,
 - Use *semantic search*, and
 - Bring LLMs to your data with *generative search*.
 
-:::tip How long will this take?
-This should take around 20 minutes or so.
+:::tip This should take around 20 minutes.
 :::
 
 :::info Object vectors
@@ -39,10 +38,12 @@ This tutorial demonstrates both methods.
 
 ### Source data
 
-We will use a (tiny) dataset from a TV quiz show ("Jeopardy!").
+We will use a (tiny) dataset of quizzes.
 
 <details>
   <summary>Take a look at the dataset</summary>
+
+The data comes from a TV quiz show ("Jeopardy!")
 
 |    | Category   | Question                                                                                                          | Answer                  |
 |---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------|
@@ -59,15 +60,17 @@ We will use a (tiny) dataset from a TV quiz show ("Jeopardy!").
 
 </details>
 
+<hr/>
+
 ## Create a Weaviate instance
 
-First, create a Weaviate database instance. We'll use a free instance from Weaviate Cloud Services (WCS).
+First, create a Weaviate database with Weaviate Cloud Services (WCS).
 
 1. Go to the [WCS Console](https://console.weaviate.cloud), and
-    1. Click on <kbd>Sign in with the Weaviate Cloud Services</kbd>.
+    1. Click <kbd>Sign in with the Weaviate Cloud Services</kbd>.
     1. If you don't have a WCS account, click on <kbd>Register</kbd>.
 1. Sign in with your WCS username and password.
-1. Click on <kbd>Create cluster</kbd>.
+1. Click <kbd>Create cluster</kbd>.
 
 <details>
   <summary>See screenshot</summary>
@@ -82,7 +85,7 @@ Then:
 
 1. Select the <kbd>Free sandbox</kbd> plan tier.
 1. Provide a *Cluster name*. This plus a suffix will be your URL.
-1. Set the *Enable Authentication?* option to <kbd>YES</kbd>.
+1. Set *Enable Authentication?* to <kbd>YES</kbd>.
 
 <details>
   <summary>See screenshot</summary>
@@ -93,11 +96,17 @@ Your selections should look like this:
 
 </details>
 
-Finally, click on <kbd>Create</kbd>. A tick ✔️ will appear (in ~2 minutes) when the instance has been created.
+Finally, click <kbd>Create</kbd>. This will take ~2 minutes and you'll see a tick ✔️ when finished.
 
-### Make note of cluster details
+### Note your cluster details
 
-You will need the cluster URL, and authentication details. Click on the <kbd>Details</kbd> button to see them. The authentication details (**Weaviate API key**) can be found by clicking on the key button.
+You will need:
+- The cluster URL, and
+- Authentication details (Weaviate API key).
+
+Click <kbd>Details</kbd> to see them.
+
+For the Weaviate API key, click on the <kbd><i class="fa-solid fa-key"></i></kbd> button.
 
 <details>
   <summary>See screenshot</summary>
@@ -116,9 +125,11 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 <CodeClientInstall />
 
+<hr/>
+
 ## Connect to Weaviate
 
-Now connect to your Weaviate instance. From the <kbd>Details</kbd> tab in WCS, get:
+Now, connect to your Weaviate instance. From the <kbd>Details</kbd> tab in WCS, get:
 - The Weaviate instance **API key**, and
 - The Weaviate instance **URL**.
 
