@@ -33,6 +33,9 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
   <RestObjectsCRUDClassnameNote/>
 </details>
 
+:::tip Multi-tenancy
+Where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+:::
 
 ## Get object by id
 
@@ -59,7 +62,7 @@ To retrieve an object by id, [make a `GET` request to the `/v1/objects` REST API
 </Tabs>
 
 
-# Retrieve the object vector
+## Retrieve the object vector
 
 To retrieve the object vector, set the `vector` parameter:
 
