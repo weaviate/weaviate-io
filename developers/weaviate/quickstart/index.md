@@ -31,7 +31,7 @@ With Weaviate, you have options to:
 This tutorial demonstrates both methods.
 :::
 
-### Source data
+#### Source data
 
 We will use a (tiny) dataset of quizzes.
 
@@ -57,7 +57,7 @@ The data comes from a TV quiz show ("Jeopardy!")
 
 <hr/><br/>
 
-## Create a Weaviate instance
+## Create an instance
 
 First, create a Weaviate database.
 
@@ -271,7 +271,7 @@ Batch imports provide significantly improved import performance, so you should a
 
 First, you will use the `vectorizer` to create object vectors.
 
-### *Option 1*: Use the `vectorizer`
+### *Option 1*: `vectorizer`
 
 The below passes object data without a vector. This causes Weaviate to use the specified `vectorizer` to create a vector embedding for each object.
 
@@ -309,9 +309,9 @@ Do *not* specify object vectors as an object property. This will cause Weaviate 
 
 <hr/><br/>
 
-## Putting it together
+# Putting it together
 
-The following code puts it all together. You can run it yourself to import the data into your Weaviate instance.
+The following code puts the above steps together. You can run it yourself to import the data into your Weaviate instance.
 
 <details>
   <summary>End-to-end code</summary>
@@ -329,7 +329,7 @@ Congratulations, you've successfully built a vector database!
 
 <hr/><br/>
 
-## Query Weaviate
+## Queries
 
 Now, we can run queries.
 
