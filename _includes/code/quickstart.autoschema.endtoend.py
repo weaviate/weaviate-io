@@ -1,4 +1,4 @@
-# EndToEndExample  # InstantiationExample  # NearTextExample
+# EndToEndExample  # InstantiationExample  # NearTextExample  # GenerativeSearchExample
 import weaviate
 import json
 
@@ -10,7 +10,7 @@ client = weaviate.Client(
     }
 )
 
-# END EndToEndExample  # END InstantiationExample  # END NearTextExample
+# END EndToEndExample  # END InstantiationExample  # END NearTextExample  # END GenerativeSearchExample
 
 # EndToEndExample
 # ===== add schema =====
@@ -79,6 +79,51 @@ print(json.dumps(response, indent=4))
 # ===== Test query responses =====
 assert len(response["data"]["Get"]["Question"]) == 2
 assert response["data"]["Get"]["Question"][0]["answer"] == "DNA"
+
+# NearTextWhereExample
+nearText = {"concepts": ["biology"]}
+
+response = (
+    client.query
+    .get("Question", ["question", "answer", "category"])
+    .with_near_text(nearText)
+    .with_where({
+        "path": ["category"],
+        "operator": "Equal",
+        "valueText": "ANIMALS"
+    })
+    .with_limit(2)
+    .do()
+)
+
+print(json.dumps(response, indent=4))
+# END NearTextWhereExample
+
+# ===== Test query responses =====
+assert len(response["data"]["Get"]["Question"]) == 2
+assert response["data"]["Get"]["Question"][0]["answer"] == "Elephant"
+
+# GenerativeSearchExample
+nearText = {"concepts": ["biology"]}
+
+response = (
+    client.query
+    .get("Question", ["question", "answer", "category"])
+    .with_near_text(nearText)
+    .with_generate(single_prompt="Explain {answer} as you might to a five-year-old.")
+    .with_limit(2)
+    .do()
+)
+
+print(json.dumps(response, indent=4))
+# END GenerativeSearchExample
+
+# ===== Test query responses =====
+assert len(response["data"]["Get"]["Question"]) == 2
+assert response["data"]["Get"]["Question"][0]["answer"] == "DNA"
+assert "singleResult" in response["data"]["Get"]["Question"][0]["_additional"]["generate"].keys()
+
+# Cleanup
 
 client.schema.delete_class("Question")  # Cleanup after
 
