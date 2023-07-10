@@ -51,7 +51,7 @@ For the first approach we will use the open-source [Grafana agent](https://grafa
 
 ### Steps to Install
 
-1\. Install Grafana agent in your target environment following the [set-up guide](https://grafana.com/docs/agent/latest/set-up/).
+1\. Install Grafana agent in your target environment following the [set-up guide](https://grafana.com/docs/agent/latest/).
 
 2\. Configure the Grafana `agent.yaml` to include a scrape job called `weaviate`. This will autodiscover Weaviate pods
  in Kubernetes. The `app=weaviate` label is automatically added by the Weaviate helm chart which makes autodiscovery easy.
