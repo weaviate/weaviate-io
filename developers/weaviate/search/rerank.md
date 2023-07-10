@@ -1,6 +1,6 @@
 ---
 title: Reranking
-sidebar_position: 100
+sidebar_position: 75
 image: og/docs/howto.jpg
 # tags: ['how to', 'rank']
 ---
@@ -13,16 +13,15 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
 ## Overview
 
-This page shows you how to rerank a search result set returned by [vector](similarity.md), [bm25](bm25.md), or [hybrid](hybrid.md) operators. Reranking is useful to improve search relevance by reordering the result set returned by a [retriever](../modules/retriever-vectorizer-modules/index.md).
+This page shows you how to rerank a search result set returned by [vector](similarity.md), [bm25](bm25.md), or [hybrid](hybrid.md) operators.
 
-Reranking computes a relevance score between the query and each data object, and returns the list of objects sorted from the most to the least relevant. Computing this score for all `(query, data_object)` pairs would be prohibitively slow, which is why reranking is used as a second stage after retrieving the relevant objects first.
-
-Weaviate supports two reranker modules:
+There are two reranker modules available:
 * [reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
 * [reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
 
 :::info Related pages
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
+- [Concepts: Reranking](../concepts/reranking.md)
 :::
 
 import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
@@ -32,10 +31,11 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 ## Requirements
 
-To rerank search results, you'll need:
-* a reranker module enabled
-* a vector, bm25, or hybrid query
- 
+To rerank search results, you'll need a reranker module enabled.
+You can rerank results using:
+- The same query as the initial search, or
+- A different reranking query.
+
 
 ## Reranking vector search results
 
