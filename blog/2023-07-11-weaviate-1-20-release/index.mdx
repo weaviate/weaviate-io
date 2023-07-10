@@ -5,7 +5,7 @@ authors: [dan,erika,jp,zain]
 date: 2023-07-11
 image: ./img/hero.png
 tags: ['release', 'engineering']
-description: "Weaviate 1.20 - multi-tenancy, PQ, search re-ranking, autocut, and more!"
+description: "Weaviate 1.20 released with multi-tenancy, PQ, search re-ranking, autocut, hybrid fusion algorithm ... take a look!"
 
 ---
 Weaviate `1.20` is here! As always, a brand-new release means a set of brand-new features. Here are the ⭐️*highlights*⭐️:
@@ -27,8 +27,6 @@ Downgrading from `1.20.x` to a `1.19.x` or lower is not possible.
 Please proceed with caution, such as by making a backup of your data & schema, or cluster before upgrading.
 :::
 
-<!-- TODO - add links to various doc pages once doc branch merged -->
-
 ## Multi-tenancy
 
 > **Store data from up to millions of tenants in a single setup.**
@@ -41,6 +39,11 @@ We’ll keep this brief as Etienne covered this in great detail in [this blog po
 This means that scaling your business or infrastructure to include data from a large group of users is easier and faster than ever. We have worked with our community on this feature to ensure that your compliance needs are met as well as performance needs, while keeping the experience a smooth one for everybody. Our multi-tenancy implementation allows for huge numbers of diverse users - whether they be large or small, and regardless of how often they access Weaviate.
 
 The result is a multi-tenancy solution that we are very proud of. This is an opt-in feature, where to use multi-tenancy, you simply enable the feature and add the tenant key for each operation as required.
+
+:::tip Read more:
+- [Concepts: Data # Multi-tenancy](/developers/weaviate/concepts/data#multi-tenancy)
+- [How-to manage data: Multi-tenancy operations](/developers/weaviate/manage-data/multi-tenancy)
+:::
 
 ## PQ + Re-scoring
 
@@ -109,6 +112,11 @@ A more real-world dataset example:
 
 As can be clearly seen above, previously there was a cost to be paid for compressing whereas now there is no real cost - compressed vs uncompressed performance is nearly identical even at high compression ratios. In addition to the experiments above, where we use Gist and `ada002` vectorized DBPedia, we’ve also done many more tests using real-world datasets including high-dimensional vectors such as Meta’s Sphere. These tests demonstrate that we can generate high recall with PQ + rescoring achieving significant memory reduction. More to follow on these detailed experiments soon!
 </details>
+
+:::tip Read more:
+- [Concepts: Vector Indexing # Product Quantization](/developers/weaviate/concepts/vector-index#hnsw-with-product-quantizationpq)
+- [How-to configure: Indexes # Vector index (see `pq`)](/developers/weaviate/configuration/indexes#weaviates-vector-index)
+:::
 
 ## Autocut
 
@@ -184,6 +192,13 @@ Autocut aims approximate where a user would “cut” the results intuitively af
 
 It can be combined with all [vector search operators](/developers/weaviate/api/graphql/get#vector-search-operators): `nearXXX`, `bm25`, and `hybrid`. `autocut` is placed after the operator, at the same level with `limit`/`offset`. It is disabled by default and can be explicitly disabled by setting its value to 0 or a negative number.
 
+:::tip Read more:
+- [GraphQL references: Additional operators # Autocut](/developers/weaviate/api/graphql/additional-operators#autocut)
+- [How-to search: Similarity search # Autocut](/developers/weaviate/search/similarity#autocut)
+- [How-to search: BM25 search # Autocut](/developers/weaviate/search/bm25#autocut)
+- [How-to search: Hybrid search # Autocut](/developers/weaviate/search/hybrid#autocut)
+:::
+
 ## Search re-ranking
 
 > **Multi-stage search for a better final results set.**
@@ -240,6 +255,12 @@ You can specify which `property` of the `Product` class you want to pass to the 
 
 This is just a first step in integrating ranking models with Weaviate. Read [our blog here](/blog/ranking-models-for-better-search) for further thoughts on this exciting space, and let us know what you want to see next 😉!
 
+:::tip Read more:
+- [Modules / Reranker-cohere](/developers/weaviate/modules/retriever-vectorizer-modules/reranker-cohere)
+- [Modules / Reranker-transformers](/developers/weaviate/modules/retriever-vectorizer-modules/reranker-transformers)
+- [How-to search: Reranking](/developers/weaviate/search/rerank)
+:::
+
 ## New hybrid search ranking algorithm
 
 > **A score-based hybrid results merger algorithm.**
@@ -284,6 +305,11 @@ Please refer to our documentation for more code examples, including for various 
 In our internal benchmarks, it showed improved recall performance over the existing algorithm, and we encourage you to try it out. This change also enables the new `AutoCut` feature to be used with hybrid searches, allowing you to automate how the search result threshold is set.
 
 Stay tuned, as we’ll be describing the `relative score fusion` feature in more detail in a separate blog post soon 👀.
+
+:::tip Read more:
+- [GraphQL references: Vector search parameters # hybrid](/developers/weaviate/api/graphql/vector-search-parameters#variables-2)
+- [How-to search: Hybrid](/developers/weaviate/search/hybrid)
+:::
 
 ## And more!
 
