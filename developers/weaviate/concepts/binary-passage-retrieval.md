@@ -1,6 +1,6 @@
 ---
 title: Binary Passage Retrieval
-sidebar_position: 15
+sidebar_position: 80
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'binary-passage-retrieval', 'memory consumption', 'learning-to-hash', 'resource optimization']
 ---
