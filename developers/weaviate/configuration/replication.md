@@ -1,6 +1,6 @@
 ---
 title: Replication
-sidebar_position: 19
+sidebar_position: 60
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'operations', 'monitoring', 'observability']
 ---

@@ -50,7 +50,7 @@ This filter allows you to find data objects in the vicinity of an input vector. 
 
 ### Variables
 
-| Variables | Required | Type | Description |
+| Variable | Required | Type | Description |
 | --- | --- | --- | --- |
 | `vector` | yes | `[float]` | This variable takes a vector embedding in the form of an array of floats. The array should have the same length as the vectors in this class. |
 | `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
@@ -81,7 +81,7 @@ This filter allows you to find data objects in the vicinity of other data object
 
 ### Variables
 
-| Variables | Required | Type | Description |
+| Variable | Required | Type | Description |
 | --------- | -------- | ---- | ----------- |
 | `id` | yes | `UUID` | Data object identifier in the uuid format. |
 | `beacon` | yes | `url` | Data object identifier in the beacon URL format. E.g., `weaviate://<hostname>/<kind>/id`. |
@@ -146,11 +146,16 @@ This filter allows you to combine [BM25](#bm25) and vector search to get the bes
 | `alpha`      | no       | `float`    | weighting for each search algorithm, default 0.75                           |
 | `vector`     | no       | `[float]`  | optional to supply your own vector                                          |
 | `properties` | no       | `[string]` | list of properties to limit the BM25 search to, default all text properties |
+| `fusionType` | no       | `[string]` | the type of hybrid fusion algorithm (available from `v1.20.0`)              |
 
-* Note: `alpha` can be any number from 0 to 1, defaulting to 0.75.
-  * `alpha` = 0 forces using a pure **keyword** search method (BM25)
-  * `alpha` = 1 forces using a pure **vector** search method
-  * `alpha` = 0.5 weighs the BM25 and vector methods evenly
+* Notes:
+    * `alpha` can be any number from 0 to 1, defaulting to 0.75.
+        * `alpha` = 0 forces using a pure **keyword** search method (BM25)
+        * `alpha` = 1 forces using a pure **vector** search method
+        * `alpha` = 0.5 weighs the BM25 and vector methods evenly
+    * `fusionType` can be `rankedFusion` or `relativeScoreFusion`
+        * `rankedFusion` (default) adds inverted ranks of the BM25 and vector search methods
+        * `relativeScoreFusion` adds normalized scores of the BM25 and vector search methods
 
 ### GraphQL response
 
@@ -213,8 +218,8 @@ The `bm25` operator supports the following variables:
 
 | Variables | Required | Description |
 | --------- | -------- | ----------- |
-| `query`   | yes      | the keyword search query |
-| `properties` | no    | array of properties (fields) to search in, defaulting to all properties in the class|
+| `query`   | yes      | The keyword search query. |
+| `properties` | no    | Array of properties (fields) to search in, defaulting to all properties in the class. |
 
 :::info Boosting properties
 Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
@@ -304,7 +309,7 @@ You can use a group operator to combine similar concepts (aka _entity merging_).
 
 ### Variables
 
-| Variables | Required | Type | Description |
+| Variable | Required | Type | Description |
 | --------- | -------- | ---- | ----------- |
 | `type` | yes | `string` | You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
 | `force` | yes | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
@@ -380,7 +385,7 @@ This filter allows you to find data objects in the vicinity of the vector repres
 
 ### Variables
 
-| Variables | Required | Type | Description |
+| Variable | Required | Type | Description |
 | --- | --- | --- | --- |
 | `concepts` | yes | `[string]` | An array of strings that can be natural language queries, or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing). |
 | `certainty` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values.<br/>Values can be between 0 (no match) and 1 (perfect match).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `distance` variable. |
@@ -405,7 +410,7 @@ import GraphQLFiltersNearText from '/_includes/code/graphql.filters.nearText.mdx
 
 ### Example II
 
-You can also bias results toward other data objects' vector representations. For example, in this query, we move our query about "travelling in asia", towards an article on food. 
+You can also bias results toward other data objects' vector representations. For example, in this query, we move our query about "travelling in asia", towards an article on food.
 
 import GraphQLFiltersNearText2Obj from '/_includes/code/graphql.filters.nearText.2obj.mdx';
 
@@ -494,7 +499,7 @@ This filter allows you to return answers to questions by running the results thr
 
 ### Variables
 
-| Variables | Required | Type | Description |
+| Variable | Required | Type | Description |
 | --------- | -------- | ---- | ----------- |
 | `question` 	| yes	| `string` | The question to be answered. |
 | `certainty` | no 	| `float` | Desired minimal certainty or confidence of answer to the question. The higher the value, the stricter the search becomes. The lower the value, the fuzzier the search becomes. If no certainty is set, any answer that could be extracted will be returned. |

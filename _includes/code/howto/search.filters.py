@@ -1,4 +1,4 @@
-# Howto: Add conditional filters - Python examples
+# Howto: Search -> Filters - Python examples
 
 # ================================
 # ===== INSTANTIATION-COMMON =====

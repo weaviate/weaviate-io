@@ -14125,10 +14125,10 @@ weaviate-ts-client@^1.3.0:
     isomorphic-fetch "^3.0.0"
     uuid "^9.0.0"
 
-weaviate-ts-client@^1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/weaviate-ts-client/-/weaviate-ts-client-1.3.3.tgz#dbd00727579475d31b2c0ae6db4e4b3dbd4d0ac3"
-  integrity sha512-Xj/MPQrmkVan8aLUDmPAyhmGZHAfbTMbbHwzKXXjKa3kSpEzImL4M5YF5kKaTCf6e77kSolDbqiAgBDkcjPR/Q==
+weaviate-ts-client@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/weaviate-ts-client/-/weaviate-ts-client-1.4.0.tgz#e1adb670f2c1930a82601efb915b0131f6988b7e"
+  integrity sha512-G2V/IWMHXDjoJeATUYKkZXzAs7iRj4GE8B3AX59XDqMRW12X7VUkRgo4xWcHH1bjpLIHUYTzD5qZXcB8P9Hdmw==
   dependencies:
     graphql-request "^5.1.0"
     isomorphic-fetch "^3.0.0"

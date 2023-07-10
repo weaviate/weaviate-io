@@ -1,12 +1,16 @@
 ---
 title: Binary Passage Retrieval
-sidebar_position: 15
+sidebar_position: 80
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'binary-passage-retrieval', 'memory consumption', 'learning-to-hash', 'resource optimization']
 ---
 import Badges from '/_includes/badges.mdx';
 
 <Badges/>
+
+:::note
+BPR support in Weaviate is under development.
+:::
 
 ## Overview
 
@@ -31,17 +35,17 @@ To overcome this potential accuracy loss with BPR, the original paper suggests a
 - Calculating the Hamming distances on the hashes is considerably cheaper than calculating the cosine distances, so the initial lookup is cheaper than a pure cosine-based search. (This holds true regardless of whether a vector-index is used or not, see more later on.)
 - The number of candidates is small enough (e.g. 1,000), so that a brute-force re-ranking based on the original vectors requires a negligible amount of compute time.
 
-## Seamless integration into Weaviate
+## BRP in Weaviate
 
 :::note
-BPR support in Weaviate is currently under development. The initial POCs have provided very promising results and production-grade support is expected for early 2022.
+BPR support in Weaviate is currently under development.
 :::
 
-Weaviate's BPR integration aims to provide the best possible user experience. Since BPR can be mostly seen as an optimization, it should not require any effort to set up. Weaviate will support native BPR integration which can be toggled on or off with a simple flag. BPR-supported Weaviate modules can advertise their BPR capabilities and default to BPR if desired. For users of Weaviate `text2vec-*` modules, using BPR within Weaviate will feel exactly the same way. For users importing their own vectors, a simple flag will activate BPR mode if your custom module is compatible with BPR.
+Weaviate's BPR integration aims to provide the best possible user experience. Since BPR can be mostly seen as an optimization, our view is to support native BPR integration which can be toggled on or off with a simple flag. BPR-supported Weaviate modules can advertise their BPR capabilities and default to BPR if desired. For users of Weaviate `text2vec-*` modules, using BPR within Weaviate will feel exactly the same way. For users importing their own vectors, a simple flag will activate BPR mode if your custom module is compatible with BPR.
 
 ### BPR-enabled Weaviate text2vec-modules
 
-BPR makes use of specially trained neural models. Instead of optimizing for a cosine or dot-product-based loss, BPR-enabled models optimize for a combined cosine/dot and binary loss. As a result, only neural-network based models, (e.g. `text2vec-transformers`) support BPR. The `text2vec-contextionary` model does not support BPR.
+BPR makes use of specially trained neural models. Instead of optimizing for a cosine or dot-product-based loss, BPR-enabled models optimize for a combined cosine/dot and binary loss. As a result, only neural-network based models (e.g. those with `text2vec-transformers`) can be used with BPR. BPR will not be available with the `text2vec-contextionary` module.
 
 ### BPR-enabled out-of-the-box models
 
@@ -49,11 +53,9 @@ Long-term, we aim to provide BPR support for the most commonly used `text2vec-tr
 
 ## BPR FAQ
 
-Since Binary Passage Retrieval is brand-new, we are sure you have plenty of questions. We are trying to answer the most common ones upfront:
+<!-- #### When will BPR officially be supported in Weaviate?
 
-#### When will BPR officially be supported in Weaviate?
-
-BPR support will be available around the end of Q1 2022 in production quality. If you want to try it out earlier and aren't afraid to play with POC-style code, join our [Slack](https://weaviate.io/slack) and you can get started considerably sooner.
+BPR support will be available around the end of Q1 2022 in production quality. If you want to try it out earlier and aren't afraid to play with POC-style code, join our [Slack](https://weaviate.io/slack) and you can get started considerably sooner. -->
 
 #### What vector distances are used with BPR?
 
@@ -80,10 +82,6 @@ BPR support will be provided for all uses-cases including your own vectors from 
 #### Can I use a non-BPR-specific model in BPR mode?
 
 From a purely technical perspective, there is no impediment to using any model with BPR. Since the hashing function is very simple, any existing vector can be hashed. However, it is unlikely that your hashes will hold a lot of semantic meaning if the model has not been specifically trained to produce good hashes alongside good vectors. Typically this is done by including the binary loss as part of the loss function during the training process.
-
-#### How can I stay up-to-date with this exciting development?
-
-Subscribe to the [Announcements category on our forum](https://forum.weaviate.io/c/announcements/7), or [join our Slack-channel](https://weaviate.io/slack) for regular updates.
 
 ## More Resources
 

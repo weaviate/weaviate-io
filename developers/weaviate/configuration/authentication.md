@@ -1,6 +1,6 @@
 ---
 title: Authentication
-sidebar_position: 14
+sidebar_position: 30
 image: og/docs/configuration.jpg
 # tags: ['authentication']
 ---

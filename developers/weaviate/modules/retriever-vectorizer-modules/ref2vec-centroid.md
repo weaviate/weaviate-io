@@ -157,3 +157,9 @@ In other words, using our `Article`/`Paragraph` example:
 Let's say an `Article` object, `"On the Philosophy of Modern Ant Colonies"`, references three `Paragraph` objects: `"intro"`, `"body"`, and `"conclusion"`. Over time, `"body"` may be updated as more research has been conducted on the dynamic between worker ants and soldier ants. In this case, the existing vector for the article will not be updated with a new vector based on the refactored `"body"`.
 
 If we want `"On the Philosophy of Modern Ant Colonies"`'s centroid vector to be recalculated, we would need to otherwise trigger an update. For example, we could either remove the reference to `"body"` and add it back, or simply `PUT` the `Article` object with an identical object.
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

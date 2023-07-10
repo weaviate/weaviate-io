@@ -344,3 +344,9 @@ hints to look at:
 ### Where can I find the scripts to run this benchmark myself?
 
 The [repository is located here](https://github.com/weaviate/weaviate-benchmarking).
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

@@ -123,7 +123,7 @@ is auto-generated from swagger) or plain HTTP.
 ### Run the whole pipeline
 
 There is a convenience script available which runs the entire test pipeline in
-the same fashion that it is run on CI. It only requires a correctly setup
+the same fashion that it is run on CI. It only requires a correctly set up
 Golang environment, as well as `docker-compose` to be set up on your machine.
 
 You can run the entire pipeline, except the benchmark tests, using:
@@ -139,7 +139,7 @@ tests - the test section on CI will pass as well.
 ### Unit tests
 
 As outlined in the Philosophy, unit tests have no dependencies other than the
-vendored code dependencies. You can thus run them with pure `go test` commands.
+vendor code dependencies. You can thus run them with pure `go test` commands.
 For example to run all unit tests, simply run:
 
 ```sh

@@ -45,9 +45,7 @@ The request takes a json object with the following properties:
 
 *Note: You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.*
 
-import BackupCreate from '/_includes/code/backup.create.mdx';
-
-<BackupCreate/>
+For client code examples, see the [How-to: Configure / Backups](../../configuration/backups.md#create-backup) page.
 
 While you are waiting for a backup to complete, [Weaviate stays fully usable](/developers/weaviate/configuration/backups.md#read--write-requests-while-a-backup-is-running).
 
@@ -74,9 +72,8 @@ GET /v1/backups/{backend}/{backup_id}
 The response contains a `"status"` field. If the status is `SUCCESS`, the
 backup is complete. If the status is `FAILED`, an additional error is provided.
 
-import BackupStatusCreate from '/_includes/code/backup.status.create.mdx';
+For client code examples, see the [How-to: Configure / Backups](../../configuration/backups.md#asynchronous-status-checking) page.
 
-<BackupStatusCreate/>
 
 ### Restore Backup
 
@@ -117,9 +114,8 @@ The request takes a json object with the following properties:
 
 *Note 2: `include` and `exclude` is relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
 
-import BackupRestore from '/_includes/code/backup.restore.mdx';
+For client code examples, see the [How-to: Configure / Backups](../../configuration/backups.md#restore-backup) page.
 
-<BackupRestore/>
 
 #### Asynchronous Status Checking
 
@@ -143,10 +139,14 @@ GET /v1/backups/{backend}/{backup_id}/restore
 The response contains a `"status"` field. If the status is `SUCCESS`, the
 restore is complete. If the status is `FAILED`, an additional error is provided.
 
-import BackupStatusRestore from '/_includes/code/backup.status.restore.mdx';
-
-<BackupStatusRestore/>
+For client code examples, see the [How-to: Configure / Backups](../../configuration/backups.md#asynchronous-status-checking-1) page.
 
 ## Learn more about Backups
 
 Discover more about [Backups Configuration](/developers/weaviate/configuration/backups.md#configuration), including Backups to [S3](/developers/weaviate/configuration/backups.md#s3-aws-or-s3-compatible), [GCS](/developers/weaviate/configuration/backups.md#gcs-google-cloud-storage), or [Azure](/developers/weaviate/configuration/backups.md#azure-storage), [Technical Considerations of Backups](/developers/weaviate/configuration/backups.md#technical-considerations), as well as [additional use cases](/developers/weaviate/configuration/backups.md#other-use-cases).
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

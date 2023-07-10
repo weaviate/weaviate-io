@@ -1,6 +1,6 @@
 ---
 title: Interface
-sidebar_position: 16
+sidebar_position: 85
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'interface', 'API design']
 ---

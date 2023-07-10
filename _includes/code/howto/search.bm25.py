@@ -1,4 +1,6 @@
 # Howto: BM25 search - Python examples
+import os
+import re
 
 # ================================
 # ===== INSTANTIATION-COMMON =====
@@ -9,16 +11,16 @@ import json
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    'https://edu-demo.weaviate.network',
+    auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
     additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
+        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
     }
 )
 
-# ==========================================
+# ============================
 # ===== Basic BM25 Query =====
-# ==========================================
+# ============================
 
 # BM25BasicPython
 response = (
@@ -91,9 +93,9 @@ assert gqlresponse == expected_response
 # End test
 
 
-# ==========================================
+# ================================================
 # ===== BM25 Query with score / explainScore =====
-# ==========================================
+# ================================================
 
 # BM25WithScorePython
 response = (
@@ -155,7 +157,6 @@ expected_response = (
 )
 
 
-
 gql_query = """
 # BM25WithScoreGraphQL
 {
@@ -178,17 +179,20 @@ gql_query = """
 }
 # END BM25WithScoreGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
+
+
 def test_gqlresponse(response_in, gqlresponse_in):
     for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
         assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
+
+
+gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
 
-
-# ==========================================
+# ===============================================
 # ===== BM25 Query with Selected Properties =====
-# ==========================================
+# ===============================================
 
 
 # BM25WithPropertiesPython
@@ -281,9 +285,9 @@ gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
 
-# ==========================================
+# ==============================================
 # ===== BM25 Query with Boosted Properties =====
-# ==========================================
+# ==============================================
 
 
 # BM25WithBoostedPropertiesPython
@@ -375,9 +379,114 @@ gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
 
-# ==========================================
+# ==================================
+# ===== BM25 multiple keywords =====
+# ==================================
+
+# START MultipleKeywords Python
+response = (
+    client.query
+    .get('JeopardyQuestion', ['question'])
+    .with_bm25(
+      # highlight-start
+      query='food wine',
+      # highlight-end
+      properties=['question']
+    )
+    .with_additional('score')
+    .with_limit(5)
+    .do()
+  )
+
+print(json.dumps(response, indent=2))
+# END MultipleKeywords Python
+
+# Tests
+assert 'JeopardyQuestion' in response['data']['Get']
+assert len(response['data']['Get']['JeopardyQuestion']) == 5
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+
+# Check that 'food' or "wine" appears in the questions
+pattern = re.compile(r'food|wine', re.IGNORECASE)
+for result in response['data']['Get']['JeopardyQuestion']:
+    assert pattern.search(result['question'])
+# End test
+
+
+expected_response = (
+# Expected MultipleKeywords results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "score": "4.4707017"
+          },
+          "question": "Wine, a ship, Croce's time"
+        },
+        {
+          "_additional": {
+            "score": "3.7450757"
+          },
+          "question": "Devil's food & angel food are types of this dessert"
+        },
+        {
+          "_additional": {
+            "score": "3.647569"
+          },
+          "question": "Type of event in Cana at which Jesus turned water into wine"
+        },
+        {
+          "_additional": {
+            "score": "3.4594069"
+          },
+          "question": "A nearer food merchant"
+        },
+        {
+          "_additional": {
+            "score": "3.3400855"
+          },
+          "question": "Sparkling wine sold under the name Champagne must come from this region in Northeast France"
+        }
+      ]
+    }
+  }
+}
+# END Expected MultipleKeywords results
+)
+
+
+gql_query = """
+# START MultipleKeywords GraphQL
+{
+  Get {
+    JeopardyQuestion(
+      limit: 5
+      bm25: {
+        # highlight-start
+        query: "food wine"
+        # highlight-end
+        properties: ["question"]
+      }
+    ) {
+      question
+      _additional {
+        score
+      }
+    }
+  }
+}
+# END MultipleKeywords GraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+test_gqlresponse(response, gqlresponse)
+
+
+# ==================================
 # ===== Basic BM25 With Filter =====
-# ==========================================
+# ==================================
 
 # BM25WithFilterPython
 response = (
@@ -478,7 +587,170 @@ gql_query = """
 # END BM25WithFilterGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
-def test_gqlresponse(response_in, gqlresponse_in):
-    for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
-        assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
+test_gqlresponse(response, gqlresponse)
+
+
+# =================================
+# ===== BM25 Query with limit =====
+# =================================
+
+# START limit Python
+response = (
+    client.query
+    .get('JeopardyQuestion', ['question', 'answer'])
+    .with_bm25(
+      query='safety'
+    )
+    .with_additional('score')
+    # highlight-start
+    .with_limit(3)
+    # highlight-end
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END limit Python
+
+# Tests
+assert 'JeopardyQuestion' in response['data']['Get']
+assert len(response['data']['Get']['JeopardyQuestion']) == 3
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+assert 'OSHA' in response['data']['Get']['JeopardyQuestion'][0]['answer'], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
+# End test
+
+
+expected_response = (
+# START Expected limit results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "score": "2.6768136"
+          },
+          "answer": "OSHA (Occupational Safety and Health Administration)",
+          "question": "The government admin. was created in 1971 to ensure occupational health & safety standards"
+        },
+        {
+          "_additional": {
+            "score": "2.0213983"
+          },
+          "answer": "France",
+          "question": "Royale, Joseph, and Devil's Islands make up the Safety Islands owned by this country"
+        },
+        {
+          "_additional": {
+            "score": "2.0213983"
+          },
+          "answer": "Devil's Island",
+          "question": "The Safety Islands off French Guiana consist of Royale, Saint-Joseph & this diabolical island"
+        }
+      ]
+    }
+  }
+}
+# END Expected limit results
+)
+
+gql_query = """
+# START limit GraphQL
+{
+  Get {
+    JeopardyQuestion(
+      bm25: {
+        query: "safety"
+      }
+# highlight-start
+      limit: 3
+# highlight-end
+    ) {
+      question
+      answer
+      _additional {
+        score
+      }
+    }
+  }
+}
+# END limit GraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+test_gqlresponse(response, gqlresponse)
+
+
+# ===================================
+# ===== BM25 Query with autocut =====
+# ===================================
+
+# START autocut Python
+response = (
+    client.query
+    .get('JeopardyQuestion', ['question', 'answer'])
+    .with_bm25(
+      query='safety'
+    )
+    .with_additional('score')
+    # highlight-start
+    .with_autocut(1)
+    # highlight-end
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END autocut Python
+
+# Tests
+assert 'JeopardyQuestion' in response['data']['Get']
+assert len(response['data']['Get']['JeopardyQuestion']) == 1
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+assert 'OSHA' in response['data']['Get']['JeopardyQuestion'][0]['answer'], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
+# End test
+
+
+expected_response = (
+# START Expected autocut results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "score": "2.6768136"
+          },
+          "answer": "OSHA (Occupational Safety and Health Administration)",
+          "question": "The government admin. was created in 1971 to ensure occupational health & safety standards"
+        }
+      ]
+    }
+  }
+}
+# END Expected autocut results
+)
+
+gql_query = """
+# START autocut GraphQL
+{
+  Get {
+    JeopardyQuestion(
+      bm25: {
+        query: "safety"
+      }
+# highlight-start
+      autocut: 1
+# highlight-end
+    ) {
+      question
+      answer
+      _additional {
+        score
+      }
+    }
+  }
+}
+# END autocut GraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
