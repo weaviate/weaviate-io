@@ -64,12 +64,14 @@ For all the nitty gritty details, take a look at the below sections
 With `1.20` we’ve improved query performance when PQ is enabled by implementing a more efficient DistanceLookupTable.
 <p><br/></p>
 This was mainly accomplished in two ways:
-We restructured arrays by collapsing two-dimensional slices into a single dimension.
 <p><br/></p>
+1. We restructured arrays by collapsing two-dimensional slices into a single dimension.
+
 This serves multiple purposes:
 It improves cache locality during lookups since now allocated memory is contiguous.
-It allows us to decrease the number of allocations that need to be made. We now allocate one slice as opposed to 128+ sub-slices. This also means that we no longer need to save unnecessary slice headers, further reducing the overall size.
-We added a pool to reuse lookup lists between requests.
+It also allows us to decrease the number of allocations that need to be made. We now allocate one slice as opposed to 128+ sub-slices. This also means that we no longer need to save unnecessary slice headers, further reducing the overall size.
+
+2. We added a pool to reuse lookup lists between requests.
 
 </details>
 
