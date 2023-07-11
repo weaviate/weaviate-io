@@ -86,53 +86,55 @@ The picture shows how a HNSW algorithm is used to go from a search query vector 
 
 All [distance metrics supported in Weaviate](/developers/weaviate/config-refs/distances.md) are also supported with the HNSW index type.
 
-## HNSW with Product Quantization(PQ)
-When using HNSW you can also choose to use product quantization(PQ) to compress vector representations to help reduce memory requirements. Product quantization is a technique allowing for Weaviate’s HNSW vector index to store vectors using fewer bytes. As HNSW stores vectors in memory, this allows for running larger datasets on a given amount of memory.
+## HNSW with Product Quantization (PQ)
+When using HNSW you can also choose to also enable product quantization (PQ) to reduce memory costs. Product quantization is a technique for representing an approximation of a vector using fewer bytes. As HNSW stores vectors in memory, this allows for running larger datasets with a given amount of memory.
 
-An important point to note is that product quantization is a tradeoff between recall and memory saving. This means that configuration settings reducing memory will also reduce recall. This is similar to how HNSW can be tuned to lower latency at the cost of recall by configuring its search parameters (`ef` and `maxConnections`). Please refer to [Configuration: Indexes](../configuration/indexes.md) for more information about how to configure PQ.
+An important point to note is that product quantization is a tradeoff between recall, performance, and memory usage. This means that configuration settings reducing memory may also reduce recall. This is similar to how HNSW can be tuned to lower latency at the cost of recall by configuring its search parameters (`ef` and `maxConnections`). Please refer to [Configuration: Indexes](../configuration/indexes.md) for more information about how to configure HNSW.
 
-### What is PQ?
+### What is Product Quantization?
 
-Product quantization is an approach to reduce the memory usage of vectors stored in Weaviate. Quantization is the approach of representing a range of vectors to a finite smaller set of vectors. A familiar example for a single numeric value is rounding the number to the nearest integer.
+Quantization is the approach of representing a range of vectors with a finite smaller set of vectors. A familiar example for a single numeric value is rounding the number to the nearest integer.
 
-With [Product quantization](https://ieeexplore.ieee.org/document/5432202) in the context of nearest neighbor search, the vector is first split into segments (also named subspaces) and then each segment is quantized independently.
+[Product quantization](https://ieeexplore.ieee.org/document/5432202) is a technique where the vector is first represented as a product of smaller vectors (named segments or subspaces) and then each segment is quantized independently.
 
-So assume we have a vector of floats with 256 dimensions and 8 segments:
+![PQ illustrated](./img/pq-illustrated.png "PQ illustrated")
 
-[ 256 dimensions ]
+Small segments (i.e. one segment per dimension) produce a higher recall while larger segments (i.e. one segment per 32 dimensions) have lower recall but also reduced memory usage. An important thing to note is that the segments must divide evenly the original vector dimension. A good initial choice is to choose one segment per 4 dimensions.
 
-This would be first segmented and represented as follows:
+From the segments a training step occurs where centroids are calculated per segment and stored as a codebook. By default Weaviate will cluster each segment into 256 centroids.
 
-[ 32 ] [ 32 ] [ 32 ] [ 32 ] [ 32 ] [ 32 ] [ 32 ] [ 32 ]
+Once this codebook is calculated a vector can now instead be represented by the id of the closest centroid to each of its segments.
+With this new representation, memory is reduced considerably as instead of say `768 x 4 = 3072` bytes per vector (with 4 byte floating points), only `128 x 1 = 128` bytes
+per vector are required plus the small size of the codebook.
 
-We then quantize each segment using a codebook. The codebook has for each segment a set of centroids to which each segment is mapped. For instance, if the first segment was closest to centroid 1 it would be represented by the id 1.
+### Distance calculation and rescoring
 
-The number of possible centroids is set to 256, so this means that instead of storing 32 floats (128 bytes) we are now just storing 1 byte of information plus the overhead of the codebook.
+With product quantization distances are then calculated asymmetrically with a query vector with the goal being to keep all the original information in the query vector when calculating distances.
 
-[ id 1 ] [ id 23 ] [ id 195 ] [ id 128 ] [ id 1 ] [ id 43 ] [ id 7 ] [ id 50 ]
+Additionally as Weaviate has the original vectors stored on disk, "rescoring" will occur when using product quantization. After HNSW PQ has produced the candidate vectors from a search the real vectors and distances
+will be fetched from disk improving recall.
 
-Distances are then calculated asymmetrically with a query vector. This means we calculate the distance as follows: `distance_pq(query_vector, quantized(store_vector))` with the goal being to keep all the information in the query vector when calculating distances.
 
-Weaviate’s HNSW implementation assumes that product quantization will occur after some data has already been loaded. The reason for this is that the centroids found in the codebook need to be trained on existing data.
+### Conversion of an existing Class to use PQ
+You can convert an existing class to use product quantization by changing the schema as follows. It is recommended if possible to run a backup first before enabling.
 
 :::tip
 A good recommendation is to have 10,000 to 100,000 vectors per shard loaded before enabling product quantization. To reduce fit times you can also use the `trainingLimit` parameter to limit the max vectors PQ will fit centroids to.
 :::
 
-### Conversion of an existing Class to use PQ
-You can convert an existing class to use product quantization by changing the schema as follows. *It is recommended to run a backup first before enabling.*
-
 ```python
 client.schema.update_config("DeepImage", {
-    "vectorIndexConfig": {
-        "pq": {
-            "enabled": True,
-        }
+  "vectorIndexConfig": {
+    "pq": {
+      "enabled": True
+#     "segments": 128
     }
+  }
 })
 ```
 
 :::tip
+
 To learn more about other configuration settings for PQ refer to the documentation in [Configuration: Indexes](../configuration/indexes.md)
 :::
 
@@ -144,12 +146,12 @@ client.schema.get_class_shards("DeepImage")
 [{'name': '1Gho094Wev7i', 'status': 'READONLY'}]
 ```
 
-You can now query and write to the index as normal. The original vectors will be returned if using _additional { vector } but the distances will be slightly different due to the effects of quantization.
+You can now query and write to the index as normal. Distances may be slightly different due to the effects of quantization.
 
 ```python
 client.query.get("DeepImage", ["i"]) \
 	.with_near_vector({"vector": vector}) \
-	.with_additional(["vector", "distance"]) \
+	.with_additional(["distance"]) \
 	.with_limit(10).do()
 
 {'data': {'Get': {'DeepImage': [{'_additional': {'distance': 0.18367815},
@@ -169,15 +171,15 @@ As an example please refer to the example below for the different parameters tha
 
 ```python
 client.schema.update_config("DeepImage", {
-    "vectorIndexConfig": {
-        "pq": {
-            "enabled": True, # defaults to False
-            "segments": 32, # defaults to the number of dimensions
-						"encoder": {
-								"type": "kmeans"  # defaults to kmeans
-            }
-        }
+  "vectorIndexConfig": {
+    "pq": {
+      "enabled": True, # defaults to False
+      "segments": 32, # defaults to the number of dimensions
+      "encoder": {
+        "type": "kmeans"  # defaults to kmeans
+      }
     }
+  }
 })
 ```
 
