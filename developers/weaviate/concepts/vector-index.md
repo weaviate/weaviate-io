@@ -1,6 +1,6 @@
 ---
 title: Vector Indexing
-sidebar_position: 4
+sidebar_position: 23
 image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---

@@ -1,6 +1,6 @@
 ---
 title: Horizontal Scaling
-sidebar_position: 12
+sidebar_position: 30
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'horizontal scaling', 'cluster', 'replication', 'sharding']
 ---

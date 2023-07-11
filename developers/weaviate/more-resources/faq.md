@@ -499,25 +499,6 @@ Read more on SIGQUIT [here](https://en.wikipedia.org/wiki/Signal_(IPC)#SIGQUIT) 
 
 </details>
 
-#### Q: Does Weaviate require NFS volumes on Kubernetes?
-
-<details>
-  <summary>Answer</summary>
-
-> By default, no NFS volumes are active. In a production setting, we recommend turning etcd disaster recovery on which requires an NFS volume. However, [the helm docs](/developers/weaviate/installation/kubernetes.md) contain instructions on how to deploy an nfs-provisioner. For more details, see also this [stack overflow answer](https://stackoverflow.com/a/60505796/5322199).
-
-<!-- #### Q: Why is the contextionary created using GloVe?
-
-> There are many natural language processing vectorization models available. The reason we choose GloVe at the root of the model is that we rely on the spacial element that GloVe brings. Weaviate aims to _index data objects based on their semantics_ therefore, we need to calculate where the data object will be located in the vector space. Bidirectional models (e.g., BERT, ELMo, and co) don't provide a unique representation and are therefore not suited for our case. -->
-
-<!-- #### Q: If I run a cluster (multiple instances) of Weaviate, do all the instances have to share a filesystem(PERSISTENCE_DATA_PATH)?
-
-> Horizontal Scalability is currently under development with an ETA for end of Q3 in 2021. Once it's in it will not share filesystems, but each node will be truly independent with their own filesystem. The partitioning and replication strategies are modelled after Cassandra and Elasticsearch (Cassandra with regards to the virtual nodes in a ring, ES with regards to shards, because we need explicit shards for searching, whereas cassandra would only support direct access by (primary and partitioning) key. Until then Weaviate is currently confined to a single node. If you were to try to run two processes trying to access the same classes, I think it would fail, as each process would try to obtain a lock on the same files.
-
-We have recently implemented a LSM tree based approached to storage in Weaviate v1.5: Object and Index storage is no longer done using a B+Tree approach (bolb/bbolt), but uses a custom LSM tree approach. This speeds up imports by over 100% depending on the use case. -->
-
-</details>
-
 #### Q: With your aggregations I could not see how to do time buckets, is this possible?
 
 <details>
