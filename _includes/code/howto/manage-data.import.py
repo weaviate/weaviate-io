@@ -50,7 +50,8 @@ with client.batch() as batch:
     for data_obj in data_objs:
         batch.add_data_object(
             data_obj,
-            class_name
+            class_name,
+            # tenant="tenantA"  # If multi-tenancy is enabled, specify the tenant to which the object will be added.
         )
 # highlight-end
 # END BasicBatchImportExample

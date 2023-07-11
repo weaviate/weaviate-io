@@ -19,6 +19,14 @@ To define a cross-reference, you must:
 1. At the class level, set up a [`cross-reference` property](../config-refs/datatypes.md#datatype-cross-reference) in one class (`from`) referring to another (`to`) class, then
 2. For individual objects, establish the cross-reference between a particular object of the `from` class, to an object of the `to` class, using their [id](../api/graphql/additional-properties.md#id)s.
 
+:::tip Multi-tenancy
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you can establish a cross-reference from a multi-tenancy class object to:
+- A non-multi-tenancy class object, or
+- A multi-tenancy class object belonging to the same tenant.
+
+See [Manage data: multi-tenancy operations](./multi-tenancy.md#cross-references) for details on how.
+:::
+
 :::note Cross-references do not affect vectors
 Creating cross-references does not affect object vectors in either direction.
 :::
