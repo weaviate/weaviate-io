@@ -61,24 +61,28 @@ For all the nitty gritty details, take a look at the below sections
 <details>
   <summary>Query Performance</summary>
 
+<p>
 With `1.20` we’ve improved query performance when PQ is enabled by implementing a more efficient DistanceLookupTable.
-<p><br/></p>
+<br/><br/>
 This was mainly accomplished in two ways:
 We restructured arrays by collapsing two-dimensional slices into a single dimension.
-<p><br/></p>
+<br/><br/>
 This serves multiple purposes:
 It improves cache locality during lookups since now allocated memory is contiguous.
 It allows us to decrease the number of allocations that need to be made. We now allocate one slice as opposed to 128+ sub-slices. This also means that we no longer need to save unnecessary slice headers, further reducing the overall size.
 We added a pool to reuse lookup lists between requests.
+</p>
 
 </details>
 
 <details>
   <summary>Rescoring for Recall Performance</summary>
 
+<p>
 We’ve also improved recall by adding PQ rescoring efficiently to avoid any deterioration in performance. At first, when we calculate nearest neighbour distances, we only use compressed vector representations, this helps reduce memory requirements. However this distance might be inaccurate due to the distortion introduced by the lossy nature of PQ compression. This small distortion could affect the order/ranking of the vectors in the retrieved set which in turn affects the quality and relevance of the search results. To correct for this, we fetch from disk the uncompressed representation of all vectors in the final retrieved set, recalculate the distances to the query vector, and resort the list. After this rescoring phase we are then ready to respond to the query.
-<p><br/></p>
+<br/><br/>
 Additionally, with the introduction of rescoring, detailed above, we no longer need to support having more than 256 centroids - based on our testing one byte per code should be more than enough. We use this to optimize the codebook and gain performance by allowing the compiler to inline the extract/put code. We also don’t need to cast bytes into `uint64` anymore since the size is fixed.
+</p>
 
 </details>
 
