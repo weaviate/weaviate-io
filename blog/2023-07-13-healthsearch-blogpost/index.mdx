@@ -34,7 +34,7 @@ The results shown in Healthsearch should not be taken as health advice or is it 
 
 Imagine just being able to type, 'I need better sleep,' and instantly get a list of related supplements tailored to enhance your sleep quality. Or you're dealing with persistent joint pain, and you're looking for a natural supplement to alleviate discomfort.
 
-We are super excited to release our latest open-source demo, Healthsearch. This demo decodes user reviews of supplements and performs semantic- and generative search on them, retrieving the most related products for specific health effects, and leveraging Large Language Models to generate product and review summaries. The demo can understand natural language queries and derive all search filters directly from the context of your query.
+We are super excited to release our latest open-source demo, Healthsearch. This demo decodes user-written reviews of supplements and performs semantic- and generative search on them, retrieving the most related products for specific health effects based on the reviews, and leveraging Large Language Models to generate product and review summaries. The demo can understand natural language queries and derive all search filters directly from the context of your query.
 
 In this blog post, I’ll give you a quick tour of the Healthsearch project and its exciting features. We will also go through the implementations and the challenges I faced while working on it.
 
@@ -134,7 +134,7 @@ Using GPT-4 gives good results, but it’s very slow. I hope the technology impr
 
 ## 🔎 Decoding reviews with Semantic Search
 
-How does Healthsearch determine which supplements are suitable for specific health effects? It relies on the power of semantic search in user reviews. When you're seeking products that are `good for joint pain`, for instance, Healthsearch scans user reviews for discussions on products that have alleviated joint pain or similar conditions. The results are then aggregated and grouped according to their respective products.
+How does Healthsearch determine which supplements are suitable for specific health effects? It relies on the power of semantic search in user reviews. When you're seeking products that are `good for joint pain`, for instance, Healthsearch scans user reviews for discussions on products that have alleviated joint pain or similar conditions. The results are then aggregated and grouped according to their respective products. As I mentioned before, all results are purely based on the content of user-written reviews.
 
 <figure>
 <img
