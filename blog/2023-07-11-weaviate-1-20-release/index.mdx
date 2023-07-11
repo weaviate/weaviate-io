@@ -182,7 +182,7 @@ This example searches the `Article` class for articles related to "america", and
 ```
 
 :::tip See our documentation for more examples
-Please refer to our documentation for more code examples, including for various Weaviate client libraries.
+Please refer to [our documentation](/developers/weaviate/api/graphql/additional-operators#autocut) for more code examples, including for various Weaviate client libraries.
 :::
 
 </details>
@@ -190,7 +190,7 @@ Please refer to our documentation for more code examples, including for various 
 <details>
   <summary>Motivation for Autocut</summary>
 
-The first motivation for Autocut was to provide a better experience to human searchers. By only delivering relevant results, we present a cleaner user interface for information discovery. In addition to human search, there is also fascinating research on how this impacts generative search: in "[Large Language Models Can Be Easily Distracted by Irrelevant Context](https://arxiv.org/pdf/2302.00093.pdf)", Shi et al. have shown that ​​model performance is dramatically decreased when irrelevant information is included in the prompt. This led to the second motivation for the autocut filter: limiting irrelevant search results that would be fed to generative search.
+The first motivation for Autocut was to provide a better experience to human searchers. By only delivering relevant results, we present a cleaner user interface for information discovery. In addition to human search, there is also fascinating research on how this impacts generative search: in "[Large Language Models Can Be Easily Distracted by Irrelevant Context](https://arxiv.org/pdf/2302.00093.pdf)", Shi et al. have shown that model performance is dramatically decreased when irrelevant information is included in the prompt. This led to the second motivation for the autocut filter: limiting irrelevant search results that would be fed to generative search.
 
 </details>
 
@@ -230,27 +230,30 @@ You can use reranking in a GraphQL query as follows:
 ```graphql
 {
   Get {
-    Product (
-      hybrid: {
-        query: “What is ref2vec?”
-      },
-      limit:50
-      ) {
-      content
+    JeopardyQuestion(
+      nearText: {
+        concepts: "flying"  # search for "flying"
+      }
+      limit: 10
+    ) {
+      answer
+      question
       _additional {
-        rerank (
-          property: “content”
-          query: “what is ref2vec?”
+        distance
+        rerank(
+          property: "answer"
+          query: "floating"  # sort "floating" results towards the top
         ) {
-        score
+          score
         }
       }
+    }
   }
 }
 ```
 
 :::tip See our documentation for more examples
-Please refer to our documentation for more code examples, including for various Weaviate client libraries.
+Please refer to [our documentation](/developers/weaviate/search/rerank) for more code examples, including for various Weaviate client libraries.
 :::
 
 This query retrieves 50 results from the `Product` class, using a hybrid search with the query “What is ref2vec?”. It then re-ranks the results using the `content` property of the `Product` class, and the query “what is ref2vec?”.
@@ -303,7 +306,7 @@ In this example, we perform a hybrid search on the `Question` class, using the q
 ```
 
 :::tip See our documentation for more examples
-Please refer to our documentation for more code examples, including for various Weaviate client libraries.
+Please refer to [our documentation](/developers/weaviate/search/hybrid#fusion-ranking-method) for more code examples, including for various Weaviate client libraries.
 :::
 
 </details>
