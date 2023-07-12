@@ -29,6 +29,10 @@ The `after` parameter is based on the order of IDs. No other ordering of data, s
 
 ## Retrieve and restore objects
 
+:::tip Multi-tenancy
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when reading or creating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+:::
+
 ### List every object
 
 You can list (i.e. retrieve) every object as shown in the below example, looping through the data with the `after` parameter.

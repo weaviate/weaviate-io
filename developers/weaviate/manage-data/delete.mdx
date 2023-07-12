@@ -26,6 +26,10 @@ To delete an object, you'll need its [id](../api/graphql/additional-properties.m
 
 To delete multiple objects, you'll need their class name, and a filter that matches them.
 
+:::tip Multi-tenancy
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when deleting objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+:::
+
 import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
 
 <details>
