@@ -36,28 +36,31 @@ You can use reranking in a GraphQL query as follows:
 ```graphql
 {
   Get {
-    Product (
-      hybrid: {
-        query: “What is ref2vec?”
-      },
-      limit:50
-      ) {
-      content
+    JeopardyQuestion(
+      nearText: {
+        concepts: "flying"
+      }
+      limit: 10
+    ) {
+      answer
+      question
       _additional {
-        rerank (
-          property: “content”
-          query: “what is ref2vec?”
+        distance
+        rerank(
+          property: "answer"
+          query: "floating"
         ) {
-        score
+          score
         }
       }
+    }
   }
 }
 ```
 
-This query retrieves 50 results from the `Product` class, using a hybrid search with the query “What is ref2vec?”. It then re-ranks the results using the `content` property of the `Product` class, and the query “what is ref2vec?”.
+This query retrieves 50 results from the `JeopardyQuestion` class, using a hybrid search with the query “flying”. It then re-ranks the results using the `answer` property, and the query “floating”.
 
-You can specify which `property` of the `Product` class you want to pass to the reranker. Note that here, the returned `score` will include the score from the reranker.
+You can specify which `property` of the `JeopardyQuestion` class you want to pass to the reranker. Note that here, the returned `score` will include the score from the reranker.
 
 ## More Resources
 
