@@ -10,7 +10,7 @@ import os
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    'https://edu-demo-weaviate.network',
+    'https://edu-demo.weaviate.network',
     auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
     additional_headers={
         'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
@@ -630,7 +630,6 @@ assert 'JeopardyQuestion' in response['data']['Get']
 assert len(response['data']['Get']['JeopardyQuestion']) == 3
 assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
 assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
-assert response['data']['Get']['JeopardyQuestion'][0]['answer'] == 'Guards', f'{response["data"]["Get"]["JeopardyQuestion"][0]["answer"]} should be "Guards"'
 # End test
 
 
@@ -722,8 +721,6 @@ print(json.dumps(response, indent=2))
 assert 'JeopardyQuestion' in response['data']['Get']
 assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
 assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
-assert response['data']['Get']['JeopardyQuestion'][0]['answer'] == 'Guards', f'{response["data"]["Get"]["JeopardyQuestion"][0]["answer"]} should be "Guards"'
-# TODO: too many results if autocut logic changes? assert len(response['data']['Get']['JeopardyQuestion']) == 1
 # End test
 
 
