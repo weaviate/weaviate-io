@@ -79,11 +79,12 @@ try {
 // END DeleteError
 
 
-// ========================
-// ===== Batch delete =====
-// ========================
+// ===================
+// ===== Dry run =====
+// ===================
+// START DryRun
 const N = 5;
-for (let i = 1; i <= 5; i++)
+for (let i = 1; i <= N; i++)
   await client.data
     .creator()
     .withClassName(className)
@@ -92,9 +93,7 @@ for (let i = 1; i <= 5; i++)
     })
     .do();
 
-const response =
-// START DeleteBatch
-await client.batch
+let response = await client.batch
   .objectsBatchDeleter()
   .withClassName('EphemeralObject')
   // Same `where` filter as in the GraphQL API
@@ -103,6 +102,33 @@ await client.batch
     operator: 'Equal',
     valueText: 'Goodbye Cruel World',
   })
+  // highlight-start
+  .withDryRun(true)
+  .withOutput('verbose')
+  // highlight-end
+  .do();
+
+console.log(response);
+// END DryRun
+
+
+// ========================
+// ===== Batch delete =====
+// ========================
+
+response =
+// START DeleteBatch
+await client.batch
+  .objectsBatchDeleter()
+  .withClassName('EphemeralObject')
+  // highlight-start
+  // Same `where` filter as in the GraphQL API
+  .withWhere({
+    path: ['name'],
+    operator: 'Equal',
+    valueText: 'Goodbye Cruel World',
+  })
+  // highlight-end
   .do();
 // END DeleteBatch
 

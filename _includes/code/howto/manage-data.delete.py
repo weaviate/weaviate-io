@@ -75,12 +75,14 @@ result = (
 # START DeleteBatch
 client.batch.delete_objects(
     class_name='EphemeralObject',
+    # highlight-start
     # Same `where` filter as in the GraphQL API
     where={
         'path': ['name'],
         'operator': 'Equal',
         'valueText': 'Goodbye Cruel World'
     },
+    # highlight-end
 )
 # END DeleteBatch
 )
@@ -93,3 +95,81 @@ result = client.query.get('EphemeralObject', 'name').with_where({
     'valueText': 'Goodbye Cruel World'
 }).do()
 assert result['data']['Get']['EphemeralObject'] == []
+
+
+# ===================
+# ===== Dry run =====
+# ===================
+# START DryRun
+for _ in range(N):
+    client.data_object.create({
+        'name': 'Goodbye Cruel World',
+    }, 'EphemeralObject')
+
+result = (
+    client.batch.delete_objects(
+        class_name='EphemeralObject',
+        # Same `where` filter as in the GraphQL API
+        where={
+            'path': ['name'],
+            'operator': 'Equal',
+            'valueText': 'Goodbye Cruel World'
+        },
+        # highlight-start
+        dry_run=True,
+        output='verbose'
+        # highlight-end
+    )
+)
+
+import json
+print(json.dumps(result, indent=2))
+# END DryRun
+
+expected_results = """
+# START ResultsDryRun
+{
+  "dryRun": true,
+  "match": {
+    "class": "EphemeralObject",
+    "where": {
+      "operands": null,
+      "operator": "Equal",
+      "path": [
+        "name"
+      ],
+      "valueText": "Goodbye Cruel World"
+    }
+  },
+  "output": "verbose",
+  "results": {
+    "failed": 0,
+    "limit": 10000,
+    "matches": 5,
+    "objects": [
+      {
+        "id": "59f97550-53ee-4e72-b420-deb2038681a2",
+        "status": "DRYRUN"
+      },
+      {
+        "id": "7cc00d49-7432-4109-8455-329be8a122e4",
+        "status": "DRYRUN"
+      },
+      {
+        "id": "de484913-aca3-4902-9a9f-fdb079f8033f",
+        "status": "DRYRUN"
+      },
+      {
+        "id": "3dfc82de-87c6-4239-9d74-e03bd360d4cb",
+        "status": "DRYRUN"
+      },
+      {
+        "id": "9cadf849-d2dc-4ece-a015-933a6ae25d41",
+        "status": "DRYRUN"
+      }
+    ],
+    "successful": 0
+  }
+}
+# END ResultsDryRun
+"""

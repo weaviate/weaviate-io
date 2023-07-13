@@ -88,11 +88,9 @@ If the id doesn't exist in the specified class, a 404 error will be returned. Yo
 </Tabs>
 
 
-## Batch delete multiple objects
+## Delete multiple objects
 
-To delete multiple objects at once, make a [`DELETE` request to the `/v1/batch/objects` REST API endpoint](../api/rest/batch.md#batch-delete), or use the client code below. Specify which objects to delete using the same kind of [`where` filter](../search/similarity.md) used in similarity search.
-
-For limitations, optional parameters, and the response format, see the [Batch delete API reference](../api/rest/batch.md#batch-delete).
+To delete multiple objects that match a condition, make a [`DELETE` request to the `/v1/batch/objects` REST API endpoint](../api/rest/batch.md#batch-delete), or use the client code below. Specify which objects to delete with the same kind of [`where` filter](../search/similarity.md) used in similarity search.
 
 
 <Tabs groupId="languages">
@@ -114,6 +112,49 @@ For limitations, optional parameters, and the response format, see the [Batch de
     />
   </TabItem>
 </Tabs>
+
+
+Note that for performance reasons, there is a configurable [maximum limit](../api/rest/batch.md#maximum-number-of-deletes-per-query) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
+
+
+## Dry-run
+
+Before proceeding with the deletion, you can check the number of objects that would be deleted, by setting the [`dryRun` option](../api/rest/batch.md#dry-run-before-deletion) to true. To also see the IDs of the affected objects, use `dryRun` combined with `output` set to 'verbose'`:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DryRun"
+      endMarker="# END DryRun"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+<details>
+  <summary>Example response</summary>
+
+The result could look like this:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START ResultsDryRun"
+  endMarker="# END ResultsDryRun"
+  language="json"
+/>
+
+</details>
 
 
 ## More Resources
