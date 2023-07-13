@@ -1,0 +1,271 @@
+---
+title: Automated testing for Weaviate applications
+slug: automated-testing
+authors: [dan]
+date: 2023-07-18
+image: ./img/hero.png
+tags: ['how-to']
+description: "Writing a CI/CD pipeline for a Weaviate application"
+
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/automated-testing.py';
+import TSCode from '!!raw-loader!/_includes/code/automated-testing.ts';
+import { DownloadButton } from '/src/theme/Buttons';
+
+As a software engineer with experience in test automation, I firmly believe in [Test-Driven Development](https://en.wikipedia.org/wiki/Test-driven_development), and more specifically, incorporating [integration testing](https://en.wikipedia.org/wiki/Integration_testing) from the very early stages of developing an application.
+
+<!-- truncate -->
+
+Integration testing helps early bug detection by verifying the interaction between different modules of a software system, which may function perfectly in isolation (as shown by unit testing), but may run into various types of issues when combined (interface/API mismatch, different data ranges etc.) Besides improving test coverage, integration testing also increases confidence when refactoring, especially when changing the implementation of a particular unit of the system under test, by proving that the system as a whole continues to function as expected.
+
+With the release of [embedded Weaviate](/developers/weaviate/installation/embedded), integration testing has become much easier, since Weaviate can be instantiated directly from the client code, without the need to set up and tear down a separate server. Such an integration test could more easily cover the interaction between the application code, the Weaviate server, and the inference provider (e.g. OpenAI, Cohere, Google PaLM) used via a [vectorizer](/developers/weaviate/modules/retriever-vectorizer-modules) or [generator](/developers/weaviate/modules/reader-generator-modules) module.
+
+
+## Scoping the test
+
+In integration testing, it's important to delineate precisely what should be tested, in order to avoid writing tests for the _units_ of a system, and instead focus on their _integration_. In the case of a typical application built with Weaviate,
+* Search quality depends on the selected model of the [vectorization module](/developers/weaviate/modules/retriever-vectorizer-modules). This should not be the focus of integration testing. In particular, returned [distances](../distance-metrics-in-vector-search) are subject to slight changes.
+* Search itself is a core Weaviate functionality, that is tested by Weaviate's own test suite. Inserting a dummy object and searching for it would duplicate part of this test suite, so the integration test should focus on the interaction with the inference provider. For example,
+  * if the vectorization model is not specified and the default one changes, that will change the returned results
+  * if switching to a different inference provider, integration tests can prove that the application still functions as expected
+* Integration testing can also help automatically catch common issues including:
+  * Connection or authentication issues with the inference provider
+  * Incomplete or incorrect data imports
+  * Using the correct number of dimensions when [bringing your own vectors](/developers/weaviate/tutorials/custom-vectors)
+  * Schema issues, like invalid class names, properties, or data types
+
+
+## Getting started with embedded Weaviate
+
+[Embedded Weaviate](/developers/weaviate/installation/embedded) lets us spawn a Weaviate server instance from the client, and automatically tear it down when the client terminates. The data is [persisted](/developers/weaviate/installation/embedded#lifecycle), so subsequent runs of the client can continue to use the database. For testing purposes, this means that as a best practice, we should clear the schema (i.e. delete our collection(s)) when starting the test.
+
+Here's how to instantiate an embedded Weaviate server and perform this cleanup:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  To install the dependencies, run `pip install weaviate-client pytest --upgrade`.
+
+  Then, save the code as `embedded_test.py` and run `pytest`.
+  <br/>
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# START init"
+    endMarker="# END init"
+    language="py"
+  />
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+
+  To install the dependencies, run `npm install weaviate-ts-embedded typescript ts-node`.
+
+  Then, save the code as `test.ts` and run `node --loader=ts-node/esm test.ts`:
+  <br/>
+
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// START init"
+    endMarker="// END init"
+    language="js"
+  />
+  </TabItem>
+</Tabs>
+
+
+## A first test with embedded Weaviate
+
+To get started writing tests using embedded Weaviate, let's add code that creates a class and then asserts that it was created correctly.
+
+The class we'll create represents question & answer objects from the popular quiz game show *Jeopardy!*, and for now we only need to specify its name and that it uses the [OpenAI vectorizer](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai).
+
+The integration test consists of checking that the class was created with the expected default OpenAI vectorization model, `ada`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START class"
+      endMarker="# END class"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START class"
+      endMarker="// END class"
+      language="js"
+    />
+  </TabItem>
+</Tabs>
+
+The two code sections above have established the groundwork for future tests by performing these steps:
+* instantiate and connect to embedded Weaviate
+  * pass along an API key for connecting to OpenAI
+* delete existing collections (class + data objects) from previous runs
+* create our class
+* assert its existence
+
+We've managed to perform all these operations with very little code. This is in large part thanks to embedded Weaviate. Next, let's add more functionality to our test by importing some data.
+
+
+## Testing imports
+
+Many real-life use cases for Weaviate start with importing data from an external source, often a JSON or CSV file, and vectorizing the objects on import using a [3rd party provider](/developers/weaviate/modules/retriever-vectorizer-modules/) such as OpenAI, Cohere, Google PaLM, or a Hugging Face model. Imports are also a common source of issues, for example due to rate limits from the vectorization provider that may cause skipped objects. In this section, we'll add a first integration test by importing a set of objects from a JSON file, integrating with OpenAI for creating the vector embeddings.
+
+The dataset we'll use is a small subset of the [original Jeopardy dataset](https://www.kaggle.com/datasets/tunguz/200000-jeopardy-questions). It consists of only 100 question&answer pairs, so that we keep OpenAI vectorization calls low, to reduce costs. However, to keep the code scalable for larger datasets, we'll perform the import using [batching](/developers/weaviate/manage-data/import) (for larger JSON or CSV files, see also [streaming](/developers/weaviate/manage-data/import#tip-stream-data-from-large-files) as another best practice).
+
+The test consists of ensuring that all specified Q&A objects have been imported, and no extraneous ones exist, i.e. that we end up with 100 objects.
+
+<p>
+  <DownloadButton link="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/jeopardy_100.json">Download jeopardy_100.json</DownloadButton>
+</p>
+
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START import"
+      endMarker="# END import"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START import"
+      endMarker="// END import"
+      language="js"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Adding a query test
+
+Now that our tests have ensured the collection was created and the data was imported successfully, let's complete the workflow by adding a query test. We'll use the `nearText` operator because it requires vectorizing the query, so it tests the integration with OpenAI. In this particular case, we'll run a query for Q&A's related to "chemistry" and expect that the top result is about "sodium". While the exact distances returned by a vector search may change, the order generally should not, and a changed order might indicate unexpected results for the user, so it's OK to assert that the top result should remain stable.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START query"
+      endMarker="# END query"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START query"
+      endMarker="// END query"
+      language="js"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Putting it all together
+
+The code below brings together the setup and tests we've implemented above:
+* instantiate the Weaviate server and connect to it (one call to embedded Weaviate)
+* cleanup any previous collection data
+* create the collection
+* assert its existence
+* import a JSON file
+* assert that all objects have been imported
+* query for an object
+* assert the result is as expected
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START init"
+      endMarker="# END query"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START init"
+      endMarker="// END all"
+      language="js"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Continuous integration and deployment (CI/CD)
+
+For CI/CD, we can add a GitHub Actions workflow YAML file to run these tests on every push to the main branch. The YAML file could look something like this:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+```
+name: Run Automated Tests
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: pip install weaviate-client json
+      - name: Run tests
+        run: pytest
+```
+  </TabItem>
+
+  <TabItem value="ts" label="TypeScript">
+```
+name: Run Automated Tests
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: node --loader=ts-node/esm test.ts
+```
+  </TabItem>
+</Tabs>
+
+
+## Closing thoughts
+
+In this post, we've seen how to write an integration test for an application using Weaviate, in which we import a data set, vectorize it, then export the vectorized objects. The test can be extended with search, insertion, updates, deletes, and other operations that are part of the user journey. Developing a comprehensive integration test suite is important for detecting several categories of issues:
+
+* Regression issues, where a code change unintentionally breaks existing functionality
+* Deployment environment issues, caught by running the tests in a production-like environment
+* Compatibility issues after Weaviate version upgrades
+
+What other aspects of integration testing would you like to learn about? Let us know in the comments below!
+
+
+import WhatNext from  '/_includes/what-next.mdx'
+
+<WhatNext />
