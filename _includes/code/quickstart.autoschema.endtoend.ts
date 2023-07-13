@@ -23,18 +23,18 @@ const client: WeaviateClient = weaviate.client({
 
 // EndToEndExample  // CustomVectorExample
 // Add the schema
-let classObj = {
+const classObj = {
   'class': 'Question',
   'vectorizer': 'text2vec-huggingface',  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
   'moduleConfig': {
     'text2vec-huggingface': {
-        'model': 'sentence-transformers/all-MiniLM-L6-v2',  // Can be any public or private Hugging Face model.
-        'options': {
-            'waitForModel': true
-        }
-    }
-  }
-}
+      'model': 'sentence-transformers/all-MiniLM-L6-v2',  // Can be any public or private Hugging Face model.
+      'options': {
+        'waitForModel': true,
+      },
+    },
+  },
+};
 
 async function addSchema() {
   const res = await client.schema.classCreator().withClass(classObj).do();
@@ -56,7 +56,7 @@ async function importQuestions() {
   // Prepare a batcher
   let batcher: ObjectsBatcher = client.batch.objectsBatcher();
   let counter = 0;
-  let batchSize = 100;
+  const batchSize = 100;
 
   for (const question of data) {
     // Construct an object with a class and properties 'answer' and 'question'
@@ -67,7 +67,7 @@ async function importQuestions() {
         question: question.Question,
         category: question.Category,
       },
-    }
+    };
 
     // add the object to the batch queue
     batcher = batcher.withObject(obj);
@@ -102,7 +102,7 @@ async function nearTextQuery() {
     .do();
 
   console.log(JSON.stringify(res, null, 2));
-  return res
+  return res;
 }
 
 // END NearTextExample
@@ -117,13 +117,13 @@ async function nearTextWhereQuery() {
     .withWhere({
       'path': ['category'],
       'operator': 'Equal',
-      'valueText': 'ANIMALS'
+      'valueText': 'ANIMALS',
     })
     .withLimit(2)
     .do();
 
   console.log(JSON.stringify(res, null, 2));
-  return res
+  return res;
 }
 
 // END NearTextWhereExample
@@ -140,7 +140,7 @@ async function generativeSearchQuery() {
     .do();
 
   console.log(JSON.stringify(res, null, 2));
-  return res
+  return res;
 }
 
 // END GenerativeSearchExample
@@ -155,7 +155,7 @@ async function getNumObjects() {
 }
 
 async function cleanup() {
-  client.schema.classDeleter().withClassName('Question').do();
+  await client.schema.classDeleter().withClassName('Question').do();
 }
 // END Define test functions
 
@@ -232,7 +232,7 @@ await importQuestions();
 
 
 /*
-// Import data function with custom vectors
+// Import data with custom vectors
 async function getJsonData() {
   const fname = 'jeopardy_tiny_with_vectors_all-MiniLM-L6-v2.json';
   const url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/' + fname
@@ -282,5 +282,5 @@ async function importQuestions() {
   const res = await batcher.do();
   console.log(res);
 }
-// END Import data function with custom vectors
+// END Import data with custom vectors
 */
