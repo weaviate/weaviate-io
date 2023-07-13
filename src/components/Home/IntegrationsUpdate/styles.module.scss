@@ -41,6 +41,11 @@
   white-space: nowrap;
   overflow:scroll;
 
+  .mobileIntegrations{
+
+    display:none;
+  }
+
 
   @media screen and (max-width: 500px) {
 
@@ -155,11 +160,12 @@
 
 .mobileIntegrations{
 
-  display:none;
+display:none;
 
   @media screen and (max-width: 500px) {
 display:flex;
-  }
+
+}
 
 
   }
