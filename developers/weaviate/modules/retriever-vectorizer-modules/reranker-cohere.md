@@ -17,8 +17,6 @@ image: og/docs/modules/text2vec-cohere.jpg
 
 ## How to enable
 
-Requests to Cohere will need an API key. If you want to provide the API key with your Weaviate instance, you'll need a Cohere API key, obtained via [their dashboard](https://dashboard.cohere.com). If you want to have clients supply their own Cohere API key (recommended), this step is not necessary.
-
 ### Weaviate Cloud Services
 
 This module is enabled by default on the WCS.
@@ -56,9 +54,9 @@ import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.m
 
 ## Schema configuration
 
-The `reranker-cohere` module can be configured for any class. You can also specify options such as the `model` to use, and whether to `returnDocuments` in the response.
+The `reranker-cohere` module can be configured for any class in the schema. You can also specify options such as the `model` to use, and whether to `returnDocuments` in the response.
 
-This example configures the `Document` class to use the `reranker-cohere` module, with the `cross-encoder/ms-marco-MiniLM-L-6-v2` model, and to return the documents in the response.
+This example configures the `Document` class to use the `reranker-cohere` module, with the `rerank-multilingual-v2.0` model, and to return the documents in the response.
 
 ```json
 {

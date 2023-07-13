@@ -54,7 +54,9 @@ services:
 
 ## Schema configuration
 
-The `reranker-transformers` module can be configured for any class. You can also specify options such as the `model` to use, and whether to `returnDocuments` in the response.
+The `reranker-transformers` module can be configured for any class in the schema. You can also specify options such as the `model` to use.
+
+<!-- TODO: does `reranker-transformers` also have a returnDocuments flag? -->
 
 This example configures the `Document` class to use the `reranker-transformers` module, with the `cross-encoder/ms-marco-MiniLM-L-6-v2` model, and to return the documents in the response.
 
@@ -67,7 +69,6 @@ This example configures the `Document` class to use the `reranker-transformers` 
       "moduleConfig": {
         "reranker-transformers": {
             "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
-            "returnDocuments": false
         },
       }
     }
