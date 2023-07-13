@@ -1,0 +1,173 @@
+.header {
+  margin-bottom: 40px;
+}
+.info {
+  flex: 1;
+  h3,
+  p {
+    margin-left: 15px;
+  }
+}
+
+
+.latestModule{
+
+  display: flex;
+gap: 38px;
+justify-content: center;
+align-items: center;
+overflow-x: auto;
+
+@media screen and (max-width: 485px) {
+  display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: auto;
+    flex-direction: row;
+}
+
+
+}
+
+.latestBox{
+
+  border-radius: 0.9375rem;
+  border: 1px solid #130C49;
+  background: #FFF;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  width: 20.0625rem;
+height: 25.1875rem;
+flex-shrink: 0;
+
+.insideBox{
+
+
+  border-radius: 0.9375rem 0.9375rem 0rem 0rem;
+    background: #141F39;
+    width: 20rem;
+    height: 13.125rem;
+    background-image: url('/img/site/insight_image_01.png');
+    background-position: center;
+}
+
+
+.textBox{
+
+  padding:18px;
+}
+
+
+.bottomBox{
+
+  display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+
+.smallText{color: #130C49;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 157.33%;}
+
+}
+
+
+
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  .left {
+    display: flex;
+    flex: 1;
+    border-left: 1px solid #130C49;
+
+    .tabsList {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 10px;
+
+      .tabsTrigger {
+        appearance: none;
+        box-shadow: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex: 1;
+        cursor: pointer;
+        background-color: transparent;
+        gap: 5px;
+        padding: 0.5rem;
+        border-left: 3px solid transparent;
+
+        p {
+          text-align: left;
+          display:none;
+        }
+      }
+      .tabsTrigger[data-state='active'] {
+        border-left: 3px solid #130C49;
+
+        p {
+          text-align: left;
+          display:inherit;
+
+        }
+
+      }
+    }
+  }
+  .right {
+    display: flex;
+    flex: 1;
+
+    div[data-state='active'] {
+      display: flex;
+      // flex-direction: column;
+      flex: 1;
+
+        .codeContainer {
+          display: grid;
+          grid-template-rows: 1fr auto;
+          grid-row-gap: 4px;
+
+          height: 460px;
+          width: 100%;
+
+
+
+          .codeImage {
+            background-size: contain;
+            height: 100%;
+            width: 100%;
+            background-repeat: no-repeat;
+            @media screen and (max-width: 485px) {
+              height: 270px;
+            }
+          }
+
+          .code1 {
+            background-image: url('/img/site/code-box-1.png');
+          }
+          .code2 {
+            background-image: url('/img/site/code-box-2.png');
+          }
+          .code3 {
+            background-image: url('/img/site/code-box-3.png');
+          }
+      }
+    }
+  }
+}

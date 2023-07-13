@@ -373,7 +373,8 @@ button.close {
 
 [data-theme='light'] {
   #__docusaurus:has(.custom-page) {
-    background-image: url('/img/site/background-light.jpg');
+    //background-image: url('/img/site/background-light.jpg');
+    background-color: #F5F5F5;
     background-size: cover;
     background-position: center;
   }
