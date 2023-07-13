@@ -42,24 +42,6 @@ You can rerank results using:
 Using the [JeopardyQuestions dataset](../quickstart/index.md), let's say we want to find Q&As about flying, and further sort towards the top those about floating. We can start with a `nearText` search for `flying`, limited to 10 results:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-    <FilteredTextBlock
-      text={PythonCode}
-      startMarker="# START nearText Python"
-      endMarker="# END nearText Python"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START nearText"
-      endMarker="// END nearText"
-      language="ts"
-    />
-  </TabItem>
-
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PythonCode}
@@ -87,24 +69,6 @@ The response should look like this:
 We can see that results pertaining to floating aircraft (balloons/blimps/dirigibles) are mixed in with other results (animals, mail). To sort floating results to the top, we can apply the `rerank` operator:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-    <FilteredTextBlock
-      text={PythonCode}
-      startMarker="# START nearTextRerank Python"
-      endMarker="# END nearTextRerank Python"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START RerankNearText"
-      endMarker="// END RerankNearText"
-      language="ts"
-    />
-  </TabItem>
-
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PythonCode}
@@ -137,24 +101,6 @@ We can see in the `rerank`ed result set, that answers are sorted descending by t
 The example below is a uses `rerank` in a `bm25` query to sort towards the top results for the query "paper" that have to do with "publication"s rather than with the material paper.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-    <FilteredTextBlock
-      text={PythonCode}
-      startMarker="# START bm25Rerank Python"
-      endMarker="# END bm25Rerank Python"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START bm25Rerank"
-      endMarker="// END bm25Rerank"
-      language="ts"
-    />
-  </TabItem>
-
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PythonCode}
