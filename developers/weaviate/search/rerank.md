@@ -31,7 +31,7 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 ## Requirements
 
-To rerank search results, you'll need a reranker module enabled.
+To rerank search results, you'll need a reranker [module enabled](../configuration/modules.md).
 You can rerank results using:
 - The same query as the initial search, or
 - A different reranking query.
