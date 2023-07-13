@@ -15,13 +15,11 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
 This page shows you how to rerank a search result set returned by [vector](similarity.md), [bm25](bm25.md), or [hybrid](hybrid.md) operators.
 
-There are two reranker modules available:
-* [reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
-* [reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
-
 :::info Related pages
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
 - [Concepts: Reranking](../concepts/reranking.md)
+- [References: Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
+- [References: Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
 :::
 
 import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
@@ -31,11 +29,41 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 ## Requirements
 
-To rerank search results, you'll need a reranker [module enabled](../configuration/modules.md).
+To rerank search results, you'll need set the class with an enabled reranker [module](../configuration/modules.md).
+
 You can rerank results using:
 - The same query as the initial search, or
 - A different reranking query.
 
+<details>
+  <summary>How do I <strong>set the reranker module</strong> in the target class?</summary>
+
+<p>
+
+If there is only one `reranker` module enabled, you don't need to do anything. The `reranker` module will be used by default.
+<br/>
+
+Where multiple `reranker` modules are enabled, you must specify the reranker module to be used in the `moduleConfig` section of the schema. For example, this configures the `Article` class to use the `reranker-cohere` module:
+
+```json
+{
+  "classes": [
+    {
+      "class": "Article",
+      ...,
+      "moduleConfig": {
+        "reranker-cohere": {},  // This will configure the 'Article' class to use the 'reranker-cohere' module
+      }
+    }
+  ]
+}
+```
+
+You may be able to set additional module parameters here. Please refer to the "Schema configuration" section in the relevant module page.
+
+</p>
+
+</details>
 
 ## Reranking vector search results
 
