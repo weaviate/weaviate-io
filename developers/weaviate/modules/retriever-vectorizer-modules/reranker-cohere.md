@@ -68,8 +68,8 @@ This example configures the `Document` class to use the `reranker-cohere` module
       ...,
       "moduleConfig": {
         "reranker-cohere": {
-            "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
-            "returnDocuments": true
+            "model": "rerank-multilingual-v2.0",
+            "returnDocuments": false
         },
       }
     }

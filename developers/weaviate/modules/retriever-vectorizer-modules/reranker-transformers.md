@@ -67,7 +67,7 @@ This example configures the `Document` class to use the `reranker-transformers` 
       "moduleConfig": {
         "reranker-transformers": {
             "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
-            "returnDocuments": true
+            "returnDocuments": false
         },
       }
     }
