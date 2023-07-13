@@ -334,7 +334,7 @@ gql_query = """
       hybrid: {
         query: "food"
         # highlight-start
-        fusionType: "relativeScoreFusion"
+        fusionType: relativeScoreFusion
         # highlight-end
       }
     ) {
