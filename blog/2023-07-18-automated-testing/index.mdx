@@ -118,7 +118,7 @@ If you have yet to install the required dependencies, run the following command:
   <FilteredTextBlock
     text={PyCode}
     startMarker="# START ConnectAndCleanup"
-    endMarker="# END ConnectAndCleanup"
+    endMarker="# Client connected and schema cleared"
     language="py"
   />
   </TabItem>
@@ -128,7 +128,7 @@ If you have yet to install the required dependencies, run the following command:
   <FilteredTextBlock
     text={TSCode}
     startMarker="// START ConnectAndCleanup"
-    endMarker="// END ConnectAndCleanup"
+    endMarker="// Client connected and schema cleared"
     language="js"
   />
   </TabItem>
@@ -149,8 +149,8 @@ Here, the integration test will consist of checking that the class was created w
   <TabItem value="py" label="Python">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START class"
-      endMarker="# END class"
+      startMarker="# Create the class"
+      endMarker="# Class created successfully"
       language="py"
     />
   </TabItem>
@@ -158,8 +158,8 @@ Here, the integration test will consist of checking that the class was created w
   <TabItem value="ts" label="TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START class"
-      endMarker="// END class"
+      startMarker="// Create the class"
+      endMarker="// Class created successfully"
       language="js"
     />
   </TabItem>
@@ -193,8 +193,8 @@ The test is simple; it verifies that all specified objects have been imported by
   <TabItem value="py" label="Python">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START import"
-      endMarker="# END import"
+      startMarker="# Import objects from the JSON file"
+      endMarker="# Import completed successfully"
       language="py"
     />
   </TabItem>
@@ -202,8 +202,8 @@ The test is simple; it verifies that all specified objects have been imported by
   <TabItem value="ts" label="TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START import"
-      endMarker="// END import"
+      startMarker="// Import objects from the JSON file"
+      endMarker="// Import completed successfully"
       language="js"
     />
   </TabItem>
@@ -231,8 +231,8 @@ Depending on your application and usage, you may find that the top result change
   <TabItem value="py" label="Python">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START query"
-      endMarker="# END query"
+      startMarker="# Run a test query"
+      endMarker="# Query test completed"
       language="py"
     />
   </TabItem>
@@ -240,8 +240,8 @@ Depending on your application and usage, you may find that the top result change
   <TabItem value="ts" label="TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START query"
-      endMarker="// END query"
+      startMarker="// Run a test query"
+      endMarker="// Query test completed"
       language="js"
     />
   </TabItem>
@@ -298,21 +298,21 @@ We use GitHub, and they offer GitHub Actions which we like at Weaviate. While we
   <TabItem value="py" label="Python">
 
 ```
-name: Run Automated Tests
+name: Run Python Automated Tests
 on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.11
-      - name: Install dependencies
-        run: pip install weaviate-client json
-      - name: Run tests
-        run: pytest
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+    - name: Install dependencies
+      run: pip install weaviate-client pytest
+    - name: Run tests
+      run: pytest
 ```
 
   </TabItem>
@@ -320,7 +320,7 @@ jobs:
   <TabItem value="ts" label="TypeScript">
 
 ```
-name: Run Automated Tests
+name: Run Node.js Automated Tests
 on: [push]
 jobs:
   test:

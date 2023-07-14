@@ -1,9 +1,9 @@
 // Blog: Automated testing for Weaviate applications - TypeScript code
 // run with: node --loader=ts-node/esm automated-testing.ts
-import assert from 'assert';
 
 // START Connect  // START ConnectAndCleanup
 import weaviate, { EmbeddedOptions } from 'weaviate-ts-embedded';
+import assert from 'assert';
 
 // Instantiate the embedded Weaviate client and pass the OpenAI API key
 const client = weaviate.client(new EmbeddedOptions(
@@ -25,13 +25,10 @@ try {
 } catch {
   // ignore error if class doesn't exist
 }
-// END ConnectAndCleanup
+// Client connected and schema cleared
 
 
-// ============================
-// ===== Define the class =====
-// ============================
-// START class
+// Create the class
 const classDefinition = {
   class: className,
   vectorizer: 'text2vec-openai',
@@ -41,9 +38,9 @@ const classDefinition = {
 const retrievedDefinition = await client.schema.classCreator().withClass(classDefinition).do();
 // Test
 assert.equal(retrievedDefinition.moduleConfig['text2vec-openai']['model'], 'ada');
-// END class
+// Class created successfully
 
-// START import
+// Import objects from the JSON file
 import data from './jeopardy_100.json' assert { type: 'json' };
 
 let batcher = client.batch.objectsBatcher();
@@ -86,11 +83,11 @@ if (batcher.payload().objects.length > 0)
 console.log(`Finished importing ${counter} objects.`);
 
 // Test all objects were imported
-/*const result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
-assert.deepEqual(result.data['Aggregate'][className], [{ meta: { count: 100 } }]);*/
-// END import
+const result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
+assert.deepEqual(result.data['Aggregate'][className], [{ meta: { count: 100 } }]);
+// Import completed successfully
 
-// START query
+// Run a test query
 const results = await client.graphql
   .get()
   .withClassName(className)
@@ -101,7 +98,7 @@ const results = await client.graphql
 
 // Test
 assert(results.data.Get[className][0]['answer'].includes('sodium'));
-// END query
+// Query test completed
 
 await client.embedded.stop();
 // END all

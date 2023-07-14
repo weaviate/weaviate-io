@@ -14,13 +14,10 @@ client = weaviate.Client(
 
 # Clean slate for local testing (GitHub Actions VMs start fresh) because Weaviate data is persisted in embedded mode.
 client.schema.delete_all()
-# END ConnectAndCleanup
+# Client connected and schema cleared
 
 
-# ============================
-# ===== Define the class =====
-# ============================
-# START class
+# Create the class
 class_name = 'JeopardyQuestion'
 class_definition = {
     'class': class_name,
@@ -32,13 +29,10 @@ client.schema.create_class(class_definition)
 # Test
 retrieved_definition = client.schema.get(class_name)
 assert retrieved_definition['moduleConfig']['text2vec-openai']['model'] == 'ada'
-# END class
+# Class created successfully
 
 
-# ========================
-# ===== Batch import =====
-# ========================
-# START import
+# Import objects from the JSON file
 import json
 
 with open('jeopardy_100.json') as f:
@@ -62,10 +56,10 @@ with client.batch as batch:
 response = client.query.aggregate(class_name).with_meta_count().do()
 actual_count = response['data']['Aggregate'][class_name][0]['meta']['count']
 assert actual_count == 100, f'Expected 100 imported objects but got {actual_count}'
-# END import
+# Import completed successfully
 
 
-# START query
+# Run a test query
 result = (
     client.query
     .get('JeopardyQuestion', ['question', 'answer'])
@@ -76,4 +70,4 @@ result = (
 
 # Test
 assert 'sodium' in result['data']['Get'][class_name][0]['answer']
-# END query
+# Query test completed
