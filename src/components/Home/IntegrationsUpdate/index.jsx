@@ -69,7 +69,7 @@ export default function HomepageIntegrations() {
 
         </div>
 
-        <div className={styles.integrationsLogos + ' ' + styles.mobileIntegrations} >
+        <div className={`${styles.integrationsLogos} ${styles.mobileIntegrations}`} >
           <div className={styles.inside}>
           <div className={styles.logoBg}>
             <span className={styles.logoAI} />

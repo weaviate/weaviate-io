@@ -37,7 +37,7 @@ overflow-x: auto;
   background: #FFF;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   width: 20.0625rem;
-height: 25.1875rem;
+height: 26.1875rem;
 flex-shrink: 0;
 
 .insideBox{
@@ -67,16 +67,21 @@ flex-shrink: 0;
 }
 
 
-.smallText{color: #130C49;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 157.33%;}
+
 
 }
 
 
+.smallText
 
+{
+  color: #130C49;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 157.33%;
+
+}
 
 .tabs {
   display: flex;
