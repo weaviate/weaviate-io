@@ -61,13 +61,13 @@ services:
 ...
 ```
 
-## Schema configuration
+## Configuration
 
-The `reranker-transformers` module can be configured for any class in the schema. You can also specify options such as the `model` to use.
+The `reranker-transformers` module can be configured for any class in the schema.
 
 <!-- TODO: does `reranker-transformers` also have a returnDocuments flag? -->
 
-This example configures the `Document` class to use the `reranker-transformers` module, with the `cross-encoder/ms-marco-MiniLM-L-6-v2` model, and to return the documents in the response.
+<!-- This example configures the `Document` class to use the `reranker-transformers` module, with the `cross-encoder/ms-marco-MiniLM-L-6-v2` model, and to return the documents in the response.
 
 ```json
 {
@@ -83,7 +83,7 @@ This example configures the `Document` class to use the `reranker-transformers` 
     }
   ]
 }
-```
+``` -->
 
 
 ### Reranker selection
@@ -115,6 +115,8 @@ Where multiple `reranker` modules are enabled, you must specify the reranker mod
 
 The reranker-transformers module enables using [sentence transformers models](https://www.sbert.net/docs/pretrained_cross-encoders.html) as a second stage re-ranking for vector, bm25 and hybrid search results.
 
+With `reranker-transformers` module, you must set the model using environment variables as shown above.
+
 The `reranker-transformers` module supports the following models:
 
 - `cross-encoder/ms-marco-MiniLM-L-6-v2`
@@ -122,7 +124,6 @@ The `reranker-transformers` module supports the following models:
 - `cross-encoder/ms-marco-TinyBERT-L-2-v2`
 
 These pre-trained models are open-sourced on Hugging Face. The `cross-encoder/ms-marco-MiniLM-L-6-v2` model, for example, provides approximately the same benchmark performance as the largest model (L-12) when evaluated on [MS-MARCO](https://microsoft.github.io/msmarco/) (39.01 vs. 39.02).
-
 
 ## Usage
 
