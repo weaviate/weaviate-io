@@ -19,7 +19,6 @@ const className = 'JeopardyQuestion';
 
 // Clean slate for local testing (GitHub Actions VMs start fresh) because Weaviate data is persisted in embedded mode.
 try {
-  // The TypeScript client doesn't have a method to delete all classes - https://github.com/weaviate/typescript-client/issues/78
   await client.schema.classDeleter().withClassName(className).do();
 } catch {
   // ignore error if class doesn't exist
@@ -33,14 +32,13 @@ try {
 // START class
 const classDefinition = {
   class: className,
-  description: 'A Jeopardy! question',
   vectorizer: 'text2vec-openai',
 };
 
 // The return value is the class, as returned by client.schema.classGetter().withClassName(className).do();
-const theClass = await client.schema.classCreator().withClass(classDefinition).do();
+const retrievedDefinition = await client.schema.classCreator().withClass(classDefinition).do();
 // Test
-assert.equal(theClass.moduleConfig['text2vec-openai']['model'], 'ada');
+assert.equal(retrievedDefinition.moduleConfig['text2vec-openai']['model'], 'ada');
 // END class
 
 // START import

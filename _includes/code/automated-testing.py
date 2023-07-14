@@ -23,15 +23,14 @@ client.schema.delete_all()
 class_name = 'JeopardyQuestion'
 class_definition = {
     'class': class_name,
-    'description': 'A Jeopardy! question',
     'vectorizer': 'text2vec-openai',
 }
 
 client.schema.create_class(class_definition)
 
 # Test
-the_class = client.schema.get(class_name)
-assert the_class['moduleConfig']['text2vec-openai']['model'] == 'ada'
+retrieved_definition = client.schema.get(class_name)
+assert retrieved_definition['moduleConfig']['text2vec-openai']['model'] == 'ada'
 # END class
 
 
