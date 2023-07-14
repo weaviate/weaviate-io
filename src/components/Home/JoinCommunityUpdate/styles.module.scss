@@ -13,12 +13,14 @@
 }
 
 .mobileSocialBox{
+
+
   @media screen and (max-width: 768px) {
 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: flex-end;
+    align-items: center;
     gap: 7px;
     align-content: center;
     justify-content: space-around;
