@@ -25,7 +25,7 @@ The `reranker-transformers` module is not available on the WCS.
 
 Add `reranker-transformers` to the `ENABLE_MODULES` environment variable.
 
-Below is an example Docker Compose file, which will spin up Weaviate with the `reranker-transformers` module (as well as `text2vec-transformers`).
+Below is an example Docker Compose file, which will spin up Weaviate with the `reranker-transformers` module (as well as `text2vec-openai`).
 
 It also configures `reranker-transformers` to use the `cross-encoder/ms-marco-MiniLM-L-6-v2` model, with CUDA acceleration disabled.
 
@@ -34,16 +34,25 @@ It also configures `reranker-transformers` to use the `cross-encoder/ms-marco-Mi
 version: '3.4'
 services:
   weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
     image: semitechnologies/weaviate:||site.weaviate_version||
-    restart: on-failure:0
     ports:
-     - "8080:8080"
+    - 8080:8080
+    restart: on-failure:0
     environment:
-      QUERY_DEFAULTS_LIMIT: 20
+      RERANKER_INFERENCE_API: 'http://reranker-transformers:8080'
+      OPENAI_APIKEY: $OPENAI_APIKEY
+      QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: "./data"
-      DEFAULT_VECTORIZER_MODULE: text2vec-transformers
-      ENABLE_MODULES: 'text2vec-transformers,reranker-transformers'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
+      ENABLE_MODULES: 'text2vec-openai,reranker-transformers'
       CLUSTER_HOSTNAME: 'node1'
   reranker-transformers:
     image: semitechnologies/reranker-transformers:cross-encoder-ms-marco-MiniLM-L-6-v2
