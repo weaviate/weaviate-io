@@ -299,15 +299,11 @@ To combine `Get { }` with a vector search argument, here is an overview of the s
 
 `Get{}` functions can be extended with search filters (both semantic filters and traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.md).
 
-### Sorting
+## Sorting
 
-*Note: Support for sorting was added in `v1.13.0`.*
+You can sort results by any primitive property, typically a `text`, `string` (deprecated), `number`, or `int` property. When a query has a natural order (e.g. because of a `near<Media>` vector search), adding a sort operator will override the order.
 
-You can sort results by any primitive property, typically a `text`, `string`,
-`number`, or `int` property. When a query has a natural order (e.g. because of a
-`near<Media>` vector search), adding a sort operator will override the order.
-
-See [filters – sorting](./additional-operators.md#sorting) for more information.
+See [Additional operators – sorting](./additional-operators.md#sorting) for more information.
 
 ## More Resources
 
