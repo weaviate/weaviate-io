@@ -36,6 +36,8 @@
     flex-wrap: nowrap;
     overflow-x: scroll;
     border-left: none;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 25%;
     }
 
     .tabsList {
@@ -66,6 +68,7 @@
         gap: 5px;
         padding: 0.5rem;
         border-left: 3px solid transparent;
+        scroll-snap-align: start;
 
         p {
           text-align: left;

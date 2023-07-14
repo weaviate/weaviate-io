@@ -2,6 +2,7 @@
 .logoSection{
 
   display:contents;
+  animation: scrollSideCustomers 40s linear infinite;
 
   @media screen and (max-width: 500px) {
   display: grid;
@@ -11,6 +12,10 @@
   overflow-x: hidden;
   column-gap: 20px;
   animation: scrollSideCustomers 40s linear infinite;
+
+
+
+  }
 
   @keyframes scrollSideCustomers {
 
@@ -23,8 +28,6 @@
       transform: translateX(300px)
 
     }
-  }
-
   }
 
 }

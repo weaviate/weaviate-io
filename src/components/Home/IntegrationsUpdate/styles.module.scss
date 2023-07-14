@@ -40,6 +40,7 @@
   justify-content: space-around;
   white-space: nowrap;
   overflow:scroll;
+  scroll-snap-type: x mandatory;
 
 
 
@@ -65,6 +66,7 @@
     background: #FFF;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
     align-items: center;
+    scroll-snap-align: center;
   }
 
   .inside {
