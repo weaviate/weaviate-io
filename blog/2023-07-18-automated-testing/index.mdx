@@ -17,7 +17,6 @@ import TSCode from '!!raw-loader!/_includes/code/automated-testing.ts';
 import { DownloadButton } from '/src/theme/Buttons';
 
 ![Automated testing for Weaviate applications](./img/hero.png)
-<!-- TODO: Needs a new hero image - have you asked Svitlana? -->
 
 As a software engineer with experience in test automation, I firmly believe in [Test-Driven Development](https://en.wikipedia.org/wiki/Test-driven_development), and more specifically, incorporating [integration testing](https://en.wikipedia.org/wiki/Integration_testing) from the very early stages of developing an application.
 
@@ -25,27 +24,24 @@ As a software engineer with experience in test automation, I firmly believe in [
 
 But writing tests and running them can be a chore - for many reasons. For example, if the application is built with Weaviate, the test suite may need to set up and tear down a separate Weaviate server, which can be time-consuming and error-prone.
 
-I'm here to tell you, however, that it doesn't seen to be that way. In this article, I'll show you how to make testing easier with [Embedded Weaviate](/developers/weaviate/installation/embedded), and other tips for better automated testing.
+I'm here to tell you, however, that it doesn't have to be that way. In this article, I'll show you how to make testing easier with [Embedded Weaviate](/developers/weaviate/installation/embedded), and other tips for better automated testing.
 
 ## Testing and Weaviate
 
 In this article, we will focus on [integration tests](https://en.wikipedia.org/wiki/Integration_testing). Integrated testing is an important part of the development process, especially so for complex applications. Weaviate-based apps usually fall in this category.
 
-For one, Weaviate must interact with the application in a variety of ways. In addition, Weaviate will interact with and additional, external services such as vectorizers or LLMs.
+For one, Weaviate must interact with the application in a variety of ways. In addition, Weaviate will interact with additional, external services such as vectorizers or LLMs.
 
 Such complexity makes it important to test the application as a whole, and not just its individual components. And this complexity also means that arranging the test suite can be cumbersome, with a variety of moving parts that need to be set up and torn down.
 
-<!-- Integration testing helps early bug detection by verifying the interaction between different modules of a software system, which may function perfectly in isolation (as shown by unit testing), but may run into various types of issues when combined (interface/API mismatch, different data ranges etc.) Besides improving test coverage, integration testing also increases confidence when refactoring, especially when changing the implementation of a particular unit of the system under test, by proving that the system as a whole continues to function as expected. -->
-<!-- NOTE: The reader probably knows what integrated testing is, if they are here - or they can look it up - have added a link just in case. -->
-
-[Embedded Weaviate](/developers/weaviate/installation/embedded) makes one part of this puzzle much easier, since Weaviate can be instantiated directly from the client. The following is all you need to do to start an Weaviate server:
+[Embedded Weaviate](/developers/weaviate/installation/embedded) makes one part of this puzzle much easier, since Weaviate can be instantiated directly from the client. The following is all you need to do to start a Weaviate server:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
   <FilteredTextBlock
     text={PyCode}
-    startMarker="# START init"
-    endMarker="# END init"
+    startMarker="# START Connect"
+    endMarker="# Client is now ready to accept requests"
     language="py"
   />
   </TabItem>
@@ -53,25 +49,21 @@ Such complexity makes it important to test the application as a whole, and not j
   <TabItem value="ts" label="TypeScript">
   <FilteredTextBlock
     text={TSCode}
-    startMarker="// START init"
-    endMarker="// END init"
+    startMarker="// START Connect"
+    endMarker="// Client is now ready to accept requests"
     language="js"
   />
   </TabItem>
 </Tabs>
 
-This is not only useful for new contributors, but also for experienced developers. Starting anew as a new contributor, or working from a different machine, can be a hassle. With Embedded Weaviate, you can just run the test suite and be done with it.
+This is not only useful for new contributors to the project, but also for experienced developers. Starting anew as a new contributor, or working from a different machine on occasion, can be a hassle. With Embedded Weaviate, you can just run the test suite and be done with it.
 
 But Embedded Weaviate is not the only way to make testing easier. In the following sections, we'll look at other ways to make testing easier, and how to make the most of Embedded Weaviate.
-
-<!-- Such an integration test could more easily cover the interaction between the application code, the Weaviate server, and the inference provider (e.g. OpenAI, Cohere, Google PaLM) used via a [vectorizer](/developers/weaviate/modules/retriever-vectorizer-modules) or [generator](/developers/weaviate/modules/reader-generator-modules) module. -->
 
 
 ## Scoping tests
 
-<!-- Note: Rewrote this section to provide context and highlight key messages from each point -->
-
-While you may be familiar with tests and integration tests in general, we provide suggestions for Weaviate-powered applications:
+While you may be familiar with tests and integration tests in general, here are some specific suggestions for Weaviate-powered applications:
 * **Whether to test search quality**: This depends primarily on the model of the [vectorization module](/developers/weaviate/modules/retriever-vectorizer-modules). We suggest evaluating models separately, but not tested as a part of the application.
 * **Focus on interactions with the inference provider**: Search itself is a core Weaviate functionality, that we can trust. So, we suggest any integration tests focus on the interaction with the inference provider. For example,
   * is the vectorization model the expected one?
@@ -87,7 +79,7 @@ While you may be familiar with tests and integration tests in general, we provid
 
 ### Set up
 
-[Embedded Weaviate](/developers/weaviate/installation/embedded) lets us spawn an Weaviate server instance from the client, and automatically tear it down when the client terminates. The data is [persisted](/developers/weaviate/installation/embedded#lifecycle) between sessions, so we recommend deleting your data before each test.
+[Embedded Weaviate](/developers/weaviate/installation/embedded) lets us spawn a Weaviate server instance from the client, and automatically tear it down when the client terminates. The data is [persisted](/developers/weaviate/installation/embedded#lifecycle) between sessions, so we recommend deleting your data before each test.
 
 Here's how to instantiate an embedded Weaviate server and perform this cleanup:
 
@@ -125,8 +117,8 @@ If you have yet to install the required dependencies, run the following command:
 
   <FilteredTextBlock
     text={PyCode}
-    startMarker="# START init"
-    endMarker="# END init"
+    startMarker="# START ConnectAndCleanup"
+    endMarker="# END ConnectAndCleanup"
     language="py"
   />
   </TabItem>
@@ -135,8 +127,8 @@ If you have yet to install the required dependencies, run the following command:
 
   <FilteredTextBlock
     text={TSCode}
-    startMarker="// START init"
-    endMarker="// END init"
+    startMarker="// START ConnectAndCleanup"
+    endMarker="// END ConnectAndCleanup"
     language="js"
   />
   </TabItem>
@@ -149,9 +141,9 @@ Now, let's walk through some examples of how you might construct integration tes
 
 As a simple example, let's create a class and then test that it was created correctly.
 
-We'll create question & answer objects from the game show *Jeopardy!*, by specifying its name and the vectorizer ([`text2vec-openai`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai)).
+We'll create a class for question & answer objects from the game show *Jeopardy!*, by specifying its name and the vectorizer ([`text2vec-openai`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai)).
 
-Here, the integration test will consist of checking that the class was created with the expected default OpenAI vectorization model type, `ada`.
+Here, the integration test will consist of checking that the class was created with the expected default OpenAI vectorization model type, [`ada`](https://platform.openai.com/docs/guides/embeddings/embedding-models).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -177,14 +169,7 @@ Here, the integration test will consist of checking that the class was created w
 Although this is a simple test, you can imagine that if you have tens, or even hundreds of classes, tests like these can save you a lot of time and effort. And, if you're working with a team, you can be sure that everyone is on the same page about the expected schema.
 :::
 
-<!-- The two code sections above have established the groundwork for future tests by performing these steps:
-* instantiate and connect to embedded Weaviate
-  * pass along an API key for connecting to OpenAI
-* delete existing collections (class + data objects) from previous runs
-* create our class
-* assert its existence -->
-
-And all of it was done with very little code with Embedded Weaviate. Next, let's see how we might test imports.
+All we've done so far (instantiate and connect to Weaviate and OpenAI, perform cleanup, create the class and test creation), was done with very little code, thanks to Embedded Weaviate. Next, let's see how we might test imports.
 
 
 ### Testing imports
@@ -284,7 +269,7 @@ The code below brings together the setup and tests we've implemented so far - if
   <TabItem value="py" label="Python">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START init"
+      startMarker="# START Connect"
       endMarker="# END query"
       language="py"
     />
@@ -293,7 +278,7 @@ The code below brings together the setup and tests we've implemented so far - if
   <TabItem value="ts" label="TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START init"
+      startMarker="// START Connect"
       endMarker="// END all"
       language="js"
     />
@@ -357,7 +342,7 @@ jobs:
 
 With this step, you'll be able to run your tests on every push to the main branch.
 
-And did you notice that we didn't have to spin up an instance of Weaviate through GitHub Actions? That's because we're using Embedded Weaviate, which means we can run our tests without having to separately spin up an instance of Weaviate.
+And did you notice that we didn't have to spin up an instance of Weaviate through GitHub Actions? That's because we're using Embedded Weaviate, which means we can run our tests without worrying about the Weaviate server instance.
 
 This might not seem like a big deal, but it lowers the barrier to entry for running tests, and makes it easier to run tests locally, or in a CI/CD pipeline.
 
@@ -366,11 +351,11 @@ As a result, your application will be more robust, and you'll be able to deploy 
 
 ## Closing thoughts
 
-In this post, we've seen how to write an integration test for an application using Weaviate - Embedded Weaviate in particular.
+In this post, we've seen how to write an integration test for an application using Weaviate &mdash; [Embedded Weaviate](/developers/weaviate/installation/embedded) in particular.
 
 With just a few lines of code, we are able to verify how we import a data set, vectorize it, then export the vectorized objects. The test can be extended with search, insertion, updates, deletes, and other operations that are part of the user journey.
 
-What's more - because we were using Embedded Weaviate, the journey from the start to finish was far easier not to mention portable.
+What's more - because we were using Embedded Weaviate, the journey from the start to finish was far easier, not to mention portable.
 
 So what are you waiting for? Try out Embedded Weaviate - and add those tests to your application that you've been putting off 😉.
 

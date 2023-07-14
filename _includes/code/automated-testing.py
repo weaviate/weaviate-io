@@ -1,19 +1,20 @@
 # Blog: Automated testing for Weaviate applications - Python code
-# START init
+#SATRT Connect  # START ConnectAndCleanup
 import weaviate
 import os
 
-# Instantiate the embedded Weaviate client with the OpenAI API key
+# Instantiate the embedded Weaviate client and pass the OpenAI API key
 client = weaviate.Client(
     embedded_options=weaviate.embedded.EmbeddedOptions(),
     additional_headers={
         'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']  # Replace with your OpenAI API key
     }
 )
+# Client is now ready to accept requests
 
 # Clean slate for local testing (GitHub Actions VMs start fresh) because Weaviate data is persisted in embedded mode.
 client.schema.delete_all()
-# END init
+# END ConnectAndCleanup
 
 
 # ============================

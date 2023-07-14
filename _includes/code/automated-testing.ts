@@ -2,9 +2,10 @@
 // run with: node --loader=ts-node/esm automated-testing.ts
 import assert from 'assert';
 
-// START init
+// START Connect  // START ConnectAndCleanup
 import weaviate, { EmbeddedOptions } from 'weaviate-ts-embedded';
 
+// Instantiate the embedded Weaviate client and pass the OpenAI API key
 const client = weaviate.client(new EmbeddedOptions(
   {
     env: {
@@ -14,6 +15,7 @@ const client = weaviate.client(new EmbeddedOptions(
 ));
 
 await client.embedded.start();
+// Client is now ready to accept requests
 
 const className = 'JeopardyQuestion';
 
@@ -23,7 +25,7 @@ try {
 } catch {
   // ignore error if class doesn't exist
 }
-// END init
+// END ConnectAndCleanup
 
 
 // ============================
