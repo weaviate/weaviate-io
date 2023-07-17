@@ -32,6 +32,7 @@ To import items in batches using a Weaviate client,
    * Specify the class to add to, and
    * Add it to the batcher.
 1. Ensure that the batches are flushed (some clients require manual flushing).
+1. (If multi-tenancy is enabled) Specify the tenant name.
 
 Depending on the client, additional settings or auto-flushing of batches may be available.
 

@@ -273,7 +273,7 @@ First, you will use the `vectorizer` to create object vectors.
 
 ### *Option 1*: `vectorizer`
 
-The below passes object data without a vector. This causes Weaviate to use the specified `vectorizer` to create a vector embedding for each object.
+The code below imports object data without specifying a vector. This causes Weaviate to use the `vectorizer` defined for the class to create a vector embedding for each object.
 
 import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.mdx'
 

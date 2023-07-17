@@ -68,6 +68,7 @@ for (const dataObj of dataObjs)
   batcher5 = batcher5.withObject({
     class: className,
     properties: dataObj,
+    // tenant: 'tenantA'  // If multi-tenancy is enabled, specify the tenant to which the object will be added.
   });
 
 // Flush

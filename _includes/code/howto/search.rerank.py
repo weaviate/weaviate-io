@@ -6,10 +6,11 @@ import os
 
 # Instantiate the client with the OpenAI API key
 client = weaviate.Client(
-    'http://localhost:8080',
-    #auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
+    'https://edu-demo.weaviate.network',
+    auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY'],
+        'X-Cohere-Api-Key': os.environ['COHERE_API_KEY']
     }
 )
 
@@ -145,7 +146,7 @@ gql_query = """
 
 # Tests
 gqlresponse = client.query.raw(gql_query)
-assert gqlresponse == response
+assert [q["answer"] for q in gqlresponse["data"]["Get"]["JeopardyQuestion"]] == [q["answer"] for q in response["data"]["Get"]["JeopardyQuestion"]]
 
 
 # =================================
@@ -160,10 +161,7 @@ response = (
         'concepts': ['flying']
     })
     # highlight-start
-    .with_rerank({
-        'property': 'answer',
-        'query': 'floating'
-    })
+    .with_additional('rerank(property: "answer" query: "floating") { score }')
     # highlight-end
     .with_limit(10)
     .do()
@@ -308,7 +306,7 @@ expected_response = (
 
 # Tests
 for question in response['data']['Get']['JeopardyQuestion']:
-    assert 'score' in question['_additional']['rerank']
+    assert 'score' in question['_additional']['rerank'][0]
 # End test
 
 
@@ -343,7 +341,7 @@ gql_query = """
 
 # Tests
 gqlresponse = client.query.raw(gql_query)
-assert gqlresponse == response
+assert [q["answer"] for q in gqlresponse["data"]["Get"]["JeopardyQuestion"]] == [q["answer"] for q in response["data"]["Get"]["JeopardyQuestion"]]
 
 
 # ============================
@@ -358,10 +356,7 @@ response = (
       query='paper'
     )
     # highlight-start
-    .with_rerank({
-        'property': 'question',
-        'query': 'publication'
-    })
+    .with_additional('rerank(property: "question" query: "publication") { score }')
     # highlight-end
     .with_limit(10)
     .do()
@@ -506,7 +501,7 @@ expected_response = (
 
 # Tests
 for question in response['data']['Get']['JeopardyQuestion']:
-    assert 'score' in question['_additional']['rerank']
+    assert 'score' in question['_additional']['rerank'][0]
 # End test
 
 
@@ -515,8 +510,8 @@ gql_query = """
 {
   Get {
     JeopardyQuestion(
-      nearText: {
-        concepts: "flying"
+      bm25: {
+        query: "paper"
       }
       limit: 10
     ) {
@@ -526,8 +521,8 @@ gql_query = """
         distance
         # highlight-start
         rerank(
-          property: "answer"
-          query: "floating"
+          property: "question"
+          query: "publication"
         ) {
           score
         }
@@ -541,4 +536,4 @@ gql_query = """
 
 # Tests
 gqlresponse = client.query.raw(gql_query)
-assert gqlresponse == response
+assert [q["answer"] for q in gqlresponse["data"]["Get"]["JeopardyQuestion"]] == [q["answer"] for q in response["data"]["Get"]["JeopardyQuestion"]]

@@ -17,6 +17,9 @@ This page shows you how to perform `generative` searches using Weaviate.
 
 :::info Related pages
 - [API References: GraphQL: Get](../api/graphql/get.md)
+- [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
+- [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
+- [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
 :::
 
 ## Requirements
@@ -32,7 +35,7 @@ To use the generative search feature, you must:
   <summary>How do I <strong>configure Weaviate</strong> with a generator module?</summary>
 
   You must enable the desired generative search module and (optionally) specify the corresponding inference service (OpenAI, Cohere, PaLM) API key in the relevant configuration file (e.g. `docker-compose.yml`), or (recommended) request that client code provide it with every request. You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
-  
+
   Here are the relevant settings from the configuration file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$PALM_APIKEY`), unless you want the client to supply the API key (recommended).
 
   <Tabs groupId="modules">
@@ -73,17 +76,27 @@ services:
 </details>
 
 <details>
-  <summary>How do I <strong>configure the generative module</strong> in the target class?</summary>
+  <summary>How do I <strong>set the generative module</strong> in the target class?</summary>
 
-You can configure parameters for the generative search module in the target class via the `moduleConfig.generative-*` property. Please refer to the "Schema configuration" section in the relevant module page.
+Where multiple `generative` modules are enabled, you must specify the generative module to be used in the `moduleConfig` section of the schema. For example, this configures the `Article` class to use the `generative-openai` module:
+
+```json
+{
+  "classes": [
+    {
+      "class": "Article",
+      ...,
+      "moduleConfig": {
+        "generative-openai": {},  // This will configure the 'Article' class to use the 'generative-openai' module
+      }
+    }
+  ]
+}
+```
+
+You can configure additional module parameters here also. Please refer to the "Schema configuration" section in the relevant module page.
+
 </details>
-
-:::info For more detail
-See the relevant module page for:
-- [generative-openai](../modules/reader-generator-modules/generative-openai.md)
-- [generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
-- [generative-palm](../modules/reader-generator-modules/generative-palm.md)
-:::
 
 
 ## Single prompt
@@ -280,35 +293,35 @@ In the below example, the prompt will only include the `question` and `answer` p
 
 <Tabs groupId="languages">
   <TabItem value="python" label="Python">
-  
+
   <FilteredTextBlock
     text={PythonCode}
     startMarker="# GroupedGenerativeProperties Python"
     endMarker="# END GroupedGenerativeProperties Python"
     language="py"
   />
-  
+
   </TabItem>
   <TabItem value="js" label="JavaScript/TypeScript">
-  
+
   <FilteredTextBlock
     text={TSCode}
     startMarker="// GroupedGenerativeProperties"
     endMarker="// END GroupedGenerativeProperties"
     language="ts"
   />
-  
+
   </TabItem>
 
   <TabItem value="graphql" label="GraphQL">
-  
+
   <FilteredTextBlock
     text={PythonCode}
     startMarker="# GroupedGenerativePropertiesGraphQL"
     endMarker="# END GroupedGenerativePropertiesGraphQL"
     language="graphql"
   />
-  
+
   </TabItem>
 </Tabs>
 

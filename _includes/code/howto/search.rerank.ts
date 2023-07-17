@@ -4,11 +4,12 @@ import assert from 'assert';
 import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
-  scheme: 'http',  // TODO: https
-  host: 'localhost:8080', // TODO: edu-demo.weaviate.network
-  // apiKey: new weaviate.ApiKey('learn-weaviate'),
+  scheme: 'https',
+  host: 'edu-demo.weaviate.network',
+  apiKey: new weaviate.ApiKey('learn-weaviate'),
   headers: {
     'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
+    'X-Cohere-Api-Key': process.env['COHERE_API_KEY'],
   },
 });
 
@@ -40,7 +41,6 @@ for (const question of result.data.Get.JeopardyQuestion) {
   assert.ok('distance' in question['_additional']);
 }
 
-/*
 // =================================
 // ===== nearText after rerank =====
 // =================================
@@ -53,13 +53,9 @@ result = await client.graphql
     concepts: ['flying'],
   })
   // highlight-start
-  .withRerank({
-    property: 'answer',
-    query: 'floating',
-  })
+  .withFields('question answer _additional { distance rerank(property: "answer" query: "floating") { score } }')
   // highlight-end
   .withLimit(10)
-  .withFields('question answer _additional { distance }')
   .do();
 
 console.log(JSON.stringify(result, null, 2));
@@ -71,6 +67,7 @@ assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
 assert.equal(result.data.Get.JeopardyQuestion.length, 10);
 for (const question of result.data.Get.JeopardyQuestion) {
   assert.ok('distance' in question['_additional']);
+  assert.ok('score' in question['_additional']['rerank'][0]);
 }
 
 
@@ -86,13 +83,9 @@ result = await client.graphql
     query: 'paper',
   })
   // highlight-start
-  .withRerank({
-    property: 'answer',
-    query: 'floating',
-  })
+  .withFields('question answer _additional { distance rerank(property: "question" query: "publication") { score } }')
   // highlight-end
   .withLimit(10)
-  .withFields('question answer _additional { distance }')
   .do();
 
 console.log(JSON.stringify(result, null, 2));
@@ -104,5 +97,5 @@ assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
 assert.equal(result.data.Get.JeopardyQuestion.length, 10);
 for (const question of result.data.Get.JeopardyQuestion) {
   assert.ok('distance' in question['_additional']);
+  assert.ok('score' in question['_additional']['rerank'][0]);
 }
-*/
