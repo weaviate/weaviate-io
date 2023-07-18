@@ -131,7 +131,7 @@ There is a configurable [maximum limit](../api/rest/batch.md#maximum-number-of-d
 
 ### Dry-run
 
-You can set the [`dryRun` option](../api/rest/batch.md#dry-run-before-deletion) to check how many objects would be deleted.
+You can set the [`dryRun` option](../api/rest/batch.md#dry-run-before-deletion) to check how many objects would be deleted, without actually performing the deletion.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -157,7 +157,7 @@ You can set the [`dryRun` option](../api/rest/batch.md#dry-run-before-deletion) 
 <details>
   <summary>Example response</summary>
 
-The result could look like this:
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PyCode}
