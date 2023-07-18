@@ -1,0 +1,115 @@
+---
+title: Manage classes (object collections)
+sidebar_position: 5
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'create', 'collections']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/configure.schema.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/configure.schema.ts';
+
+## Overview
+
+Each Weaviate object belongs to one (and only one) class. This page covers the essential topics in relation to managing Weaviate classes.
+
+:::info Related pages
+- [API References: REST: Schema](../api/rest/schema.md)
+- [References: Configuration: Schema](../config-refs/schema.md)
+- [Concepts: Data structure](../concepts/data.md)
+:::
+
+## Create a class
+
+You can add a class to the Weaviate [schema](../concepts/data.md#class-collections) manually, or have Weaviate create it during object creation/import (auto-import).
+
+### Auto-schema
+
+To use auto-schema, all you need to do is to create/import objects.
+
+If you do so to a class that does not exist, Weaviate will create the class by inferring properties as required.
+
+:::info Read more about Auto-schema
+See [this page](../config-refs/schema.md#auto-schema)
+:::
+
+### Manual creation
+
+To create a class, you need a class name at a minimum with the `class` parameter.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateClass"
+      endMarker="# END CreateClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateClass"
+      endMarker="// END CreateClass"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+### Available options
+
+> What are the available options?
+
+> Where to find all available options (config refs)
+
+### Example definitions
+
+> Show some example definitions for users to use / follow
+
+<details>
+  <summary>For text objects and generative search</summary>
+
+Something something dark side
+
+</details>
+
+<details>
+  <summary>For text objects and Q&A</summary>
+
+Something something dark side
+
+</details>
+
+<details>
+  <summary>For text objects and reranking</summary>
+
+Something something dark side
+
+</details>
+
+<details>
+  <summary>For multimodal objects and generative search</summary>
+
+Something something dark side
+
+</details>
+
+## Read a class definition
+
+## Update a class definition
+
+> What's required to update a class?
+
+> Highlight that most options aren't mutable
+
+## Delete a class
+
+> How to delete a class
+
+import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
+
+<CautionSchemaDeleteClass />
