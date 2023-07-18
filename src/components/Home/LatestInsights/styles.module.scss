@@ -40,7 +40,7 @@ align-items: center;
   background: #FFF;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   width: 20.0625rem;
-height: 25.5rem;
+  height: 25.9rem;
 flex-shrink: 0;
 scroll-snap-align: center;
 
@@ -58,7 +58,7 @@ scroll-snap-align: center;
 
 .textBox{
 
-  padding:18px;
+  padding: 21px 17px 30px;
 }
 
 
@@ -75,6 +75,7 @@ scroll-snap-align: center;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    align-items: flex-end;
 }
 
 .smallText

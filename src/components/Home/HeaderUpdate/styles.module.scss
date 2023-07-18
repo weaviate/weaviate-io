@@ -2,15 +2,12 @@
 .logoSection{
 
   display:contents;
-  animation: scrollSideCustomers 40s linear infinite;
+
 
   @media screen and (max-width: 500px) {
-  display: grid;
-  grid-auto-columns: max-content;
-  grid-template-rows: 1fr;
-  width: 104%;
-  overflow-x: hidden;
-  column-gap: 20px;
+    display: flex;
+    overflow-x: hidden;
+    column-gap: 20px;
   animation: scrollSideCustomers 40s linear infinite;
 
 
@@ -21,39 +18,42 @@
 
     0%{
 
-      transform: translateX(-445px)
+      transform: translateX(0)
 
     }
     100%{
-      transform: translateX(300px)
+      transform: translateX(-50%)
 
     }
   }
 
 }
 
+.innerBar:hover { .logoSection, .mobileLogoSection{
+
+  animation-play-state: paused;
+}
+}
+
+
 .mobileLogoSection{
 
   display:none;
 
   @media screen and (max-width: 500px) {
-  display: grid;
-  grid-auto-columns: max-content;
-  grid-template-rows: 1fr;
-  width: 104%;
-  overflow-x: hidden;
-  column-gap: 20px;
+    display: flex;
+    overflow-x: hidden;
   animation: scrollSideCustomers 30s linear infinite;
 
   @keyframes scrollSideCustomers {
 
     0%{
 
-      transform: translateX(-390px)
+      transform: translateX(0)
 
     }
     100%{
-      transform: translateX(390px)
+      transform: translateX(-50%)
 
     }
   }

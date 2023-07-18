@@ -36,11 +36,8 @@
   display: flex;
   flex-direction: row;
   flex: 1;
-  gap: 30px;
   justify-content: space-around;
-  white-space: nowrap;
-  overflow:scroll;
-  scroll-snap-type: x mandatory;
+  overflow:hidden;
 
 
 
@@ -49,6 +46,7 @@
 
     padding: 9px;
     height: 140px;
+    overflow: hidden;
   }
 
 
@@ -67,37 +65,36 @@
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
     align-items: center;
     scroll-snap-align: center;
+    margin: 0 10px;
   }
 
   .inside {
     display: flex;
-    gap: 90px;
     padding-bottom: 4rem;
 
 
-  animation: scrollSide 40s linear infinite;
+  animation: scrollSide 30s linear infinite;
 
   @keyframes scrollSide {
 
     0%{
 
-      transform: translateX(1000px)
+      transform: translateX(50%)
 
     }
     100%{
-      transform: translateX(0px)
+      transform: translateX(-50%)
 
     }
   }
 
+  .integrationsLogos:hover{
+
+    animation-play-state: paused;
+  }
 
 
 
-    @media screen and (max-width: 500px) {
-
-        gap: 20px;
-
-    }
 
     .logoAI {
       width: 100%;
@@ -152,11 +149,11 @@
 
 
 
-.inside:hover{
+.integrationsLogos:hover { .inside{
 
   animation-play-state: paused;
 }
-
+}
 .mobileIntegrations{
 
 display:none!important;

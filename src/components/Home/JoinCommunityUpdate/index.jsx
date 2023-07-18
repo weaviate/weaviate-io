@@ -38,10 +38,10 @@ export default function HomepageJoinCommunity() {
           <h2>
             Join the global community
           </h2>
-          <p>Connect with the Weaviate Team and hundreds of developers and data engineers! Our community is here to help you with your projects and provide expert advice.
+          <p className={styles.rightText}>Connect with the Weaviate Team and hundreds of developers and data engineers! Our community is here to help you with your projects and provide expert advice.
 Share how you build your apps with Weaviate.</p>
 
-<p>Stay updated and subscribe to our newsletter</p>
+<p className={styles.rightText}>Stay updated and subscribe to our newsletter</p>
 <form className={styles.communityForm}>
 <input className={styles.subscribeInput} type='field' placeholder='my_email@something.com'></input>
 <button className={styles.communityButton}>Subscribe</button>
