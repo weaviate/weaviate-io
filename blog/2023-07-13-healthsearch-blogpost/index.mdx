@@ -15,7 +15,7 @@ description: "Learn about our latest open-source demo and how we used Semantic a
 
 ## 🛠️ Bridging semantic and generative search!
 
-Isn’t it annoying when you just want to find a remedy for your headache and instead find out that you have a horrible disease? With Healthsearch you will find exactly and only that - and no unsolicited health diagnosis.
+Isn't it annoying to google your symptoms and discover that you might have a horrible disease? This phenomenon is called Dr. Google and probably happens to most of us. But don't worry; we've built Healthsearch precisely for this case to find remedies others say have helped them.
 
 Try out the [live demo here](https://healthsearch-frontend.onrender.com/)✨
 
@@ -32,11 +32,11 @@ The results shown in Healthsearch should not be taken as health advice or is it 
 :::
 </figure>
 
-Imagine just being able to type, 'I need better sleep,' and instantly get a list of related supplements tailored to enhance your sleep quality. Or you're dealing with persistent joint pain, and you're looking for a natural supplement to alleviate discomfort.
+Imagine being able to type in `I need to sleep better` and instantly get a list of related supplements where other users have written reviews claiming it has helped them sleep better. Or you're dealing with persistent joint pain and looking for a natural supplement to alleviate discomfort.
 
-We are super excited to release our latest open-source demo, Healthsearch. This demo decodes user-written reviews of supplements and performs semantic- and generative search on them, retrieving the most related products for specific health effects based on the reviews, and leveraging Large Language Models to generate product and review summaries. The demo can understand natural language queries and derive all search filters directly from the context of your query.
+We are excited to release our latest open-source demo, Healthsearch. This demo decodes user-written reviews of supplements and performs semantic- and generative search on them, retrieving the most related products for specific health effects based on the reviews, and leveraging Large Language Models to generate product and review summaries. The demo can understand natural language queries and derive all search filters directly from the context of your query.
 
-In this blog post, I’ll give you a quick tour of the Healthsearch project and its exciting features. We will also go through the implementations and the challenges I faced while working on it.
+In this blog post, I’ll give you a quick tour of the Healthsearch project and its amazing features. We will also go through the implementations and the challenges I faced while working on it.
 
 :::note We love open-source ❤️
 We’re providing [all the source code on GitHub](https://github.com/weaviate/healthsearch-demo) for you to discover and use for your own projects.
@@ -337,7 +337,8 @@ While generative search offers immense potential, it comes with its own set of c
 
 ## 🔥 Introducing Semantic Caching
 
-Generating a query and its summary, mainly when using the GPT4 model, can be a time-intensive process. Consequently, caching previous results becomes crucial to improving the system's efficiency. But what if we could take it a step further? What if we employed Weaviate not only as a cache but also took advantage of its semantic search capabilities?
+Generating a query and its summary, mainly when using the GPT4 model, can be a time-intensive process. Consequently, caching previous results becomes crucial to improving the system's efficiency. Caching also helps when encountering LLM API outages, creating a new dependency layer for your project.
+But what if we could take it a step further? What if we employed Weaviate as a cache and took advantage of its semantic search capabilities?
 
 :::note Consider these two queries
 “Helpful for joint pain” versus “Good for joint pain”
