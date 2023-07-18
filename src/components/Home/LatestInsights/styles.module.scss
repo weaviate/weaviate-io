@@ -40,7 +40,7 @@ align-items: center;
   background: #FFF;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   width: 20.0625rem;
-  height: 25.9rem;
+  height: 27rem;
 flex-shrink: 0;
 scroll-snap-align: center;
 
@@ -71,11 +71,10 @@ scroll-snap-align: center;
 
 .bottomBox{
 
+  align-items: flex-end;
   display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    align-items: flex-end;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .smallText
@@ -86,6 +85,7 @@ scroll-snap-align: center;
   font-style: normal;
   font-weight: 700;
   line-height: 157.33%;
+  margin: 0 0 3px;
 
 }
 
