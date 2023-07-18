@@ -32,6 +32,13 @@ Below is an example Docker Compose file, which will spin up Weaviate with the `r
 version: '3.4'
 services:
   weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
     image: semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
@@ -42,7 +49,7 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       DEFAULT_VECTORIZER_MODULE: text2vec-cohere
       ENABLE_MODULES: text2vec-cohere,reranker-cohere
-      COHERE_APIKEY: sk-...  # optional, as described above
+      COHERE_APIKEY: $COHERE_APIKEY
       CLUSTER_HOSTNAME: 'node1'
 ...
 ```

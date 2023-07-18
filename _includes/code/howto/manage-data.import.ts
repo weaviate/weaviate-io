@@ -184,8 +184,6 @@ async function addObject(obj: object): Promise<void> {
 
   // When the batch counter reaches batchSize, push the objects to Weaviate
   if (counter % batchSize === 0) {
-    console.log(`Imported ${counter} articles...`);
-
     // Flush the batch queue and restart it
     const response = await batcher.do();
     batcher = client.batch.objectsBatcher();
@@ -194,6 +192,8 @@ async function addObject(obj: object): Promise<void> {
     for (const r of response)
       if (r.result.errors)
         throw r.result.errors;
+
+    console.log(`Imported ${counter} articles...`);
   }
 }
 // END JSON streaming  // END CSV streaming

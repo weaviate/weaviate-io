@@ -25,7 +25,7 @@ The `reranker-transformers` module is not available on the WCS.
 
 Add `reranker-transformers` to the `ENABLE_MODULES` environment variable.
 
-Below is an example Docker Compose file, which will spin up Weaviate with the `reranker-transformers` module (as well as `text2vec-transformers`).
+Below is an example Docker Compose file, which will spin up Weaviate with the `reranker-transformers` module (as well as `text2vec-openai`).
 
 It also configures `reranker-transformers` to use the `cross-encoder/ms-marco-MiniLM-L-6-v2` model, with CUDA acceleration disabled.
 
@@ -34,16 +34,25 @@ It also configures `reranker-transformers` to use the `cross-encoder/ms-marco-Mi
 version: '3.4'
 services:
   weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
     image: semitechnologies/weaviate:||site.weaviate_version||
-    restart: on-failure:0
     ports:
-     - "8080:8080"
+    - 8080:8080
+    restart: on-failure:0
     environment:
-      QUERY_DEFAULTS_LIMIT: 20
+      RERANKER_INFERENCE_API: 'http://reranker-transformers:8080'
+      OPENAI_APIKEY: $OPENAI_APIKEY
+      QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: "./data"
-      DEFAULT_VECTORIZER_MODULE: text2vec-transformers
-      ENABLE_MODULES: 'text2vec-transformers,reranker-transformers'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
+      ENABLE_MODULES: 'text2vec-openai,reranker-transformers'
       CLUSTER_HOSTNAME: 'node1'
   reranker-transformers:
     image: semitechnologies/reranker-transformers:cross-encoder-ms-marco-MiniLM-L-6-v2
@@ -52,13 +61,13 @@ services:
 ...
 ```
 
-## Schema configuration
+## Configuration
 
-The `reranker-transformers` module can be configured for any class in the schema. You can also specify options such as the `model` to use.
+The `reranker-transformers` module can be configured for any class in the schema.
 
 <!-- TODO: does `reranker-transformers` also have a returnDocuments flag? -->
 
-This example configures the `Document` class to use the `reranker-transformers` module, with the `cross-encoder/ms-marco-MiniLM-L-6-v2` model, and to return the documents in the response.
+<!-- This example configures the `Document` class to use the `reranker-transformers` module, with the `cross-encoder/ms-marco-MiniLM-L-6-v2` model, and to return the documents in the response.
 
 ```json
 {
@@ -74,7 +83,7 @@ This example configures the `Document` class to use the `reranker-transformers` 
     }
   ]
 }
-```
+``` -->
 
 
 ### Reranker selection
@@ -106,6 +115,8 @@ Where multiple `reranker` modules are enabled, you must specify the reranker mod
 
 The reranker-transformers module enables using [sentence transformers models](https://www.sbert.net/docs/pretrained_cross-encoders.html) as a second stage re-ranking for vector, bm25 and hybrid search results.
 
+With `reranker-transformers` module, you must set the model using environment variables as shown above.
+
 The `reranker-transformers` module supports the following models:
 
 - `cross-encoder/ms-marco-MiniLM-L-6-v2`
@@ -113,7 +124,6 @@ The `reranker-transformers` module supports the following models:
 - `cross-encoder/ms-marco-TinyBERT-L-2-v2`
 
 These pre-trained models are open-sourced on Hugging Face. The `cross-encoder/ms-marco-MiniLM-L-6-v2` model, for example, provides approximately the same benchmark performance as the largest model (L-12) when evaluated on [MS-MARCO](https://microsoft.github.io/msmarco/) (39.01 vs. 39.02).
-
 
 ## Usage
 

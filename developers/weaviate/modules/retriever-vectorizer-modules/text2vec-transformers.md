@@ -206,7 +206,7 @@ to your `text2vec-transformers`.
 
 Then you can send REST requests to it directly, e.g.:
 ```shell
-curl localhost:9090/vectors -H 'Content-Type: application/json' -d '{"text": "foo bar"}
+curl localhost:9090/vectors -H 'Content-Type: application/json' -d '{"text": "foo bar"}'
 ```
 and it will print the created vector directly.
 

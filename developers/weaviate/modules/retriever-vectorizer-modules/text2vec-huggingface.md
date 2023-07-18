@@ -13,7 +13,7 @@ import Badges from '/_includes/badges.mdx';
 The `text2vec-huggingface` module allows you to use [Hugging Face models](https://huggingface.co/models) directly in Weaviate as a vectorization module. When you create a Weaviate class that is set to use this module, it will automatically vectorize your data using the chosen module.
 
 * Note: this module uses a third-party API.
-* Note: make sure to check the Inference [pricing page](https://huggingface.co/inference-api#pricing) before vectorizing large amounts of data.
+* Note: make sure to check the inference [pricing page](https://huggingface.co/inference-api#pricing) before vectorizing large amounts of data.
 * Note: Weaviate automatically parallelizes requests to the Inference API when using the batch endpoint.
 * Note: This module only supports [sentence similarity](https://huggingface.co/models?pipeline_tag=sentence-similarity) models.
 

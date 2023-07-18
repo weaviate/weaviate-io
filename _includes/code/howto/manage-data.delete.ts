@@ -31,7 +31,7 @@ result = await client.data
   .creator()
   .withClassName('EphemeralObject')
   .withProperties({
-    name: 'Goodbye Cruel World',
+    name: 'EphemeralObjectA',
   })
   .do();
 
@@ -41,7 +41,7 @@ idToDelete = result.id;
 
 await client.data
   .deleter()
-  .withClassName('EphemeralObject')
+  .withClassName('EphemeralObject')  // Class of the object to be deleted
   .withId(idToDelete)
   .do();
 // END DeleteObject
@@ -79,30 +79,56 @@ try {
 // END DeleteError
 
 
-// ========================
-// ===== Batch delete =====
-// ========================
+// ===================
+// ===== Dry run =====
+// ===================
 const N = 5;
-for (let i = 1; i <= 5; i++)
+for (let i = 1; i <= N; i++)
   await client.data
     .creator()
     .withClassName(className)
     .withProperties({
-      name: 'Goodbye Cruel World',
+      name: 'EphemeralObject' + i.toString(),
     })
     .do();
 
-const response =
-// START DeleteBatch
-await client.batch
+// START DryRun
+let response = await client.batch
   .objectsBatchDeleter()
   .withClassName('EphemeralObject')
   // Same `where` filter as in the GraphQL API
   .withWhere({
     path: ['name'],
-    operator: 'Equal',
-    valueText: 'Goodbye Cruel World',
+    operator: 'Like',
+    valueText: 'EphemeralObject*',
   })
+  // highlight-start
+  .withDryRun(true)
+  .withOutput('verbose')
+  // highlight-end
+  .do();
+
+console.log(response);
+// END DryRun
+
+
+// ========================
+// ===== Batch delete =====
+// ========================
+
+response =
+// START DeleteBatch
+await client.batch
+  .objectsBatchDeleter()
+  .withClassName('EphemeralObject')
+  // highlight-start
+  // Same `where` filter as in the GraphQL API
+  .withWhere({
+    path: ['name'],
+    operator: 'Like',
+    valueText: 'EphemeralObject*',
+  })
+  // highlight-end
   .do();
 // END DeleteBatch
 
@@ -113,7 +139,7 @@ const leftovers = await client.graphql.get()
   .withFields('name')
   .withWhere({
     path: ['name'],
-    operator: 'Equal',
-    valueText: 'Goodbye Cruel World',
+    operator: 'Like',
+    valueText: 'EphemeralObject*',
   }).do();
 assert.equal(leftovers.data['Get'][className].length, 0);
