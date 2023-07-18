@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'manage data', 'crud']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 ## Overview
 
 These how-to **manage data** guides aim to help you do just that, such as perform CRUD operations using Weaviate.

@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'create', 'collections']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -21,19 +25,14 @@ Each Weaviate object belongs to one (and only one) class. This page covers the e
 - [Concepts: Data structure](../concepts/data.md)
 :::
 
+
 ## Create a class
 
-You can add a class to the Weaviate [schema](../concepts/data.md#class-collections) manually, or have Weaviate create it during object creation/import (auto-import).
+You can create a class:
+- Manually, or
+- Have Weaviate create it ("auto-schema") as needed.
 
-### Auto-schema
-
-To use auto-schema, all you need to do is to create/import objects.
-
-If you do so to a class that does not exist, Weaviate will create the class by inferring properties as required.
-
-:::info Read more about Auto-schema
-See [this page](../config-refs/schema.md#auto-schema)
-:::
+We strongly suggest you create the class manually, as many of the settings in the class definition are immutable.
 
 ### Manual creation
 
@@ -59,46 +58,163 @@ To create a class, you need a class name at a minimum with the `class` parameter
   </TabItem>
 </Tabs>
 
+Typically, you would specify additional configurations as shown in the following sections.
 
-### Available options
+### Sample configuration
 
-> What are the available options?
+One example configuration is shown below, which defines:
+- The class name (`Article`)
+- The vectorizer module (`text2vec-cohere`)
+- The vector index distance metric (`cosine`)
+- Which generative module to use (`generative-openai`)
+- A set of properties (`title`, `chunk`, `chunk_no` and `url`), with data types set accordingly.
+- Tokenization option for the `url` property.
 
-> Where to find all available options (config refs)
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-cohere",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "generative-openai": {}
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk_no",
+            "dataType": ["int"]
+        },
+        {
+            "name": "url",
+            "dataType": ["text"],
+            "tokenization": "field"
+        },
+    ],
+}
+```
 
-### Example definitions
+You can specify as many of the available options in the class definition as you would like.
 
-> Show some example definitions for users to use / follow
+:::tip Where to find a list of available options
+For a list of available options, we recommend starting at the [References: Configuration: Schema page](../config-refs/schema.md) page.
+:::
+
+
+### Auto-schema
+
+If you create objects with a class that does not exist, Weaviate will create the class by inferring necessary information as required.
+
+This may be fine in some circumstances, but we recommend you do not do this to avoid unwanted definitions.
+
+:::info Read more about Auto-schema
+See [this page](../config-refs/schema.md#auto-schema)
+:::
+
+
+## Example class configurations
+
+We include a few sample class configurations below as starting points.
 
 <details>
   <summary>For text objects and generative search</summary>
 
-Something something dark side
+The below defines:
+- The class name (`Article`)
+- The vectorizer module (`text2vec-cohere`) and model (`multilingual-22-12`)
+- The vector index distance metric (`cosine`)
+- Which generative module to use (`generative-openai`) and temperature (`0.2`)
+- A set of properties (`title`, `chunk`, `chunk_no` and `url`), with data types set accordingly.
+- Tokenization option for the `url` property.
+- Vectorization option (`skip` vectorization) for the `url` property.
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-cohere",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "text2vec-cohere": {
+            "model": "multilingual-22-12",
+        },
+        "generative-openai": {
+            "temperatureProperty": 0.2
+        }
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk_no",
+            "dataType": ["int"]
+        },
+        {
+            "name": "url",
+            "dataType": ["text"],
+            "tokenization": "field",
+            "moduleConfig": {
+                "text2vec-cohere": {
+                    "skip": true
+                },
+            }
+        },
+    ],
+}
+```
 
 </details>
 
 <details>
-  <summary>For text objects and Q&A</summary>
+  <summary>For image objects</summary>
 
-Something something dark side
-
-</details>
-
-<details>
-  <summary>For text objects and reranking</summary>
-
-Something something dark side
-
-</details>
-
-<details>
-  <summary>For multimodal objects and generative search</summary>
-
-Something something dark side
+```json
+{
+    "class": "FashionItem",
+    "vectorizer": "img2vec-neural",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "img2vec-neural": {
+            "imageFields": [
+                "image"
+            ]
+        }
+    },
+    "properties": [
+        {
+            "name": "caption",
+            "dataType": ["text"]
+        },
+        {
+            "name": "image",
+            "dataType": ["blob"]
+        },
+    ],
+}
+```
 
 </details>
 
 ## Read a class definition
+
+> `client.schema.get(class_name)` and equivalent stuff
 
 ## Update a class definition
 

@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'apply conditional filters']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -277,7 +281,7 @@ You can filter objects using properties from a cross-referenced object.
 
 The following example filters `JeopardyQuestion` objects using properties of `JeopardyCategory` that they are cross-referencing.
 
-More speficially, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`. 
+More speficially, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`.
 
 :::note Case-sensitivity
 The results are case-insensitive here, as the `title` property is defined with [`word` tokenization](../config-refs/schema.md#property-tokenization).

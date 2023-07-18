@@ -6,14 +6,14 @@ image: og/docs/configuration.jpg
 ---
 
 import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.ts';
-
-
-<Badges/>
 
 :::info Related pages
 - [How to: Configure a schema](../configuration/schema-configuration.md)

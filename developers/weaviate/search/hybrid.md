@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'hybrid search']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
