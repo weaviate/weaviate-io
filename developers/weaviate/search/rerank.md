@@ -15,13 +15,11 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
 This page shows you how to rerank a search result set returned by [vector](similarity.md), [bm25](bm25.md), or [hybrid](hybrid.md) operators.
 
-There are two reranker modules available:
-* [reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
-* [reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
-
 :::info Related pages
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
 - [Concepts: Reranking](../concepts/reranking.md)
+- [References: Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
+- [References: Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
 :::
 
 import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
@@ -31,17 +29,63 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 ## Requirements
 
-To rerank search results, you'll need a reranker module enabled.
+To rerank search results, you'll need set the class with an enabled reranker [module](../configuration/modules.md).
+
 You can rerank results using:
 - The same query as the initial search, or
 - A different reranking query.
 
+<details>
+  <summary>How do I <strong>set the reranker module</strong> in the target class?</summary>
+
+<p>
+
+If there is only one `reranker` module enabled, you don't need to do anything. The `reranker` module will be used by default.
+<br/>
+
+Where multiple `reranker` modules are enabled, you must specify the reranker module to be used in the `moduleConfig` section of the schema. For example, this configures the `Article` class to use the `reranker-cohere` module:
+
+```json
+{
+  "classes": [
+    {
+      "class": "Article",
+      ...,
+      "moduleConfig": {
+        "reranker-cohere": {},  // This will configure the 'Article' class to use the 'reranker-cohere' module
+      }
+    }
+  ]
+}
+```
+
+You may be able to set additional module parameters here. Please refer to the "Schema configuration" section in the relevant module page.
+
+</p>
+
+</details>
 
 ## Reranking vector search results
 
 Using the [JeopardyQuestions dataset](../quickstart/index.md), let's say we want to find Q&As about flying, and further sort towards the top those about floating. We can start with a `nearText` search for `flying`, limited to 10 results:
 
 <Tabs groupId="languages">
+  <TabItem value="python" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START nearText Python"
+      endMarker="# END nearText Python"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="ts" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START nearText"
+      endMarker="// END nearText"
+      language="ts"
+    />
+  </TabItem>
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PythonCode}
@@ -69,6 +113,22 @@ The response should look like this:
 We can see that results pertaining to floating aircraft (balloons/blimps/dirigibles) are mixed in with other results (animals, mail). To sort floating results to the top, we can apply the `rerank` operator:
 
 <Tabs groupId="languages">
+  <TabItem value="python" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START nearTextRerank Python"
+      endMarker="# END nearTextRerank Python"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="ts" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RerankNearText"
+      endMarker="// END RerankNearText"
+      language="ts"
+    />
+  </TabItem>
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PythonCode}
@@ -101,6 +161,22 @@ We can see in the `rerank`ed result set, that answers are sorted descending by t
 The example below is a uses `rerank` in a `bm25` query to sort towards the top results for the query "paper" that have to do with "publication"s rather than with the material paper.
 
 <Tabs groupId="languages">
+  <TabItem value="python" label="Python">
+    <FilteredTextBlock
+      text={PythonCode}
+      startMarker="# START bm25Rerank Python"
+      endMarker="# END bm25Rerank Python"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="ts" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START bm25Rerank"
+      endMarker="// END bm25Rerank"
+      language="ts"
+    />
+  </TabItem>
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PythonCode}
