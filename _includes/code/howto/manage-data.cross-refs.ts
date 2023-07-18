@@ -8,7 +8,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
-  host: 'localhost:8090',
+  host: 'anon-endpoint.weaviate.network',
 });
 
 const sfId = '00ff6900-e64f-5d94-90db-c8cfa3fc851b';
