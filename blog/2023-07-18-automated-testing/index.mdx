@@ -22,17 +22,17 @@ As a software engineer with experience in test automation, I firmly believe in [
 
 <!-- truncate -->
 
-But writing tests and running them can be a chore - for many reasons. For example, if the application is built with Weaviate, the test suite may need to set up and tear down a separate Weaviate server, which can be time-consuming and error-prone.
+But you probably know that writing tests is quite a task in itself, and in many cases running them can also be a chore. For example, the test suite may need to set up and tear down a separate service such as a database, which can be time-consuming and error-prone.
 
 I'm here to tell you, however, that it doesn't have to be that way. In this article, I'll show you how to make testing easier with [Embedded Weaviate](/developers/weaviate/installation/embedded), and other tips for better automated testing.
 
 ## Testing and Weaviate
 
-In this article, we will focus on [integration tests](https://en.wikipedia.org/wiki/Integration_testing). Integrated testing is an important part of the development process, especially so for complex applications. Weaviate-based apps usually fall in this category.
+In this article, we will focus on [integration tests](https://en.wikipedia.org/wiki/Integration_testing). Integrated testing is an important part of the development process, and especially so for complex applications. Weaviate-based apps usually fall in this category.
 
-For one, Weaviate must interact with the application in a variety of ways. In addition, Weaviate will interact with additional, external services such as vectorizers or LLMs.
+For one, Weaviate must interact with the application in a variety of ways. And additionally, Weaviate often interacts with external services such as vectorizers or LLMs.
 
-Such complexity makes it important to test the application as a whole, and not just its individual components. And this complexity also means that arranging the test suite can be cumbersome, with a variety of moving parts that need to be set up and torn down.
+Such complexity makes it important to test the application as a whole, and not just its individual components. This complexity also means that arranging the test suite can be cumbersome with a variety of moving parts that need to be set up and torn down.
 
 [Embedded Weaviate](/developers/weaviate/installation/embedded) makes one part of this puzzle much easier, since Weaviate can be instantiated directly from the client. The following is all you need to do to start a Weaviate server:
 
@@ -64,15 +64,15 @@ But Embedded Weaviate is not the only way to make testing easier. In the followi
 ## Scoping tests
 
 While you may be familiar with tests and integration tests in general, here are some specific suggestions for Weaviate-powered applications:
-* **Whether to test search quality**: This depends primarily on the model of the [vectorization module](/developers/weaviate/modules/retriever-vectorizer-modules). We suggest evaluating models separately, but not tested as a part of the application.
-* **Focus on interactions with the inference provider**: Search itself is a core Weaviate functionality, that we can trust. So, we suggest any integration tests focus on the interaction with the inference provider. For example,
+* **Whether to test search quality**: This depends primarily on the model used for vectorization, such as by a [Weaviate vectorizer module](/developers/weaviate/modules/retriever-vectorizer-modules). We suggest evaluating models separately, but not tested as a part of the application.
+* **Focus on interactions with the inference provider**: Search itself is a core Weaviate functionality that we can trust. So, we suggest any integration tests focus on the interaction with the inference provider. For example,
   * is the vectorization model the expected one?
   * if switching to a different inference provider or model, does the application still function as expected?
 * **Other common issues to test** include:
   * Connection or authentication issues with the inference provider
   * Incomplete or incorrect data imports
-  * Using the correct number of dimensions when [bringing your own vectors](/developers/weaviate/tutorials/custom-vectors)
-  * Schema issues, like invalid class names, properties, or data types
+  * Specifying the vector correctly when [bringing your own vectors](/developers/weaviate/tutorials/custom-vectors)
+  * Data definition issues, like invalid class names, properties, or data types
 
 
 ## Testing with embedded Weaviate
@@ -165,7 +165,7 @@ Here, the integration test will consist of checking that the class was created w
   </TabItem>
 </Tabs>
 
-:::tip <i class="fa-solid fa-lightbulb"></i> When might I use tests like these?
+:::tip When might I use tests like these?
 Although this is a simple test, you can imagine that if you have tens, or even hundreds of classes, tests like these can save you a lot of time and effort. And, if you're working with a team, you can be sure that everyone is on the same page about the expected schema.
 :::
 
@@ -209,7 +209,7 @@ The test is simple; it verifies that all specified objects have been imported by
   </TabItem>
 </Tabs>
 
-:::tip <i class="fa-solid fa-lightbulb"></i> When might I use tests like these?
+:::tip When might I use tests like these?
 Such a test would provide a simple, repeatable, way of ensuring that all objects were imported correctly.
 :::
 
@@ -247,7 +247,7 @@ Depending on your application and usage, you may find that the top result change
   </TabItem>
 </Tabs>
 
-:::tip <i class="fa-solid fa-lightbulb"></i> When might I use tests like these?
+:::tip When might I use tests like these?
 A test like this can be used to ensure that the vectorizer is working as expected, and that the data has been imported correctly. For example - if the top result was something completely unintuitive and wildly dissimilar to the concept of "chemistry" - this might be cause to investigate further.
 
 You could also test additional aspects, like the number of results returned, or the order of results.
