@@ -7,12 +7,11 @@ import subprocess
     "script_loc",
     [
         "./_includes/code/howto/manage-data.cross-refs.py",
-        "./_includes/code/howto/manage-data.import.py"
+        "./_includes/code/howto/manage-data.import.py",
+        "./_includes/code/howto/manage-data.delete.py"
     ],
 )
-def test_python_script(empty_weaviates, script_loc):
-    # proc_script = utils.load_and_prep_script(script_loc)
-    # exec(proc_script)
+def test_on_blank_instance(empty_weaviates, script_loc):
     temp_proc_script_loc = utils.load_and_prep_temp_file(
         script_loc,
         lang="py",
@@ -27,7 +26,7 @@ def test_python_script(empty_weaviates, script_loc):
         "./_includes/code/howto/read-all-objects.py"
     ],
 )
-def test_py(empty_weaviates, script_loc):
+def test_on_edu_demo(empty_weaviates, script_loc):
     temp_proc_script_loc = utils.load_and_prep_temp_file(
         script_loc,
         lang="py",
@@ -58,7 +57,7 @@ def test_js(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-        # "./_includes/code/howto/manage-data.cross-refs.ts"
+        # "./_includes/code/howto/manage-data.cross-refs.ts"  # Test currently not working - needs work to fix
     ],
 )
 def test_ts(empty_weaviates, script_loc):
@@ -66,7 +65,7 @@ def test_ts(empty_weaviates, script_loc):
         script_loc,
         lang="ts",
     )
-    command = ["node", " --loader=ts-node/esm", temp_proc_script_loc]
+    command = ["node", "--loader=ts-node/esm", temp_proc_script_loc]
 
     try:
         # If the script throws an error, this will raise a CalledProcessError

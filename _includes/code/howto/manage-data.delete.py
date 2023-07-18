@@ -42,7 +42,8 @@ client.data_object.delete(
 # END DeleteObject
 
 # Test
-assert client.data_object.get_by_id(uuid_to_delete, class_name=class_name)  # Should fail after deletion
+response = client.data_object.get_by_id(uuid_to_delete, class_name=class_name)  # Should return None
+assert response == None
 
 
 # # ==========================
