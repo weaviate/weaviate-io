@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/howto/configure.schema.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/configure.schema.ts';
 
 ## Overview
@@ -214,18 +214,100 @@ The below defines:
 
 ## Read a class definition
 
-> `client.schema.get(class_name)` and equivalent stuff
+You can retrieve a class definition from the schema using the class name.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadOneClass"
+      endMarker="# END ReadOneClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadOneClass"  // TODO: Update this
+      endMarker="// END ReadOneClass"  // TODO: Update this
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+### Read all class definitions
+
+You can also retrieve all class definitions by fetching the entire schema.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadAllClasses"
+      endMarker="# END ReadAllClasses"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadOneClass"  // TODO: Update this
+      endMarker="// END ReadOneClass"  // TODO: Update this
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 ## Update a class definition
 
-> What's required to update a class?
+You can update class definitions as follows.
 
-> Highlight that most options aren't mutable
+<details>
+  <summary>Are all settings mutable?</summary>
+
+Not all settings are mutable.
+
+A typical use case for this functionality is to update configuration, such as the vectorIndexConfig. Note that even in mutable sections, such as vectorIndexConfig, some fields may be immutable.
+
+</details>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateClass"
+      endMarker="# END UpdateClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadOneClass"  // TODO: Update this
+      endMarker="// END ReadOneClass"  // TODO: Update this
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>How do I change immutable settings then?</summary>
+
+In this case, you must delete the class recreate it. If possible, we recommend using the cursor API to [retrieve all objects and re-populate it](./read-all-objects.mdx).
+
+</details>
 
 ## Delete a class
-
-> How to delete a class
 
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <CautionSchemaDeleteClass />
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
