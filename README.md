@@ -82,11 +82,13 @@ This makes use of our custom `FilteredTextBlock` JSX component.
 
 Here, the `FilteredTextBlock` component loads lines between the `startMarker` and `endMarker` from the imported scripts. This allows us to write complete scripts, which may include tests to reduce occurrences of erroneous code examples.
 
+For more information about tests, please see [README-tests.md](./README-tests.md).
+
 #### Legacy format
 
 In some code examples, the code will be written directly inside the `TabItem` component, as shown below.
 
-```mdx
+```md
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
