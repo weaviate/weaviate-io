@@ -33,8 +33,8 @@ class_definition = {
 # Clean slate
 if client.schema.exists('JeopardyQuestion'):
     client.schema.delete_class('JeopardyQuestion')
-if not client.schema.exists('JeopardyQuestion'):
-    client.schema.create_class(class_definition)
+
+client.schema.create_class(class_definition)
 
 
 # =============================
@@ -117,7 +117,10 @@ assert result['properties'] == {'answer': 'Replaced'}  # ensure the other props 
 # =============================
 
 # DelProps START
-def del_props(uuid: str, class_name: str, prop_names: [str]) -> None:
+from typing import List
+from weaviate import Client
+
+def del_props(client: Client, uuid: str, class_name: str, prop_names: List[str]) -> None:
     object_data = client.data_object.get(uuid, class_name=class_name)
     for prop_name in prop_names:
         if prop_name in object_data["properties"]:
@@ -127,9 +130,11 @@ def del_props(uuid: str, class_name: str, prop_names: [str]) -> None:
 
 uuid = '...'  # replace with the id of the object you want to delete properties from
 # DelProps END
-uuid = result['id']
+
+uuid = result['id']  # Actually get the ID for testing
+
 # DelProps START
-del_props(uuid, 'JeopardyQuestion', ['answer'])
+del_props(client, uuid, 'JeopardyQuestion', ['answer'])
 # DelProps END
 
 # Test
