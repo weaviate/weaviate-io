@@ -1,0 +1,324 @@
+---
+title: Manage classes (object collections)
+sidebar_position: 5
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'create', 'collections']
+---
+
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.ts';
+
+## Overview
+
+Each Weaviate object belongs to one (and only one) class. This page covers the essential topics in relation to managing Weaviate classes.
+
+:::info Related pages
+- [API References: REST: Schema](../api/rest/schema.md)
+- [References: Configuration: Schema](../config-refs/schema.md)
+- [Concepts: Data structure](../concepts/data.md)
+:::
+
+:::tip Which endpoint does this use?
+Under the hood, these are carried out through the [`schema` REST endpoint](../api/rest/schema.md). For raw REST commands, or a full list of parameters, please refer to the [reference page](../api/rest/schema.md).
+:::
+
+## Create a class
+
+You can create a class:
+- Manually, or
+- Have Weaviate create it as needed (with [`Auto-schema`](../config-refs/schema.md#auto-schema)).
+
+:::tip Manual class creation recommended
+We recommend you create classes manually, as:
+- You will gain greater control over your data model, and
+- Many of the settings in the class definition are immutable.
+:::
+
+### Manual creation
+
+To create a class, you must specify the class name with the `class` parameter.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateClass"
+      endMarker="# END CreateClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateClass"
+      endMarker="// END CreateClass"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+Typically, you would specify additional configurations. We include some examples in the following sections.
+
+### Sample configuration
+
+One example configuration is shown below, which defines:
+- The class name (`Article`)
+- The [vectorizer module](../modules/retriever-vectorizer-modules/index.md) (`text2vec-cohere`)
+- The [vector distance metric](../config-refs/distances.md) (`cosine`)
+- Which [generative module](../modules/reader-generator-modules/index.md) to use (`generative-openai`)
+- A set of [properties](../concepts/data.md#data-object-nomenclature) (`title`, `chunk`, `chunk_no` and `url`), with [data types](../config-refs/datatypes.md) set accordingly.
+- [Tokenization](../config-refs/schema.md#property-tokenization) option for the `url` property.
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-cohere",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "generative-openai": {}
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk_no",
+            "dataType": ["int"]
+        },
+        {
+            "name": "url",
+            "dataType": ["text"],
+            "tokenization": "field"
+        },
+    ],
+}
+```
+
+You can specify as many of the available options in the class definition as you would like.
+
+:::tip Where to find a list of available options
+See:
+- [References: Configuration: Schema](../config-refs/schema.md)
+- [API References: REST: Schema](../api/rest/schema.md#create-a-class)
+:::
+
+
+### Auto-schema
+
+If you create objects into a class that does not yet exist, Weaviate will create the class by inferring necessary information as required.
+
+:::info Read more about Auto-schema
+See [this page](../config-refs/schema.md#auto-schema)
+:::
+
+
+## Example class configurations
+
+We include a few sample class configurations below as starting points.
+
+<details>
+  <summary>For text objects and generative search</summary>
+
+The below defines:
+- The class name (`Article`)
+- The vectorizer module (`text2vec-cohere`) and model (`multilingual-22-12`)
+- The vector index distance metric (`cosine`)
+- Which generative module to use (`generative-openai`) and temperature (`0.2`)
+- A set of properties (`title`, `chunk`, `chunk_no` and `url`), with data types set accordingly.
+- Tokenization option for the `url` property.
+- Vectorization option (`skip` vectorization) for the `url` property.
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-cohere",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "text2vec-cohere": {
+            "model": "multilingual-22-12",
+        },
+        "generative-openai": {
+            "temperatureProperty": 0.2
+        }
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk_no",
+            "dataType": ["int"]
+        },
+        {
+            "name": "url",
+            "dataType": ["text"],
+            "tokenization": "field",
+            "moduleConfig": {
+                "text2vec-cohere": {
+                    "skip": true
+                },
+            }
+        },
+    ],
+}
+```
+
+:::tip How to perform similarity or generative searches
+- [Similarity search](../search/similarity.md)
+- [Generative search](../search/generative.md)
+:::
+
+</details>
+
+<details>
+  <summary>For image objects</summary>
+
+```json
+{
+    "class": "ImageExample",
+    "vectorizer": "img2vec-neural",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "img2vec-neural": {
+            "imageFields": [
+                "image"
+            ]
+        }
+    },
+    "properties": [
+        {
+            "name": "image",
+            "dataType": ["blob"]
+        },
+    ],
+}
+```
+
+:::tip How to perform image searches
+- [Image search](../search/image.md)
+:::
+
+</details>
+
+## Read a class definition
+
+You can retrieve a class definition from the schema using the class name.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadOneClass"
+      endMarker="# END ReadOneClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadOneClass"
+      endMarker="// END ReadOneClass"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+### Read all class definitions
+
+You can also retrieve all class definitions by fetching the entire schema.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadAllClasses"
+      endMarker="# END ReadAllClasses"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadAllClasses"
+      endMarker="// END ReadAllClasses"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Update a class definition
+
+You can update class definitions as follows.
+
+<details>
+  <summary>Are all settings mutable?</summary>
+
+Not all settings are mutable.
+
+A typical use case for this functionality is to update configuration, such as the vectorIndexConfig. Note that even in mutable sections, such as vectorIndexConfig, some fields may be immutable.
+
+</details>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateClass"
+      endMarker="# END UpdateClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+
+```ts
+// This feature is under development
+```
+
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>How do I change immutable settings then?</summary>
+
+In this case, you must delete the class recreate it. If possible, we recommend using the cursor API to [retrieve all objects and re-populate it](./read-all-objects.mdx).
+
+</details>
+
+## Delete a class
+
+import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
+
+<CautionSchemaDeleteClass />
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

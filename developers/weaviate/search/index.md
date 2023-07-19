@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'perform a search']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 ## Overview
 
 These **search** how-to guides aim to help you find the data you want using Weaviate.

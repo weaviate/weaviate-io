@@ -68,8 +68,8 @@ An example of a complete class object including properties:
 
 ```json
 {
-  "class": "string",                        // The name of the class in string format
-  "description": "string",                  // A description for your reference
+  "class": "Article",                        // The name of the class in string format
+  "description": "An article",                  // A description for your reference
   "vectorIndexType": "hnsw",                // Defaults to hnsw, can be omitted in schema definition since this is the only available type for now
   "vectorIndexConfig": {
     ...                                     // Vector index type specific settings, including distance metric
@@ -82,8 +82,8 @@ An example of a complete class object including properties:
   },
   "properties": [                           // An array of the properties you are adding, same as a Property Object
     {
-      "name": "string",                     // The name of the property
-      "description": "string",              // A description for your reference
+      "name": "title",                     // The name of the property
+      "description": "title of the article",              // A description for your reference
       "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple data types, hence the array syntax.
         "text"
       ],

@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'similarity search']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -249,7 +253,7 @@ If the distance metric is set as `cosine` the [`certainty`](../config-refs/dista
 
 ### Autocut
 
-Another way to limit the results returned by a similarity search is to use the [`autocut` filter](../api/graphql/additional-operators.md#autocut). Autocut takes a positive integer parameter `N`, looks at the [distance](#distance-threshold) between each result and the query, and stops returning results after the `N`th "jump" in distance. For example, if the distances for six objects returned by `nearText` were `[0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]` then `autocut: 1` would return the first three objects, `autocut: 2` would return all but the last object, and `autocut: 3` would return all objects. 
+Another way to limit the results returned by a similarity search is to use the [`autocut` filter](../api/graphql/additional-operators.md#autocut). Autocut takes a positive integer parameter `N`, looks at the [distance](#distance-threshold) between each result and the query, and stops returning results after the `N`th "jump" in distance. For example, if the distances for six objects returned by `nearText` were `[0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]` then `autocut: 1` would return the first three objects, `autocut: 2` would return all but the last object, and `autocut: 3` would return all objects.
 
 Autocut can be used as follows:
 
