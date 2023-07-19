@@ -2,6 +2,8 @@
 
 At Weaviate, we love automated tests. And we are making an effort to use automated tests to help us maintain the functionality of our code examples.
 
+**NOTE: This README and testing framework is a work in progress - if you see errors please let us know on GitHub, and please be patient with us.**
+
 ### Implementation Overview
 
 Many of our in-doc [code examples](./README.md#code-examples) are pulled from external scripts. **These scripts are designed to be self-contained files that you can run.**
