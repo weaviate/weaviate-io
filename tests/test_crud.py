@@ -1,6 +1,5 @@
 import pytest
 import utils
-import subprocess
 
 
 @pytest.mark.parametrize(
