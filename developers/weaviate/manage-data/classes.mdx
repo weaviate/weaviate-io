@@ -13,7 +13,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/configure.schema.ts';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.ts';
 
 ## Overview
 
@@ -25,18 +25,25 @@ Each Weaviate object belongs to one (and only one) class. This page covers the e
 - [Concepts: Data structure](../concepts/data.md)
 :::
 
+:::tip Which endpoint does this use?
+Under the hood, these are carried out through the [`schema` REST endpoint](../api/rest/schema.md). For raw REST commands, or a full list of parameters, please refer to the [reference page](../api/rest/schema.md).
+:::
 
 ## Create a class
 
 You can create a class:
 - Manually, or
-- Have Weaviate create it as needed (a.k.a [Auto-schema](../config-refs/schema.md#auto-schema)).
+- Have Weaviate create it as needed (with [`Auto-schema`](../config-refs/schema.md#auto-schema)).
 
-We strongly suggest you create the class manually, as many of the settings in the class definition are immutable.
+:::tip Manual class creation recommended
+We recommend you create classes manually, as:
+- You will gain greater control over your data model, and
+- Many of the settings in the class definition are immutable.
+:::
 
 ### Manual creation
 
-To create a class, you need a class name at a minimum with the `class` parameter.
+To create a class, you must specify the class name with the `class` parameter.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -58,17 +65,17 @@ To create a class, you need a class name at a minimum with the `class` parameter
   </TabItem>
 </Tabs>
 
-Typically, you would specify additional configurations as shown in the following sections.
+Typically, you would specify additional configurations. We include some examples in the following sections.
 
 ### Sample configuration
 
 One example configuration is shown below, which defines:
 - The class name (`Article`)
-- The vectorizer module (`text2vec-cohere`)
-- The vector index distance metric (`cosine`)
-- Which generative module to use (`generative-openai`)
-- A set of properties (`title`, `chunk`, `chunk_no` and `url`), with data types set accordingly.
-- Tokenization option for the `url` property.
+- The [vectorizer module](../modules/retriever-vectorizer-modules/index.md) (`text2vec-cohere`)
+- The [vector distance metric](../config-refs/distances.md) (`cosine`)
+- Which [generative module](../modules/reader-generator-modules/index.md) to use (`generative-openai`)
+- A set of [properties](../concepts/data.md#data-object-nomenclature) (`title`, `chunk`, `chunk_no` and `url`), with [data types](../config-refs/datatypes.md) set accordingly.
+- [Tokenization](../config-refs/schema.md#property-tokenization) option for the `url` property.
 
 ```json
 {
@@ -105,15 +112,15 @@ One example configuration is shown below, which defines:
 You can specify as many of the available options in the class definition as you would like.
 
 :::tip Where to find a list of available options
-For a list of available options, we recommend starting at the [References: Configuration: Schema page](../config-refs/schema.md) page.
+See:
+- [References: Configuration: Schema](../config-refs/schema.md)
+- [API References: REST: Schema](../api/rest/schema.md#create-a-class)
 :::
 
 
 ### Auto-schema
 
-If you create objects with a class that does not exist, Weaviate will create the class by inferring necessary information as required.
-
-This may be fine in some circumstances, but we recommend you do not do this to avoid unwanted definitions.
+If you create objects into a class that does not yet exist, Weaviate will create the class by inferring necessary information as required.
 
 :::info Read more about Auto-schema
 See [this page](../config-refs/schema.md#auto-schema)
@@ -178,6 +185,11 @@ The below defines:
 }
 ```
 
+:::tip How to perform similarity or generative searches
+- [Similarity search](../search/similarity.md)
+- [Generative search](../search/generative.md)
+:::
+
 </details>
 
 <details>
@@ -185,7 +197,7 @@ The below defines:
 
 ```json
 {
-    "class": "FashionItem",
+    "class": "ImageExample",
     "vectorizer": "img2vec-neural",
     "vectorIndexConfig": {
         "distance": "cosine",
@@ -199,16 +211,16 @@ The below defines:
     },
     "properties": [
         {
-            "name": "caption",
-            "dataType": ["text"]
-        },
-        {
             "name": "image",
             "dataType": ["blob"]
         },
     ],
 }
 ```
+
+:::tip How to perform image searches
+- [Image search](../search/image.md)
+:::
 
 </details>
 
@@ -229,8 +241,8 @@ You can retrieve a class definition from the schema using the class name.
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START ReadOneClass"  // TODO: Update this
-      endMarker="// END ReadOneClass"  // TODO: Update this
+      startMarker="// START ReadOneClass"
+      endMarker="// END ReadOneClass"
       language="ts"
     />
   </TabItem>
@@ -253,8 +265,8 @@ You can also retrieve all class definitions by fetching the entire schema.
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START ReadOneClass"  // TODO: Update this
-      endMarker="// END ReadOneClass"  // TODO: Update this
+      startMarker="// START ReadAllClasses"
+      endMarker="// END ReadAllClasses"
       language="ts"
     />
   </TabItem>
@@ -284,12 +296,11 @@ A typical use case for this functionality is to update configuration, such as th
   </TabItem>
 
   <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START ReadOneClass"  // TODO: Update this
-      endMarker="// END ReadOneClass"  // TODO: Update this
-      language="ts"
-    />
+
+```ts
+// This feature is under development
+```
+
   </TabItem>
 </Tabs>
 

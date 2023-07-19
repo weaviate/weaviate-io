@@ -16,7 +16,11 @@ client = weaviate.Client(
     }
 )
 
+
+# START CreateClass  # START ReadOneClass  # START UpdateClass
 class_name = "Article"
+
+# END CreateClass  # END ReadOneClass  # END UpdateClass
 
 # ================================
 # ===== CREATE A CLASS =====
@@ -72,8 +76,6 @@ if client.schema.exists(class_name):
     client.schema.delete_class(class_name)
 
 # START UpdateClass
-class_name = "Article"
-
 # Define and create a class
 original_class_obj = {
     "class": class_name,
