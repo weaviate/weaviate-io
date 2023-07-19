@@ -46,6 +46,42 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 
 Code examples in the documentation are in one of two formats:
 
+#### New format
+
+In many files, you will see a format similar to:
+
+```md
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.create.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# ValidateObject START"
+      endMarker="# ValidateObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// ValidateObject START"
+      endMarker="// ValidateObject END"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+```
+
+This makes use of our custom `FilteredTextBlock` JSX component.
+
+Here, the `FilteredTextBlock` component loads lines between the `startMarker` and `endMarker` from the imported scripts. This allows us to write complete scripts, which may include tests to reduce occurrences of erroneous code examples.
+
 #### Legacy format
 
 In some code examples, the code will be written directly inside the `TabItem` component, as shown below.
@@ -83,5 +119,3 @@ import TabItem from '@theme/TabItem';
 ```
 
 Your IDE will not pick up any errors in these examples, so please make sure to test the code in your preferred environment before editing or adding them here.
-
-#### New format

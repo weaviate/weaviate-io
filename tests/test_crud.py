@@ -6,9 +6,12 @@ import subprocess
 @pytest.mark.parametrize(
     "script_loc",
     [
+        "./_includes/code/howto/manage-data.create.py",
         "./_includes/code/howto/manage-data.cross-refs.py",
         "./_includes/code/howto/manage-data.import.py",
-        "./_includes/code/howto/manage-data.delete.py"
+        "./_includes/code/howto/manage-data.delete.py",
+        "./_includes/code/howto/manage-data.classes.py"
+
     ],
 )
 def test_on_blank_instance(empty_weaviates, script_loc):
