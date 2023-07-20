@@ -179,7 +179,7 @@ const config = {
                     },
                     {
                         type: 'dropdown',
-                        label: 'Company',
+                        label: 'About',
                         position: 'right',
                         items: [
                             {
@@ -211,7 +211,7 @@ const config = {
                     },
                     {
                         type: 'dropdown',
-                        label: 'Developers',
+                        label: 'For Developers',
                         position: 'right',
                         items: [
                             {
@@ -253,6 +253,13 @@ const config = {
                         ],
                     },
                     {
+                        label: 'Try Now',
+                        className: 'tryNow',
+                        to: 'https://console.weaviate.cloud',
+                        position: 'right',
+
+                    },
+                   /*  {
                         to: '/developers/academy',
                         label: ' ',
                         position: 'right',
@@ -301,10 +308,11 @@ const config = {
                         position: 'right',
                         // target: '_blank',
                         className: 'fas fa-lg fa-microphone',
-                    },
+                    },*/
                     {
                         type: 'search',
                         position: 'right',
+                        className: 'hiddenSearch'
                     },
                 ],
             },
@@ -379,9 +387,9 @@ const config = {
                 copyright: `Copyright © ${new Date().getFullYear()} Weaviate, B.V. Built with Docusaurus.`,
             },
             colorMode: {
-                defaultMode: 'dark',
-                disableSwitch: false,
-                respectPrefersColorScheme: true,
+                defaultMode: 'light',
+                disableSwitch: true,
+                respectPrefersColorScheme: false,
             },
             prism: {
                 theme: lightCodeTheme,

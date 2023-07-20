@@ -36,7 +36,8 @@
   --ifm-font-family-base: var(--site-font-base-family);
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-heading-font-weight: 500;
+  --ifm-heading-font-weight: 700;
+  --ifm-font-weight-semibold: 400;
 
   // TODO: make sure this doesn't mess up anything unexpected
   // Base color for all text
@@ -262,6 +263,44 @@
   .__previousStepContainer .__previousStepHelper:hover {
     text-decoration: underline;
   }
+
+}
+
+
+.navbar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.navbar__items {
+  align-items: center;
+  display: flex;
+  flex: 0 0 30%;
+  min-width: 0;
+}
+
+.navbar__items.navbar__items--right {
+  flex: 0 0 auto;
+  gap: 40px;
+  justify-content: flex-start;
+
+  @media screen and (max-width: 568px) {
+    display:none;
+  }
+}
+
+
+.hiddenSearch{
+
+  display:none;
+}
+
+.dropdown > .navbar__link:after {
+
+  border-style: none;
+
 }
 
 .separator {
@@ -269,6 +308,28 @@
   border: none;
   margin: 5px;
   padding: 0px;
+}
+
+
+.tryNow{
+
+    border-radius: 0.3125rem;
+    border: 1px solid #1C1468;
+    background: #61BD73;
+    margin: 0 70px;
+    width: 8rem;
+    height: 2.625rem;
+    flex-shrink: 0;
+    align-items: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+
+    @media screen and (max-width: 568px) {
+    margin: 11px 9px;
+    }
+
 }
 
 [data-theme='light'] {
@@ -384,12 +445,7 @@ button.close {
   }
   .navbar {
     // background: transparent;
-    background: linear-gradient(
-      90deg,
-      rgba(208, 228, 236, 1.0) 0%,
-      rgba(224, 238, 211, 1.0) 47%,
-      rgba(207, 228, 237, 1.0) 100%
-    );
+    background: #EDEDED;
     box-shadow: none;
   }
   .navbar__logo {
@@ -544,4 +600,8 @@ button.close {
     border: 1px solid #d1d1d1;
     background: #f7f7f7;
   }
+
+
 }
+
+

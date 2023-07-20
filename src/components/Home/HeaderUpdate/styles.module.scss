@@ -304,14 +304,17 @@ height: 1.5625rem;
   }
 
   .buttonGradient {
-    background-image: none;
-    background-color: rgba(46, 49, 143);
-    color: #f5f5f5;
+    border-radius: 0.3125rem;
+    border: 1px solid #130C49;
+    background: #61BD73;
+    color: #130C49;
+    font-weight: 400;
   }
 
   .buttonOutline {
-    outline: 1px solid #20e220;
-    font-weight: bold;
-    color: rgba(46, 49, 143);
+    font-weight: 400;
+    border-radius: 0.3125rem;
+    outline: 1px solid #130C49;
+    color: #130C49;
   }
 }
