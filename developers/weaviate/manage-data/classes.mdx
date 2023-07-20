@@ -195,9 +195,15 @@ The below defines:
 <details>
   <summary>For image objects</summary>
 
+The below defines:
+- The class name (`Image`)
+- The vectorizer module (`img2vec-neural`), with the `image` property set as the store of image data.
+- The vector index distance metric (`cosine`)
+- A set of properties (`image`), with the `image` property set as `blob`.
+
 ```json
 {
-    "class": "ImageExample",
+    "class": "Image",
     "vectorizer": "img2vec-neural",
     "vectorIndexConfig": {
         "distance": "cosine",
