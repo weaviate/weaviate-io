@@ -162,7 +162,7 @@ We can see in the `rerank`ed result set, that answers are sorted descending by t
 
 ## Reranking bm25 search results
 
-The example below is a uses `rerank` in a `bm25` query to sort towards the top results for the query "paper" that have to do with "publication"s rather than with the material paper.
+The example below uses `rerank` in a `bm25` query to sort the top results for the query `"paper"` towards `"publication"` to disambiguate from those related to other meanings, such as the material "paper".
 
 <Tabs groupId="languages">
   <TabItem value="python" label="Python">
