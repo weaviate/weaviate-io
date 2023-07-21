@@ -8,6 +8,11 @@ import assert from 'assert';
 
 import weaviate from 'weaviate-ts-client';
 
+// searchHybridWithFusionType
+import { FusionType } from 'weaviate-ts-client';
+
+// END searchHybridWithFusionType
+
 const client = weaviate.client({
   scheme: 'https',
   host: 'edu-demo.weaviate.network',
@@ -17,7 +22,10 @@ const client = weaviate.client({
   },
 });
 
+// searchHybridBasic  // searchHybridWithScore  // searchHybridWithAlpha  // searchHybridWithFusionType  // searchHybridWithProperties  // searchHybridWithVector  // searchHybridWithFilter  // START limit  // START autocut
 let result;
+
+// END searchHybridBasic  // END searchHybridWithScore  // END searchHybridWithAlpha  // END searchHybridWithFusionType  // END searchHybridWithProperties  // END searchHybridWithVector  // END searchHybridWithFilter  // END limit  // END autocut
 
 // ==============================
 // ===== Basic Hybrid Query =====
@@ -106,18 +114,30 @@ assert.equal(result.data.Get.JeopardyQuestion.length, 3);
 // ============================================
 
 // searchHybridWithFusionType
-// JS/TS code coming soon
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withHybrid({
+    query: 'food',
+    alpha: 0.25,
+    // highlight-start
+    fusionType: FusionType.rankedFusion
+    // highlight-end
+  })
+  .withLimit(3)
+  .withFields('question answer')
+  .do();
 
+console.log(JSON.stringify(result, null, 2));
 // END searchHybridWithFusionType
 
 // Tests
-// TODO
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer']));
+assert.equal(result.data.Get.JeopardyQuestion.length, 3);
 
-// searchHybridWithFusionType
-// END searchHybridWithFusionType
 
-
-// ================================
+// ========================================
 // ===== Hybrid Query with Properties =====
 // ========================================
 

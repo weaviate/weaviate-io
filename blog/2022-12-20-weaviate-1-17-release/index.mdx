@@ -89,7 +89,7 @@ Similar to how you use `nearText`, `hybrid` is passed as an argument to a Weavia
 Work on hybrid search is not over! We will continue to make improvements and introduce new features in the future. For example, there is already something in the [backlog](https://github.com/weaviate/weaviate/issues/2393) to add [`where` filters](/developers/weaviate/api/graphql/filters#where-filter) to hybrid search (give it a thumbs up while you're there). 🙂
 
 ### Learn More
-The hybrid operator is available through GraphQL, REST and all Weaviate client languages. Check out the [documentation](/developers/weaviate/api/graphql/vector-search-parameters#hybrid) for more information and learn how to write the query in the other client programming languages.
+The hybrid operator is available through GraphQL, REST and all Weaviate client languages. Check out the [documentation](/developers/weaviate/api/graphql/search-operators#hybrid) for more information and learn how to write the query in the other client programming languages.
 
 ## BM25
 ![BM25](./img/bm25.png)
@@ -97,7 +97,7 @@ The hybrid operator is available through GraphQL, REST and all Weaviate client l
 BM25 ("Best Match #25" - it took quite a few iterations to arrive at the current state of the art 😉) is a [family of ranking functions](https://link.springer.com/referenceworkentry/10.1007/978-0-387-39940-9_921) that is widely used in information retrieval to score and rank documents based on their relevance to a given search query.
 
 ### BM25 Operator
-In Weaviate v1.17, we introduce a search operator called [`bm25`](/developers/weaviate/api/graphql/vector-search-parameters#bm25), which performs a case-insensitive keyword search, then ranks the results using the BM25F ranking function - **B**est **M**atch **25** with Extension to Multiple Weighted **F**ields, a variant of BM25 that can take into account different weights for different properties (fields) of the document, in order to produce more accurate results.
+In Weaviate v1.17, we introduce a search operator called [`bm25`](/developers/weaviate/api/graphql/search-operators#bm25), which performs a case-insensitive keyword search, then ranks the results using the BM25F ranking function - **B**est **M**atch **25** with Extension to Multiple Weighted **F**ields, a variant of BM25 that can take into account different weights for different properties (fields) of the document, in order to produce more accurate results.
 
 ### Core Concept
 The basic idea behind BM25 is to score a document based on the number of times a particular term appears in the document, as well as the overall length of the document - one occurrence in a tweet is much more significant than one occurrence in a book. Essentially, this is done using a combination of term frequency (TF - the more times the term appears, the higher the score) and inverse document frequency (IDF - if a term occurs rarely in the documents in the corpus, then whenever it does occur, that occurrence is probably significant).
@@ -105,7 +105,7 @@ The basic idea behind BM25 is to score a document based on the number of times a
 [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is in fact the name of a ranking function [upon which BM25 builds](https://kmwllc.com/index.php/2020/03/20/understanding-tf-idf-and-bm-25/). The idea has been refined to codify numerous information retrieval intuitions such as, if a term appears three times in a document and six times in another, that doesn't automatically mean the second document is twice as relevant.
 
 ### When to use BM25
-BM25 is best used when an exact match for the query keywords is desired (and the order of the words in the query is not important) and in out-of-domain searches (when the model is not specifically trained on the corpus of documents). If stemming or semantic similarity are desired, Weaviate's [vector search](/developers/weaviate/api/graphql/vector-search-parameters#hybrid) will be better suited.
+BM25 is best used when an exact match for the query keywords is desired (and the order of the words in the query is not important) and in out-of-domain searches (when the model is not specifically trained on the corpus of documents). If stemming or semantic similarity are desired, Weaviate's [vector search](/developers/weaviate/api/graphql/search-operators#hybrid) will be better suited.
 
 ### BM25 Query Example
 The `bm25` operator takes one required parameter, a string `query`, and an optional `properties` parameter - an array of property names, each of which being optionally weighted by a factor placed after a `^` character.
@@ -132,7 +132,7 @@ Here is a GraphQL example using the `bm25` argument:
 
 The response contains the `score` in the `_additional` object.
 ### Learn More
-The `bm25` operator is available through GraphQL, REST and all Weaviate client languages. Check out the [documentation](/developers/weaviate/api/graphql/vector-search-parameters#bm25) for more information.
+The `bm25` operator is available through GraphQL, REST and all Weaviate client languages. Check out the [documentation](/developers/weaviate/api/graphql/search-operators#bm25) for more information.
 
 ## Faster Startup and Imports
 ![Faster Startup and Imports](./img/faster-startup.png)

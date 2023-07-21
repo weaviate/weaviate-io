@@ -1,6 +1,6 @@
 ---
 title: GraphQL - Additional operators
-sidebar_position: 5
+sidebar_position: 40
 image: og/docs/api.jpg
 # tags: ['graphql', 'additional operators']
 ---
@@ -16,7 +16,7 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 ## Syntax
 
-Additional parameters such as `limit`, `autocut` and `sort` are available to modify queries at the class level.
+Additional operators such as `limit`, `autocut` and `sort` are available to modify queries at the class level.
 <!--
 For example:
 
@@ -70,7 +70,7 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
 Supported by the `Get{}` and `Explore{}` functions.
 
-The `offset` parameter works in conjunction with the existing `limit` parameter. For example, to list the first ten results, set `limit: 10`. Then, to "display the second page of 10", set `offset: 10`, `limit:10` and so on. E.g. to show the 9th page of 10 results, set `offset: 80, limit: 10` to effectively display results 81-90.
+The `offset` operator works in conjunction with the existing `limit` operator. For example, to list the first ten results, set `limit: 10`. Then, to "display the second page of 10", set `offset: 10`, `limit:10` and so on. E.g. to show the 9th page of 10 results, set `offset: 80, limit: 10` to effectively display results 81-90.
 
 Here's an example of `limit` + `offset`:
 
@@ -177,13 +177,13 @@ For more client code examples for each operator category, see [autocut with simi
 
 ## Cursor with `after`
 
-Starting with version `v1.18`, the `after` parameter can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
+Starting with version `v1.18`, the `after` operator can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
 
-The `after` parameter relies on the order of ids. It can therefore only be applied to list queries without any search operators. In other words, `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, etc.
+The `after` operator relies on the order of ids. It can therefore only be applied to list queries without any search operators. In other words, `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, etc.
 
 For those cases, use pagination with `offset`.
 
-An example of the `after` parameter usage:
+An example of the `after` operator usage:
 
 import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 
@@ -246,7 +246,10 @@ The `after` cursor is available on both single-shard and multi-shard set-ups.
 Support for sorting was added in `v1.13.0`.
 :::
 
-You can sort results by any primitive property, typically a `text`, `string`, `number`, or `int` property. When a query has a natural order (e.g. because of a `near<Media>` vector search), adding a sort operator will override the order.
+You can sort results by any primitive property, such as a `text`, `string`,
+`number`, or `int`. When a query has a natural order (e.g. because of a
+`near<Media>` vector search), adding a sort operator will override the order.
+
 
 ### Cost of sorting / architecture
 

@@ -23,7 +23,7 @@ let result;
 // ===== With NearText =====
 // =========================
 
-// https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
+// https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 // GetNearText
 result = await client.graphql
   .get()
@@ -50,7 +50,7 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 // ===== With NearVector =====
 // ================================
 
-// https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
+// https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 // GetNearVector
 result = await client.graphql
   .get()
@@ -75,7 +75,7 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 // ===== With NearObject =====
 // ================================
 
-// https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearobject
+// https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearobject
 // GetNearObject
 result = await client.graphql
   .get()

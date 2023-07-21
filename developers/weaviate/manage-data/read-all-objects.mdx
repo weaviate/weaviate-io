@@ -19,10 +19,10 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-obje
 
 Sometimes, you may wish to list every object in a class, such as for manual backup when the [`backup`](../configuration/backups.md) feature is not suitable, or to export vectors or specific object properties. You may also wish to then restore these objects as well, to a different Weaviate instance for example.
 
-The best way to do this is with the `after` parameter, also called the [cursor API](../api/graphql/additional-operators.md#cursor-with-after).
+The best way to do this is with the `after` operator, also called the [cursor API](../api/graphql/additional-operators.md#cursor-with-after).
 
 :::info Alternative ordering not possible
-The `after` parameter is based on the order of IDs. No other ordering of data, such as sorting or searching, is possible.
+The `after` operator is based on the order of IDs. No other ordering of data, such as sorting or searching, is possible.
 :::
 
 :::info See also
@@ -39,7 +39,7 @@ For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled,
 
 ### List every object
 
-You can list (i.e. retrieve) every object as shown in the below example, looping through the data with the `after` parameter.
+You can list (i.e. retrieve) every object as shown in the below example, looping through the data with the `after` operator.
 
 The below example connects to a "source" instance at `https://some-endpoint.weaviate.network`. It also defines a function that will fetch a group of objects (and their `title` property) in the `WineReview` class from using the ID of the last object retrieved as the cursor.
 

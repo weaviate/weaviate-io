@@ -78,9 +78,9 @@ It should produce a response like the one below:
 
 </details>
 
-### With a search parameter
+### With a search operator
 
-Conditional filters can be combined with a search parameter such as `nearXXX`, `hybrid` or `bm25`.
+Conditional filters can be combined with a search operator such as `nearXXX`, `hybrid` or `bm25`.
 
 The following example adds a `points` filter to a `nearText` query, where the `points` property must be greater than 200. Note that the `valueInt` is used as the property datatype is `int`.
 

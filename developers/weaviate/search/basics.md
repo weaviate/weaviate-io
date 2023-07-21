@@ -133,6 +133,8 @@ It should produce a response like the one below:
 
 </details>
 
+<!-- TODO: Add section on sorting -->
+<!-- TODO: Add link to new section on sorting from GraphQL/Get#Sorting -->
 
 ## Paginate with `limit` and `offset`
 
@@ -141,7 +143,7 @@ If you only want the `n` results after the first `m` results from the query, you
 Be aware that although you will only see `n` results, this could become an expensive operation as `m` grows larger, as Weaviate must fetch `n+m` results.
 
 :::tip For exhaustive retrieval, use `after` instead.
-If you want to list and retrieve all objects from a `class`, use the cursor API instead with the `after` parameter. Read [this guide](../manage-data/read-all-objects.mdx) for more information on how.
+If you want to list and retrieve all objects from a `class`, use the cursor API instead with the `after` operator. Read [this guide](../manage-data/read-all-objects.mdx) for more information on how.
 :::
 
 <Tabs groupId="languages">
@@ -194,7 +196,7 @@ It should produce a response like the one below:
 
 ## Specify the fetched properties
 
-You can specify the properties to be fetched, as long as one or more are specified.
+You must specify one or more properties to be fetched, from a union of object properties and available metadata.
 
 ### Object `properties`
 
@@ -403,6 +405,168 @@ It should produce a response like the one below:
   endMarker="# END GetWithCrossRefs Expected Results"
   language="json"
 />
+
+</details>
+
+### Retrieve any other metadata
+
+You can retrieve any other available metadata by specifying the `_additional` property similarly to how `id` or `vector` can be retrieved. Please refer to [References: GraphQL: Additional properties](../api/graphql/additional-properties.md) for a comprehensive list.
+
+## `groupBy`
+
+To maintain granularity while viewing the broader context of the objects (e.g. documents as a whole), a `groupBy` search may be appropriate.
+
+To use `groupBy`:
+- Provide the property by which the the results will be grouped,
+- The maximum number of groups, and
+- The maximum number of objects per group.
+
+<details>
+  <summary><code>groupby</code> example</summary>
+
+<p>
+
+In this example, you have a collection of `Passage` objects with, each object belonging to a `Document`.
+
+<br/>
+
+You could group the results of a `Passage` search by any of its property, including the cross-reference property linking `Passage` to a parent `Document` with a search as below.
+
+```graphql
+{
+  Get{
+    Passage(
+      limit: 100
+      nearObject: {
+        id: "00000000-0000-0000-0000-000000000001"
+      }
+      groupBy: {
+        path: ["content"]
+        groups: 2
+        objectsPerGroup: 2
+      }
+    ){
+      _additional {
+        id
+        group {
+          id
+          count
+          groupedBy { value path }
+          maxDistance
+          minDistance
+          hits{
+            content
+            ofDocument {
+              ... on Document {
+                _additional {
+                  id
+                }
+              }
+            }
+            _additional {
+              id
+              distance
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Here, the `groups` and `objectsPerGroup` limits are customizable.
+
+<br/>
+
+This example:
+
+1. retrieves the top 100 objects
+2. groups them to identify the up to 2 most relevant `Document` objects,
+3. based on the up to top 2 `Passage` objects from each `Document`.
+
+<br/>
+
+This will result in the following response:
+
+```json
+{
+  "data": {
+    "Get": {
+      "Passage": [
+        {
+          "_additional": {
+            "group": {
+              "count": 1,
+              "groupedBy": {
+                "path": [
+                  "content"
+                ],
+                "value": "Content of passage 1"
+              },
+              "hits": [
+                {
+                  "_additional": {
+                    "distance": 0,
+                    "id": "00000000-0000-0000-0000-000000000001"
+                  },
+                  "content": "Content of passage 1",
+                  "ofDocument": [
+                    {
+                      "_additional": {
+                        "id": "00000000-0000-0000-0000-000000000011"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "id": 0,
+              "maxDistance": 0,
+              "minDistance": 0
+            },
+            "id": "00000000-0000-0000-0000-000000000001"
+          }
+        },
+        {
+          "_additional": {
+            "group": {
+              "count": 1,
+              "groupedBy": {
+                "path": [
+                  "content"
+                ],
+                "value": "Content of passage 2"
+              },
+              "hits": [
+                {
+                  "_additional": {
+                    "distance": 0.00078231096,
+                    "id": "00000000-0000-0000-0000-000000000002"
+                  },
+                  "content": "Content of passage 2",
+                  "ofDocument": [
+                    {
+                      "_additional": {
+                        "id": "00000000-0000-0000-0000-000000000011"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "id": 1,
+              "maxDistance": 0.00078231096,
+              "minDistance": 0.00078231096
+            },
+            "id": "00000000-0000-0000-0000-000000000002"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</p>
 
 </details>
 

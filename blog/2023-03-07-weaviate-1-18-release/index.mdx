@@ -82,9 +82,9 @@ The [WAND](https://www.researchgate.net/publication/221613425_Efficient_query_ev
 To use WAND for your application, upgrade your Weaviate instance to `1.18`. No other changes are necessary for you to see the speed up.
 
 ### Filters for BM25 and Hybrid Search
-The [`where` filter](/developers/weaviate/api/graphql/filters#where-filter) allows you to narrow down your data based on specified conditions. [Vector search parameters](/developers/weaviate/api/graphql/vector-search-parameters) are applied to GraphQL queries on the class level. We have added `where` filters to BM25 and hybrid search!
+The [`where` filter](/developers/weaviate/api/graphql/filters#where-filter) allows you to narrow down your data based on specified conditions. [Search operators](/developers/weaviate/api/graphql/search-operators) are applied to GraphQL queries on the class level. We have added `where` filters to BM25 and hybrid search!
 
-The implementation is the same as how you would add a filter to any other vector search parameter. To begin using filters with BM25 and hybrid, simply upgrade your Weaviate instance to `1.18`.
+The implementation is the same as how you would add a filter to any other search operator. To begin using filters with BM25 and hybrid, simply upgrade your Weaviate instance to `1.18`.
 
 An example of adding a filter to your hybrid search looks like this:
 
@@ -104,7 +104,7 @@ An example of adding a filter to your hybrid search looks like this:
 
 ```
 
-Check out the documentation for more information on how to add filters to [BM25](/developers/weaviate/api/graphql/vector-search-parameters#bm25-with-where-filter) and [hybrid](/developers/weaviate/api/graphql/vector-search-parameters#hybrid-with-where-filter).
+Check out the documentation for more information on how to add filters to [BM25](/developers/weaviate/api/graphql/search-operators#bm25-with-where-filter) and [hybrid](/developers/weaviate/api/graphql/search-operators#hybrid-with-where-filter).
 
 ### Stopword Removal
 In `1.17`, stopwords were not indexed, which led to zero results if you were searching for "the" or “us.” Now with `1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking.
@@ -135,7 +135,7 @@ client.schema.update_config("Article", class_obj)
 For more information on how to update a class using the RESTful API, check out the [documentation](/developers/weaviate/api/rest/schema#update-a-class).
 
 ### Ongoing Fixes and Improvements
-Although [BM25](/developers/weaviate/api/graphql/vector-search-parameters#bm25) and [Hybrid Search](/developers/weaviate/api/graphql/vector-search-parameters#hybrid) were released in Weaviate `1.17`, we continued to make fixes and improvements. Here are a list of the patch releases related to BM25/Hybrid:
+Although [BM25](/developers/weaviate/api/graphql/search-operators#bm25) and [Hybrid Search](/developers/weaviate/api/graphql/search-operators#hybrid) were released in Weaviate `1.17`, we continued to make fixes and improvements. Here are a list of the patch releases related to BM25/Hybrid:
 
 * `1.17.1`:
   * Fix BM25/Hybrid over-fetching issue

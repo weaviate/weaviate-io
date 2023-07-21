@@ -11,7 +11,7 @@ import ReactPlayer from 'react-player/lazy'
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Available operators
 
-So far, you've seen different query functions such as `Get`, and `Aggregate`, and vector search parameters such as `nearVector`, `nearObject` and `nearText`.
+So far, you've seen different query functions such as `Get`, and `Aggregate`, and search operators such as `nearVector`, `nearObject` and `nearText`.
 
 Now, let's take a look at filters.
 
@@ -236,9 +236,9 @@ Try these:
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Result pagination with `offset`
 
-When you query for data, you can use the `offset` parameter to skip a number of results. This is useful for pagination, where you want to show a certain number of results per page.
+When you query for data, you can use the `offset` operator to skip a number of results. This is useful for pagination, where you want to show a certain number of results per page.
 
-The `offset` parameter works in conjunction with the existing `limit` parameter to shows results from the `offset+1` to `offset+1+limit`.
+The `offset` operator works in conjunction with the existing `limit` operator to shows results from the `offset+1` to `offset+1+limit`.
 
 For example, to list the first ten results, set `limit`: 10. Then, to "display the second page of 10", set `offset`: 10, `limit`:10 and so on.
 
@@ -300,7 +300,7 @@ import FilterPaginationRelated from './_snippets/academy.queries.filter.paginati
 So, the `n` th page would have `offset`: `n*m`, `limit`: `m`, where `m` is the number of results per page.
 :::
 
-The `offset` parameter is available with all vector search functions including `Get` and `Aggregate`.
+The `offset` operator is available with all vector search functions including `Get` and `Aggregate`.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
@@ -313,7 +313,7 @@ The `offset` parameter is available with all vector search functions including `
 - Filters are used to apply additional criteria to the results. Some commonly used filters include `where`, `limit` and `offset`.
 - The `where` filter allows you to apply a boolean condition to the data being queried. It can be used with various operators like `Like`, `Greater`, `Equal`, etc.
 - You can use multiple conditions within a `where` filter to further refine your query results.
-- The `offset` parameter can be used in conjunction with `limit` to skip results and build pagination.
+- The `offset` operator can be used in conjunction with `limit` to skip results and build pagination.
 
 import Quiz from '/src/components/Academy/quiz.js'
 const whereUsage = [{
@@ -337,7 +337,7 @@ const whereUsage = [{
   ]
 }];
 const offsetExample = [{
-  questionText: 'How can you combine the offset and limit parameters to display the second page of results with 10 results per page?',
+  questionText: 'How can you combine the offset and limit operators to display the second page of results with 10 results per page?',
   answerOptions: [
     {
       answerText: 'Set offset: 10 and limit: 10',

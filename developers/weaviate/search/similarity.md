@@ -17,19 +17,19 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 ## Overview
 
-This page shows you how to perform similarity-based searches using Weaviate with the `nearXXX` parameters.
+This page shows you how to perform similarity-based searches using Weaviate with the `nearXXX` operators.
 
 :::info Related pages
-- [API References: Vector search parameters](../api/graphql/vector-search-parameters.md)
+- [API References: Search operators](../api/graphql/search-operators.md)
 :::
 
 import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 <BasicPrereqs />
 
-## Similarity-based parameters
+## Similarity-based operators
 
-These parameters are available:
+These operators are available:
 
 * [`near<Media>`](#an-input-medium) - Finds objects closest to an input medium:
     * E.g.: Use it to find text objects most similar to `cute animals`, or images most similar to a particular image.
@@ -43,7 +43,7 @@ These parameters are available:
 :::tip This is only available for classes with a [vectorizer](../modules/retriever-vectorizer-modules/index.md) configured.
 :::
 
-You can use these parameters to find objects most similar to a raw (un-vectorized) input, such as text or image. For text objects, you can provide an input text to [`nearText`](../api/graphql/vector-search-parameters.md#neartext), and for image objects, you can provide an input image to [`nearImage`](./image.md). (Or either if you are using [CLIP](../modules/retriever-vectorizer-modules/multi2vec-clip.md).)
+You can use these operators to find objects most similar to a raw (un-vectorized) input, such as text or image. For text objects, you can provide an input text to [`nearText`](../api/graphql/search-operators.md#neartext), and for image objects, you can provide an input image to [`nearImage`](./image.md). (Or either if you are using [CLIP](../modules/retriever-vectorizer-modules/multi2vec-clip.md).)
 
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching `"animals in movies"`, using `nearText`:
 
@@ -90,7 +90,7 @@ It should produce a response like the one below:
 
 ### An object
 
-You can use the [`nearObject` parameter](../api/graphql/vector-search-parameters.md#nearobject) to find objects most similar to an existing Weaviate object. To do so, specify the object ID (e.g. `56b9449e-65db-5df4-887b-0a4773f52aa7`) as shown below.
+You can use the [`nearObject` operator](../api/graphql/search-operators.md#nearobject) to find objects most similar to an existing Weaviate object. To do so, specify the object ID (e.g. `56b9449e-65db-5df4-887b-0a4773f52aa7`) as shown below.
 
 :::tip How to retrieve object IDs
 See [this section](./basics.md#retrieve-the-object-id)
@@ -130,7 +130,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 
 ### A vector
 
-You can use the [`nearVector` parameter](../api/graphql/vector-search-parameters.md#nearvector) to find objects most similar to an input vector (e.g. `[-0.368, 0.1397, ... , 0.0971]`).
+You can use the [`nearVector` operator](../api/graphql/search-operators.md#nearvector) to find objects most similar to an input vector (e.g. `[-0.368, 0.1397, ... , 0.0971]`).
 
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching the object with the provided vector, using `nearVector`:
 
@@ -177,7 +177,7 @@ You can set the maximum number of results returned with `limit` in the same way 
 
 Similarly, you can retrieve a maximum `n` objects after the first `m` results by using `limit` with `offset` as shown in the [search basics how-to guide](./basics.md#paginate-with-limit-and-offset).
 
-To limit the number of results returned by a `near...` query, add the `limit` parameter. To start at a given offset, add the `offset` parameter. For example if we want to obtain the animals in movies #2 and #3 from the [`nearText` example](#an-input-medium) above, we'll need to use `offset: 1, limit: 2`. The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, skips 1 object (`offset`) and returns the next 2 objects:
+To limit the number of results returned by a `near...` query, add the `limit` operator. To start at a given offset, add the `offset` operator. For example if we want to obtain the animals in movies #2 and #3 from the [`nearText` example](#an-input-medium) above, we'll need to use `offset: 1, limit: 2`. The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, skips 1 object (`offset`) and returns the next 2 objects:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">

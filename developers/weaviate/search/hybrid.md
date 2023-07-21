@@ -19,12 +19,12 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
 This page shows you how to perform `hybrid` searches using Weaviate.
 
-The `hybrid` parameter uses both the `bm25` (i.e. sparse vector) and vector (i.e. dense vector) search algorithms, and combines their outputs to produce results.
+The `hybrid` operator uses both the `bm25` (i.e. sparse vector) and vector (i.e. dense vector) search algorithms, and combines their outputs to produce results.
 
 The results are determined by a weighted combination of the two search outputs.
 
 :::info Related pages
-- [API References: Vector search parameters # Hybrid](../api/graphql/vector-search-parameters.md#hybrid)
+- [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 :::
 
 import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
@@ -135,8 +135,8 @@ It should produce a response like the one below:
 ## Limit the results
 
 You can limit the number of results returned by a `hybrid` search,
-- to a fixed number, using the `limit: <N>` parameter
-- to the first N "drops" in `score`, using the `autocut` parameter
+- to a fixed number, using the `limit: <N>` operator
+- to the first N "drops" in `score`, using the `autocut` operator
 
 `autocut` can be combined with `limit: N`, which would limit autocut's input to the first `N` objects.
 
