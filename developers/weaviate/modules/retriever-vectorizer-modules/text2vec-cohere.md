@@ -102,7 +102,7 @@ The multilingual models use dot product, and the English model uses cosine. Make
 ## Usage
 
 * If the Cohere API key is not set in the `text2vec-cohere` module, you can set the API key at query time by adding the following to the HTTP header: `X-Cohere-Api-Key: YOUR-COHERE-API-KEY`.
-* Using this module will enable [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
+* Using this module will enable [GraphQL vector search operators](/developers/weaviate/api/graphql/search-operators.md#neartext).
 
 ### Example
 

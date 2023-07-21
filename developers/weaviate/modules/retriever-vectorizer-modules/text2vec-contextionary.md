@@ -166,7 +166,7 @@ Author
 
 ## How to use
 
-The module makes available a [`nearText`](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext) search operator.
+The module makes available a [`nearText`](/developers/weaviate/api/graphql/search-operators.md#neartext) search operator.
 
 ### Example
 

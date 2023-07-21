@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 
 * The Generative Cohere (`generative-cohere`) module generates responses based on the data stored in your Weaviate instance.
 * The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
-* The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries
+* The module adds a `generate {}` operator to the GraphQL `_additional {}` property of the `Get {}` queries
 * Added in Weaviate `v1.19.0`
 * The default model is `command-xlarge-nightly`, which the Cohere team trains nightly and pushes updates.
 

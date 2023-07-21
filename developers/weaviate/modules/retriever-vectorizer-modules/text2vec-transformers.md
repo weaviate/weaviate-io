@@ -251,7 +251,7 @@ For example:
 
 ## How to use
 
-* New search operators made available by this module can be found [here](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
+* New search operators made available by this module can be found [here](/developers/weaviate/api/graphql/search-operators.md#neartext).
 
 ### Example
 

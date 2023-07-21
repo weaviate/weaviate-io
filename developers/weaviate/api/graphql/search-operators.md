@@ -2,7 +2,7 @@
 title: GraphQL - Search operators
 sidebar_position: 20
 image: og/docs/api.jpg
-# tags: ['graphql', 'vector search parameters', 'search operators']
+# tags: ['graphql', 'search operators']
 ---
 import Badges from '/_includes/badges.mdx';
 

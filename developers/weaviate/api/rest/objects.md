@@ -13,7 +13,7 @@ import BeaconsBackCompatOmitClassname from '/_includes/beacons-backcompat-omit-c
 ## List data objects
 
 :::tip Do you want to list all objects from Weaviate?
-Use the [`after`](#exhaustive-listing-using-a-cursor-after) parameter.
+Use the [`after`](#exhaustive-listing-using-a-cursor-after) operator.
 :::
 
 List data objects in reverse order of creation. The data will be returned as an array of objects.
@@ -83,12 +83,12 @@ GET /v1/objects?class=MyClass&limit=10&offset=20
 :::tip
 - Available from version `v1.18.0`.
 - You can use `class`, `limit` and `after` for listing an entire object set from a class.
-- The `after` parameter is based on the order of ids. It can therefore only be applied to list queries without sorting.
+- The `after` operator is based on the order of ids. It can therefore only be applied to list queries without sorting.
 :::
 
-You can use the `after` parameter to retrieve all objects from a Weaviate instance . The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. You can pass the id of the last retrieved object as a cursor to start the next page.
+You can use the `after` operator to retrieve all objects from a Weaviate instance . The `after` operator ("Cursor API") retrieves objects of a class based on the order of ids. You can pass the id of the last retrieved object as a cursor to start the next page.
 
-It is not possible to use the `after` parameter without specifying a `class`.
+It is not possible to use the `after` operator without specifying a `class`.
 
 For a null value similar to `offset=0`, set `after=` or `after` (i.e. with an empty string) in the request.
 
@@ -278,7 +278,7 @@ import SemanticKindCreateVector from '/_includes/code/semantic-kind.create.vecto
 You can set custom vectors for batch imports as well as single object creation.
 :::
 
-See also [how to search using custom vectors](../graphql/vector-search-parameters.md#nearvector).
+See also [how to search using custom vectors](../graphql/search-operators.md#nearvector).
 
 ## Get a data object
 

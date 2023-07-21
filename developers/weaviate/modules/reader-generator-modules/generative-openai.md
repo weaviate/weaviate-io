@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 
 * The Generative OpenAI (`generative-openai`) module generates responses based on the data stored in your Weaviate instance.
 * The module can generate a response for each returned object, or a single response for a group of objects.
-* The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries.
+* The module adds a `generate {}` operator to the GraphQL `_additional {}` property of the `Get {}` queries.
 * Added in Weaviate `v1.17.3`.
 * The default OpenAI model is `gpt-3.5-turbo`, but other models (e.g. `gpt-4`) are supported.
 * For Azure OpenAI, a model must be specified.

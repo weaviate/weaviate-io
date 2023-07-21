@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 
 * The Generative PaLM (`generative-palm`) module generates responses based on the data stored in your Weaviate instance.
 * The module can generate a response for each returned object, or a single response for a group of objects.
-* The module adds a `generate {}` parameter to the GraphQL `_additional {}` property of the `Get {}` queries.
+* The module adds a `generate {}` operator to the GraphQL `_additional {}` property of the `Get {}` queries.
 * Added in Weaviate `v1.19.1`.
 * You need an API key for a PaLM API to use this module.
 * The default model is `chat-bison`.

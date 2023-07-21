@@ -149,7 +149,7 @@ Now that we have the articles imported, let's run some queries!
 
 ### nearText
 
-The [`nearText` filter](../api/graphql/vector-search-parameters.md#neartext) lets us search for objects close (in vector space) to the vector representation of one or more concepts. For example, the vector for the query "modern art in Europe" would be close to the vector for the article [Documenta](https://simple.wikipedia.org/wiki/Documenta), which describes
+The [`nearText` filter](../api/graphql/search-operators.md#neartext) lets us search for objects close (in vector space) to the vector representation of one or more concepts. For example, the vector for the query "modern art in Europe" would be close to the vector for the article [Documenta](https://simple.wikipedia.org/wiki/Documenta), which describes
 > "one of the most important exhibitions of modern art in the world... [taking] place in Kassel, Germany".
 
 import NearText from '/_includes/code/tutorials.wikipedia.nearText.mdx';
@@ -158,7 +158,7 @@ import NearText from '/_includes/code/tutorials.wikipedia.nearText.mdx';
 
 ### hybrid
 
-While `nearText` uses dense vectors to find objects similar in meaning to the search query, it does not perform very well on keyword searches. For example, a `nearText` search for "jackfruit" in this Simple English Wikipedia dataset, will find "cherry tomato" as the top result. For these (and indeed, most) situation, we can obtain better search results by using the [`hybrid` filter](../api/graphql/vector-search-parameters.md#hybrid), which combines dense vector search with keyword search:
+While `nearText` uses dense vectors to find objects similar in meaning to the search query, it does not perform very well on keyword searches. For example, a `nearText` search for "jackfruit" in this Simple English Wikipedia dataset, will find "cherry tomato" as the top result. For these (and indeed, most) situation, we can obtain better search results by using the [`hybrid` filter](../api/graphql/search-operators.md#hybrid), which combines dense vector search with keyword search:
 
 import Hybrid from '/_includes/code/tutorials.wikipedia.hybrid.mdx';
 
