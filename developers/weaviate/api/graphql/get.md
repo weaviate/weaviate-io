@@ -229,7 +229,7 @@ Refer to the below page(s) for further information.
 
 ## Conditional filters
 
-`Get{}` queries can be combined with any conditional filter.
+`Get{}` queries can be combined with a conditional filter.
 
 Refer to the below page(s) for further information.
 
@@ -238,19 +238,15 @@ Refer to the below page(s) for further information.
 - [How-to search: Filters](../../search/filters.md)
 :::
 
-### Sorting
 
-:::info Available from `v1.13.0`
-:::
+## Additional operators
 
-You can sort results by any primitive property, such as a `text`, `string`,
-`number`, or `int`. When a query has a natural order (e.g. because of a
-`near<Media>` vector search), adding a sort operator will override the order.
+`Get{}` queries can be combined with additional operators such as `limit`, `offset`, `autocut`, `after` or `sort`.
 
 Refer to the below page(s) for further information.
 
 :::tip Read more
-- [References: GraphQL: Additional Operators: Sorting](./additional-operators.md#sorting)
+- [References: GraphQL: Additional Operators](./additional-operators.md)
 :::
 
 ## More Resources

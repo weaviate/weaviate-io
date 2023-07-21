@@ -246,7 +246,10 @@ The `after` cursor is available on both single-shard and multi-shard set-ups.
 Support for sorting was added in `v1.13.0`.
 :::
 
-You can sort results by any primitive property, typically a `text`, `string`, `number`, or `int` property. When a query has a natural order (e.g. because of a `near<Media>` vector search), adding a sort operator will override the order.
+You can sort results by any primitive property, such as a `text`, `string`,
+`number`, or `int`. When a query has a natural order (e.g. because of a
+`near<Media>` vector search), adding a sort operator will override the order.
+
 
 ### Cost of sorting / architecture
 
