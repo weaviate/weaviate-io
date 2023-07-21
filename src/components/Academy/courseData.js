@@ -86,7 +86,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: false,
     units: [
-      "vectorizer_selection_1", "beyond_text", "chunking"
+      "chunking", "vectorizer_selection_1", "beyond_text"
     ]
   }
 };

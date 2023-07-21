@@ -9,7 +9,7 @@ function CardSet(props) {
 
   for (let i = 0; i < cardData.length; i++) {
     cardItems.push(
-      <div class="col col--4">
+      <div class="col col--6">
         <AcademyCard
           title={i+1 + ". " + cardData[i].title}
           body={cardData[i].body}

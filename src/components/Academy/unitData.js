@@ -473,17 +473,21 @@ export const unitData = {
   },
 
   chunking: {
-    title: "Document chunking and vectorization",
-    body: "Chunking can help to vectorize long documents, but how to best do it? And what are some rules of thumb?.",
+    title: "Document chunking - why and how?",
+    body: "Chunking is essential for effective use of vector databases, but how to do it? And what are some rules of thumb?",
     buttonType: "TBD",
     badgeType: "practical",
     learningGoals: [
-      "What is chunking",
-      "About how to chunk.",
-      "How it affects results"
+      "What chunking is",
+      "Its role in vector search and generative search",
+      "Various chunking methods",
+      "Key considerations and suggested starting points",
     ],
     learningOutcomes: [
-      "TBC",
+      "Describe chunking at a high level",
+      "Explain the impact of chunking in vector search and generative search",
+      "Implement various chunking methods and know where to explore others",
+      "Evaluate chunking strategies based on your needs",
     ],
     owner: "jp",
     reviewer: "jp"
