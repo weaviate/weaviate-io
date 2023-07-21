@@ -19,8 +19,6 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 - [How-to: Search: Basics](../../search/basics.md)
 :::
 
-[TEST LINK](/developers/weaviate/api/graphql/vector-search-parameters)
-
 The `Get{}` function is for retrieving individual objects.
 
 ## Syntax and query structure
