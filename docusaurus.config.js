@@ -12,6 +12,8 @@ const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+
+
     title: 'Weaviate - vector database',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
@@ -86,6 +88,7 @@ const config = {
         '/fonts/font-awesome/regular.css',
         '/fonts/font-awesome/brands.css',
 
+
         {
             // styles for math equations
             href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
@@ -94,6 +97,7 @@ const config = {
                 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
             crossorigin: 'anonymous',
         },
+
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
