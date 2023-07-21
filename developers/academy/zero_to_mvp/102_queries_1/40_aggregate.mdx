@@ -168,9 +168,9 @@ This response includes an object to represent aggregations from the `answer` pro
 The list of available properties can be found on [this page](/developers/weaviate/api/graphql/aggregate.md#aggregate-syntax-and-query-structure) in our documentation.
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Aggregate` with a vector search parameter
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Aggregate` with a search operator
 
-As we did with `Get` queries, we can also use vector search parameters such as `nearText` in an `Aggregate` query. Take a look:
+As we did with `Get` queries, we can also use search operators such as `nearText` in an `Aggregate` query. Take a look:
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example (with `nearText`)
 
@@ -322,7 +322,7 @@ Try out the above `nearText` query again, with these changes.
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
 - The `Aggregate` function is used to compile information from multiple objects, providing an overview.
-- Vector search parameters, like `nearText`, can be used in `Aggregate` queries.
+- Search operators, like `nearText`, can be used in `Aggregate` queries.
     - To produce meaningful aggregations, the search space must be limited by setting an explicit limit or a threshold (distance or certainty) in the query.
 - The `groupBy` argument can be used to compile information from multiple subsets of results, refining the aggregation.
 - When using the groupBy argument, the additional property groupedBy is made available, helping to identify the group that the result belongs to.

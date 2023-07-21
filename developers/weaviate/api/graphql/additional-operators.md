@@ -1,6 +1,6 @@
 ---
 title: GraphQL - Additional operators
-sidebar_position: 5
+sidebar_position: 40
 image: og/docs/api.jpg
 # tags: ['graphql', 'additional operators']
 ---

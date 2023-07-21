@@ -24,7 +24,7 @@ The `hybrid` parameter uses both the `bm25` (i.e. sparse vector) and vector (i.e
 The results are determined by a weighted combination of the two search outputs.
 
 :::info Related pages
-- [API References: Vector search parameters # Hybrid](../api/graphql/vector-search-parameters.md#hybrid)
+- [API References: Search operators # Hybrid](../api/graphql/vector-search-parameters.md#hybrid)
 :::
 
 import BasicPrereqs from '/_includes/prerequisites-quickstart.md';

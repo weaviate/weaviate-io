@@ -20,7 +20,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 This page shows you how to perform similarity-based searches using Weaviate with the `nearXXX` parameters.
 
 :::info Related pages
-- [API References: Vector search parameters](../api/graphql/vector-search-parameters.md)
+- [API References: Search operators](../api/graphql/vector-search-parameters.md)
 :::
 
 import BasicPrereqs from '/_includes/prerequisites-quickstart.md';

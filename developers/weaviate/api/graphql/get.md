@@ -1,6 +1,6 @@
 ---
 title: GraphQL - Get{}
-sidebar_position: 1
+sidebar_position: 10
 image: og/docs/api.jpg
 # tags: ['graphql', 'get{}']
 ---

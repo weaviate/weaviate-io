@@ -1,6 +1,6 @@
 ---
 title: GraphQL - Aggregate{}
-sidebar_position: 2
+sidebar_position: 15
 image: og/docs/api.jpg
 # tags: ['graphql', 'aggregate', 'aggregate{}', 'meta']
 ---

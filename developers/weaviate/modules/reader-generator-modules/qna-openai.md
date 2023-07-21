@@ -154,7 +154,7 @@ For information on how to use the individual parameters you [can check here](htt
 
 ## How to use
 
-This module adds a search parameter to GraphQL `Get{...}` queries: `ask{}`. This new search parameter takes the following arguments:
+This module adds a search operator to GraphQL `Get{...}` queries: `ask{}`. This operator takes the following arguments:
 
 | Field | Data Type | Required | Example value | Description |
 |- |- |- |- |- |

@@ -88,7 +88,7 @@ _Note: at the moment, text vectorization modules cannot be combined in a single 
 
 ### GraphQL Ask search
 
-This module adds a search parameter to GraphQL `Get{...}` queries: `ask{}`. This new search parameter takes the following arguments:
+This module adds a search operator to GraphQL `Get{...}` queries: `ask{}`. This new operator takes the following arguments:
 
 | Field 	| Data Type 	| Required 	| Example value 	| Description 	|
 |-	|-	|-	|-	|-	|

@@ -82,9 +82,9 @@ The [WAND](https://www.researchgate.net/publication/221613425_Efficient_query_ev
 To use WAND for your application, upgrade your Weaviate instance to `1.18`. No other changes are necessary for you to see the speed up.
 
 ### Filters for BM25 and Hybrid Search
-The [`where` filter](/developers/weaviate/api/graphql/filters#where-filter) allows you to narrow down your data based on specified conditions. [Vector search parameters](/developers/weaviate/api/graphql/vector-search-parameters) are applied to GraphQL queries on the class level. We have added `where` filters to BM25 and hybrid search!
+The [`where` filter](/developers/weaviate/api/graphql/filters#where-filter) allows you to narrow down your data based on specified conditions. [Search operators](/developers/weaviate/api/graphql/vector-search-parameters) are applied to GraphQL queries on the class level. We have added `where` filters to BM25 and hybrid search!
 
-The implementation is the same as how you would add a filter to any other vector search parameter. To begin using filters with BM25 and hybrid, simply upgrade your Weaviate instance to `1.18`.
+The implementation is the same as how you would add a filter to any other search operator. To begin using filters with BM25 and hybrid, simply upgrade your Weaviate instance to `1.18`.
 
 An example of adding a filter to your hybrid search looks like this:
 
